@@ -42,7 +42,7 @@ const tiers: Tier[] = [
     name: "The Moment",
     price: "$275",
     includes: [
-      "20-minute studio session",
+      "30-minute studio session",
       "3 retouched high-resolution images",
       "Private proofing gallery",
     ],
@@ -54,7 +54,7 @@ const tiers: Tier[] = [
     price: "$550",
     highlight: true,
     includes: [
-      "20-minute studio session",
+      "60-minute studio session",
       "5 retouched high-resolution images",
       "1 fine-art 8x10 physical print",
       "Private proofing gallery",
@@ -131,9 +131,9 @@ export default function MothersDayPage() {
           <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {[
               "Secure your spot with a 50% deposit.",
-              "Arrive at the DTLA studio on May 2 or 3.",
+              "Arrive at 2715 S Main St, Los Angeles on May 2 or 3.",
               "We direct you with specific physical protocols to eliminate awkwardness and give your hands a job.",
-              "We execute the session efficiently in 20 minutes.",
+              "We execute the session efficiently within your booked time window.",
               "You receive a private proofing gallery to select your final retouched assets, with the option to purchase additional frames.",
             ].map((step, i) => (
               <li key={i}>
