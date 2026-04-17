@@ -90,7 +90,7 @@ export default function MothersDayPage() {
             </p>
             <div className="mt-10">
               <Link
-                href={tierHref("feature")}
+                href="#packages"
                 className="inline-flex h-14 items-center justify-center rounded-md bg-background px-8 text-base font-semibold text-foreground transition-colors hover:bg-background/90"
               >
                 Reserve Your Slot
@@ -147,7 +147,7 @@ export default function MothersDayPage() {
         </Container>
       </section>
 
-      <section className="py-section">
+      <section id="packages" className="py-section scroll-mt-20">
         <Container>
           <div className="mb-12">
             <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -213,7 +213,7 @@ export default function MothersDayPage() {
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
-                href={tierHref("feature")}
+                href="#packages"
                 className="inline-flex h-14 items-center justify-center rounded-md bg-background px-8 text-base font-semibold text-foreground transition-colors hover:bg-background/90"
               >
                 Reserve Your Slot
