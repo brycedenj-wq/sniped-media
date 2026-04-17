@@ -30,13 +30,13 @@ const tierOptions: TierOption[] = [
     id: "baseline",
     fullLabel: "Tier 1: The Baseline ($275)",
     label: "The Baseline · $275",
-    detail: "45 minutes, one location, 5 retouched images. Best for individuals and headshots.",
+    detail: "45 minutes, one location, 5 to 10 retouched images. Best for individuals and headshots.",
   },
   {
     id: "standard",
     fullLabel: "Tier 2: The Standard ($550)",
     label: "The Standard · $550",
-    detail: "Up to 2 hours, multiple looks, 15 to 20 retouched images. Best for families and lifestyle.",
+    detail: "Up to 90 minutes, multiple looks, 15 to 20 retouched images. Best for families and lifestyle.",
   },
   {
     id: "events",

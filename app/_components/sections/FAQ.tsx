@@ -17,7 +17,7 @@ const items: Item[] = [
   },
   {
     q: "How do I lock in my date?",
-    a: "Submit an intake form. If your date is available, our system will automatically send you a contract and a secure invoice for the retainer. Your session is locked the moment it is paid.",
+    a: "Submit an intake form. If your date is available, you will receive a contract and invoice. Payment terms vary by tier: full payment for The Baseline, 50% retainer for The Standard with balance auto-invoiced 48 hours prior. Your date is locked the moment payment is received.",
   },
 ];
 
