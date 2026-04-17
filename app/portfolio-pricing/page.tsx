@@ -25,7 +25,7 @@ export default function PortfolioPricingPage() {
               The Work &amp; The Investment.
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-muted">
-              High-impact execution across Los Angeles. We skip the creative ego and focus on what matters: expert direction, transparent costs, and lightning-fast delivery. Browse the galleries, select your tier, and secure your date.
+              High-impact execution across Los Angeles. We skip the creative ego and focus on what matters: expert direction, transparent costs, and lightning-fast delivery. Review the investment, select your tier, and secure your date.
             </p>
           </div>
         </Container>

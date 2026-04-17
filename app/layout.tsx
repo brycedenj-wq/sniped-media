@@ -52,6 +52,54 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${SITE_URL}#business`,
+  name: SITE_NAME,
+  url: SITE_URL,
+  description: SITE_DESCRIPTION,
+  image: `${SITE_URL}/opengraph-image`,
+  logo: `${SITE_URL}/icon.svg`,
+  priceRange: "$275 - $1,200+",
+  areaServed: [
+    { "@type": "City", name: "Los Angeles" },
+    { "@type": "State", name: "California" },
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Los Angeles",
+    addressRegion: "CA",
+    addressCountry: "US",
+  },
+  makesOffer: [
+    {
+      "@type": "Offer",
+      name: "The Baseline",
+      price: "275",
+      priceCurrency: "USD",
+      description:
+        "45-minute expertly directed session, one location, 5 final retouched images.",
+    },
+    {
+      "@type": "Offer",
+      name: "The Standard",
+      price: "550",
+      priceCurrency: "USD",
+      description:
+        "Up to 2 hours with multiple outfits or locations, 15 to 20 final retouched images.",
+    },
+    {
+      "@type": "Offer",
+      name: "Event Coverage",
+      price: "1200",
+      priceCurrency: "USD",
+      description:
+        "4 hours of comprehensive coverage, 50+ final delivered images.",
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -63,6 +111,10 @@ export default function RootLayout({
       className={`${inter.variable} ${spaceGrotesk.variable} scroll-smooth h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-foreground selection:text-background">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
