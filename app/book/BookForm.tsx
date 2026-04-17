@@ -6,8 +6,8 @@ import { useSearchParams } from "next/navigation";
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xlgpgozq";
 
 const PIXIESET_URLS: Record<"baseline" | "standard", string> = {
-  baseline: "https://snipedmedia.pixieset.com/booking/the-moment-portrait-session",
-  standard: "https://snipedmedia.pixieset.com/booking/The-Statement--Signature-Session",
+  baseline: "https://snipedmedia.pixieset.com/booking/tier-1-the-baseline",
+  standard: "https://snipedmedia.pixieset.com/booking/tier-2-the-standard",
 };
 
 const EVENTS_SUCCESS_MESSAGE =
