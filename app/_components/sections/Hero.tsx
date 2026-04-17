@@ -23,12 +23,9 @@ export function Hero() {
           <p className="mt-6 max-w-xl text-lg text-background/80">
             Expertly directed portraits and reliable event coverage. See our pricing and book instantly.
           </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
+          <div className="mt-10">
             <CtaButton href="/portfolio-pricing" size="lg">
               View Pricing &amp; Book
-            </CtaButton>
-            <CtaButton href="/book" size="lg" variant="secondary" className="border-background text-background hover:bg-background hover:text-foreground">
-              Check Availability
             </CtaButton>
           </div>
         </div>
