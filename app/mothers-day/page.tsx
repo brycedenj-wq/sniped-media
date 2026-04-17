@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Container } from "../_components/Container";
 
 const MOTHERS_DAY_URLS: Record<"moment" | "feature", string> = {
-  moment: "",
-  feature: "",
+  moment: "https://snipedmedia.pixieset.com/booking/mothers-day-moment",
+  feature: "https://snipedmedia.pixieset.com/booking/mothers-day-feature",
 };
 
 const DM_FALLBACK_URL = "https://instagram.com/snipedmedia";
