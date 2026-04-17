@@ -18,7 +18,7 @@ const tiers: Tier[] = [
     price: "$275",
     target: "Individual portraits, headshots, or graduation updates.",
     scope: "45 minutes of expert direction, one location.",
-    deliverables: "5 to 10 final retouched images selected from a digital proofing gallery. Full payment secures your date.",
+    deliverables: "5 final retouched images selected from a digital proofing gallery. Full payment secures your date.",
     cta: "Book The Baseline",
     href: "/book?tier=baseline",
   },
