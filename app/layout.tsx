@@ -87,7 +87,7 @@ const localBusinessJsonLd = {
       price: "550",
       priceCurrency: "USD",
       description:
-        "Up to 2 hours with multiple outfits or locations, 15 to 20 final retouched images.",
+        "Up to 90 minutes of dedicated direction with multiple looks, 15 to 20 final retouched images.",
     },
     {
       "@type": "Offer",

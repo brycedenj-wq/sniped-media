@@ -60,6 +60,7 @@ const tiers: Tier[] = [
       "30-minute studio session",
       "5 retouched high-resolution images",
       "Private proofing gallery",
+      "Full payment at booking",
     ],
     cta: "Reserve The Moment",
   },
@@ -73,6 +74,7 @@ const tiers: Tier[] = [
       "15 to 20 retouched high-resolution images",
       "1 fine-art 8x10 physical print",
       "Private proofing gallery",
+      "50% deposit at booking; balance due 48 hours prior",
     ],
     cta: "Reserve The Feature",
   },
@@ -180,7 +182,7 @@ export default function MothersDayPage() {
           </h2>
           <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {[
-              "Secure your spot with a 50% deposit.",
+              "Secure your spot. Full payment for The Moment; 50% deposit for The Feature.",
               "Arrive at 2715 S Main St, Los Angeles on May 2 or 3.",
               "We direct you with specific physical protocols to eliminate awkwardness and give your hands a job.",
               "We execute the session efficiently within your booked time window.",

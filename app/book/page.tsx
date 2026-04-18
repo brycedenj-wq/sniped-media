@@ -26,7 +26,7 @@ export default function BookPage() {
               Check Availability &amp; Book.
             </h1>
             <p className="mt-6 text-lg text-muted">
-              Select your project scope below. Once submitted, you will be redirected to our secure calendar to select your date and lock in your session.
+              Select your coverage below. Standard tiers route to our secure calendar on submission; events receive a tailored follow-up within 24 hours.
             </p>
           </div>
           <Suspense fallback={<div className="h-96 border border-border bg-surface" />}>
