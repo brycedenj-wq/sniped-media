@@ -68,7 +68,7 @@ export default function MothersDayPage() {
     <>
       <section className="relative isolate flex min-h-[70vh] items-end overflow-hidden bg-foreground text-background">
         <Image
-          src="/images/work-lifestyle.jpg"
+          src="/images/mothers-day-hero.jpg"
           alt=""
           fill
           priority
