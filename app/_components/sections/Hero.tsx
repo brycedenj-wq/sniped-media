@@ -11,8 +11,17 @@ export function Hero() {
         fill
         priority
         quality={95}
-        sizes="100vw"
-        className="absolute inset-0 -z-10 object-cover opacity-80"
+        sizes="(min-width: 1024px) 100vw, 0px"
+        className="absolute inset-0 -z-10 hidden object-cover opacity-80 lg:block"
+      />
+      <Image
+        src="/images/hero-mobile.jpg"
+        alt=""
+        fill
+        priority
+        quality={95}
+        sizes="(max-width: 1023px) 100vw, 0px"
+        className="absolute inset-0 -z-10 object-cover opacity-80 lg:hidden"
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
 
