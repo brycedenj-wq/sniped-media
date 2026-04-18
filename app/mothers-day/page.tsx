@@ -69,8 +69,9 @@ const tiers: Tier[] = [
     price: "$550",
     highlight: true,
     includes: [
-      "90-minute studio session",
-      "10 to 15 retouched high-resolution images",
+      "60-minute studio session",
+      "15 to 20 retouched high-resolution images",
+      "1 fine-art 8x10 physical print",
       "Private proofing gallery",
     ],
     cta: "Reserve The Feature",

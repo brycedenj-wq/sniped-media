@@ -36,7 +36,7 @@ const tierOptions: TierOption[] = [
     id: "standard",
     fullLabel: "Tier 2: The Standard ($550)",
     label: "The Standard · $550",
-    detail: "Up to 90 minutes, multiple looks, 10 to 15 retouched images. Best for families and lifestyle.",
+    detail: "Up to 90 minutes, multiple looks, 15 to 20 retouched images. Best for families and lifestyle.",
   },
   {
     id: "events",

@@ -27,7 +27,7 @@ const tiers: Tier[] = [
     price: "$550",
     target: "Families, couples, and extended lifestyle shoots.",
     scope: "Up to 90 minutes of dedicated direction with multiple looks.",
-    deliverables: "10 to 15 final retouched images. 50% retainer holds your date; balance auto-invoiced 48 hours prior.",
+    deliverables: "15 to 20 final retouched images. 50% retainer holds your date; balance auto-invoiced 48 hours prior.",
     cta: "Book The Standard",
     href: "/book?tier=standard",
   },
