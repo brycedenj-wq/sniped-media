@@ -139,6 +139,40 @@ export default function MothersDayPage() {
         </Container>
       </section>
 
+      <section className="py-section">
+        <Container>
+          <div className="mb-10 flex items-end justify-between gap-8">
+            <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
+              Past Sessions
+            </h2>
+            <p className="hidden text-sm text-muted sm:block">
+              Same room. Real results.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-3 sm:gap-6">
+            {[
+              { src: "/images/mothers-day-work-1.jpg", alt: "Mother and daughter graduation portrait" },
+              { src: "/images/mothers-day-work-2.jpg", alt: "Multi-generation family portrait" },
+              { src: "/images/mothers-day-work-3.jpg", alt: "Editorial studio portrait" },
+            ].map((img) => (
+              <div
+                key={img.src}
+                className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5"
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  quality={95}
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                />
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       <section className="border-y border-border bg-surface py-section">
         <Container>
           <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
