@@ -24,6 +24,21 @@ export const metadata: Metadata = {
     description:
       "Curated editorial portraits at a DTLA studio. Strictly limited spots for May 2 and 3.",
     url: "/mothers-day",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Sniped Media | High-Impact Los Angeles Photography",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mother's Day Studio Sessions | Sniped Media",
+    description:
+      "Curated editorial portraits at a DTLA studio. Strictly limited spots for May 2 and 3.",
+    images: ["/opengraph-image"],
   },
 };
 
