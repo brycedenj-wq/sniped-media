@@ -10,6 +10,7 @@ export function Hero() {
         alt=""
         fill
         priority
+        quality={95}
         sizes="100vw"
         className="absolute inset-0 -z-10 object-cover opacity-80"
       />
