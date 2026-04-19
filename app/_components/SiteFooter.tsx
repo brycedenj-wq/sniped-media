@@ -20,6 +20,9 @@ export function SiteFooter() {
         </div>
 
         <nav className="grid grid-cols-2 gap-x-10 gap-y-2 text-sm sm:flex sm:gap-8">
+          <Link href="/work" className="text-foreground hover:text-muted">
+            Work
+          </Link>
           <Link href="/portfolio-pricing" className="text-foreground hover:text-muted">
             Pricing
           </Link>
