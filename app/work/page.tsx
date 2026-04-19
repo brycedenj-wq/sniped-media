@@ -144,22 +144,13 @@ export default function WorkPage() {
         </Container>
       </section>
 
-      {/* PULLQUOTE · uses the panorama letterboxed so no subject cut-off */}
-      <section className="relative isolate flex items-center overflow-hidden bg-foreground text-background">
-        <Image
-          src="/images/work/archive/archive-08.jpg"
-          alt=""
-          fill
-          quality={95}
-          sizes="100vw"
-          className="absolute inset-0 -z-10 object-cover object-center opacity-55"
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-foreground/85 via-foreground/60 to-foreground/40" />
+      {/* PULLQUOTE · pure editorial typography break */}
+      <section className="bg-foreground text-background">
         <Container className="py-section">
           <FadeIn>
-            <p className="max-w-2xl font-heading text-2xl font-medium leading-tight tracking-tight text-balance sm:text-5xl">
+            <p className="max-w-3xl font-heading text-3xl font-medium leading-[1.15] tracking-tight text-balance sm:text-5xl lg:text-6xl">
               The job is not to capture a moment.
-              The job is to construct one.
+              <span className="block text-background/60">The job is to construct one.</span>
             </p>
           </FadeIn>
         </Container>

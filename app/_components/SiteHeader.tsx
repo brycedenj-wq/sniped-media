@@ -4,7 +4,7 @@ import { CtaButton } from "./CtaButton";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/95 shadow-sm shadow-foreground/5 backdrop-blur-md supports-[backdrop-filter]:bg-background/80">
       <Container className="flex h-16 items-center justify-between">
         <Link
           href="/"
