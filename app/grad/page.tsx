@@ -152,26 +152,37 @@ export default function GradPage() {
               Seven years of grads. One standard.
             </p>
           </div>
-          <div className="grid gap-4 sm:grid-cols-3 sm:gap-6">
-            {[
-              { src: "/images/grad-work-1.jpg", alt: "Studio graduation portrait" },
-              { src: "/images/grad-work-2.jpg", alt: "On-campus graduation portrait" },
-              { src: "/images/grad-work-3.jpg", alt: "Graduate with family" },
-            ].map((img) => (
-              <div
-                key={img.src}
-                className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5"
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  quality={95}
-                  sizes="(min-width: 640px) 33vw, 100vw"
-                  className="object-cover transition-transform duration-700 hover:scale-[1.02]"
-                />
-              </div>
-            ))}
+          <div className="grid gap-4 sm:grid-cols-3 sm:grid-rows-2 sm:gap-6">
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5 sm:col-span-1 sm:row-span-2 sm:aspect-auto">
+              <Image
+                src="/images/grad-work-1.jpg"
+                alt="Editorial graduation portrait on location"
+                fill
+                quality={95}
+                sizes="(min-width: 640px) 33vw, 100vw"
+                className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+              />
+            </div>
+            <div className="relative aspect-[3/2] w-full overflow-hidden bg-foreground/5 sm:col-span-2">
+              <Image
+                src="/images/grad-work-2.jpg"
+                alt="LMU graduate with mascot on campus"
+                fill
+                quality={95}
+                sizes="(min-width: 640px) 66vw, 100vw"
+                className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+              />
+            </div>
+            <div className="relative aspect-[5/4] w-full overflow-hidden bg-foreground/5 sm:col-span-2">
+              <Image
+                src="/images/grad-work-3.jpg"
+                alt="Graduate with family, studio portrait"
+                fill
+                quality={95}
+                sizes="(min-width: 640px) 66vw, 100vw"
+                className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+              />
+            </div>
           </div>
         </Container>
       </section>
