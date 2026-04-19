@@ -19,22 +19,22 @@ export const metadata: Metadata = {
 type Slot = { src: string; alt: string };
 
 const editorial: Slot[] = [
-  { src: "/images/work-portraits.jpg", alt: "Editorial studio portrait" },
-  { src: "/images/mothers-day-work-3.jpg", alt: "Editorial portrait, cream tweed" },
-  { src: "/images/work/editorial-3.jpg", alt: "Editorial portrait" },
+  { src: "/images/work/archive-01.jpg", alt: "Editorial portrait" },
+  { src: "/images/work/archive-02.jpg", alt: "Editorial portrait" },
+  { src: "/images/work/archive-03.jpg", alt: "Editorial portrait" },
 ];
 
 const lifestyle: Slot[] = [
-  { src: "/images/mothers-day-hero.jpg", alt: "Mother and children, studio" },
-  { src: "/images/mothers-day-work-1.jpg", alt: "Mother and graduate daughter" },
-  { src: "/images/mothers-day-work-2.jpg", alt: "Multi-generation family group" },
-  { src: "/images/work-lifestyle.jpg", alt: "Lifestyle family portrait" },
+  { src: "/images/work/archive-04.jpg", alt: "Lifestyle portrait" },
+  { src: "/images/work/archive-05.jpg", alt: "Lifestyle portrait" },
+  { src: "/images/work/archive-06.jpg", alt: "Lifestyle portrait" },
+  { src: "/images/work/archive-07.jpg", alt: "Lifestyle portrait" },
 ];
 
 const events: Slot[] = [
   { src: "/images/work-events.jpg", alt: "Event coverage" },
-  { src: "/images/work/events-2.jpg", alt: "Event coverage" },
-  { src: "/images/work/events-3.jpg", alt: "Event coverage" },
+  { src: "/images/work/archive-08.jpg", alt: "On-location portrait" },
+  { src: "/images/work/archive-09.jpg", alt: "On-location portrait" },
 ];
 
 export default function WorkPage() {
@@ -139,12 +139,12 @@ export default function WorkPage() {
 
       <section className="relative isolate flex min-h-[60vh] items-center overflow-hidden bg-foreground text-background">
         <Image
-          src="/images/mothers-day-work-2.jpg"
+          src="/images/work/archive-10.jpg"
           alt=""
           fill
           quality={95}
           sizes="100vw"
-          className="absolute inset-0 -z-10 object-cover opacity-70"
+          className="absolute inset-0 -z-10 object-cover object-top opacity-70"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-foreground/70 via-foreground/40 to-foreground/20" />
         <Container className="py-section">

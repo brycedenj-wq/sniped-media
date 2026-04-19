@@ -92,7 +92,7 @@ export default function GradPage() {
           priority
           quality={95}
           sizes="100vw"
-          className="absolute inset-0 -z-10 object-cover opacity-75"
+          className="absolute inset-0 -z-10 object-cover object-top opacity-75"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-foreground/85 via-foreground/40 to-foreground/20" />
 
