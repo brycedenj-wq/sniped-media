@@ -58,11 +58,12 @@ const tiers: Tier[] = [
     price: "$275",
     includes: [
       "30-minute studio session",
-      "5 retouched high-resolution images",
-      "Private proofing gallery",
-      "Full payment at booking",
+      "Mom + kids or immediate family, up to 5",
+      "1 to 2 poses, no outfit change",
+      "5 retouched images + full gallery",
+      "50% deposit holds your spot",
     ],
-    cta: "Reserve The Moment",
+    cta: "Lock The Moment",
   },
   {
     id: "feature",
@@ -71,12 +72,12 @@ const tiers: Tier[] = [
     highlight: true,
     includes: [
       "60-minute studio session",
-      "15 to 20 retouched high-resolution images",
-      "1 fine-art 8x10 physical print",
-      "Private proofing gallery",
-      "50% deposit at booking; balance due 48 hours prior",
+      "Larger families, multiple groupings",
+      "Outfit changes, more relaxed pace",
+      "5 retouched images + full gallery",
+      "50% deposit holds your spot",
     ],
-    cta: "Reserve The Feature",
+    cta: "Lock The Feature",
   },
 ];
 
@@ -101,17 +102,17 @@ export default function MothersDayPage() {
               Limited · 12 Spots · May 2–3
             </span>
             <h1 className="mt-6 font-heading text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
-              Mother&apos;s Day Studio Sessions: DTLA
+              Mother&apos;s Day at the DTLA Studio
             </h1>
             <p className="mt-6 max-w-xl text-lg text-background/80">
-              Curated editorial portraits. Strictly limited spots for May 2 and 3.
+              For the moms who never actually book the photos.
             </p>
             <div className="mt-10">
               <Link
                 href="#packages"
                 className="inline-flex h-14 items-center justify-center rounded-md bg-background px-8 text-base font-semibold text-foreground transition-colors hover:bg-background/90"
               >
-                Reserve Your Slot
+                Lock Your Spot
               </Link>
             </div>
           </div>
@@ -182,7 +183,7 @@ export default function MothersDayPage() {
           </h2>
           <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {[
-              "Secure your spot. Full payment for The Moment; 50% deposit for The Feature.",
+              "Secure your spot with a 50% deposit via Pixieset.",
               "Arrive at 2715 S Main St, Los Angeles on May 2 or 3.",
               "We direct you with specific physical protocols to eliminate awkwardness and give your hands a job.",
               "We execute the session efficiently within your booked time window.",
@@ -206,7 +207,7 @@ export default function MothersDayPage() {
               The Packages
             </h2>
             <p className="mt-4 text-base text-muted">
-              Two tiers. Choose the coverage that fits. Additional frames available through your gallery after the shoot.
+              Two tiers. Choose the coverage that fits. Families of 6 or more should book the 60-minute session. Additional frames available through your gallery after the shoot.
             </p>
           </div>
           <div className="grid gap-6 lg:grid-cols-2 lg:max-w-5xl">
@@ -268,7 +269,7 @@ export default function MothersDayPage() {
                 href="#packages"
                 className="inline-flex h-14 items-center justify-center rounded-md bg-background px-8 text-base font-semibold text-foreground transition-colors hover:bg-background/90"
               >
-                Reserve Your Slot
+                Lock Your Spot
               </Link>
               <a
                 href={DM_FALLBACK_URL}
