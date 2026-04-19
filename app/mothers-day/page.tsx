@@ -8,7 +8,7 @@ const MOTHERS_DAY_URLS: Record<"moment" | "feature", string> = {
   feature: "https://snipedmedia.pixieset.com/booking/mothers-day-feature",
 };
 
-const DM_FALLBACK_URL = "https://instagram.com/snipedmedia";
+const DM_FALLBACK_URL = "https://instagram.com/sniped.media";
 
 function tierHref(tier: "moment" | "feature"): string {
   return MOTHERS_DAY_URLS[tier] || DM_FALLBACK_URL;

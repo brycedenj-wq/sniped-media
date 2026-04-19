@@ -8,7 +8,7 @@ const GRAD_URLS: Record<"short-film" | "feature-length", string> = {
   "feature-length": "",
 };
 
-const DM_FALLBACK_URL = "https://instagram.com/snipedmedia";
+const DM_FALLBACK_URL = "https://instagram.com/sniped.media";
 
 function tierHref(tier: "short-film" | "feature-length"): string {
   return GRAD_URLS[tier] || DM_FALLBACK_URL;
