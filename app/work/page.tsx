@@ -19,22 +19,31 @@ export const metadata: Metadata = {
 type Slot = { src: string; alt: string };
 
 const editorial: Slot[] = [
-  { src: "/images/work/archive-01.jpg", alt: "Editorial portrait" },
-  { src: "/images/work/archive-02.jpg", alt: "Editorial portrait" },
-  { src: "/images/work/archive-03.jpg", alt: "Editorial portrait" },
+  { src: "/images/work/archive/archive-03.jpg", alt: "Attorney editorial headshot" },
+  { src: "/images/work/archive/archive-09.jpg", alt: "San Francisco studio portrait" },
+  { src: "/images/work/archive/archive-01.jpg", alt: "Editorial portrait" },
+  { src: "/images/work/archive/archive-07.jpg", alt: "Editorial portrait on location" },
+  { src: "/images/work/archive/archive-08.jpg", alt: "Brand campaign portrait" },
+  { src: "/images/work/archive/archive-10.jpg", alt: "Editorial portrait" },
+  { src: "/images/work/archive/archive-11.jpg", alt: "Editorial portrait" },
 ];
 
 const lifestyle: Slot[] = [
-  { src: "/images/work/archive-04.jpg", alt: "Lifestyle portrait" },
-  { src: "/images/work/archive-05.jpg", alt: "Lifestyle portrait" },
-  { src: "/images/work/archive-06.jpg", alt: "Lifestyle portrait" },
-  { src: "/images/work/archive-07.jpg", alt: "Lifestyle portrait" },
+  { src: "/images/work/archive/archive-02.jpg", alt: "Lifestyle portrait" },
+  { src: "/images/work/archive/archive-04.jpg", alt: "Family lifestyle portrait" },
+  { src: "/images/work/archive/archive-05.jpg", alt: "Lifestyle portrait" },
+  { src: "/images/work/archive/archive-06.jpg", alt: "Lifestyle portrait" },
+  { src: "/images/work/archive/archive-12.jpg", alt: "Lifestyle portrait" },
+  { src: "/images/work/archive/archive-13.jpg", alt: "Lifestyle portrait" },
 ];
 
 const events: Slot[] = [
-  { src: "/images/work-events.jpg", alt: "Event coverage" },
-  { src: "/images/work/archive-08.jpg", alt: "On-location portrait" },
-  { src: "/images/work/archive-09.jpg", alt: "On-location portrait" },
+  { src: "/images/work/archive/archive-14.jpg", alt: "Event coverage" },
+  { src: "/images/work/archive/archive-15.jpg", alt: "Event coverage" },
+  { src: "/images/work/archive/archive-16.jpg", alt: "On-location portrait" },
+  { src: "/images/work/archive/archive-17.jpg", alt: "On-location portrait" },
+  { src: "/images/work/archive/archive-18.jpg", alt: "On-location portrait" },
+  { src: "/images/work/archive/archive-19.jpg", alt: "On-location portrait" },
 ];
 
 export default function WorkPage() {
@@ -96,7 +105,7 @@ export default function WorkPage() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:grid-rows-2 sm:gap-6">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:grid-rows-[auto_auto_auto] sm:gap-6">
             <FadeIn className="sm:col-span-2 sm:row-span-2">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5 sm:aspect-auto sm:h-full">
                 <Image
@@ -104,31 +113,79 @@ export default function WorkPage() {
                   alt={editorial[0].alt}
                   fill
                   quality={95}
-                  sizes="(min-width: 640px) 66vw, 100vw"
+                  sizes="(min-width: 640px) 50vw, 100vw"
                   className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                 />
               </div>
             </FadeIn>
-            <FadeIn delayMs={120}>
+            <FadeIn delayMs={100}>
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
                 <Image
                   src={editorial[1].src}
                   alt={editorial[1].alt}
                   fill
                   quality={95}
-                  sizes="(min-width: 640px) 33vw, 100vw"
+                  sizes="(min-width: 640px) 25vw, 100vw"
                   className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                 />
               </div>
             </FadeIn>
-            <FadeIn delayMs={240}>
+            <FadeIn delayMs={200}>
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
                 <Image
                   src={editorial[2].src}
                   alt={editorial[2].alt}
                   fill
                   quality={95}
-                  sizes="(min-width: 640px) 33vw, 100vw"
+                  sizes="(min-width: 640px) 25vw, 100vw"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                />
+              </div>
+            </FadeIn>
+            <FadeIn delayMs={300}>
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
+                <Image
+                  src={editorial[3].src}
+                  alt={editorial[3].alt}
+                  fill
+                  quality={95}
+                  sizes="(min-width: 640px) 25vw, 100vw"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                />
+              </div>
+            </FadeIn>
+            <FadeIn delayMs={400}>
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
+                <Image
+                  src={editorial[4].src}
+                  alt={editorial[4].alt}
+                  fill
+                  quality={95}
+                  sizes="(min-width: 640px) 25vw, 100vw"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                />
+              </div>
+            </FadeIn>
+            <FadeIn delayMs={500} className="sm:col-span-2">
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-foreground/5">
+                <Image
+                  src={editorial[5].src}
+                  alt={editorial[5].alt}
+                  fill
+                  quality={95}
+                  sizes="(min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                />
+              </div>
+            </FadeIn>
+            <FadeIn delayMs={600} className="sm:col-span-2">
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-foreground/5">
+                <Image
+                  src={editorial[6].src}
+                  alt={editorial[6].alt}
+                  fill
+                  quality={95}
+                  sizes="(min-width: 640px) 50vw, 100vw"
                   className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                 />
               </div>
@@ -139,14 +196,14 @@ export default function WorkPage() {
 
       <section className="relative isolate flex min-h-[60vh] items-center overflow-hidden bg-foreground text-background">
         <Image
-          src="/images/work/archive-10.jpg"
+          src={editorial[2].src}
           alt=""
           fill
           quality={95}
           sizes="100vw"
-          className="absolute inset-0 -z-10 object-cover object-top opacity-70"
+          className="absolute inset-0 -z-10 object-cover object-top opacity-60"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-foreground/70 via-foreground/40 to-foreground/20" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-foreground/75 via-foreground/45 to-foreground/25" />
         <Container className="py-section">
           <FadeIn>
             <p className="max-w-2xl font-heading text-3xl font-medium leading-tight tracking-tight text-balance sm:text-5xl">
@@ -175,7 +232,7 @@ export default function WorkPage() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:gap-6">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
             <FadeIn className="sm:col-span-2 sm:row-span-2">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5 sm:aspect-auto sm:h-full">
                 <Image
@@ -183,19 +240,19 @@ export default function WorkPage() {
                   alt={lifestyle[0].alt}
                   fill
                   quality={95}
-                  sizes="(min-width: 640px) 50vw, 100vw"
+                  sizes="(min-width: 640px) 66vw, 100vw"
                   className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                 />
               </div>
             </FadeIn>
-            <FadeIn delayMs={100} className="sm:col-span-2">
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-foreground/5">
+            <FadeIn delayMs={100}>
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
                 <Image
                   src={lifestyle[1].src}
                   alt={lifestyle[1].alt}
                   fill
                   quality={95}
-                  sizes="(min-width: 640px) 50vw, 100vw"
+                  sizes="(min-width: 640px) 33vw, 100vw"
                   className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                 />
               </div>
@@ -207,7 +264,7 @@ export default function WorkPage() {
                   alt={lifestyle[2].alt}
                   fill
                   quality={95}
-                  sizes="(min-width: 640px) 25vw, 100vw"
+                  sizes="(min-width: 640px) 33vw, 100vw"
                   className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                 />
               </div>
@@ -219,7 +276,31 @@ export default function WorkPage() {
                   alt={lifestyle[3].alt}
                   fill
                   quality={95}
-                  sizes="(min-width: 640px) 25vw, 100vw"
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                />
+              </div>
+            </FadeIn>
+            <FadeIn delayMs={400}>
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
+                <Image
+                  src={lifestyle[4].src}
+                  alt={lifestyle[4].alt}
+                  fill
+                  quality={95}
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                />
+              </div>
+            </FadeIn>
+            <FadeIn delayMs={500}>
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
+                <Image
+                  src={lifestyle[5].src}
+                  alt={lifestyle[5].alt}
+                  fill
+                  quality={95}
+                  sizes="(min-width: 640px) 33vw, 100vw"
                   className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                 />
               </div>
@@ -246,8 +327,8 @@ export default function WorkPage() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
-            <FadeIn className="sm:col-span-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
+            <FadeIn className="sm:col-span-3">
               <div className="relative aspect-[21/9] w-full overflow-hidden bg-foreground/5">
                 <Image
                   src={events[0].src}
@@ -266,7 +347,7 @@ export default function WorkPage() {
                   alt={events[1].alt}
                   fill
                   quality={95}
-                  sizes="(min-width: 640px) 50vw, 100vw"
+                  sizes="(min-width: 640px) 33vw, 100vw"
                   className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                 />
               </div>
@@ -278,7 +359,43 @@ export default function WorkPage() {
                   alt={events[2].alt}
                   fill
                   quality={95}
-                  sizes="(min-width: 640px) 50vw, 100vw"
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                />
+              </div>
+            </FadeIn>
+            <FadeIn delayMs={360}>
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
+                <Image
+                  src={events[3].src}
+                  alt={events[3].alt}
+                  fill
+                  quality={95}
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                />
+              </div>
+            </FadeIn>
+            <FadeIn delayMs={480} className="sm:col-span-2">
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-foreground/5">
+                <Image
+                  src={events[4].src}
+                  alt={events[4].alt}
+                  fill
+                  quality={95}
+                  sizes="(min-width: 640px) 66vw, 100vw"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                />
+              </div>
+            </FadeIn>
+            <FadeIn delayMs={600}>
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
+                <Image
+                  src={events[5].src}
+                  alt={events[5].alt}
+                  fill
+                  quality={95}
+                  sizes="(min-width: 640px) 33vw, 100vw"
                   className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                 />
               </div>
