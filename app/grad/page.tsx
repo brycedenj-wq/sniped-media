@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Container } from "../_components/Container";
 
 const GRAD_URLS: Record<"short-film" | "feature-length", string> = {
-  "short-film": "",
-  "feature-length": "",
+  "short-film": "https://snipedmedia.pixieset.com/booking/grad-short-film",
+  "feature-length": "https://snipedmedia.pixieset.com/booking/grad-feature-length",
 };
 
 const DM_FALLBACK_URL = "https://instagram.com/sniped.media";
