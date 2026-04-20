@@ -2,56 +2,22 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { activeBookableTiers, type BookableTier } from "../_data/campaigns";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xlgpgozq";
 
-const PIXIESET_URLS: Record<"baseline" | "standard", string> = {
-  baseline: "https://snipedmedia.pixieset.com/booking/tier-1-the-baseline",
-  standard: "https://snipedmedia.pixieset.com/booking/tier-2-the-standard",
-};
-
-const EVENTS_SUCCESS_MESSAGE =
-  "Received. Events require custom blocking. We'll follow up within 24 hours with a tailored scope and quote.";
+const MANUAL_FOLLOWUP_MESSAGE =
+  "Received. This coverage requires custom blocking. We'll follow up within 24 hours with a tailored scope and quote.";
 
 const PIXIESET_PENDING_MESSAGE =
   "Received. We'll send your secure booking link within 24 hours so you can lock in a time.";
-
-type TierId = "baseline" | "standard" | "events";
-
-type TierOption = {
-  id: TierId;
-  fullLabel: string;
-  label: string;
-  detail: string;
-};
-
-const tierOptions: TierOption[] = [
-  {
-    id: "baseline",
-    fullLabel: "Tier 1: The Baseline ($275)",
-    label: "The Baseline · $275",
-    detail: "45 minutes, one location, 5 retouched images. Best for individuals and headshots.",
-  },
-  {
-    id: "standard",
-    fullLabel: "Tier 2: The Standard ($550)",
-    label: "The Standard · $550",
-    detail: "Up to 90 minutes, multiple looks, 15 to 20 retouched images. Best for families and lifestyle.",
-  },
-  {
-    id: "events",
-    fullLabel: "Tier 3: Event Coverage ($1,200+)",
-    label: "Event Coverage · from $1,200",
-    detail: "4 hours of coverage, 50+ delivered images. Best for banquets and local campaigns.",
-  },
-];
 
 type Status = "idle" | "submitting" | "error" | "success";
 
 export function BookForm() {
   const searchParams = useSearchParams();
   const preselectedTierId = searchParams.get("tier");
-  const defaultTierId = tierOptions.find((t) => t.id === preselectedTierId)?.id;
+  const defaultTierId = activeBookableTiers.find((t) => t.id === preselectedTierId)?.id;
 
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -64,8 +30,8 @@ export function BookForm() {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const selectedId = String(formData.get("tier") ?? "") as TierId;
-    const tier = tierOptions.find((t) => t.id === selectedId);
+    const selectedId = String(formData.get("tier") ?? "");
+    const tier = activeBookableTiers.find((t) => t.id === selectedId);
 
     if (!tier) {
       setErrorMessage("Please select a coverage tier.");
@@ -74,10 +40,7 @@ export function BookForm() {
     }
 
     formData.set("tier", tier.fullLabel);
-    formData.set(
-      "_subject",
-      `New Sniped Media inquiry · ${tier.fullLabel}`
-    );
+    formData.set("_subject", `New Sniped Media inquiry · ${tier.fullLabel}`);
 
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
@@ -96,20 +59,14 @@ export function BookForm() {
         return;
       }
 
-      if (tier.id === "events") {
-        setSuccessMessage(EVENTS_SUCCESS_MESSAGE);
-        setStatus("success");
-        form.reset();
+      if (tier.pixiesetUrl) {
+        window.location.href = tier.pixiesetUrl;
         return;
       }
 
-      const redirectUrl = PIXIESET_URLS[tier.id];
-      if (redirectUrl) {
-        window.location.href = redirectUrl;
-        return;
-      }
-
-      setSuccessMessage(PIXIESET_PENDING_MESSAGE);
+      setSuccessMessage(
+        tier.category === "base" ? MANUAL_FOLLOWUP_MESSAGE : PIXIESET_PENDING_MESSAGE
+      );
       setStatus("success");
       form.reset();
     } catch {
@@ -191,17 +148,20 @@ export function BookForm() {
           id="scope"
           name="scope"
           rows={3}
-          placeholder="e.g., Dance headshots for my daughter, or a 3-hour church banquet."
+          placeholder="e.g., Grad portraits at USC, or Mother's Day with 3 generations."
           className={`${inputClass} resize-none`}
         />
       </div>
 
       <fieldset className="space-y-3 border-t border-border pt-6">
         <legend className="font-heading text-sm font-semibold uppercase tracking-[0.2em] text-foreground">
-          Select Your Coverage Tier
+          Select Your Coverage
         </legend>
-        <div className="space-y-3">
-          {tierOptions.map((t) => (
+        <p className="text-xs text-muted">
+          Limited-time sessions are listed first. Base packages are always available.
+        </p>
+        <div className="space-y-3 pt-2">
+          {activeBookableTiers.map((t: BookableTier) => (
             <label
               key={t.id}
               className="flex cursor-pointer items-start gap-3 border border-border p-4 transition-colors hover:border-foreground has-[:checked]:border-foreground has-[:checked]:bg-background"
@@ -216,6 +176,11 @@ export function BookForm() {
               />
               <span className="block">
                 <span className="block font-semibold text-foreground">{t.label}</span>
+                {t.tagline ? (
+                  <span className="mt-1 block font-heading text-[11px] font-semibold tracking-[0.15em] uppercase text-foreground/70">
+                    {t.tagline}
+                  </span>
+                ) : null}
                 <span className="mt-1 block text-sm text-muted">{t.detail}</span>
               </span>
             </label>
