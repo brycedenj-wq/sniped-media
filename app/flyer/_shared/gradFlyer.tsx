@@ -1,10 +1,59 @@
+import fs from "node:fs/promises";
+import path from "node:path";
 import { ImageResponse } from "next/og";
 
-export const alt = "Sniped Media · LA Grad Season 2026";
-export const size = { width: 1080, height: 1920 };
-export const contentType = "image/png";
+export const flyerSize = { width: 1080, height: 1920 };
+export const flyerContentType = "image/png";
 
-const BG_IMAGE_URL = "https://snipedmedia.com/images/grad-hero.jpg";
+export type GradVariant = {
+  slug: "hero" | "mascot" | "editorial" | "family";
+  label: string;
+  note: string;
+  photoFile: string;
+  photoPosition: string;
+  overlay: "default" | "heavy" | "light";
+};
+
+export const GRAD_VARIANTS: Record<GradVariant["slug"], GradVariant> = {
+  hero: {
+    slug: "hero",
+    label: "Hero",
+    note: "Cinematic arches. Brand-matching atmosphere.",
+    photoFile: "grad-hero.jpg",
+    photoPosition: "top center",
+    overlay: "default",
+  },
+  mascot: {
+    slug: "mascot",
+    label: "Mascot",
+    note: "LMU lion. Local campus social proof.",
+    photoFile: "grad-work-2.jpg",
+    photoPosition: "center center",
+    overlay: "heavy",
+  },
+  editorial: {
+    slug: "editorial",
+    label: "Editorial",
+    note: "On-location portrait. Craft signal.",
+    photoFile: "grad-work-1.jpg",
+    photoPosition: "center center",
+    overlay: "default",
+  },
+  family: {
+    slug: "family",
+    label: "Family",
+    note: "Studio with family. Hooks the parent paying.",
+    photoFile: "grad-work-3.jpg",
+    photoPosition: "center center",
+    overlay: "default",
+  },
+};
+
+async function loadPhotoAsDataUrl(filename: string): Promise<string> {
+  const filePath = path.join(process.cwd(), "public/images/flyer", filename);
+  const buffer = await fs.readFile(filePath);
+  return `data:image/jpeg;base64,${buffer.toString("base64")}`;
+}
 
 async function loadGoogleFont(family: string, weight: number): Promise<ArrayBuffer | null> {
   try {
@@ -37,12 +86,25 @@ type LoadedFont = {
   style: "normal";
 };
 
-export default async function FlyerGradImage() {
-  const [sg700, sg500, inter500, inter400] = await Promise.all([
+function gradientFor(overlay: GradVariant["overlay"]): string {
+  switch (overlay) {
+    case "heavy":
+      return "linear-gradient(180deg, rgba(10,10,10,0.70) 0%, rgba(10,10,10,0.35) 35%, rgba(10,10,10,0.65) 70%, rgba(10,10,10,0.95) 100%)";
+    case "light":
+      return "linear-gradient(180deg, rgba(10,10,10,0.40) 0%, rgba(10,10,10,0.05) 35%, rgba(10,10,10,0.45) 70%, rgba(10,10,10,0.88) 100%)";
+    case "default":
+    default:
+      return "linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.15) 35%, rgba(10,10,10,0.55) 70%, rgba(10,10,10,0.92) 100%)";
+  }
+}
+
+export async function renderGradFlyer(variant: GradVariant): Promise<ImageResponse> {
+  const [sg700, sg500, inter500, inter400, photoDataUrl] = await Promise.all([
     loadGoogleFont("Space Grotesk", 700),
     loadGoogleFont("Space Grotesk", 500),
     loadGoogleFont("Inter", 500),
     loadGoogleFont("Inter", 400),
+    loadPhotoAsDataUrl(variant.photoFile),
   ]);
 
   const fonts: LoadedFont[] = [];
@@ -68,9 +130,8 @@ export default async function FlyerGradImage() {
           fontFamily: body,
         }}
       >
-        {/* Background photo */}
         <img
-          src={BG_IMAGE_URL}
+          src={photoDataUrl}
           width={1080}
           height={1920}
           style={{
@@ -80,12 +141,11 @@ export default async function FlyerGradImage() {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            objectPosition: "top center",
+            objectPosition: variant.photoPosition,
             opacity: 0.72,
           }}
         />
 
-        {/* Dark gradient overlay for readability */}
         <div
           style={{
             position: "absolute",
@@ -94,12 +154,10 @@ export default async function FlyerGradImage() {
             width: "100%",
             height: "100%",
             display: "flex",
-            background:
-              "linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.15) 35%, rgba(10,10,10,0.55) 70%, rgba(10,10,10,0.92) 100%)",
+            background: gradientFor(variant.overlay),
           }}
         />
 
-        {/* Content layer */}
         <div
           style={{
             position: "relative",
@@ -111,7 +169,6 @@ export default async function FlyerGradImage() {
             padding: "140px 90px 160px",
           }}
         >
-          {/* TOP · Kicker */}
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             <div
               style={{
@@ -136,7 +193,6 @@ export default async function FlyerGradImage() {
             />
           </div>
 
-          {/* MIDDLE · Hero headline + tagline */}
           <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
             <div
               style={{
@@ -168,9 +224,7 @@ export default async function FlyerGradImage() {
             </div>
           </div>
 
-          {/* BOTTOM · Tier strip + CTA */}
           <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
-            {/* Tier row */}
             <div
               style={{
                 display: "flex",
@@ -270,7 +324,6 @@ export default async function FlyerGradImage() {
               </div>
             </div>
 
-            {/* CTA */}
             <div
               style={{
                 display: "flex",
@@ -329,6 +382,6 @@ export default async function FlyerGradImage() {
         </div>
       </div>
     ),
-    { ...size, fonts: fonts.length > 0 ? fonts : undefined }
+    { ...flyerSize, fonts: fonts.length > 0 ? fonts : undefined }
   );
 }
