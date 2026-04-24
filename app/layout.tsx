@@ -19,34 +19,34 @@ const spaceGrotesk = Space_Grotesk({
 const SITE_URL = "https://snipedmedia.com";
 const SITE_NAME = "Sniped Media";
 const SITE_DESCRIPTION =
-  "Expertly directed portraits and reliable event coverage in Los Angeles. Transparent pricing, seamless delivery, and a direct path to booking.";
+  "The commercial portrait system for LA founders. The Founder Kit delivers one structured shoot, 60 to 80 deployed-ready images, and a 12-month deployment plan.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sniped Media | High-Impact Los Angeles Photography",
+    default: "Sniped Media | The commercial portrait system for LA founders",
     template: "%s | Sniped Media",
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
   keywords: [
-    "Los Angeles photographer",
-    "LA portrait photography",
-    "headshots Los Angeles",
-    "lifestyle photography",
-    "event photography",
+    "Los Angeles founder photographer",
+    "founder portraits LA",
+    "commercial portrait photography",
+    "founder brand photography",
+    "editorial founder portraits",
   ],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "Sniped Media | High-Impact Los Angeles Photography",
+    title: "Sniped Media | The commercial portrait system for LA founders",
     description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sniped Media | High-Impact Los Angeles Photography",
+    title: "Sniped Media | The commercial portrait system for LA founders",
     description: SITE_DESCRIPTION,
   },
   robots: { index: true, follow: true },
@@ -61,7 +61,7 @@ const localBusinessJsonLd = {
   description: SITE_DESCRIPTION,
   image: `${SITE_URL}/opengraph-image`,
   logo: `${SITE_URL}/icon.svg`,
-  priceRange: "$275 - $1,200+",
+  priceRange: "$12,500",
   areaServed: [
     { "@type": "City", name: "Los Angeles" },
     { "@type": "State", name: "California" },
@@ -75,27 +75,11 @@ const localBusinessJsonLd = {
   makesOffer: [
     {
       "@type": "Offer",
-      name: "The Baseline",
-      price: "275",
+      name: "The Founder Kit",
+      price: "12500",
       priceCurrency: "USD",
       description:
-        "45-minute expertly directed session, one location, 5 final retouched images.",
-    },
-    {
-      "@type": "Offer",
-      name: "The Standard",
-      price: "550",
-      priceCurrency: "USD",
-      description:
-        "Up to 90 minutes of dedicated direction with multiple looks, 15 to 20 final retouched images.",
-    },
-    {
-      "@type": "Offer",
-      name: "Event Coverage",
-      price: "1200",
-      priceCurrency: "USD",
-      description:
-        "4 hours of comprehensive coverage, 50+ final delivered images.",
+        "One structured shoot day across 2 to 3 LA locations. 60 to 80 delivered images pre-formatted for LinkedIn, press, speaking decks, and web. 12-month deployment plan included.",
     },
   ],
 };
@@ -115,8 +99,14 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[70] focus:bg-foreground focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-background"
+        >
+          Skip to main content
+        </a>
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main id="main" className="flex-1">{children}</main>
         <SiteFooter />
       </body>
     </html>

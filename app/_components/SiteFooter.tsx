@@ -5,42 +5,77 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-border bg-background">
-      <Container className="flex flex-col gap-8 py-12 sm:flex-row sm:items-start sm:justify-between">
-        <div className="max-w-sm">
+    <footer className="mt-auto border-t border-accent bg-foreground text-background">
+      <Container className="grid grid-cols-1 gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:py-16">
+        <div>
           <Link
             href="/"
-            className="font-heading text-sm font-semibold tracking-[0.2em] uppercase text-foreground"
+            className="font-heading text-sm font-semibold tracking-[0.2em] uppercase text-background"
           >
             Sniped Media
           </Link>
-          <p className="mt-3 text-sm text-muted">
-            High-impact Los Angeles photography. Transparent pricing, seamless delivery.
+          <p className="mt-4 font-heading text-base leading-snug text-background">
+            The commercial portrait system for LA founders.
           </p>
         </div>
 
-        <nav className="grid grid-cols-2 gap-x-10 gap-y-2 text-sm sm:flex sm:gap-8">
-          <Link href="/work" className="text-foreground hover:text-muted">
-            Work
+        <nav className="flex flex-col gap-3 text-sm">
+          <span className="font-heading text-xs font-semibold tracking-[0.3em] uppercase text-background/60">
+            Site
+          </span>
+          <Link href="/kit" className="text-background/85 hover:text-accent-bright">
+            The Kit
           </Link>
-          <Link href="/portfolio-pricing" className="text-foreground hover:text-muted">
-            Pricing
+          <Link href="/about" className="text-background/85 hover:text-accent-bright">
+            About
           </Link>
-          <Link href="/book" className="text-foreground hover:text-muted">
+          <Link href="/book" className="text-background/85 hover:text-accent-bright">
             Book
           </Link>
+        </nav>
+
+        <div className="flex flex-col gap-3 text-sm">
+          <span className="font-heading text-xs font-semibold tracking-[0.3em] uppercase text-background/60">
+            Contact
+          </span>
           <a
-            href="https://gallery.snipedmedia.com"
+            href="mailto:hello@snipedmedia.com"
+            className="text-background/85 hover:text-accent-bright"
+          >
+            hello@snipedmedia.com
+          </a>
+          <p className="text-background/70">Los Angeles, CA</p>
+        </div>
+
+        <div className="flex flex-col gap-3 text-sm">
+          <span className="font-heading text-xs font-semibold tracking-[0.3em] uppercase text-background/60">
+            Social
+          </span>
+          <a
+            href="https://instagram.com/sniped.media"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground hover:text-muted"
+            className="text-background/85 hover:text-accent-bright"
+            aria-label="Sniped Media on Instagram"
           >
-            Client Login
+            Instagram
           </a>
-        </nav>
+          <a
+            href="https://linkedin.com/in/brycedenjones"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-background/85 hover:text-accent-bright"
+            aria-label="Bryceden Jones on LinkedIn"
+          >
+            LinkedIn
+          </a>
+        </div>
       </Container>
-      <Container className="border-t border-border py-6">
-        <p className="text-xs text-muted">© {year} Sniped Media. All rights reserved.</p>
+
+      <Container className="border-t border-background/10 py-6">
+        <p className="text-xs text-background/55">
+          © {year} Sniped Media. All rights reserved.
+        </p>
       </Container>
     </footer>
   );

@@ -5,7 +5,7 @@ type ContainerProps = HTMLAttributes<HTMLDivElement>;
 export function Container({ className = "", children, ...rest }: ContainerProps) {
   return (
     <div
-      className={`mx-auto w-full max-w-7xl px-6 sm:px-8 ${className}`.trim()}
+      className={`mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12 ${className}`.trim()}
       {...rest}
     >
       {children}

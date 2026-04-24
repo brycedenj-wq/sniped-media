@@ -1,27 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { activeBookableTiers, type BookableTier } from "../_data/campaigns";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xlgpgozq";
 
-const MANUAL_FOLLOWUP_MESSAGE =
-  "Received. This coverage requires custom blocking. We'll follow up within 24 hours with a tailored scope and quote.";
-
-const PIXIESET_PENDING_MESSAGE =
-  "Received. We'll send your secure booking link within 24 hours so you can lock in a time.";
+const SUCCESS_LINES = [
+  "If there is fit, a reply lands within 48 hours with two or three times for a qualifying call.",
+  "If there is not fit, a reply lands within 48 hours with a referral to a photographer who will serve the work better.",
+  "Either way, a reply lands.",
+];
 
 type Status = "idle" | "submitting" | "error" | "success";
 
 export function BookForm() {
-  const searchParams = useSearchParams();
-  const preselectedTierId = searchParams.get("tier");
-  const defaultTierId = activeBookableTiers.find((t) => t.id === preselectedTierId)?.id;
-
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string>("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,17 +23,7 @@ export function BookForm() {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const selectedId = String(formData.get("tier") ?? "");
-    const tier = activeBookableTiers.find((t) => t.id === selectedId);
-
-    if (!tier) {
-      setErrorMessage("Please select a coverage tier.");
-      setStatus("error");
-      return;
-    }
-
-    formData.set("tier", tier.fullLabel);
-    formData.set("_subject", `New Sniped Media inquiry · ${tier.fullLabel}`);
+    formData.set("_subject", "Founder Kit qualifying call inquiry");
 
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
@@ -59,14 +42,6 @@ export function BookForm() {
         return;
       }
 
-      if (tier.pixiesetUrl) {
-        window.location.href = tier.pixiesetUrl;
-        return;
-      }
-
-      setSuccessMessage(
-        tier.category === "base" ? MANUAL_FOLLOWUP_MESSAGE : PIXIESET_PENDING_MESSAGE
-      );
       setStatus("success");
       form.reset();
     } catch {
@@ -77,119 +52,105 @@ export function BookForm() {
 
   if (status === "success") {
     return (
-      <div className="border border-border bg-surface p-10 text-center">
-        <h2 className="font-heading text-2xl font-semibold text-foreground">
-          Inquiry received.
+      <div
+        role="status"
+        aria-live="polite"
+        className="border border-border bg-surface p-10"
+      >
+        <h2 className="font-heading text-2xl font-medium text-foreground">
+          Submission received.
         </h2>
-        <p className="mt-4 text-muted">{successMessage}</p>
+        <div className="mt-4 space-y-3 text-base text-foreground/75 leading-relaxed">
+          {SUCCESS_LINES.map((line, i) => (
+            <p key={i}>{line}</p>
+          ))}
+        </div>
       </div>
     );
   }
 
   const isSubmitting = status === "submitting";
+  const errorId = "form-error";
   const inputClass =
-    "w-full border border-border bg-background px-3 py-3 text-foreground outline-none transition-colors focus:border-foreground";
+    "w-full border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-accent focus:border-2 focus:py-[11px]";
   const labelClass = "block text-sm font-semibold text-foreground";
 
   return (
     <form
       onSubmit={handleSubmit}
       className="space-y-6 border border-border bg-surface p-8 md:p-10"
+      aria-describedby={status === "error" ? errorId : undefined}
+      noValidate
     >
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="space-y-2">
-          <label htmlFor="name" className={labelClass}>
-            Full Name
-          </label>
-          <input
-            required
-            type="text"
-            id="name"
-            name="name"
-            autoComplete="name"
-            className={inputClass}
-          />
-        </div>
-        <div className="space-y-2">
-          <label htmlFor="email" className={labelClass}>
-            Email Address
-          </label>
-          <input
-            required
-            type="email"
-            id="email"
-            name="email"
-            autoComplete="email"
-            className={inputClass}
-          />
-        </div>
-      </div>
-
       <div className="space-y-2">
-        <label htmlFor="phone" className={labelClass}>
-          Phone Number
+        <label htmlFor="name" className={labelClass}>
+          Name
         </label>
         <input
           required
-          type="tel"
-          id="phone"
-          name="phone"
-          autoComplete="tel"
+          aria-required="true"
+          aria-invalid={status === "error" ? "true" : undefined}
+          type="text"
+          id="name"
+          name="name"
+          autoComplete="name"
           className={inputClass}
         />
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="scope" className={labelClass}>
-          What are we shooting?
+        <label htmlFor="email" className={labelClass}>
+          Email
+        </label>
+        <input
+          required
+          aria-required="true"
+          aria-invalid={status === "error" ? "true" : undefined}
+          type="email"
+          id="email"
+          name="email"
+          autoComplete="email"
+          className={inputClass}
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="company" className={labelClass}>
+          Company and what you do in one line
+        </label>
+        <input
+          required
+          aria-required="true"
+          aria-invalid={status === "error" ? "true" : undefined}
+          type="text"
+          id="company"
+          name="company"
+          autoComplete="organization"
+          className={inputClass}
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="goal" className={labelClass}>
+          What are you looking to build?
         </label>
         <textarea
           required
-          id="scope"
-          name="scope"
-          rows={3}
-          placeholder="e.g., Grad portraits at USC, or Mother's Day with 3 generations."
+          aria-required="true"
+          aria-invalid={status === "error" ? "true" : undefined}
+          id="goal"
+          name="goal"
+          rows={4}
           className={`${inputClass} resize-none`}
         />
       </div>
 
-      <fieldset className="space-y-3 border-t border-border pt-6">
-        <legend className="font-heading text-sm font-semibold uppercase tracking-[0.2em] text-foreground">
-          Select Your Coverage
-        </legend>
-        <p className="text-xs text-muted">
-          Limited-time sessions are listed first. Base packages are always available.
-        </p>
-        <div className="space-y-3 pt-2">
-          {activeBookableTiers.map((t: BookableTier) => (
-            <label
-              key={t.id}
-              className="flex cursor-pointer items-start gap-3 border border-border p-4 transition-colors hover:border-foreground has-[:checked]:border-foreground has-[:checked]:bg-background"
-            >
-              <input
-                required
-                type="radio"
-                name="tier"
-                value={t.id}
-                defaultChecked={t.id === defaultTierId}
-                className="mt-1 h-4 w-4 accent-foreground"
-              />
-              <span className="block">
-                <span className="block font-semibold text-foreground">{t.label}</span>
-                {t.tagline ? (
-                  <span className="mt-1 block font-heading text-[11px] font-semibold tracking-[0.15em] uppercase text-foreground/70">
-                    {t.tagline}
-                  </span>
-                ) : null}
-                <span className="mt-1 block text-sm text-muted">{t.detail}</span>
-              </span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
-
       {status === "error" && errorMessage ? (
-        <p className="border border-foreground bg-background px-4 py-3 text-sm text-foreground">
+        <p
+          id={errorId}
+          role="alert"
+          className="border border-foreground bg-background px-4 py-3 text-sm text-foreground"
+        >
           {errorMessage}
         </p>
       ) : null}
@@ -199,8 +160,12 @@ export function BookForm() {
         disabled={isSubmitting}
         className="w-full bg-foreground px-6 py-4 font-semibold text-background transition-colors hover:bg-foreground/90 disabled:opacity-50"
       >
-        {isSubmitting ? "Submitting…" : "Continue to Booking"}
+        {isSubmitting ? "Sending..." : "Submit"}
       </button>
+
+      <p className="text-xs text-muted">
+        Responses stored securely via Formspree.
+      </p>
     </form>
   );
 }

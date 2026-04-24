@@ -11,7 +11,7 @@ type CtaButtonProps = Omit<ComponentPropsWithoutRef<typeof Link>, "href"> & {
 };
 
 const base =
-  "inline-flex items-center justify-center font-medium rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+  "inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 const variants: Record<Variant, string> = {
   primary: "bg-foreground text-background hover:bg-foreground/90",

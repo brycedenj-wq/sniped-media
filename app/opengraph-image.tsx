@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Sniped Media | High-Impact Los Angeles Photography";
+export const alt = "Sniped Media | The commercial portrait system for LA founders";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -94,7 +94,7 @@ export default async function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
           <div
             style={{
-              fontSize: "108px",
+              fontSize: "96px",
               fontWeight: 700,
               lineHeight: 1.02,
               letterSpacing: "-3px",
@@ -103,19 +103,20 @@ export default async function OpengraphImage() {
               fontFamily: headingFont,
             }}
           >
-            <span>Capture the Moment.</span>
-            <span>Skip the Friction.</span>
+            <span>The commercial</span>
+            <span>portrait system</span>
+            <span>for LA founders.</span>
           </div>
           <div
             style={{
-              fontSize: "30px",
+              fontSize: "28px",
               color: "rgba(250,250,250,0.72)",
               maxWidth: "900px",
               lineHeight: 1.4,
               fontWeight: 400,
             }}
           >
-            High-impact Los Angeles photography. Transparent pricing, seamless delivery.
+            The Founder Kit. One structured shoot. 60 to 80 deployed-ready images. A 12-month deployment plan.
           </div>
         </div>
 

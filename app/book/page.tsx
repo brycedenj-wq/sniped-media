@@ -4,13 +4,13 @@ import { Container } from "../_components/Container";
 import { BookForm } from "./BookForm";
 
 export const metadata: Metadata = {
-  title: "Book a Session",
+  title: "Book a Qualifying Call",
   description:
-    "Check availability and book your Los Angeles portrait, lifestyle, or event session. Transparent pricing, secure invoicing, zero friction.",
+    "Book a 20-minute qualifying call for the Sniped Media Founder Kit. Fit confirmed or respectfully declined with referrals.",
   openGraph: {
-    title: "Book a Session | Sniped Media",
+    title: "Book a Qualifying Call | Sniped Media",
     description:
-      "Check availability and book your Los Angeles portrait, lifestyle, or event session. Transparent pricing, secure invoicing, zero friction.",
+      "Book a 20-minute qualifying call for the Sniped Media Founder Kit. Fit confirmed or respectfully declined with referrals.",
     url: "/book",
   },
   robots: { index: true, follow: true },
@@ -18,20 +18,29 @@ export const metadata: Metadata = {
 
 export default function BookPage() {
   return (
-    <section className="py-section">
+    <section className="min-h-[calc(100vh-4rem)] bg-background py-section">
       <Container>
-        <div className="mx-auto max-w-2xl">
-          <div className="mb-12 text-center">
-            <h1 className="font-heading text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-              Check Availability &amp; Book.
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-20">
+          <div className="lg:pt-4">
+            <span className="font-heading text-xs font-semibold tracking-[0.4em] uppercase text-muted">
+              Qualifying Call
+            </span>
+            <h1 className="mt-6 font-heading text-4xl font-medium leading-[1.05] tracking-tight text-balance sm:text-5xl">
+              Book a 20-minute qualifying call.
             </h1>
-            <p className="mt-6 text-lg text-muted">
-              Every active session is listed below: limited-time campaigns at the top, base packages always available. Most tiers route to our secure calendar on submission; event coverage receives a tailored follow-up within 24 hours.
+            <p className="mt-6 text-lg text-foreground/80 leading-relaxed">
+              Fit confirmed or respectfully declined with referrals.
+            </p>
+            <p className="mt-3 text-sm text-muted">
+              You&apos;ll hear back within 48 hours.
             </p>
           </div>
-          <Suspense fallback={<div className="h-96 border border-border bg-surface" />}>
-            <BookForm />
-          </Suspense>
+
+          <div>
+            <Suspense fallback={<div className="h-96 border border-border bg-surface" />}>
+              <BookForm />
+            </Suspense>
+          </div>
         </div>
       </Container>
     </section>

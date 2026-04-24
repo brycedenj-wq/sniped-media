@@ -1,7 +1,12 @@
 import { Hero } from "./_components/sections/Hero";
-import { WorkTeaser } from "./_components/sections/WorkTeaser";
-import { OperatorPromise } from "./_components/sections/OperatorPromise";
-import { PricingAnchor } from "./_components/sections/PricingAnchor";
+import { Problem } from "./_components/sections/Problem";
+import { KitSummary } from "./_components/sections/KitSummary";
+import { KitProduces } from "./_components/sections/KitProduces";
+import { DeploymentLedger } from "./_components/sections/DeploymentLedger";
+import { Process } from "./_components/sections/Process";
+import { AudienceFit } from "./_components/sections/AudienceFit";
+import { FAQ } from "./_components/sections/FAQ";
+import { ClosingCTA } from "./_components/sections/ClosingCTA";
 import { FadeIn } from "./_components/FadeIn";
 
 export default function HomePage() {
@@ -9,13 +14,28 @@ export default function HomePage() {
     <>
       <Hero />
       <FadeIn>
-        <WorkTeaser />
+        <Problem />
       </FadeIn>
       <FadeIn>
-        <OperatorPromise />
+        <KitSummary />
       </FadeIn>
       <FadeIn>
-        <PricingAnchor />
+        <KitProduces />
+      </FadeIn>
+      <FadeIn>
+        <DeploymentLedger />
+      </FadeIn>
+      <FadeIn>
+        <Process />
+      </FadeIn>
+      <FadeIn>
+        <AudienceFit />
+      </FadeIn>
+      <FadeIn>
+        <FAQ />
+      </FadeIn>
+      <FadeIn>
+        <ClosingCTA />
       </FadeIn>
     </>
   );
