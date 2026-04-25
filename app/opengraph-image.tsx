@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Sniped Media | The commercial portrait system for LA founders";
+export const alt = "Sniped Media — In Development";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -28,22 +28,50 @@ async function loadGoogleFont(family: string, weight: number): Promise<ArrayBuff
   }
 }
 
-type LoadedFont = { name: string; data: ArrayBuffer; weight: 400 | 500 | 600 | 700; style: "normal" };
+type LoadedFont = {
+  name: string;
+  data: ArrayBuffer;
+  weight: 400 | 500 | 600 | 700;
+  style: "normal";
+};
 
 export default async function OpengraphImage() {
-  const [spaceGrotesk700, inter500, inter400] = await Promise.all([
+  const [spaceGrotesk700, spaceGrotesk500] = await Promise.all([
     loadGoogleFont("Space Grotesk", 700),
-    loadGoogleFont("Inter", 500),
-    loadGoogleFont("Inter", 400),
+    loadGoogleFont("Space Grotesk", 500),
   ]);
 
   const fonts: LoadedFont[] = [];
-  if (spaceGrotesk700) fonts.push({ name: "Space Grotesk", data: spaceGrotesk700, weight: 700, style: "normal" });
-  if (inter500) fonts.push({ name: "Inter", data: inter500, weight: 500, style: "normal" });
-  if (inter400) fonts.push({ name: "Inter", data: inter400, weight: 400, style: "normal" });
+  if (spaceGrotesk700)
+    fonts.push({ name: "Space Grotesk", data: spaceGrotesk700, weight: 700, style: "normal" });
+  if (spaceGrotesk500)
+    fonts.push({ name: "Space Grotesk", data: spaceGrotesk500, weight: 500, style: "normal" });
 
   const headingFont = spaceGrotesk700 ? "Space Grotesk" : "system-ui, sans-serif";
-  const bodyFont = inter400 ? "Inter" : "system-ui, sans-serif";
+
+  // Match site palette
+  const ink = "#141414";
+  const paper = "#F5F3EE";
+  const paperMuted = "rgba(245, 243, 238, 0.55)";
+  const accent = "#A67D2B";
+
+  // Faint 12-col grid background
+  const gridLines = Array.from({ length: 11 }).map((_, i) => {
+    const left = `${((i + 1) * 100) / 12}%`;
+    return (
+      <div
+        key={i}
+        style={{
+          position: "absolute",
+          top: 0,
+          bottom: 0,
+          left,
+          width: "1px",
+          background: "rgba(245, 243, 238, 0.05)",
+        }}
+      />
+    );
+  });
 
   return new ImageResponse(
     (
@@ -51,88 +79,147 @@ export default async function OpengraphImage() {
         style={{
           width: "100%",
           height: "100%",
-          background: "#121212",
-          color: "#fafafa",
+          background: ink,
+          color: paper,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "80px",
-          fontFamily: bodyFont,
+          padding: "64px 80px",
+          fontFamily: headingFont,
+          position: "relative",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <div
-            style={{
-              width: "56px",
-              height: "56px",
-              borderRadius: "12px",
-              background: "#fafafa",
-              color: "#121212",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "36px",
-              fontWeight: 700,
-              fontFamily: headingFont,
-            }}
-          >
-            S
-          </div>
+        {gridLines}
+
+        {/* Top bar: wordmark left, location/version right */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            position: "relative",
+          }}
+        >
           <span
             style={{
-              fontSize: "24px",
-              fontWeight: 500,
-              letterSpacing: "6px",
+              fontSize: "18px",
+              fontWeight: 700,
+              letterSpacing: "5px",
               textTransform: "uppercase",
-              fontFamily: headingFont,
+              color: paper,
             }}
           >
             Sniped Media
           </span>
+          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+            <span
+              style={{
+                fontSize: "16px",
+                fontWeight: 700,
+                letterSpacing: "5px",
+                textTransform: "uppercase",
+                color: paperMuted,
+              }}
+            >
+              Los Angeles
+            </span>
+            <span
+              style={{
+                width: "40px",
+                height: "1px",
+                background: "rgba(245, 243, 238, 0.3)",
+              }}
+            />
+            <span
+              style={{
+                fontSize: "16px",
+                fontWeight: 700,
+                letterSpacing: "5px",
+                textTransform: "uppercase",
+                color: paperMuted,
+              }}
+            >
+              V2.0 / On File
+            </span>
+          </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
-          <div
-            style={{
-              fontSize: "96px",
-              fontWeight: 700,
-              lineHeight: 1.02,
-              letterSpacing: "-3px",
-              display: "flex",
-              flexDirection: "column",
-              fontFamily: headingFont,
-            }}
-          >
-            <span>The commercial</span>
-            <span>portrait system</span>
-            <span>for LA founders.</span>
-          </div>
-          <div
-            style={{
-              fontSize: "28px",
-              color: "rgba(250,250,250,0.72)",
-              maxWidth: "900px",
-              lineHeight: 1.4,
-              fontWeight: 400,
-            }}
-          >
-            The Founder Kit. One structured shoot. 60 to 80 deployed-ready images. A 12-month deployment plan.
-          </div>
-        </div>
-
+        {/* Center: section marker + headline */}
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
-            fontSize: "18px",
-            color: "rgba(250,250,250,0.55)",
-            letterSpacing: "4px",
-            textTransform: "uppercase",
-            fontWeight: 500,
+            flexDirection: "column",
+            gap: "32px",
+            position: "relative",
           }}
         >
-          <span>Los Angeles, CA</span>
-          <span>snipedmedia.com</span>
+          <span
+            style={{
+              fontSize: "20px",
+              fontWeight: 700,
+              letterSpacing: "8px",
+              textTransform: "uppercase",
+              color: accent,
+            }}
+          >
+            § 00 / In Development
+          </span>
+          <span
+            style={{
+              fontSize: "200px",
+              fontWeight: 700,
+              lineHeight: 0.95,
+              letterSpacing: "-6px",
+              color: paper,
+            }}
+          >
+            Developing.
+          </span>
+          <span
+            style={{
+              fontSize: "26px",
+              fontWeight: 500,
+              lineHeight: 1.4,
+              maxWidth: "900px",
+              color: "rgba(245, 243, 238, 0.75)",
+              letterSpacing: "0px",
+            }}
+          >
+            The next version of Sniped Media is on the bench. Same studio. Same standard. New positioning underway.
+          </span>
+        </div>
+
+        {/* Bottom: tap counter + url */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            position: "relative",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "16px",
+              fontWeight: 700,
+              letterSpacing: "5px",
+              textTransform: "uppercase",
+              color: paperMuted,
+            }}
+          >
+            hello@snipedmedia.com
+          </span>
+          <span
+            style={{
+              fontSize: "16px",
+              fontWeight: 700,
+              letterSpacing: "5px",
+              textTransform: "uppercase",
+              color: paperMuted,
+            }}
+          >
+            snipedmedia.com
+          </span>
         </div>
       </div>
     ),
