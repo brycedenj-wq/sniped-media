@@ -77,13 +77,13 @@ export function ComingSoon() {
       <div className="relative z-10 flex flex-1 items-center justify-center px-6 text-center">
         <div className="max-w-3xl">
           <span className="font-heading text-[11px] font-semibold tracking-[0.4em] uppercase text-accent-bright tabular-nums">
-            § 00 / In Development
+            Commercial Portrait / Los Angeles
           </span>
           <h1 className="mt-8 font-heading text-5xl font-bold leading-[0.95] tracking-tight text-balance sm:text-7xl lg:text-[140px]">
-            Developing.
+            Sniped Media.
           </h1>
           <p className="mx-auto mt-8 max-w-xl text-base leading-relaxed text-background/75 sm:text-lg">
-            The next version of Sniped Media is on the bench. Same studio. Same standard. New positioning underway.
+            By appointment. Inquiries direct.
           </p>
           <p className="mt-10 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-background/55 tabular-nums">
             <a
@@ -102,7 +102,7 @@ export function ComingSoon() {
           <span className="text-accent-bright">{frameCount.toLocaleString()}</span>
         </div>
         <div className="font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-background/55 tabular-nums">
-          V2.0 / On File
+          On File
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Sniped Media — In Development";
+export const alt = "Sniped Media — Los Angeles";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -49,7 +49,6 @@ export default async function OpengraphImage() {
 
   const headingFont = spaceGrotesk700 ? "Space Grotesk" : "system-ui, sans-serif";
 
-  // Match site palette
   const ink = "#141414";
   const paper = "#F5F3EE";
   const paperMuted = "rgba(245, 243, 238, 0.55)";
@@ -84,14 +83,14 @@ export default async function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "64px 80px",
+          padding: "70px 88px",
           fontFamily: headingFont,
           position: "relative",
         }}
       >
         {gridLines}
 
-        {/* Top bar: wordmark left, location/version right */}
+        {/* Top bar: small wordmark left, locator right */}
         <div
           style={{
             display: "flex",
@@ -102,16 +101,16 @@ export default async function OpengraphImage() {
         >
           <span
             style={{
-              fontSize: "18px",
+              fontSize: "20px",
               fontWeight: 700,
-              letterSpacing: "5px",
+              letterSpacing: "6px",
               textTransform: "uppercase",
               color: paper,
             }}
           >
             Sniped Media
           </span>
-          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "22px" }}>
             <span
               style={{
                 fontSize: "16px",
@@ -125,7 +124,7 @@ export default async function OpengraphImage() {
             </span>
             <span
               style={{
-                width: "40px",
+                width: "44px",
                 height: "1px",
                 background: "rgba(245, 243, 238, 0.3)",
               }}
@@ -139,17 +138,18 @@ export default async function OpengraphImage() {
                 color: paperMuted,
               }}
             >
-              V2.0 / On File
+              Studio
             </span>
           </div>
         </div>
 
-        {/* Center: section marker + headline */}
+        {/* Center: identity — clean, no status copy */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "32px",
+            alignItems: "flex-start",
+            gap: "28px",
             position: "relative",
           }}
         >
@@ -162,34 +162,34 @@ export default async function OpengraphImage() {
               color: accent,
             }}
           >
-            § 00 / In Development
+            Commercial Portrait
           </span>
           <span
             style={{
-              fontSize: "200px",
+              fontSize: "188px",
               fontWeight: 700,
-              lineHeight: 0.95,
-              letterSpacing: "-6px",
+              lineHeight: 0.92,
+              letterSpacing: "-7px",
               color: paper,
             }}
           >
-            Developing.
+            Sniped
           </span>
           <span
             style={{
-              fontSize: "26px",
-              fontWeight: 500,
-              lineHeight: 1.4,
-              maxWidth: "900px",
-              color: "rgba(245, 243, 238, 0.75)",
-              letterSpacing: "0px",
+              fontSize: "188px",
+              fontWeight: 700,
+              lineHeight: 0.92,
+              letterSpacing: "-7px",
+              color: paper,
+              marginTop: "-32px",
             }}
           >
-            The next version of Sniped Media is on the bench. Same studio. Same standard. New positioning underway.
+            Media.
           </span>
         </div>
 
-        {/* Bottom: tap counter + url */}
+        {/* Bottom: contact + url */}
         <div
           style={{
             display: "flex",

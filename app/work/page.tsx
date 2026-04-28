@@ -3,16 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "../_components/Container";
 import { FadeIn } from "../_components/FadeIn";
-import { GridOverlay } from "../_components/GridOverlay";
 
 export const metadata: Metadata = {
   title: "Selected Work",
-  description:
-    "Selected commercial portrait work by Sniped Media in Los Angeles.",
+  description: "Selected work by Sniped Media. Los Angeles.",
   openGraph: {
     title: "Selected Work | Sniped Media",
-    description:
-      "Selected commercial portrait work by Sniped Media in Los Angeles.",
+    description: "Selected work by Sniped Media. Los Angeles.",
     url: "/work",
   },
   robots: { index: false, follow: false },
@@ -21,199 +18,135 @@ export const metadata: Metadata = {
 type Frame = {
   src: string;
   alt: string;
-  index: string;
-  context: string;
-  specs: string;
-  deployment: string;
-  span?: "wide" | "tall" | "default";
+  aspect: string; // tailwind aspect-ratio class
+  span: string; // tailwind col-span class for desktop
 };
 
 const frames: Frame[] = [
   {
-    src: "/images/work/archive/archive-09.jpg",
-    alt: "Editorial portrait, controlled light",
-    index: "01",
-    context: "EDITORIAL / CONTROLLED LIGHT",
-    specs: "85mm f/1.8",
-    deployment: "PRESS COVER",
-    span: "wide",
+    src: "/images/portfolio-1.jpg",
+    alt: "Portrait — Sniped Media",
+    aspect: "aspect-[3/4]",
+    span: "lg:col-span-4",
   },
   {
-    src: "/images/work/archive/archive-03.jpg",
-    alt: "Environmental portrait, natural light",
-    index: "02",
-    context: "ENVIRONMENTAL / NATURAL LIGHT",
-    specs: "35mm f/2.8",
-    deployment: "BRAND HERO",
+    src: "/images/portfolio-2.jpg",
+    alt: "Portrait — Sniped Media",
+    aspect: "aspect-[4/3]",
+    span: "lg:col-span-8",
   },
   {
-    src: "/images/work/archive/archive-17.jpg",
-    alt: "Studio portrait, high key",
-    index: "03",
-    context: "STUDIO / HIGH KEY",
-    specs: "50mm f/4",
-    deployment: "EDITORIAL OPENER",
+    src: "/images/portfolio-3.jpg",
+    alt: "Portrait — Sniped Media",
+    aspect: "aspect-[4/5]",
+    span: "lg:col-span-12",
   },
   {
-    src: "/images/work/archive/archive-10.jpg",
-    alt: "Outdoor portrait, golden hour",
-    index: "04",
-    context: "OUTDOOR / GOLDEN HOUR",
-    specs: "85mm f/2.2",
-    deployment: "CAMPAIGN PORTRAIT",
+    src: "/images/portfolio-4.jpg",
+    alt: "Portrait — Sniped Media",
+    aspect: "aspect-square",
+    span: "lg:col-span-4",
   },
   {
-    src: "/images/work/archive/archive-19.jpg",
-    alt: "Environmental portrait, overcast",
-    index: "05",
-    context: "ENVIRONMENTAL / OVERCAST",
-    specs: "35mm f/4",
-    deployment: "ABOUT PAGE",
+    src: "/images/portfolio-5.jpg",
+    alt: "Portrait — Sniped Media",
+    aspect: "aspect-[3/4]",
+    span: "lg:col-span-4",
   },
   {
-    src: "/images/work/archive/archive-01.jpg",
-    alt: "Studio portrait, low key",
-    index: "06",
-    context: "STUDIO / LOW KEY",
-    specs: "85mm f/2",
-    deployment: "MAGAZINE FEATURE",
-    span: "wide",
+    src: "/images/portfolio-7.jpg",
+    alt: "Portrait — Sniped Media",
+    aspect: "aspect-[3/4]",
+    span: "lg:col-span-4",
+  },
+  {
+    src: "/images/portfolio-6.jpg",
+    alt: "Portrait — Sniped Media",
+    aspect: "aspect-[4/3]",
+    span: "lg:col-span-8",
+  },
+  {
+    src: "/images/portfolio-8.jpg",
+    alt: "Portrait — Sniped Media",
+    aspect: "aspect-square",
+    span: "lg:col-span-4",
+  },
+  {
+    src: "/images/portfolio-9.jpg",
+    alt: "Portrait — Sniped Media",
+    aspect: "aspect-[4/3]",
+    span: "lg:col-span-8",
+  },
+  {
+    src: "/images/portfolio-10.jpg",
+    alt: "Portrait — Sniped Media",
+    aspect: "aspect-[3/4]",
+    span: "lg:col-span-4",
   },
 ];
 
 export default function WorkPage() {
   return (
-    <>
-      {/* Hero — dark, matches coming-soon visual register */}
-      <section className="relative isolate flex min-h-[55vh] items-end overflow-hidden border-b border-background/10 bg-foreground py-section text-background">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, #F5F3EE 1px, transparent 1px)",
-            backgroundSize: "calc(100% / 12) 100%",
-          }}
-        />
-
-        <div className="pointer-events-none absolute top-6 right-6 hidden items-center gap-4 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-background/55 tabular-nums sm:flex">
-          <span>LOS ANGELES</span>
+    <div className="min-h-screen bg-foreground text-background">
+      {/* Minimal top: back link + corner tag */}
+      <header className="relative flex items-center justify-between px-6 py-6 sm:px-10 sm:py-8">
+        <Link
+          href="/"
+          className="font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-background/55 transition-colors hover:text-accent-bright tabular-nums"
+        >
+          ← Sniped Media
+        </Link>
+        <div className="hidden items-center gap-4 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-background/55 tabular-nums sm:flex">
+          <span>Los Angeles</span>
           <span className="h-px w-10 bg-background/30" />
-          <span>SELECTED WORK</span>
+          <span>Selected Work</span>
         </div>
+      </header>
 
-        <Container>
+      {/* The work — varied editorial mosaic */}
+      <section className="px-6 pb-24 pt-4 sm:px-10 sm:pb-32 sm:pt-8 lg:px-16">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-12 lg:gap-5">
+          {frames.map((f, i) => (
+            <FadeIn
+              key={f.src}
+              delayMs={Math.min(i * 80, 480)}
+              className={`col-span-1 ${f.span}`}
+            >
+              <figure
+                className={`relative w-full overflow-hidden bg-background/5 ${f.aspect}`}
+              >
+                <Image
+                  src={f.src}
+                  alt={f.alt}
+                  fill
+                  quality={92}
+                  sizes="(min-width: 1024px) 66vw, 100vw"
+                  priority={i < 2}
+                  className="object-cover object-center"
+                />
+              </figure>
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+
+      {/* Minimal closing — email + back link only */}
+      <footer className="border-t border-background/10 px-6 py-12 sm:px-10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left">
+          <a
+            href="mailto:hello@snipedmedia.com"
+            className="font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-background/85 underline decoration-background/30 underline-offset-4 transition-colors hover:text-accent-bright hover:decoration-accent-bright tabular-nums"
+          >
+            hello@snipedmedia.com
+          </a>
           <Link
             href="/"
             className="font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-background/55 transition-colors hover:text-accent-bright tabular-nums"
           >
             ← Sniped Media
           </Link>
-          <h1 className="mt-8 max-w-4xl font-heading text-5xl font-bold leading-[0.98] tracking-tight text-balance sm:text-6xl lg:text-7xl">
-            Selected work.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-background/80">
-            A curated cut from the archive. Editorial, environmental, studio. Los Angeles.
-          </p>
-        </Container>
-      </section>
-
-      {/* Pullquote — signature phrasing, third person */}
-      <section className="bg-foreground py-section text-background">
-        <Container>
-          <FadeIn>
-            <p className="mx-auto max-w-3xl font-heading text-xl font-medium leading-relaxed tracking-tight text-background sm:text-2xl">
-              Every frame is a commercial-grade decision. The studio does not snap. It directs. It composes. It executes.
-            </p>
-          </FadeIn>
-        </Container>
-      </section>
-
-      {/* Curated grid — varied spans, dense editorial layout */}
-      <section className="relative bg-background py-section">
-        <GridOverlay />
-        <Container className="relative z-10">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-6 sm:gap-4 lg:gap-6">
-            {frames.map((f, i) => (
-              <FadeIn
-                key={f.src}
-                delayMs={Math.min(i * 80, 480)}
-                className={
-                  f.span === "wide"
-                    ? "sm:col-span-6"
-                    : "sm:col-span-3"
-                }
-              >
-                <figure className="group flex flex-col gap-3">
-                  <div
-                    className={`relative w-full overflow-hidden bg-foreground/5 ${
-                      f.span === "wide"
-                        ? "aspect-[16/9]"
-                        : "aspect-[4/5]"
-                    }`}
-                  >
-                    <Image
-                      src={f.src}
-                      alt={f.alt}
-                      fill
-                      quality={95}
-                      sizes={
-                        f.span === "wide"
-                          ? "(min-width: 640px) 100vw, 100vw"
-                          : "(min-width: 640px) 50vw, 100vw"
-                      }
-                      className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.015]"
-                    />
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/90 via-foreground/30 to-transparent p-5 opacity-0 transition-opacity duration-200 group-hover:opacity-100 motion-reduce:transition-none">
-                      <p className="font-heading text-[11px] font-semibold tracking-[0.25em] uppercase text-background tabular-nums">
-                        {f.context} · {f.specs}
-                      </p>
-                      <p className="mt-1 font-heading text-[11px] font-semibold tracking-[0.25em] uppercase text-background/80 tabular-nums">
-                        {f.deployment}
-                      </p>
-                    </div>
-                  </div>
-                  <figcaption className="flex items-center justify-between gap-2 border-t border-border pt-2 font-heading text-[11px] font-semibold tracking-[0.2em] uppercase text-muted tabular-nums">
-                    <span>{f.index}</span>
-                    <span className="truncate">{f.specs}</span>
-                  </figcaption>
-                </figure>
-              </FadeIn>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Closing — minimal, no broken CTAs */}
-      <section className="border-t border-border bg-foreground py-section text-background">
-        <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="font-heading text-[11px] font-semibold tracking-[0.4em] uppercase text-background/55 tabular-nums">
-              § Continued
-            </p>
-            <h2 className="mt-6 font-heading text-3xl font-medium tracking-tight text-balance sm:text-4xl">
-              The next version is in development.
-            </h2>
-            <p className="mt-6 text-base text-background/70 leading-relaxed">
-              Inquiries handled directly until the new site lands.
-            </p>
-            <p className="mt-8 font-heading text-sm font-semibold tracking-[0.3em] uppercase tabular-nums">
-              <a
-                href="mailto:hello@snipedmedia.com"
-                className="text-background/85 underline decoration-background/30 underline-offset-4 transition-colors hover:text-accent-bright hover:decoration-accent-bright"
-              >
-                hello@snipedmedia.com
-              </a>
-            </p>
-            <Link
-              href="/"
-              className="mt-12 inline-block font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-background/55 transition-colors hover:text-accent-bright"
-            >
-              ← Sniped Media
-            </Link>
-          </div>
-        </Container>
-      </section>
-    </>
+        </div>
+      </footer>
+    </div>
   );
 }

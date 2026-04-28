@@ -32,7 +32,7 @@ const availabilityFields: Field[] = [
 ];
 
 const wardrobeFields: Field[] = [
-  { name: "wardrobe_red", label: "Can bring red wardrobe", options: wardrobeOptions },
+  { name: "wardrobe_orange", label: "Can bring orange wardrobe", options: wardrobeOptions },
   { name: "wardrobe_white", label: "Can bring all-white or cream wardrobe", options: wardrobeOptions },
 ];
 
