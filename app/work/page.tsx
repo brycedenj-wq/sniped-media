@@ -3,15 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "../_components/Container";
 import { FadeIn } from "../_components/FadeIn";
+import { GridOverlay } from "../_components/GridOverlay";
 
 export const metadata: Metadata = {
-  title: "The Work",
+  title: "Selected Work",
   description:
-    "Editorial founder portraits, environmental founder portraits, and structured studio work by Sniped Media in Los Angeles.",
+    "Selected commercial portrait work by Sniped Media in Los Angeles.",
   openGraph: {
-    title: "The Work | Sniped Media",
+    title: "Selected Work | Sniped Media",
     description:
-      "Editorial founder portraits, environmental founder portraits, and structured studio work by Sniped Media in Los Angeles.",
+      "Selected commercial portrait work by Sniped Media in Los Angeles.",
     url: "/work",
   },
   robots: { index: false, follow: false },
@@ -20,124 +21,161 @@ export const metadata: Metadata = {
 type Frame = {
   src: string;
   alt: string;
-  caption: string;
+  index: string;
+  context: string;
+  specs: string;
+  deployment: string;
+  span?: "wide" | "tall" | "default";
 };
 
 const frames: Frame[] = [
   {
     src: "/images/work/archive/archive-09.jpg",
-    alt: "Editorial studio portrait",
-    caption: "Editorial studio portrait · Los Angeles · Deployed as LinkedIn hero",
+    alt: "Editorial portrait, controlled light",
+    index: "01",
+    context: "EDITORIAL / CONTROLLED LIGHT",
+    specs: "85mm f/1.8",
+    deployment: "PRESS COVER",
+    span: "wide",
   },
   {
     src: "/images/work/archive/archive-03.jpg",
-    alt: "Editorial headshot",
-    caption: "Editorial headshot · Los Angeles · Deployed as press bio",
-  },
-  {
-    src: "/images/work/archive/archive-10.jpg",
-    alt: "Editorial portrait",
-    caption: "Editorial portrait · Los Angeles · Deployed as speaking deck opener",
-  },
-  {
-    src: "/images/work/archive/archive-14.jpg",
-    alt: "Editorial portrait series",
-    caption: "Editorial portrait · Los Angeles · Deployed as press release",
-  },
-  {
-    src: "/images/work/archive/archive-01.jpg",
-    alt: "Editorial portrait",
-    caption: "Editorial portrait · Los Angeles · Deployed as web hero",
-  },
-  {
-    src: "/images/work/archive/archive-07.jpg",
-    alt: "Environmental portrait",
-    caption: "Environmental portrait · Los Angeles · Deployed as company about page",
-  },
-  {
-    src: "/images/work/archive/archive-02.jpg",
-    alt: "Editorial portrait",
-    caption: "Editorial portrait · Los Angeles · Deployed as LinkedIn post",
-  },
-  {
-    src: "/images/work/archive/archive-04.jpg",
-    alt: "Editorial portrait",
-    caption: "Editorial portrait · Los Angeles · Deployed as podcast tile",
-  },
-  {
-    src: "/images/work/archive/archive-05.jpg",
-    alt: "Editorial portrait",
-    caption: "Editorial portrait · Los Angeles · Deployed as keynote intro",
-  },
-  {
-    src: "/images/work/archive/archive-06.jpg",
-    alt: "Editorial portrait",
-    caption: "Editorial portrait · Los Angeles · Deployed as newsletter header",
-  },
-  {
-    src: "/images/work/archive/archive-08.jpg",
-    alt: "Brand campaign portrait",
-    caption: "Environmental portrait · Los Angeles · Deployed as campaign landing page",
+    alt: "Environmental portrait, natural light",
+    index: "02",
+    context: "ENVIRONMENTAL / NATURAL LIGHT",
+    specs: "35mm f/2.8",
+    deployment: "BRAND HERO",
   },
   {
     src: "/images/work/archive/archive-17.jpg",
-    alt: "Environmental commercial portrait",
-    caption: "Environmental portrait · Los Angeles · Deployed as recruiting page",
+    alt: "Studio portrait, high key",
+    index: "03",
+    context: "STUDIO / HIGH KEY",
+    specs: "50mm f/4",
+    deployment: "EDITORIAL OPENER",
+  },
+  {
+    src: "/images/work/archive/archive-10.jpg",
+    alt: "Outdoor portrait, golden hour",
+    index: "04",
+    context: "OUTDOOR / GOLDEN HOUR",
+    specs: "85mm f/2.2",
+    deployment: "CAMPAIGN PORTRAIT",
   },
   {
     src: "/images/work/archive/archive-19.jpg",
-    alt: "Environmental commercial portrait",
-    caption: "Environmental portrait · Los Angeles · Deployed as investor letter",
+    alt: "Environmental portrait, overcast",
+    index: "05",
+    context: "ENVIRONMENTAL / OVERCAST",
+    specs: "35mm f/4",
+    deployment: "ABOUT PAGE",
+  },
+  {
+    src: "/images/work/archive/archive-01.jpg",
+    alt: "Studio portrait, low key",
+    index: "06",
+    context: "STUDIO / LOW KEY",
+    specs: "85mm f/2",
+    deployment: "MAGAZINE FEATURE",
+    span: "wide",
   },
 ];
 
 export default function WorkPage() {
   return (
     <>
-      <section className="border-b border-border bg-background py-section">
+      {/* Hero — dark, matches coming-soon visual register */}
+      <section className="relative isolate flex min-h-[55vh] items-end overflow-hidden border-b border-background/10 bg-foreground py-section text-background">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, #F5F3EE 1px, transparent 1px)",
+            backgroundSize: "calc(100% / 12) 100%",
+          }}
+        />
+
+        <div className="pointer-events-none absolute top-6 right-6 hidden items-center gap-4 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-background/55 tabular-nums sm:flex">
+          <span>LOS ANGELES</span>
+          <span className="h-px w-10 bg-background/30" />
+          <span>SELECTED WORK</span>
+        </div>
+
         <Container>
-          <div className="max-w-3xl">
-            <span className="font-heading text-xs font-semibold tracking-[0.4em] uppercase text-muted">
-              The Work
-            </span>
-            <h1 className="mt-6 font-heading text-4xl font-medium leading-[1.05] tracking-tight text-balance sm:text-5xl">
-              Editorial, environmental, studio.
-            </h1>
-            <p className="mt-6 max-w-xl text-base text-foreground/75 sm:text-lg">
-              Founder-adjacent work across Los Angeles. Every image selected for the library it was built to serve.
-            </p>
-          </div>
+          <Link
+            href="/"
+            className="font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-background/55 transition-colors hover:text-accent-bright tabular-nums"
+          >
+            ← Sniped Media
+          </Link>
+          <h1 className="mt-8 max-w-4xl font-heading text-5xl font-bold leading-[0.98] tracking-tight text-balance sm:text-6xl lg:text-7xl">
+            Selected work.
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-background/80">
+            A curated cut from the archive. Editorial, environmental, studio. Los Angeles.
+          </p>
         </Container>
       </section>
 
+      {/* Pullquote — signature phrasing, third person */}
       <section className="bg-foreground py-section text-background">
         <Container>
           <FadeIn>
-            <p className="mx-auto max-w-3xl font-heading text-xl font-medium leading-relaxed tracking-tight text-background sm:text-3xl">
-              Every frame is a commercial-grade decision. The studio does not snap. It directs. It composes. It executes. The session is the product. The photos are the receipt.
+            <p className="mx-auto max-w-3xl font-heading text-xl font-medium leading-relaxed tracking-tight text-background sm:text-2xl">
+              Every frame is a commercial-grade decision. The studio does not snap. It directs. It composes. It executes.
             </p>
           </FadeIn>
         </Container>
       </section>
 
-      <section className="py-section">
-        <Container>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-            {frames.map((frame, i) => (
-              <FadeIn key={frame.src} delayMs={Math.min(i * 60, 480)}>
-                <figure className="flex flex-col gap-3">
-                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
+      {/* Curated grid — varied spans, dense editorial layout */}
+      <section className="relative bg-background py-section">
+        <GridOverlay />
+        <Container className="relative z-10">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-6 sm:gap-4 lg:gap-6">
+            {frames.map((f, i) => (
+              <FadeIn
+                key={f.src}
+                delayMs={Math.min(i * 80, 480)}
+                className={
+                  f.span === "wide"
+                    ? "sm:col-span-6"
+                    : "sm:col-span-3"
+                }
+              >
+                <figure className="group flex flex-col gap-3">
+                  <div
+                    className={`relative w-full overflow-hidden bg-foreground/5 ${
+                      f.span === "wide"
+                        ? "aspect-[16/9]"
+                        : "aspect-[4/5]"
+                    }`}
+                  >
                     <Image
-                      src={frame.src}
-                      alt={frame.alt}
+                      src={f.src}
+                      alt={f.alt}
                       fill
                       quality={95}
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover object-center transition-transform duration-500 hover:scale-[1.02]"
+                      sizes={
+                        f.span === "wide"
+                          ? "(min-width: 640px) 100vw, 100vw"
+                          : "(min-width: 640px) 50vw, 100vw"
+                      }
+                      className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.015]"
                     />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/90 via-foreground/30 to-transparent p-5 opacity-0 transition-opacity duration-200 group-hover:opacity-100 motion-reduce:transition-none">
+                      <p className="font-heading text-[11px] font-semibold tracking-[0.25em] uppercase text-background tabular-nums">
+                        {f.context} · {f.specs}
+                      </p>
+                      <p className="mt-1 font-heading text-[11px] font-semibold tracking-[0.25em] uppercase text-background/80 tabular-nums">
+                        {f.deployment}
+                      </p>
+                    </div>
                   </div>
-                  <figcaption className="text-xs text-muted leading-relaxed">
-                    {frame.caption}
+                  <figcaption className="flex items-center justify-between gap-2 border-t border-border pt-2 font-heading text-[11px] font-semibold tracking-[0.2em] uppercase text-muted tabular-nums">
+                    <span>{f.index}</span>
+                    <span className="truncate">{f.specs}</span>
                   </figcaption>
                 </figure>
               </FadeIn>
@@ -146,29 +184,33 @@ export default function WorkPage() {
         </Container>
       </section>
 
+      {/* Closing — minimal, no broken CTAs */}
       <section className="border-t border-border bg-foreground py-section text-background">
         <Container>
-          <div className="max-w-3xl">
-            <h2 className="font-heading text-3xl font-medium tracking-tight text-balance sm:text-4xl">
-              Ready to build your own library?
-            </h2>
-            <p className="mt-6 max-w-2xl text-base text-background/75">
-              One structured shoot. 60 to 80 deployed-ready images. A 12-month deployment plan.
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="font-heading text-[11px] font-semibold tracking-[0.4em] uppercase text-background/55 tabular-nums">
+              § Continued
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-6">
-              <Link
-                href="/book"
-                className="inline-flex h-14 items-center justify-center bg-background px-8 text-base font-semibold text-foreground transition-colors hover:bg-background/90"
+            <h2 className="mt-6 font-heading text-3xl font-medium tracking-tight text-balance sm:text-4xl">
+              The next version is in development.
+            </h2>
+            <p className="mt-6 text-base text-background/70 leading-relaxed">
+              Inquiries handled directly until the new site lands.
+            </p>
+            <p className="mt-8 font-heading text-sm font-semibold tracking-[0.3em] uppercase tabular-nums">
+              <a
+                href="mailto:hello@snipedmedia.com"
+                className="text-background/85 underline decoration-background/30 underline-offset-4 transition-colors hover:text-accent-bright hover:decoration-accent-bright"
               >
-                Book a Qualifying Call
-              </Link>
-              <Link
-                href="/kit"
-                className="text-sm text-background/70 underline decoration-background/30 underline-offset-4 transition-colors hover:text-background hover:decoration-background"
-              >
-                See the full Kit
-              </Link>
-            </div>
+                hello@snipedmedia.com
+              </a>
+            </p>
+            <Link
+              href="/"
+              className="mt-12 inline-block font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-background/55 transition-colors hover:text-accent-bright"
+            >
+              ← Sniped Media
+            </Link>
           </div>
         </Container>
       </section>
