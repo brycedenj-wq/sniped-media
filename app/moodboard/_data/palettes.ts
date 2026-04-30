@@ -23,12 +23,17 @@ export type PaletteData = {
   lighting: {
     key: string;
     rim: string;
-    fill: string;
+    fill?: string;
+    rimNote?: string;
+    trailingLines: string[];
   };
+  // Section 6 / Direction (Direction Stack-cited stanzas)
+  direction: string[][];
   // Section 7 / Wardrobe (block of operator copy)
   wardrobe: {
     paletteCopy: string[];
     garments: string[];
+    alsoAcceptable?: string[];
     restrictions: string[];
     jewelry: string[];
     footwear?: string[];
@@ -42,18 +47,6 @@ export type PaletteData = {
     attitude: string[];
   };
 };
-
-const POSE_RULES = [
-  "Chin forward and down",
-  "Body squared, micro-adjusted",
-  "Hands tasked",
-  "A-frame composition",
-  "Crops between joints",
-  "Skin as contrast point",
-  "Monumental anchor to bottom edge",
-];
-
-export const POSE_RULE_LIST = POSE_RULES;
 
 export const palettes: Record<string, PaletteData> = {
   white: {
@@ -85,7 +78,34 @@ export const palettes: Record<string, PaletteData> = {
       key: "Soft, parallel, camera left",
       rim: "Hard, back-right, 45° behind subject",
       fill: "None. Negative fill on shadow side if needed.",
+      trailingLines: [
+        "The subject is metered for the face.",
+        "The shoulders drop on the exhale.",
+        "The frame waits for the breath reset.",
+      ],
     },
+    direction: [
+      [
+        "The body does not start squared to the lens.",
+        "Protocol 03 runs first. Full rotation vocabulary.",
+        "Five body geometries per look.",
+      ],
+      [
+        "The hands are tasked, never neutral.",
+        "Protocol 01. Negative space through the forearms.",
+        "The frame opens at the silhouette.",
+      ],
+      [
+        "The chin comes forward and down.",
+        "Protocol 05. Jawline separation from the neck line.",
+        "Spine pulled tall first.",
+      ],
+      [
+        "The operator does not correct without affirming.",
+        "The operator does not transmit pressure.",
+        "The subject leaves the set respected.",
+      ],
+    ],
     wardrobe: {
       paletteCopy: [
         "Pearl, cream, ivory, bone, chalk. Stay inside the family.",
@@ -155,8 +175,40 @@ export const palettes: Record<string, PaletteData> = {
     lighting: {
       key: "Soft, parallel, camera left",
       rim: "Hard, back-right, 45° behind subject",
-      fill: "None. Negative fill on shadow side if needed.",
+      rimNote: "Rim carries the separation on orange-on-orange.",
+      trailingLines: [
+        "The subject is metered for the face.",
+        "The shoulders drop on the exhale.",
+        "The frame waits for the breath reset.",
+      ],
     },
+    direction: [
+      [
+        "The body does not start squared to the lens.",
+        "Protocol 03 runs first. Full rotation vocabulary.",
+        "Five body geometries per look.",
+      ],
+      [
+        "The hands are tasked, never neutral.",
+        "Protocol 01. Negative space through the forearms.",
+        "The frame opens at the silhouette.",
+      ],
+      [
+        "The chin comes forward and down.",
+        "Protocol 05. Jawline separation from the neck line.",
+        "Spine pulled tall first.",
+      ],
+      [
+        "The palette is dense. The presence matches it.",
+        "Protocol 09. No softness. No performed face.",
+        "Monumental anchor to the bottom edge.",
+      ],
+      [
+        "The operator does not correct without affirming.",
+        "The operator does not transmit pressure.",
+        "The subject leaves the set respected.",
+      ],
+    ],
     wardrobe: {
       paletteCopy: [
         "Rust, terracotta, burnt orange, ochre, sienna. Saturated warm tones.",
@@ -230,8 +282,40 @@ export const palettes: Record<string, PaletteData> = {
     lighting: {
       key: "Soft, parallel, camera left",
       rim: "Hard, back-right, 45° behind subject",
-      fill: "None. Negative fill on shadow side if needed.",
+      fill: "None. Warmth rides in the key.",
+      trailingLines: [
+        "The subject is metered for the face.",
+        "Press-grade exposure.",
+        "The frame holds until the posture lands.",
+      ],
     },
+    direction: [
+      [
+        "The body does not start squared to the lens.",
+        "Protocol 03 runs first. Rotation vocabulary.",
+        "Duo geometries built on staggered shoulders.",
+      ],
+      [
+        "The hands are tasked, never neutral.",
+        "Protocol 01. Negative space through the forearms.",
+        "Subject-work, not model-work.",
+      ],
+      [
+        "The chin comes forward and down.",
+        "Protocol 05. Jawline separation from the neck line.",
+        "Spine pulled tall first.",
+      ],
+      [
+        "The subjects are working artists, not posing models.",
+        "Protocol 09 carries the frame. Presence over performance.",
+        "Grounded. Professional. Promo-elevated.",
+      ],
+      [
+        "The operator does not correct without affirming.",
+        "The operator does not transmit pressure.",
+        "The subject leaves the set respected.",
+      ],
+    ],
     wardrobe: {
       paletteCopy: [
         "Champagne, cream, gold leaf, warm tan, honey. Promotional editorial.",
@@ -245,12 +329,15 @@ export const palettes: Record<string, PaletteData> = {
         "Honey-tone trouser or chino, structured",
         "Warm tan leather piece, jacket or accessory",
       ],
-      restrictions: [
-        "Black or charcoal pieces against the cream/gold backdrop are also acceptable.",
-        "Subject-dark + backdrop-warm reads as a clean Sniped contrast move.",
+      alsoAcceptable: [
+        "Black or charcoal pieces against the cream/gold backdrop.",
+        "Subject-dark + backdrop-warm reads as a clean Sniped Media contrast move.",
         "If you'd wear it to the party, bring it.",
-        "No cool-tone pieces. No loud logos (HASS brand only if applicable).",
-        "No streetwear graphics.",
+      ],
+      restrictions: [
+        "No cool-tone pieces",
+        "No loud logos (HASS brand only if applicable)",
+        "No streetwear graphics",
       ],
       jewelry: [
         "Whatever feels honest. Single statement chain or watch preferred.",

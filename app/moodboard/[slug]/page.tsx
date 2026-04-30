@@ -3,9 +3,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import fs from "node:fs";
 import path from "node:path";
-import { palettes, paletteSlugs, POSE_RULE_LIST } from "../_data/palettes";
+import { palettes, paletteSlugs } from "../_data/palettes";
 import { LightingDiagram } from "../_components/LightingDiagram";
-import { PoseDiagram } from "../_components/PoseDiagram";
 import { TextureFallback } from "../_components/TextureFallback";
 import { SectionFade } from "../_components/SectionFade";
 
@@ -154,51 +153,77 @@ export default async function MoodboardPage(props: {
       </section>
 
       {/* SECTION 5 / LIGHTING */}
-      <section className={`${sectionClass} bg-foreground`}>
-        <SectionFade className="mx-auto flex w-full max-w-5xl flex-col items-center px-6 sm:px-10">
-          <p className="font-heading text-xs font-semibold uppercase tracking-[0.3em] text-accent-bright tabular-nums sm:text-sm">
-            § 05 / Lighting
-          </p>
-          <div className="mt-8 w-full">
-            <LightingDiagram />
-          </div>
-          <div className="mt-12 grid w-full max-w-2xl grid-cols-1 gap-4 font-heading text-sm font-semibold uppercase tracking-[0.25em] text-background/85 tabular-nums sm:text-base">
-            <p>
-              <span className="text-accent-bright">KEY:</span> {p.lighting.key}
-            </p>
-            <p>
-              <span className="text-accent-bright">RIM:</span> {p.lighting.rim}
-            </p>
-            <p>
-              <span className="text-accent-bright">FILL:</span> {p.lighting.fill}
-            </p>
-          </div>
-        </SectionFade>
-      </section>
-
-      {/* SECTION 6 / POSE ARCHITECTURE */}
       <section className={`${sectionClass} bg-foreground items-start`}>
-        <div className="mx-auto grid h-full w-full max-w-7xl grid-cols-1 items-start gap-10 overflow-y-auto px-6 py-section sm:px-10 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-20">
-          <SectionFade className="flex justify-center lg:justify-start">
-            <div className="w-full max-w-[260px] sm:max-w-md">
-              <PoseDiagram />
+        <div className="mx-auto h-full w-full max-w-5xl overflow-y-auto px-6 py-section sm:px-10">
+          <SectionFade className="flex w-full flex-col items-center">
+            <p className="self-start font-heading text-xs font-semibold uppercase tracking-[0.3em] text-accent-bright tabular-nums sm:text-sm">
+              § 05 / Lighting
+            </p>
+            <div className="mt-8 w-full max-w-3xl">
+              <LightingDiagram />
+            </div>
+            <div className="mt-10 w-full max-w-2xl space-y-3 font-heading text-sm font-semibold uppercase tracking-[0.22em] text-background/85 tabular-nums sm:mt-12 sm:space-y-4 sm:text-base sm:tracking-[0.25em]">
+              <p>
+                <span className="text-accent-bright">KEY:</span> {p.lighting.key}
+              </p>
+              <p>
+                <span className="text-accent-bright">RIM:</span> {p.lighting.rim}
+              </p>
+              {p.lighting.fill ? (
+                <p>
+                  <span className="text-accent-bright">FILL:</span> {p.lighting.fill}
+                </p>
+              ) : null}
+              {p.lighting.rimNote ? (
+                <p className="text-background/75">{p.lighting.rimNote}</p>
+              ) : null}
+            </div>
+            <div className="mt-8 w-full max-w-2xl space-y-1.5 border-t border-background/15 pt-6 font-heading text-sm font-medium uppercase tracking-[0.18em] text-background/70 sm:text-base sm:tracking-[0.2em]">
+              {p.lighting.trailingLines.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
             </div>
           </SectionFade>
+        </div>
+      </section>
 
+      {/* SECTION 6 / DIRECTION */}
+      <section className={`${sectionClass} bg-foreground items-start`}>
+        <div className="mx-auto h-full w-full max-w-3xl overflow-y-auto px-6 py-section sm:px-10">
           <SectionFade>
             <p className="font-heading text-xs font-semibold uppercase tracking-[0.3em] text-accent-bright tabular-nums sm:text-sm">
-              § 06 / Pose Architecture
+              § 06 / Direction
             </p>
-            <ol className="mt-6 space-y-3 font-heading text-sm font-medium uppercase tracking-[0.18em] text-background tabular-nums sm:mt-8 sm:space-y-4 sm:text-lg sm:tracking-[0.2em]">
-              {POSE_RULE_LIST.map((rule, i) => (
-                <li key={rule} className="flex items-start gap-4">
-                  <span className="text-accent-bright">
-                    {String(i + 1).padStart(2, "0")}.
-                  </span>
-                  <span>{rule}</span>
-                </li>
-              ))}
-            </ol>
+            <div className="mt-10 space-y-8 sm:mt-12 sm:space-y-10">
+              {p.direction.map((stanza, si) => {
+                const isClosing = si === p.direction.length - 1;
+                return (
+                  <div
+                    key={si}
+                    className={
+                      isClosing
+                        ? "space-y-1.5 border-t border-background/15 pt-8"
+                        : "space-y-1.5"
+                    }
+                  >
+                    {stanza.map((line, li) => {
+                      const cls = isClosing
+                        ? "font-heading text-sm font-medium uppercase tracking-[0.18em] text-background sm:text-base sm:tracking-[0.2em]"
+                        : li === 0
+                        ? "font-heading text-base font-medium uppercase tracking-[0.18em] text-background sm:text-lg sm:tracking-[0.2em]"
+                        : li === 1
+                        ? "font-heading text-sm font-semibold uppercase tracking-[0.18em] text-accent-bright sm:text-base sm:tracking-[0.2em]"
+                        : "font-heading text-sm font-medium uppercase tracking-[0.18em] text-background/75 sm:text-base sm:tracking-[0.2em]";
+                      return (
+                        <p key={line} className={cls}>
+                          {line}
+                        </p>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </div>
           </SectionFade>
         </div>
       </section>
@@ -241,6 +266,19 @@ export default async function MoodboardPage(props: {
                   ))}
                 </ol>
               </div>
+
+              {p.wardrobe.alsoAcceptable ? (
+                <div>
+                  <p className="font-heading text-xs font-semibold uppercase tracking-[0.3em] text-background/60 tabular-nums sm:text-sm">
+                    Also Acceptable
+                  </p>
+                  <div className="mt-4 space-y-2 text-base text-background/85 leading-relaxed sm:text-lg">
+                    {p.wardrobe.alsoAcceptable.map((line) => (
+                      <p key={line}>{line}</p>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
 
               <div>
                 <p className="font-heading text-xs font-semibold uppercase tracking-[0.3em] text-background/60 tabular-nums sm:text-sm">
