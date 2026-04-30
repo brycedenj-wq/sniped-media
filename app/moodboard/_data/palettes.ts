@@ -25,7 +25,6 @@ export type PaletteData = {
     rim: string;
     fill?: string;
     rimNote?: string;
-    trailingLines: string[];
   };
   // Section 6 / Direction (Direction Stack-cited stanzas)
   direction: string[][];
@@ -78,32 +77,22 @@ export const palettes: Record<string, PaletteData> = {
       key: "Soft, parallel, camera left",
       rim: "Hard, back-right, 45° behind subject",
       fill: "None. Negative fill on shadow side if needed.",
-      trailingLines: [
-        "The subject is metered for the face.",
-        "The shoulders drop on the exhale.",
-        "The frame waits for the breath reset.",
-      ],
     },
     direction: [
       [
         "The body does not start squared to the lens.",
-        "Protocol 03 runs first. Full rotation vocabulary.",
+        "Full rotation vocabulary.",
         "Five body geometries per look.",
       ],
       [
         "The hands are tasked, never neutral.",
-        "Protocol 01. Negative space through the forearms.",
+        "Negative space through the forearms.",
         "The frame opens at the silhouette.",
       ],
       [
         "The chin comes forward and down.",
-        "Protocol 05. Jawline separation from the neck line.",
+        "Jawline separation from the neck line.",
         "Spine pulled tall first.",
-      ],
-      [
-        "The operator does not correct without affirming.",
-        "The operator does not transmit pressure.",
-        "The subject leaves the set respected.",
       ],
     ],
     wardrobe: {
@@ -176,37 +165,27 @@ export const palettes: Record<string, PaletteData> = {
       key: "Soft, parallel, camera left",
       rim: "Hard, back-right, 45° behind subject",
       rimNote: "Rim carries the separation on orange-on-orange.",
-      trailingLines: [
-        "The subject is metered for the face.",
-        "The shoulders drop on the exhale.",
-        "The frame waits for the breath reset.",
-      ],
     },
     direction: [
       [
         "The body does not start squared to the lens.",
-        "Protocol 03 runs first. Full rotation vocabulary.",
+        "Full rotation vocabulary.",
         "Five body geometries per look.",
       ],
       [
         "The hands are tasked, never neutral.",
-        "Protocol 01. Negative space through the forearms.",
+        "Negative space through the forearms.",
         "The frame opens at the silhouette.",
       ],
       [
         "The chin comes forward and down.",
-        "Protocol 05. Jawline separation from the neck line.",
+        "Jawline separation from the neck line.",
         "Spine pulled tall first.",
       ],
       [
         "The palette is dense. The presence matches it.",
-        "Protocol 09. No softness. No performed face.",
+        "No softness. No performed face.",
         "Monumental anchor to the bottom edge.",
-      ],
-      [
-        "The operator does not correct without affirming.",
-        "The operator does not transmit pressure.",
-        "The subject leaves the set respected.",
       ],
     ],
     wardrobe: {
@@ -257,8 +236,8 @@ export const palettes: Record<string, PaletteData> = {
   gold: {
     slug: "gold",
     hero: "GOLD.",
-    washColor: "#C9A560",
-    washTextColor: "#1A1A1A",
+    washColor: "#D4A93A",
+    washTextColor: "#141414",
     textureSrc: "/images/moodboard/gold-texture.jpg",
     textureCaption:
       "Champagne satin draped. Gold-toned light spilling camera left.",
@@ -273,47 +252,37 @@ export const palettes: Record<string, PaletteData> = {
       "Wardrobe reads inside the family or the frame breaks.",
     ],
     swatches: [
-      { name: "Champagne", hex: "#E5D2A3" },
-      { name: "Cream", hex: "#EDE0C2" },
-      { name: "Gold Leaf", hex: "#C9A560" },
-      { name: "Warm Tan", hex: "#B5915A" },
-      { name: "Honey", hex: "#A87C3D" },
+      { name: "Champagne", hex: "#EBD597" },
+      { name: "Cream", hex: "#E8DBB0" },
+      { name: "Gold Leaf", hex: "#D4A93A" },
+      { name: "Warm Tan", hex: "#B0832C" },
+      { name: "Honey", hex: "#8E6618" },
     ],
     lighting: {
       key: "Soft, parallel, camera left",
       rim: "Hard, back-right, 45° behind subject",
       fill: "None. Warmth rides in the key.",
-      trailingLines: [
-        "The subject is metered for the face.",
-        "Press-grade exposure.",
-        "The frame holds until the posture lands.",
-      ],
     },
     direction: [
       [
         "The body does not start squared to the lens.",
-        "Protocol 03 runs first. Rotation vocabulary.",
+        "Rotation vocabulary.",
         "Duo geometries built on staggered shoulders.",
       ],
       [
         "The hands are tasked, never neutral.",
-        "Protocol 01. Negative space through the forearms.",
+        "Negative space through the forearms.",
         "Subject-work, not model-work.",
       ],
       [
         "The chin comes forward and down.",
-        "Protocol 05. Jawline separation from the neck line.",
+        "Jawline separation from the neck line.",
         "Spine pulled tall first.",
       ],
       [
-        "The subjects are working artists, not posing models.",
-        "Protocol 09 carries the frame. Presence over performance.",
+        "Working artists, not posing models.",
+        "Presence over performance.",
         "Grounded. Professional. Promo-elevated.",
-      ],
-      [
-        "The operator does not correct without affirming.",
-        "The operator does not transmit pressure.",
-        "The subject leaves the set respected.",
       ],
     ],
     wardrobe: {
