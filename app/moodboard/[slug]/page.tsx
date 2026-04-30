@@ -373,10 +373,10 @@ export default async function MoodboardPage(props: {
               </p>
               <div className="mt-3 space-y-2 font-heading text-lg font-medium tracking-tight sm:text-xl">
                 <a
-                  href="mailto:brycedenj@gmail.com"
+                  href="mailto:hello@snipedmedia.com"
                   className="block text-background underline decoration-background/30 underline-offset-4 transition-colors hover:text-accent-bright hover:decoration-accent-bright"
                 >
-                  brycedenj@gmail.com
+                  hello@snipedmedia.com
                 </a>
                 <a
                   href="https://snipedmedia.com"
