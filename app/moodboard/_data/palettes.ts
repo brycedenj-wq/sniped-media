@@ -10,22 +10,22 @@ export type PaletteData = {
   washTextColor: string; // hex for hero word color
   textureSrc: string; // path to AI texture image
   textureCaption: string;
-  // Section 2 — Concept
+  // Section 2 / Concept
   concept: string;
   shootLabel: string; // "SHOOT 01"
   shootDate: string;
   callTime: string;
   location: string;
-  // Section 3 — Palette
+  // Section 3 / Palette
   paletteIntro: string[]; // multi-line operator text above the columns
   swatches: PaletteSwatch[]; // 5 columns
-  // Section 5 — Lighting
+  // Section 5 / Lighting
   lighting: {
     key: string;
     rim: string;
     fill: string;
   };
-  // Section 7 — Wardrobe (block of operator copy)
+  // Section 7 / Wardrobe (block of operator copy)
   wardrobe: {
     paletteCopy: string[];
     garments: string[];
@@ -35,7 +35,7 @@ export type PaletteData = {
     makeupNote?: string[];
     bringPolicy: string;
   };
-  // Section 8 — Team Direction
+  // Section 8 / Team Direction
   teamDirection: {
     hair: string[];
     makeup: string[];

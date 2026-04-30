@@ -14,7 +14,7 @@ export function PoseDiagram({
       aria-label="Body silhouette with three crop lines marked at mid-thigh, mid-bicep, and mid-forearm."
       className="h-auto w-full max-w-md"
     >
-      {/* Body silhouette — abstract form, no face detail */}
+      {/* Body silhouette: abstract form, no face detail */}
       <g
         fill="none"
         stroke={stroke}
@@ -39,7 +39,7 @@ export function PoseDiagram({
         <path d="M 225 440 L 235 540 L 240 590" />
       </g>
 
-      {/* Crop line 1 — mid-thigh */}
+      {/* Crop line 1: mid-thigh */}
       <g>
         <line
           x1="20"
@@ -65,7 +65,7 @@ export function PoseDiagram({
         </text>
       </g>
 
-      {/* Crop line 2 — mid-bicep */}
+      {/* Crop line 2: mid-bicep */}
       <g>
         <line
           x1="20"
@@ -91,7 +91,7 @@ export function PoseDiagram({
         </text>
       </g>
 
-      {/* Crop line 3 — mid-forearm */}
+      {/* Crop line 3: mid-forearm */}
       <g>
         <line
           x1="20"

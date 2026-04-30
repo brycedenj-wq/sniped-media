@@ -43,7 +43,7 @@ export default async function MoodboardPage(props: {
   if (!p) notFound();
 
   const sectionClass =
-    "relative flex h-screen w-full snap-start snap-always items-center justify-center overflow-hidden";
+    "relative flex h-dvh w-full snap-start snap-always items-center justify-center overflow-hidden";
 
   // Texture image is optional. Only render the Image component if the file
   // actually exists at build time. Otherwise the layered CSS fallback carries
@@ -53,8 +53,8 @@ export default async function MoodboardPage(props: {
   const textureExists = fs.existsSync(textureFsPath);
 
   return (
-    <main className="h-screen w-full snap-y snap-mandatory overflow-y-scroll bg-foreground text-background">
-      {/* SECTION 1 — WASH */}
+    <main className="h-dvh w-full snap-y snap-mandatory overflow-y-scroll bg-foreground text-background">
+      {/* SECTION 1 / WASH */}
       <section
         className={sectionClass}
         style={{ backgroundColor: p.washColor, color: p.washTextColor }}
@@ -71,7 +71,7 @@ export default async function MoodboardPage(props: {
           <h1
             className="font-heading font-bold leading-none tracking-[-0.04em]"
             style={{
-              fontSize: "clamp(120px, 24vw, 320px)",
+              fontSize: "clamp(72px, 24vw, 320px)",
               color: p.washTextColor,
             }}
           >
@@ -80,7 +80,7 @@ export default async function MoodboardPage(props: {
         </SectionFade>
       </section>
 
-      {/* SECTION 2 — CONCEPT */}
+      {/* SECTION 2 / CONCEPT */}
       <section className={`${sectionClass} bg-foreground`}>
         <SectionFade className="mx-auto max-w-5xl px-6 sm:px-10">
           <p
@@ -99,29 +99,29 @@ export default async function MoodboardPage(props: {
         </SectionFade>
       </section>
 
-      {/* SECTION 3 — PALETTE */}
+      {/* SECTION 3 / PALETTE */}
       <section className={`${sectionClass} bg-foreground`}>
         <div className="mx-auto flex h-full w-full max-w-7xl flex-col px-6 py-section sm:px-10">
           <SectionFade>
-            <div className="space-y-2 font-heading text-base font-semibold uppercase tracking-[0.3em] text-background/65 tabular-nums sm:text-lg">
+            <div className="space-y-2 font-heading text-sm font-semibold uppercase tracking-[0.3em] text-background/65 tabular-nums sm:text-lg">
               {p.paletteIntro.map((line) => (
                 <p key={line}>{line}</p>
               ))}
             </div>
           </SectionFade>
 
-          <div className="mt-12 grid flex-1 grid-cols-5 gap-2 sm:gap-3">
+          <div className="mt-10 grid flex-1 grid-cols-5 gap-1.5 sm:mt-12 sm:gap-3">
             {p.swatches.map((s, i) => (
               <SectionFade key={s.hex} className="flex h-full flex-col">
                 <div
                   className="flex-1 border border-background/10"
                   style={{ backgroundColor: s.hex, transitionDelay: `${i * 60}ms` }}
                 />
-                <div className="mt-3 space-y-1 sm:mt-4">
-                  <p className="font-heading text-xs font-semibold uppercase tracking-[0.25em] text-background sm:text-sm">
+                <div className="mt-2 space-y-1 sm:mt-4">
+                  <p className="font-heading text-[10px] font-semibold uppercase leading-snug tracking-[0.12em] text-background sm:text-sm sm:tracking-[0.25em]">
                     {s.name}
                   </p>
-                  <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.2em] text-background/55 tabular-nums sm:text-xs">
+                  <p className="font-heading text-[9px] font-semibold uppercase tracking-[0.1em] text-background/55 tabular-nums sm:text-xs sm:tracking-[0.2em]">
                     {s.hex}
                   </p>
                 </div>
@@ -131,7 +131,7 @@ export default async function MoodboardPage(props: {
         </div>
       </section>
 
-      {/* SECTION 4 — TEXTURE */}
+      {/* SECTION 4 / TEXTURE */}
       <section className={`${sectionClass} bg-foreground`}>
         <TextureFallback baseColor={p.washColor} />
         {textureExists ? (
@@ -153,7 +153,7 @@ export default async function MoodboardPage(props: {
         </div>
       </section>
 
-      {/* SECTION 5 — LIGHTING */}
+      {/* SECTION 5 / LIGHTING */}
       <section className={`${sectionClass} bg-foreground`}>
         <SectionFade className="mx-auto flex w-full max-w-5xl flex-col items-center px-6 sm:px-10">
           <p className="font-heading text-xs font-semibold uppercase tracking-[0.3em] text-accent-bright tabular-nums sm:text-sm">
@@ -176,18 +176,20 @@ export default async function MoodboardPage(props: {
         </SectionFade>
       </section>
 
-      {/* SECTION 6 — POSE ARCHITECTURE */}
-      <section className={`${sectionClass} bg-foreground`}>
-        <div className="mx-auto grid h-full w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-section sm:px-10 lg:grid-cols-[auto_1fr] lg:gap-20">
+      {/* SECTION 6 / POSE ARCHITECTURE */}
+      <section className={`${sectionClass} bg-foreground items-start`}>
+        <div className="mx-auto grid h-full w-full max-w-7xl grid-cols-1 items-start gap-10 overflow-y-auto px-6 py-section sm:px-10 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-20">
           <SectionFade className="flex justify-center lg:justify-start">
-            <PoseDiagram />
+            <div className="w-full max-w-[260px] sm:max-w-md">
+              <PoseDiagram />
+            </div>
           </SectionFade>
 
           <SectionFade>
             <p className="font-heading text-xs font-semibold uppercase tracking-[0.3em] text-accent-bright tabular-nums sm:text-sm">
               § 06 / Pose Architecture
             </p>
-            <ol className="mt-8 space-y-4 font-heading text-base font-medium uppercase tracking-[0.2em] text-background tabular-nums sm:text-lg">
+            <ol className="mt-6 space-y-3 font-heading text-sm font-medium uppercase tracking-[0.18em] text-background tabular-nums sm:mt-8 sm:space-y-4 sm:text-lg sm:tracking-[0.2em]">
               {POSE_RULE_LIST.map((rule, i) => (
                 <li key={rule} className="flex items-start gap-4">
                   <span className="text-accent-bright">
@@ -201,7 +203,7 @@ export default async function MoodboardPage(props: {
         </div>
       </section>
 
-      {/* SECTION 7 — WARDROBE */}
+      {/* SECTION 7 / WARDROBE */}
       <section className={`${sectionClass} bg-foreground items-start`}>
         <div className="mx-auto h-full w-full max-w-5xl overflow-y-auto px-6 py-section sm:px-10">
           <SectionFade>
@@ -246,7 +248,10 @@ export default async function MoodboardPage(props: {
                 </p>
                 <ul className="mt-4 space-y-2 font-heading text-sm font-semibold uppercase tracking-[0.2em] text-background/85 tabular-nums sm:text-base">
                   {p.wardrobe.restrictions.map((line) => (
-                    <li key={line}>— {line}</li>
+                    <li key={line} className="flex items-start gap-3">
+                      <span className="text-accent-bright">·</span>
+                      <span>{line}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -298,7 +303,7 @@ export default async function MoodboardPage(props: {
         </div>
       </section>
 
-      {/* SECTION 8 — TEAM DIRECTION */}
+      {/* SECTION 8 / TEAM DIRECTION */}
       <section className={`${sectionClass} bg-foreground items-start`}>
         <div className="mx-auto h-full w-full max-w-5xl overflow-y-auto px-6 py-section sm:px-10">
           <SectionFade>
@@ -347,7 +352,7 @@ export default async function MoodboardPage(props: {
         </div>
       </section>
 
-      {/* SECTION 9 — CONTACT / SIGNATURE */}
+      {/* SECTION 9 / CONTACT / SIGNATURE */}
       <section className={`${sectionClass} bg-foreground`}>
         <SectionFade className="mx-auto flex w-full max-w-3xl flex-col px-6 sm:px-10">
           <div className="space-y-10 text-background sm:space-y-12">

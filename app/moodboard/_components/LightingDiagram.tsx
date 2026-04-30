@@ -80,7 +80,7 @@ export function LightingDiagram({
         opacity="0.4"
       />
 
-      {/* Key light — camera left, parallel */}
+      {/* Key light: camera left, parallel */}
       <g>
         <rect
           x="80"
@@ -128,7 +128,7 @@ export function LightingDiagram({
         </text>
       </g>
 
-      {/* Rim light — back right, 45° */}
+      {/* Rim light: back right, 45° */}
       <g>
         <rect
           x="450"
@@ -176,7 +176,7 @@ export function LightingDiagram({
         </text>
       </g>
 
-      {/* Negative fill flag — shadow side */}
+      {/* Negative fill flag: shadow side */}
       <g>
         <line
           x1="380"
