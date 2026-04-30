@@ -42,7 +42,7 @@ export default async function MoodboardPage(props: {
   if (!p) notFound();
 
   const sectionClass =
-    "relative flex h-dvh w-full snap-start items-center justify-center overflow-hidden";
+    "relative flex h-dvh w-full items-center justify-center overflow-hidden lg:snap-start";
 
   // Texture image is optional. Only render the Image component if the file
   // actually exists at build time. Otherwise the layered CSS fallback carries
@@ -52,7 +52,7 @@ export default async function MoodboardPage(props: {
   const textureExists = fs.existsSync(textureFsPath);
 
   return (
-    <main className="h-dvh w-full snap-y snap-proximity scroll-smooth overflow-y-scroll overscroll-y-contain bg-foreground text-background">
+    <main className="h-dvh w-full overflow-y-scroll bg-foreground text-background lg:snap-y lg:snap-mandatory">
       {/* SECTION 1 / WASH */}
       <section
         className={sectionClass}
@@ -154,7 +154,7 @@ export default async function MoodboardPage(props: {
 
       {/* SECTION 5 / LIGHTING */}
       <section className={`${sectionClass} bg-foreground items-start`}>
-        <div className="mx-auto h-full w-full max-w-5xl overflow-y-auto overscroll-contain px-6 py-section sm:px-10">
+        <div className="mx-auto h-full w-full max-w-5xl overflow-y-auto px-6 py-section sm:px-10">
           <SectionFade className="flex w-full flex-col items-center">
             <p className="self-start font-heading text-xs font-semibold uppercase tracking-[0.3em] text-accent-bright tabular-nums sm:text-sm">
               § 05 / Lighting
@@ -184,7 +184,7 @@ export default async function MoodboardPage(props: {
 
       {/* SECTION 6 / DIRECTION */}
       <section className={`${sectionClass} bg-foreground items-start`}>
-        <div className="mx-auto h-full w-full max-w-3xl overflow-y-auto overscroll-contain px-6 py-section sm:px-10">
+        <div className="mx-auto h-full w-full max-w-3xl overflow-y-auto px-6 py-section sm:px-10">
           <SectionFade>
             <p className="font-heading text-xs font-semibold uppercase tracking-[0.3em] text-accent-bright tabular-nums sm:text-sm">
               § 06 / Direction
@@ -214,7 +214,7 @@ export default async function MoodboardPage(props: {
 
       {/* SECTION 7 / WARDROBE */}
       <section className={`${sectionClass} bg-foreground items-start`}>
-        <div className="mx-auto h-full w-full max-w-5xl overflow-y-auto overscroll-contain px-6 py-section sm:px-10">
+        <div className="mx-auto h-full w-full max-w-5xl overflow-y-auto px-6 py-section sm:px-10">
           <SectionFade>
             <p className="font-heading text-xs font-semibold uppercase tracking-[0.3em] text-accent-bright tabular-nums sm:text-sm">
               § 07 / Wardrobe
@@ -327,7 +327,7 @@ export default async function MoodboardPage(props: {
 
       {/* SECTION 8 / TEAM DIRECTION */}
       <section className={`${sectionClass} bg-foreground items-start`}>
-        <div className="mx-auto h-full w-full max-w-5xl overflow-y-auto overscroll-contain px-6 py-section sm:px-10">
+        <div className="mx-auto h-full w-full max-w-5xl overflow-y-auto px-6 py-section sm:px-10">
           <SectionFade>
             <p className="font-heading text-xs font-semibold uppercase tracking-[0.3em] text-accent-bright tabular-nums sm:text-sm">
               § 08 / Team Direction
