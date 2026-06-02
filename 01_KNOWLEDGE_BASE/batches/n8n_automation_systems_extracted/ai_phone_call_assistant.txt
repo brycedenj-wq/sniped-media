@@ -1,0 +1,51 @@
+# n8n workflow · AI Phone Call Assistant - Call Workflow.json
+internal name: AI Phone Call Assistant - Call Workflow
+node count: 17
+
+## Trigger nodes
+- n8n-nodes-base.webhook :: Vapi Tool Trigger
+- n8n-nodes-base.webhook :: Vapi End Of Call Report
+- n8n-nodes-base.formTrigger :: On form submission
+
+## AI / model nodes
+- @n8n/n8n-nodes-langchain.agent :: AI Agent :: model=?
+    system-prompt: =You are a helpful assistant, you need to store all of the key information in the Airtable tool that you have access to. Please store the customer's budget and the area they are interested in within the interested in column and the customer name in the customer name column.
+- @n8n/n8n-nodes-langchain.lmChatOpenAi :: OpenAI Chat Model :: model=gpt-4.1-mini
+
+## Tool nodes
+- n8n-nodes-base.perplexityTool :: Perplexity Search
+- n8n-nodes-base.airtableTool :: Create a Record
+
+## Integration / action nodes
+- n8n-nodes-base.respondToWebhook :: Respond to Vapi
+- n8n-nodes-base.airtable :: Store End Of Call Report Info :: base=n8n & Vapi Demo table=End Of Call Report op=create
+- n8n-nodes-base.httpRequest :: Vapi Call :: method=POST url=https://api.vapi.ai/call
+
+## Other nodes
+- n8n-nodes-base.if :: If
+
+## Data-flow edges (connections)
+- AI Agent -> ['Respond to Vapi']
+- OpenAI Chat Model -> ['AI Agent']
+- Perplexity Search -> ['AI Agent']
+- Create a Record -> ['AI Agent']
+- Vapi Tool Trigger -> ['AI Agent']
+- Vapi End Of Call Report -> ['Store End Of Call Report Info']
+- Store End Of Call Report Info -> ['If']
+- On form submission -> ['Vapi Call']
+- Vapi Call -> []
+
+## Credential references (NAMES ONLY)
+airtableTokenApi/The AI Edge, openAiApi/Ops Management, perplexityApi/The AI Edge
+
+## Sticky-note documentation (verbatim)
+---
+# **Step 1**
+## **Connecting into Vapi**
+---
+# **Step 2**
+## **Activities  Webhook**
+---
+# **Step 3**
+## **Triggering a call**
+

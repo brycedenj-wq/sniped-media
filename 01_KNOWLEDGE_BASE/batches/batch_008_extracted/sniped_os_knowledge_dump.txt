@@ -1,0 +1,1196 @@
+Sniped OS — Knowledge Dump
+
+n8n tutorials, prompt engineering, AI agency masterclass, video clips
+
+Contents
+
+Part 1 — n8n: AI Prompt Writing Agent (Alex Followell)
+
+Part 2 — n8n AI Agent Series, Part 3: 3 Layers of Prompt Engineering
+(Max)
+
+Part 3 — n8n Masterclass Modules (AI Edge community)
+
+Module 23: Voice AI Agents (VAPI)
+
+Module 24: Voice AI Agents (Retell AI)
+
+Module 25: Multi-Agent Workflows
+
+Module 26: Dynamic Brain for Agents
+
+Module 27: MCP Servers
+
+Module 28: Guardrails (with n8n docs reference)
+
+Module 29: Data Tables (with n8n docs reference)
+
+Part 4 — Other n8n Module References (writing system prompts, building
+AI agents, structured output, human in the loop, AI modules overview,
+process mapping)
+
+Part 5 — Prompt Engineering Techniques Deep Dive
+
+Part 6 — AI Agency Business Masterclass (mindset, ICP, one-liner, goals,
+find your edge)
+
+Part 7 — Video Clip Transcripts (Aladdin, Michael Jackson tribute,
+Fastlane ad)
+
+Part 1 — n8n: AI Prompt Writing Agent (Alex Followell)
+
+  Tutorial walking through building an AI prompt-writing engineer in n8n
+  that adapts prompts based on user input (model type, vendor, tone, use
+  case, desired output) and dynamically routes between deep-reasoning
+  models and normal models.
+
+Solution Overview
+
+- Build a master AI prompt-writing agent with two sub-workflows: one for
+  deep-reasoning models (o1, Claude Sonnet, etc.) and one for
+  normal/fast models (4o mini, Haiku, Flash).
+
+- Two trigger types demonstrated: a structured form input and a chat
+  input.
+
+- Router AI agent reads the user's request, identifies which model class
+  is needed, and dispatches to the right sub-workflow.
+
+- OpenRouter is used as the LLM gateway so the system can dynamically
+  swap between OpenAI, Anthropic, Google, DeepSeek, Mistral, etc.
+
+Form Build
+
+- Form trigger node with fields: current prompt, model type (deep
+  reasoning / normal / fast), vendor (Google / OpenAI / Anthropic), tone
+  (business / casual / serious / sarcastic), use case (HR / C-suite /
+  etc), desired output (prompt / usable output).
+
+- Master AI agent reads the form fields and triggers either the
+  'deep_reasoning' tool or 'normal_models' tool based on model type.
+
+- Each tool is a sub-workflow (Execute Workflow) that receives the user
+  prompt, preferred model, tone, use case, and desired output.
+
+- Inside each sub-workflow: a Basic LLM Chain identifies the best model
+  from the available list, then an AI agent uses that model via
+  OpenRouter to write the actual prompt.
+
+- Output is returned to the master agent and rendered in a form
+  completion message.
+
+Chat Version
+
+- Chat trigger feeds into a Basic LLM Chain with a JSON output parser
+  that structures the request (user prompt, preferred model, tone, use
+  case, desired output).
+
+- Same two sub-workflow tools attached, plus simple memory so the
+  conversation has continuity.
+
+- Final response is formatted by the master agent and shown back in
+  chat.
+
+Deep-Reasoning Prompt Notes
+
+Alex referenced articles on how to structure o1-style prompts and
+embedded examples for OpenAI, Gemini, and Claude inside the system
+prompts of each sub-workflow's LLM. The recommendation: 5–20
+input/output examples to really lock in consistency.
+
+Form Customization
+
+Custom form styling is available under the form-ending node options
+(color scheme, spacing, background). Alex noted n8n still needs tweaks
+here because some customizations don't fully render.
+
+Part 2 — n8n AI Agent Series, Part 3: 3 Layers of Prompt Engineering
+
+  Max from n8n's deep-dive on prompt engineering for AI agents
+  specifically. Focuses on single-task agents and the three layers:
+  System, Input, and Action.
+
+Why Single-Task Agents
+
+- Single-task agents have well-defined scope and are easier to ship to
+  production.
+
+- You can layer intent routing in front of multiple single-task agents
+  to handle multi-task scenarios.
+
+- Start with one agent doing one thing well, then expand.
+
+Why Prompt Engineering Matters
+
+Prompt engineering has the highest effort-to-impact ratio of any lever
+in agentic system design (above tool calling, fine-tuning,
+distillation).
+
+Mental model: the prompt is an instruction manual you give an
+async-working intern. You cannot talk to them. The success of the work
+depends entirely on the clarity of the manual.
+
+Layer 1 — System Layer
+
+Defined in the system message. Six sub-components:
+
+Role Prompting
+
+- Format: 'You are... Your role is to...'
+
+- Defines who the agent is, not what they do step-by-step.
+
+- Use markdown H1 (# Role) for organization in longer system prompts.
+
+- Use the same exact words throughout the prompt (semantic match is
+  okay, exact match is stronger).
+
+- Keep role high-level. Separate concerns: don't bake the specific tool
+  name (e.g. 'Google Calendar') into the role — keep that in the tool
+  definition so the role survives tool swaps.
+
+Example: 'You are a scheduling assistant working for a beauty salon.
+Your role is to help customers schedule an appointment in the beauty
+salon's calendar.'
+
+Task Instructions
+
+- Numbered list (not bullets — numbered, so steps can be referenced).
+
+- Preface with 'Follow the following steps to...'
+
+- First do the task as a human in your head, then break into key steps.
+  Don't over-prescribe — leave the agent agency to decide between steps.
+
+- Reference tools by their exact name (same name every time).
+
+- Refer to the human as 'the user' when instructions interact with user
+  input — that maps to the LLM's understanding of user messages.
+
+- Don't define how a tool works inside the instructions — leave that to
+  the tool description. Separation of concerns.
+
+Rules
+
+- Mostly a list of things that went wrong during build/prod, with a
+  couple preemptive rules.
+
+- Examples: 'Always use UTC+1 time zone when using tools or their
+  outputs.' / 'Don't make things up. Ask the user a clarifying question
+  if you need additional information.'
+
+- Giving the agent an exit hatch (ask clarifying questions) is a simple
+  hallucination-reduction strategy.
+
+- Other examples that get added over time: 'Always respond in English'
+  (if multilingual responses cause ops problems).
+
+Few-Shot Prompting (Examples)
+
+- A 'shot' = one example. One-shot = one example. Few-shot / multi-shot
+  / n-shot = multiple.
+
+- Shots can live in system message, user message (more common in
+  programmatic use cases), or via structured output (for non-chat
+  flows).
+
+- Wrap examples in pseudo-XML tags (<example>...</example> and
+  <examples>...</examples>) so the agent knows where examples start and
+  stop.
+
+- Anthropic models lean XML; OpenAI lean markdown. Frontier models
+  handle both fine.
+
+- Choose contrasting examples — define the 'canvas of good' by showing
+  different points within it (e.g. one time before noon, one after, to
+  teach 24-hour clock).
+
+- Use placeholder names that aren't overly common (avoid only 'Jane Doe'
+  — pair with a less-common name) so the model doesn't overweight
+  placeholder words.
+
+- Keep constant text (like a phone number) identical across examples —
+  or pull it into Rules / Additional Context.
+
+Additional Context
+
+- Environmental context the LLM otherwise wouldn't have.
+
+- Date/time (the LLM doesn't know today's date — pipe in {{ $now }} via
+  expression).
+
+- Business details (name, location, phone number, hours).
+
+- If context has its own syntax (HTML, etc.), wrap in XML tags.
+  Otherwise simple bullets are fine.
+
+Reducing Hallucinations
+
+- Let the agent say 'I don't know' — give it an explicit escape hatch.
+
+- When extracting lots of info via tools, instruct the agent to output
+  relevant quotes — if it doesn't output it, it didn't think it.
+
+- Read Anthropic's article on reducing hallucinations for deeper
+  guidance.
+
+- MVP version: 'Don't make things up. Ask clarifying questions if you
+  need additional information. If asked a question you don't know the
+  answer to, say so.'
+
+Layer 2 — Input Layer (User Message)
+
+- The 'user' might be a human (chat) or another system (programmatic /
+  webhook).
+
+- Chat trigger: 'Source for Prompt' defaults to 'Connected Chat Trigger
+  Node'. For other channels (Telegram, WhatsApp), use 'Define Below' and
+  drag in the message field, OR ensure the incoming text is in a field
+  called 'chatInput'.
+
+- Programmatic: use 'Define Below' and build a mail-merge-style template
+  — static prompt with dynamic variables piped in via expression.
+
+- Example pattern: 'Perform an analysis on the following username: {{
+  $json.username }}'.
+
+- If user-specific context doesn't make sense in the task, pipe it into
+  the system message instead (e.g. personal assistant context: 'The
+  person's name is Max, they're 30, etc.').
+
+Layer 3 — Action Layer (Tools)
+
+Tool Naming
+
+- Give the tool a precise, no-space name (camelCase, kebab-case,
+  snake_case — pick one and stick with it).
+
+- Spaces in tool names are far less common in training data; precise
+  naming reduces ambiguity.
+
+- Reference the tool by that exact name everywhere in the prompt.
+
+Parameters / fromAI()
+
+- Use $fromAI() to let the agent fill in tool inputs.
+
+- Give each parameter a clear name + description. Show format in the
+  description if the type can't capture it (e.g. specific datetime
+  format).
+
+- Trick: in n8n, switch a field to fixed, pick a sample value, then
+  toggle back to expression — n8n shows you the plain-text format the
+  field expects. Copy that format into your description.
+
+Tool Description
+
+- Always start with: 'Use this <toolName> tool to...'
+
+- For simple actions (create lead, etc.), the default description is
+  usually enough.
+
+- For multi-step tools (e.g. check calendar availability = get events in
+  a window, calculate gaps), set the description manually and include
+  sub-steps.
+
+- Keep tool-scoped instructions IN the tool, not in the system message —
+  separation of concerns. The tool is portable/swappable.
+
+- After listing sub-steps, optionally reaffirm: 'By following these
+  steps you can accurately find valid appointment windows based on
+  already-booked events.' Anecdotally improves results.
+
+Life Hack
+
+Use ChatGPT to improve your prompt snippets. 'You are an AI
+prompt-writing expert. Improve this prompt snippet (not the entire
+prompt).' Then audit the output yourself — don't just take it on faith.
+
+Part 3 — n8n Masterclass Modules (AI Edge community)
+
+Module 23 — Voice AI Agents (VAPI)
+
+  Real-estate lead-qualification agent example. Three areas: function
+  tools (sending data to n8n during a call), end-of-call analysis
+  reports, and triggering outbound VAPI calls from n8n.
+
+Function Tools — Send Data from VAPI to n8n
+
+- Create a Custom Tool in VAPI with a clear name
+  (lead_qualification_tool) and description.
+
+- Parameters defined as form fields (visual editor easier than JSON):
+  customer_name (string, required), area_interested_in (string,
+  required), budget (number, required).
+
+- Data types: string, number, boolean (yes/no), object (multiple items),
+  array (e.g. multiple availability dates).
+
+- Async toggle: ON = AI keeps talking while n8n runs; OFF = waits for
+  response. Speed of action matters — air-table add is fast, perplexity
+  search is slow.
+
+- Strict parameter validation makes sure the data matches the defined
+  types.
+
+- Server URL = n8n webhook URL. Use test URL for testing, production URL
+  for live.
+
+- Add header auth on production webhooks to prevent stray requests.
+
+- Optional: 'Wait for message to be spoken before triggering tool call'
+  lets you have the agent say 'please hold on' while n8n runs.
+
+n8n Side — Webhook → AI Agent → Airtable → Response
+
+- Webhook (POST, respond via 'Respond to Webhook' node) captures the
+  VAPI payload. Body contains the tool call ID, tool name, function
+  args, and conversation transcript.
+
+- Pin the data so you can build the rest without re-running the call.
+
+- AI Agent (Define Below, expression-based prompt) reads client_name /
+  budget / area_interested_in and pushes to Airtable via Airtable tool
+  (create record).
+
+- Airtable tool with $fromAI() on each field so the agent fills in
+  customer_name and interested_in columns.
+
+- VAPI response format requires {results: [{toolCallId, result}]} —
+  paste from the VAPI custom-tools docs and map the toolCallId from the
+  incoming webhook body.
+
+- The 'result' field is what the AI agent will speak back to the
+  customer (e.g. 'I've saved Jane Smith's details — budget £500,000,
+  interested in Tower Bridge').
+
+End-of-Call Analysis Reports
+
+- VAPI Assistant > Analysis section: define summary prompt, success
+  evaluation prompt (e.g. 1–10 interest score), and structured data
+  extraction.
+
+- Send these via a Server URL on the messaging section (turn off all
+  client messages, keep end-of-call-report).
+
+- Webhook in n8n receives the report and stores in Airtable: summary,
+  interest level, success score, conversation ID, recording URL,
+  transcript, average response latency, end reason, duration (ms →
+  divide by 1000), cost (cents → divide by 100), assistant ID.
+
+- Use an IF node after the report to route hot leads (e.g. interest
+  level = 'highly interested') to a Gmail follow-up or team Slack alert.
+
+Trigger VAPI Calls from n8n
+
+- n8n form node captures customer name, phone number (with country
+  code), opt-in confirmation.
+
+- HTTP Request node calls VAPI's create-call endpoint. Use the
+  documentation 'Try It' panel to build the curl, then import to n8n.
+
+- Required fields in the body: phoneNumberId (your VAPI Twilio number),
+  customer.number (the lead's number), assistantId.
+
+- Optional: assistantOverrides to inject dynamic variables (customer
+  name, etc.) into the system prompt for that specific call.
+
+- Keep it minimal at first — just phoneNumberId, customer.number,
+  assistantId, and dynamic variables. Strip out all the overrides you
+  don't need.
+
+Module 24 — Voice AI Agents (Retell AI)
+
+  Healthcare receptionist agent example. Same three areas as VAPI:
+  function tools, call analysis webhooks (call_started / call_ended /
+  call_analyzed), and outbound call triggering from n8n.
+
+Setting Up the Agent
+
+- Healthcare receptionist agent with the right prompt, model (Gemini 2.5
+  Flash for speed), and voice (11Labs).
+
+- Switch between Turbo V2.5 / multilingual / British English depending
+  on tone.
+
+- Custom function (Settings > Functions > Custom Function): name
+  (healthcare_patient_check), description, async toggle,
+  speak-during-execution toggle (uses preset phrases like 'let me check
+  that for you'), speak-after-execution toggle.
+
+Sending Data to n8n
+
+- POST request to n8n webhook URL. Authentication via header
+  (recommended).
+
+- Parameters defined as form fields: customer_name (string, required),
+  description_of_issue (string, required), severity (number, required).
+
+- Naming convention: snake_case throughout, descriptions clear (the AI
+  uses descriptions to decide what to extract).
+
+- Response variables can be picked out for use later in the conversation
+  (e.g. read back medical history — not actually secure, but illustrates
+  the mechanic).
+
+n8n Side
+
+- Webhook receives customer_name, description, severity, plus full
+  conversation transcript.
+
+- AI Agent (Define Below) reads the fields and stores them in Airtable
+  via the Airtable tool with $fromAI() field mapping.
+
+- Response back to Retell AI is text-based (JSON response with text
+  expression), allowing the agent to provide an action-oriented next
+  step (e.g. 'visit the Tower Bridge clinic for urgent appointment').
+
+- The agent confirmed in test calls that it could read back the exact
+  webhook response wording.
+
+Call Webhooks
+
+- Three event types: call_started, call_ended, call_analyzed.
+
+- call_started: minimal data, agent + time + cost so far.
+
+- call_ended: full transcript (long-text and line-by-line), latency,
+  cost breakdown, recording URL, disconnect reason, duration (ms).
+
+- call_analyzed: same as call_ended PLUS summary, sentiment, success
+  score, structured data.
+
+- Use a Switch node to route by event type. Average response latency
+  formula: sum of p10/p50/p90 ÷ 3.
+
+Outbound Calls from n8n
+
+- Form trigger captures customer name, phone with country code, opt-in.
+
+- HTTP Request to Retell's create-call endpoint. Pull the example body
+  from the docs.
+
+- API key from Settings > API Keys (create a new public key).
+
+- Required body fields: from_number (your Twilio number connected to
+  Retell), to_number, agent_id (from agent page), and dynamic variables.
+
+- Strip out the override blocks you don't need — start with the minimum
+  body.
+
+Module 25 — Multi-Agent Workflows
+
+  Routing agent triages incoming chat messages and dispatches to a
+  specialist (email agent, blog writing agent, deep research agent).
+  Same principle for any branched AI workflow.
+
+Why Multi-Agent
+
+- Garbage in = garbage out. Specific instructions per agent = better
+  outputs.
+
+- One generalist agent trying to handle email + sales + blog will end up
+  confused. A sales agent responding to a complaint will try to upsell
+  instead of resolve.
+
+- Routing layer in front of specialist agents = clean separation of
+  intent.
+
+Routing Agent Build
+
+- AI agent with require-specific-outputs ON, structured output parser
+  defining: agent (email_agent / blog_writing_agent /
+  deep_research_agent), reason, confidence.
+
+- GPT-4.1 mini for the router (cheap, fast).
+
+- Auto-fix format if outputs are inconsistent.
+
+- Switch node on the 'agent' field, three outputs.
+
+Specialist Agents
+
+- Email response agent: Sentiment Analysis node first
+  (positive/negative/neutral on the email), then an AI agent with a
+  customer-service system prompt that crafts a contextual reply.
+  Optional: branch by sentiment for differentiated responses.
+
+- Blog writing agent: system prompt covering engagement, SEO, brand
+  voice, audience (e.g. small business owners 5–20 employees,
+  AI-curious). Can chain a Gemini image-gen step for blog cover.
+
+- Deep research agent: GPT-5 + Perplexity tool. Prompt instructs proper
+  citations, exhaustive research, statistics from reputable sources.
+  Format output as report-ready (table issues — instruct to avoid
+  markdown tables, or pipe to Google Docs via HTTP + HTML).
+
+Module 26 — Dynamic Brain for Agents
+
+  Give one AI agent access to multiple LLM providers (OpenAI vs Gemini)
+  and switch automatically based on rules. Useful for
+  cost/quality/speed/style A-B testing.
+
+Setup
+
+- Model Selector node (under Chat Models). Add up to 10 LLM options.
+
+- Each rule has a condition (e.g. if model_preference = 'openai') and
+  points to one of the model slots.
+
+- Connect Model Selector to the AI Agent's Chat Model port.
+
+LinkedIn Outreach Example
+
+- Loop node (batch size 1) processes each lead one at a time.
+
+- Each lead has a 'model_preference' field (openai / gemini).
+
+- Same AI agent handles both, but routes through whichever LLM matches
+  the lead.
+
+- Compare outputs side by side: OpenAI tends to read more technical,
+  Gemini more conversational on the same prompt.
+
+Module 27 — MCP Servers (Model Context Protocol)
+
+  Anthropic's open standard (released Nov 2024). Lets one AI agent
+  access multiple tools through a single MCP server connection instead
+  of attaching every tool to every agent individually.
+
+Why MCP
+
+- Before MCP: every agent needs its own tools attached. Copy-paste hell.
+
+- With MCP: build one MCP server with all tools, then any agent can hit
+  it via an MCP Client tool.
+
+- Multi-agent setups become much cleaner — each specialist agent points
+  to the MCP server.
+
+MCP Server Setup
+
+- Add an MCP Server Trigger node. It exposes a test URL and production
+  URL.
+
+- Add ALL tools (Gmail, Airtable, Perplexity, etc.) as child nodes to
+  the MCP Server Trigger.
+
+- Always add header auth — the MCP gives anyone with the URL access to
+  every tool attached.
+
+- Best practice: put the MCP server in its OWN workflow, separate from
+  the agents that use it.
+
+MCP Client in Agents
+
+- Add MCP Client tool to your AI agent.
+
+- Endpoint = your MCP Server Trigger production URL.
+
+- Server Transport: HTTP Streamable (SSE is being deprecated).
+
+- Limit which tools the agent can access via the 'selected tools'
+  option, or use 'all except' to exclude certain actions.
+
+- Timeout setting matters for long-running tools (e.g. perplexity deep
+  research).
+
+Module 28 — Guardrails
+
+  n8n's guardrail node. Two operations: Check Text for Violations
+  (routes to fail branch on hit) and Sanitize Text (replaces violations
+  with placeholders). Nine guardrail types.
+
+Guardrail Types
+
+- Keywords — block specific terms (refund, cancel, complaint, etc.).
+
+- Jailbreak — detect attempts to bypass safety rules. Customizable
+  prompt + threshold.
+
+- NSFW — block not-safe-for-work content. Customizable threshold.
+
+- PII — Personal Identifiable Information (credit card, email, phone,
+  SSN, etc.). Pick all or selected entity types.
+
+- Secret Keys — detect API keys / AWS credentials. Strict / Balanced /
+  Permissive.
+
+- Topical Alignment — keep conversation within business scope (e.g.
+  block crypto questions in a SaaS support bot).
+
+- URLs — whitelist/blacklist. Allow subdomains, block userinfo URLs
+  (user:pass@example.com).
+
+- Custom — define your own LLM-based guardrail (e.g. 'check for rude
+  language').
+
+- Custom Regex — pattern-based blocking (e.g. UK postcode format).
+
+Sanitize vs Check
+
+Sanitize Text replaces violations inline (e.g. credit card →
+[CREDIT_CARD]) so the rest of the request can still be processed.
+Limited subset of guardrails available (PII, secret keys, URLs, custom
+regex).
+
+Output Side
+
+Guardrails can also be applied AFTER an AI agent response, to validate
+the output doesn't contain prohibited keywords before sending to the
+user.
+
+Module 29 — Data Tables
+
+  n8n's native, integrated data storage. Simplified version of Google
+  Sheets / Airtable. Limited to 50MB per table by default (configurable
+  on self-hosted via N8N_DATA_TABLES_MAX_SIZE_BYTES).
+
+Pros and Cons
+
+- Faster than external integrations (Airtable, Google Sheets) because it
+  lives in n8n.
+
+- No visualization, no analysis. Pure columnar storage.
+
+- Direct access from Code nodes NOT supported — must use Data Table
+  node.
+
+- Personal-space tables only accessible by their creator. Project tables
+  accessible by all team members.
+
+- Storage warning fires at 80% of limit; hitting 100% disables manual
+  inserts and breaks workflows trying to insert/update.
+
+Three Ways to Manage
+
+- Data Table node in workflows (insert, update, get, delete, list rows).
+
+- DataTable API endpoint (programmatic access via n8n REST API).
+
+- Data Tables tab in the UI — visual create, edit columns, add rows,
+  import CSV, export CSV.
+
+Common Use Cases
+
+- Persisting state across workflows in the same project.
+
+- Markers to prevent duplicate workflow runs.
+
+- Reusing prompts or messages across workflows.
+
+- Evaluation data for AI workflow testing.
+
+- Lookup tables / quick reference inside workflows.
+
+Demo Notes
+
+- Tutorial walked through importing a CSV via Form trigger, then
+  inserting rows via Data Table node.
+
+- Column data types: string, number, boolean, date-time.
+
+- If you misspell a column on creation, you can't rename it — delete and
+  recreate.
+
+- Speed: 11ms to fetch rows. Insert took similar — fast vs external
+  APIs.
+
+- Filter by conditions (e.g. delete rows where client_name is empty).
+
+Part 4 — Other n8n Module References
+
+  Module titles and short descriptions pulled from the AI Edge community
+  masterclass library. Some have transcript content interleaved in the
+  dump; some only have titles.
+
+17. How I Plan Workflows
+
+Process mapping with Miro: draw current-state, identify decision
+diamonds, sequential vs parallel steps, and figure out where
+AI/automation slots in BEFORE redesigning. Key principle: automate the
+existing process first (change management). Map customer journey AND
+colleague journey separately.
+
+18. Simple AI Workflow
+
+Basic AI-powered workflow build using one or two LLM nodes.
+
+19. Writing System Prompts
+
+Greek temple structure: goal, context, role, tone, format, examples. Use
+markdown H1 (#) for sections. Keep dynamic data in user message,
+instructions in system message.
+
+20. Building an AI Agent (Step by Step)
+
+AI Agent node walkthrough: chat trigger, fallback models, model
+selector, memory (simple memory with session ID — use chatID for
+Telegram/Slack), tools (calculator, HTTP, Airtable, Perplexity), batch
+processing for rate limits.
+
+21. Structured Output
+
+Turn on 'Require Specific Output Format'. Use Structured Output Parser
+(Define from JSON Schema or paste example JSON). Field types: string (in
+quotes), array (square brackets), number (no quotes), nested objects.
+Use jsononline.com to validate. Auto-fix format gives AI a second chance
+to produce correct schema.
+
+22. Human in the Loop
+
+Three approval channels: Telegram, Slack, Gmail. Each has Send-and-Wait
+operation with approve/disapprove buttons, free text, or custom form.
+Workflow pauses until response. IF node after approval routes to publish
+vs revise. Custom form can include checkboxes + suggested-changes text
+field, looping back through AI to refine.
+
+AI Modules Overview (n8n)
+
+Direct LLM nodes: Anthropic (message a model, analyze documents/images,
+generate prompts), Google Gemini (also generates Veo 3 video), OpenAI
+(message + image gen + speech). Most LLMs available through Basic LLM
+Chain (works as long as input is provided dynamically, not just from
+chat trigger).
+
+Specialized AI nodes: Information Extractor (pull specific attributes
+from text), Question & Answers Chain (retriever + chat model, for RAG),
+Sentiment Analysis (positive/negative/neutral with custom categories),
+Summarization Chain (chunks + overlap), Text Classifier (route into
+categories).
+
+Tokens: ~100 tokens = ~75 words. Temperature 0 = consistent, higher =
+creative. Max tokens caps output length.
+
+artificialanalysis.ai for comparing model intelligence, speed, price.
+Key trade-off: GPT-5 highest intelligence but slow + expensive; Gemini
+2.5 Flash cheaper + faster but less intelligent. XAI Grok had a big jump
+between Grok 2 → Grok 3.
+
+Part 5 — Prompt Engineering Techniques Deep Dive
+
+  From the prompt engineering masterclass. Covers in-context learning,
+  thought generation, problem decomposition, self-criticism, and
+  advanced combinations.
+
+In-Context Learning Basics
+
+- Zero-shot: just ask. Good for simple Google-search-style queries.
+
+- One-shot: give one example of desired output format / tone.
+
+- Few-shot (5–20 examples): best for consistent outputs in automated
+  workflows.
+
+- Role-based: 'You are an Apple marketing agent...' — assigns persona.
+
+Thought Generation
+
+Chain of Thought
+
+- Add 'step by step' to the prompt. Forces the model to break down its
+  reasoning before answering.
+
+- Big wins on math and logical problems.
+
+- o1 / Claude / Gemini's deep-research modes do this internally — but
+  adding it explicitly still helps cheaper models.
+
+Thread of Thought
+
+- Multi-prompt chain: take the output of task 1 as input to task 2,
+  output of task 2 as input to task 3.
+
+- Each step adds context. Avoids hitting token limits in one shot.
+
+- Example: chess basics → why the queen is powerful → strategic use of
+  the queen.
+
+Problem Decomposition
+
+Least-to-Most Prompting
+
+- Order: simplest task → medium → most complex.
+
+- Example: party planning → start with type of event/venue/date, then
+  catering, then logistics.
+
+- Each step builds on prior outputs.
+
+Plan and Solve
+
+- Get the AI to generate a plan first, then execute the plan step by
+  step.
+
+- Example: 'Plan a 3-course meal for a dinner party, then execute the
+  plan step by step.'
+
+- Output: menu → shopping list → cooking order → presentation.
+
+Program of Thought
+
+- Use an algorithmic / structured approach.
+
+- Example: customer complaint sorting — extract keywords → score
+  severity → categorize → prioritize.
+
+- Each step's output is the next step's input. Great for repeatable
+  structured analysis.
+
+Self-Criticism
+
+Self-Evaluation
+
+- After the AI produces output, ask: 'Critique your own writing.
+  Identify two ways this could be clearer or more impactful.'
+
+- Then ask: 'Apply those changes.'
+
+- Great for content refinement, especially when you're not
+  subject-matter expert and want a sanity check.
+
+Self-Refine
+
+- Same loop, automated: produce → refine → improve.
+
+- Prompt: 'Rewrite the above response to make it more engaging, with
+  simple language and concrete examples.'
+
+- Iterate until quality threshold met.
+
+Chain of Verification
+
+- Generate response → ask AI to list claims it made → verify each claim
+  → rewrite with corrected/verified info.
+
+- Reduces hallucinations on factual content.
+
+Advanced (Combining Prompts)
+
+System 2 Attention
+
+- Daniel Kahneman's System 1 (fast/intuitive) vs System 2
+  (slow/deliberate) thinking, applied to prompts.
+
+- Force the model into reflective mode: 'Read the report carefully.
+  Identify the main points. Then summarize.'
+
+- Pre-step before any analysis task to slow down jumping-to-conclusions
+  errors.
+
+Rephrase and Respond
+
+- Ask the AI to rephrase the question in its own words before answering.
+
+- Surfaces misunderstandings early.
+
+Re-Reading
+
+- Instruct the AI to re-read the question before answering.
+
+- Sounds dumb. Works.
+
+Part 6 — AI Agency Business Masterclass
+
+  Big rambling transcript covering mindset, market sizing, niching, ICP,
+  one-liner pitches, goal setting, and find-your-edge exercises. Heavy
+  speech-to-text noise — cleaned up the worst readability issues but
+  kept the substance.
+
+Mindset & Framing
+
+- Speak to business owners about OUTCOMES, not tools. They don't care if
+  it's VAPI vs Retell — they care if the AI answers the phone 24/7 and
+  books meetings.
+
+- Solutions must be implementable. Don't sell theory.
+
+- Most clients are SMBs (5–50 employees) — pricing has to be realistic.
+  'Charge $250K' agencies are not the norm.
+
+- Businesses want fast results — days/weeks, not 12 months.
+
+- Top line vs bottom line: top = new revenue (new products, services).
+  Bottom = cost reduction (back office, ops, automation). Bottom line is
+  where most enterprise spend sits.
+
+Market Opportunity
+
+- US Census 2022 data: ~1.3M restaurants alone in the US. Capture 0.01%
+  at $5K/deal = 53 paid companies × $5K = ~$265K opportunity. At $300/mo
+  SaaS = ~$16K MRR.
+
+- Saturation myth: there's roughly 1 lawyer per 5 businesses, 1
+  accountant per 5 businesses, 1 web dev per 14 businesses in the US. AI
+  consultants/builders are nowhere near that density.
+
+- Timeline parallel: websites were 'cool' in 1998, must-have by 2005,
+  can't-exist-without by 2010. AI is following the same curve but
+  compressed.
+
+Find Your Edge — The Backwards Approach
+
+- Most people pick a market first, then try to compete. Wrong direction.
+
+- Start with what you ALREADY have: direct access to decision makers,
+  deep industry knowledge, existing relationships, owned/controlled
+  businesses, years of experience in a vertical.
+
+- Three pillars: passion + hard work + the right market. Without all
+  three, the foundation is shaky.
+
+- Marcus Aurelius: 'Look within. Within is the fountain of good, and it
+  will ever bubble up if thou wilt ever dig.'
+
+Find-Your-Edge Worksheet Sections
+
+- Section 1 — What you have access to (people, networks, physical
+  spaces, capital).
+
+- Section 2 — What you know (3–4 past roles: industry, size, duration,
+  what you did, what you were good at).
+
+- Section 3 — Who you know (categorize by industry, role, trust level,
+  ability to send business, advisors, technical contacts).
+
+- Section 4 — What you're good at (skills rated honestly, industry
+  knowledge rated, genuine interests).
+
+- Section 5 — Real advantages stacked together.
+
+- Section 6 — Reality check (problem identified, paying customer
+  identified, growing market, decision makers reachable).
+
+- Section 7 — Pick a niche (rough first draft, will pivot).
+
+- Section 8 — Next steps.
+
+ICP — Ideal Customer Profile
+
+- Most people get ICP wrong: too broad ('small businesses'), too vague
+  ('owners are overwhelmed'), or too size-only ('companies with 10–50
+  employees').
+
+- Proper ICP has FOUR components: firmographics, specific scenario,
+  specific expensive problem, how to reach them.
+
+- Firmographics example: independent insurance agency, 3–8 licensed
+  agents, $1–5M revenue, 200–500 active policies, suburban local office,
+  hybrid in-person/phone service.
+
+- Specific scenario: recurring volume spike (seasonal renewals), manual
+  process breaks down, new hires struggle or senior staff burned.
+
+- Specific problem: 20–25 hrs/week on manual policy renewals,
+  $6–9K/month in labor + lost opportunity, tried VAs (quality issues)
+  and CRM automation (too complex).
+
+- Reachability: 'I worked at an insurance agency 4 years and know 15
+  owners personally' / 'Member of state insurance association with
+  monthly events' / 'Tight community = strong referrals.'
+
+One-Liner Pitch
+
+- Formula: 'We help [target] who struggle with [expensive problem]
+  [approach + result].'
+
+- Bad: 'We use AI to automate business processes.'
+
+- Better: 'We help insurance agencies who waste 20+ hrs/week on manual
+  policy renewals automate the entire workflow.'
+
+- Even better (conversational): 'We help insurance agencies who get
+  slammed during renewal season.'
+
+- Test with 3 people who don't know your business. Ask: Who do you think
+  I help? What do I solve? Why should they care?
+
+- Use everywhere: website hero, LinkedIn headline, email signature,
+  sales decks.
+
+Setting Goals — SMART
+
+- Specific (acquire 50 SMB customers, not 'grow my business').
+
+- Measurable (revenue target, customer count, engagement %, NPS).
+
+- Achievable (challenge yourself without self-sabotage; have the
+  resources and skills).
+
+- Realistic (Edward Knockholt: 'See the world as it is, not as you wish
+  it to be.' Realistic ≠ unambitious — you can be wildly ambitious with
+  realistic stepping stones).
+
+- Time-bound (Napoleon Hill: 'A goal is a dream with a deadline.').
+
+Goal Hierarchy
+
+- 12-month vision (write it out in vivid detail).
+
+- Quarterly milestones (3-month chunks, each with a specific outcome).
+
+- Monthly objectives.
+
+- Weekly actions (Monday → Friday tasks).
+
+- Connection checkpoint: can you trace a clear line from this week's
+  tasks → this month's objectives → quarter milestones → 12-month
+  vision?
+
+Starting Costs (Lean)
+
+- <$100/month to start: LLM ($20), n8n or Vibe coding tool ($20–$50),
+  API costs (cheap on per-token basis).
+
+- Free tools: Stripe for payments (2.9% + 30¢ per transaction), Google
+  Drive for CRM/proposals, Facebook/LinkedIn for lead research.
+
+- Optional add-ons (~$400/mo): domain ($20/yr), Pipedrive CRM ($20),
+  PandaDoc proposals ($35), Apollo/Hunter ($49–$80), accounting
+  software, hosting, Slack, Google Workspace, outreach domain ($25/yr +
+  5 emails @ $5 each = $25/mo per domain), instantly.ai ($30), LinkedIn
+  outreach tool ($50–$80), Calendly ($12).
+
+Skills to Develop
+
+- Critical thinking — challenge outputs, don't take social media or me
+  at face value.
+
+- Problem solving.
+
+- Communication — explain to a 10-year-old. Use voice mode to practice.
+
+- Prompt engineering.
+
+- Tool mastery (one at a time — don't chase every shiny object).
+
+- Resilience.
+
+- Risk + ethics (know the regs in your region — EU AI Act, etc.).
+
+- Systems thinking.
+
+- Continuous improvement.
+
+- Sales (the one nobody likes but matters most).
+
+Common Pitfalls
+
+- Objections + rejection — most outreach gets ignored.
+
+- Imposter syndrome — detach yourself from the business. Recommended:
+  'Psycho-Cybernetics' by Maxwell Maltz.
+
+- Technical frustration — things break. Critical thinking + problem
+  solving.
+
+- Feast and famine cycles — irregular signing, then surge, then nothing.
+  Build monthly retainers to smooth.
+
+- Comparison trap — social media isn't reality.
+
+Are You Ready Questions
+
+- Can you handle hearing 'no' 20 times to get one 'yes'?
+
+- Are you okay figuring things out when stuck?
+
+- Can you keep going without immediate results (discipline >
+  motivation)?
+
+- Can you look stupid while learning?
+
+- Will you stick with it for 3–6 months?
+
+Rejection Stories Worth Remembering
+
+- Spielberg — rejected 3x by USC.
+
+- Stephen King — 25 publishers before Carrie.
+
+- Per Enevoldsen (Pandora) — 300 investors before funding.
+
+- Branson — hundreds of failed companies before Virgin worked.
+
+- Colonel Sanders (KFC) — 1,009 rejections.
+
+- Stallone — 1,500 rejections selling Rocky.
+
+- James Dyson — 5,127 prototypes.
+
+- Edison — 10,000 light bulb attempts.
+
+- Confucius: 'Those who think they can and those who think they can't
+  are usually right.'
+
+Part 7 — Video Clip Transcripts
+
+Aladdin (Disney) — Fragmented Clip Compilation
+
+  Multiple clips from Aladdin in fragmented order. Likely a
+  TikTok/Shorts edit covering Genie's rules, the cave of wonders, the
+  prince transformation, and the magic carpet ride.
+
+Key lines: 'Be specific with your words. The deal is in the detail.' /
+'You stumbled upon an opportunity. Your life begins now.' / 'I made you
+look like a prince on the outside, but I didn't change anything on the
+inside.' / 'Here's the basics: Step one, rub the lamp. Step two, say
+what you want. Step three, there is no step three.'
+
+Genie's rules: Can't make anyone love anybody, can't bring anyone back
+from the dead, three wishes only, must begin with rubbing the lamp and
+saying 'I wish.'
+
+Michael Jackson Tribute — Discipline & Locking In
+
+  Long monologue (presenter unknown) about MJ's work ethic, the
+  ecosystem that supported his uninterrupted disciplined time, and how
+  modern attention economy is killing the depth that produced artists
+  like him.
+
+Core Argument
+
+- We're not just mourning MJ — we're mourning the ecosystem that
+  produced him. Black church music programs, school music programs,
+  talent shows, Motown.
+
+- MJ had uninterrupted disciplined time to study. He was deeply
+  intellectual — favorite book was 'As a Man Thinketh' by James Allen.
+  Also studied 'The Prophet' (Gibran) and 'Jonathan Livingston Seagull'
+  (Bach).
+
+- He studied the greats: Tchaikovsky, Charlie Chaplin, Bob Fosse, Sammy
+  Davis Jr., Fred Astaire, Einstein, martial artists. His autobiography
+  was dedicated to Astaire, with opening quotes from Edison and Lennon.
+
+- Quote: 'Good artists copy. Great artists steal.' — meaning take the
+  SPIRIT of the work and plant something new with the seeds.
+
+- Modern problem: attention span is constantly thwarted. We
+  post-pause-post and do everything half-baked. MJ was fully baked.
+
+- MJ was forced to be alone (top floor while brothers mingled). He had
+  no luxury, no choice but depth. We do — but we don't take it.
+
+Voice Note Interjection
+
+(BJ's own voice in the transcript): 'Yeah, I'm really trying to figure
+out everything I need to embody as a man at this point. You know what
+I'm saying? Like, be like MJ down there. This man was great at
+everything. But yeah, I'm watching a video right now, basically, so I'm
+about to play it. I'm downloading all these books also.'
+
+Fastlane Ad (Brief)
+
+  Promo for a tool called Fastlane that auto-clones trending video
+  formats with your product/influencer dropped in. AI marketing slop
+  adjacent. Notable as a competitor reference, not as a positive
+  example.
+
+Closing Note
+
+This is raw study material — heavy speech-to-text noise, broken
+sentences, repeated clips. The substance is in the patterns: how voice
+agents pass data into n8n, how MCP collapses tool sprawl, how prompts
+should be structured, how to map your existing process before automating
+it. Use the section headers to navigate.

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kingdom of the Sun</title>
+  <meta name="description" content="The Kingdom of the Sun, the original 16-team national high school basketball tournament. Ocala, Florida. Founded 1974.">
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/styles.css">
+  <!-- PHASE 2/3: add Open Graph tags, sitemap, and (Phase 3) a live-data client here. -->
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top"><img src="assets/crown.svg" alt=""><span id="brand-name">Kingdom of the Sun</span></a>
+      <nav class="navlinks">
+        <a href="#history">History</a>
+        <a href="#champions">Champions</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#teams">Teams</a>
+        <a href="#watchlive">Watch</a>
+        <a href="#experience">Experience</a>
+        <a href="#sponsors">Sponsors</a>
+      </nav>
+      <span id="nav-cta"></span>
+    </div>
+  </header>
+
+  <!-- HERO (QR-first landing) -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <img class="emblem" src="assets/crown.svg" alt="Kingdom of the Sun crown emblem">
+      <h1 id="hero-title">The Original. Since 1974.</h1>
+      <div class="sub" id="hero-sub"></div>
+      <div class="cta">
+        <span id="hero-cta"></span>
+        <a class="btn ghost" href="#schedule">View Schedule</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats wrap" id="stats" style="max-width:var(--maxw)"></div>
+
+  <!-- HISTORY / HERITAGE -->
+  <section class="section" id="history">
+    <div class="wrap">
+      <div class="eyebrow">Est. 1974 · The Original</div>
+      <h2>The Kingdom of the Sun</h2>
+      <div class="two-col">
+        <div>
+          <img class="legacy-logo" src="assets/official_logo.png" alt="Kingdom of the Sun official logo">
+          <div class="haley">
+            <img src="assets/haley_founder.png" alt="Jim Haley, founder">
+            <div>
+              <strong>Jim Haley</strong><br><span class="muted">Founder · 1974</span>
+              <div class="sig-pending">Court signature: pending clean insert</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p id="history-story" class="muted"></p>
+          <p id="history-positioning" class="positioning"></p>
+          <div class="alumni-head" id="alumni-headliners"></div>
+          <div class="alumni-head coaches" id="alumni-coaches"></div>
+          <div class="alumni" id="alumni"></div>
+          <p id="history-reach" class="muted" style="margin-top:16px;font-size:13px"></p>
+        </div>
+      </div>
+      <div class="legacy-stats" id="legacy-stats"></div>
+    </div>
+  </section>
+
+  <!-- CHAMPIONS (legacy roll 1974-2024, powered by config) -->
+  <section class="section" id="champions">
+    <div class="wrap">
+      <div class="eyebrow">Since 1974</div>
+      <h2>Champions</h2>
+      <div class="champions-wrap">
+        <table class="champions" id="champions-table"></table>
+      </div>
+      <p class="muted" style="font-size:12px;margin-top:14px">Every Kingdom of the Sun champion. The 2020 tournament was cancelled due to COVID.</p>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="section" id="schedule">
+    <div class="wrap">
+      <div class="eyebrow">Four Days</div>
+      <h2>Schedule</h2>
+      <div class="grid cols-2" id="schedule-grid"></div>
+      <p class="muted" style="font-size:12px;margin-top:14px">Exact dates and tip-off times confirmed closer to the tournament.</p>
+    </div>
+  </section>
+
+  <!-- BRACKET PLACEHOLDER -->
+  <section class="section" id="bracket">
+    <div class="wrap">
+      <div class="eyebrow">16-Team Field</div>
+      <h2>Bracket</h2>
+      <!-- PHASE 2: static bracket from config. PHASE 3: live bracket + scores from Supabase/Sheet. -->
+      <div class="bracket">
+        <div class="big">Bracket Drops December 2026</div>
+        <p class="muted" style="margin-top:8px;font-size:13px">Live bracket and scores go here during the tournament, December 28-31.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAMS -->
+  <section class="section" id="teams">
+    <div class="wrap">
+      <div class="eyebrow">The Field</div>
+      <h2>Teams</h2>
+      <div class="teams" id="teams-grid"></div>
+      <p class="muted" style="font-size:12px;margin-top:14px">Invitation only. 16-team field, confirmed on a rolling basis. Invited programs confirm below.</p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="wrap">
+      <div class="eyebrow">More Than A Tournament</div>
+      <h2>The Experience</h2>
+      <div class="grid cols-2" id="experience-grid"></div>
+    </div>
+  </section>
+
+  <!-- MEDIA -->
+  <section class="section" id="media-section">
+    <div class="wrap">
+      <div class="eyebrow">Official Media</div>
+      <h2>Photography & Coverage</h2>
+      <div class="media" id="media"></div>
+      <div class="credit" id="media-credit"></div>
+    </div>
+  </section>
+
+  <!-- WATCH LIVE (embed/link slot, no custom streaming infrastructure) -->
+  <section class="section" id="watchlive">
+    <div class="wrap">
+      <div class="eyebrow">Watch</div>
+      <h2>Watch Live</h2>
+      <!-- PHASE 2/3: drop the NFHS Network embed/link here. Vanguard gym has NFHS. No custom build. -->
+      <div class="bracket">
+        <div class="big">Streaming on NFHS Network</div>
+        <p class="muted" id="watchlive-note" style="margin-top:8px;font-size:13px"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPONSORS -->
+  <section class="section" id="sponsors">
+    <div class="wrap">
+      <div class="eyebrow">Partners</div>
+      <h2>Sponsorship</h2>
+      <div class="tiers" id="tiers"></div>
+      <p class="credit" id="sponsor-note"></p>
+    </div>
+  </section>
+
+  <!-- CONFIRM (invitation only) -->
+  <section class="section" id="register">
+    <div class="wrap">
+      <div class="register">
+        <div class="eyebrow">Invited Teams</div>
+        <h2>Confirm Your Spot</h2>
+        <p class="muted" style="max-width:560px;margin:0 auto 22px">The 53rd Annual is invitation only. Invited programs, confirm your spot and we will follow up with rosters, schedule, travel, and hotel details.</p>
+        <span id="register-cta"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div id="foot-name"></div>
+      <div class="muted" id="foot-credit" style="margin-top:6px"></div>
+      <div class="muted" style="margin-top:6px">&copy; <span id="foot-year"></span> Kingdom of the Sun</div>
+      <div class="preview">Preview build for committee review</div>
+    </div>
+  </footer>
+
+  <script src="config/site-data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+# n8n workflow · n8n & RetellAI.json
+internal name: n8n & RetellAI
+node count: 23
+
+## Trigger nodes
+- n8n-nodes-base.webhook :: Retell AI Cust. Function Trigger
+- n8n-nodes-base.webhook :: Retell AI Activities Webhook
+- n8n-nodes-base.formTrigger :: On form submission
+
+## AI / model nodes
+- @n8n/n8n-nodes-langchain.agent :: AI Agent :: model=?
+    system-prompt: =<REPLACE WITH YOUR AGENT INSTRUCTION> Your objective is to complete the task of storing information into airtable or searching the internet based on the users request. When searching the internet please keep the responses concise (1 -2 sentences max) and easy to understand for the user.
+- @n8n/n8n-nodes-langchain.lmChatOpenAi :: OpenAI Chat Model :: model=gpt-4.1-mini
+- @n8n/n8n-nodes-langchain.lmChatOpenAi :: OpenAI :: model=gpt-4.1-mini
+- @n8n/n8n-nodes-langchain.chainLlm :: Follow Up? :: model=?
+    system-prompt: =Call End Reason: {{ $json.fields['End Reason'] }} Summary of call: {{ $json.fields.Transcript }} Transcript of call: {{ $json.fields.Transcript }}
+
+## Tool nodes
+- n8n-nodes-base.perplexityTool :: Perplexity Search
+- n8n-nodes-base.airtableTool :: Create a Record
+
+## Integration / action nodes
+- n8n-nodes-base.airtable :: Store End Of Call Report Info :: base=n8n & Vapi Demo table=End Of Call Report op=create
+- n8n-nodes-base.respondToWebhook :: Respond to Retell AI
+- n8n-nodes-base.httpRequest :: Call Customer :: method=POST url=https://api.retellai.com/v2/create-phone-call
+- n8n-nodes-base.httpRequest :: Starter Template (Create Agent from Scratch) :: method=POST url=https://api.retellai.com/v2/create-phone-call
+
+## Other nodes
+- n8n-nodes-base.switch :: Status of Call
+- n8n-nodes-base.if :: User Hung Up
+- @n8n/n8n-nodes-langchain.outputParserStructured :: Structured Output
+- n8n-nodes-base.if :: Follow Up?1
+
+## Data-flow edges (connections)
+- AI Agent -> ['Respond to Retell AI']
+- OpenAI Chat Model -> ['AI Agent']
+- Perplexity Search -> ['AI Agent']
+- Create a Record -> ['AI Agent']
+- Store End Of Call Report Info -> ['Follow Up?']
+- Retell AI Cust. Function Trigger -> ['AI Agent']
+- Retell AI Activities Webhook -> ['Status of Call']
+- Status of Call -> ['User Hung Up', 'Store End Of Call Report Info']
+- OpenAI -> ['Follow Up?']
+- Structured Output -> ['Follow Up?']
+- Follow Up? -> ['Follow Up?1']
+- On form submission -> []
+
+## Credential references (NAMES ONLY)
+airtableTokenApi/The AI Edge, openAiApi/Ops Management, openAiApi/The AI Edge, perplexityApi/The AI Edge
+
+## Sticky-note documentation (verbatim)
+---
+# **Step 1**
+## **Connecting into Retell AI**
+---
+# **Step 2**
+## **Activities  Webhook**
+---
+# **Step 3**
+## **Triggering a call**
+

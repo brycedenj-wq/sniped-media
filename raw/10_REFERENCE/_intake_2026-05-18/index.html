@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Ops Dashboard</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- React 18 -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Recharts -->
+    <script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.15.0/Recharts.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#d4a939',
+                            500: '#c9972c',
+                            600: '#b87d1f',
+                        },
+                        dark: {
+                            100: '#2a2a2d',
+                            200: '#232326',
+                            300: '#1c1c1e',
+                            400: '#151517',
+                            500: '#0e0e10',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #0e0e10;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #3a3a3d; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c9972c; }
+
+        /* Cards */
+        .card {
+            background: #1c1c1e;
+            border: 1px solid #2a2a2d;
+            border-radius: 12px;
+        }
+
+        .card:hover {
+            border-color: #3a3a3d;
+        }
+
+        /* Gold accent */
+        .gold-accent {
+            color: #c9972c;
+        }
+
+        .gold-bg {
+            background: linear-gradient(135deg, #c9972c 0%, #b87d1f 100%);
+        }
+
+        /* Drag states */
+        .drag-over {
+            background: rgba(201, 151, 44, 0.08) !important;
+            border: 1px dashed #c9972c !important;
+        }
+
+        .dragging {
+            opacity: 0.5;
+            transform: scale(1.02);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        /* Input */
+        .input-dark {
+            background: #151517;
+            border: 1px solid #2a2a2d;
+            color: #fff;
+            transition: border-color 0.2s;
+        }
+
+        .input-dark:focus {
+            outline: none;
+            border-color: #c9972c;
+        }
+
+        /* Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, #1c1c1e 0%, #2a2a2d 50%, #1c1c1e 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useContext, createContext, useCallback } = React;
+
+        // Recharts
+        const RechartsLib = window.Recharts || {};
+        const BarChart = RechartsLib.BarChart || (() => null);
+        const Bar = RechartsLib.Bar || (() => null);
+        const XAxis = RechartsLib.XAxis || (() => null);
+        const YAxis = RechartsLib.YAxis || (() => null);
+        const CartesianGrid = RechartsLib.CartesianGrid || (() => null);
+        const Tooltip = RechartsLib.Tooltip || (() => null);
+        const ResponsiveContainer = RechartsLib.ResponsiveContainer || (({children}) => <div>{children}</div>);
+        const PieChart = RechartsLib.PieChart || (() => null);
+        const Pie = RechartsLib.Pie || (() => null);
+        const Cell = RechartsLib.Cell || (() => null);
+        const ScatterChart = RechartsLib.ScatterChart || (() => null);
+        const Scatter = RechartsLib.Scatter || (() => null);
+        const ZAxis = RechartsLib.ZAxis || (() => null);
+
+        // CONFIG
+        const CONFIG = {
+            STORAGE_KEY: 'ai-ops-dashboard-v2',
+            STATUSES: ['identified', 'evaluating', 'approved', 'implementing', 'complete'],
+            STATUS_LABELS: {
+                identified: 'Identified',
+                evaluating: 'Evaluating',
+                approved: 'Approved',
+                implementing: 'In Progress',
+                complete: 'Complete'
+            },
+            DEPARTMENTS: ['Marketing', 'Sales', 'Finance', 'Operations', 'HR', 'IT'],
+            CHART_COLORS: ['#c9972c', '#d4a939', '#b87d1f', '#e9c846', '#9a5f1a']
+        };
+
+        // SAMPLE DATA
+        const SAMPLE_DATA = [
+            { id: '1', title: 'Invoice Processing Automation', description: 'AI-powered invoice data extraction', department: 'Finance', status: 'approved', priority: 'high', hoursPerWeek: 15, hourlyRate: 45, employeesAffected: 3, implementationCost: 8000 },
+            { id: '2', title: 'Customer Support Chatbot', description: 'Handle tier-1 support queries', department: 'Operations', status: 'implementing', priority: 'high', hoursPerWeek: 25, hourlyRate: 35, employeesAffected: 5, implementationCost: 15000 },
+            { id: '3', title: 'Email Response Automation', description: 'AI email drafting suggestions', department: 'Sales', status: 'evaluating', priority: 'medium', hoursPerWeek: 8, hourlyRate: 55, employeesAffected: 10, implementationCost: 5000 },
+            { id: '4', title: 'Resume Screening Tool', description: 'Pre-screen job applicants', department: 'HR', status: 'identified', priority: 'medium', hoursPerWeek: 12, hourlyRate: 40, employeesAffected: 2, implementationCost: 3000 },
+            { id: '5', title: 'Social Media Generator', description: 'Generate social media content', department: 'Marketing', status: 'complete', priority: 'low', hoursPerWeek: 10, hourlyRate: 50, employeesAffected: 2, implementationCost: 2000 },
+            { id: '6', title: 'IT Ticket Classifier', description: 'Auto-categorize support tickets', department: 'IT', status: 'evaluating', priority: 'low', hoursPerWeek: 0, hourlyRate: 0, employeesAffected: 0, implementationCost: 0 },
+            { id: '7', title: 'Meeting Summarizer', description: 'Transcribe and summarize meetings', department: 'Operations', status: 'identified', priority: 'medium', hoursPerWeek: 0, hourlyRate: 0, employeesAffected: 0, implementationCost: 0 },
+            { id: '8', title: 'Sales Forecast Model', description: 'Predict quarterly sales', department: 'Sales', status: 'approved', priority: 'high', hoursPerWeek: 6, hourlyRate: 75, employeesAffected: 4, implementationCost: 12000 }
+        ];
+
+        // HELPERS
+        const generateId = () => Date.now().toString(36) + Math.random().toString(36).substr(2);
+
+        const calculateROI = (opp) => {
+            const { hoursPerWeek, hourlyRate, employeesAffected, implementationCost } = opp;
+            if (!hoursPerWeek || !hourlyRate || !employeesAffected) return { monthlySavings: 0, yearlySavings: 0, roiPercentage: 0, paybackMonths: 0, hasROI: false };
+
+            const monthlyHours = hoursPerWeek * employeesAffected * 4.33 * 0.75;
+            const monthlySavings = Math.round(monthlyHours * hourlyRate);
+            const yearlySavings = monthlySavings * 12;
+            const roiPercentage = implementationCost > 0 ? Math.round(((yearlySavings - implementationCost) / implementationCost) * 100) : 0;
+            const paybackMonths = monthlySavings > 0 ? Math.round((implementationCost / monthlySavings) * 10) / 10 : 0;
+
+            return { monthlySavings, yearlySavings, roiPercentage, paybackMonths, hasROI: true };
+        };
+
+        const formatCurrency = (n) => n >= 1000 ? `£${(n/1000).toFixed(1)}k` : `£${n}`;
+
+        // CONTEXT
+        const AppContext = createContext();
+
+        const AppProvider = ({ children }) => {
+            const [opportunities, setOpportunities] = useState([]);
+            const [currentView, setCurrentView] = useState('kanban');
+            const [isLoading, setIsLoading] = useState(true);
+            const [selectedOpp, setSelectedOpp] = useState(null);
+            const [isModalOpen, setIsModalOpen] = useState(false);
+            const [filter, setFilter] = useState('All');
+
+            useEffect(() => {
+                setTimeout(() => {
+                    try {
+                        const stored = localStorage.getItem(CONFIG.STORAGE_KEY);
+                        setOpportunities(stored ? JSON.parse(stored) : SAMPLE_DATA);
+                    } catch {
+                        setOpportunities(SAMPLE_DATA);
+                    }
+                    setIsLoading(false);
+                }, 400);
+            }, []);
+
+            useEffect(() => {
+                if (!isLoading) localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(opportunities));
+            }, [opportunities, isLoading]);
+
+            const addOpp = useCallback((data) => {
+                setOpportunities(prev => [...prev, { id: generateId(), ...data, status: 'identified', hoursPerWeek: 0, hourlyRate: 0, employeesAffected: 0, implementationCost: 0 }]);
+            }, []);
+
+            const updateOpp = useCallback((id, data) => {
+                setOpportunities(prev => prev.map(o => o.id === id ? { ...o, ...data } : o));
+            }, []);
+
+            const deleteOpp = useCallback((id) => {
+                setOpportunities(prev => prev.filter(o => o.id !== id));
+            }, []);
+
+            const moveOpp = useCallback((id, status) => {
+                setOpportunities(prev => prev.map(o => o.id === id ? { ...o, status } : o));
+            }, []);
+
+            const resetData = useCallback(() => {
+                setOpportunities(SAMPLE_DATA);
+            }, []);
+
+            const openModal = useCallback((opp = null) => { setSelectedOpp(opp); setIsModalOpen(true); }, []);
+            const closeModal = useCallback(() => { setSelectedOpp(null); setIsModalOpen(false); }, []);
+
+            return (
+                <AppContext.Provider value={{ opportunities, currentView, setCurrentView, isLoading, selectedOpp, isModalOpen, filter, setFilter, addOpp, updateOpp, deleteOpp, moveOpp, resetData, openModal, closeModal }}>
+                    {children}
+                </AppContext.Provider>
+            );
+        };
+
+        const useApp = () => useContext(AppContext);
+
+        // COMPONENTS
+
+        // Sidebar
+        const Sidebar = () => {
+            const { currentView, setCurrentView, resetData } = useApp();
+
+            const nav = [
+                { id: 'kanban', label: 'Pipeline', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" /> },
+                { id: 'portfolio', label: 'Portfolio', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /> },
+                { id: 'matrix', label: 'Matrix', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" /> }
+            ];
+
+            return (
+                <aside className="w-56 bg-dark-400 border-r border-dark-100 h-screen flex flex-col">
+                    <div className="p-5 border-b border-dark-100">
+                        <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-lg gold-bg flex items-center justify-center">
+                                <svg className="w-4 h-4 text-dark-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <span className="font-semibold text-white">AI Ops</span>
+                        </div>
+                    </div>
+
+                    <nav className="flex-1 p-3">
+                        {nav.map(item => (
+                            <button
+                                key={item.id}
+                                onClick={() => setCurrentView(item.id)}
+                                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg mb-1 transition-colors ${
+                                    currentView === item.id
+                                        ? 'bg-dark-200 text-gold-500'
+                                        : 'text-gray-400 hover:text-white hover:bg-dark-300'
+                                }`}
+                            >
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">{item.icon}</svg>
+                                <span className="text-sm font-medium">{item.label}</span>
+                            </button>
+                        ))}
+                    </nav>
+
+                    <div className="p-3 border-t border-dark-100">
+                        <button
+                            onClick={() => window.confirm('Reset to demo data?') && resetData()}
+                            className="w-full flex items-center justify-center gap-2 px-3 py-2 text-xs text-gray-500 hover:text-gray-300 rounded-lg hover:bg-dark-300 transition-colors"
+                        >
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
+                            Reset Demo
+                        </button>
+                    </div>
+                </aside>
+            );
+        };
+
+        // Opportunity Card
+        const OpportunityCard = ({ opp }) => {
+            const { openModal } = useApp();
+            const roi = calculateROI(opp);
+
+            const priorityColors = { high: 'bg-red-500', medium: 'bg-amber-500', low: 'bg-emerald-500' };
+
+            const handleDragStart = (e) => {
+                e.dataTransfer.setData('oppId', opp.id);
+                e.target.classList.add('dragging');
+            };
+
+            const handleDragEnd = (e) => e.target.classList.remove('dragging');
+
+            return (
+                <div
+                    draggable
+                    onDragStart={handleDragStart}
+                    onDragEnd={handleDragEnd}
+                    onClick={() => openModal(opp)}
+                    className="card p-3 cursor-pointer hover:border-dark-100 transition-all animate-in"
+                >
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                        <h4 className="text-sm font-medium text-white leading-snug">{opp.title}</h4>
+                        <span className={`w-2 h-2 rounded-full flex-shrink-0 mt-1.5 ${priorityColors[opp.priority]}`}></span>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                        <span className="text-[11px] text-gray-500 uppercase tracking-wide">{opp.department}</span>
+                        {roi.hasROI && roi.monthlySavings > 0 ? (
+                            <span className="text-xs font-semibold text-gold-500">{formatCurrency(roi.monthlySavings)}/mo</span>
+                        ) : (
+                            <span className="text-[11px] text-gray-600">No ROI</span>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        // Kanban Column
+        const KanbanColumn = ({ status, opps }) => {
+            const { moveOpp } = useApp();
+            const [dragOver, setDragOver] = useState(false);
+
+            const handleDrop = (e) => {
+                e.preventDefault();
+                setDragOver(false);
+                const id = e.dataTransfer.getData('oppId');
+                if (id) moveOpp(id, status);
+            };
+
+            return (
+                <div
+                    className={`flex-shrink-0 w-56 rounded-xl p-3 bg-dark-300 ${dragOver ? 'drag-over' : ''}`}
+                    onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+                    onDragLeave={() => setDragOver(false)}
+                    onDrop={handleDrop}
+                    style={{ minHeight: '400px' }}
+                >
+                    <div className="flex items-center justify-between mb-3 px-1">
+                        <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">{CONFIG.STATUS_LABELS[status]}</span>
+                        <span className="text-xs text-gray-600 bg-dark-200 px-2 py-0.5 rounded-full">{opps.length}</span>
+                    </div>
+
+                    <div className="space-y-2">
+                        {opps.map(opp => <OpportunityCard key={opp.id} opp={opp} />)}
+                    </div>
+                </div>
+            );
+        };
+
+        // Kanban Board
+        const KanbanBoard = () => {
+            const { opportunities, openModal, filter, setFilter } = useApp();
+
+            const filtered = filter === 'All' ? opportunities : opportunities.filter(o => o.department === filter);
+            const byStatus = CONFIG.STATUSES.reduce((acc, s) => ({ ...acc, [s]: filtered.filter(o => o.status === s) }), {});
+
+            const totalSavings = opportunities.reduce((sum, o) => sum + calculateROI(o).monthlySavings, 0);
+
+            return (
+                <div className="flex-1 flex flex-col overflow-hidden">
+                    {/* Header */}
+                    <div className="p-6 border-b border-dark-100">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <h1 className="text-xl font-semibold text-white">Pipeline</h1>
+                                <p className="text-sm text-gray-500 mt-0.5">{opportunities.length} opportunities · {formatCurrency(totalSavings)}/mo potential</p>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <select
+                                    value={filter}
+                                    onChange={(e) => setFilter(e.target.value)}
+                                    className="input-dark px-3 py-2 rounded-lg text-sm text-gray-300"
+                                >
+                                    <option value="All">All Departments</option>
+                                    {CONFIG.DEPARTMENTS.map(d => <option key={d} value={d}>{d}</option>)}
+                                </select>
+                                <button onClick={() => openModal()} className="gold-bg text-dark-500 px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">
+                                    + Add New
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Board */}
+                    <div className="flex-1 overflow-x-auto p-6">
+                        {opportunities.length === 0 ? (
+                            <div className="flex flex-col items-center justify-center h-full text-center">
+                                <div className="w-16 h-16 rounded-full bg-dark-200 flex items-center justify-center mb-4">
+                                    <svg className="w-8 h-8 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                    </svg>
+                                </div>
+                                <p className="text-gray-400 mb-4">No opportunities yet</p>
+                                <button onClick={() => openModal()} className="gold-bg text-dark-500 px-4 py-2 rounded-lg text-sm font-medium">Add First Opportunity</button>
+                            </div>
+                        ) : (
+                            <div className="flex gap-4">
+                                {CONFIG.STATUSES.map(s => <KanbanColumn key={s} status={s} opps={byStatus[s]} />)}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        // Modal
+        const Modal = () => {
+            const { isModalOpen, closeModal, selectedOpp, addOpp, updateOpp, deleteOpp } = useApp();
+            const [tab, setTab] = useState('details');
+            const [form, setForm] = useState({ title: '', description: '', department: 'Marketing', priority: 'medium', hoursPerWeek: 0, hourlyRate: 0, employeesAffected: 0, implementationCost: 0 });
+
+            useEffect(() => {
+                if (selectedOpp) {
+                    setForm({ title: selectedOpp.title || '', description: selectedOpp.description || '', department: selectedOpp.department || 'Marketing', priority: selectedOpp.priority || 'medium', hoursPerWeek: selectedOpp.hoursPerWeek || 0, hourlyRate: selectedOpp.hourlyRate || 0, employeesAffected: selectedOpp.employeesAffected || 0, implementationCost: selectedOpp.implementationCost || 0 });
+                } else {
+                    setForm({ title: '', description: '', department: 'Marketing', priority: 'medium', hoursPerWeek: 0, hourlyRate: 0, employeesAffected: 0, implementationCost: 0 });
+                }
+                setTab('details');
+            }, [selectedOpp, isModalOpen]);
+
+            if (!isModalOpen) return null;
+
+            const roi = calculateROI(form);
+
+            const handleSave = () => {
+                if (!form.title.trim()) return alert('Title required');
+                selectedOpp ? updateOpp(selectedOpp.id, form) : addOpp(form);
+                closeModal();
+            };
+
+            const handleDelete = () => {
+                if (window.confirm('Delete this opportunity?')) {
+                    deleteOpp(selectedOpp.id);
+                    closeModal();
+                }
+            };
+
+            return (
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={closeModal}>
+                    <div className="card w-full max-w-lg max-h-[85vh] overflow-hidden animate-in" onClick={e => e.stopPropagation()}>
+                        {/* Header */}
+                        <div className="flex items-center justify-between p-4 border-b border-dark-100">
+                            <h2 className="text-lg font-semibold text-white">{selectedOpp ? 'Edit Opportunity' : 'New Opportunity'}</h2>
+                            <button onClick={closeModal} className="text-gray-500 hover:text-white transition-colors">
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                            </button>
+                        </div>
+
+                        {/* Tabs */}
+                        <div className="flex gap-4 px-4 pt-3 border-b border-dark-100">
+                            {['details', 'roi'].map(t => (
+                                <button key={t} onClick={() => setTab(t)} className={`pb-3 text-sm font-medium transition-colors ${tab === t ? 'text-gold-500 border-b-2 border-gold-500' : 'text-gray-500 hover:text-gray-300'}`}>
+                                    {t === 'details' ? 'Details' : 'ROI Calculator'}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-4 overflow-y-auto" style={{ maxHeight: 'calc(85vh - 180px)' }}>
+                            {tab === 'details' ? (
+                                <div className="space-y-4">
+                                    <div>
+                                        <label className="block text-xs font-medium text-gray-400 mb-1.5">Title</label>
+                                        <input type="text" value={form.title} onChange={e => setForm({...form, title: e.target.value})} className="input-dark w-full px-3 py-2 rounded-lg text-sm text-white" placeholder="e.g., Invoice Automation" />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium text-gray-400 mb-1.5">Description</label>
+                                        <textarea value={form.description} onChange={e => setForm({...form, description: e.target.value})} className="input-dark w-full px-3 py-2 rounded-lg text-sm text-white resize-none" rows={2} placeholder="Brief description..." />
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label className="block text-xs font-medium text-gray-400 mb-1.5">Department</label>
+                                            <select value={form.department} onChange={e => setForm({...form, department: e.target.value})} className="input-dark w-full px-3 py-2 rounded-lg text-sm text-white">
+                                                {CONFIG.DEPARTMENTS.map(d => <option key={d} value={d}>{d}</option>)}
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-medium text-gray-400 mb-1.5">Priority</label>
+                                            <select value={form.priority} onChange={e => setForm({...form, priority: e.target.value})} className="input-dark w-full px-3 py-2 rounded-lg text-sm text-white">
+                                                <option value="low">Low</option>
+                                                <option value="medium">Medium</option>
+                                                <option value="high">High</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="space-y-4">
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label className="block text-xs font-medium text-gray-400 mb-1.5">Hours/week</label>
+                                            <input type="number" min="0" value={form.hoursPerWeek} onChange={e => setForm({...form, hoursPerWeek: +e.target.value})} className="input-dark w-full px-3 py-2 rounded-lg text-sm text-white" />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-medium text-gray-400 mb-1.5">Hourly Rate (£)</label>
+                                            <input type="number" min="0" value={form.hourlyRate} onChange={e => setForm({...form, hourlyRate: +e.target.value})} className="input-dark w-full px-3 py-2 rounded-lg text-sm text-white" />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-medium text-gray-400 mb-1.5">Employees</label>
+                                            <input type="number" min="0" value={form.employeesAffected} onChange={e => setForm({...form, employeesAffected: +e.target.value})} className="input-dark w-full px-3 py-2 rounded-lg text-sm text-white" />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-medium text-gray-400 mb-1.5">Impl. Cost (£)</label>
+                                            <input type="number" min="0" value={form.implementationCost} onChange={e => setForm({...form, implementationCost: +e.target.value})} className="input-dark w-full px-3 py-2 rounded-lg text-sm text-white" />
+                                        </div>
+                                    </div>
+
+                                    {roi.hasROI && roi.monthlySavings > 0 && (
+                                        <div className="bg-dark-200 rounded-xl p-4 mt-4">
+                                            <div className="text-xs text-gray-500 uppercase tracking-wide mb-3">Projected Returns</div>
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div>
+                                                    <div className="text-2xl font-bold text-gold-500">{formatCurrency(roi.monthlySavings)}</div>
+                                                    <div className="text-xs text-gray-500">Monthly Savings</div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-2xl font-bold text-white">{formatCurrency(roi.yearlySavings)}</div>
+                                                    <div className="text-xs text-gray-500">Yearly Savings</div>
+                                                </div>
+                                                <div>
+                                                    <div className={`text-2xl font-bold ${roi.roiPercentage > 0 ? 'text-emerald-400' : 'text-red-400'}`}>{roi.roiPercentage}%</div>
+                                                    <div className="text-xs text-gray-500">ROI</div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-2xl font-bold text-white">{roi.paybackMonths}<span className="text-sm text-gray-500 ml-1">mo</span></div>
+                                                    <div className="text-xs text-gray-500">Payback</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <p className="text-[11px] text-gray-600 mt-2">Assumes 75% automation rate, 4.33 weeks/month</p>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Footer */}
+                        <div className="flex items-center justify-between p-4 border-t border-dark-100">
+                            {selectedOpp ? (
+                                <button onClick={handleDelete} className="text-sm text-red-400 hover:text-red-300 transition-colors">Delete</button>
+                            ) : <div />}
+                            <div className="flex gap-2">
+                                <button onClick={closeModal} className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors">Cancel</button>
+                                <button onClick={handleSave} className="gold-bg text-dark-500 px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // Portfolio View
+        const Portfolio = () => {
+            const { opportunities, setCurrentView, openModal } = useApp();
+
+            const withROI = opportunities.filter(o => calculateROI(o).monthlySavings > 0);
+            const totalMonthly = withROI.reduce((s, o) => s + calculateROI(o).monthlySavings, 0);
+            const avgROI = withROI.length ? Math.round(withROI.reduce((s, o) => s + calculateROI(o).roiPercentage, 0) / withROI.length) : 0;
+
+            const byStatus = CONFIG.STATUSES.map(s => ({ name: CONFIG.STATUS_LABELS[s], value: opportunities.filter(o => o.status === s).reduce((sum, o) => sum + calculateROI(o).monthlySavings, 0) }));
+            const byDept = CONFIG.DEPARTMENTS.map(d => ({ name: d, value: opportunities.filter(o => o.department === d).reduce((sum, o) => sum + calculateROI(o).monthlySavings, 0) })).filter(d => d.value > 0);
+
+            const top5 = [...opportunities].map(o => ({ ...o, savings: calculateROI(o).monthlySavings })).filter(o => o.savings > 0).sort((a, b) => b.savings - a.savings).slice(0, 5);
+
+            if (withROI.length === 0) {
+                return (
+                    <div className="flex-1 p-6">
+                        <h1 className="text-xl font-semibold text-white mb-6">Portfolio</h1>
+                        <div className="flex flex-col items-center justify-center h-64 text-center">
+                            <p className="text-gray-400 mb-4">Add ROI data to see insights</p>
+                            <button onClick={() => setCurrentView('kanban')} className="text-gold-500 hover:underline text-sm">Go to Pipeline</button>
+                        </div>
+                    </div>
+                );
+            }
+
+            const CustomTooltip = ({ active, payload, label }) => {
+                if (!active || !payload?.length) return null;
+                return (
+                    <div className="card px-3 py-2 text-sm">
+                        <p className="text-white font-medium">{label}</p>
+                        <p className="text-gold-500">{formatCurrency(payload[0].value)}</p>
+                    </div>
+                );
+            };
+
+            return (
+                <div className="flex-1 p-6 overflow-y-auto">
+                    <h1 className="text-xl font-semibold text-white mb-6">Portfolio Overview</h1>
+
+                    {/* Metrics */}
+                    <div className="grid grid-cols-4 gap-4 mb-6">
+                        {[
+                            { label: 'Opportunities', value: opportunities.length },
+                            { label: 'Monthly Savings', value: formatCurrency(totalMonthly), gold: true },
+                            { label: 'Yearly Savings', value: formatCurrency(totalMonthly * 12) },
+                            { label: 'Avg ROI', value: `${avgROI}%` }
+                        ].map((m, i) => (
+                            <div key={i} className="card p-4">
+                                <div className={`text-2xl font-bold ${m.gold ? 'text-gold-500' : 'text-white'}`}>{m.value}</div>
+                                <div className="text-xs text-gray-500 mt-1">{m.label}</div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Charts */}
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                        <div className="card p-4">
+                            <h3 className="text-sm font-medium text-white mb-4">Savings by Status</h3>
+                            <ResponsiveContainer width="100%" height={200}>
+                                <BarChart data={byStatus} layout="vertical">
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2d" />
+                                    <XAxis type="number" tickFormatter={formatCurrency} tick={{ fill: '#6b7280', fontSize: 11 }} />
+                                    <YAxis type="category" dataKey="name" width={80} tick={{ fill: '#6b7280', fontSize: 11 }} />
+                                    <Tooltip content={<CustomTooltip />} />
+                                    <Bar dataKey="value" fill="#c9972c" radius={[0, 4, 4, 0]} />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
+
+                        <div className="card p-4">
+                            <h3 className="text-sm font-medium text-white mb-4">Savings by Department</h3>
+                            <ResponsiveContainer width="100%" height={200}>
+                                <PieChart>
+                                    <Pie data={byDept} cx="50%" cy="50%" innerRadius={50} outerRadius={80} dataKey="value" stroke="none">
+                                        {byDept.map((_, i) => <Cell key={i} fill={CONFIG.CHART_COLORS[i % CONFIG.CHART_COLORS.length]} />)}
+                                    </Pie>
+                                    <Tooltip content={<CustomTooltip />} />
+                                </PieChart>
+                            </ResponsiveContainer>
+                            <div className="flex flex-wrap gap-2 mt-2 justify-center">
+                                {byDept.map((d, i) => (
+                                    <div key={d.name} className="flex items-center gap-1 text-[11px] text-gray-400">
+                                        <span className="w-2 h-2 rounded-full" style={{ background: CONFIG.CHART_COLORS[i % CONFIG.CHART_COLORS.length] }}></span>
+                                        {d.name}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Top 5 */}
+                    <div className="card p-4">
+                        <h3 className="text-sm font-medium text-white mb-4">Top Opportunities</h3>
+                        <div className="space-y-2">
+                            {top5.map((o, i) => (
+                                <div key={o.id} onClick={() => openModal(o)} className="flex items-center justify-between p-3 rounded-lg bg-dark-300 hover:bg-dark-200 cursor-pointer transition-colors">
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-sm font-bold text-gold-600 w-5">{i + 1}</span>
+                                        <div>
+                                            <div className="text-sm text-white">{o.title}</div>
+                                            <div className="text-xs text-gray-500">{o.department}</div>
+                                        </div>
+                                    </div>
+                                    <span className="text-sm font-semibold text-gold-500">{formatCurrency(o.savings)}/mo</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // Matrix View
+        const Matrix = () => {
+            const { opportunities, openModal, setCurrentView } = useApp();
+
+            const withROI = opportunities.map(o => ({ ...o, roi: calculateROI(o) })).filter(o => o.roi.monthlySavings > 0 && o.implementationCost > 0);
+
+            if (withROI.length === 0) {
+                return (
+                    <div className="flex-1 p-6">
+                        <h1 className="text-xl font-semibold text-white mb-6">Priority Matrix</h1>
+                        <div className="flex flex-col items-center justify-center h-64 text-center">
+                            <p className="text-gray-400 mb-4">Add ROI data to see matrix</p>
+                            <button onClick={() => setCurrentView('kanban')} className="text-gold-500 hover:underline text-sm">Go to Pipeline</button>
+                        </div>
+                    </div>
+                );
+            }
+
+            const costs = withROI.map(o => o.implementationCost).sort((a, b) => a - b);
+            const savings = withROI.map(o => o.roi.monthlySavings).sort((a, b) => a - b);
+            const costMid = costs[Math.floor(costs.length / 2)];
+            const savingsMid = savings[Math.floor(savings.length / 2)];
+
+            const getQuadrant = (o) => {
+                const highS = o.roi.monthlySavings >= savingsMid;
+                const highC = o.implementationCost >= costMid;
+                if (highS && !highC) return 'Quick Wins';
+                if (highS && highC) return 'Major Projects';
+                if (!highS && !highC) return 'Fill-ins';
+                return 'Reconsider';
+            };
+
+            const quadrants = ['Quick Wins', 'Major Projects', 'Fill-ins', 'Reconsider'];
+            const quadrantColors = { 'Quick Wins': 'emerald', 'Major Projects': 'gold', 'Fill-ins': 'gray', 'Reconsider': 'red' };
+
+            const scatterData = withROI.map(o => ({ x: o.implementationCost, y: o.roi.monthlySavings, name: o.title, id: o.id }));
+            const maxCost = Math.max(...withROI.map(o => o.implementationCost)) * 1.2;
+            const maxSavings = Math.max(...withROI.map(o => o.roi.monthlySavings)) * 1.2;
+
+            const MatrixTooltip = ({ active, payload }) => {
+                if (!active || !payload?.length) return null;
+                const d = payload[0].payload;
+                return (
+                    <div className="card px-3 py-2 text-sm">
+                        <p className="text-white font-medium">{d.name}</p>
+                        <p className="text-gray-400">Cost: {formatCurrency(d.x)}</p>
+                        <p className="text-gold-500">Savings: {formatCurrency(d.y)}/mo</p>
+                    </div>
+                );
+            };
+
+            return (
+                <div className="flex-1 p-6 overflow-y-auto">
+                    <h1 className="text-xl font-semibold text-white mb-6">Priority Matrix</h1>
+
+                    {/* Chart */}
+                    <div className="card p-4 mb-6">
+                        <ResponsiveContainer width="100%" height={350}>
+                            <ScatterChart margin={{ top: 20, right: 20, bottom: 40, left: 60 }}>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2d" />
+                                <XAxis type="number" dataKey="x" domain={[0, maxCost]} tickFormatter={formatCurrency} tick={{ fill: '#6b7280', fontSize: 11 }} label={{ value: 'Implementation Cost', position: 'bottom', offset: 15, fill: '#6b7280', fontSize: 11 }} />
+                                <YAxis type="number" dataKey="y" domain={[0, maxSavings]} tickFormatter={formatCurrency} tick={{ fill: '#6b7280', fontSize: 11 }} label={{ value: 'Monthly Savings', angle: -90, position: 'insideLeft', offset: -5, fill: '#6b7280', fontSize: 11 }} />
+                                <Tooltip content={<MatrixTooltip />} />
+                                <Scatter data={scatterData} fill="#c9972c" cursor="pointer" onClick={(d) => openModal(opportunities.find(o => o.id === d.id))} />
+                            </ScatterChart>
+                        </ResponsiveContainer>
+                    </div>
+
+                    {/* Quadrants */}
+                    <div className="grid grid-cols-2 gap-4">
+                        {quadrants.map(q => {
+                            const items = withROI.filter(o => getQuadrant(o) === q);
+                            return (
+                                <div key={q} className="card p-4">
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <span className={`w-2 h-2 rounded-full bg-${quadrantColors[q]}-500`}></span>
+                                        <span className="text-sm font-medium text-white">{q}</span>
+                                        <span className="text-xs text-gray-500">({items.length})</span>
+                                    </div>
+                                    {items.length > 0 ? (
+                                        <div className="space-y-1">
+                                            {items.map(o => (
+                                                <div key={o.id} onClick={() => openModal(o)} className="flex items-center justify-between p-2 rounded hover:bg-dark-200 cursor-pointer text-sm">
+                                                    <span className="text-gray-300 truncate">{o.title}</span>
+                                                    <span className="text-xs text-gold-500 ml-2">{formatCurrency(o.roi.monthlySavings)}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p className="text-xs text-gray-600">No items</p>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            );
+        };
+
+        // Loading
+        const Loading = () => (
+            <div className="flex h-screen bg-dark-500">
+                <div className="w-56 bg-dark-400 p-5">
+                    <div className="skeleton h-8 w-24 rounded mb-8"></div>
+                    <div className="skeleton h-6 w-32 rounded mb-3"></div>
+                    <div className="skeleton h-6 w-28 rounded mb-3"></div>
+                    <div className="skeleton h-6 w-24 rounded"></div>
+                </div>
+                <div className="flex-1 p-6">
+                    <div className="skeleton h-8 w-48 rounded mb-6"></div>
+                    <div className="flex gap-4">
+                        {[1,2,3,4,5].map(i => <div key={i} className="skeleton h-64 w-56 rounded-xl"></div>)}
+                    </div>
+                </div>
+            </div>
+        );
+
+        // App
+        const App = () => {
+            const { currentView, isLoading } = useApp();
+
+            if (isLoading) return <Loading />;
+
+            return (
+                <div className="flex h-screen bg-dark-500">
+                    <Sidebar />
+                    <main className="flex-1 overflow-hidden">
+                        {currentView === 'kanban' && <KanbanBoard />}
+                        {currentView === 'portfolio' && <Portfolio />}
+                        {currentView === 'matrix' && <Matrix />}
+                    </main>
+                    <Modal />
+                </div>
+            );
+        };
+
+        // Render
+        ReactDOM.createRoot(document.getElementById('root')).render(<AppProvider><App /></AppProvider>);
+    </script>
+</body>
+</html>

@@ -1,0 +1,441 @@
+The Adobe Stack Manual
+Source of truth for using Firefly, Frame.io, Express, and the supporting pieces at the highest level.
+Built from the Adobe product guides, Firefly Image Model 4 guide, Firefly Video guide, Frame.io v4 guide + Pfeiffer benchmark report, Constellation Research ethics report, and Adobe Express materials.
+
+How to use this doc
+Open this before you start a task, not after. If you're about to prompt Firefly, check the prompt formula. If you're about to set up a review cycle, check the Frame.io section. If something's not in here, it wasn't in the source material, don't guess.
+The tone is operator-first. Every section tells you what the tool does, what controls actually matter, what to type, and what to avoid. If something feels like marketing fluff, it was cut.
+Tools covered: Firefly Image Model 4 / 4 Ultra, Firefly Video, Firefly Services + Custom Models + Style Kits, Frame.io v4, Adobe Express.
+Supporting: commercial safety, Content Credentials, workflow chains, prompt cheat sheets.
+The stack: how the tools actually connect
+Firefly makes the raw asset. Photoshop, Illustrator, Premiere, or After Effects refine it. Express packages it into deliverables and locks the brand. Frame.io is where people review and approve. Custom Models and Style Kits keep output consistent at scale. Content Credentials ride along automatically so commercial use is covered.
+Normal flow:
+Idea → Firefly (image or video) → refine in Creative Cloud → package in Express → review in Frame.io → deliver via Frame.io Shares or Express export.
+Most waste happens when people try to review in Slack, deliver in email, or generate one asset at a time when they need 50. Use the right tool at each stage.
+
+Firefly Image Model 4 and Model 4 Ultra
+Two models, same interface. Pick the right one, then prompt well.
+Which model to pick
+Use case
+Model
+Illustrations, icons, simple objects
+Model 4
+Single animal, single simple portrait
+Model 4
+Seasonal background with copy space
+Model 4
+Abstract backgrounds
+Model 4
+Photoreal landscapes
+Model 4 Ultra
+Detailed human portraits
+Model 4 Ultra
+Medium group of humans
+Model 4 Ultra (still finessing)
+Complex text rendering
+Neither is great, still finessing
+Rule: default to Model 4. Only use Ultra when you specifically need photoreal precision or human detail. Ultra is slower.
+Prompt formula (image)
+Include as many of these as you can. More detail = more precise output.
+Element
+Example
+Subject
+An Asian woman in her mid 40s with couple age lines
+Action
+Walking, jumping, flying, hand to her face
+Angle
+Portrait, side profile, landscape shot, shot from above
+Lighting
+Soft light, dark, backlit flair, golden hour
+Background
+A soft focus background, butterflies in the background
+Color palette
+Warm tones, pastels, black and white
+Style
+Cinematic, hyper-realistic photography, anime-inspired, product feature
+Image type
+An illustration, a portrait, a magazine-style image, a panoramic shot
+Extras that help: camera lens (300mm prime), aperture (f/4), ISO, shutter speed, film grain, light settings. These push output closer to real photo territory.
+Use emotional words to set tone. 'Gentle, love, playful' → heartwarming. 'Powerful, strong, uplifting' → inspiring.
+Don't say 'generate' or 'create'. The model is not a chatbot. It reads the prompt literally. Those words waste space.
+Minimum viable prompt: three words including subject + descriptor + keyword. But three words will give you mediocre output. Write more.
+Controls (image)
+Visual Intensity Slider
+Left = unedited, snapshot-like. Right = stylized, tuned. Nine levels between. Middle is usually a good start. Keep it left if you want raw realism, right if you want magazine polish.
+Effects
+Productivity booster when you can't describe the vibe. Pick from a gallery of pre-built effects. Scandinavian, Minimalism, and Simple work especially well for photoreal output.
+Rule: whatever Effect you pick, repeat it in the prompt. If you pick 'Simple Line Doodle' as Effect, put 'Simple Line Doodle' in the prompt text too. Reinforcement matters.
+Style references
+Upload any image, or pick from the Firefly gallery. The model pulls color, lighting, mood, style from it. Fastest way to get consistent look across multiple generations.
+Composition references
+Locks the layout and structure of an image. Combine with Style Reference when you want both the look AND the layout of a reference image, with a different subject.
+Real example: you have cat photos you love the composition and style of. You want tiger images in that same look. Upload cat photo as Style + Composition reference, prompt for the tiger.
+Iteration workflow
+1. Write prompt with as many formula elements as you can.
+2. Generate, pick one you like.
+3. Click Generate Similar for variations on that direction.
+4. Use Generative Fill or Generative Expand to add elements or change aspect ratio.
+5. Export to Photoshop, Illustrator, or Express to finalize.
+Three to five tries is normal. If you're getting the same wrong thing over and over, your prompt is fighting your control settings.
+What to avoid (image)
+	•	Cartoon Effect + photoreal prompt. Pick one direction and reinforce it in both.
+	•	Expecting follow-up messages to work. Firefly is one-shot per prompt.
+	•	Vague prompts like 'a beautiful sunset.' You'll get slop. Add details or don't bother.
+	•	Ignoring Style Reference when you have a look in your head. You're making it hard for yourself.
+
+Firefly Video
+Generates cinematic video clips. Handles single subjects with simple actions best. Gets worse as you stack complex motion or groups.
+The four modes
+Mode
+When to use
+Image to Video
+Default choice when you have a reference image. Best quality and coherence.
+Text to Video
+No reference image. B-roll, transitions, open-ended ideas.
+Text to Avatar
+Scripts to talking-head videos. Tutorials, explainers, presenter-style content.
+Firefly Video Editor
+Browser timeline. Combine generated clips, add VO, add music.
+Pro move: provide a first frame AND a last frame reference when possible. Coherence jumps.
+Prompt formula (video)
+Element
+Example
+Visual style
+Realistic, animated, artistic, cinematic
+Subject
+A red fox, a young man with vitiligo, a snow leopard cub
+Action
+Running, pacing slowly, climbing over rocks
+Location
+In the mountains, on a rooftop, across rugged terrain
+Lighting
+Golden hour, studio light, dramatic lighting
+Color grade
+Warm tones, cool shadows, muted painterly, high contrast
+Shot Size
+Close-up, medium shot, long shot
+Camera Angle
+Aerial, eye-level, shot from above, low-angle
+Camera Motion
+Zoom in, tilt down, static, handheld, orbit
+Aesthetic
+Serene, mysterious, abstract, documentary, dreamlike
+Minimum 8 words. Maximum 1,800 characters. Don't worry about being short. Detail helps.
+Use strong affirmative verbs and descriptive adjectives. 'Cute, gentle' = soothing. 'Strong, uplifting' = energetic.
+Enhance Prompt: auto-expands whatever you type into a full formula-shaped prompt. Useful when learning. Edit the output before generating.
+Keyframe Cropping: manual control of the crop area over time. Use this when auto-center crop is cutting off something important.
+Controls (video)
+Style Presets
+Quick lock on a visual theme. Make sure your prompt doesn't fight the preset. If Style Preset says cinematic, don't prompt 'raw iPhone footage.'
+Composition Reference
+Upload a reference video. Firefly keeps the structure and layout, generates the new version guided by your prompt. Works in 16:9, 9:16, 1:1.
+Camera Motion
+Two options. Preset: pan, tilt, zoom, orbit. Or upload a reference video and Firefly will match the exact movement, including speed and handheld feel. Reference video gives more specificity, presets are faster.
+Camera Angle and Shot Size
+Standard cinematography terms. Eye-level vs low-angle vs aerial. Close-up vs medium vs long shot. Use them because the model was trained on real camera work.
+Layered elements
+Generate standalone elements with transparent or keyable background. Snow, fog, sparkles, animated stickers, overlay elements. Composite them in Premiere or After Effects later. Don't capture those effects on set if you can generate them.
+Works best with foreground-focused prompts and simple motion for clean edges.
+Advanced tricks
+Frame chaining (longer videos)
+Generate a clip. Take its last frame. Use that frame as the starting image for the next clip. Repeat. Stitch the clips together in Premiere. Builds sequences longer than what Firefly will generate in one pass.
+Pro move: crop or adjust each frame in Express or Premiere before using it as the next starting point. Keeps visual consistency.
+Seamless loops
+Upload the first AND last frame of the loop. Make sure they share similar composition and visuals. Firefly generates the in-between frames and bridges the gap. Natural loop.
+Seeds
+A seed is a number that controls randomness. Same prompt + same settings + same seed = similar output. Change seed = new variation with same instructions. Use seeds when you want consistent iterations across multiple generations.
+Work in 1080p
+If your final needs to be hi-res, generate at 1080p from the start. Don't generate at lower res and upscale.
+Audio generation
+Generate Sound Effects
+Creates royalty-free sound effects from text prompts. One sound at a time. To build a soundscape, generate each element separately and stack them on different tracks.
+Rules: clear and direct prompts ('lion roaring', 'heavy rain on metal roof'). Descriptive adjectives and verbs ('very loud explosion', 'soft explosion'). Commas for multiple descriptors ('robot, sci-fi, futuristic').
+Ambiences: use general descriptions. 'Forest ambience', 'traffic in a busy city.' Don't over-specify.
+What it can't do: speech, music with melody, chord sequences, singing. It can do human sounds like coughs and sneezes, ambient chatter, and percussive hits.
+Foley trick: record yourself clapping or tapping in rhythm with on-screen action. Generate a matching sound effect. Align the generated sound to your recording in the timeline. Natural sync.
+Generate Soundtrack
+Upload your video clip. Firefly analyzes vibe, style, energy, tempo and generates a tailored prompt. You adjust: vibe (mood), style (genre), purpose (use case), energy, tempo.
+Outputs up to 4 variations, automatically matched to your clip's duration.
+Rule: align vibe first, style second. Calm vibe + heavy metal style = unpredictable mix. Fix the mood, then refine the genre.
+Generate Speech
+Text to voiceover. Apply emotion to full sentences, not individual words.
+Input
+Why it matters
+Narration with emotion
+Use character narration: 'He said with joy, "That's amazing!"'
+Numbers / currencies / dates
+Spell them out. '€20' becomes 'twenty euros'.
+Uppercase letters
+Pronounced as letters. 'POC' = 'Pee-Oh-See'.
+Lowercase letters
+Pronounced as a word. 'poc' = 'pock'.
+Language
+Match prompt language to voice language.
+Brackets
+Don't use them. Content inside brackets won't be spoken.
+
+Firefly Services, Custom Models, Style Kits
+This is the scale layer. Not a creative tool. A production engine. Use this when you need volume, consistency, or both.
+Firefly Services (APIs)
+Automates what you'd otherwise do by hand. Turn one hero asset into thousands of variations. Personalize content for different segments, channels, regions. Batch resize, background removal, cropping.
+Key APIs:
+	•	Text to Image with Generative Match: generate brand-styled images without needing brand IP in the output. Match the vibe of a reference image.
+	•	Generative Fill API: expand and fill an owned image with generated content that matches.
+	•	Generative Expand API: reformat one image to multiple aspect ratios automatically.
+Integration: fits into your existing creative workflow. Doesn't replace Photoshop or Express. Extends them.
+Custom Models
+Private models trained on your brand's specific styles and subjects. Generates unlimited on-brand content without prompt gymnastics.
+When to train a Custom Model:
+	•	Recurring campaigns with a signature look
+	•	Branded characters or mascots
+	•	Specific products that need to appear in new scenes
+	•	Brand style that's hard to describe but easy to show
+What you can train on: brand styles, campaign styles, characters, backgrounds, objects, subjects unique to your brand.
+Adobe supports you on curation, captioning, prompting. You don't need massive datasets to get started.
+Style Kits
+Lighter weight than Custom Models. Save and share prompts, settings, presets, templates across a team. Lock a look without training a full model.
+Use Style Kits for shared presets and quick brand consistency. Use Custom Models when you need deeper style lock across unlimited variations.
+
+Frame.io v4
+Cloud creative management platform. Not a review tool anymore. It covers the full creative lifecycle from brief to final delivery.
+Benchmark data: Frame.io was 2-3x faster than unmanaged workflows (email, shared cloud folders, chat apps) across 17 distinct scenarios, 148 individual measurements.
+Four lifecycle stages
+Stage
+What happens
+Creative Concept
+Brief, mood boards, concept sketches, idea validation, stakeholder feedback
+Preproduction
+Schedules, budgets, scripts, tech validation, approvals
+Production
+Asset execution, Camera to Cloud captures, team coordination
+Finalization
+Final edits, multi-stakeholder review and approve, distribution prep
+Frame.io speeds up every stage. Most tools only help with review. This one helps with the whole thing.
+Core features
+File support
+500+ file types including all Adobe formats, RAW camera formats, video and audio codecs, spreadsheets, presentations, text docs. You don't need to convert a file before uploading it.
+Metadata + Collections
+The killer feature. Tag assets with metadata (status, department, round, stakeholder, custom fields). Collections are smart folders that filter by metadata. Find high-res approved videos in 5 seconds instead of opening 40 folders.
+Benchmark: finding and sharing approved assets across 5 groups was 3.6x faster with Collections than with spreadsheet + shared cloud folder.
+Setup tip: don't use flat folders like you would on Dropbox. Use Collections. Define metadata fields specific to your project. Build filters.
+Review + Approve
+Frame-precise comments on video. Drawings directly on images. Upload attachments to illustrate feedback. Multiple stakeholders comment simultaneously, even from a web browser without a Frame.io account.
+Benchmark: 3-minute video with 8 frame-precise comments took 7m54s in Frame.io vs 20m24s downloading and commenting traditionally.
+Camera to Cloud
+Compatible WiFi cameras and iPhone apps send a proxy of every clip to Frame.io the moment you stop recording. Editors connected to Frame.io can start cutting while the shoot is still going. Stakeholders give feedback in real time.
+Multi-location shoots sync to the same project. Also works for still photography on supported pro cameras.
+Real impact: same-day event recaps, faster time from capture to first cut, lower travel costs for stakeholders.
+Shares
+Branded, password-protected links to deliver final assets. Can include ratings, comments, metadata alongside the asset. Access control so only people you invite can see.
+Use case: sending a final campaign package to a client. They see your brand, not Frame.io's default. They can leave comments if you enable it.
+Custom Statuses + Permissions
+Tag assets or work by state ('in review', 'awaiting CD approval', 'ready for delivery'). Teams know what to touch and what to ignore. Granular permissions control who can view, comment, approve, edit, or download.
+Integrations
+Native Premiere Pro integration. APIs for custom connections. Works with compatible cameras and phone apps for C2C. Connects to tools you already use.
+Benchmark numbers (what Frame.io saves)
+Task
+Without Frame.io → With Frame.io
+Project setup + 35GB file upload
+28m 58s → 10m 49s
+Find + share approved assets (5 groups)
+10m 38s → 2m 55s
+Review + select design with creative director + 3 stakeholders
+21m 1s → 6m 41s
+Video review + frame markup (3-min, 8 comments)
+20m 24s → 7m 54s
+Photo shoot review with 3 stakeholders
+45m → 19m 17s
+Average across all benchmarks
+2-3x faster
+These gains compound. A 7-minute save per review, done 10 times a week by 5 stakeholders, is a full working day saved every week.
+How to set up a project
+Don't use flat folder trees. Do this instead:
+1. Create the project with a clear name and stage structure (Concept, Preproduction, Production, Finalization).
+2. Define metadata fields you'll actually use. Round number, approver, status, campaign, market. Fewer is better if people won't fill them in.
+3. Build Collections based on metadata filters so retrieval is instant.
+4. Set custom statuses for your review cycles.
+5. Use branded Shares for client delivery. Set permissions before sending.
+6. If you have a shoot coming up, set up Camera to Cloud before the day. Test it before the shoot starts, not during.
+
+Adobe Express
+Where non-creatives make on-brand content without breaking it. The tool that keeps your creative team from becoming a meme-making service for the rest of the company.
+When to use it
+	•	Marketing teams adapting approved assets for multiple channels
+	•	Sales teams personalizing decks with industry-specific images
+	•	HR, internal comms, employee content
+	•	Localization at scale (auto-translate 40+ languages)
+	•	Anyone non-creative making social posts, PDFs, short videos
+Key features
+Templates
+Thousands of pre-sized templates. Instagram post, story, reel cover, LinkedIn banner, flyer, PDF report, 16:9 deck, whatever. Start from one, not from blank.
+Quick Actions
+One-click tools for common tasks. Resize image, remove background, convert file types, make a QR code. These alone justify Express for most teams.
+Generative Fill + Text Effects
+Firefly-powered. Add, remove, or replace parts of an image with a text prompt. Apply styles or textures to text with a prompt. Same commercial safety as Firefly.
+Adobe Stock access
+195M+ royalty-free photos, videos, audio files built in. No separate subscription if you're on the right plan.
+Brand Kits + Lockable Templates
+This is the enterprise move. Upload brand colors, logos, fonts. Create templates with locked elements (logos, colors, layouts) and unlocked elements (copy, swap images).
+Non-creatives edit what they should. They physically can't break the logo, misalign the layout, or use off-brand colors. The brand team builds once, the rest of the org uses it forever.
+Creative Cloud linking
+Photoshop and Illustrator files link into Express. Edit in Photoshop, the change syncs into every Express doc that uses the asset. Stop re-exporting PNGs.
+Adobe Experience Manager integration
+If your org uses AEM, all brand assets are available directly inside Express. Single source of truth for brand.
+Scale numbers from actual deployments
+From Adobe and Edelman research (referenced in the Express summary):
+	•	70% faster time to market by letting marketers self-serve
+	•	21% higher campaign engagement rate
+	•	30% project capacity increase for client work
+Context: these come from Adobe's own enterprise case studies (IBM, ABB, dentsu). Treat them as upper bound, not guaranteed. Your numbers depend on how locked-down your Brand Kits are and how much your team actually uses templates vs rebuilding from scratch.
+Rules for team use
+	•	Lock everything that must stay (logos, brand colors, safe zones)
+	•	Unlock everything that's supposed to flex (copy, product images, date/location info)
+	•	Build one template set per channel, not one per campaign
+	•	Use Brand Kits so every new doc starts on-brand by default
+	•	If people keep breaking brand, your template isn't locked enough
+
+Commercial safety and Content Credentials
+This is the part that matters when a client or legal team asks 'can we actually use this?' Answer: yes, with caveats. Here's what to say when asked.
+How Firefly was trained
+Adobe Stock (licensed) + public domain + openly licensed content where copyright has expired. No scraped internet data. This is why Adobe can offer commercial use without the IP concerns other generative models carry.
+IP Indemnification
+Enterprise plans can get IP indemnity from Adobe on select Firefly workflows. This means if someone claims the generated content infringes, Adobe will defend you on the covered workflows.
+Important: this only applies to select workflows under certain Adobe enterprise offers. Read the Firefly Legal FAQs. Don't assume every Firefly output is covered, the specific workflow matters.
+Content Credentials (C2PA)
+Firefly output automatically gets Content Credentials attached. This is tamper-evident metadata that works like a nutrition label for the asset. It shows who made it, what tools were used, what edits were made, when.
+Why this matters: it's an open standard adopted by Adobe, Amazon, BBC, Google, Intel, Meta, Microsoft, OpenAI, Sony, and steering committee members at C2PA. Associated Press, Canon, Getty, Nikon, NYT, NVIDIA, Reuters, Shutterstock, WSJ, Washington Post, and TikTok have joined.
+Viewers can inspect credentials by clicking a 'Cr' pin on the asset, or by going to contentcredentials.org/verify.
+What this unlocks
+When a brand, legal team, or enterprise buyer asks 'how do we know what AI was used?', you have an answer. The credential is baked in. This matters more as AI-generated content becomes regulated or contractually restricted.
+If you pitch to clients in media, publishing, finance, or regulated industries, this is a competitive advantage over tools that don't have provenance built in.
+
+Workflow chains (end to end)
+These are the actual sequences. Pick the one that matches your job, run the steps.
+Chain 1: Campaign hero asset
+1. Firefly Image Model 4 Ultra. Full prompt formula + Style Reference for brand look. Generate 5-10 variations.
+2. Pick the best one. Click Generate Similar for tighter variations if needed.
+3. Export to Photoshop. Retouch, generative fill for tweaks, final color grade.
+4. Move to Express. Apply Brand Kit. Resize for every channel variant (IG, LinkedIn, email, web).
+5. Upload to Frame.io. Tag with metadata (campaign, round, stakeholder). Send share link to approvers.
+6. Stakeholders comment directly on the asset. Revise in Photoshop or Express, upload new version.
+7. On approval, move to Final Deliverables collection. Create branded Share for marketing team. Done.
+Chain 2: Branded video campaign
+1. Firefly Image Model 4 for reference frames. Create first frame and last frame in the brand style.
+2. Firefly Video in Image to Video mode. Upload both frames. Generate clips.
+3. For B-roll, Text to Video with the prompt formula.
+4. If you need longer clips, use frame chaining. Generate clip, take last frame, use as start of next.
+5. Open Firefly Video Editor or Premiere. Assemble clips on timeline.
+6. Generate soundtrack in Firefly. Upload your timeline, it analyzes and generates 4 options.
+7. Add sound effects where needed, one per prompt.
+8. Generate speech for voiceover if script-based.
+9. Upload final cut to Frame.io for review. Frame-precise comments across stakeholders.
+10. Final export from Premiere. Deliver via Frame.io Share.
+Chain 3: Personalization at scale
+1. Create hero asset in Photoshop or Firefly.
+2. Call Firefly Services API (Generative Expand + Generative Match) to generate 100-1000 variants: different markets, segments, channels.
+3. Lock brand with Custom Model if you've trained one, or Style Kits if not.
+4. Batch export through Express templates for final packaging.
+5. Upload to Frame.io in batch. Use metadata to filter for approval rounds.
+6. Approvers review by Collection, not file by file.
+7. Deliver via Share or push back to Adobe Experience Manager for distribution.
+Chain 4: Live event recap (same day delivery)
+1. Set up Camera to Cloud on compatible cameras before the event. Test before day-of.
+2. Editor starts working from home or office the moment shooting begins.
+3. Clips upload to Frame.io in real time. Editor pulls the best ones into Premiere.
+4. For missing B-roll, generate with Firefly Video (Text to Video).
+5. For motion graphics, use layered/transparent Firefly elements composited in After Effects.
+6. Rough cut in Premiere. Upload to Frame.io. Stakeholders review on mobile.
+7. Revise, final cut, export, deliver via Frame.io Share. Same day.
+
+Prompt cheat sheet
+Image prompt
+Format:
+[Subject] [Action] [Angle] [Lighting] [Background] [Color palette] [Style] [Image type]
+Example (photoreal): 'Twilight portrait [image type] of a snow-flecked Himalayan snow leopard [subject] poised on a jagged granite outcrop [action], icy breath visible in the crisp mountain air; the sinking sun casts a cool blue-violet ambiance while a warm rim-light skims the feline's dense spotted fur [context]. Shot on a full-frame DSLR, 300mm prime, f/4, ISO 320, 1/2000s [light settings], capturing pin-sharp detail, subtle color contrast between cold shadows and amber highlights [colors], and a rugged, nature photojournalism magazine style wilderness aesthetic [style].'
+Example (illustration): 'Illustration [image type] of a giant fantasy monster made of clouds and mist [subject] rampaging through a modern city [action], dramatic perspective, detailed illustration, vibrant colors, cinematic lighting, anime-inspired style [style], dynamic action, people running, blue sky with fluffy clouds [context].'
+Video prompt
+Format:
+[Visual style] [Subject] [Action] [Location] [Lighting] [Color grade] [Shot Size] [Camera Angle] [Camera Motion] [Aesthetic]
+Example: 'Realistic video [visual style] of a snow leopard cub [subject] climbing over rocky terrain in a high-altitude mountain pass [location]. The cub's fur shifts with each movement as it navigates the uneven ground [action], occasionally pausing to look around. The background features jagged cliffs and a pale, overcast sky [lighting, color grade], casting cool shadows across the rocks. Captured in a medium shot [Shot Size] from a high-angle perspective [Camera Angle], the camera tracks the cub's movement from behind [Camera Motion]. The overall tone is raw and intimate, with crisp textures and a cool, natural palette [aesthetic].'
+Sound effect prompt
+Format: [descriptive adjective] [sound source], [additional descriptor]
+Examples:
+	•	'heavy rain on a metal roof'
+	•	'very loud explosion, sharp attack'
+	•	'robot, sci-fi, futuristic'
+	•	'forest ambience' (for background)
+	•	'indistinct chatter of crowd nearby'
+Speech prompt rules
+	•	Apply emotion to full sentences, not individual words
+	•	Use character narration for nuance: He said with joy, 'That's amazing!'
+	•	Spell out numbers and currencies: 'twenty euros' not '€20'
+	•	Uppercase = letters spoken as letters. 'POC' = 'Pee-Oh-See'
+	•	Lowercase = word spoken as word. 'poc' = 'pock'
+	•	Match prompt language to voice language
+	•	No brackets, content inside won't be spoken
+
+When to pick which tool
+Task
+Tool
+Single image, simple subject
+Firefly Image Model 4
+Photoreal portrait or complex scene
+Firefly Image Model 4 Ultra
+Short cinematic video clip
+Firefly Video (Image to Video)
+B-roll or filler video
+Firefly Video (Text to Video)
+Talking-head explainer from script
+Firefly Video (Text to Avatar)
+Stitch generated clips together
+Firefly Video Editor or Premiere
+One hero asset into 1,000 variants
+Firefly Services APIs
+Lock a brand style across unlimited output
+Custom Models
+Share presets with a team
+Style Kits
+Non-creatives making social content
+Adobe Express
+Team templates locked to brand
+Express + Brand Kit
+Resize, bg removal, file conversion, QR code
+Express Quick Actions
+Localize content across 40+ languages
+Express auto-translate
+Review video with frame-precise comments
+Frame.io
+Same-day event recap
+Frame.io + Camera to Cloud
+Client delivery with branded link
+Frame.io Shares
+Multi-stakeholder approval cycle
+Frame.io
+Generate sound effects for video
+Firefly Generate Sound Effects
+Generate music soundtrack
+Firefly Generate Soundtrack
+Generate voiceover from script
+Firefly Generate Speech
+Commercial safety + IP coverage
+Firefly on Enterprise plan (select workflows)
+
+What to avoid (across the stack)
+	•	Cartoon Effect paired with photoreal prompts. Pick one direction and reinforce it across both.
+	•	Conversational follow-ups to Firefly. It doesn't work that way. Each prompt is independent.
+	•	Vague prompts. 'A beautiful sunset' will give you mediocre output. Use the formula.
+	•	Using shared cloud folders for creative review. Benchmarks show you're losing 2-3x the time.
+	•	Skipping Style Reference or Composition Reference when you have a specific look in mind.
+	•	Using Generate Sound Effects for music. It doesn't do melody or singing. Use Generate Soundtrack instead.
+	•	Conflicting vibe and style in Soundtrack. Align vibe first, refine style second.
+	•	Flat folder structure in Frame.io. Use Collections and metadata or retrieval becomes a time sink.
+	•	Hand-generating hundreds of variants when Firefly Services API does it in one call.
+	•	Treating Express as a toy. It's where most of an org's social content gets made once templates are locked.
+	•	Assuming all Firefly output is IP-indemnified. Only select workflows on enterprise plans are covered. Read the Legal FAQs.
+	•	Setting up Camera to Cloud on event day. Test it a week before, not thirty minutes before first shot.
+	•	Upscaling from low-res Firefly Video output. Generate at 1080p from the start if final needs hi-res.
+	•	Changing Brand Kits mid-campaign without updating locked templates. You'll re-break what was working.
+
+Closing
+This doc is a reference, not a plan. A plan is what you do with it. Before you start a project, skim the chain that matches. Before you prompt, check the formula. Before you review, check the Frame.io section. That's it.
+If something here stops being accurate because Adobe ships new features or changes the UI, update this doc. Out-of-date manual is worse than no manual.

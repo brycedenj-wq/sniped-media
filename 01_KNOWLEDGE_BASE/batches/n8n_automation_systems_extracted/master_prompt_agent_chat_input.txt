@@ -1,0 +1,40 @@
+# n8n workflow · Master Prompt Agent - Chat Input.json
+internal name: Prompt Writing Agent - Text Input
+node count: 8
+
+## Trigger nodes
+- @n8n/n8n-nodes-langchain.chatTrigger :: When chat message received
+
+## AI / model nodes
+- @n8n/n8n-nodes-langchain.lmChatOpenRouter :: Multi AI Brain :: model=?
+- @n8n/n8n-nodes-langchain.agent :: Master Prompt Agent :: model=?
+    system-prompt: =You are a master prompt writing agent. You have 2 sub execution workflows that can develop the best prompts for the users depending on if they are wanting to use a deep reasoning model or a normal model. Your objective is to trigger these workflows accordingly and show the response back to the user.
+- @n8n/n8n-nodes-langchain.chainLlm :: Basic LLM Chain :: model=?
+- @n8n/n8n-nodes-langchain.lmChatOpenRouter :: Formatting Brain :: model=?
+
+## Tool nodes
+- @n8n/n8n-nodes-langchain.toolWorkflow :: Normal Models
+- @n8n/n8n-nodes-langchain.toolWorkflow :: Deep Reasoning Models
+
+## Integration / action nodes
+(none)
+
+## Other nodes
+- @n8n/n8n-nodes-langchain.outputParserStructured :: JSON Structure
+
+## Data-flow edges (connections)
+- Multi AI Brain -> ['Master Prompt Agent']
+- Normal Models -> ['Master Prompt Agent']
+- Deep Reasoning Models -> ['Master Prompt Agent']
+- Master Prompt Agent -> []
+- When chat message received -> ['Basic LLM Chain']
+- Basic LLM Chain -> ['Master Prompt Agent']
+- Formatting Brain -> ['Basic LLM Chain']
+- JSON Structure -> ['Basic LLM Chain']
+
+## Credential references (NAMES ONLY)
+openRouterApi/Prompt Engineer Agent
+
+## Sticky-note documentation (verbatim)
+(none)
+

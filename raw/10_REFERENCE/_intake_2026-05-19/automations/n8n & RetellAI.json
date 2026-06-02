@@ -1,0 +1,899 @@
+{
+  "name": "n8n & RetellAI",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "# **Step 1**\n## **Connecting into Retell AI**",
+        "height": 336,
+        "width": 182,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        16
+      ],
+      "id": "895ab660-41fd-4c18-bb40-655f711a1e9b",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 336,
+        "width": 832,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        16
+      ],
+      "id": "5a2484e3-7ac4-4abc-86c0-0acd6fdc264c",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# **Step 2**\n## **Activities  Webhook**",
+        "height": 368,
+        "width": 182,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        368
+      ],
+      "id": "96cf08f7-5c74-4118-bf9e-ee807fc1fa7d",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 368,
+        "width": 1216,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        368
+      ],
+      "id": "9b492144-5d4d-4c8f-86ce-64a9152b2c8d",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Conversation Transcript:\n{{ $json.body.call.transcript }}\n\nService Interested in:\n{{ $json.body.args.service_interested_in }}\n\nCustomer name:\n{{ $json.body.args.customer_name }}",
+        "options": {
+          "systemMessage": "=<REPLACE WITH YOUR AGENT INSTRUCTION>\n\nYour objective is to complete the task of storing information into airtable or searching the internet based on the users request. When searching the internet please keep the responses concise (1 -2 sentences max) and easy to understand for the user."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        144,
+        48
+      ],
+      "id": "a7382cf5-4928-4277-8880-d713eafc711e",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        208
+      ],
+      "id": "fd34b260-0055-4b23-bad3-79ef3a077e26",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "pVebLmNMBp3DGLT3",
+          "name": "Ops Management"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "messages": {
+          "message": [
+            {
+              "content": "={{ $json.body.message.toolCalls[0].function.arguments.customer_name }}"
+            }
+          ]
+        },
+        "options": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.perplexityTool",
+      "typeVersion": 1,
+      "position": [
+        336,
+        208
+      ],
+      "id": "28593c99-7694-4b24-883c-f5a6a9ab68dd",
+      "name": "Perplexity Search",
+      "credentials": {
+        "perplexityApi": {
+          "id": "tvYjWkYSjmRxaANj",
+          "name": "The AI Edge"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appTKjuGmLVaXV6xz",
+          "mode": "list",
+          "cachedResultName": "n8n & Vapi Demo",
+          "cachedResultUrl": "https://airtable.com/appTKjuGmLVaXV6xz"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbluWjpmi6nLLbxvH",
+          "mode": "list",
+          "cachedResultName": "Function Call",
+          "cachedResultUrl": "https://airtable.com/appTKjuGmLVaXV6xz/tbluWjpmi6nLLbxvH"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Customer Name": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Customer_Name', ``, 'string') }}",
+            "Interested In": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Interested_In', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Interested In",
+              "displayName": "Interested In",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        496,
+        208
+      ],
+      "id": "2cb238d8-7cad-47d9-a0e2-af8ad88022f0",
+      "name": "Create a Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "ZpO4kp1jgz77HRK1",
+          "name": "The AI Edge"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appTKjuGmLVaXV6xz",
+          "mode": "list",
+          "cachedResultName": "n8n & Vapi Demo",
+          "cachedResultUrl": "https://airtable.com/appTKjuGmLVaXV6xz"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblXNLd3o2bERDMFH",
+          "mode": "list",
+          "cachedResultName": "End Of Call Report",
+          "cachedResultUrl": "https://airtable.com/appTKjuGmLVaXV6xz/tblXNLd3o2bERDMFH"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Cost": "={{ $json.body.call.call_cost.combined_cost / 100 }}",
+            "Call Duration (Seconds)": "={{ $json.body.call.duration_ms / 1000 }}",
+            "Average Response Latency (MS)": "={{ ( $json.body.call.latency.llm.max + $json.body.call.latency.llm.min ) / 2 }}",
+            "Assistant ID": "={{ $json.body.call.agent_id }}",
+            "Conversation ID": "={{ $json.body.call.call_id }}",
+            "Summary of Call": "={{ $json.body.call.call_analysis.call_summary }}",
+            "Transcript": "={{ $json.body.call.transcript }}",
+            "End Reason": "={{ $json.body.call.disconnection_reason }}",
+            "Call Recording URL": "={{ $json.body.call.recording_url }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Conversation ID",
+              "displayName": "Conversation ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Assistant ID",
+              "displayName": "Assistant ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Summary of Call",
+              "displayName": "Summary of Call",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Transcript",
+              "displayName": "Transcript",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Average Response Latency (MS)",
+              "displayName": "Average Response Latency (MS)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "End Reason",
+              "displayName": "End Reason",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Call Duration (Seconds)",
+              "displayName": "Call Duration (Seconds)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Cost",
+              "displayName": "Cost",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Call Recording URL",
+              "displayName": "Call Recording URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        352,
+        560
+      ],
+      "id": "44b3585c-0a8a-439d-a1ff-8b537db62856",
+      "name": "Store End Of Call Report Info",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "ZpO4kp1jgz77HRK1",
+          "name": "The AI Edge"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 208,
+        "width": 736,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        752
+      ],
+      "id": "9ef7d09b-4a9e-4e97-a737-c1bc862dfc8f",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "# **Step 3**\n## **Triggering a call**",
+        "height": 208,
+        "width": 182,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        752
+      ],
+      "id": "378b2472-46f4-422c-b967-afa35fa9b6e8",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "5c869f38-399a-4314-aa05-b8822c02922f",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -64,
+        48
+      ],
+      "id": "0847b101-d9d7-462d-a78e-594da4e76077",
+      "name": "Retell AI Cust. Function Trigger",
+      "webhookId": "5c869f38-399a-4314-aa05-b8822c02922f"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        496,
+        48
+      ],
+      "id": "bc044e80-fa03-466c-9ffd-511bfd0689e8",
+      "name": "Respond to Retell AI"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "41acc862-104f-4269-9f70-592fc469962b",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -64,
+        416
+      ],
+      "id": "07ee45cc-a63d-4506-b1c0-219f17b45aa1",
+      "name": "Retell AI Activities Webhook",
+      "webhookId": "41acc862-104f-4269-9f70-592fc469962b"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "call_started",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "79cdda74-d328-44b4-a616-ae35f3df24f0"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "call_started"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "85983452-1728-4405-9685-b53e1026cbaa",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "call_ended",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "call_ended"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "302bdf74-63e0-468c-b1ad-5d62ded1e83d",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "call_analyzed",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "call_analyzed"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        128,
+        400
+      ],
+      "id": "4550a110-282d-48af-b97b-b5c2e1ab460d",
+      "name": "Status of Call"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "16f63256-46cd-4201-88be-69f07f169485",
+              "leftValue": "={{ $json.body.call.disconnection_reason }}",
+              "rightValue": "user_hangup",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        352,
+        416
+      ],
+      "id": "18166fc9-ce4c-48c1-a6fb-adce5fd39c74",
+      "name": "User Hung Up"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        576,
+        432
+      ],
+      "id": "ee652f7d-5263-47eb-8d39-e5f01c5bf0f3",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "8jy5zGgzv4vkqEHM",
+          "name": "The AI Edge"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"Follow-up\": \"Yes or No\",\n\t\"Reason\": \"Concise 1 sentence justification for why to follow-up or not\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        704,
+        432
+      ],
+      "id": "e31b36af-d664-4b82-8219-01a5c73e5c58",
+      "name": "Structured Output"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Call End Reason:\n{{ $json.fields['End Reason'] }}\n\nSummary of call:\n{{ $json.fields.Transcript }}\n\nTranscript of call:\n{{ $json.fields.Transcript }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=<REPLACE WITH YOUR AI AGENT PROMPT>\n\nAnalyse the conversation that just happened with a customer. I need you to identify if someone from the team needs to reach out directly because the conversation either went bad with them or the customer is highly interested in our solution but didn't book a call.\n\nYour objective is to output either 'Yes' or 'No' for the follow-up interaction and 'Reason'"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        560,
+        560
+      ],
+      "id": "9b681f9a-a926-465c-9412-08451df2caad",
+      "name": "Follow Up?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "107909c1-cc79-4e44-a933-a3ea4130efe2",
+              "leftValue": "={{ $json.output['Follow-up'] }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        864,
+        560
+      ],
+      "id": "f6957ea4-e1a5-43a0-b290-8b4a9cf55fc3",
+      "name": "Follow Up?1"
+    },
+    {
+      "parameters": {
+        "formTitle": "Lead Opt In Form",
+        "formDescription": "Fill out this information and one of our agents will reach out soon to qualify you.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "What is your name?",
+              "placeholder": "E.g. John Smith"
+            },
+            {
+              "fieldLabel": "What is your phone number (with country code)?",
+              "placeholder": "E.g. +447123456789"
+            },
+            {
+              "fieldLabel": "Do you consent to our AI Agent calling?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Yes"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -48,
+        784
+      ],
+      "id": "4520df6f-056e-4e0d-a8ba-a020f2d7e356",
+      "name": "On form submission",
+      "webhookId": "096602be-1e5b-4257-93c1-9eb21ee0d2c1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.retellai.com/v2/create-phone-call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer <API KEY>"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"from_number\": \"<YOUR RETELL ID PHONE NUMBER>\",\n  \"to_number\": \"{{ $json['customer phone number (country code)'] }}\",\n  \"override_agent_id\": \"<YOUR AGENT ID>\",\n  \"retell_llm_dynamic_variables\": {\n    \"customer_name\": \"{{ $json['customer name'] }}\"\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        416,
+        784
+      ],
+      "id": "544030b2-f2ca-44a5-ae4f-33b2bd810dbe",
+      "name": "Call Customer"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.retellai.com/v2/create-phone-call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer <token>"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"from_number\": \"<YOUR RETELL AI PHONE NUMBER>\",\n  \"to_number\": \"<CUSTOMER PHONE NUMBER>\",\n  \"override_agent_id\": \"<YOUR AGENT ID>\",\n  \"override_agent_version\": 1,\n  \"agent_override\": {\n    \"agent\": {\n      \"response_engine\": {\n        \"type\": \"retell-llm\",\n        \"llm_id\": \"<YOUR RETELL AI LLM ID>\",\n        \"version\": 0\n      },\n      \"agent_name\": \"Jarvis\",\n      \"voice_id\": \"11labs-Adrian\",\n      \"voice_model\": \"eleven_turbo_v2\",\n      \"fallback_voice_ids\": [\n        \"openai-Alloy\",\n        \"deepgram-Angus\"\n      ],\n      \"voice_temperature\": 1,\n      \"voice_speed\": 1,\n      \"volume\": 1,\n      \"responsiveness\": 1,\n      \"interruption_sensitivity\": 1,\n      \"enable_backchannel\": true,\n      \"backchannel_frequency\": 0.9,\n      \"backchannel_words\": [\n        \"yeah\",\n        \"uh-huh\"\n      ],\n      \"reminder_trigger_ms\": 10000,\n      \"reminder_max_count\": 2,\n      \"ambient_sound\": \"coffee-shop\",\n      \"ambient_sound_volume\": 1,\n      \"language\": \"en-US\",\n      \"webhook_url\": \"YOUR WEBHOOK URL HERE FOR POST CALL ANALYSIS\",\n      \"webhook_timeout_ms\": 10000,\n      \"boosted_keywords\": [\n        \"retell\",\n        \"kroger\"\n      ],\n      \"data_storage_setting\": \"everything\",\n      \"opt_in_signed_url\": true,\n      \"pronunciation_dictionary\": [\n        {\n          \"word\": \"actually\",\n          \"alphabet\": \"ipa\",\n          \"phoneme\": \"ˈæktʃuəli\"\n        }\n      ],\n      \"normalize_for_speech\": true,\n      \"end_call_after_silence_ms\": 600000,\n      \"max_call_duration_ms\": 3600000,\n      \"voicemail_option\": {\n        \"action\": {\n          \"type\": \"static_text\",\n          \"text\": \"<YOUR VOICEMAIL MESSAGE>\"\n        }\n      },\n      \"post_call_analysis_data\": [\n        {\n          \"type\": \"string\",\n          \"name\": \"customer_name\",\n          \"description\": \"<YOUR CUSTOMERS NAME>\",\n          \"examples\": [\n            \"John Doe\",\n            \"Jane Smith\"\n          ]\n        }\n      ],\n      \"post_call_analysis_model\": \"gpt-4o-mini\",\n      \"begin_message_delay_ms\": 1000,\n      \"ring_duration_ms\": 30000,\n      \"stt_mode\": \"fast\",\n      \"vocab_specialization\": \"general\",\n      \"allow_user_dtmf\": true,\n      \"user_dtmf_options\": {\n        \"digit_limit\": 25,\n        \"termination_key\": \"#\",\n        \"timeout_ms\": 8000\n      },\n      \"denoising_mode\": \"noise-cancellation\",\n      \"pii_config\": {\n        \"mode\": \"post_call\",\n        \"categories\": []\n      }\n    },\n    \"retell_llm\": {\n      \"model\": \"gpt-4.1\",\n      \"s2s_model\": \"gpt-4o-realtime\",\n      \"model_temperature\": 0,\n      \"model_high_priority\": true,\n      \"tool_call_strict_mode\": true,\n      \"knowledge_base_ids\": [\n        \"<string>\"\n      ],\n      \"kb_config\": {\n        \"top_k\": 3,\n        \"filter_score\": 0.6\n      },\n      \"start_speaker\": \"user\",\n      \"begin_after_user_silence_ms\": 2000,\n      \"begin_message\": \"<THE FIRST MESSAGE THE CUSTOMER WILL HEAR>\"\n    },\n    \"conversation_flow\": {\n      \"model_choice\": {\n        \"type\": \"cascading\",\n        \"model\": \"gpt-5\",\n        \"high_priority\": true\n      },\n      \"model_temperature\": 0.7,\n      \"tool_call_strict_mode\": true,\n      \"knowledge_base_ids\": [\n        \"kb_001\",\n        \"kb_002\"\n      ],\n      \"kb_config\": {\n        \"top_k\": 3,\n        \"filter_score\": 0.6\n      },\n      \"start_speaker\": \"agent\",\n      \"begin_after_user_silence_ms\": 2000\n    }\n  },\n  \"metadata\": {},\n  \"retell_llm_dynamic_variables\": {\n    \"customer_name\": \"<CUSTOM VARIABLES E.G. CUSTOMER NAME>\"\n  },\n  \"custom_sip_headers\": {\n    \"X-Custom-Header\": \"<CUSTOM HEADER VALUE>\"\n  },\n  \"ignore_e164_validation\": true\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        176,
+        784
+      ],
+      "id": "1b70d980-8516-43f9-aa31-4010bb9202f9",
+      "name": "Starter Template (Create Agent from Scratch)"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Retell AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity Search": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a Record": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store End Of Call Report Info": {
+      "main": [
+        [
+          {
+            "node": "Follow Up?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retell AI Cust. Function Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retell AI Activities Webhook": {
+      "main": [
+        [
+          {
+            "node": "Status of Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Status of Call": {
+      "main": [
+        [],
+        [
+          {
+            "node": "User Hung Up",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Store End Of Call Report Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Follow Up?",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Follow Up?",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Follow Up?": {
+      "main": [
+        [
+          {
+            "node": "Follow Up?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "c0ec552a-c394-49ca-8d2d-c0e752f4b8cf",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8e19fa74944b9dcd6868709031c9aa3bce12c850be41a7bacd11dbae58569d60"
+  },
+  "id": "w8y0sDO3rtpkG6oC",
+  "tags": []
+}

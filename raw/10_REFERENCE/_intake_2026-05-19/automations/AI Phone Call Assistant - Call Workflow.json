@@ -1,0 +1,644 @@
+{
+  "name": "AI Phone Call Assistant - Call Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "# **Step 1**\n## **Connecting into Vapi**",
+        "height": 336,
+        "width": 182,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        -32
+      ],
+      "id": "1aa9e400-0cb2-4339-99f5-1348902d6b8e",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 336,
+        "width": 832,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        96,
+        -32
+      ],
+      "id": "fafdaa8f-bd74-496d-9340-0e8ddc78f1be",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# **Step 2**\n## **Activities  Webhook**",
+        "height": 240,
+        "width": 182,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        320
+      ],
+      "id": "72a91879-3128-410d-95cb-3656c3f57e8f",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 240,
+        "width": 832,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        96,
+        320
+      ],
+      "id": "6193365c-a4f8-4c6f-8737-bfae8060fbfa",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Client Name: {{ $json.body.message.toolCalls[0].function.arguments.customer_name }}\n\nClient Budget: {{ $json.body.message.toolCalls[0].function.arguments.budget }}\n\nArea Interest in: {{ $json.body.message.toolCalls[0].function.arguments.property_area_interested_in }}",
+        "options": {
+          "systemMessage": "=You are a helpful assistant, you need to store all of the key information in the Airtable tool that you have access to. Please store the customer's budget and the area they are interested in within the interested in column and the customer name in the customer name column. "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        352,
+        0
+      ],
+      "id": "020d7e47-c97c-48d5-bd1b-7d38d57ca5b3",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        288,
+        160
+      ],
+      "id": "0e63fb07-5be5-407c-a144-b856de6e201d",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "pVebLmNMBp3DGLT3",
+          "name": "Ops Management"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "messages": {
+          "message": [
+            {
+              "content": "={{ $json.body.message.toolCalls[0].function.arguments.customer_name }}"
+            }
+          ]
+        },
+        "options": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.perplexityTool",
+      "typeVersion": 1,
+      "position": [
+        544,
+        160
+      ],
+      "id": "35c8be17-3fbb-46c5-8792-c30f1886d1ba",
+      "name": "Perplexity Search",
+      "credentials": {
+        "perplexityApi": {
+          "id": "tvYjWkYSjmRxaANj",
+          "name": "The AI Edge"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appTKjuGmLVaXV6xz",
+          "mode": "list",
+          "cachedResultName": "n8n & Vapi Demo",
+          "cachedResultUrl": "https://airtable.com/appTKjuGmLVaXV6xz"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbluWjpmi6nLLbxvH",
+          "mode": "list",
+          "cachedResultName": "Function Call",
+          "cachedResultUrl": "https://airtable.com/appTKjuGmLVaXV6xz/tbluWjpmi6nLLbxvH"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Customer Name": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Customer_Name', ``, 'string') }}",
+            "Interested In": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Interested_In', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Interested In",
+              "displayName": "Interested In",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        704,
+        160
+      ],
+      "id": "16176ea8-3b92-4584-b1c1-cc201ed3ca4c",
+      "name": "Create a Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "ZpO4kp1jgz77HRK1",
+          "name": "The AI Edge"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"results\": [\n        {\n            \"toolCallId\": \"{{ $('Vapi Tool Trigger').item.json.body.message.toolCalls[0].id }}\",\n            \"result\": \"{{ $json.output }}\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        704,
+        0
+      ],
+      "id": "926b8e8f-d79b-48ab-b333-f2bbbc4fa70e",
+      "name": "Respond to Vapi"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "5c869f38-399a-4314-aa05-b8822c02922f",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        144,
+        0
+      ],
+      "id": "0c7833a9-0193-42c9-9c04-e7e98cfa5266",
+      "name": "Vapi Tool Trigger",
+      "webhookId": "5c869f38-399a-4314-aa05-b8822c02922f"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "41acc862-104f-4269-9f70-592fc469962b",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        144,
+        368
+      ],
+      "id": "b7f3f9e9-eddf-4576-a6b8-a47975af7e16",
+      "name": "Vapi End Of Call Report",
+      "webhookId": "41acc862-104f-4269-9f70-592fc469962b"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appTKjuGmLVaXV6xz",
+          "mode": "list",
+          "cachedResultName": "n8n & Vapi Demo",
+          "cachedResultUrl": "https://airtable.com/appTKjuGmLVaXV6xz"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblXNLd3o2bERDMFH",
+          "mode": "list",
+          "cachedResultName": "End Of Call Report",
+          "cachedResultUrl": "https://airtable.com/appTKjuGmLVaXV6xz/tblXNLd3o2bERDMFH"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Cost": "={{ $json.body.message.cost }}",
+            "Call Duration (Seconds)": "={{ $json.body.message.durationSeconds }}",
+            "Average Response Latency (MS)": "={{ $json.body.message.artifact.performanceMetrics.turnLatencyAverage }}",
+            "Assistant ID": "={{ $json.body.message.assistant.id }}",
+            "Conversation ID": "={{ $json.body.message.call.id }}",
+            "Summary of Call": "={{ $json.body.message.summary }}",
+            "Transcript": "={{ $json.body.message.transcript }}",
+            "End Reason": "={{ $json.body.message.endedReason }}",
+            "Call Recording URL": "={{ $json.body.message.artifact.recordingUrl }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Conversation ID",
+              "displayName": "Conversation ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Assistant ID",
+              "displayName": "Assistant ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Summary of Call",
+              "displayName": "Summary of Call",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Transcript",
+              "displayName": "Transcript",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Average Response Latency (MS)",
+              "displayName": "Average Response Latency (MS)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "End Reason",
+              "displayName": "End Reason",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Call Duration (Seconds)",
+              "displayName": "Call Duration (Seconds)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Cost",
+              "displayName": "Cost",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Call Recording URL",
+              "displayName": "Call Recording URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        352,
+        368
+      ],
+      "id": "0a0ed2c6-6178-4d33-9884-c7d284281a48",
+      "name": "Store End Of Call Report Info",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "ZpO4kp1jgz77HRK1",
+          "name": "The AI Edge"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "107909c1-cc79-4e44-a933-a3ea4130efe2",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        560,
+        368
+      ],
+      "id": "49cb7ec1-5eb1-4912-bcb5-93ec63937e1f",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 192,
+        "width": 464,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        96,
+        576
+      ],
+      "id": "c307aa3e-587c-415d-a274-a0920a402139",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "# **Step 3**\n## **Triggering a call**",
+        "height": 192,
+        "width": 182,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        576
+      ],
+      "id": "05e54df6-b700-4897-935d-9db7fd0e81cf",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.vapi.ai/call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer <YOUR API KEY>"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"customers\": [\n    {\n      \"number\": \"{{ $json['What is your phone number? (With country code)'] }}\",\n      \"name\": \"{{ $json['What is your name?'] }}\"\n    }\n  ],\n  \"assistantId\": \"<YOUR ASSISTANT ID>\",\n  \"phoneNumberId\": \"<YOUR PHONE NUMBER ID>\",\n  \"assistant\": {\n    \"transcriber\": {\n      \"provider\": \"deepgram\"\n    },\n    \"model\": {\n      \"provider\": \"openai\",\n      \"model\": \"gpt-4o-mini\",\n      \"messages\": [\n        {\n          \"role\": \"system\",\n          \"content\": \"<YOUR AI AGENT PROMPT>\"\n        }\n      ]\n    },\n    \"firstMessage\": \"<YOUR FIRST MESSAGE>\",\n    \"firstMessageMode\": \"assistant-speaks-first-with-model-generated-message\",\n    \"voice\": {\n      \"provider\": \"11labs\",\n      \"voiceId\": \"andrea\",\n      \"model\": \"eleven_turbo_v2_5\",\n      \"language\": \"en\"\n    },\n    \"voicemailDetection\": {\n      \"provider\": \"twilio\",\n      \"enabled\": true\n    },\n    \"backgroundSound\": \"office\",\n    \"serverMessages\": [\n      \"end-of-call-report\"\n    ],\n    \"server\": {\n      \"url\": \"<YOUR WEBHOOK URL>\"\n    },\n    \"silenceTimeoutSeconds\": 30,\n    \"maxDurationSeconds\": 900,\n    \"backgroundDenoisingEnabled\": true,\n    \"voicemailMessage\": \"<YOUR VOICE MAIL MESSAGE>\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        352,
+        608
+      ],
+      "id": "eb510af2-b0dd-4047-814e-73e05c5b3bb6",
+      "name": "Vapi Call"
+    },
+    {
+      "parameters": {
+        "formTitle": "Customer Contacted",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "What is your name?"
+            },
+            {
+              "fieldLabel": "What is your phone number with country code"
+            },
+            {
+              "fieldLabel": "Opt In",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Yes"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        160,
+        608
+      ],
+      "id": "87e280b4-3104-43e6-a1cd-035bb243da9e",
+      "name": "On form submission",
+      "webhookId": "efd35c27-2143-45b6-9876-291e40ea8760"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Vapi",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity Search": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a Record": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vapi Tool Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vapi End Of Call Report": {
+      "main": [
+        [
+          {
+            "node": "Store End Of Call Report Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store End Of Call Report Info": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Vapi Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vapi Call": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d255380e-4f3a-4081-9a4e-e64eff264ee9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8e19fa74944b9dcd6868709031c9aa3bce12c850be41a7bacd11dbae58569d60"
+  },
+  "id": "iXzlTLeuAIZjfi9S",
+  "tags": []
+}

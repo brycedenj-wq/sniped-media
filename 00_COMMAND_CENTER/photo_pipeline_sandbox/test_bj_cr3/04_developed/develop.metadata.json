@@ -1,0 +1,103 @@
+{
+  "source_cr3": "/Users/sniper/AI-Brain-Refinery/00_COMMAND_CENTER/photo_pipeline_sandbox/test_bj_cr3/01_intake/source.CR3",
+  "dimensions_wh": [
+    6022,
+    4024
+  ],
+  "rawpy_postprocess_params": {
+    "use_camera_wb": true,
+    "no_auto_bright": true,
+    "output_bps_initial": 16,
+    "output_color": "sRGB"
+  },
+  "v3_luxury_translation_applied": {
+    "main_tone_curve_points": [
+      [
+        0,
+        14
+      ],
+      [
+        35,
+        32
+      ],
+      [
+        128,
+        128
+      ],
+      [
+        205,
+        215
+      ],
+      [
+        255,
+        240
+      ]
+    ],
+    "red_curve_points": [
+      [
+        0,
+        0
+      ],
+      [
+        64,
+        62
+      ],
+      [
+        192,
+        196
+      ],
+      [
+        255,
+        255
+      ]
+    ],
+    "green_curve_points": [
+      [
+        0,
+        4
+      ],
+      [
+        64,
+        62
+      ],
+      [
+        192,
+        194
+      ],
+      [
+        255,
+        253
+      ]
+    ],
+    "blue_curve_points": [
+      [
+        0,
+        6
+      ],
+      [
+        64,
+        64
+      ],
+      [
+        192,
+        192
+      ],
+      [
+        255,
+        245
+      ]
+    ],
+    "hsl_ranges_applied": "9 color ranges from v3 LUXURY XMP",
+    "global_saturation_pct": -8,
+    "color_grade_midtone_warm_push": "R+3 / B-1 on midtone-luminance pixels (60-200 average)",
+    "grain_stddev": 3.75,
+    "sharpening_unsharp_mask": "amount 0.18 sigma 1.0",
+    "texture_clarity": "NOT applied (deferred to v2)"
+  },
+  "approximation_notes": [
+    "Lightroom HSL is range-blended; OpenCV HSV approximation is hard-range; ~75-85% match expected",
+    "rawpy default demosaic vs Lightroom Adobe Neutral profile may introduce subtle chromatic shift",
+    "Texture and Clarity require high-pass blending; deferred to engine v2",
+    "Tone curves applied via numpy interp should match Lightroom closely"
+  ]
+}

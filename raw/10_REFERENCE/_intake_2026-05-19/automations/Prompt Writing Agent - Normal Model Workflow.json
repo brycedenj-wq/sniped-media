@@ -1,0 +1,232 @@
+{
+  "name": "Prompt Engineer Agent - Normal model",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "Prompt"
+            },
+            {
+              "name": "Associated Model"
+            },
+            {
+              "name": "Tone"
+            },
+            {
+              "name": "Use Case"
+            },
+            {
+              "name": "Preferred Model"
+            },
+            {
+              "name": "Desired output"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "fbff009a-2d01-4c76-99af-5db7d9010095",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bf67a6c8-bfa7-49b4-ab60-d08474573989",
+              "name": "OpenAI Model - Normal",
+              "value": "openai/gpt-4.5-preview",
+              "type": "string"
+            },
+            {
+              "id": "a75c2809-3906-4f91-8f1d-fad471838007",
+              "name": "OpenAI Model - Mini",
+              "value": "openai/gpt-4o-mini",
+              "type": "string"
+            },
+            {
+              "id": "25a0436f-44b7-46cf-a84b-121b0b07c8f8",
+              "name": "Anthropic Model - Normal",
+              "value": "anthropic/claude-3.7-sonnet",
+              "type": "string"
+            },
+            {
+              "id": "7d2a7117-dfd4-4670-a5e5-59a9405dea8e",
+              "name": "Anthropic Model - Mini",
+              "value": "anthropic/claude-3.5-haiku",
+              "type": "string"
+            },
+            {
+              "id": "882eda9f-59a5-4269-aced-0e5e5697a26e",
+              "name": "Grok",
+              "value": "x-ai/grok-3-beta",
+              "type": "string"
+            },
+            {
+              "id": "ac5b80ca-1da3-4982-8f25-623a57b9f820",
+              "name": "Gemini Model",
+              "value": "google/gemini-flash-1.5",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        0
+      ],
+      "id": "1df8c0b6-e6db-4c77-af06-f06a6c634710",
+      "name": "Specify the latest Models"
+    },
+    {
+      "parameters": {
+        "model": "={{ $json.text }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        800,
+        160
+      ],
+      "id": "f606a3a6-7b7b-4002-a5c1-51625b29b6d6",
+      "name": "Multi AI Brain",
+      "credentials": {
+        "openRouterApi": {
+          "id": "knGjnDA8DrcjAmGO",
+          "name": "Prompt Engineer Agent"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Your Objective is to analyse the request from the user and identify the most suitable model based on the options below for the AI Agent to leverage. You are to output the best model for this use case with no additional information. E.g. Only output '{{ $json['OpenAI Model - Normal'] }}' if they want a fast/cost optimised response from OpenAI.\n\nHere is the request from the user:\nCurrent prompt to be improved - {{ $('When Executed by Another Workflow').item.json.Prompt }}\nDesired Model - {{ $('When Executed by Another Workflow').item.json['Associated Model'] }}\nTone - {{ $('When Executed by Another Workflow').item.json.Tone }}\nUse Case - {{ $('When Executed by Another Workflow').item.json['Use Case'] }}\n\nHere are the available options:\n{{ $json['OpenAI Model - Normal'] }}\n{{ $json['OpenAI Model - Mini'] }}\n{{ $json['Anthropic Model - Normal'] }}\n{{ $json['Anthropic Model - Mini'] }}\n{{ $json.Grok }}\n{{ $json['Gemini Model'] }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        460,
+        0
+      ],
+      "id": "b9fcb735-4e9a-4c9e-a956-8effe49d200e",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": "=google/gemini-flash-1.5",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        460,
+        160
+      ],
+      "id": "fa6e77ff-4cde-408e-b3b4-d5d9c7dca268",
+      "name": "OpenAI Brain",
+      "credentials": {
+        "openRouterApi": {
+          "id": "knGjnDA8DrcjAmGO",
+          "name": "Prompt Engineer Agent"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Users Prompt:{{ $('When Executed by Another Workflow').item.json.Prompt }}\nModel Required:{{ $('When Executed by Another Workflow').item.json['Associated Model'] }}\nTone:{{ $('When Executed by Another Workflow').item.json.Tone }}\nUse Case: {{ $('When Executed by Another Workflow').item.json['Use Case'] }}\n\nThe users desired output: {{ $('When Executed by Another Workflow').item.json['Desired output'] }}\n\nIf the user desires a Useable Output please do not share the prompt with them but rather the final output they are looking for. E.g. a completed email or marketing material copy write instead of the prompt.",
+        "options": {
+          "systemMessage": "=You are an expert prompt writing assistant based on the information provided by the user you are to output an excellent prompt that is suitable for the user to leverage. Your output is incredibly important to the user. Do not include * in your output.\n\nYou need to structure the prompt in the following way:\n#Goal/objective\n##Role\n##Tone\n##Formatting\n##Instructions\n##Context\n##Examples (between 5 - 20 inputs and output examples)\n#Critical Information\n\n---\nExample prompt:\n# Goal/Objective  \nCraft an engaging and informative blog post about the benefits and practices of mindfulness meditation for beginners, aiming to inspire action.\n\n## Role  \nYou are a wellness coach specializing in mindfulness with years of experience guiding newcomers.\n\n## Tone  \nConversational, encouraging, and empathetic, focusing on building trust with the reader.\n\n## Formatting  \n- Title: Eye-catching and relevant  \n- Intro: Briefly define mindfulness meditation  \n- Subheadings: Clearly marked sections for easy navigation  \n- Bullet Points: For listing benefits and practical tips  \n- Conclusion: Strong closing with actionable next steps  \n- Word Count: 800-1,200 words or as necessary for clarity.\n\n## Instructions  \n1. Start with an engaging intro that connects emotionally with the audience.  \n2. Define mindfulness meditation, touching on its background.  \n3. List at least six benefits using concise bullet points.  \n4. Provide practical beginner tips, ensuring each is actionable.  \n5. Conclude with motivating thoughts or a challenge to begin.  \n6. Adapt content complexity for a general audience.\n\n### Example Inputs and Outputs\n\n1. Example 1.  \n   -> Input: Write an introduction for the blog post that captures the essence of mindfulness meditation.  \n   -> Output: In today’s fast-paced world, we often find ourselves rushing from one task to another, losing touch with our inner selves. Mindfulness meditation offers a powerful tool to slow down and reconnect with the present moment. By focusing our attention and fostering a sense of awareness, we can unlock a deeper understanding of ourselves and cultivate a pathway to peace and clarity.\n\n2. Example 2.  \n   -> Input: List the benefits of mindfulness meditation based on recent studies. \n   -> Output:  \n   - Reduces stress and anxiety levels  \n   - Enhances emotional well-being  \n   - Improves focus and concentration  \n   - Promotes better sleep quality  \n   - Boosts creativity and problem-solving skills  \n   - Fosters a greater sense of self-awareness  \n\n3. Example 3.  \n   -> Input: Provide actionable tips for beginners looking to start practicing mindfulness meditation.  \n   -> Output:  \n   - Start with just 5 minutes a day: Find a quiet space and focus on your breath.  \n   - Use guided meditation apps: Try apps like Headspace or Calm for structured sessions.  \n   - Set a consistent schedule: Incorporate meditation into your morning or evening routine.  \n   - Keep a mindfulness journal: Reflect on your thoughts and feelings after each session.  \n   - Join a local meditation group: Connect with others for support and motivation.  \n   - Don’t strive for perfection: Allow your mind to wander and gently bring it back to the present.  \n\n4. Example 4.  \n   -> Input: Write a compelling conclusion that encourages readers to start their mindfulness journey.  \n   -> Output: Now is the perfect time to embark on your mindfulness journey. As you take these initial steps, remember that progress is not about perfection; it's about creating a habit that nurtures your mind and soul. Challenge yourself to commit to just a few minutes each day, and watch how your life transforms with greater clarity, peace, and resilience. Take that first step today—you deserve it!\n\n5. Example 5.  \n   -> Input: Suggest expert quotes or insights to include in the blog post.  \n   -> Output: According to Jon Kabat-Zinn, the creator of the Mindfulness-Based Stress Reduction program, 'Mindfulness is not just a way to deal with stress; it's also a way to enhance our capacity to enjoy life.' Similarly, expert Tara Brach says, 'The more we can be with our thoughts and feelings, the more fully we can engage with our life.' Integrating these powerful insights can help underscore the importance and impact of mindfulness meditation.\n\n## Context  \nTarget readers are aged 25-45, interested in self-improvement but may have little experience with meditation.\n\n# Critical Information  \nUse evidence-based claims, include quotes from experts where relevant, and promote inclusivity and self-compassion throughout the content."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        820,
+        0
+      ],
+      "id": "831b73fd-b050-4156-bea6-4eea7753fc11",
+      "name": "Normal Prompt Writing Agent "
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Specify the latest Models",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Specify the latest Models": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Multi AI Brain": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Normal Prompt Writing Agent ",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Normal Prompt Writing Agent ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Brain": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "fba0c463-c292-4b9f-a0b4-cba8a012a855",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4e192f249964673206e059fcdcd3b4ad4ad7b222e5dc8a5a87c6433db9685e53"
+  },
+  "id": "vUol9bo4V6XBI68c",
+  "tags": []
+}

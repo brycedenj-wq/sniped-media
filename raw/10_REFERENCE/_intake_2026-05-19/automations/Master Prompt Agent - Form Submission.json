@@ -1,0 +1,436 @@
+{
+  "name": "Prompt Engineer Agent - Form Master",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        160,
+        200
+      ],
+      "id": "fd390be4-a76c-4557-8347-cb32f7c5fe23",
+      "name": "Multi AI Brain",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pYAdREJDwCr6hbf5",
+          "name": "Prompt Engineer Agent"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "Normal_Model",
+        "description": "=Call this tool to write the majority of prompts if the user specifies a Normal or Fast model here: {{ $json['What type of model are you using?'] }}",
+        "workflowId": {
+          "__rl": true,
+          "value": "vUol9bo4V6XBI68c",
+          "mode": "list",
+          "cachedResultName": "The AI Edge — Prompt Engineer Agent - Normal model"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Prompt": "={{ $json.Prompt }}",
+            "Associated Model": "={{ $json['What type of model are you using?'] }}",
+            "Tone": "={{ $json.Tone }}",
+            "Use Case": "={{ $json['Use Case'] }}",
+            "Preferred Model": "={{ $json['Do you have a preferred vendor?'] }}",
+            "Desired output": "={{ $('Capture Request').item.json['Useable Output or Prompt'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Associated Model",
+              "displayName": "Associated Model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Tone",
+              "displayName": "Tone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Use Case",
+              "displayName": "Use Case",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Preferred Model",
+              "displayName": "Preferred Model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Desired output",
+              "displayName": "Desired output",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        620,
+        200
+      ],
+      "id": "8543d499-3b54-484d-8123-56b90def06ea",
+      "name": "Normal Models"
+    },
+    {
+      "parameters": {
+        "name": "deep_reasoning_model",
+        "description": "=Only call this tool if the user wants a deep reasoning model output. This will be specified here: {{ $json['What type of model are you using?'] }}",
+        "workflowId": {
+          "__rl": true,
+          "value": "tqcDMICfLhkAFdE5",
+          "mode": "list",
+          "cachedResultName": "The AI Edge — Prompt Engineer Agent - Deep Reasoning"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Prompt": "={{ $json.Prompt }}",
+            "Model Preference": "={{ $json['Do you have a preferred vendor?'] }}",
+            "Use Case": "={{ $json['Use Case'] }}",
+            "Tone": "={{ $json.Tone }}",
+            "Associated Model": "={{ $json['What type of model are you using?'] }}",
+            "Desired Output": "={{ $('Capture Request').item.json['Useable Output or Prompt'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Associated Model",
+              "displayName": "Associated Model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Tone",
+              "displayName": "Tone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Use Case",
+              "displayName": "Use Case",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Model Preference",
+              "displayName": "Model Preference",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Desired Output",
+              "displayName": "Desired Output",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        460,
+        200
+      ],
+      "id": "5bfd45c2-c13a-44c1-874c-fe77f7bdcda5",
+      "name": "Deep Reasoning Models"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Users current prompt:{{ $json.Prompt }}\nModel Type:{{ $json['What type of model are you using?'] }}\nPreferred Vendor: {{ $json['Do you have a preferred vendor?'] }}\nTone:{{ $json.Tone }}\nUse Case:{{ $json['Use Case'] }}\nUser desires a: {{ $json['Useable Output or Prompt'] }}",
+        "options": {
+          "systemMessage": "=You are a master prompt writing agent. You have 2 sub execution workflows that can develop the best prompts for the users depending on if they are wanting to use a deep reasoning model or a normal model. Your objective is to trigger these workflows accordingly and show the response back to the user."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        220,
+        0
+      ],
+      "id": "987a80ea-8063-436b-b08d-a1a72b249cb3",
+      "name": "Master Prompt Agent"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "Your Output",
+        "completionMessage": "={{ $json.output }}",
+        "options": {
+          "customCss": ":root {\n    /* Font Properties */\n    --font-family: 'Inter', sans-serif; /* Change font to Inter */\n    --font-weight-normal: 400;\n    --font-weight-bold: 600;\n    --font-size-body: 12px;\n    --font-size-label: 14px;\n    --font-size-test-notice: 12px;\n    --font-size-input: 14px;\n    --font-size-header: 20px;\n    --font-size-paragraph: 14px;\n    --font-size-link: 12px;\n    --font-size-error: 12px;\n    --font-size-html-h1: 28px;\n    --font-size-html-h2: 20px;\n    --font-size-html-h3: 16px;\n    --font-size-html-h4: 14px;\n    --font-size-html-h5: 12px;\n    --font-size-html-h6: 10px;\n    --font-size-subheader: 14px;\n\n    /* Colors */\n    --color-background: #050A30; /* Soft light background */\n    --color-test-notice-text: #1e90ff; /* Notice text in a brighter blue */\n    --color-test-notice-bg: #e0f0ff; /* Light blue background for notices */\n    --color-test-notice-border: #1e88e5; /* Border for notice boxes */\n    --color-card-bg: #ffffff; /* White card background */\n    --color-card-border: #3c8dbc; /* Blue border for cards */\n    --color-card-shadow: rgba(60, 141, 188, 0.1); /* Soft blue shadow */\n    --color-link: #1e90ff; /* Link color in bright blue */\n    --color-header: #0d3a66; /* Darker shade of blue for headers */\n    --color-label: #3a3a3a; /* Dark gray for labels */\n    --color-input-border: #add8e6; /* Light blue input borders */\n    --color-input-text: #1c1c1c; /* Dark text for input */\n    --color-focus-border: #007BFF; /* Focused border color blue */\n    --color-submit-btn-bg: #007bff; /* Bright blue button background */\n    --color-submit-btn-text: #ffffff; /* White text for buttons */\n    --color-error: #ff6b6b; /* Error color in red */\n    --color-required: #ff6d5a; /* Highlight color for required items */\n    --color-clear-button-bg: #add8e6; /* Light blue for clear button background */\n    --color-html-text: #2c3e50; /* Dark text for HTML elements */\n    --color-html-link: #3498db; /* HTML link color */\n    --color-header-subtext: #7e8186; /* Subtext color */\n\n    /* Border Radii */\n    --border-radius-card: 8px;\n    --border-radius-input: 6px;\n    --border-radius-clear-btn: 50%;\n    --card-border-radius: 8px;\n\n    /* Spacing */\n    --padding-container-top: 24px;\n    --padding-card: 24px;\n    --padding-test-notice-vertical: 12px;\n    --padding-test-notice-horizontal: 24px;\n    --margin-bottom-card: 16px;\n    --padding-form-input: 12px;\n    --card-padding: 24px;\n    --card-margin-bottom: 16px;\n\n    /* Dimensions */\n    --container-width: 448px;\n    --submit-btn-height: 48px;\n    --checkbox-size: 18px;\n\n    /* Others */\n    --box-shadow-card: 0px 4px 16px 0px var(--color-card-shadow);\n    --opacity-placeholder: 0.5;\n}"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        660,
+        0
+      ],
+      "id": "79acf78a-db40-4abd-a13b-3f3092d0b3d6",
+      "name": "Output Prompt/Useable Output",
+      "webhookId": "b6775c98-65a2-48cd-99a9-5be81ff89be0"
+    },
+    {
+      "parameters": {
+        "formTitle": "Prompt Engineer Agent",
+        "formDescription": "An AI Agent that will help you produce amazing prompts to improve the outputs you're getting from the AI models you interact with.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Prompt",
+              "placeholder": "Please write your prompt in here.....",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "What type of model are you using?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Deep Reasoning"
+                  },
+                  {
+                    "option": "Normal"
+                  },
+                  {
+                    "option": "Fast Response"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Do you have a preferred vendor?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Google"
+                  },
+                  {
+                    "option": "OpenAI"
+                  },
+                  {
+                    "option": "Anthropic"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Tone",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Serious"
+                  },
+                  {
+                    "option": "Business"
+                  },
+                  {
+                    "option": "Casual"
+                  },
+                  {
+                    "option": "Sarcastic"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Use Case",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Marketing"
+                  },
+                  {
+                    "option": "Sales"
+                  },
+                  {
+                    "option": "HR"
+                  },
+                  {
+                    "option": "C-suite"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Useable Output or Prompt",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Useable Output"
+                  },
+                  {
+                    "option": "Prompt"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "75a30d9d-09f1-42dd-8cb0-1ff11605a83d",
+      "name": "Capture Request",
+      "webhookId": "c494a51a-f953-4823-9fa1-002d361b533f"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Multi AI Brain": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Master Prompt Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normal Models": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Prompt Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deep Reasoning Models": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Prompt Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Master Prompt Agent": {
+      "main": [
+        [
+          {
+            "node": "Output Prompt/Useable Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Capture Request": {
+      "main": [
+        [
+          {
+            "node": "Master Prompt Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b9f79ab5-2c83-4515-bed3-3a14614450e4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4e192f249964673206e059fcdcd3b4ad4ad7b222e5dc8a5a87c6433db9685e53"
+  },
+  "id": "kEwvaTIvlSliDl9G",
+  "tags": []
+}

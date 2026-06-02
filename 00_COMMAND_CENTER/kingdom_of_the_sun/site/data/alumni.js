@@ -1,0 +1,58 @@
+// Kingdom of the Sun alumni. Source: 2025 program book.
+export const headliners = [
+  { name: "Joel Embiid", note: "2023 NBA MVP · No. 3 Pick" },
+  { name: "Dwight Howard", note: "Hall of Fame 2025 · 8x All-Star" },
+  { name: "Kwame Brown", note: "No. 1 Overall Pick" },
+];
+
+export const coaches = [
+  { name: "Joe Mazzulla", note: "NBA Champion Head Coach" },
+  { name: "Dan Hurley", note: "2x NCAA Champion Head Coach" },
+];
+
+// 30+ NBA players who came through the Kingdom, with NBA careers.
+export const nbaPlayers = [
+  { name: "Joel Embiid", years: "2014-Current" },
+  { name: "Dwight Howard", years: "2004-2022" },
+  { name: "Kwame Brown", years: "2001-2013" },
+  { name: "Christian Laettner", years: "1992-2005" },
+  { name: "Jamal Mashburn", years: "1993-2004" },
+  { name: "Kerry Kittles", years: "1996-2005" },
+  { name: "Sherman Douglas", years: "1989-2001" },
+  { name: "Vernon Maxwell", years: "1988-2001" },
+  { name: "Jamaal Magloire", years: "2000-2012" },
+  { name: "Thaddeus Young", years: "2007-Current" },
+  { name: "JJ Barea", years: "2006-2020" },
+  { name: "Michael Carter-Williams", years: "2013-2023" },
+  { name: "Nassir Little", years: "2019-Current" },
+  { name: "Matt Geiger", years: "1992-2002" },
+  { name: "DeShawn Stevenson", years: "2000-2013" },
+  { name: "Langston Galloway", years: "2014-2022" },
+  { name: "Frank Johnson", years: "1981-1994" },
+  { name: "Derek Harper", years: "1983-1999" },
+  { name: "Mike Brittain", years: "1985-1987" },
+  { name: "David Rivers", years: "1988-1992" },
+  { name: "Dyron Nix", years: "1989-1990" },
+  { name: "Tom Hammonds", years: "1989-2001" },
+  { name: "Chris Corchiani", years: "1991-1994" },
+  { name: "Doug Edwards", years: "1993-1996" },
+  { name: "Ed Stokes", years: "1993-1998" },
+  { name: "Michael Smith", years: "1994-2001" },
+  { name: "Corey Beck", years: "1995-1999" },
+  { name: "John Amaechi", years: "1995-2003" },
+  { name: "Jumaine Jones", years: "1999-2007" },
+  { name: "Alvin Jones", years: "2001-2002" },
+  { name: "Chris Jefferies", years: "2002-2004" },
+  { name: "Robert Swift", years: "2004-2009" },
+  { name: "Joey Graham", years: "2005-2011" },
+  { name: "Orien Greene", years: "2005-2011" },
+  { name: "Stephen Graham", years: "2005-2011" },
+  { name: "Alexander Johnson", years: "2006-2008" },
+  { name: "Chris Richard", years: "2007-2010" },
+  { name: "Javaris Crittenton", years: "2007-2009" },
+  { name: "Alonzo Gee", years: "2009-2017" },
+  { name: "Lance Thomas", years: "2011-2020" },
+  { name: "Travis Leslie", years: "2011-2012" },
+  { name: "Kelan Martin", years: "2019-Current" },
+  { name: "Brice Sensabaugh", years: "2023-Current" },
+];

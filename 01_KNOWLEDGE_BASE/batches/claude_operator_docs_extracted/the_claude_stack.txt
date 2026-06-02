@@ -1,0 +1,2456 @@
+THE OPERATING LAYER UNDERNEATH THE STACK SERIES
+
+THE CLAUDE STACK
+
+How a working photographer runs a business at agency scale
+
+  The first four Stacks are craft volumes. Direction on set, production
+  pre-shoot, revenue in the business, attention in the market. This
+  volume is different. It is the operating layer that makes all four
+  possible to run at the same time by one person. Context architecture,
+  skills, commands, sub-agents, workspaces, and the working practice of
+  using AI as force multiplier rather than as a chatbot. Every other
+  volume produces at roughly twice the throughput once this one is in
+  place.
+
+THE FIVE VOLUMES
+
+  Direction / Production / Revenue / Attention / Claude
+
+Prologue
+
+The first four Stacks cover the craft. On-set direction, pre-shoot
+production, the business architecture, and the attention system that
+makes the business findable. Each one is a complete system in its own
+right. Each one demands daily practice to run correctly. Together they
+describe a working photography practice in full.
+
+Run all four by hand and one person runs out of hours somewhere around
+month three. The Direction work is the work. The Production work is the
+setup. The Revenue work is the invoicing and the pricing and the
+outreach. The Attention work is the daily content production across
+seven to nine platforms. Nobody does all four without leverage. The
+photographer who tries ends up doing two of the four adequately and the
+other two not at all.
+
+This volume is the leverage. Not a sixth craft layer. The operating
+system that runs underneath the other four.
+
+  The prompt is the last 5 percent. The other 95 percent is the context
+  architecture.
+
+The shift in thinking matters more than any specific technique. Most
+photographers interact with Claude by typing into a blank chat window
+and hoping. The working operator treats Claude as a configurable system:
+workspaces loaded with business context, skills defined as reusable
+workflows, commands that trigger multi-step operations in one line,
+sub-agents specialized for different parts of the practice, and MCP
+connections into the tools the business actually uses. The gap between
+the two modes of use is not small. The operator mode produces outputs
+that read as coming from a small team. The chat-window mode produces
+generic text the photographer has to rewrite anyway.
+
+This book covers the full operator mode. From the basic prompt structure
+through workspace architecture, skills, commands, sub-agents, agent
+teams, MCP servers, Cowork, Dispatch, and the specific Claude stack for
+a working portrait and commercial photography practice. Also covered:
+the book-writing workflow specifically, since this series is itself an
+artifact of that workflow.
+
+What each part covers
+
+- Part I. The operating principle. Why context beats prompting. The 95/5
+  rule. The difference between chat use and operator use.
+
+- Part II. Prompting fundamentals. The three-part prompt. Few-shot
+  examples. Chain of thought. XML tags. Iteration discipline.
+
+- Part III. Projects. Persistent context containers. Project knowledge.
+  Custom instructions. Styles. Memory.
+
+- Part IV. Artifacts, Deep Research, and the chat layer. The
+  consumer-facing features and when each one fits.
+
+- Part V. Claude Code and the workspace. The CLAUDE.md file. The folder
+  structure. How the workspace itself becomes the product.
+
+- Part VI. Skills. What a skill is. How to build one. When to use one. A
+  photography-specific skill library.
+
+- Part VII. Commands. One-liner automations. The file pattern. Worked
+  examples for a working practice.
+
+- Part VIII. Sub-agents and agent teams. Specialist delegation. Tool
+  scoping. Hub-and-spoke versus shared scratchpad. When to escalate
+  complexity.
+
+- Part IX. MCP servers. External tool integration. Priority connections
+  for photographers. Token overhead management.
+
+- Part X. Cowork and Dispatch. Desktop autonomy. Mobile triggering. The
+  asynchronous work layer.
+
+- Part XI. The photographer's Claude stack. Mapping Claude capabilities
+  onto the Direction, Production, Revenue, and Attention Stacks.
+
+- Part XII. Writing books with Claude. The workflow that produced this
+  series. Context management, chapter drafting, editing loops, query
+  letters, and publishing preparation.
+
+- Part XIII. The operator sequence. Day 1 through Year 2+.
+
+- Appendices. CLAUDE.md template, skill library, command library,
+  sub-agent library, MCP priority list, one-page wall chart.
+
+Part I: The Operating Principle
+
+Read this part before any other. The techniques in the rest of the book
+only pay off if the operating principle is understood first. The
+principle is a shift in how Claude is mentally categorized. The
+techniques are the mechanical consequences of that shift.
+
+1.1 Claude is not a chatbot
+
+The default mental model most users apply to Claude is that of a chat
+interface. Open a window. Type a question. Read the answer. Close the
+window. This mental model is accurate for roughly 10 percent of the use
+cases and terrible for the other 90 percent.
+
+The accurate mental model: Claude is an operating system for work. The
+operating system has a file structure, a context layer, a skill layer, a
+command layer, and an agent layer. The work is done inside that
+structure, not inside a chat window. The chat window is one of several
+interfaces into the system. When the operator thinks of Claude as an OS,
+the entire set of techniques in this book become obvious. When the
+operator thinks of Claude as a chatbot, the techniques read as overkill.
+
+  Stop writing better prompts. Start building better workspaces.
+
+1.2 The 95/5 rule
+
+Any given interaction with Claude has two inputs: the prompt (what you
+type) and the context (everything else the system knows about you, the
+work, and how you want it done).
+
+- 5 percent of output quality comes from the prompt.
+
+- 95 percent comes from the context.
+
+The consequence is specific. Spending an hour refining a prompt produces
+a marginal improvement. Spending an hour building the context that the
+prompt operates inside produces a compounding improvement across every
+subsequent prompt. A photographer with a well-built workspace types
+short, casual prompts and gets exceptional output. A photographer
+without one types long, detailed prompts and gets mediocre output. The
+two are not close.
+
+1.3 The four operator modes
+
+Claude is used in four distinct operating modes. Each produces different
+outputs. Each is the correct choice for a different kind of work.
+Confusing them produces bad results.
+
+  ------------------------------------------------------------------------
+  Mode          Where It Runs               What It Is For
+  ------------- --------------------------- ------------------------------
+  Chat          claude.ai in a browser, or  One-off questions, quick
+                the desktop or mobile app   drafts, creative exploration,
+                                            research that does not need to
+                                            be saved or iterated on across
+                                            sessions
+
+  Projects      claude.ai within a Project  Ongoing work where context
+                container                   persists across conversations.
+                                            Books, client engagements, the
+                                            business itself
+
+  Code          Claude Code in a terminal   Workspace-based work with
+                or VS Code                  files on your machine.
+                                            Websites. Documents. Anything
+                                            that benefits from a full
+                                            folder structure and version
+                                            control
+
+  Cowork and    Claude desktop app with     Autonomous background work on
+  Dispatch      Cowork enabled, mobile      your computer. Long-running
+                triggering via Dispatch     tasks. Work triggered from the
+                                            phone while away from the desk
+  ------------------------------------------------------------------------
+
+Most photographers use only Chat mode and wonder why the output quality
+plateaus. Adding Projects is the single biggest jump in output quality
+available. Adding Code and Cowork is the jump that separates hobby use
+from professional use.
+
+1.4 The compound advantage
+
+The context you build today improves every output tomorrow. This is the
+compound advantage that separates operators from chat users.
+
+- A CLAUDE.md file written in week one describes the business. Every
+  prompt that follows in that workspace inherits that description
+  without re-explanation.
+
+- A skill written in week two defines how moodboards are built. Every
+  moodboard request from that point forward follows the skill
+  automatically.
+
+- A command written in week three sequences a full weekly marketing
+  report. Every Monday from that point forward, one line of input
+  produces the report.
+
+- A sub-agent configured in month two is a scoped specialist for wedding
+  inquiries. Every inquiry handled by that agent is answered in the
+  business voice, with the working knowledge about wedding pricing and
+  availability baked in.
+
+None of this is available to the photographer using Chat mode alone. All
+of it is available to the one building the operating system. The gap
+between the two compounds over time. Six months in, the operator
+produces at five times the throughput. Twelve months in, it is ten
+times.
+
+Part II: Prompting Fundamentals
+
+Even with a well-built workspace, individual prompts matter at the
+margin. This part covers the prompt structures and techniques that
+consistently produce better output. The techniques are not new. Apply
+them consistently and the quality of output improves across every Claude
+interface.
+
+2.1 The three-part prompt
+
+Every effective prompt has three components. Omit any one and output
+quality degrades.
+
++-----------------------------------------------------------------------+
+| THE THREE PARTS                                                       |
+|                                                                       |
+| Stage. Who are you? What is the objective? What context should Claude |
+| hold while answering? 'I am a portrait photographer in Los Angeles    |
+| building a Gumroad sales page for a book about directing subjects.'   |
+| This lets Claude filter every downstream decision through a concrete  |
+| lens.                                                                 |
+|                                                                       |
+| Task. What specific action do you want? Write, analyze, build,        |
+| compare, debug, rewrite, summarize, outline, critique. Be precise.    |
+| 'Help me with my website' is vague. 'Rewrite the hero section to lead |
+| with the transformation instead of the feature list' is actionable.   |
+|                                                                       |
+| Rules. Tone, format, length, what to include, what to exclude, what   |
+| 'good' looks like. 'Write in direct field-operator voice. No em       |
+| dashes. No buzzwords. No motivational fluff. Under 200 words.' The    |
+| rules are the guardrails that prevent drift.                          |
++-----------------------------------------------------------------------+
+
+2.2 Few-shot examples
+
+The single most effective technique for getting consistent output. Show
+Claude two or three examples of exactly what you want before asking for
+the next one.
+
++-----------------------------------------------------------------------+
+| Here are three LinkedIn posts that match my voice:                    |
+|                                                                       |
+| [paste post 1]                                                        |
+|                                                                       |
+| [paste post 2]                                                        |
+|                                                                       |
+| [paste post 3]                                                        |
+|                                                                       |
+| Write the next one about [topic] in the same style.                   |
++-----------------------------------------------------------------------+
+
+The examples do more than any amount of adjective-loaded description.
+'Punchy, direct, conversational, professional but not stiff' is vague.
+Three posts that demonstrate exactly what that means is concrete. Claude
+pattern-matches to the examples. Output consistency goes up
+dramatically.
+
+2.3 Chain of thought
+
+Ask Claude to think step by step before answering. Force the reasoning
+out of the implicit and into the explicit.
+
+- 'Before you draft the email, first identify the prospect's likely
+  three objections to the offer.'
+
+- 'Before you write the pricing page, first list the five most common
+  client objections to the middle tier.'
+
+- 'Before you write the blog post, first outline the single argument you
+  are making and the three supporting claims.'
+
+Chain of thought produces deeper reasoning on the work that requires it.
+Simple tasks do not need it and should not use it (the explicit
+reasoning adds tokens and time for no benefit). Complex tasks benefit
+enough to justify the cost.
+
+2.4 XML tags for structure
+
+When the prompt is long or contains multiple distinct inputs, wrap the
+parts in XML tags so Claude can parse them reliably.
+
++-----------------------------------------------------------------------+
+| <context>                                                             |
+|                                                                       |
+| I am a portrait photographer in Los Angeles. My current book is       |
+|                                                                       |
+| The Direction Stack, sold on Gumroad. My voice is direct and          |
+|                                                                       |
+| field-operator, no em dashes.                                         |
+|                                                                       |
+| </context>                                                            |
+|                                                                       |
+| <task>                                                                |
+|                                                                       |
+| Rewrite the email below so the opening is concrete rather than        |
+|                                                                       |
+| generic, and the CTA is more direct.                                  |
+|                                                                       |
+| </task>                                                               |
+|                                                                       |
+| <rules>                                                               |
+|                                                                       |
+| - No em dashes                                                        |
+|                                                                       |
+| - No buzzwords or motivational fluff                                  |
+|                                                                       |
+| - Under 150 words                                                     |
+|                                                                       |
+| - Keep the PS line                                                    |
+|                                                                       |
+| </rules>                                                              |
+|                                                                       |
+| <email>                                                               |
+|                                                                       |
+| [paste the email]                                                     |
+|                                                                       |
+| </email>                                                              |
++-----------------------------------------------------------------------+
+
+2.5 Iterate, do not restart
+
+When the first output is 70 percent right, the instinct of new users is
+to start a fresh conversation. This is almost always wrong. Restarting
+loses all the context Claude has accumulated in the conversation.
+Refining within the conversation uses that context as a foundation for
+the next version.
+
+- 'The tone is right but the second paragraph is too long. Tighten it to
+  two sentences.'
+
+- 'Keep everything the same but change the opening line to something
+  more concrete.'
+
+- 'This version lost the field-operator voice. Bring it back while
+  keeping the structural changes.'
+
+Refinement within a conversation produces better results than starting
+fresh because Claude already knows what you want, what you rejected, and
+which direction you are pulling. The second draft inside the
+conversation is typically 90 percent right. The third is usually
+shippable.
+
+2.6 The common mistakes
+
+- Asking Claude to 'be creative' without constraints. Constraints
+  produce better creative output than open-ended freedom. Pick a
+  specific constraint, hand it over, and let Claude work inside it.
+
+- Treating Claude like a search engine. It is a reasoning partner. Ask
+  it to analyze, compare, recommend, and weigh tradeoffs. Not just
+  retrieve.
+
+- Not uploading context. If you have a brief, a document, a brand guide,
+  or reference material, attach it. Claude with your files is
+  dramatically better than Claude working from description alone.
+
+- Writing one massive prompt instead of having a conversation. Break
+  complex work into steps. Let Claude do one thing well, review, then
+  move to the next.
+
+- Using Claude for a task that does not need Claude. Simple lookups,
+  quick calculations, and things you already know are not Claude tasks.
+  Save the bandwidth for work where the reasoning matters.
+
+Part III: Projects and Persistent Context
+
+A Project is the single highest-leverage upgrade available to a Claude
+user still working only in chat windows. A Project is a container where
+context persists across conversations. Everything uploaded, every custom
+instruction, every style rule stays loaded for every new chat inside the
+Project. The re-explanation cost drops to zero.
+
+3.1 When to use Projects
+
+Projects fit ongoing work with consistent context. The test is simple:
+would you benefit from Claude remembering the background across
+sessions? If yes, the work belongs in a Project.
+
+- Your photography business as a whole. Pricing. Services. Voice rules.
+  Brand assets. Client roster.
+
+- A book you are writing. Like the Direction Stack or any of the
+  companion Stacks. All chapters, outline, voice guide, and reference
+  material stay loaded.
+
+- A specific client engagement. Wedding couples. Commercial brands.
+  Ongoing content retainers. Everything specific to that client
+  persists.
+
+- A launch. Sales page copy, email sequence, launch timeline, and assets
+  all live in the Project together.
+
+3.2 Project knowledge
+
+Project Knowledge is the documents, guides, brand assets, SOPs, and
+reference material you upload to the Project. Claude searches this
+knowledge before answering. Treat it as your private database that
+Claude consults on every response.
+
+- Upload your brand guide. Claude applies it automatically.
+
+- Upload your voice rules (no em dashes, no buzzwords, no motivational
+  fluff). Claude honors them across every conversation.
+
+- Upload your pricing sheet. Claude references it when drafting
+  proposals.
+
+- Upload the current manuscript of a book in progress. Claude writes the
+  next chapter with the existing voice and structure.
+
+- Upload past client case studies. Claude pulls examples from real work
+  instead of generic illustrations.
+
+The discipline: upload early, upload everything relevant, keep it
+organized. A Project with 40 well-organized reference documents produces
+better output than a Project with 400 disorganized ones. Quality of
+context beats quantity.
+
+3.3 Custom instructions
+
+Instructions that apply to every conversation in the Project. Set once.
+Govern everything.
+
++-----------------------------------------------------------------------+
+| VOICE RULES                                                           |
+|                                                                       |
+| - No em dashes. Treated as an AI tell and hard prohibition.           |
+|                                                                       |
+| - No buzzwords or motivational fluff.                                 |
+|                                                                       |
+| - No two-sentence pivot closers.                                      |
+|                                                                       |
+| - Grounded field-operator tone, not consultant tone.                  |
+|                                                                       |
+| FORMAT RULES                                                          |
+|                                                                       |
+| - Prose, not bullets, unless the structure is genuinely a list.       |
+|                                                                       |
+| - Numbered lists for sequential steps only.                           |
+|                                                                       |
+| - Tables for comparison across variables.                             |
+|                                                                       |
+| BUSINESS CONTEXT                                                      |
+|                                                                       |
+| - Portrait and commercial photographer in Los Angeles.                |
+|                                                                       |
+| - Founder of Sniped Media.                                            |
+|                                                                       |
+| - Current product: The Direction Stack on Gumroad.                    |
+|                                                                       |
+| - Target audience: working photographers.                             |
++-----------------------------------------------------------------------+
+
+The custom instructions replace the first paragraph of every prompt you
+would otherwise write. Instead of saying 'I am a photographer, please
+write in my voice, no em dashes,' the instructions sit above the
+conversation and Claude operates inside them automatically.
+
+3.4 Styles
+
+A Style is a named bundle of voice and formatting rules that can be
+applied to any conversation. Styles differ from custom instructions in
+that they can be switched on a per-conversation basis rather than being
+Project-wide.
+
+- A 'Field Operator' style that enforces the BJ voice rules.
+
+- A 'Client Email' style for professional outbound communication.
+
+- A 'Social Caption' style for platform-specific short-form writing.
+
+- A 'Book Draft' style that matches the voice of the Direction Stack
+  manuscript.
+
+Select the appropriate style at the start of the conversation. Claude
+operates inside it. Switching styles mid-conversation changes the voice
+without restarting.
+
+3.5 Memory
+
+Claude's memory feature remembers facts about you across conversations.
+Name. Preferences. Work context. Ongoing projects. It builds over time.
+
+- Ask Claude to remember something: 'Remember that my current focus is
+  launching the Attention Stack on Gumroad by the end of the month.'
+  Claude saves it.
+
+- Review memories periodically. Outdated ones can be removed.
+
+- Memory operates across all conversations, not just within a Project.
+  It is the user-level context layer, distinct from Project-level
+  context.
+
+- For shared work, rely on Project custom instructions and knowledge,
+  not memory. Memory is personal to you.
+
+3.6 Google Drive and cloud storage integration
+
+Projects can connect to Google Drive and other cloud storage. Documents
+pull in without manual uploads. Changes to the source document are
+reflected automatically.
+
+- Connect your book manuscript folder. New chapter drafts are available
+  to Claude immediately.
+
+- Connect your brand assets folder. Logo files, brand guides, and
+  reference images stay current.
+
+- Connect your pricing sheet. Updates to the sheet are available in
+  every conversation.
+
+Part IV: Artifacts, Deep Research, and the Chat Layer
+
+The consumer-facing features available inside the chat interface. Each
+one fits a specific kind of work. Using them correctly multiplies the
+output of a chat session. Using them wrongly produces output that should
+have been created elsewhere.
+
+4.1 Artifacts
+
+Artifacts are standalone pieces of content Claude creates in a dedicated
+side panel. Documents, code, interactive applications, diagrams,
+presentations. They render alongside the chat and can be edited,
+iterated, and shared without losing them in the conversation scroll.
+
+When to use Artifacts
+
+- Anything you will use outside the conversation. Reports. Landing
+  pages. React components. Data visualizations. Email templates.
+
+- Content long enough that scrolling back through the chat to find it is
+  a friction. Once a draft passes about 300 words, put it in an
+  Artifact.
+
+- Interactive tools. Calculators. Forms. Dashboards. Mini-applications.
+  Claude can build functional tools, not just static documents.
+
+- Anything you want to iterate on section by section while seeing the
+  whole document at once.
+
+Claude's ability to one-shot
+
+A remarkable capability most users under-use: Claude can produce a fully
+functional Artifact from a single prompt if the prompt is specific
+enough.
+
+- 'Build me an interactive expense tracker with categories, totals, and
+  a chart.'
+
+- 'Create a flowchart of a customer onboarding process with five
+  stages.'
+
+- 'Make a landing page for an energy drink called Future Fuel, with
+  hero, features, and CTA.'
+
+- 'Build an interactive pricing calculator that shows total cost based
+  on session length, number of edited images, and print package.'
+
+The one-shot works because Artifacts are isolated from the conversation
+scroll. They render as their own object. Claude treats them as a
+complete deliverable, not as a chat response.
+
+4.2 Deep Research
+
+Research is agentic. Not a single search. A multi-step plan executed
+autonomously.
+
+1.  Claude generates a research plan. Reviews possible angles of the
+    question. Picks the directions worth pursuing.
+
+2.  Executes multiple searches that build on each other. Each search
+    informs the next.
+
+3.  Reads across many sources. A typical Deep Research session touches
+    50 to 200 sources.
+
+4.  Synthesizes findings into a fully cited document. Sources are linked
+    for verification.
+
+A five-minute Deep Research session produces the equivalent of two to
+three hours of manual research. Use cases for a working photographer:
+
+- Competitor analysis. 'Research the top 10 portrait photographers in
+  Los Angeles who specialize in commercial headshots. Compare pricing,
+  service structure, and positioning.'
+
+- Market research. 'Research the current state of AI video generation
+  tools for photographers. Summarize capabilities, pricing, and use
+  cases relevant to portrait work.'
+
+- Lead research. 'Research [client name] and their company [X]. Identify
+  their current visual content strategy and any gaps a photographer
+  could address.'
+
+- Book research. 'Research current best practices in location scouting
+  for portrait photography. Focus on practices from 2024 forward.'
+
+4.3 Web Search
+
+Distinct from Deep Research. Web Search is a single-query search within
+a regular conversation. Use it when you need current information but do
+not need a full report.
+
+- 'What is the current pricing on Kling AI Pro?'
+
+- 'What is the latest Adobe Firefly release?'
+
+- 'What tool is currently favored on LinkedIn for image-post analytics?'
+
+- 'When did Whatnot add live shopping for photography supplies?'
+
+4.4 File upload
+
+The single most under-used feature in chat mode. Every relevant file
+should be attached.
+
+- PDFs. Contracts. Briefs. Past proposals. Claude reads them and reasons
+  inside them.
+
+- Images. Portfolio shots. Moodboard references. Client-provided
+  inspiration. Claude analyzes them visually and responds accordingly.
+
+- Spreadsheets. Pricing. Client lists. Financial models. Claude works
+  with the data directly rather than requiring you to describe it.
+
+- Documents. Drafts in progress. Brand guides. Meeting notes. Claude has
+  full access to the content.
+
+- Code files. Claude can read, review, modify, and explain.
+
+The rule: if the file is relevant to what you are asking, upload it.
+Claude with your files is dramatically better than Claude trying to
+reason about your files through description.
+
+4.5 Claude in Chrome
+
+Browser extension that lets Claude see and interact with web pages you
+are viewing.
+
+- Audit a client's current website without copying content by hand.
+
+- Extract data from a page (price lists, gear specs, event details)
+  without copy-paste.
+
+- Work alongside your browsing. As you research, Claude can summarize,
+  compare, and recommend in real time.
+
+- Fill out forms and navigate sites autonomously (with appropriate
+  caution on anything with real consequences).
+
+4.6 The Chat layer at a glance
+
+  ------------------------------------------------------------------------
+  Feature       Best For                       Watch For
+  ------------- ------------------------------ ---------------------------
+  Artifacts     Standalone content you will    Anything short enough to
+                use outside the chat           live in the chat body does
+                                               not need an Artifact
+
+  Deep Research Multi-source investigations    Cost and time. Do not use
+                requiring synthesis            for simple lookups
+
+  Web Search    Current information in a       Results are only as recent
+                regular conversation           as the indexed web
+
+  File Upload   Any task with relevant source  Upload early, before the
+                documents                      question, so Claude reasons
+                                               inside the material
+
+  Claude in     Work alongside browsing, page  Review permissions
+  Chrome        analysis, data extraction      carefully. Do not grant
+                                               access to anything
+                                               sensitive without thought
+
+  Extended      Complex reasoning,             Slower and more expensive.
+  Thinking      architecture decisions,        Turn off for simple tasks
+                strategic planning             
+  ------------------------------------------------------------------------
+
+Part V: Claude Code and the Workspace
+
+Claude Code is where the operator mode fully opens. A workspace is a
+folder on your machine containing everything Claude needs to do your
+work: context files, skills, commands, brand assets, reference material,
+and the CLAUDE.md file that orients Claude when it enters the workspace.
+The architecture matters more than the prompts.
+
+5.1 The CLAUDE.md file
+
+The system prompt for your workspace. It tells Claude who you are, what
+this workspace is for, and how to operate. It lives at the root of the
+workspace and Claude reads it before doing anything.
+
+What to put in CLAUDE.md
+
+- Purpose of this workspace. What business or project this is for. One
+  to three sentences.
+
+- Who you are. Your role. Your business. The relevant background.
+
+- How you want things done. Coding standards. Formatting rules. Voice
+  and tone. Preferred tools. Preferred frameworks.
+
+- What to prioritize. The outcomes that matter.
+
+- What to avoid. The specific failure modes you do not want to see.
+
+- Links to key reference files. 'See /context/brand_guide.md for voice
+  rules.' 'See /context/pricing_sheet.md for pricing reference.'
+
+Think of CLAUDE.md as onboarding a new employee. The more you put in
+here, the less you repeat in every conversation. Most working CLAUDE.md
+files run 200 to 500 lines. Longer than that and performance degrades.
+
+5.2 The folder structure
+
+A working photographer's Claude workspace has the following structure.
+Not rigid. Adapt. The folders each serve a specific function that the
+chapters below will develop.
+
+  -----------------------------------------------------------------------
+  Folder             Purpose
+  ------------------ ----------------------------------------------------
+  CLAUDE.md          Root system prompt. Who you are, what the workspace
+                     does, operating rules.
+
+  /context           Background documents Claude needs: brand guide,
+                     voice rules, SOPs, pricing sheet, client roster,
+                     past shoot notes.
+
+  /skills            Reusable workflow instructions. Each skill is a
+                     markdown file with step-by-step instructions for a
+                     specific task.
+
+  /commands          One-liner automations. Each command chains multiple
+                     steps into a single invocation.
+
+  /outputs           Where Claude saves finished deliverables.
+
+  /plans             Strategic plans, roadmaps, project timelines.
+
+  /reference         Swipe files, templates, examples of what good looks
+                     like. Claude uses these as style and quality
+                     references.
+
+  /brand_assets      Logo files, brand colors, typography specs,
+                     reference screenshots.
+
+  /.claude/agents    Sub-agent definitions. Markdown files, one per
+                     agent.
+  -----------------------------------------------------------------------
+
+5.3 The workspace as the product
+
+A critical reframe. The workspace itself becomes an asset that compounds
+in value. Six months of disciplined use produces a workspace that
+another photographer would pay to buy. The skills, commands, and context
+files are portable intellectual property. They represent your operating
+approach, encoded in machine-readable files.
+
+- A completed workspace can be cloned to a new project in seconds.
+
+- A completed workspace can be sold as a productized offer to other
+  photographers.
+
+- A completed workspace can be version-controlled with Git. Changes are
+  tracked. Prior versions are recoverable.
+
+- A completed workspace can be shared with collaborators or contractors
+  who operate inside the same context.
+
+The workspace is the photographer's operating layer made explicit. The
+photographer who builds it owns it. The photographer who does not is
+renting their capability from whatever AI tool happens to be current.
+
+5.4 Setting up the first workspace
+
+1.  Install Claude Code. If you use VS Code, install the Claude Code
+    extension. Sign in with your Anthropic account.
+
+2.  Create a project folder. Name it after the business or the domain of
+    work. For a working photographer: 'photography-practice' is a fine
+    name.
+
+3.  Initialize a CLAUDE.md file in the root. Open it. Start writing. The
+    first version does not have to be perfect. It has to exist.
+
+4.  Create the folder structure above. Empty folders are fine for the
+    first week. They will fill as you work.
+
+5.  Upload your three most important context documents to /context. Your
+    brand guide. Your voice rules. Your pricing sheet (or equivalents
+    for your practice).
+
+6.  Open a conversation with Claude in the workspace. Ask Claude to
+    review CLAUDE.md and suggest three additions based on what it sees
+    in /context. Claude will return improvements that reflect what the
+    context files actually contain.
+
+7.  Iterate. Every week for the first month, spend 30 minutes updating
+    CLAUDE.md and /context based on what has been missing in the
+    outputs.
+
+After 30 days, the workspace has moved from basic to functional. After
+90 days, it is a serious asset. After six months, most prompts are one
+sentence because everything else is encoded in the workspace.
+
+Part VI: Skills
+
+A skill is a markdown file containing step-by-step instructions for a
+specific workflow. Write once. Use forever. Stack multiple skills inside
+one command. Skills are the reusable unit of automation in the Claude
+stack.
+
+6.1 What a skill is
+
+A skill is a single markdown file in /skills. It has a name, a trigger
+condition, a set of inputs it expects, an output specification, and a
+numbered sequence of steps.
+
++-----------------------------------------------------------------------+
+| # Skill: Build a moodboard for a client shoot                         |
+|                                                                       |
+| ## Trigger                                                            |
+|                                                                       |
+| A new shoot is confirmed. Moodboard is needed for the team brief.     |
+|                                                                       |
+| ## Inputs                                                             |
+|                                                                       |
+| - Shoot concept (1 to 3 sentences)                                    |
+|                                                                       |
+| - Subject or model name if known                                      |
+|                                                                       |
+| - Location (scouted or target region)                                 |
+|                                                                       |
+| - Era filter (1920s, 1970s, modern, etc.)                             |
+|                                                                       |
+| - Dominant color palette if decided                                   |
+|                                                                       |
+| ## Output                                                             |
+|                                                                       |
+| A 5-page moodboard PDF:                                               |
+|                                                                       |
+| 1. Title image                                                        |
+|                                                                       |
+| 2. Tone (3 to 5 images)                                               |
+|                                                                       |
+| 3. Hair / makeup / styling (2 images each)                            |
+|                                                                       |
+| 4. Lighting reference (3 to 5 images)                                 |
+|                                                                       |
+| 5. Location reference (2 to 4 images)                                 |
+|                                                                       |
+| ## Steps                                                              |
+|                                                                       |
+| 1. Confirm inputs with user. Ask for anything missing.                |
+|                                                                       |
+| 2. Generate image prompt set for each page based on inputs.           |
+|                                                                       |
+| 3. Organize into the 5-page structure.                                |
+|                                                                       |
+| 4. Format as PDF via the /skills/docx or pdf skill.                   |
+|                                                                       |
+| 5. Save to /outputs with the shoot date in the filename.              |
+|                                                                       |
+| 6. Confirm completion with user.                                      |
++-----------------------------------------------------------------------+
+
+6.2 Why skills work
+
+- Skills are loaded on demand. Only when invoked do they enter context.
+  Unused skills do not bloat your token budget.
+
+- Skills encode institutional knowledge. The steps in a skill represent
+  your preferred way of doing something. Every future execution follows
+  your standard.
+
+- Skills compound. A photographer with 20 working skills has effectively
+  built an agency's worth of operating procedures, written as markdown
+  files. Each file is a teammate's SOP.
+
+- Skills are modifiable. When a skill fails in a specific way, edit the
+  skill. The next execution runs the improved version automatically.
+
+6.3 Building your first skill
+
+1.  Identify a task you do at least three times per month. Below three
+    times, the skill is not worth building.
+
+2.  Open a fresh markdown file in /skills. Name it after the task.
+
+3.  Write the skill sections: trigger, inputs, output, steps. Keep steps
+    imperative ('Do X'). Numbered. Short.
+
+4.  Test the skill by asking Claude to execute it on a real task.
+
+5.  Observe where it failed. Edit the skill to prevent the failure.
+
+6.  Run the skill again. Repeat until the output is correct without
+    intervention.
+
+7.  Move to the next skill worth building.
+
+The first skill takes an hour to write and a few cycles to refine. The
+tenth skill takes 15 minutes. Skills are a vocabulary you are teaching
+the workspace. Fluency arrives around skill 10 to 15.
+
+6.4 The skill library for a photographer
+
+A working photographer eventually accumulates 15 to 25 skills. These are
+the high-yield starters for a portrait and commercial practice.
+
+  -----------------------------------------------------------------------
+  Skill            Triggered By              Output
+  ---------------- ------------------------- ----------------------------
+  Moodboard        New shoot confirmed       5-page PDF with title, tone,
+  builder                                    hair/makeup/styling,
+                                             lighting, location
+
+  Call sheet       Week before shoot         Single-page PDF with date,
+  builder                                    call time, location,
+                                             wardrobe, shot list, team
+                                             contacts
+
+  Client intake    New inquiry received      Drafted reply in your voice,
+  response                                   with qualifying questions
+                                             and link to pricing
+
+  Pricing proposal Qualified inquiry         Proposal document with
+  generator                                  3-tier pricing, package
+                                             contents, terms
+
+  Post-shoot       Shoot completed           Drafted thank-you, delivery
+  follow-up                                  note, and review request
+
+  Gallery upsell   Initial delivery complete Email with link to proofing
+  email                                      gallery and expiration terms
+
+  Spec work        Target brand identified   Drafted DM or email with
+  outreach                                   attached image concept
+
+  Content cutdown  Voice note or meeting     7 platform-specific posts
+  from one capture recording                 (LinkedIn, Reels, TikTok,
+                                             Shorts, X, Substack,
+                                             Facebook)
+
+  Hook variation   Draft post in hand        10 hook variations across
+  generator                                  contrarian, specific-result,
+                                             question, before-after,
+                                             visual
+
+  Weekly content   Sunday night              7-day posting calendar
+  calendar                                   across platforms with
+                                             content assignments
+
+  Competitor audit New market entered        Deep Research report on top
+                                             10 competitors with pricing,
+                                             positioning, gaps
+
+  Sales page copy  New product or offer      Gumroad-ready sales page
+                                             draft in your voice
+
+  Book chapter     Chapter outline ready     Full draft chapter in
+  drafter                                    manuscript voice, ready for
+                                             editing
+
+  Invoice builder  Shoot completed or        Formatted invoice with line
+                   milestone hit             items, totals, and payment
+                                             terms
+
+  Weekly review    Monday morning            Review of prior week
+                                             metrics, identifies
+                                             constraint, sets next week
+                                             focus
+  -----------------------------------------------------------------------
+
+6.5 Stacking skills inside commands
+
+A skill does one thing. A command sequences multiple skills into a
+single invocation. The power is in the composition.
+
+- A /new-shoot command might chain: moodboard builder plus call sheet
+  builder plus client intake response. One line of input. Three
+  deliverables.
+
+- A /weekly-content command might chain: content cutdown plus hook
+  variation generator plus weekly content calendar. The week is
+  scheduled in minutes.
+
+- A /launch command might chain: sales page copy plus spec work outreach
+  plus weekly content calendar. A product launch executes as one
+  workflow.
+
+Skills are atoms. Commands are molecules. The next part covers commands.
+
+Part VII: Commands
+
+A command turns a multi-step workflow into a one-liner. Type
+/command-name and Claude executes the full sequence. The command file is
+a markdown file in /commands, defining what the command does and what
+skills it invokes.
+
+7.1 The command file pattern
+
++-----------------------------------------------------------------------+
+| # Command: /weekly-report                                             |
+|                                                                       |
+| ## Description                                                        |
+|                                                                       |
+| Generate the Monday morning weekly business report.                   |
+|                                                                       |
+| ## Inputs                                                             |
+|                                                                       |
+| None. Pulls from last 7 days of data.                                 |
+|                                                                       |
+| ## Steps                                                              |
+|                                                                       |
+| 1. Read /context/weekly_metrics.md for baseline.                      |
+|                                                                       |
+| 2. Pull last 7 days from CRM via MCP (if connected).                  |
+|                                                                       |
+| 3. Run the competitor-audit skill on the top 3 competitors.           |
+|                                                                       |
+| 4. Read /plans/current_quarter.md for objectives.                     |
+|                                                                       |
+| 5. Identify: top 3 wins, top 3 problems, the week's constraint.       |
+|                                                                       |
+| 6. Format output as a single-page DOCX using the docx skill.          |
+|                                                                       |
+| 7. Save to /outputs/weekly_reports with date in filename.             |
+|                                                                       |
+| 8. Summarize in chat with a 3-sentence executive summary.             |
++-----------------------------------------------------------------------+
+
+7.2 The command catalog
+
+A working photographer eventually runs 8 to 12 commands regularly. These
+are the ones that produce the most leverage for a portrait and
+commercial practice.
+
+  --------------------------------------------------------------------------
+  Command             What It Does                          Runs Daily,
+                                                            Weekly, or On
+                                                            Demand
+  ------------------- ------------------------------------- ----------------
+  /morning-briefing   Calendar review, priority check, top  Daily
+                      3 tasks for the day                   
+
+  /new-shoot          Full prep for an incoming shoot:      On demand per
+                      moodboard, call sheet, client intake, shoot
+                      pricing confirmation                  
+
+  /post-shoot         Thank-you, delivery note, gallery     On demand per
+                      upsell email, invoice, review request shoot
+
+  /weekly-content     Content calendar, hook variations,    Weekly (Sunday)
+                      platform cutdowns                     
+
+  /weekly-report      Business review, metrics, constraint  Weekly (Monday)
+                      identification                        
+
+  /pitch-prep         Research the prospect, draft spec     On demand per
+                      work concept, draft outreach DM or    pitch
+                      email                                 
+
+  /launch             Full launch sequence for a new        On demand per
+                      product or offer                      launch
+
+  /competitor-watch   Monthly competitor audit, positioning Monthly
+                      gaps, new entrants                    
+
+  /book-chapter       Draft a new chapter of a book in      On demand
+                      progress, in voice, from outline      
+
+  /inbox-zero         Triage DMs, emails, and inquiries.    Daily
+                      Draft replies. Mark what needs human  
+                      attention                             
+  --------------------------------------------------------------------------
+
+7.3 Why commands beat sequential chats
+
+The legacy workflow: open a chat, run a task, copy output, open another
+chat, run the next task, copy output, open another chat. Ten steps in
+ten chats. Every chat loses the output of the one before.
+
+The command workflow: type /command-name. Claude reads the command file,
+executes every step, chains skills, writes output to the correct folder,
+returns a summary.
+
+  The goal is a system where typing one sentence triggers an entire
+  workflow.
+
+The compound effect: a photographer who runs /morning-briefing,
+/weekly-content, /weekly-report, and /inbox-zero regularly saves 10 to
+20 hours per week compared to running the equivalent work in separate
+chats. The saved hours go to shooting, content production, or rest. Any
+of the three is better than re-running the same coordination work by
+hand.
+
+7.4 Building your first command
+
+1.  Identify a weekly or daily ritual you do manually that involves
+    three or more discrete steps.
+
+2.  Open a new markdown file in /commands. Name it with a slash prefix
+    in the filename comment for clarity.
+
+3.  Write the description, inputs, and numbered steps. Steps should
+    reference existing skills where possible.
+
+4.  Run the command. Observe where it fails or where the output is weak.
+
+5.  Edit the command file. Add missing steps, tighten existing ones,
+    reference better skills.
+
+6.  Run it again. Iterate until the output is ship-ready without manual
+    intervention.
+
+7.  Set a standing calendar reminder to run the command on the expected
+    cadence. The cadence is the point.
+
+Part VIII: Sub-Agents and Agent Teams
+
+Specialist delegation. The move from a single Claude instance handling
+all work to multiple specialized instances, each with its own system
+prompt, tool access, and scope. Sub-agents solve two problems: output
+quality through specialization, and speed through parallel execution.
+Agent teams extend sub-agents with a shared task list that lets them
+coordinate peer-to-peer.
+
+8.1 When to use what
+
+  --------------------------------------------------------------------------
+  Architecture      Use For                                 Cost
+  ----------------- --------------------------------------- ----------------
+  Single agent      Isolated tasks. Simple one-shot         Lowest token
+                    generations. Most daily work.           usage. Simplest
+                                                            setup.
+
+  Sub-agents        Tasks benefiting from specialist        Moderate tokens.
+  (hub-and-spoke)   delegation but not requiring            Each sub-agent
+                    inter-agent coordination. Parallel      has its own
+                    content cutdowns. Sequential handoff    context window
+                    like research then writing.             loaded.
+
+  Agent teams       Tasks requiring coordination across     Highest tokens.
+  (shared           specialists. Full-stack builds.         Multiple
+  scratchpad)       Consistency across multiple outputs.    parallel
+                    Iterative review cycles.                sessions active.
+  --------------------------------------------------------------------------
+
+Default to the simplest architecture that solves the task. Single agent
+first. Only escalate when the single agent is clearly insufficient.
+Over-engineering the architecture wastes tokens and produces no quality
+gain.
+
+8.2 Configuring a sub-agent
+
+Each sub-agent is a markdown file in /.claude/agents. The file contains
+five sections.
+
++-----------------------------------------------------------------------+
+| # Agent: frontend-specialist                                          |
+|                                                                       |
+| ## Name                                                               |
+|                                                                       |
+| frontend-specialist                                                   |
+|                                                                       |
+| ## Scope                                                              |
+|                                                                       |
+| Project-scoped (lives in this repo).                                  |
+|                                                                       |
+| ## Allowed tools                                                      |
+|                                                                       |
+| Read files, write files, browser preview, design MCP.                 |
+|                                                                       |
+| ## Description                                                        |
+|                                                                       |
+| Use this agent for any task involving React, Tailwind, or             |
+|                                                                       |
+| component-level UI work. Do not invoke for backend, database,         |
+|                                                                       |
+| or content-writing tasks.                                             |
+|                                                                       |
+| ## System prompt                                                      |
+|                                                                       |
+| You are an expert Next.js developer specialized in React and          |
+|                                                                       |
+| Tailwind. Use TypeScript by default. Prefer server components.        |
+|                                                                       |
+| Never use inline styles. Reference /context/brand_guide.md for        |
+|                                                                       |
+| visual design. Reference /skills/frontend_design.md before            |
+|                                                                       |
+| writing any UI code.                                                  |
++-----------------------------------------------------------------------+
+
+8.3 The working sub-agent roster for a photographer
+
+A photographer's workspace typically runs 3 to 6 sub-agents. These are
+the ones that produce the highest leverage.
+
+  -----------------------------------------------------------------------------
+  Agent                 Scope                        Primary Tools
+  --------------------- ---------------------------- --------------------------
+  content-writer        Writes content for your      File read/write. No
+                        voice: posts, captions,      external research unless
+                        newsletters, book chapters   asked.
+
+  research-specialist   Market research, competitor  Web search. Deep Research
+                        analysis, lead enrichment    mode. Perplexity MCP if
+                                                     connected.
+
+  design-reviewer       Reviews visual output,       File read. Browser
+                        checks brand adherence,      preview. Image analysis.
+                        suggests fixes               
+
+  book-drafter          Drafts chapters of books in  File read/write. Full
+                        progress, honors voice rules access to /context and
+                        and structure                /reference.
+
+  outreach-writer       Drafts DMs, cold emails,     File read/write. Context
+                        pitch messages for specific  from
+                        targets                      /context/voice_rules.md.
+
+  operations-agent      Handles the admin layer:     MCP tools for Gmail,
+                        invoicing, scheduling,       Calendar, CRM if
+                        client follow-ups            connected.
+  -----------------------------------------------------------------------------
+
+8.4 Agent teams
+
+When the work requires multiple specialists who must coordinate with
+each other (not just report back to a parent), agent teams are the
+correct architecture.
+
+How teams differ from sub-agents
+
+- Sub-agents report back to the parent only. Hub-and-spoke
+  communication. The parent coordinates everything.
+
+- Agent teams share a task list (a scratchpad or message board) that all
+  teammates can read and write. Teammate A can see Teammate B's output
+  without the parent relaying it.
+
+- Sub-agents start fresh with no context inheritance. Agent teams also
+  start fresh, but the shared scratchpad provides coordination across
+  independent context windows.
+
+- Sub-agents are cheaper. Agent teams cost more tokens. The tradeoff:
+  coordination quality versus token budget.
+
+When to use agent teams
+
+- Content repurposing where a blog post, a carousel, and a newsletter
+  all need to share voice and key frameworks. The content writer, the
+  designer, and the editor benefit from seeing each other's work.
+
+- Full-stack application builds where frontend and backend must
+  coordinate on API contracts. A frontend agent and a backend agent need
+  to agree on data shape.
+
+- Multi-author book production. A chapter drafter, an editor, and a
+  voice auditor pass work between each other until the chapter ships.
+
+The technical reality
+
+- Agent teams require Claude Code version 2.1.32+. Enabled in
+  settings.json. An experimental flag as of the time of writing.
+
+- Each teammate gets its own context window. Context inheritance between
+  teammates does not happen automatically. Coordination is through the
+  shared task list.
+
+- tmux or iTerm2 split view lets you monitor multiple teammates
+  simultaneously. Useful for debugging. Not required for production
+  runs.
+
+8.5 The complexity budget
+
+Every additional agent adds tokens and adds coordination overhead. The
+decision to add an agent should be justified by a specific gain in
+output quality or speed. A rough scoring system to decide when to
+escalate:
+
+- Task complexity 2 out of 10: single agent. No delegation needed.
+
+- Task complexity 6 out of 10: sub-agents. Specialist delegation
+  warranted.
+
+- Task complexity 8+ out of 10: agent teams. Tight coupling or iterative
+  review makes coordination essential.
+
+The failure mode for most users building on this stack is
+over-engineering. Running agent teams on tasks a single agent would have
+handled fine is expensive and produces no better output. Start simple.
+Escalate only when the simpler architecture visibly fails.
+
+Part IX: MCP Servers
+
+MCP, Model Context Protocol, connects Claude to external systems. Gmail.
+Calendar. Slack. CRM. Notion. Databases. APIs. Instead of copy-pasting
+data between tools, Claude reads and writes directly. The consequence is
+that Claude moves from a reasoning system to a full operational
+participant in your business workflows.
+
+9.1 What MCP does
+
+Each MCP server connects Claude to one external tool. Once connected,
+Claude can call that tool's functions the same way it calls its internal
+tools.
+
+- Gmail MCP: Claude drafts, sends, and replies to emails.
+
+- Calendar MCP: Claude checks availability, schedules meetings, and
+  updates events.
+
+- Linear or ClickUp MCP: Claude reads, creates, and updates tasks and
+  projects.
+
+- Notion MCP: Claude reads and writes notes, meeting summaries,
+  knowledge base entries.
+
+- Perplexity MCP: Claude runs deep research via Perplexity's search API.
+
+- Apify MCP: Claude scrapes LinkedIn, Instagram, and other platforms
+  using pre-built scrapers.
+
+- Custom API MCP: Any service with an API can be connected via a custom
+  MCP server.
+
+9.2 The priority MCP connections for a photographer
+
+  ------------------------------------------------------------------------
+  MCP           What Claude Can Do             Why It Matters
+  ------------- ------------------------------ ---------------------------
+  Gmail         Draft, send, reply to emails.  Half of a photographer's
+                Search inbox. Triage.          non-shoot time is email.
+                                               Delegating it recovers
+                                               hours per week.
+
+  Google        Check availability. Schedule   Removes the back-and-forth
+  Calendar      shoots. Block prep time. Send  of scheduling. Claude
+                invites.                       handles it directly.
+
+  Google Drive  Read and write documents,      Projects and book work live
+  or cloud      images, contracts.             in Drive. Direct access
+  storage                                      eliminates upload friction.
+
+  Notion or     Read and write notes, SOPs,    The knowledge base becomes
+  Obsidian      client files.                  queryable. Claude pulls
+                                               prior notes into current
+                                               work.
+
+  Perplexity    Run deep research with live    Higher-quality research
+                web data.                      than Claude's native web
+                                               search for some query
+                                               types.
+
+  Apify         Scrape LinkedIn, Instagram,    Lead enrichment for spec
+                Facebook for lead research.    work pitches and cold
+                                               outreach.
+
+  Stripe or     View invoices, payments, and   Financial metrics available
+  payment       revenue data.                  inside the workspace. The
+  processor                                    Revenue Stack numbers
+                                               become queryable.
+
+  Canva or      Pull brand assets and design   Design tasks can be
+  design tool   templates.                     executed end-to-end inside
+                                               the workspace.
+  ------------------------------------------------------------------------
+
+9.3 Scoping MCPs per sub-agent
+
+A critical technique. Each sub-agent should only see the MCPs it
+actually needs. A content-writer agent does not need CRM access. An
+operations agent does not need image generation tools.
+
+- Content-writer agent: File read/write only. No MCPs unless
+  voice-specific.
+
+- Research-specialist agent: Perplexity MCP, Apify MCP, web search.
+
+- Operations agent: Gmail, Calendar, Notion, CRM MCPs.
+
+- Design-reviewer agent: File read, browser preview. No external MCPs.
+
+Scoping reduces the token overhead of MCP tool descriptions in each
+agent's context. It also prevents agents from stepping on each other's
+domains. A content-writer with CRM access is a bug waiting to happen.
+
+9.4 Token overhead management
+
+A practical concern that most users hit eventually. Each MCP server's
+tool descriptions consume context window space. Connecting ten MCP
+servers can fill 10 to 20 percent of a context window with tool
+definitions before any work begins.
+
+- The newer Claude Code behavior: when MCP tool descriptions exceed 10
+  percent of the context window, Claude does not load all of them up
+  front. It uses an internal search tool to find the right MCP tool when
+  needed.
+
+- This means connecting many MCPs is less costly than it used to be. But
+  the cost is not zero. Every tool description still contributes some
+  overhead.
+
+- The working practice: connect the MCPs you actually use. Do not
+  connect every MCP that sounds interesting. Remove unused MCPs
+  quarterly.
+
+- When a workspace feels slow or outputs feel shallow, check the MCP
+  count. An overstuffed MCP list degrades performance.
+
+9.5 The security consideration
+
+An MCP server has the permissions you grant it. A Gmail MCP can read
+every email in your inbox. A CRM MCP can modify every record. This is
+not a reason to avoid MCPs. It is a reason to review permissions
+carefully and grant only the minimum access needed.
+
+- Start with read-only MCP access wherever possible. Expand to write
+  access only when the work requires it.
+
+- Review third-party MCP servers from unknown sources carefully. A
+  malicious or badly-coded MCP can leak data.
+
+- Separate sensitive work (finances, legal) into MCPs that only specific
+  sub-agents can access.
+
+- Treat MCP configurations as secrets when they contain API keys or
+  tokens. Do not commit them to public repositories.
+
+Part X: Claude Cowork and Dispatch
+
+Cowork lets Claude work on your desktop autonomously. Dispatch lets you
+trigger Cowork tasks from your phone. Together, they are the
+asynchronous work layer of the stack. The work continues while you are
+away from the keyboard.
+
+10.1 What Cowork does
+
+Cowork is a mode of the Claude desktop application. Claude operates on
+your local machine with access to files, applications, and the browser.
+Tasks run in the background. You can work on something else or step away
+from the computer.
+
+- File operations. Claude finds, opens, edits, and saves files across
+  your drives.
+
+- Application operations. Claude opens applications, navigates their
+  interfaces, and performs tasks in them. Photoshop. Lightroom. Browser.
+  Office applications.
+
+- Browser autonomy. Claude opens the browser, searches, reads sites,
+  fills forms, and extracts data.
+
+- Multi-step task execution. Claude runs a sequence of operations that
+  would normally require you to drive each step.
+
+10.2 The working use cases for a photographer
+
+- Bulk file processing. 'Go through /shoots/october and export every
+  hero image as a 2048px JPEG to /delivery.'
+
+- Research compilations. 'Research the top 10 wedding photographers in
+  Los Angeles. Create a comparison document with pricing, packages, and
+  positioning. Save to /outputs.'
+
+- Email triage. 'Open Gmail. Go through the last 50 messages. Classify
+  as: client inquiry, vendor, personal, newsletter. Draft replies to the
+  inquiries in my voice.'
+
+- Gear research and purchase prep. 'Research the current best options
+  for a location-shoot lighting kit under 2,000 dollars. Build me a
+  comparison table. Add the top option to an Amazon cart for me to
+  review.'
+
+- Deliverable assembly. 'Pull the hero images from the October shoot
+  folder. Build a Squarespace gallery page using the design from the
+  homepage. Set it to draft.'
+
+- Client onboarding package. 'Build the welcome kit for the new retainer
+  client. Pull the template from /reference. Fill in their brand details
+  from /context/clients/[name]. Save as PDF to /outputs.'
+
+10.3 Dispatch
+
+Dispatch is the mobile layer of Cowork. The Claude mobile application
+can trigger tasks that execute on your desktop machine while you are
+away from it.
+
+Enabling Dispatch
+
+1.  Open the Claude desktop application on your primary work machine.
+
+2.  Go to settings, then Cowork, then enable Dispatch.
+
+3.  Leave the desktop application running and the machine powered on.
+
+4.  Open the Claude mobile application on your phone.
+
+5.  Tasks dispatched from mobile execute on the desktop. Results come
+    back to the phone.
+
+10.4 The Dispatch use cases
+
+- Morning commute. Dispatch the morning briefing command. By the time
+  you sit down, the briefing is prepared.
+
+- On location during a shoot. 'Find the call sheet for Thursday's shoot
+  in /outputs. Send it to my phone.'
+
+- At a client meeting. 'Pull the pricing sheet and the proposal
+  template. Generate a draft proposal with their brand name inserted.
+  Send me the PDF.'
+
+- Between shoots. 'Research the venue for Saturday's wedding. Pull the
+  last three weddings shot at this venue from /archive. Summarize
+  lighting and flow notes.'
+
+- Weekend evenings. 'Run the weekly-content command. Have Monday's posts
+  scheduled and ready for review when I get home.'
+
+10.5 The asynchronous advantage
+
+  Your AI assistant does not stop working just because you stepped away
+  from the computer.
+
+The psychological shift. Most photographers think of AI work as
+synchronous: open the app, type, wait, read. With Cowork and Dispatch,
+AI work becomes asynchronous. Tasks dispatched in the morning arrive
+done by midday. Tasks dispatched during a shoot are ready when the shoot
+ends.
+
+The practical effect: the hours between tasks become productive without
+conscious effort. The commute, the shoot transitions, the lunch break,
+the evening unwind. Any moment the phone is in hand is a moment to
+dispatch something that will be ready later.
+
+Part XI: The Photographer's Claude Stack
+
+Mapping Claude capabilities onto the other four Stacks. This is where
+the abstract operator theory meets the concrete work of a portrait and
+commercial practice. Each Stack has a set of Claude operations that
+multiply its throughput. Running the mappings below is how one person
+ends up with an agency-scale output.
+
+11.1 Claude and The Direction Stack
+
+The Direction Stack is the on-set work. Most of the actual direction
+cannot be delegated to Claude (the subject is in front of the lens, and
+the lens is in your hand). But the preparation, review, and
+systematization around direction benefit from Claude significantly.
+
+- Direction protocol refinement. Give Claude the current Direction Stack
+  draft. Ask it to identify gaps, unclear instructions, or missing
+  protocols. Iterate the manuscript.
+
+- Subject brief generation. From the shoot concept plus the subject's
+  public footprint, generate a brief on the subject's communication
+  style and likely insecurities. Use it to tune direction.
+
+- Post-shoot review. Upload the selects from a shoot. Ask Claude to
+  critique the direction outcome. 'Which frames feel directed? Which
+  feel caught? What protocol could have helped in the caught frames?'
+
+- Direction skill library. Turn each Direction Stack protocol into a
+  Claude skill. When a new shoot matches a protocol's scenario, invoke
+  the skill to get a specific application for the day.
+
+11.2 Claude and The Production Stack
+
+The Production Stack is pre-shoot craft: moodboard, model, location,
+set, light, pose. Every layer of the Production Stack has a Claude
+operation that runs faster and more consistently than doing it by hand.
+
+  -----------------------------------------------------------------------
+  Production Layer   Claude Operation
+  ------------------ ----------------------------------------------------
+  Moodboard          Moodboard builder skill: generates the 5-page
+                     structure from concept + era + palette
+
+  Finding Models     Research specialist sub-agent: scrapes Instagram
+                     hashtags, compiles target list, drafts outreach DMs
+
+  Location Scouting  Location database skill: catalogs scouted locations
+                     with time-of-day light notes, queryable by concept
+
+  Set Design         Era filter skill: checks incoming props against the
+                     selected era. Anachronism pass runs automatically.
+
+  Lighting           Lighting recipe library: reusable skill per lighting
+                     setup (C.1 through C.5 from the Production Stack)
+
+  Posing             Pose starter menu skill: generates the first three
+                     poses for the subject's default based on body type
+  -----------------------------------------------------------------------
+
+11.3 Claude and The Revenue Stack
+
+The Revenue Stack is the business architecture: niche, pricing,
+acquisition, streams, scaling. Claude's leverage here is the highest of
+any Stack because most of the work is language-based (proposals,
+pitches, follow-ups, reports) and repetitive (same proposal structure,
+same follow-up cadence).
+
+- Pricing proposal generator. From the inquiry, the qualified budget,
+  and the pricing sheet in /context, generate the tailored proposal
+  document.
+
+- Spec work outreach automation. Research the target brand, identify the
+  content gap, draft the spec work DM. All three steps run in one skill.
+
+- Cold outreach batches. Generate 20 tailored outreach messages for a
+  list of target restaurants, each referencing the specific menu gap.
+  Iterate the winning template over time.
+
+- Client lifetime value tracker. A running report on CLV by client,
+  refreshed weekly by the operations agent.
+
+- Financial report automation. Monthly revenue review, expense tracking,
+  tax-set-aside confirmation. The wage separation system runs as a
+  command.
+
+- Retainer client management. For each B2B retainer, a dedicated Project
+  with all their brand assets, delivered images, invoices, and
+  communication history.
+
+11.4 Claude and The Attention Stack
+
+The Attention Stack is content, distribution, and audience building.
+Most of it is impossible to run at the specified volume (4 to 15 pieces
+per day across 7 to 9 platforms) without AI leverage. Claude is the
+execution layer that makes the volume achievable.
+
+  -----------------------------------------------------------------------
+  Attention Practice     Claude Operation
+  ---------------------- ------------------------------------------------
+  Volume production      Content cutdown skill: one capture produces 7+
+                         platform-specific outputs
+
+  The hook factory       Hook variation generator skill: 10 hooks per
+                         post in five categories
+
+  7x7 Workflow           Full pipeline command: capture > AI process >
+                         distribute via scheduler MCP
+
+  80/20 split            Weekly calendar skill enforces ratio: reminds to
+                         include the cultural 20 percent
+
+  Platform-native        Sub-agent per platform (LinkedIn writer, TikTok
+  adaptation             writer) with platform-specific system prompts
+
+  Validation loop        View velocity tracking command pulls analytics
+                         weekly, identifies top 5 percent
+
+  Comment and DM mining  Weekly synthesis skill: top 3 questions, top 3
+                         objections, top 3 unmet needs
+
+  Newsletter drafting    Substack-specific draft skill: weekly 800 to
+                         2000 word newsletter in voice
+  -----------------------------------------------------------------------
+
+11.5 The integration
+
+The four Stacks are not separate systems in the workspace. They live
+inside one workspace, share one CLAUDE.md, and draw from the same
+/context and /skills folders. A single /new-shoot command might invoke
+skills from Production (moodboard, call sheet), Revenue (proposal,
+pricing), and Attention (content plan for the shoot day).
+
+This is the compounding that the operator mode produces. The first shoot
+run through the integrated workspace takes longer than it would by hand,
+because the skills are being built as the work happens. The fiftieth
+shoot runs through the same workspace in a fraction of the time, because
+every skill is refined and every piece of context is loaded.
+
+  One person with a working Claude stack produces at the scale of a
+  team.
+
+Part XII: Writing Books with Claude
+
+The workflow that produced the Direction Stack and every companion
+volume in this series. Written here as a specific, reproducible process.
+The book-writing workflow is the most load-bearing single skill for a
+photographer building an authority business. Direction Stack is the
+first product. The companion volumes are the second through fifth.
+Future books are the next decade of revenue.
+
+12.1 Context discipline
+
+The single most important concept for writing long-form work with
+Claude. Context windows fill up. Once they exceed about 95 percent
+capacity, Claude compresses and summarizes internally, losing fine
+detail from earlier in the conversation. For book writing, this is
+catastrophic: the voice drifts, characters become inconsistent, plot
+details get dropped.
+
+  Keep book-writing context windows under 50,000 tokens. Always.
+
+- Do not paste the entire prior manuscript into the chat. Condense each
+  completed chapter into a 200 to 500 word summary that captures the key
+  details.
+
+- Use Project Knowledge for the manuscript. Claude searches it
+  selectively rather than loading it all.
+
+- Start new chats for new chapters. Each chat handles one chapter. The
+  context stays focused.
+
+- Keep the CLAUDE.md (or equivalent voice guide) updated and short. 200
+  to 500 words of voice rules beats 5,000 words of examples.
+
+12.2 The book workspace
+
+Every book should live in its own Project (or Claude Code workspace for
+heavier work). The structure:
+
++-----------------------------------------------------------------------+
+| THE BOOK PROJECT STRUCTURE                                            |
+|                                                                       |
+| /manuscript - Current draft, chapter by chapter                       |
+|                                                                       |
+| /outline - Working outline. Updated as the book evolves.              |
+|                                                                       |
+| /voice - Voice rules. Hard prohibitions (no em dashes). Stylistic     |
+| preferences. Reference passages from prior work that exemplify the    |
+| voice.                                                                |
+|                                                                       |
+| /characters - Character sheets (for fiction) or persona profiles (for |
+| non-fiction)                                                          |
+|                                                                       |
+| /research - Source material, interview notes, reference articles      |
+|                                                                       |
+| /swipe - Examples of what good looks like. Passages from books you    |
+| admire for specific reasons.                                          |
+|                                                                       |
+| /chapters - Chapter-by-chapter condensed summaries (for context in    |
+| later chapters)                                                       |
++-----------------------------------------------------------------------+
+
+12.3 The writing workflow
+
+Step 1. The outline
+
+Outline before writing. Always. Even for short books. The outline does
+not have to be final. It has to exist.
+
+- Draft a chapter list with one-line descriptions.
+
+- For each chapter, write three to five bullet points of what the
+  chapter covers.
+
+- Use Claude to stress-test the outline. 'Here is the outline. What is
+  missing? What chapters could be combined? What single-line description
+  is weakest?'
+
+- Iterate until the outline feels complete. Lock it. Move to drafting.
+
+Step 2. The chapter drafting loop
+
+1.  Open a fresh chat for the chapter. Load the voice guide, the chapter
+    outline, and the condensed summaries of prior chapters.
+
+2.  Ask Claude to draft the chapter according to the outline. Full pass.
+    Do not interrupt.
+
+3.  Read the draft. Note what works and what does not.
+
+4.  Iterate within the conversation. 'Keep the structure but tighten
+    section 2. The voice in section 3 drifted toward consultant. Restore
+    the field-operator tone.'
+
+5.  When the chapter is 80 percent right, move to manual editing. Claude
+    drafts. You finish.
+
+6.  Once the chapter is final, condense it to a 200 to 500 word summary.
+    Save to /chapters.
+
+7.  The summary (not the full chapter) gets loaded into the next
+    chapter's context.
+
+Step 3. The voice audit
+
+Even with a well-defined voice guide, drift happens. Every three to five
+chapters, run a voice audit.
+
+- Load the voice guide plus the most recent three chapters.
+
+- Ask Claude: 'Audit the voice across these chapters. Identify every
+  place the voice drifted from the guide. List specific sentences that
+  need rewriting.'
+
+- Review the list. Fix the drifts. Restore the voice across the drafts.
+
+- The earlier drift is caught, the cheaper it is to fix. A voice drift
+  in chapter 3 that is caught in chapter 15 requires rewriting 12
+  chapters.
+
+12.4 The marketing assets
+
+Once the manuscript is complete, the marketing layer kicks in. Each
+asset has a specific Claude pattern.
+
+  -----------------------------------------------------------------------
+  Asset              Working Prompt Pattern
+  ------------------ ----------------------------------------------------
+  Sales page copy    Using the voice guide plus the manuscript, write
+                     sales page copy for Gumroad. Lead with the
+                     transformation, not the feature list. Include a
+                     one-paragraph overview, three core promises, and
+                     four bullet outcomes.
+
+  Book blurb         Write three book blurb variations: short (30 words),
+                     medium (80 words), long (150 words). Each one leads
+                     with the core tension the book resolves.
+
+  Query letter (for  Write three query letter variations with different
+  fiction or if      hooks, different structures, different summaries.
+  pursuing           Then select the one most likely to get a full
+  traditional)       request.
+
+  Email newsletter   Write a launch email to the existing list. Announce
+  launch             the book. Tell the story of why it was written. CTA
+                     to buy.
+
+  Launch social      Seven platform-specific launch posts: LinkedIn,
+  posts              Instagram, TikTok, YouTube Shorts, Facebook,
+                     Substack, X. Each one native to the platform.
+
+  The 100-post       Generate 100 content hooks derived from the book.
+  content series     Each hook is standalone and can run as a social
+                     post. The library feeds months of content.
+  -----------------------------------------------------------------------
+
+12.5 The Open Close pattern
+
+A specific technique for getting better first drafts of marketing copy.
+Instead of asking for one version, ask for multiple, then ask Claude to
+choose.
+
++-----------------------------------------------------------------------+
+| "Generate three query letter variations:                              |
+|                                                                       |
+| - Variation 1: hook lead with the protagonist's betrayal              |
+|                                                                       |
+| - Variation 2: hook lead with the world-building                      |
+|                                                                       |
+| - Variation 3: hook lead with the genre comparison                    |
+|                                                                       |
+| For each, include the standard query structure: hook,                 |
+|                                                                       |
+| summary, bio, thanks.                                                 |
+|                                                                       |
+| Then, acting as a literary agent, read all three and                  |
+|                                                                       |
+| identify which one is most likely to result in a full                 |
+|                                                                       |
+| manuscript request. Explain why in two sentences."                    |
++-----------------------------------------------------------------------+
+
+The pattern forces Claude to generate options and then self-evaluate.
+The output quality improves noticeably compared to asking for one
+version and hoping it lands.
+
+12.6 The AI-detection and publishing note
+
+For non-fiction books published on Amazon KDP or equivalent platforms:
+AI detection tools exist. Fully AI-generated content flags at rates that
+can jeopardize an account. The working practice is AI-assisted, not
+AI-generated.
+
+- Draft with Claude. Edit by hand.
+
+- Run finished chapters through a rephrasing pass (not the whole
+  chapter, specific flagged paragraphs).
+
+- Fact-check every claim before publishing. Claude can get facts wrong.
+  Your reputation carries the error, not the tool's.
+
+- Add your voice. The chapters should read as you, not as Claude. If a
+  chapter reads like the same tone as every AI-written book on Amazon,
+  rewrite it.
+
+- For direct-sale platforms (Gumroad), AI-detection is less of a
+  concern. But the quality standard is the same. The reader should not
+  be able to tell which chapters Claude drafted and which were written
+  from scratch.
+
+Part XIII: The Operator Sequence
+
+How to actually build the Claude stack from zero. Day 1 through Year 2
+and beyond. The sequence is compressible or expandable depending on your
+starting point, but the order should be preserved. Each step depends on
+what came before it.
+
+Phase 1: Chat mode baseline (Days 1 to 7)
+
+1.  Subscribe to Claude Pro or Max. Pro is sufficient to start. Upgrade
+    if the usage justifies it within 30 days.
+
+2.  Use Claude in the chat interface daily for a week. Any task that
+    involves reading, writing, analyzing, summarizing, or drafting.
+    Build the habit of reaching for Claude first.
+
+3.  Practice the three-part prompt on every major task. Stage, task,
+    rules.
+
+4.  Upload context files on every task that has a relevant document.
+    Internalize the fact that Claude with your files dramatically
+    outperforms Claude without them.
+
+5.  By end of week: the chat interface feels natural. Your first
+    instinct for a writing or analysis task is to open Claude.
+
+Phase 2: Projects and persistent context (Week 2)
+
+1.  Create your first Project. Name it after your business. Upload your
+    three most important context documents: brand guide, voice rules,
+    pricing sheet.
+
+2.  Write custom instructions that encode your voice, formatting, and
+    business context.
+
+3.  Run all business-relevant conversations inside the Project for the
+    full week.
+
+4.  By end of week: the re-explanation cost has dropped to zero inside
+    the Project. Output quality is already noticeably higher than
+    chat-mode baseline.
+
+Phase 3: Claude Code and the first workspace (Weeks 3 to 4)
+
+1.  Install VS Code and the Claude Code extension. Sign in.
+
+2.  Create your first workspace. Initialize CLAUDE.md. Create the folder
+    structure: /context, /skills, /commands, /outputs, /plans,
+    /reference, /brand_assets.
+
+3.  Copy your Project-level context into /context as the initial
+    contents of the workspace.
+
+4.  Work from the workspace for a week. Do not write prompts that could
+    have been written in chat mode. Write prompts that leverage the
+    workspace.
+
+5.  By end of week 4: the workspace feels like home. Chat mode feels
+    limited in comparison.
+
+Phase 4: Skills and commands (Weeks 5 to 8)
+
+1.  Identify the three tasks you repeat most often. Write them as skills
+    in /skills.
+
+2.  Run the skills. Observe failures. Refine.
+
+3.  Identify the top two weekly workflows that chain multiple skills.
+    Write them as commands in /commands.
+
+4.  Run the commands. Iterate.
+
+5.  Add 5 to 10 more skills over the next three weeks. The
+    /morning-briefing, /new-shoot, /weekly-content, /weekly-report
+    commands all come online during this phase.
+
+6.  By end of week 8: most of the weekly admin runs as commands. Several
+    hours per week are already being saved.
+
+Phase 5: Sub-agents (Weeks 9 to 12)
+
+1.  Identify the three domains of your work that benefit most from
+    specialization. For a photographer: content writing, research,
+    outreach.
+
+2.  Create three sub-agents in /.claude/agents. Each with scoped tools
+    and a focused system prompt.
+
+3.  Route work explicitly to the right agent for the first week. 'Use
+    content-writer for this draft.'
+
+4.  Set up agent routing rules so Claude auto-delegates based on task
+    type.
+
+5.  By end of week 12: sub-agents handle domain-specific work. Output
+    quality improves again because specialists produce better work than
+    generalists.
+
+Phase 6: MCP connections (Weeks 9 to 16, overlaps Phase 5)
+
+1.  Connect Gmail. Grant read access first. Move to write access once
+    you trust the setup.
+
+2.  Connect Google Calendar. Same permission progression.
+
+3.  Connect Google Drive or your cloud storage. Your manuscript and
+    client files become queryable.
+
+4.  Add one specialty MCP per month as needs emerge. Perplexity for
+    research. Apify for lead scraping. Notion for knowledge base. Stripe
+    for financial data.
+
+5.  Scope MCPs per sub-agent. Content-writer does not get CRM access.
+    Operations agent gets the business tools.
+
+6.  By end of week 16: external tools are integrated. Copy-paste between
+    apps drops to near zero.
+
+Phase 7: Cowork and Dispatch (Month 4)
+
+1.  Enable Cowork in the desktop application. Test with a simple
+    file-organization task.
+
+2.  Enable Dispatch. Send your first mobile-triggered command during a
+    commute.
+
+3.  Integrate Cowork into your morning routine. The morning-briefing
+    command runs via Dispatch during the commute. The briefing is ready
+    when you sit down.
+
+4.  By end of month 4: the asynchronous work layer is live. The working
+    hours of the day are no longer bounded by the hours at the keyboard.
+
+Phase 8: Agent teams (Month 5+, optional)
+
+1.  For the 10 percent of projects that genuinely need cross-specialist
+    coordination, enable agent teams.
+
+2.  Book launches. Full-stack website builds. Multi-format content
+    campaigns where voice and framing must match across outputs.
+
+3.  Use sparingly. Most work does not need teams. Sub-agents handle 90
+    percent of specialization needs.
+
+4.  When teams are used, the output quality on coordinated work is
+    meaningfully higher than sub-agents alone. The token cost is
+    justified for launches and complex deliverables.
+
+Phase 9: The workspace as asset (Year 1+)
+
+1.  By month 12, the workspace is a serious business asset.
+
+2.  Version control the workspace with Git. Changes are tracked. Prior
+    versions are recoverable.
+
+3.  Audit skills and commands quarterly. Retire the ones that went
+    unused. Refine the ones still in daily use.
+
+4.  Consider productizing. The skill library, command library, and agent
+    configurations could be sold to other photographers as a 'Working
+    Photographer's Claude Workspace.' Gumroad-ready. 300 to 1,500 dollar
+    price point. Zero marginal cost of delivery.
+
+5.  The workspace compounds in value. Year 2 output is dramatically
+    higher than Year 1 output, with no additional hours invested.
+
+Appendix A: CLAUDE.md Template for a Photography Practice
+
+A working starter file. Copy it. Edit to match your practice. Drop it in
+the root of your workspace.
+
++-----------------------------------------------------------------------+
+| # CLAUDE.md                                                           |
+|                                                                       |
+| ## Purpose                                                            |
+|                                                                       |
+| This workspace runs the operations of [photographer name],            |
+|                                                                       |
+| a portrait and commercial photographer based in [city].               |
+|                                                                       |
+| Brand: [brand name]. Product: [current product on Gumroad].           |
+|                                                                       |
+| ## Who I Am                                                           |
+|                                                                       |
+| - Portrait and commercial photographer, shooting since [year]         |
+|                                                                       |
+| - Background: [relevant credentials]                                  |
+|                                                                       |
+| - Niche: [specific niche]                                             |
+|                                                                       |
+| - Current focus: [current quarter objective]                          |
+|                                                                       |
+| ## How I Want Things Done                                             |
+|                                                                       |
+| ### Voice Rules (Hard)                                                |
+|                                                                       |
+| - No em dashes. Treated as an AI tell and hard prohibition.           |
+|                                                                       |
+| - No buzzwords or motivational fluff.                                 |
+|                                                                       |
+| - No two-sentence pivot closers.                                      |
+|                                                                       |
+| - Grounded field-operator tone, not consultant tone.                  |
+|                                                                       |
+| ### Format Rules                                                      |
+|                                                                       |
+| - Prose, not bullets, unless the structure is genuinely a list.       |
+|                                                                       |
+| - Numbered lists for sequential steps only.                           |
+|                                                                       |
+| - Tables for comparison across variables.                             |
+|                                                                       |
+| ### Priority Rules                                                    |
+|                                                                       |
+| - Prioritize the Revenue Stack over the Attention Stack when          |
+|                                                                       |
+| time is constrained. Cash flow first, audience growth second.         |
+|                                                                       |
+| - Every content piece must have a clear next step (see the            |
+|                                                                       |
+| Attention Stack monetization layer).                                  |
+|                                                                       |
+| ## What to Avoid                                                      |
+|                                                                       |
+| - Do not suggest generic photography advice that applies to           |
+|                                                                       |
+| every photographer. Be specific to my practice.                       |
+|                                                                       |
+| - Do not write sales copy that sounds like sales copy.                |
+|                                                                       |
+| - Do not use stock language: "level up", "game-changing",             |
+|                                                                       |
+| "unlock your potential", "the truth is".                              |
+|                                                                       |
+| ## Reference Files                                                    |
+|                                                                       |
+| - Voice: /context/voice_rules.md                                      |
+|                                                                       |
+| - Brand: /context/brand_guide.md                                      |
+|                                                                       |
+| - Pricing: /context/pricing_sheet.md                                  |
+|                                                                       |
+| - Current plan: /plans/current_quarter.md                             |
+|                                                                       |
+| - Book manuscript: /manuscript/ (when active)                         |
+|                                                                       |
+| ## Tools                                                              |
+|                                                                       |
+| - Default to the workspace's own skills before external MCPs.         |
+|                                                                       |
+| - Use Deep Research for multi-source investigations only.             |
+|                                                                       |
+| - Use Extended Thinking for strategic and architectural decisions.    |
++-----------------------------------------------------------------------+
+
+Appendix B: The Starter Skill Library
+
+Twelve skills worth building in the first 90 days. Each is described in
+one paragraph.
+
+B.1 Moodboard builder
+
+Generates the 5-page moodboard structure (title image, tone,
+hair/makeup/styling, lighting reference, location reference) from a
+shoot concept plus era filter plus palette. Outputs as a formatted PDF
+to /outputs.
+
+B.2 Call sheet builder
+
+Generates the day-of-shoot call sheet: call time, location with parking
+notes, shoot duration, wardrobe brief, lighting plan summary, shot list,
+team contacts, weather for outdoor shoots. Single-page PDF.
+
+B.3 Client intake response
+
+From a new inquiry email, drafts a reply in the business voice, asks the
+three to five qualifying questions needed to produce a proposal, and
+includes a link to the pricing page.
+
+B.4 Pricing proposal generator
+
+From the qualified inquiry (now with confirmed scope and budget),
+generates the full proposal document: package description, 3-tier
+pricing, deliverables, timeline, payment terms, usage rights.
+
+B.5 Post-shoot follow-up
+
+From a completed shoot, drafts the thank-you note, the initial delivery
+note (with link), the gallery upsell email (with 48-hour expiration),
+and the review request.
+
+B.6 Content cutdown from one capture
+
+From a voice note or transcript (5 to 30 minutes), generates 7
+platform-specific posts: LinkedIn image post with caption, Instagram
+Reels script, TikTok script with trending-audio suggestions, YouTube
+Shorts script, X thread, Substack newsletter draft, Facebook adaptation.
+
+B.7 Hook variation generator
+
+From a draft post, generates 10 hook variations across five categories:
+contrarian, specific result, question, before-and-after, visual
+surprise. Each one is first-line-ready.
+
+B.8 Weekly content calendar
+
+Generates a 7-day content calendar across platforms. Applies the 80/20
+rule. Assigns daily core captures and platform cutdowns. Highlights the
+cultural (20 percent) slot.
+
+B.9 Competitor audit
+
+Deep Research-powered audit of the top 10 competitors in your specific
+niche and geography. Returns pricing, positioning, service structure,
+content presence, and identified gaps.
+
+B.10 Spec work outreach
+
+From a target brand, researches the brand's content gap, drafts the spec
+image concept description, and drafts the outreach DM or email with
+attached concept.
+
+B.11 Book chapter drafter
+
+From a chapter outline plus voice guide plus condensed summaries of
+prior chapters, drafts a full chapter in the manuscript voice, ready for
+editing.
+
+B.12 Weekly business review
+
+Monday morning report. Reads last week's metrics (inquiries, bookings,
+revenue, content analytics). Compares against baseline. Identifies top 3
+wins, top 3 problems, the week's single constraint. Formats as a 1-page
+brief.
+
+Appendix C: The Starter Command Library
+
+Eight commands that produce immediate leverage for a working
+photographer. Each one chains multiple skills from Appendix B.
+
+  --------------------------------------------------------------------------
+  Command             Chains Skills                         Cadence
+  ------------------- ------------------------------------- ----------------
+  /morning-briefing   Weekly metrics read, calendar check,  Daily
+                      top 3 priorities, weather for outdoor 
+                      shoots                                
+
+  /new-shoot          Client intake response + pricing      Per inquiry
+                      proposal generator + moodboard        
+                      builder + call sheet builder          
+
+  /post-shoot         Post-shoot follow-up + gallery upsell Per shoot
+                      email + invoice + review request      
+
+  /weekly-content     Content cutdown + hook variation      Weekly (Sunday)
+                      generator + weekly content calendar + 
+                      publish schedule                      
+
+  /weekly-report      Weekly business review + competitor   Weekly (Monday)
+                      watch + constraint identification     
+
+  /pitch-prep         Spec work outreach (single target)    Per pitch target
+
+  /launch             Book sales copy + launch emails + 7   Per launch
+                      launch posts + 100-post content       
+                      series                                
+
+  /book-chapter       Book chapter drafter + voice audit on Per chapter
+                      completed draft                       
+  --------------------------------------------------------------------------
+
+Appendix D: The Starter Sub-Agent Library
+
+Four sub-agents to configure in /.claude/agents. Each gets its own
+markdown file with scoped tools and a focused system prompt.
+
+D.1 content-writer
+
+Scope: writes content in the business voice. Posts, captions,
+newsletters, book chapters, sales copy. Tools: file read and write only.
+No MCPs unless voice-specific (style reference). System prompt: loads
+/context/voice_rules.md and /reference/past_posts.md. Never drifts from
+voice rules. When uncertain, asks before writing.
+
+D.2 research-specialist
+
+Scope: market research, competitor audits, lead enrichment, topic
+research for content. Tools: web search, Deep Research mode, Perplexity
+MCP if connected, Apify MCP for scraping. System prompt: returns
+findings with citations. Flags low-confidence claims explicitly. Never
+fabricates a statistic or source.
+
+D.3 operations-agent
+
+Scope: the admin layer. Email triage, scheduling, invoicing, client
+follow-up, task management. Tools: Gmail, Calendar, Notion or Obsidian,
+payment processor. System prompt: drafts replies for human approval on
+anything consequential. Executes scheduling and routine tasks
+autonomously. Flags urgent items for attention.
+
+D.4 book-drafter
+
+Scope: book writing and editing. Drafts chapters. Runs voice audits.
+Maintains the chapter summaries. Tools: file read and write for
+/manuscript, /outline, /voice, /chapters. System prompt: loads the full
+voice guide and chapter summaries. Honors the manuscript's established
+voice absolutely. Flags voice drift anywhere it appears.
+
+Appendix E: The MCP Connection Priority List
+
+The order in which to add MCP connections. Higher priority first. Skip
+any that do not apply to your setup.
+
+1.  Google Drive or cloud storage. Your documents become queryable.
+    Highest immediate leverage.
+
+2.  Gmail. Email becomes workable inside the workspace. Hours per week
+    recovered.
+
+3.  Google Calendar. Scheduling coordination runs autonomously.
+
+4.  Perplexity. Higher-quality research for some query types than
+    built-in web search.
+
+5.  Notion or Obsidian. The knowledge base becomes queryable and
+    write-accessible.
+
+6.  Apify. Lead scraping from LinkedIn, Instagram, Facebook becomes
+    automated.
+
+7.  Stripe or payment processor. Financial data becomes part of the
+    reports.
+
+8.  CRM (HubSpot, Pipedrive, or equivalent) if you use one. Client
+    pipeline visible inside the workspace.
+
+9.  Slack or Discord if you collaborate in one. Messages readable and
+    composable.
+
+10. Canva or design tool if you use one. Design templates pullable.
+
+Appendix F: The Claude Stack One-Page Wall Chart
+
++-----------------------------------------------------------------------+
+| THE OPERATING PRINCIPLE                                               |
+|                                                                       |
+| The prompt is 5 percent. The context is 95 percent.                   |
+|                                                                       |
+| Stop writing better prompts. Start building better workspaces.        |
+|                                                                       |
+| Claude is an operating system, not a chatbot.                         |
++-----------------------------------------------------------------------+
+
++-----------------------------------------------------------------------+
+| THE FOUR OPERATOR MODES                                               |
+|                                                                       |
+| Chat: one-off questions, creative exploration.                        |
+|                                                                       |
+| Projects: ongoing work with persistent context.                       |
+|                                                                       |
+| Code: workspaces, files, skills, commands, sub-agents.                |
+|                                                                       |
+| Cowork and Dispatch: autonomous desktop work, mobile-triggered.       |
++-----------------------------------------------------------------------+
+
++-----------------------------------------------------------------------+
+| THE WORKSPACE STRUCTURE                                               |
+|                                                                       |
+| CLAUDE.md: the onboarding doc.                                        |
+|                                                                       |
+| /context: business background.                                        |
+|                                                                       |
+| /skills: reusable workflows.                                          |
+|                                                                       |
+| /commands: one-liner automations.                                     |
+|                                                                       |
+| /outputs: where deliverables land.                                    |
+|                                                                       |
+| /plans: strategic documents.                                          |
+|                                                                       |
+| /reference: swipe files and templates.                                |
+|                                                                       |
+| /.claude/agents: sub-agent definitions.                               |
++-----------------------------------------------------------------------+
+
++-----------------------------------------------------------------------+
+| THE AGENT ARCHITECTURE                                                |
+|                                                                       |
+| Single agent: isolated tasks. Default for most work.                  |
+|                                                                       |
+| Sub-agents: specialist delegation, parallel execution.                |
+|                                                                       |
+| Agent teams: cross-specialist coordination via shared scratchpad.     |
+|                                                                       |
+| Escalate complexity only when simpler architecture visibly fails.     |
++-----------------------------------------------------------------------+
+
++-----------------------------------------------------------------------+
+| THE DAILY DISCIPLINE                                                  |
+|                                                                       |
+| Chat work stays in Projects with custom instructions.                 |
+|                                                                       |
+| Workspace work opens Claude Code with CLAUDE.md loaded.               |
+|                                                                       |
+| Repetitive tasks get written as skills.                               |
+|                                                                       |
+| Multi-step workflows get written as commands.                         |
+|                                                                       |
+| Dispatch handles the commute, the gaps, the evenings.                 |
+|                                                                       |
+| Weekly audit: what broke, what ran, what needs a new skill.           |
++-----------------------------------------------------------------------+
+
++-----------------------------------------------------------------------+
+| THE COMPOUND ADVANTAGE                                                |
+|                                                                       |
+| Day 1: basic chat use.                                                |
+|                                                                       |
+| Week 2: Projects active, context persisting.                          |
+|                                                                       |
+| Month 1: workspace running, first skills built.                       |
+|                                                                       |
+| Month 3: commands firing, sub-agents routing.                         |
+|                                                                       |
+| Month 6: workspace is a serious asset.                                |
+|                                                                       |
+| Year 1: one person produces at team scale.                            |
+|                                                                       |
+| Year 2: the workspace itself becomes a productized offer.             |
++-----------------------------------------------------------------------+
+
+Closing
+
+Five volumes now. Direction on set. Production before the set. Revenue
+around all of it. Attention in the market. Claude underneath the whole
+system.
+
+Run one volume by itself and you have a single craft. Run all five
+together and you have a working photography practice operating at a
+scale most photographers believe requires a team. It does not. It
+requires the stack.
+
+The stack takes time to build. The first month is slow. The second and
+third are where the compounding starts. By month six, most of the weekly
+work runs through the system instead of through your hands. By month
+twelve, the system is a serious asset. By year two, the question is no
+longer whether the system works. The question is what to build next on
+top of it.
+
+The answer to that question is what the next book is for. For now, the
+work is to build the five volumes in front of you. That is the full map.
+
+  The prompt is the last five percent. The rest is the stack.

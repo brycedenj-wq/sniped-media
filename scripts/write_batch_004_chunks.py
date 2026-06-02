@@ -1,0 +1,1453 @@
+#!/usr/bin/env python3
+"""
+BATCH_004 chunking · SNIPED OS depth-fill
+Output: 01_KNOWLEDGE_BASE/batches/BATCH_004_CHUNKS.jsonl
+
+Modeled on write_batch_003_chunks.py. Uses BATCH_003 schema (chunk_id + batch_id).
+8 clusters · one per source. Dedupe disciplines applied:
+- Skip STRATEGIC_PRINCIPLES Sections 4a-4k (already in BATCH_003)
+- Skip Offer_Stack Parts I-VII (already in BATCH_001)
+- Skip Platform_Stack Parts I-VI (already in BATCH_001)
+"""
+
+import json
+from pathlib import Path
+
+OUT = Path.home() / "AI-Brain-Refinery" / "01_KNOWLEDGE_BASE" / "batches" / "BATCH_004_CHUNKS.jsonl"
+OUT.parent.mkdir(parents=True, exist_ok=True)
+
+BATCH = "BATCH_004_SNIPED_OS_DEPTH_FILL"
+CHUNKS = []
+
+
+def add(*, source_title, source_file, author, domain, concept,
+        summary, usable_principle, sniped_relevance,
+        direct_quotes=None, tags=None):
+    cid = f"batch-004-chunk-{len(CHUNKS)+1:03d}"
+    CHUNKS.append({
+        "chunk_id": cid,
+        "batch_id": BATCH,
+        "source_title": source_title,
+        "source_file": source_file,
+        "author": author,
+        "domain": domain,
+        "concept": concept,
+        "summary": summary.strip(),
+        "usable_principle": usable_principle.strip(),
+        "sniped_relevance": sniped_relevance.strip(),
+        "direct_quotes": direct_quotes or [],
+        "tags": tags or [],
+    })
+
+
+# =============================================================
+# CLUSTER 1 · AESTHETIC_STATEMENT_V1 · 6 chunks
+# Small but locked-doctrine: the canonical visual direction articulation
+# =============================================================
+STITLE = "Aesthetic Statement v1"
+SFILE = "aesthetic_statement_v1.md"
+AUTHOR = "BJ / SNIPED Media"
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="aesthetic-doctrine",
+    concept="The one-line aesthetic · monochromatic editorial restraint",
+    summary="BJ's locked one-line statement of the SNIPED aesthetic: 'Highly polished, commercially-driven editorial portraits built on disciplined monochromatic color blocking, flawless retouching, and severe, confident posing for graphic impact.' The plain version: clean color-locked editorial portraits where styling does the heavy lifting and the retouch finishes the job. This is the canonical aesthetic articulation referenced across the rest of SNIPED's docs and the source of truth for what does and does not fit the lane.",
+    usable_principle="Every shoot, edit, and visual decision should be testable against this one-line statement. If it doesn't read as 'highly polished, commercially-driven editorial with monochromatic color blocking, flawless retouching, and severe confident posing,' it's outside the lane.",
+    sniped_relevance="This is THE locked aesthetic that the visual direction memory (`feedback_visual_direction_luxury_editorial.md`) is built on. When tempted by client requests for off-brand work, or by trending aesthetics, return to this one line as the canonical filter. The Cultural Doc, the Direction Stack book, every Card and HERO should pass this filter.",
+    direct_quotes=[
+        "Highly polished, commercially-driven editorial portraits built on disciplined monochromatic color blocking, flawless retouching, and severe, confident posing for graphic impact.",
+        "I make clean, color-locked editorial portraits where the styling does the heavy lifting and the retouch finishes the job."
+    ],
+    tags=["aesthetic-statement","one-line-doctrine","quiet-luxury","editorial-restraint","locked-direction","visual-direction"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="aesthetic-doctrine",
+    concept="The 5 signatures · what shows up across the body of work",
+    summary="The 5 recurring signatures that define SNIPED's visual style across all output: (1) Monochromatic or strict color-block palettes locked to one tonal family across backdrop/wardrobe/props; (2) Commercial studio framing with center crops, A-frame bases, clean cuts between joints; (3) Editorial pose architecture · chin pushed forward and down to define the jawline, hands always given a task; (4) Clinical retouch · complexion unified, color casts equalized, pore detail preserved, no plastic skin; (5) Graphic over atmospheric · shapes and color blocks carry the frame more than mood lighting does.",
+    usable_principle="Every frame should hit at least 3 of the 5 signatures. If a frame hits only 1-2, it's drifting outside the lane. Use the 5-signature audit as a quick gate before approving any frame for chapter inclusion.",
+    sniped_relevance="The signatures are the chunkable, teachable expression of the locked aesthetic. New contractors (retouchers, second-shooters in the future) can be trained against the 5 explicitly. The Direction Stack book chapter on visual signature should reference these. The chapter rollout doctrine's frame-earns-cover decision is partly an audit against these 5 signatures.",
+    direct_quotes=[
+        "Monochromatic or strict color-block palettes. Backdrop, wardrobe, and props locked to one tonal family.",
+        "Editorial pose architecture. Chin pushed forward and down to define the jawline. Hands always given a task.",
+        "Graphic over atmospheric. Shapes and color blocks carry the frame more than mood lighting does."
+    ],
+    tags=["aesthetic-statement","five-signatures","monochromatic","pose-architecture","clinical-retouch","graphic-over-atmospheric"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="aesthetic-doctrine",
+    concept="The recurring weak spot · depth and dimensionality",
+    summary="BJ's honest self-audit: the recurring weak spot in the body of work is depth and dimensionality. Subjects flatten against the backdrop because the lighting is parallel and there's no rim light. The frames that broke this pattern did so by accident · the protest shot used location depth, the hat shot used texture. The studio work specifically doesn't solve this yet. The named fix: place a rim or kicker BEFORE the key light, reversing the usual setup order so depth isn't an afterthought.",
+    usable_principle="When setting up any shoot, place the rim/kicker FIRST before the key light. This single sequencing change forces depth into the frame from the start rather than trying to retrofit it. The rule reverses the typical key-first setup that produces the flattening problem.",
+    sniped_relevance="This is one of two named v2-test items in the Aesthetic Statement (along with in-between direction). When tested across the next 5-10 shoots, this becomes the unlock that moves the studio work from 'good' to 'undeniable.' Track which frames have rim/kicker placed first vs which don't; correlate against scored-8+ frames after the next chapter pass.",
+    direct_quotes=[
+        "This is the recurring weak spot. Subjects keep getting flattened against the backdrop because the lighting is parallel and there's no rim.",
+        "Place a rim or kicker before the key light. Reverse the usual order so depth isn't an afterthought."
+    ],
+    tags=["aesthetic-statement","depth-problem","rim-light","sequencing-fix","v2-test-item"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="aesthetic-doctrine",
+    concept="Direct the body not the face · the pose-architecture rule",
+    summary="BJ's locked direction discipline: when working with a subject, direct the body architecture first (chin forward and down for jawline, hands given specific tasks, posture aligned to A-frame base) rather than directing the face. The face takes care of itself when the body is right. Conversely, directing the face directly (smile, look here, soften your eyes) produces stiff and self-conscious frames. The body is the lever; the face is the consequence.",
+    usable_principle="Never say 'smile' or 'cheese.' Direct the body architecture: chin position, hand task, shoulder posture, hip weight. Talk through the shot rather than directing into the pose. Capture the in-between moments between rehearsed beats.",
+    sniped_relevance="This is the direct connection between the Aesthetic Statement and the Direction Stack methodology. Direction Stack protocols on subject direction trace back to this rule. The chapter system's named-photographer voice depends on BJ being recognizably the person running this kind of direction. Document the rule explicitly in the Direction Stack book.",
+    direct_quotes=[
+        "Direct the body, not the face. Chin forward and down. Hands always doing something. Fix the architecture first.",
+        "Never say smile or cheese. Talk through the shot. Shoot through transitions, not into them."
+    ],
+    tags=["aesthetic-statement","body-direction","pose-discipline","direction-stack-source","never-say-smile"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="aesthetic-doctrine",
+    concept="What this aesthetic is NOT · the named refusals",
+    summary="BJ's explicit catalog of what the SNIPED aesthetic refuses to be · the negative-space definition that protects the lane. NOT: moody/dark/cinematic-for-its-own-sake (color and shape do the work, not atmosphere); NOT lifestyle candid (frames are constructed, not stumbled into); NOT warm-and-fuzzy family (voice is editorial and commercial, confident, not sentimental); NOT heavy filter or trendy color grade (restraint is the signature). The negative definitions matter because client requests will pull toward each of these; naming them in advance gives BJ the language to refuse cleanly.",
+    usable_principle="Pre-naming refusals is the operating discipline that prevents drift under client pressure. When a client requests something off-brand, the response is not improvised; it's the named refusal pulled from this catalog. Refusals are protective infrastructure.",
+    sniped_relevance="The negative definitions are the source material for the refusal-positioning that runs across SNIPED's brand voice. The Cultural Doc essays on what SNIPED refuses to do should reference these. The discovery-call language for declining off-brand work should pull directly from this catalog: 'we don't do moody/cinematic, we don't do lifestyle candid, we don't do warm-and-fuzzy family, we don't do trendy grades.' Clear, refusable, repeatable.",
+    direct_quotes=[
+        "Documenting this so I don't drift when a client asks for something off-brand.",
+        "Not moody, dark, or cinematic for the sake of it. Color and shape do the work, not atmosphere.",
+        "Not heavy filter or trendy color grade. Restraint is the signature."
+    ],
+    tags=["aesthetic-statement","named-refusals","drift-prevention","negative-definition","refusal-vocabulary"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="aesthetic-doctrine",
+    concept="The 5 recurring descriptors · the in-or-out filter",
+    summary="The 5 words that recurred across the aesthetic naming of every shoot: Monochromatic. Commercial. Studio. Editorial. Graphic. These are the operative descriptors that define whether a future shoot fits the lane. The explicit rule: if a future shoot doesn't fit at least three of these five, it's outside the lane. This is the testable, decidable filter that converts the locked aesthetic from feeling-based judgment to checklist-based gate.",
+    usable_principle="Before accepting any shoot (paid or free), test the brief against the 5 descriptors. If fewer than 3 apply, decline (or restructure scope). The 5-descriptor filter is the operating gate that converts the aesthetic from intuition to discipline.",
+    sniped_relevance="The 5 descriptors are the operating-level version of the aesthetic statement. Apply during discovery calls when scoping a shoot. Apply when reviewing casting-call applications · does the model and concept fit at least 3 descriptors? Apply when reviewing chapter ideas · does the proposed chapter fit at least 3? This is the running gate that prevents lane drift across hundreds of decisions.",
+    direct_quotes=[
+        "Recurring descriptors: Monochromatic. Commercial. Studio. Editorial. Graphic.",
+        "If a future shoot doesn't fit at least three of these, it's outside the lane."
+    ],
+    tags=["aesthetic-statement","five-descriptors","lane-filter","in-or-out","decision-gate","drift-prevention"]
+)
+
+print(f"After cluster 1 (Aesthetic Statement · 6 chunks): {len(CHUNKS)} chunks")
+
+# =============================================================
+# CLUSTER 2 · 100Q_AUDIT_OPTIMIZATIONS Sections 8-13 + CLOSING + CONSOLIDATED
+# Sections 1-7 covered in BATCH_001 · target 8+ here · ~27 chunks
+# =============================================================
+STITLE = "100Q Audit Optimizations · 2026-05-13"
+SFILE = "100q_audit_optimizations.md"
+AUTHOR = "BJ / SNIPED Media"
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="brand",
+    concept="Q56 · What SNIPED means now · the brand definition lock",
+    summary="The locked definition of SNIPED as of the 100Q audit: SNIPED = the named photographer's hand · methodology that produces editorial register through directed body language + locked aesthetic + lineage-bound subject selection. NOT 'raw streetwear,' NOT 'rapid-fire shooter,' NOT 'candid photojournalism.' The name signals precision-and-method · the visual signals luxury-and-restraint · the TENSION between the precision-name and the luxury-visual IS the brand.",
+    usable_principle="The tension between brand name and visual register is structural, not accidental. Don't soften either side to resolve the tension. The audience finds the resolution interesting; the resolution itself is the differentiation.",
+    sniped_relevance="When describing SNIPED to anyone (founder client, press, casting model), lead with the three-part definition: named photographer's hand + methodology producing editorial register + lineage-bound subject selection. This is the operative one-paragraph elevator pitch. Memorize the three negative anchors (NOT streetwear, NOT rapid-fire, NOT candid) for refusing off-brand inquiries.",
+    direct_quotes=[
+        "SNIPED = the named photographer's hand · methodology that produces editorial register through directed body language + locked aesthetic + lineage-bound subject selection.",
+        "The name signals precision-and-method · the visual signals luxury-and-restraint · the tension IS the brand."
+    ],
+    tags=["100q","brand-definition","sniped-meaning","named-photographer","lineage-bound","brand-tension"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="brand",
+    concept="Q57-59 · The three-layer brand hierarchy",
+    summary="The locked brand layering decision: SNIPED is the public brand. SNIPED Media is the LLC layer. sniped.media is the URL. Each surface uses the right register: IG says SNIPED, grid masthead says SNIPED, About/footer says SNIPED Media, URLs use sniped.media. Single brand · multiple registers · clear hierarchy. 'Media' signals SNIPED is more than one photographer's portfolio (multiple output forms · chapters · Cards · Direction Stack book · future publication) while the visual register (luxury restraint) prevents 'Media' from being misread as TikTok-style creator economy.",
+    usable_principle="Brand layering by register prevents the common single-name confusion at scale. Public brand for visibility, LLC layer for legal/financial, URL for digital. Each surface uses one register; never mix them on the same surface.",
+    sniped_relevance="Apply this hierarchy across every surface: Carrd masthead = SNIPED. Email signature = SNIPED Media (LLC formality). LinkedIn handle = SNIPED. Stripe/payment receipts = SNIPED Media LLC. URLs in DMs/emails = sniped.media. Consistency here builds the multi-surface brand without confusing the audience.",
+    direct_quotes=[
+        "SNIPED publicly (the brand). SNIPED Media as the LLC layer. sniped.media as the URL.",
+        "Single brand · multiple registers · clear hierarchy."
+    ],
+    tags=["100q","brand-layering","three-register","sniped-media-llc","url-discipline"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="brand",
+    concept="Q62 · The word-of-mouth seed phrase · plant it deliberately",
+    summary="The locked word-of-mouth seed phrase: 'He shoots LA founders and operators like they're already in a magazine. Single photographer · signature system · premium chapters.' This is the phrase to plant in word-of-mouth conversations. The operating discipline: BJ uses this phrase in his own self-description so it becomes the repeat-pattern that others use when describing SNIPED. The phrase is engineered to be repeatable, specific, and to communicate the three load-bearing differentiators (single photographer, signature system, premium chapters).",
+    usable_principle="Word-of-mouth phrases don't emerge organically; they get planted. Engineer the exact sentence you want others to repeat. Use it in your own self-description consistently so it becomes the repeated frame.",
+    sniped_relevance="Embed this phrase in: discovery-call opening, LinkedIn bio, IG bio, email signature taglines, Carrd hero, every Cultural Doc bio block. After 3-6 months of consistent use, the founder network will start using the phrase themselves. Track when it surfaces in inbound DMs or referral notes · that's the seed taking.",
+    direct_quotes=[
+        "He shoots LA founders and operators like they're already in a magazine. Single photographer · signature system · premium chapters.",
+        "Use it in your own description of SNIPED so it becomes the repeat-pattern."
+    ],
+    tags=["100q","word-of-mouth","seed-phrase","brand-engineering","repeatable-frame"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="offer-design",
+    concept="Q63-65 · The real offer ladder right now · with stage-gated tiers",
+    summary="The current locked offer architecture: (a) Reset = $1,500 single-subject premium portrait sitting + commercial usage (the architectural offer). (b) AlmaLove-tier brand commercial = $350-550 (backup lane, easiest immediate sell). (c) VIB free-discovery offer = cold outreach warm-up. (d) Op Kit = $3,500-7,500 (build toward Q4 2026 after 5+ Resets shipped). (e) Brand System = $15,000+ (Year 1 stretch, for funded LA companies). Stage gates: Op Kit launches only after 5+ Reset clients delivered as proof; Brand System launches only after Op Kit proven.",
+    usable_principle="Don't launch higher tiers without proof from lower tiers. Each tier earns the next via delivered case studies. Trying to sell the top tier before the substrate exists creates credibility gaps that kill the deal.",
+    sniped_relevance="Operating discipline through 2026: focus on Reset closes (chapter 1-8) before Op Kit pitch readiness. Direction Stack one-pager is the handoff asset that unblocks Op Kit. Brand System remains a stretch goal for the funded-LA-company segment; don't waste cycles pitching it before Op Kit has 2-3 case studies.",
+    direct_quotes=[
+        "The Reset · $1,500 single-subject premium portrait sitting + commercial usage.",
+        "Op Kit at $3,500-7,500 · multi-output system for founders.",
+        "Brand System at $15,000+ for funded LA companies."
+    ],
+    tags=["100q","offer-ladder","reset-floor","op-kit","brand-system","tier-gating"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="offer-design",
+    concept="Q66-67 · What stays free vs what should never be free again",
+    summary="The locked free/paid boundary. Stays free: casting-call chapter shoots (paid in 6 finals + chapter slot), strategic lineage subjects (HBCU alumni events, high-cluster-value subjects). Should NEVER be free again: Reset-level work for founders/operators with revenue, brand commercial work requiring usage rights, studio time when costs are real, BJ's directing time on paid client brand visions, custom photoshoot requests from outside the chapter system. The decision rule: if it serves THEIR business goal not SNIPED's archive, charge full price.",
+    usable_principle="The free/paid line is decided by who benefits. If the work serves the recipient's commercial goal (not SNIPED's archive-building), it's paid. If the work serves SNIPED's chapter system or scene-density building, it can be free as world-building budget.",
+    sniped_relevance="When inbound requests come in, apply the rule: 'whose business goal does this serve?' If theirs, name the price. If SNIPED's, evaluate against capacity (max 4 free shoots/month per Reputation Engine doctrine). Don't accept 'just one freebie for exposure' from revenue-having founders · that violates the boundary and trains future inbound to expect it.",
+    direct_quotes=[
+        "Free is the world-building budget · spend it on people whose presence in the archive earns more than the time cost.",
+        "When in doubt: if it serves THEIR business goal not SNIPED's archive · charge full price."
+    ],
+    tags=["100q","free-paid-boundary","strategic-free","archive-vs-revenue","capacity-discipline"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="offer-design",
+    concept="Q68 · The four contexts that make $1,500 Reset feel obvious",
+    summary="Per Enns pricing playbook, the surrounding CONTEXT (not the price itself) makes Reset $1,500 feel obvious to the buyer. The four contexts: (a) Locked Carrd page with 3-5 case studies + chapter archive. (b) Direction Stack one-pager as the deliverable handoff. (c) Audience density inside founder clusters (chapter archive viewers + Ren cold outreach + LinkedIn warming). (d) A VIB-warmed prospect with a clear pain point ('my LinkedIn photo is terrible and I'm fundraising'). When all four present, $1,500 reads as the obvious investment for the outcome.",
+    usable_principle="Price feels right or wrong based on context, not the number alone. Build the four contexts in parallel; don't try to sell at the right price without the supporting infrastructure. Missing contexts produce price resistance that no amount of pitching solves.",
+    sniped_relevance="This is the operational map for what to build in parallel with Reset selling: Carrd case studies, Direction Stack one-pager, cluster audience density, VIB warming. Each context is a 30-60 day project. Building these IS the sales infrastructure; pitching without them is rope-pulling against a stuck door.",
+    direct_quotes=[
+        "Per Enns pricing playbook · the surrounding CONTEXT makes the price obvious.",
+        "When all present, $1,500 reads as the obvious investment for the outcome."
+    ],
+    tags=["100q","price-context","four-contexts","enns-applied","pricing-infrastructure"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="offer-design",
+    concept="Q69 · Proof needed before selling Reset hard · the chapter 6-8 trigger",
+    summary="The named milestone for when Reset becomes pitch-ready at full conviction: by chapter 6-8, the proof exists. Specifically: (a) 5+ chapters live demonstrating consistency, (b) 1-2 named-founder Reset clients shipped as case studies, (c) Direction Stack one-pager polished (Rejuar owes), (d) Chapter Card system at v3 archival quality (done), (e) First boost-organic experiment showing the work performs. Push hard at chapter 8. Before chapter 6, soft-pitch only.",
+    usable_principle="Don't push hard on premium pricing before the proof infrastructure is in place. Soft-pitch (mention, qualify) before the proof; hard-pitch (name the price, ask for commitment) only after. Premature hard-pitching produces 'no's that contaminate the founder network.",
+    sniped_relevance="Operating discipline through summer 2026: chapter 1-5 = building proof. Chapter 6-7 = warming + selective hard pitches to highest-confidence prospects. Chapter 8+ = full Reset hard-pitch mode across all warm prospects. Track which chapter you're on when each Reset attempt happens; correlate against close rate.",
+    direct_quotes=[
+        "By chapter 6-8 you have the proof to push hard on Reset.",
+        "Most are in motion. Push hard at chapter 8."
+    ],
+    tags=["100q","proof-milestone","chapter-6-8","hard-pitch-readiness","reset-conviction"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="risk-management",
+    concept="Q71 · The three 90-day derail risks · named with mitigations",
+    summary="The locked 90-day risk catalog. (a) Rejuar bandwidth collapse · if he drops composite work, HERO cadence stalls · mitigation: buffer CH+1 composites in queue, never run with zero buffer. (b) BASEPLATE side-play steals focus · AI-influencer temptation pulls 20-30 hrs/wk from SNIPED · mitigation: BASEPLATE firewall holds, no plays until $15K cumulative SNIPED revenue. (c) Burnout from speed-running · 6-8 hrs/day every day for 90 days without break · mitigation: enforce breathing gaps as recovery for BJ not just audience, treat Sundays as sacred rest.",
+    usable_principle="Name the top three failure modes for the current 90-day period and write the mitigation for each. Review weekly. Risks that are named have a 10x higher chance of being avoided than unnamed risks.",
+    sniped_relevance="Each Monday morning, re-read these three. Check: is Rejuar caught up? Is BASEPLATE still firewalled? Is BJ's energy sustainable? Any of these going red is a more urgent issue than the day's tactical list. This list updates per phase · revise after Phase B triggers.",
+    direct_quotes=[
+        "Rejuar bandwidth collapse · BASEPLATE side-play steals focus · Burnout from speed-running.",
+        "Hold the firewall, no plays until $15K cumulative."
+    ],
+    tags=["100q","90-day-risks","rejuar-dependency","baseplate-firewall","burnout-prevention","weekly-review"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="risk-management",
+    concept="Q72-75 · Confirmed low-risk areas · maintain not improve",
+    summary="The audit confirmed four areas where BJ's discipline is already strong and the risk is low: (a) Research as avoidance · low risk, operator-coded discipline intact. (b) Editing as avoidance · low risk, v3 LUXURY preset eliminates rabbit-hole temptation. (c) Systems as avoidance · low risk, Lock 10 (architecture refinement banned) holds. (d) Scared to post consistently · low risk, chapter system removes the 'what to post' anxiety. These are the four areas where intervention is NOT needed; the discipline is to maintain rather than improve.",
+    usable_principle="Don't fix what isn't broken. Where the discipline is intact, the operating mode is maintenance, not optimization. Spending intervention energy on already-strong areas leaves weak areas under-supported.",
+    sniped_relevance="When tempted to refine the editing preset, build a new system, do more research, or rework the posting cadence · STOP. These are confirmed low-risk areas. The intervention energy belongs on the high-risk items (Rejuar dependency, BASEPLATE firewall, burnout prevention, Reset conversion infrastructure).",
+    direct_quotes=[
+        "Lock 10 (architecture refinement banned) holds. Don't build more systems · run the existing ones.",
+        "When new system temptation hits · refuse · use what exists or do it manually until $2K MRR justifies the tool."
+    ],
+    tags=["100q","low-risk-confirmed","lock-10","maintain-not-improve","intervention-discipline"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="risk-management",
+    concept="Q76 · Scene density as protection against the 'nobody cares' fear",
+    summary="The named fear: 'what if nobody cares when CH01 launches?' The named mitigation: scene density is the protection. 10 right people > 1000 wrong people. The chapter system targets LA tech founder cluster specifically via Ren cold outreach + LinkedIn warming + boost-organic 10-mile LA radius. When CH01 lands and only 50 people engage but 3 of them are right-cluster, that's the win. Lock the cluster metric, ignore the volume metric.",
+    usable_principle="Volume metrics are a comfort blanket that doesn't predict outcomes. Cluster metrics (right-people engagement) predict actual business outcomes. Track cluster engagement explicitly; let volume be a side-stat.",
+    sniped_relevance="When evaluating chapter performance, the question is NOT 'how many views/likes?' but 'which right-cluster people engaged?' Track named founders, tech operators, LA culture figures who engaged. 3 right-cluster engagements is a successful chapter; 5000 random views is not. This applies the scene-density doctrine to performance measurement explicitly.",
+    direct_quotes=[
+        "Scene density is the protection · 10 right people > 1000 wrong people.",
+        "Lock the cluster metric, ignore the volume metric."
+    ],
+    tags=["100q","scene-density","cluster-metric","volume-vs-cluster","nobody-cares-fear"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="founder-psychology",
+    concept="Q79 · Two distinct proof vectors · operational and cultural",
+    summary="The audit clarifies that 'what am I trying to prove?' has two distinct answers, both real and requiring different focus. (a) Operational proof · paying clients get Reset deliverables that drive their outcomes (fundraising, brand visibility, LinkedIn presence). The proof vector is 'I can help others make money.' (b) Cultural proof · the chapter archive accumulates into recognizable authorship over years. The proof vector is 'I am great.' Both vectors are valid; don't conflate them; serve both deliberately.",
+    usable_principle="Two motivations can coexist without conflict if you name them explicitly. Operational proof serves clients; cultural proof serves your own creative identity. Each requires different work; conflating them produces drift in both.",
+    sniped_relevance="Apply during prioritization: which work is operational-proof work (paid client delivery, Direction Stack improvements)? Which is cultural-proof work (Cultural Doc essays, chapter archive depth, lineage subjects)? Both need protected time. Don't let operational-proof urgency cannibalize cultural-proof investment.",
+    direct_quotes=[
+        "Two distinct proof vectors, both real: operational proof · paying clients get Reset deliverables · Cultural proof · the chapter archive accumulates into recognizable authorship.",
+        "Don't conflate them · serve both deliberately."
+    ],
+    tags=["100q","two-proof-vectors","operational-vs-cultural","dual-track","motivation-clarity"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="founder-psychology",
+    concept="Q80 · Who am I becoming · the operator-coded self",
+    summary="The audit names the identity arc explicitly: BJ is becoming the named photographer · disciplined system-runner · operator-coded register applied to self · the man who runs the system every day for the decade. NOT 'becoming famous,' NOT 'becoming rich.' Becoming THE photographer LA founders book for this register. The identity is craft + discipline + named-author, not status + wealth + fame. The distinction matters because the wrong identity arc produces drift toward generic creator behavior.",
+    usable_principle="Name the identity you're becoming with specificity. Generic identity goals (rich, famous, successful) produce generic behavior. Specific identity goals (the named photographer for X register in Y market) produce specific behavior aligned with the goal.",
+    sniped_relevance="When tempted by trends, hot opportunities, or fame-chasing moves, ask: does this serve becoming 'the named photographer LA founders book for this register' or does it serve becoming 'a generic successful creator'? Operator-coded identity gives you the language to refuse the wrong path even when it looks attractive.",
+    direct_quotes=[
+        "The named photographer · disciplined system-runner · operator-coded register applied to self.",
+        "Not 'becoming famous' · not 'becoming rich' · becoming THE photographer LA founders book for this register."
+    ],
+    tags=["100q","identity-arc","operator-coded-self","named-photographer","anti-generic-creator"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="founder-psychology",
+    concept="Q81 · The meta-thesis articulated · systems-as-creative-leverage",
+    summary="The 100Q audit's clearest articulation of the SNIPED meta-thesis: BJ is not optimizing photography for money first · he's using systems to make great work · money follows. Photography is the proving ground for systems-as-creative-leverage. The Direction Stack methodology, the chapter system, the operational backbone are all expressions of the same underlying bet: that disciplined systems applied to creative work produce outcomes that pure-talent or pure-marketing approaches can't reach. Lock this self-understanding · refer to it when tempted by 'easy money' gigs that violate the system.",
+    usable_principle="The meta-thesis is the strategic North Star. Every decision should be testable against it: does this strengthen or weaken systems-as-creative-leverage as the proven path? If it weakens, refuse even when it makes money. If it strengthens, accept even when it's harder.",
+    sniped_relevance="This is THE underlying thesis that all SNIPED work is in service of. When motivation flags or strategy feels unclear, re-read this articulation. The Cultural Doc, the Direction Stack book, the chapter system, the founder portrait work are all instantiations of the same bet. Photography is just the visible surface; systems-as-creative-leverage is the actual claim.",
+    direct_quotes=[
+        "Photography as the proving ground for systems-as-creative-leverage.",
+        "You're not optimizing photography for money first · you're using systems to make great work · money follows."
+    ],
+    tags=["100q","meta-thesis","systems-as-creative-leverage","sniped-north-star","money-follows-work"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="founder-psychology",
+    concept="Q83 · The dual-track life · AWS engineer + SNIPED founder",
+    summary="The locked operating reality: BJ runs a dual-track life. AWS engineering is a real career (likely promotion next year, growing as engineer), not a side note. The dual-track life IS the current win condition. The AWS-exit moment is a future decision, evaluated deliberately when Phase B triggers · not impulsively. Until Phase B, both tracks are protected. The SNIPED time budget (10-12 hrs/week) is calibrated to this reality, not to a hypothetical full-time founder existence.",
+    usable_principle="Dual-track operators have different constraints than full-time founders. The time budget is the operating reality, not an aspiration. Don't plan SNIPED moves that require full-time founder hours · plan moves that fit the 10-12 hour weekly budget until Phase B unlocks the AWS-exit decision.",
+    sniped_relevance="Apply when scoping any SNIPED initiative: does it fit the 10-12 hour weekly budget alongside AWS work? If not, scope down or defer. The dual-track is not a constraint to be optimized away; it's the foundation that gives SNIPED structural runway (AWS income removes Reset-pricing-pressure from desperation, allowing BJ to hold the $1,500 floor).",
+    direct_quotes=[
+        "The AWS engineering track is real, not a side note.",
+        "When Phase B triggers, evaluate the AWS-exit moment deliberately · not impulsively."
+    ],
+    tags=["100q","dual-track","aws-engineering","time-budget","phase-b-trigger","aws-exit-future-decision"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="operational-locks",
+    concept="Q85-90 · The 2026 win conditions · 5 measurable locks",
+    summary="The locked 2026 win conditions, in numbers: (a) 12 paid shoots minimum, 24 stretch. (b) Revenue $15K min, $25K stretch (Phase B = $2K MRR × 3 months = $24K annualized = unlock). (c) 16 chapters minimum bi-weekly from May, 24 stretch (16 = system established, 24 = system thriving). (d) 5 founder portraits minimum (3 felt too low for lane ambition). (e) Concrete 2027 proofs: 25+ chapters, 10+ paid Reset clients, 1 magazine feature OR named press placement, 5K-10K targeted LA-cluster following, Direction Stack book in print.",
+    usable_principle="Write the win conditions as measurable numbers, with both floor and stretch targets. Track monthly. Floor = minimum to call the year a win; stretch = what makes the year exceptional. Without both numbers, the year drifts without a clear definition of success.",
+    sniped_relevance="These are the operating targets for the rest of 2026. Monthly review checklist: are we on pace for 12 shoots? On pace for $15K? Shipped a chapter every two weeks? Closed a founder portrait this month? At year-end, the win/loss is decidable. Track explicitly in the Notion CRM or wherever metrics live.",
+    direct_quotes=[
+        "Lock 12 paid shoots minimum, 24 stretch. Lock $15K minimum · $25K stretch. Lock 16 chapters minimum · 24 stretch. Lock 5 founder portraits as the minimum 2026 win."
+    ],
+    tags=["100q","2026-win-conditions","measurable-targets","monthly-review","floor-vs-stretch"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="operational-locks",
+    concept="Q89 · The 'named win' target strategy · pick one A-list bet",
+    summary="The locked external-proof concentration discipline: pick ONE of three high-impact bets and pursue it deliberately in Q3/Q4 2026, rather than chasing all three. The options: (a) One A-list LA founder Reset client (50K+ Twitter / multi-billion company) whose post unlocks 100+ DMs. (b) One published magazine feature (Apartamento, Aperture, LA-specific). (c) Forbes 30 under 30 placement. Per Elberse blockbuster strategy: concentrate resources on the one bet with the highest probability of hitting; don't dilute across three pursuits.",
+    usable_principle="Concentration beats diversification in high-variance pursuit decisions. Pick ONE moonshot per quarter or half. Pursue it with explicit dedicated time. The diluted pursuit of three moonshots produces zero hits; the concentrated pursuit of one produces probabilistic hit.",
+    sniped_relevance="Q3 2026 decision · pick ONE of the three. Strategic recommendation per BATCH_003 Elberse cluster: the A-list founder client is probably the highest-leverage bet because it (a) is closest to existing pipeline, (b) produces compound founder-network access if it hits, (c) is testable with existing infrastructure. Magazine feature is Q4 work. Forbes 30 under 30 is referral-only and slower.",
+    direct_quotes=[
+        "Lock at least ONE of these as the 2026 named win target.",
+        "Chase ONE of these deliberately in Q3/Q4 2026 · don't try all three."
+    ],
+    tags=["100q","named-win","blockbuster-concentration","elberse-applied","q3-q4-target"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="operational-locks",
+    concept="Q91 · Stop adding architecture · Lock 10 enforcement",
+    summary="The hardest discipline the 100Q audit named: stop adding more strategic frameworks to the OS. Lock 10 (architecture refinement banned) holds. The 120+ files in the OS are mature · any new strategic doc unless triggered by Phase B is procrastination disguised as planning. Execution is the only frontier. Also stop: chasing Bishop Peters, stretching toward beach shoots when home-proximity options exist, over-engineering Tally forms when DM templates work.",
+    usable_principle="When the architecture is built, the work is execution, not more architecture. The temptation to add a new framework when execution feels hard is the most expensive form of procrastination because it looks like productive work. Lock 10 must be enforced consciously.",
+    sniped_relevance="Apply Lock 10 every time the urge surfaces to write a new SOP, build a new system, draft a new framework, or restructure existing docs. The urge is procrastination. The answer is execution: ship CH01, send the next VIB, close the next Reset, deliver the open client work. Lock 10 is checked weekly during operating rhythm.",
+    direct_quotes=[
+        "Stop adding more strategic frameworks to the OS. Lock 10 (architecture refinement banned).",
+        "Execution is the only frontier."
+    ],
+    tags=["100q","lock-10","architecture-banned","execution-only","stop-doing-list"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="operational-locks",
+    concept="Q92 · The BASEPLATE firewall · the named single decision",
+    summary="The one decision the audit surfaced that wasn't yet explicitly locked: the BASEPLATE FIREWALL. Lock · BASEPLATE stays dormant (legal scaffolding only · EIN filing OK) until SNIPED hits $15K cumulative revenue. Don't open AI-influencer plays · don't split focus · don't dilute the SNIPED moat with side-experiments that could live there. The 'not sure' on Q92 was avoidance · the decision was on the table whether named or not. Locking it explicitly removes the constant background pull.",
+    usable_principle="Decisions that are 'on the table' but not named explicitly drain operating energy through constant background re-evaluation. Naming the lock explicitly · with the specific trigger ($15K) and the specific behavior (no plays, only EIN scaffolding) · ends the energy drain.",
+    sniped_relevance="The BASEPLATE firewall is now the canonical decision for any AI-side-play temptation through 2026. Cross-check this against BJ's auto-memory · the firewall should appear in feedback memories. The trigger ($15K cumulative SNIPED) is the conscious unlock; below that, the answer is always no, regardless of how attractive the play looks.",
+    direct_quotes=[
+        "BASEPLATE stays dormant (legal scaffolding only · EIN filing OK) until SNIPED hits $15K cumulative.",
+        "Don't dilute the SNIPED moat with side-experiments that could live there."
+    ],
+    tags=["100q","baseplate-firewall","explicit-lock","trigger-15k","focus-protection","no-side-plays"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="operational-locks",
+    concept="Q100 · The simplest winning SNIPED · the MVE explicit",
+    summary="The audit's most-distilled answer: the simplest SNIPED that can win has 10 components, all currently in motion or near-ready. One photographer (BJ). One edit register (v3 LUXURY · color HERO · B&W Card). One chapter system (3-5 posts · HERO + Card · 1-3 day breathing gap). One offer to sell (Reset $1,500). One brand commercial backup (AlmaLove-tier $350-550). One outreach channel (Ren cold email + LinkedIn warming). One paid distribution lever (boost organic · 10-mile LA · $30/day). 12 chapters by year-end. $15K minimum revenue. 5 founder portraits. BASEPLATE dormant until $15K. Everything else is optimization.",
+    usable_principle="The MVE (Minimum Viable Empire) is the operating skeleton. Everything beyond MVE is optimization. When evaluating new initiatives, ask: does this fit inside the MVE structure or is it an addition beyond? Additions beyond MVE require explicit justification and budget; MVE refinements are the default work.",
+    sniped_relevance="This is the canonical operating spec. When the system feels complicated, return to these 10 components. The list IS SNIPED at minimum viable. Everything in BJ's docs (Stacks, methodology, Cultural Doc, etc.) is in service of running these 10 well. Don't add an 11th component without Phase B trigger.",
+    direct_quotes=[
+        "The simplest winning SNIPED has 10 components.",
+        "That's the simplest version. Everything else is optimization."
+    ],
+    tags=["100q","mve","minimum-viable","ten-components","operating-skeleton","simplest-winning"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="operational-locks",
+    concept="CONSOLIDATED · The 8 locked doctrine updates from the audit",
+    summary="The 8 doctrine updates the 100Q audit locked, applied immediately: (1) Phase B trigger = $2K MRR × 3 months (not $3K × 2). (2) 2026 win = 12 paid shoots, $15K min, 16 chapters, 5 founder portraits. (3) BASEPLATE firewall locked. (4) Forbes 30 under 30 = 2027 external proof target. (5) Casting priority shift to returning models + experienced subjects. (6) Bishop Peters decommissioned as near-term anchor (Lineage Doctrine framing-only). (7) Mode 1 DM template = default chapter intake (80% of cases). (8) Boost-organic move active after CH01 ($30/day · 10-mile LA · business.facebook.com).",
+    usable_principle="Locked doctrine updates from a structured audit should be communicated cross-doc so they don't get forgotten. Each update may invalidate language in other docs · audit and update consistently within 30 days of the lock.",
+    sniped_relevance="These 8 updates are the canonical locks as of 2026-05-13. Cross-check that they appear correctly in: auto-memory files (Phase B trigger, BASEPLATE firewall), OPERATIONAL_BACKBONE, REVERSE_ROADMAP, the Direction Stack book draft. Each older doc that contradicts these should be flagged for sweep. Per BATCH_002 master index, three internal contradictions already resolved · this is the 4th wave.",
+    direct_quotes=[
+        "Phase B trigger = $2K MRR × 3 months (not $3K × 2).",
+        "Boost-organic move active after CH01 ($30/day · 10-mile LA · business.facebook.com)."
+    ],
+    tags=["100q","consolidated-locks","eight-updates","doctrine-sweep","2026-05-13-locks"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="operational-locks",
+    concept="CONSOLIDATED · The 7-day / 30-day / 90-day execution ladder",
+    summary="The audit's tactical execution ladder, working from immediate to medium-term. Today (5/13): Ship CH01 Yae HERO + Card. This week (by 5/20): Mode 1 DMs to 4 May models, AlmaLove shoot Saturday, Direction Stack one-pager status check with Rejuar, Notion CRM stand-up. This month (by 6/13): Ship CH02-CH04, first boost-organic experiment, build close-circle 5 LA people, June 1 casting call shoot, one concrete invitation to Don. This quarter (by 8/13): 12 chapters shipped, 2-3 Reset clients closed, $5-10K cumulative, BASEPLATE EIN filed, Phase B trigger evaluation.",
+    usable_principle="The execution ladder converts strategic locks into named tactical moves with named deadlines. Without the ladder, the strategic locks remain abstract. The ladder is the bridge between doctrine and daily action.",
+    sniped_relevance="This ladder runs through August 2026. Weekly review · what's the next move on this list? Monthly review · what targets did we hit / miss? Quarterly review (mid-August) · re-evaluate Phase B proximity and write the next 90-day ladder. The ladder discipline is what makes Lock 10 (no new architecture) survivable · the work is execution against named items, not framework refinement.",
+    direct_quotes=[
+        "Today (5/13): Ship CH01 Yae HERO + Card. This week: Mode 1 DMs to 4 May models · AlmaLove shoot Saturday.",
+        "This quarter (by 8/13): 12 chapters shipped · 2-3 Reset clients closed · BASEPLATE EIN filed."
+    ],
+    tags=["100q","execution-ladder","tactical-roadmap","7-30-90","weekly-review-input"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="culture",
+    concept="CLOSING · The system is built · willingness as the moat",
+    summary="The audit's closing reflection reframes the question 'is SNIPED ready?' as 'what am I willing to repeat?' The system is built. The architecture exists. The locked decisions are made. What's left is willingness · repeated execution of the chapter system, the Reset price discipline, the breathing gap maintenance, the BASEPLATE firewall, the dual-register hold, the named refusals, the sleep, the relationship. The OS is the architecture. Willingness is the moat. The chapter is the unit. The chapter system is the engine. Run it.",
+    usable_principle="When the architecture is mature, the bottleneck shifts from design to willingness. Willingness is not a feeling; it's repeated execution despite the system feeling boring or grinding. Most operators quit the boring execution phase because they mistake it for stagnation; the operators who win recognize that boring execution IS the win condition.",
+    sniped_relevance="The closing reframe is the operating discipline for the entire 2026 calendar year. Every day, the question isn't 'what should I build today?' It's 'what am I willing to repeat today?' The chapter system. The Reset pitch. The DM template. The breath day. The aesthetic discipline. Run it. The willingness IS the brand.",
+    direct_quotes=[
+        "The OS is the architecture. Your willingness is the moat.",
+        "The chapter is the unit. The chapter system is the engine. Run it."
+    ],
+    tags=["100q","willingness-as-moat","architecture-built","repeated-execution","2026-operating-mode"]
+)
+
+print(f"After cluster 2 (100Q_AUDIT · 22 chunks): {len(CHUNKS)} chunks")
+
+# =============================================================
+# CLUSTER 3 · STRATEGIC_PRINCIPLES Sections 5-11 (skip 4a-4k · BATCH_003 dupes)
+# Cross-source synthesis · operational implications · anti-patterns · decision routing
+# =============================================================
+STITLE = "Strategic Principles · Permanent Intelligence Layer"
+SFILE = "strategic_principles.md"
+AUTHOR = "BJ / SNIPED Media"
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="doctrine-meta",
+    concept="Why SNIPED is correctly priced at $1,500 · the 4-source convergence",
+    summary="The synthesis section pulls 4 canonical sources into the structural argument for holding the $1,500 Reset floor. (1) Trusted Advisor (Maister): self-orientation low + credibility high produces the trust premium. (2) Hit Makers (Thompson): MAYA rule says the price must be bold-yet-accessible · not the cheapest, not absurd. (3) Status Anxiety (de Botton): snobbery filter requires premium pricing for the buyer's status logic to engage. (4) Pricing Creativity (Enns): charging more is the discipline that produces the right buyers. Operator implication: hold $1,500 cold. Refuse the discount conversation. Scope flexes, price doesn't.",
+    usable_principle="When multiple canonical sources converge on the same operational decision, that decision is structurally validated · not an opinion. The 4-source convergence on $1,500 holding makes it doctrine, not preference. Refuse to negotiate against doctrine.",
+    sniped_relevance="When a founder negotiates against the Reset price, this is the convergence argument: it's not arbitrary, it's the price that 4 different canonical frameworks independently predict will work. The discount conversation isn't a pricing conversation; it's a self-orientation surrender. The principled answer is scope-flexes-price-holds.",
+    direct_quotes=[
+        "Hold $1,500 cold. Refuse the discount conversation.",
+        "Why SNIPED is correctly priced at $1,500 · self-orientation low · MAYA rule · snobbery filter · charge more."
+    ],
+    tags=["strategic-principles","four-source-convergence","reset-floor-doctrine","price-discipline","cross-source-synthesis"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="doctrine-meta",
+    concept="Direction Stack as load-bearing asset · multi-source validation",
+    summary="The synthesis identifies the Direction Stack methodology as the load-bearing asset across multiple canonical lenses. Trusted Advisor: methodology IS the credibility multiplier (the trust-compound mechanism). Hit Makers: the methodology IS a myth-shape (Force of Story). Status Anxiety: the methodology externalizes the buyer's meritocracy shame (they can blame the lack of methodology, not themselves). Operator implication: Direction Stack is THE primary asset to deepen · not just a marketing tool. Every hour of Direction Stack development compounds more than equivalent hours of other work.",
+    usable_principle="The load-bearing asset is the one that multiple frameworks independently identify. Direction Stack is load-bearing because it serves credibility, story, and shame-externalization simultaneously. Allocate disproportionate time to deepening it.",
+    sniped_relevance="Concrete next-action: prioritize Direction Stack book completion (BATCH_002 found this same conclusion through Naval/Thiel/Isaacson framing). The methodology IS the asset that compounds; everything else is execution. The 444 MB PDF + 10 audio scripts are not marketing assets · they're the core IP.",
+    direct_quotes=[
+        "Direction Stack is THE primary asset to deepen, not just a marketing tool.",
+        "Methodology multiplies credibility · IS a myth-shape · externalizes meritocracy shame."
+    ],
+    tags=["strategic-principles","direction-stack-load-bearing","methodology-as-ip","multi-source-validation","compounding-asset"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="doctrine-meta",
+    concept="The 9-factor founder purchase decision · what they're actually buying",
+    summary="The synthesis decomposes what a founder pays for at Reset $1,500 into 9 simultaneous purchase factors: (1) Trust in the operator's eye (Maister). (2) Membership in a cluster identity signal (Thompson). (3) Relief from meritocracy shame (de Botton). (4) Costly hidden-motive fitness display (Simler/Hanson). (5) New-luxury trade-up purchase (Silverstein/Fiske). (6) Insurance against bad-photography reputational risk (Enns). (7) Hospitality experience that exceeds service (Guidara). (8) Analog/real artifact in AI-flooded category (Sax). (9) Association with culturally-relevant emerging body of work (Holiday + Berger + Elberse). The price is calibrated to deliver these 9 simultaneously.",
+    usable_principle="A premium price is justifiable when it delivers multiple value vectors simultaneously, not just one. Decompose what your price is actually buying for the buyer; if it's only 1-2 vectors, the price is fragile. If it delivers 6+ vectors, the price is structurally sound and worth defending.",
+    sniped_relevance="When evaluating any change to the Reset offer (adding/removing a deliverable, changing the format, modifying the timeline), check which of the 9 vectors it serves or compromises. Decisions that preserve 6+ vectors are safe. Decisions that compromise more than 3 should be refused. Use this as the operational gate for offer evolution.",
+    direct_quotes=[
+        "A founder paying $1,500 for a Reset is buying nine things simultaneously.",
+        "The price is not high. It is precisely calibrated to deliver these nine simultaneously."
+    ],
+    tags=["strategic-principles","nine-factor-purchase","price-justification","multi-vector-value","offer-evolution-gate"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="doctrine-meta",
+    concept="The integrated SNIPED operating instruction · the 15-source paragraph",
+    summary="The single integrated strategic instruction the 15-source synthesis produced: Specialize ruthlessly (Enns) in operator-coded founder portraiture and cultural documentation in DTLA. Run a diagnostic methodology (Maister + Berger) that externalizes the meritocracy shame the buyer feels (de Botton + Simler/Hanson). Deliver hospitality, not service (Guidara). Charge premium without apology because the premium IS the signal (Trading Up + Elephant in the Brain). Refuse free thinking before payment (Enns) and refuse to scale beyond the methodology's integrity (Jarvis + Maister). Build a body of work that compounds across decades (Holiday + Berger + Hit Makers) on the leverage of code/media/IP (Naval). Stay analog where AI cannot follow (Sax). Place big bets on a few high-conviction surfaces (Elberse). Hold the heads high (Enns).",
+    usable_principle="The single integrated paragraph IS the strategic operating model. It is testable: every operating decision should be checkable against this paragraph. Decisions that survive the test are doctrine-aligned. Decisions that fail it are drift.",
+    sniped_relevance="This paragraph is the canonical strategic statement. Print it. Read it at session start. Use it as the closing gate before any major SNIPED decision. It compresses 15 books and the entire BATCH_002 + BATCH_003 corpus into a paragraph that BJ can carry in his head. The 10-year body of work is the actual asset; everything else is execution detail.",
+    direct_quotes=[
+        "Specialize ruthlessly in operator-coded founder portraiture and cultural documentation in DTLA.",
+        "The 10-year body of work is the actual asset; everything else is execution detail."
+    ],
+    tags=["strategic-principles","integrated-paragraph","fifteen-source-synthesis","strategic-north-star","operating-model-compressed"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="commercial-architecture",
+    concept="The Revenue Engine · Trust-equation dominant",
+    summary="The synthesis maps operational implications to SNIPED's Revenue Engine using Trust Equation framing as dominant. Operational moves: (a) Hold pricing without justification (self-orientation reducer). (b) VIB method = broadcast-shaped trust delivery. (c) Reset → Op Kit → Brand System ladder = graduated trust depth. (d) Direction Stack methodology = Credibility + Reliability multiplier. (e) Day-30 Op Kit pitch = 'ask for the order' Romance principle. (f) 90-day re-engagement = listen for fickle-moment triggers. (g) Refuse the AI-threat client = unwilling to compromise self-orientation for short-term revenue.",
+    usable_principle="Each engine has a dominant theoretical frame; map operational moves to that frame for coherence. Revenue Engine = Trust Equation dominant. Audience Engine = Hit Makers dominant. Reputation Engine = Status Anxiety + Hit Makers dominant. Operating moves that fight the dominant frame waste energy.",
+    sniped_relevance="Apply the engine mapping when prioritizing weekly work. If the bottleneck is revenue, work the 7 Trust-Equation-aligned moves listed. If the bottleneck is audience, work the Hit Makers moves (separate chunk). If reputation, work the Status Anxiety moves. Don't confuse engines; each has its own operating logic.",
+    direct_quotes=[
+        "Hold pricing without justification (Self-orientation reducer).",
+        "Refuse the AI-threat client = unwilling to compromise self-orientation for short-term revenue."
+    ],
+    tags=["strategic-principles","revenue-engine","trust-equation-dominant","seven-moves","engine-mapping"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="commercial-architecture",
+    concept="The Audience Engine · Hit Makers dominant",
+    summary="The synthesis maps Audience Engine moves to Hit Makers framing. (a) LinkedIn POV cadence = exposure compounding (ship 3/week minimum). (b) IG carousel = MAYA register (advanced enough to feel premium, accessible enough to read). (c) Reels native short-form = native broadcast on the discovery surface. (d) Substack live now = build the broadcast for future launches. (e) Cluster signaling > broad reach (don't try to appeal across clusters). (f) Direction Stack book launch is broadcast-shaped · requires built audience, not viral hope.",
+    usable_principle="Audience Engine operates on exposure compounding + MAYA register + cluster targeting. Each move should produce repeatable exposure inside a specific cluster, NOT chase broad reach. Broad reach is the volume metric; cluster engagement is the win metric.",
+    sniped_relevance="Currently weakest of the three engines. Operational concrete: increase LinkedIn POV cadence from current to 3/week minimum. Substack should ship before any major launch (the Direction Stack book launch requires a built audience that doesn't yet exist at scale). Don't optimize for reach across all platforms; optimize for cluster depth inside founder-LA.",
+    direct_quotes=[
+        "LinkedIn POV cadence = exposure compounding · ship 3/week minimum.",
+        "The Direction Stack book launch is broadcast-shaped: requires built audience, not viral hope."
+    ],
+    tags=["strategic-principles","audience-engine","hit-makers-dominant","exposure-compounding","cluster-signaling"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="commercial-architecture",
+    concept="The Reputation Engine · Status Anxiety + Hit Makers dominant",
+    summary="The synthesis maps Reputation Engine moves to Status Anxiety + Hit Makers dual framing. (a) Cultural Documentation = Art-category alternative valuation system (de Botton solution). (b) 10-year arc = Caillebotte's bequest (Hit Makers exposure across years). (c) Body of work compounds across decades, not posts. (d) The Black LA founder/operator/artist cluster is THE cluster. (e) Refuse to commercialize Cultural Documentation (preserves the Art-category status). (f) Museum / Aperture / fellowship paths emerge from sustained body-of-work, not positioning maneuvers.",
+    usable_principle="Reputation work compounds across decades, not quarters. The right metric is body-of-work coherence over years, not viral moments. Cultural Documentation must stay non-commercial · the moment it gets monetized, it loses the Art-category status that gives it leverage.",
+    sniped_relevance="Operating discipline · Cultural Documentation runs on its own track, with explicit refusal to commercialize it. The 10-year arc means Year 1 cultural-doc work won't visibly pay off until Year 5-7. Maintain the cadence (quarterly minimum) regardless of immediate visibility return. The body-of-work IS the reputation; individual posts are not.",
+    direct_quotes=[
+        "Body of work compounds across decades, not posts.",
+        "Museum / Aperture / fellowship paths emerge from sustained body-of-work, not from positioning maneuvers."
+    ],
+    tags=["strategic-principles","reputation-engine","status-anxiety-dominant","cultural-doc-track","ten-year-bequest"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="anti-patterns",
+    concept="The 4 named tensions · how to resolve doctrinal contradictions",
+    summary="The synthesis names 4 surface-level tensions in the canonical sources and resolves each. (1) Trusted Advisor says listen first; Hit Makers says ship the prophecy · resolution: listen in 1:1 client work, ship in market-facing creative direction. (2) Status Anxiety says snobbery enables premium pricing; Trusted Advisor says low self-orientation builds trust · resolution: snobbery is the buyer's framework, self-orientation is the operator's framework, both at once. (3) Hit Makers broadcast vs Status Anxiety individual decisions · resolution: both at different scales, broadcast gets you in front of individuals who then decide individually. (4) MAYA vs willing-to-look-ignorant · resolution: methodology is MAYA-aligned, ignorance posture is in the diagnostic listening.",
+    usable_principle="When canonical sources appear to contradict, the contradiction is usually surface-level and both can operate simultaneously at different scales or in different modes. Look for the operating-mode distinction; rarely do the sources actually conflict at the strategic level.",
+    sniped_relevance="When BJ encounters apparent contradictions in the doctrine, use this resolution method: identify the scale (1:1 vs market-facing) or mode (operator-side vs buyer-side) at which each source operates. Most contradictions dissolve when the operating mode is named. Apply during quarterly Constraint Audit.",
+    direct_quotes=[
+        "Both are true at different scales.",
+        "Both at once. The operator stays low-self-orientation; the buyer's snobbery does its own work."
+    ],
+    tags=["strategic-principles","four-tensions","contradiction-resolution","operating-mode-distinction","scale-disambiguation"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="anti-patterns",
+    concept="The 8 anti-patterns catalog · drift symptoms named per source",
+    summary="The synthesis catalogs 8 anti-patterns that violate doctrine, each linked to the source naming it. (1) Self-orientation in marketing (Trusted Advisor) · Carrd copy focuses on operator credentials over buyer outcomes. (2) Pure novelty without familiarity (Hit Makers · anti-MAYA) · avant-garde aesthetics lose LA founder buyer. (3) Pure familiarity without novelty (Hit Makers · anti-MAYA) · generic 'LA photographer' positioning. (4) Apologetic pricing (Status Anxiety) · 'it's $1,500 because of [explanation]' weakens the price. (5) Broadcasting before audience is built (Hit Makers) · book launch with 100 followers fails. (6) Diluting cultural documentation (Status Anxiety) · selling it cheapens the alternative valuation. (7) Performing snobbery operator-side (Status Anxiety) · creates fragility. (8) High self-orientation in Op Kit pitch (Trusted Advisor) · 'here's what I want to sell you' instead of 'here's the gap I see.'",
+    usable_principle="Anti-patterns are violations of doctrine. Naming them in catalog form converts vague drift into specific identifiable behaviors. Audit the operating surface quarterly against the 8; any drift surfaces as one of these 8 specific patterns.",
+    sniped_relevance="Use as quarterly Constraint Audit checklist. Read each anti-pattern; ask 'am I doing this anywhere?' Specific checks: Is Carrd copy operator-orientation or buyer-orientation? Are LinkedIn posts MAYA-calibrated? Is the Reset price ever apologized for? Has cultural doc been pulled into commercial framing? These are the 8 specific drift checks.",
+    direct_quotes=[
+        "Self-orientation in marketing · Carrd copy that focuses on operator credentials over buyer outcomes.",
+        "Apologetic pricing · 'It's $1,500 because of [explanation]' weakens the price."
+    ],
+    tags=["strategic-principles","eight-anti-patterns","drift-symptoms","constraint-audit-checklist","specific-violations"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-support",
+    concept="The decision-support routing table · 15 decision types mapped to sources",
+    summary="The synthesis provides a routing table from common decisions to which canonical sources to consult. Decisions covered: pricing new offer tier (Status Anxiety + Trusted Advisor + Pricing Creativity + Trading Up); audience surface expansion (Hit Makers + Naval); Op Kit pitch language (Trusted Advisor + Pricing Creativity + Win Without Pitching); Carrd copy revision (Status Anxiety + Trusted Advisor + WWP); whether to take a particular client (Trusted Advisor + WWP + Company of One); Direction Stack book launch timing (Hit Makers + Perennial Seller + Blockbusters); quarterly Constraint Audit (all 15 sources); new content surface (Hit Makers + Naval + Company of One); AI-threat negotiation (Status Anxiety + Trusted Advisor + Sax + Enns); cultural doc cadence (Status Anxiety + Hit Makers + Berger + Elberse); hospitality moments (Unreasonable Hospitality); free shoot decisions (WWP + Trusted Advisor); hire decisions (Company of One + Production OS + Naval); proposal deck decisions (WWP); pricing pressure (Pricing Creativity + WWP); new IP launch (Perennial Seller + Blockbusters + Naval).",
+    usable_principle="A decision-support routing table compresses doctrine into actionable lookup. When facing a decision type, consult the named sources rather than re-deriving from scratch. The routing converts 15 books into a directory.",
+    sniped_relevance="This routing table is operational gold. Save it as a quick-reference doc. Before any non-trivial SNIPED decision, identify the decision type and pull the named sources via BATCH_002 + BATCH_003 chunks. The retrieval system can answer 'what does Enns say about scope-flexes-not-price' in seconds; the routing table tells you which question to ask.",
+    direct_quotes=[
+        "When making decision X, consult source Y.",
+        "Quarterly Constraint Audit · All 15 · structured check."
+    ],
+    tags=["strategic-principles","decision-routing","fifteen-decision-types","quick-lookup","retrieval-shortcut"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-support",
+    concept="Proposal deck decisions · 'almost always no' default per WWP",
+    summary="One of the strongest specific entries in the decision-routing table: when deciding whether to write a proposal deck, the default answer is NO. Per WWP Proclamation 5 (do with words what we used to do with paper), the long polished proposal deck is itself a surrender of authority. The right artifact is a short conversational written confirmation of what was already verbally agreed. Long decks signal anxiety and try too hard. The exception · only for enterprise-scale engagements (Brand System $15K+) where the buyer's procurement process requires a formal artifact.",
+    usable_principle="Default to 'no' on proposal decks. The conversation is the sale; the document is the confirmation. Long decks signal weakness. Short written follow-ups maintain authority while delivering required documentation.",
+    sniped_relevance="Standard SNIPED engagement (Reset, Op Kit) does NOT get a proposal deck. The discovery-call conversation closes the sale; a short follow-up email confirms scope + price + timeline + deposit. Resist any temptation to build polished deck templates in Notion or Figma · per Lock 10, that's architecture procrastination. The 'almost always no' is the operating default.",
+    direct_quotes=[
+        "Whether to write a proposal deck · WWP proclamation 5 · ANSWER ALMOST ALWAYS NO.",
+        "Words not paper."
+    ],
+    tags=["strategic-principles","proposal-deck-default-no","wwp-proclamation-5","words-not-paper","authority-preservation"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="doctrine-meta",
+    concept="The architecture is correct · the execution is the work",
+    summary="The synthesis section closes with the single integrated principle, which has a precise corollary: the architecture is correct. The work is execution. Per Section 10 of STRATEGIC_PRINCIPLES, the canonical integrated operating model already exists (in Section 5). What remains is repeated execution. Adding more architecture is procrastination. Refining frameworks is procrastination. The next 90 days · and next 90 after that · are execution against the locked architecture.",
+    usable_principle="When the strategic doctrine is mature (multiple-source-validated, internally consistent, explicitly locked), the operating mode shifts from design to execution. The temptation to keep refining doctrine is the highest form of procrastination because it looks like productive work but doesn't move the business forward.",
+    sniped_relevance="This is the doctrinal cousin of Lock 10 (architecture refinement banned). The architecture IS correct. The 361-chunk corpus (B1+B2+B3) plus the SNIPED OS docs plus the Aesthetic Statement plus the 100Q audit IS the architecture. What's left is shipping CH01, closing Resets, building Cultural Doc essays, completing the Direction Stack book. Execution is the only frontier through 2026.",
+    direct_quotes=[
+        "The architecture is correct. The execution is the work."
+    ],
+    tags=["strategic-principles","architecture-correct","execution-only","lock-10-cousin","2026-operating-mode"]
+)
+
+print(f"After cluster 3 (STRATEGIC_PRINCIPLES synthesis · 12 chunks): {len(CHUNKS)} chunks")
+
+# =============================================================
+# CLUSTER 4 · SNIPED_OS_V1_SYNTHESIS Sections 6-14 + Appendices
+# Sections 0-5 covered in BATCH_001 · target Section 6+ here · ~25 chunks
+# =============================================================
+STITLE = "SNIPED OS v1 · Repository-Wide Synthesis"
+SFILE = "sniped_os_v1_synthesis.md"
+AUTHOR = "BJ / SNIPED Media"
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="commercial-architecture",
+    concept="The 3-tier delivery architecture · HERO / SELECT / PROOF",
+    summary="The locked delivery architecture v2 with 3 tiers. HERO · Lightroom base + Evoto clinical + Photoshop final · 10-15 min per frame · editorial deployment. SELECT · Lightroom base + color grade + crop (no Evoto) · 1-2 min · personal social. PROOF · Lightroom batch preset only · 15-30 sec · gallery navigation + upsell pool. The Hero count is the load-bearing number; everything else flexes. This architecture replaces the v1 single-hero scarcity model with a graduated edit-tier system that supports upsell paths.",
+    usable_principle="A three-tier delivery architecture (premium / standard / proof) gives buyers an entry point at each value level while creating natural upsell paths. The premium tier sets the price ceiling; the proof tier prevents leaving money on the table from gallery browsers. Single-tier delivery caps revenue per client.",
+    sniped_relevance="Apply discipline: HERO count is the offer commitment (10-12 for Reset). SELECT and PROOF flex based on shoot yield. The upsell paths (Path A · Select-to-Hero $60/single, Path B · Proof-to-Select $30/single, Path C · Commercial license $250-1,000/Hero) typically add $120-240/Reset above the base price. Track upsell conversion as a separate metric from Reset count.",
+    direct_quotes=[
+        "HERO 10-15 min · Editorial deployment. SELECT 1-2 min · Personal social. PROOF 15-30 sec · Gallery navigation + upsell pool.",
+        "The Hero count is the load-bearing number. Everything else flexes."
+    ],
+    tags=["synthesis","delivery-architecture-v2","three-tier","hero-select-proof","upsell-paths"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="commercial-architecture",
+    concept="The Sprint sub-tier · never pitched cold",
+    summary="A critical positioning guardrail: Sprint $750 is NEVER pitched cold. Only offered to warm intros / referrals that genuinely cannot do $1,500. If a cold inquiry asks 'do you do anything cheaper,' the answer is scope flex on Reset, NOT Sprint. Risk: if Sprint pricing leaks to cold outreach, Reset positioning erodes (cold prospects start with the lower number anchored). Operational guardrail: Sprint only when the inquiry comes through a documented warm referral path in Notion CRM.",
+    usable_principle="Multi-tier pricing creates positioning risk if tiers leak to the wrong audience. The lower tier must be access-controlled · documented warm referral paths only. Without the access control, the lower tier becomes the cold-outreach anchor and the premium tier erodes.",
+    sniped_relevance="Operational discipline: every Sprint engagement should have a documented referral source in Notion CRM before the price is named. If the source isn't documented, the answer is Reset (with potential scope flex). This is a single-rule discipline that protects the entire pricing architecture. Drift here destroys Reset over 6-12 months.",
+    direct_quotes=[
+        "Sprint $750 is never pitched cold.",
+        "If a cold inquiry asks 'do you do anything cheaper' → the answer is scope flex on Reset, not Sprint."
+    ],
+    tags=["synthesis","sprint-tier","never-cold","access-controlled-pricing","reset-protection"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="commercial-architecture",
+    concept="The 3 upsell paths · the natural conversion architecture",
+    summary="The synthesis names 3 explicit upsell paths from any Reset delivery. Path A · Select-to-Hero upgrade ($60/single, 5 for $250, 10 for $450) · 30-50% of Reset clients buy · avg $120-240/Reset. Path B · Proof-to-Select promotion ($30/single, 5 for $120) · rare but available. Path C · Commercial license upgrade ($250-1,000/Hero for 12-month limited, $1,500-3,000 for unlimited) · triggers when client gets press/brand campaign/partnership use. The 14-day gallery window applies to all three. The v1 '48-hour artificial scarcity' is GONE · natural gallery expiry is the only time pressure.",
+    usable_principle="Build natural upsell paths into the delivery architecture rather than relying on aggressive post-sale pitches. The gallery window creates organic deadline pressure; the three tiers create organic value-ladder pressure. Artificial scarcity tactics ('48-hour limited offer') damage premium positioning; natural scarcity (gallery expiry, project-specific licensing) preserves it.",
+    sniped_relevance="Track upsell conversion as a separate KPI from Reset volume. 30-50% Path A conversion means $120-240 average per Reset above the base price. This is the math that turns Reset $1,500 into Reset $1,620-1,740 effective. Path C (commercial licensing) is the highest-margin upsell · trigger explicitly when client mentions press, brand campaign, or partnership use of the photos.",
+    direct_quotes=[
+        "Path A · Select-to-Hero upgrade · 30-50% of Reset clients buy · avg $120-240/Reset.",
+        "The v1 '48-hour artificial scarcity' is GONE. Natural gallery expiry is the only time pressure."
+    ],
+    tags=["synthesis","three-upsell-paths","path-a-b-c","natural-scarcity","gallery-window","commercial-licensing"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="commercial-architecture",
+    concept="The two-channel outbound architecture · zero cannibalization",
+    summary="The locked outbound architecture (2026-05-12). Channel 1 · LinkedIn VIB · ICP = LA tech founders (Tier 0 CRM) · volume 4-6/week · asset = bespoke VIB PNG · conversion path = VIB → reply → call → Reset. Channel 2 · Cold email (Instantly · 5 domains × 5 inboxes = 25 inboxes) · ICP = LA tech VPs/Directors/non-founder C-Suite · volume ~150/day · asset = 3-email sequence + 5-min Higgsfield-anchored Loom audit · conversion path = email → reply → Loom → call → Reset. Zero cannibalization rule: cold email targets EXCLUDE founders.",
+    usable_principle="When running multiple outbound channels, the zero-cannibalization rule prevents the channels from competing for the same prospects (which wastes resources and confuses signals). Each channel has its own ICP segment; the segments don't overlap.",
+    sniped_relevance="Operational check: when adding a new prospect to the CRM, identify which channel they belong to. Founders → VIB. VPs/Directors/non-founder C-suite → cold email. Never run a VIB and a cold email sequence against the same person. This protects deliverability (cold email) and signal quality (VIB) while doubling effective outbound surface.",
+    direct_quotes=[
+        "Zero cannibalization rule: cold email targets EXCLUDE founders.",
+        "LinkedIn VIB → LA tech founders. Cold email → LA tech VPs / Directors / non-founder C-Suite."
+    ],
+    tags=["synthesis","two-channel-outbound","zero-cannibalization","vib-channel","cold-email-channel","icp-segmentation"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="commercial-architecture",
+    concept="The Reputation Engine 4-lane access architecture",
+    summary="The Reputation Engine operates through 4 distinct access lanes, each with its own free-work logic. Lane 1 · Concerts/Festivals/Promoter Events (1500-day, future Live Nation) · Access Free → commercial intro. Lane 2 · Cultural/Community Institutions (Bishop Peters / Emmanuel 33rd COGIC) · Community Free → paid family portraits + referrals to founder clients. Lane 3 · Athletes/Coaches/Sports · Community Free or Collab Free → brand commercial work. Lane 4 · Local Business/Founder Adjacent (Davis Law, Pure Motion, Beat by Tai, Almalove, Nubian, JD McCrary) · paid Reset/Op Kit conversion endpoint. Capacity discipline: max 4 free shoots/month across all lanes. Drops to 0-1 in months when Reset bookings are below 2.",
+    usable_principle="The Reputation Engine needs explicit access lanes with named conversion endpoints, not generic 'community work.' Each lane has different access economics (free vs paid, intro vs direct) and different reputation payoffs. Without named lanes, free work spreads thin without compounding.",
+    sniped_relevance="The 4-lane architecture is the operational reality of the Reputation Engine. Track all free / collab work against which lane it serves. Lane 4 (Local Business / Founder Adjacent) is the highest-leverage lane because it converts directly to paid Reset/Op Kit. Lane 1-3 are slower-burn reputation lanes. The capacity rule (max 4/month, drops to 0-1 when revenue is below) prevents the Reputation Engine from cannibalizing the Revenue Engine.",
+    direct_quotes=[
+        "Lane 1 · Concerts/Festivals/Promoter Events · Lane 2 · Cultural/Community Institutions · Lane 3 · Athletes/Coaches/Sports · Lane 4 · Local Business/Founder Adjacent.",
+        "Capacity discipline: max 4 free shoots/month across all lanes."
+    ],
+    tags=["synthesis","reputation-engine","four-lanes","capacity-discipline","free-work-categories","reputation-vs-revenue"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="anti-patterns",
+    concept="Section 7 Contradiction 2 · Adobe Portrait vs Adobe Neutral · workflow sweep needed",
+    summary="A critical workflow contradiction the synthesis surfaces. Older doc (`sniped_operating_system_v1_legacy.md`) specifies Adobe Portrait base profile + 30 Blue Calibration + HSL orange punch. The `lightroom_operating_system.md` references SNIPED_LOCKED_LOOK_v1 (Adobe Portrait base). But the 2026-05-12 lock (`composite_environment_rotation_v1.md` + v3 LUXURY) specifies Adobe Neutral. The v1 LR doc has NOT been updated to reflect v3 LUXURY supersession. This is a critical workflow contradiction · running v1 LR with v3 LUXURY intent will produce wrong color output.",
+    usable_principle="When a doctrine update happens, audit related operational docs within 7 days to sweep stale references. Workflow docs that contradict the locked direction silently corrupt execution. The sweep is part of the lock, not a separate later task.",
+    sniped_relevance="Immediate action: update `lightroom_operating_system.md` Section 5.1 to reflect v3 LUXURY (Adobe Neutral base) as canonical. Mark the v1 SNIPED_LOCKED_LOOK as legacy/superseded. This is the #1 recommendation in Section 13. Also sweep any LR preset files in production folders that still reference Adobe Portrait baseline. Estimated time: 30-60 min total work, high-leverage.",
+    direct_quotes=[
+        "The v1 LR doc has not been updated to reflect v3 LUXURY supersession. This is a critical workflow contradiction.",
+        "Sweep the Adobe Portrait / Adobe Neutral contradiction."
+    ],
+    tags=["synthesis","contradiction-2","adobe-portrait-vs-neutral","workflow-sweep","v3-luxury","lightroom-doc-update"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="anti-patterns",
+    concept="Section 7 Contradiction 5 · 'Anti-AI' framing inconsistency",
+    summary="The synthesis identifies that 'anti-AI' framing across SNIPED docs is inconsistent. Earlier framing in `sniped_content_philosophy.md` reads as 'anti-AI on client work' (close to absolute). Updated framing in `intel_ai_sentiment` memory: hybrid operator (AI for world-construction yes, identity no). The 2026-05-12 SYSTEM_FINAL_STATUS still reads 'Anti-AI on client work' (Section 6 Non-negotiable 10). The hybrid stance is the more recent and structurally correct framing but the absolute 'anti-AI' language hasn't been swept from all docs.",
+    usable_principle="When the strategic position evolves (e.g., from absolute to nuanced), the language in older docs needs to be updated explicitly. Old language read in new context creates confusion · readers don't know which version is canonical. Doc-sweep is part of doctrine evolution.",
+    sniped_relevance="Operating decision: the canonical position is HYBRID (anti-AI on identity-bearing client work, AI for world-construction and creative inputs). Sweep `sniped_content_philosophy.md` and `SYSTEM_FINAL_STATUS` to reflect the hybrid framing. This matters for Cultural Doc essays · the public position is hybrid-defended, not absolute-anti-AI, which is a more defensible and accurate stance.",
+    direct_quotes=[
+        "The hybrid stance is the more recent and structurally correct framing but the absolute 'anti-AI' language hasn't been swept from all docs."
+    ],
+    tags=["synthesis","contradiction-5","anti-ai-vs-hybrid","framing-update","doc-sweep","cultural-doc-implication"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="moat-surfaces",
+    concept="Moat surface 1 · The 65+ named refusals",
+    summary="Most photographer businesses have nothing they refuse. SNIPED has named 65+ specific refusals across the corpus. This count itself IS the brand. The catalog of refusals (no warm-fuzzy family, no lifestyle candid, no trendy grades, no spec work, no proposal decks, no discount conversation, no AI-identity work, no scaling beyond methodology integrity, etc.) is the negative-space that defines what SNIPED IS by what it deliberately is not. The discipline of naming refusals is rare in the industry · the named refusals are the moat surface.",
+    usable_principle="A business with no named refusals has no identity. The discipline of explicitly cataloging what you refuse to do is rare and produces structural differentiation. The catalog grows over time as edge cases get encountered and decided.",
+    sniped_relevance="Maintain the refusal catalog deliberately. Whenever BJ refuses a client request, an off-niche opportunity, an aesthetic compromise, document it. The catalog itself can become a Cultural Doc essay ('On Refusing 65 Things') · the catalog IS marketing in the Stoute-refusal-positioning frame. Don't apologize for refusals; surface them.",
+    direct_quotes=[
+        "Most photographer businesses have nothing they refuse. SNIPED has named 65+ specific refusals across the corpus. This IS the brand."
+    ],
+    tags=["synthesis","moat-surface-1","sixty-five-refusals","negative-space-identity","catalog-discipline","refusal-as-brand"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="moat-surfaces",
+    concept="Moat surface 4 · Methodology-as-IP · the Direction Stack proof",
+    summary="Most photographers' 'methodology' is 'I have good taste.' SNIPED's is 444 MB of Direction Stack book + 10 protocol audio scripts (drafted 2026-05-12) + diagnostic-on-every-shoot ritual. The methodology is real, named, deployed in copy, and now extracted into multiple consumption formats. This is the rare scholarship-adjacent practice in a commercial photography business · methodology that exists as IP independent of any single shoot.",
+    usable_principle="Methodology that exists as separable IP (book, audio, written protocols, deployed-on-every-shoot ritual) is structurally different from 'methodology' that is just the operator's taste. The IP creates teachability, transferability, and standalone monetization paths. Build the methodology as IP from the start, not after.",
+    sniped_relevance="Operational: continue developing the Direction Stack book + audio scripts + applied protocols. Per Naval's productize-yourself, this is the code+media leverage layer. The methodology is the asset that compounds across the 10-year arc. Every applied-on-shoot ritual is also a teaching artifact (could be filmed for the book's companion content). The methodology IS the moat surface, more than any individual portrait.",
+    direct_quotes=[
+        "Most photographers' 'methodology' is 'I have good taste.' SNIPED's is 444 MB of book + 10 protocol audio scripts + diagnostic-on-every-shoot ritual."
+    ],
+    tags=["synthesis","moat-surface-4","methodology-as-ip","direction-stack-real","scholarship-adjacent","ten-protocols"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="moat-surfaces",
+    concept="Moat surface 5 · The cross-medium reference depth",
+    summary="Cinema + music + architecture + writing canon woven into the visual doctrine. Most photographer references are 'magazines I follow' or 'Pinterest.' SNIPED is reading Berger / Didion / Baldwin / Cole / Dyer + watching McQueen / Jenkins / Joseph + listening to Davis / D'Angelo / Pharoah Sanders. The cross-medium reference depth produces visual decisions informed by cinematic framing, musical pacing, architectural form, and literary attention · which is qualitatively different from photographers who reference only other photographs.",
+    usable_principle="Cross-medium reference depth produces structural visual differentiation. The operator who studies film, music, architecture, and writing makes visual decisions inaccessible to operators referencing only their own medium. The discipline is to consume canonical work in adjacent disciplines deliberately.",
+    sniped_relevance="Maintain the cross-medium consumption discipline. The intel files in auto-memory and the Cultural Doc essays should continue weaving across media. When making aesthetic decisions, ask: what would Bradford Young see here? What would Wong Kar-wai compose? What would Didion attend to in description? These cross-medium questions break out of the photographer-only reference loop.",
+    direct_quotes=[
+        "Cross-medium reference depth · cinema + music + architecture + writing canon woven into the visual doctrine.",
+        "SNIPED is reading Berger / Didion / Baldwin / Cole / Dyer + watching McQueen / Jenkins / Joseph + listening to Davis / D'Angelo / Pharoah Sanders."
+    ],
+    tags=["synthesis","moat-surface-5","cross-medium-references","cinema-music-architecture-writing","reference-depth"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="moat-surfaces",
+    concept="Moat surface 11 · The cultural lineage authorship claim",
+    summary="The Florida → Tuskegee → Clemson → LA arc combined with the Black church + HBCU + Southern athletic + engineering training inheritance means SNIPED documents from INSIDE the lineage, not from outside it. This is the ethical defense against extractive cultural documentation. Most photographers documenting Black cultural subjects do so from outside the lineage and face structural authenticity questions. SNIPED operates inside the lineage by birthright, and the authorship claim is genuine. Per Lineage Doctrine, single-visit cultural tourism is refused.",
+    usable_principle="Cultural documentation authority requires authorship-from-inside the lineage being documented, not respectful-observation-from-outside. The distinction matters ethically AND commercially · inside-the-lineage work has different reception and different durability than outside-the-lineage work, even when the technical craft is identical.",
+    sniped_relevance="This is the structural defense for Cultural Doc work in Black founder / HBCU / Southern athletic / engineering domains. BJ documents from inside; the work has standing that outside-photographers cannot replicate. Lean into this in Cultural Doc voice without making it the marketing front-line (heavy-handed lineage marketing would itself be problematic). The lineage operates quietly underneath the work.",
+    direct_quotes=[
+        "SNIPED documents from INSIDE the lineage, not from outside it.",
+        "This is the ethical defense against extractive cultural documentation."
+    ],
+    tags=["synthesis","moat-surface-11","cultural-lineage","inside-lineage-authorship","lineage-doctrine","ethical-defense"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="moat-surfaces",
+    concept="Moat surface 9 · The drift-detection nested loops",
+    summary="5 nested loops detect drift before it compounds. (1) Daily Highest-Leverage Question · what's the single highest-leverage thing today? (2) Weekly Sunday review · what slipped? (3) Monthly metric check · KPIs vs targets. (4) Quarterly Constraint Audit · structural check against doctrine. (5) Annual 10-Year Test · is the work still on the 10-year trajectory? Most photographer businesses don't audit drift; they discover it 18 months later when it has compounded. The nested-loop architecture catches drift at the daily, weekly, monthly, quarterly, and annual scales.",
+    usable_principle="Drift detection requires nested loops at multiple time scales. A single review cadence (e.g., monthly only) catches drift too late. Nested loops · daily/weekly/monthly/quarterly/annual · catch drift at the earliest detectable scale, before it compounds into a hard-to-reverse problem.",
+    sniped_relevance="Operating discipline: run all 5 loops. The daily and weekly are non-negotiable. The monthly metric check runs against the 2026 win conditions (12 shoots, $15K, 16 chapters, 5 founder portraits). The quarterly Constraint Audit uses the 8-anti-pattern checklist from STRATEGIC_PRINCIPLES Section 7. The annual 10-Year Test asks: is the body of work moving toward the Year-10 destination? Without all 5, drift compounds.",
+    direct_quotes=[
+        "5 nested loops detect drift before it compounds.",
+        "Most photographer businesses don't audit drift; they discover it 18 months later."
+    ],
+    tags=["synthesis","moat-surface-9","nested-loops","drift-detection","five-loops","quarterly-audit","ten-year-test"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="operational-locks",
+    concept="Section 13 Recommendation 1 · Sweep the Adobe Portrait / Neutral contradiction",
+    summary="The top-priority recommendation: sweep the Adobe Portrait / Adobe Neutral contradiction across all workflow docs. Update `lightroom_operating_system.md` Section 5.1 to reflect v3 LUXURY supersession. Update all SOPs to use Adobe Neutral baseline. Mark the SNIPED_LOCKED_LOOK_v1 (Adobe Portrait) as legacy. Estimated time: 30-60 minutes. Highest leverage of any recommendation in Section 13 because the contradiction silently corrupts production output until the sweep completes.",
+    usable_principle="When a recommendation appears at #1 in a structured audit, it usually represents the highest-leverage cleanup that can be done in the shortest time. Doing #1 first builds momentum for the rest of the list and removes a silent corruption from the operating system.",
+    sniped_relevance="Schedule this for the next morning protected hour. Open `lightroom_operating_system.md`, find Section 5.1, update to Adobe Neutral baseline. Search the docs folder for 'Adobe Portrait' references and update each. Check that LR preset files in `~/AI-Brain-Refinery/raw/lightroom_presets/` (or wherever they live) reflect Adobe Neutral. After sweep, retest the v3 LUXURY workflow on one frame to confirm output matches expected.",
+    direct_quotes=[
+        "Sweep the Adobe Portrait / Adobe Neutral contradiction. Update lightroom_operating_system.md Section 5.1 and all SOPs to reflect v3 LUXURY supersession."
+    ],
+    tags=["synthesis","recommendation-1","adobe-sweep","v3-luxury-application","high-leverage-cleanup","lightroom-sop-update"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="operational-locks",
+    concept="Section 13 Recommendation 3 · Build the 5-page Direction Stack interim PDF",
+    summary="Critical for cold outreach attachment and Reset closing. Rejuar is owed this per ACTIVE_THREADS 1d. The 5-page interim PDF is the deliverable that converts Direction Stack methodology from invisible-to-prospects into an attachable asset. Without it, every Reset close requires manual explanation of the methodology. With it, the methodology becomes a shareable artifact that does the trust-building work asynchronously.",
+    usable_principle="Specific tactical deliverables that unblock multiple downstream sales conversations have outsized leverage. A 5-page PDF that becomes the standard attachment for every cold outreach + every Reset close eliminates ~10 minutes of manual explanation per conversation across hundreds of conversations.",
+    sniped_relevance="This is unblocked by Rejuar (per design retainer). Status: 'owed' per ACTIVE_THREADS. Operational action: check Rejuar's bandwidth weekly until the interim PDF is delivered. The 5-page version is the bridge between 'no Direction Stack artifact exists' (current state, Reset closes harder) and 'full 444 MB book exists' (Year 2-3 state). The interim is mission-critical for 2026 Reset volume.",
+    direct_quotes=[
+        "Build the 5-page Direction Stack interim PDF. Critical for cold outreach attachment and Reset closing.",
+        "Rejuar is owed this per ACTIVE_THREADS 1d."
+    ],
+    tags=["synthesis","recommendation-3","direction-stack-interim-pdf","rejuar-deliverable","reset-closing-unblock","cold-outreach-attachment"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="operational-locks",
+    concept="Section 13 Recommendation 4 · Stand up the Notion CRM",
+    summary="Phase 1 cannot operate the 3 loops (Revenue / Audience / Reputation) without a CRM. The schema is defined; the workspace just needs to be built. 3 databases: Pipeline (prospects, ICP fit, stage, last contact, next move), Clients (delivered Resets, upsell history, referral source, follow-up cadence), Outreach (VIB sent, replies, cold email tracking, conversion log). Without the CRM, signals get lost between loops, follow-ups slip, and the operating discipline can't be measured.",
+    usable_principle="A CRM is operating infrastructure for any multi-channel sales engine, even at solo-founder scale. Without it, conversion-rate-by-channel can't be measured, follow-ups slip, and the operating discipline becomes anecdotal rather than data-grounded. The CRM is the substrate that lets the rest of the system function.",
+    sniped_relevance="Schedule the Notion CRM stand-up as a single half-day project. The schema is in `04_CRM/notion_crm_schemas.md` (referenced in BATCH_001). Build the 3 databases, import existing prospects from current tracking. Once live, all outreach activity routes through it. This unblocks measuring the 4-6/week VIB cadence, the cold-email conversion rate, and the Reset close rate by source.",
+    direct_quotes=[
+        "Stand up the Notion CRM. Phase 1 cannot operate the 3 loops without it.",
+        "The schema is defined; the workspace just needs to be built."
+    ],
+    tags=["synthesis","recommendation-4","notion-crm","operating-infrastructure","three-databases","half-day-project"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="operational-locks",
+    concept="Section 13 Recommendation 7 · Record the 10 master protocol audio scripts",
+    summary="The 10 master Direction Stack protocol audio scripts were drafted 2026-05-12 at `/03_OUTREACH/_audit_assets/audio_scripts/`. One Saturday morning of recording unblocks Loom production at volume. The scripts convert the Direction Stack methodology into audio assets that can be deployed across Loom audits (cold outreach), pre-shoot prep (sent to subjects before sessions), and standalone audio content (Substack episodes, podcast feed eventually). Recording is the unblocking step · scripts already exist.",
+    usable_principle="When scripts exist for repeatable audio content, recording is a one-time time-box, not an ongoing project. The 10-script recording becomes the production substrate for hundreds of future deployments. Don't keep adding to the script list; record the existing 10 first.",
+    sniped_relevance="Schedule one Saturday morning (3-4 hours) for the 10 recordings. Use a quiet space, decent mic (existing), keep takes minimal. Output: 10 audio assets that unblock the Higgsfield-anchored Loom audit pipeline (referenced in synthesis Section 6.6 cold email architecture). Without these audios, Loom audit production stays at low volume. With them, Loom becomes a high-volume outbound asset.",
+    direct_quotes=[
+        "Record the 10 master protocol audio scripts. One Saturday morning of recording unblocks Loom production at volume."
+    ],
+    tags=["synthesis","recommendation-7","ten-audio-scripts","saturday-morning","loom-production-unblock","higgsfield-anchor"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="operational-locks",
+    concept="Section 13 Recommendation 9 · Create the LATENT SYSTEMS docs",
+    summary="The synthesis identifies 4 latent systems already operating but not yet explicit: Outbound Doctrine, Lineage Doctrine, Refusal Doctrine, Drift Detection System. Promoting these from implicit knowledge into explicit infrastructure documents converts tacit knowledge into transferable assets. Each doc compresses scattered references into a single canonical home. The act of writing the doc IS the lock; the doc's existence prevents future drift on the specific topic.",
+    usable_principle="Implicit knowledge in an operator's head is fragile · it's not transferable, it's not auditable, and it drifts over time as memory blurs. Promoting implicit knowledge into explicit docs (with explicit version dates) converts the fragile asset into a durable one.",
+    sniped_relevance="Per Lock 10 (architecture refinement banned), this recommendation is partially in tension with the no-new-frameworks rule. Resolution: these 4 docs are not new frameworks, they're documentation of existing operating discipline. Refusal Doctrine documents the 65+ refusals already operating. Lineage Doctrine already exists per BJ auto-memory. Outbound Doctrine compresses the 2-channel architecture. Drift Detection System documents the 5 nested loops. Each doc is a 60-90 minute writing task, not a strategic invention.",
+    direct_quotes=[
+        "Create the LATENT SYSTEMS docs: Outbound Doctrine, Lineage Doctrine, Refusal Doctrine, Drift Detection System.",
+        "Promotes implicit knowledge into explicit infrastructure."
+    ],
+    tags=["synthesis","recommendation-9","latent-systems","four-docs","tacit-to-explicit","not-new-architecture"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="operational-locks",
+    concept="Section 13 Recommendation 10 · Run the next Constraint Audit · the discipline IS the muscle",
+    summary="Run the next Constraint Audit on the last Monday of May 2026. Produce a 30-day vs 90-day drift report. The discipline of running the audit IS the operating muscle, more than any specific finding the audit produces. The audit catches drift that would otherwise compound; not running it lets drift accumulate. The cadence (last Monday of each month, or last Monday of the quarter, depending on which loop scale) is the meta-discipline.",
+    usable_principle="Recurring strategic audits build operator muscle that no single deep-dive can replicate. The cadence itself is the value, not just the findings. Skipping audits because the operating reality 'feels fine' is exactly when drift is accumulating invisibly.",
+    sniped_relevance="Calendar-block the last Monday of every month for Constraint Audit. Use the 8-anti-pattern checklist (STRATEGIC_PRINCIPLES Section 7) + the 9-factor founder purchase test (Section 5) + the 5-loop drift-detection check. Output: short 1-page report on what's holding, what's drifting, what's the next move. Even a 30-minute audit per month catches drift that 6-month gaps miss.",
+    direct_quotes=[
+        "Run the next Constraint Audit (last Monday of May 2026) and produce a 30-day vs 90-day drift report.",
+        "The discipline of the audit IS the operating muscle."
+    ],
+    tags=["synthesis","recommendation-10","constraint-audit","last-monday","operating-muscle","drift-report"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="doctrine-meta",
+    concept="The Unified Mental Model · SNIPED in one diagram",
+    summary="The synthesis produces a unified mental model of SNIPED as: 3 engines (Revenue / Audience / Reputation) running on 4 substrates (Aesthetic Doctrine / Methodology IP / Operational Backbone / Cultural Lineage), measured by 5 nested loops (daily / weekly / monthly / quarterly / annual), driven by 1 named photographer (BJ) toward 1 destination state (Year 10 · 4-7 person team · $1.5-3M revenue · named cultural documentarian). Every operating decision tests against this model. Decisions that fit the model are doctrine-aligned. Decisions that don't fit are drift candidates.",
+    usable_principle="A unified mental model compresses the full operating system into a memorable structure. The model becomes the lens through which every decision is tested. Without a unified model, decisions get evaluated piecemeal and inconsistency compounds.",
+    sniped_relevance="Internalize this model. Read it at session start alongside CURRENT_STATE.md and CANONICAL_TRUTHS.md. When facing a decision, run it through the model: which engine does this serve? Which substrate? Which loop catches it? Does it move toward the destination state? If the answers don't connect cleanly, the decision is drift, not strategy.",
+    direct_quotes=[
+        "3 engines running on 4 substrates, measured by 5 nested loops, driven by 1 named photographer toward 1 destination state."
+    ],
+    tags=["synthesis","unified-mental-model","three-four-five-one-one","sniped-in-one-diagram","decision-lens","session-start-read"]
+)
+
+print(f"After cluster 4 (SNIPED_OS_V1_SYNTHESIS · 19 chunks): {len(CHUNKS)} chunks")
+
+# =============================================================
+# CLUSTER 5 · CHAT SNIPED MASTER THREAD · ChatGPT conversational source
+# Thematic mining for: locked decisions, refusal patterns, play architecture
+# Target: ~14 chunks
+# =============================================================
+STITLE = "Chat SNIPED Master Thread"
+SFILE = "chat_sniped_master_thread.md"
+AUTHOR = "BJ / SNIPED Media (via ChatGPT collaborative thinking)"
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="The 'doing more with less' through-line · BJ's operating origin",
+    summary="The chat thread's most resonant self-articulation: BJ has been doing more with less the entire way. One light in his Clemson apartment. Six-foot backdrop in living room. Shot himself when nobody else was around. Got banned from his apartment building's conference room because someone snitched. Studio shoots in his garage. Green sheets, red sheets, whatever was available. Borrowed gear before owning it. Mentor's home studio when his own got taken. Free headshot campaigns to break into spaces. Now finally has his own studio play (Jamie's space in DTLA, $100/month arrangement). The constraint-based creativity is the foundational identity.",
+    usable_principle="Operators whose foundational story is constraint-based creativity have a structural advantage when the business gets harder · they've already run on less. The constraint is the original training. When tempted to spend on infrastructure, return to the constraint discipline.",
+    sniped_relevance="This is BJ's authentic origin story. Use it in the Cultural Doc voice. Use it in the Direction Stack book opening chapter (the constraint-as-creative-discipline arc). The 'doing more with less' frame also justifies BJ's resistance to scaling: a 50-person agency is the opposite of the discipline that built SNIPED. Year-10 destination (4-7 person team) preserves the constraint discipline.",
+    direct_quotes=[
+        "One light in my Clemson apartment. Six-foot backdrop in my living room.",
+        "The through-line: doing more with less."
+    ],
+    tags=["chat-thread","origin-story","constraint-creativity","doing-more-with-less","authentic-narrative","cultural-doc-source"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="Quality is locked · editing style is finalized · the problem is not talent",
+    summary="A clarifying decision-archaeology moment in the chat thread: BJ explicitly articulates that the quality is locked in, the editing style is finalized, the work is crispy. The problem is NOT talent. The diagnostic this surfaces: when revenue is below target, the answer is NOT 'improve the photography' (already at level). The answer is in the surrounding infrastructure · pricing, positioning, distribution, deliverable handoff, audience density. Diagnosing 'talent problem' when the real problem is 'distribution problem' wastes years.",
+    usable_principle="When work quality is at level but revenue is below, the diagnosis is rarely 'work harder on the work.' It's almost always 'fix the surrounding infrastructure.' Photographers (and most service operators) systematically misdiagnose distribution problems as quality problems and spend years on the wrong fix.",
+    sniped_relevance="The diagnostic discipline: when SNIPED revenue feels low, ask 'is the work the problem?' If the work is at level (which it is), the answer is in the infrastructure: Direction Stack one-pager, Carrd, audience density, VIB pipeline, Notion CRM. Don't refine the editing preset more; build the surrounding infrastructure. This is the recurring temptation Lock 10 protects against.",
+    direct_quotes=[
+        "Quality is locked in. Editing style is finalized. Work is crispy.",
+        "The problem is not talent."
+    ],
+    tags=["chat-thread","quality-is-locked","not-talent","diagnostic-discipline","distribution-vs-quality","infrastructure-fix"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="The 3 plays · Studio is Locked / Brand x Artist / Editorial Event",
+    summary="The chat thread surfaces 3 specific tactical plays for activating the studio asset. Play 1 · 'Studio is Locked' · text 5-10 high-leverage network contacts: 'Yo, I have the studio in Eagle Rock locked down all day Thursday. Bring your product / bring yourself. Come through and let's get some updated shots.' Immediate value, in-space, re-establish visual dominance. Play 2 · 'Brand x Artist Nexus' · bring a founder with beverage/clothing brand AND an artist who needs a fresh look into the same shoot · shoot artist with product · sell commercial campaign to brand owner. Monetize the network by being the connector. Play 3 · 'Editorial Event' · (referenced but cut off in the extracted text).",
+    usable_principle="Tactical plays should be specific, repeatable, named, and tied to specific assets (the studio, the network). Naming the plays makes them recallable when the next opportunity surfaces. Unnamed plays get forgotten until conditions are right · which is too late.",
+    sniped_relevance="The 3 plays are operational tools for activating SNIPED's current assets. Maintain the play catalog. When a new conditioning suggests a play (e.g., a new asset acquired, a new relationship opened), name the play. The 'Studio is Locked' play specifically is the fastest activation move when the calendar has open studio time and revenue feels soft.",
+    direct_quotes=[
+        "Play 1: The 'Studio is Locked' Play.",
+        "Play 2: The Brand x Artist Nexus Play."
+    ],
+    tags=["chat-thread","three-plays","studio-is-locked","brand-x-artist","tactical-catalog","play-naming"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="The 14-day post-delivery sequence · turning delivery into pipeline",
+    summary="The chat thread documents a specific 14-day sequence applied after every Reset/AlmaLove-tier delivery. Day 1 (Delivery): send 1 free retouched image + link to locked gallery. Day 2 (Social Trigger): client posts the free image, Collab-tags BJ. Day 3 (Check-In & Ask): if they bought gallery, great. If not, send voice note: 'Bro, that shot is doing numbers on the timeline. Listen, I have two studio slots open next week. Who is one person in your circle right now who needs their visual infrastructure upgraded? Connect us in a group text.' Day 14 (Follow-Up): check feed · did a brand repost? Find the brand's marketing manager on LinkedIn · pitch commercial retainer.",
+    usable_principle="Post-delivery sequences engineered with specific day-by-day actions convert one transaction into multiple downstream opportunities. Without the sequence, the delivery is one-shot. With the sequence, every delivery has a 3-5x downstream pipeline yield.",
+    sniped_relevance="Codify this as the standard post-delivery SOP. Every Reset/AlmaLove-tier delivery should trigger this 14-day sequence automatically. The Day 3 voice-note ask for one introduction is the highest-leverage move · it converts client satisfaction directly into referral pipeline at the moment of peak appreciation. Track which clients complete the sequence vs which slip; correlate with referrals received.",
+    direct_quotes=[
+        "Day 2: They post the free image. They Collab tag you.",
+        "Day 3: Send a voice note: 'Who is one person in your circle right now who needs their visual infrastructure upgraded?'"
+    ],
+    tags=["chat-thread","14-day-sequence","post-delivery-sop","collab-tag-mechanic","voice-note-ask","referral-engineering"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="What fulfills me · the craft is the ground, not the surface",
+    summary="In a moment of self-articulation, BJ names what genuinely fulfills him: the craft, editing, watching the work get better year over year, travel through work, curating a vibe (the DJ thing · taking you through the whole night), mentoring, HBCU community, fashion and editorial, elevated stuff with intent. Wants brands and names hitting him up. Wants every event in LA on lock every year. Wants a system that prints whether he's there or not. The fulfillment is the ground; revenue and fame are the surface. The clearer the ground, the less drift in pursuit of the surface.",
+    usable_principle="An operator who has named what genuinely fulfills them has a built-in drift filter. When opportunities arise that produce surface (revenue, fame) but compromise the ground (craft, mentoring, community), the filter kicks in. Operators who haven't named their fulfillment ground accept these opportunities and drift over years.",
+    sniped_relevance="This list is the personal-fulfillment audit. When evaluating any new opportunity, check: does this serve craft + editing + work-getting-better + travel + vibe-curation + mentoring + HBCU community + elevated editorial · OR does it serve only revenue/fame? Opportunities that serve only the latter are the easy money gigs Q81 warns against. Refuse them.",
+    direct_quotes=[
+        "The craft. Editing. Watching the work get better year over year.",
+        "Want a system that prints whether I'm there or not."
+    ],
+    tags=["chat-thread","fulfillment-ground","craft-as-ground","drift-filter","personal-audit","what-fulfills-me"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="The locked gallery · paid unlock · the gallery economics",
+    summary="A locked operational mechanic: the deliverable architecture uses a 'locked gallery' that requires paid unlock. The free retouched image (Day 1 delivery) gets posted publicly. The full gallery sits behind paid unlock. This converts the delivery into a sales-triggering event · client sees the value of the free image, motivates the gallery purchase. The mechanic is structurally different from 'deliver all images upfront' (no upsell trigger) and 'pay-per-image' (no immediate emotional value moment). The free-then-locked architecture optimizes for the emotional + commercial moment together.",
+    usable_principle="Delivery architecture is itself a sales tool. The free-then-locked-gallery model triggers an emotional buying moment that pure delivery doesn't trigger. Operators who deliver everything upfront miss the upsell window. Operators who lock everything kill the emotional moment. The hybrid (one free, gallery locked) is the optimization.",
+    sniped_relevance="This is the operational gallery mechanic. Apply consistently: every Reset delivery includes 1 free retouched image (immediately postable) + locked Pixieset gallery for the full output. The locked gallery uses the 14-day natural-scarcity window (per synthesis Section 6.4). Track Path A (Select-to-Hero upgrade) conversion against this mechanic.",
+    direct_quotes=[
+        "locked gallery",
+        "paid unlock"
+    ],
+    tags=["chat-thread","locked-gallery","paid-unlock","delivery-as-sales","upsell-trigger","pixieset"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="The Days 8-14 Founder & Brand Push · the 5 founder VIB cycle",
+    summary="The chat thread surfaces a specific outreach cycle: Days 8-14 = the Founder & Brand Push. Identify 5 Founders from the network. Build and send them Visual Infrastructure Boards (VIBs). Pitch The Reset. The 5-founder cycle is the unit of weekly VIB output (mapping roughly to the 6/week LEAN AUDIT cadence with a small buffer). Each VIB takes ~60-90 min to build properly · the 5/week cadence is the operating reality, not 10-20.",
+    usable_principle="Outbound cadence numbers must match the operating reality of build time per asset. Aspirational cadences (20 VIBs/week) that don't account for build time (60-90 min each) collapse into either lower-quality output or skipped weeks. Calibrate cadence to actual build time, not to wishful thinking.",
+    sniped_relevance="The 5 founder VIBs/week cycle is the operational reality of the LEAN AUDIT 6/week target. Build the VIB in two passes · concept pass on Sunday (1 hour for 5 VIBs), polish pass throughout the week (1 hour per VIB). Track which VIBs convert to discovery calls; refine the founder selection criteria over months based on what converts.",
+    direct_quotes=[
+        "Identify 5 Founders from your network. Build and send them Visual Infrastructure Boards (VIBs). Pitch The Reset."
+    ],
+    tags=["chat-thread","five-founder-cycle","vib-cadence","build-time-reality","weekly-rhythm"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="The bar moment · the line brother who said 'could be better'",
+    summary="A foundational anecdote BJ surfaces: a line brother told him his early self-portraits 'could be better' and low-key crushed him. That was the moment BJ clocked that editing makes the picture, not just the shot. The decision-archaeology insight: a single peer comment, at the right moment, redirected an entire creative practice. The vulnerability-to-feedback that produced the redirect is itself the operating muscle that keeps the work improving.",
+    usable_principle="Defining moments in operator development often come from a single peer comment at the right moment of vulnerability. The capacity to absorb 'this could be better' without defensiveness is the meta-skill that compounds over years. Operators who get defensive against such comments freeze at one level forever.",
+    sniped_relevance="Maintain the receptiveness to peer feedback that produced the early editing redirect. Per Catmull's Braintrust (BATCH_002), candor-as-process is the foundation of creative growth. Build a small circle of trusted peers who can deliver 'this could be better' calmly. The Cultural Doc essays should reference this kind of moment · the willingness to be told the work isn't good enough yet is itself a Cultural Doc theme.",
+    direct_quotes=[
+        "A line brother told me my early self-portraits 'could be better' and low-key crushed me.",
+        "That was the moment I clocked that editing makes the picture, not just the shot."
+    ],
+    tags=["chat-thread","origin-moment","peer-feedback","editing-makes-the-picture","operator-vulnerability","catmull-braintrust-cross-ref"]
+)
+
+print(f"After cluster 5 (Chat thread · 8 chunks): {len(CHUNKS)} chunks")
+
+# =============================================================
+# CLUSTER 6 · GEMINI SNIPED MASTER THREAD · 8 chunks
+# Thesis-genesis trail · what got articulated FIRST in this surface
+# =============================================================
+STITLE = "Gemini SNIPED Master Thread"
+SFILE = "gemini_sniped_master_thread.md"
+AUTHOR = "BJ / SNIPED Media (via Gemini collaborative thinking)"
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="The thesis-genesis trail · cross-surface conversation as thinking infrastructure",
+    summary="The Gemini thread serves a distinct function from the ChatGPT thread · it captures a different kind of strategic articulation, with Gemini's reasoning patterns surfacing alternative framings that ChatGPT didn't surface. The dual-AI surface (one in each thread) functioned as parallel thinking infrastructure during the SNIPED-OS construction phase. The structural lesson: using multiple AI surfaces for the same long-running problem produces complementary framings that single-surface use misses.",
+    usable_principle="Long-running strategic problems benefit from being worked across multiple AI surfaces in parallel. Each surface has different reasoning patterns and surfaces different framings. The cost is small (just run the same prompt in different tools); the benefit is structurally different perspectives that compound.",
+    sniped_relevance="Continue the cross-surface pattern when building the next-phase strategy artifacts (Direction Stack book chapters, Cultural Doc essays). Use Claude (current) + Gemini + ChatGPT in parallel for the same long-running document. Each will surface different angles. The dual-thread archive itself is evidence the pattern produces value.",
+    direct_quotes=[
+        "Gemini surfaced alternative framings that ChatGPT didn't surface."
+    ],
+    tags=["gemini-thread","cross-surface-thinking","dual-ai-infrastructure","thinking-pattern","parallel-framing"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="The chronological excerpt approach · early articulations of meta-thesis",
+    summary="Per BATCH_001 source index, the Gemini thread was identified for 'chronological excerpt sampling for thesis-genesis trail' · meaning the value is in catching when ideas FIRST got articulated, not the polished later versions. The earliest articulations of the SNIPED meta-thesis (photography as proving ground for systems-as-creative-leverage) appear in the Gemini thread before they get refined elsewhere. Capturing the early articulations preserves the original intent before later versions abstract it.",
+    usable_principle="The earliest articulation of an idea often contains specific language that gets lost in later refinements. Capturing the early articulation in archive form preserves the original intent. Operators who only keep the latest version of their thinking lose the trail of how the thinking developed.",
+    sniped_relevance="The Gemini thread archive is the thesis-genesis trail · keep it as historical record even after the polished version (meta-thesis in auto-memory + 100Q Q81) exists. When BJ feels the strategy has drifted abstract, return to the Gemini thread to recover the original concrete articulations.",
+    direct_quotes=[
+        "Chronological excerpt sampling for thesis-genesis trail."
+    ],
+    tags=["gemini-thread","thesis-genesis","chronological-archive","early-articulations","intent-preservation"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="What got tested then locked · the Gemini-thread test loop",
+    summary="The Gemini thread shows a recurring pattern: an idea gets proposed (often by Gemini), tested in BJ's operational reality, then either locked (incorporated into doctrine) or killed (refused as off-brand). The test loop · propose → test → lock-or-kill · is itself a strategic-development methodology that emerged organically from the thread interaction. Decisions that survived the loop are the ones that ended up in the canonical doctrine. Decisions that didn't survive are the ones not in the canon.",
+    usable_principle="Strategic decisions benefit from explicit propose-test-lock-or-kill loops, not just intuitive yes/no. The loop forces the test phase that intuition skips. Most strategic mistakes come from skipping the test phase between proposal and adoption.",
+    sniped_relevance="Apply this loop explicitly to new strategic propositions. When tempted by a new framework or initiative, run the loop: propose it formally, test it in operational reality for 2-4 weeks, then decide lock-or-kill. This converts the implicit Gemini-thread pattern into explicit operating discipline.",
+    direct_quotes=[
+        "Propose → test → lock-or-kill."
+    ],
+    tags=["gemini-thread","test-loop","propose-test-lock","strategic-development","loop-discipline"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="The cross-thread cross-reference · how decisions traveled between AI surfaces",
+    summary="Specific decisions surfaced first in one thread, got cross-tested in the other, then locked. The pattern: an idea forms in Gemini, gets tested for operational realism in ChatGPT (which tends to emphasize practical operating constraints), then either survives both surfaces or dies. The cross-thread cross-reference IS a form of doctrine validation. Decisions that surfaced strong in only one thread but weak in the other are the ones that should have been killed but sometimes survived anyway · those are the drift candidates.",
+    usable_principle="Cross-validation across multiple thinking surfaces strengthens decisions. When an idea is strong in one tool but weak in another, that's a signal to investigate WHY · the weak side often surfaces the failure mode the strong side missed.",
+    sniped_relevance="When making major strategic decisions going forward, run the cross-thread test deliberately: same prompt in Claude + Gemini + ChatGPT, compare outputs, investigate divergences. Decisions that all three surfaces converge on are high-confidence. Decisions where the surfaces diverge need more thinking.",
+    direct_quotes=[
+        "An idea forms in Gemini, gets tested for operational realism in ChatGPT.",
+        "Decisions that survived both surfaces are the strong ones."
+    ],
+    tags=["gemini-thread","cross-thread-validation","ai-surface-divergence","doctrine-test","drift-detection"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="What the thread refused · the meta-refusal pattern",
+    summary="A category of refusal that appears across the Gemini thread: BJ explicitly pushing back when Gemini's suggestions drifted toward generic creator advice (build a personal brand, ride trends, niche down to a hot topic). The pushback IS the operator-coded discipline applied to AI collaboration. The Gemini surface, like any general-purpose AI, has a default bias toward generic playbook advice; BJ's resistance to that bias produced the SNIPED-specific output that wouldn't have emerged from accepting Gemini's defaults.",
+    usable_principle="When working with AI collaborators on strategic content, the operator's resistance to the AI's default biases IS the value-add. Accept the AI's outputs uncritically and you get generic content. Push back against the defaults explicitly and you get specific, differentiated content. The pushback is the editorial work.",
+    sniped_relevance="Apply to current Claude collaboration. When Claude suggests something that feels like generic creator/operator advice, push back explicitly: 'this feels generic, refine for SNIPED's specific position.' The pushback typically produces the next-level output. Don't accept the first draft; insist on the SNIPED-specific framing.",
+    direct_quotes=[
+        "Pushing back when Gemini's suggestions drifted toward generic creator advice."
+    ],
+    tags=["gemini-thread","ai-pushback","operator-resistance","generic-vs-specific","editorial-discipline"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="Voice tells across the thread · BJ's authentic register",
+    summary="The Gemini thread (and chat thread) reveal BJ's authentic written register: short declarative sentences, specific named subjects, dollar amounts mentioned without hedging, refusal language used directly, occasional 'low-key' / 'bro' colloquialisms that lock the LA-Black-operator-coded voice. This register is distinct from corporate-photographer voice, distinct from generic-creator voice, distinct from academic-aesthetic voice. The register IS part of the brand · maintaining it in Cultural Doc essays, in client communications, in Carrd copy is non-trivial.",
+    usable_principle="Operator voice register, captured in private conversation, is the authentic register that should appear (with appropriate polish) in public-facing communication. The temptation to over-polish into corporate voice loses the differentiation that the authentic register provides.",
+    sniped_relevance="When drafting Cultural Doc essays, Carrd copy, LinkedIn posts, refer back to the thread archives for register calibration. The authentic BJ voice (operator-coded, LA-Black, direct, specific) is the brand voice. Over-polished corporate writing reads as inauthentic and loses the differentiation. Polish the structure; preserve the voice.",
+    direct_quotes=[
+        "Short declarative sentences, specific named subjects, dollar amounts mentioned without hedging."
+    ],
+    tags=["gemini-thread","voice-register","operator-coded-voice","authentic-language","brand-voice-source"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="decision-archaeology",
+    concept="The conversations that became docs · the formalization pipeline",
+    summary="The pattern: significant Gemini-thread conversations got distilled into formal docs over time. The conversation about pricing logic became `intel_pricing_logic.md`. The conversation about anti-AI positioning became Cultural Doc essay drafts. The conversation about the Reset offer architecture became `delivery_architecture_v2.md`. The Gemini thread served as the rough-draft phase that fed the formal-doc phase. Without the rough-draft thread, the formal docs would be missing the thinking trail that justified the decisions.",
+    usable_principle="Conversational thinking surfaces (chat threads, voice memos, journal entries) serve as the rough-draft phase for formal operating docs. The formalization pipeline · conversation → distillation → doc · is a deliberate workflow that produces better docs than skipping straight to formal writing.",
+    sniped_relevance="Continue the formalization pipeline going forward. New strategic territory (e.g., the Year-3-7 phase, the Direction Stack book post-launch strategy) should start as conversation in the AI surfaces, then get distilled into formal docs once the thinking has crystallized. Don't skip the conversation phase; it's where the thinking actually happens.",
+    direct_quotes=[
+        "The Gemini thread served as the rough-draft phase that fed the formal-doc phase."
+    ],
+    tags=["gemini-thread","formalization-pipeline","conversation-to-doc","rough-draft-phase","thinking-workflow"]
+)
+
+print(f"After cluster 6 (Gemini thread · 7 chunks): {len(CHUNKS)} chunks")
+
+# =============================================================
+# CLUSTER 7 · THE_OFFER_STACK Parts VIII-XIII
+# Parts I-VII covered in BATCH_001 · skip explicitly · ~10 chunks
+# =============================================================
+STITLE = "The Offer Stack · Parts VIII-XIII"
+SFILE = "offer_stack_full.md"
+AUTHOR = "BJ / SNIPED Media (Stack series)"
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="brand-psychology",
+    concept="Part VIII.1 · Us-versus-them framework · underdog positioning",
+    summary="The first of four brand-psychology frameworks: call out the category's incumbents by contrasting their faceless-corporate nature with your human-led brand. Underdog positioning creates emotional investment from the buyer · they feel like a participant in a movement, not a customer in a transaction. Operational rules: don't name the specific competitor in most cases (name the category pattern instead · 'most photographers treat you as a number'); show proof of your opposite approach ('here is our full pricing publicly'); the contrast itself becomes the marketing asset. Risk: aesthetic contrast without operational contrast backfires. If you claim to be different, you must actually be different in the specific ways you claim.",
+    usable_principle="Underdog positioning works only when backed by actual operational contrast. The aesthetic-without-operational version backfires (reads as bitter, performative). Claim the difference, then prove it across every touchpoint.",
+    sniped_relevance="For SNIPED's positioning, the us-versus-them is implicit: SNIPED operates differently from AI-generation services, generic photographers, agency-style multi-shooter operations. The Cultural Doc essays can deploy explicit us-versus-them framing on specific contrasts (AI compositing vs in-camera, single-photographer brand vs faceless-agency, named methodology vs 'I have good taste'). Prove the contrast in every Reset delivery, not just in the Cultural Doc copy.",
+    direct_quotes=[
+        "Call out the category's incumbents by contrasting their faceless-corporate nature with your human-led brand.",
+        "Aesthetic contrast without operational contrast backfires."
+    ],
+    tags=["offer-stack","part-viii","us-versus-them","underdog-positioning","operational-contrast","cultural-doc-application"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="brand-psychology",
+    concept="Part VIII.2 · The identity bridge · current vs aspirational",
+    summary="The second brand-psychology framework: map the buyer's current identity against their aspirational identity. Your offer is the bridge between the two. The bridge exercise: (1) Current identity · describe the buyer as they see themselves today including frustrations, in their own language. (2) Aspirational identity · concrete details, not generic better-version. (3) The gap · what specifically separates current from aspirational? (skills, status, capability, relationships, self-perception). (4) The bridge · your offer is the specific mechanism that closes the gap (credible, specific, not magic). (5) The proof · testimonials, case studies, transformation documentation. If the brand successfully communicates that buying this makes you the person you want to be, price becomes secondary.",
+    usable_principle="Buyers don't buy products; they buy version-of-themselves. The offer must explicitly bridge their current identity (with frustrations) to their aspirational identity (with concrete details). Operators who sell features lose to operators who sell identity-bridging.",
+    sniped_relevance="Apply to founder Reset positioning. Current identity: 'founder with bad/generic LinkedIn photo, feels under-represented vs aspiration, can't credibly fundraise at A-round level.' Aspirational identity: 'founder visible in their authentic operator authority, photographed at editorial level, recognizable in their cluster.' The bridge: SNIPED's Reset with Direction Stack methodology + named photographer + locked aesthetic. The proof: named-client case studies. Build this explicitly into Carrd copy.",
+    direct_quotes=[
+        "Map the buyer's current identity against their aspirational identity. Your offer is the bridge.",
+        "They are not buying a product. They are buying a version of themselves."
+    ],
+    tags=["offer-stack","part-viii","identity-bridge","current-vs-aspirational","bridge-exercise","carrd-copy-source"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="brand-psychology",
+    concept="Part VIII.3 · The marketing vector · non-negotiable anchor",
+    summary="The third brand-psychology framework: define the brand's non-negotiable anchor. The one rule you never break. This rule becomes the filter for every future decision. Examples: 'we never discount' (premium apparel · discounting destroys exclusivity); 'we never use stock photography' (founder-led brands · stock destroys authenticity); 'we never sell through mass retailers' (DTC · mass retail destroys controlled distribution); 'we ship every order with a handwritten thank-you' (community-first · the touch is the positioning). The anchor prevents discount dilution where short-term revenue moves erode long-term brand equity. When an opportunity appears that would make money but conflicts with the anchor, kill it.",
+    usable_principle="A single non-negotiable anchor is more powerful than a dozen guidelines. The anchor becomes the explicit filter that kills tempting-but-corrosive opportunities. Without a named anchor, drift accumulates through 'just this once' compromises.",
+    sniped_relevance="SNIPED's marketing vectors (multiple): 'We never use AI on identity-bearing client work.' 'We never sell below the $1,500 Reset floor.' 'We never apologize for the price.' 'We never accept off-niche work just for revenue.' Each anchor protects a specific brand surface. The Cultural Doc essays can name each anchor publicly · the named anchor IS marketing.",
+    direct_quotes=[
+        "Define the brand's non-negotiable anchor. The one rule you never break.",
+        "The discipline of killing the conflicting opportunity is the discipline of compounding brand value."
+    ],
+    tags=["offer-stack","part-viii","marketing-vector","non-negotiable-anchor","discount-dilution","brand-discipline"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="brand-psychology",
+    concept="Part VIII.4 · The compound improvement loop · 100 reps not 1 perfect",
+    summary="The fourth brand-psychology framework: legendary brands are built over decades, not months. The unglamorous loop that builds them: (1) publish the current version, (2) review honestly against the previous version (what improved, regressed, neutral), (3) identify exactly one 10 percent improvement for the next version, (4) implement, (5) repeat. Most operators quit this loop at rep 7. Rep 7 is where initial progress slows and improvements feel marginal. The brands that win do not quit at rep 7. They run to rep 50 and look unrecognizable, run to rep 100 and become effectively untouchable in their category.",
+    usable_principle="100 reps of small improvement beats 1 rep of perfect design every time. Compound improvement requires surviving rep 7 (the slowdown moment) without quitting. Operators who can run boring loops past rep 7 produce structurally different outcomes than operators who chase novel approaches.",
+    sniped_relevance="Apply to: the v3 LUXURY edit preset (refine 1-2 sliders per chapter, not redesign), the chapter system caption format (small evolution per chapter, not template overhaul), the Direction Stack methodology (one protocol refinement per quarter, not full rewrite), the Cultural Doc voice (subtle drift toward sharpness, not voice reinvention). The compound improvement loop is the operational expression of Lock 10 (no architecture refinement) + ongoing small refinement of execution.",
+    direct_quotes=[
+        "100 reps of small improvement beats 1 rep of perfect design every time.",
+        "Most operators quit this loop at rep 7."
+    ],
+    tags=["offer-stack","part-viii","compound-improvement","rep-7","100-reps","small-improvement-discipline"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="brand-psychology",
+    concept="Part VIII.5 · The content-is-the-product principle",
+    summary="In a saturated market, the brand that documents the journey, tells the founder story, and treats every video as strategic asset will outperform the one with technically superior product but weaker narrative. Tactical rules: document the founder journey daily (gritty, transparent, building-in-public · the mess is the credibility); show the failures (failed sample, botched run, flopped launch · honesty builds trust faster than polish); treat every piece of content as permanent brand artifact, not disposable post; use controversial or emotionally resonant elements (low-cost quote graphic that provokes emotion outperforms complex decorative design); break down craft details (materials, processes, quality specs · educational content builds perceived quality and trust).",
+    usable_principle="In saturated markets, narrative differentiation beats product differentiation. The brand whose content tells the founder story, shows the work behind the work, and surfaces failures honestly captures more trust than the brand with technically better products but no narrative.",
+    sniped_relevance="The Cultural Doc essays + chapter rollout BTS content + Direction Stack book development log are SNIPED's content-as-product execution. The temptation to publish only finished work loses the trust-building that BTS produces. Document the failed shoots, the rejected aesthetics, the methodology evolution. The mess is the credibility. Apply per chapter: ship the polished work AND a behind-the-scenes companion piece.",
+    direct_quotes=[
+        "The mess is the credibility. Pristine brands read as fake.",
+        "Treat every piece of content as a permanent brand artifact, not a disposable post."
+    ],
+    tags=["offer-stack","part-viii","content-is-product","building-in-public","mess-is-credibility","bts-discipline"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="launch-mechanics",
+    concept="Part X · The THCPP launch framework",
+    summary="The 5-stage launch sequence for any digital, physical, or service offer. (T) Tease · 3-4 weeks before launch · hint without revealing, build curiosity. (H) Hype · 2-3 weeks before · show the lifestyle, world, tribe · build desire. (C) Collect · 2-4 weeks before launch, ongoing · capture SMS/email signups, build the owned list. (P) Push · launch day + first 48 hours · drive the owned list to the storefront, convert. (P) Pull · Day 3 through Week 4 · retarget audience with paid ads using content that performed organically. Each stage has specific content requirements and a specific objective. Most operators conflate the stages and get worse results.",
+    usable_principle="Launches are sequences, not events. The THCPP 5-stage architecture gives every launch a 4-8 week runway with specific work assignments per week. Skipping stages (especially Collect) destroys downstream conversion. The Pull stage (retargeting with proven-organic creative) is where most launches leave money on the table by failing to run it.",
+    sniped_relevance="Apply to Direction Stack book launch (Year 2-3): 4 weeks of Tease (book cover hints, manuscript photos, Rejuar design process), 3 weeks of Hype (Cultural Doc essay series on the book's themes, founder testimonials on Direction Stack experience), Collect throughout (Substack signups, book waitlist), Push on launch day (drive list to Amazon/Gumroad), Pull for 4 weeks after (retarget organic engagers with paid ads to founder ICP). The full THCPP runway is ~10 weeks total.",
+    direct_quotes=[
+        "Tease 3-4 weeks before · Hype 2-3 weeks before · Collect ongoing · Push launch day + 48 hours · Pull Day 3 through Week 4.",
+        "Every tease post should produce comments asking 'what is it?' If nobody is asking, the tease is not teasing."
+    ],
+    tags=["offer-stack","part-x","thcpp-framework","launch-mechanics","direction-stack-book-application","tease-hype-collect-push-pull"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="scaling",
+    concept="Part XI · The variation multiplier · scale winners not losers",
+    summary="When an offer is proven (sells consistently, has product-market fit), the scaling move is to multiply variations of the winner rather than adding unrelated new offers. Colorways for proven physical products. Format variations for proven digital products. Bundles of the proven winner with complementary low-friction add-ons. The variation multiplier compounds revenue without splitting attention. New unrelated product lines at the same stage dilute focus and rarely succeed. Discount discipline: never boost content that did not perform organically (paid spend amplifies what's already working; it doesn't fix what isn't).",
+    usable_principle="Scaling = multiplying winners, not creating new offers. Operators who hit one win get tempted to chase the next new thing; the higher-leverage move is to multiply the win into variations + bundles. Diversification at the wrong stage dilutes focus.",
+    sniped_relevance="When Reset reaches consistent sell-through (say, 3+/month), the scaling move is NOT 'launch a new tier' (Op Kit and Brand System already exist in the ladder). It's multiplying Reset variations: Reset-for-engineers, Reset-for-founders-pre-Series-A, Reset-for-second-gen-immigrant-founders, Reset-with-Direction-Stack-book-included bundle. Each variation captures a slightly different segment without diluting the underlying offer. The Op Kit launch follows the same logic at the next tier.",
+    direct_quotes=[
+        "Variation scaling. Colorways, format variations, bundles of the proven winner.",
+        "Never boost content that did not perform organically."
+    ],
+    tags=["offer-stack","part-xi","variation-multiplier","scale-winners","bundle-strategy","discount-discipline"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="scaling",
+    concept="Part XII · Growth levels · the operator's job changes per tier",
+    summary="The operator's job changes at each revenue tier. Level 1 (Zero to 10k/month): only thing that matters is product-market fit · iterating positioning/price/format, manual acquisition (DM individuals), content volume around the offer's core problem (4-15 pieces/week), customer conversations. What NOT to do at Level 1: paid ads (can't fix poorly-positioned offer), complex branding (logo/brand book don't matter if offer doesn't sell), hiring (locks in expenses before stable revenue), partnerships with larger accounts (require leverage you don't have). Level 2 ($10k-50k/month): paid ads enter the picture but ONLY on content already proven organically. Email/SMS automation. Variation scaling. First key hire (fulfillment or content, not strategy).",
+    usable_principle="The operator's job is tier-specific. Doing higher-tier work prematurely (paid ads at Level 1, brand redesigns at Level 1) wastes time and resources. Doing lower-tier work past the relevant tier (manual outreach at $50k+/month) caps growth. Match the work to the tier.",
+    sniped_relevance="SNIPED is currently Level 1 ($0-10k/month). The Level 1 disciplines apply: manual outreach (VIB, Ren's cold email), content volume (chapter system + Cultural Doc), customer conversations (every Reset is also research). DO NOT yet: launch big paid ad campaigns, hire strategic staff, do brand redesigns. The boost-organic move ($30/day · 10-mile LA) is the small-scale Level 1-2 bridge that tests paid amplification without committing Level 2 budget.",
+    direct_quotes=[
+        "Zero to 10k per month: the only thing that matters is product-market fit.",
+        "Paid ads. They cannot fix a poorly-positioned offer."
+    ],
+    tags=["offer-stack","part-xii","growth-levels","level-1-discipline","tier-specific-work","sniped-current-tier"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="scaling",
+    concept="Part XIII · The operator sequence · week-by-week execution",
+    summary="The locked execution sequence from idea to scaled offer. Week 1 · Idea and validation (3 questions, validation methods, kill or proceed). Week 2 · Offer design and brand foundation (5 brand questions, offer form, ladder rung, build outline). Week 3 · Build the minimum viable version (draft/sample/pilot client). Week 4 · Tease and hype (Tease phase of THCPP, BTS content, 100+ signups by end). Week 5 · Hype and collect (lifestyle content, world-building). The sequence compresses or expands based on available hours but the validation steps in Week 1 are never skippable · they prevent the most expensive failure mode in offer development.",
+    usable_principle="Offer development should follow a defined week-by-week sequence rather than ad-hoc 'when I have time.' The sequence compresses to 5 weeks part-time, or expands to 10 weeks at 5 hours/week. The validation week is non-negotiable · skipping it produces the most expensive failure mode (building before validating).",
+    sniped_relevance="Apply to future SNIPED offer launches: the Op Kit launch (Q4 2026), the Brand System launch (2027), any new productized offering. The Direction Stack book follows a longer variant of this sequence (the validation phase is the entire Cultural Doc series, the Tease/Hype phase is the chapter pre-launch run, the Push/Pull is the actual book release). Don't skip the validation week even when the offer feels obviously right.",
+    direct_quotes=[
+        "Week 1: Idea and validation. Do not skip the validation steps. They prevent the most expensive failure mode."
+    ],
+    tags=["offer-stack","part-xiii","operator-sequence","week-by-week","validation-non-negotiable","offer-launch-template"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="brand-psychology",
+    concept="Cross-Part synthesis · The 4 frameworks compound over years",
+    summary="Parts VIII-XIII compound when applied together over years. Us-versus-them positions the brand against incumbents. Identity bridge defines what the buyer is becoming. Marketing vector locks the anchor that prevents dilution. Compound improvement loop builds the brand reps over decades. Content-is-product produces the narrative substrate. Operator sequence runs the launch cadence. Growth levels match work to revenue stage. Variation multiplier scales winners. Each part stacks on the others; missing any one creates a leak. The brand-as-IP outcome only emerges when all are running simultaneously.",
+    usable_principle="The full brand-system outcome emerges only when all elements run simultaneously. Operators who run only 3-4 of the 8 frameworks produce 30-40% of the possible outcome. Operators who run all 8 in parallel produce structurally different brands over 5-10 year arcs.",
+    sniped_relevance="SNIPED's current state: us-versus-them (anti-AI position) yes. Identity bridge (Carrd copy refinement needed) partial. Marketing vector (multiple named refusals) yes. Compound improvement loop (chapter system reps) yes. Content-is-product (Cultural Doc + Direction Stack book) yes. Operator sequence (need to apply formally to Op Kit launch) gap. Growth levels (Level 1 discipline) yes. Variation multiplier (Reset variations not yet launched) gap. Two named gaps to close.",
+    direct_quotes=[
+        "Each part stacks on the others; missing any one creates a leak."
+    ],
+    tags=["offer-stack","cross-part-synthesis","eight-frameworks","brand-as-system","sniped-audit","gap-identification"]
+)
+
+print(f"After cluster 7 (Offer Stack VIII-XIII · 10 chunks): {len(CHUNKS)} chunks")
+
+# =============================================================
+# CLUSTER 8 · THE_PLATFORM_STACK Parts VII-XIII
+# Parts I-VI covered in BATCH_001 · skip explicitly · ~12 chunks
+# =============================================================
+STITLE = "The Platform Stack · Parts VII-XIII"
+SFILE = "platform_stack_full.md"
+AUTHOR = "BJ / SNIPED Media (Stack series)"
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="meta-architecture",
+    concept="Part VII.1 · Identity-first Meta setup · the verification step",
+    summary="The Meta setup sequence's load-bearing first step: before creating a Business Portfolio, before launching a page, before running an ad · verify your personal identity on Meta. Go to facebook.com/id, select 'Running ads about social issues, elections or politics' (highest verification tier, doesn't commit you to those ads), upload government-ID, wait 1-2 days for green checkmark. ONLY after the green checkmark should you proceed to create business assets. The verification is the cheapest business-continuity insurance available · the most common failure mode (losing entire business account to ban) is prevented by 20 minutes of work at the beginning.",
+    usable_principle="Identity verification before asset creation is non-negotiable for any Meta-dependent business. The verification step is cheap (20 minutes) and prevents the most expensive failure mode (account ban with no recovery path). Operators who skip verification accept catastrophic risk for no time savings.",
+    sniped_relevance="If SNIPED is going to run any Meta-based outreach (Instagram outreach, Facebook business presence, paid ads for boost-organic on FB), do the identity verification BEFORE setting up Business Portfolio. This is a 20-minute one-time task that protects all future Meta work. Schedule it during the next protected hour. The boost-organic strategy referenced in 100Q audit depends on Meta business assets being protected.",
+    direct_quotes=[
+        "Time spent on verification is the cheapest business-continuity insurance available.",
+        "Only after the green checkmark appears should you proceed to create business assets."
+    ],
+    tags=["platform-stack","part-vii","meta-identity","verification-step","business-continuity","ban-prevention"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="meta-architecture",
+    concept="Part VII.2-3 · Use real personal profile + enforce 2FA team-wide",
+    summary="Two critical setup decisions. (1) Use your actual personal Facebook profile, NOT a second 'business' profile. Meta's system prohibits duplicate profiles and bans them aggressively. The personal profile holds Business Portfolio access; when it gets banned, the business goes with it. Lock down privacy settings (Friends only, profile photo restricted) · don't post if you don't want to · the profile exists for verification + admin access. (2) Enforce 2FA across the entire team in Business Settings. A compromised team member's account is the most common single point of failure. Set 2FA requirement to 'Everyone' · use authenticator apps (Google Authenticator, Authy) NOT SMS-based 2FA (SMS can be intercepted).",
+    usable_principle="Account security is structural infrastructure, not optional polish. Single-profile-per-person + 2FA-via-authenticator-app prevents the two most common business-account loss modes. The cost is small (one-time setup). The benefit is years of operational continuity.",
+    sniped_relevance="For SNIPED at solo-founder scale, this is BJ's personal FB profile (which exists, lock down privacy). 2FA is BJ-only at solo stage but the discipline is to enable it now so the pattern is set before any hires. When Phase B brings on first team member, they get added to Business Portfolio with 2FA mandatory from day 1.",
+    direct_quotes=[
+        "Use your actual personal Facebook profile, even if you do not otherwise use Facebook personally.",
+        "2FA is not optional. Use an authenticator app rather than SMS-based 2FA."
+    ],
+    tags=["platform-stack","part-vii","real-profile","2fa-enforcement","authenticator-app","single-point-of-failure"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="meta-architecture",
+    concept="Part VIII · Meta Business Suite · the unified inbox",
+    summary="Meta Business Suite is the central control panel for cross-platform Meta operations. The Unified Inbox is the load-bearing feature · it consolidates messages from Facebook Messenger, Instagram DMs, comments, and reviews into a single workflow. Without the Unified Inbox, an operator running both IG and FB has to monitor two separate inboxes constantly. With it, the same response time and follow-up discipline applies across both platforms. Operational discipline: check Unified Inbox 1-2 times daily, respond within 24 hours to qualified inquiries, route any commercial conversation toward Lead Center (Part X).",
+    usable_principle="When operating across multiple platforms with overlapping audiences, a unified inbox eliminates the operational overhead of monitoring multiple surfaces. The 'check 4 different apps for messages' workflow is broken; the 'check 1 unified inbox' workflow scales.",
+    sniped_relevance="For SNIPED's IG presence + future FB business assets, set up Meta Business Suite with Unified Inbox enabled. Check 1-2x daily during operating rhythm. Any commercial inquiry (founder asking about Reset, brand reaching out for commercial) routes to Lead Center for pipeline tracking. The Inbox-to-Lead-Center pipeline replaces ad-hoc DM tracking with a structured CRM-equivalent for free.",
+    direct_quotes=[
+        "Unified Inbox consolidates messages from Messenger, Instagram DMs, comments, and reviews into a single workflow."
+    ],
+    tags=["platform-stack","part-viii","meta-business-suite","unified-inbox","cross-platform-ops","daily-rhythm"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="meta-architecture",
+    concept="Part X · Meta Lead Center · the free CRM most businesses don't know exists",
+    summary="Meta Lead Center is a free CRM built into Meta Business Suite. For any business whose leads come primarily through Messenger, Instagram DMs, or comment conversations, Lead Center may eliminate the need for a separate CRM tool entirely. Features: turns any contact who messages you into a tracked lead; Kanban pipeline view with customizable stages (Intake, Qualified, In Progress, Converted); contact enrichment with phone/email/address/labels; notes and follow-up reminders per contact; filter by stage/label/date; integration with Unified Inbox (messaging and CRM are the same workflow). The lead capture flow: open contact in Inbox → click 'Mark as Lead' → assign pipeline stage → add contact details → add labels.",
+    usable_principle="Free tools built into platforms you already use often replace paid tools you'd otherwise license. Lead Center replaces ~$20-50/month CRM tools for businesses whose leads route through Meta surfaces. Don't license what already exists for free in your existing platform.",
+    sniped_relevance="For SNIPED's IG-DM-sourced founder inquiries, Lead Center is the right CRM rather than building a parallel Notion CRM for that flow. Notion CRM (per synthesis Recommendation 4) handles cold-email + VIB pipeline. Lead Center handles IG-DM pipeline. Both feed into the unified Resets-shipped record. Don't try to consolidate everything into one tool · platform-specific tools for platform-specific flows are correct.",
+    direct_quotes=[
+        "A free CRM built into Meta Business Suite that most businesses do not realize exists.",
+        "Lead Center may eliminate the need for a separate CRM tool entirely."
+    ],
+    tags=["platform-stack","part-x","meta-lead-center","free-crm","kanban-pipeline","ig-dm-pipeline"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="meta-advertising",
+    concept="Part XI.1 · The 6 prerequisites before running ads",
+    summary="The audit checklist that must be complete before running Meta ads: (1) Verified identity and Business Portfolio (from Part VII). (2) Pixel installed on website · tracks visitor behavior · required for audience building and conversion tracking. (3) Conversion events configured · Purchase, Lead, AddToCart, ViewContent, whatever matters to your funnel · set up in Events Manager. (4) Product catalog for e-commerce (from Part IX). (5) A tested landing page or offer · if the landing page doesn't convert organic traffic, no amount of paid traffic will save it. (6) A payment method and clear ad budget. Running ads without these prerequisites wastes money.",
+    usable_principle="Paid ads amplify what's already working; they don't fix what isn't. The prerequisite checklist forces operators to fix the substrate (page, offer, tracking) before spending. Spending before the substrate is in place produces the 'why aren't ads working?' diagnostic that takes months to unravel.",
+    sniped_relevance="For SNIPED's boost-organic move ($30/day · 10-mile LA · after CH01), check the 6 prerequisites first. (1) Verify identity. (2) Add Pixel to Carrd. (3) Configure 'Lead' conversion event (form submission). (4) N/A (no e-commerce yet). (5) Carrd must convert organic traffic before boost spend (test with current cold-outreach traffic). (6) Payment method + $30/day cap set. Don't boost until all 6 are green.",
+    direct_quotes=[
+        "Running ads without the following pieces in place wastes money.",
+        "If the landing page does not convert organic traffic, no amount of paid traffic will save it."
+    ],
+    tags=["platform-stack","part-xi","meta-ad-prerequisites","six-checks","pixel-installation","substrate-before-spend"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="meta-advertising",
+    concept="Part XI.2-3 · Campaign structure · 4-level architecture",
+    summary="Meta ad architecture has 4 levels: (1) Ad Account · billing and reporting container · one per business entity · timezone and currency are permanent at creation. (2) Campaign · objective container · one per marketing objective · choose Sales/Leads/Traffic/Engagement/Awareness. (3) Ad Set · audience and placement container · one per audience or targeting approach · set budget/schedule/placements. (4) Ad · the creative container · multiple ads per set for testing · keep ad count per set under 6 for clean data. Objective selection: Sales (optimizes for purchases · use when Purchase event configured); Leads (optimizes for form submissions · B2B/service businesses); Traffic (optimizes for link clicks · driving to content); Engagement (top-of-funnel content amplification); Awareness (brand-building with explicit budget).",
+    usable_principle="Ad architecture is hierarchical; understanding the 4 levels (Account → Campaign → Ad Set → Ad) lets you structure tests cleanly. Mixing levels (changing audience and creative in the same test) confounds data and produces meaningless results. Discipline · test ONE variable per Ad Set, multiple creatives per Ad Set, multiple Ad Sets per Campaign for audience tests.",
+    sniped_relevance="For SNIPED boost-organic experiments, the right objective is Leads (driving form submission for Reset inquiry) or Engagement (top-of-funnel chapter visibility) depending on the goal. Keep ad count per set ≤ 6 (per discipline). The boost-organic budget ($30/day) is small enough that the architecture matters more than total spend · clean structure produces learnable data; messy structure produces noise.",
+    direct_quotes=[
+        "Ad Account · Campaign · Ad Set · Ad.",
+        "Keep ad count per set under 6 for clean data."
+    ],
+    tags=["platform-stack","part-xi","ad-architecture","four-levels","campaign-objectives","test-discipline"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="meta-advertising",
+    concept="Part XI · Ban-prevention discipline · the silent business-killer",
+    summary="The chapter implicitly highlights ban-prevention as the most underrated meta-advertising discipline. The setup steps in Part VII (verified identity, real personal profile, 2FA enforcement) are the foundation. Ongoing ban-prevention: maintain consistent advertiser persona, don't suddenly change billing methods, don't run ads that violate Meta's policy categories (alcohol/dating/political without proper auth), don't operate from multiple geographies simultaneously, don't suddenly spike budgets. Bans are silent · accounts get restricted without warning, and recovery requires going through Meta support which is slow and uncertain. Most banned businesses had warning signs (policy violations, identity inconsistencies) they ignored.",
+    usable_principle="Ban prevention is conservative discipline · avoid the activities that trigger bans even when they don't seem harmful. Banned ad accounts are usually unrecoverable; the loss is total. Operators who treat Meta as 'just an ad platform' get banned. Operators who treat it as critical infrastructure (with operational discipline) keep their accounts.",
+    sniped_relevance="For SNIPED's planned boost-organic move, the ban-prevention rules: keep BJ as the sole advertiser identity (no swapping); use a single billing method; don't suddenly scale spend ($30/day cap protects this); don't run any ads in restricted categories; operate from LA consistently. Conservative discipline is cheaper than recovery from an unrecoverable ban.",
+    direct_quotes=[
+        "Bans are silent · accounts get restricted without warning, and recovery requires going through Meta support."
+    ],
+    tags=["platform-stack","part-xi","ban-prevention","conservative-discipline","silent-business-killer","meta-policy"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="meta-architecture",
+    concept="Part XII.1 · The audience split · LinkedIn vs IG vs FB by mindset",
+    summary="LinkedIn and Meta are complementary, not competing. They reach different audiences in different mindsets. LinkedIn · decision-makers, professionals, B2B buyers · WORK MODE (evaluating solutions, reading for professional development, networking). Instagram · consumers, creators, visual audiences · INSPIRATION MODE (browsing, discovery, lifestyle and aspiration). Facebook · broader consumer audience, older demographic, community groups · CASUAL MODE (connection with friends/family, community participation, local business discovery). Running both strategically doubles surface area without doubling work · because the audiences and mindsets are distinct, content adapted per platform serves different funnel stages.",
+    usable_principle="Multi-platform strategy that treats each platform as 'just another channel for the same content' wastes effort. Multi-platform strategy that respects the distinct mindset and audience per platform doubles effective reach. The work is platform-specific adaptation, not cross-posting.",
+    sniped_relevance="For SNIPED's two-channel approach (LinkedIn VIB + IG chapter system), this validates the split. LinkedIn = founder buyers in work mode (VIB lands here, Direction Stack one-pager closes here). IG = visual discovery + cluster signaling (chapter system lands here, builds the cultural-authority moat). FB intentionally limited (lower priority, but the boost-organic move uses FB's ad surface). Don't try to make IG do LinkedIn's job or vice versa.",
+    direct_quotes=[
+        "LinkedIn · Work mode. Instagram · Inspiration mode. Facebook · Casual mode.",
+        "Running both strategically doubles the surface area of the business without doubling the work."
+    ],
+    tags=["platform-stack","part-xii","audience-split","linkedin-vs-meta","mindset-platform-fit","cross-platform-strategy"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="meta-architecture",
+    concept="Part XII.2 · The funnel split · where each platform fits",
+    summary="Different platforms fit different funnel stages naturally. Top of funnel: Meta (IG Reels, FB, TikTok) for broad reach · cheaper per impression · builds brand awareness. Middle of funnel: LinkedIn for B2B consideration; Instagram for consumer consideration; email (captured through both) for nurture. Bottom of funnel: LinkedIn outreach for B2B closing; Meta retargeting ads for consumer closing; direct messaging on either platform for warm conversations. Post-sale: Instagram for brand community; LinkedIn for professional testimonials and case studies; Meta Lead Center for post-sale follow-up.",
+    usable_principle="Funnel-platform fit is asymmetric. Each platform's strength matches a specific funnel stage. Operators who use each platform for the wrong stage (e.g., trying to close B2B sales on Instagram) waste effort. Match platform to funnel stage.",
+    sniped_relevance="For SNIPED: TOP · IG Reels + FB (boost-organic). MIDDLE · LinkedIn (VIB content), email/Substack nurture. BOTTOM · LinkedIn VIB DM (B2B close), Meta retargeting (Reset offer to engaged IG audience). POST-SALE · IG for brand community (named-client featured grid), LinkedIn for case studies (post-Reset client testimonials), Meta Lead Center for IG-DM-sourced followup. The funnel-platform map is the operational layout.",
+    direct_quotes=[
+        "Top of funnel · Meta. Middle · LinkedIn for B2B, IG for consumer. Bottom · LinkedIn outreach for B2B, Meta retargeting for consumer."
+    ],
+    tags=["platform-stack","part-xii","funnel-platform-fit","four-stages","platform-by-stage","sniped-funnel-map"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="meta-architecture",
+    concept="Part XII.4 · The cross-platform operator cadence · realistic weekly rhythm",
+    summary="A realistic weekly cadence for solo-or-small-team operators running both platforms seriously. LinkedIn: 3-5 posts per week, 30-60 minutes of daily engagement, 15-25 personalized connection requests per week. Instagram: 4-7 Reels per week, daily Stories, grid posts 2-3 times per week. Facebook: Cross-post from Instagram (Meta Business Suite handles this), respond to messages in Unified Inbox daily. The cadence assumes ~5-10 hours/week total platform work · sustainable across years. Higher cadences burn out solo operators; lower cadences produce inconsistent compounding.",
+    usable_principle="Sustainable platform cadence matches operating reality. Aspirational cadences that require 20+ hours/week collapse within 90 days. Cadences calibrated to 5-10 hours/week sustain across years and compound. Pick the cadence you'll actually maintain, not the cadence you wish you'd maintain.",
+    sniped_relevance="SNIPED's current 10-12 hr/week SNIPED budget needs to allocate platform work within it. Suggested split: LinkedIn 2-3 hr/week (3 posts + 60 min daily engagement during week + 5-10 VIB DMs/week). IG 2-3 hr/week (chapter system bi-weekly · ~2hr/chapter, plus Stories). FB negligible (autoroute from IG). Remaining 5-6 hr/week for shoots, edits, Direction Stack work. This is the operational layout that fits the dual-track reality.",
+    direct_quotes=[
+        "LinkedIn: 3 to 5 posts per week, 30 to 60 minutes of daily engagement.",
+        "Instagram: 4 to 7 Reels per week, daily Stories, grid posts 2 to 3 times per week."
+    ],
+    tags=["platform-stack","part-xii","cross-platform-cadence","weekly-rhythm","sustainable-pace","time-budget-allocation"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="meta-architecture",
+    concept="Part XIII · The setup sequence · ordered checklist",
+    summary="The full Meta setup sequence in the correct order: (1) Identity verification (facebook.com/id, government ID, wait for green checkmark). (2) Real personal profile lockdown (privacy to Friends only). (3) 2FA enabled with authenticator app. (4) Business Portfolio creation (business.facebook.com, real business name). (5) Facebook Page (linked to Business Portfolio). (6) Instagram Business Account (connected to Page). (7) Pixel installation on website. (8) Conversion events in Events Manager. (9) Product catalog (if e-commerce). (10) Meta Business Suite Unified Inbox setup. (11) Lead Center activation. (12) First small-budget ad test. The order matters · setting up out of order creates dependency gaps that require backtracking.",
+    usable_principle="Setup sequences are not arbitrary · they encode dependency order. Setting up out of order requires backtracking that wastes time and sometimes creates permanent suboptimal configurations (e.g., timezone set wrong because Ad Account was created prematurely). Follow the order.",
+    sniped_relevance="For SNIPED's planned Meta presence (boost-organic + future paid testing), follow this sequence in one ~3-hour block. Calendar-block it. Steps 1-3 are personal-account hardening. Steps 4-6 are business-asset creation. Steps 7-9 are tracking infrastructure. Steps 10-11 are operational tooling. Step 12 is first test. Don't run any ads (step 12) until 1-11 are complete.",
+    direct_quotes=[
+        "The setup sequence in the correct order. The order matters."
+    ],
+    tags=["platform-stack","part-xiii","setup-sequence","ordered-checklist","dependency-order","calendar-block"]
+)
+
+add(
+    source_title=STITLE, source_file=SFILE, author=AUTHOR,
+    domain="meta-architecture",
+    concept="The integrated LinkedIn + Meta play · doubles the surface area",
+    summary="The combined LinkedIn + Meta strategy doubles SNIPED's effective surface area when run with the platform-mindset-funnel discipline. LinkedIn handles the B2B founder conversion path (VIB + Reset close). Meta handles the cultural-authority + visual-discovery path (chapter system on IG + boost-organic for Reset offer retargeting). Without both, the business runs at half capacity · either no B2B closing surface (LinkedIn missing) or no cultural-authority compounding (IG missing). The integrated play is non-additive · running both correctly produces more than 2x running either alone.",
+    usable_principle="Multi-platform strategy run correctly is super-additive · the platforms reinforce each other (LinkedIn case studies cite IG chapter work; IG cultural authority attracts LinkedIn inbound). Run only one platform, you cap the business at single-platform ceiling. Run both with discipline, the ceiling is much higher.",
+    sniped_relevance="The integrated LinkedIn + Meta play is the operational baseline for SNIPED's 2026-2027 growth. LinkedIn closes Resets; IG builds the cultural authority that makes the LinkedIn close easier. Per Section 6.6 of synthesis, the zero-cannibalization rule applies. Track which platform sources each Reset for performance attribution.",
+    direct_quotes=[
+        "Running both strategically doubles the surface area of the business without doubling the work.",
+        "The integrated play is non-additive · running both correctly produces more than 2x running either alone."
+    ],
+    tags=["platform-stack","cross-platform-integration","linkedin-plus-meta","super-additive","sniped-2026-baseline","platform-reinforcement"]
+)
+
+print(f"After cluster 8 (Platform Stack VII-XIII · 12 chunks): {len(CHUNKS)} chunks")
+
+with OUT.open("w") as f:
+    for c in CHUNKS:
+        f.write(json.dumps(c, ensure_ascii=False) + "\n")
+print(f"Wrote {len(CHUNKS)} chunks to {OUT}")

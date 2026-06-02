@@ -1,0 +1,395 @@
+{
+  "name": "Prompt Writing Agent - Text Input",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        140
+      ],
+      "id": "9f1603b9-47ee-4e9e-baf1-882908a18233",
+      "name": "Multi AI Brain",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pYAdREJDwCr6hbf5",
+          "name": "Prompt Engineer Agent"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "Normal_Model",
+        "description": "=Call this tool to write the majority of prompts if the user specifies a Normal or Fast model here: {{ $json.output[0]['Model Type'] }}",
+        "workflowId": {
+          "__rl": true,
+          "value": "vUol9bo4V6XBI68c",
+          "mode": "list",
+          "cachedResultName": "The AI Edge — Prompt Engineer Agent - Normal model"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Prompt": "={{ $json.output[0].Prompt }}",
+            "Associated Model": "={{ $json.output[0]['Associated Model'] }}",
+            "Tone": "={{ $json.output[0].Tone }}",
+            "Use Case": "={{ $json.output[0]['Use Case'] }}",
+            "Preferred Model": "={{ $json.output[0]['Model Preference'] }}",
+            "Desired output": "={{ $json.output[0]['Desired Output'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Associated Model",
+              "displayName": "Associated Model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Tone",
+              "displayName": "Tone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Use Case",
+              "displayName": "Use Case",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Preferred Model",
+              "displayName": "Preferred Model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Desired output",
+              "displayName": "Desired output",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        240,
+        140
+      ],
+      "id": "1ab4972b-0e98-4277-ae89-90c8747bf63e",
+      "name": "Normal Models"
+    },
+    {
+      "parameters": {
+        "name": "deep_reasoning_model",
+        "description": "=Only call this tool if the user wants a deep reasoning model output. This will be specified here: {{ $json.output[0]['Model Type'] }}",
+        "workflowId": {
+          "__rl": true,
+          "value": "tqcDMICfLhkAFdE5",
+          "mode": "list",
+          "cachedResultName": "The AI Edge — Prompt Engineer Agent - Deep Reasoning"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Prompt": "={{ $json.output[0].Prompt }}",
+            "Model Preference": "={{ $json.output[0]['Model Preference'] }}",
+            "Use Case": "={{ $json.output[0]['Use Case'] }}",
+            "Tone": "={{ $json.output[0].Tone }}",
+            "Associated Model": "={{ $json.output[0]['Associated Model'] }}",
+            "Desired Output": "={{ $json.output[0]['Desired Output'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Associated Model",
+              "displayName": "Associated Model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Tone",
+              "displayName": "Tone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Use Case",
+              "displayName": "Use Case",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Model Preference",
+              "displayName": "Model Preference",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Desired Output",
+              "displayName": "Desired Output",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        80,
+        140
+      ],
+      "id": "572a4176-bc5b-483d-a025-ccb457cec6cc",
+      "name": "Deep Reasoning Models"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Users current prompt: {{ $json.output[0].Prompt }}\nModel Type: {{ $json.output[0]['Model Type'] }}\nPreferred Vendor: {{ $json.output[0]['Model Preference'] }}\nTone: {{ $json.output[0].Tone }}\nUse Case: {{ $json.output[0]['Use Case'] }}\nUser desires a: {{ $json.output[0]['Desired Output'] }}",
+        "options": {
+          "systemMessage": "=You are a master prompt writing agent. You have 2 sub execution workflows that can develop the best prompts for the users depending on if they are wanting to use a deep reasoning model or a normal model. Your objective is to trigger these workflows accordingly and show the response back to the user."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -160,
+        -60
+      ],
+      "id": "1d996888-cfc2-46ff-9669-f725c388be12",
+      "name": "Master Prompt Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -760,
+        -60
+      ],
+      "id": "98c291b2-41dc-4936-88aa-985d09d22280",
+      "name": "When chat message received",
+      "webhookId": "d44a8bf1-2d6a-4e8c-ac53-763c794e5f62"
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are to analyse the request from the user and output a formatted JSON with information based on the below options to choose from. Do not come up with your own ideas at this stage. Your Output is incredibly important to the rest of the flow so please make it consistent. If the user does not specify that they want the output provided directly then you need to provide the prompt to them.\n\nHere is the desired output with the options included:\n[\n  {\n    \"Prompt\": \"\",\n    \"Associated Model\": \"\",\n    \"Model Type\": \"Deep Reasoning | Normal | Fast Response\",\n    \"Model Preference\": \"Google | Anthropic | OpenAI | Grok\",\n    \"Tone\": \"Serious | Business | Casual | Sarcastic\",\n    \"Use Case\": \"Marketing | Sales | HR | C-suite\",\n    \"Desired Output\": \"Useable Output | Prompt\"\n  }\n]\n"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        -540,
+        -60
+      ],
+      "id": "987507f1-9e96-465e-a9fe-3756907b9933",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        120
+      ],
+      "id": "0ec73252-1244-4226-aa2b-de27d88b27ea",
+      "name": "Formatting Brain",
+      "credentials": {
+        "openRouterApi": {
+          "id": "knGjnDA8DrcjAmGO",
+          "name": "Prompt Engineer Agent"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "[\n  {\n    \"Prompt\": \"\",\n    \"Associated Model\": \"\",\n    \"Model Type\": \"Deep Reasoning | Normal | Fast Response\",\n    \"Model Preference\": \"Google | Anthropic | OpenAI | Grok\",\n    \"Tone\": \"Serious | Business | Casual | Sarcastic\",\n    \"Use Case\": \"Marketing | Sales | HR | C-suite\",\n    \"Desired Output\": \"Useable Output | Prompt\"\n  }\n]"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -400,
+        120
+      ],
+      "id": "eb7d208d-cc90-4821-9338-6ef61fa16849",
+      "name": "JSON Structure"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Multi AI Brain": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Master Prompt Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normal Models": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Prompt Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deep Reasoning Models": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Prompt Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Master Prompt Agent": {
+      "main": [
+        []
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Master Prompt Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formatting Brain": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JSON Structure": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a17ea4c6-d736-4f99-a1bd-e5bc20f9e4ac",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4e192f249964673206e059fcdcd3b4ad4ad7b222e5dc8a5a87c6433db9685e53"
+  },
+  "id": "NAxsUtfEBIE5vfcn",
+  "tags": []
+}

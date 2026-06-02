@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PhaseLine Talent Partners · The Capability Dossier · SAMPLE</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --onyx: #0F0F0F;
+  --white: #FFFFFF;
+  --concrete: #8C8C8C;
+  --concrete-light: #DCDCDC;
+  --concrete-faint: #F2F2F2;
+  --blueprint: #0055FF;
+}
+
+@page {
+  size: Letter;
+  margin: 0.85in 0.9in 1in 0.9in;
+  @bottom-left {
+    content: "PhaseLine Talent Partners  ·  The Capability Dossier  ·  SAMPLE  ·  v1  ·  2026-05-27";
+    font-family: "Inter", -apple-system, sans-serif;
+    font-size: 7.5pt;
+    color: #8C8C8C;
+    letter-spacing: 0.04em;
+  }
+  @bottom-right {
+    content: counter(page);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 8pt;
+    color: #8C8C8C;
+  }
+  @top-right {
+    content: "SAMPLE";
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 8pt;
+    color: #8C8C8C;
+    letter-spacing: 0.22em;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  font-size: 10.5pt;
+  line-height: 1.55;
+  color: var(--onyx);
+  background: var(--white);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  font-family: "Space Grotesk", -apple-system, sans-serif;
+  font-weight: 500;
+  color: var(--onyx);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.eyebrow {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 7.5pt;
+  color: var(--concrete);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  margin-bottom: 0.4em;
+}
+
+h1.section {
+  font-size: 22pt;
+  font-weight: 500;
+  margin: 0 0 1.6em 0;
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid var(--onyx);
+  letter-spacing: -0.015em;
+}
+
+h3.proof-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12.5pt;
+  font-weight: 500;
+  margin: 0 0 0.5em 0;
+  letter-spacing: -0.005em;
+}
+
+p { margin: 0.55em 0; }
+
+ul {
+  padding-left: 1.2em;
+  margin: 0.5em 0;
+}
+ul li { margin: 0.2em 0; }
+
+/* Cover page */
+.cover {
+  height: 9.3in;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 0.2in;
+}
+.cover-header {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8pt;
+  color: var(--concrete);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.cover-center { padding: 0; }
+.cover h1.firm {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 38pt;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin: 0;
+}
+.cover .positioning {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14pt;
+  font-weight: 400;
+  color: var(--onyx);
+  margin-top: 1em;
+  max-width: 5in;
+  letter-spacing: -0.005em;
+  line-height: 1.35;
+}
+.cover-rule {
+  border: 0;
+  border-top: 1px solid var(--onyx);
+  margin: 1.5em 0;
+  width: 1.2in;
+}
+.cover-footer {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 7.5pt;
+  color: var(--concrete);
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+}
+
+/* Pages */
+.page { page-break-before: always; }
+
+/* Proof blocks */
+.proof-block {
+  margin: 2em 0;
+  padding-top: 1.2em;
+  border-top: 1px solid var(--concrete-light);
+}
+.proof-block:first-child { border-top: none; padding-top: 0; }
+.proof-num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8pt;
+  color: var(--blueprint);
+  letter-spacing: 0.18em;
+  margin-bottom: 0.3em;
+}
+
+/* Role context field grid */
+.field {
+  display: grid;
+  grid-template-columns: 110pt 1fr;
+  gap: 0.8em;
+  border-bottom: 1px solid var(--concrete-light);
+  padding: 0.7em 0;
+}
+.field:last-child { border-bottom: none; }
+.field-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 7.5pt;
+  color: var(--concrete);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding-top: 3pt;
+}
+.field-value { color: var(--onyx); }
+.field-value ul { margin: 0; }
+
+/* Image slot */
+.image-slot {
+  border: 1px dashed var(--concrete);
+  background: var(--concrete-faint);
+  height: 2.1in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1.4em 0;
+  text-align: center;
+}
+.image-slot .slot-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8pt;
+  color: var(--concrete);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-bottom: 0.6em;
+}
+.image-slot .slot-desc {
+  font-family: "Inter", sans-serif;
+  font-size: 9pt;
+  color: var(--concrete);
+  margin-bottom: 0.8em;
+  max-width: 4in;
+  line-height: 1.4;
+}
+.tags { margin-top: 0.4em; }
+.tag {
+  display: inline-block;
+  padding: 2pt 6pt;
+  border: 1px solid var(--concrete);
+  color: var(--concrete);
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.08em;
+  margin: 0 2pt;
+  text-transform: uppercase;
+  font-size: 6.5pt;
+  background: var(--white);
+}
+
+/* CTA */
+.cta-block {
+  margin-top: 2em;
+  padding: 1.2em 0;
+  border-top: 1px solid var(--onyx);
+  border-bottom: 1px solid var(--onyx);
+}
+.cta-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 7.5pt;
+  color: var(--blueprint);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.2em;
+}
+.cta-block p { margin: 0.2em 0 1em 0; }
+.cta-block p:last-child { margin-bottom: 0; }
+
+/* Profile page */
+.profile h1 { font-size: 22pt; }
+.profile .positioning {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12pt;
+  font-weight: 400;
+  margin-top: 0.6em;
+  margin-bottom: 2em;
+}
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8em 2.4em;
+  margin-top: 1em;
+}
+.profile-section h3 {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 7.5pt;
+  font-weight: 500;
+  color: var(--concrete);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin: 0 0 0.6em 0;
+  border-bottom: 1px solid var(--concrete-light);
+  padding-bottom: 5pt;
+}
+.profile-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.profile-section li {
+  font-family: "Inter", sans-serif;
+  font-size: 10pt;
+  margin: 4pt 0;
+  color: var(--onyx);
+}
+
+/* Story page max width for body */
+.story-body { max-width: 5.6in; }
+
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-header">PhaseLine Talent Partners  ·  the capability dossier  ·  SAMPLE</div>
+  <div class="cover-center">
+    <h1 class="firm">PhaseLine<br>Talent Partners.</h1>
+    <hr class="cover-rule">
+    <div class="positioning">Senior commissioning and operations placements for mission-critical builds.</div>
+  </div>
+  <div class="cover-footer">
+    SAMPLE · v1 · 2026-05-27<br>
+    Invented firm. Anonymized program. No real-client implication.
+  </div>
+</section>
+
+<!-- CAPABILITY STORY -->
+<section class="page">
+  <div class="eyebrow">01 · Capability story</div>
+  <h1 class="section">Capability story</h1>
+  <div class="story-body">
+    <p>PhaseLine places senior commissioning, integrated-systems, and operations engineers into hyperscale and enterprise data-center programs across the West. The firm runs a deliberate roster, not a database. Every operator on the roster has stood on a critical-facilities floor. Every placement is matched to scope, schedule, and the standards the program actually runs to.</p>
+    <p>The firm operates from inside the discipline. Recruiters carry commissioning and operations backgrounds. Screening is done by scope · Level 3 through Level 5 functional and integrated testing, energization sequence, hand-off readiness · not by keyword. Programs that hire through PhaseLine get operators who walk on day one, not résumés that need to be re-screened by the engineering manager.</p>
+    <p>Direct, operator-led intake. Scoped against the program's actual gates. A roster the firm has worked with on programs in the field and continues to track in role. PhaseLine holds a short list, not a long one. It says no when a placement is wrong for the work.</p>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="page">
+  <div class="eyebrow">02 · Proof</div>
+  <h1 class="section">Proof</h1>
+
+  <div class="proof-block">
+    <div class="proof-num">01</div>
+    <h3 class="proof-title">Functional and integrated testing coverage</h3>
+    <p>PhaseLine's roster owns Level 4 functional and Level 5 integrated systems testing on hyperscale builds. Engineers arrive with scripted-test discipline, an operator's reading of what FAT and SAT outputs mean for the program, and the bench credibility to defend a scripted-test result with the owner team in the room. Placements include lead CxA roles, controls-integration leads, and commissioning managers carrying scripted Level 4 and 5 scopes.</p>
+  </div>
+
+  <div class="proof-block">
+    <div class="proof-num">02</div>
+    <h3 class="proof-title">Schedule and hand-off discipline</h3>
+    <p>PhaseLine matches operators to specific schedule gates · first-energization readiness, integrated systems test, owner hand-off · and selects for the ability to close the gate, not just attend the meeting. The firm builds back from the program's milestone calendar; the operator placed is matched to the gate they have to land.</p>
+  </div>
+
+  <div class="proof-block">
+    <div class="proof-num">03</div>
+    <h3 class="proof-title">Critical-facilities standards literacy</h3>
+    <p>The roster carries fluency in the standards programs hire against:</p>
+    <ul>
+      <li>Uptime Tier I through IV classifications and the operator implications of each.</li>
+      <li>ASHRAE TC 9.9 thermal classes (A1 through A4) and the cooling design they imply.</li>
+      <li>NFPA 70E (electrical safety) and NFPA 72 (fire alarm and signaling), and the commissioning coordination both require.</li>
+      <li>IEEE 1584 (arc-flash) and IEEE 3007 (mission-critical power distribution) on the controls and integration side.</li>
+      <li>BMS and EPMS integration points and the control-system commissioning that ties them together.</li>
+    </ul>
+    <p>Operators work in the standard, not around it.</p>
+  </div>
+</section>
+
+<!-- OPERATOR CREDIBILITY -->
+<section class="page">
+  <div class="eyebrow">03 · Team</div>
+  <h1 class="section">Operator credibility</h1>
+  <div class="story-body">
+    <p>PhaseLine is led by a commissioning operator with eight-plus years on critical-facilities floors before recruiting · hands-on functional and integrated testing, control-system integration, and owner hand-off. Recruiters carry the same background. The roster is real people the firm has worked with on programs in the field, vouched for in writing, and continues to track in role.</p>
+  </div>
+
+  <div class="image-slot">
+    <div class="slot-label">Image slot  ·  Portrait</div>
+    <div class="slot-desc">Lead operator. Business-formal. Brand-bible neutral background. With written release.</div>
+    <div class="tags"><span class="tag">approved non-secure</span><span class="tag">with release</span></div>
+  </div>
+</section>
+
+<!-- ROLE CONTEXT -->
+<section class="page">
+  <div class="eyebrow">04 · Role context</div>
+  <h1 class="section">The named decision</h1>
+
+  <div class="field">
+    <div class="field-label">Role</div>
+    <div class="field-value">Senior Commissioning Manager</div>
+  </div>
+  <div class="field">
+    <div class="field-label">Program</div>
+    <div class="field-value">Hyperscale data-center build, West region (owner anonymized)</div>
+  </div>
+  <div class="field">
+    <div class="field-label">Scope</div>
+    <div class="field-value">
+      <ul>
+        <li>Own the commissioning program from Level 3 method-of-procedure through Level 5 integrated systems test.</li>
+        <li>Coordinate with the design team, the GC, and the owner's integration team.</li>
+        <li>Lead the FAT, SAT, and owner hand-off cycle.</li>
+        <li>Drive the hand-off binder and operations-readiness package.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="field">
+    <div class="field-label">Why PhaseLine</div>
+    <div class="field-value">The roster is built for this exact scope. The placement is matched against the program's actual gates · first-energization readiness, IST sequence, hand-off · not a generic JD. The operator placed will walk on day one ready to defend a scripted-test result in front of the owner.</div>
+  </div>
+</section>
+
+<!-- VISUAL PROOF -->
+<section class="page">
+  <div class="eyebrow">05 · Visual proof</div>
+  <h1 class="section">Security-safe visual proof</h1>
+  <div class="story-body">
+    <p>Image set built only from approved, non-secure material per WEDGE_OFFER_SPEC §5. No data-center floor, no cage or rack layouts, no security or access systems, no client logos or named owners, no PII without written consent.</p>
+  </div>
+
+  <div class="image-slot">
+    <div class="slot-label">Image slot  ·  Operator in PPE, controlled setting</div>
+    <div class="slot-desc">Training room, mockup, shop, or yard. Non-secure. Operator with release.</div>
+    <div class="tags"><span class="tag">approved non-secure</span><span class="tag">with release</span></div>
+  </div>
+
+  <div class="image-slot">
+    <div class="slot-label">Image slot  ·  Tools and PPE, bench frame</div>
+    <div class="slot-desc">Controlled setting. No identifying equipment, no client-tagged gear.</div>
+    <div class="tags"><span class="tag">approved non-secure</span></div>
+  </div>
+</section>
+
+<!-- DECISION PATH + CTA -->
+<section class="page">
+  <div class="eyebrow">06 · Decision path</div>
+  <h1 class="section">Why this is the obvious yes</h1>
+  <ul>
+    <li>Placed against the actual program gates the role has to clear, not a job title.</li>
+    <li>A recruiting team that understands the work, not a database that surfaces résumés.</li>
+    <li>A firm whose roster has stood on the floor before placement.</li>
+    <li>Direct access to the operator behind the firm; no layered gatekeeping.</li>
+    <li>A short list the firm is willing to defend, not a long list shipped to win headcount.</li>
+  </ul>
+
+  <div class="cta-block">
+    <div class="cta-label">Next step  ·  candidate</div>
+    <p>Contact the named recruiter at PhaseLine directly. PhaseLine's own channel, on PhaseLine's intake.</p>
+    <div class="cta-label">Next step  ·  owner or GC</div>
+    <p>Request the scoped roster for the program. PhaseLine's own intake.</p>
+  </div>
+</section>
+
+<!-- ONE-SCREEN PROFILE -->
+<section class="page profile">
+  <div class="eyebrow">07 · Leave-behind</div>
+  <h1 class="section">Capability profile  ·  one screen</h1>
+  <div class="positioning"><strong>PhaseLine Talent Partners.</strong> Senior commissioning and operations placements for mission-critical builds.</div>
+
+  <div class="profile-grid">
+    <div class="profile-section">
+      <h3>Disciplines</h3>
+      <ul>
+        <li>Commissioning (Level 3-5)</li>
+        <li>Integrated systems testing</li>
+        <li>Critical operations / shift engineering</li>
+        <li>Controls integration (BMS, EPMS)</li>
+      </ul>
+    </div>
+    <div class="profile-section">
+      <h3>Standards literacy</h3>
+      <ul>
+        <li>Uptime Tier I-IV</li>
+        <li>ASHRAE TC 9.9 (A1-A4)</li>
+        <li>NFPA 70E, NFPA 72</li>
+        <li>IEEE 1584, IEEE 3007</li>
+      </ul>
+    </div>
+    <div class="profile-section">
+      <h3>Coverage</h3>
+      <ul>
+        <li>Hyperscale and enterprise</li>
+        <li>New-build, retrofit, expansion</li>
+        <li>West region focus; broader US on scoped programs</li>
+      </ul>
+    </div>
+    <div class="profile-section">
+      <h3>Engagement model</h3>
+      <ul>
+        <li>Scope-matched, schedule-anchored placements</li>
+        <li>Direct operator-led screening</li>
+        <li>Confidential program intake</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cta-block" style="margin-top:2.4em">
+    <div class="cta-label">Contact</div>
+    <p>PhaseLine Talent Partners  ·  [named recruiter]  ·  [phone]  ·  [email]</p>
+  </div>
+</section>
+
+</body>
+</html>

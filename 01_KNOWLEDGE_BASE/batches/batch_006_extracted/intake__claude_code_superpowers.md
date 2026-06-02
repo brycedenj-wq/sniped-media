@@ -1,0 +1,1513 @@
+1
+
+Community
+
+Classroom
+
+Calendar
+
+Members
+
+Map
+
+Leaderboards
+
+About
+
+The AI Edge
+
+1
+
+YouTube Builds + Resources - 2026
+
+0%
+
+Claude Code
+
+Built an AI SaaS in 20 Minutes (Claude Code + n8n)
+
+Claude Code Plugin - Ralph Wiggum
+
+Claude Code Creates Videos in Minutes! (Remotion)
+
+Claude Code Now Has SUPERPOWERS! (plugin)
+
+Claude Code Made 3x Faster Websites! (Astro)
+
+Claude Code Agent Teams: Token Cost Worth It?
+
+Claude is Now an AI Hacker! (Shannon)
+
+Claude Code Remote Control Is a Game Changer!
+
+Watch Your Claude Code Agents Working!
+
+Claude Code /Loop Feature Saves Hours of Work!
+
+Claude Code Now Has Full Google Workspace Access!
+
+Claude Code Skills Now Improve Themselves! (2.0)
+
+Claude Code + Nano Banana 2 = Apple-Style Sites!
+
+Claude Code Skills Can Now Improve Themselves!
+
+Every New Claude Code Feature Explained! (2026)
+
+Every Claude Code Concept Explained for Non-Coders
+
+Stop Installing Thousands of Claude Code Skills!
+
+Claude Code + Obsidian = AI That Never Forgets!
+
+Claude Live Artifacts Setup Is Probably Broken!
+
+Claude Design Makes Websites INSANELY easy!
+
+Claude Cowork
+
+Claude Cowork Just Broke the Internet!
+
+Claude Releases
+
+Google Antigravity
+
+Google Gemini
+
+n8n
+
+Opencode
+
+Clawdbot / Openclaw
+
+2025 Videos
+
+Claude Code Now Has SUPERPOWERS! (plugin)
+
+27:30
+
+Claude Code Superpowers plugin --- enforces a proper development workflow with brainstorming, planning, TDD, sub-agents, code review, and git worktree isolation. 43K+ GitHub stars, now officially in Anthropic\'s marketplace. Full install walkthrough + I build a Notion-style app from a vague prompt to working product.
+
+What You\'ll Learn:
+
+What Superpowers actually is (agentic skills framework + enforced dev methodology vs plain Claude Code prompting)
+
+Two installation methods: official Anthropic marketplace (easiest) vs GitHub repo add
+
+How to activate & use core commands (/superpowers, brainstorm, write plan, execute plan)
+
+Full demo: building a Notion-like web app from vague prompt → brainstorm ideas → PRD → design docs → detailed implementation plan → phased execution with sub-agents
+
+Real workflow advantages: TDD, sub-agents, code review, isolated git branches, debugging & iteration without chaos
+
+Integrating with tools like frontend-design plugin, Supabase for backend, Vercel hosting
+
+Honest pros/cons: dramatically better outputs & structure (especially on existing repos), but still needs human oversight for edge cases, UI polish, security reviews
+
+Resources
+
+Superpowers (Github)
+
+Superpowers (Anthropic)
+
+Claude Code Now Has SUPERPOWERS! (plugin) - YouTube Builds + Resources - 2026 · The AI EdgeSkip to content
+
+obra
+
+superpowers
+
+Repository navigation
+
+Code
+
+Issues
+
+130
+
+\(130\)
+
+Pull requests
+
+140
+
+\(140\)
+
+Agents
+
+Actions
+
+Projects
+
+Security and quality
+
+Insights
+
+Important update
+
+On April 24 we\'ll start using GitHub Copilot interaction data for AI model training unless you opt out. Review this update and manage your preferences in your GitHub account settings.
+
+Owner avatar
+
+superpowers
+
+Public
+
+obra/superpowers
+
+t
+
+T
+
+Name
+
+obraDrew Ritterclaudearittrculinablaz
+
+Release v5.1.0 (#1468)
+
+f2cbfbe
+
+·
+
+2 weeks ago
+
+.claude-plugin
+
+Release v5.1.0 (#1468)
+
+2 weeks ago
+
+.codex-plugin
+
+Release v5.1.0 (#1468)
+
+2 weeks ago
+
+.cursor-plugin
+
+Release v5.1.0 (#1468)
+
+2 weeks ago
+
+.github
+
+Require session transcript for new-harness PRs
+
+2 weeks ago
+
+.opencode
+
+Release v5.1.0 (#1468)
+
+2 weeks ago
+
+assets
+
+Use committed Codex plugin files in sync script
+
+3 weeks ago
+
+docs
+
+Release v5.1.0 (#1468)
+
+2 weeks ago
+
+hooks
+
+Release v5.1.0 (#1468)
+
+2 weeks ago
+
+scripts
+
+Release v5.1.0 (#1468)
+
+2 weeks ago
+
+skills
+
+Release v5.1.0 (#1468)
+
+2 weeks ago
+
+tests
+
+Release v5.1.0 (#1468)
+
+2 weeks ago
+
+.gitattributes
+
+fix: restore polyglot wrapper to fix Windows hook window spawning
+
+3 months ago
+
+.gitignore
+
+Remove vendored node_modules, swap to zero-dep server.js
+
+2 months ago
+
+.version-bump.json
+
+Use committed Codex plugin files in sync script
+
+3 weeks ago
+
+AGENTS.md
+
+Add contributor guidelines to reduce agentic slop PRs
+
+last month
+
+CLAUDE.md
+
+Require session transcript for new-harness PRs
+
+2 weeks ago
+
+CODE_OF_CONDUCT.md
+
+Add Contributor Covenant Code of Conduct
+
+2 months ago
+
+GEMINI.md
+
+Load Gemini tool mapping via GEMINI.md \@import instead of skill refer...
+
+2 months ago
+
+LICENSE
+
+Revert \"Reapply \"Move superpowers plugin into plugins/superpowers-boo...
+
+7 months ago
+
+README.md
+
+Release v5.1.0 (#1468)
+
+2 weeks ago
+
+RELEASE-NOTES.md
+
+Release v5.1.0 (#1468)
+
+2 weeks ago
+
+gemini-extension.json
+
+Release v5.1.0 (#1468)
+
+2 weeks ago
+
+package.json
+
+Release v5.1.0 (#1468)
+
+2 weeks ago
+
+Repository files navigation
+
+README
+
+Code of conduct
+
+MIT license
+
+Superpowers
+
+Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.
+
+Quickstart
+
+Give your agent Superpowers: Claude Code, Codex CLI, Codex App, Factory Droid, Gemini CLI, OpenCode, Cursor, GitHub Copilot CLI.
+
+How it works
+
+It starts from the moment you fire up your coding agent. As soon as it sees that you\'re building something, it doesn\'t just jump into trying to write code. Instead, it steps back and asks you what you\'re really trying to do.
+
+Once it\'s teased a spec out of the conversation, it shows it to you in chunks short enough to actually read and digest.
+
+After you\'ve signed off on the design, your agent puts together an implementation plan that\'s clear enough for an enthusiastic junior engineer with poor taste, no judgement, no project context, and an aversion to testing to follow. It emphasizes true red/green TDD, YAGNI (You Aren\'t Gonna Need It), and DRY.
+
+Next up, once you say \"go\", it launches a subagent-driven-development process, having agents work through each engineering task, inspecting and reviewing their work, and continuing forward. It\'s not uncommon for Claude to be able to work autonomously for a couple hours at a time without deviating from the plan you put together.
+
+There\'s a bunch more to it, but that\'s the core of the system. And because the skills trigger automatically, you don\'t need to do anything special. Your coding agent just has Superpowers.
+
+Sponsorship
+
+If Superpowers has helped you do stuff that makes money and you are so inclined, I\'d greatly appreciate it if you\'d consider sponsoring my opensource work.
+
+Thanks!
+
+Jesse
+
+Installation
+
+Installation differs by harness. If you use more than one, install Superpowers separately for each one.
+
+Claude Code
+
+Superpowers is available via the official Claude plugin marketplace
+
+Official Marketplace
+
+Install the plugin from Anthropic\'s official marketplace:
+
+/plugin install superpowers@claude-plugins-official
+
+Superpowers Marketplace
+
+The Superpowers marketplace provides Superpowers and some other related plugins for Claude Code.
+
+Register the marketplace:
+
+/plugin marketplace add obra/superpowers-marketplace
+
+Install the plugin from this marketplace:
+
+/plugin install superpowers@superpowers-marketplace
+
+Codex CLI
+
+Superpowers is available via the official Codex plugin marketplace.
+
+Open the plugin search interface:
+
+/plugins
+
+Search for Superpowers:
+
+superpowers
+
+Select Install Plugin.
+
+Codex App
+
+Superpowers is available via the official Codex plugin marketplace.
+
+In the Codex app, click on Plugins in the sidebar.
+
+You should see Superpowers in the Coding section.
+
+Click the + next to Superpowers and follow the prompts.
+
+Factory Droid
+
+Register the marketplace:
+
+droid plugin marketplace add https://github.com/obra/superpowers
+
+Install the plugin:
+
+droid plugin install superpowers@superpowers
+
+Gemini CLI
+
+Install the extension:
+
+gemini extensions install https://github.com/obra/superpowers
+
+Update later:
+
+gemini extensions update superpowers
+
+OpenCode
+
+OpenCode uses its own plugin install; install Superpowers separately even if you already use it in another harness.
+
+Tell OpenCode:
+
+Fetch and follow instructions from https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.opencode/INSTALL.md
+
+Detailed docs: docs/README.opencode.md
+
+Cursor
+
+In Cursor Agent chat, install from marketplace:
+
+/add-plugin superpowers
+
+Or search for \"superpowers\" in the plugin marketplace.
+
+GitHub Copilot CLI
+
+Register the marketplace:
+
+copilot plugin marketplace add obra/superpowers-marketplace
+
+Install the plugin:
+
+copilot plugin install superpowers@superpowers-marketplace
+
+The Basic Workflow
+
+brainstorming - Activates before writing code. Refines rough ideas through questions, explores alternatives, presents design in sections for validation. Saves design document.
+
+using-git-worktrees - Activates after design approval. Creates isolated workspace on new branch, runs project setup, verifies clean test baseline.
+
+writing-plans - Activates with approved design. Breaks work into bite-sized tasks (2-5 minutes each). Every task has exact file paths, complete code, verification steps.
+
+subagent-driven-development or executing-plans - Activates with plan. Dispatches fresh subagent per task with two-stage review (spec compliance, then code quality), or executes in batches with human checkpoints.
+
+test-driven-development - Activates during implementation. Enforces RED-GREEN-REFACTOR: write failing test, watch it fail, write minimal code, watch it pass, commit. Deletes code written before tests.
+
+requesting-code-review - Activates between tasks. Reviews against plan, reports issues by severity. Critical issues block progress.
+
+finishing-a-development-branch - Activates when tasks complete. Verifies tests, presents options (merge/PR/keep/discard), cleans up worktree.
+
+The agent checks for relevant skills before any task. Mandatory workflows, not suggestions.
+
+What\'s Inside
+
+Skills Library
+
+Testing
+
+test-driven-development - RED-GREEN-REFACTOR cycle (includes testing anti-patterns reference)
+
+Debugging
+
+systematic-debugging - 4-phase root cause process (includes root-cause-tracing, defense-in-depth, condition-based-waiting techniques)
+
+verification-before-completion - Ensure it\'s actually fixed
+
+Collaboration
+
+brainstorming - Socratic design refinement
+
+writing-plans - Detailed implementation plans
+
+executing-plans - Batch execution with checkpoints
+
+dispatching-parallel-agents - Concurrent subagent workflows
+
+requesting-code-review - Pre-review checklist
+
+receiving-code-review - Responding to feedback
+
+using-git-worktrees - Parallel development branches
+
+finishing-a-development-branch - Merge/PR decision workflow
+
+subagent-driven-development - Fast iteration with two-stage review (spec compliance, then code quality)
+
+Meta
+
+writing-skills - Create new skills following best practices (includes testing methodology)
+
+using-superpowers - Introduction to the skills system
+
+Philosophy
+
+Test-Driven Development - Write tests first, always
+
+Systematic over ad-hoc - Process over guessing
+
+Complexity reduction - Simplicity as primary goal
+
+Evidence over claims - Verify before declaring success
+
+Read the original release announcement.
+
+Contributing
+
+The general contribution process for Superpowers is below. Keep in mind that we don\'t generally accept contributions of new skills and that any updates to skills must work across all of the coding agents we support.
+
+Fork the repository
+
+Switch to the \'dev\' branch
+
+Create a branch for your work
+
+Follow the writing-skills skill for creating and testing new and modified skills
+
+Submit a PR, being sure to fill in the pull request template.
+
+See skills/writing-skills/SKILL.md for the complete guide.
+
+Updating
+
+Superpowers updates are somewhat coding-agent dependent, but are often automatic.
+
+License
+
+MIT License - see LICENSE file for details
+
+Community
+
+Superpowers is built by Jesse Vincent and the rest of the folks at Prime Radiant.
+
+Discord: Join us for community support, questions, and sharing what you\'re building with Superpowers
+
+Issues: https://github.com/obra/superpowers/issues
+
+Release announcements: Sign up to get notified about new versions
+
+About
+
+An agentic skills framework & software development methodology that works.
+
+Resources
+
+Readme
+
+License
+
+MIT license
+
+Code of conduct
+
+Code of conduct
+
+Activity
+
+Stars
+
+193k stars
+
+Watchers
+
+768 watching
+
+Forks
+
+17.2k forks
+
+Report repository
+
+Releases 5
+
+v5.1.0
+
+Latest
+
+2 weeks ago
+
+\+ 4 releases
+
+Sponsor this project
+
+\@obra
+
+obra Jesse Vincent
+
+Learn more about GitHub Sponsors
+
+Packages
+
+No packages published
+
+Contributors
+
+32
+
+\@obra
+
+\@claude
+
+\@arittr
+
+\@clkao
+
+\@jjshanks
+
+\@karuturi
+
+\@mvanhorn
+
+\@oribarilan
+
+\@vmotta8
+
+\@shaanmajid
+
+\@culinablaz
+
+\@savvyinsight
+
+\@sotte
+
+\@rhuss
+
+\+ 18 contributors
+
+Languages
+
+Shell
+
+66.4%
+
+JavaScript
+
+24.8%
+
+HTML
+
+3.3%
+
+Python
+
+2.8%
+
+TypeScript
+
+2.1%
+
+Batchfile
+
+0.6%Login
+
+Contact sales
+
+Contact sales
+
+Try Claude
+
+Try Claude
+
+Plugin
+
+/
+
+Superpowers
+
+Superpowers
+
+Claude learns brainstorming, subagent development with code review, debugging, TDD, and skill authoring through Superpowers.
+
+Install in
+
+Claude Code
+
+Made by
+
+Jesse Vincent
+
+Installs
+
+652,113
+
+Superpowers is a comprehensive skills framework that teaches Claude structured software development methodologies. It provides composable skills for test-driven development (TDD), systematic debugging, brainstorming, subagent-driven development with built-in code review, and the ability to author new skills.
+
+The plugin enforces disciplined practices like \"red-green-refactor\" TDD cycles where tests must fail before implementation, a four-phase debugging methodology that requires root cause investigation before any fixes, and Socratic brainstorming sessions that refine requirements before coding begins.
+
+How to use: Invoke skills with slash commands like /brainstorming to explore requirements and design before implementation, or /execute-plan to run batched implementation plans with review checkpoints. The framework includes a code-reviewer agent that evaluates implementations against plans, coding standards, and architectural principles.
+
+For debugging, the systematic methodology guides you through root cause investigation, pattern analysis, hypothesis testing, and implementation---with safeguards that trigger architectural review after three failed fix attempts. The writing-skills module teaches you to author and test new skills using TDD principles applied to documentation.
+
+Frontend Design
+
+Craft production-grade frontends with distinctive design. Generates polished code that avoids generic AI aesthetics.
+
+Anthropic verified
+
+732,603
+
+installs
+
+Context7
+
+Upstash Context7 MCP server for live docs lookup. Pull version-specific docs and code examples from source repos into LLM context.
+
+320,585
+
+installs
+
+Code Review
+
+AI code review with specialized agents and confidence-based filtering for pull requests
+
+Anthropic verified
+
+312,840
+
+installs
+
+Code Simplifier
+
+Code clarity agent: simplifies and refines recently modified code while preserving functionality and consistency.
+
+Anthropic verified
+
+258,110
+
+installs
+
+Homepage
+
+Next
+
+Write
+
+Button Text
+
+Learn
+
+Button Text
+
+Code
+
+Button Text
+
+Anthropic
+
+© 2026 ANTHROPIC PBC
+
+Products
+
+Claude
+
+Claude
+
+Claude Code
+
+Claude Code
+
+Claude Code for Enterprise
+
+Claude Code for Enterprise
+
+Claude Cowork
+
+Claude Cowork
+
+Claude Security
+
+Claude Security
+
+Pro plan
+
+Pro plan
+
+Max plan
+
+Max plan
+
+Team plan
+
+Team plan
+
+Enterprise plan
+
+Enterprise plan
+
+Download app
+
+Download app
+
+Pricing
+
+Pricing
+
+Log in
+
+Log in
+
+Features
+
+Claude for Chrome
+
+Claude for Chrome
+
+Claude for Slack
+
+Claude for Slack
+
+Claude for Microsoft 365
+
+Claude for Microsoft 365
+
+Skills
+
+Skills
+
+Models
+
+Mythos Preview
+
+Mythos Preview
+
+Opus
+
+Opus
+
+Sonnet
+
+Sonnet
+
+Haiku
+
+Haiku
+
+Solutions
+
+AI agents
+
+AI agents
+
+Code modernization
+
+Code modernization
+
+Coding
+
+Coding
+
+Customer support
+
+Customer support
+
+Education
+
+Education
+
+Financial services
+
+Financial services
+
+Government
+
+Government
+
+Healthcare
+
+Healthcare
+
+Legal
+
+Legal
+
+Life sciences
+
+Life sciences
+
+Nonprofits
+
+Nonprofits
+
+Security
+
+Security
+
+Small business
+
+Small business
+
+Claude Platform
+
+Overview
+
+Overview
+
+Developer docs
+
+Developer docs
+
+Pricing
+
+Pricing
+
+Marketplace
+
+Marketplace
+
+Claude on AWS
+
+Claude on AWS
+
+Google Cloud's Vertex AI
+
+Google Cloud's Vertex AI
+
+Microsoft Foundry
+
+Microsoft Foundry
+
+Regional compliance
+
+Regional compliance
+
+Console login
+
+Console login
+
+Resources
+
+Blog
+
+Blog
+
+Claude partner network
+
+Claude partner network
+
+Community
+
+Community
+
+Connectors
+
+Connectors
+
+Courses
+
+Courses
+
+Customer stories
+
+Customer stories
+
+Engineering at Anthropic
+
+Engineering at Anthropic
+
+Events
+
+Events
+
+Plugins
+
+Plugins
+
+Powered by Claude
+
+Powered by Claude
+
+Service partners
+
+Service partners
+
+Startups program
+
+Startups program
+
+Tutorials
+
+Tutorials
+
+Use cases
+
+Use cases
+
+Company
+
+Anthropic
+
+Anthropic
+
+Careers
+
+Careers
+
+Economic Futures
+
+Economic Futures
+
+Research
+
+Research
+
+News
+
+News
+
+Responsible Scaling Policy
+
+Responsible Scaling Policy
+
+Security and compliance
+
+Security and compliance
+
+Transparency
+
+Transparency
+
+Help and security
+
+Availability
+
+Availability
+
+Status
+
+Status
+
+Support center
+
+Support center
+
+Terms and policies
+
+Privacy choices
+
+Privacy policy
+
+Privacy policy
+
+Responsible disclosure policy
+
+Responsible disclosure policy
+
+Terms of service: Commercial
+
+Terms of service: Commercial
+
+Terms of service: Consumer
+
+Terms of service: Consumer
+
+Usage policy
+
+Usage policy
+
+x.com
+
+LinkedIn
+
+YouTube
+
+InstagramChapter 1: Intro --- What Superpowers Does
+
+0:00Claude Code now has an official plug-in called Superpowers. It\'s got 42,000 GitHub stars and ever since two weeks
+
+0:066 secondsago, it\'s now on the Enthropic official marketplace. In this video, I\'m going to show you exactly what the Superpower plugin does, how to install it and get
+
+0:1515 secondsit running on your machine, and how we can go through and use it to get much better output from day one. Here\'s the difference. When we normally work with
+
+Chapter 2: Normal Claude vs Superpowers Workflow
+
+0:2323 secondsclawed code, we simply give it an instruction like build an app, and it just goes off and does it. Maybe you\'ve got some planning mode involved.
+
+0:3030 secondsOtherwise, it\'s just going to start building it straight away. But that\'s not how we really want to get the outputs. But the reason that we use the
+
+0:3737 secondsclawed superpowers is because it utilizes the software development methodology and it bakes it straight
+
+0:4444 secondsinto how it\'s building the code. So if you gave it the exact same prompt of build an app, it\'s then going to go through a multiplestep approach to help
+
+0:5353 secondsyou get those best outputs. It\'s going to do the brainstorming for you of all the different ideas that you\'d have.
+
+0:5959 secondsThen we\'re going to come down and start planning what we want to do at the different stages. It\'s also going to have testdriven development which
+
+1:071 minute, 7 secondsmassively helps get the best outputs possible because we\'re going to be testing the code base and everything else along the way. And then to
+
+1:141 minute, 14 secondsaccelerate the development as well, we\'re going to have sub agents that are able to complete different tasks. But of
+
+1:221 minute, 22 secondscourse, don\'t just put the code in randomly. Actually has a code review as well to identify all the different tasks
+
+1:291 minute, 29 secondsthat have been completed. How all that code needs to be merged together and then of course push it onto GitHub. But
+
+1:371 minute, 37 secondswe don\'t want to affect our main branch that we\'ve got on there. It helps us create isolated versions for us to be able to assess. And this is why the
+
+1:451 minute, 45 secondsClawude Code Superpowers plug-in is so important because it massively helps improve the development of the code behind the scenes to improve the app\'s
+
+1:531 minute, 53 secondsactual functions. If you\'ve had Claude go through start building your app but writes it incorrectly, skips different parts, and just gives you a bad code
+
+2:022 minutes, 2 secondsbase, this is what fixes it. And if you want to get access to any of the resources I run through in this video or much much more to master tools like Lord
+
+2:102 minutes, 10 secondsCode and other ones in the market or learn more about AI and automation, click the first link in the description and come across to the community. Now, there\'s two ways that you\'re going to be able to install the superpowers plugin.
+
+Chapter 3: Installation (GitHub + Marketplace)
+
+2:222 minutes, 22 secondsFirst one is you\'re able to come across to their GitHub repository and as you can see in here, it\'s going to have all of the information. you can come down,
+
+2:292 minutes, 29 secondscopy all of these different requests and then we\'ll be able to make sure that it\'s installed and ready to go because what you\'ll do is you\'ll run this
+
+2:362 minutes, 36 secondscommand here within for example clawed code and it will make sure to install the entire repository. If you do it this way, you should then see these different commands when you go through and do it.
+
+2:482 minutes, 48 secondsSo to show you the two different ways, we\'ll come back to our terminal. We\'re going to start our instance of claws.
+
+2:532 minutes, 53 secondsI\'m going to say yes just to make sure that we\'ve got access to it everywhere on our machine. Now, if you\'re installing it through the GitHub repository, we\'re going to do plugins,
+
+3:023 minutes, 2 secondsthen you want to tab across to marketplaces. What you\'re the MB would see is if you do add marketplace, you\'ll see this screen here. You just need to
+
+3:113 minutes, 11 secondscome back across to the GitHub repository, copy this part here, come back across, and paste in there, and that will install it for you. But now,
+
+3:203 minutes, 20 secondsas of 2 weeks ago, of course, it\'s an official plugin. So, we can just do discover. We\'ll do super and then powers and you\'ll be able to see it in here.
+
+3:293 minutes, 29 secondsWe\'ll press enter. We\'ll say that we want it for myself and we\'ll just go through and get it installed. Now I\'m going to do forward slash and then exit
+
+3:373 minutes, 37 secondsand then we\'ll do claws again. This will bring our instance back up so that we can just check we\'re running the latest version with that superpower now
+
+3:463 minutes, 46 secondsincluded. So now if I do forward slash and then plugins, we should be able to tab across to installed and come down
+
+Chapter 4: Verifying Superpowers is Installed
+
+3:543 minutes, 54 secondsand see we\'ve got super powers. Within this, we\'ll now see that we\'ve got the different commands of execute plan, write plan, and brainstorm. We\'ve got
+
+4:034 minutes, 3 secondsthe agents we\'re able to do and the skills involved as well. You\'ll also be able to come through and update it in here nice and easily just in case Jesse
+
+4:124 minutes, 12 secondsand the team make any updates and you want to make sure that you\'ve got it.
+
+4:164 minutes, 16 secondsWhat we\'re going to do for now though is we\'re actually going to exit out of them. We\'re going to exit again and we\'ll do forward slash. Now, if we do
+
+4:234 minutes, 23 secondssuperpowers, as you can see in here, we\'ve got the three ready to go. Now, to show you how we\'re able to bring these to life, let\'s come through and do a
+
+4:304 minutes, 30 secondsreal example with VS Code to create our very own notion. So, once you\'re in VS Code and you\'ve opened up a folder that you want to store everything, we\'re
+
+Chapter 5: Demo Setup in VS Code
+
+4:384 minutes, 38 secondsgoing to type Claude in the terminal. If you can\'t find the terminal, again, just up the top here, do new terminal. or if you do the bottom bar here, it may just
+
+4:484 minutes, 48 secondsbe down here and I like to work on the right hand side. So, I\'ve just dragged it across. Now, what we should see because we installed it globally is we
+
+4:554 minutes, 55 secondsshould be able to do forward slash. And there you go. We\'ve got the superpowers straight away. Now, whenever you\'re starting off a brand new conversation or
+
+5:035 minutes, 3 secondsbrand new execution with Claude code, make sure to come down and say using superpowers. This just ensures or actually reminds Claude that you\'ve got
+
+5:125 minutes, 12 secondsthis skill available and it\'s going to try and utilize it with the code that we develop or check and improve. As you can see here, it\'s now just reminded and
+
+Chapter 6: Brainstorm Mode --- Refining a Vague Prompt
+
+5:215 minutes, 21 secondsconfirmed that we\'ve got access to the specific skill. So now what we\'ll be able to do is forward slash and then super powers. And first things first, we want to come down and do the brainstorm.
+
+5:325 minutes, 32 secondsFirst of all, this is going to help us start off the process for really understanding what we want to achieve.
+
+5:385 minutes, 38 secondsSo, we\'re going to press enter. This is going to start going through and loading up the skill for us. So, as we can see here, we\'re now able to talk to it. This
+
+5:465 minutes, 46 secondsis a much more enhanced mode than doing, for example, shift and tab and coming across to plan mode instead. We\'re going
+
+5:525 minutes, 52 secondsto come back across to auto accept edits. And then we\'re just going to explain what we want to do. So, there we go. I\'ve just t my pontinet. And it\'s absolutely awful. It\'s incredibly vague.
+
+6:026 minutes, 2 secondsIt\'s got lots of different areas for interpretation. But what we\'re going to do is we\'re going to make sure that we\'re sending this off to the agent. And
+
+6:106 minutes, 10 secondsthis is where it\'s going to help us go through and really understand what we want to achieve. And this is why superpowers is becoming like that coding
+
+6:186 minutes, 18 secondsassistant that we really want to help us step through. But really think about everything that sits behind how this application is going to work so that we get the code base right first time.
+
+6:286 minutes, 28 secondsWe\'re going to say I want it to be a webbased app based app to compete with notion and have my global team able to
+
+6:376 minutes, 37 secondsaccess it. So we\'ll send that off and then we\'ll see what it\'s able to come up with. Again, this is where we\'re right at the start of the process and it\'s starting to come with all of those ideas
+
+6:466 minutes, 46 secondsfor what we want. We\'re just going to say please do the one that you recommend the most. So it\'s going to go through and hopefully choose maybe number one
+
+6:536 minutes, 53 secondsfor the React Node.js or maybe the next.js JS underneath that is the two that I think it will probably choose between. There we go. So, it chose number two and it came back. We\'ll do
+
+7:027 minutes, 2 secondsautocomplete. Let\'s go with superb base again. This is why it\'s really important even if we didn\'t have superpowers to have elements like a PRD product
+
+7:107 minutes, 10 secondsrequirements document or MRD for Marcus requirement document which we touch much much more on within our Claude code
+
+7:187 minutes, 18 secondsmasterass in the community. We\'re going to do again the autocomplete of 1 2 3 and six for now. We\'ll let this run off again. It\'s coming back and asking us all of these questions that we need.
+
+Chapter 7: Requirements & PRD Creation
+
+7:277 minutes, 27 secondsWe\'re going to say none for now as this is for a demo. We\'ll just send this off to make sure that it\'s going to have that basic version ready for us to go
+
+7:357 minutes, 35 secondsthrough. Again, how many people would be asking themselves all of these questions as we go through. We need to make sure that we\'ve got all of this great foundation. Otherwise, the app and the changes later on is going to be awful.
+
+7:457 minutes, 45 secondsWe\'re going to say that we want some mock users for the demo. This is going to go off and create that for us. Again, that will be likely tied to the super base that we need to set up as well.
+
+7:557 minutes, 55 secondsWe\'ll say please can you do option and then two again we don\'t want to just copy identically. We want to make it slightly different. Of course, this
+
+8:038 minutes, 3 secondsskill isn\'t designed to give you the best front end. For that, what I\'d recommend you do is come across and you want to use a different plug-in, which
+
+8:108 minutes, 10 secondsis actually going to be forward slash and then front end design. This will massively improve the quality of the design that you have for your applications and anything you\'re
+
+8:198 minutes, 19 secondsbuilding with clause code instead. We\'re going to say let\'s go with black and this hex code here just because that\'s
+
+8:268 minutes, 26 secondsthe colors that I use in a lot of my branding and marketing and everything that goes with that as well. We\'ll see what it\'s able to come up with. We are
+
+8:338 minutes, 33 secondsgoing to be hosting with Versel. So there we go. We\'ve now got our first design coming back. Again, this is just a quick demo to show you what\'s possible
+
+8:418 minutes, 41 secondswith it. We\'ve got section one, the overview of the text stack. It\'s given us the front- end design, the styling, the different database elements, the
+
+8:498 minutes, 49 secondscore concept, each block. We\'ve then got the aesthetics here as well. We\'re going to say yes, this looks bright so far. Is
+
+Chapter 8: Design Document Overview
+
+8:568 minutes, 56 secondsthere anything I am missing or haven\'t considered that you think we should include? I always love using that
+
+9:049 minutes, 4 secondsprompt, especially when we\'re going through and creating something new or really bug testing, error testing, anything like that, because it really helps us spot maybe some gaps in what
+
+9:139 minutes, 13 secondswe\'ve been doing so far or something that we haven\'t considered, and it will give us some recommendations. We\'re going to say yes, please incorporate. So
+
+9:209 minutes, 20 secondsthere we go. It\'s now come back with the data model that we\'re going to have behind it as well. Again, we can read that in much much more detail. Just for
+
+9:289 minutes, 28 secondsthe quick thing today, we\'re going to say yes, this makes sense. If we now see, it\'s now asking us about the UI
+
+9:359 minutes, 35 secondsdesign and the layout. And I think that looks pretty similar to what we would have in Notion. So that makes sense to me. So we\'re going to say yes, this is
+
+9:429 minutes, 42 secondswhat I had in mind with my color scheme that I mentioned before. Again, you could fully change this and tailor this
+
+9:509 minutes, 50 secondsto exactly what you wanted. It\'s just to show you that it how in-depth and thinking it\'s really going through to get the outputs that we really want to
+
+9:579 minutes, 57 secondssee. Now it\'s asking us about the color scheme. So, we\'re going to say yes, this is good. Now, we can see it\'s come up with section five. Again, some of the
+
+10:0510 minutes, 5 secondsdifferent commands. We\'re going to say yes, this is good. We\'ll send this off again. How many people would have thought of all of these different points as they went through testing the
+
+10:1310 minutes, 13 secondsdifferent ideas that you\'ve got? Maybe you\'re trying to build a different application that you\'ve never done it before. You\'re brand new or you\'re trying to enhance something you\'ve
+
+10:2010 minutes, 20 secondsalready got. That\'s where superpowers really comes into play. Again, we\'ll say yes, that\'s all good to go. And this is why I think superpowers is so powerful
+
+10:2910 minutes, 29 secondsbecause it\'s really becoming that coding assistant that helps us get maybe 70 80% of the way there of the idea and can help us execute the code. Again, we\'ll just say yes, that\'s all good to go.
+
+10:4010 minutes, 40 secondsWe\'ll get through all of these different steps and then we\'ll get it to write the plan for us and then execute it. If we scroll up, it\'s now given us the project
+
+10:4810 minutes, 48 secondssections which will say, \"Yep, this makes sense.\" Again, I just recommend going through and really understanding what it\'s going to do, why it\'s going to
+
+10:5510 minutes, 55 secondsdo it. Just for this, we\'re quickly skipping through all of it today to show you what Superpowers is able to do. So now, what we\'ll be able to see is would
+
+11:0311 minutes, 3 secondswe like to be able to create the plan directory. We\'re going to say yes and always allow to actually create the design document. So again, like Claude
+
+11:1211 minutes, 12 secondsCode, normally it\'s not trying to go off and generate it straight away. is coming up with the different documents because it knows that we need to go through and
+
+11:2011 minutes, 20 secondswrite the plan after this. So now what we\'ll be able to see on the left hand side is we should have that initial version of that plan ready to go. So we
+
+11:2811 minutes, 28 secondsmentioned the design document. So more of that requirements document that we had earlier on design document really explaining what we want, why it\'s good,
+
+11:3611 minutes, 36 secondsall of the different elements included in there. We\'re going to say yes and don\'t ask again for similar commands just so we can start going through and
+
+11:4411 minutes, 44 secondsadding all of the clawed load call settings in there for us as well. So now it\'s asking if we\'re ready for implementation. So this is where we\'re going to stop and do another action.
+
+11:5411 minutes, 54 secondsWe\'re going to say forward slash we\'re going to do super and then powers. And now we\'re going to come down to actually writing a great implementation plan. So
+
+Chapter 9: Writing the Implementation Plan
+
+12:0212 minutes, 2 secondswe\'re going to enter this in here. And this is going to help us get the best outputs possible. Of course, the reason that we\'re doing this and not just
+
+12:1012 minutes, 10 secondstelling it to go through and do the implementation plan straight away is because we got specific information within each of the skill files that help
+
+12:1912 minutes, 19 secondsus get those better outputs. So, as you can see here, it\'s now reading everything that we\'ve got on the left hand side. It\'s understood the actual
+
+12:2612 minutes, 26 secondsskill file as well. So, it knows what it\'s able to do. And if you want to know all of the different skills that are available, this is what we\'ve got for us
+
+12:3412 minutes, 34 secondsto be able to use. We\'ve got testing, debugging, collaboration, and the meta one as well. Of course, if you want to see the information that sits behind it,
+
+12:4212 minutes, 42 secondscome back up to GitHub and then up the top the folders, click on where it\'s got skills, and then you\'ll be able to see
+
+12:4912 minutes, 49 secondseach one. So, what we could do, for example, is just coming down to where we\'ve got executing plans, and we can click skill.md. I\'m just going to change
+
+12:5812 minutes, 58 secondsit to the code view just so that you can see in here it\'s got that detailed in-depth plan. So what we should do for step one, then two, then three, then
+
+13:0713 minutes, 7 secondsfour, and so on to help us get those better outputs. So of course, yes, we\'re using this with clawed code, but with the power of tools like Kimmy K2.5 or
+
+13:1613 minutes, 16 secondsanything else that\'s come out to the market, we\'d be able to utilize this information to help us get the better outputs with them as well. So there we
+
+13:2413 minutes, 24 secondsgo. And after a little while, it\'s generated everything for us. Now, as you can see up here, some of the outputs are so big that you\'ll just need to go through and make sure that your max
+
+13:3313 minutes, 33 secondstoken outputs are actually higher than what you may have as standards. But as you can see here, we\'ve now got the implementation plan. So, what we\'ll do is come across to the left hand side.
+
+13:4413 minutes, 44 secondsWe\'ve got the design one from earlier on, but now we\'ve got the implementation plan. So if we just close this down, as
+
+13:5113 minutes, 51 secondswe can see here, this is now a super super long implementation plan document that is going to go through and explain
+
+13:5813 minutes, 58 secondseverything to our AI agent for how we want to go through and actually bring this to life. So as you can see here, we
+
+14:0514 minutes, 5 secondscan always add and improve and adjust everything to that plan, triple check it\'s everything that we want it to be before we execute on that command. But
+
+14:1414 minutes, 14 secondswith that said, now we can come down here and we\'ll be able to see that we\'ve got two execution options that sub agent
+
+14:2214 minutes, 22 secondsdriven development which is this session as I mentioned or we\'re able to do separate sessions as well. This is where
+
+14:2814 minutes, 28 secondswe can create new claw sessions and just go through and execute it at the same time. So for today we\'re going to do sub
+
+14:3614 minutes, 36 secondsagent driven development just because it recommended it. And then we\'re going to say, but first I need to switch modes.
+
+14:4314 minutes, 43 secondsDo not generate code yet. We\'ll be able to send this off. And now what it should be able to do is understand, of course, that request. Now we\'re going to do forward slash. We\'ll do super powers.
+
+14:5514 minutes, 55 secondsAnd now we should be able to come down and execute that plan. Again, we\'re going to press enter to make sure it tells Claude what that specific skill is. So it\'s got that latest information.
+
+15:0615 minutes, 6 secondsIt should go through and read all of the context from the design plan that we\'ve got and the implementation plan which it
+
+15:1315 minutes, 13 secondslooks like it\'s doing now. And then it should start going through and actually executing it for us. This is why we want to switch between the different modes
+
+Chapter 10: Execute Plan --- Sub-Agent Development
+
+15:2115 minutes, 21 secondsjust because of course they\'re all optimized to get specific outputs. As we can see here, it\'s got 20 tasks across eight phases. One concern before
+
+15:3015 minutes, 30 secondsstarting executing the plan. Should I use superpower using git work trees to set up an isolated workspace before started. However, this is a fresh
+
+15:3915 minutes, 39 secondsproject. We\'re on the master branch, just two commits. And this is an entire project, not just a feature branch. So,
+
+15:4715 minutes, 47 secondsas mentioned, that\'s why superpowers is really good for when you\'ve already got something in place to help you enhance it, improve it, debug, test everything
+
+15:5515 minutes, 55 secondslike that to make it that development cycle a lot quicker. We\'re going to say yes, we\'re happy to proceed step by step
+
+16:0216 minutes, 2 secondsby of course phase one initializing the project, then going through and actually getting everything set up for us. We\'re going to say yes, proceed. And now it\'s
+
+16:1016 minutes, 10 secondsgoing to start going through and getting everything set up for us. So it\'s going to initiate that Nex.js project, configure the Tailwind and custom theme,
+
+16:1916 minutes, 19 secondsand then it\'s going to install some of the dependencies. Again, we can go through and say yes, we\'re happy for it to execute everything here. On the left
+
+16:2716 minutes, 27 secondshand side, we should see all of these different documents as well as files and everything else we need starting to be created as well. There we go. So, it
+
+16:3616 minutes, 36 secondslooks like it\'s all ready to go. So, we\'ve got our first response back. It\'s executed a load of commands for us. We got all of the different code up there
+
+16:4316 minutes, 43 secondsas well. We\'re going to come across to a new terminal. We\'re just going to do npm rundev, which should start up our
+
+16:5016 minutes, 50 secondsinstance for us so we can access this on the local host. So there we go. We know it\'s working. Now we\'re going to come across to a new terminal. We\'re going to
+
+16:5816 minutes, 58 secondsdo npm run and then build, which should go through and make sure that everything is up and running in the background for us. As we can see there, it\'s gone
+
+17:0617 minutes, 6 secondsthrough and it\'s found no errors, which is good. One of the errors that I can see straight away though is it\'s not picking up the different pages that we
+
+17:1417 minutes, 14 secondsshould have in our app. But that\'s absolutely fine cuz again we\'ve not got it to actually build any of the UI at the moment. So let\'s go back across and
+
+17:2217 minutes, 22 secondsget it to build everything for us. So now we\'ll say yes, continue with the next batch and we\'ll send that off. And this should now start going through and
+
+17:3017 minutes, 30 secondsgetting some of the UI and other elements in there for us as well. As we can see here, we\'re now on task four to six as I think there was 20 tasks that
+
+17:3817 minutes, 38 secondswe needed to get through. This is why superpowers is really important because it\'s able to go through break everything up into those tasks and even if we had
+
+17:4617 minutes, 46 secondsan app that already existed. It\'s going to be able to go through iterate through all the tasks execute it as we need in a much more controlled manner than
+
+17:5517 minutes, 55 secondsdifferent plugins like Ralph Wigan plugin and different ones like that or dangerously continue from claude themselves as well. So enabled to go
+
+18:0318 minutes, 3 secondsthrough and really get the output that we want. And there we go. We\'ve just got this next part back here, which again is still part of the foundations. It\'s not
+
+18:1018 minutes, 10 secondsrushing to build that UI first. It\'s going through and getting the foundations in place to have the app running. We\'ll say continue with the next batch and send it off. So there we
+
+18:1918 minutes, 19 secondsgo. We should now have our database schema set up in here, which we\'ll go and execute in Superbase in the future.
+
+18:2618 minutes, 26 secondsWe should now have our sidebar, some drop down, and we should have some React context there as well for our local
+
+18:3318 minutes, 33 secondsstorage, of course, with the app that we\'re building. We\'re just going to go through and check that our service still runs. So, we\'ll come through to a new terminal. We just do npm rundev as well.
+
+18:4418 minutes, 44 secondsMake sure that it\'s still working, which it looks like it is. So, we\'re all good to go. We\'ll come back across. We\'ll say continue with the next batch. Again,
+
+18:5218 minutes, 52 secondsI\'ve personally not written a single line of code so far. Again, I always recommend you go through and double check the code that it is generating a
+
+19:0019 minutesso you understand how it\'s building it, but also it helps with any security or checking that it\'s going down any of the wrong routes that of course you don\'t
+
+19:0819 minutes, 8 secondswant it to do. So, it looks like it\'s now going to go off create the pages, some of the actual components as well.
+
+19:1619 minutes, 16 secondsSo, let\'s check in once it\'s back. So, there we go. We\'ve now got batch four.
+
+19:1919 minutes, 19 secondsOf course, we should be able to create some pages, some dynamic routing, everything like this. And we\'ve got the different commits, of course, that go with that as well. So, we\'re just going
+
+19:2819 minutes, 28 secondsto make sure that we close down these previous runs. And then we\'ll be able to do a new terminal npm rundev. Check that
+
+19:3619 minutes, 36 secondsit\'s all working, which it looks like it started up correctly, which is great.
+
+19:3919 minutes, 39 secondsSo, now if we come across, as we can see here, we\'ve now got that ready to go. We should be able to see all the different ones. We got some welcome pages. It
+
+19:4719 minutes, 47 secondslooks like we got some errors straight away. So, of course, we\'re going to get all of this to be updated. So, we\'ll come back across. We\'re going to say
+
+19:5519 minutes, 55 secondscontinue with the next batch. So, there we go. We\'ve just got batch five back.
+
+Chapter 11: Testing & Fixing Errors
+
+19:5919 minutes, 59 secondsWe\'ve got the different slash commands that should be working now. And we should be able to go through and test these. So, again, we\'ll just check that that server is running. Okay. We\'ll come
+
+20:0820 minutes, 8 secondsback across. It looks like we\'ve got no issues so far. So, we go down and do new page. We\'ll see if it\'s able to generate a page for us. We\'re still getting those
+
+20:1720 minutes, 17 secondserrors. So, we\'ll just make sure to screenshot the We\'ll come back across.
+
+20:2120 minutes, 21 secondsWe\'re going to add that into our conversation. When I select create a a new page, it doesn\'t show me anything.
+
+20:3020 minutes, 30 secondsPlease resolve these issues before we continue. Continue to batch and then six. We\'ll send this off. Just make sure
+
+20:3820 minutes, 38 secondsthat it\'s able to go through and solve those errors first before we go through and build on top of that again. So, there we go. has gone through and made the changes for us. Again, we\'ll come
+
+20:4720 minutes, 47 secondsback across to our app. Now, if we do new page, we\'re getting something come up. So, we should be able to change this to testing testing 1 2 3. That\'s all
+
+20:5620 minutes, 56 secondsworking. We should be able to say hi there. That\'s all good to go. We do the forward slash commands. Yeah, we\'ve got the different ones coming in here. The
+
+21:0421 minutes, 4 secondsheading is quite hard to read. We\'ll make sure to screen with this. We\'ll come back across. We\'re going to say the
+
+21:1121 minutes, 11 secondsheadline/main text in the dropdown is white and hard to read. Please update this. Then
+
+21:2021 minutes, 20 secondscontinue onto batch six. We\'ll send that off and again it should start going through making those changes for us. So we\'ve got batch six back. Now we should
+
+21:3021 minutes, 30 secondshave the tables to be able to insert a database. The camb boards. Press command K to switch between the two. So just go
+
+21:3821 minutes, 38 secondsacross and we\'ll come down. We should be able to do command K and yep we can do testing. So that all goes through okay K for the search. We should be able to see
+
+21:4621 minutes, 46 secondsthe welcome page which we do. We should be able to create a new page. Of course it deleted the last one cuz we haven\'t connected our database. The emojis we
+
+21:5421 minutes, 54 secondsneed to improve that. We should be able to do forward slash and then we should be able to do canban and that adds in a canban board. Nice and easy. So again we could go through and change all of that.
+
+22:0522 minutes, 5 secondsWe should also be able to come down and do forward slasht and add tables in here which it looks like it is working
+
+22:1322 minutes, 13 secondscorrectly. So that\'s great to see. So we\'re just going to go through and say great but there\'s an issue with the camb board. Make sure to fix that. We also
+
+22:2022 minutes, 20 secondsneed to make sure that there\'s no issues with the tables. And I\'ve also just remembered that it\'s in the correct color scheme. So we\'ll make sure to go and correct that before we continue.
+
+22:2922 minutes, 29 secondsAgain, I\'ve still not written a single line of code. I know it doesn\'t look like it\'s massively impressive at the moment. maybe from the outputs that we\'re getting. But the reason behind
+
+22:3722 minutes, 37 secondsthat is because of course it\'s focusing on making sure the back end is the best that it can be for the future aspects that we want, but also if we had that
+
+22:4622 minutes, 46 secondsplatform already and we were going through and testing and writing plans for anything in that space as well, then we\'re going to make sure that we get
+
+22:5322 minutes, 53 secondsbetter outputs from day one. So we\'ll make sure that this goes through. Okay, all of the updates are now made. So we\'ll come through. We should now be
+
+23:0023 minutesable to create a page. We\'ll call this then Canvan. We\'ll be able to do forward slash then canban board in there exactly
+
+23:0823 minutes, 8 secondsas we wanted to see. There we go. Now we should be able to move it across into the different ones again. We\'ll do test.
+
+23:1423 minutes, 14 secondsNow what we\'ll do is we\'ll make sure that we\'ve got this added in which it looks like we should do. If we come down and create a new page and we do forward
+
+23:2223 minutes, 22 secondsslash and then table. Does this add this in? It looks like it does. And we can switch between the camban and table and we\'ll go through and add in our
+
+23:3023 minutes, 30 secondssuperbase connection. So it\'s got that persistent storage within superbase versus trying to store everything locally on our machine. But again, I\'ve
+
+23:3723 minutes, 37 secondsstill not written a single line of code and we\'re getting much better outputs than we would just normally with clawed code. So there we go. As I thought, it\'s probably around the persistent storage.
+
+Chapter 12: Connecting Supabase for Persistence
+
+23:4723 minutes, 47 secondsSo let\'s go across to superbase and get it set up. We\'re going to come through and sign in. We\'re going to create a new organization. We\'re going to call it Alex\'s notion. We\'re going to create the
+
+23:5623 minutes, 56 secondsproject in here. Now we\'ve got it all set up. We\'re going to come down to our project settings and we should be able to find our API actual URL which we\'ve
+
+24:0524 minutes, 5 secondsgot here. So we\'ll copy this. We\'re then going to come into our env.local example. We\'re going to paste that URL up the top there. We\'re then going to
+
+24:1424 minutes, 14 secondscome across to our API keys. We\'re then going to come across to the anon keys that we\'ve got here. We\'re going to copy this. Come back across and just paste up
+
+24:2324 minutes, 23 secondsthe top here. So we\'ve now got that added in. I have added all of the and then credentials. We are going to need to make sure that we run the database
+
+24:3124 minutes, 31 secondsschema. So we\'ll come across to superbase and the schema. Copy all of this. Come back across up to the SQL
+
+24:3824 minutes, 38 secondseditor. And then we just want to run the command in there so that it sets up our database that runs in the background.
+
+24:4524 minutes, 45 secondsLooks like it\'s gone through successfully. So if we look at table editor, we\'ve now got everything set up and ready to go. So we\'ll add on. I have
+
+24:5324 minutes, 53 secondsalso added the schema, but we should be ready to go and we\'ll send this off. So, there we go. We\'ve just got it to go
+
+25:0025 minutesthrough make all of the different changes. Now, again, I\'ve not written a single line of code. I definitely recommend that you do go through and
+
+25:0725 minutes, 7 secondsactually understand the code though to make sure that you get the outputs, the security. Again, for example, running security review within clawed code just
+
+25:1625 minutes, 16 secondsto make sure that you really understand the outputs. But we\'ve now got a much more robust app that we should be able to use. So if we come across, we should now be able to see everything in here.
+
+Chapter 13: Final Demo --- Working App
+
+25:2625 minutes, 26 secondsIf we come down to our camb board, that looks like it\'s all stored in there. So again, we would need to go through and just change it so that we\'ve got, for
+
+25:3325 minutes, 33 secondsexample, the ability to name the camb board. If we do a new page, we should be able to do forward slash and then
+
+25:4025 minutes, 40 secondsheadline. This will do hello there. We can do forward slash again. And then we can do quote. We can do testing.
+
+25:4625 minutes, 46 secondsTesting. Let\'s see if we can do forward slash. What else we\'ve got in here? So, it looks like we could do collapsible content. We\'ll just check if the toggle is working. We\'ll do toggle heading.
+
+25:5725 minutes, 57 secondsThen we\'ll be able to do testing again.
+
+25:5925 minutes, 59 secondsWe\'ll see if that collapses. So, that doesn\'t work. So, we need to go through and test that. But, as you can see here, we\'ve got an incredibly good first version. We\'ll be able to bring to life.
+
+26:0826 minutes, 8 secondsBut this isn\'t just where superpowers really comes into its own. It\'s really good at also being able to work with existing code bases, understanding what
+
+26:1626 minutes, 16 secondsyou\'re trying to achieve, where you want to make improvements, come through and plan and everything like this to really help get the best outputs. So, what do I think of Super Paz within Claude Code?
+
+Chapter 14: My Honest Review
+
+26:2726 minutes, 27 secondsWell, I think it\'s an absolutely fantastic dev partner that we\'ll be able to use actually building out and improving existing applications. It\'s
+
+26:3626 minutes, 36 secondsgoing to give us a much better structure, much better outputs than of course not using it. in the more standard version of clawed code. It also
+
+26:4426 minutes, 44 secondshas the huge potential as AI involves as the skills update and we notice better ways of of course getting outputs. Is it
+
+26:5126 minutes, 51 seconds100% of the way there? No. There\'s still a few elements here or there that could be improved, but of course that\'s the stay with everything in AI and
+
+26:5826 minutes, 58 secondsautomation at the moment. This is one of the things that I\'m really excited to see grow and improve in the future because it helps us set up those really
+
+27:0627 minutes, 6 secondssolid foundations for our Vive coding that we\'re doing. If you\'re interested in more about AI and automation, make sure to check out the community, the
+
+27:1327 minutes, 13 secondsfirst link in the description. If you want AI and automation for your business, check out the second one. And make sure to subscribe to the channel.
+
+27:2027 minutes, 20 secondsIt really helps us out. Stay tuned for more around AI automation. And have a great day.
+
+All
+
+From the series

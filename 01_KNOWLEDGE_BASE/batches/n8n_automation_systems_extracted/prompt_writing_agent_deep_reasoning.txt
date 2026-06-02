@@ -1,0 +1,37 @@
+# n8n workflow · Prompt Writing Agent - Deep Reasoning Workflow.json
+internal name: Prompt Engineer Agent - Deep Reasoning
+node count: 6
+
+## Trigger nodes
+- n8n-nodes-base.executeWorkflowTrigger :: When Executed by Another Workflow
+
+## AI / model nodes
+- @n8n/n8n-nodes-langchain.lmChatOpenRouter :: MultiAI Brain :: model=={{ $json.text }}
+- @n8n/n8n-nodes-langchain.chainLlm :: Basic LLM Chain :: model=?
+    system-prompt: =Your Objective is to analyse the request from the user and identify the most suitable model based on the options below for the AI Agent to leverage. You are to output the best model for this use case with no additional information. E.g. Only output '{{ $json['OpenAI Model'] }}' if they want a very deep reasoning model from OpenAI. Here is the request from the user: Current prompt to be improved - {{ $('When Executed by Another Workflow').item.json.Prompt }} Desired Model - {{ $('When Executed b
+- @n8n/n8n-nodes-langchain.lmChatOpenRouter :: OpenAI Mini :: model=?
+- @n8n/n8n-nodes-langchain.agent :: Deep Reasoning Prompt Writing Agent :: model=?
+    system-prompt: =You are an expert prompt writing assistant based on the information provided by the user you are to output an excellent prompt that is suitable for the user to leverage. Your output is incredibly important to the user. For the OpenAI Deep Reasoning Models, you need to structure it like the following example: I require a WhatsApp chatbot conversation flow diagram and explanation for South African Foundation Phase teachers accessing curriculum support material via QR codes in their textbooks. For
+
+## Tool nodes
+(none)
+
+## Integration / action nodes
+(none)
+
+## Other nodes
+- n8n-nodes-base.set :: Specify the latest Deep Reasoning Models
+
+## Data-flow edges (connections)
+- When Executed by Another Workflow -> ['Specify the latest Deep Reasoning Models']
+- MultiAI Brain -> ['Deep Reasoning Prompt Writing Agent']
+- Specify the latest Deep Reasoning Models -> ['Basic LLM Chain']
+- Basic LLM Chain -> ['Deep Reasoning Prompt Writing Agent']
+- OpenAI Mini -> ['Basic LLM Chain']
+
+## Credential references (NAMES ONLY)
+openRouterApi/Prompt Engineer Agent
+
+## Sticky-note documentation (verbatim)
+(none)
+

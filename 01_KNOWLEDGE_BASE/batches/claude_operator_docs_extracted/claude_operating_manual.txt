@@ -1,0 +1,506 @@
+The Claude Operating Manual
+
+Prompting, Projects, Claude Code, Sub-Agents, MCP & Website Building
+
+Synthesized from 160K+ lines of transcripts across 3 source files. All
+redundancy removed.
+
+Core Thesis
+
+AI superiority is not prompting skill. It's context architecture. The
+person who spends 50 hours building a workspace with the right context
+files, skills, and command workflows will outperform the person writing
+'better prompts' in a blank chat window every single time. Claude is not
+a chatbot you ask questions to. It's an operating system you configure
+to run your work. The difference between getting mediocre outputs and
+getting outputs that feel like they came from a senior team member is
+entirely in how much relevant context Claude has before you ask it
+anything.
+
+Key Insights
+
+- Context beats prompting. A simple prompt with deep context (uploaded
+  files, project knowledge, CLAUDE.md, custom instructions) will
+  outperform an elaborate prompt with no context. The AI doesn't need
+  better instructions. It needs better information.
+
+- Workspaces are the unit of organization. A workspace is a folder
+  containing context files, skills, commands, and a CLAUDE.md file that
+  orients the AI to who you are, what you're working on, and how you
+  want things done. One workspace per business, project, or domain.
+
+- Skills are reusable automation packages. A skill is a markdown file
+  containing step-by-step instructions for a specific workflow (create a
+  PowerPoint, analyze competitors, build a landing page). Write once,
+  use forever. Stack multiple skills in one command.
+
+- Commands turn multi-step workflows into one-liners. A command file is
+  a markdown file with sequenced instructions. Type /marketing-report
+  and Claude executes the full workflow: read the competitors file, scan
+  their websites, collect data, format the analysis, output a document.
+
+- Sub-agents are specialized team members. Each sub-agent has its own
+  system prompt, tool access, and expertise. A frontend agent that only
+  knows React/Tailwind. A backend agent with database access. A QA agent
+  that tests everything. They work in parallel and hand off to each
+  other.
+
+- MCP servers connect Claude to external tools. Gmail, Google Calendar,
+  Slack, databases, APIs. Instead of copy-pasting data between tools,
+  Claude reads and writes directly to your systems.
+
+- Extended thinking is for hard problems only. Turn it on for complex
+  reasoning, multi-step analysis, code architecture decisions, and
+  strategic thinking. Turn it off for simple tasks. It's slower and
+  costs more tokens, but the quality difference on hard problems is
+  massive.
+
+- The screenshot QA loop catches what code review misses. For websites
+  and UI work, take a screenshot of the output and feed it back to
+  Claude. Claude can see visual problems (broken layouts, wrong fonts,
+  bad spacing) that don't show up in the code.
+
+- Projects are persistent context containers. Everything you upload to a
+  Project (files, instructions, knowledge) persists across
+  conversations. Use them for ongoing work where you don't want to
+  re-explain the context every time.
+
+- Styles control the voice without repeating yourself. Set a custom
+  style once (tone, formatting preferences, vocabulary rules) and it
+  applies to every response in that context. No more writing 'don't use
+  bullet points' in every prompt.
+
+1. Prompting Fundamentals
+
+1.1 The Three-Part Prompt
+
+Every effective prompt has three components. Miss any one and the output
+degrades.
+
+- Set the stage: Who are you? What's the objective? What context does
+  Claude need? 'I'm building a pitch deck for a streaming app targeting
+  indie filmmakers' gives Claude the lens to filter every decision
+  through.
+
+- Define the task: What specific action do you want? Write, analyze,
+  build, compare, debug, rewrite, summarize. Be precise. 'Help me with
+  my website' is vague. 'Rewrite the hero section of my landing page to
+  lead with the transformation instead of the feature list' is
+  actionable.
+
+- Specify the rules: Tone, format, length, what to include, what to
+  exclude, examples of what good looks like. 'Write in calm authority
+  voice, no em dashes, no buzzwords, under 200 words' gives Claude the
+  guardrails.
+
+1.2 Advanced Techniques
+
+- Few-shot examples: Show Claude 2-3 examples of exactly what you want
+  before asking it to produce. 'Here are three LinkedIn posts that match
+  my voice. Write the next one about [topic] in the same style.' This is
+  the single most effective technique for consistent output quality.
+
+- Chain of thought: Ask Claude to think step by step before answering.
+  'Before you write the email, first identify the prospect's likely
+  objections, then address each one in order.' Forces deeper reasoning.
+
+- XML tags for structure: Wrap different parts of your prompt in XML
+  tags to help Claude parse complex inputs. <context>, <task>, <rules>,
+  <examples>. Especially useful when feeding in long documents with
+  instructions.
+
+- Iterate, don't restart: If the first output is 70% right, don't start
+  a new conversation. Tell Claude specifically what to fix: 'The tone is
+  right but the second paragraph is too long. Tighten it to 2 sentences
+  and make the CTA more direct.' Refinement within a conversation
+  produces better results than starting over.
+
+1.3 Common Mistakes
+
+- Asking Claude to 'be creative' without constraints. Constraints
+  produce better creative output than open-ended freedom.
+
+- Treating Claude like a search engine. It's a reasoning partner. Ask it
+  to analyze, compare, and recommend, not just retrieve.
+
+- Not uploading context. If you have a brief, a document, a brand guide,
+  or reference material, attach it. Claude with your files is 10x better
+  than Claude without them.
+
+- Writing one massive prompt instead of having a conversation. Break
+  complex work into steps. Let Claude do one thing well, review it, then
+  move to the next.
+
+2. Projects and Artifacts
+
+2.1 Projects (Persistent Context)
+
+A Project is a container where context persists across conversations.
+Upload files, set custom instructions, and every new chat within that
+Project inherits the full context.
+
+- When to use Projects: Ongoing work with consistent context. Your
+  business, a client engagement, a book you're writing, a product you're
+  building. Anything where re-explaining the background every
+  conversation is wasted time.
+
+- Project Knowledge: Upload documents, guides, brand assets, SOPs, and
+  reference material. Claude searches this knowledge before answering.
+  It's your private database that Claude consults on every response.
+
+- Custom Instructions: Set rules that apply to every conversation in the
+  Project. Tone, formatting, vocabulary, what to prioritize, what to
+  avoid. Write these once and they govern everything.
+
+- Cloud storage integration: Projects can connect to Google Drive and
+  other cloud storage, pulling in documents without manual uploads.
+
+2.2 Artifacts (Shareable Outputs)
+
+Artifacts are standalone pieces of content Claude creates: documents,
+code, interactive apps, diagrams, presentations. They render in a
+separate panel and can be edited, iterated, and shared.
+
+- Use Artifacts for anything you'll use outside the conversation:
+  reports, landing pages, React components, data visualizations, email
+  templates
+
+- Edit Artifacts directly. Click into them and make changes, or ask
+  Claude to modify specific sections.
+
+- Artifacts can be interactive: calculators, forms, dashboards,
+  mini-apps. Claude can build functional tools, not just static
+  documents.
+
+3. Claude Code (The Agentic Layer)
+
+3.1 Workspace Architecture
+
+Claude Code operates inside a workspace: a folder on your machine
+containing everything Claude needs to do your work. The architecture
+matters more than the prompts.
+
+The CLAUDE.md File
+
+This is the system prompt for your workspace. It tells Claude who you
+are, what this workspace is for, and how to operate. It sits at the root
+of the workspace folder and Claude reads it before doing anything.
+
+- Purpose of this workspace (what business/project is this for)
+
+- Who you are (your role, your business, your context)
+
+- How you want things done (coding standards, formatting rules,
+  voice/tone, preferred tools and frameworks)
+
+- What to prioritize and what to avoid
+
+Think of CLAUDE.md as onboarding a new employee. The more you put in
+here, the less you repeat in every conversation.
+
+The Folder Structure
+
+  ------------------ ----------------------------------------------------
+  Folder             Purpose
+
+  CLAUDE.md          Root system prompt. Who you are, what the workspace
+                     does, operating rules.
+
+  /context           Background documents Claude needs: brand guides,
+                     SOPs, competitor research, strategy docs, client
+                     briefs. Claude reads these when relevant.
+
+  /skills            Reusable workflow instructions. Each skill is a
+                     markdown file with step-by-step instructions for a
+                     specific task (create a PPTX, analyze competitors,
+                     build a landing page).
+
+  /commands          One-liner automations. Each command is a markdown
+                     file that chains multiple steps into a single
+                     invocation. Type /command-name and Claude executes
+                     the full sequence.
+
+  /outputs           Where Claude saves finished deliverables. Documents,
+                     code, exports.
+
+  /plans             Strategic plans, roadmaps, project timelines.
+                     Reference material Claude consults for
+                     decision-making.
+
+  /reference         Swipe files, templates, examples of 'what good looks
+                     like.' Claude uses these as style and quality
+                     references.
+  ------------------ ----------------------------------------------------
+
+3.2 Skills and Commands
+
+Skills (Reusable Workflow Packages)
+
+A skill is a markdown file that teaches Claude how to do a specific type
+of work. It includes the steps, the tools to use, the quality standards,
+and common pitfalls to avoid.
+
+- Front-end design skill: how to build modern, professional web UIs with
+  specific design tokens, component patterns, and styling constraints
+
+- PPTX skill: how to create presentation files with proper formatting,
+  slide structure, and visual hierarchy
+
+- DOCX skill: how to create Word documents with headers, tables, and
+  professional formatting
+
+- Competitor analysis skill: how to research, compare, and score
+  competitors
+
+You can install skills from marketplaces, build your own, or modify
+existing ones. Skills stack: one command can invoke multiple skills in
+sequence.
+
+Commands (One-Liner Automations)
+
+A command file is a simple markdown file that defines a multi-step
+workflow. When you type /command-name, Claude reads the file and
+executes every step.
+
+Example: /weekly-report might instruct Claude to: read this week's sales
+data from the CRM, compare against last week, identify top 3 wins and
+top 3 problems, format it as a one-page report using the DOCX skill, and
+save it to /outputs.
+
+The power is in sequencing. You write the workflow once. Every Monday,
+you type one command and the report builds itself.
+
+4. Sub-Agents and MCP Servers
+
+4.1 Sub-Agents (Your AI Team)
+
+Sub-agents are specialized Claude instances, each with their own system
+prompt, tool access, and expertise. They operate independently but share
+the same workspace.
+
+Creating a Sub-Agent
+
+Each sub-agent is defined in a single markdown file with three
+components:
+
+1.  Tools: which capabilities this agent has access to. A frontend agent
+    gets file reading/writing and browser tools. A backend agent gets
+    database access and API tools. A QA agent gets testing tools.
+    Restrict access to prevent agents from stepping on each other.
+
+2.  Description: tells Claude Code when to invoke this agent. 'Use this
+    agent when you need to build, modify, or debug frontend components
+    using React and Tailwind.' This is the routing instruction.
+
+3.  System prompt: the agent's expertise, biases, and constraints. 'You
+    are an expert Next.js developer. Always use TypeScript. Prefer
+    server components. Never use inline styles.' This gets more specific
+    and refined over time as you learn what works.
+
+Multi-Agent Coordination
+
+For complex projects, multiple agents work in parallel under a lead
+agent:
+
+- The lead agent breaks the task into sub-tasks and delegates to
+  specialized agents
+
+- Each agent works in its own context window with its own tools
+
+- Agents can hand off work to each other (frontend agent finishes a
+  component, QA agent tests it)
+
+- The lead agent reviews, integrates, and resolves conflicts
+
+Common pitfall: sometimes the lead agent tries to do the work itself
+instead of delegating. Explicitly instruct it to spawn teammates and
+wait for their output.
+
+4.2 MCP Servers (External Tool Connections)
+
+MCP (Model Context Protocol) connects Claude to external systems: Gmail,
+Google Calendar, Slack, databases, APIs, CRMs, and any tool with an MCP
+server available.
+
+- Instead of copy-pasting data between tools, Claude reads and writes
+  directly
+
+- An agent with Gmail MCP can draft and send emails. An agent with
+  Google Calendar MCP can check availability and schedule meetings.
+
+- MCP servers can be added to specific sub-agents. A sales agent gets
+  CRM access. A content agent gets your CMS. Each agent only sees the
+  tools relevant to its job.
+
+- Security: review MCP server permissions carefully. Only grant the
+  minimum access needed. Third-party MCP servers from unknown sources
+  carry risk.
+
+5. Building Websites with Claude Code
+
+5.1 The Setup
+
+1.  Install VS Code and the Claude Code extension. Sign in with your
+    Anthropic account (Pro or Max required).
+
+2.  Create a project folder. Initialize it with a CLAUDE.md or
+    PROJECT.md that describes the site: what it's for, the tech stack,
+    the design direction.
+
+3.  Install the front-end design skill. This is the single biggest
+    quality lever. Without it, Claude builds generic-looking sites. With
+    it, the output looks professional and modern.
+
+4.  Add your brand assets to a /brand_assets folder: logo files, brand
+    guidelines (colors, typography, spacing), any reference screenshots
+    or mood boards.
+
+5.2 The Five-Hack Workflow
+
+- Hack 1: The front-end design skill. Always read and apply the skill
+  before writing any code. It contains design tokens, component
+  patterns, and styling constraints that prevent the 'AI vibe-coded'
+  look.
+
+- Hack 2: Brand assets folder. Upload your logo, brand guidelines,
+  colors, and typography. Reference them in your PROJECT.md so Claude
+  applies your identity to every page automatically.
+
+- Hack 3: The clone-then-customize workflow. Find a site you like.
+  Screenshot it. Feed the screenshot to Claude with 'Build this layout
+  but with my brand identity.' Start from a proven design and adapt it,
+  rather than describing from scratch.
+
+- Hack 4: The screenshot QA loop. After Claude builds a page, take a
+  screenshot and feed it back. 'Here's what it looks like. Fix the
+  spacing on the hero section and make the CTA button larger.' Visual
+  feedback catches what code review misses.
+
+- Hack 5: Deploy to GitHub and Vercel. Push to a GitHub repo. Connect to
+  Vercel for instant deployment. You have a live URL in minutes, not
+  days.
+
+5.3 PROJECT.md for Websites
+
+The PROJECT.md file is your site's blueprint. Claude reads it before
+writing any code. Include:
+
+- Purpose: what the site does and who it's for
+
+- Tech stack: React/Next.js, Tailwind, shadcn/ui, or whatever you're
+  using
+
+- Design direction: reference the front-end design skill. Point to brand
+  assets. Include screenshot references.
+
+- Pages and structure: list every page, its purpose, and its content
+  requirements
+
+- Tone and copy rules: voice guidelines for all text Claude generates on
+  the site
+
+- What to avoid: no stock photos, no generic gradients, no placeholder
+  text
+
+6. Key Features Reference
+
+  ---------------- --------------------------- ---------------------------
+  Feature          What It Does                When to Use
+
+  Extended         Claude reasons step-by-step Complex reasoning,
+  Thinking         internally before           architecture decisions,
+                   responding. Deeper          multi-step analysis,
+                   analysis, better complex    strategic planning. Not for
+                   outputs.                    simple questions.
+
+  Research Mode    Claude searches the web,    Market research,
+                   reads multiple sources, and competitive analysis,
+                   synthesizes findings into a current events,
+                   structured report.          fact-checking. When you
+                                               need breadth across many
+                                               sources.
+
+  Styles           Custom voice and formatting Set once per project.
+                   rules that persist across   Controls tone, vocabulary,
+                   responses.                  formatting, length.
+                                               Eliminates repetitive
+                                               instructions.
+
+  Memory           Claude remembers facts      Always on. Builds over
+                   about you across            time. Claude gets better at
+                   conversations (name,        your specific needs the
+                   preferences, work context). more you use it.
+
+  Web Search       Claude searches the         When you need real-time
+                   internet for current        data, current prices,
+                   information within a        recent news, or facts that
+                   conversation.               may have changed since
+                                               training.
+
+  File Upload      Attach PDFs, images,        Always. If you have
+                   spreadsheets, docs, code    relevant files, upload
+                   files directly to the       them. Claude with your data
+                   conversation.               beats Claude without it.
+
+  Claude in Chrome Browser extension that lets Web audits, page analysis,
+                   Claude see and interact     extracting data from sites,
+                   with web pages you're       working alongside your
+                   viewing.                    browsing.
+
+  Co-work          Claude works on your        File management, document
+                   desktop files and tasks     processing, repetitive
+                   autonomously in the         tasks. Claude works while
+                   background.                 you do other things.
+  ---------------- --------------------------- ---------------------------
+
+7. The Operator Playbook
+
+1.  Set up your first workspace (Day 1): Create a folder. Write your
+    CLAUDE.md (who you are, what this workspace is for, how you want
+    things done). Add a /context folder with your key documents. This
+    alone will transform your output quality.
+
+2.  Install core skills (Day 1): Front-end design skill if you build
+    websites. DOCX/PPTX/PDF skills if you create documents. These are
+    pre-built workflow packages that dramatically improve output
+    quality.
+
+3.  Build your first command (Week 1): Identify one repetitive workflow
+    you do every week. Write it as a markdown file with step-by-step
+    instructions. Save it in /commands. Test it. Refine it. Now that
+    workflow is a one-liner.
+
+4.  Create your first sub-agent (Week 2): If you work across domains
+    (frontend + backend, writing + research, strategy + execution),
+    create a specialized agent for each. Give each its own system prompt
+    and tool access.
+
+5.  Connect MCP servers (Week 2-3): Connect Claude to the external tools
+    you use daily (email, calendar, CRM, cloud storage). Every
+    connection eliminates one more copy-paste workflow.
+
+6.  Set up Projects for ongoing work (Week 1): Create a Project for each
+    major area of your business. Upload the relevant knowledge. Set
+    custom instructions. Every new conversation inherits the full
+    context.
+
+7.  Build the feedback loop (Ongoing): After every output, ask: 'What
+    context was Claude missing that would have made this better?' Add
+    that context to the workspace. The workspace gets smarter over time.
+
+8.  Stack and automate (Month 2+): Chain commands together. Have one
+    command that triggers three sub-agents, each running their own
+    skill, producing a coordinated output. This is where Claude stops
+    being an assistant and becomes a department.
+
+The Operating Principle
+
+Stop writing better prompts. Start building better workspaces. The
+prompt is the last 5% of the system. The other 95% is the context
+architecture: the CLAUDE.md, the skills, the commands, the uploaded
+documents, the sub-agent configurations, and the MCP connections. When
+the workspace is built correctly, even a simple prompt produces
+exceptional output because Claude already knows who you are, what you're
+building, how you like things done, and which tools to use. The goal is
+a system where typing one sentence triggers an entire workflow. That's
+the operator's advantage.

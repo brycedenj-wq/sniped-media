@@ -1,0 +1,1128 @@
+{
+  "name": "ElevenLabs Agent That Calls & Qualifies Leads",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Customer acquisition",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Customer Name"
+            },
+            {
+              "fieldLabel": "Email"
+            },
+            {
+              "fieldLabel": "Phone Number"
+            },
+            {
+              "fieldLabel": "Opt in to qualifying call",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Yes"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b93cdff1-690f-4ac2-be42-3ed61050491e",
+      "name": "On form submission",
+      "webhookId": "e23f7d4c-dfb9-4e1c-8f84-d086771efa78"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3523f3c4-116f-43c3-8b39-614aebdce4e1",
+              "leftValue": "={{ $json['Opt in to qualifying call'] }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "0a903a12-ca4c-4bd0-aac0-a28850486b2a",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Customer Phone Number: {{ $json['Phone Number'] }}\n\nCustomer First Name: {{ $json['Customer Name'] }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a smart assistant that processes customer contact information to prepare it for automated dialling and personalisation.\n\nYour two tasks are:\n### 1. Phone Number Formatting\n\nTake any phone number as entered by the customer and convert it to the standard E.164 international format.\n\nRules:\n- Detect the country from the number’s structure or prefix.\n- Return only the E.164 format: `+[CountryCode][NationalNumber]`, with no spaces, dashes, or brackets.\n- Clean the input first by removing all non-digit characters except a leading `+`.\n- If the number:\n  - Starts with `+` → clean and validate it.\n  - Starts with `00` → convert to `+`.\n  - Starts with a national prefix (e.g. `0`) → remove and replace with the correct country code based on number structure.\n- If the number is incomplete or the country cannot be confidently determined, return: `Invalid number`.\n\nExamples:\n- `07123456789` → `+447123456789` (United Kingdom)\n- `415 555 2671` → `+14155552671` (United States)\n- `06 12 34 56 78` → `+33612345678` (France)\n- `0049 151 23456789` → `+4915123456789` (Germany)\n- `+61 412 345 678` → `+61412345678` (Australia)\n\n### 2. First Name Extraction\n\nExtract the customer's first name from their full name input.\n\nGuidelines:\n- Support a wide range of ethnically diverse names, including but not limited to:  \n  - Western names: John Smith, Emily Clarke  \n  - South Asian names: Rajesh Kumar, Priya Patel  \n  - East Asian names: Wei Zhang, Hana Kim  \n  - Arabic names: Omar Al-Mansoori, Amina Said  \n  - African names: Kwame Nkrumah, Zanele Dlamini  \n  - Hispanic names: Juan Carlos Rivera, Sofia Martínez\n- The first name is usually the first word unless the input uses reversed formats (e.g. “Kim, Hana”). Handle these gracefully.\n- Remove any extra titles (e.g. Mr, Mrs, Dr) or honourifics.\n- Return only the first name, capitalised properly (e.g. `Kwame`, `Sofia`, `Wei`)."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        432,
+        -16
+      ],
+      "id": "e31c066e-1e62-435d-9664-2c3f3c6e3142",
+      "name": "Format Phone Number"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appKsTbSJqiZnB7M9",
+          "mode": "list",
+          "cachedResultName": "Customer Qualifying Agent",
+          "cachedResultUrl": "https://airtable.com/appKsTbSJqiZnB7M9"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblt6sGlFoDdVSV7t",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appKsTbSJqiZnB7M9/tblt6sGlFoDdVSV7t"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Opt into Qualifying Call": "={{ $('On form submission').item.json['Opt in to qualifying call'] === 'Yes' ? true : false }}",
+            "Name": "={{ $('On form submission').item.json['Customer Name'] }}",
+            "Email address": "={{ $('On form submission').item.json.Email }}",
+            "Phone Number": "={{ $json.output['Customer Phone Number'] }}",
+            "First Name": "={{ $json.output['Customer First Name'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "First Name",
+              "displayName": "First Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email address",
+              "displayName": "Email address",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Phone Number",
+              "displayName": "Phone Number",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Opt into Qualifying Call",
+              "displayName": "Opt into Qualifying Call",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Conversation ID",
+              "displayName": "Conversation ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Call SID",
+              "displayName": "Call SID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Budget Range",
+              "displayName": "Budget Range",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Timeline",
+              "displayName": "Timeline",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Mortgage Status",
+              "displayName": "Mortgage Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Property Type",
+              "displayName": "Property Type",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Preferred Areas",
+              "displayName": "Preferred Areas",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        816,
+        -16
+      ],
+      "id": "8c370cb5-9a8d-4582-8923-5d2ada20650c",
+      "name": "Store Customer",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "nXuCNUn0JTTaPWxq",
+          "name": "Agera Bases"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "from": "<YOUR PHONE NUMBER>",
+        "to": "={{ $json.fields['Phone Number'] }}",
+        "message": "=Hey {{ $json.fields['First Name'] }}, thanks for opting into our qualifying call! Our AI agent will be phoning you from 0712345678 to find out more about your situation. Please accept the call and answer the screening questions.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        0,
+        224
+      ],
+      "id": "953d08f9-bdd0-4dbd-977b-95aedc60a6dd",
+      "name": "Send Text Message",
+      "credentials": {
+        "twilioApi": {
+          "id": "MsmXZYhsucvluWMk",
+          "name": "Twilio account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1120,
+        16
+      ],
+      "id": "670c8bdd-cb75-4f50-8fe6-6ca22585cd29",
+      "name": "AI Brain",
+      "credentials": {
+        "openAiApi": {
+          "id": "pVebLmNMBp3DGLT3",
+          "name": "Ops Management"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        224
+      ],
+      "id": "a9c9e086-1846-446b-83d7-b4ba7c916ebc",
+      "name": "Wait 1 min",
+      "webhookId": "8ff07342-522d-4511-b040-ea983440444a"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v1/convai/twilio/outbound-call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "xi-api-key",
+              "value": "<YOUR API KEY>"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "agent_id",
+              "value": "<YOUR AGENT KEY>"
+            },
+            {
+              "name": "agent_phone_number_id",
+              "value": "<YOUR PHONE ID>"
+            },
+            {
+              "name": "to_number",
+              "value": "={{ $('Store Customer').item.json.fields['Phone Number'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        416,
+        224
+      ],
+      "id": "c0d61861-25f3-406c-ab54-23a0f6dc6314",
+      "name": "Make a Phone Call (11Labs)"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "83154a9e-fbf3-4bc7-b387-75e82f3a7806",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -32,
+        480
+      ],
+      "id": "008671d0-0bcc-498a-b762-4936007f5458",
+      "name": "Post Call",
+      "webhookId": "83154a9e-fbf3-4bc7-b387-75e82f3a7806"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appKsTbSJqiZnB7M9",
+          "mode": "list",
+          "cachedResultName": "Customer Qualifying Agent",
+          "cachedResultUrl": "https://airtable.com/appKsTbSJqiZnB7M9"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblt6sGlFoDdVSV7t",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appKsTbSJqiZnB7M9/tblt6sGlFoDdVSV7t"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Call SID": "={{ $('Post Call').item.json.body.data.conversation_id }}",
+            "Budget Range": "={{ $json.output.budgetRange }}",
+            "Timeline": "={{ $json.output.timeline }}",
+            "Mortgage Status": "={{ $json.output.mortgageStatus }}",
+            "Property Type": "={{ $json.output.propertyType }}",
+            "Preferred Areas": "={{ $json.output.preferredAreas }}",
+            "Conversation ID": "={{ $('Post Call').item.json.body.data.conversation_id }}"
+          },
+          "matchingColumns": [
+            "Call SID",
+            "Conversation ID"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "First Name",
+              "displayName": "First Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Email address",
+              "displayName": "Email address",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Phone Number",
+              "displayName": "Phone Number",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Opt into Qualifying Call",
+              "displayName": "Opt into Qualifying Call",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Conversation ID",
+              "displayName": "Conversation ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Call SID",
+              "displayName": "Call SID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Budget Range",
+              "displayName": "Budget Range",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Timeline",
+              "displayName": "Timeline",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Mortgage Status",
+              "displayName": "Mortgage Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Property Type",
+              "displayName": "Property Type",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Preferred Areas",
+              "displayName": "Preferred Areas",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        496,
+        480
+      ],
+      "id": "fed3b8a1-9b6d-4efb-aa35-6ed0a9b75050",
+      "name": "Update record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "nXuCNUn0JTTaPWxq",
+          "name": "Agera Bases"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appKsTbSJqiZnB7M9",
+          "mode": "list",
+          "cachedResultName": "Customer Qualifying Agent",
+          "cachedResultUrl": "https://airtable.com/appKsTbSJqiZnB7M9"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblt6sGlFoDdVSV7t",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appKsTbSJqiZnB7M9/tblt6sGlFoDdVSV7t"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Call SID": "={{ $json.conversation_id }}",
+            "id": "={{ $('Store Customer').item.json.id }}",
+            "Conversation ID": "={{ $json.conversation_id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "First Name",
+              "displayName": "First Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Email address",
+              "displayName": "Email address",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Phone Number",
+              "displayName": "Phone Number",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Opt into Qualifying Call",
+              "displayName": "Opt into Qualifying Call",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Conversation ID",
+              "displayName": "Conversation ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Call SID",
+              "displayName": "Call SID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Budget Range",
+              "displayName": "Budget Range",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Timeline",
+              "displayName": "Timeline",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Mortgage Status",
+              "displayName": "Mortgage Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Property Type",
+              "displayName": "Property Type",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Preferred Areas",
+              "displayName": "Preferred Areas",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        624,
+        224
+      ],
+      "id": "90b80092-d05a-4726-83ca-7feb6a3bd99b",
+      "name": "Store Call ID",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "nXuCNUn0JTTaPWxq",
+          "name": "Agera Bases"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Transcript of Call: {{ $json.body.data.analysis.transcript_summary }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a smart assistant that extracts structured answers from conversations with potential home buyers. Your task is to read through the conversation or text and extract the answers to five screening questions used to qualify them.\n\nFocus on returning only the buyer’s answers, not the questions themselves. Be concise, use natural phrasing, and ensure no important context is lost.\n\nThe five questions you must extract answers to are:\n\n1. **Budget**: What’s their budget range for purchasing a property?\n2. **Timeline**: Are they buying soon, or still exploring?\n3. **Mortgage**: Do they have a mortgage agreement in principle, or do they need help?\n4. **Property Type**: What kind of property are they looking for (e.g. detached, semi-detached, flat)?\n5. **Preferred Areas**: Which areas or neighbourhoods are they most interested in?\n\nReturn the output as a JSON object like this:\n{\n  \"budgetRange\": \"Around £350,000 to £400,000\",\n  \"timeline\": \"Looking to buy within the next 3 months\",\n  \"mortgageStatus\": \"No mortgage yet — open to help arranging one\",\n  \"propertyType\": \"Prefer a semi-detached house with 3 bedrooms\",\n  \"preferredAreas\": \"Headington, Cowley, or central Oxford\"\n}"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        144,
+        480
+      ],
+      "id": "b33dd346-237c-495e-a206-08f64386d37d",
+      "name": "Format Responses"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Customer Details:\nName - {{ $json.fields['First Name'] }}\nBudget - {{ $json.fields['Budget Range'] }}\nTimeline - {{ $json.fields.Timeline }}\nMortgage Status - {{ $json.fields['Mortgage Status'] }}\nProperty Type - {{ $json.fields['Property Type'] }}\nPreferred Areas - {{ $json.fields['Preferred Areas'] }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a helpful assistant, sending a friendly SMS to confirm that a customer’s home buying details have been saved.\n\nInstructions:\n- Use a warm, professional tone suitable for SMS.\n- Keep the message short and conversational — ideally under 320 characters.\n- Include the customer’s first name.\n- Confirm that their info has been saved.\n- Summarise key details naturally: budget, timeline, mortgage status, property type, and preferred areas.\n- No need to label each detail — just blend them into a friendly sentence.\n\nNow generate a single SMS message confirming this has been saved.\n\n### Example SMS Output:\nHi Alex! We’ve saved your info, you’re looking for a large detached home in Austin with a $5M budget, keen to buy soon and still need a mortgage. We’ll be in touch with the best options!"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        672,
+        480
+      ],
+      "id": "cbaea238-ac46-42fc-a022-37fdb1c5eb1d",
+      "name": "Text Customer"
+    },
+    {
+      "parameters": {
+        "from": "<YOUR PHONE NUMBER>",
+        "to": "={{ $('Update record').item.json.fields['Phone Number'] }}",
+        "message": "={{ $json.text }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        1024,
+        480
+      ],
+      "id": "ed5a4a96-6f90-492b-8ebc-ebc58b226273",
+      "name": "Confirm Details Captured",
+      "credentials": {
+        "twilioApi": {
+          "id": "MsmXZYhsucvluWMk",
+          "name": "Twilio account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"Customer Phone Number\": \"the customers phone number in E.164 format\",\n\t\"Customer First Name\": \"the first name of the customer\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1024,
+        128
+      ],
+      "id": "968f4c2d-8de0-411c-bae6-3d1da0cb4ebd",
+      "name": "Structure Phone #"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"budgetRange\": \"Around £350,000 to £400,000\",\n  \"timeline\": \"Looking to buy within the next 3 months\",\n  \"mortgageStatus\": \"No mortgage yet — open to help arranging one\",\n  \"propertyType\": \"Prefer a semi-detached house with 3 bedrooms\",\n  \"preferredAreas\": \"Headington, Cowley, or central Oxford\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1104,
+        272
+      ],
+      "id": "4c78e655-60cf-410e-8c80-aca78b3fe3d0",
+      "name": "Structure Cust Details"
+    },
+    {
+      "parameters": {
+        "content": "## **AI Tools**",
+        "height": 464,
+        "width": 224,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        992,
+        -64
+      ],
+      "id": "4975fac7-68b0-4cf3-9bd5-3e01aededcc8",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## **Step 3: Store Customer Responses**",
+        "height": 240,
+        "width": 1264,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        416
+      ],
+      "id": "de3f752b-30a1-4fd0-9853-cfae84cd021f",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## **Step 1: Store Customer**",
+        "height": 208,
+        "width": 1024,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        -64
+      ],
+      "id": "cad763aa-0437-4d81-8694-0ef5503d65e0",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## **Step 2: Contact Customer**",
+        "height": 240,
+        "width": 1024,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        160
+      ],
+      "id": "aa095f2c-0e3e-4870-8bb5-c3f36f294cb3",
+      "name": "Sticky Note2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Format Phone Number",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Phone Number": {
+      "main": [
+        [
+          {
+            "node": "Store Customer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Customer": {
+      "main": [
+        [
+          {
+            "node": "Send Text Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Brain": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Format Phone Number",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Format Responses",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Text Customer",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Text Message": {
+      "main": [
+        [
+          {
+            "node": "Wait 1 min",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 1 min": {
+      "main": [
+        [
+          {
+            "node": "Make a Phone Call (11Labs)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post Call": {
+      "main": [
+        [
+          {
+            "node": "Format Responses",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Make a Phone Call (11Labs)": {
+      "main": [
+        [
+          {
+            "node": "Store Call ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Responses": {
+      "main": [
+        [
+          {
+            "node": "Update record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update record": {
+      "main": [
+        [
+          {
+            "node": "Text Customer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Customer": {
+      "main": [
+        [
+          {
+            "node": "Confirm Details Captured",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structure Phone #": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Format Phone Number",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structure Cust Details": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Format Responses",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b2c6aaf1-3494-40ba-a454-dd33d0c650ab",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8e19fa74944b9dcd6868709031c9aa3bce12c850be41a7bacd11dbae58569d60"
+  },
+  "id": "wFmZjbsVNdohxJCK",
+  "tags": []
+}

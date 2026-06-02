@@ -1,0 +1,178 @@
+/* Kingdom of the Sun · global styles. Crown identity, mobile-first, multi-page. */
+:root{
+  --navy:#0B1F3A; --navy2:#091a30; --navy3:#0e2742; --navy4:#122c4a;
+  --gold:#F4B41A; --gold2:#ffce4d; --orange:#E8651E; --cream:#F7F2E7;
+  --line:rgba(247,242,231,.13); --line2:rgba(247,242,231,.22);
+  --maxw:1140px;
+  --display:"Futura","Avenir Next","Helvetica Neue",Arial,sans-serif;
+  --body:"Avenir Next","Helvetica Neue",Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.gold{color:var(--gold)}
+.muted{opacity:.72}
+.eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.5px}
+.section{padding:62px 0;border-top:1px solid var(--line)}
+.section h2{font-size:28px;margin:8px 0 20px}
+.lead{font-size:17px;opacity:.9;max-width:680px}
+.btn{display:inline-block;background:var(--gold);color:var(--navy);font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:2px;padding:12px 20px;border-radius:6px;text-transform:uppercase;transition:background .15s;white-space:nowrap}
+.btn:hover{background:var(--gold2)}
+.btn.ghost{background:transparent;color:var(--cream);border:1.5px solid var(--line2)}
+.btn.ghost:hover{background:rgba(247,242,231,.06)}
+
+/* ---- nav ---- */
+.nav{position:sticky;top:0;z-index:60;background:rgba(9,22,42,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .bar{display:flex;align-items:center;justify-content:space-between;gap:18px;height:64px;max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;letter-spacing:1.2px;font-size:14px;white-space:nowrap;flex-shrink:0}
+.brand img{width:30px;flex-shrink:0}
+.nav-links{display:none;align-items:center;gap:1px;flex-wrap:nowrap}
+.nav-links a{font-size:12px;letter-spacing:.5px;opacity:.82;padding:8px 9px;border-radius:6px;white-space:nowrap}
+.nav-links a:hover{opacity:1;color:var(--gold)}
+.nav-links a.active{color:var(--gold);opacity:1}
+.nav-cta{display:none;flex-shrink:0}
+.nav-toggle{display:inline-flex;flex-direction:column;gap:4px;background:none;border:0;cursor:pointer;padding:8px}
+.nav-toggle span{width:22px;height:2px;background:var(--cream);display:block}
+.mobile-menu{display:flex;flex-direction:column;padding:8px 22px 18px;border-top:1px solid var(--line);background:var(--navy2)}
+.mobile-menu a{padding:11px 4px;font-size:14px;letter-spacing:.5px;border-bottom:1px solid var(--line)}
+.mobile-menu a.active{color:var(--gold)}
+.mobile-menu .btn{margin-top:14px;text-align:center}
+
+/* ---- hero / page header ---- */
+.hero{text-align:center;padding:72px 0 56px;background:radial-gradient(120% 80% at 50% 0%, #12243f 0%, var(--navy) 62%)}
+.hero .emblem{width:120px;margin:0 auto 22px}
+.hero h1{font-size:40px;line-height:1.04}
+.hero .sub{margin-top:16px;font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:.82}
+.hero .cta{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.pagehead{padding:54px 0 10px;background:radial-gradient(120% 80% at 50% 0%, #12243f 0%, var(--navy) 70%)}
+.pagehead h1{font-size:34px;margin:8px 0 12px}
+
+/* ---- stat bands ---- */
+.statband{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;background:var(--navy2);padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.statband .n{font-family:var(--display);font-weight:700;font-size:30px;color:var(--gold)}
+.statband .l{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.7}
+.legacy-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:26px}
+.legacy-stats > div{background:var(--navy2);border:1px solid var(--line);border-radius:10px;padding:18px 10px;text-align:center}
+.legacy-stats .n{font-family:var(--display);font-weight:700;font-size:26px;color:var(--gold)}
+.legacy-stats .l{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;opacity:.72;margin-top:3px}
+
+/* ---- generic cards / grids ---- */
+.grid{display:grid;gap:12px}
+.cols-2{grid-template-columns:1fr}
+.cols-3{grid-template-columns:1fr}
+.card{background:var(--navy3);border:1px solid var(--line);border-radius:12px;padding:18px}
+.card h3{font-size:15px;letter-spacing:.4px;margin-bottom:6px}
+.card p{font-size:13.5px;opacity:.78}
+.prose p{margin-bottom:16px;opacity:.9}
+.two-col{display:grid;grid-template-columns:1fr;gap:30px;align-items:start}
+
+/* ---- marquee headliners ---- */
+.heads{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+.heads.coaches{grid-template-columns:repeat(2,1fr)}
+.head-card{background:var(--navy3);border:1px solid var(--line);border-radius:12px;padding:14px 10px;text-align:center}
+.head-card .hn{display:block;font-family:var(--display);font-weight:700;font-size:14px}
+.head-card .ht{display:block;font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);margin-top:5px}
+
+/* ---- history / haley ---- */
+.positioning{font-size:15px;opacity:.95;border-left:2px solid var(--gold);padding-left:16px;margin:18px 0}
+.legacy-logo{background:var(--cream);border-radius:12px;padding:20px;max-width:340px}
+.haley{margin-top:20px;background:var(--navy3);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.haley img{width:100%;filter:grayscale(1);border-bottom:1px solid var(--line)}
+.haley .cap{padding:14px 16px}
+.haley .cap strong{font-family:var(--display);letter-spacing:.5px}
+.sig{font-style:italic;font-size:13px;opacity:.7;margin-top:6px;border:1px dashed var(--line2);display:inline-block;padding:4px 9px;border-radius:5px}
+
+/* ---- chips ---- */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chips span{border:1px solid var(--line);border-radius:20px;padding:6px 13px;font-size:12.5px}
+
+/* ---- champions table ---- */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table.tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
+table.tbl th{background:var(--navy2);text-align:left;padding:13px 15px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);position:sticky;top:0}
+table.tbl td{padding:12px 15px;border-top:1px solid var(--line)}
+table.tbl td.yr{font-family:var(--display);font-weight:700;color:var(--gold);white-space:nowrap}
+table.tbl td.ch{font-weight:600}
+table.tbl td.dim{opacity:.74}
+table.tbl tr.cancelled td{opacity:.5;font-style:italic}
+table.tbl tr:hover td{background:rgba(247,242,231,.03)}
+.hb{display:inline-block;font-size:9px;letter-spacing:1px;text-transform:uppercase;border:1px solid var(--line2);border-radius:10px;padding:1px 7px;margin-left:7px;color:var(--gold);vertical-align:middle}
+.hb.nat{border-color:var(--gold);color:var(--navy);background:var(--gold)}
+
+/* ---- alumni grid ---- */
+.alumni-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+.alum{background:var(--navy3);border:1px solid var(--line);border-radius:10px;padding:13px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.alum .nm{font-weight:600;font-size:13.5px}
+.alum .yr{font-size:11px;opacity:.6;white-space:nowrap}
+
+/* ---- records ---- */
+.rec-list{list-style:none}
+.rec-list li{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:13.5px}
+.rec-list li .v{color:var(--gold);font-family:var(--display);font-weight:700;min-width:48px}
+.rec-block h3{font-size:15px;color:var(--gold);margin:8px 0 6px;letter-spacing:.5px}
+.rec-kv{font-size:13.5px;padding:9px 0;border-top:1px solid var(--line)}
+.rec-kv .k{opacity:.7}
+
+/* ---- teams ---- */
+.teams{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.team{background:var(--navy3);border:1px solid var(--line);border-radius:12px;padding:16px 12px;text-align:center;min-height:84px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.team.host{border-color:var(--gold)}
+.team .nm{font-size:14px;font-weight:600}
+.team .ct{font-size:11px;opacity:.62}
+.team .badge{font-size:9px;letter-spacing:1px;color:var(--gold);text-transform:uppercase}
+.team.tba{opacity:.5;font-style:italic;justify-content:center}
+
+/* ---- schedule ---- */
+.sched{display:grid;grid-template-columns:1fr;gap:12px}
+.sched .day .tag{font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:700}
+.sched .day h3{font-size:17px;margin:5px 0}
+.sched .day .note{font-size:12px;opacity:.6}
+
+/* ---- big panel (watch / bracket) ---- */
+.panel{text-align:center;border:1px dashed var(--line2);border-radius:14px;padding:46px 20px;background:var(--navy2)}
+.panel .big{font-family:var(--display);font-weight:700;font-size:24px;color:var(--gold)}
+
+/* ---- sponsors ---- */
+.tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tier{border:1px solid var(--line);border-radius:12px;padding:20px 12px;text-align:center}
+.tier .name{font-family:var(--display);font-weight:700;letter-spacing:.5px;font-size:14px}
+.tier .price{font-size:11px;opacity:.6;margin-top:5px;text-transform:uppercase;letter-spacing:1px}
+
+/* ---- confirm ---- */
+.confirm{text-align:center;background:radial-gradient(120% 100% at 50% 0%, #12243f, var(--navy));border-radius:16px;padding:46px 22px;border:1px solid var(--line)}
+
+/* ---- footer ---- */
+footer{padding:40px 0 56px;border-top:1px solid var(--line);text-align:center;font-size:12.5px;opacity:.78}
+footer .fnav{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:14px 0 18px}
+footer .fnav a{opacity:.75}
+footer .fnav a:hover{opacity:1;color:var(--gold)}
+footer .preview{display:inline-block;margin-top:10px;font-size:10px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--line);border-radius:5px;padding:4px 10px}
+
+/* ---- desktop ---- */
+@media(min-width:820px){
+  .section h2{font-size:34px}
+  .hero{padding:96px 0 70px}
+  .hero h1{font-size:62px}
+  .hero .emblem{width:148px}
+  .pagehead h1{font-size:46px}
+  .cols-2{grid-template-columns:repeat(2,1fr)}
+  .cols-3{grid-template-columns:repeat(3,1fr)}
+  .two-col{grid-template-columns:1fr 1fr;gap:44px}
+  .legacy-stats{grid-template-columns:repeat(5,1fr)}
+  .teams{grid-template-columns:repeat(4,1fr)}
+  .alumni-grid{grid-template-columns:repeat(3,1fr)}
+  .sched{grid-template-columns:repeat(4,1fr)}
+  .tiers{grid-template-columns:repeat(4,1fr)}
+}
+
+/* full desktop nav only when there is genuinely room for it; hamburger below */
+@media(min-width:1040px){
+  .nav-links{display:flex}
+  .nav-cta{display:inline-block}
+  .nav-toggle{display:none}
+  .mobile-menu{display:none !important}
+}

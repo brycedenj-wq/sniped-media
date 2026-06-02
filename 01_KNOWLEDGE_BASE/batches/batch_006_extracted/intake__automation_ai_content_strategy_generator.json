@@ -1,0 +1,284 @@
+{
+  "name": "AI Content Strategy Generator - Lead Magnet",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "content-strategy",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        240,
+        304
+      ],
+      "webhookId": "content-strategy"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5.2",
+          "mode": "list",
+          "cachedResultName": "GPT-5.2"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=You are an expert content strategist with years of experience helping creators and businesses grow their audience. Generate a comprehensive, personalized 30-day content strategy based on the user's inputs.\n\n  Structure your response in HTML format with these sections:\n\n  <h2>Strategy Overview</h2>\n  Brief 2-3 sentence summary of the strategic approach tailored to their niche and goals.\n\n  <h2>Your 30-Day Content Calendar</h2>\n  Numbered list of 30 content ideas with:\n  - Day number\n  - Content title/topic\n  - Brief description (1-2 sentences)\n  - Content type (video, carousel, story, blog, etc.)\n\n  <h2>Optimal Posting Times</h2>\n  Best times to post for each platform they mentioned, with reasoning.\n\n  <h2>Content Mix Strategy</h2>\n  Recommended ratio breakdown:\n  - Educational content: X%\n  - Entertaining content: X%\n  - Promotional content: X%\n  - Community engagement: X%\n  With explanation of why this mix works for their niche.\n\n  <h2>5 Quick Wins - Create These TODAY</h2>\n  Five specific, actionable content ideas they can create and post within the next few hours. Include:\n  - Exact topic/title\n  - Format\n  - Key talking points or outline\n  - Call-to-action suggestion\n\n  Make everything highly specific to their niche, actionable, and tailored to their stated posting frequency. Use their platform preferences throughout.\n\n  ---\n  Would you like me to enhance this prompt? I can make it more detailed with:\n  - Specific content pillars for their niche\n  - Viral hooks and caption templates\n  - Hashtag strategies per platform\n  - Engagement tactics\n  - Content repurposing ideas"
+            },
+            {
+              "content": "=Create a 30-day content strategy for me based on:\n-> My Niche: {{ $json.niche }}\n-> Content Goals: {{ $json.content_goals }}\n-> Posting Frequency: {{ $json.posting_frequency }}\n-> Platforms I Use: {{ $json.platforms }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "id": "openai-1",
+      "name": "Generate Content Strategy",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        432,
+        304
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "pWUu4VPaCReD2Pob",
+          "name": "The AI Edge"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Webhook').item.json.body.email }}",
+        "subject": "Your Personalized 30-Day Content Strategy is Ready!",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }\n    h1 { color: #2563eb; border-bottom: 3px solid #2563eb; padding-bottom: 10px; }\n    h2 { color: #1e40af; margin-top: 30px; }\n    .header { background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px; }\n    .header h1 { color: white; border: none; margin: 0; }\n    .content { background: #f8fafc; padding: 25px; border-radius: 10px; }\n    .footer { margin-top: 40px; padding: 20px; background: #f1f5f9; border-radius: 10px; text-align: center; }\n    .cta-button { display: inline-block; background: #2563eb; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; margin-top: 15px; }\n    ul, ol { padding-left: 20px; }\n    li { margin-bottom: 8px; }\n  </style>\n</head>\n<body>\n  <div class=\"header\">\n    <h1>Your 30-Day Content Strategy</h1>\n    <p>Personalized for: {{ $('Webhook').item.json.body.niche }}</p>\n  </div>\n  \n  <div class=\"content\">\n    {{ $json.output[0].content[0].text }}\n  </div>\n  \n  <div class=\"footer\">\n    <p><strong>Ready to execute this strategy?</strong></p>\n    <p>Consistency is key - start with Day 1 today!</p>\n    <p style=\"color: #64748b; font-size: 12px; margin-top: 20px;\">This strategy was generated based on your inputs: {{ $('Webhook').item.json.body.content_goals }}</p>\n  </div>\n</body>\n</html>",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "gmail-1",
+      "name": "Send Strategy Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        752,
+        304
+      ],
+      "webhookId": "f646d8e0-5df5-4331-8aa9-bbb615e96572",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "dz6noR28JNE145xt",
+          "name": "The AI Edge"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1I5UdLebxRPaTHzbsuVVU6_qn7Br0BnpEBnX50P7SLes",
+          "mode": "list",
+          "cachedResultName": "AI Content Strategy Lead Magnet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1I5UdLebxRPaTHzbsuVVU6_qn7Br0BnpEBnX50P7SLes/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1I5UdLebxRPaTHzbsuVVU6_qn7Br0BnpEBnX50P7SLes/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "niche": "={{ $('Webhook').item.json.body.niche }}",
+            "content_goals": "={{ $('Webhook').item.json.body.content_goals }}",
+            "posting_frequency": "={{ $('Webhook').item.json.body.posting_frequency }}",
+            "platforms": "={{ $('Webhook').item.json.body.platforms }}",
+            "email": "={{ $('Webhook').item.json.body.email }}",
+            "Message Sent": "={{ $('Generate Content Strategy').item.json.output[0].content[0].text }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "niche",
+              "displayName": "niche",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_goals",
+              "displayName": "content_goals",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "posting_frequency",
+              "displayName": "posting_frequency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "platforms",
+              "displayName": "platforms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Message Sent",
+              "displayName": "Message Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "sheets-1",
+      "name": "Log Lead to Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        976,
+        304
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "5eLcq8Hml9CbbF6g",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "success",
+              "name": "success",
+              "value": true,
+              "type": "boolean"
+            },
+            {
+              "id": "message",
+              "name": "message",
+              "value": "Your 30-day content strategy has been sent to your email!",
+              "type": "string"
+            },
+            {
+              "id": "email",
+              "name": "email_sent_to",
+              "value": "={{ $('Webhook').item.json.body.email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "response-1",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1200,
+        304
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Generate Content Strategy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Content Strategy": {
+      "main": [
+        [
+          {
+            "node": "Send Strategy Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Strategy Email": {
+      "main": [
+        [
+          {
+            "node": "Log Lead to Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Lead to Sheets": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "6f73b654-0b53-4b14-8621-b6836e612e41",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d2162f292b4e39cb5d05f49f20fcbb654670c1710030b1d53d33ec31b5d78140"
+  },
+  "id": "4mQ7O2XMWcTQXsSi",
+  "tags": []
+}

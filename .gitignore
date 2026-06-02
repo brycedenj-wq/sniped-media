@@ -1,0 +1,75 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environments
+.env
+.env.*
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# Claude Code transient state (skills/settings ARE tracked, logs and cache are not)
+.claude/logs/
+.claude/cache/
+.claude/projects/
+.claude/sessions/
+.claude/shell-snapshots/
+.claude/telemetry/
+.claude/backups/
+.claude/file-history/
+.claude/downloads/
+.claude/paste-cache/
+.claude/session-env/
+.claude/tasks/
+.claude/history.jsonl
+.claude/mcp-needs-auth-cache.json
+.claude/settings.local.json
+
+# OS / editor
+*.swp
+*~
+.idea/
+.vscode/
+
+# DO NOT IGNORE · keep these tracked (listed for clarity, no negate needed since not matched above):
+# 00_COMMAND_CENTER/, 01_KNOWLEDGE_BASE/, scripts/
+# AGENTS.md, CLAUDE.md
+# .claude/skills/, .claude/agents/, .claude/hooks/, .claude/settings.json
+# 01_KNOWLEDGE_BASE/batches/batch_*_extracted/ (corpus source artifacts)
+
+# === Heavy / replaceable media — kept OFF the brain backup (re-downloadable or regenerated) ===
+# Purchased book canon + libgen files
+*.epub
+*.mobi
+*.azw3
+*.djvu
+# Large book PDFs and rips under raw/ (the canon library lives here, re-downloadable)
+raw/**/*.pdf
+raw/*.pdf
+# Video rips and masters
+*.mp4
+*.mov
+*.mkv
+# Image masters / RAW / large binaries (regenerated from source)
+*.tiff
+*.tif
+*.psd
+*.psb
+*.cr3
+*.CR3
+# Client / shoot photos: privacy + size, these belong in media storage not the brain repo
+*.jpg
+*.jpeg
+# Archives / disk images
+*.zip
+*.dmg
+# Next.js build output
+.next/

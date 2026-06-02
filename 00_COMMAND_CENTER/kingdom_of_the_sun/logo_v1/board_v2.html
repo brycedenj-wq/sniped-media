@@ -1,0 +1,117 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@page{size:1920px 1080px;margin:0}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Futura','Avenir Next','Helvetica Neue',Arial,sans-serif}
+html,body{width:1920px;height:1080px}
+body{background:#0B1F3A;color:#F7F2E7;position:relative;overflow:hidden}
+.gold{color:#F4B41A}.cream{color:#F7F2E7}
+/* header */
+.hdr{position:absolute;top:0;left:0;width:1920px;height:118px;display:flex;align-items:center;justify-content:space-between;padding:0 80px;border-bottom:1px solid rgba(247,242,231,.15)}
+.title{font-weight:700;font-size:34px;letter-spacing:3px}
+.title small{display:block;font-weight:500;font-size:14px;letter-spacing:4px;opacity:.7;margin-top:5px}
+.chip{border:1.5px solid #F4B41A;color:#F4B41A;font-size:13px;letter-spacing:3px;font-weight:700;padding:9px 16px;border-radius:4px}
+/* mark trio */
+.trio{position:absolute;top:150px;left:80px;width:1760px;height:320px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+.cell{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 26px}
+.cell+.cell{border-left:1px solid rgba(247,242,231,.15)}
+.officialcard{background:#F7F2E7;border-radius:10px;padding:22px 26px;display:flex;align-items:center;justify-content:center;width:100%;height:210px}
+.officialcard img{max-width:100%;max-height:100%;object-fit:contain}
+.emblem{height:210px}
+.haleywrap{display:flex;flex-direction:column;align-items:center;gap:10px;height:210px;justify-content:center}
+.haleyphoto{width:120px;height:104px;object-fit:cover;border:3px solid #F7F2E7;filter:grayscale(1) contrast(1.05)}
+.sigslot{width:240px;height:50px;border:1.5px dashed rgba(247,242,231,.45);display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:1px;opacity:.8;text-align:center;line-height:1.3}
+.lab{margin-top:16px;font-size:14px;letter-spacing:3px;font-weight:700;text-align:center}
+.tag{position:absolute;top:6px;right:30px;font-size:10px;letter-spacing:2px;font-weight:700;padding:4px 9px;border-radius:3px}
+.tagO{background:#F7F2E7;color:#0B1F3A}.tagC{background:#F4B41A;color:#0B1F3A}
+.sub{font-size:11px;opacity:.6;margin-top:4px;letter-spacing:1px}
+/* apps */
+.apps{position:absolute;top:512px;left:80px;width:1760px;height:398px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.tile{background:#0d2banner;border:1px solid rgba(247,242,231,.14);border-radius:10px;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.tlab{position:absolute;bottom:0;left:0;width:100%;font-size:11px;letter-spacing:1px;padding:7px 10px;background:rgba(0,0,0,.25);opacity:.85}
+.ctag{position:absolute;top:8px;right:8px;font-size:9px;letter-spacing:1px;font-weight:700;background:#F4B41A;color:#0B1F3A;padding:3px 7px;border-radius:3px;z-index:3}
+.fill{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px;text-align:center}
+/* card */
+.cardface{background:#0B1F3A;width:100%;height:54%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-bottom:2px solid #F4B41A}
+.cardface img{width:118px}
+.cardback{height:46%;display:flex;align-items:center;justify-content:center;gap:14px;background:#0e2238}
+.qr{width:78px;height:78px;background:repeating-linear-gradient(90deg,#fff 0 7px,#0B1F3A 7px 14px),repeating-linear-gradient(0deg,#fff 0 7px,transparent 7px 14px);background-blend-mode:screen;border:5px solid #fff;border-radius:4px}
+.cbtxt{font-size:10px;letter-spacing:1px;max-width:120px;text-align:left;opacity:.9}
+/* hero */
+.hero img{width:118px}.hline{font-weight:700;letter-spacing:2px;font-size:24px}.hsub{font-size:11px;letter-spacing:3px;opacity:.8}
+.btn{background:#F4B41A;color:#0B1F3A;font-weight:700;font-size:10px;letter-spacing:2px;padding:8px 16px;border-radius:4px;margin-top:4px}
+/* deck */
+.dtitle{font-weight:700;letter-spacing:2px;font-size:20px}.dl{width:42px;height:3px;background:#F4B41A}.dsub{font-size:10px;letter-spacing:2px;opacity:.8}
+.deck img{width:92px}
+/* social */
+.soc{padding:18px;display:flex;flex-direction:column;justify-content:space-between;height:100%}
+.soctop{display:flex;justify-content:space-between;align-items:center}.soctop img{width:38px}
+.slab{font-size:9px;letter-spacing:2px;color:#F4B41A;font-weight:700}
+.row{display:flex;justify-content:space-between;font-size:19px;font-weight:700}.row .sc{color:#F4B41A}
+.sfoot{font-size:8px;letter-spacing:2px;opacity:.6}
+/* footer */
+.ftr{position:absolute;top:932px;left:80px;width:1760px;height:120px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(247,242,231,.15);padding-top:14px}
+.sw{display:flex;gap:10px}.swi{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:9px;letter-spacing:1px;opacity:.8}
+.dot{width:34px;height:34px;border-radius:6px;border:1px solid rgba(255,255,255,.2)}
+.typ{font-size:12px;line-height:1.7;opacity:.85;text-align:center}
+.strap{font-size:13px;font-style:italic;max-width:520px;text-align:right;opacity:.9;line-height:1.5}
+</style></head><body>
+  <div class="hdr">
+    <div class="title">KINGDOM OF THE SUN<small>53RD ANNUAL · 2026 VISUAL REFRESH</small></div>
+    <div class="chip">CONCEPT DIRECTION · NOT OFFICIAL</div>
+  </div>
+
+  <div class="trio">
+    <div class="cell"><span class="tag tagO">OFFICIAL</span>
+      <div class="officialcard"><img src="assets/official_logo.png"></div>
+      <div class="lab">THE LEGACY (OFFICIAL)</div><div class="sub">existing tournament logo · placed untouched</div>
+    </div>
+    <div class="cell"><span class="tag tagC">CONCEPT</span>
+      <img class="emblem" src="primary_gold_on_navy.svg">
+      <div class="lab">THE 2026 REFRESH (CONCEPT)</div><div class="sub">Crown of Sun Rays · v1.2 (refined)</div>
+    </div>
+    <div class="cell">
+      <div class="haleywrap">
+        <img class="haleyphoto" src="assets/haley_founder.png">
+        <div class="sigslot">JIM HALEY COURT SIGNATURE<br>pending clean signature insert</div>
+      </div>
+      <div class="lab">EST. 1974 · THE ORIGINAL</div><div class="sub">Jim Haley, Founder · 1974</div>
+    </div>
+  </div>
+
+  <div class="apps">
+    <div class="tile"><span class="ctag">CONCEPT</span>
+      <div class="cardface"><img src="lockup_stacked_navy.svg" style="width:150px"></div>
+      <div class="cardback"><div class="qr"></div><div class="cbtxt">SCAN TO REGISTER<br>[link pending]<br>[contact pending]</div></div>
+      <div class="tlab">QR card front + back (stacked lockup)</div>
+    </div>
+    <div class="tile"><span class="ctag">CONCEPT</span>
+      <div class="fill"><img src="primary_gold_on_navy.svg" style="width:118px">
+        <div class="hline">THE ORIGINAL. SINCE 1974.</div>
+        <div class="hsub">KINGDOM OF THE SUN · OCALA, FLORIDA</div>
+        <div class="btn">VIEW BRACKET</div></div>
+      <div class="tlab">Website hero</div>
+    </div>
+    <div class="tile"><span class="ctag">CONCEPT</span>
+      <div class="fill"><img src="primary_gold_on_navy.svg" style="width:92px">
+        <div class="dtitle">KINGDOM OF THE SUN</div><div class="dl"></div>
+        <div class="dsub">53RD ANNUAL · EST. 1974 · THE ORIGINAL</div></div>
+      <div class="tlab">Sponsor deck cover</div>
+    </div>
+    <div class="tile"><span class="ctag">CONCEPT</span>
+      <div class="soc"><div class="soctop"><img src="favicon_navybg.svg"><span class="slab">SAMPLE · DEC 2026</span></div>
+        <div><div class="row"><span>VANGUARD</span><span class="sc">00</span></div><div class="row"><span>OPPONENT TBA</span><span class="sc">00</span></div></div>
+        <div class="sfoot">KINGDOM OF THE SUN · OCALA, FL · sample layout</div></div>
+      <div class="tlab">Social score / result tile</div>
+    </div>
+  </div>
+
+  <div class="ftr">
+    <div class="sw">
+      <div class="swi"><div class="dot" style="background:#0B1F3A"></div>Navy<br>#0B1F3A</div>
+      <div class="swi"><div class="dot" style="background:#F4B41A"></div>Gold<br>#F4B41A</div>
+      <div class="swi"><div class="dot" style="background:#E8651E"></div>Orange<br>#E8651E</div>
+      <div class="swi"><div class="dot" style="background:#F7F2E7"></div>Cream<br>#F7F2E7</div>
+    </div>
+    <div class="typ"><b>TYPE DIRECTION</b><br>Display: athletic condensed · Body: clean grotesk<br>(final face set in Figma)</div>
+    <div class="strap">Legacy brand, modern tournament system: the same Kingdom, built to look like the original and biggest tournament in the country.</div>
+  </div>
+</body></html>

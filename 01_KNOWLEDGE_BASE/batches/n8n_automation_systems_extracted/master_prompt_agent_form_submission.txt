@@ -1,0 +1,35 @@
+# n8n workflow · Master Prompt Agent - Form Submission.json
+internal name: Prompt Engineer Agent - Form Master
+node count: 6
+
+## Trigger nodes
+- n8n-nodes-base.formTrigger :: Capture Request
+
+## AI / model nodes
+- @n8n/n8n-nodes-langchain.lmChatOpenRouter :: Multi AI Brain :: model=?
+- @n8n/n8n-nodes-langchain.agent :: Master Prompt Agent :: model=?
+    system-prompt: =You are a master prompt writing agent. You have 2 sub execution workflows that can develop the best prompts for the users depending on if they are wanting to use a deep reasoning model or a normal model. Your objective is to trigger these workflows accordingly and show the response back to the user.
+
+## Tool nodes
+- @n8n/n8n-nodes-langchain.toolWorkflow :: Normal Models
+- @n8n/n8n-nodes-langchain.toolWorkflow :: Deep Reasoning Models
+
+## Integration / action nodes
+- n8n-nodes-base.form :: Output Prompt/Useable Output
+
+## Other nodes
+(none)
+
+## Data-flow edges (connections)
+- Multi AI Brain -> ['Master Prompt Agent']
+- Normal Models -> ['Master Prompt Agent']
+- Deep Reasoning Models -> ['Master Prompt Agent']
+- Master Prompt Agent -> ['Output Prompt/Useable Output']
+- Capture Request -> ['Master Prompt Agent']
+
+## Credential references (NAMES ONLY)
+openRouterApi/Prompt Engineer Agent
+
+## Sticky-note documentation (verbatim)
+(none)
+

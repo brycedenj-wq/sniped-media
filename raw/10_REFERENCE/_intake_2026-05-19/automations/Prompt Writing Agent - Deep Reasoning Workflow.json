@@ -1,0 +1,219 @@
+{
+  "name": "Prompt Engineer Agent - Deep Reasoning",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "Prompt"
+            },
+            {
+              "name": "Associated Model"
+            },
+            {
+              "name": "Tone"
+            },
+            {
+              "name": "Use Case"
+            },
+            {
+              "name": "Model Preference"
+            },
+            {
+              "name": "Desired Output"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "9536f4f4-4b4a-44e1-be11-b76991149e75",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "model": "={{ $json.text }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        780,
+        180
+      ],
+      "id": "4f2694b8-f065-49ee-834e-a29078017135",
+      "name": "MultiAI Brain",
+      "credentials": {
+        "openRouterApi": {
+          "id": "knGjnDA8DrcjAmGO",
+          "name": "Prompt Engineer Agent"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bf67a6c8-bfa7-49b4-ab60-d08474573989",
+              "name": "OpenAI Model",
+              "value": "openai/o1",
+              "type": "string"
+            },
+            {
+              "id": "8f81e6ba-9e1b-4527-bfc9-bc19eade183e",
+              "name": "OpenAI Model - Mini",
+              "value": "openai/o3-mini",
+              "type": "string"
+            },
+            {
+              "id": "ac5b80ca-1da3-4982-8f25-623a57b9f820",
+              "name": "Gemini Model",
+              "value": "google/gemini-flash-1.5",
+              "type": "string"
+            },
+            {
+              "id": "25a0436f-44b7-46cf-a84b-121b0b07c8f8",
+              "name": "Anthropic Model",
+              "value": "anthropic/claude-3.7-sonnet:thinking",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "a11ec86d-b125-40d5-8121-7b297f6a8594",
+      "name": "Specify the latest Deep Reasoning Models"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Your Objective is to analyse the request from the user and identify the most suitable model based on the options below for the AI Agent to leverage. You are to output the best model for this use case with no additional information. E.g. Only output '{{ $json['OpenAI Model'] }}' if they want a very deep reasoning model from OpenAI.\n\nHere is the request from the user:\nCurrent prompt to be improved - {{ $('When Executed by Another Workflow').item.json.Prompt }}\nDesired Model - {{ $('When Executed by Another Workflow').item.json['Associated Model'] }}\nTone - {{ $('When Executed by Another Workflow').item.json.Tone }}\nUse Case - {{ $('When Executed by Another Workflow').item.json['Use Case'] }}\n\nHere are the available options:\n{{ $json['OpenAI Model'] }}\n{{ $json['OpenAI Model - Mini'] }}\n{{ $json['Gemini Model'] }}\n{{ $json['Anthropic Model'] }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        440,
+        0
+      ],
+      "id": "7db08e3f-ff6a-4d82-abb7-354fbc0b994e",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        440,
+        180
+      ],
+      "id": "19322f90-f8fd-4360-961f-86fd2be61020",
+      "name": "OpenAI Mini",
+      "credentials": {
+        "openRouterApi": {
+          "id": "knGjnDA8DrcjAmGO",
+          "name": "Prompt Engineer Agent"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Users Prompt:{{ $('When Executed by Another Workflow').item.json.Prompt }}\nModel Required:{{ $('When Executed by Another Workflow').item.json['Associated Model'] }}\nTone:{{ $('When Executed by Another Workflow').item.json.Tone }}\nUse Case: {{ $('When Executed by Another Workflow').item.json['Use Case'] }}\nThe users desired output: {{ $('When Executed by Another Workflow').item.json['Desired Output'] }}\n\nIf the user desires a Useable Output please do not share the prompt with them but rather the final output they are looking for. E.g. a completed email or marketing material copy write instead of the prompt.",
+        "options": {
+          "systemMessage": "=You are an expert prompt writing assistant based on the information provided by the user you are to output an excellent prompt that is suitable for the user to leverage. Your output is incredibly important to the user.\n\nFor the OpenAI Deep Reasoning Models, you need to structure it like the following example:\nI require a WhatsApp chatbot conversation flow diagram and explanation for South African Foundation Phase teachers accessing curriculum support material via QR codes in their textbooks.\nFor the diagram, please provide:\n\nInitial welcome message and user journey\nComplete menu tree showing navigation from grade selection through to content delivery\nClear indication of all selection options at each level (Grades 1-3, Subjects, Terms 1-4, Topics)\nFinal content delivery options (Lesson Plans, Assessment Guidance)\nFormat showing each decision point with arrows indicating flow direction\nMessage content at key interaction points\n\nThe diagram should follow this structure:\nWelcome → Grade Selection → Subject Selection (Home Language/Mathematics/Life Skills) → Term Selection → Topic List → Content Options (Video/PDF/AI Response)\nInclude a separate paragraph explaining:\n\nHow the flow supports lesson preparation\nIntegration with CAPS curriculum materials\nValue proposition for teachers with limited digital resources\nExpected usage patterns\n\nThe welcome message should:\n\nAcknowledge the teacher\nReference the CAPS curriculum\nExplain the navigation process\nSet expectations for available support\n\nContextual considerations:\n\nUsers are Foundation Phase teachers\nTeachers access via textbook QR codes\nWhatsApp is a familiar platform\nUsage is primarily for lesson preparation\nThis is often the only digital support available\nMaterial supports classroom teaching and learning\nIntegration with physical teaching materials is essential\n\n---\nFor the Gemini Deep Reasoning Models, you need to structure it like the following example:\n# ROLE / PERSONA\nAct as an experienced Email Marketing Specialist with a friendly but professional tone, familiar with communicating software updates to a non-technical customer base.\n\n# CONTEXT\nOur company, \"Innovate Solutions,\" has just released a significant update to our project management software, \"TaskMaster Pro.\" The key new feature is an AI-powered task suggestion tool called \"SmartSuggest.\" This feature analyzes project descriptions and existing tasks to suggest relevant sub-tasks, saving users time. Our customer base consists mainly of small to medium-sized business owners and managers who are busy and value efficiency but might not be deeply technical. We want them to feel excited about this update and understand its immediate value.\n\n# TASK / INSTRUCTION\nDraft an email to our existing TaskMaster Pro customers announcing the new \"SmartSuggest\" feature. The email should:\n1.  Clearly explain what the \"SmartSuggest\" feature is in simple terms.\n2.  Highlight the main benefit (saving time, improving project planning).\n3.  Briefly explain how users can find and start using the feature (e.g., \"It's automatically enabled on your project dashboard\").\n4.  Encourage users to try it out and provide feedback.\n5.  Include a link to a short blog post/help article with more details (use placeholder: [Link to More Info]).\n\n# FORMAT\nStructure the output as a standard marketing email with:\n-   A compelling subject line.\n-   A friendly greeting.\n-   Clear paragraphs for the body content.\n-   A clear call-to-action (even if it's just encouragement to try the feature).\n-   A professional closing signature (use \"The Innovate Solutions Team\").\n\n# CONSTRAINTS / REQUIREMENTS\n-   Keep the email concise and easy to scan (around 200-250 words).\n-   Maintain a positive and helpful tone.\n-   Avoid overly technical jargon. Focus on the *user benefit*.\n-   Ensure the subject line is engaging and clearly indicates a new feature.\n-   Do not include pricing information; this feature is part of the existing subscription.\n\n---\nFor the Anthropic Deep Reasoning Model, you need to structure it like the following example:\nI need help writing a marketing email for our new fitness tracking app called \"FitJourney\" that we're launching next month. \n\nKey details:\n- Target audience: health-conscious professionals ages 30-45\n- Key features: AI workout recommendations, social challenges with friends, integration with major fitness devices\n- Primary benefit: Helps users stay consistent with personalized plans\n- Tone: Enthusiastic but professional, not overly technical\n- Length: Around 250-300 words\n- Structure needed: Subject line, greeting, 3-4 paragraphs of content, and call-to-action\n\nPlease include a compelling subject line that will improve open rates, and make sure the call-to-action directs people to our app store listing.\n\nHere's an example of our brand voice from a previous campaign that worked well:\n\"At FitJourney, we believe fitness isn't about perfection—it's about progress. Every step counts on your personal journey to better health.\"\n\nPlease avoid generic phrases like \"revolutionizing fitness\" or \"game-changing technology\" as we want to focus on tangible benefits."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        780,
+        0
+      ],
+      "id": "ed5321fd-afb1-4b43-9efb-0c5d6d03eaf5",
+      "name": "Deep Reasoning Prompt Writing Agent"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Specify the latest Deep Reasoning Models",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MultiAI Brain": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Deep Reasoning Prompt Writing Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Specify the latest Deep Reasoning Models": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Deep Reasoning Prompt Writing Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "e25962b3-3ef0-4e7f-af77-bdef0762cecc",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4e192f249964673206e059fcdcd3b4ad4ad7b222e5dc8a5a87c6433db9685e53"
+  },
+  "id": "tqcDMICfLhkAFdE5",
+  "tags": []
+}

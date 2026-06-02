@@ -1,0 +1,37 @@
+# n8n workflow · Prompt Writing Agent - Normal Model Workflow.json
+internal name: Prompt Engineer Agent - Normal model
+node count: 6
+
+## Trigger nodes
+- n8n-nodes-base.executeWorkflowTrigger :: When Executed by Another Workflow
+
+## AI / model nodes
+- @n8n/n8n-nodes-langchain.lmChatOpenRouter :: Multi AI Brain :: model=={{ $json.text }}
+- @n8n/n8n-nodes-langchain.chainLlm :: Basic LLM Chain :: model=?
+    system-prompt: =Your Objective is to analyse the request from the user and identify the most suitable model based on the options below for the AI Agent to leverage. You are to output the best model for this use case with no additional information. E.g. Only output '{{ $json['OpenAI Model - Normal'] }}' if they want a fast/cost optimised response from OpenAI. Here is the request from the user: Current prompt to be improved - {{ $('When Executed by Another Workflow').item.json.Prompt }} Desired Model - {{ $('Whe
+- @n8n/n8n-nodes-langchain.lmChatOpenRouter :: OpenAI Brain :: model==google/gemini-flash-1.5
+- @n8n/n8n-nodes-langchain.agent :: Normal Prompt Writing Agent  :: model=?
+    system-prompt: =You are an expert prompt writing assistant based on the information provided by the user you are to output an excellent prompt that is suitable for the user to leverage. Your output is incredibly important to the user. Do not include * in your output. You need to structure the prompt in the following way: #Goal/objective ##Role ##Tone ##Formatting ##Instructions ##Context ##Examples (between 5 - 20 inputs and output examples) #Critical Information --- Example prompt: # Goal/Objective Craft an e
+
+## Tool nodes
+(none)
+
+## Integration / action nodes
+(none)
+
+## Other nodes
+- n8n-nodes-base.set :: Specify the latest Models
+
+## Data-flow edges (connections)
+- When Executed by Another Workflow -> ['Specify the latest Models']
+- Specify the latest Models -> ['Basic LLM Chain']
+- Multi AI Brain -> ['Normal Prompt Writing Agent ']
+- Basic LLM Chain -> ['Normal Prompt Writing Agent ']
+- OpenAI Brain -> ['Basic LLM Chain']
+
+## Credential references (NAMES ONLY)
+openRouterApi/Prompt Engineer Agent
+
+## Sticky-note documentation (verbatim)
+(none)
+
