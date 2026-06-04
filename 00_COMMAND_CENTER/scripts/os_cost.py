@@ -17,9 +17,18 @@ def get_rate():
 def main():
     c=sys.argv[1] if len(sys.argv)>1 else "report"
     if c=="rate":
-        if len(sys.argv)>2: open(RATE,"w").write(sys.argv[2]); print(f"rate set: ${sys.argv[2]}/credit")
-        else: r=get_rate(); print(f"rate: {'$'+str(r)+'/credit' if r else 'UNKNOWN (set with: os_cost.py rate <usd_per_credit>)'}")
-        return 0
+        sub=sys.argv[2] if len(sys.argv)>2 else "show"
+        if sub=="set":
+            val=None
+            if "--usd-per-credit" in sys.argv: val=sys.argv[sys.argv.index("--usd-per-credit")+1]
+            elif len(sys.argv)>3: val=sys.argv[3]
+            if not val: print("usage: os_cost.py rate set --usd-per-credit <X>"); return 1
+            open(RATE,"w").write(val); print(f"rate set: ${val}/credit"); return 0
+        if sub=="show" or sub=="":
+            r=get_rate(); print(f"rate: {'$'+str(r)+'/credit' if r else 'UNKNOWN (set with: os_cost.py rate set --usd-per-credit <X>)'}"); return 0
+        # backward-compat: bare number
+        try: float(sub); open(RATE,"w").write(sub); print(f"rate set: ${sub}/credit"); return 0
+        except: print("usage: os_cost.py rate set --usd-per-credit <X> | rate show"); return 1
     if c=="log":
         rid,proj,model,ce,ca=sys.argv[2:7]; ue=sys.argv[7] if len(sys.argv)>7 else ""; ua=sys.argv[8] if len(sys.argv)>8 else ""
         r=get_rate()
@@ -31,8 +40,12 @@ def main():
     if c=="project":
         proj=sys.argv[2]; pr=[r for r in rows() if r["project"]==proj]
         cred=sum(float(r["credits_actual"] or 0) for r in pr)
+        rate=get_rate()
         usd=[float(r["usd_actual"]) for r in pr if r["usd_actual"] not in ("","UNKNOWN")]
-        print(f"{proj}: {cred:.0f} credits actual | USD={'$'+format(sum(usd),'.2f') if usd else 'UNKNOWN'} (runs={len(pr)})"); return 0
+        if usd: total="$"+format(sum(usd),".2f")
+        elif rate: total="$"+format(cred*rate,".2f")+" (est from rate)"
+        else: total="UNKNOWN"
+        print(f"{proj}: {cred:.0f} credits actual | USD={total} (runs={len(pr)})"); return 0
     for r in rows()[-10:]: print(f"  {r['run_id']} {r['project']} {r['credits_actual']}cr usd={r['usd_actual']}")
     return 0
 if __name__=="__main__":

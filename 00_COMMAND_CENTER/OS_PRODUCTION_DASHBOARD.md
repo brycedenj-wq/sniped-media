@@ -1,6 +1,6 @@
 # OS PRODUCTION DASHBOARD (campaign house)
 
-Daily command center. Generated 2026-06-04 12:35.
+Daily command center. Generated 2026-06-04 12:48.
 
 | project | state | gens | approved | exports | est_credits | est_usd | actual_usd | last updated |
 |---|---|---|---|---|---|---|---|---|

@@ -131,6 +131,63 @@ def proof_update(s,asset,field,value):
 def proof_status(s):
     p=_pl(s); print(open(p).read() if os.path.exists(p) else "no proof loop"); return 0
 
+SAFE_KEEP_DIRS=["03_prompts","06_approved","09_exports","10_logs"]
+def clean(slug):
+    base=P(slug); removed=[]
+    for root,dirs,files in os.walk(base):
+        # never touch the protected dirs' real records
+        if any("/"+d in root or root.endswith(d) for d in SAFE_KEEP_DIRS):
+            # only prune .FAILED + empty non-gitkeep inside non-protected? keep protected fully
+            if any(root.endswith(d) for d in ["03_prompts","06_approved","09_exports","10_logs"]):
+                continue
+        for f in files:
+            fp=os.path.join(root,f)
+            if f==".gitkeep": continue
+            if f.endswith(".FAILED") or (os.path.getsize(fp)==0):
+                os.remove(fp); removed.append(os.path.relpath(fp,base))
+    # orphan rubric scaffolds whose asset already left quarantine
+    q=os.path.join(base,"05_vision_quarantine")
+    if os.path.isdir(q):
+        assets={f for f in os.listdir(q) if not f.endswith(".rubric.md") and f!=".gitkeep"}
+        for f in os.listdir(q):
+            if f.endswith(".rubric.md") and f[:-10] not in assets:
+                os.remove(os.path.join(q,f)); removed.append("05_vision_quarantine/"+f)
+    print(f"clean {slug}: removed {len(removed)} clutter item(s)"+ (": "+", ".join(removed[:8]) if removed else ""))
+    return 0
+def clean_all():
+    for p in (os.listdir(ROOT) if os.path.isdir(ROOT) else []):
+        if os.path.isdir(P(p)): clean(p)
+    return 0
+def registry():
+    import io,contextlib
+    reg=os.path.join(CC,"OS_PRODUCTION_REGISTRY.csv")
+    rows=[["project","status","credits","exports","proof","blockers","last_updated"]]
+    for p in sorted(os.listdir(ROOT) if os.path.isdir(ROOT) else []):
+        b=P(p)
+        if not os.path.isdir(b) or not os.path.exists(os.path.join(b,"PROJECT.md")): continue
+        pm=open(os.path.join(b,"PROJECT.md")).read()
+        buf=io.StringIO()
+        with contextlib.redirect_stdout(buf): blocked=audit(p)==1
+        nblock=sum(1 for ln in buf.getvalue().splitlines() if "BLOCKER" in ln)
+        gens=len(ls_dir(p,"04_generations")); appr=len(ls_dir(p,"06_approved")); exp=len([f for f in ls_dir(p,"09_exports") if f.endswith(".export")]); rej=len(ls_dir(p,"07_rejected"))
+        prompts=len(ls_dir(p,"03_prompts"))
+        if "CLOSED" in pm: status="closed"
+        elif blocked: status="blocked"
+        elif gens>appr+rej: status="awaiting_vision"
+        elif appr>exp: status="awaiting_export"
+        elif exp>0: status="ready"
+        elif prompts>0 and gens==0 and appr==0: status="in_generation"
+        elif prompts==0: status="draft"
+        else: status="active"
+        try: cred=int(sum(float(r[5]) for r in readlog(p,"GENERATION_LOG.csv") if r[5] and r[5] not in ("FAILED","0")))
+        except: cred=0
+        pl=os.path.join(b,"10_logs","PROOF_LOOP_DASHBOARD.md")
+        proof="activated" if (os.path.exists(pl) and "| yes |" in open(pl).read()) else "not-activated"
+        last=time.strftime("%Y-%m-%d %H:%M",time.localtime(os.path.getmtime(b)))
+        rows.append([p,status,str(cred),str(exp),proof,str(nblock),last])
+    with open(reg,"w",newline="") as f: csv.writer(f).writerows(rows)
+    print(f"registry: {len(rows)-1} projects -> OS_PRODUCTION_REGISTRY.csv")
+    return 0
 def status(s):
     print(s+": prompts="+str(len(ls_dir(s,"03_prompts")))+" gens="+str(len(ls_dir(s,"04_generations")))+
           " quarantine="+str(len(ls_dir(s,"05_vision_quarantine")))+" approved="+str(len(ls_dir(s,"06_approved")))+
@@ -196,7 +253,7 @@ def dashboard():
     cc={}
     for r in rows: cc[r[1]]=cc.get(r[1],0)+1
     out+="\n**Summary:** "+" · ".join(k+"="+str(v) for k,v in cc.items())+"\n"
-    open(os.path.join(CC,"OS_PRODUCTION_DASHBOARD.md"),"w").write(out); print("wrote OS_PRODUCTION_DASHBOARD.md ("+str(len(rows))+" projects)"); return 0
+    open(os.path.join(CC,"OS_PRODUCTION_DASHBOARD.md"),"w").write(out); registry(); print("wrote OS_PRODUCTION_DASHBOARD.md + registry ("+str(len(rows))+" projects)"); return 0
 def main():
     a=sys.argv; c=a[1] if len(a)>1 else "list"
     f={"new":lambda:new(a[2]),"log-prompt":lambda:log_prompt(a[2],a[3],a[4],a[5],a[6]," ".join(a[7:])),
@@ -209,7 +266,7 @@ def main():
        "log-skill":lambda:log_skill(a[2],a[3],a[4],a[5],a[6] if len(a)>6 else "candidate"),
        "vision-scaffold":lambda:vision_scaffold(a[2],a[3]),
        "proof":lambda:({"activate":lambda:proof_activate(a[3],a[4],a[5]),"update":lambda:proof_update(a[3],a[4],a[5],a[6]),"status":lambda:proof_status(a[3])}[a[2]]()),
-       "status":lambda:status(a[2]),"audit":lambda:audit(a[2]),"close":lambda:close(a[2]),"dashboard":dashboard}
+       "clean":lambda:(clean_all() if a[2]=="--all" else clean(a[2])),"registry":registry,"status":lambda:status(a[2]),"audit":lambda:audit(a[2]),"close":lambda:close(a[2]),"dashboard":dashboard}
     if c in f: return f[c]()
     if os.path.isdir(ROOT):
         for p in sorted(os.listdir(ROOT)):
