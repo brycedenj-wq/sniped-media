@@ -37,7 +37,7 @@ def log_prompt(s,pid,ver,stage,model,text):
 def log_generation(s,gid,pid,model,params,credits,asset,status):
     if pid not in [r[1] for r in readlog(s,"PROMPT_VERSIONS.csv")]:
         print("BLOCK: prompt_id '"+pid+"' has no PROMPT_VERSIONS record. log-prompt first."); return 1
-    open(os.path.join(P(s),"04_generations",asset),"a").close()
+    if status!="failed": open(os.path.join(P(s),"04_generations",asset),"a").close()
     append(s,"GENERATION_LOG.csv",[time.strftime("%Y-%m-%d %H:%M"),gid,pid,model,params,credits,asset,status]); print("generation "+gid+" logged"); return 0
 RUBRIC=["slop","hands","skin","clothing","text","identity","brand","likeness","beat_source"]
 def vision_review(s,asset):
@@ -91,6 +91,46 @@ def log_export(s,asset,fmt,notes):
     print("export logged for "+asset+" + proof-loop row (not activated)"); return 0
 def log_skill(s,obs,repeat,cand,status):
     append(s,"SKILL_EXTRACTION_LOG.csv",[time.strftime("%Y-%m-%d %H:%M"),obs,repeat,cand,status]); print("skill candidate logged"); return 0
+def vision_scaffold(s,asset):
+    src=os.path.join(P(s),"04_generations",asset)
+    if not os.path.exists(src): src=os.path.join(P(s),"05_vision_quarantine",asset)
+    if not os.path.exists(src): print("BLOCK: asset not found: "+asset); return 1
+    # prefilled rubric; person-items default NA (operator/model flips to PASS/FAIL after Reading)
+    items=[("slop","?"),("hands","NA"),("skin","NA"),("clothing","NA"),("text","?"),("identity","NA"),("brand","?"),("likeness","?"),("beat_source","?")]
+    rf=os.path.join(P(s),"05_vision_quarantine",asset+".rubric.md")
+    os.makedirs(os.path.dirname(rf),exist_ok=True)
+    with open(rf,"w") as f:
+        f.write("# Vision scaffold for "+asset+"\nMODEL: Read "+src+" and set each ? to PASS/FAIL. person-items are NA unless people appear.\n\n")
+        for k,v in items: f.write("- "+k+": "+v+"\n")
+        f.write("\nThen: os_production.py log-vision "+s+" "+asset+" <PASS|REJECT|NEEDS-HUMAN> \"slop=PASS text=PASS brand=PASS likeness=PASS beat_source=PASS hands=NA skin=NA clothing=NA identity=NA\" [--override \"reason\"]\n")
+    print("scaffold written: "+rf); print("ASSET to Read: "+src)
+    return 0
+
+def _pl(s): return os.path.join(P(s),"10_logs","PROOF_LOOP_DASHBOARD.md")
+def proof_activate(s,asset,channel):
+    p=_pl(s); lines=open(p).read().splitlines(); out=[]; hit=False
+    for ln in lines:
+        if ln.startswith("| "+asset+" "):
+            cols=[c.strip() for c in ln.strip("|").split("|")]
+            cols[1]=channel; cols[2]="yes"; cols[3]="0 (clock started "+time.strftime("%Y-%m-%d %H:%M")+")"; cols[4]="pending"; cols[6]="ACTIVATED "+time.strftime("%Y-%m-%d %H:%M")
+            ln="| "+" | ".join(cols)+" |"; hit=True
+        out.append(ln)
+    open(p,"w").write("\n".join(out)+"\n")
+    print("proof ACTIVATED for "+asset+" on "+channel if hit else "no proof-loop row for "+asset+" (export it first)"); return 0 if hit else 1
+def proof_update(s,asset,field,value):
+    p=_pl(s); idx={"24h":3,"7d":4,"verdict":5,"notes":6}.get(field)
+    if idx is None: print("field must be 24h|7d|verdict|notes"); return 1
+    lines=open(p).read().splitlines(); out=[]; hit=False
+    for ln in lines:
+        if ln.startswith("| "+asset+" "):
+            cols=[c.strip() for c in ln.strip("|").split("|")]
+            if cols[2]!="yes": print("BLOCK: cannot log signal for un-activated asset (no fake proof). proof activate first."); return 1
+            cols[idx]=value; ln="| "+" | ".join(cols)+" |"; hit=True
+        out.append(ln)
+    open(p,"w").write("\n".join(out)+"\n"); print("proof updated "+field+"="+value if hit else "no row"); return 0 if hit else 1
+def proof_status(s):
+    p=_pl(s); print(open(p).read() if os.path.exists(p) else "no proof loop"); return 0
+
 def status(s):
     print(s+": prompts="+str(len(ls_dir(s,"03_prompts")))+" gens="+str(len(ls_dir(s,"04_generations")))+
           " quarantine="+str(len(ls_dir(s,"05_vision_quarantine")))+" approved="+str(len(ls_dir(s,"06_approved")))+
@@ -114,6 +154,7 @@ def audit(s):
     if not os.path.exists(os.path.join(P(s),"10_logs","PROOF_LOOP_DASHBOARD.md")): blockers.append("missing PROOF_LOOP_DASHBOARD")
     approved_base={os.path.splitext(f)[0] for f in ls_dir(s,"06_approved")}
     for a in gen:
+        if a in ("_none","") : continue
         if a and a not in vis and os.path.splitext(a)[0] not in approved_base: warnings.append("generation "+a+" awaiting vision gate")
     for f in ls_dir(s,"06_approved"):
         if os.path.splitext(f)[0] not in cappass: warnings.append("approved "+f+" awaiting caption/export")
@@ -135,14 +176,22 @@ def dashboard():
         if not os.path.isdir(b) or not os.path.exists(os.path.join(b,"PROJECT.md")): continue
         closed="CLOSED" in open(os.path.join(b,"PROJECT.md")).read()
         gens=len(ls_dir(p,"04_generations")); appr=len(ls_dir(p,"06_approved")); exp=len([f for f in ls_dir(p,"09_exports") if f.endswith(".export")])
-        try: est_cred=sum(float(r[5]) for r in readlog(p,"GENERATION_LOG.csv") if r[5])
+        try: est_cred=sum(float(r[5]) for r in readlog(p,"GENERATION_LOG.csv") if r[5] and r[5] not in ("FAILED","0"))
         except: est_cred=0
+        import subprocess as _sp
+        cr=_sp.run(["python3",os.path.join(os.path.dirname(os.path.abspath(__file__)),"os_cost.py"),"project",p],capture_output=True,text=True).stdout
+        usd=_sp.run(["python3",os.path.join(os.path.dirname(os.path.abspath(__file__)),"os_cost.py"),"rate"],capture_output=True,text=True).stdout
+        rate=None
+        import re as _re
+        rm=_re.search(r"\$([\d.]+)/credit",usd); rate=float(rm.group(1)) if rm else None
+        est_usd=("$%.2f"%(est_cred*rate)) if rate else "UNKNOWN"
+        am=_re.search(r"USD=\$([\d.]+)",cr); act_usd="$"+am.group(1) if am else "UNKNOWN"
         buf=io.StringIO()
         with contextlib.redirect_stdout(buf): blocked=audit(p)==1
         state="closed" if closed else ("BLOCKED" if blocked else ("awaiting-export" if appr>exp else ("awaiting-vision" if gens>appr+len(ls_dir(p,"07_rejected")) else "active")))
         last=time.strftime("%Y-%m-%d %H:%M",time.localtime(os.path.getmtime(b)))
-        rows.append((p,state,gens,appr,exp,int(est_cred),last))
-    out="# OS PRODUCTION DASHBOARD (campaign house)\n\nDaily command center. Generated "+time.strftime("%Y-%m-%d %H:%M")+".\n\n| project | state | gens | approved | exports | est_credits | last updated |\n|---|---|---|---|---|---|---|\n"
+        rows.append((p,state,gens,appr,exp,int(est_cred),est_usd,act_usd,last))
+    out="# OS PRODUCTION DASHBOARD (campaign house)\n\nDaily command center. Generated "+time.strftime("%Y-%m-%d %H:%M")+".\n\n| project | state | gens | approved | exports | est_credits | est_usd | actual_usd | last updated |\n|---|---|---|---|---|---|---|---|---|\n"
     for r in rows: out+="| "+" | ".join(str(x) for x in r)+" |\n"
     cc={}
     for r in rows: cc[r[1]]=cc.get(r[1],0)+1
@@ -158,6 +207,8 @@ def main():
        "log-caption":lambda:log_caption(a[2],a[3]," ".join(a[4:])),
        "log-export":lambda:log_export(a[2],a[3],a[4]," ".join(a[5:])),
        "log-skill":lambda:log_skill(a[2],a[3],a[4],a[5],a[6] if len(a)>6 else "candidate"),
+       "vision-scaffold":lambda:vision_scaffold(a[2],a[3]),
+       "proof":lambda:({"activate":lambda:proof_activate(a[3],a[4],a[5]),"update":lambda:proof_update(a[3],a[4],a[5],a[6]),"status":lambda:proof_status(a[3])}[a[2]]()),
        "status":lambda:status(a[2]),"audit":lambda:audit(a[2]),"close":lambda:close(a[2]),"dashboard":dashboard}
     if c in f: return f[c]()
     if os.path.isdir(ROOT):
