@@ -1,0 +1,52 @@
+{
+  "slug": "char_axis_01",
+  "working_name": "AXIS",
+  "name_status": "CODENAME , public name pending name-availability gate (do not treat as a brand decision)",
+  "original": true,
+  "provenance": "fully original synthetic character; not derived from, modeled on, or resembling any real or public person; archetype-built from invariants, not from a reference face",
+  "face": "Androgynous, ageless late-20s read. Angular, symmetrical bone structure with high flat cheekbones and a defined but not sharp jaw. Deep-set, calm dark-brown eyes under straight medium-weight brows. Straight nose with a slight base width. Full but composed lips, neutral resting mouth. Clear matte skin with visible natural texture (pores, no beauty-filter smoothing). Signature mark: one small mole approximately 1cm below the inner corner of the LEFT eye. Even, ambiguous mid-tone complexion designed to read as original mixed heritage.",
+  "body": "5 feet 10, lean-athletic, long neck, square relaxed shoulders, narrow hips, long hands with long fingers. Upright, still carriage.",
+  "wardrobe": "Signature: a structured charcoal wool overcoat over a fine bone-white cotton crew. Raw-hem black tailored trousers. Matte black leather derbies or boots. Materials only: wool, fine cotton, matte leather. No logos, no hardware shine, no pattern.",
+  "palette": ["#2B2B2E charcoal", "#E8E4DC bone", "#4F5258 graphite", "#4A1C24 oxblood (accent, sparing)"],
+  "lighting": "Single soft key at roughly 45 degrees, slightly above eye level. Deep, clean falloff. Low fill, about a 1:8 key-to-fill ratio. Optional faint rim to separate from dark ground. Chiaroscuro editorial; shadows are allowed to go genuinely dark. No colored light, no gels.",
+  "camera_language": "85mm for portraits (chest-up, shallow DoF f1.8 to f2.8), 50mm for environmental full-length. Eye-level or slightly below for authority. Centered or architectural rule-of-thirds. Generous negative space. Static, composed framing.",
+  "expressions": [
+    "composed-neutral (the default register)",
+    "slow-burn intensity, eyes engaged, mouth still",
+    "near-imperceptible closed-mouth smile",
+    "downward-inward, contemplative"
+  ],
+  "poses": [
+    "still contrapposto, weight on one leg",
+    "seated, forward lean, forearms on knees",
+    "walking mid-stride, environmental",
+    "hands in overcoat pockets, shoulders square"
+  ],
+  "negative_prompts": [
+    "plastic or waxy skin", "over-smoothing / beauty filter", "extra or fused fingers",
+    "teal-and-orange grade", "any logo or text", "busy or cluttered background",
+    "symmetrical AI face-melt", "uncanny dead eyes", "broad toothy laugh (out of register)",
+    "resemblance to any real or famous person", "saturated primaries", "lens flare"
+  ],
+  "identity_invariants": [
+    {"key": "eye_color", "value": "deep-brown", "hard": true},
+    {"key": "mole_below_left_eye", "value": "present", "hard": true},
+    {"key": "face_geometry", "value": "angular-symmetrical-high-cheekbones", "hard": true},
+    {"key": "build", "value": "lean-athletic-5ft10", "hard": true},
+    {"key": "complexion", "value": "even-ambiguous-mid-tone", "hard": true},
+    {"key": "brow_weight", "value": "straight-medium", "hard": false},
+    {"key": "hair_style", "value": "varies-within-natural", "hard": false}
+  ],
+  "variation_rules": {
+    "may_vary": [
+      "hair styling (length/texture within natural range)",
+      "wardrobe within the locked palette and materials",
+      "environment (any environment from the MERIDIAN-HOUSE rotation)",
+      "expression within the four-register set",
+      "pose within the defined pose set"
+    ],
+    "must_not_vary": [
+      "eye_color", "mole_below_left_eye", "face_geometry", "build", "complexion"
+    ]
+  }
+}

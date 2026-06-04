@@ -1,0 +1,34 @@
+{
+  "slug": "char_axis_01",
+  "threshold": 0.9,
+  "frames": [
+    {
+      "frame_id": "hero_v1",
+      "score": 1.0,
+      "quarantined": false,
+      "hard_failures": []
+    },
+    {
+      "frame_id": "drift_v2",
+      "score": 0.571,
+      "quarantined": true,
+      "hard_failures": [
+        {
+          "key": "eye_color",
+          "expected": "deep-brown",
+          "got": "green"
+        },
+        {
+          "key": "mole_below_left_eye",
+          "expected": "present",
+          "got": "absent"
+        },
+        {
+          "key": "face_geometry",
+          "expected": "angular-symmetrical-high-cheekbones",
+          "got": "round-soft"
+        }
+      ]
+    }
+  ]
+}

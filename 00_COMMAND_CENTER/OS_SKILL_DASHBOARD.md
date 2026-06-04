@@ -2,11 +2,11 @@
 
 > 'Active' means the full activation contract is met. Anything less is named honestly.
 
-- **ACTIVE: 1** , installed + discoverable + trigger + inputs/outputs + tests + invokable
+- **ACTIVE: 3** , installed + discoverable + trigger + inputs/outputs + tests + invokable
 - **INSTALLED_INCOMPLETE: 68** , installed + invokable but missing >=1 contract criterion
 - **DRAFTED: 0** , valid but not installed
 - **MALFORMED: 0** , fails structural parse
-- **TOTAL tracked: 69**
+- **TOTAL tracked: 71**
 
 Source of truth: `OS_SKILL_REGISTRY.csv`. Upgrade path: add `## Inputs`, `## Outputs`, and a real `## Test` to move INSTALLED_INCOMPLETE -> ACTIVE (each upgrade ships its own test).
 
@@ -81,4 +81,6 @@ Source of truth: `OS_SKILL_REGISTRY.csv`. Upgrade path: add `## Inputs`, `## Out
 - `staging-plan` , missing: trigger|inputs_outputs|tests
 
 ## ACTIVE
+- `os-world-bible`
 - `skill-template`
+- `sniped-crs-builder`
