@@ -331,3 +331,7 @@ Below is the consolidated, deduplicated, prioritized skill backlog for the SNIPE
 - **now**: Build this sprint; active blocking gap or currently invokable functionality needed
 - **soon**: Build next 30-90 days; high leverage, currently routed manually
 - **later**: Build post-proof or post-Phase B trigger; valuable but not blocking current motion
+## SKILL CANDIDATES from DRY-RUN-001 (2026-06-04)
+- `sniped-crs-builder` (NEW, build-soon) , the Character Reference Sheet sub-pipeline (14-ref front/side/3-4/back via Nano Banana Pro + CRS-mandate gate). Stage 4 of the campaign house is a sub-pipeline, not one stage.
+- `os-campaign-house` (runner, promote after one full live run) , orchestrates the 14-stage pipeline with per-stage gates.
+- ENFORCEMENT BACKLOG (DRY-RUN-001 BUG-2): convert deterministic gates to scripts/hooks , `os_name_gate.py` (.com + trademark check via web), `os_cost_guard.py` (pre-run budget/session), extend `os_checkpoint.py` to a completion-verification hook. The loop must become survival-by-enforcement.

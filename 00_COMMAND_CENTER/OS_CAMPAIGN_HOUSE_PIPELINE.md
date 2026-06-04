@@ -8,16 +8,18 @@
 |---|---|---|---|---|
 | 1 | **Idea intake** | MANUAL (taste) | a one-line brief: premise + audience + drop type | output-usefulness + employer-conflict + legal (likeness/IP) |
 | 2 | **World premise** | MANUAL (taste) | written world bible para (Claude assists) | identity-collapse (owned, not celebrity) + name-availability (brand/world name) |
-| 3 | **Style-ref system** | semi-auto | Midjourney SREF codes + v3 LUXURY lock; lock 3-5 srefs | visual-doctrine (Nine Masters lane, no teal/orange) |
-| 4 | **Character-ref (CRS)** | MANUAL approve / auto build | Nano Banana Pro , 14-ref sheet (front/side/3-4/back) | CRS mandate (no composite without validated CRS) |
+| 3 | **Style-ref system** | MANUAL-EXTERNAL (no in-OS route; DRY-RUN-001 BUG-1) | Midjourney SREF codes pulled by hand from Midjourney/Twitter + v3 LUXURY lock; lock 3-5 srefs | visual-doctrine (Nine Masters lane, no teal/orange) |
+| 4 | **Character-ref (CRS)** | SUB-PIPELINE (credit spend; extract to `sniped-crs-builder`, DRY-RUN-001 BUG-4) | Nano Banana Pro , 14-ref sheet (front/side/3-4/back) | CRS mandate (no composite without validated CRS) |
 | 5 | **Product/ref system** | semi-auto | reference images (product/wardrobe/props), image-order convention (1=base, 2=identity, 3+=refs) | source-quality (clean refs) |
 | 6 | **Prompt generation** | AUTO (scaffold) | Six-Part Constraint Prompt scaffold (Subject+Action+Environment+Style+Lighting+Camera) | prompt-discipline gate |
 | 7 | **Image generation** | AUTO + MANUAL select | Higgsfield/Nano Banana (4:5 IG / 9:16 vertical; 2K test -> 4K) | reject gates (plastic skin/identity drift/AI tells) + beat-source |
 | 8 | **Motion generation** | AUTO + MANUAL select | Higgsfield Seedance/Kling; dialogue-free | composite/physics QA (grounding, edges) |
 | 9 | **Edit / finish** | MANUAL (taste) | DaVinci Resolve (grain, halation, remove AI signature) + Lightroom for any real footage | Three-Tier Polish + beat-source gate |
 | 10 | **Caption** | semi-auto | on-voice, no em-dashes, no AI-tell transitions | writing/voice gate |
-| 11 | **Post** | AUTO (scheduled) | pseudonymous IG/TikTok/YouTube; brand handle only | employer-conflict + identity (no real name in metadata) |
-| 12 | **Proof tracking** | AUTO | log saves/shares/DMs/print-intent/conversion to the proof-loop dashboard | source-freshness (timestamped) |
+| 11 | **Post** | GATED-MANUAL (no posting connector yet; DRY-RUN-001 BUG-3) | pseudonymous IG/TikTok/YouTube; brand handle only; requires human go (irreversible/external) | employer-conflict + identity (no real name in metadata) |
+| 12 | **Proof tracking** | GATED (needs analytics connector; DRY-RUN-001 BUG-5) | log saves/shares/DMs/print-intent/conversion to the proof-loop dashboard | source-freshness (timestamped) |
+
+> **DRY-RUN-001 systemic finding (BUG-2):** the router + gates are doctrine Claude chooses to follow, NOT harness-enforced code. The deterministic checks (name-availability, cost/budget, coverage/completion, manifest reconcile) must become scripts/hooks like `scripts/os_checkpoint.py` so the loop is survival-by-enforcement, not survival-by-discipline. See `OS_DRYRUN_001.md`.
 | 13 | **Kill / keep / scale** | MANUAL (judgment) | predefined signals vs the metric | proof-before-crowning (no scaling on a vibe) |
 | 14 | **Reusable-skill extraction** | AUTO (mandatory) | capability harvest -> new skill if the motion repeats | capability-growth mandate |
 
