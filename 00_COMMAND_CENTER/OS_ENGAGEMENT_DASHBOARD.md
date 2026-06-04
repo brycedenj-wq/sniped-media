@@ -25,7 +25,7 @@ By extension: md 1,489 · txt 1,031 · docx 552 · pdf 310 · epub 278 · jsonl 
 | Doctrines created (this protocol) | 1 (`AI_NATIVE_BRAND_DOCTRINE`) |
 | Prior distillations (summary, re-verify against whole-read) | ~25 intel memories covering canon books |
 | Skills extracted (recent) | `brand-validation-machine`, `os-engagement` |
-| **Percent of OS engaged (VERIFIED only)** | **~96.2%** (1210 / 1,258 verified) |
+| **Percent of OS engaged (VERIFIED only)** | **~96.0%** (1210 / 1,260 verified) |
 | **Percent engaged (text-word burden)** | **~9%** of the 4.46M text words equivalent, via the 400k-word read |
 
 This is the real starting line. It climbs as batches run.
@@ -94,7 +94,7 @@ This is the real starting line. It climbs as batches run.
 | **needs_visual_review** | 5 | images/tables/diagrams carry the meaning, visual review pending |
 | **needs_manual_review** | 0 | ambiguous, manual check pending |
 | **conversion_failed** | 0 | conversion produced nothing usable |
-| **not_read** | 0 | not yet attempted |
+| **not_read** | 2 | not yet attempted |
 
 **Estimated missing-content risk:** 186 files have unproven tails. **Next audit queue:** re-read these token-aware (<=12k tok/segment), then re-grade.
 **Coverage rule:** a source is engaged only when beginning, middle, AND end are proven read, every segment under the read cap, and confidence logged. No "first part looked fine = whole file fine."
