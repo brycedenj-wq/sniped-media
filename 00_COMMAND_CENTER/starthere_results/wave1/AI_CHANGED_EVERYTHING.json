@@ -1,0 +1,55 @@
+{
+  "file_class": "transcript",
+  "signal": "high",
+  "coverage_confirmed": true,
+  "segments_read": 2,
+  "cert_status": "certified",
+  "doctrine": "Transcript of AlphaGo documentary (DeepMind/Google production). Core substance: (1) Game as AI training platform: Go's 10^170 possible board states makes brute-force computation impossible; intuition-mimicking neural networks required. (2) AlphaGo architecture: policy network (imitates human moves), value network (evaluates board positions), tree search (evaluates variations). (3) Paradigm shift in creative problem-solving: Move 37 (5th-line shoulder hit, 1-in-10,000 human probability) and Move 78 (wedge sacrifice) demonstrated AI can generate novel tactics outside training data. (4) Human-AI collaboration insight: AlphaGo's 'slack moves' teach humans that winning by 1 point equals winning by 100 points; margins don't determine victory probability. (5) AlphaGo's vulnerability: gets 'delusional' in unfamiliar positions, can search too deeply and lose coherence; Lee Sedol exploited this in Game 4. (6) Emotional/cultural weight: Go as mirror to player's mind; loss reframed from humiliation to accelerated mastery. (7) Historical parallel: Deep Blue vs Kasparov (chess, 1997) established that human intuition could be replicated; AlphaGo (2016, Go) proved it could be exceeded AND teach humans new game theory.",
+  "skills": [],
+  "gates": [],
+  "workflows": [
+    "DeepMind 2-year AlphaGo development cycle before Lee Sedol match",
+    "Fan Hui (European champion) test-matches, then recruited as advisor post-loss",
+    "5-game match structure with media/commentary infrastructure in Seoul",
+    "Post-game analysis loops: identifying weaknesses, version iteration (v18), reinforcement learning via self-play"
+  ],
+  "prompts": [
+    "How can we train a neural network to play Go without telling it the rules?",
+    "What does it mean when a machine finds a move humans would never consider?",
+    "Can AlphaGo's creativity teach us something about human intuition?"
+  ],
+  "tools": [
+    "Deep neural networks (policy + value components)",
+    "Monte Carlo tree search",
+    "Self-play reinforcement learning (millions of iterations)",
+    "Real-time evaluation metrics (win probability, search depth)"
+  ],
+  "operating_rules": [
+    "Train on 100,000 human games first (imitation), then iterate via self-play (no human input needed after)",
+    "AlphaGo maximizes win probability, not margin of victory (teaches 'slack moves')",
+    "Search depth 50-60 moves ahead typical; deeper searches can trigger delusions/errors",
+    "Policy network + value net + tree search = better intuition simulation than pure calculation",
+    "Weakness in novel/unfamiliar positions: mistakes when evaluating board states it hasn't seen in training"
+  ],
+  "content_ideas": [
+    "Move 37 and Move 78 as examples of creative outputs beyond training data",
+    "Lee Sedol's psychological journey: humiliation > acceptance > mastery",
+    "Go's cultural weight in Korea as national identity vs. AI milestone",
+    "The 'delusion' phenomenon: when AlphaGo's search becomes incoherent under complexity",
+    "Slack moves: new economic theory of game play (minimum margin = maximum efficiency)"
+  ],
+  "contradictions": [
+    "AlphaGo billed as 'learning itself' yet heavily trained on human games first; not purely self-taught",
+    "Move 37 described as 'creative breakthrough' yet commentators later note AlphaGo knew it was a 1-in-10,000 move (suggesting calculation, not creativity in human sense)",
+    "Claims AlphaGo couldn't be beaten, but Game 4 Lee Sedol win proves it has exploitable weaknesses (unclear if these are permanent or version-dependent)",
+    "Anthropomorphization risk: commentators and audience treating AlphaGo as 'he/she' despite being deterministic code; emotional narratives overlay on mechanical process"
+  ],
+  "weird_gold": [
+    "Fan Hui's postmatch breakdown and reentry: 'I am not happy to lose the game, but I will be happy for play in the history' sets template for redemptive framing",
+    "Lee Sedol's Game 4 win felt by crowd as 'we can still hold our own' / national survival moment despite being one game out of five",
+    "Kasparov Deep Blue parallel (lines 430-446): chess had 'multiple approaches to solving intellectual problems'; Go was supposed harder, yet fell in same timeframe (industry predictions: decades, actual: ~12 years)",
+    "Frank's 'slack move' insight reframes all of Go history: 'lessons will influence how Go is played for the next thousand years' based on single machine preference pattern",
+    "Aja Huang (AlphaGo's move executor) simultaneously proud and anxious; his physical body mediates human-machine interface; crowd watches his expressions for signs",
+    "Move 37 aftermath: professional Go community immediately recognized impossibility; players began studying AlphaGo's 'mistakes' as advanced technique"
+  ]
+}

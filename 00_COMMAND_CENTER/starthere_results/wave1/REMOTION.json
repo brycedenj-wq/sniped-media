@@ -1,0 +1,65 @@
+{
+  "file_class": "low_signal_source",
+  "signal": "low",
+  "coverage_confirmed": true,
+  "segments_read": 1,
+  "doctrine": "Remotion is a React-based framework for programmatic video creation. Integrates with Claude Code as an official skill. Core workflow: prompt → code → rendered video. Installation via `npx create-video@latest` and Claude Code skill integration. Best practices for AI video output: (1) Clear output specification with scene breakdown, (2) Provide reference material (creative brief, assets, images, links), (3) Chunk work incrementally (section-by-section iteration), (4) Refine via targeted prompts (transitions, colors, animations). MCP install via @remotion/mcp@latest. Use plan/execute mode for better context understanding. Strengths: speed (5-10 min prototype), reusability, programmatic power, asset integration (GitHub images, custom colors, animations). Limitations: visual reasoning quirks, requires iteration/tweaks for polish, best for structured content (product demos, explainers, social shorts, real estate listings, fitness tracking, team performance data). Examples: property listing videos, sports team overviews, travel animations, fitness journey tracking, idea validation videos with CTAs. Post-iteration workflow: screenshot specific slides, paste into prompt, request targeted refinements (typography, color scheme, transitions, glow effects).",
+  "cert_status": "certified",
+  "skills": [
+    "remotion-dev/skills",
+    "Claude Code skill integration"
+  ],
+  "gates": [],
+  "workflows": [
+    "Prompt to code to rendered video",
+    "Plan/execute mode for video generation",
+    "Iterative refinement via targeted prompts",
+    "Asset integration from GitHub or local sources",
+    "Section-by-section development approach"
+  ],
+  "prompts": [
+    "Create an overview explainer video with icons and animations for [project/repo]",
+    "Improve transitions to match industry best practice",
+    "Change color scheme from [current] to [target] (e.g., purple/blue to neutral palette)",
+    "Pull in images from [source] and utilize them in the video",
+    "Make this slide look [describe target aesthetic]"
+  ],
+  "tools": [
+    "npx create-video@latest",
+    "npx skills add remotion-dev/skills",
+    "npx @remotion/mcp@latest",
+    "npm run dev (Remotion dev server)",
+    "Claude Code boot for project execution",
+    "MCP server: remotion-documentation"
+  ],
+  "operating_rules": [
+    "Use Remotion like creative directors, not autopilot",
+    "Provide clear output specification before generation",
+    "Include reference material (creative brief, assets, links)",
+    "Chunk work incrementally, section-by-section",
+    "Use plan mode first to ensure Claude understands context and skills",
+    "Iterate with targeted, visual feedback (screenshot + specific refinement requests)",
+    "Set up local dev server (`npm run dev`) to preview changes in browser before committing",
+    "Expect and plan for 1-2 rounds of refinement for polish",
+    "Use Tailwind CSS option for styling consistency"
+  ],
+  "content_ideas": [
+    "Product demo videos for SaaS (30-60 sec explainers)",
+    "GitHub repository overview animations",
+    "Real estate property listing videos with feature highlights and CTAs",
+    "Fitness journey tracking animations with audio overlay",
+    "Team/league performance dashboards with animated charts and maps",
+    "Business idea validation videos with branded CTAs and color schemes",
+    "Travel animation videos (e.g., route maps with icons and transitions)",
+    "Social media shorts (LinkedIn, Instagram automation for 24/7 uploads)",
+    "Educational explainers with icon animations and call-to-action",
+    "Before/after case study videos with data visualization"
+  ],
+  "contradictions": [],
+  "weird_gold": [
+    "The transcript is from a YouTube video tutorial, not a technical doc; valuable for workflow but framed as entertainment/education",
+    "Color scheme advice buried in production context: 'I don't really like' vibe-code purple/blue defaults, suggesting branding discipline is critical post-generation",
+    "MCP install path for Remotion documentation is provided but no mention of native Remotion docs link in the install block",
+    "Real estate and sports use cases show business verticalization opportunity (not typical of developer-first Remotion positioning)"
+  ]
+}

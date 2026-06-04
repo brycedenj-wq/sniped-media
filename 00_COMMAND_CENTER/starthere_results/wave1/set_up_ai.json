@@ -1,0 +1,53 @@
+{
+  "file_class": "raw_dump",
+  "signal": "low",
+  "coverage_confirmed": true,
+  "segments_read": 5,
+  "doctrine": "Corrupted OCR transcription covering 5 AI automation platforms (N8N, Make.com, Zapier, Apify, ChatGPT) with severe garbling. Usable kernels: N8N free tier starts 20-25 GBP/month (2,500 executions), Pro tier 50-60 GBP/month (10k executions), 500+ integrations, cloud and self-hosted options, Docker-based local deployment. Make.com pricing credit-based ($1-89/month entry), 2,500+ connectors, visual workflow builder. Zapier legacy platform, 7,000+ app integrations, highest-cost option. Apify web scraping/actor platform, free trial plus credit-based ($39+ budget model), 6,000+ actors for data extraction. ChatGPT models (4.1/o3/o1-mini/o1), token-based pricing ($0.10 input/$0.40 output for 4.1, scaling per model), playground access, fine-tuning available, enterprise features. N8N local setup: Docker required, includes Postgres/Qdrant/Ollama for local LLM inference (free models: DeepSeek, Llama, Gemma). Core comparison: cost model shifts cloud-to-credit, execution limits shape scaling. OCR corruption makes operator-level guidance unreliable.",
+  "cert_status": "certified",
+  "skills": [],
+  "gates": [],
+  "workflows": [
+    "N8N cloud workflow setup with cloud vs self-hosted toggle",
+    "Make.com credit-based credit-per-step automation",
+    "Zapier legacy workflow conversion to N8N/Make",
+    "Apify actor deployment via N8N integration",
+    "ChatGPT playground API integration via assistants framework",
+    "Local N8N + Ollama setup via Docker compose"
+  ],
+  "prompts": [],
+  "tools": [
+    "N8N (open-source workflow automation, 500+ integrations)",
+    "Make.com (visual automation, 2,500+ connectors, credit-based)",
+    "Zapier (legacy, 7,000+ integrations, highest cost)",
+    "Apify (web scraping/actor marketplace, 6,000+ actors)",
+    "ChatGPT API/playground (models: 4.1, o3, o1-mini, token-based)",
+    "Docker/Docker Desktop (containerization for local N8N)",
+    "Ollama (local LLM runtime: DeepSeek, Llama, Gemma)"
+  ],
+  "operating_rules": [
+    "N8N pricing tiers: free trial → 20-25 GBP/month (2,500 executions) → 50-60 GBP/month Pro (10k+ executions)",
+    "Execution = 1 complete workflow run, not per-step",
+    "Make.com credits consumed per action; cost varies by action complexity",
+    "Apify: $39+ budget model, actors have different per-execution costs",
+    "ChatGPT pricing: 100 tokens ~75 words; input/output billed separately",
+    "Local N8N deployment recommended to start for testing, migrate to cloud post-validation",
+    "Community loads must be installed before using third-party integrations",
+    "Fine-tuning available for all ChatGPT models at enterprise tier"
+  ],
+  "content_ideas": [],
+  "contradictions": [
+    "Repeated sections with slight variations suggest corrupted concatenation or loop-back in transcription",
+    "N8N pricing shown in GBP and no consistent USD conversion",
+    "Make.com pricing update claimed '27 August' but document lacks date context",
+    "Zapier marked as 'legacy' yet still actively recommended; no deprecation date given",
+    "Apify actors listed as both 'free' and 'credit-based'; no clear tier separation"
+  ],
+  "weird_gold": [
+    "Docker container architecture detail: Postgres + Qdrant + Ollama + N8N bundled stack for local AI agent runtime",
+    "Ollama model selection: DeepSeek, Llama, Gemma as free local alternatives to API calls; storage varies by model size",
+    "ChatGPT temperature tuning: 0 (deterministic) to 2 (high variation); top_p for token probability weighting",
+    "Apify actor market signals: 16,000 monthly active users on Apollo scraper, community-maintained vs Apify-owned distinction",
+    "N8N node deactivation (skip step without deletion) for debugging multi-step workflows"
+  ]
+}

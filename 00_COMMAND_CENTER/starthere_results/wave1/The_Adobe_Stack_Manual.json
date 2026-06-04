@@ -1,0 +1,80 @@
+{
+  "file_class": "high_signal_source",
+  "signal": "high",
+  "coverage_confirmed": true,
+  "segments_read": 1,
+  "cert_status": "certified",
+  "doctrine": "Operating manual for Adobe creative production stack (Firefly, Frame.io, Express, video/audio generation). Core doctrine: right tool at each stage of workflow beats single-tool attempts. Firefly Image Model 4 default, Model 4 Ultra for photoreal portraits/complex humans. Prompt formula: subject + action + angle + lighting + background + color + style + image type. Firefly Video: Image to Video (best quality with reference), Text to Video (B-roll), Text to Avatar (talking heads). Minimum 8 words for video, 3-word minimum for image but more = precision. Frame.io benchmark: 2-3x faster than unmanaged workflows (Slack/email/folders). Key move: Collections + metadata filters instead of flat folders. Express: Brand Kits lock logos/colors/layouts; non-creatives can edit copy/swap images only. Firefly Services APIs handle batch personalization (Generative Match, Generative Expand, background removal). Custom Models for signature looks; Style Kits for lighter preset sharing. Content Credentials (C2PA) automatic on Firefly output = tamper-evident metadata for commercial safety. IP indemnification available on select Enterprise workflows only (not assumed). Camera to Cloud enables same-day event delivery (proxy to Frame.io during shoot). Workflow chains: (1) hero asset loop = Firefly > Photoshop > Express > Frame.io > approve > deliver; (2) video = frames > Firefly Video > assemble > generate soundtrack/SFX > upload > approve > export; (3) personalization at scale = hero > Firefly Services APIs > Custom Model/Style Kits > Express batch > Frame.io > deliver; (4) live recap = C2C cameras > Editor real-time pull > Firefly for missing B-roll > Frame.io review > same-day export. What to avoid: cartoon + photoreal combo; vague prompts; no Style References when brand look exists; shared cloud folders for review; hand-generation of 100s when APIs exist; assuming all Firefly is IP-indemnified; setting up C2C on event day (test week before).",
+  "skills": [],
+  "gates": [
+    "Verify Brand Kit is locked before non-creative team usage",
+    "Confirm IP indemnification applies to selected workflow on Enterprise plan",
+    "Test Camera to Cloud 1 week before event, not 30 minutes before"
+  ],
+  "workflows": [
+    "Campaign hero asset: Firefly Model 4 Ultra > generate 5-10 > refine in PS > Express Brand Kit resize > Frame.io metadata tag > stakeholder comment > revise > move to Final > branded Share deliver",
+    "Branded video campaign: Firefly frames (first/last) > Firefly Video Image to Video > B-roll via Text to Video > optional frame chaining for length > Firefly Video Editor assemble > generate soundtrack > add SFX + speech > Frame.io review > final export",
+    "Personalization at scale: Hero asset > Firefly Services APIs (Generative Expand/Match) > Custom Model or Style Kits > Express batch templates > Frame.io batch metadata > approval by Collection > deliver via Share or AEM",
+    "Same-day event recap: Camera to Cloud setup (test pre-event) > real-time proxy to Frame.io > editor pulls clips > Firefly Video Text to Video for missing B-roll > layered/transparent elements in AE > Premiere assemble > Frame.io review > same-day deliver"
+  ],
+  "prompts": [
+    "Image formula: [Subject] [Action] [Angle] [Lighting] [Background] [Color palette] [Style] [Image type] + camera settings if photoreal",
+    "Video formula: [Visual style] [Subject] [Action] [Location] [Lighting] [Color grade] [Shot Size] [Camera Angle] [Camera Motion] [Aesthetic] (min 8 words)",
+    "Sound effect: [descriptive adjective] [sound source], [additional descriptor] e.g. 'heavy rain on metal roof'",
+    "Speech: Apply emotion to full sentences not words; spell out numbers/currencies; uppercase=letters spoken; match prompt language to voice language; no brackets"
+  ],
+  "tools": [
+    "Firefly Image Model 4 (illustrations, simple objects, landscapes, abstract)",
+    "Firefly Image Model 4 Ultra (detailed human portraits, groups, photoreal complex)",
+    "Firefly Video Image to Video (best quality with reference image)",
+    "Firefly Video Text to Video (B-roll, no reference)",
+    "Firefly Video Text to Avatar (talking-head scripts)",
+    "Firefly Video Editor (browser timeline assembly)",
+    "Firefly Generate Sound Effects (text-prompted SFX, not music/melody)",
+    "Firefly Generate Soundtrack (auto-generated music from video analysis)",
+    "Firefly Generate Speech (text to voiceover with emotion)",
+    "Firefly Services APIs (Generative Match, Generative Fill, Generative Expand for batch)",
+    "Custom Models (trained on brand style/characters/products for unlimited variations)",
+    "Style Kits (lightweight presets/prompts shared across team)",
+    "Frame.io v4 (metadata, Collections, frame-precise video comments, Camera to Cloud, branded Shares)",
+    "Adobe Express (Brand Kits, templates, Quick Actions, Firefly Generative Fill/Text Effects, Adobe Stock 195M+)",
+    "Content Credentials C2PA (tamper-evident metadata automatic on Firefly output)"
+  ],
+  "operating_rules": [
+    "Default to Firefly Model 4; only use Ultra for photoreal precision or human detail",
+    "Match Effect choice to prompt text (e.g. 'Simple Line Doodle' in both Effect and prompt)",
+    "Use Style Reference or Composition Reference when brand look/layout exists",
+    "3-5 iterations normal; if same error repeats, prompt fights controls settings",
+    "Video minimum 8 words; more detail = more precision",
+    "Image minimum 3 words but output quality improves significantly beyond",
+    "Generate at 1080p from start if final needs hi-res; don't upscale",
+    "Frame.io Collections + metadata instead of flat folders (3.6x faster retrieval)",
+    "Brand Kits lock logos/colors/safe zones; unlock copy/product/date/location",
+    "Frame-chaining for longer videos: generate, take last frame, use as next start frame",
+    "Vague prompts like 'beautiful sunset' produce slop; use formula with details",
+    "Firefly is one-shot per prompt; no follow-up messages",
+    "Align Soundtrack vibe first, style second (calm + heavy metal = unpredictable)",
+    "Spell out numbers/currencies in speech prompts (€20 = 'twenty euros')",
+    "Uppercase letters pronounced as letters (POC = Pee-Oh-See); lowercase as word",
+    "Provide first frame AND last frame reference for video coherence jump",
+    "Camera to Cloud only works on compatible WiFi cameras/iPhone apps; test pre-event",
+    "IP indemnification on Enterprise plans only, select workflows, read Legal FAQs",
+    "Content Credentials tamper-evident but don't assume all Firefly output is IP-covered"
+  ],
+  "content_ideas": [
+    "Frame.io Collections reduce asset retrieval time 3.6x vs spreadsheet+folder workflows",
+    "Camera to Cloud enables competitive advantage: same-day event delivery vs traditional review cycles",
+    "Custom Models beat Style Kits when campaign requires signature look at volume (unlimited variations without prompt gymnastics)",
+    "Express Brand Kits solve 'creative team becoming meme service for org' problem via lockable templates",
+    "Firefly Services APIs replace hand-generation workflow: 1 hero asset into 1000 variants automatically",
+    "Content Credentials C2PA differentiates in regulated industries (media, publishing, finance) where AI provenance contractually required"
+  ],
+  "contradictions": [],
+  "weird_gold": [
+    "Foley trick: record yourself clapping/tapping in rhythm with on-screen action, then generate matching SFX and align to recording for natural sync",
+    "Keyframe Cropping in video controls manual crop area over time when auto-center crop cuts off important elements",
+    "Firefly Sound Effects can't do music/melody/singing but handles human sounds (coughs, sneezes) + ambient chatter + percussive hits",
+    "Seamless loops: upload first AND last frame of loop to same prompt, Firefly bridges the gap with generated in-between frames",
+    "Seeds: same prompt + same settings + same seed = similar output; change seed for variation with same instructions"
+  ]
+}

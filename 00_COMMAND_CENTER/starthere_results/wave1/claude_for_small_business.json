@@ -1,0 +1,96 @@
+{
+  "file_class": "scrape",
+  "signal": "medium",
+  "coverage_confirmed": true,
+  "segments_read": 10,
+  "cert_status": "certified",
+  "doctrine": "Claude for Small Business is Anthropic's product package combining connectors + skills + agentic workflows. Core components: 8 named integrations (QuickBooks, PayPal, HubSpot, Canva, DocuSign, Google Workspace, Microsoft 365, Slack) + 31 prebuilt skills (Business Pulse, Friday Brief, Invoice Chase, Close Month, Tax Prep, Payroll Planning, Growth Campaigns, etc.) + 15 workflows. Connectors include permission tiers (Always Allow / Needs Approval / Blocked). Skills are reusable prompts customizable per business. Operator-approval gate required before any action touching money/customers sends. Document mixed with: video tutorial transcript (Ryan Nolan demo walking 8-tool install, Gmail connection, skill customization, slash commands), Reddit threads discussing SMB coverage gaps (8 tools don't cover Shopify/Stripe/local trades/creators), approval workflow patterns, API pricing concerns, and incumbent ecosystem integration challenges. Key insight: Target archetype is office-based white-collar services (consultants/accountants/agencies); coverage thin for e-commerce (missing Shopify/Stripe/Klaviyo), local trades (missing ServiceTitan/Jobber), creators (missing Kajabi/ConvertKit), restaurants (missing Toast/Resy). Workflows operate on parallel data pulls from connected tools, synthetic metrics, proactive risk flagging, and owner sign-off before sending/paying. Small Business Tour roadmap (May 2026, 100-person cohorts across multiple cities). Comparison to incumbent: Most SMBs use 20+ tools; Claude for SB covers 8. Gap filled by browser-based agents, orchestration layers (MCPs/Zapier/Runnable), and custom connectors. Document ends with Reddit skepticism on BAA terms, data training, access revocation risk, and service-level guarantees under consumer ToS.",
+  "skills": [
+    "Business Pulse (pull live data, synthesize daily priority)",
+    "Friday Brief (weekly wins/watches review)",
+    "Invoice Chase (AR aging, payment scoring, reminder drafting)",
+    "Close Month (reconciliation, gap flagging)",
+    "Payroll Planning",
+    "Tax Prep",
+    "Growth Campaigns",
+    "Contract Routing",
+    "Cash Flow Forecasting",
+    "Month-End Close"
+  ],
+  "gates": [
+    "Owner approval required before any action touches money",
+    "Owner approval required before any action touches customer data",
+    "Connector permission tiers: Always Allow / Needs Approval / Blocked",
+    "Manual review for external-facing communications",
+    "BAA/Business Associate Agreement needed for production enterprise use"
+  ],
+  "workflows": [
+    "Invoice chasing (pull AR, score, draft, present for approval)",
+    "Payroll planning (weekly briefing + approval)",
+    "Month-end close (reconcile, flag gaps, present)",
+    "Sales campaigns (HubSpot-driven, Claude drafts, owner approves)",
+    "Cash flow forecasting (pull payment/invoice/expense data, project forward)",
+    "Contract routing (DocuSign pull, route to stakeholder, log)",
+    "Weekly business briefing (pull from all 8 tools, synthesize one actionable priority)"
+  ],
+  "prompts": [
+    "/business-pulse (one prompt, one page, surface top priority)",
+    "/friday-brief (weekly wins/watches/risks/breakdown)",
+    "/invoice-chase (pull AR aging, score, draft reminders)",
+    "/close-month (reconciliation workflow)",
+    "/customize [skill-name] with Claude (skill personalization)",
+    "Direct natural language: 'run the close month skill' (Claude infers skill)",
+    "Slash command fallback: /close or /closemonth shorthand"
+  ],
+  "tools": [
+    "QuickBooks (accounting, invoicing, AR aging)",
+    "PayPal (payment processing, transaction history)",
+    "HubSpot (CRM, customer data, sales campaigns)",
+    "Canva (design, template generation)",
+    "DocuSign (contract management, signing/routing)",
+    "Google Workspace (Gmail, Drive, Calendar)",
+    "Microsoft 365 (Outlook, Teams, OneDrive)",
+    "Slack (notifications, approvals, alerts)",
+    "Additional connectors available: Stripe, Square, Zapier, Airtable, Notion, etc."
+  ],
+  "operating_rules": [
+    "Owner must approve every step that touches money or customers before execution",
+    "Skills are built once, invoked repeatedly via slash commands or natural language",
+    "Connectors require one-minute OAuth setup per third-party service",
+    "Permissions granular per connector: read-only vs write-and-delete, always-allow vs needs-approval vs blocked",
+    "Skills can be customized per business via 'Customize with Claude' dialog",
+    "Default to Sonnet 4.6 for most tasks, Haiku for quick operations, Opus 4.7 for deep-reasoning needs",
+    "Data pulls from all connected tools happen in parallel (Business Pulse pattern)",
+    "Outputs shared only once (no draft-then-ask pattern; single send on approval)",
+    "Nothing sends without explicit human approval in small business workflows",
+    "Consumer terms currently govern access (no guaranteed uptime/access, arbitrary ban risk)",
+    "Existing SMB toolkit highly fragmented: average 20+ tools; Claude for SB covers 8"
+  ],
+  "content_ideas": [
+    "Case study: How a consultancy replaced manual invoice follow-up (Invoice Chase skill)",
+    "Tutorial: Setting up 3 connectors in under 5 minutes (Gmail + QuickBooks + HubSpot)",
+    "Comparative analysis: Is 8 integrations enough for your vertical? (Service vs. E-commerce vs. Trades)",
+    "Deep dive: Permission tiers and approval workflows for multi-person teams",
+    "Gap analysis: What SMBs actually need that Claude for SB doesn't cover (Shopify/Stripe/local-trade stacks)",
+    "Browser-based agents as the missing layer (when API integrations don't exist)",
+    "Roadmap prediction: Next 8 integrations likely (Shopify, Stripe, ServiceTitan, Kajabi, Toast, Square, etc.)",
+    "Security/compliance primer: BAA requirements, data training concerns, revocation risk"
+  ],
+  "contradictions": [
+    "Document claims 'prebuilt workflows' (15 listed) but emphasizes skills (31) as the primary execution unit; unclear distinction or examples of true 'workflow' vs 'skill'",
+    "Redis user celebrates Swivl.tech for field service integration, but Swivl not mentioned in Anthropic's tool list, suggesting real-world adoption may diverge from the prebuilt stack",
+    "Anthropic positions Claude for SB as 'operator' not 'chatbot,' but Reddit threads treat it as a chatbot-plus-connectors, not autonomous agent; claim may oversell autonomy",
+    "Tutorial emphasizes 'one-minute setup' but real adoption friction is decision logic (which tool for which task), not connector auth; framing misses the hard part",
+    "Document spans May 2026 timeline (Small Business Tour) and June 2026 discussions, creating temporal inconsistency (is the product launch in May or May-June?)"
+  ],
+  "weird_gold": [
+    "Ryan Nolan's model-selection heuristic: Opus for deep-thinking, Sonnet default, Haiku for speed. Implies Claude for SB is not a single locked model; users choose.",
+    "Michelangelo/Sistine Chapel reference in MJ interview (unrelated to Claude) appears mid-document; OCR or segmentation artifact",
+    "Reddit user noted API costs as 'silent killer' of Claude projects; no mention of pricing tiers in official Claude for SB tutorial",
+    "Custom connectors possible ('Claude control your full computer') hints at browser-based agent layer not formally part of package but available as workaround",
+    "Field service business founder (Swivl user) represents successful SMB archetype NOT covered by 8-tool stack; strongest real-world counter-example",
+    "Approval workflow enforced in UI layer ('Nothing sends until owner says so') but mechanism unclear: modal, email, Slack notification, or dashboard?",
+    "Friday Brief skill defaults to 7-day lookback; no discussion of fiscal-period alignment (weekly ops != accounting weeks != calendar months)"
+  ],
+  "notes": "Document is a stitched scrape of three distinct sources: (1) Interview transcript (unrelated Michael Jackson / Get Music content, circa 2001), (2) YouTube tutorial/video transcript by Ryan Nolan (detailed walkthrough of Claude for Small Business product, ~16 minutes), (3) Reddit discussion threads from r/ClaudeAI and r/smallbusinessowner (May 2026, covering Claude for SB launch, integration coverage gaps, risk/compliance concerns, and real-world SMB archetype coverage). Real signal lies in the Reddit discussion (coverage gaps analysis, risk assessment, competitive positioning vs. orchestration layers) and tutorial (concrete product behavior: skill structure, connector setup, approval gates). MJ transcript appears to be OCR noise or document corruption. File size (368KB, 2105 lines) suggests automated scraping and concatenation without curation. Doctrine extracted prioritizes actionable operating rules and real coverage gaps over marketing copy."
+}

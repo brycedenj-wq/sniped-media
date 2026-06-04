@@ -1,0 +1,90 @@
+{
+  "file_class": "transcript",
+  "signal": "medium",
+  "coverage_confirmed": true,
+  "segments_read": 10,
+  "cert_status": "certified",
+  "doctrine": "AI design workflow combining Claude, Codeex, Claude Design, Figma MCP, and Google Stitch. Token efficiency critical: Codeex uses 3-4x fewer tokens than Claude but produces less polished designs. Claude produces highest quality designs and code. Google Stitch for fast, low-token early-stage iteration. Training AI on design systems requires sequential prompts on variables, text styles, and components (form elements, navigation, data display). Design-to-code pipeline: Figma → Claude Code → Figma (edits) → Codeex (refinement) → Figma (polish) → Claude (production code). Bidirectional Figma MCP enables code-to-Figma conversion. Components + constraints solve responsive design. Styles (colors, text) enforce consistency across instances. Auto layout manages spacing and alignment. Always provide design system file and Figma MCP access when prompting. Use design tokens (3-tier: brand/alias/mapped) for scale. Building iOS apps: Figma mockups → Windsurf/Cursor (React Native/Expo) → iOS Simulator → TestFlight → App Store. Mobile design requires single feature MVP, onboarding, proper user flows before development. Setup Figma MCP + Figma skills before coding. Push designs to Figma first for visual exploration. Test constraints and responsiveness across device sizes. No one-click build; developers still essential for production. AI sentiment: hybrid-operator stance—AI for creative generation and assembly, humans for strategy and final polish. Figma isn't disappearing but is no longer the design bottleneck; it's now a collaboration/polish layer.",
+  "skills": [
+    "Claude Code setup and MCP integration",
+    "Figma design system training via sequential skills",
+    "Token-efficient iteration across Claude/Codeex/Figma",
+    "Design-to-code pipeline with Figma MCP",
+    "Component architecture and constraints",
+    "Auto layout and responsive design",
+    "Figma Skills creation for design system knowledge",
+    "iOS app development with Expo and Windsurf",
+    "Prototype testing and TestFlight deployment",
+    "Design tokens and variable management",
+    "Style enforcement across component instances",
+    "Figma plugin installation and authentication"
+  ],
+  "gates": [
+    "Train AI on design system BEFORE generating designs (variables → styles → components)",
+    "Always provide Figma MCP connection and design system file in prompts",
+    "Test responsive behavior with constraints before handing off",
+    "Use design research (Mobbin screenshots) to inform AI prompts—avoid one-to-one copying",
+    "Validate components sync across all instances after edits",
+    "Push to Figma for visual exploration before code generation",
+    "Verify token efficiency: use Codeex for refinement, Claude for initial/final builds",
+    "Test on actual device (iOS Simulator, TestFlight) before App Store submission",
+    "Confirm auto layout handles multiple viewport sizes"
+  ],
+  "workflows": [
+    "Initial design gen: Google Stitch (fast iteration) → inform Claude Design (hi-fi) via stakeholder feedback",
+    "Iterative design-code loop: Claude Code (initial) → Figma (edits) → Codeex (refinement) → Figma (polish) → Claude (production)",
+    "Design system training: extract variables doc → create skill on variables → create skill on text styles → create skill on components (grouped by form/nav/data)",
+    "Figma to live code: take Figma design → use Figma MCP to extract context → Claude Code builds → push back to Figma if edits needed → Codeex for token-efficient changes",
+    "iOS app dev: Figma wireframes → Windsurf/Cursor with Expo setup → iOS Simulator validation → Figma inspection for refinement → TestFlight submission → App Store review",
+    "Lead gen optimization: multi-stage form with Zapier automation + design for emotional intent + accessibility testing across viewports"
+  ],
+  "operating_rules": [
+    "AI is a workflow, not a tool—requires multi-tool orchestration, not single-tool mastery",
+    "Design systems must be trained sequentially: variables first, styles second, components third, in logical groupings",
+    "Always provide visual reference (screenshots, Mobbin examples) to AI; don't rely on text descriptions alone",
+    "Use constraints + auto layout for responsive; manual pixel pushing doesn't scale",
+    "Components are leverage: edit once, propagate everywhere; use for navigation, buttons, cards, any reusable element",
+    "Test on real devices and simulators; Figma canvas ≠ production reality",
+    "Token efficiency: fast exploration (Stitch), iterative polish (Codeex), high-fidelity/production (Claude)",
+    "Figma MCP is read-write: push designs from code, pull context into code; bidirectional workflow",
+    "Hand off includes training: Notion portal with CMS videos, README in file structure, layer naming conventions",
+    "Design for emotion first; audit every decision against a single core emotional intent, not aesthetics"
+  ],
+  "prompts": [
+    "Study this Figma variables table [link], understand naming, values, when used, and build a Claude skill to train me on variable usage for future designs",
+    "Study all text styles available in [Figma frame], note variables applied, understand responsive values on desktop/mobile, build a Claude skill to inform me which styles are available",
+    "Study these component groupings (form elements, navigation, data display) [Figma link], come to elite understanding of all components + properties + variants, build a Claude skill with separate MD files per grouping",
+    "Here's my design system file [Figma link]. Here are my component/variable/text-style skills [attached]. Generate a page like this [Mobbin screenshot] using our design system—do NOT push to Figma yet, just generate locally",
+    "I'm designing a [iOS/web app]. Here are wireframes [Figma link]. Here are design system skills attached. Build each screen one at a time using the skills—ask me questions before we start onboarding page",
+    "Push this design to Figma remembering to follow the design system and reference the text styles, variables, and component rules",
+    "Here's a Figma file [link]. Please implement this design. If you use Figma MCP, automatically fill all assets and variables",
+    "From now on, in Figma, for every change, first ask: can this survive animation? Embroidery? Favicon size? If not, refine before submission"
+  ],
+  "content_ideas": [
+    "Deep dive: token accounting across Claude/Codeex workflows—show real per-project costs",
+    "Figma MCP advanced patterns: bi-directional sync for design → dev → design loops",
+    "Design system training masterclass: how to structure variables, styles, components so AI learns them correctly",
+    "iOS app blueprint: Figma → Windsurf → TestFlight in <2 hours (prerequisite: solid wireframes)",
+    "Pre-mortem design thinking: test logo in motion, text at tiny sizes, colors on edge cases before handoff",
+    "Emotion-driven design: framework for defining one core feeling, then auditing every pixel against it",
+    "File structure as professionalism: naming layers, README folders, export instructions that make handoff seamless",
+    "Responsive design without guessing: constraints + auto layout + multiple viewport testing checklist"
+  ],
+  "contradictions": [
+    "Figma is essential for design but NOT the bottleneck anymore (AI can generate designs faster than hand-crafting); tension between tools and human intent",
+    "Claude Design produces highest quality but is token-expensive; Codeex is token-efficient but lower quality—no single right choice",
+    "Design systems should be built manually (for deep understanding) but AI can generate them fast (saves time but less intentional)",
+    "Prototyping in Figma is powerful but AI can prototype code faster; Figma is now a polish/collaboration layer, not the source of truth",
+    "Responsive design via constraints + auto layout is systematic but testing across real devices reveals edge cases constraints miss"
+  ],
+  "weird_gold": [
+    "Google Stitch produces consistently worse designs than Claude but is perfect for very fast, token-free early-stage exploration when stakeholders are indecisive—'validate before you build'",
+    "Swap fill and stroke with Shift+X in Figma; tiny shortcut with huge workflow impact",
+    "Designing websites like designing homes (rooms = pages, spaces = sections) is a conceptual frame that made the whole architecture coherent",
+    "Mobbin (competitor research app) + AI is the inverse of pure AI: visual references beat 1000-word prompts every time",
+    "iOS apps can be shipped in <1 hour with Figma → Windsurf → TestFlight IF you plan wireframes first (proof: mood tracker built in ~50 min live on camera)",
+    "Industrial designers bring craft (clicking sounds, manufacturing intent) that software designers often miss; AI lacks this intentionality layer",
+    "Zapier + multi-stage form = lead qualification automation; saved the architecture firm 10 hours/week manually screening inquiries"
+  ],
+  "notes": "Document is a 10-segment video transcript (YouTube/educational content) covering the full AI design workflow as of 2024-2025. Heavy emphasis on practical workflow orchestration, not just tool features. Includes 3 major sections: AI tools comparison (Claude/Codeex/Stitch/Claude Design), design system training for AI, and end-to-end case studies (web design for architecture firm, iOS mood tracker app). Critical insight: AI is not a replacement for designers; it's a force multiplier when used in structured workflows. Token efficiency and bidirectional Figma MCP are game-changers. No content on 3D design, motion graphics depth, or enterprise-scale design systems. Assumes intermediate+ designer audience. Some mentions of paid tools (Mobbin, Brilliant, UI Collective Academy) but not promotional. Production quality high; pacing and examples clear."
+}

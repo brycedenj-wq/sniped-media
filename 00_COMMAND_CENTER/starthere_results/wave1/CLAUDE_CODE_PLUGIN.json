@@ -1,0 +1,69 @@
+{
+  "file_class": "artifact",
+  "signal": "medium",
+  "coverage_confirmed": true,
+  "segments_read": 1,
+  "doctrine": "Ralph Wiggum plugin (official Anthropic) enables autonomous multi-step app development via /ralph-loop. Core pattern: write detailed PRD (product requirements doc) with user stories, success criteria, checklist. Ralph iterates up to 35 cycles, completing tasks sequentially. Operator becomes Scrum Master: specify PRD + remove blockers. Ralph excels at well-defined tasks, clear criteria, greenfield projects, automatic verification. Struggles with human judgment, design decisions, unclear success criteria. Install via /plugin marketplace add anthropics/claude-code + /plugin install ralph-loop@claude-plugins-official. Prompt structure: read PRD → implement requirements → verify each epic before proceeding → output completion promise. Use completion-promise + max-iterations flags. Combine with /frontend-designs plugin for UI polish. Token cost high (Opus plan recommended). Demo: built AI Ops Dashboard (Kanban + priority matrix + ROI calculator) in 4 mins with live debugging via Scrum Master error reporting cycle.",
+  "cert_status": "certified",
+  "skills": [
+    "ralph-loop autonomous iteration",
+    "PRD specification mastery",
+    "Scrum Master operator role",
+    "multi-step task completion",
+    "frontend-designs plugin composition",
+    "local app verification"
+  ],
+  "gates": [
+    "PRD must include: goal, features, user stories, interactions, clarifications, completion checklist",
+    "Use completion-promise flag matching final task output signature",
+    "Set max-iterations conservatively (25-35 typical)",
+    "Test errors via browser console + Scrum Master loop",
+    "Combine with frontend-designs for design polish"
+  ],
+  "workflows": [
+    "1. Write detailed PRD with user stories + success criteria",
+    "2. Install ralph-loop plugin from Anthropic marketplace",
+    "3. Structure /ralph-loop prompt: read PRD → verify order → implement epic-by-epic → output completion promise",
+    "4. Run with --max-iterations 35 --completion-promise 'DASHBOARD_COMPLETE'",
+    "5. Monitor output, debug errors via browser console",
+    "6. If blocked, report error + context back to Claude via Scrum Master cycle",
+    "7. Optional: pipe through /frontend-designs for theme + polish"
+  ],
+  "prompts": [
+    "/ralph-loop:ralph-loop \"Read and implement all requirements in ./ai-ops-dashboard-prd.md Build a single index.html file using React, Tailwind, and Recharts via CDN. Work through each epic in order. Verify each works before proceeding. If blocked after 25 iterations, document blockers and continue with remaining work. When all requirements complete and checklist passes, output: <promise>DASHBOARD_COMPLETE</promise>\" --max-iterations 35 --completion-promise \"DASHBOARD_COMPLETE\"",
+    "using /frontend-designs please improve the design of the dashboard into a [theme description]. Format: /frontend-designs [instruction] [design direction]."
+  ],
+  "tools": [
+    "ralph-loop plugin (Anthropic)",
+    "frontend-designs plugin",
+    "Claude Code terminal",
+    "localhost app runner"
+  ],
+  "operating_rules": [
+    "Write PRDs before starting Ralph loops - success depends on clarity",
+    "Ralph iterates autonomously; operator removes blockers, doesn't code",
+    "Each iteration verifies tasks via user stories + checklist criteria",
+    "Token cost scales with iterations; Opus plan recommended",
+    "Use completion-promise string to signal final output format",
+    "Local testing required after Ralph completion (JavaScript errors common)",
+    "Kanban workflow: Backlog -> In Progress -> Blockers -> Done",
+    "Sprints are sequential; order matters when tasks depend on each other"
+  ],
+  "content_ideas": [
+    "Deep dive: PRD templates by project type (dashboard, form, API, content site)",
+    "Ralph + design plugin composition workflows",
+    "Error handling playbook (common JS/API errors + Scrum Master debug loop)",
+    "Token cost calculator (iterations x model x context size)",
+    "Production debugging with Ralph (escapehatches, orchestrator variant)",
+    "Design system integration (components + variables)",
+    "Kanban automation (backlog grooming, epic ordering)"
+  ],
+  "contradictions": [
+    "Video shows Ralph 'completing' dashboard but design had errors requiring fixes (Scrum Master intervention) - claimed autonomy limited by need for human judgment on design/UX"
+  ],
+  "weird_gold": [
+    "Scrum Master operator pattern is the real insight - Ralph requires curator not developer",
+    "Ralph can run 35 iterations autonomously but a single design decision (black/gold theme) requires /frontend-designs plugin intervention - hard boundary between structured task iteration and creative judgment",
+    "Completion promise signature must match exact output string or loop continues indefinitely - fragile but intentional constraint"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "file_class": "artifact",
+  "signal": "high",
+  "coverage_confirmed": true,
+  "segments_read": 2,
+  "cert_status": "certified",
+  "doctrine": "Build an AI SaaS lead magnet using Claude Code + n8n-MCP in ~20 minutes: (1) Set up n8n-MCP by configuring .mcp.json with n8n API credentials (URL + API key); (2) Install n8n Skills for Claude via plugin marketplace or manual upload to enable workflow generation; (3) Use Claude Code with single prompt to generate full n8n workflow: webhook trigger → OpenAI LLM → Gmail notification → Google Sheets logging → JSON response. Core operations: search_templates (2,352 available) BEFORE building from scratch; validate_node(mode='minimal') → validate_node(mode='full') → validate_workflow in sequence; NEVER trust parameter defaults; batch operations with n8n_update_partial_workflow; branch parameter REQUIRED for IF node routing (true/false outputs). Front-end generation: Claude Code shifts to planning mode, generates Next.js/React landing page with form capture, auto-starts local server. Critical non-technical requirements: privacy policy, data processing agreements, user rights, cookie policy, security review before global launch. Document includes full workflow walkthrough: testing with mock data, debugging email/webhook integration issues, iterating on OpenAI prompt quality, fixing data path mappings in Google Sheets. Key limitation: Claude optimizes 12-step workflows better than 20+ step complex flows; hybrid human-machine approach needed for production. Delivery time achievable: 20 minutes for simple lead magnet, longer for complex multi-step automation.",
+  "skills": [
+    "n8n workflow design and automation",
+    "Claude Code IDE and agent interaction",
+    "MCP (Model Context Protocol) server configuration",
+    "n8n-MCP tool API: search_templates, get_node, validate_node, validate_workflow, n8n_create_workflow, n8n_update_partial_workflow",
+    "Next.js/React front-end generation",
+    "Webhook integration and testing",
+    "OpenAI API integration for LLM-based content generation",
+    "Google Sheets API integration for data logging",
+    "Gmail API for email delivery"
+  ],
+  "gates": [
+    "MCP configuration (n8n URL + API key) must be set BEFORE Claude agent can access n8n tools",
+    "n8n Skills installation required for Claude to understand workflow generation patterns",
+    "API authentication: separate n8n instance setup; separate Google Sheets/Gmail credential binding",
+    "Data security gate: privacy policy + DPA + user rights + cookie policy must precede global deployment",
+    "Webhook URL placeholder substitution: production webhook URL must be injected after workflow creation"
+  ],
+  "workflows": [
+    "Lead magnet generation: form capture → prompt structuring → LLM content generation → email delivery → database logging → JSON response",
+    "Webhook-triggered content strategy generator: receives user input (niche, goals, posting frequency, platforms) → passes to OpenAI → formats response → emails user + logs to Google Sheets",
+    "Claude Code planning mode + auto-build: sketch architecture → generate n8n workflow JSON → validate → deploy to n8n instance → generate React front-end → start local dev server"
+  ],
+  "operating_rules": [
+    "SILENT execution: Claude runs tools without intermediate commentary; responds only after all tools complete",
+    "Parallel execution: independent node searches/validations run simultaneously for speed",
+    "Templates first: always check 2,352 available templates before building from scratch",
+    "Multi-level validation: quick check (minimal) → comprehensive (full) → workflow-level → post-deployment",
+    "Never trust defaults: ALL parameters controlling node behavior must be explicitly configured",
+    "Branch parameter required: IF nodes have two outputs (TRUE/FALSE); must specify branch='true' or branch='false' to route to correct output",
+    "Batch operations: use n8n_update_partial_workflow with multiple operations in single call, not separate calls",
+    "Connection syntax: addConnection requires four string parameters (source, target, sourcePort, targetPort) plus optional branch",
+    "Data path mapping: webhook body data accessed via item.json.body; must match node input expectations (e.g., 'niche' vs 'email' fields)",
+    "Hybrid approach: Claude optimal for 12-step workflows; human review essential for 20+ step complex flows to identify smarter routes",
+    "Post-deployment security: data processing agreements, privacy policies, cookie policies, user rights must be in place for production use"
+  ],
+  "prompts": [
+    "Generate n8n workflow plan for: AI content strategy generator, webhook trigger, OpenAI LLM generation, Gmail notification, Google Sheets logging, JSON response confirmation",
+    "Please help me install these n8n Claude skills from this repository: [GitHub URL]",
+    "There was no prompt in the OpenAI module. Please generate the prompt to ensure best outputs for lead magnet content generation.",
+    "Generate a content strategy generator web page: clean modern landing page, '30-day Content Strategy' headline, form capture for email/niche/goals/posting frequency/platforms, status display.",
+    "There is an issue with the workflow. [Screenshot]. Please help me resolve it."
+  ],
+  "tools": [
+    "Claude Code IDE (VS Code with Claude agent)",
+    "n8n-MCP server (MCP resource providing 265 AI-capable nodes, 1,650 total workflow nodes, 2,352 templates)",
+    "n8n-skills (7 skills: expression syntax, MCP tools expert, workflow patterns, validation expert, node configuration, code JavaScript, code Python)",
+    "n8n core nodes: Webhook trigger, HTTP Request, Set, If (conditional), Manual Trigger, Respond to Webhook, Schedule, Code, Slack, Gmail, Google Sheets",
+    "OpenAI node (LLM chat model for content generation)",
+    "Google Sheets connector (data logging)",
+    "Gmail connector (email delivery)",
+    "n8n management tools: n8n_create_workflow, n8n_update_partial_workflow, n8n_validate_workflow, n8n_test_workflow, n8n_get_workflow"
+  ],
+  "content_ideas": [
+    "Lead magnet positioning: position as 30-day starter strategy, not complete system; users expand with their expertise",
+    "Niche-specific templates: personal finance, fitness coaching, B2B SaaS positioning each generate different strategy outputs",
+    "Email formatting: HTML-formatted emails with blue banner, readable structure, action items sorted by day/priority",
+    "Content mix strategy: optimal posting times by platform (e.g., LinkedIn business hours, Instagram evenings), daily content themes, quick wins + authority-building mix",
+    "Front-end UX: clean form with dropdown selectors for platforms, frequency, clear CTA (Generate My Strategy), auto-refresh status display during processing"
+  ],
+  "contradictions": [
+    "Claude-generated form dropdowns initially non-functional ('can't click on platforms'); required debugging iteration and code fixes",
+    "Data path inconsistency: OpenAI output initially not captured in workflow; required manual prompt addition + path routing fix (item.json.body pattern)",
+    "Email formatting variance: initial outputs missed some formatting structure; required iterative fine-tuning of prompt and data passing",
+    "Webhook URL placeholder: demo uses placeholder initially; production requires substitution after workflow deployment, adding manual step after auto-generation"
+  ],
+  "weird_gold": [
+    "20-minute SaaS delivery achievable for simple workflows: entire lead magnet (workflow + front-end + live server) completed in under 20 minutes with Claude Code + n8n-MCP",
+    "n8n 2,352 templates pre-trained: AI model has access to real-world workflow patterns covering 99% of automation scenarios; eliminates most 'build from scratch' needs",
+    "Claude MCP tool coverage: 87% n8n documentation coverage, 63.6% operation coverage, 265 AI-capable tool variants detected; sufficient for most lead magnet use cases",
+    "Auto-fix + planning mode hybrid: Claude's planning mode produces detailed workflow architecture upfront; validates before code generation; reduces revision cycles vs. direct coding",
+    "Git repo cloning in Claude Code: ability to clone n8n-skills repo, install globally, keep project clean; skills remain accessible across all projects after cleanup",
+    "n8n_update_partial_workflow batching: single call can update multiple nodes, add connections, remove stale connections; vastly more efficient than sequential updates",
+    "Webhook data accessibility: $json.body access pattern consistent across all node types; single mental model eliminates node-specific data access confusion"
+  ]
+}
