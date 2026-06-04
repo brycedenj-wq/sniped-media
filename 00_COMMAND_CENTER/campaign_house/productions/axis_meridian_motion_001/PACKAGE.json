@@ -1,0 +1,46 @@
+{
+  "production_id": "axis_meridian_motion_001",
+  "goal": "Prove the OS controls MOTION the same way it controls character + world. Not 'make a cool video.'",
+  "status": "PREFLIGHTED , AWAITING APPROVAL. No generation performed. No credits spent.",
+  "character": {"slug": "char_axis_01", "working_name": "AXIS", "crs_status": "VALID"},
+  "world": {"slug": "world_meridian_01", "working_name": "MERIDIAN-HOUSE", "validate_status": "VALID", "environment": "Brutalist Monument"},
+  "stage_1_hero_still": {
+    "model": "nano_banana_pro",
+    "aspect_ratio": "3:4",
+    "resolution": "1k",
+    "count": 1,
+    "cost_credits": 2,
+    "prompt": "An original androgynous figure, late-20s read, angular symmetrical bone structure, high flat cheekbones, deep-set deep-brown eyes, one small mole below the inner-left eye, even ambiguous mid-tone complexion, matte natural skin texture with visible pores. Wearing a structured charcoal wool overcoat over a bone-white cotton crew, raw-hem black tailored trousers. Standing in still contrapposto inside a vast brutalist concrete monument interior, board-formed concrete meeting bone-white plaster, a single doorway aperture behind. Single soft key light at 45 degrees from slightly above, deep clean falloff, low fill, chiaroscuro, cool north-light neutral, no colored light. 85mm portrait framing, chest-up, shallow depth of field, generous negative space, centered architectural composition. Quiet luxury editorial, Adobe Neutral palette of charcoal, bone and graphite with a single sparing oxblood accent. Composed-neutral expression.",
+    "negative_prompt": "plastic or waxy skin, beauty-filter smoothing, extra or fused fingers, teal-and-orange grade, any logo or text, busy or cluttered background, symmetrical AI face-melt, uncanny dead eyes, broad toothy smile, resemblance to any real or famous person, saturated primaries, lens flare",
+    "invariants_to_hold": ["eye_color=deep-brown", "mole_below_left_eye=present", "face_geometry=angular-symmetrical-high-cheekbones", "build=lean-athletic-5ft10", "complexion=even-ambiguous-mid-tone"]
+  },
+  "stage_2_motion_clip": {
+    "model": "seedance_2_0",
+    "from": "stage_1 hero still as start_image (image-to-video)",
+    "aspect_ratio": "3:4",
+    "resolution": "720p",
+    "mode": "std",
+    "duration_seconds": 4,
+    "count": 1,
+    "cost_credits": 18,
+    "prompt": "From the hero still: the figure breathes and shifts weight almost imperceptibly, a slow quarter-turn of the head toward the key light, the coat settling. Fine dust motes drift through the raking light. The camera holds nearly static, a 2 percent slow push. Dialogue-free. Composed, restrained motion only, in-register.",
+    "negative_prompt": "warping or melting edges, boiling texture, extra or fused fingers in motion, face morph, identity drift, flicker, out-of-register broad gestures, teal-orange grade, logos or text, lens flare, plastic skin",
+    "notes": "4:5 is not offered by seedance_2_0; 3:4 (0.75) is the closest editorial vertical and matches the hero still aspect for clean image-to-video."
+  },
+  "gates_to_apply": {
+    "identity_hold": "5 AXIS hard invariants per sampled frame (os_crs core)",
+    "world_continuity": "MERIDIAN-HOUSE forbidden elements / environment (os_world core)",
+    "motion_rubric_hard": ["grounding", "edge_integrity", "temporal_stability", "ai_tells"],
+    "motion_threshold": 0.75,
+    "ship_means": "eligible for human taste approval, never auto-post"
+  },
+  "cost_summary": {
+    "hero_still_credits": 2,
+    "motion_clip_credits": 18,
+    "total_credits": 20,
+    "balance_credits": 881,
+    "balance_after_if_approved": 861,
+    "source": "live Higgsfield get_cost preflight (no job submitted) + balance read"
+  },
+  "guardrails": ["no celebrity likeness", "no employer material", "no real client", "no brand decision (codename names)", "no posting", "no spend without explicit approval"]
+}

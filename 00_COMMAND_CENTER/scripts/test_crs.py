@@ -81,6 +81,13 @@ def main():
         check("drifted frame is quarantined (hard-invariant fail)", byid["f_drift"]["quarantined"] is True)
         check("quarantine names the hard failures", len(byid["f_drift"]["hard_failures"]) == 2)
 
+        # soft invariants may vary: hard all hold, soft different/missing -> still passes (score 1.0)
+        soft_obj = json.load(open(p))
+        soft_score, soft_hard_fail = M.evaluate_frame(soft_obj, {"eye_color": "deep-brown", "mole_below_left_eye": "present"})
+        check("hard-hold + missing soft -> score 1.0, no hard fail", soft_score == 1.0 and not soft_hard_fail)
+        v_score, v_hard = M.evaluate_frame(soft_obj, {"eye_color": "deep-brown", "mole_below_left_eye": "present", "hair_style": "buzzcut"})
+        check("hard-hold + varied soft -> not quarantined", v_score == 1.0 and not v_hard)
+
     finally:
         shutil.rmtree(sandbox, ignore_errors=True)
 

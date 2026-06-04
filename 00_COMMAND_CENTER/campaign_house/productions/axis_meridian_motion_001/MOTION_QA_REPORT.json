@@ -1,0 +1,65 @@
+{
+  "clip_id": "axis_meridian_motion_001_fail",
+  "verdict": "QUARANTINE",
+  "motion_score": 0.286,
+  "threshold": 0.75,
+  "identity_quarantined_frames": 1,
+  "world_failures": [
+    "forbidden element present: logos"
+  ],
+  "world_warnings": [
+    "off-palette hue #00C2C2 (advisory)"
+  ],
+  "motion_items": {
+    "grounding": 1,
+    "edge_integrity": 0,
+    "temporal_stability": 0,
+    "ai_tells": 0,
+    "physics": 1,
+    "register": 1,
+    "beat_source": 1
+  },
+  "hard_zero_items": [
+    "edge_integrity",
+    "temporal_stability",
+    "ai_tells"
+  ],
+  "frames": [
+    {
+      "frame_id": "t0.0",
+      "score": 1.0,
+      "hard_failures": [],
+      "quarantined": false
+    },
+    {
+      "frame_id": "t3.0",
+      "score": 0.4,
+      "hard_failures": [
+        {
+          "key": "eye_color",
+          "expected": "deep-brown",
+          "got": "hazel"
+        },
+        {
+          "key": "mole_below_left_eye",
+          "expected": "present",
+          "got": "absent"
+        },
+        {
+          "key": "face_geometry",
+          "expected": "angular-symmetrical-high-cheekbones",
+          "got": "round-soft"
+        }
+      ],
+      "quarantined": true
+    }
+  ],
+  "reasons": [
+    "identity drift in t3.0: eye_color,mole_below_left_eye,face_geometry",
+    "world: forbidden element present: logos",
+    "motion HARD-zero: edge_integrity",
+    "motion HARD-zero: temporal_stability",
+    "motion HARD-zero: ai_tells",
+    "motion score 0.286 < threshold 0.75"
+  ]
+}

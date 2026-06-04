@@ -94,6 +94,25 @@ def cmd_validate(a):
     return 0
 
 
+def evaluate_scene(world, scene):
+    """Shared scene-continuity core (reused by the motion QA layer).
+    Returns (failures [hard], warns [advisory])."""
+    allowed_env = [e.lower() for e in world.get("environments", [])]
+    forbidden = [x.lower() for x in world.get("forbidden_elements", [])]
+    failures, warns = [], []
+    env = str(scene.get("environment", "")).lower()
+    if env and env not in allowed_env:
+        failures.append(f"environment '{scene.get('environment')}' not in world rotation")
+    for el in scene.get("elements", []):
+        if str(el).lower() in forbidden:
+            failures.append(f"forbidden element present: {el}")
+    pal = [h.lower() for h in (world.get("color_system", {}).get("palette_hex") or [])]
+    for h in scene.get("palette_hex", []):
+        if pal and h.lower() not in pal:
+            warns.append(f"off-palette hue {h} (advisory)")
+    return failures, warns
+
+
 def cmd_continuity(a):
     """Scene continuity gate. scene = {environment, materials[], palette_hex[], elements[], camera}.
     Forbidden element present, or environment not allowed -> QUARANTINE."""
@@ -102,21 +121,7 @@ def cmd_continuity(a):
         print(f"  not found: {a.slug}"); return 1
     with open(a.scene, "r", encoding="utf-8") as f:
         scene = json.load(f)
-    allowed_env = [e.lower() for e in w.get("environments", [])]
-    forbidden = [x.lower() for x in w.get("forbidden_elements", [])]
-    failures = []
-    env = str(scene.get("environment", "")).lower()
-    if env and env not in allowed_env:
-        failures.append(f"environment '{scene.get('environment')}' not in world rotation")
-    for el in scene.get("elements", []):
-        if str(el).lower() in forbidden:
-            failures.append(f"forbidden element present: {el}")
-    # palette advisory: flag hues outside palette (non-blocking warn)
-    warns = []
-    pal = [h.lower() for h in (w.get("color_system", {}).get("palette_hex") or [])]
-    for h in scene.get("palette_hex", []):
-        if pal and h.lower() not in pal:
-            warns.append(f"off-palette hue {h} (advisory)")
+    failures, warns = evaluate_scene(w, scene)
     quarantined = bool(failures)
     print(f"  continuity gate: {a.slug} <- scene")
     if failures:

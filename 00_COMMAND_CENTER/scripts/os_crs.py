@@ -198,6 +198,24 @@ def cmd_sheet(a):
     return 0
 
 
+def evaluate_frame(spec, observed):
+    """Shared identity-scoring core (reused by the motion QA layer).
+    Identity-HOLD is judged on HARD invariants only , soft invariants are explicitly
+    allowed to vary, so they must never penalize the hold score.
+    Returns (hard_score 0..1, list of hard-invariant failures)."""
+    inv = spec.get("identity_invariants") or []
+    hard = [(i["key"], i["value"]) for i in inv if isinstance(i, dict) and i.get("hard")]
+    matches, hard_fail = 0, []
+    for k, expected in hard:
+        got = observed.get(k)
+        if str(got).strip().lower() == str(expected).strip().lower():
+            matches += 1
+        else:
+            hard_fail.append({"key": k, "expected": expected, "got": got})
+    score = round(matches / len(hard), 3) if hard else 1.0
+    return score, hard_fail
+
+
 def cmd_gate(a):
     """Cross-frame identity consistency gate.
     frames file = list of {frame_id, observed:{invariant_key: value}}.
@@ -208,25 +226,12 @@ def cmd_gate(a):
         return 1
     with open(a.frames, "r", encoding="utf-8") as f:
         frames = json.load(f)
-    inv = spec.get("identity_invariants") or []
-    hard = {i["key"]: i["value"] for i in inv if isinstance(i, dict) and i.get("hard")}
-    soft = {i["key"]: i["value"] for i in inv if isinstance(i, dict) and not i.get("hard")}
-    all_keys = {**hard, **soft}
     report = {"slug": a.slug, "threshold": a.threshold, "frames": []}
     n_quar = 0
     for fr in frames:
         fid = fr.get("frame_id", "?")
         obs = fr.get("observed", {})
-        matches, total, hard_fail = 0, 0, []
-        for k, expected in all_keys.items():
-            total += 1
-            got = obs.get(k)
-            ok = (str(got).strip().lower() == str(expected).strip().lower())
-            if ok:
-                matches += 1
-            elif k in hard:
-                hard_fail.append({"key": k, "expected": expected, "got": got})
-        score = round(matches / total, 3) if total else 0.0
+        score, hard_fail = evaluate_frame(spec, obs)
         quarantined = bool(hard_fail) or score < a.threshold
         if quarantined:
             n_quar += 1
