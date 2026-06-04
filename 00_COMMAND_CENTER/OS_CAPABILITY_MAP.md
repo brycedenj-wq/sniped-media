@@ -3072,3 +3072,11 @@ DECISION REQUIRED: Has the disclosure addendum been drafted? If not, block compo
 
 ---
 
+
+## Capability candidates from "new hot shit .docx" (PASS 1, partial_read_only , NOT verified)
+- process-step-audit (self-optimization gate/skill): remove/combine/simplify steps; find the invisible problem (Fadell). HIGH value.
+- self-documentation-channel (skill candidate): publishable build-in-public digital journal from the harness/journal.
+- anticipation-marketing (production method): mystery/livestream-reveal drop cadence.
+- Execution-Governor line: "do the committed steps; belief is optional" (Brad Rushing).
+- possibility-engine reinforcement: "bigger than the game" anti-identity-collapse phrase.
+Source: OS_DOCTRINE_NEWHOTSHIT_pass1.md. Promote to real skills/gates only after a fuller read.
