@@ -227,6 +227,11 @@ def close(s):
 def dashboard():
     import io,contextlib
     if not os.path.isdir(ROOT): print("no projects"); return 0
+    registry()  # refresh single source of truth
+    regmap={}
+    rp=os.path.join(CC,"OS_PRODUCTION_REGISTRY.csv")
+    if os.path.exists(rp):
+        for r in csv.DictReader(open(rp)): regmap[r["project"]]=r["status"]
     rows=[]
     for p in sorted(os.listdir(ROOT)):
         b=P(p)
@@ -243,17 +248,15 @@ def dashboard():
         rm=_re.search(r"\$([\d.]+)/credit",usd); rate=float(rm.group(1)) if rm else None
         est_usd=("$%.2f"%(est_cred*rate)) if rate else "UNKNOWN"
         am=_re.search(r"USD=\$([\d.]+)",cr); act_usd="$"+am.group(1) if am else "UNKNOWN"
-        buf=io.StringIO()
-        with contextlib.redirect_stdout(buf): blocked=audit(p)==1
-        state="closed" if closed else ("BLOCKED" if blocked else ("awaiting-export" if appr>exp else ("awaiting-vision" if gens>appr+len(ls_dir(p,"07_rejected")) else "active")))
+        state="?"  # filled from registry below (single source of truth)
         last=time.strftime("%Y-%m-%d %H:%M",time.localtime(os.path.getmtime(b)))
-        rows.append((p,state,gens,appr,exp,int(est_cred),est_usd,act_usd,last))
+        rows.append((p,regmap.get(p,state),gens,appr,exp,int(est_cred),est_usd,act_usd,last))
     out="# OS PRODUCTION DASHBOARD (campaign house)\n\nDaily command center. Generated "+time.strftime("%Y-%m-%d %H:%M")+".\n\n| project | state | gens | approved | exports | est_credits | est_usd | actual_usd | last updated |\n|---|---|---|---|---|---|---|---|---|\n"
     for r in rows: out+="| "+" | ".join(str(x) for x in r)+" |\n"
     cc={}
     for r in rows: cc[r[1]]=cc.get(r[1],0)+1
     out+="\n**Summary:** "+" · ".join(k+"="+str(v) for k,v in cc.items())+"\n"
-    open(os.path.join(CC,"OS_PRODUCTION_DASHBOARD.md"),"w").write(out); registry(); print("wrote OS_PRODUCTION_DASHBOARD.md + registry ("+str(len(rows))+" projects)"); return 0
+    open(os.path.join(CC,"OS_PRODUCTION_DASHBOARD.md"),"w").write(out); print("wrote OS_PRODUCTION_DASHBOARD.md + registry ("+str(len(rows))+" projects)"); return 0
 def main():
     a=sys.argv; c=a[1] if len(a)>1 else "list"
     f={"new":lambda:new(a[2]),"log-prompt":lambda:log_prompt(a[2],a[3],a[4],a[5],a[6]," ".join(a[7:])),
