@@ -8,7 +8,7 @@
 ## Status
 - Folder: 98 unique docs (3 exact-dups logged), all segment-ledgered + partition-validated.
 - Certified so far: 8 docs (Batch A + 3 single-seg). 
-- IN FLIGHT: Wave 1 workflow (61 small/medium docs, ≤10 seg) running via `os_certify`-style reader agents (task wkm034ejp); results land in `/tmp/wave1_out/`.
+- Wave 1 DONE (59/60 certified). IN FLIGHT: Wave 2 giants (31 docs, 1248 seg, task wmo834km6) -> /tmp/wave2_out/
 - Pending: Wave 2 = 30 giants (1,243 segments), sharded, after Wave 1 persists.
 
 ## Certification reality (do not inflate)
