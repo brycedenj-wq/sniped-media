@@ -1,0 +1,8 @@
+# Format-duplicate reclassifications (needs_ocr/visual -> duplicate, content covered by verified copy)
+
+- David Ogilvy_ Alan Parker - Confessions of an Advertising Man (2004, Southbank Publishing) - libgen.li.pdf  <=  Confessions-of-an-Advertising-Man-by-Ogilvy-David-Parker-Alan-z-lib.org_.pdf
+- Seth A. Klarman - Margin of Safety_ Risk-Averse Value Investing Strategies for the Thoughtful Investor (1991, HarperCollins) - libgen.li.pdf  <=  Seth A. Klarman - Margin of Safety_ Risk-Averse Value Investing Strategies for the Thoughtful Investor (1991, HarperCollins) - libgen.li.epub
+-  Fredric Dannen - Hit men_ power brokers and fast money inside the music business (1991, Vintage Books) - libgen.li.pdf  <=  [Vintage] Dannen, Fredric - Hit Men_ Power Brokers and Fast Money Inside the Music Business (2011, Knopf Doubleday Publishing Group_Vintage eBooks) - libgen.li.azw3
+- Seth A. Klarman - Margin of Safety_ Risk-Averse Value Investing Strategies for the Thoughtful Investor (1991, HarperCollins) - libgen.li.pdf  <=  Seth A. Klarman - Margin of Safety_ Risk-Averse Value Investing Strategies for the Thoughtful Investor (1991, HarperCollins) - libgen.li.epub
+- David Ogilvy_ Alan Parker - Confessions of an Advertising Man (2004, Southbank Publishing) - libgen.li.pdf  <=  Confessions-of-an-Advertising-Man-by-Ogilvy-David-Parker-Alan-z-lib.org_.pdf
+-  Fredric Dannen - Hit men_ power brokers and fast money inside the music business (1991, Vintage Books) - libgen.li.pdf  <=  [Vintage] Dannen, Fredric - Hit Men_ Power Brokers and Fast Money Inside the Music Business (2011, Knopf Doubleday Publishing Group_Vintage eBooks) - libgen.li.azw3

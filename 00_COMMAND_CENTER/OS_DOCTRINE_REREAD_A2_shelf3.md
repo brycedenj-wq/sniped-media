@@ -1,0 +1,1 @@
+API Error: Usage credits required for 1M context · run /usage-credits to turn them on, or /model to switch to standard context

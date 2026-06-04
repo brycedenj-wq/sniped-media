@@ -57,13 +57,29 @@ Any of these = automatic reject, rebuild or recrop the plate:
 - stretched pixels, repeated textures (repeated sand / foliage / brick)
 - "barcode sky" banding
 - melted / warped plants
+
+---
+
+## Ceiling gates (9-11) · master-tier, required for client-send
+
+Gates 1-8 get a hero to LITE (feed-believable, daily IG, internal proof). Gates 9-11 are what separate LITE from CEILING (no software tell at 100% on phone, no embarrassment if a creative director zooms in). A client-send hero must pass all 11. The OpenCV/script chain is LITE; the ceiling pass is Photoshop + Camera Raw.
+
+### Gate 9 · DOF / lens match
+- The subject cannot be tack-sharp in a world with its own focus falloff. Build one believable shared focal plane: subject, foreground deck, mid plants, and far background must read as captured by a single lens.
+- Depth-aware blur (more blur with distance from the subject plane), a hair of optical softness on the subject so it is not razor-crisp against soft surroundings, matched bokeh character.
+
+### Gate 10 · Perspective / camera-height match
+- Subject scale, foot plane, horizon line, and environment geometry must agree on one camera height and focal length. Check foreshortening against the plate's vanishing/horizon before any polish. If they disagree, fix placement first; no finish rescues a perspective mismatch.
+
+### Gate 11 · Directional color bleed
+- Not an even light-wrap band. Real, directional environmental light transfer: warm bounce from a warm deck onto the lower legs, cool fill from water/sky on the shadow side, foliage kiss only where geometry justifies it. Subject skin identity stays LOCKED; bleed lives on clipped low-opacity layers, never a skin regrade.
 - extra or malformed limbs, fingers, teeth
 
 ---
 
 ## Scoring (per hero, each out of 10)
 
-Score these six axes. A hero is CLIENT-READY only if every axis is >= 8 and no Gate-8 reject is present.
+Score these nine axes. The first six gate LITE; axes 7-9 gate CEILING.
 
 1. Lighting (relight match to plate)
 2. Grounding (contact + cast, no float)
@@ -71,11 +87,14 @@ Score these six axes. A hero is CLIENT-READY only if every axis is >= 8 and no G
 4. Color marriage (sensor / black point / temp match)
 5. Artifact scan (Gate 8 clean)
 6. Brand fit (concept discipline, see below)
+7. DOF / lens match (Gate 9)
+8. Perspective / camera-height match (Gate 10)
+9. Directional color bleed (Gate 11)
 
 Status values:
-- CLIENT-READY: all axes >= 8, no Gate-8 reject. Can go to client / deck.
-- INTERNAL-ONLY: reads at distance but a 100% crop or a concept issue holds it back. Usable internally, not for client.
-- REBUILD: a Gate fails hard (e.g. floating heel). Do not show.
+- LITE / INTERNAL: axes 1-6 >= 8. Feed-believable, daily IG, internal proof. NOT a client-send.
+- CEILING / CLIENT-READY: ALL nine axes >= 8, no Gate-8 reject, and it survives a 100% phone zoom with no software tell. Only this tier goes to a client.
+- REBUILD: a gate fails hard (e.g. floating heel, perspective mismatch). Do not show.
 
 ---
 
