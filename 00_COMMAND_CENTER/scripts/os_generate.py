@@ -29,6 +29,31 @@ def prep():
     print("PROMPT_TEXT>>>"); print(ptext); print("<<<PROMPT_TEXT")
     print(f"NEXT: Claude generates via MCP, then: os_generate.py ingest --project {project} --prompt {pid} --gen {gid} --url <URL> --credits {int(cost)} --model <model> --asset <name>.png")
     return 0
+def build_ref_package(hero_ref, kind, model=None):
+    """Reference-conditioned generation spec. Continuity-critical assets condition on
+    the LOCKED hero (start_image / identity reference), never fresh text-only faces."""
+    if not hero_ref:
+        return None
+    if kind == "video":
+        return {"kind": "video", "model": model or "seedance_2_0",
+                "medias": [{"role": "start_image", "value": hero_ref}],
+                "rule": "image-to-video from the approved hero; identity carried by the start frame"}
+    return {"kind": "image", "model": model or "soul_2",
+            "medias": [{"role": "image", "value": hero_ref}],
+            "rule": "identity reference = approved hero; do not regenerate the face from text for continuity assets"}
+
+def cmd_ref_package():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--hero", required=True, help="approved hero URL or media UUID")
+    ap.add_argument("--kind", choices=["image", "video"], required=True)
+    ap.add_argument("--model", default=None)
+    a = ap.parse_args(sys.argv[2:])
+    pkg = build_ref_package(a.hero, a.kind, a.model)
+    import json as _j
+    print(_j.dumps(pkg, indent=2))
+    print("# continuity-critical: this conditions on the locked hero. No fresh text-only face.")
+    return 0
+
 def estimate_video_credits(seconds, rate):
     """Pure estimator. Returns (credits:int|None, note). Refuses to invent a rate."""
     if rate is None:
@@ -93,5 +118,5 @@ def ingest():
     print(f"INGEST OK: {a.asset} ({kb}KB) in harness."); return 0
 if __name__=="__main__":
     c=sys.argv[1] if len(sys.argv)>1 else "help"
-    routes={"prep":prep,"ingest":ingest,"prep-video":prep_video,"ingest-video":ingest_video}
+    routes={"prep":prep,"ingest":ingest,"prep-video":prep_video,"ingest-video":ingest_video,"ref-package":cmd_ref_package}
     sys.exit(routes[c]() if c in routes else (print(__doc__) or 0))

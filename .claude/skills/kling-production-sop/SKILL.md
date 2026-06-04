@@ -26,11 +26,12 @@ Produce one short, dialogue-free motion clip of a locked character inside a lock
 - a one-line receipt
 
 ## Procedure
-1. Confirm `os_crs.py validate <crs>` and `os_world.py validate <world>` both VALID.
-2. Write the scene brief; keep it dialogue-free and in-register (composed motion only).
-3. `os_generate.py prep-video <project> <prompt_id> <seconds>` , preflight credits. STOP and ask for approval before any generation.
-4. (Only after approval) generate image-to-video via the Higgsfield MCP; `ingest-video` (FAILED-not-complete on bad download, no placeholder).
-5. Collect clip observations and run `os_motion_qa.py gate --crs <crs> --world <world> --clip <file>` , quarantine on any hard failure.
+1. Confirm `os_crs.py validate <crs>` and `os_world.py validate <world>` both VALID, and the hero is locked (`os_herolock`).
+2. Run `os_motion_ready.py check ...` , must be READY (world + pillars + face-match-to-locked-hero + signature + vision + audit). If BLOCKED, do not spend.
+3. Condition on the locked hero: `os_generate.py ref-package --hero <url> --kind video` (Seedance start_image). No fresh text-only face for motion.
+4. `os_generate.py prep-video <project> <prompt_id> <seconds>` , preflight credits. STOP and ask for approval before any generation.
+5. (Only after approval) generate image-to-video via the Higgsfield MCP; `ingest-video` (FAILED-not-complete on bad download, no placeholder).
+6. Sample frames, run `os_motion_qa.py gate --crs <crs> --world <world> --clip <file>` , quarantine on any hard failure; identity-hold across sampled frames is checked against the locked hero.
 
 ## Gates
 - identity-hold (AXIS hard invariants per sampled frame) , HARD

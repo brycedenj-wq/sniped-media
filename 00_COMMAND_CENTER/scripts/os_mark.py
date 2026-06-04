@@ -16,6 +16,15 @@ Commands:
 import os, sys, csv, time, argparse
 
 
+def _landmark_anchor(src):
+    """Return (x,y) inner-left-eye anchor via os_face, or None."""
+    import importlib.util
+    here = os.path.dirname(os.path.abspath(__file__))
+    spec = importlib.util.spec_from_file_location("os_face", os.path.join(here, "os_face.py"))
+    of = importlib.util.module_from_spec(spec); spec.loader.exec_module(of)
+    return of.inner_left_eye_anchor(src)
+
+
 def cmd_inject(a):
     try:
         from PIL import Image, ImageDraw
@@ -27,6 +36,16 @@ def cmd_inject(a):
         print("  REFUSED: output must differ from source (no in-place edit; original is preserved)"); return 1
     if not a.reason:
         print("  REFUSED: --reason is mandatory (no silent edits)"); return 1
+    # landmark-based placement: if --anchor given, derive coords from detected eyes (no guessing)
+    if getattr(a, "anchor", None) == "inner_left_eye" and (a.x is None or a.y is None):
+        pt = _landmark_anchor(a.src)
+        if pt is None:
+            print("  REFUSED: --anchor inner_left_eye but no face/eyes detected; supply --x/--y or use a clearer frame")
+            return 1
+        a.x, a.y = pt
+        a.reason = a.reason + f" [landmark-placed at detected inner-left-eye {a.x},{a.y}]"
+    if a.x is None or a.y is None:
+        print("  REFUSED: provide --x/--y or --anchor inner_left_eye"); return 1
     im = Image.open(a.src).convert("RGB")
     w, h = im.size
     if not (0 <= a.x < w and 0 <= a.y < h):
@@ -65,7 +84,9 @@ def main():
     sub = p.add_subparsers(dest="cmd")
     inj = sub.add_parser("inject")
     inj.add_argument("--src", required=True); inj.add_argument("--out", required=True)
-    inj.add_argument("--x", type=int, required=True); inj.add_argument("--y", type=int, required=True)
+    inj.add_argument("--x", type=int, default=None); inj.add_argument("--y", type=int, default=None)
+    inj.add_argument("--anchor", choices=["inner_left_eye"], default=None,
+                     help="landmark-based placement via detected eyes (no manual guessing)")
     inj.add_argument("--radius", type=int, default=3); inj.add_argument("--color", default="#3c2823")
     inj.add_argument("--reason", required=True); inj.add_argument("--log", required=True)
     lg = sub.add_parser("log"); lg.add_argument("--log", required=True)
