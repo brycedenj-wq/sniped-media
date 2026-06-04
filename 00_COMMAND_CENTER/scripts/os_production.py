@@ -39,13 +39,32 @@ def log_generation(s,gid,pid,model,params,credits,asset,status):
         print("BLOCK: prompt_id '"+pid+"' has no PROMPT_VERSIONS record. log-prompt first."); return 1
     open(os.path.join(P(s),"04_generations",asset),"a").close()
     append(s,"GENERATION_LOG.csv",[time.strftime("%Y-%m-%d %H:%M"),gid,pid,model,params,credits,asset,status]); print("generation "+gid+" logged"); return 0
-def log_vision(s,asset,verdict,scores):
-    verdict=verdict.upper()
+RUBRIC=["slop","hands","skin","clothing","text","identity","brand","likeness","beat_source"]
+def vision_review(s,asset):
     src=os.path.join(P(s),"04_generations",asset)
     if not os.path.exists(src): src=os.path.join(P(s),"05_vision_quarantine",asset)
-    dest="06_approved" if verdict=="SHIP" else "07_rejected"
-    if os.path.exists(src): shutil.move(src,os.path.join(P(s),dest,os.path.basename(asset)))
-    append(s,"VISION_GATE_LOG.csv",[time.strftime("%Y-%m-%d %H:%M"),asset,verdict,scores,"model"]); print("vision "+verdict+" -> "+dest); return 0
+    print("VISION REVIEW for "+asset+" (path: "+src+")")
+    print("Model: Read the asset and score each item PASS/FAIL, then call:")
+    print("  os_production.py log-vision "+s+" "+asset+" <PASS|REJECT|NEEDS-HUMAN> \"slop=PASS hands=PASS ...\" [--override \"reason\"]")
+    for r in RUBRIC: print("  [ ] "+r)
+    return 0
+def log_vision(s,asset,verdict,scores,override=""):
+    verdict=verdict.upper()
+    if verdict not in ("PASS","REJECT","NEEDS-HUMAN","SHIP"):
+        print("BLOCK: verdict must be PASS / REJECT / NEEDS-HUMAN"); return 1
+    if verdict=="SHIP": verdict="PASS"
+    src=os.path.join(P(s),"04_generations",asset)
+    if not os.path.exists(src): src=os.path.join(P(s),"05_vision_quarantine",asset)
+    if verdict=="PASS": dest="06_approved"
+    elif verdict=="REJECT": dest="07_rejected"
+    else: dest="05_vision_quarantine"  # NEEDS-HUMAN stays quarantined
+    if os.path.exists(src) and os.path.dirname(src)!=os.path.join(P(s),dest):
+        shutil.move(src,os.path.join(P(s),dest,os.path.basename(asset)))
+    # if a human override flips the model verdict, the reason is mandatory (already passed as override)
+    rev = "human-override:"+override if override else "model"
+    if verdict in ("PASS","REJECT") and override=="" and "NEEDS-HUMAN" in scores.upper():
+        print("note: model flagged NEEDS-HUMAN; logging "+verdict+" without an override reason is discouraged.")
+    append(s,"VISION_GATE_LOG.csv",[time.strftime("%Y-%m-%d %H:%M"),asset,verdict,scores,rev]); print("vision "+verdict+" -> "+dest+" ("+rev+")"); return 0
 def log_edit(s,asset,edit,tool,fv,tv,notes):
     append(s,"EDIT_LOG.csv",[time.strftime("%Y-%m-%d %H:%M"),asset,edit,tool,fv,tv,notes]); print("edit logged"); return 0
 def log_caption(s,asset,caption):
@@ -56,6 +75,9 @@ def log_caption(s,asset,caption):
     append(s,"CAPTION_VOICE_LOG.csv",[time.strftime("%Y-%m-%d %H:%M"),asset,cf,em,tell,verdict])
     print("caption voice-gate: em_dash="+em+" ai_tell="+tell+" -> "+verdict); return 0 if verdict=="PASS" else 1
 def log_export(s,asset,fmt,notes):
+    import io,contextlib; buf=io.StringIO()
+    with contextlib.redirect_stdout(buf): blocked=audit(s)==1
+    if blocked: print("BLOCK: audit has blockers, cannot export. Run: os_production.py audit "+s); return 1
     if not [r for r in readlog(s,"CAPTION_VOICE_LOG.csv") if r[1]==asset and r[5]=="PASS"]:
         print("BLOCK: export of '"+asset+"' requires a PASSing caption/voice record. log-caption first."); return 1
     open(os.path.join(P(s),"09_exports",os.path.splitext(asset)[0]+"_"+fmt+".export"),"w").write(notes); print("export logged for "+asset); return 0
@@ -105,12 +127,14 @@ def dashboard():
         if not os.path.isdir(b) or not os.path.exists(os.path.join(b,"PROJECT.md")): continue
         closed="CLOSED" in open(os.path.join(b,"PROJECT.md")).read()
         gens=len(ls_dir(p,"04_generations")); appr=len(ls_dir(p,"06_approved")); exp=len([f for f in ls_dir(p,"09_exports") if f.endswith(".export")])
+        try: est_cred=sum(float(r[5]) for r in readlog(p,"GENERATION_LOG.csv") if r[5])
+        except: est_cred=0
         buf=io.StringIO()
         with contextlib.redirect_stdout(buf): blocked=audit(p)==1
         state="closed" if closed else ("BLOCKED" if blocked else ("awaiting-export" if appr>exp else ("awaiting-vision" if gens>appr+len(ls_dir(p,"07_rejected")) else "active")))
         last=time.strftime("%Y-%m-%d %H:%M",time.localtime(os.path.getmtime(b)))
-        rows.append((p,state,gens,appr,exp,last))
-    out="# OS PRODUCTION DASHBOARD (campaign house)\n\nDaily command center. Generated "+time.strftime("%Y-%m-%d %H:%M")+".\n\n| project | state | gens | approved | exports | last updated |\n|---|---|---|---|---|---|\n"
+        rows.append((p,state,gens,appr,exp,int(est_cred),last))
+    out="# OS PRODUCTION DASHBOARD (campaign house)\n\nDaily command center. Generated "+time.strftime("%Y-%m-%d %H:%M")+".\n\n| project | state | gens | approved | exports | est_credits | last updated |\n|---|---|---|---|---|---|---|\n"
     for r in rows: out+="| "+" | ".join(str(x) for x in r)+" |\n"
     cc={}
     for r in rows: cc[r[1]]=cc.get(r[1],0)+1
@@ -120,7 +144,8 @@ def main():
     a=sys.argv; c=a[1] if len(a)>1 else "list"
     f={"new":lambda:new(a[2]),"log-prompt":lambda:log_prompt(a[2],a[3],a[4],a[5],a[6]," ".join(a[7:])),
        "log-generation":lambda:log_generation(a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9]),
-       "log-vision":lambda:log_vision(a[2],a[3],a[4],a[5] if len(a)>5 else ""),
+       "log-vision":lambda:log_vision(a[2],a[3],a[4],a[5] if len(a)>5 and not a[5].startswith("--") else "", (a[a.index("--override")+1] if "--override" in a else "")),
+       "vision-review":lambda:vision_review(a[2],a[3]),
        "log-edit":lambda:log_edit(a[2],a[3],a[4],a[5],a[6],a[7]," ".join(a[8:])),
        "log-caption":lambda:log_caption(a[2],a[3]," ".join(a[4:])),
        "log-export":lambda:log_export(a[2],a[3],a[4]," ".join(a[5:])),

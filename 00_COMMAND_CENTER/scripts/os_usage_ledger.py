@@ -54,12 +54,13 @@ def main():
         son=g(r"sonnet only\)[\s\S]{0,40}?(\d+)%")
         mix=[]
         for mdl in ("haiku","opus","sonnet"):
-            mm=_re.search(mdl+r"[^$]*\$([\d,.]+)",txt,_re.I)
-            if mm: mix.append(mdl+":$"+mm.group(1))
+            # anchor to the real 'claude-<model>-<ver>: ... ($X.XX)' line only
+            mm=_re.search(r"claude-"+mdl+r"[-\w.]*:[^\n]*?\(\$([\d,.]+)\)",txt,_re.I)
+            mix.append(mdl+":$"+mm.group(1) if mm else mdl+":UNCERTAIN")
         print("PARSED /usage:")
         print("  total_cost=$"+total+" | session="+sess+"% (resets "+reset.strip()+") | week_all="+week+"% | week_sonnet="+son+"%")
         print("  model_mix: "+", ".join(mix))
-        print("  -> log a run: os_usage_ledger.py start <label> <segments> '"+("+".join(m.split(':')[0] for m in mix) or "haiku+sonnet")+"' <est> "+total)
+        print("  -> log a run: os_usage_ledger.py start <label> <segments> '"+("+".join(m.split(':')[0] for m in mix if "UNCERTAIN" not in m) or "haiku+sonnet")+"' <est> "+total)
         print("  -> then after the run: os_usage_ledger.py end <label> <new_total>")
         return 0
     # report
