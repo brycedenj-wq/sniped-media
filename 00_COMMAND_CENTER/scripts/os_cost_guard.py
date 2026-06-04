@@ -3,7 +3,7 @@
 session-drain failure) and oversized inline scripts. Fails OPEN (never bricks the tool on error).
 Block = exit code 2 + reason on stderr."""
 import sys, json, os, time
-LOCK="/tmp/os_wf.lock"; LOCK_TTL=1200  # 20 min stale window
+LOCK="/tmp/os_wf.lock"; LOCK_TTL=5400  # 90 min stale window (crash recovery); cleared on completion via os_wave_lock.py release
 MAX_SCRIPT_BYTES=480_000  # > ~480KB inline script implies a very large embedded plan
 def block(msg): sys.stderr.write(f"[os-cost-guard BLOCK] {msg}\n"); sys.exit(2)
 try:
@@ -14,7 +14,7 @@ try:
     if os.path.exists(LOCK):
         age=time.time()-os.path.getmtime(LOCK)
         if age < LOCK_TTL:
-            block(f"a workflow started {int(age)}s ago (<{LOCK_TTL}s). NO concurrent waves (drains the session). Wait or TaskStop it. Override: rm {LOCK}")
+            block(f"a workflow started {int(age)}s ago (<{LOCK_TTL}s). NO concurrent waves (drains the session). Wait or TaskStop it. Override: os_wave_lock.py clear  (or it auto-clears after 90min)")
     # 2) oversized inline script
     script=ti.get("script") or ""
     if len(script) > MAX_SCRIPT_BYTES:
