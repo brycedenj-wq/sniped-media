@@ -1,0 +1,29 @@
+# OS_CURRENT_STATE , what is true NOW
+
+> Single source of truth for the active session. Overwrite at session end. (Updated 2026-06-04.)
+
+## ACTIVE MISSION (only one)
+**Certify + distill every .docx in `/Users/sniper/Downloads/    SNIPED_OS/start here` (98 unique docs, 1,436 segments), by file class, with coverage proof. No strategy, no production until the folder is complete.**
+
+## Status
+- Folder: 98 unique docs (3 exact-dups logged), all segment-ledgered + partition-validated.
+- Certified so far: 8 docs (Batch A + 3 single-seg). 
+- IN FLIGHT: Wave 1 workflow (61 small/medium docs, ≤10 seg) running via `os_certify`-style reader agents (task wkm034ejp); results land in `/tmp/wave1_out/`.
+- Pending: Wave 2 = 30 giants (1,243 segments), sharded, after Wave 1 persists.
+
+## Certification reality (do not inflate)
+- By WORD VOLUME: ~4.4% certified, 82% provisional (book layer, no segment ledger), 13% characterized (giants). File-count % is a vanity metric. See `OS_CERTIFICATION_REPORT.md`.
+- No file has a token-safe segment ledger except the start-here docs being processed now.
+
+## WORK REGISTRY (built , reuse, do not rebuild)
+- Production harness: `os_production.py`, `os_batch.py`, `os_generate.py` (image+video), `os_vision_gate.py`, `os_motion_qa.py`, `os_crs.py`, `os_world.py`, `os_facematch.py`, `os_herolock.py`, `os_motion_ready.py`, `os_mark.py` , campaign-house Phases 0-3, 90 tests passing (test-backed = SAFE).
+- Verification: `os_certify.py` (standard), `os_segment_ledger.py` (coverage primitive), `os_methodology_audit.py`, `os_origin_audit.py`, `os_checkpoint.py`, `os_skill.py` (skill contract).
+- ACTIVE skills (5): skill-template, sniped-crs-builder, os-world-bible, kling-production-sop, os-face-lock. (+18 older installed, mostly INSTALLED_INCOMPLETE.)
+- Locked hero: `axis_v2` (AXIS character + MERIDIAN-HOUSE world). 1 motion clip shipped (identity held).
+
+## BLOCKED / HYPOTHESIS (do not treat as fact)
+- All strategy/lane answers = hypotheses (built on provisional sources). Possibility-engine holds: no crowned lane.
+- 5 giant intake dumps + 25M-word book layer = unproven coverage (provisional).
+
+## Guardrails (always)
+No em-dashes. No strategy/production during the folder mission. One active mission. Cert ledger gates redo. Spend (credits/workflows) needs explicit approval.
