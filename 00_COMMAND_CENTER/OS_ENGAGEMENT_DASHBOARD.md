@@ -25,7 +25,7 @@ By extension: md 1,489 · txt 1,031 · docx 552 · pdf 310 · epub 278 · jsonl 
 | Doctrines created (this protocol) | 1 (`AI_NATIVE_BRAND_DOCTRINE`) |
 | Prior distillations (summary, re-verify against whole-read) | ~25 intel memories covering canon books |
 | Skills extracted (recent) | `brand-validation-machine`, `os-engagement` |
-| **Percent of OS engaged (VERIFIED only)** | **~96.6%** (1215 / 1,258 verified) |
+| **Percent of OS engaged (VERIFIED only)** | **~96.2%** (1210 / 1,258 verified) |
 | **Percent engaged (text-word burden)** | **~9%** of the 4.46M text words equivalent, via the 400k-word read |
 
 This is the real starting line. It climbs as batches run.
@@ -86,7 +86,7 @@ This is the real starting line. It climbs as batches run.
 
 | Status | Count | Meaning |
 |---|---|---|
-| **read_verified** | 1215 | every segment under cap, EOF coverage proven, healthy extraction |
+| **read_verified** | 1210 | every segment under cap, EOF coverage proven, healthy extraction |
 | **read_low_confidence** | 0 | borderline segment size (18-25k tok), re-read queued |
 | **partial_read_only** | 0 | at least one segment exceeded 25k tok and errored, re-read REQUIRED |
 | **needs_ocr** | 34 | image-only/scanned, text extraction failed, OCR pending |
