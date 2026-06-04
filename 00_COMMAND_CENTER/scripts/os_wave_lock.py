@@ -23,6 +23,17 @@ def main():
         if os.path.exists(LOCK): os.remove(LOCK); print("cleared (override)")
         else: print("no lock")
         return 0
+    if cmd=="reap":
+        # auto-release if no workflow transcript has been written in the last 5 min (wave done/dead/timeout)
+        import glob
+        if a is None: print("no lock"); return 0
+        recent=False; now=time.time()
+        for d in glob.glob(os.path.expanduser("~/.claude/projects/*/subagents/workflows/*")):
+            try:
+                if now-os.path.getmtime(d) < 300: recent=True; break
+            except: pass
+        if recent: print(f"lock HELD , a workflow is active ({int(a)}s)"); return 0
+        os.remove(LOCK); print(f"reaped , no active workflow, lock released (was {int(a)}s)"); return 0
     # status
     if a is None: print("lock: NONE (free)")
     elif a>=MAX_AGE: os.remove(LOCK); print(f"lock: STALE ({int(a)}s) -> auto-cleared")
