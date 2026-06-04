@@ -14,7 +14,7 @@ LOGS={
  "10_logs/EDIT_LOG.csv":"ts,asset,edit,tool,from_version,to_version,notes",
  "10_logs/CAPTION_VOICE_LOG.csv":"ts,asset,caption_file,em_dash,ai_tell,verdict",
  "10_logs/SKILL_EXTRACTION_LOG.csv":"ts,observation,repeat_count,skill_candidate,status",
- "10_logs/PROOF_LOOP_DASHBOARD.md":"# Proof-loop dashboard\n\n| asset | posted? | metric | 24h | 7d | kill/keep/scale |\n|---|---|---|---|---|---|\n",
+ "10_logs/PROOF_LOOP_DASHBOARD.md":"# Proof-loop dashboard (proof not faked; not-activated until posted)\n\n| asset_id | channel | posted? | 24h_signal | 7d_signal | kill/keep/scale | notes |\n|---|---|---|---|---|---|---|\n",
 }
 AI_TELLS=["in today's","that being said","it's worth noting","at its core","delve into","in conclusion","tapestry","testament to"]
 def P(s): return os.path.join(ROOT,s)
@@ -80,7 +80,15 @@ def log_export(s,asset,fmt,notes):
     if blocked: print("BLOCK: audit has blockers, cannot export. Run: os_production.py audit "+s); return 1
     if not [r for r in readlog(s,"CAPTION_VOICE_LOG.csv") if r[1]==asset and r[5]=="PASS"]:
         print("BLOCK: export of '"+asset+"' requires a PASSing caption/voice record. log-caption first."); return 1
-    open(os.path.join(P(s),"09_exports",os.path.splitext(asset)[0]+"_"+fmt+".export"),"w").write(notes); print("export logged for "+asset); return 0
+    open(os.path.join(P(s),"09_exports",os.path.splitext(asset)[0]+"_"+fmt+".export"),"w").write(notes)
+    # proof-loop activation (NOT activated; we are not posting)
+    pl=os.path.join(P(s),"10_logs","PROOF_LOOP_DASHBOARD.md")
+    concept=""
+    pv=readlog(s,"PROMPT_VERSIONS.csv")
+    if pv: concept=pv[-1][3]
+    with open(pl,"a") as f:
+        f.write("| "+asset+" | (no channel) | no | not-activated | not-activated | pending | exported "+time.strftime("%Y-%m-%d")+", not posted |\n")
+    print("export logged for "+asset+" + proof-loop row (not activated)"); return 0
 def log_skill(s,obs,repeat,cand,status):
     append(s,"SKILL_EXTRACTION_LOG.csv",[time.strftime("%Y-%m-%d %H:%M"),obs,repeat,cand,status]); print("skill candidate logged"); return 0
 def status(s):
