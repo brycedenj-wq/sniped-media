@@ -27,19 +27,22 @@ Define one original character as a structured, gateable spec, then prepare it fo
 
 ## Procedure
 1. `os_crs.py new <slug>` , scaffold (refuses real/celebrity-leak names).
-2. Fill CRS.json: face, body, wardrobe, palette, lighting, camera_language, expressions, poses, negative_prompts, identity_invariants (mark hard ones), variation_rules.
+2. Fill CRS.json. The TRUE identity structure is FOUR HARD pillars: eye_color, face_geometry, build, complexion. Fragile micro-details (e.g. a small mole) are SOFT signature_details, never hard gates (RUN-001 lesson).
 3. `os_crs.py validate <slug>` , must return VALID before proceeding.
-4. `os_crs.py sheet <slug>` , write the 14-ref PLAN. STOP here; generation requires approved credit spend (ask first).
-5. After an approved generation pass, collect frame observations and run `os_crs.py gate <slug> --frames FILE` , quarantine any drift.
+4. `os_crs.py sheet <slug>` , write the 15-ref PLAN (includes frame 15, the tight identity-lock verify crop). STOP here; generation requires approved credit spend (ask first).
+5. After an approved generation pass: `os_crs.py verifycrop <image>` to get a checkable face crop, read it, collect frame observations, run `os_crs.py gate <slug> --frames FILE`.
+6. If a signature detail dropped but the 4 pillars held, restore it with the LOGGED stage `os_mark.py inject --src ... --out ... --x --y --reason ... --log MARK_INJECTION_LOG.csv` (never overwrites the source, always logged).
 
 ## Gates
 - identity-leak guard: refuses real-person / celebrity references (covert leaks remain the operator's call)
 - completeness gate: no field empty, >=1 hard invariant, must_not_vary populated
-- consistency gate: hard-invariant mismatch OR score < threshold -> quarantine (no silent pass)
+- consistency gate: a HARD-pillar mismatch quarantines; a missing SOFT signature does NOT
+- mark-injection discipline: signature retouch must write a new asset + a log row; silent/in-place edits are refused
 - no generation without explicit approval
 
 ## Test
 - case: `os_crs.py new t01` then `validate t01` on the empty scaffold returns INVALID; after filling all fields with >=1 hard invariant, `validate` returns VALID.
-- case: a frame whose observed eye_color differs from the hard invariant is QUARANTINED by `gate`, and the report names the hard failure.
+- case: a frame whose observed eye_color/face/build/complexion differs from a hard pillar is QUARANTINED by `gate`, and the report names the hard failure.
+- case: a frame missing only the SOFT signature (mole) but holding the 4 pillars is NOT quarantined.
 - expected failure: `new` with a name like "looks like <celebrity>" is REFUSED and writes nothing.
-- regression: `scripts/test_crs.py` (12/0).
+- regression: `scripts/test_crs.py` (26/0) + `scripts/test_mark.py` (8/0).

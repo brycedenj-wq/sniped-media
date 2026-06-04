@@ -32,11 +32,21 @@ REQUIRED = ["face", "body", "wardrobe", "palette", "lighting", "camera_language"
 # Cannot detect every covert reference; covert leaks remain a manual responsibility.
 # Negation-aware: a responsible disclaimer ("NOT resembling any real person") passes,
 # while an affirmative reference ("looks like <celebrity>") is flagged.
+# Scoped case-insensitivity: cue words match any case via (?i:...), but a proper-NAME
+# capital letter [A-Z] stays case-SENSITIVE (the capital is the real-name signal).
+# A global IGNORECASE would make [A-Z] match lowercase and flag phrases like "model drift".
 LEAK_PATTERNS = [
-    r"looks?\s+like\s+[A-Z]", r"resembl", r"based\s+on\s+(a\s+)?real",
-    r"\bceleb", r"likeness\s+of", r"\blookalike\b", r"spitting\s+image",
-    r"deepfake", r"real\s+person\s+named", r"photo\s+of\s+[A-Z][a-z]+\s+[A-Z][a-z]+",
-    r"\b(actor|actress|model|singer|athlete|president)\s+[A-Z][a-z]+",
+    r"(?i:looks?\s+like)\s+[A-Z]",
+    r"(?i:resembl)",
+    r"(?i:based\s+on\s+(?:a\s+)?real)",
+    r"(?i:\bceleb)",
+    r"(?i:likeness\s+of)",
+    r"(?i:\blookalike\b)",
+    r"(?i:spitting\s+image)",
+    r"(?i:deepfake)",
+    r"(?i:real\s+person\s+named)",
+    r"(?i:photo\s+of)\s+[A-Z][a-z]+\s+[A-Z][a-z]+",
+    r"(?i:actor|actress|singer|athlete|president|celebrity)\s+[A-Z][a-z]+",
 ]
 # If any of these appear within ~45 chars on either side of a match, treat it as a
 # disclaimer (the spec is asserting the character is NOT based on a real person).
@@ -46,7 +56,7 @@ LEAK_DISCLAIMERS = [
     "no celebrity", "fully original",
 ]
 
-CANONICAL_14 = [
+CANONICAL_FRAMES = [
     ("01_front_neutral", "front, eye-level", "chest-up", "anchor identity, default key"),
     ("02_three_quarter_left", "3/4 left, eye-level", "chest-up", "volume of the face"),
     ("03_three_quarter_right", "3/4 right, eye-level", "chest-up", "volume, symmetry check"),
@@ -61,6 +71,8 @@ CANONICAL_14 = [
     ("12_pose_seated", "3/4, eye-level", "full", "seated forward-lean posture"),
     ("13_pose_walking", "environmental", "full", "mid-stride motion reference"),
     ("14_detail_signature", "macro", "hands/accessory", "hands + signature accessory detail"),
+    ("15_identity_lock_tight", "front, eye-level, TIGHT face crop", "face-only macro",
+     "tight identity-verification frame , eyes/geometry/complexion + signature mole checkable at this crop (RUN-001 fix)"),
 ]
 
 
@@ -84,7 +96,7 @@ def leak_scan(text):
     hits = []
     for pat in LEAK_PATTERNS:
         flagged = False
-        for m in re.finditer(pat, text, re.IGNORECASE):
+        for m in re.finditer(pat, text):  # flags scoped per-pattern via (?i:...)
             s, e = m.start(), m.end()
             window = low[max(0, s - 45):min(len(low), e + 45)]
             if any(d in window for d in LEAK_DISCLAIMERS):
@@ -182,17 +194,18 @@ def cmd_sheet(a):
         "working_name": spec.get("working_name"),
         "generation_status": "PLAN ONLY , not generated. Generation requires approved credit spend.",
         "invariants_to_hold_every_frame": hold,
+        "verification": "Use frame 15 (identity_lock_tight) or `os_crs.py verifycrop <image>` to check face-level invariants; do not gate identity from wide editorial framing.",
         "negative_prompts": spec.get("negative_prompts"),
         "frames": [
             {"id": fid, "angle": ang, "framing": fr, "purpose": purp,
              "lighting": spec.get("lighting"), "camera": spec.get("camera_language")}
-            for (fid, ang, fr, purp) in CANONICAL_14
+            for (fid, ang, fr, purp) in CANONICAL_FRAMES
         ],
     }
     out = os.path.join(char_path(a.slug), "SHEET_PLAN.json")
     with open(out, "w", encoding="utf-8") as f:
         json.dump(plan, f, indent=2)
-    print(f"  wrote 14-reference sheet PLAN: {out}")
+    print(f"  wrote {len(plan['frames'])}-reference sheet PLAN: {out}")
     print(f"  frames planned: {len(plan['frames'])} | invariants to hold: {hold}")
     print("  NOTE: no images generated. Run an approved generation pass to populate frames.")
     return 0
@@ -266,6 +279,28 @@ def cmd_leakcheck(a):
     return 0
 
 
+def cmd_verifycrop(a):
+    """Formalized identity-verification crop: deterministic face crop + zoom of a
+    portrait so face-level invariants (eyes/geometry/complexion/signature) are
+    actually checkable. Replaces the ad-hoc manual crop from RUN-001."""
+    try:
+        from PIL import Image
+    except ImportError:
+        print("  Pillow not installed: pip install Pillow"); return 1
+    if not os.path.isfile(a.image):
+        print(f"  image not found: {a.image}"); return 1
+    im = Image.open(a.image)
+    w, h = im.size
+    # default heuristic box for the locked portrait framing (chest-up, face upper-center)
+    box = (int(w * a.x0), int(h * a.y0), int(w * a.x1), int(h * a.y1))
+    crop = im.crop(box)
+    crop = crop.resize((crop.width * a.zoom, crop.height * a.zoom), Image.LANCZOS)
+    out = a.out or (os.path.splitext(a.image)[0] + "_verifycrop.png")
+    crop.save(out)
+    print(f"  verification crop -> {out} ({crop.size[0]}x{crop.size[1]}). Read it to score face-level invariants.")
+    return 0
+
+
 def cmd_show(a):
     spec = load_crs(a.slug)
     if spec is None:
@@ -285,9 +320,14 @@ def main():
     g.add_argument("--threshold", type=float, default=0.9)
     lc = sub.add_parser("leakcheck"); lc.add_argument("--text", default=""); lc.add_argument("--file", default=None)
     sh = sub.add_parser("show"); sh.add_argument("slug")
+    vc = sub.add_parser("verifycrop"); vc.add_argument("image"); vc.add_argument("--out", default=None)
+    vc.add_argument("--x0", type=float, default=0.36); vc.add_argument("--y0", type=float, default=0.20)
+    vc.add_argument("--x1", type=float, default=0.64); vc.add_argument("--y1", type=float, default=0.42)
+    vc.add_argument("--zoom", type=int, default=4)
     a = p.parse_args()
     handlers = {"new": cmd_new, "validate": cmd_validate, "sheet": cmd_sheet,
-                "gate": cmd_gate, "leakcheck": cmd_leakcheck, "show": cmd_show}
+                "gate": cmd_gate, "leakcheck": cmd_leakcheck, "show": cmd_show,
+                "verifycrop": cmd_verifycrop}
     if a.cmd not in handlers:
         p.print_help(); return 1
     return handlers[a.cmd](a)

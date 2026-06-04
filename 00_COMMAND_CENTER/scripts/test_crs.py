@@ -29,6 +29,10 @@ def main():
               not M.leak_scan("negative prompt: resemblance to any real or famous person"))
         check("affirmative 'looks like <Name>' still flags",
               bool(M.leak_scan("the face looks like Timothee")))
+        # guard fix: profession + lowercase word (e.g. 'model drift') must NOT flag
+        check("'model drift' does not flag (case-sensitive name)", not M.leak_scan("fragile under model drift"))
+        check("'the model drops it' does not flag", not M.leak_scan("if the model drops it, retouch"))
+        check("'actor Smith' still flags", bool(M.leak_scan("cast as actor Smith")))
 
         # new refuses a leaky name
         rc = M.cmd_new(A(slug="leaky", name="looks like Brad Pitt"))
@@ -62,10 +66,12 @@ def main():
         rc = M.cmd_validate(A(slug="atom01"))
         check("complete original spec is VALID", rc == 0)
 
-        # sheet plan = 14 frames, plan-only
+        # sheet plan = 15 frames (incl. the tight identity-lock verify frame), plan-only
         rc = M.cmd_sheet(A(slug="atom01"))
         plan = json.load(open(os.path.join(sandbox, "atom01", "SHEET_PLAN.json")))
-        check("sheet plan has 14 frames", rc == 0 and len(plan["frames"]) == 14)
+        check("sheet plan has 15 frames", rc == 0 and len(plan["frames"]) == 15)
+        check("sheet includes identity_lock_tight verify frame",
+              any("identity_lock_tight" in f["id"] for f in plan["frames"]))
         check("sheet plan is plan-only (no generation)", "PLAN ONLY" in plan["generation_status"])
 
         # consistency gate: matching frame passes, drifted frame quarantines
@@ -87,6 +93,26 @@ def main():
         check("hard-hold + missing soft -> score 1.0, no hard fail", soft_score == 1.0 and not soft_hard_fail)
         v_score, v_hard = M.evaluate_frame(soft_obj, {"eye_color": "deep-brown", "mole_below_left_eye": "present", "hair_style": "buzzcut"})
         check("hard-hold + varied soft -> not quarantined", v_score == 1.0 and not v_hard)
+
+        # RUN-001 spec fix: four-pillar HARD structure, mole demoted to SOFT
+        pillar_spec = {"identity_invariants": [
+            {"key": "eye_color", "value": "deep-brown", "hard": True},
+            {"key": "face_geometry", "value": "angular", "hard": True},
+            {"key": "build", "value": "lean", "hard": True},
+            {"key": "complexion", "value": "even-mid", "hard": True},
+            {"key": "mole_below_left_eye", "value": "present", "hard": False},
+        ]}
+        pillars_ok = {"eye_color": "deep-brown", "face_geometry": "angular", "build": "lean", "complexion": "even-mid"}
+        s_nomole, hf_nomole = M.evaluate_frame(pillar_spec, dict(pillars_ok, mole_below_left_eye="absent"))
+        check("missing mole + 4 pillars hold -> NOT quarantined", s_nomole == 1.0 and not hf_nomole)
+        s_eye, hf_eye = M.evaluate_frame(pillar_spec, dict(pillars_ok, eye_color="blue"))
+        check("wrong eyes -> still quarantines", bool(hf_eye))
+        s_face, hf_face = M.evaluate_frame(pillar_spec, dict(pillars_ok, face_geometry="round"))
+        check("wrong face geometry -> still quarantines", bool(hf_face))
+        s_build, hf_build = M.evaluate_frame(pillar_spec, dict(pillars_ok, build="heavy"))
+        check("wrong build -> still quarantines", bool(hf_build))
+        s_comp, hf_comp = M.evaluate_frame(pillar_spec, dict(pillars_ok, complexion="pale"))
+        check("wrong complexion -> still quarantines", bool(hf_comp))
 
     finally:
         shutil.rmtree(sandbox, ignore_errors=True)

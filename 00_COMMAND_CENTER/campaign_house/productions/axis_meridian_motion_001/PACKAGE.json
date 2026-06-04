@@ -1,7 +1,13 @@
 {
   "production_id": "axis_meridian_motion_001",
   "goal": "Prove the OS controls MOTION the same way it controls character + world. Not 'make a cool video.'",
-  "status": "PREFLIGHTED , AWAITING APPROVAL. No generation performed. No credits spent.",
+  "status": "v2 , RUN-001 done (hero quarantined on signature mole, video not run, 2cr). Spec fixed: mole demoted to SOFT, 4 hard pillars, logged mark-injection + tight verify crop. AWAITING approved corrected hero rerun (2cr).",
+  "run_001_result": "hero identity QUARANTINE (mole absent, 4/5 hard held under old spec); world PASS; stopped before video; 18cr saved.",
+  "spec_fix": {
+    "hard_pillars": ["eye_color", "face_geometry", "build", "complexion"],
+    "signature_soft": "mole_below_left_eye (restored via os_mark.py inject if dropped; logged, non-destructive)",
+    "verification": "os_crs.py verifycrop <image> or sheet frame 15 (identity_lock_tight)"
+  },
   "character": {"slug": "char_axis_01", "working_name": "AXIS", "crs_status": "VALID"},
   "world": {"slug": "world_meridian_01", "working_name": "MERIDIAN-HOUSE", "validate_status": "VALID", "environment": "Brutalist Monument"},
   "stage_1_hero_still": {
@@ -12,7 +18,9 @@
     "cost_credits": 2,
     "prompt": "An original androgynous figure, late-20s read, angular symmetrical bone structure, high flat cheekbones, deep-set deep-brown eyes, one small mole below the inner-left eye, even ambiguous mid-tone complexion, matte natural skin texture with visible pores. Wearing a structured charcoal wool overcoat over a bone-white cotton crew, raw-hem black tailored trousers. Standing in still contrapposto inside a vast brutalist concrete monument interior, board-formed concrete meeting bone-white plaster, a single doorway aperture behind. Single soft key light at 45 degrees from slightly above, deep clean falloff, low fill, chiaroscuro, cool north-light neutral, no colored light. 85mm portrait framing, chest-up, shallow depth of field, generous negative space, centered architectural composition. Quiet luxury editorial, Adobe Neutral palette of charcoal, bone and graphite with a single sparing oxblood accent. Composed-neutral expression.",
     "negative_prompt": "plastic or waxy skin, beauty-filter smoothing, extra or fused fingers, teal-and-orange grade, any logo or text, busy or cluttered background, symmetrical AI face-melt, uncanny dead eyes, broad toothy smile, resemblance to any real or famous person, saturated primaries, lens flare",
-    "invariants_to_hold": ["eye_color=deep-brown", "mole_below_left_eye=present", "face_geometry=angular-symmetrical-high-cheekbones", "build=lean-athletic-5ft10", "complexion=even-ambiguous-mid-tone"]
+    "invariants_to_hold_HARD": ["eye_color=deep-brown", "face_geometry=angular-symmetrical-high-cheekbones", "build=lean-athletic-5ft10", "complexion=even-ambiguous-mid-tone"],
+    "signature_soft": "mole_below_left_eye (if dropped: os_mark.py inject, logged)",
+    "post_gen": "os_crs.py verifycrop axis_hero_v2.png -> read -> gate; if pillars hold + mole missing -> logged mark-injection -> re-gate"
   },
   "stage_2_motion_clip": {
     "model": "seedance_2_0",

@@ -30,12 +30,16 @@
   ],
   "identity_invariants": [
     {"key": "eye_color", "value": "deep-brown", "hard": true},
-    {"key": "mole_below_left_eye", "value": "present", "hard": true},
     {"key": "face_geometry", "value": "angular-symmetrical-high-cheekbones", "hard": true},
     {"key": "build", "value": "lean-athletic-5ft10", "hard": true},
     {"key": "complexion", "value": "even-ambiguous-mid-tone", "hard": true},
+    {"key": "mole_below_left_eye", "value": "present", "hard": false},
     {"key": "brow_weight", "value": "straight-medium", "hard": false},
     {"key": "hair_style", "value": "varies-within-natural", "hard": false}
+  ],
+  "hard_structure_note": "The TRUE identity structure is four pillars: eye_color, face_geometry, build, complexion. A frame holds identity iff all four hold. The mole is a SIGNATURE DETAIL, not a hard gate (RUN-001 lesson: a sub-pixel mark is fragile under model drift).",
+  "signature_details": [
+    {"key": "mole_below_left_eye", "value": "present", "policy": "if the model drops it, apply the logged mark-injection/retouch stage (os_mark.py inject); never silently edit; original asset preserved"}
   ],
   "variation_rules": {
     "may_vary": [
@@ -43,10 +47,11 @@
       "wardrobe within the locked palette and materials",
       "environment (any environment from the MERIDIAN-HOUSE rotation)",
       "expression within the four-register set",
-      "pose within the defined pose set"
+      "pose within the defined pose set",
+      "signature mole (may be absent from a raw gen; restored via logged mark-injection)"
     ],
     "must_not_vary": [
-      "eye_color", "mole_below_left_eye", "face_geometry", "build", "complexion"
+      "eye_color", "face_geometry", "build", "complexion"
     ]
   }
 }
