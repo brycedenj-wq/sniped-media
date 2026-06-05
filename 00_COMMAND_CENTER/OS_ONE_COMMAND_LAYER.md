@@ -34,6 +34,21 @@ Dedicated action routes so the fused brain can ACT, not fall back to a generic c
 
 Run any command: `os_execution_graph.py command "<name>"`. Run free-text: `os_execution_graph.py graph "<intent>"`.
 
+## Judgment / decision / review routes (2026-06-05, fall-throughs closed)
+
+Read-only routes that emit a verdict, never silently land in the campaign route. Each carries a refusal line AND a stop-and-ask line.
+
+| Command | Route | Status | Emits | Stop and ask |
+|---|---|---|---|---|
+| `judge visual quality` | judge_visual_quality | ACTIVE | EXCELLENT / TEMPLATE-LOOKING / REJECT + reasons | if it is a real-person identity edit, stop |
+| `choose tool stack` | choose_tool_stack | ACTIVE | ranked stack from ACTIVE tools only + gaps | if it needs spend or install, ask first |
+| `evaluate legal risk` | evaluate_legal_risk | ACTIVE | identity/employer/IP/privacy flags + reversibility | ALWAYS route binding legal to operator + lawyer |
+| `decide engine stack` | decide_engine_stack | ACTIVE | Blender vs Godot vs Unreal vs Unity + why | if recommending an INSTALL, ask for approval |
+| `review client readiness` | review_client_readiness | ACTIVE | SHIP / FIX / HOLD + hardest-to-say-no gaps | even on SHIP, a real-client send needs a go |
+| `critique world` | critique_world | ACTIVE | weakness report + concrete fixes | internal only; do not act without a go |
+
+These are ACTIVE because they only read/analyze and emit a verdict; they never take an outward action. The refusal + stop-and-ask lines keep them from overclaiming or crossing a held line.
+
 ---
 
 ## How to invoke

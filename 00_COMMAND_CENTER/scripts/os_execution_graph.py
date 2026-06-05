@@ -34,6 +34,12 @@ def _m(n):
 # The named top-level commands the OS understands -> the route that fulfills each.
 COMMANDS = {
     "make campaign package": "make_campaign_package",
+    "judge visual quality": "judge_visual_quality",
+    "choose tool stack": "choose_tool_stack",
+    "evaluate legal risk": "evaluate_legal_risk",
+    "decide engine stack": "decide_engine_stack",
+    "review client readiness": "review_client_readiness",
+    "critique world": "critique_world",
     "build film pipeline": "build_film_pipeline",
     "build game pipeline": "build_game_pipeline",
     "build content engine": "build_content_engine",
@@ -159,6 +165,7 @@ def graph(text, route_id=None):
         "toolchain_detail": chain,
         "route_doctrine": r.get("doctrine"),
         "refuses": r.get("refuses"),
+        "stop_and_ask": r.get("stop_and_ask"),
         "proof": r.get("proof"), "gap": r.get("gap"),
     }
 
@@ -196,6 +203,7 @@ def render(g):
     print(f"  9 failure  -> {' | '.join(a['9_failure_rules']) or '-'}")
     print(f" 10 approval -> {'; '.join(a['10_approval_lines'])}")
     if g.get("refuses"): print(f"\nREFUSES TO CLAIM: {g['refuses']}")
+    if g.get("stop_and_ask"): print(f"STOP AND ASK: {g['stop_and_ask']}")
     print(f"modules awake: {', '.join(g['modules_awake'])}")
     if g.get("route_doctrine"): print(f"route doctrine nodes: {', '.join(g['route_doctrine'])}")
     if g.get("gap"): print(f"known gap: {g['gap']}")

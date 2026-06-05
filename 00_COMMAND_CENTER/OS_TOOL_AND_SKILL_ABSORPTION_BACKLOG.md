@@ -59,6 +59,8 @@ Absorption state legend:
 
 The fusion layer was richer than the router; that bottleneck is now addressed. Added 7 dedicated routes (build_film_pipeline, build_game_pipeline, build_content_engine, build_money_move, build_client_pitch, build_motion_trailer, build_product_drop) + free-text intents + command names + registered 18 local OS scripts and 3 game engines as tools. Registry now 91 tools / 25 routes. The brain no longer falls through to make_campaign_package for these intents.
 
+Route fall-throughs CLOSED (2026-06-05): added 6 read-only judgment/decision/review routes (judge_visual_quality, choose_tool_stack, evaluate_legal_risk, decide_engine_stack, review_client_readiness, critique_world), each with a refusal + stop-and-ask line. 8/8 fall-through tests route correctly, 0 fallbacks to make_campaign_package. Registry now 31 routes.
+
 Remaining route-layer work:
 - **build_film_pipeline -> ACTIVE**: prove one end-to-end run (stills -> motion -> AE title -> cut) with a continuity gate pass. Sound/score stays HANDOFF.
 - **build_game_pipeline -> AMBER**: needs the Godot first-playable proof (see OS_GAME_PIPELINE_DECISION.md). Engine install requires explicit approval.

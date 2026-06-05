@@ -18,6 +18,12 @@ def _reg():
 # intent keywords -> route id. Specific multi-word phrases score higher and win over broad fallbacks.
 INTENTS = {
     "make_campaign_package": ["campaign package", "campaign house", "full kit"],
+    "judge_visual_quality": ["judge", "template-looking", "template looking", "excellent or template", "visual quality", "is this visual", "critique visual", "beat the source"],
+    "choose_tool_stack": ["tool stack", "choose the right tool", "which tools", "stack for", "toolchain for", "right tool stack"],
+    "evaluate_legal_risk": ["legal", "startup risk", "risk before launch", "legal/startup", "liability", "evaluate the legal"],
+    "decide_engine_stack": ["engine", "godot", "unreal", "unity", "which engine", "next engine"],
+    "review_client_readiness": ["client readiness", "client ready", "review this package", "package for client", "ready to send", "review the package"],
+    "critique_world": ["what is weak", "weak in this", "critique the world", "weakness in", "what's weak", "weak in the world"],
     "build_film_pipeline": ["film pipeline", "film", "movie", "short film", "cinematic film"],
     "build_game_pipeline": ["game pipeline", "game", "video game", "playable"],
     "build_content_engine": ["content engine", "content factory", "content system", "posting cadence"],
@@ -34,12 +40,12 @@ INTENTS = {
     "create_proof_loop": ["proof loop", "build a proof loop", "validate demand", "signups"],
     "track_leads": ["track leads", "crm", "lead list", "contacts"],
     "score_money_path": ["money path", "money readiness", "sellable"],
-    "absorb_new_tool": ["activate tool", "activate a tool", "absorb tool", "new tool", "wire a tool"],
+    "absorb_new_tool": ["activate tool", "activate a tool", "absorb tool", "new tool", "wire a tool", "next tool to activate", "pick the next tool", "tool to activate"],
     "certify_docs": ["certify source", "certify a source", "certify doc", "certify the"],
     "build_world_3d": ["3d world", "build a world", "create world", "blender world", "environment"],
     "generate_pdf": ["pdf", "export pdf", "one-sheet pdf"],
     "update_dashboard": ["status board", "control room"],
-    "run_launch_readiness_check": ["launch readiness", "readiness", "go-live check", "launch check"],
+    "run_launch_readiness_check": ["launch readiness", "readiness", "go-live check", "launch check", "launch ready", "is this launch ready"],
 }
 
 def classify(text):
