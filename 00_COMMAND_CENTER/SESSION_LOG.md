@@ -27,3 +27,5 @@
 2026-06-04 , private form made deployment-ready (NOT hosted): Tally spec, static+Formspree (placeholder), Netlify/Vercel site/ drop, ingest+score scripts (tested), share+privacy checklists. Operator wires one manually. Stop before hosting/distribution.
 
 2026-06-04 , operator handoff written (OS_OPERATOR_HANDOFF.md). Machine PAUSED at operator line. All artifacts documented; manual wire steps + ingest/score + keep/kill/scale + approval choices. No build/host/share/generate.
+
+2026-06-04 , OS MAX DEMO 001 built: internal A-Z movie of the machine. Essential Docs = 18-startup-doc carousel (Ramon Lyons, visual) -> staged founder operating kit (6 NOW, 12 staged, all legal-review). Full chain folder-based control room, confidence-labeled, nothing crowned/posted/spent.
