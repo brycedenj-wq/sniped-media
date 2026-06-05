@@ -92,3 +92,11 @@ Answer to "were books certified or only chunked": **CHUNKED, not certified.** Pr
 - extracted_only: 6 / 179k (0.8%). pending: 66 OCR + 5 visual + 213 not-read source files.
 - **191 texts / 21.0M words need a real re-read** to ever be certified.
 Repair = TARGETED not wholesale (see OS_BOOK_LAYER_AUDIT_REPORT.md): dedupe+tag-provisional (free), OCR only doctrine-relevant scans, certify only the <20 books doctrine cites, certify ≤2-seg books cheaply, leave the long tail provisional+labeled. Do NOT bulk-workflow 21M words.
+
+---
+## DELTA , TOP-10 BOOKS CERTIFIED (2026-06-04, bounded wave)
+First classic books to reach the segment-ledger standard. 73 segments, 10 sonnet readers, ~1.0M tokens.
+- **10/10 certified, coverage PROVEN, 0 failures, all high-signal:** WWP Manifesto, Scientific Advertising, Mom Test, Obviously Awesome, $100M Offers, Ogilvy Confessions, Naval Almanack, The Outsiders, On Photography (Sontag), The Photographer's Eye (Freeman). Manifest extracted rows → `coverage_proven`.
+- **Chunk-accuracy audit: 10/10 prior chunks were PARTIAL; 1 FABRICATED (wwp chunk 12).** Proof that chunking ≠ certification.
+- **6 doctrine corrections surfaced** (Hopkins-vs-brevity, Ogilvy-vs-max-default, positioning≠messaging, validation≠learning-convos, Outsiders=temperament, photo-theory over-indexed on Berger/Dyer) , flagged for operator review, NOT auto-applied.
+- Book layer now: ~0 → **10 classic books certified**; the other ~205 chunked books remain provisional. Report: `OS_BOOK_TOP10_CERTIFICATION_REPORT.md`.

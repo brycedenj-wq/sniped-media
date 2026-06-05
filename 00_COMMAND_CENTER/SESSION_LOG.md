@@ -11,3 +11,5 @@
 2026-06-04 , book-layer audit DONE (local): books CHUNKED not certified. 215 texts/20.9M words provisional, ~0 canon certified, 66 OCR/5 visual/213 not-read pending. Targeted repair plan staged.
 
 2026-06-04 , book-layer REPAIR done: relabeled 377 sources provisional, built source index + dependency map + targeted cert queue + router provisional-book rule. ~0 books certified; ~25 cited books queued for targeted cert. No re-read.
+
+2026-06-04 , Top-10 books CERTIFIED to segment-ledger standard (10/10, ~1M tokens, 0 fail). Chunk audit: 10/10 partial, 1 fabricated. 6 doctrine corrections surfaced (flagged, not applied). Recommend: review corrections then Top-25.

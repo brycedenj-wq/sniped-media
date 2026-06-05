@@ -10,6 +10,7 @@
 - **NO ACTIVE MISSION.** Recent completed: `start here` folder certification (98/98) + loop-close.
 - Loop closed: cert dashboard delta (5 giants -> coverage_proven_via_starthere), OS_STARTHERE_DOCTRINE.md, OS_STARTHERE_BACKLOG.md (2 build-now of ~1267 candidates), router index updated, anti-duplication rule locked (OS_BOOT.md).
 - STAGED (do NOT start without a go): OS_BOOK_LAYER_AUDIT_PLAN.md (cheap local check: were books certified or only chunked).
+- Top-10 books CERTIFIED (segment-ledger, 10/10, ~1M tokens). Chunks were partial; 1 fabricated; 6 doctrine corrections flagged. OS_BOOK_TOP10_CERTIFICATION_REPORT.md. ~205 chunked books still provisional.
 - book repair DONE: 377 book sources relabeled provisional_chunked_not_certified; OS_BOOK_SOURCE_INDEX.csv (456 sources, 64 cited), dependency map, targeted queue (top10 ~68 seg), provisional-book router rule. NO book is certified (0 ledgers). NOT executed any re-read.
 - book-layer audit DONE: books are CHUNKED not certified (215 texts/20.9M words provisional; ~0 canon certified). Repair plan = targeted, OS_BOOK_LAYER_AUDIT_REPORT.md. Not started.
 - Preserve optionality. No lane active. No crown.
