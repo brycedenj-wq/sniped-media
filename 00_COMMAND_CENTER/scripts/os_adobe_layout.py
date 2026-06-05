@@ -141,23 +141,31 @@ def onesheet(src, out, title, logline, details, log=None):
     if log: _asset().log_edit(log, "layout:onesheet", src, out, f"{W}x{H}", title)
     return out
 
-def landing(src, out, headline, sub, cta, log=None):
+def landing(src, out, headline, sub, cta, log=None, eyebrow="", focus=(0.5, 0.32)):
     from PIL import Image, ImageDraw
+    import numpy as np
     W, H = 1440, 900
-    hero = _cover(Image.open(src).convert("RGB"), W, H, 0.55, 0.42)
-    im = _scrim(hero, bottom=True, top=True, strength=170); d = ImageDraw.Draw(im)
-    # faux browser chrome
-    d.rectangle([0,0,W,40], fill=(28,26,24))
-    for i,c in enumerate([(237,106,94),(245,191,79),(98,197,84)]): d.ellipse([18+i*26,14,32+i*26,28], fill=c)
+    hero = _cover(Image.open(src).convert("RGB"), W, H, focus[0], focus[1])
+    # strong bottom-anchored scrim so copy always sits on dark, never on a bright window
+    arr = np.asarray(hero).astype(np.float32); yy = np.linspace(0, 1, H)
+    a = np.clip((yy - 0.30) / 0.70, 0, 1)[:, None] ** 1.3 * 0.86
+    blk = np.zeros_like(arr); arr = arr * (1 - a[..., None]) + blk * a[..., None]
+    # slight top scrim for the chrome
+    at = np.clip((0.12 - yy) / 0.12, 0, 1)[:, None] * 0.6
+    arr = arr * (1 - at[..., None])
+    im = Image.fromarray(np.clip(arr, 0, 255).astype('uint8')); d = ImageDraw.Draw(im)
+    d.rectangle([0, 0, W, 40], fill=(24, 22, 20))
+    for i, c in enumerate([(237,106,94),(245,191,79),(98,197,84)]): d.ellipse([18+i*26,14,32+i*26,28], fill=c)
     _tracked(d, (W//2, 20), "private preview  ,  not hosted", _font("ui", 15), (150,146,140), tracking=2, anchor="mm")
-    _tracked(d, (90, 110), "THE ESTATE OF HER", _font("ui", 22), CREAM, tracking=10)
-    hf = _font("display", 92)
-    for i, ln in enumerate(_wrap(d, headline, hf, int(W*0.62))):
-        d.text((90, 360+i*int(hf.size*1.02)), ln, font=hf, fill=PAPER)
+    if eyebrow: _tracked(d, (96, H-330), eyebrow.upper(), _font("ui", 22), RED, tracking=9)
+    hf = _font("display", 96)
+    lines = _wrap(d, headline, hf, int(W*0.78))
+    y = H - 290
+    for ln in lines:
+        d.text((96, y), ln, font=hf, fill=PAPER); y += int(hf.size*1.0)
     if sub:
-        d.text((92, 560), sub, font=_font("display_it", 38), fill=CREAM)
-    # CTA button
-    bx, by, bw, bh = 92, 660, 360, 70
+        d.text((98, y+14), sub, font=_font("display_it", 36), fill=CREAM); y += 70
+    bx, by, bw, bh = 96, y+44, 380, 72
     d.rectangle([bx, by, bx+bw, by+bh], fill=RED)
     d.text((bx+bw//2, by+bh//2), cta, font=_font("ui_bold", 26), fill=PAPER, anchor="mm")
     im.save(out)
