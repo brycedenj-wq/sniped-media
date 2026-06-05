@@ -26,16 +26,17 @@ Physical print/drop: hand-numbered, wax-sealed DEED certificates (edition of 250
 - The whole one-command kit assembled from one 4K hero (poster/title/landing/onesheet/carousel/teaser/board/dashboard).
 - The discipline: one drawable glyph + one color + faceless, across both worlds.
 ## WHAT STILL LOOKS WEAK
-- Motion is one slow shot (no multi-shot edit yet). Landing is a PNG preview, not real HTML. Carousel is solid but template-plain. Adobe-MAX (subject-aware crop, cutouts, generative expand) not yet exercised (upload handshake pending).
+- Motion is one slow shot (no multi-shot edit yet). Landing is a PNG preview, not real HTML. Carousel is solid but template-plain. Multi-shot motion not yet edited (one shot). Landing is PNG, not real HTML.
 
 ## TOOLS USED
-Higgsfield (image+video, proven), local os_* scripts (engine/campaign/grade/composite/reframe/layout/teaser/cut/gate/privacy/money/launch), Pillow, ffmpeg, exiftool, git. Adobe MCP attempted (rejected external URL; needs upload handshake).
+Higgsfield (image+video, proven), local os_* scripts (engine/campaign/grade/composite/reframe/layout/teaser/cut/gate/privacy/money/launch), Pillow, ffmpeg, exiftool, git. Adobe MCP PROVEN: upload handshake cracked (os_adobe_cloud), subject-aware crop produced a DEED 1:1 artifact.
 ## WHAT BECAME ACTIVE
 - Universal Tool Orchestration Layer: os_tool_registry (68 tools classified), os_tool_router (12 routes), os_tool_test (8/8 route tests PASS w/ artifacts).
 - os_engine prime mover (one intent -> full chain), proven on DEED + REMAINS.
-- os_privacy_gate, os_money_path, os_launch_check.
+- os_privacy_gate, os_money_path, os_launch_check, os_adobe_cloud.
+- Adobe-MAX (image_crop_and_resize): PROVEN ACTIVE via the upload handshake (DEED 1:1 artifact in 04_WINNER_PACKAGE/adobe_max/).
 ## WHAT STAYED AMBER / RED
-- AMBER: Adobe-MAX (upload handshake), claude.ai-app plugins (installed not bridged), Airtable/Notion/Gmail/Drive/Semrush/Figma (connected, unproven route), real-HTML landing, multi-clip video.
+- AMBER: claude.ai-app plugins (installed not bridged), Airtable/Notion/Gmail/Drive/Semrush/Figma (connected, unproven route), real-HTML landing, multi-clip video.
 - RED: Midjourney/CapCut/Blender/Spline/Unreal/Synthesia (not installed).
 
 ## WHAT THE OS LEARNED  (see 11_FAILURE_LEDGER/)
@@ -57,4 +58,4 @@ Both held until you say go; payment rail stays HELD until proof.
 ## EXACT FIRST 3 ACTIONS WHEN YOU WAKE UP
 1. Open `08_SELLABLE_PRESENTATION/` and the DEED poster + `07_MOTION_TRAILER/` clip. Verdict: does DEED OFFICE beat LOT 00 as the lane to push? (yes/no/which).
 2. If yes: approve the 2 cheap safety closers I queued (`12_NEXT_ACTIONS`): set the USD cost-rate (give me the number) and add a private `osbackup` git remote (give me the URL). These flip the last 2 launch-check FAILs to PASS, no spend.
-3. Pick the next push: (a) exercise Adobe-MAX via the upload handshake on the DEED hero, (b) multi-shot DEED trailer (more motion credits), or (c) build the private proof-loop offer for the DEED print drop (still internal, no launch).
+3. Pick the next push: (a) more Adobe-MAX ops now that the handshake works (remove-bg cutout drop, generative-expand banner, InDesign deck), (b) multi-shot DEED trailer (more motion credits), or (c) build the private proof-loop offer for the DEED print drop (still internal, no launch).
