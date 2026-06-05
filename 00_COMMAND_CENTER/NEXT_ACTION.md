@@ -1,14 +1,8 @@
 # NEXT_ACTION
 
-Top-25 book wave RUNNING (task wfz5q11c7, 12 books / 161 segments, sonnet single + haiku-shard/sonnet-consolidate).
+Book-cert + doctrine reconciliation COMPLETE. No active mission. Await direction.
 
-When complete:
-1. Read /tmp/top25_out/<book>.json, verify segments_read==expected, mark ledgers, flag mismatch (don't certify fails).
-2. Write OS_BOOK_TOP25_CERTIFICATION_REPORT.md (per book: paths, segments, coverage, cert, doctrine, supports, contradictions, chunk-accuracy, candidates).
-3. Update OS_BOOK_COVERAGE_LEDGER.csv + manifest (12 -> coverage_proven) + cert dashboard delta.
-4. Chunk-accuracy audit summary + doctrine corrections + ranked candidates (curate-only, no build).
-5. Recommend doctrine to reconcile.
-6. LOG EXCEPTIONS (cannot certify , no extracted full text): Hit Makers (source MISSING), Trading Up (.pdf not extracted), 7 Powers (not extracted), The Trusted Advisor/Trust-Equation book (only .mobi; Maister covered instead via Managing the Professional Service Firm). These cited-doctrine sources are NOT certified.
-7. STOP after Top-25 report.
-
-NEXT MISSION after this (per operator): doctrine reconciliation , fold Top-10 + Top-25 corrections into intel_* docs, update router confidence labels, mark certified vs provisional principles, preserve disagreement (do not force one rule). NOT started.
+Strategy is now SAFE to resume WITH doctrine confidence labels (router enforces). Two caveats:
+- Recover + certify 3 missing sources (Hit Makers, Trading Up, 7 Powers) ONLY if a strategic bet depends on distribution/new-luxury/counter-positioning.
+- Honor the 5 preserved conflicts (copy-length, max-default, photo-3-lens, status, distribution) , never force one rule.
+Do not crown a lane. No production. No bulk reread.

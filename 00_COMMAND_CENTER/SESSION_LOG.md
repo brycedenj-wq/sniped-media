@@ -15,3 +15,5 @@
 2026-06-04 , Top-10 books CERTIFIED to segment-ledger standard (10/10, ~1M tokens, 0 fail). Chunk audit: 10/10 partial, 1 fabricated. 6 doctrine corrections surfaced (flagged, not applied). Recommend: review corrections then Top-25.
 
 2026-06-04 , Top-25 wave done: 12 more books certified (22 total). 11 partial + 1 misleading chunk audits. 3 cited books uncertifiable (sources missing). 52 corrections. Next: doctrine reconciliation.
+
+2026-06-04 , doctrine reconciliation COMPLETE: 22 books -> 16 intel_* labeled, 5 conflicts preserved, WWP-fab+Maister-misleading replaced, 4 sources uncertified. Router labels citations. Strategy-ready with labels.

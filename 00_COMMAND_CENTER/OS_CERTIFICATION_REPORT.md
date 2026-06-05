@@ -107,3 +107,7 @@ First classic books to reach the segment-ledger standard. 73 segments, 10 sonnet
 - **Chunk audit: 11 partial, 1 MISLEADING (Maister , 2 chunks missed the core economics).** 52 doctrine corrections surfaced.
 - **3 cited books CANNOT be certified (no extracted full text): Hit Makers (source MISSING), Trading Up (.pdf not extracted), 7 Powers (not extracted)** , their doctrine (intel_hit_mechanics, intel_new_luxury) stays provisional/uncertified.
 - **Book layer now: 22 classic books certified** (Top-10 + Top-12); ~193 chunked books remain provisional. Next mission: doctrine reconciliation. Report: OS_BOOK_TOP25_CERTIFICATION_REPORT.md.
+
+---
+## DELTA , DOCTRINE RECONCILIATION (2026-06-04)
+22 certified books folded into doctrine. 16 intel_*/feedback files labeled (certified / conflict_preserved / source_uncertified). REPLACED: WWP fabricated Proclamation 12, Maister misleading 2-chunk. PRESERVED CONFLICTS (5): copy-length, max-default, photo-theory 3-lens, status, distribution(concentration vs long-tail). SOURCE_UNCERTIFIED: hit_mechanics, new_luxury, trust_equation, 7-powers (sources missing/unextracted). Router now attaches confidence labels. Report: OS_BOOK_DOCTRINE_RECONCILIATION_REPORT.md. Recommendation: certified spine is strategy-ready WITH labels; recover 3 missing sources only if a strategic bet depends on distribution/new-luxury.

@@ -10,6 +10,7 @@
 - **NO ACTIVE MISSION.** Recent completed: `start here` folder certification (98/98) + loop-close.
 - Loop closed: cert dashboard delta (5 giants -> coverage_proven_via_starthere), OS_STARTHERE_DOCTRINE.md, OS_STARTHERE_BACKLOG.md (2 build-now of ~1267 candidates), router index updated, anti-duplication rule locked (OS_BOOT.md).
 - STAGED (do NOT start without a go): OS_BOOK_LAYER_AUDIT_PLAN.md (cheap local check: were books certified or only chunked).
+- DOCTRINE RECONCILED: 22 certified books folded into 16 intel_* files w/ cert labels; 5 conflicts preserved; WWP-fab + Maister-misleading replaced; 4 sources uncertified. Router labels every citation. Strategy-ready WITH labels. OS_BOOK_DOCTRINE_RECONCILIATION_REPORT.md.
 - 22 books CERTIFIED (Top-10 + Top-12 = segment-ledger). 3 cited books CANNOT certify (Hit Makers/Trading Up/7 Powers , sources missing/unextracted). Chunk audits: ~all partial, 2 misleading. NEXT MISSION (per operator): doctrine reconciliation. OS_BOOK_TOP25_CERTIFICATION_REPORT.md.
 - Top-10 books CERTIFIED (segment-ledger, 10/10, ~1M tokens). Chunks were partial; 1 fabricated; 6 doctrine corrections flagged. OS_BOOK_TOP10_CERTIFICATION_REPORT.md. ~205 chunked books still provisional.
 - book repair DONE: 377 book sources relabeled provisional_chunked_not_certified; OS_BOOK_SOURCE_INDEX.csv (456 sources, 64 cited), dependency map, targeted queue (top10 ~68 seg), provisional-book router rule. NO book is certified (0 ledgers). NOT executed any re-read.
