@@ -13,3 +13,19 @@
 
 ## STATUS
 - Server: UP. Route: re-proven (blender_proof.png re-rendered). Auto Start: ON. Health gate: live. Watchdog: armed.
+
+## ROOT CAUSE FOUND (2026-06-05 14:01) , macOS App Nap
+The watchdog caught a real drop ~7 min after backgrounding Blender. Cause: **macOS App Nap** throttles/suspends background apps; it paused Blender's modal timer, which runs the 9876 socket server -> server stopped accepting -> Connection refused. When Blender was focused it worked; backgrounded, it napped.
+
+### FIX APPLIED (persistent)
+`defaults write org.blenderfoundation.blender NSAppSleepDisabled -bool YES`
+(was unset = App Nap allowed = the bug). Now App Nap is disabled for Blender, so the socket server survives in the background.
+
+### ACTION REQUIRED (once): QUIT AND REOPEN BLENDER
+The setting takes effect on the next Blender launch. After you relaunch:
+- Auto Start brings 9876 back up.
+- App Nap no longer suspends it -> it stays up while backgrounded.
+- I re-arm the watchdog to confirm it holds.
+
+### FALLBACK (only if it still drops after the App Nap fix + relaunch)
+Check the add-on's Idle settings (Idle Delay 5s / Timer Interval Idle) , raise/disable if the server idles out. But App Nap is the standard cause and the likely full fix.
