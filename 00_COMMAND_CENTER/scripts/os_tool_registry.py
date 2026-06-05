@@ -48,16 +48,22 @@ TOOLS = {
     "mcp.adobe.merge_layout":{"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Adobe_for_creativity__document_merge_data_layout","note":"InDesign CSV batch"},
     "mcp.adobe.search_design":{"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Adobe_for_creativity__search_design","note":"Express templates"},
     "mcp.adobe.generative_expand":{"kind":"mcp","status":"AMBER","call":"mcp__claude_ai_Adobe_for_creativity__image_generative_expand","note":"generative outpaint","approval":"generative"},
-    # ---- mcp other connected (AMBER: connected, unproven in a route) ----
-    "mcp.figma":   {"kind":"mcp","status":"AMBER","call":"mcp__figma-desktop__*","note":"needs live Figma desktop file"},
-    "mcp.airtable":{"kind":"mcp","status":"AMBER","call":"mcp__claude_ai_Airtable__*","note":"lead/record tracking, unproven route"},
-    "mcp.notion":  {"kind":"mcp","status":"AMBER","call":"mcp__claude_ai_Notion__*","note":"docs/CRM, unproven route"},
-    "mcp.gdrive":  {"kind":"mcp","status":"AMBER","call":"mcp__claude_ai_Google_Drive__*","note":"storage; TEMP-bridge caution"},
-    "mcp.gmail":   {"kind":"mcp","status":"AMBER","call":"mcp__claude_ai_Gmail__*","note":"drafts only; no send without approval","approval":"outbound"},
-    "mcp.gcal":    {"kind":"mcp","status":"AMBER","call":"mcp__claude_ai_Google_Calendar__*","note":"calendar; TEMP-bridge caution"},
-    "mcp.semrush": {"kind":"mcp","status":"AMBER","call":"mcp__claude_ai_Semrush__*","note":"SEO/market intel, unproven route"},
-    "mcp.netlify": {"kind":"mcp","status":"AMBER","call":"mcp__claude_ai_Netlify__*","note":"hosting; HELD (no hosting)","approval":"public"},
-    "mcp.vercel":  {"kind":"mcp","status":"AMBER","call":"mcp__plugin_vercel_vercel__*","note":"hosting/domains; HELD","approval":"public"},
+    # ---- mcp other connected (status from 2026-06-05 post-restart live proof; READ proven = ACTIVE-read, WRITE still gated) ----
+    "mcp.figma":   {"kind":"mcp","status":"ACTIVE","call":"mcp__plugin_figma_figma__*","note":"PROVEN whoami (Bryce, pro team) 2026-06-05. Design read/write needs a live file; OWNS design-system + code<->design bridge","role":"design_system"},
+    "mcp.airtable":{"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Airtable__*","note":"PROVEN ping->pong + list 2026-06-05. OWNS structured ops data / forecast tables; write (create_records) gated-untested","role":"ops_data"},
+    "mcp.notion":  {"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Notion__*","note":"PROVEN get-users (Bryceden Jones) 2026-06-05. OWNS CRM (5-DB schema) + human-readable doctrine surface; CRM write untested","role":"crm_doctrine_surface"},
+    "mcp.gdrive":  {"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Google_Drive__*","note":"PROVEN list_recent_files 2026-06-05. OWNS large-asset storage; TEMP-bridge: no writes that anchor personal acct as BASEPLATE","role":"asset_storage","approval":"storage-write"},
+    "mcp.gmail":   {"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Gmail__*","note":"PROVEN list_labels 2026-06-05. draft-only; NO send without approval; OWNS inbox triage + draft staging","role":"inbox","approval":"outbound"},
+    "mcp.gcal":    {"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Google_Calendar__*","note":"PROVEN list_calendars 2026-06-05. OWNS schedule truth for operator-plan; TEMP-bridge caution on mutations","role":"schedule"},
+    "mcp.semrush": {"kind":"mcp","status":"RED","call":"mcp__claude_ai_Semrush__*","note":"CONNECTED but current Semrush plan EXCLUDES MCP data access (proven block 2026-06-05). Unlock: semrush.com/mcp-access. No data until then"},
+    "mcp.netlify": {"kind":"mcp","status":"AMBER","call":"mcp__claude_ai_Netlify__*","note":"requires OAuth (authenticate not completed); hosting HELD anyway","approval":"public"},
+    "mcp.vercel":  {"kind":"mcp","status":"ACTIVE","call":"mcp__plugin_vercel_vercel__*","note":"PROVEN list_teams 2026-06-05. Deploy/domains route live but HELD behind public-action approval","role":"deploy","approval":"public"},
+    # ---- 3D / motion / video native (2026-06-05 post-restart) ----
+    "blender.native":{"kind":"mcp","status":"ACTIVE","call":"mcp__blender__*","note":"PROVEN scene-read + render (320x180 PNG -> sandbox) 2026-06-05, port 9876. RUNS LLM CODE UNGATED -> gate FIRST. NOTE: renders to MCP server temp, OS must copy artifact into sandbox; path-gate governs persistence + code constrains net/subprocess/destructive","role":"worldbuild_3d","approval":"sandbox-only"},
+    "blender.gated":{"kind":"local","status":"ACTIVE","call":"scripts/os_blender_gate.py","note":"PROVEN allow in-sandbox + deny ~/.ssh 2026-06-05. The security contract for blender.native; logs every action","role":"3d_gate"},
+    "local.aerender":{"kind":"local","status":"ACTIVE","call":"/Applications/Adobe After Effects 2026/aerender","note":"PROVEN aerender 26.2.1x2 2026-06-05. CLI title/motion render; needs an .aep project to exercise a real comp","role":"motion_render"},
+    "hyperframes":  {"kind":"local","status":"ACTIVE","call":"npx hyperframes","note":"PROVEN doctor v0.6.73 (ffmpeg+chrome ok) 2026-06-05. OWNS code-defined HTML motion/video; Docker only for containerized render","role":"html_motion"},
+    "red.premiere": {"kind":"app","status":"RED","call":"-","note":"Premiere not installed; cloud Premiere ops via mcp.adobe.* (quick_cut/video_resize) + ffmpeg + AE cover the lane"},
     # ---- named adobe skills (AMBER: functions callable via MCP, discrete skills not confirmed in-chat) ----
     "skill.adobe.batch_edit":{"kind":"skill","status":"AMBER","call":"adobe-batch-edit-photos","note":"use mcp.adobe.* loop as substitute"},
     "skill.adobe.social_variations":{"kind":"skill","status":"AMBER","call":"adobe-create-social-variations","note":"use mcp.adobe.crop_resize multi-aspect"},
@@ -86,14 +92,37 @@ TOOLS = {
     # ---- not installed anywhere visible (RED) ----
     "red.midjourney":{"kind":"app","status":"RED","call":"-","note":"not installed (use Higgsfield)"},
     "red.capcut":   {"kind":"app","status":"RED","call":"-","note":"not installed (use ffmpeg/os_adobe_cut)"},
-    "red.blender":  {"kind":"app","status":"RED","call":"-","note":"not installed"},
-    "red.spline":   {"kind":"app","status":"RED","call":"-","note":"not installed"},
+    "red.spline":   {"kind":"app","status":"RED","call":"-","note":"not installed (use blender.native gated)"},
     "red.unreal":   {"kind":"app","status":"RED","call":"-","note":"not installed"},
     "red.synthesia":{"kind":"app","status":"RED","call":"-","note":"not installed"},
     # ---- manual / human taste (handoff protocol) ----
     "manual.taste_signoff":{"kind":"manual","status":"ACTIVE","call":"operator","note":"final client-ready taste verdict, handoff"},
     "manual.legal":  {"kind":"manual","status":"AMBER","call":"operator+lawyer","note":"legal finalization, NEVER auto"},
     "manual.payment":{"kind":"manual","status":"RED","call":"operator","note":"payment rail, HELD behind approval"},
+}
+
+# ADOBE CAPABILITY MATRIX , Adobe is NOT one blob. 16 discrete capabilities, each with its own
+# OS job, relationship to a local script (replace/complement), inputs, artifact, log, gate, proof,
+# status, and the smallest safe activation test. Upload to Adobe storage is via os_adobe_cloud handshake
+# (prep->init->put->finalize) because Adobe tools reject external URLs and the CLI has no file picker.
+ADOBE_CAPABILITIES = {
+  "batch_photo_edit":   {"job":"apply locked grade/op to many frames","vs_local":"complement os_adobe_grade (local grade is the daily driver; Adobe for cloud presets)","in":"N assets (<=20)","artifact":"graded set","log":"EDIT_LOG.csv","gate":"os_postproduction_gate","tool":"loop mcp.adobe.image_apply_preset","status":"AMBER","test":"apply 1 preset to the proven DEED asset","proof":"NONE_YET"},
+  "social_variations":  {"job":"one hero -> multi-aspect set (1:1/4:5/9:16)","vs_local":"complement os_adobe_reframe (local export specs) ","in":"1 asset + aspects","artifact":"aspect set","log":"EDIT_LOG.csv","gate":"os_postproduction_gate","tool":"mcp.adobe.crop_resize x N","status":"ACTIVE","test":"crop DEED to 4:5","proof":"postproduction crop DEED 1:1 (proven)"},
+  "design_from_template":{"job":"start a layout from an Express template","vs_local":"complement os_adobe_layout (local owns the editorial kit; Express for speed drafts)","in":"template query + text","artifact":"filled design","log":"EDIT_LOG.csv","gate":"os_doctrine:layout_type","tool":"mcp.adobe.search_design + fill_text","status":"ACTIVE","test":"search_design 'luxury one-sheet' (read) PROVEN 2026-06-05","proof":"3 templates returned (editorial one-sheet query); fill_text write-half untested"},
+  "quick_video_cut":    {"job":"AI highlight reel from clips","vs_local":"complement os_adobe_cut (local owns precise cuts; Adobe for fast auto-reel)","in":"clip assetIds","artifact":"reel mp4","log":"EDIT_LOG.csv","gate":"os_motion_qa","tool":"mcp.adobe.quick_cut","status":"AMBER","test":"needs an uploaded video asset","proof":"NONE_YET"},
+  "resize_photo_video": {"job":"resize stills + video to target dims","vs_local":"replace manual resize; complement ffmpeg","in":"asset + dims","artifact":"resized file","log":"EDIT_LOG.csv","gate":"dims check","tool":"mcp.adobe.crop_resize / video_resize","status":"ACTIVE","test":"resize DEED still","proof":"crop_resize proven"},
+  "portrait_retouch":   {"job":"select+adjust skin/teeth/eyes selectively","vs_local":"complement Evoto/Lightroom local; IDENTITY edits FORBIDDEN on real people","in":"portrait asset","artifact":"retouched","log":"EDIT_LOG.csv","gate":"os_privacy_gate + identity-edit-ban","tool":"mcp.adobe.select_prompt + adjust","status":"AMBER","test":"select_subject mask on DEED (no identity change)","proof":"NONE_YET"},
+  "subject_aware_crop": {"job":"crop keeping subject framed","vs_local":"complement os_adobe_reframe","in":"asset + aspect","artifact":"cropped","log":"EDIT_LOG.csv","gate":"os_postproduction_gate","tool":"mcp.adobe.crop_resize","status":"ACTIVE","test":"done on DEED","proof":"DEED 1:1 (proven)"},
+  "remove_background":  {"job":"cutout for mockups/composite","vs_local":"complement os_adobe_composite","in":"asset","artifact":"transparent PNG","log":"EDIT_LOG.csv","gate":"os_postproduction_gate","tool":"mcp.adobe.remove_bg","status":"AMBER","test":"remove_bg on DEED via cloud handshake","proof":"NONE_YET"},
+  "generative_expand":  {"job":"outpaint/extend canvas","vs_local":"no local equivalent (only Adobe)","in":"asset + direction","artifact":"expanded","log":"EDIT_LOG.csv","gate":"os_postproduction_gate + generative-approval","tool":"mcp.adobe.generative_expand","status":"AMBER","test":"expand DEED by 10% (spends generative)","proof":"NONE_YET","approval":"generative"},
+  "fill_cleanup":       {"job":"fill a selected area","vs_local":"complement os_adobe_composite cleanup; object-removal NOT available (Photoshop/Firefly)","in":"asset + mask","artifact":"filled","log":"EDIT_LOG.csv","gate":"os_postproduction_gate","tool":"mcp.adobe.image_fill_area","status":"AMBER","test":"fill a small mask on DEED","proof":"NONE_YET"},
+  "layout_render":      {"job":"InDesign layout -> PDF/PNG","vs_local":"complement os_adobe_layout (local renders PNG via Pillow; Adobe for true InDesign)","in":"layout doc","artifact":"PDF/PNG","log":"EDIT_LOG.csv","gate":"os_doctrine:layout_type","tool":"mcp.adobe.render_layout","status":"AMBER","test":"render a 1-page sample","proof":"NONE_YET"},
+  "vector_render":      {"job":"vectorize raster + export Illustrator","vs_local":"no local equivalent","in":"raster/AI file","artifact":"SVG/PNG","log":"EDIT_LOG.csv","gate":"taste","tool":"mcp.adobe.image_vectorize / document_render_vector","status":"AMBER","test":"vectorize a glyph from DEED","proof":"NONE_YET"},
+  "pdf_export":         {"job":"PDF convert/merge","vs_local":"complement local Pillow PDF","in":"images/doc","artifact":"PDF","log":"EDIT_LOG.csv","gate":"none","tool":"mcp.adobe.document_convert_pdf / merge_layout","status":"AMBER","test":"merge a 2-row CSV layout","proof":"local Pillow PDF proven; Adobe path untested"},
+  "video_resize_only":  {"job":"change video dimensions only","vs_local":"complement ffmpeg/os_adobe_cut","in":"video assetId + dims","artifact":"resized mp4","log":"EDIT_LOG.csv","gate":"os_motion_qa","tool":"mcp.adobe.video_resize","status":"AMBER","test":"needs uploaded video","proof":"NONE_YET"},
+  "motion_title_support":{"job":"titles/motion graphics","vs_local":"AE local (aerender) is primary; Adobe MCP has no title tool","in":".aep or text","artifact":"title render","log":"EDIT_LOG.csv","gate":"os_motion_qa","tool":"local.aerender","status":"AMBER","test":"aerender a 1-frame title comp (needs .aep)","proof":"aerender binary proven; no comp yet"},
+  "asset_upload_preview":{"job":"get assets into Adobe storage + preview","vs_local":"the enabling handshake (os_adobe_cloud)","in":"local file","artifact":"presignedAssetUrl + preview","log":"os_adobe_cloud stdout","gate":"none","tool":"os_adobe_cloud + asset_initialize/finalize_file_upload","status":"ACTIVE","test":"prep+put+finalize DEED","proof":"DEED upload handshake proven"},
+  "media_enhance":      {"job":"speech enhance + media summarize","vs_local":"no local equivalent","in":"audio/video assetId","artifact":"enhanced/summary","log":"EDIT_LOG.csv","gate":"taste","tool":"mcp.adobe.media_enhance_speech / media_summarize","status":"AMBER","test":"summarize a short uploaded clip","proof":"NONE_YET"},
 }
 
 # routes: ordered toolchain, inputs, outputs, approval gates, log, validation, fallback, status, proof
@@ -123,13 +152,25 @@ ROUTES = {
         "approval":[],"log":"EDIT_LOG.csv","validation":"pdf opens","fallback":"mcp.adobe.search_design","status":"AMBER","exec":"local","proof":"MAX_CAPABILITY_001/artifacts/09_pitch_board.png","gap":"multi-page deck not templated"},
     "run_launch_readiness_check":{"toolchain":["os.launch_check"],"inputs":["sprint folder"],"outputs":["readiness report"],
         "approval":[],"log":"launch_check log","validation":"deterministic checks","fallback":"manual checklist","status":"ACTIVE","exec":"local","proof":"built this sprint"},
+    "build_world_3d":{"toolchain":["blender.gated","blender.native"],"inputs":["environment spec (1 of 7 rotation)"],"outputs":["test scene + rendered frame in sandbox"],
+        "approval":["sandbox-only"],"log":"blender_sandbox/BLENDER_GATE_LOG.csv","validation":"os_blender_gate + os_world","fallback":"Higgsfield/Seedream plate","status":"ACTIVE","exec":"agent","proof":"blender_sandbox/renders/ (post-restart proof)","gate_note":"native runs ungated -> gate FIRST, sandbox ONLY"},
+    "build_private_demo":{"toolchain":["os.campaign","os.adobe_layout","blender.gated","mcp.higgsfield.image"],"inputs":["locked hero + world"],"outputs":["private demo package (no public host)"],
+        "approval":["spend-if-generation"],"log":"postproduction/<demo>/10_logs/EDIT_LOG.csv","validation":"os.postproduction_gate + os_privacy_gate","fallback":"static PNG board","status":"AMBER","exec":"agent","proof":"MAX_CAPABILITY_001","gap":"real responsive HTML host held; web-artifacts is HANDOFF"},
+    "run_max_sprint":{"toolchain":["os.campaign","mcp.higgsfield.image","os.adobe_grade","os.adobe_layout"],"inputs":["sprint goal"],"outputs":["max-depth package across modules"],
+        "approval":["spend"],"log":"SPEND_LEDGER.csv + EDIT_LOG.csv","validation":"os.postproduction_gate + os_doctrine gate_run","fallback":"per-module manual","status":"ACTIVE","exec":"agent","proof":"campaign_house build"},
+    "absorb_new_tool":{"toolchain":["os.tool_registry","os.tool_test"],"inputs":["new tool name + smallest test"],"outputs":["registry row with honest status + route"],
+        "approval":[],"log":"OS_TOOL_AND_SKILL_ABSORPTION_BACKLOG.md","validation":"capability_proof_bar (route+artifact+log+gate+repeat)","fallback":"mark AMBER + handoff","status":"ACTIVE","exec":"agent","proof":"this integration pass"},
+    "create_client_room":{"toolchain":["os.adobe_layout","mcp.gdrive","mcp.notion"],"inputs":["client + assets"],"outputs":["private delivery room (Drive folder + Notion record)"],
+        "approval":["storage-write"],"log":"EDIT_LOG.csv","validation":"os_privacy_gate","fallback":"Pixieset (sniped-pixieset-gallery)","status":"AMBER","exec":"agent","proof":"NONE_YET","gap":"no client room built yet"},
+    "certify_docs":{"toolchain":["os.certify","os.segment_ledger"],"inputs":["source doc/class"],"outputs":["certified ledger row"],
+        "approval":[],"log":"OS_CERTIFICATION_LEDGER.csv","validation":"os_completion_verify (got==total)","fallback":"mark provisional","status":"ACTIVE","exec":"local","proof":"start-here 98/98 certified"},
 }
 
 def main():
     ap = argparse.ArgumentParser(prog="os_tool_registry.py"); sub = ap.add_subparsers(dest="cmd")
     t = sub.add_parser("tools"); t.add_argument("--status", default="")
     sub.add_parser("routes"); r = sub.add_parser("route"); r.add_argument("route_id")
-    sub.add_parser("dashboard"); sub.add_parser("json")
+    sub.add_parser("dashboard"); sub.add_parser("json"); sub.add_parser("adobe")
     a = ap.parse_args()
     if a.cmd == "tools":
         for tid, t in TOOLS.items():
@@ -139,11 +180,20 @@ def main():
         for rid, r in ROUTES.items(): print(f"  [{r['status']:6s}] {rid:28s} -> {' + '.join(r['toolchain'])}")
     elif a.cmd == "route":
         print(json.dumps(ROUTES.get(a.route_id, {"error": "unknown route"}), indent=2))
+    elif a.cmd == "adobe":
+        from collections import Counter
+        ac = Counter(c["status"] for c in ADOBE_CAPABILITIES.values())
+        print(f"ADOBE CAPABILITIES: {ac['ACTIVE']} ACTIVE / {ac['AMBER']} AMBER / {ac['RED']} RED  (of {len(ADOBE_CAPABILITIES)})")
+        for cid, c in ADOBE_CAPABILITIES.items():
+            print(f"  [{c['status']:6s}] {cid:22s} job:{c['job']}")
+            print(f"           tool:{c['tool']} | gate:{c['gate']} | test:{c['test']} | proof:{c['proof']}")
     elif a.cmd == "dashboard":
         from collections import Counter
         c = Counter(t["status"] for t in TOOLS.values()); rc = Counter(r["status"] for r in ROUTES.values())
+        ac = Counter(x["status"] for x in ADOBE_CAPABILITIES.values())
         print(f"TOOLS: {c['ACTIVE']} ACTIVE / {c['AMBER']} AMBER / {c['RED']} RED  (of {len(TOOLS)})")
         print(f"ROUTES: {rc['ACTIVE']} ACTIVE / {rc['AMBER']} AMBER / {rc['RED']} RED  (of {len(ROUTES)})")
+        print(f"ADOBE CAPS: {ac['ACTIVE']} ACTIVE / {ac['AMBER']} AMBER / {ac['RED']} RED  (of {len(ADOBE_CAPABILITIES)})")
     elif a.cmd == "json":
         print(json.dumps({"tools": TOOLS, "routes": ROUTES}))
     else: ap.print_help()
