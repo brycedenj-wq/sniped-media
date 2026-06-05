@@ -19,3 +19,8 @@ You are resuming an operating system from disk. Do this IN ORDER. Load almost no
 
 ## Activation prompt (if no hook fired)
 > Boot the OS: read OS_BOOT.md, OS_CURRENT_STATE.md, NEXT_ACTION.md. Resume the ACTIVE mission. Pull doctrine/chunks only via the router. Do not redo anything the cert ledger marks certified.
+
+## ANTI-DUPLICATION RULE (locked)
+- If a folder/doc is in `OS_*_CERT_LEDGER.csv` as `certified`/`coverage_proven*` with segment-ledger coverage, **DO NOT re-read or re-process it.** The cert ledger is the redo gate.
+- New info about a certified doc → run a **DELTA pass** (append/update only the changed segments + a dated ledger note), never a full restart.
+- Re-process only when the ledger marks `partial` / `exception` / a real coverage gap, or the source md5 changed.

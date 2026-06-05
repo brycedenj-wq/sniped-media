@@ -70,3 +70,16 @@ The 48.1% file-count vs 4.4% word-volume gap is the proof of Hard Rule 2: giants
 
 ## The new rule (locked)
 No more "engaged" claims. A file/layer/doctrine is DONE only when `os_certify` labels it `certified` for its class, with proof. Everything else carries its honest lower label.
+
+---
+## DELTA , START HERE folder certified (2026-06-04)
+The `start here` folder pass (98/98 docx certified with segment-ledger coverage) upgrades the dashboard for exactly what it proves , nothing more:
+- **start here: 98/98 unique docs certified / coverage-proven.** 3 exact-dups preserved + logged. Ledger: `OS_STARTHERE_CERT_LEDGER.csv`.
+- **The 5 intake giants (previously `rawdump_unverified`, ~77% of OS content by volume) are now coverage-proven** through their certified source docs in this folder:
+  - `series_1_intake.md` ← `series 1 download.docx` (certified, 31 seg)
+  - `series_2_intake.md` ← `series 2 download.docx` (certified, 160 seg)
+  - `series_3_intake.md` ← `series 3 download.docx` (certified, 122 seg)
+  - `series_5_intake.md` ← `series 5 download.docx` (certified, 53 seg)
+  - `world building characters etc.docx` (certified directly, 58 seg)
+  - Manifest status: `rawdump_unverified` → `coverage_proven_via_starthere` (twin coverage; content word-counts match within <0.02%).
+- **What is NOT upgraded:** the 25M-word book layer is still `provisionally_verified` (no segment ledger). The OCR/visual/transcription piles are unchanged. This delta touches only the start-here folder + its giant twins. No other OS coverage claim changes.

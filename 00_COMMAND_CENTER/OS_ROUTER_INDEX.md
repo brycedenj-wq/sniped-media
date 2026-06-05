@@ -23,3 +23,15 @@ Request → classify domain → pull the listed doctrine doc(s) + skill(s). For 
 ## Notes
 - `provisional` / `hypothesis` doctrine: usable as input, NEVER as settled fact. Attach the tag when citing.
 - Update this index when a new certified doctrine doc or ACTIVE skill is added. Keep it under ~30 rows; it is a router map, not a catalog.
+
+## Certified folders (do NOT re-read , cert ledger is the redo gate)
+- `start here` (98/98 certified, 2026-06-04). Doctrine: `OS_STARTHERE_DOCTRINE.md`. Backlog: `OS_STARTHERE_BACKLOG.md`. Per-doc: `starthere_results/`. Ledger: `OS_STARTHERE_CERT_LEDGER.csv`.
+  - Pull from here ONLY when the task domain matches (content/marketing, photography set-design, the Stacks, outreach, AI tooling). Pull the SPECIFIC doc, never the folder.
+  - The giants (series_1/2/3/5, high_level_convos, new_hot_shit, astro_claude) are coverage-proven but diluted transcripts , query by topic, never bulk-load.
+
+## Added doctrine rows
+| domain | doctrine (pull one) | skills | status |
+|---|---|---|---|
+| content / 7x7 / distribution | OS_STARTHERE_DOCTRINE §A (Content OS, Stacks) | (build: sniped-7x7-repurpose) | active certified |
+| photography set design | OS_STARTHERE_DOCTRINE §A (set-design, posing, lighting, moodboard) | direction-stack (merge target) | active certified |
+| product / clothing launch | OS_STARTHERE_DOCTRINE §A (validation-first) | (gate: validation-before-manufacture) | active certified |

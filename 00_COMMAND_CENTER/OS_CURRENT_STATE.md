@@ -7,8 +7,10 @@
 
 
 ## Status
-- **MISSION COMPLETE (2026-06-04): start-here folder = 98/98 docx certified with coverage proof.** See OS_STARTHERE_COMPLETE.md.
-- Awaiting next direction. No strategy/production until asked.
+- **NO ACTIVE MISSION.** Recent completed: `start here` folder certification (98/98) + loop-close.
+- Loop closed: cert dashboard delta (5 giants -> coverage_proven_via_starthere), OS_STARTHERE_DOCTRINE.md, OS_STARTHERE_BACKLOG.md (2 build-now of ~1267 candidates), router index updated, anti-duplication rule locked (OS_BOOT.md).
+- STAGED (do NOT start without a go): OS_BOOK_LAYER_AUDIT_PLAN.md (cheap local check: were books certified or only chunked).
+- Preserve optionality. No lane active. No crown.
 
 
 ## Certification reality (do not inflate)
