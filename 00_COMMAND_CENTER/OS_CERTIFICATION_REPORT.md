@@ -100,3 +100,10 @@ First classic books to reach the segment-ledger standard. 73 segments, 10 sonnet
 - **Chunk-accuracy audit: 10/10 prior chunks were PARTIAL; 1 FABRICATED (wwp chunk 12).** Proof that chunking ≠ certification.
 - **6 doctrine corrections surfaced** (Hopkins-vs-brevity, Ogilvy-vs-max-default, positioning≠messaging, validation≠learning-convos, Outsiders=temperament, photo-theory over-indexed on Berger/Dyer) , flagged for operator review, NOT auto-applied.
 - Book layer now: ~0 → **10 classic books certified**; the other ~205 chunked books remain provisional. Report: `OS_BOOK_TOP10_CERTIFICATION_REPORT.md`.
+
+---
+## DELTA , TOP-25 BOOKS (next 12) CERTIFIED (2026-06-04, bounded wave 2)
+161 segments, ~2.1M tokens. **12/12 coverage PROVEN** (2 shard-fixups). Books: Ways of Seeing, Pricing Creativity, Breakthrough Advertising, Status Anxiety, Unreasonable Hospitality, Revenge of Analog, Thinking in Systems, Poor Charlie's Almanack, Perennial Seller, Company of One, Blockbusters, Maister PSF.
+- **Chunk audit: 11 partial, 1 MISLEADING (Maister , 2 chunks missed the core economics).** 52 doctrine corrections surfaced.
+- **3 cited books CANNOT be certified (no extracted full text): Hit Makers (source MISSING), Trading Up (.pdf not extracted), 7 Powers (not extracted)** , their doctrine (intel_hit_mechanics, intel_new_luxury) stays provisional/uncertified.
+- **Book layer now: 22 classic books certified** (Top-10 + Top-12); ~193 chunked books remain provisional. Next mission: doctrine reconciliation. Report: OS_BOOK_TOP25_CERTIFICATION_REPORT.md.
