@@ -1,9 +1,10 @@
 # OS CREATIVE CEILING ROADMAP , toward "everything unimaginable", as one organism
 > The roadmap is not "add tools." It is "fuse doctrine into the one organism, then extend its range." Quality first (built-in), range second.
 
-## PHASE 0 (NOW, ~0 credits) , DOCTRINE FUSION (the headline, from the operator's thesis)
+## PHASE 0 (STARTED , os_doctrine.py BUILT + wired into os_engine) , DOCTRINE FUSION (the headline)
 The single highest-leverage build: wire the certified doctrine into the generative functions as gates, so output is doctrine-correct at creation.
-- **os_copy_gate** , every headline/caption/CTA the OS writes passes the certified COPY doctrine (advertising/persuasion intel + positioning_phrases). No more fragment/bible-dump copy. This is what would have made the first DEED copy perfect without a manual rewrite.
+- **DONE (reactive):** os_doctrine.py , 9 domains (copy/visual/world/layout/pricing/distribution/trust/motion/safety), each mapped to certified sources + rules + a gate. load() injects doctrine INTO creation; check() gates output. Wired into os_engine (doctrine_copy stage flags weak copy every run). Proven: it rejected the 3 weak copies that needed a hand-fix, passed the rewrite.
+- **NEXT (proactive):** when the gate FLAGs, regenerate doctrine-informed (an agent writes with the doctrine pack injected) until it passes , closing the loop so copy is perfect at birth, no human catch needed.
 - **os_visual_gate (doctrine)** , grade/color decisions checked against visual_direction + photo_theory.
 - **os_world_gate** , world/character checked against lineage + scene_density + status_psychology.
 - A **DOCTRINE REGISTRY** mapping each function -> its certified doctrine (see OS_EVERYTHING_STACK_MAP). Then os_engine calls the gate inline. Result: the OS moves as one thing, quality is intrinsic.

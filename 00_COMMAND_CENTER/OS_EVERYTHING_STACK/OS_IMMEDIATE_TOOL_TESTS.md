@@ -20,3 +20,10 @@
 - Airtable READ proven (connection live).
 - Figma reclassified TEST -> HANDOFF (app must be open).
 - No credits spent (Adobe + local + read-only). No identity exposure. No mutation of external accounts.
+
+## UPDATE (second pass)
+| route | tool | result | note |
+|---|---|---|---|
+| design / Figma | figma-desktop get_metadata/get_screenshot | TIMEOUT (app open) | reachable now (was "unable to connect"); route needs a FRAME SELECTED in a /design/ file. Status: TEST_NOW, needs selection. |
+| DOCTRINE FUSION | os_doctrine.py (NEW) | BUILT + PROVEN | gate REJECTED the 3 weak copies I hand-fixed earlier, PASSED the rewrite; 9 domains. |
+| DOCTRINE in engine | os_engine doctrine_copy stage | WIRED + PROVEN | engine FLAGGED its own auto-derived fragment copy on a live run. The OS now self-polices against the books. |

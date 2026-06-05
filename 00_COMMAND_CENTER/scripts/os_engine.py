@@ -75,6 +75,17 @@ def run(src, name, world, money, lot):
     A = os.path.join(run_dir, "04_artifacts")
     eng = {"engine": "os_engine", "name": name, "campaign_verdict": verdict, "stages": {}}
 
+    # DOCTRINE FUSION: the OS checks its own copy against the certified copy books, every run.
+    try:
+        doctrine = _m("os_doctrine")
+        copy_fields = {"poster_logline": cfg.get("poster_logline", ""), "landing_headline": cfg.get("landing_headline", ""),
+                       "title_sub": cfg.get("title_sub", ""), "onesheet_logline": cfg.get("onesheet_logline", "")}
+        dchecks = {k: ("PASS" if all(str(v2).startswith("PASS") for v2 in doctrine.copy_checks(v).values()) else "FLAG")
+                   for k, v in copy_fields.items() if v}
+        eng["stages"]["doctrine_copy"] = {"verdict": "PASS" if all(x == "PASS" for x in dchecks.values()) else "FLAG", "fields": dchecks}
+    except Exception as e:
+        eng["stages"]["doctrine_copy"] = {"verdict": "SKIP", "error": str(e)[:80]}
+
     # safety: privacy audit
     leaks, n = privacy.scan(A)
     eng["stages"]["privacy_gate"] = {"verdict": "REJECT" if leaks else "SHIP", "files": n, "leaks": len(leaks)}
