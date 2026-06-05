@@ -17,3 +17,5 @@
 2026-06-04 , Top-25 wave done: 12 more books certified (22 total). 11 partial + 1 misleading chunk audits. 3 cited books uncertifiable (sources missing). 52 corrections. Next: doctrine reconciliation.
 
 2026-06-04 , doctrine reconciliation COMPLETE: 22 books -> 16 intel_* labeled, 5 conflicts preserved, WWP-fab+Maister-misleading replaced, 4 sources uncertified. Router labels citations. Strategy-ready with labels.
+
+2026-06-04 , strategy authorized: generated OS_OPERATING_ARCHITECTURE_v1 (owned-character studio machine; 5 parallel rails as proof loops; no lane crowned; confidence-labeled).
