@@ -70,21 +70,35 @@ def run(src, name, world, money, lot):
                 {"kind": "text", "bg": "paper", "kicker": "the money", "title": "How it sells.", "body": money_angle[:150]},
             ],
         })
+    # DOCTRINE FUSION (proactive, BEFORE render): prefer the world's doctrine-clean copy block,
+    # then check + auto-fix every copy field against the certified copy books so output is clean at birth.
+    doctrine_pre = {"verdict": "SKIP", "fields": {}, "needs_rewrite": []}
+    try:
+        if world and isinstance(w.get("copy"), dict):
+            cfg.update(w["copy"])  # hand/agent-authored doctrine-clean copy wins over derivation
+        doctrine = _m("os_doctrine")
+        COPY_KEYS = ["poster_logline", "landing_headline", "landing_sub", "title_sub", "onesheet_logline", "caption", "poster_tagline"]
+        fields = {}; needs = []
+        for k in COPY_KEYS:
+            v = cfg.get(k, "")
+            if not v: continue
+            fixed, nr, _notes = doctrine.fix_copy(v)
+            cfg[k] = fixed  # apply the safe deterministic repair in place
+            ch = doctrine.copy_checks(fixed)
+            ok = not any(str(x).startswith("FAIL") for x in ch.values())  # WARN (e.g. body length) is acceptable
+            fields[k] = "PASS" if ok else "NEEDS_REWRITE"
+            if not ok: needs.append(k)
+        doctrine_pre = {"verdict": "PASS" if not needs else "NEEDS_REWRITE", "fields": fields, "needs_rewrite": needs}
+    except Exception as e:
+        doctrine_pre = {"verdict": "SKIP", "error": str(e)[:80]}
+
     # taste pre-verified for the hero we run on
     run_dir, steps, verdict, checks = campaign.run_campaign(src, name, cfg, {"identity_withheld":"PASS","beats_source":"PASS","text_legible":"PASS"})
     A = os.path.join(run_dir, "04_artifacts")
     eng = {"engine": "os_engine", "name": name, "campaign_verdict": verdict, "stages": {}}
 
-    # DOCTRINE FUSION: the OS checks its own copy against the certified copy books, every run.
-    try:
-        doctrine = _m("os_doctrine")
-        copy_fields = {"poster_logline": cfg.get("poster_logline", ""), "landing_headline": cfg.get("landing_headline", ""),
-                       "title_sub": cfg.get("title_sub", ""), "onesheet_logline": cfg.get("onesheet_logline", "")}
-        dchecks = {k: ("PASS" if all(str(v2).startswith("PASS") for v2 in doctrine.copy_checks(v).values()) else "FLAG")
-                   for k, v in copy_fields.items() if v}
-        eng["stages"]["doctrine_copy"] = {"verdict": "PASS" if all(x == "PASS" for x in dchecks.values()) else "FLAG", "fields": dchecks}
-    except Exception as e:
-        eng["stages"]["doctrine_copy"] = {"verdict": "SKIP", "error": str(e)[:80]}
+    # DOCTRINE FUSION result (computed proactively before render): copy is clean at birth, or flagged for rewrite.
+    eng["stages"]["doctrine_copy"] = doctrine_pre
 
     # safety: privacy audit
     leaks, n = privacy.scan(A)

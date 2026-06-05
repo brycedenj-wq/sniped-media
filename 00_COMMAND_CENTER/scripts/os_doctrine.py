@@ -123,6 +123,53 @@ def copy_checks(text):
     out["length_ok"] = "PASS" if len(text) <= 140 else f"WARN(len {len(text)}; headline too long)"
     return out
 
+def fix_copy(text):
+    """Deterministic repair of mechanical copy failures. Returns (fixed_text, still_needs_rewrite, notes).
+    Fixes what is safe to fix (em-dash, hype phrases, trailing whitespace). Flags what needs real
+    writing taste (fragments, bible-language, over-length) so an agent rewrites it with the doctrine pack."""
+    notes = []; t = text
+    if "—" in t:
+        t = t.replace(" — ", ", ").replace("—", ", "); notes.append("em-dash removed")
+    low = t.lower()
+    for h in GENERIC_HYPE:
+        if h in low:
+            # remove the hype phrase and tidy spacing/punctuation
+            t = re.sub(re.escape(h), "", t, flags=re.I); notes.append(f"hype removed: '{h}'")
+    t = re.sub(r"\s{2,}", " ", t).strip(" .,:;").strip()
+    chk = copy_checks(t)
+    needs_rewrite = any(str(v).startswith("FAIL") for k, v in chk.items() if k in ("complete_thought", "no_bible_language"))
+    if needs_rewrite:
+        notes.append("NEEDS REWRITE (fragment or bible-language) , inject the doctrine pack and regenerate")
+    return t, needs_rewrite, notes
+
+def gate_run(run_dir, domains_text, log=None):
+    """Master doctrine gate for a whole run. domains_text = {domain: [texts]}.
+    The OS calls this so every run is doctrine-gated as one thing. Returns verdict + per-domain results."""
+    results = {}
+    for domain, texts in domains_text.items():
+        d = DOCTRINE.get(domain)
+        if not d: continue
+        items = []
+        for tx in texts:
+            if not tx: continue
+            if domain == "copy":
+                ch = copy_checks(tx)
+                v = "PASS" if all(str(x).startswith("PASS") for x in ch.values()) else "FLAG"
+            else:
+                v = "MODEL_RUBRIC"  # the agent reads the asset and scores d["rubric"]
+            items.append({"text": tx[:60], "verdict": v})
+        results[domain] = items
+    flagged = sum(1 for d, its in results.items() for it in its if it["verdict"] == "FLAG")
+    verdict = "PASS" if flagged == 0 else "FLAG"
+    if log:
+        os.makedirs(os.path.dirname(log), exist_ok=True)
+        new = not os.path.exists(log)
+        with open(log, "a", newline="") as f:
+            w = csv.writer(f)
+            if new: w.writerow(["ts", "verdict", "flagged", "domains"])
+            w.writerow([time.strftime("%Y-%m-%d %H:%M:%S"), verdict, flagged, ";".join(results)])
+    return verdict, results
+
 def cmd_load(domain):
     d = DOCTRINE.get(domain)
     if not d: return f"unknown domain. domains: {', '.join(DOCTRINE)}"
@@ -163,6 +210,7 @@ def main():
     sub.add_parser("domains")
     l = sub.add_parser("load"); l.add_argument("domain")
     c = sub.add_parser("check"); c.add_argument("domain"); c.add_argument("--text", default=None); c.add_argument("--asset", default=None); c.add_argument("--log", default="")
+    fx = sub.add_parser("fix"); fx.add_argument("domain"); fx.add_argument("--text", required=True)
     a = ap.parse_args()
     if a.cmd == "domains":
         for k, v in DOCTRINE.items(): print(f"  {k:18s} <- {len(v['sources'])} sources, {len(v['rules'])} rules")
@@ -170,6 +218,12 @@ def main():
         print(cmd_load(a.domain))
     elif a.cmd == "check":
         return cmd_check(a.domain, a.text, a.asset, a.log or None)
+    elif a.cmd == "fix":
+        if a.domain != "copy":
+            print("fix is deterministic for copy only; other domains use load+regenerate"); return 2
+        fixed, needs, notes = fix_copy(a.text)
+        print(f"IN : {a.text}\nOUT: {fixed}\nneeds_rewrite: {needs}\nnotes: {'; '.join(notes) or 'none'}")
+        return 1 if needs else 0
     else: ap.print_help()
     return 0
 
