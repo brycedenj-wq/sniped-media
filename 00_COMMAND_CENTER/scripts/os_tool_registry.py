@@ -39,7 +39,7 @@ TOOLS = {
     "mcp.higgsfield.video":{"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Higgsfield__generate_video","note":"seedance motion ~18cr/4s","approval":"spend"},
     "mcp.higgsfield.balance":{"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Higgsfield__balance","note":"credit balance"},
     # ---- mcp adobe (ACTIVE callable; verify with one real op) ----
-    "mcp.adobe.crop_resize":{"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Adobe_for_creativity__image_crop_and_resize","note":"subject-aware crop (better than reframe for faces/products)"},
+    "mcp.adobe.crop_resize":{"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Adobe_for_creativity__image_crop_and_resize","note":"PROVEN: subject-aware crop via upload handshake (os_adobe_cloud), DEED 1:1 artifact"},
     "mcp.adobe.remove_bg":{"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Adobe_for_creativity__image_remove_background","note":"cutout for mockups/composite"},
     "mcp.adobe.select_prompt":{"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Adobe_for_creativity__image_select_by_prompt","note":"masked selection for targeted edits/retouch"},
     "mcp.adobe.quick_cut":{"kind":"mcp","status":"ACTIVE","call":"mcp__claude_ai_Adobe_for_creativity__video_create_quick_cut","note":"AI highlight reel"},
