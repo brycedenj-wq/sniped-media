@@ -1,7 +1,23 @@
 # 00 OS CAPABILITY DASHBOARD , 2026-06-04
 > Disk-grounded audit of the one-person 2026 campaign/media/IP machine. A layer is GREEN only if a real artifact proves it (script/skill/template/gate/test/dashboard/logged-run). "Notes about it" does not count.
 
-## SCORE: 16 GREEN · 9 AMBER · 4 RED  (of 29 layers)
+## SCORE: 16 GREEN · 9 AMBER · 4 RED  (of 29 layers, at audit time)
+
+## REFERENCE PROOF OF "ACTIVE" (banked 2026-06-04)
+> This exact chain is now the STANDARD EXAMPLE of what ACTIVE means. A layer is only ACTIVE if it can do this: route, execute, produce an artifact, gate it, log it, export it, repeat it.
+>
+> **Raw Higgsfield still , 4K source , grade , color-law , export package , post-production gate , SHIP.**
+>
+> Proven on LOT 00 (THE SITTER): job 706e806e, 3584x4800, full chain, gate verdict SHIP, 7/7 exports no-enlarge OK, 12/12 layer tests pass. Artifacts: `postproduction/lot00_4k_001/` (PROOF_PACKAGE.md, EDIT_LOG.csv, POSTPROD_GATE_LOG.csv). The same gate returned REJECT on the 1k version, so the standard is evidence-backed, not asserted.
+
+## POST-PRODUCTION DELTA (since audit)
+- Lightroom/Camera Raw grade: AMBER -> **ACTIVE** (`os_adobe_grade.py`, encodes the real v3 LUXURY XMP).
+- Photoshop/composite (colorlaw/glyph/cleanup/crop): AMBER -> **ACTIVE** (`os_adobe_composite.py`).
+- Adobe post-production umbrella: AMBER -> **ACTIVE** for the deterministic engine; the Adobe-MCP GENERATIVE escalation stays AMBER (wired + logged, one approval from GREEN).
+- export/versioning: GREEN, reinforced (`os_adobe_reframe.py` + enlarge-guard + `os_postproduction_gate.py`).
+- Premiere/After Effects edit: RED -> **AMBER** (`os_adobe_cut.py` does single-clip trim/mute/resize/caption-safe; multi-clip sequence + titling not yet built).
+- Illustrator/InDesign layout: still **RED** (queued).
+- Score after delta: ~18 GREEN · ~8 AMBER · 3 RED. See `postproduction/POSTPROD_DASHBOARD.md`.
 
 ## RED (missing or blocked , the surprise-gap killers)
 - **Illustrator/InDesign layout layer** , No repeatable way to lay out the Op Kit one-pager, Pitch deck, Direction Stack book pages, or branded drop cards. Layout deliverables fall back to fully manual GUI work with no template, no data-merge, no version discipline.
