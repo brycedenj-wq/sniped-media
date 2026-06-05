@@ -77,3 +77,10 @@ Log every real conversation in PROOF_LOOPS. Do not automate anything yet.
 
 ## 8. Fresh-session instruction (restated)
 Read CURRENT_STATE first, then COMMAND_CENTER_RESPONSE_PROTOCOL, then the task-specific source docs. The name (BASEPLATE), the thesis (operator layer), and the domain (baseplateworks.com) are decided. Do not re-open them unless the proof loop produces evidence that forces it. The work now is proof, not more building.
+
+
+---
+## STANDING ORDER (LOCKED 2026-06-05) , ACTIVE LANE
+OLD SNIPED (Reset/Pixieset/local photo/school-photo/op-kit/brand-system shoots/local services) = ARCHIVE / FALLBACK ONLY. NEVER the default money route; only on explicit "fallback cashflow" request.
+ACTIVE DIRECTION = Prime Mover / one-person campaign house / AI-native premium production: private campaign-house demo, premium world build, high-ticket diagnostic/spec, AI-native campaign package, brand/world/IP system, private proof loop, identity-safe acquisition, proof-to-cash without identity exposure.
+DEFAULT money question: convert the campaign-house capability into paid work without identity exposure, public posting, or weak work. Enforced in os_proof_to_cash_router/os_pricing_gate/os_offer_builder/os_client_fit_gate (commit fdc4e64). See memory feedback_active_lane_not_old_sniped.

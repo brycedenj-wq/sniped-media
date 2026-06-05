@@ -18,3 +18,10 @@ See `OS_MAX_DEMO_001/10_DECISION_REPORT/decision_report.md`. Default = HOLD.
 7. HOLD , leave it parked.
 
 Nothing proceeds without one explicit go.
+
+
+---
+## STANDING ORDER (LOCKED 2026-06-05) , ACTIVE LANE
+OLD SNIPED (Reset/Pixieset/local photo/school-photo/op-kit/brand-system shoots/local services) = ARCHIVE / FALLBACK ONLY. NEVER the default money route; only on explicit "fallback cashflow" request.
+ACTIVE DIRECTION = Prime Mover / one-person campaign house / AI-native premium production: private campaign-house demo, premium world build, high-ticket diagnostic/spec, AI-native campaign package, brand/world/IP system, private proof loop, identity-safe acquisition, proof-to-cash without identity exposure.
+DEFAULT money question: convert the campaign-house capability into paid work without identity exposure, public posting, or weak work. Enforced in os_proof_to_cash_router/os_pricing_gate/os_offer_builder/os_client_fit_gate (commit fdc4e64). See memory feedback_active_lane_not_old_sniped.
