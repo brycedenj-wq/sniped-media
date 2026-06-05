@@ -1,6 +1,8 @@
 # Kingdom of the Sun · Open Loops & What Goes to Dad
 
-> Built 2026-06-01. The running list of everything outstanding across all six systems. The site is live; this is the rest. Update as items close.
+> Built 2026-06-01. Updated 2026-06-05. The running list of everything outstanding across all six systems. The site is live; this is the rest. Update as items close.
+>
+> **READ `PICKUP_2026-06-05.md` FIRST** for current state, the institutional reframe, and the next move with dad.
 
 ---
 
@@ -16,14 +18,22 @@
 6. **Family photo sales.** OK to sell individual/team photos to families after the event?
 7. **NFHS broadcast inventory.** Can the tournament sell sponsor placement on the NFHS stream, or does NFHS control its own ads? (Dad may know, or we confirm with NFHS.)
 8. **Crown logo approval.** Does the committee approve the Crown / Sun Rays refresh as the official 2026 identity, or keep it as a concept for now?
-9. **Revenue-share to the Vanguard program.** PROPOSAL BUILT (`governance/KOTS_REVENUE_SHARE_PROPOSAL.md`) for the principal to take to the committee. Pending dad's go on timing.
+9. **Revenue-share to the Vanguard program.** PROPOSAL BUILT + sharpened 6/5 (`governance/KOTS_REVENUE_SHARE_PROPOSAL.md`) with institutional frame + anchors (~$8K concessions, program got $0; ~$5K on ~$25K floor). Pending dad's go on timing.
 10. **The court signature photo.** IN PROGRESS: dad is working on getting the clean court signature.
+11. **School commitment / internal committee.** KEYSTONE BUILT 6/5 (`governance/KOTS_SCHOOL_COMMITMENT.md`). The ask for the principal: name it a school event, assign 2-3 school-side point people, formalize the revenue share. This is the doc that takes load off dad. Hand it first when he is calm.
+12. **2025 champion result.** Pembroke Pines Charter (MVP Zack Dawson) locked in. STILL NEED from dad: runner-up + final score to finish the 2025 roll row.
 
 ## Built 2026-06-01 (this round)
 - `coaches/KOTS_FINAL_SIX_SELECTION.md` — strategy + scorecard for picking the last 6 invites for growth.
 - `governance/KOTS_REVENUE_SHARE_PROPOSAL.md` — hosting-partnership proposal for the principal.
 - `governance/KOTS_BOOSTER_CLUB_FRAMEWORK.md` — booster club basics, money kept separate from the Kingdom account.
 - `media/KOTS_IG_OPERATOR_PLAYBOOK.md` — simple IG instruction sheet for the page runner.
+
+## Built/changed 2026-06-05 (this round)
+- 2025 champion (Pembroke Pines Charter, MVP Zack Dawson) added across data + site + legacy; site redeployed.
+- Schedule cadence fixed: field/bracket drop in OCTOBER (was December). 2025 ran Dec 26-29; 2026 stays Dec 28-31.
+- `governance/KOTS_SCHOOL_COMMITMENT.md` (new keystone), `sponsorship/KOTS_FOOD_PLAY.md` (new), revenue-share sharpened.
+- 3 PDFs built (School Commitment, Revenue Share, Food Play) in `_deliverables_pdf/`. HOLD, not sent.
 
 ---
 
