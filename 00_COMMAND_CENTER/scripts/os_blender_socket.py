@@ -20,6 +20,15 @@ def _gate():
     s = importlib.util.spec_from_file_location("os_blender_gate", os.path.join(HERE, "os_blender_gate.py"))
     m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
 
+def health(timeout=3.0):
+    """Return (up, detail). Used as a preflight so the OS never silently fails on a dead socket."""
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.settimeout(timeout); s.connect((HOST, PORT))
+        return True, f"{HOST}:{PORT} UP"
+    except Exception as e:
+        return False, f"{HOST}:{PORT} DOWN ({e}). Start it: Blender > Preferences > Add-ons > MCP > Start MCP Server (Auto Start should be ON)."
+
 def send_code(code, strict_json=False, timeout=300.0):
     request = json.dumps({"type": "execute", "code": code, "strict_json": strict_json}) + "\0"
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
@@ -34,6 +43,9 @@ def send_code(code, strict_json=False, timeout=300.0):
     return json.loads(line.decode("utf-8"))
 
 def gated_send(code, render_path, is_test=True):
+    up, detail = health()
+    if not up:
+        raise SystemExit(f"  BLENDER SERVER DOWN , {detail}")
     g = _gate()
     verdict, reasons = g.check_action("python", render_path, code, is_test)
     print(f"  os_blender_gate: {verdict} ({'; '.join(reasons)})")
@@ -70,8 +82,10 @@ result = {"scene": sc.name, "objects": [o.name for o in sc.objects], "render": s
 
 def main():
     ap = argparse.ArgumentParser(prog="os_blender_socket.py"); sub = ap.add_subparsers(dest="cmd")
-    sub.add_parser("ping"); sub.add_parser("proof")
+    sub.add_parser("ping"); sub.add_parser("proof"); sub.add_parser("health")
     a = ap.parse_args()
+    if a.cmd == "health":
+        up, detail = health(); print(("UP   " if up else "DOWN ") + detail); return 0 if up else 1
     if a.cmd == "ping":
         r = gated_send("result = {'blender': bpy.app.version_string}", os.path.join(SANDBOX, "renders", "x.png"))
         print(json.dumps(r, indent=2)); return 0
