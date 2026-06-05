@@ -7,8 +7,8 @@
 | stage | action | est cr | status | balance after |
 |---|---|---|---|---|
 | 0 | zero-spend creative pass (this folder) | 0 | DONE | 859 |
-| 1 | strongest upgraded hero still (1 concept) | ~2 | PENDING APPROVAL | , |
-| 2 | up to 3 still variants (only if stage 1 passes + beats Proof Cell 001) | ~6 | locked | , |
+| 1 | LOT 00 (THE SITTER) hero still v1 (job c837ea93) | 2 | DONE , PASS, beats Proof Cell 001, 2 variant-fixable misses | 857 |
+| 2 | up to 3 still variants (only if stage 1 passes + beats Proof Cell 001) | ~6 | PENDING APPROVAL | , |
 | 3 | 1 short motion clip (only if a still passes all gates) | ~18 | locked | , |
 
 Every credit logged here. Balance reported before and after each spend. Stop on any gate failure.
