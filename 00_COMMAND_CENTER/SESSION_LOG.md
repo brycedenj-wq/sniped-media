@@ -23,3 +23,5 @@
 2026-06-04 , Proof Cell 001 built: name-gate (achromah/noctralune available, pending brand verify), certified asset pair reused ($0), caption voice-gate PASS, 5-rail proof package + dashboard. No posting, no real-name, no spend. Awaiting operator go on spend/posting.
 
 2026-06-04 , private form built for Rails A+C (proofcell/form/). Complete copy+fields+asset pair, voice-gate PASS, no real name/domain/launch. Collects nothing until operator wires an endpoint (their account). Private local link only. Not validation until shared.
+
+2026-06-04 , private form made deployment-ready (NOT hosted): Tally spec, static+Formspree (placeholder), Netlify/Vercel site/ drop, ingest+score scripts (tested), share+privacy checklists. Operator wires one manually. Stop before hosting/distribution.

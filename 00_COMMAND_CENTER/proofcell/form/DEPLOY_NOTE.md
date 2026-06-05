@@ -1,10 +1,24 @@
-# FORM , how to make it collect (operator step only; nothing public yet)
+# DEPLOY NOTE , 3 ready versions (you wire one manually; nothing hosted by the OS)
 
-The form (index.html) is COMPLETE: copy, fields, asset pair, styling. It currently collects NOTHING (action = placeholder). To turn it into a live private proof loop, YOU do one of these , I cannot, because each touches an account/identity:
+The form is COMPLETE in three forms. Pick ONE when you decide to test. Each touches YOUR account , that is why the OS stops here.
 
-1. **Lowest friction:** recreate the form in Tally or Google Forms (paste the copy + the 2 checkboxes + email + optional intent). Get a private share link. No domain, no real name in the form title (use ACHROMAH, pending).
-2. **Use this HTML:** add your OWN form endpoint (Formspree/Basin/Tally embed) into `action="..."`, then host the folder privately (Netlify drop / Vercel / a hosted file). Endpoint + host = your account.
+## Version 1 , TALLY (lowest friction, recommended)
+Rebuild from `TALLY_SPEC.md` (2 min). Tally gives a private link. No domain, no HTML hosting.
 
-Constraints to hold when you do it: no real-name metadata, no employer email, no domain purchase, name stays ACHROMAH (pending brand checklist), private link only (no posting/ads).
+## Version 2 , STATIC + FORMSPREE (use the built HTML)
+`site/index.html` is ready. To make it collect:
+1. Create a Formspree (or Basin/Tally-embed) form in YOUR account , get the endpoint URL.
+2. In `site/index.html`, replace `action="REPLACE_WITH_YOUR_FORM_ENDPOINT"` with that URL. (That is the ONLY edit.)
+3. Host `site/` (Version 3).
 
-Record every response in RESPONSES.csv (one row each). The columns map straight to Rail A (method_interest) and Rail C (print_interest).
+## Version 3 , NETLIFY / VERCEL DROP (host the static site privately)
+- The deployable unit is the **`site/`** folder (index.html + assets + vercel.json). `netlify.toml` publishes it.
+- Netlify: drag `site/` onto app.netlify.com/drop (your account). Vercel: `vercel deploy` in `site/`.
+- Use the auto-generated `*.netlify.app` / `*.vercel.app` URL , **do NOT add a custom domain**, do NOT use a real-name team.
+
+## After responses come in
+`python3 os_form_ingest.py <tally_or_formspree_export.csv>` -> appends to RESPONSES.csv (dedup by email).
+`python3 os_form_score.py` -> SCORE.md (A/C/both/source/intent + keep/kill/scale verdict).
+
+## Held at your line (OS will not do these)
+Creating any account · hosting · adding an endpoint · buying a domain · finalizing the name · posting/sharing the link.
