@@ -83,3 +83,12 @@ The `start here` folder pass (98/98 docx certified with segment-ledger coverage)
   - `world building characters etc.docx` (certified directly, 58 seg)
   - Manifest status: `rawdump_unverified` → `coverage_proven_via_starthere` (twin coverage; content word-counts match within <0.02%).
 - **What is NOT upgraded:** the 25M-word book layer is still `provisionally_verified` (no segment ledger). The OCR/visual/transcription piles are unchanged. This delta touches only the start-here folder + its giant twins. No other OS coverage claim changes.
+
+---
+## DELTA , BOOK-LAYER AUDIT (2026-06-04, local, no re-read)
+Answer to "were books certified or only chunked": **CHUNKED, not certified.** Proof: KB chunks carry concept/summary/principle but NO offset/segment field (avg 4.7 concept-chunks/book). Coverage unit = 240 extracted texts (22.37M words):
+- **coverage_proven: 19 texts / 1.25M words (5.6%)** , start-here giants only, NOT the book canon.
+- **chunked_not_certified (provisional): 215 texts / 20.94M words (93.6%)** , the entire classic book layer. Distilled, not covered.
+- extracted_only: 6 / 179k (0.8%). pending: 66 OCR + 5 visual + 213 not-read source files.
+- **191 texts / 21.0M words need a real re-read** to ever be certified.
+Repair = TARGETED not wholesale (see OS_BOOK_LAYER_AUDIT_REPORT.md): dedupe+tag-provisional (free), OCR only doctrine-relevant scans, certify only the <20 books doctrine cites, certify ≤2-seg books cheaply, leave the long tail provisional+labeled. Do NOT bulk-workflow 21M words.

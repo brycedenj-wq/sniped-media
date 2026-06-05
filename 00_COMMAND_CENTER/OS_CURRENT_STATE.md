@@ -10,6 +10,7 @@
 - **NO ACTIVE MISSION.** Recent completed: `start here` folder certification (98/98) + loop-close.
 - Loop closed: cert dashboard delta (5 giants -> coverage_proven_via_starthere), OS_STARTHERE_DOCTRINE.md, OS_STARTHERE_BACKLOG.md (2 build-now of ~1267 candidates), router index updated, anti-duplication rule locked (OS_BOOT.md).
 - STAGED (do NOT start without a go): OS_BOOK_LAYER_AUDIT_PLAN.md (cheap local check: were books certified or only chunked).
+- book-layer audit DONE: books are CHUNKED not certified (215 texts/20.9M words provisional; ~0 canon certified). Repair plan = targeted, OS_BOOK_LAYER_AUDIT_REPORT.md. Not started.
 - Preserve optionality. No lane active. No crown.
 
 

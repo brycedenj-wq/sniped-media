@@ -7,3 +7,5 @@
 2026-06-04 , start-here folder COMPLETE: 98/98 docx certified (Wave 1: 60, Wave 2: 31 giants sharded, ~13M tokens). OS_STARTHERE_COMPLETE.md written.
 
 2026-06-04 , start-here loop closed: doctrine + backlog + router + cert-delta + anti-dup rule + book-audit-plan. 5 intake giants now coverage_proven_via_starthere.
+
+2026-06-04 , book-layer audit DONE (local): books CHUNKED not certified. 215 texts/20.9M words provisional, ~0 canon certified, 66 OCR/5 visual/213 not-read pending. Targeted repair plan staged.
