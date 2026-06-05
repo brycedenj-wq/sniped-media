@@ -1,0 +1,86 @@
+{
+  "portion_doctrine": "Video transcript of two Lightroom editing tutorials (film look preset + advanced masking). Core: tone curve + mask combinations are the power layer. Film aesthetic relies on slight softness (lower clarity, raise blacks) + warm HSL tweaks + specific shadow/highlight balancing. Advanced masking unlocks localized control: AI subject/sky detection + gradient softening + preset layering. Masks are now primary compositing tool (replacing Photoshop for many workflows). Refine saturation slider decouples tone curve contrast from unwanted saturation spikes. Key insight: tools in combination (tone curve + mask + HSL + color grading) beat individual sliders.",
+  
+  "segments_read": 10,
+  
+  "operating_rules": [
+    "S-curve tone curve is foundation for film look (standard contrast)",
+    "Always lift shadows significantly on tone curve for film aesthetic",
+    "Lower highlights slightly to preserve detail (not zero)",
+    "Raise whites and blacks to reduce harshness (not pure black/white)",
+    "Lower clarity slightly for haze; raise texture slightly for sharpness",
+    "Film colors are never exact - emulate 'pastely Kodak summer' aesthetic via HSL",
+    "Mask opacity control critical: right-click > color overlay settings to reduce overlay saturation and see underlying image",
+    "AI subject/sky mask creates hard edge by default - must intersect with linear gradient to soften",
+    "Brush mask requires AUTO MASK enabled or will select background noise",
+    "Gradient masks must feather all the way out for natural transition",
+    "Hit 'O' key to toggle mask visibility for refinement verification",
+    "Luminance range intersection isolates effect to specific brightness zones",
+    "Tone curve + mask + HSL combinations unlock infinitely more control than individual sliders",
+    "Refine saturation slider decouples tone curve contrast from saturation punch (drag down to reduce spike)",
+    "Create overlay presets (mask only, no adjustments) and apply with opacity slider for variable intensity",
+    "Color point adjustment (HSL) localizes hue/sat/luminance changes to single color within mask"
+  ],
+  
+  "prompts": [
+    "When editing film look: apply S-curve first, then lift shadows, then HSL warm tones",
+    "When softening image: lower clarity + lower dehaze + raise blacks, check with 'O' key",
+    "When masking auto-selection: always check for hard edges and intersect with gradient",
+    "When creating overlay preset: uncheck all adjustments, save mask only, name for reuse",
+    "When struggling with saturation spike: use refine saturation slider to dial back tone curve color punch"
+  ],
+  
+  "tools": [
+    "Tone Curve (RGB and Color)",
+    "Highlights/Shadows slider",
+    "Whites/Blacks slider",
+    "Clarity slider",
+    "Dehaze slider",
+    "Texture slider",
+    "HSL (Hue/Saturation/Luminance)",
+    "Color Tone Curve",
+    "Mask tool (subject, sky, object)",
+    "Mask > Intersect with luminance range",
+    "Gradient mask (linear and radial)",
+    "Brush mask (with AUTO MASK)",
+    "Preset creation (adjustment + overlay presets)",
+    "Refine Saturation slider (new)",
+    "Color Point selector (HSL localized)"
+  ],
+  
+  "skills": [
+    "Film emulation editing",
+    "Advanced masking workflows",
+    "Tone curve composition",
+    "Gradient softening technique",
+    "Overlay preset creation and stacking",
+    "Localized color adjustment",
+    "Subject/background separation"
+  ],
+  
+  "gates": [
+    "Segment 011: Foundational film look + tone curve preset creation (clean, high signal)",
+    "Segment 012-020: Advanced masking techniques + preset overlay system (high density, transcript quality mixed)"
+  ],
+  
+  "content_ideas": [
+    "Document the 'overlay preset' pattern as reusable macro for speed (brightening_sky, center_pop, darken_foreground)",
+    "Build masking decision tree: when to use subject vs. sky vs. gradient vs. brush",
+    "Create tone curve reference chart: S-curve baseline + shadow lift + color curve warmth offsets",
+    "Test preset stacking: can 3-5 overlay presets layer without degradation?",
+    "Compare 'intersect with luminance range' vs. manual brush masking on highlight isolation"
+  ],
+  
+  "contradictions": [
+    "Segment says 'lower clarity for film look' but also 'raise texture slightly' - tension between softness and detail definition. Likely resolution: clarity = overall softness, texture = microcontrast detail within soft envelope.",
+    "Segment describes HSL as 'hard to emulate exactly' (film stock variance) then provides specific HSL moves (warm reds/yellows). Tension between 'no exact method' and 'these moves work.' Likely: guidelines work within 70% accuracy but subject lighting/stock require case-by-case refinement."
+  ],
+  
+  "weird_gold": [
+    "Auto-mask on brush masking is almost throwaway mention but CRITICAL - without it, brush selects background noise and ruins the mask",
+    "Refine saturation slider is described as 'new' - decouples tone curve saturation side effect from contrast intent. Suggests Lightroom tone curve historically conflates contrast + color punch.",
+    "Mask opacity overlay is not about mask strength - it's about SEEING THROUGH the overlay to verify what's masked. Different mental model than opacity.",
+    "Object mask's secondary use: box-draw to remove overspray gaps. Not intended use but faster than manual brush cleanup.",
+    "Overlay preset system (mask only, no adjustments) is essentially saving-and-loading mask geometry as a preset - unlocks speed but requires new mental model of 'preset as shape, not settings.'"
+  ]
+}

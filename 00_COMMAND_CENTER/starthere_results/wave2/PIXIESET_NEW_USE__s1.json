@@ -1,0 +1,53 @@
+{
+  "portion_doctrine": "Pixieset Help Center documentation (segments 1-10). Content is primarily UI guide boilerplate with procedural steps for photo gallery management, delivery, and e-commerce. Minimal strategic/operational gold; mostly system feature walkthroughs.",
+  "segments_read": 10,
+  "operating_rules": [
+    "DOMAIN SETUP: Subdomain (gallery.yourdomain.com) vs root domain (yourdomain.com) requires different CNAME/A records. Subdomain uses 1 CNAME; root uses 1 CNAME for www + 2 A records for @",
+    "DNS PROPAGATION: Changes can take up to 48 hours. SSL certificates may take 24 hours to generate",
+    "WATERMARKS: Apply to display images only, never to print orders or high-res downloads (3600px). Watermark file = PNG min 1600px width, max 5000px. Updating watermark does not auto-apply to existing photos; must re-apply",
+    "VIDEO SPECS: MP4 format, H.264 codec, 8-bit 4:2:0 or below, 1080p/2K or smaller for uploads. Video downloads auto-convert to MP4 up to 2048px. 4K downloads available on Pro/Ultimate only",
+    "EMAIL CAMPAIGNS: Must have explicit opt-in consent. Checkbox appears at email registration, store checkout, photo/video download, favorite sign-in. Same contact counted once across collections",
+    "FOLDER STRUCTURE: Folders can contain multiple collections. Bulk create via desktop folders (each folder becomes 1 collection) or CSV pre-creation. Export folder details as CSV for review",
+    "BULK OPERATIONS: Can bulk edit via pencil icon: Design, Favorite, Store settings, Auto-expiry, Apply to selected collections at once",
+    "COLLECTION SORT: Default = Name A-Z. Options = Date uploaded, Date taken, Filename, Random. Manual drag-drop reordering per image or batch",
+    "STORAGE: All subscriptions storage-based. File limits depend on file sizes + current subscription",
+    "LIGHTROOM SYNC: Plug-in supports Lightroom 4+ on Mac OS X 10.9+ / Windows 7+. Version 1.0.4 = latest. Automatic updates available. 'Sync Now' refreshes gallery structure only, not uploads/deletions",
+    "IMAGE REQUIREMENTS: JPEG/PNG up to 100MB, GIF up to 85MB, RAW up to 100MB. Filenames alpha-numeric + dash/underscore only (no spaces, no special chars). Avoid images over 10,000px edge length. sRGB color space recommended",
+    "HOMEPAGE: Turned on by default. Can set global password. Shows public collections only. Sorting options: By name, by date, custom order. Category tags filter collections. Privacy: can hide collection from homepage while keeping direct link shareable",
+    "QUICK SHARE: Separate page from main gallery. Does not inherit password, download PIN, email registration settings. Useful for vendors, collaborators, publications. Generate unique links, track activity, remove/edit anytime",
+    "EMAIL INVITES: Can schedule send to future date (subject to auto-expiry limit if set). Template system available. Can include collection password, download PIN, client exclusive access password",
+    "DOWNLOADS: Default resolution removes watermark. Custom setting can keep watermark for web downloads (640px/1024px/2048px). Original/high-res (3600px) always remove watermark. Print orders always remove watermark",
+    "MARKETING CONSENT: Checkbox must be opt-in, cannot be pre-checked. Unsubscribe link in every email (anti-spam law compliance). Cleaned contacts (invalid emails) auto-excluded"
+  ],
+  "gates": [
+    "DNS control required to set up custom domains (CNAME/A records)",
+    "Stripe or PayPal account required for Store/automatic fulfillment",
+    "Upgraded Client Gallery or Suite subscription required for: subdomain setup, video uploads, 4K downloads, email campaigns (early access as of doc date)"
+  ],
+  "prompts": [],
+  "content_ideas": [
+    "Watermark strategy: identify which photos need protection vs which benefit from no watermark",
+    "Folder organization for repeat clients: annual/seasonal structure, easy re-booking next year",
+    "Email campaign cadence: seasonal promos, anniversaries, reviews request timing",
+    "Quick Share workflow: internal use (retouchers, designers) vs external (clients, press)",
+    "Homepage as client portal: organize by client name in folders, public + hidden collections strategy"
+  ],
+  "skills": [],
+  "tools": [
+    "Pixieset Client Gallery uploader",
+    "Lightroom plug-in (bulk publish, sync)",
+    "Pixieset Dashboard (bulk edit, email templates, settings)",
+    "CSV export/import (bulk collection creation, folder details review)",
+    "Email campaign builder (template system, scheduling, analytics)"
+  ],
+  "contradictions": [
+    "Watermark said to apply 'by default' to web downloads but can be customized to remove; initial statement is slightly misleading re: default behavior"
+  ],
+  "weird_gold": [
+    "SYNC NOW button does NOT sync deletions or uploads. Gallery structure only. Counter-intuitive for users expecting full sync",
+    "Video downloads are capped at 2048px max on standard plans but 4K available on Pro/Ultimate. Video UPLOADS can be 4K. Asymmetric limit",
+    "Bulk create via CSV is ideal for pre-event setup (empty collections named in advance). Desktop folder upload combines subfolder contents into 1 collection, not nested structure",
+    "Email campaign opt-in checkbox appears in MULTIPLE places (email registration, checkout, download, favorites), requiring clients to opt in separately per flow rather than once",
+    "Delete is permanent and unrecoverable (stated explicitly). No soft-delete, no undo, no recovery archive"
+  ]
+}

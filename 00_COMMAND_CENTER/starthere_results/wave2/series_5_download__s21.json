@@ -1,0 +1,96 @@
+{
+  "portion_doctrine": "Segments 21-30 are tutorial transcripts covering deployment, automation, and AI-assisted development. Core operating methods center on three deployment patterns (loops, scheduled tasks, modal/trigger.dev), Claude Code workflow methodology (explore-plan-code-commit), dynamic workflows for large-scale document processing, and SaaS framework integration with payment systems. Most content is instructional walkthrough rather than actionable doctrine. Gold: deployment trade-offs, multicontext plan persistence via GitHub issues, Stripe MCP integration patterns.",
+  "segments_read": 10,
+  "operating_rules": [
+    "Loop scheduling: /loop for recurring tasks (max 7 days desktop, terminal gets more features)",
+    "Desktop vs cloud routines: local needs machine on, cloud routines run 24/7 on Anthropic infrastructure (15 runs/day max plan)",
+    "Cloud routines: 1 hour minimum interval, can be triggered via API/GitHub webhooks",
+    "Cron jitter: tasks fire up to 30 minutes after scheduled time to avoid API throttling",
+    "Explore-plan-code-commit workflow: shift+tab to enter plan mode before code",
+    "Plan mode: Claude reads only, no file edits - use for codebase research before implementation",
+    "Multi-phase plan persistence: save plans as GitHub issues to preserve context across sessions",
+    "Context management: check context window regularly, use /clear between unrelated tasks",
+    "Modal vs Trigger.dev: Modal is Python serverless (more script-like), Trigger.dev uses TypeScript (more agentic)",
+    "Managed Agents: Anthropic's official service but offers less flexibility than self-hosted routines",
+    "Hooks: event-driven automations (post-tool use, pre-tool use, session start/end) for layered workflows",
+    "Dynamic workflows trigger: include 'build a workflow' in prompt to invoke agent teams",
+    "Workflow vs single agent: use workflows for tasks requiring 5+ agents, comprehensive audits, large-scale document processing",
+    "Workflow batching: agents queue, don't all spawn at once - completion triggers next batch",
+    "Devil's advocate pattern: secondary agents in workflows refute and double-check primary insights",
+    "Stripe MCP: no API keys needed, use built-in connector from profile settings",
+    "Stripe connector permissions: grant read/write access, then use MCP queries instead of manual API calls",
+    "Superbase integration: MCP handles table creation, data insertion, schema updates via natural language",
+    "Playwright MCP: automated browser testing, visual verification of UI changes during builds",
+    "Sandbox mode: test Stripe products/prices in test environment before moving to live",
+    "Recurring prices: use Stripe API directly if MCP lacks that capability (edge case)",
+    "Database vs constants: database stores dynamic user subscription state, constants store static plan definitions",
+    "Hosted Stripe checkout: preferred over custom checkout for simplicity (Stripe handles sensitive data)",
+    "Plan mode before implementation: always review Claude's multi-phase plan before execution",
+    "Sub-agent code review: run before commit to catch errors before pushing"
+  ],
+  "prompts": [
+    "Set up a loop every 10 minutes to [task name]",
+    "Set up a loop to do [task] and automatically kill it after 24 hours",
+    "Build a workflow that reads every [data source] in parallel and flags [specific issues]",
+    "Build a workflow that audits every file under [path] for [security concern], has a second agent refute each finding, return only confirmed issues",
+    "Generate images for a YouTube script (one image per timestamp) using Higgsfield skill",
+    "I want you to run the following command: [Stripe/Superbase MCP command]",
+    "Evaluate the tech stack of this app and give me recommendations on where to deploy",
+    "Do a dedicated pass on the mobile version: think about what should be hidden, tightened, resized",
+    "Find the bugs: [brief error description] and expected result vs actual result",
+    "Check your context window usage and report"
+  ],
+  "tools": [
+    "CronCreate / CronList / CronDelete",
+    "Scheduled Tasks (desktop app)",
+    "Cloud Routines (remote, API-triggered)",
+    "Modal (Python serverless)",
+    "Trigger.dev (TypeScript, durable workflows)",
+    "Managed Agents (Anthropic official)",
+    "Hooks (event-driven)",
+    "Higgsfield skill (image generation)",
+    "Stripe MCP",
+    "Superbase MCP",
+    "Playwright MCP",
+    "Claude Agent SDK",
+    "Plan mode (shift+tab toggle)"
+  ],
+  "skills": [
+    "Higgsfield image generation",
+    "Front End Design skill",
+    "UI UX Pro Max skill",
+    "21st.dev component library"
+  ],
+  "gates": [
+    "Session expiry: desktop loops max 7 days, terminal loops theoretically longer but jitter applies",
+    "Cloud routine cap: 5 runs/day on Pro, 15 on Max, 25 on Team/Enterprise",
+    "Minimum interval: cloud routines cannot run more frequently than 1 hour",
+    "Workflow cost: watch token usage - 3 million tokens for 51-agent comprehensive audit is normal but expensive",
+    "Sandbox requirement: always test Stripe in sandbox before moving to live",
+    "MCP limitations: some capabilities (e.g., recurring prices) may require direct API fallback",
+    "Plan review: always review multi-phase plans before approval to catch unnecessary complexity",
+    "Context rotation: clear context and save via GitHub issues when crossing 70% utilization"
+  ],
+  "content_ideas": [
+    "Comparison: loops vs scheduled tasks vs modal vs trigger.dev (decision matrix)",
+    "Multi-context workflow pattern: GitHub issue persistence deep-dive",
+    "Stripe + Superbase + Claude Code full SaaS integration walkthrough",
+    "Dynamic workflow token economics: when the cost is worth it",
+    "Hooks as automation glue: layering multiple event-driven rules",
+    "Plan mode discipline: how to avoid scope creep in multi-phase builds"
+  ],
+  "contradictions": [
+    "Desktop loops end after 3 days in desktop app but 7 days in terminal (documented behavior difference)",
+    "Managed Agents promised but reviewer notes they lack flexibility vs self-hosted (design tension)",
+    "Claude can refuse React components for static sites but may suggest complex setups anyway (implementation discipline)"
+  ],
+  "weird_gold": [
+    "Cron jitter is undocumented API-protection pattern: tasks fire up to 30 minutes late by design",
+    "Terminal loop clearing behavior: /clear in terminal doesn't kill crons (different from desktop)",
+    "Playwright MCP used during dev, but builder disables it mid-build to avoid quality-check overhead (edge case)",
+    "GitHub issue workflow: treating issues as plan persistence layer (meta-automation pattern)",
+    "Stripe sandbox mode required before live: mental model shift from 'test then deploy' to 'scaffold test scaffold live'",
+    "Devil's advocate agent pattern in dynamic workflows: agents not just parallel-executing, they're explicitly refuting each other",
+    "Stripe constants file + database pattern: static plan config separate from dynamic user subscription state (architectural principle)"
+  ]
+}

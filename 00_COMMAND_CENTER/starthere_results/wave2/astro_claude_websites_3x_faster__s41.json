@@ -1,0 +1,119 @@
+{
+  "segments_read": 10,
+  "segment_range": "41-50",
+  "portion_doctrine": "Segments 41-50 constitute a multi-part video/podcast transcript corpus covering three major topics: (1) Retell AI and n8n voice agent implementation (barber shop receptionist), (2) Vapi workflows + voice agent testing strategies + outbound call systems, and (3) Eleven Labs voice technology deep-dive including CEO interview (product-market fit, hiring, European scaling) plus technical Eleven Labs feature walkthrough. Core value: production-ready patterns for voice AI systems combining LLM + backend automation + voice synthesis.",
+  "operating_rules": [
+    "Voice AI architecture: LLM (Vapi/Retell) front-end + headless automation (n8n/Make) back-end via webhooks/MCP servers. Keep front-end lean (identity/purpose/guardrails only) and delegate task logic to backend nodes.",
+    "Test suites mandatory before production. Build regression tests covering all routes, edge cases, trolling attempts (illegal requests, hallucinations). Use LLM-as-judge evals for subjective quality gates.",
+    "Latency matters less than smooth turn-taking. 580-620ms benchmarks (Retail/Vapi) are acceptable; raw speed <800ms threshold but natural conversation flow beats technical speed.",
+    "Data extraction ceiling on Retell: limit to 5-12 clean fields max per call. Multi-field extraction should route to backend extraction process, not built-in extraction.",
+    "Prompt reusability: use Claude/GPT to write first-pass Vapi JSON workflows + system prompts + test cases before building in UI. Trade 20-30 min of ideation for hours saved on redundant UI clicking.",
+    "Voice quality > model speed. Cheaper LLM with poor voice quality creates worse caller experience than expensive LLM + premium voice (11Labs v2, natural cadence, emotional tone).",
+    "No single webhook per agent (Retell limitation). Design with MCP servers or multiple dedicated webhooks instead. This avoids complex conditional logic in URL routing.",
+    "Commercial use requires Creator plan or higher. Free tier = 10k chars/month, no commercial rights. Starter ($5) unlocks commercial use.",
+    "Dubbing: 5 minutes per language turnaround. Lip-sync adjustments optional. Enables 5-10x reach multiplier for YouTube/courses at minimal cost vs. hiring voice actors.",
+    "AI voice disclosure: always lead with 'I am [name], an AI assistant for [company].' Interruption handling + natural pauses are critical for human-like interaction."
+  ],
+  "named_methods": [
+    "Wireframing before build: flowchart all conditional logic (if X do Y) on paper before Vapi/Retell. Reduces UI iteration friction.",
+    "Five-section prompt framework: identity (persona + context + tone in 2-3 sentences) + purpose (1-2 sentences) + guardrails (3-5 don'ts) + [no knowledge/no flow/no conditionals for workflows].",
+    "Backend MCP strategy over raw webhooks: centralized n8n/Make MCP server with intent-checking entrypoint. Each tool has one specific function. Vapi calls the server, server routes to correct workflow. Reduces latency + reasoning overhead vs. Vapi calling multiple webhooks.",
+    "Polling pattern for async calls: call initiates, wait 60s, then check status every 10s until ended. Prevents timeout on long conversations; allows voicemail detection via ended_reason field.",
+    "CRM lookup flow: email lookup -> branch on exists/new -> if new, gather + confirm details -> create record -> merge into common path. Allows single conversation path post-branching.",
+    "Test case extraction from call logs: click thumbs-down on bad calls, auto-converts to eval test case. Update expected output, save as regression test for future deployments.",
+    "Knowledge base + RAG: upload company docs (FAQ, policies, SOP) as files, reference in system prompt with 'use the default query tool,' letting system fetch relevant sections on-demand vs. embedding in prompt.",
+    "Structured output extraction: define outcome types in Vapi end-of-call report, system extracts variables (email, appointment_time, outcome) and sends to external logger via webhook.",
+    "Voice cloning instant vs. professional: instant = 30s upload, quick, 6-7 accuracy; professional = 30min recording, XLR mic, sound-treated room, highest fidelity. Pick based on reuse frequency.",
+    "Eleven Labs productions service: for high-volume localization (dubbing, subtitles, transcripts), use human-edited service instead of pure AI for premium clients/campaigns."
+  ],
+  "numbers": [
+    "Retail latency benchmark: 580-620ms average response time. 800ms threshold for natural feeling.",
+    "Retell/Vapi free tier: 10 US phone numbers per account, daily outbound call limit (need Twilio import for scale).",
+    "Voice cloning setup: 10 minutes instant, 30 minutes professional recording.",
+    "Dubbing turnaround: 5 minutes per language.",
+    "n8n workflow complexity: smallest tools 1-2 nodes, only appointment-update has multiple conditional branches.",
+    "Eleven Labs pricing: Free (10k chars/mo), Starter ($5, 30k chars, commercial OK), Creator ($22, 100k chars, voice clone), Pro ($99, 500k chars, API access).",
+    "CRM conversation overhead: 2-3 API calls (lookup + new client create) adds ~1-2 seconds latency.",
+    "Test suite regression coverage: all conversation paths, all edge cases, at least one 'troll' test (illegal requests, hallucinations).",
+    "Eleven Labs character scaling: full dubbing + transcription + music/SFX generation = ~15-20% character cost vs. text-to-speech alone."
+  ],
+  "specific_tactics": [
+    "Barber shop receptionist: Retell AI + Google Calendar (n8n backend) + Google Sheets logging. Book/reschedule/cancel appointment flows with availability checking. Knowledge base embedded (business hours, services, pricing).",
+    "Outbound lead qualifier: Vapi + Make.com automation. Form submission trigger -> phone call with assistant overrides (name, company, request injected into system prompt) -> call status polling -> end-of-call structured output -> CRM logging.",
+    "Restaurant reservation agent: Vapi + Eleven Labs voice + cal.com integration. Voice design, expressive mode, knowledge base upload. Test preview mode before publishing shareable link.",
+    "Video production workflow inside Eleven Labs: voice clone generation -> background music synthesis -> voice isolator on rough interview -> export all as integrated file (previously 3-app process).",
+    "Prompt iteration loop: use Vapi's 'generate' button to auto-edit prompts (make sarcastic, change tone, etc.), see inline diffs, accept/discard changes.",
+    "Webhook test URL: use example.com/webhook placeholder to allow Retell save (required), replace with real endpoint later.",
+    "Phone number forwarding: buy Vapi/Retell number, set up call forwarding from business number to AI number. Customers call normal business line, get routed to AI 24/7."
+  ],
+  "prompts": [
+    "Barber shop system prompt role section: 'You are Jenna, an AI receptionist for Mike's Barber Shop. You handle appointment bookings, cancellations, rescheduling, and answer questions about our services. Speak in a friendly, professional tone. Never make up information; if unsure, offer to transfer to a human.'",
+    "Voice design prompt template: 'A [age]-aged [nationality] [gender] with a [voice quality] voice, [tone], [speed], [emotion]. Example: A middle-aged American female with a soft, high voice, conversational, quick, and cheerful.'",
+    "Knowledge base instruction: 'You have access to [Company] knowledge base. Use it to answer questions. If you don't have the answer, don't guess. Offer to transfer to a specialist.'",
+    "Appointment booking instruction: 'Slots are 60 minutes. Ask: caller's name, phone number, preferred barber, date and time. After collecting all info, say \"One moment\" and invoke the book appointment function. After success, confirm: \"Your appointment at [business] is booked for [day/time] with [barber].\"'",
+    "Cancellation instruction: 'Confirm caller's phone number. Say \"Is [number] the phone number you used to book?\" If yes, invoke cancel appointment. Say \"No problem, I'll cancel it. One moment please.\" After success: \"Your appointment has been cancelled.\"'",
+    "Fallback transfer: 'If caller wants to speak to a human or you can't help, say \"I understand. Let me transfer you to [team/department].\" Then invoke transfer call.'",
+    "End-of-call summary instruction for log: 'You are an expert notetaker. Summarize the call in 2-3 sentences covering: what the caller wanted, what was accomplished, and outcome (booked/rescheduled/cancelled/transferred).'",
+    "Outbound lead qual system prompt: 'You are Elliot, an AI agent calling from [company]. Your job is to qualify leads. Introduce yourself as an AI. Ask about their business pain, use case, timeline. Extract structured data: service_interest, motivation, urgency, past_experience. If they ask to speak to a human, transfer immediately.'",
+    "Restaurant reservation: 'You are Lucy, an AI receptionist for [restaurant]. Your job is to book reservations and handle inquiries. You should speak warmly and professionally. Check availability using cal.com integration. Never quote prices unless asked. If unsure, offer to transfer to a manager.'"
+  ],
+  "skills": [
+    "n8n backend automation: Google Calendar API integration (check availability, create events, update/delete), Google Sheets logging, webhook triggers, conditional logic (if-then branches), client lookup/create via CRM REST API.",
+    "Vapi voice agent configuration: system prompts, model selection (GPT-4.1 vs. GPT-4, cost-quality tradeoff), voice selection (library + voice design + cloning), tools (custom MCP, Handoff transfers, file knowledge base), structured outputs, evals + test suites.",
+    "Eleven Labs feature mastery: voice cloning (instant 30s + professional 30min), text-to-speech (expressive mode, pronunciation dictionary via API), music/SFX generation, voice isolator (noise removal), speech-to-speech (character transformation), dubbing (multilingual + lip-sync), Scribe v2 transcription, Productions service.",
+    "Retell AI patterns: knowledge base creation (custom GPT scraping business website), function parameter definition (ISO8601 time format), call extraction (limited to 12 fields max), webhook authentication (bearer token), simulation testing (batch JSON scenarios).",
+    "Workflow-first design: Vapi Workflows canvas vs. single-prompt assistant (reduced latency via smaller context per node), code button export (paste into Claude for first-pass generation), JSON upload validation before canvas creation.",
+    "Testing frameworks: test suites (regression coverage), evals (LLM-as-judge for subjective quality), call log review + thumbs-down > auto-eval creation, adversarial testing (troll scenarios)."
+  ],
+  "tools": [
+    "Vapi: voice AI platform, free 10 US numbers/month, workflows + single-prompt modes, integrations (MCP, cal.com, custom tools), evals, test suites, phone number management, outbound/inbound.",
+    "Retell AI: voice AI, built-in batch testing, knowledge base, functions (call transfer, custom), extraction post-call, agent handbooks (limited customization), SOC2 type 2 + HIPAA-ready + GDPR-compliant.",
+    "n8n: low-code backend automation, Google Calendar/Sheets integrations, webhook triggers, MCP server hosting, conditional logic, AI node support, free + enterprise tiers.",
+    "Make.com: alternative to n8n for Vapi backend workflows, form triggers, phone number validation (regex), API call patterns.",
+    "Eleven Labs: text-to-speech, voice cloning, music/SFX generation, voice isolator, speech-to-speech, dubbing, transcription (Scribe v2), Productions service (human-edited localization).",
+    "Cal.com: open-source calendar + scheduling platform, Vapi integration for availability checking, event creation.",
+    "Google Calendar API: backend integration for availability checks, event CRUD operations via n8n.",
+    "Google Sheets: call logging, structured data storage (CRM alternative for small businesses).",
+    "Twilio: phone number provider (no outbound call limits, unlike Vapi-native numbers).",
+    "Descript: transcription alternative to Eleven Labs (mentioned as existing workflow tool).",
+    "Adobe Audition: professional audio editing (not required with Eleven Labs voice isolator for basic cleanup)."
+  ],
+  "gates": [
+    "System prompt must be <300 words for workflows (delegation to backend nodes reduces token bloat).",
+    "Knowledge base upload required before training on business details; no handbook-only approach.",
+    "Extraction parameter count cap: Retell = max 12 clean fields; anything beyond = backend extraction.",
+    "Test suite > 10 test cases before production; include at least one 'troll' scenario.",
+    "Webhook bearer token + URL validation before save (Retell/Vapi require both).",
+    "Voice quality gate: must pass natural cadence + emotional tone check (listen to samples before selecting).",
+    "Latency check: any call >5s from initiation to AI response requires investigation (MCP overhead, inference delay).",
+    "Commercial use licensing gate: Starter plan minimum for creator monetization; free tier forbidden."
+  ],
+  "contradictions": [
+    "Prompt engineering: segments advise 'lean global prompt + delegate to backend' but earlier content shows 'thick comprehensive system prompts.' Reconciliation: lean = for workflows (modular), thick = for single-prompt assistants (monolithic). Choose architecture first.",
+    "Voice naturalness: 'AI should sound perfect with no mistakes' vs. 'AI should sound human with natural hesitations/imperfections.' Current consensus: human-sounding (hesitations, pauses, natural corrections) now preferred for engagement over robotic perfection.",
+    "Testing philosophy: 'generate test cases with Claude/GPT' vs. 'extract tests from production call logs.' Both valid; sequence = design tests upfront, add regression tests from production failures.",
+    "Phone number source: 'use Vapi free numbers' vs. 'import Twilio for no limits.' Truth: Vapi free = limited (daily outbound cap), Twilio = unlimited but adds complexity. Choose based on call volume."
+  ],
+  "content_ideas": [
+    "N8N + Vapi integration patterns library: template vault of 10-20 pre-built workflows (CRM lookup, calendar booking, data extraction, transfer logic) downloadable as JSON.",
+    "Eleven Labs voice selection guide: A/B comparison tool for top-10 Creator plan voices (Ivy, Aaron, Alex) with industry-specific use cases (healthcare vs. sales vs. content).",
+    "Test suite scaffolding tool: auto-generate 20+ regression test cases from a single system prompt (covers happy path, edge cases, adversarial).",
+    "Vapi workflow visual debugger: step-through execution viewer showing node-by-node latency, token usage, tool call details (currently hidden in UI).",
+    "Retell knowledge base scraper: auto-extract FAQ/policies from any business website into Retell KB format (removes manual copy-paste).",
+    "Call logging best practices: template Google Sheet + structured data schema for voice agents (fields: call_id, duration, outcome, extracted_data, notes, timestamp).",
+    "Voice agent cost calculator: input call volume + avg duration + model choice, output monthly spend across Vapi + Eleven Labs + backend automation.",
+    "Multilingual deployment playbook: step-by-step guide to dubbing + deploying same agent in 5-10 languages using Eleven Labs + local phone numbers.",
+    "Production readiness checklist: 50-point audit covering security (auth tokens), compliance (GDPR/HIPAA), testing (eval coverage), monitoring (error rates, latency), scaling (concurrency limits)."
+  ],
+  "weird_gold": [
+    "Audiobook author workaround: copy-pasted 500-line book into 500 separate Eleven Labs requests, downloaded individual MP3s, stitched them together into full audiobook. This was THE product-market-fit signal before API/bulk tooling existed. Moral: let users hack the product; follow their creative misuse.",
+    "Vapi pronunciation dictionary (API-only, 11Labs voice required): hidden feature not in dashboard. Most builders don't know about it. Enables proper name handling (Bryce = Brice vs. Bruce decision).",
+    "n8n bug where Vapi outputs 26 duplicate items per API call: workaround = limit(1) to keep first item. No fix announced. Builders ship workarounds without reporting upstream.",
+    "Phone number forwarding trick: buy AI number, set business line to forward incoming calls to AI number (via carrier). Customers never see AI number; still perceive call as going to business. Hides the delegation.",
+    "Structured output nested drilling in Vapi: buried 5 levels deep (artifacts > analysis > structured > [field]). UI design flaw. Builders forget it exists because it's so hard to find.",
+    "End-of-call report custom prompts: Vapi allows custom summarization instructions ('make notes sound like X department'). Enables org-specific call log style without prompt engineering the assistant.",
+    "Voicemail detection via ended_reason field: Vapi/Retell emit ended_reason = 'voicemail' automatically. Allows retry logic, callback queueing, CRM flagging without transcribing the voicemail.",
+    "AI voice disclosure signal test: builds that DON'T start with 'I am [name], an AI' see lower completion rates + higher caller transfers. Transparency = conversion, not friction.",
+    "evals v5 LLM-as-judge grading criteria: pass/fail can be subjective (not just exact match). Use criteria like 'did the agent offer 3 alternative times?' vs. 'did it book the exact slot requested?' Enables quality gates beyond binary success."
+  ]
+}

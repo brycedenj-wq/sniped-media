@@ -1,0 +1,75 @@
+{
+  "portion_doctrine": "Unreal Engine 5 world-building and game mechanics video transcript. Segments 21-30 cover Megascan asset workflows, nanite geometry, foliage painting, and Blueprint game scripting (character ragdoll, obstacles, collision events, UI widgets). This is pure tool tutorial content with no strategic/business value. Extraction focuses on actionable mechanics, parameter names, and workflow steps.",
+  "segments_read": 10,
+  "operating_rules": [
+    "Megascan parameters for 3D props: Albedo Tint (color), Albedo Controls (saturation, brightness, contrast, all default 1.0), Metallic (override base metallic), Roughness (max 1.0), Normal Strength (controls normal map intensity)",
+    "Material parameter naming: In Unreal, duplicate parameter names are treated as the same within material instances. Rename each parameter uniquely (e.g., 'size_grass' vs 'size_dirt') to control independently",
+    "Foliage parameters: Color Overlay (tint), Color Variation (range 0.05-0.1 for realism), Roughness Intensity (0=shiny, 1=default), Normal Intensity (0=no normal maps), Translucency Strength (default 7.0, light bounce), Translucency Desaturation (0.95 default), Enable Grass Wind (with intensity 0.05-0.15 range for subtle movement)",
+    "Nanite geometry: Enables near-infinite source polygons on screen. Only works for solid static meshes (not foliage/deformable). Enable via right-click > Nanite > Enabled. Nanite Quality downloads 8K textures + highest poly density. Performance gains: 5-10 FPS to 40-60 FPS in test (100K donut models)",
+    "Blueprint event firing: Right-click to add nodes; connect outputs to inputs via drag. Keyboard events available (F key fires event). Nodes can be organized with reroute nodes (hover wire, double-click). Shortcuts: Ctrl+B jump to asset location, Ctrl+E open static mesh editor, Alt+2 wireframe view",
+    "Custom events in blueprints: Create custom events (right-click > Custom Event) to expose functionality between blueprints. Example: Third-person character 'Death' event callable from obstacle blueprint via cast",
+    "Ragdoll implementation: 3-node sequence: (1) Set Collision Enabled (Collision Enabled Query and Physics), (2) Set Simulate Physics (enabled), (3) Set Physics Blend Weight (0 to 1). Connect all to single mesh reference to stay organized",
+    "Foliage painting density: Density default 0.5. In foliage editor, can set density value up to 500+. Scale range for variety (example: 0.5 to 2.0 random scale X). All foliage types can be bulk selected with Ctrl+A",
+    "LOD (Level of Detail): Visual transition as camera distance changes. LOD0 (closest), LOD1, LOD2, LOD3, LOD4 (billboard farthest). Billboard materials must match main material edits (e.g., color tint) or visible pop-in occurs. Edit both independently",
+    "Blueprint variables: Create via Variables panel + icon. Types: Boolean (default), Float (decimal numbers). Must compile before editable. Expose via Instance Editable + Expose on Spawn checkboxes in details. Exposes in level editor instance properties",
+    "Delta time frame-independence: Use Delta Seconds output from Event Tick to multiply rotation/movement. Example: Make Rotator node with X = Delta Seconds * 100, ensures same speed regardless of frame rate",
+    "Collision volumes for gameplay: Capsule Collision larger than visual geometry (else character collides with mesh before collision volume). Use On Component Begin Overlap event. Cast to specific character class to filter valid overlaps",
+    "Level blueprints: Right-click selected actor in level editor > Add Event for [ActorType] > Collision > Add On Actor Begin Overlap. Level blueprint events trigger on map-specific logic (win conditions, UI popups)",
+    "Widget UI creation: Canvas (window container) + Text element. Anchoring to center of screen keeps UI centered regardless of resolution. Details panel controls text content, font size, appearance"
+  ],
+  "gates": [
+    "Compile after variable creation before editing properties in level editor",
+    "Enable Nanite only for static meshes (foliage/skeletal meshes not supported yet as of video date)",
+    "Verify collision volume encompasses visual geometry, not smaller",
+    "Check Cast node succeeds (cast to character class) before calling custom events",
+    "Test frame rate independence with t.MaxFPS command (lock to 30/60 FPS)"
+  ],
+  "prompts": [
+    "Add a parameter called [specific_name] to control [behavior] independently from sibling components",
+    "Enable wind on foliage with intensity between 0.05 (subtle) and 0.15 (default)",
+    "Create a ragdoll death sequence triggerable from an obstacle blueprint",
+    "Organize blueprint graph with reroute nodes to reduce visual clutter",
+    "Design obstacle with rotating geometry; vary speed per instance via exposed variable"
+  ],
+  "tools": [
+    "Quixel Bridge (asset library; 16,680+ assets at video recording)",
+    "Megascan materials (4 quality tiers: 1K/2K/4K/8K; Nanite Quality = source scan density)",
+    "Unreal Engine 5 Blueprint system (visual scripting; nodes + wires)",
+    "Foliage mode (Shift+3) for mass painting assets",
+    "Landscape mode (Shift+2) with sculpt/flatten/smooth brushes",
+    "Blueprint editor (double-click blueprint to edit event graph + components)",
+    "Level blueprint (right-click in level editor > Open Level Blueprint)",
+    "Widget system (User Interface > Widget > User Widget for UI panels)"
+  ],
+  "skills": [
+    "Megascan asset import and material parameter tuning",
+    "Foliage density painting and LOD management",
+    "Nanite geometry optimization (polygon density visualization)",
+    "Blueprint node graph construction and debugging (orange wire visualization during play)",
+    "Custom event creation and cross-blueprint communication",
+    "Ragdoll physics implementation via node sequence",
+    "Frame-independent movement via Delta Seconds",
+    "Collision-based gameplay trigger design",
+    "Level blueprint event handling for win conditions",
+    "Widget UI anchoring and text rendering"
+  ],
+  "content_ideas": [
+    "Megascan quality comparison chart: 1K vs 2K vs 4K vs 8K vs Nanite (polygon counts, texture res, file size, visual fidelity per distance)",
+    "Foliage variation techniques: scale randomization, color variation ranges, translucency controls for plant realism",
+    "Nanite adoption checklist: When to enable (solid static meshes), when to skip (foliage, characters), performance benchmarks",
+    "Obstacle course design template: rotating/moving hazards, frame-independent timing, difficulty scaling via variables",
+    "Blueprint architecture for multiplayer: casting patterns, custom events, ownership verification before state changes",
+    "Physics ragdoll tuning guide: blend weight values, collision capsule sizing, integration with character death logic",
+    "Widget anchor reference: center-screen, corners, follow-actor, percentage-based positioning"
+  ],
+  "contradictions": [
+    "LOD performance optimization: stated as 'no longer needed with Nanite' but Nanite generates automatic LOD anyway; unclear if manual LOD still required when Nanite enabled",
+    "Foliage support: video states 'Nanite doesn't work for foliage yet' but also says Epic is working on it; unclear current status as of session date"
+  ],
+  "weird_gold": [
+    "Unreal smart-names physics: Setting Collision Enabled as 'Collision Enabled Query and Physics' (not just 'Enabled') required for ragdoll blend weight to work; parameter name matters to engine behavior",
+    "Billboard pop-in mitigation: If you edit main foliage material (e.g., color tint), you MUST edit the billboard material separately, or visible pop-in occurs at distance. Foliage has two independent materials",
+    "Frame-rate stress-test command: backtick key opens console; 't.MaxFPS 30' locks framerate, reveals frame-dependent bugs. Essential debugging tool for physics/movement",
+    "Quixel Bridge quality is file-size aggressive: 8K nanite quality creates massive project files; 4K recommended unless final render output. No in-engine quality switcher for runtime LOD"
+  ]
+}

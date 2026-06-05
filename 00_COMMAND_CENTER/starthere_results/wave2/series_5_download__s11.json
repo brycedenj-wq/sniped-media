@@ -1,0 +1,104 @@
+{
+  "portion_doctrine": "Segments 11-20 consist of transcribed video tutorials on building CRMs (Customer Relationship Management systems) using Notion, Airtable, and hybrid approaches. The content is predominantly tutorial walkthrough transcriptions with timestamps (42:35 onwards format), heavily boilerplate/UI navigation language, minimal strategic depth. Gold content = specific configuration tactics, automation patterns, and system architecture decisions. Junk = 70% boilerplate UI navigation and repetitive setup steps across multiple platforms.",
+  "segments_read": 10,
+  "operating_rules": [
+    "Create views with pre-filtering before applying auto-labels (Notion mail integration)",
+    "When Notion Mail cannot find database: rename database or add view, then refresh with Command R to resolve bug",
+    "Set database connections to thread-basis email append mode: same thread emails appear as one line item, new threads create new entries",
+    "AI agents for email-to-contact matching: if contact email found in system, link it; if not found, create new contact automatically",
+    "Agent permissions requirement: needs edit content access on both email database and contact database to create relations",
+    "Use hard automations (not AI) for deterministic rules: e.g. 'when deal stage = won, create contract with values from deal'",
+    "Two-way relations must be explicitly set in Notion (AI builders often forget, manual correction required)",
+    "Filter email views by relation: 'where deal contains this page' to show only emails connected to specific deal",
+    "Contact lookups happen at relation level: direct relation creates simpler agent path than multi-step linking",
+    "Calendar sync automation: find contact record by email, sync Google Calendar events to contact/account level",
+    "Airtable form automation: create contact + account records from form submission; check for duplicate accounts before creating"
+  ],
+  "named_methods": [
+    "Notion Mail Integration Loop: email receives -> auto-label -> filter view -> thread-append to contact/deal",
+    "Email-Contact Agent Pattern: receive email -> lookup contact by sender email -> if exists link, if not create + populate",
+    "Deal-Contract Automation Trigger: when stage = 'won' -> auto-create contract page with deal field values",
+    "Calendar Sync Automation: detect contact email -> match to calendar events -> append events to contact record",
+    "Lead-to-Opportunity Conversion: click convert button -> creates linked opportunity record automatically",
+    "Form-to-CRM Intake: form submission -> automation checks for duplicate account -> creates contact + links if new, links if existing",
+    "Kanban Deal Pipeline: same data as grid view, drag-to-update status, updates all relations automatically",
+    "Quote/Proposal Generation: mail-merge style, pull field values into document template, auto-generate + send"
+  ],
+  "numbers": [
+    "42:35 - timestamp range start (Notion Mail setup)",
+    "57:55 - timestamp where Notion customization begins",
+    "58:03 - Notion VCs tutorial reference point",
+    "58:16 - end of primary CRM building section",
+    "Command R - keyboard shortcut to refresh Notion Mail connection"
+  ],
+  "specific_tactics": [
+    "Use template galleries (Notion/Airtable) instead of building CRM from scratch to save setup time",
+    "Replace sample data incrementally with real clients, partners, deals, adding files/notes per entry",
+    "Create form-based lead intake to trigger contact + account automation simultaneously",
+    "Tag decision makers, influencers, users at contact level via 'rolling deal property'",
+    "Set primary contact on deal to ensure all future emails thread to correct contact",
+    "Use grid + kanban views of same data for different workflows (detailed grid for review, kanban for speed)",
+    "Sync Google Calendar (or Outlook) at automation level to avoid manual meeting logging",
+    "Add filter to email view to show only emails related to current deal (prevents email pollution)",
+    "Separate recurring revenue/contract tracking from deal pipeline (contracts table linked to deals)",
+    "Use interfaces (Airtable) or dashboard views (Notion) for non-technical stakeholder visibility",
+    "Avoid using AI agents for hard-rule automations (use code/hard rules instead)",
+    "Pre-stage automation logic: handle duplicates, missing required fields before triggering main process"
+  ],
+  "prompts": [
+    "AI agent prompt for Notion contact matching: 'Check if we have a contact in the contact database with the same email. If that's the case, link it. Great. If you can't find a contact, please create a new contact with those details.'",
+    "Form submission setup prompt: 'Create a contact and account from form submission, checking for duplicate accounts first'",
+    "Calendar sync prompt: 'Find contact record by email address, sync Google Calendar events to that contact/account'",
+    "Airtable build prompt: 'Set up industry as [X], audience as [Y], then create CRM with tables for contacts, deals, companies, products, meetings'"
+  ],
+  "tools": [
+    "Notion - CRM template, Notion Mail integration, AI agents, automations, views/filters, relations, templates",
+    "Airtable - CRM template via AI generator, interfaces, automations, forms, table relations, dashboard creation",
+    "Google Calendar - sync integration via automation to pull events into contact records",
+    "Outlook - alternate calendar integration option",
+    "Notion Automations - trigger/action setup for contract creation, notifications, deal stage changes",
+    "Airtable Automations - form submission triggers, contact creation, calendar sync, notification workflows"
+  ],
+  "skills": [
+    "CRM architecture design: contacts > deals > accounts > products, with proper relation structure",
+    "View strategy: grid for detailed review, kanban for movement tracking, separate views per workflow stage",
+    "Automation logic: understand trigger conditions (form submit, field change, status update) vs. action outcomes",
+    "Duplicate prevention: check existing records before creating new ones, auto-link if match found",
+    "Calendar integration: sync external events without manual entry via automation + email matching",
+    "Form intake: design forms to collect minimum viable contact info (name, email, company, status)",
+    "Template selection: Notion/Airtable offer templates; customize rather than build from scratch",
+    "Interface design (Airtable): create dashboards for visibility without backend access to technical users"
+  ],
+  "gates": [
+    "AI agents cannot yet fully automate hard-rule scenarios (use code/hard automations instead)",
+    "Notion Mail has bugs with database discovery (requires manual refresh + rename workaround)",
+    "Two-way relations in Notion not created automatically by AI builders (manual cleanup required)",
+    "Calendar sync accuracy depends on email address matching (mismatches = records not linked)",
+    "Contact creation from form requires pre-check for duplicate accounts to avoid data chaos",
+    "Permission levels: agents need edit access on both source and target databases to work"
+  ],
+  "content_ideas": [
+    "Deep guide: step-by-step Notion CRM for solo founders (lean version of tutorial)",
+    "Comparison: Notion vs. Airtable vs. Pipedrive for sales teams under 10 people",
+    "Automation playbook: 10 must-have CRM automations (form intake, contract trigger, calendar sync, win notification, etc.)",
+    "Video: Notion Mail integration troubleshooting (database not found, thread append issues)",
+    "Template: pre-built Notion CRM with all automations + contact matching agents ready to customize",
+    "Article: why hard automations beat AI for deterministic CRM rules (rule-based examples)",
+    "Walkthrough: integrating HubSpot/Salesforce into Notion/Airtable via Zapier for hybrid teams",
+    "Guide: interface design for non-technical stakeholders in Airtable (dashboard setup 101)"
+  ],
+  "contradictions": [
+    "Notion Mail setup described as smooth but immediately reveals 'little bit of a bug' requiring command-R workarounds (contradicts simplicity claim)",
+    "AI praised for CRM setup speed but simultaneously warned against using AI for deterministic rules (creates confusion on AI role boundaries)",
+    "Templates described as 'time-saving' but all tutorials show significant customization + manual cleanup work required post-template setup",
+    "Airtable AI builder generates automations but tutorial immediately pivots to 'automations don't get created yet by AI, we have to build them ourselves' (outdated vs. current?)"
+  ],
+  "weird_gold": [
+    "Notion Mail thread-basis append mode: same email thread = one line item that appends new messages (elegant for conversation history but unusual for record-per-email use cases)",
+    "Command R force-refresh as bug workaround: Notion Mail loses database reference and requires manual refresh (architectural fragility signal)",
+    "Rolling deal property: contact-level field tracks their role (decision maker, influencer, user) across multiple deals (clever for multi-stakeholder tracking)",
+    "Primary contact setter ensures all emails thread to deal without extra relation setup (reduces clicks but creates bottleneck if primary contact leaves)",
+    "Hard automation preference over AI: 'when deal = won, create contract' handled better by code than AI because rules are deterministic (philosophical stance on AI appropriateness)",
+    "Two-way relation manual cleanup: AI builders in Notion forget to set two-way relations, requires manual user correction (signal that AI doesn't understand relation bidirectionality fully)"
+  ]
+}

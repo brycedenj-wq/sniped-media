@@ -1,0 +1,73 @@
+{
+  "portion_doctrine": "Photoshop compositing tutorial (video transcript, segments 11-20). Heavily procedural step-by-step instructions for horror/dark fantasy image composition. Primary value: layer technique taxonomy, blend mode application, depth-of-field construction, shadow painting methodology. Boilerplate: timestamps, UI navigation menus, repeated intro/outro. Real content: 65% gold (tactical), 35% filler (repetitive instruction scaffolding).",
+  "segments_read": 10,
+  "operating_rules": [
+    "Clipping masks: hold Option (Mac) or Alt (Windows), click between layers to activate; convert nested layer arrangements into single composited units",
+    "Color overlay via layer styles: use Vivid Light blend mode at 100% opacity; desaturate and test to avoid burning out the effect",
+    "Free Transform + Distort workflow: Ctrl+Cmd+T loads free transform; right-click and choose Distort to reshape 2D projections onto flat ground planes",
+    "Layer grouping + naming discipline: organize by function (front_blur, back_blur, ground_shadow, wings, body_shadows) to enable faster navigation with move tool + Ctrl+click",
+    "Depth of field construction: layer = three zones: (1) foreground blur (branches/feathers with Gaussian 15px), (2) sharp mid-plane (model/objects), (3) background blur via Tilt Shift (transitions at 7-8px). Asymmetric blur equals visual depth.",
+    "Tilt Shift application: load via Filter > Blur Gallery. Two continuous lines = focus zone; dotted lines = transition zone. Drag to position sharp band, adjust transition distance (7-8px typical for realism). Scale parameter controls transition softness.",
+    "Gaussian Blur vs Field Blur choice: Field Blur = more realistic for selective focus; Gaussian Blur = faster for batch particle/ambient work",
+    "Particle brush creation: white background square + black shapes (dots/strokes) on separate layers + Gaussian blur (15-25px) + merge + Ctrl+click to outline + Define Brush preset. Enables parametric dust/bokeh.",
+    "Brush parameter tuning: Shape Dynamics (size jitter on), Scattering (on, angle randomize), Spacing (increased but not excessive). Enable transfer via stylus pressure if using graphics tablet; mouse users: opacity 30-40%, flow 20%.",
+    "Smart objects as non-destructive adjustment containers: convert groups to smart object (right-click > Convert to Smart Object) instead of merging; allows adjustment layers clipped to single layer proxy",
+    "Curves vs Levels equivalence: both tools achieve same shadow/highlight adjustment; choice is preference, not functional difference",
+    "Desaturation methodology: drop saturation 30-35 points across all supplementary elements (rocks, branches, background) to create color unity; preserve full saturation only on focal objects (face, crown, heart)",
+    "Hair replacement via stock + layer mask: paste hair variant underneath wings layer, duplicate to both sides, mask lower edge with soft brush (opacity 50%, flow 30%) to blend with original hair",
+    "Layer style drop shadow to isolated layer: right-click FX > Create Layer converts drop shadow effect into its own layer for selective erasing (soft eraser, layer mask); removes shadow spill on unintended surfaces",
+    "Selective color overlay on masked regions: colorize entire layer (hue saturation + colorize mode), invert layer mask (Ctrl+I), paint white on mask to restore original color selectively. Applied to: green leaves on dark background for symbolic contrast",
+    "Blending mode strategy for texture overlay: Multiply mode for any overlaid texture; avoids burnout and maintains luminosity relationship with underlying layer",
+    "Shadow casting on object-ground interface: shadow layer clipped as mask to object; paint black with soft brush (opacity 40-50%, flow 20%) directly where object meets ground plane; creates illusion of weight/contact",
+    "Gradient overlay for volumetric shadow: layer style > Gradient Overlay (black-to-white, Linear, Multiply blend) at varying scales (40-93 value) to create soft dimensional shadow across large surfaces (arms, brain, heart)",
+    "Manual shadow painting vs layer style trade-off: layer styles fast but less control; manual painting with soft brush (Soft Light or Overlay blend mode) preserves highlight detail and yields more believable dimensionality",
+    "Foreground/background desaturation asymmetry: darken foreground elements more aggressively (curves, pull down midtones); background elements: use curves technique where whites stay elevated but blacks lifted (creates atmospheric haze effect, implies distance)",
+    "Hue adjustment workflow: Ctrl+Cmd+U opens Hue Saturation panel; rotate hue slider to shift color families; use Colorize for monochromatic tint; apply as clipping mask for layer-specific color correction",
+    "Smart object double-click workflow: double-click smart object layer > edit in separate file > Save > return to main document to auto-update all smart object instances"
+  ],
+  "gates": [
+    "Clipping mask creation requires Option+click positioning (not just any click between layers)",
+    "Define Brush preset grayed out if: (1) white square >5000px, (2) image mode is not RGB 8-bit. Fix both before attempting Brush definition.",
+    "Layer style shadow spill: drop shadows auto-apply to all layer edges; must create separate layer + erase unwanted shadow regions",
+    "Blur parameter scaling: effective blur radius is pixel-dependent on canvas size; 15px blur on small canvas = too much; recalibrate per project",
+    "Tilt Shift limitations: requires Filter > Blur Gallery access (may be disabled on lower Photoshop versions); fallback: manual layer blur + layer mask",
+    "Color grading via colorize: one clipping mask per color shift intent; inverting mask + selective paint-back enables granular color control",
+    "Smart object merge gate: never merge a group directly (loses editing capability); convert to smart object first",
+    "Soft brush particle painting: requires graphics tablet pressure sensitivity for natural variation; mouse users must manually adjust opacity/flow per stroke"
+  ],
+  "prompts": [],
+  "content_ideas": [],
+  "skills": [
+    "Photoshop layer compositing (horror/dark fantasy focus)",
+    "Non-destructive smart object workflow",
+    "Depth of field construction via selective blur",
+    "Particle generation (brush creation from scratch)",
+    "Hair replacement and integration",
+    "Shadow painting and volumetric lighting",
+    "Color grading via saturation/hue/curves",
+    "Texture overlay (blood, dust, ambient elements)",
+    "Layer grouping and organizational taxonomy"
+  ],
+  "tools": [
+    "Photoshop: Clipping Mask (Option+click)",
+    "Photoshop: Layer Styles (drop shadow, color overlay, gradient overlay)",
+    "Photoshop: Free Transform (Ctrl+Cmd+T) + Distort",
+    "Photoshop: Blur Gallery (Gaussian, Field Blur, Tilt Shift)",
+    "Photoshop: Hue Saturation (Ctrl+Cmd+U)",
+    "Photoshop: Curves (Ctrl+Cmd+M)",
+    "Photoshop: Define Brush Preset (from selected outline)",
+    "Photoshop: Layer Mask + Soft Brush erase",
+    "Photoshop: Color Lookup Table (3D LUT) adjustment",
+    "Photoshop: Magic Wand tool (tolerance tuning for stock background removal)"
+  ],
+  "contradictions": [],
+  "weird_gold": [
+    "Green leaves on dark background as symbolic-narrative choice: 'shade of hope' embedded in horror composition via selective colorize + inverted mask + painted restore. Indicates visual narrative beyond technical compositing.",
+    "Blur radius recalibration per object: same 'Gaussian 15px' produces different perceptual blur depending on object size at paste time; suggests blur hierarchy is relative to content scale, not absolute pixel value",
+    "Feathers as depth-of-field decorators rather than content: feathers + rocks added purely for visual noise/atmospheric balance, not narrative function. Indicates 'filling gaps' is a discrete compositing stage",
+    "Tilt Shift as atmospheric-depth tool vs simple background blur: Tilt Shift creates continuous focus-to-blur gradient (mimics macro lens optics), whereas Gaussian blur is flat. Suggests perceptual realism varies by transition shape.",
+    "Drop shadow converted to layer = destructive shadow management: drop shadows baked to separate layer to enable selective erasing. Pattern: effect > layer > mask = fine-grained control. Applicable to other layer styles.",
+    "Soft Light and Overlay blend modes preserve highlights during shadow painting: standard painting with black burns out highlights; Soft Light / Overlay bend the entire value range, respecting highlights. Indicates blend mode choice is shadow-preservation toggle.",
+    "Color grading through LUT (3D LUT) + reduced opacity: 'keep reds' preset at 50% opacity drops light and shifts color without full colorimetric conversion. Suggests LUT blending as subtle color unification vs. aggressive transformation."
+  ]
+}

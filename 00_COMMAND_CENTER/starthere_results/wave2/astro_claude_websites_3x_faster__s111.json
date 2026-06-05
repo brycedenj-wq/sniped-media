@@ -1,0 +1,111 @@
+{
+  "portion_doctrine": "Segments 111-117 of the document are primarily boilerplate API documentation, SDK changelogs, release notes, and platform feature announcements (Retell AI, Vapi, ElevenLabs, Airtable LlamaParse). Most content is UI navigation, versioning metadata, and technical specifications. Real content extracted below; majority (>90%) is junk.",
+  "segments_read": 7,
+  "operating_rules": [
+    "API authentication: Bearer token in Authorization header",
+    "Rate limits: 5 requests/second per base (Airtable)",
+    "Webhook payload retention: 7 days",
+    "Response timeout for MCP tools: 5-300 seconds configurable (default 30)",
+    "Webhook expiration: 7 days for personal access/OAuth tokens; manual refresh extends by 7 days",
+    "Character limits: response capped at 15,000 characters for Code Tool output, 2,000 for text-to-dialogue inputs",
+    "MCP server protocol: Streamable HTTP (shttp) default, SSE deprecated",
+    "Variable syntax: {{variable_name}} for dynamic variable injection in prompts"
+  ],
+  "named_methods": [
+    "Code Tool (Retell AI): JavaScript sandbox for lightweight logic, no external server",
+    "Custom Function (Retell AI): HTTP POST to backend endpoint with signature verification (X-Retell-Signature header)",
+    "MCP Tool (Vapi/ElevenLabs): Dynamic tool fetching from MCP servers via Streamable HTTP protocol",
+    "Extract Dynamic Variables: Parse user responses into named variables (Text, Number, Enum, Boolean types)",
+    "Agent Transfer: Switch conversation between AI agents without relaying to different phone numbers",
+    "Speech-to-Text with keyterms: Bias transcription toward specific terms (max 50 terms, 20 chars each)",
+    "Conversation tags: First-class tagging system for organizing and filtering conversations"
+  ],
+  "numbers": [
+    "10,000+ voices in ElevenLabs library",
+    "70+ languages supported (eleven_v3 model)",
+    "75ms latency target (eleven_flash_v2_5)",
+    "50+ unstructured file types (LlamaParse)",
+    "7,000+ app integrations via Zapier MCP",
+    "365 days max conversation embedding retention",
+    "10 webhook limit per base (Airtable)",
+    "2 webhooks per base per OAuth integration (Airtable)",
+    "600ms response time goal (Vapi assistants)",
+    "64 KB cap on agent tool response payloads",
+    "30 min default idle timeout for agents"
+  ],
+  "specific_tactics": [
+    "Signature verification for webhook authenticity: compute HMAC-SHA256 of raw body using secret key",
+    "Response variable extraction: use JSON path notation (e.g., result.data.order.id for nested fields)",
+    "Fallback plans: configure backup transcribers/voices if primary fails mid-call",
+    "Tool icons and execution metadata: declare taskSupport (forbidden|optional|required) per tool",
+    "Pre-tool speech mode: auto (decide based on latency), force (always speak before tool), off (none)",
+    "SIP header exposure as variables: custom X-* headers automatically mapped to {{sip_field_name}} syntax",
+    "Trust context for agents: low (untrusted external), high (owner), unknown (default)",
+    "Guardrail retry action: agent re-generates with injected feedback, up to 3 attempts",
+    "Conversation history system variable: {{system__conversation_history}} provides JSON-serialized full context"
+  ],
+  "prompts": [
+    "When user provided city name, get weather by calling get_weather function",
+    "When customer asks about shipping costs, use calculate_shipping_cost tool based on order details",
+    "When user states name and phone, extract info by calling extract_user_details function",
+    "If user asks to book appointment, transfer to appointment-booking agent via agent_transfer",
+    "When knowledge base content is present with source_attribution enabled, report which sources were used"
+  ],
+  "tools": [
+    "Retell AI Code Tool: JavaScript runtime (Math, JSON, Date, Array, Object, String, fetch, console.log)",
+    "Retell AI Custom Function: HTTP POST with signature verification (X-Retell-Signature)",
+    "Retell AI Extract Dynamic Variables: user response parsing (Text/Number/Enum/Boolean)",
+    "Retell AI Agent Transfer: seamless agent swap (low-latency, no handoff message needed)",
+    "Vapi MCP integration: Zapier MCP (7000+ apps), Make MCP, Composio MCP",
+    "Vapi Assistant configuration: transcriber, model (LLM), voice (TTS), tools, knowledge base",
+    "ElevenLabs Scribe v2: realtime STT, keyterms, noVerbatim, 90+ languages, speaker diarization",
+    "ElevenLabs Workflows: starting node override, conditional expressions with null checks",
+    "Airtable Webhooks API: create, list, enable/disable, list payloads, refresh",
+    "Airtable Personal Access Tokens: scopes-based, base/workspace-specific access control",
+    "LlamaParse: agentic OCR, VLM-powered parsing, table/chart extraction, handwriting support"
+  ],
+  "skills": [
+    "Agent configuration: transcriber selection, model choice, voice/language, tools, knowledge base, personalization",
+    "Testing framework: LLM Playground (text-based), LLM Simulation (batch), Web/Phone Call (real-world), Audio Simulation (coming)",
+    "Call analysis: post-call summary, sentiment extraction, success evaluation, custom data collection per item",
+    "Conversation analysis: scoped to conversation or agent; LLM-as-judge with configurable models",
+    "Variable extraction and analytics: group by variable values for business intelligence; multi-dimensional filtering",
+    "Monitoring and alerting: trigger-based issue detection, resolution suggestions, real-time call quality monitoring",
+    "OAuth integration registration: scopes, redirect URL, logo, privacy/terms URLs, client secret generation",
+    "API client SDKs: TypeScript, Python, Java, Kotlin, C#, Go, Ruby with code generation from API schema"
+  ],
+  "gates": [
+    "Signature verification gate: X-Retell-Signature must validate against API secret before processing webhook",
+    "Token validation gate: Bearer token must have correct scopes + base/workspace access (Airtable)",
+    "Webhook creation gate: max 10 per base, max 2 per OAuth integration per base",
+    "Response size gate: Code Tool output capped at 15,000 chars; MCP timeout max 300 secs",
+    "MCP protocol gate: default Streamable HTTP; SSE deprecated",
+    "Trust context gate: low-trust agents have scoped tool access; high-trust have unrestricted",
+    "Guardrail gate: custom/content guardrails trigger retry (up to 3 attempts) or end call",
+    "Knowledge base gate: source_attribution requires knowledge base content to be present"
+  ],
+  "content_ideas": [
+    "Guide: building multi-agent systems with Agent Transfer for seamless conversations",
+    "Guide: setting up MCP integrations (Zapier, Make, Composio) for dynamic tool loading",
+    "Case study: using Retell Code Tools for lightweight calculations vs Custom Functions for backend calls",
+    "Benchmark: latency comparison across TTS providers (ElevenLabs flash ~75ms vs standard)",
+    "Playbook: implementing conversation tagging and analytics for business metrics tracking",
+    "Best practice: webhook expiration lifecycle management and refresh strategies",
+    "Troubleshooting: MCP tool response timeout tuning based on endpoint latency",
+    "Reference: SIP header mapping for inbound telephony integrations (X-* to {{sip_*}})"
+  ],
+  "contradictions": [
+    "Webhook retention policy: payload retained 7 days BUT webhook tokens expire after 7 days unless refreshed, creating potential data loss window mismatch",
+    "Code Tool vs Custom Function split: docs recommend Code Tool for lightweight logic, but then provide 15,000 char output cap and no external package support (harder than expected)",
+    "MCP protocol default: marked 'shttp default' but SSE labeled 'deprecated', unclear when legacy SSE will be removed or if current clients auto-upgrade",
+    "Trust context scope: agents created before feature introduced default to 'unknown', but docs don't specify upgrade path or impact on existing tool access"
+  ],
+  "weird_gold": [
+    "Unused ConversationConnectionManager wrapper was removed from Swift SDK, suggesting dead code cleanup ongoing",
+    "LlamaParse now processes 1B+ documents/month, highlighting document-as-AI-input paradigm gaining traction in enterprise",
+    "Scribe realtime supports muted audio detection to prevent false voice activity triggers, suggesting UX friction with manual muting",
+    "Procedure compiler default changed from 'deterministic' to 'append', implying breaking change to workflow execution semantics for agents created after cutover",
+    "ElevenCreative Studio added text shadow/outline styles in v1, suggesting web design token vocabulary being imported into agent UI generation",
+    "OAuth integration requires both privacy policy AND TOS URLs to share, but docs say 'both required to share' then list separately as optional/required (inconsistent gate logic)"
+  ]
+}

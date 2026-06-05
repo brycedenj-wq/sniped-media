@@ -1,0 +1,167 @@
+{
+  "source_file": "last lightroom hopefully.docx",
+  "file_class": "transcript",
+  "signal": "high",
+  "cert_status": "certified",
+  "segment_count": 25,
+  "educators_referenced": [
+    "Zac Watson",
+    "Mark McGee",
+    "TK North",
+    "Matthew Ruderman"
+  ],
+  "content_density_note": "Segments 1-20 ~95% actionable; segments 21-25 ~40-50% actionable. Boilerplate (intros, sponsors, UI chatter) stripped in this distillation.",
+  "doctrine": {
+    "title": "Lightroom Portrait Editing Operating Doctrine",
+    "version": "consolidated-v1",
+
+    "core_philosophy": [
+      "Tools in combination beat individual sliders. The power layer is always tone curve + mask + HSL + color grading working together, not any single adjustment.",
+      "Masks are the primary compositing layer in modern Lightroom. For most portrait workflows they replace Photoshop localized adjustments.",
+      "Strongest photograph wins over most-processed. Every automated or layered output must beat the source image visually, not just complete the task."
+    ],
+
+    "workflow_sequence": {
+      "1_cull": {
+        "method": "Narrative culling workflow",
+        "notes": "Cull for story sequence first, technical quality second. Ratings set before any editing begins so edit energy is not wasted on rejects."
+      },
+      "2_global_exposure_foundation": {
+        "sliders_in_order": [
+          "Exposure (anchor luminosity target)",
+          "Highlights (pull back blown areas)",
+          "Shadows (open detail without crushing)",
+          "Whites (set white point)",
+          "Blacks (set black point / film lift if desired)"
+        ],
+        "notes": "Establish the tonal range before touching color. Black point lift is the first step toward a film-look base."
+      },
+      "3_tone_curve": {
+        "role": "Primary contrast and mood tool, not the basic sliders",
+        "portrait_shape": "Gentle S-curve: slight lift in shadows (film base), slight pull in highlights. Avoid hard S which crushes skin.",
+        "film_look_variant": "Raise shadow toe (blacks never hit zero), compress highlights, produces faded/lifted base consistent with analog emulation.",
+        "refine_saturation_slider": "Use Tone Curve's Point mode. After contrast is dialed, bring Refine Saturation down if the curve is creating unwanted chroma spikes."
+      },
+      "4_hsl_color": {
+        "skin_tone_targets": [
+          "Orange: primary skin hue. Luminance up = brighter skin; Saturation down = less orange-y.",
+          "Red: controls ruddy tones. Pull saturation slightly to de-pink.",
+          "Yellow: affects highlights and warm areas. Raise luminance if skin looks dull."
+        ],
+        "film_look_hsl": [
+          "Warm shift: boost yellow/orange hue slightly toward warm, pull blues toward cyan.",
+          "Desaturate blues and greens to suppress background competition with subject."
+        ]
+      },
+      "5_color_grading": {
+        "three_wheel_doctrine": [
+          "Shadows: slight warm or cool cast establishes mood.",
+          "Midtones: skin-safe, minimal push.",
+          "Highlights: opposite of shadows for split-tone depth (warm shadows + cool highlights or reverse)."
+        ],
+        "notes": "Color grading is additive on top of HSL. Do HSL first, grading second."
+      },
+      "6_masking_layer": {
+        "mask_types_in_priority_order": [
+          "AI Subject: isolate person from background in one click. Refine with Subtract > Background if edges bleed.",
+          "AI Sky / Background: complement to Subject mask for environment-only edits.",
+          "Radial Gradient: localized dodge/burn on face. Feather 70-100% to avoid halos.",
+          "Linear Gradient: ground-to-sky exposure management.",
+          "Luminance Range: target highlights or shadows globally without touching opposite tones.",
+          "Brush: precision catch-light and skin detail work."
+        ],
+        "softening_rule": "After any AI mask, apply a softening gradient at the edge (Subtract > Linear Gradient set to low flow) to eliminate hard selection lines.",
+        "preset_on_mask": "Lightroom presets can be applied inside a mask. Use a film-look preset on a Radial mask over the face to dodge and grade simultaneously."
+      },
+      "7_local_skin_and_face": {
+        "catch_light_technique": {
+          "name": "Shard-of-light / catch-light precision",
+          "method": "Brush tool, small size, 100% flow. Paint only the iris highlight. Raise Exposure +0.3 to +0.5, lower Contrast slightly. Do not paint the pupil.",
+          "result": "Life in the eyes without cosmetic appearance."
+        },
+        "skin_smoothing": {
+          "safe_approach": "AI Skin mask (or manual brush on face). Lower Texture -15 to -25. Leave Clarity untouched or at -5 max. Do not touch Sharpening inside mask.",
+          "guardrail": "Never zero out Texture; it reads as plastic. Source photo texture sets the ceiling."
+        },
+        "dodge_burn_portrait": [
+          "Radial gradient over face: Exposure +0.20, Contrast -10 (brightens face, softens contrast locally).",
+          "Separate Radial on background: Exposure -0.30 to -0.50 (push background dark, force subject forward)."
+        ]
+      },
+      "8_sharpening_and_noise": {
+        "sharpening": "Amount 40-60. Radius 1.0-1.2. Detail 25-40 (lower = less halo on skin). Masking 60-80 for portraits (holds edge sharpening only).",
+        "noise_reduction": "Luminance NR first; use Masking slider inside Sharpening to protect smooth skin from NR artifacts. AI Denoise when shooting ISO 3200+."
+      },
+      "9_film_look_complete_recipe": {
+        "sequence": [
+          "1. Blacks +15 to +25 (lift black point).",
+          "2. Tone curve: raise shadow toe to ~15-20 on the RGB curve.",
+          "3. Clarity -10 to -15 (subtle softness, analog diffusion feel).",
+          "4. HSL: warm oranges/yellows, desaturate blues/greens.",
+          "5. Color grading: warm shadows, neutral-cool highlights.",
+          "6. Grain: Amount 15-25, Size 25-35, Roughness 50."
+        ],
+        "notes": "Grain is the last step, applied after export-preview. Consistent grain size across the set = series cohesion."
+      },
+      "10_batch_editing": {
+        "sync_doctrine": [
+          "Sync global tone/color across same-light selects first (Sync Settings, check only Tone Curve, HSL, Color Grading, Grain).",
+          "Do NOT sync masking across images with different subjects or backgrounds; masks are per-image.",
+          "After global sync, address individual outliers manually."
+        ],
+        "preset_layering": "Stack presets additively. Base preset establishes foundation. Secondary preset (e.g., film grain, color shift) applied second and dialed back with Amount slider."
+      },
+      "11_hdr_merge": {
+        "when_to_use": "Only when dynamic range exceeds camera sensor (blown sky + shadow detail both needed in same frame).",
+        "workflow": [
+          "Select bracketed set in Library. Photo > HDR Merge. Enable Deghost (Medium for most scenes).",
+          "Do NOT enable Auto Tone in merge dialog; set tone manually after merge.",
+          "After merge, treat as normal raw. Tone curve is now critical because HDR files have more range to play with."
+        ]
+      }
+    },
+
+    "key_unique_techniques": [
+      {
+        "name": "Shard-of-light catch-light",
+        "one_line": "Tiny brush, iris only, +0.3-0.5 Exposure. Never paint the pupil."
+      },
+      {
+        "name": "Narrative culling workflow",
+        "one_line": "Story sequence drives cull order; technical quality is secondary filter."
+      },
+      {
+        "name": "Refine Saturation on tone curve",
+        "one_line": "In Point Curve mode, Refine Saturation slider decouples contrast from unwanted chroma boost."
+      },
+      {
+        "name": "Preset inside a mask",
+        "one_line": "Apply full Lightroom preset inside a Radial mask for localized film-look dodge."
+      },
+      {
+        "name": "Edge-softening subtract gradient",
+        "one_line": "After AI Subject mask, Subtract > Linear Gradient at low flow on the boundary to kill hard edges."
+      }
+    ],
+
+    "anti_patterns": [
+      "Zeroing Texture on skin masks (reads plastic).",
+      "Syncing masking across images with different subjects.",
+      "Enabling Auto Tone in HDR merge dialog.",
+      "Applying heavy Clarity on top of film-look base (fights the softness).",
+      "Skipping the cull before editing (wastes edit cycles on rejects).",
+      "Over-relying on any single slider; the power layer is always combination."
+    ],
+
+    "sniped_routing": {
+      "primary_use_cases": [
+        "Portrait retouching pipeline for client deliverables.",
+        "Film-look aesthetic development for IG editorial series.",
+        "Batch consistency across shoot-day selects.",
+        "HDR merge for architectural or lifestyle hybrid shoots."
+      ],
+      "guardrail": "All skin and identity edits follow the SNIPED identity-holds-always doctrine: texture, feature integrity, and authentic skin tone are non-negotiable floors regardless of workflow."
+    }
+  },
+  "notes": "Three partial distillations (segs 1-10, 11-20, 21-25) consolidated. Boilerplate stripped. Duplicate technique mentions de-duplicated; consistent cross-educator patterns promoted to doctrine status. Unique techniques from single educators preserved and flagged. Actionable density of final doctrine: ~95%."
+}

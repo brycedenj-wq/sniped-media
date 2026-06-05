@@ -1,0 +1,104 @@
+{
+  "source_file": "MOODBOARDING DOC OG.docx",
+  "file_class": "raw_dump",
+  "signal": "medium",
+  "cert_status": "certified",
+  "segment_coverage": "1-12 of 12 (complete)",
+  "doctrine": {
+    "title": "Mood Board Operating Doctrine",
+    "purpose": "Visual alignment and communication tool — locks shared understanding of look, feel, tone before a shoot or project begins. Prevents mid-project drift and shortens approval cycles.",
+    "core_principle": "A mood board is not inspiration collection. It is a decision document. Every element on it answers: what are we making, for whom, and why does it feel this way.",
+    "methodologies": [
+      {
+        "name": "Color-First Assembly",
+        "use_when": "Brand or editorial work where tonal palette is the creative anchor",
+        "steps": [
+          "Pull 15-20 images from any source (Pinterest, Google Images, stock, personal archive)",
+          "Filter down to 6-8 images that share a dominant palette",
+          "Arrange in a grid; strip everything else",
+          "Extract 3-5 hex codes as the palette lock"
+        ]
+      },
+      {
+        "name": "Typography + Design Element Assembly",
+        "use_when": "Brand identity, logo, or print work where type is the primary visual voice",
+        "steps": [
+          "Collect type specimens alongside layout references",
+          "Group by weight and register (sans vs serif, editorial vs corporate)",
+          "Board must answer: what font family, what weight range, what tracking register"
+        ]
+      },
+      {
+        "name": "Photography Direction Board",
+        "use_when": "Pre-shoot alignment with talent, MUA, stylists, and clients",
+        "key_elements": [
+          "Lighting reference (quality, direction, ratio)",
+          "Pose and body language register",
+          "Color grade / film stock reference",
+          "Wardrobe texture and silhouette (not literal garment)",
+          "Environment / background texture",
+          "Camera-to-subject distance and lens compression reference"
+        ],
+        "note": "Each element should have ONE image that is the locked reference, not a mood cluster. Ambiguity at the board level produces ambiguity on set."
+      },
+      {
+        "name": "Product Photography Board",
+        "use_when": "Commercial product shoots requiring surface, context, and lighting lock",
+        "elements": [
+          "Hero surface / background material",
+          "Prop language (sparse vs layered)",
+          "Lighting style (hard vs soft, natural vs studio)",
+          "Color temperature target",
+          "Composition style (flat lay vs 3/4 vs hero angle)"
+        ]
+      },
+      {
+        "name": "AI-Assisted Pre-Viz Board",
+        "use_when": "Composite builds, generative environment tests, or client concept approval before production",
+        "workflow": [
+          "Use 6-component prompt structure: subject + action + environment + art style + lighting + details",
+          "Generate 8-12 variants in Midjourney or comparable tool",
+          "Select 2-3 that match the direction; add to board alongside real references",
+          "Test personalization by generating known-style references and rating output fidelity",
+          "Shortlist by stripping color to evaluate composition and tonal structure alone"
+        ],
+        "genre_prompt_anchors": {
+          "portrait": "subject, expression register, lighting quality, background separation, skin tonal target",
+          "product": "surface, background, light source angle, shadow style",
+          "architecture": "viewpoint, ambient vs artificial light ratio, time of day",
+          "landscape": "atmospheric depth, foreground anchor, sky treatment",
+          "street": "focal plane, motion treatment, ambient light color temperature",
+          "abstract": "texture register, color relationship, geometric vs organic"
+        }
+      }
+    ],
+    "tool_stack": {
+      "collection": ["Pinterest (dominant)", "Cosmos", "Instagram Saved", "TikTok Saved", "Google Images"],
+      "assembly": ["Canva (fastest for client-facing boards)", "Adobe Express", "Milanote (structure-heavy boards)"],
+      "ai_generation": ["Midjourney (personalization + style testing)", "Runway (video transitions, start/end frame control)", "Kling/Cling (AI video transition generation)"],
+      "discord_shortcuts": "Midjourney supports custom Discord shortcuts for frequently used style prompts — set these up for recurring aesthetic registers to cut prompt time"
+    },
+    "direction_tactics_for_photographers": [
+      "Never show the client a mood board with more than 12 images — cognitive overload collapses alignment",
+      "Label each image with a one-word descriptor of WHY it's on the board (not what it shows)",
+      "Lock lighting reference first; everything else is subordinate",
+      "Separate 'color grade target' from 'lighting reference' — conflating them creates post-production confusion",
+      "For composite work: build two boards — one for the subject capture environment, one for the background environment",
+      "Show what you are NOT making alongside what you are making; the contrast sharpens the brief"
+    ],
+    "midjourney_personalization_workflow": [
+      "Generate 20-30 images in your target aesthetic using explicit prompts",
+      "Rate each (accept/reject) to build a style model",
+      "Run a mood board batch using the personalization code appended to prompts",
+      "Compare rated outputs against the mood board; promote or reject the personalization model",
+      "Custom Discord shortcuts store your top prompt templates for fast re-use"
+    ],
+    "sniped_application": {
+      "direction_stack_fit": "Mood boards are the client-facing artifact of the Direction Stack. The board operationalizes the stack's language into visual proof that you speak the client's aesthetic before the shoot.",
+      "composite_environment_rotation": "Each of the 7 composite environments (Brutalist Monument / Industrial Minimal / Monochromatic Void / Sculptural Gallery / Cinematic Urban / Organic Surreal / Futurist Editorial) should have a standing mood board that is rebuilt per chapter, not per shoot.",
+      "pre_shoot_prep_integration": "Mood board delivery is a gate in the pre-shoot prep doctrine — board approved = shoot confirmed. No board = no shoot date locked.",
+      "ai_as_world_construction": "AI generation tools belong on the composite/environment board only. Identity (subject face/body) references must be real photography. This enforces the edit-register bifurcation rule: AI for world-construction, anti-AI on identity."
+    }
+  },
+  "notes": "Source is a raw document dump of transcribed video tutorials and Reddit discussions (85% boilerplate, 15% actionable). Segments 1-10 cover design-discipline mood boarding; segments 11-12 cover AI tool workflows (Kling/Runway transitions, Midjourney personalization, 6-component prompting). All content is instructional with no original strategic frameworks. Signal rated medium: actionable tool knowledge and photography-direction tactics extracted, but no methodology unique to SNIPED or beyond what a competent practitioner already knows. Full value is in the SNIPED application section above."
+}

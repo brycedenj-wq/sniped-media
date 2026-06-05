@@ -1,0 +1,69 @@
+{
+  "portion_doctrine": "Segments 11-20 are primarily video transcript material from an Anthropic Claude Code masterclass course (netinja.dev, $7.50-$15 promo). Content covers: (1) claude.md memory files + context management protocols, (2) permission management and autoaccept modes, (3) planning mode vs thinking mode distinctions, (4) custom command architecture with argument passing, (5) MCP server installation and scoping (Context7, Playwright). Most content is high-signal instructional video dialogue with substantial boilerplate/repetition. Gold: operating rules, specific technical workflows, conditional logic for tool behavior.",
+  "segments_read": 10,
+  "operating_rules": [
+    "claude.md placement: project-level (shared), home-directory (global), or per-session context injection. Populated with unit test runners, project layout overviews, style guides, dependencies.",
+    "Permission management: read-actions auto-allow; write/bash/modify require explicit UI prompts. Escape-halt available mid-execution.",
+    "Autoaccept mode (Alt+M toggle): Session-level auto-approval for edits; turns off when session ends. Set-and-forget not available per-command.",
+    "Plan mode (Alt+M twice): For wide-scope, multi-file refactors with moderate complexity per change. AI generates approval-gated plan; operator reviews before execution.",
+    "Thinking modes: 'think' (base), 'think hard' (extended), 'think harder' (deeper), 'ultra think' (maximum reasoning). Keyword trigger in prompt activates mode. More tokens consumed per depth level.",
+    "Context window management: 200k token limit for Claude models in Code. /clear resets to original state (preserves claude.md). /compact summarizes session history + deletes rest. Double-escape (Esc twice) rewinds to prior conversation point, removes later context.",
+    "Custom commands: stored in .claude/commands/<name>.md. Markdown frontmatter (description, argument_hint). Dollar-sign variable substitution for args. Square-bracket variable parsing for multi-arg capture (non-standard, derived heuristic).",
+    "MCP server scopes: project (shared, pushed to remote, team-accessible), local (user+project only), global (any Claude Code project on machine). Default is local. --scope flag specifies.",
+    "MCP server installation: 'claude mcp add <server-name> -- <command>'. Windows requires 'cmd /c' prefix for npx. Remote servers use HTTP transport; local use stdio. Config written to mcp.json at project root.",
+    "Tool usage: Claude auto-detects which tools to invoke; operator does not name them. Read-tool permission-free. Edit/bash require approval unless overridden via settings.local.json or accept-edits toggle.",
+    "Settings file: .claude/settings.local.json (project-level, git-ignored). Permissions object with 'allow' array for pre-approved bash commands (e.g., 'npm run test', 'git add'). Built by UI or manual edit.",
+    "Sub-agents (mentioned, not detailed in seg 11-20): Isolated context windows. Parallel task execution. Shared state via markdown file handoff (e.g., ticket.md as inter-agent message protocol)."
+  ],
+  "skills": [
+    "Custom command creation: template-based, argument-injected prompts",
+    "Plan mode workflow: analysis -> proposal -> approval -> execution with inline abort capability",
+    "Extended thinking integration: keyword-triggered reasoning with visible thinking blocks (gray text) interspersed with tool calls",
+    "Context compaction: automated session-history summarization for handoff to new developer/session",
+    "MCP server bridging: external data source connectivity (databases, browsers, docs, APIs) via tool injection"
+  ],
+  "tools": [
+    "claude.md (memory injection)",
+    "Read tool (auto-permit)",
+    "Edit tool (permission-gated)",
+    "Bash tool (permission-gated; settable allowlist)",
+    "Todo tool (internal task tracking)",
+    "MCP Context7 (documentation retrieval for frameworks/libraries)",
+    "MCP Playwright (browser automation: open, navigate, inspect, screenshot)",
+    "settings.local.json (permission config, auto-persist)"
+  ],
+  "prompts": [
+    "For plan review: 'Can you make a custom [component type] and find places in the project where it can replace existing [thing]?' (triggers planning mode, multi-file analysis, approval-gated execution)",
+    "For extended thinking: 'Think hard about this [complex system]. Include [scope of consideration: database schema, auth, real-time updates, moderation].' (activates reasoning mode, surfaces thinking blocks)",
+    "For command args: '/ui-component [<name> | component name] [<summary> | brief description]' (passes $arguments to command, parsed via square-bracket heuristic)",
+    "For MCP scope: 'claude mcp add context7 -- npx @modelcontextprotocol/server-context7 --scope project' (explicit scope binding, ensures team visibility)"
+  ],
+  "gates": [
+    "Approval gate on write/bash: UI prompt with 3 options (yes, no, provide further instruction). Escape available to halt mid-operation.",
+    "Autoaccept gate: Session-level toggle (not per-command). Turns off at session end; must re-enable.",
+    "Plan review gate: AI proposes plan; operator selects 'yes + auto-approve', 'yes + manual approval per-edit', or 'no + refine plan'. Prevents vibe-coding scope creep.",
+    "Context-window warning gate: UI alert at ~70% token usage. Operator chooses /clear (reset), /compact (summarize), or double-escape (rewind).",
+    "MCP server connectivity gate: Local installs may fail (Windows-specific issues noted). Fallback to remote server alternative (HTTP transport) available.",
+    "Windows MCP gate: Requires cmd /c prefix + manual removal of -y flag from npx command. Additional args handling in mcp.json."
+  ],
+  "content_ideas": [
+    "Claude Code as 3x-faster Astro website builder: planning mode for component library bootstrap, custom commands for schema-driven UI generation, MCP Context7 for live Astro docs injection",
+    "Sub-agent orchestration patterns: ticket.md as inter-agent protocol, context compaction for handoff, GitHub issue integration via MCP for automated workflow",
+    "Permission model as trust surface: clawe.md as team API contract, settings.local.json as guardrails, allow-lists as audit trail for tool usage",
+    "Extended thinking for architecture decisions: 'think hard' on comment system design, auth schema, moderation rules before execution; break complex tasks into smaller checkpoints to stay in the loop"
+  ],
+  "contradictions": [
+    "Plan mode described as good for 'wide breadth, moderate complexity per change' but avatar task (moderate scope) still triggered edge-case over-implementation (full page vs. preview-only). Suggests plan proposal quality is variable; operator must review closely.",
+    "Autoaccept toggle (Alt+M) described as session-level but also suggests per-command whitelisting via settings.local.json. Tension between session state and persistent config.",
+    "MCP server installation docs inconsistent across clients (Context7 example works in video with HTTP fallback; Playwright example not shown). Remote server robustness unclear.",
+    "Custom command arguments parsed via non-standard square-bracket syntax; no official Claude Code docs found by instructor. Workaround reliability uncertain across updates."
+  ],
+  "weird_gold": [
+    "Double-escape (Esc Esc) rewinds conversation tree, does NOT require /clear or /compact. Allows cherry-pick of context to retain (surgical context trimming).",
+    "Thinking blocks render as faded gray text in UI, visible during model reasoning between tool calls. First time extended thinking is exposed in agentic workflows (between tool invocations, not just at start).",
+    "Square-bracket variable parsing heuristic: [<name> | component name] syntax mirrors Markdown reference links but used for prompt variable injection. Undocumented, derived empirically by instructor.",
+    "Sub-agent handoff pattern: shared markdown file (ticket.md) as single source of truth. No built-in inter-agent communication; pure file-based choreography.",
+    "Windows MCP installation requires manual removal of -y flag from npx + cmd /c prefix. Clunky workaround; instructor expresses hope for future simplification. Suggests platform parity gaps in tooling.",
+    "Settings.local.json is git-ignored but created by UI approval flow. Allows per-developer permission overrides without committing to repo. Permission model is personalized + persistent per-developer, not project-wide (unless manually added to .claude folder)."
+  ]
+}

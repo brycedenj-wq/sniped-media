@@ -1,0 +1,167 @@
+{
+  "document": "cold out reach instantly gold everything use this always lol.docx",
+  "segments_read": 10,
+  "segment_range": "11-20",
+  "verdict": "Mostly boilerplate course content with embedded tactical prompts. Real gold concentrated in segments 15-20 (Trigify social listening + SuperSearch filtering).",
+  "portion_doctrine": "This document is 80% course wrapper + prompt library, 20% tactical substance. Segments 11-14 are primarily onboarding/project setup theory. Segments 15-20 contain signal-driven prospecting methodology (social listening via Trigify, SuperSearch filtering, evergreen campaigns). Strip all nav/UI/course scaffolding; extract only the operating methods, filter architecture, signal categories, and reply rate benchmarks.",
+  "operating_rules": [
+    "Strategy before automation: AI cannot fix weak offers, fuzzy ICP, or messy data.",
+    "Quality over quantity: Smaller lists of well-targeted prospects outperform larger lists of poorly-targeted ones. Avoid the volume trap.",
+    "Signal-driven outreach beats static lists: Reach people whose recent behavior suggests genuine interest, not random prospects.",
+    "Individual timing matters more than company timing: Company signals (funding, hiring) show qualification; social signals show individual receptivity right now.",
+    "Evergreen campaigns beat batch campaigns: Event-triggered outreach maintains high conversion; static list exhaustion produces inconsistent results.",
+    "Keep the stack lean: Lead finder, enrichment, outreach, scoring, simple nurture only. Eliminate tool-hopping.",
+    "Explicit trigger commands for skills: Each skill needs a unique command ([cold-copywriting], etc.) to prevent Claude from selecting wrong tool.",
+    "Monitor three profile segments: Own brand engagement (warmest), competitor engagement (qualified but requires soft messaging), thought leader engagement (interested audience).",
+    "Avoid surveillance creepiness: Lead with topic value, not tracking behavior. Don't say 'I noticed you engaged with X'; say 'Companies in your space are seeing Y results.'",
+    "Test and iterate on searches: No search is perfect first try. Track which leads respond, refine criteria based on patterns."
+  ],
+  "named_methods": [
+    {
+      "name": "Trigify Social Listening + Instantly Integration",
+      "scope": "Evergreen campaign setup",
+      "metrics": "20-25% positive reply rate reported by users; 1000+ meetings booked in 6 months by Trigify founder",
+      "setup": "Monitor profile engagement (brand/competitors/thought leaders), push signals to Instantly via integration or webhook (also can route through Clay for AI enrichment)"
+    },
+    {
+      "name": "SuperSearch Filter Stack",
+      "scope": "Lead qualification",
+      "filter_categories": [
+        "Firmographic (industry, size, location, revenue)",
+        "Technographic (tech stack, integrations, competitive tools)",
+        "Signal/trigger (funding, hiring, leadership changes, news, acquisitions)",
+        "Role/seniority (title, department, management level)",
+        "Advanced (lookalike domains, domains list, job listings)"
+      ]
+    },
+    {
+      "name": "Evergreen Campaign Architecture",
+      "scope": "Continuous prospecting",
+      "structure": "Event-triggered entry (when signal matches) rather than static list load. New prospects enter daily based on behavior detection.",
+      "advantage": "No list exhaustion; consistent conversion because every entry has a reason"
+    },
+    {
+      "name": "Sales Brain (Claude Projects + Instantly MCP)",
+      "scope": "Persistent AI outbound system",
+      "components": [
+        "Claude Project as persistent workspace (memory, files, skills)",
+        "Company knowledge base (pitch deck, ICP, case studies, writing frameworks, competitor intel)",
+        "Custom skills for email writing, competitor analysis, follow-up templates, campaign analytics",
+        "Instantly MCP connection (read live campaign data, create sequences, update campaigns from Claude conversation)",
+        "Weekly analytics workflow for campaign optimization"
+      ]
+    },
+    {
+      "name": "ICP + Signal + Messaging Triangle",
+      "scope": "Prospecting foundation",
+      "components": [
+        "ICP definition: industries, sizes, roles, key triggers",
+        "Right lead definition: matching ICP, has problem you solve, can make decisions",
+        "Signal qualification: funding rounds, leadership changes, hiring patterns, product launches, tech stack",
+        "Message framework: problem statement, credibility proof (metrics/outcomes), thought leader recommendation (postscript)"
+      ]
+    },
+    {
+      "name": "Three Profile Monitoring Categories",
+      "scope": "Social signal prospecting",
+      "categories": [
+        {
+          "name": "Own Brand",
+          "warmth": "Highest",
+          "action": "Monitor LinkedIn profile engagement (all posts); reach out to people liking/commenting; these are warm leads with demonstrated awareness",
+          "setup": "Use Trigify to pull engagement data; push to Instantly via integration"
+        },
+        {
+          "name": "Competitors",
+          "warmth": "Medium",
+          "action": "Monitor C-suite/founders at competitor companies (not brand page, personal profiles - higher engagement volume). Reach out on topic, not surveillance.",
+          "caveat": "Don't say 'I saw you engaged with [competitor]'; say 'Companies adopting [competitor's approach] are seeing [outcomes]'",
+          "setup": "Identify best competitor to monitor, pull founder/CTO profiles, track engagement"
+        },
+        {
+          "name": "Thought Leaders",
+          "warmth": "Medium-High",
+          "action": "Monitor prominent voices in your space (practitioners, founders at complementary tools, industry analysts). Audience of engaged followers = prospect pool.",
+          "messaging": "Mention thought leader in postscript as recommendation (mutual alignment, not creepy)",
+          "setup": "Map thought leader content your ICP engages with; track their audience engagement"
+        }
+      ]
+    }
+  ],
+  "numbers_and_metrics": [
+    "20-25% positive reply rate from signal-driven campaigns (Trigify + Instantly combo)",
+    "1000+ meetings booked in 6 months (Trigify founder case)",
+    "vs. traditional cold email: much lower baseline response rates (not quantified but implied as significantly lower)",
+    "100 new contacts added on high-signal days vs. handful on low-signal days (evergreen campaign volume variance)"
+  ],
+  "specific_tactics": [
+    "Skip already owned toggle: Prevent duplicate enrichment/contact in SuperSearch",
+    "Job title filtering: Use 'contains' (manager but not project manager) rather than exact match; layer in management level + department",
+    "Employee range: 100-1000 is sweet spot mentioned in example; can combine with revenue filters (10-50M)",
+    "News filter: Most powerful trigger; identifies companies with events (office closure, expansion, funding, CMO promoted to CEO, acquisition, product launch, new campaign)",
+    "One lead per company toggle: Reach single decision-maker per org instead of multiple marketers",
+    "Lookalike domain cloning: Drop best customer domain into filter; SuperSearch finds similar companies",
+    "Post-signal routing: Add qualification AI step before campaign entry to verify engagement is relevant (not false positive)",
+    "Thought leader mention in postscript: 'Check out [thought leader] on [topic]' creates mutual alignment without surveillance feel",
+    "Combine three signal types: Recently funded + hiring for marketing + using HubSpot = high-intent list",
+    "Use frameworks uploaded to Sales Brain files: Don't write from scratch each email; reference company framework (e.g., AIDA, Problem-Agitate-Solve)"
+  ],
+  "prompts": [
+    "Claude Skills explicit trigger command pattern: [cold-copywriting] or [email-sequence] to force skill selection",
+    "ICP definition prompt for Sales Brain: 'Define the industries, sizes, roles, and key triggers that make someone a strong fit'",
+    "Evergreen campaign setup: 'Configure system to reach out whenever someone matches criteria AND triggers relevant signal (vs. static list load)'",
+    "Thought leader recommendation postscript: 'Check out [name] on [topic] worth diving into' (not surveillance, value-driven)",
+    "Copy framework for signal-driven outreach: 'Lead with metrics/outcomes from leading companies in their space, not monitoring behavior'",
+    "SuperSearch filters example: 'Mid-senior marketing professionals, US, 100-1000 employees, recently launched new product'",
+    "Competitor monitoring angle: 'Focus on the topic competitor discusses, not the competitor itself' (creates relevance without creepiness)"
+  ],
+  "tools": [
+    "Instantly: Core outreach platform with AI Reply Agent, Copilot, verification, lead database, website visitors, inbox placement",
+    "Instantly SuperSearch: Lead finder with 7+ filter categories (firmographic, technographic, signal, role, advanced)",
+    "Instantly.ai AI Reply Agent: Drafts, suggests, or auto-replies based on thread context",
+    "Instantly Copilot: Analyzes campaign performance, identifies effective messages, recommends next tests",
+    "Trigify (social listening): Monitors profile engagement (own brand/competitors/thought leaders) on LinkedIn; detects when individuals engage with specific content",
+    "Clay: Data enrichment tool for titles, seniority, tech stack, company context (used post-SuperSearch)",
+    "Claude Projects: Persistent workspace for Sales Brain (memory, files, custom skills, MCP integrations)",
+    "Breadcrumbs: Co-dynamic scoring model (ICP fit + activity signals in real-time)",
+    "CRM/Scoring layer: Centralize inbound activity, use AI scoring to rank by fit/urgency",
+    "Webhook/integration: Route Trigify signals to Instantly campaigns or Clay for enrichment"
+  ],
+  "skills": [
+    "Cold email writing skill (trigger: [cold-copywriting]): Framework-based email generation using company voice",
+    "Prospecting research skill: Company research, ICP qualification, competitor analysis",
+    "Email sequence skill: Multi-touch follow-up templates",
+    "Campaign analytics skill: Pull live Instantly data, analyze reply rates, identify patterns",
+    "Competitor analysis skill: Tech stack validation, pain point extraction",
+    "Subject line generation skill: Role-specific, industry-specific hooks",
+    "AI enrichment skill: Extract company pain points, benefits, keywords from research"
+  ],
+  "gates": [
+    "ICP clarity gate: Define industries, sizes, roles, triggers before prospecting. Fuzzy ICP fails regardless of AI.",
+    "Signal relevance gate: Add AI qualification step to evergreen campaigns before entry to filter false positives.",
+    "List quality gate: Test first 50 leads from search manually. If irrelevant, refine filters before scaling.",
+    "Delivery health gate: Monitor domain warmup, inbox placement, response patterns. Stop if unsubscribe rate or complaint rate spikes.",
+    "Reply context gate: AI Reply Agent should verify thread context before auto-responding; manual review flag for unusual threads."
+  ],
+  "content_ideas": [
+    "Case study on Trigify + Instantly integration: Setup guide showing signal monitoring to campaign entry workflow",
+    "SuperSearch filter templates library: Pre-built searches for common verticals (SaaS, agencies, B2B services)",
+    "Evergreen campaign messaging playbook: Topic-based copy templates for brand/competitor/thought leader monitoring",
+    "Sales Brain onboarding guide: Step-by-step Claude Projects setup + MCP connection + skill creation",
+    "Reply rate benchmarking by signal type: Own brand vs. competitor vs. thought leader engagement (predict conversion lift)",
+    "Thought leader discovery guide: How to identify which creators your ICP follows; signal monitoring process",
+    "SuperSearch + Clay workflow doc: Post-search enrichment best practices (what fields to pull, how to map to email copy)"
+  ],
+  "contradictions": [
+    "Course emphasizes 'quality over quantity' but includes massive Supersearch prompt library (100+ permutations), creating impression that volume of tools matters",
+    "Sales Brain architecture requires significant Claude Project setup time, but evergreen campaigns (Trigify + Instantly direct) skip this entirely; positioning is unclear on when each is worth the lift",
+    "Thought leader engagement as warm signal, but messaging guidance explicitly says DON'T mention the specific thought leader (creates friction vs. warm positioning)"
+  ],
+  "weird_gold": [
+    "Trigify + Instantly users report 20-25% positive reply rates, which is extraordinarily high. Document doesn't explain if this is opens, replies, or qualified replies. Benchmark feels optimized/survivorship bias (featured case studies).",
+    "SuperSearch 'news filter' is positioned as most powerful but least explained (vague reference to 'entire Internet scraping'). No clarity on data freshness, false positive rate, or cost.",
+    "Claude Projects + Instantly MCP integration is positioned as future of outbound, but document is written as course for Instantly standalone users; integration feels experimental/not yet mainstream",
+    "Evergreen campaigns by definition never exhaust their list (continuous new entries), yet document shows no guidance on managing campaign fatigue or audience overlap over time",
+    "'One lead per company' toggle in SuperSearch is unexplained in context: Is this one lead per outreach motion or global? If global, how do you handle expansion/multi-touch?"
+  ]
+}

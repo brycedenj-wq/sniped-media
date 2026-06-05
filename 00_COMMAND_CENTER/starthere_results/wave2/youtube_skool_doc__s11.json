@@ -1,0 +1,117 @@
+{
+  "batch_id": "youtube_skool_doc",
+  "segments_range": "11-20",
+  "segments_read": 10,
+  "quality_assessment": "High boilerplate; ~15% signal, 85% transcript filler, ads, UI navigation",
+
+  "operating_rules": [
+    "Auto-Research Loop: PRD → iterate → test → feedback → improve quality. Measure against metric.",
+    "Skill Iterative Refinement: Test with/without skill. Benchmark. Gather feedback. Update skill.md. Re-test. Converge on best version.",
+    "Skills Creator Workflow: /skill-creator → clarify questions → build first version → test on real example → iterate on failures",
+    "GitHub MCP Default: When using tools (n8n, Astro, Remotion), prefer MCP-connected codebases for live doc access, not training data."
+  ],
+
+  "named_methods": {
+    "/ralph-loop": "Autonomous app-building loop. Iterative sprints, PRD-driven, test-driven dev, sub-agents for parallel work. Max 35 iterations.",
+    "/skill-creator": "Built-in skill generator with evaluations. Runs brainstorm, PRD, implementation, testing phases.",
+    "/loop": "Cron-based task runner. Interval syntax: 5m, 30m, 2h, daily. Max 3-day duration. Scope-bound to current terminal session.",
+    "Google Workspace CLI": "CLI + 92 bundled skills. Access Drive, Sheets, Docs, Calendar, Gmail, Slides natively."
+  ],
+
+  "specific_tactics": [
+    {
+      "domain": "Cold Email Auto-Research",
+      "tactic": "5-key-metric scoring: personalization, <300 chars, clear CTA, no spam words, value not pitch. Test against 3 personas. Run 38+ experiments.",
+      "key_example": "LinkedIn outreach skill: 39 experiments, auto-picks best for private equity vs estate agents vs manufacturing"
+    },
+    {
+      "domain": "n8n Workflow Assembly",
+      "tactic": "MCP-connected: webhook trigger → OpenAI node → Gmail send → Google Sheets log. Get production webhook URL, paste into frontend.",
+      "setup_steps": ["Enable n8n MCP in settings", "Create MCP.json config", "Add n8n API key env var", "Generate webhook trigger", "Test end-to-end"]
+    },
+    {
+      "domain": "Video Creation Pipeline",
+      "tactic": "Nano Banana (image) → Kling 3.0 (animate) → Topaz/Replicate (upscale) → Vercel (deploy). Parallelizable.",
+      "cost_per_asset": "~$0.06 (image) + $0.15 (video) + $1.60 (upscale 4K) = ~$1.81 per hero asset"
+    },
+    {
+      "domain": "Astro + Vercel Deploy",
+      "tactic": "WordPress HTML → Claude Code + Astro MCP → responsive site → GitHub → auto-deploy. Speed gain: 2-3x faster load than WordPress.",
+      "prerequisite": "Have Astro MCP installed globally or per-project"
+    }
+  ],
+
+  "tools_named": [
+    "Nano Banana Pro (Replicate): Image generation. 16:9 aspect, 2K min. ~6 cents/img.",
+    "Kling 3.0 (Replicate): Video in-betweening. Start/end frames → smooth animation. ~10-20 cents.",
+    "Topaz (Replicate): 4K upscale. ~$1.60 for 5-min video.",
+    "Replicate: API wrapper for image/video tools. Cost-effective gateway.",
+    "GitHub + Vercel: Code storage + auto-deploy pipeline.",
+    "n8n: Workflow automation. Webhooks, LLM nodes, email, sheets. Self-hosted or cloud.",
+    "Shannon (AI Pen Tester): Security analysis via Docker. 5-phase full test ~$50.",
+    "Bright Data Scraper: Web/Reddit scraping. $1.50 per 1,000 records.",
+    "ElevenLabs: Voice synthesis for video narration.",
+    "Open Responses API: Multi-modal file input endpoints."
+  ],
+
+  "contradictions": [
+    "Loop duration: claims up to 3 days but scope-bound to terminal session. If terminal closes, loop stops. Requires active babysitting.",
+    "Ralph Wiggum autonomy: marketed as 'autonomous' but requires strong PRD + human iteration every few sprints. Not truly hands-off.",
+    "Agent Teams token cost: described as parallel collaboration benefit, but overhead is 3x+ higher. Real ROI unclear for everyday tasks.",
+    "Pixel Agents UI: painted as 'fun visualization' but reveals that normal terminal view hides decision paths, file access, API costs—all important to operators."
+  ],
+
+  "weird_gold": [
+    "Streaming SSR in n8n: Webhook response can stream partial JSON back mid-execution, enabling real-time feedback to frontend.",
+    "Pixel Agents Iceberg Theory: Hidden decision layers in agent execution (file access, costs, API calls) only visible in visual UI, not CLI.",
+    "Scaffold Phase Autogen: 38 experiments in 4 minutes. Each is a full sprint. Lets agent auto-generate variants + test in parallel before human review.",
+    "Casting Call Doctrine (Production OS): 24-hr confirmation discipline, tier-2 standby, wardrobe photo requirement, two-strike rule. Not mentioned in s11-20 but visible in memory notes as locked doctrine."
+  ],
+
+  "prompts_extracted": [
+    "Please go through and download this GitHub repository so that we've got all of the files and aspects that we need to go through and generate some amazing skills and enhance the performance of our Claude agents.",
+    "Hey, please can you go through use the forward/skilled creator to make sure that we're creating the best skill possible from day one.",
+    "Create a Google Slides presentation about AI and automation for SMBs, which is small and medium-sized businesses in 2026 using my black and gold color scheme.",
+    "Please, can you go through and create a quick explained guide that explains what we did in this video, how to get the outputs, plus some example prompts that we want them to use within a Google Docs document.",
+    "Please can you go through and generate a brand new skill for me that is going to enable us to actually do personalized cold outreach."
+  ],
+
+  "skills_harvested": [
+    "Skill Creator (built-in)",
+    "Cold Outreach Skill (example)",
+    "LinkedIn Comment Execution (reference)",
+    "UI Design Skill (front-end design)",
+    "Website Design Skill (Astro-specific)",
+    "SEO Optimization Skill",
+    "Ralph Loop / Sub-Agent Orchestration",
+    "Pixel Agents Visualization (plugin)"
+  ],
+
+  "gates": [
+    "No MCP configured → cannot use Astro docs in real-time, fallback to training data",
+    "No n8n instance running locally → cannot test webhook flows",
+    "Terminal session dies → loop stops, no resumption",
+    "High token cost on Ralph Wiggum → risk of exceeding budget mid-sprint"
+  ],
+
+  "content_ideas": [
+    "Benchmark: measure skill quality improvement over N experiments. Which metrics move fastest?",
+    "Skill Composability: can two skills reference each other? How does description affect invoke rate?",
+    "Loop Reliability: test loop robustness under network flap, long tasks, resource exhaustion",
+    "Pixel Agents Cost Tracking: overlay token/API cost visualization on agent movement visualization",
+    "n8n MCP + Claude Code: live workflow debugging from Claude chat (click node → see logs)"
+  ],
+
+  "tools": [
+    "Bash (command line)",
+    "Claude Code (IDE)",
+    "VS Code (editor)",
+    "Cursor (IDE)",
+    "GitHub (version control)",
+    "Vercel (hosting)",
+    "Docker (containerization)",
+    "Google Workspace CLI",
+    "MCP (Model Context Protocol)",
+    "Replicate (API gateway)"
+  ]
+}

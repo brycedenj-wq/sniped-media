@@ -1,0 +1,204 @@
+{
+  "source_file": "series 5 download.docx",
+  "file_class": "transcript",
+  "signal": "high",
+  "cert_status": "certified",
+  "segment_count": 53,
+  "doctrine": {
+
+    "overview": "53-segment mixed-source doc: Reddit platform threads (segs 1-9, skip), then instructional video transcripts covering GA4 analytics, Notion/Airtable CRM architecture, Claude Code workflows, deployment patterns, SEO/GEO authority, web performance, and Claude skill systems. 15% boilerplate stripped. Remaining content is dense operational doctrine.",
+
+    "modules": {
+
+      "1_analytics_ga4": {
+        "title": "GA4 Configuration Doctrine",
+        "rules": [
+          "Key events (formerly conversions) must be defined before audiences are built -- sequence matters.",
+          "Attribution window default is 30-day last-click; adjust to data-driven if volume supports it.",
+          "GA4 audiences built on key events, not pageviews -- page-based audiences are legacy GA3 thinking.",
+          "GA4 does not sample under 10M events/day; above that, use BigQuery export for analysis.",
+          "Segment exploration (vs. report filters) is the correct tool for cohort-level questions."
+        ]
+      },
+
+      "2_notion_crm_architecture": {
+        "title": "Notion CRM + Database Design",
+        "rules": [
+          "Icon consistency across all database views is a non-negotiable design signal -- one icon set, enforced.",
+          "Layout templates (page templates per record type) prevent blank-page friction; build before launch.",
+          "Notion Mail database has a known discovery bug -- manually navigate to it; do not rely on sidebar auto-population.",
+          "Two-way relations in Notion require manual setup on both sides; no automatic bi-directional link.",
+          "AI co-authoring phases: outline (AI), draft (AI), edit (human), publish (human) -- never invert.",
+          "Grid view for data entry; Kanban only for pipeline stage tracking -- do not default to Kanban."
+        ]
+      },
+
+      "3_airtable_crm_automation": {
+        "title": "Airtable Automation + Integration Patterns",
+        "rules": [
+          "Automation trigger logic: email-to-contact match (field lookup) fires before any deal record is created.",
+          "Deal-to-contract trigger: status field change to 'Closed Won' is the canonical fire condition.",
+          "Calendar sync via Airtable automation: use the Airtable native Google Calendar block, not Zapier, for latency reasons.",
+          "Form intake flows write to a staging table first; a automation then promotes to the live CRM table after validation.",
+          "Prefer deterministic automation over AI for any logic that has a binary correct answer -- AI is a fallback, not default.",
+          "Two-way integrations (e.g., bidirectional Slack + Airtable) require a loop-guard field to prevent infinite triggers."
+        ]
+      },
+
+      "4_deployment_patterns": {
+        "title": "Deployment Automation (Modal / Trigger.dev / Loops)",
+        "rules": [
+          "Three deployment patterns in scope: (a) loops (recurring polling jobs), (b) scheduled tasks (cron-style), (c) modal/trigger.dev (event-driven serverless).",
+          "Modal is preferred for GPU-heavy or bursty workloads; Trigger.dev for orchestrated multi-step pipelines; loops for simple polling.",
+          "Multicontext plan persistence: write the plan to a GitHub issue before execution begins so any agent instance can resume from it.",
+          "Dynamic workflows for large-scale processing: break job into fan-out subtasks, each writing result to a shared store, then a reducer step aggregates.",
+          "Render and Fly.io are better cost fits than Vercel for always-on background workers -- Vercel is optimized for request/response, not long-running.",
+          "DigitalOcean App Platform is the simplest managed container path if the team has no Kubernetes familiarity."
+        ]
+      },
+
+      "5_claude_code_workflow": {
+        "title": "Claude Code Development Workflow",
+        "rules": [
+          "Canonical 4-phase flow: Explore (read codebase, no edits) → Plan (write plan to GitHub issue) → Code (implement) → Commit (with test pass gate).",
+          "Never skip Explore phase -- jumping straight to Code produces architecturally inconsistent patches.",
+          "Sub-agents: use Haiku for parallelizable subtasks (token cost); use Sonnet/Opus for the main orchestration agent.",
+          "Devil's advocate agent: spin a second agent whose sole job is to critique the primary agent's plan before execution -- catches assumption errors.",
+          "SaaS payment integration via Stripe MCP + Supabase MCP: Stripe handles checkout sessions; Supabase stores entitlement rows; webhook updates the row.",
+          "Worktrees: use git worktrees to run parallel Claude Code sessions on the same repo without branch conflicts.",
+          "Remote control mode: Claude Code can be driven via API for headless CI automation -- use for nightly audit runs.",
+          "Context management: /compact before context window fills; never let context overflow silently corrupt the agent's working memory."
+        ]
+      },
+
+      "6_claude_code_hacks_32": {
+        "title": "32 Claude Code Hacks (Beginner / Intermediate / Pro)",
+        "beginner": [
+          "Use /help to discover commands before asking Claude what it can do.",
+          "Set permissions in settings.json upfront -- repeated permission prompts break flow.",
+          "Use numbered lists in prompts to force sequential execution of multi-step tasks.",
+          "Add 'think step by step' to any prompt where order of operations matters."
+        ],
+        "intermediate": [
+          "MCP tool selection: load only the MCPs relevant to the current task -- unused MCPs waste context.",
+          "Sub-agent spawning: pass the full plan as the sub-agent's system prompt, not just the current step.",
+          "Loop detection: if Claude is repeating the same edit, inject 'stop and describe what is blocking you' to break the loop.",
+          "Parallel workflows: open multiple Claude Code windows on different worktrees for non-conflicting parallel work.",
+          "Scoping buckets: label every feature Core / Nice / Maybe / Out before coding begins -- prevents scope creep mid-session."
+        ],
+        "pro": [
+          "Remote control via API: automate Claude Code sessions for nightly audits or batch processing.",
+          "Token optimization: Haiku for sub-agents doing mechanical tasks (file reads, searches); Opus for reasoning-heavy orchestration.",
+          "Multicontext plan persistence: write the plan to a GitHub issue so any resumed session has ground truth.",
+          "Devil's advocate agent: second agent critiques primary agent's plan before execution.",
+          "Context-window hygiene: /compact proactively; never fill to overflow."
+        ]
+      },
+
+      "7_claude_skills_catalog": {
+        "title": "Claude Skills Architecture + Catalog",
+        "architecture_rules": [
+          "Skills route via trigger phrases -- every skill needs a unique, unambiguous trigger that does not collide with other skills.",
+          "Skill structure: system prompt + optional tool list + optional knowledge doc. Keep each skill single-purpose.",
+          "find-skills skill is the meta-router -- it lists available skills and routes to the correct one.",
+          "decision-framer skill applies a structured template: situation / options / criteria / recommendation / next action.",
+          "expand-and-contract skill: expand a concept to full detail, then contract to a one-liner -- useful for positioning and copy work."
+        ],
+        "production_skills_profiled": [
+          "skill-creator: builds new skills from description",
+          "day-planner: time-blocks the day from a task list",
+          "watch-video: extracts doctrine from video transcripts",
+          "AI-digest: summarizes AI news feeds",
+          "newsletter-skill: formats and publishes newsletter issues",
+          "article-optimizer: SEO-optimizes existing articles",
+          "decision-skill: structured decision output with trade-off table"
+        ],
+        "ishan_sharma_skills": [
+          "caveman: simplifies complex explanations to first-principles language",
+          "humanizer: strips AI tells from copy",
+          "hook-forge: generates 10 hook variants per angle",
+          "infographic-builder: converts data to visual layout spec",
+          "find-skills: meta-router",
+          "decision-framer: structured decision template",
+          "expand-and-contract: depth-switch on any concept",
+          "karpathy-guidelines: applies Andrej Karpathy's LLM prompting best practices"
+        ],
+        "psychological_hook_angles": [
+          "curiosity", "loss aversion", "contrast", "specificity", "controversy",
+          "pattern interrupt", "identity", "social proof", "future pacing", "direct challenge"
+        ]
+      },
+
+      "8_seo_geo_authority": {
+        "title": "SEO + GEO (Generative Engine Optimization) Doctrine",
+        "topical_authority": [
+          "Topical authority requires full cluster coverage -- a single pillar page without spokes has no topical signal.",
+          "4-phase content creation: research cluster gaps → outline → draft → on-page optimize before publish.",
+          "On-page SEO checklist (8 elements): title tag with primary keyword, H1 match, meta description, URL slug, internal links (editorial in-paragraph only), image alt text, schema markup, page speed pass.",
+          "CRITICAL: navigation links (footer, mega-menu) pass zero link authority. Only editorial in-paragraph links count.",
+          "Link-building pyramid: citations/mentions at base, guest posts in middle, editorial links from DR70+ at top."
+        ],
+        "geo_metrics_5_signals": [
+          "AI citations: is the domain cited by ChatGPT/Perplexity/Gemini for target queries?",
+          "Brand search surge: rising branded query volume signals LLM-driven awareness.",
+          "Predictive traffic: model projects traffic from citation share, not just ranking.",
+          "GEO metrics: citation frequency per LLM per query cluster.",
+          "Conversion lift: did AI-referred visitors convert at a higher rate than organic?"
+        ],
+        "critical_insight": "Rankings and AI citations are completely uncorrelated. A site can rank #1 and be invisible to LLMs, or rank page 3 and get cited constantly. Optimize for both independently.",
+        "ai_citation_rule": "75% of AI citations go to sources outside Google top 10. Citation is driven by content depth and entity clarity, not rank position.",
+        "gpt_version_risk": "GPT model version upgrades cause up to 7x swings in citation rates for the same query. Citation share is volatile; monitor monthly.",
+        "boring_marketer_proof": "Local service site built with Claude Code in 4 hours, zero coding background, generating revenue in 24 hours. The moat shifted from code skill to vertical expertise -- knowing what questions to ask is the new differentiator.",
+        "local_seo_system": {
+          "google_business_profile": [
+            "Select up to 10 categories -- primary category is the strongest signal.",
+            "List 20-30 services with keyword-rich descriptions.",
+            "8 consistency signals: NAP (name/address/phone) must match exactly across 8+ directories.",
+            "Post weekly to GBP -- recency is a local ranking factor."
+          ],
+          "core_30_page_structure": [
+            "1 homepage (brand + primary service + city)",
+            "3-4 category pages (service type clusters)",
+            "25-30 service pages (one per specific service + city combination)"
+          ],
+          "rank_map_decision_tree": "Below ranking threshold for a service: add topical content (more depth on that service). Above threshold: add geographical content (new city/neighborhood pages)."
+        }
+      },
+
+      "9_web_performance": {
+        "title": "Web Performance + Core Web Vitals",
+        "targets": {
+          "LCP": "2.5s or faster (Largest Contentful Paint)",
+          "FID": "100ms or faster (First Input Delay)",
+          "CLS": "0.1 or lower (Cumulative Layout Shift)"
+        },
+        "rules": [
+          "Preload only critical above-fold resources -- preloading non-critical resources delays LCP.",
+          "Never lazy-load above-fold images -- lazy loading above-fold causes LCP regression.",
+          "Lazy-load everything below the fold.",
+          "GPU animation: use transform and opacity only -- any other property triggers layout/paint.",
+          "Separate DOM reads from writes in JS to avoid layout thrashing (read all, then write all).",
+          "AVIF is the preferred image format; WebP as fallback; JPEG as last resort.",
+          "WordPress stack: Breeze (page cache) + Object Cache Pro (Redis object cache) + AVIF/WebP conversion plugin.",
+          "Cloudways provides the managed server layer for this WordPress stack.",
+          "Security headers are context-dependent -- CSP strictness must not break third-party scripts; audit before enforce."
+        ]
+      }
+    },
+
+    "segments_to_skip": {
+      "segs_1_to_9": "Reddit platform comparison threads (Vercel/AWS/DO/Netlify/Render/Fly.io) and GTD tool threads. Heavy boilerplate, ads, upvote counts, removed comments. No extractable doctrine unless deployment tool benchmarking is an active decision."
+    },
+
+    "cross_cutting_rules": [
+      "Deterministic logic always beats AI inference for binary-correct decisions (automation, routing, triggers).",
+      "Plan persistence via GitHub issue is the correct multicontext ground truth -- not chat history.",
+      "Sub-agent token tier: Haiku for mechanical tasks, Sonnet/Opus for reasoning. Never inverse.",
+      "Citation optimization (GEO) and ranking optimization (SEO) are separate workstreams with separate tactics.",
+      "Vertical expertise (knowing what to ask) is now the moat, not technical execution skill.",
+      "Navigation links carry zero link authority; only editorial in-paragraph links count."
+    ]
+  },
+
+  "notes": "Segments 1-9 are low-signal Reddit scrapes; all doctrine extracted from segments 10-53. File is a heterogeneous transcript collection (GA4, Notion, Airtable, Claude Code, SEO/GEO, web perf, skills). Signal rated high because segments 10-53 contain dense, directly actionable operating doctrine across 9 distinct capability domains. No repetition after consolidation from 6 partials."
+}

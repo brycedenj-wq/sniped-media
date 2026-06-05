@@ -1,0 +1,79 @@
+{
+  "file": "PIXIESET NEW USE .docx",
+  "file_class": "artifact",
+  "signal": "medium",
+  "cert_status": "certified",
+  "segments_total": 17,
+  "segments_read": 17,
+  "coverage": "read_verified",
+  "doctrine_summary": "Pixieset is the SNIPED delivery and commerce platform. This document is Pixieset's own Help Center reference, not strategic doctrine. Operational value is real: it maps every functional endpoint, pricing mechanic, and workflow gate that governs how gallery delivery, print commerce, client management, and studio booking behave inside the platform. Use as a system configuration and decision reference, not a philosophy doc.",
+  "operating_rules": [
+    "DOMAIN SETUP: Subdomain (gallery.yourdomain.com) = 1 CNAME record. Root domain (yourdomain.com) = 1 CNAME for www + 2 A records for @. DNS propagation up to 48 hours; SSL certificate up to 24 hours.",
+    "IMAGE SPECS: JPEG/PNG up to 100MB, GIF up to 85MB, RAW up to 100MB. Filenames: alphanumeric + dash/underscore only (no spaces, no special chars). Max edge length 10,000px. sRGB color space recommended.",
+    "WATERMARKS: Apply to display images only. Never applied to print orders or high-res downloads (original or 3600px). Web-size downloads (640px/1024px/2048px) can carry optional watermark. Watermark file = PNG, min 1600px width, max 5000px. Updating the watermark does NOT auto-apply to existing photos; must re-apply manually.",
+    "VIDEO SPECS: MP4, H.264 codec, 8-bit 4:2:0 or below, 1080p/2K or smaller for uploads. Video downloads auto-convert to MP4 up to 2048px on standard plans. 4K downloads available on Pro/Ultimate only. Uploads can be 4K even when downloads are capped at 2048px (asymmetric limit).",
+    "LIGHTROOM SYNC: Plugin supports Lightroom 4+ on Mac OS X 10.9+ / Windows 7+. 'Sync Now' refreshes gallery structure only, NOT uploads or deletions. Counter-intuitive: does not behave as a full sync.",
+    "COLLECTION SORT: Default = Name A-Z. Options = Date uploaded, Date taken, Filename, Random. Manual drag-drop reordering available per image or batch.",
+    "FOLDER STRUCTURE: Folders contain multiple collections. Bulk create via desktop folders (each folder = 1 collection) or CSV pre-creation. Export folder details as CSV for review. Subfolder upload merges contents into 1 collection, not nested.",
+    "BULK OPERATIONS: Bulk edit via pencil icon: Design, Favorite, Store settings, Auto-expiry. Apply to selected collections simultaneously.",
+    "HOMEPAGE: Enabled by default. Can set global password. Shows public collections only. Sort options: name, date, custom order. Category tags filter collections. Collections can be hidden from homepage while still accessible via direct link.",
+    "QUICK SHARE: Separate page from main gallery. Does NOT inherit password, download PIN, or email registration settings. Intended for vendors, collaborators, publications. Generate unique links, track activity, remove/edit anytime.",
+    "EMAIL INVITES: Can schedule to future date (subject to auto-expiry if set). Template system available. Can include collection password, download PIN, client exclusive access password.",
+    "EMAIL CAMPAIGNS: Require explicit opt-in consent. Checkbox appears at email registration, store checkout, photo/video download, and favorite sign-in. Checkbox cannot be pre-checked. Same contact counted once across collections. Unsubscribe link mandatory in every email (anti-spam compliance). Invalid/cleaned contacts auto-excluded.",
+    "MARKUP MAINTENANCE: Pixieset auto-updates print prices to preserve your set markup percentage when lab costs change. Rounds up to nearest dollar by default (adjustable or disableable in Store > Settings).",
+    "LAB COLOR CORRECTION: Additional $1.20/item when enabled on WHCC, ProDPI, or Automatic lab. Not available for cards/albums/books. Miller's and Loxley Colour offer free color correction. Mpix and Atkins Pro do not offer it.",
+    "ORDER DELAY: Enables photographer review of client album/book designs before fulfillment. Can adjust crops, change spreads, replace photos, update debossing text, edit shipping address. Cost changes require cancel and reorder.",
+    "CONTACT AUTOMATION: New inquiry = auto-created as Lead. New booking = auto-created as Client. Lead or Other contact type auto-converts to Client when they book or pay an invoice.",
+    "SHIPPING COVERAGE BY LAB: WHCC = USA/Canada/International. Atkins Pro = AU/NZ/International. Loxley Colour = extensive EU coverage. Self-fulfillment requires explicit shipping method configured per destination country.",
+    "TAX AUTOMATION: TaxJar partnership auto-calculates US state/county/district taxes based on business address + client shipping address. Manual tax setup required for all non-US stores.",
+    "SESSION INTAKE MINIMUM: First name, last name, email required. Phone and address optional. Upgraded plans allow required questionnaire + contract as booking prerequisites.",
+    "PAYMENT METHODS: Pixieset Payments (bank transfer, US only), Stripe (card/debit), PayPal Express Checkout, PayPal card/debit, Manual Payment (cash/check/offline).",
+    "MOBILE GALLERY APP: Up to 200 images per app. Free plan: 3 apps max. Paid/Suite plans: unlimited apps.",
+    "CSV IMPORT PLATFORMS: Bloom.io, Dubsado, Honeybook, Session, Shootproof, Studio Ninja, 17Hats supported. Duplicate emails skipped on import.",
+    "EMAIL ATTACHMENT LIMIT: 25MB max per message. Supports docs (doc/docx/pdf/ppt/pptx/rtf/key/numbers/pages/xls/xlsx/csv/txt/html/xml), media (bmp/gif/jpeg/jpg/png/svg/tiff/psd/avi/mkv/mp4/mov/wmv/aac/mp3/ogg/wav), and other (ics/zip/rar/tar).",
+    "DELETE IS PERMANENT: No soft-delete, no undo, no recovery archive. Stated explicitly in documentation."
+  ],
+  "gates": [
+    "DNS control required to set up custom domains (CNAME/A records).",
+    "Stripe or PayPal account required for Store and automatic fulfillment.",
+    "Upgraded Client Gallery or Suite subscription required for: subdomain setup, video uploads, 4K downloads, email campaigns.",
+    "Album/book customization: client-facing designer tool only; photographer cannot directly edit client-created designs (preview only). Cost changes require cancel and reorder.",
+    "Self-fulfillment items in automatic-fulfillment price sheets do not show self-fulfillment shipping methods; use Extra Shipping per-item instead.",
+    "Card designer available ONLY for automatic fulfillment price sheets. Australia/New Zealand limited to Atkins Pro single-photo card designs (no designer)."
+  ],
+  "tools": [
+    "Pixieset Client Gallery uploader",
+    "Lightroom plug-in (bulk publish, sync - structure only)",
+    "Pixieset Dashboard (bulk edit, email templates, settings)",
+    "CSV export/import (bulk collection creation, folder details review; 7 third-party platforms supported)",
+    "Email campaign builder (template system, scheduling, analytics)",
+    "TaxJar integration (US stores only) for automated sales tax",
+    "Google Calendar sync for Studio Manager sessions",
+    "Zoom/Google Meet integration for booking workflows",
+    "Mobile Gallery App designer (up to 200 images, custom cover/theme/layout/icon)",
+    "Studio Manager project board (drag-drop stages, customizable workflow)",
+    "Contact form builder (8+ field types, conditional logic)",
+    "Email template system (rich formatting, file attachment support)"
+  ],
+  "content_ideas": [
+    "Watermark strategy: which photos need protection vs which benefit from no watermark. Dual-register: unwatermarked for print/high-res (client trust), watermarked for web/social (brand protection).",
+    "Folder organization for repeat clients: annual/seasonal structure enabling easy re-booking. Folders as client portals.",
+    "Email campaign cadence: seasonal promos, anniversary reminders, review request timing.",
+    "Quick Share workflow: internal use (retouchers, designers) vs external (clients, publications, vendors).",
+    "Mobile Gallery App as curated sneak-peek layer: 200-image cap positions it as highlight reel, not full archive delivery.",
+    "Order Delay as revision control: positioned as design approval before fulfillment, not just mistake correction.",
+    "Markup auto-maintenance as competitive moat: auto-margin preservation vs manual pricing management on other platforms."
+  ],
+  "weird_gold": [
+    "SYNC NOW does NOT sync uploads or deletions. Gallery structure only. Users expecting a full sync will miss new/deleted files.",
+    "Video upload limit (4K supported) and video download limit (2048px on standard plans) are asymmetric. You can upload 4K and only deliver 2048px unless on Pro/Ultimate.",
+    "Bulk create via CSV is ideal for pre-event setup (empty collections named in advance before the shoot happens).",
+    "Email campaign opt-in checkbox appears at MULTIPLE touchpoints (registration, checkout, download, favorites). Clients can opt in (or not) at each separately, not once globally.",
+    "Mobile Gallery App image cap at 200 forces curation, which can be positioned as an editorial decision rather than a technical limitation.",
+    "Contact type conversion is automatic: an inquiry Lead who books becomes a Client in Studio Manager without manual reclassification."
+  ],
+  "contradictions": [
+    "Watermark default framing: documentation initially implies watermarks apply broadly to web downloads, but the actual default is configurable and watermarks are never on high-res/print. Initial read can mislead into thinking watermarks are always on."
+  ],
+  "notes": "Source is Pixieset's own Help Center documentation. No strategic doctrine, brand positioning, or customer psychology. Operational reference only. Use when configuring the SNIPED delivery and commerce stack: gallery setup, print lab selection, shipping configuration, tax setup, Studio Manager booking workflow, and client contact automation."
+}

@@ -1,0 +1,108 @@
+{
+  "portion_doctrine": "Segments 91-100 are a video transcript (NOT about Astro) featuring a comprehensive Cursor AI tutorial. Content focuses on Cursor 2.0 agent features, building landing pages, creating meme generators with image upload/template support, debugging UI issues, and running multiple agents concurrently. Primary value: hands-on patterns for AI-assisted full-stack development using Cursor's agent model, real-time browser inspection, and iterative debugging workflows. Title mismatch: document labeled 'astro claude websites 3x faster' but actually covers Cursor 2.0 code editor (no Astro framework content detected).",
+  "segments_read": 10,
+  "operating_rules": [
+    "Always create an empty folder first; projects live in folders (called directories in code)",
+    "Files must have extensions (.py, .md, .txt, .html, .js) to label file type",
+    "Frontend = visible components (UI users see/click); Backend = invisible code (data, features)",
+    "Running locally = executing code on your computer, not renting a server",
+    "Use Chat mode for asking questions, Composer mode for big multi-file features",
+    "Inline editing (Ctrl+K) for small targeted code changes within a file",
+    "Image-to-code capability: pass an image (Figma, screenshot, photo) and Cursor generates HTML/CSS matching the design",
+    "Git repository required for running multiple agents concurrently; git = checkpointing/saving code snapshots",
+    "Each new chat isolates agent work; prevents chaos from continuous multi-agent prompting",
+    "Browser inspection feature (@browser) shows agent live screenshot; high context-window cost",
+    "Accept/reject diffs from agent suggestions before applying to project"
+  ],
+  "named_methods": [
+    "Composer mode (multi-file generation for big features)",
+    "Chat window with code search (Ctrl+L or Cmd+L; search context with Ctrl+Enter)",
+    "Inline editing (highlight code + Ctrl+K for targeted changes)",
+    "Agent feature: tool-enabled research (web search, doc reading, multi-page discovery)",
+    "Multi-agent concurrent execution (requires Cursor Max plan)",
+    "Browser inspection via @browser flag (captures live screenshot for context)",
+    "Image-to-code translation (design screenshot or photo to working HTML/CSS)",
+    "Terminal execution (local dev server, npm/python commands)"
+  ],
+  "specific_numbers": [
+    "Cursor 2.0 vs Cursor 1.0 (editor)",
+    "3 main UI parts: left (file tree), middle (editor), right (AI panel)",
+    "3 agent models mentioned: Composer 1, Claude Sonnet 4.5, GPT (in multi-agent test)",
+    "~5 seconds to generate simple game code",
+    "Meme app test: multi-agent solving (3 agents running concurrently, Composer 1 finishes fastest)",
+    "~20-25% context consumed when using @browser feature"
+  ],
+  "specific_tactics": [
+    "Start with clear vision + sketches before prompting (AI performs best with specific discrete tasks, not vague requests)",
+    "Use @file or @folder to add context before asking questions",
+    "Link documentation (PDFs, web docs) in chat context to guide AI generation",
+    "Ask agent to explain code segments before modifying them",
+    "For UI bugs, ask agent to look at browser and describe the problem, then propose fix",
+    "Use multiple agents on complex bugs, then apply the best solution",
+    "Create new chat for each major feature to prevent agent confusion",
+    "Undo + re-apply diffs if first agent attempt fails; don't continue prompting same chat thread",
+    "Highlight broken code section + ask agent specifically what went wrong"
+  ],
+  "prompts": [
+    "Do some research on the company [name] and create me a landing page. Run this landing page locally when you are done.",
+    "Create a new HTML file that contains this form, make it look exactly like this [image].",
+    "I added a folder named assets and it has some photos that I would like to use as templates for memes. I would also like to still have the ability to upload my own image.",
+    "When I add the second text to a meme, it overwrites the first text. Please make sure this does not happen. I want to be able to have different text on the image.",
+    "Look at the browser. The text rendered in a single line causing overflow. I want to be able to split lines.",
+    "How do I play the game?",
+    "Where are my recipes defined? [for code search]",
+    "I want to set up git for this project."
+  ],
+  "tools": [
+    "Cursor IDE (local, not web-based)",
+    "Cursor 2.0 agent model (multi-file, concurrent execution)",
+    "Composer 1 model (fast multi-file generation)",
+    "Claude Sonnet 4.5 (recommended model)",
+    "GPT (for multi-agent comparison)",
+    "Git (version control, checkpointing)",
+    "Chrome browser (required for @browser feature)",
+    "Terminal/CLI (local dev server, command execution)",
+    "Image-to-code engine (Figma screenshot to HTML/CSS)"
+  ],
+  "skills": [
+    "Vibe coding (AI-assisted development vs manual coding)",
+    "Project structure literacy (folders, file extensions, frontend/backend split)",
+    "Git workflow basics (repository init, commits, diffs)",
+    "Iterative debugging with AI agents (describe problem, accept solution, test, iterate)",
+    "Prompt engineering for discrete tasks (specificity over vagueness)",
+    "Context management in long conversations (new chats per feature, @mentions for focus)",
+    "Terminal literacy (navigation, running commands, understanding output)",
+    "IDE navigation (Cursor vs VS Code ecosystem)"
+  ],
+  "gates": [
+    "Clear project vision required before prompting (vague 'build me a website' fails; specific mockups/requirements succeed)",
+    "Cursor Max plan required for multi-agent concurrent execution",
+    "Git repository init required for multi-agent features",
+    "Chrome browser required for @browser inspection feature",
+    "Project must be in a folder; random default folder causes work loss",
+    "Image-to-code works best with clear simple designs; complex layouts may need refinement"
+  ],
+  "content_ideas": [
+    "Deep dive: Git workflow for Vibe coders (branches, commits, rollback in Cursor UI)",
+    "Advanced: Building full-stack app with database + API using Cursor agents",
+    "Troubleshooting: Common Cursor agent failures and how to debug them",
+    "Comparison: Cursor vs Replit vs Lovable vs Bolt on same project",
+    "Tutorial: Image-to-code workflow for designers learning to code",
+    "Performance: Optimizing agent context window (avoiding @browser overhead)",
+    "Integration: Cursor + Vercel deployment pipeline"
+  ],
+  "contradictions": [
+    "Chat claims 'AI can't create files' but then demonstrates Cursor AI creating files directly",
+    "Describes terminal as 'scary' for beginners but then shows 1-line command execution is simple",
+    "Praises Cursor as beginner-friendly with 'strong fundamentals' but requires folder/file/terminal literacy"
+  ],
+  "weird_gold": [
+    "Cursor auto-pulls VS Code settings/extensions on first install (frictionless migration)",
+    "Multi-agent concurrency shows agents 'thinking' in parallel; Composer 1 consistently finishes before Claude/GPT (speed vs quality trade-off hint)",
+    "@browser screenshot captures mid-interaction state, allowing agent to see overflow bugs humans must describe in words",
+    "Undo is available between agent attempts; allows A/B testing solutions without full re-prompting",
+    "Image-to-code preserves diagonal lines and complex layout hints; nearly pixel-perfect on simple forms",
+    "Agent-generated diffs show exact line-by-line changes (not just 'apply all'); more transparent than ChatGPT code paste",
+    "Terminal = identical to system terminal (not a sandbox); changes made in Cursor terminal persist on computer"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "portion_doctrine": "Segments 61-70 are a corpus of video transcripts covering AI-powered creative production workflows. The content spans six major themes: (1) Replicate API + Flux image generation setup with v0; (2) Kai.ai as unified API gateway for video/image/music models; (3) N8N workflow automation using Kai endpoints with polling for async task completion; (4) GetHooked swipe file and ad research infrastructure (12M+ ads, filtering/scoring); (5) End-to-end AI e-commerce ad creation via Notion (research/avatars/copywriting skills) + Love Art (Nano Banana/Cling video) + 11Labs voiceover + PostProduction; (6) Dropshipping/side hustle validation using GetHooked filtering for 90+ day winners. No em-dashes present in original text. This portion is 80% procedural instruction, 20% sales/motivational framing.",
+  "segments_read": 10,
+  "operating_rules": [
+    "Request + polling pattern: Replicate/Kai workflows require POST to create task, then GET polling every 3-30 seconds to check completion status (not instant)",
+    "API key consolidation: Kai.ai unified single API key replaces managing separate credentials for VO3, Runway, Suno, Midjourney, Nano Banana, Cling",
+    "One image first, then batch: Lava Art: generate 1 image, review, iterate prompt with Notion, then batch 5-20 variations once validated",
+    "Context attachment critical: Love Art chat requires explicit image attachments as product reference; otherwise generates wrong products in ads",
+    "Awareness level routing: Eugene Schwartz 5-stage framework (unaware/problem-aware/solution-aware/product-aware/most-aware) determines script structure via Notion skill attachment",
+    "Cold start latency is UX killer: TTFI (time to first inference) drives retention; pay-per-use (Fall.AI) vs keep-warm (Replicate H100 at 5.50/hr) tradeoff",
+    "90+ day filter validates: GetHooked ads running 3+ months = proven profitable (owners wouldn't keep losing money); 1-2 ads per brand prevents niche clustering",
+    "Swipe file as repeatable asset: 71k+ ad library enables daily pattern recognition; segments by brand/format/performance/country to surface winning mechanics",
+    "Notion AI as research engine: Feed web URLs + CSV reviews + customer avatars + copywriting skills + awareness levels + image prompt rules as context to generate production briefs",
+    "Video-first frame approach: Create still image first (2K, 4:5 AR), use as reference for Cling 3.0 video generation, ensures coherence across clips"
+  ],
+  "prompts": [
+    "For Replicate API setup: Copy model provider/name from docs (e.g., stability-ai/flux.1-pro), POST to /v1/predictions with Bearer token header, poll /v1/predictions/{id} until status=succeeded",
+    "Kai.ai create task template: POST to /v1/{model} (e.g., /v1/nano_banana) with { prompt, aspect_ratio, model_version }, returns { task_id }; then GET /v1/query_task with task_id until complete_time is populated",
+    "N8N HTTP setup: Import curl from Kai docs, replace API token (bearer space key), use task_id from first request in second GET; 3-second polling for images, 30-second for video",
+    "Notion AI research prompt: 'Build research database for [brand]; search website [URL], Reddit, customer reviews; answer: physical pain points, failed solutions, objections, benefits, customer language phrases'",
+    "Notion AI avatar prompt: 'Create 3 customer avatars with names, age, gender, profession, day-to-day pain points, primary objection, best message angle, quote; maximum 3 avatars'",
+    "Notion AI script brief: 'Write 30-45 second video script for [persona name]. Use research database + copywriting skill + awareness level skill. Target [awareness stage]. Deliver in table: hook/problem/agitation/objection/solution/proof/CTA with visual type + script line'",
+    "Love Art image prompt (from Notion): 'Create 2K, 4:5 aspect ratio realistic hospital photo of nurse Aisha holding foot, hard floor, exhausted expression, include [product]. Nano Banana model. No obvious AI artifacts'",
+    "Love Art video prompt: 'Create 10-second Cling 3.0 video based on image: [reference image]. Subject says: [exact punctuated script]. Camera movement: subtle pan/zoom. Keep first frame consistent with reference image'",
+    "11Labs voiceover: Paste raw script text, select voice + accent, set speed 1.1-1.2x, style exaggeration 0.5-0.7 (too high = unnatural), generate + review full audio before download",
+    "GetHooked script creation: Select ad from swipe file, input product name/description/target audience/creative intensity (middle = direct response, max = too experimental), write script, export as table with hook options"
+  ],
+  "tools": [
+    "Replicate (replicate.com): API aggregator; pricing 4-8 cents per Flux image, variable per model; cold start tradeoff; community model library; keep-warm H100 = 5.50/hr",
+    "Kai.ai: Unified API gateway; access to VO3.1 (video), Suno 4.5+ (music), Nano Banana Pro (Gemini 3.0 images), Midjourney via REST (not Discord), Cling (video); 30-80% cheaper than direct vendors; 5k free credits signup; 99.9% SLA",
+    "Love Art (loveartai.com): Combines Nano Banana Pro + Cling 3.0 in one chat interface; Pro plan 69/mo (11k monthly credits + 100 refresh/day); image generation iterative chat + batch variations; video via Cling 3.0 (2-3 min per clip)",
+    "N8N: Workflow automation; HTTP request nodes for API calls; polling loops with wait nodes; IF statements for completion checks; task management via drag-drop",
+    "Notion AI: Chat context with attachments (research DB, customer avatars, copywriting skills, awareness levels, image prompt skills); generates briefs, scripts, image prompts, variations; Business plan 20-24/mo required",
+    "11Labs: Voice synthesis; customizable voices + accents; speed 0.8-1.5x; style exaggeration 0-1.0 scale; integrated editor with preview; download MP3",
+    "GetHooked: Ad research + swipe file; 12M+ ads in library, daily updates (100k-1M new ads/day); filters: winning/scaling/runtime/country/niche/brand/video length/creative usage (replicas); brands spy (active ad count, launch history); script generation from swipe file ads; 71k+ personal swipe file example",
+    "Fall.AI: Pay-per-use GPU alternative to Replicate; optimized cold-start; pure per-millisecond billing; lower hourly H100 cost than Replicate; designed for serverless scaling",
+    "v0 (Vercel): Frontend mockup tool; paste API docs + prompt, auto-generates form UI + component; fork to branch workflows; version history; integrates with Replicate API demos"
+  ],
+  "skills": [
+    "API request pattern recognition: Identify POST for create/submit, GET for status-check; distinguish async polling vs webhook callbacks; recognize bearer token auth",
+    "Prompt iteration discipline: Single validation loop (generate 1, review, iterate prompt in Notion, regenerate) beats batch-and-fix; product image reference attachment prevents hallucination",
+    "Research-to-production pipeline: Notion research (web + reviews) -> avatars -> copywriting skill -> script -> visual brief -> Love Art image -> Love Art video -> 11Labs audio -> Editor assembly",
+    "Swipe file as intelligence: 90+ day filter = profitability signal; 2-ad-per-brand cap prevents clustering; save daily for market pattern learning; 71k examples show >6-month daily discipline",
+    "GetHooked filtering: Combine winning score + runtime 90+ days + English + niche + 2 ads/brand to surface proven products; VSL + image variants signal scale capacity; launch history predicts sustainability",
+    "Notion AI context stacking: Each skill (research DB, avatars, copywriting, awareness levels, image prompts) is a retrieved context layer; order matters for coherence in generated briefs",
+    "Awareness level routing: Problem-aware=lead with problem; solution-aware=lead with proof; script structure changes per stage; Schwartz framework embedded in Notion skill",
+    "Cold start economics: H100 @ 5.50/hr keep-warm = unsustainable idle cost; Fall.AI pay-per-use = cost-only-on-demand but latency risk; production apps prefer Fall.AI; prototypes use Replicate",
+    "Ad validation shortcut: 90+ day running ad = no guesswork; emulate structure, not exact copy; GetHooked swipe file removes research overhead; direct response frameworks (hook-problem-solution-proof-CTA) are template",
+    "Async task polling patience: 3-sec intervals for images, 30-sec for video; don't retry mid-polling; completed field populated only post-processing; 1-day Replicate storage window forces save-elsewhere discipline"
+  ],
+  "gates": [
+    "GetHooked 90-day runtime filter: Cannot trust ads < 90 days (might be early-stage failures); filter non-negotiable for winner identification",
+    "Kai.ai API token management: Single token = single point of integration; verify token in every HTTP header (bearer space token); missing token breaks all requests",
+    "Love Art product reference attachment: Without explicit image in chat context, model hallucinates wrong product; attachment non-optional before generation",
+    "Notion skill context loading: Script generation fails coherently if research DB or awareness level skill not attached; must add context before asking for output",
+    "11Labs full-listen validation: Preview entire voiceover before download; exaggeration > 0.7 = unnatural prosody; speed > 1.3x = listenability collapse",
+    "First-image validation before batch: Generating 20 images and iterating = wasted credits; 1-validate-iterate pattern mandatory in Love Art",
+    "Polling completion check: If completion_time field is empty, loop not ready; if status = processing, loop must continue; short-circuit on failed status (retry entire flow)",
+    "N8N wait node timing: 3-sec for images, 30-sec for video; shorter = wasted API calls + false negatives; longer = user-perceived latency; no in-between valid"
+  ],
+  "content_ideas": [
+    "Unified API gateway comparison: Fall.AI vs Replicate vs Open Router (for LLMs); cold-start latency case studies; economics per-use vs keep-warm",
+    "GetHooked swipe file discipline: How 71k+ ads compounds into $1M+ business intuition; daily pattern recognition vs one-time competitive analysis",
+    "Notion AI as production multiplier: Research-to-ad in minutes; context stacking = prompt engineering at scale; skills as reusable production blocks",
+    "Video-first frame lockdown: Why AI video generation fails without still-frame reference; Cling 3.0 + Nano Banana pro pairing logic; coherence across B-roll clips",
+    "Direct response frameworks embedded: Eugene Schwartz 5-stage awareness; hook-problem-proof-solution-CTA structure; copywriting skill as guard rail",
+    "E-commerce ad validation: 90+ day filter as market truth test; margins as ad-spend predictor (chairs/supplements > lumbar pillow); margins unlock video+production budgets",
+    "Side hustle to $12 profit: First sale psychology; emulation vs copying; organic discovery precedes paid scaling; GetHooked remove guesswork from product selection"
+  ],
+  "contradictions": [
+    "Cold-start vs cost: Replicate keep-warm = instant results but 5.50/hr for idle GPU = unsustainable; Fall.AI pay-per-use = cost savings but user latency risk; no pure win for both",
+    "Batch vs iterate: Love Art batch-20-images workflow contradicts iterate-1-then-batch discipline; early transcript shows batch habit, later shows correction to single-validate pattern",
+    "API consolidation benefit claim: Kai.ai unified token + single endpoint claimed as major win, but still requires separate prompt engineering + context per model type (Suno vs VO3 vs Nano Banana); not truly unified usage",
+    "Swipe file speed benefit: Claim is daily 71k ad saves = faster pattern learning, but actual content creation still bottlenecked on Notion research + Love Art generation time; swipe file is input, not acceleration",
+    "GetHooked accuracy: 90+ day filter = 'owners wouldn't pay for failing ads', but ads can scale at loss during audience testing or seasonal windows; 90 days ≠ guaranteed profitability, only persistence",
+    "Awareness level routing: Claim is Schwartz 5-stage determines script structure, but transcripts show mostly problem-aware/solution-aware; no unaware or most-aware examples shown; incomplete validation"
+  ],
+  "weird_gold": [
+    "TTFI as user retention metric: Milliseconds of cold-start latency directly = tab-close rate; shift from 'model speed' to 'infra speed' as bottleneck is underappreciated in AI tooling",
+    "H100 @ 5.50/hr = unsustainable idle pricing psychology: Shows how per-hour billing breaks product economics; developer trapped paying for idle capacity because on-demand startup costs too high; Fall.AI model directly attacks this game theory",
+    "71k swipe file as pattern recognition substrate: Claim that 71k+ ads library enables 'better marketer' is non-obvious; swipe file is externalized decision tree, not tool feature; discipline of daily save = tacit skill transfer via pattern accumulation",
+    "GetHooked brand limit (2 ads max per brand): Subtle gate preventing niche clustering; forces creator to diversify inspiration sources; hidden depth beyond UI simplicity",
+    "Video-first-frame lockdown in Cling: Requiring reference image before video generation is constraint-driven coherence; removes 'regenerate until lucky' slot machine; enforces disciplined brief",
+    "Notion AI skill stacking: Context layers (research DB + avatars + copywriting rules + awareness levels + image prompt rules) are production guardrails disguised as 'optional context'; without them, output devolves to generic",
+    "Async polling in N8N loop: Developer must wire IF (completion_time empty) -> wait 30s -> retry; no native 'wait-for-completion' abstraction; forces manual state machine; low-level but honest",
+    "11Labs exaggeration as tonal calibration: Style exaggeration 0.7 = uncanny valley; 0.5 = professional; 0.3 = robotic; no guidance in tool, learned only via listening loop; tacit knowledge from repetition",
+    "One-click Doba fulfillment: $26 sale, $14 cost, $12 margin narrative: 46% margin on single item drops to <5% once paid ads enter; swipe file (ad research) becomes ROI determinant, not product selection; GetHooked solves upstream, not product"
+  ]
+}

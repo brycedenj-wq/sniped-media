@@ -1,0 +1,130 @@
+{
+  "source_file": "world building characters etc.docx",
+  "file_class": "transcript",
+  "signal": "low",
+  "cert_status": "certified",
+  "segment_count": 58,
+  "segments_verified": "1-58 (via 6 partial distillations)",
+  "notes": "Filename is misleading. No world-building lore, character creation principles, or narrative frameworks present anywhere in the 58 segments. Content is 95%+ YouTube/livestream tutorial transcripts covering Blender, Unity, Unreal Engine 5, Claude Code, and AI coding workflows. Doctrine below is the full usable extraction.",
+
+  "doctrine": {
+
+    "SECTION_1_MCP_UNREAL_ENGINE_SETUP": {
+      "label": "7-Gate MCP Setup for Unreal Engine 5",
+      "gates": [
+        "1. Install Claude Code CLI and confirm version",
+        "2. Install UE5 MCP plugin from Marketplace or source",
+        "3. Enable plugin in Editor > Plugins; restart editor",
+        "4. Set MCP server host/port in plugin settings (default 3000)",
+        "5. Launch MCP server from terminal before opening Claude Code",
+        "6. Confirm handshake: Claude Code lists UE tools in /tools",
+        "7. Run a smoke test (e.g., list_actors) before any generation task"
+      ],
+      "failure_modes": [
+        "Port conflict: change MCP port, restart both editor and server",
+        "Plugin not found: verify UE version match before install",
+        "Tool list empty: server must be running BEFORE Claude Code session starts"
+      ]
+    },
+
+    "SECTION_2_BLENDER_CLAUDE_MCP_WORKFLOW": {
+      "label": "Blender + Claude MCP Automation Patterns",
+      "rules": [
+        "Use Claude MCP to script object creation, material assignment, and render triggers via Blender Python API",
+        "Segment large scene tasks: one MCP call per logical unit (mesh, rig, material) to avoid token overflow and partial failures",
+        "Animation retargeting: use IK Retargeter in UE5 to map source skeleton to target; always bind root bone first",
+        "Terrain layering: paint weight maps per material layer; use Landscape Layer Blend node for multi-material surfaces",
+        "Post-process volume: tune Bloom, Chromatic Aberration, and Vignette last after lighting is locked"
+      ]
+    },
+
+    "SECTION_3_UNREAL_ENGINE_5_WORLD_BUILDING": {
+      "label": "UE5 World-Building Technical Doctrine",
+      "nanite_lod": [
+        "Enable Nanite on static meshes that exceed 50k triangles; skip on foliage billboards",
+        "Nanite does NOT replace LOD for foliage: use dual-material system (main mesh + billboard) for distant foliage",
+        "Megascan assets: import via Bridge; confirm Nanite toggle per asset at import time, not globally"
+      ],
+      "materials": [
+        "Material parameter names must be consistent across instances for dynamic override to work",
+        "Multi-layer materials: use Material Attribute Layers node; avoid stacking separate materials on one mesh",
+        "Foliage main material: includes subsurface scattering + two-sided; billboard material: unlit + masked"
+      ],
+      "blueprints": [
+        "Ragdoll: bind 'Simulate Physics' to collision event on Actor; cast to Character BP, call SetSimulatePhysics(true)",
+        "Obstacle collision: use Box Collision, bind OnComponentHit, cast to Player BP, apply impulse",
+        "Frame-independence: always multiply movement/force values by Delta Seconds from Event Tick",
+        "Custom events: define on the owning Actor; call via 'Get Actor of Class' + Cast to fire cross-BP events",
+        "UI widgets: create in UMG, add to viewport in BeginPlay via Player Controller reference"
+      ]
+    },
+
+    "SECTION_4_MULTIPLAYER_ARCHITECTURE": {
+      "label": "Multiplayer Game Architecture (InstantDB pattern)",
+      "rules": [
+        "Use InstantDB (or equivalent real-time DB) for low-latency shared state; avoid polling, use subscriptions",
+        "Client-authoritative movement is acceptable for solo/indie scope; server-authoritative required for competitive",
+        "Sync only delta state per tick, not full world state",
+        "Session management: assign session ID at connect; invalidate on disconnect + timeout"
+      ]
+    },
+
+    "SECTION_5_CLAUDE_CODE_INTEGRATION": {
+      "label": "Claude Code / Vibe Coding Operating Rules",
+      "mindset": [
+        "Mindset shift: you work FOR Claude Code (supply direction + execution discipline), not vice versa. Claude handles code; human holds vision, taste, and judgment",
+        "Front-end design skill is the differentiator: AI generates structure; human refines to quality",
+        "Terminal-first workflow (e.g., Ghosty) reduces IDE friction and keeps context in one surface"
+      ],
+      "context_management": [
+        "Use markdown files as project context layers for AI handoffs: one file per domain (architecture, API contracts, open tasks)",
+        "Keep context files short and opinionated; verbose context degrades AI output quality",
+        "System-based operations: define specs in markdown first, then invoke AI against the spec"
+      ],
+      "prompting": [
+        "Eighth-grader clarity rule: if a non-technical person cannot understand the prompt, rewrite before sending",
+        "Provide examples of desired output shape in the prompt when format matters",
+        "Break compound tasks into single-responsibility prompts; chain results explicitly"
+      ]
+    },
+
+    "SECTION_6_CONTENT_AND_LEAD_GEN": {
+      "label": "Content + LinkedIn Lead Generation Doctrines",
+      "inbound_outbound_method": {
+        "inbound": "Publish content, wait for signal (comments, profile views, connection requests), then DM warm leads",
+        "outbound": "Proactive DM to cold targets immediately after publishing or after engaging their content",
+        "rule": "Run both in parallel; inbound builds pipeline, outbound converts faster"
+      },
+      "qualified_view_strategy": [
+        "200 niche-relevant views outperform 10M general views for B2B conversion",
+        "Optimize for audience specificity, not raw reach",
+        "Use niche hashtags + direct tags to ICP accounts to force qualified distribution"
+      ],
+      "mini_app_monetization": {
+        "tiers": [
+          "Done-for-you build: $200-500 one-time",
+          "Retainer maintenance: $50-200/month",
+          "Bundled service (build + support + iteration): highest LTV tier"
+        ],
+        "rule": "Lead with done-for-you to prove value; pitch retainer at delivery"
+      }
+    },
+
+    "SECTION_7_BRANDING_NOTES": {
+      "label": "Incidental Branding Observations",
+      "items": [
+        "Double-eye domain misspelling as branding hack (e.g., viber.ai style): creates distinctiveness at low cost; only works if the misspelling is phonetically identical",
+        "Coined words beat descriptive names for .com availability; verify availability in batches before committing"
+      ]
+    }
+  },
+
+  "dropped_as_noise": [
+    "Social media feed boilerplate (seg 001-002)",
+    "Video timestamps and UI navigation narration throughout",
+    "Promotional material and chat banter in livestream segments (41-50)",
+    "Redundant tutorial narration restating the same steps across segments"
+  ],
+
+  "sniped_relevance": "LOW. No photography, positioning, client acquisition, or SNIPED methodology content. Game dev and AI coding workflows are orthogonal to the current SNIPED OS. Sections 5-6 (Claude Code integration, LinkedIn lead gen) have marginal relevance if BJ pursues AI-product or mini-app revenue lanes. Do not elevate this file in the corpus."
+}

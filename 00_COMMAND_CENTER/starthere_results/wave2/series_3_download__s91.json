@@ -1,0 +1,76 @@
+{
+  "portion_doctrine": "Adobe Premiere Pro Masterclass video transcription (segments 91-100). Heavy procedural content on audio dynamics processing, loudness metering, title animation, and editing. Minimal strategic value for SNIPED. This is educational tutorial boilerplate / step-by-step UI guidance, not applicable to founder operating context.",
+  "segments_read": 10,
+  "operating_rules": [
+    "Use multiple compressors (not just one) to handle different frequency ranges: dynamics processor for breath reduction + fast limiter for peak control",
+    "Set compressor attack time to 0 ms for fast peak limiting; higher attack times (26ms) create smoother expansion but less compression",
+    "Master bus requires: (1) protection layer against inter-sample peak clipping, (2) loudness monitoring",
+    "True peak level should never exceed -1 dB to avoid lossy audio format distortion (MP3, AAC)",
+    "Integrated loudness targets: YouTube -14 to -15 LUFS, Apple Podcast/Netflix/Spotify vary by platform",
+    "Use Loudness Meter effect on master bus as monitoring layer before limiting",
+    "ISP (Inter-Sample Peak) limiting with ceiling at -1 to -1.5 dB as final protection stage",
+    "Title animation formula: opacity keyframe (fade in/out) + scale keyframe (zoom 100% to 110%) + ease-in on exit",
+    "Cross-dissolve transitions work, but manual opacity + scale keyframes produce smoother appearance",
+    "Set Cross Dissolve as default transition (Ctrl+D) to speed up applied transitions across timeline",
+    "Animate title sequences by: (1) pre-animate one title with full effect chain, (2) duplicate + modify text, (3) offset timing so next title fades in as previous fades out"
+  ],
+  "named_methods": [
+    "Dynamics Processor expansion technique: set sub-threshold point to pull down in-between silence moments, creating dynamic range expansion",
+    "Dual-compressor strategy: slow expander for breath reduction + fast attack limiter for peak blocking",
+    "FIRCOMP effect workflow: third-party free compressor for sub-1ms attack without distortion (alternative to native dynamics processor)",
+    "Limiter Number 6 mastering plugin: free ISP-precise limiting with peak limiter + leveling compressor sections",
+    "Title fade-in/zoom animation sequence: opacity 0%-100%-100%-0% + scale 100%-110% with ease-in applied, duplicated and time-offset"
+  ],
+  "numbers": [
+    "Attack time 0 ms: hard limiting reaction speed",
+    "Attack time 26 ms: smooth expansion without chatter",
+    "-20 dB input threshold: dynamics processor compression target",
+    "-1 dB true peak ceiling: maximum safe amplitude before inter-sample clipping",
+    "-1.5 dB: acceptable ISP ceiling upper bound",
+    "-14 to -15 LUFS: YouTube integrated loudness target",
+    "-18 LUFS: general podcast loudness reference",
+    "110% scale: title zoom end value (10% increase)",
+    "4x oversampling mode: helps reduce aliasing in Limiter Number 6",
+    "-3 to -5 dB: threshold range for peak limiter settings (content-dependent)",
+    "200 USD/year: subscription cost for Universe plugin suite (mentioned as reference)"
+  ],
+  "specific_tactics": [
+    "Apply dynamics processor in audio track mixer (not on clip itself) for real-time control",
+    "Set compression curve to hard-limit above threshold, expansion curve below threshold, in same dynamics processor",
+    "Monitor true peak with Loudness Meter before it hits the final limiter stage",
+    "If integrated loudness is way low (-20 LUFS), don't rely on platform auto-leveling; manually bring to target before delivery",
+    "For multiple-source audio levels: use Essential Sound panel to mark tracks as 'Dialog', run auto-match loudness, then apply conservative S-curve on dynamics processor",
+    "Title animation timing: start fade-in 3 bars in, end at full opacity, reverse keyframes at end of clip duration for fade-out",
+    "Offset duplicated titles by just a few frames so next title begins fade-in as previous ends fade-out (overlap prevention)",
+    "Use color gradation in title text: anchor brand color at endpoint, fade to white at beginning, creating visual progression across sequence"
+  ],
+  "prompts": [],
+  "tools": [
+    "Adobe Premiere Pro: Audio Track Mixer > Dynamics Processing effect",
+    "Loudness Meter effect: monitoring true peak, integrated loudness, platform presets (YouTube, Netflix, Spotify, Apple Podcast)",
+    "Hard Limiter (native Premiere): ISP true peak limiting at -1 dB ceiling",
+    "FIRCOMP (free third-party): sub-1ms attack compressor for peak reduction before limiter stage",
+    "Limiter Number 6 (free, Mac/PC): multi-stage limiting (peak limiter + leveling compressor + ISP protection)",
+    "Essential Sound panel: automatic loudness matching on dialog tracks",
+    "Multiband Compressor (Premiere): frequency-specific compression (Classical/Master presets)",
+    "Cross Dissolve transition: smooth fade between clips",
+    "Text tool (T): title creation",
+    "Opacity keyframe animation: fade in/out control",
+    "Scale keyframe animation: zoom effect on titles",
+    "Ease-in/Ease-out: smooth keyframe transitions"
+  ],
+  "skills": [],
+  "content_ideas": [
+    "Audio loudness workflow for podcast/video delivery",
+    "Multi-compressor dynamics chain design",
+    "Title sequence animation formula (fade + zoom + offset timing)",
+    "Master bus protection layer architecture"
+  ],
+  "contradictions": [
+    "Fast attack times (0 ms) on dynamics processor create clean limiting but can sound 'chattery' on expansion phase; smooth attack times (26 ms) sound clean but don't block peaks effectively. No single setting handles both tasks."
+  ],
+  "weird_gold": [
+    "FIRCOMP sub-1ms attack without distortion is rare in audio plugins; native Premiere dynamics processor generates artifacts at extreme settings; free third-party option outperforms stock tool",
+    "Inter-sample peak clipping (ISP) is a lossy-codec vulnerability that most creators ignore; native peak meters don't show it, Loudness Meter does"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "portion_doctrine": "Segments 1-10 are primarily game development video transcripts mixed with a Threads/LinkedIn social feed. The actual actionable content spans Blender/Unity character import workflows, Unreal Engine 5 MCP server setup (7-gate automation skill), multiplayer game mechanics (InstantDB/Firefly), and level design in Unreal. Heavy boilerplate social media noise in seg_001-seg_002. Useful precision starts seg_003+ (Unreal MCP tutorial, game dev patterns). No world-building doctrine, character creation principles, or narrative/lore frameworks present in these segments. Content is tool-focused (Blender, Unity, Unreal, Claude Code automation), not creative direction.",
+  "segments_read": 10,
+  "operating_rules": [
+    "Unreal MCP 7-Gate Setup Skill: Prerequisites (Epic Launcher, C++, Python 3.12+, UV) → Clone repo → Build plugin → Wire to Claude Code → Live test → Troubleshoot",
+    "Game dev prompt pattern: Pre-flight check > ask what to build > plan in plan-mode > execute via MCP tools > verify and iterate",
+    "Sound design: Background music 20-30% volume, SFX 50%, major events louder; use open-source libraries or generate via Suno/MCP",
+    "Terrain setup: Create 3D terrain, lower scale (height critical), raise baseline, add layers (grass/textures), paint with brushes, add prefab ground details (rocks/gravel), trees via tree-tab or manual placement, grass via terrain-grass-system or detail-mesh, apply post-processing (bloom, color adjustments, vignette, lift-gamma-gain)",
+    "Character animation retargeting: Copy animations via generic-retarget-animation-blueprint + IK retargeter map; use skeleton-mesh tags to map source to target (mannequin to Echo model); disable source visibility with Always Stick Pose enabled",
+    "Movement controls: Discrete 4-direction movement needs to support 360-degree loops (not capped rotation); implement full-circle hold response for WASD",
+    "Multiplayer via InstantDB: Create app > copy public app ID > pass docs to agent > implement auth (email signin, no Google auth initially) > game state stored in realtime DB > creator spawns game, other players join, both see updated player positions",
+    "Level design integration: Override world game-mode (GM_Sandbox for motion-matching), add player-start, set post-process (exposure -5 to -1 range, disable bloom if >4 intensity), use complex-as-simple collision for foot alignment, light ray/debris cleanup before spawning mechanics"
+  ],
+  "gates": [
+    "Unreal MCP Gate 1: Epic Games Launcher + Unreal 5.5+ installed",
+    "Unreal MCP Gate 2: C++ build tools (platform-specific: Xcode for Mac, MSVC for Windows)",
+    "Unreal MCP Gate 3: Python 3.12+ and UV package manager",
+    "Unreal MCP Gate 4: Clone Unreal MCP GitHub repo, set Python server",
+    "Unreal MCP Gate 5: Build Unreal MCP plugin in real-time",
+    "Unreal MCP Gate 6: Wire MCP server into Claude Code session",
+    "Unreal MCP Gate 7: Live connection test and troubleshooting"
+  ],
+  "skills": [
+    "Unreal Engine MCP Setup (7-gate automation skill with platform detection)",
+    "/build skill for Unreal (preflight, prompt-to-plan, execute-via-MCP, verify-iterate loop)",
+    "Blender character import and material assignment (FBX import, pose clear, UV editing, color reassignment, emissive material slots)",
+    "Unity terrain system with layers, textures, trees, grass, post-processing",
+    "Claude Code integration for game development (file upload, GitHub commit, real-time viewport refresh)"
+  ],
+  "tools": [
+    "Unreal Engine 5.5+ with MCP plugin",
+    "Claude Code IDE (VS Code extension or desktop app)",
+    "Blender (FBX import, pose mode, material shading, UV editing)",
+    "Unity 2022+ with Input System, terrain tools",
+    "InstantDB (multiplayer game state, realtime sync)",
+    "Suno (music generation with unlimited credits for creators)",
+    "Synty Studios polygon asset packs (Samurai Empire, Ancient Egypt, sci-fi)",
+    "GitHub (version control for game projects)",
+    "Temples of Cambodia asset (free during promo, alternative free assets available)"
+  ],
+  "prompts": [
+    "Unreal: 'Create a three-story office building at coordinates 1000,0' (specific + coordinate-based prevents overlapping)",
+    "Game mechanics: 'Build a stone circle of 12 tall stones with sunset lighting' (paired with plan-mode + MCP execution)",
+    "Sound integration: 'Add background music at 20-30% volume (file link), play laser SFX on player shoot (file link)'",
+    "Multiplayer setup: 'Make this game multiplayer using InstantDB. Creator spawns game (bottom player), others join via home screen. Realtime player location sync. Email signin only. Analyze docs carefully.'",
+    "Character swap: 'Keep animation blueprint from mannequin, apply to Echo character via IK retargeter, copy these two things (echo_body, echo_hair) as mesh children'",
+    "Terrain improvement: 'Add ground prefabs (rocks, gravel, tiles), paint multiple texture layers, use terrain-grass-system or detail-mesh for grass, trees via tree-tab with scale/rotation variation'"
+  ],
+  "content_ideas": [
+    "Unreal MCP skill tutorial (gates 1-7 with platform detection and real-time status tracking)",
+    "Game dev workflow pattern: plan-mode + MCP + verify loop as standard AI-assisted game creation SOP",
+    "Multiplayer game architecture using InstantDB + Claude Code (real-time game state sync tutorial)",
+    "Character animation pipeline: source-target retargeting via IK retargeter (reusable animation setup)",
+    "Terrain layering and post-process tuning for immersive environments (Temples of Cambodia use case)",
+    "Procedural world generation with MCP (mansion, maze, metropolis, fortress examples from seg_003)"
+  ],
+  "contradictions": [
+    "Seg_005 vs seg_010: Different game projects (starfield/death-star shooter with sound vs Uncharted-style adventure platformer with mechanics). No contradiction, just separate tutorials.",
+    "Movement control issue raised (seg_005: can only move in 4 directions, not full circle) never resolved in segments 1-10. Intended as iterative example, not final product."
+  ],
+  "weird_gold": [
+    "MCP servers can understand natural language intent and translate to procedural generation: 'build a metropolis' spawns full city with residential areas in 2 function calls using recursive algorithms",
+    "Animation retargeting via tags + IK retargeter eliminates need to recreate animation blueprints per character (scale-agnostic, works across skeleton meshes)",
+    "InstantDB as Google Sheet analogy for game developers (simplified mental model for realtime multiplayer state)",
+    "Unreal 5.7 backward compatibility with 5.5 MCP repo (auto-converts dependencies, no manual migration needed)",
+    "Suno's unlimited credits for creators (revenue model: brand licensing on music asset labels)",
+    "Post-process exposure range -5 to -1 creates significant visual difference in temple environments (subtle but critical for mood)"
+  ]
+}

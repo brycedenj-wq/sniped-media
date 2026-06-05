@@ -3,13 +3,13 @@
 > Single source of truth for the active session. Overwrite at session end. (Updated 2026-06-04.)
 
 ## ACTIVE MISSION (only one)
-**Certify + distill every .docx in `/Users/sniper/Downloads/    SNIPED_OS/start here` (98 unique docs, 1,436 segments), by file class, with coverage proof. No strategy, no production until the folder is complete.**
+**NONE ACTIVE , start-here folder certification COMPLETE (98/98). Await next direction.**
+
 
 ## Status
-- Folder: 98 unique docs (3 exact-dups logged), all segment-ledgered + partition-validated.
-- Certified so far: 8 docs (Batch A + 3 single-seg). 
-- Wave 1 DONE (59/60 certified). IN FLIGHT: Wave 2 giants (31 docs, 1248 seg, task wmo834km6) -> /tmp/wave2_out/
-- Pending: Wave 2 = 30 giants (1,243 segments), sharded, after Wave 1 persists.
+- **MISSION COMPLETE (2026-06-04): start-here folder = 98/98 docx certified with coverage proof.** See OS_STARTHERE_COMPLETE.md.
+- Awaiting next direction. No strategy/production until asked.
+
 
 ## Certification reality (do not inflate)
 - By WORD VOLUME: ~4.4% certified, 82% provisional (book layer, no segment ledger), 13% characterized (giants). File-count % is a vanity metric. See `OS_CERTIFICATION_REPORT.md`.
