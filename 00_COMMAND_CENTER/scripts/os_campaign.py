@@ -26,7 +26,7 @@ def _mod(name):
 
 DEFAULT_CONFIG = {
     "lot": "LOT 00", "world": "THE ESTATE OF HER",
-    "poster_masthead": "LOT 00",
+    "poster_masthead": "LOT 00", "poster_tagline": "THE ESTATE OF HER",
     "poster_logline": "An heir, sold with the house that made her.",
     "poster_footer": "estate of her  .  lots 00 to 315  .  sold as seen",
     "title_kicker": "an estate liquidation", "title_main": "THE ESTATE OF HER",
@@ -85,7 +85,7 @@ def run_campaign(src, name, cfg, model_scores):
     final = step("grade/color-law final", lambda: C.colorlaw(graded, os.path.join(run, "02_composite", "final.png"), 5, 30, 0.12, 1.15, log))
     src_for_layout = final or graded or raw
     step("export set (story/web/print/+)", lambda: R.run(src_for_layout, os.path.join(run, "03_exports"), export_spec, (0.52, 0.52), log))
-    step("poster", lambda: L.poster(src_for_layout, os.path.join(A_, "01_poster.png"), cfg["poster_masthead"], cfg["lot"], cfg["poster_logline"], cfg["poster_footer"], log))
+    step("poster", lambda: L.poster(src_for_layout, os.path.join(A_, "01_poster.png"), cfg["poster_masthead"], cfg["lot"], cfg["poster_logline"], cfg["poster_footer"], log, tagline=cfg.get("poster_tagline", "")))
     step("title card", lambda: L.titlecard(os.path.join(A_, "02_titlecard.png"), 1920, 1080, cfg["title_kicker"], cfg["title_main"], cfg["title_sub"], "ink", log))
     step("landing hero", lambda: L.landing(src_for_layout, os.path.join(A_, "03_landing_hero.png"), cfg["landing_headline"], cfg["landing_sub"], cfg["landing_cta"], log))
     step("one-sheet", lambda: L.onesheet(src_for_layout, os.path.join(A_, "07_onesheet.png"), cfg["onesheet_title"], cfg["onesheet_logline"], cfg["onesheet_details"], log))

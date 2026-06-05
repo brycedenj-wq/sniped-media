@@ -96,7 +96,7 @@ def titlecard(out, w, h, kicker, title, subtitle, bg, log=None):
     if log: _asset().log_edit(log, "layout:titlecard", out, out, f"{w}x{h} bg={bg}", title)
     return out
 
-def poster(src, out, masthead, lot, logline, footer, log=None):
+def poster(src, out, masthead, lot, logline, footer, log=None, tagline="EDITORIAL CAMPAIGN"):
     from PIL import Image, ImageDraw
     W, H = 1500, 2100
     hero = _cover(Image.open(src).convert("RGB"), W, H, 0.52, 0.5)
@@ -104,7 +104,8 @@ def poster(src, out, masthead, lot, logline, footer, log=None):
     # top masthead
     mf = _font("display", 150)
     d.text((W//2, 150), masthead.upper(), font=mf, fill=PAPER, anchor="mm")
-    _tracked(d, (W//2, 250), "THE ESTATE OF HER", _font("ui", 26), CREAM, tracking=10, anchor="mm")
+    if tagline:
+        _tracked(d, (W//2, 250), tagline.upper(), _font("ui", 26), CREAM, tracking=10, anchor="mm")
     # bottom lot + logline
     if lot:
         lf = _font("display", 130); d.text((90, H-300), lot, font=lf, fill=PAPER)
