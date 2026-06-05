@@ -1,0 +1,14 @@
+# CREDIT LEDGER , OS MAX CREATIVE ACTIVATION 001
+> Capped staged run. Hard ceiling: 100 credits. Goal is not to spend it.
+
+- Balance BEFORE run: **859 credits** (Plus plan), recorded 2026-06-04.
+- Run cap: **100 credits max**, each stage must earn the next.
+
+| stage | action | est cr | status | balance after |
+|---|---|---|---|---|
+| 0 | zero-spend creative pass (this folder) | 0 | DONE | 859 |
+| 1 | strongest upgraded hero still (1 concept) | ~2 | PENDING APPROVAL | , |
+| 2 | up to 3 still variants (only if stage 1 passes + beats Proof Cell 001) | ~6 | locked | , |
+| 3 | 1 short motion clip (only if a still passes all gates) | ~18 | locked | , |
+
+Every credit logged here. Balance reported before and after each spend. Stop on any gate failure.
