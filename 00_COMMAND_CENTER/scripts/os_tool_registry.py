@@ -54,6 +54,13 @@ TOOLS = {
     "os.elite_gate":     {"kind":"local","status":"ACTIVE","call":"scripts/os_elite_art_direction_gate.py","note":"rejects merely-clean; 12-dim ELITE/STRONG/GENERIC/REJECT"},
     "os.howto_extract":  {"kind":"local","status":"ACTIVE","call":"scripts/os_howto_extract.py","note":"scan docs by CONTENT (names mislead) -> tool/technique density map + extract"},
     "os.technique_cards":{"kind":"local","status":"ACTIVE","call":"scripts/os_technique_cards.py","note":"SELF-SOLVE layer: how-to cards (problem->technique->steps) gates pull on failure"},
+    "os.starthere_convert":{"kind":"local","status":"ACTIVE","call":"scripts/os_starthere_convert.py","note":"Start Here conversion status/backlog/matrix (reads OS archive)"},
+    "os.pricing_gate":   {"kind":"local","status":"ACTIVE","call":"scripts/os_pricing_gate.py","note":"value-not-cost, 3-option anchor, floor, premium-as-insurance"},
+    "os.offer_builder":  {"kind":"local","status":"ACTIVE","call":"scripts/os_offer_builder.py","note":"Hormozi value equation + grand-slam offer stack"},
+    "os.client_fit_gate":{"kind":"local","status":"ACTIVE","call":"scripts/os_client_fit_gate.py","note":"prospect screen FIT/HOLD/PASS (trust + WWP + Mom Test)"},
+    "os.proof_to_cash":  {"kind":"local","status":"ACTIVE","call":"scripts/os_proof_to_cash_router.py","note":"proof -> fastest clean cash play + 72h plan; payment follows proof"},
+    "os.sales_script":   {"kind":"local","status":"ACTIVE","call":"scripts/os_sales_script.py","note":"VIB DM / discovery / objection / decline (drafts, faceless-safe)"},
+    "os.crm_schema":     {"kind":"local","status":"ACTIVE","call":"scripts/os_crm_schema.py","note":"Notion 5-DB + Airtable mirror + dashboard metrics"},
     # ---- game engines (RED until a playable proof exists; see OS_GAME_PIPELINE_DECISION.md) ----
     "engine.godot":      {"kind":"app","status":"RED","call":"-","note":"not installed; FIRST playable-proof candidate. ACTIVE only when a playable build exists"},
     "engine.unreal":     {"kind":"app","status":"RED","call":"-","note":"not installed; later high-ceiling cinematic/game route"},
