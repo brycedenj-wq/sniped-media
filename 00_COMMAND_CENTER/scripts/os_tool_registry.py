@@ -50,6 +50,10 @@ TOOLS = {
     "os.privacy_gate":   {"kind":"local","status":"ACTIVE","call":"scripts/os_privacy_gate.py","note":"identity/leak gate"},
     "os.vision_gate":    {"kind":"local","status":"ACTIVE","call":"scripts/os_vision_gate.py","note":"visual reject/beat-source gate"},
     "os.name_gate":      {"kind":"local","status":"ACTIVE","call":"scripts/os_name_gate.py","note":".com + brand availability gate"},
+    "os.premium_stack_gate":{"kind":"local","status":"ACTIVE","call":"scripts/os_premium_stack_gate.py","note":"premium-stack default-on enforcement; runs before any MAX build"},
+    "os.elite_gate":     {"kind":"local","status":"ACTIVE","call":"scripts/os_elite_art_direction_gate.py","note":"rejects merely-clean; 12-dim ELITE/STRONG/GENERIC/REJECT"},
+    "os.howto_extract":  {"kind":"local","status":"ACTIVE","call":"scripts/os_howto_extract.py","note":"scan docs by CONTENT (names mislead) -> tool/technique density map + extract"},
+    "os.technique_cards":{"kind":"local","status":"ACTIVE","call":"scripts/os_technique_cards.py","note":"SELF-SOLVE layer: how-to cards (problem->technique->steps) gates pull on failure"},
     # ---- game engines (RED until a playable proof exists; see OS_GAME_PIPELINE_DECISION.md) ----
     "engine.godot":      {"kind":"app","status":"RED","call":"-","note":"not installed; FIRST playable-proof candidate. ACTIVE only when a playable build exists"},
     "engine.unreal":     {"kind":"app","status":"RED","call":"-","note":"not installed; later high-ceiling cinematic/game route"},
