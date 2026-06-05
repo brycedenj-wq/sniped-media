@@ -3,6 +3,8 @@
 > Single source of truth for the active session. Overwrite at session end. (Updated 2026-06-04.)
 
 ## ACTIVE MISSION (only one)
+**PROOF CELL 001 built (2026-06-04): faceless machine proof , certified asset pair + 5-rail proof package, $0 spend, nothing posted. OS_PROOFCELL_001.md. Proof loops staged, awaiting operator go on any spend/posting/domain/public-name. NOT a crowned lane.**
+
 **NONE ACTIVE , start-here folder certification COMPLETE (98/98). Await next direction.**
 
 
