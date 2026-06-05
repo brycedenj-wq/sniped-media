@@ -25,3 +25,5 @@
 2026-06-04 , private form built for Rails A+C (proofcell/form/). Complete copy+fields+asset pair, voice-gate PASS, no real name/domain/launch. Collects nothing until operator wires an endpoint (their account). Private local link only. Not validation until shared.
 
 2026-06-04 , private form made deployment-ready (NOT hosted): Tally spec, static+Formspree (placeholder), Netlify/Vercel site/ drop, ingest+score scripts (tested), share+privacy checklists. Operator wires one manually. Stop before hosting/distribution.
+
+2026-06-04 , operator handoff written (OS_OPERATOR_HANDOFF.md). Machine PAUSED at operator line. All artifacts documented; manual wire steps + ingest/score + keep/kill/scale + approval choices. No build/host/share/generate.

@@ -1,8 +1,11 @@
 # NEXT_ACTION
 
-Book-cert + doctrine reconciliation COMPLETE. No active mission. Await direction.
+PAUSED at the operator line. Everything for Proof Cell 001 is built and parked.
 
-Strategy is now SAFE to resume WITH doctrine confidence labels (router enforces). Two caveats:
-- Recover + certify 3 missing sources (Hit Makers, Trading Up, 7 Powers) ONLY if a strategic bet depends on distribution/new-luxury/counter-positioning.
-- Honor the 5 preserved conflicts (copy-length, max-default, photo-3-lens, status, distribution) , never force one rule.
-Do not crown a lane. No production. No bulk reread.
+START HERE: read OS_OPERATOR_HANDOFF.md , it has all paths, the manual wire steps, keep/kill/scale, and the approval choices.
+
+The OS does nothing more until the operator either:
+- provides a CSV export of form responses (then: ingest -> score -> verdict, OS_OPERATOR_HANDOFF.md section 12), OR
+- gives an explicit go on one approval choice (wire/share, fresh generation, posting, brand-checklist, or hold).
+
+Do NOT host, share, generate, rename, post, or strategize without an explicit go.
