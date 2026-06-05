@@ -125,7 +125,8 @@ def onesheet(src, out, title, logline, details, log=None):
     hero = _cover(Image.open(src).convert("RGB"), W-160, 1180, 0.52, 0.42)
     im.paste(hero, (80, 80))
     y = 1330
-    _tracked(d, (80, y), "LOT 00  ,  THE ESTATE OF HER", _font("ui", 24), RED, tracking=6); y += 60
+    KICK=os.environ.get("OS_KICKER","").strip()
+    if KICK: _tracked(d, (80, y), KICK, _font("ui", 24), RED, tracking=6); y += 60
     tf = _font("display", 96)
     for ln in _wrap(d, title, tf, W-160): d.text((80, y), ln, font=tf, fill=INK); y += int(tf.size*1.02)
     y += 20; bf = _font("display_it", 44)
@@ -193,8 +194,8 @@ def carousel(src, outdir, slides_path, log=None):
         kind = s.get("kind", "text")
         if kind == "cover":
             im = _scrim(_cover(hero, W, H, 0.52, 0.42), top=True, bottom=True, strength=200); d = ImageDraw.Draw(im)
-            d.text((W//2, 120), s.get("masthead","LOT 00").upper(), font=_font("display", 120), fill=PAPER, anchor="mm")
-            _tracked(d, (W//2, 210), s.get("kicker","THE ESTATE OF HER").upper(), _font("ui",20), CREAM, tracking=8, anchor="mm")
+            d.text((W//2, 120), s.get("masthead","").upper(), font=_font("display", 120), fill=PAPER, anchor="mm")
+            _tracked(d, (W//2, 210), s.get("kicker","").upper(), _font("ui",20), CREAM, tracking=8, anchor="mm")
             if s.get("title"):
                 for j, ln in enumerate(_wrap(d, s["title"], _font("display_it",44), W-160)):
                     d.text((W//2, H-220+j*54), ln, font=_font("display_it",44), fill=CREAM, anchor="mm")

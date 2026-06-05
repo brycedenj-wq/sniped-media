@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #141315; }
+      .wrap { width:1080px; height:1920px; position:relative;
+        font-family: "Didot","Bodoni 72","Hoefler Text","Georgia",serif; color:#E8E4DC; }
+      .kicker { position:absolute; top:760px; left:0; width:1080px; text-align:center;
+        font-family:"Helvetica Neue",Arial,sans-serif; font-size:24px; letter-spacing:10px; color:#9b9690; text-transform:uppercase; }
+      .title { position:absolute; top:820px; left:0; width:1080px; text-align:center; font-size:150px; letter-spacing:14px; font-weight:500; }
+      .rule { position:absolute; top:1030px; left:490px; width:100px; height:2px; background:#5a1a1a; transform-origin:left center; }
+      .sub { position:absolute; top:1080px; left:0; width:1080px; text-align:center; font-style:italic; font-size:34px; color:#cfcabf; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap" id="root" data-composition-id="main" data-start="0" data-duration="3.6" data-width="1080" data-height="1920">
+      <div id="kicker" class="kicker clip" data-start="0" data-duration="3.6" data-track-index="1">CAMPAIGN WORLD , BUILT FACELESS</div>
+      <div id="title"  class="title clip"  data-start="0" data-duration="3.6" data-track-index="2" style="font-size:120px">MERIDIAN<br/>HOUSE</div>
+      <div id="rule"   class="rule clip"   data-start="0" data-duration="3.6" data-track-index="3" style="top:1180px"></div>
+      <div id="sub"    class="sub clip"    data-start="0" data-duration="3.6" data-track-index="4" style="top:1230px">what we would build for your brand</div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.from("#kicker", { opacity:0, y:18, duration:0.9, ease:"power2.out" }, 0.1)
+        .from("#title",  { opacity:0, y:40, duration:1.2, ease:"power3.out" }, 0.4)
+        .from("#rule",   { scaleX:0, duration:0.9, ease:"power2.out" }, 1.2)
+        .from("#sub",    { opacity:0, y:14, duration:1.0, ease:"power2.out" }, 1.6)
+        .to("#root",     { opacity:1, duration:0.5 }, 3.0);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
