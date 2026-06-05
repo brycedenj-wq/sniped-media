@@ -35,3 +35,9 @@ Request → classify domain → pull the listed doctrine doc(s) + skill(s). For 
 | content / 7x7 / distribution | OS_STARTHERE_DOCTRINE §A (Content OS, Stacks) | (build: sniped-7x7-repurpose) | active certified |
 | photography set design | OS_STARTHERE_DOCTRINE §A (set-design, posing, lighting, moodboard) | direction-stack (merge target) | active certified |
 | product / clothing launch | OS_STARTHERE_DOCTRINE §A (validation-first) | (gate: validation-before-manufacture) | active certified |
+
+## PROVISIONAL-BOOK ROUTER RULE (locked)
+- A book/source is citable as **certified doctrine ONLY if it has a segment ledger** (`coverage_proven`/`certified` in a cert ledger). Today that is ~0 classic books.
+- If the router pulls a `provisional_chunked_not_certified` book (any of the 215, incl. the cited 25), the OUTPUT must carry a **`[provisional: <book>, chunk-distilled, not coverage-proven]`** tag. Never present a provisional book chunk as final truth.
+- For a MAJOR decision, do not rely on a provisional book , flag it as needs-certification (see OS_BOOK_TARGETED_CERTIFICATION_QUEUE.md) and proceed only with the provisional label, or certify first.
+- The book-source map is `OS_BOOK_SOURCE_INDEX.csv`; dependency map `OS_BOOK_DOCTRINE_DEPENDENCY_MAP.md`. Pull a specific book's chunks by topic; never bulk-load.
