@@ -17,7 +17,7 @@ The last clerk of a closing county Hall of Records files the final deeds of a va
 ## BEST ASSET
 DEED winner 4K hero "THE STACKS" , the aisle of oak drawers to a vault, the vermilion stamp glyphs the only color, fully faceless. Gate SHIP. See `04_WINNER_PACKAGE/00_raw/deed_winner_4k.png` and the poster `08_SELLABLE_PRESENTATION/01_poster.png`.
 ## BEST MOTION
-DEED seedance dolly-push toward the vault (4s, 720p, rendering on Higgsfield). Fallback already staged: the still-based teaser `07_MOTION_TRAILER/deed_still_teaser_9x16.mp4`.
+DEED seedance dolly-push toward the vault (4s) , DONE and assembled into a 9s trailer `07_MOTION_TRAILER/deed_trailer_9x16.mp4` (title card + motion + end card). The vermilion glyphs held through the motion.
 ## STRONGEST MONEY ANGLE
 Physical print/drop: hand-numbered, wax-sealed DEED certificates (edition of 250) + subscription archive + licensable seal/typography system (B2B film/TV). Analog-premium thesis: digital makes the physical certificate MORE valuable.
 
@@ -26,7 +26,7 @@ Physical print/drop: hand-numbered, wax-sealed DEED certificates (edition of 250
 - The whole one-command kit assembled from one 4K hero (poster/title/landing/onesheet/carousel/teaser/board/dashboard).
 - The discipline: one drawable glyph + one color + faceless, across both worlds.
 ## WHAT STILL LOOKS WEAK
-- Motion is one slow shot (no multi-shot edit yet). Landing is a PNG preview, not real HTML. Carousel is solid but template-plain. Multi-shot motion not yet edited (one shot). Landing is PNG, not real HTML.
+- Motion is one shot (no multi-shot edit yet). Landing is a PNG preview, not real HTML. Carousel is solid but template-plain. The seedance clip letterboxes (720x960 padded to 9:16).
 
 ## TOOLS USED
 Higgsfield (image+video, proven), local os_* scripts (engine/campaign/grade/composite/reframe/layout/teaser/cut/gate/privacy/money/launch), Pillow, ffmpeg, exiftool, git. Adobe MCP PROVEN: upload handshake cracked (os_adobe_cloud), subject-aware crop produced a DEED 1:1 artifact.
