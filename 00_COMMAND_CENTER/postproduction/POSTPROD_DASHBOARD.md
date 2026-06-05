@@ -26,3 +26,9 @@
 
 ## NEXT SMALLEST GAP
 Either: (a) run the Adobe-MCP generative re-stamp on the LOT 00 wrist tag to move the generative composite + the gate's text_legible from AMBER/FAIL to GREEN (needs spend approval), or (b) regenerate the hero at 4K so the export set passes no_enlarge (needs ~2cr generation approval).
+
+## UPDATE 2026-06-04 , 4K run closed the visual gap
+- LOT 00 regenerated at 4K (3584x4800). Full chain -> gate **SHIP**.
+- no_enlarge: now PASS (all 7 exports within source). text_legible: now PASS.
+- Premiere/AE still AMBER (single-clip only). Illustrator/InDesign still RED. Adobe generative re-stamp now UNNEEDED for legibility (stays queued for optional seamless cleanup).
+- Next smallest gap: layout layer (RED) via Adobe document_render, OR motion (needs generation approval).

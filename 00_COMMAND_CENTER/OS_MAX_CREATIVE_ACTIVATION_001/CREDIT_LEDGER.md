@@ -12,3 +12,9 @@
 | 3 | 1 short motion clip (only if a still passes all gates) | ~18 | locked | , |
 
 Every credit logged here. Balance reported before and after each spend. Stop on any gate failure.
+
+## UPDATE 2026-06-04 (Approved A)
+| stage | action | cr | status | balance |
+|---|---|---|---|---|
+| 1b | LOT 00 4K regen (job 706e806e) | 4 | DONE, gate SHIP | 853 |
+Run total spent: 6 of 100 cap. Before-run balance 859 -> 853.
