@@ -55,6 +55,16 @@ Absorption state legend:
 
 ---
 
+## Route table expansion (2026-06-05 , DONE)
+
+The fusion layer was richer than the router; that bottleneck is now addressed. Added 7 dedicated routes (build_film_pipeline, build_game_pipeline, build_content_engine, build_money_move, build_client_pitch, build_motion_trailer, build_product_drop) + free-text intents + command names + registered 18 local OS scripts and 3 game engines as tools. Registry now 91 tools / 25 routes. The brain no longer falls through to make_campaign_package for these intents.
+
+Remaining route-layer work:
+- **build_film_pipeline -> ACTIVE**: prove one end-to-end run (stills -> motion -> AE title -> cut) with a continuity gate pass. Sound/score stays HANDOFF.
+- **build_game_pipeline -> AMBER**: needs the Godot first-playable proof (see OS_GAME_PIPELINE_DECISION.md). Engine install requires explicit approval.
+- **build_product_drop / build_client_pitch -> ACTIVE**: one validated artifact each.
+- **track_leads / create_client_room**: still need the Airtable/Notion write proof (Tier 1 above).
+
 ## The one move that unblocks the most
 
 Run a single `os_adobe_cloud` upload handshake on the DEED asset and execute `image_select_subject` + `image_remove_background`. That one proof converts 4+ Adobe capabilities from PARTIAL to ABSORBED and is the highest leverage item on this list.

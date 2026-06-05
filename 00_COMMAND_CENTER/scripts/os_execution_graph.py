@@ -34,18 +34,25 @@ def _m(n):
 # The named top-level commands the OS understands -> the route that fulfills each.
 COMMANDS = {
     "make campaign package": "make_campaign_package",
+    "build film pipeline": "build_film_pipeline",
+    "build game pipeline": "build_game_pipeline",
+    "build content engine": "build_content_engine",
+    "build money move": "build_money_move",
+    "build client pitch": "build_client_pitch",
     "build private demo": "build_private_demo",
+    "build proof loop": "create_proof_loop",
+    "activate tool": "absorb_new_tool",
+    "certify source": "certify_docs",
+    "build launch readiness": "run_launch_readiness_check",
+    "build motion trailer": "build_motion_trailer",
+    "build product drop": "build_product_drop",
     "create world": "build_world_3d",
     "generate motion": "generate_motion",
     "edit video": "cut_video",
     "build pitch deck": "build_pitch_deck",
-    "build proof loop": "create_proof_loop",
     "track leads": "track_leads",
     "create client room": "create_client_room",
-    "launch readiness check": "run_launch_readiness_check",
     "run money path": "score_money_path",
-    "certify docs": "certify_docs",
-    "absorb new tool": "absorb_new_tool",
     "run max sprint": "run_max_sprint",
 }
 
@@ -150,6 +157,8 @@ def graph(text, route_id=None):
         },
         "modules_awake": modules,
         "toolchain_detail": chain,
+        "route_doctrine": r.get("doctrine"),
+        "refuses": r.get("refuses"),
         "proof": r.get("proof"), "gap": r.get("gap"),
     }
 
@@ -186,7 +195,9 @@ def render(g):
     print(f"  8 log/dash -> {a['8_dashboard_log'] or '-'}")
     print(f"  9 failure  -> {' | '.join(a['9_failure_rules']) or '-'}")
     print(f" 10 approval -> {'; '.join(a['10_approval_lines'])}")
-    print(f"\nmodules awake: {', '.join(g['modules_awake'])}")
+    if g.get("refuses"): print(f"\nREFUSES TO CLAIM: {g['refuses']}")
+    print(f"modules awake: {', '.join(g['modules_awake'])}")
+    if g.get("route_doctrine"): print(f"route doctrine nodes: {', '.join(g['route_doctrine'])}")
     if g.get("gap"): print(f"known gap: {g['gap']}")
     print("pipeline: input -> modules -> doctrine(load) -> toolchain -> gates -> artifact -> log -> dashboard -> learning loop")
 

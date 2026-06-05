@@ -6,24 +6,33 @@ The point: you speak intent, the OS wakes the right modules, loads the right doc
 
 ---
 
-## The 14 commands
+## The commands (expanded 2026-06-05)
 
-| Command | Route | Status | Produces | Hard gate / approval line |
+Dedicated action routes so the fused brain can ACT, not fall back to a generic campaign route.
+
+| Command | Route | Status | Produces | Refuses / hold line |
 |---|---|---|---|---|
+| `build film pipeline` | build_film_pipeline | AMBER | shot list + stills + clips + trailer package | no scored film, no sound gen, no multi-shot continuity claim, no release |
+| `build game pipeline` | build_game_pipeline | RED | Blender assets + design doc + first-playable plan | GAMES NOT ACTIVE; no engine install without approval |
+| `build content engine` | build_content_engine | ACTIVE | repeatable format kit + drafted posts | drafts only; no live posting |
+| `build money move` | build_money_move | ACTIVE | ranked move + reversibility + kill criteria | recommendation only; no payment, no published price |
+| `build client pitch` | build_client_pitch | AMBER | board + one-sheet PDF (private) | no overclaim; no send without go |
+| `build private demo` | build_private_demo | AMBER | private demo package | no public host; static only |
+| `build proof loop` | create_proof_loop | AMBER | scored responses | not deployed; no public form |
+| `build motion trailer` | build_motion_trailer | ACTIVE | titled motion trailer | no sound gen; no release |
+| `build product drop` | build_product_drop | AMBER | drop mockups + print spec | no manufacture before demand; no checkout |
+| `activate tool` | absorb_new_tool | ACTIVE | honest registry row + route | no ACTIVE without proof bar |
+| `certify source` | certify_docs | ACTIVE | certified ledger row | no certify unless got==total |
+| `build launch readiness` | run_launch_readiness_check | ACTIVE | readiness report | report only; authorizes nothing |
 | `make campaign package` | make_campaign_package | ACTIVE | full kit + gate + dashboard | postproduction gate |
-| `build private demo` | build_private_demo | AMBER | private demo package (no public host) | privacy gate; HTML host HELD |
 | `create world` | build_world_3d | ACTIVE | test scene + sandbox render | blender gate, sandbox only |
 | `generate motion` | generate_motion | ACTIVE | clip + finished cut | spend approval |
 | `edit video` | cut_video | ACTIVE | trimmed/resized/caption-safe | motion QA |
-| `build pitch deck` | build_pitch_deck | AMBER | board + one-sheet -> PDF | multi-page deck not templated |
-| `build proof loop` | create_proof_loop | AMBER | scored responses | not deployed (held) |
-| `track leads` | track_leads | AMBER | tracked records | no proven Airtable write route yet |
-| `create client room` | create_client_room | AMBER | Drive folder + Notion record | storage-write; none built yet |
-| `launch readiness check` | run_launch_readiness_check | ACTIVE | readiness report | none |
 | `run money path` | score_money_path | ACTIVE | money-readiness score | none |
-| `certify docs` | certify_docs | ACTIVE | certified ledger row | got==total verify |
-| `absorb new tool` | absorb_new_tool | ACTIVE | honest registry row + route | capability proof bar |
-| `run max sprint` | run_max_sprint | ACTIVE | max-depth package across modules | spend approval |
+| `run max sprint` | run_max_sprint | ACTIVE | max-depth package | spend approval |
+| `track leads` / `create client room` / `build pitch deck` | (resp.) | AMBER | see registry | named unblocks in backlog |
+
+Run any command: `os_execution_graph.py command "<name>"`. Run free-text: `os_execution_graph.py graph "<intent>"`.
 
 ---
 

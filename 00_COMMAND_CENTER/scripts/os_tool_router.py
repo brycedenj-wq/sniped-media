@@ -15,20 +15,31 @@ def _reg():
     s = importlib.util.spec_from_file_location("os_tool_registry", os.path.join(HERE, "os_tool_registry.py"))
     m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
 
-# intent keywords -> route id
+# intent keywords -> route id. Specific multi-word phrases score higher and win over broad fallbacks.
 INTENTS = {
-    "make_campaign_package": ["campaign", "full kit", "campaign package", "campaign house"],
-    "build_pitch_deck": ["pitch deck", "deck", "pitch", "investor"],
+    "make_campaign_package": ["campaign package", "campaign house", "full kit"],
+    "build_film_pipeline": ["film pipeline", "film", "movie", "short film", "cinematic film"],
+    "build_game_pipeline": ["game pipeline", "game", "video game", "playable"],
+    "build_content_engine": ["content engine", "content factory", "content system", "posting cadence"],
+    "build_money_move": ["money move", "next money", "money move", "revenue move", "make money"],
+    "build_client_pitch": ["client pitch", "pitch a client", "client proposal", "pitch the client"],
+    "build_private_demo": ["private demo", "demo package", "private client demo", "private demo package"],
+    "build_motion_trailer": ["motion trailer", "trailer", "make a trailer"],
+    "build_product_drop": ["product drop", "edition drop", "print drop", "merch drop", "product edition"],
+    "build_pitch_deck": ["pitch deck", "deck", "investor"],
     "edit_image": ["edit image", "grade", "color", "retouch", "fix image", "composite", "cleanup"],
-    "generate_motion": ["motion", "video clip", "generate video", "animate", "seedance"],
+    "generate_motion": ["generate video", "motion clip", "video clip", "animate", "seedance"],
     "cut_video": ["cut video", "trim", "resize video", "caption-safe", "reel cut"],
-    "build_landing_page": ["landing", "landing page", "web hero", "hero section"],
-    "create_proof_loop": ["proof loop", "form", "validate demand", "signups"],
+    "build_landing_page": ["landing page", "web hero", "hero section"],
+    "create_proof_loop": ["proof loop", "build a proof loop", "validate demand", "signups"],
     "track_leads": ["track leads", "crm", "lead list", "contacts"],
-    "score_money_path": ["money path", "money readiness", "monetize", "revenue", "sellable"],
+    "score_money_path": ["money path", "money readiness", "sellable"],
+    "absorb_new_tool": ["activate tool", "activate a tool", "absorb tool", "new tool", "wire a tool"],
+    "certify_docs": ["certify source", "certify a source", "certify doc", "certify the"],
+    "build_world_3d": ["3d world", "build a world", "create world", "blender world", "environment"],
     "generate_pdf": ["pdf", "export pdf", "one-sheet pdf"],
-    "update_dashboard": ["dashboard", "status board", "control room"],
-    "run_launch_readiness_check": ["launch readiness", "readiness", "go-live check", "safety check"],
+    "update_dashboard": ["status board", "control room"],
+    "run_launch_readiness_check": ["launch readiness", "readiness", "go-live check", "launch check"],
 }
 
 def classify(text):
