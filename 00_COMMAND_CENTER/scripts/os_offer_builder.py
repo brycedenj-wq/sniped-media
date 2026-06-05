@@ -6,7 +6,9 @@ Doctrine (certified + Sprint 002): Hormozi $100M Offers (value = dream outcome x
 (time delay x effort)), intel_pricing_logic, intel_wwp_proclamations, intel_status_psychology.
 
   os_offer_builder.py score --dream 1-5 --likelihood 1-5 --time 1-5 --effort 1-5   (5=best/least)
-  os_offer_builder.py build --outcome "..." --tier reset|opkit|brand
+  os_offer_builder.py build --outcome "..." --tier demo|spec|campaign_pkg|world_build|ip_system
+
+STANDING ORDER: ACTIVE tiers are campaign-house / AI-native. OLD SNIPED photo tiers are fallback-only.
 """
 import sys, argparse
 def score(d,l,t,e):
@@ -23,8 +25,11 @@ def score(d,l,t,e):
     for x in levers: print("   -",x)
     return 0
 def build(outcome,tier):
-    floors={"reset":1500,"opkit":4000,"brand":12500}; f=floors.get(tier,1500)
-    print(f"GRAND-SLAM OFFER , {tier} (floor ${f})")
+    floors={"demo":2500,"spec":1500,"spec_diagnostic":1500,"campaign_pkg":6000,"world_build":12500,"ip_system":25000}
+    if tier in ("reset","opkit","brand"):
+        print(f"!! '{tier}' is OLD SNIPED (fallback-only). ACTIVE tiers: demo/spec/campaign_pkg/world_build/ip_system. Not building on the archived lane by default."); return 1
+    f=floors.get(tier,2500)
+    print(f"GRAND-SLAM OFFER (ACTIVE LANE) , {tier} (floor ${f})")
     print(f"  Dream outcome: {outcome}")
     print( "  Stack (make the value obvious):")
     print( "   1 core deliverable (the result, named)")
@@ -38,7 +43,7 @@ def build(outcome,tier):
 def main():
     ap=argparse.ArgumentParser(prog="os_offer_builder.py"); sub=ap.add_subparsers(dest="cmd")
     s=sub.add_parser("score"); [s.add_argument(f"--{x}",type=int,required=True) for x in ("dream","likelihood","time","effort")]
-    b=sub.add_parser("build"); b.add_argument("--outcome",required=True); b.add_argument("--tier",default="reset")
+    b=sub.add_parser("build"); b.add_argument("--outcome",required=True); b.add_argument("--tier",default="demo")
     a=ap.parse_args()
     if a.cmd=="score": return score(a.dream,a.likelihood,a.time,a.effort)
     if a.cmd=="build": return build(a.outcome,a.tier)

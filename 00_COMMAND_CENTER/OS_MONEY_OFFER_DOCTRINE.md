@@ -1,8 +1,9 @@
+# (STANDING ORDER: ACTIVE = Prime Mover campaign-house / AI-native. OLD SNIPED Reset/Pixieset/local-photo = ARCHIVE/FALLBACK ONLY, never default.)
 # OS MONEY / OFFER DOCTRINE
 The money operating layer. Executable, not prose. Each rule maps to a gate/script.
 - Price the VALUE not the cost. 3-option anchor (BEST/BETTER/GOOD), middle is target. Premium = insurance. -> os_pricing_gate.py
 - Grand-slam offer = (dream outcome x perceived likelihood) / (time delay x effort). Raise dream+likelihood, cut time+effort. -> os_offer_builder.py
-- Reset floor $1,500. Trade SCOPE, never price. -> os_pricing_gate check
+- ACTIVE lane = campaign-house/world/IP; anchor high; trade SCOPE not price. OLD SNIPED Reset $1,500 = FALLBACK ONLY. -> os_pricing_gate check
 - Payment FOLLOWS proof. Fastest legit link when triggered; entity cleanup later. Never set up rails without a go. -> os_proof_to_cash_router.py
 - Screen before pitch: low self-orientation, in-lane, decision-maker, cares about outcome = FIT. Price-shopper/off-lane = PASS. -> os_client_fit_gate.py
 - Sell expertise, refuse scope creep (WWP). Diagnose before prescribe. -> os_sales_script.py

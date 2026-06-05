@@ -10,8 +10,10 @@ Doctrine: intel_trust_equation (T=(C+R+I)/self-orientation , low self-orientatio
   os_client_fit_gate.py rubric
 """
 import sys, argparse
-GOOD=["values the OUTCOME/status not the file count","in-lane (founder/operator/premium)","decision-maker","referral or warm","accepts proof-before-price","low self-orientation (asks about the work, not just discount)"]
-BAD=["price-shopper / race-to-bottom","off-lane (wrong buyer)","not the decision-maker","scope-creep before paying","'just send me your rates' with no problem","wants identity/employer exposure","no budget + no urgency"]
+# ACTIVE LANE buyer = a brand / founder / studio that needs PREMIUM campaign-house / world / AI-native
+# production. NOT a local photo client. Old-SNIPED photo-client fit is fallback-only.
+GOOD=["needs premium campaign/world/IP work (the ACTIVE lane), not a local photo session","values the OUTCOME/status not file count","in-lane brand/founder/operator","decision-maker","referral or warm","accepts proof-before-price","low self-orientation (asks about the work)"]
+BAD=["a local-photo / headshot / event buyer (OLD SNIPED, off active lane)","price-shopper / race-to-bottom","off-lane (wrong buyer)","not the decision-maker","scope-creep before paying","'just send your rates' with no problem","wants identity/employer exposure","no budget + no urgency"]
 def screen(a):
     score=0; flags=[]
     if a.lane=="in": score+=2

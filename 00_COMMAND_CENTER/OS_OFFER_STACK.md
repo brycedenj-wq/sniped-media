@@ -1,5 +1,13 @@
-# OS OFFER STACK
-Tiers (floors): Reset $1,500 | Op Kit $4,000 | Brand System $12,500 | Campaign-world (custom, anchor high).
-Build any offer: os_offer_builder.py build --outcome "..." --tier X. Stack = core result + risk-reversal + speed bonus + done-for-you + scarcity.
-Score it: os_offer_builder.py score (value equation). Price it: os_pricing_gate.py.
-Sellable-now: Reset (ACTIVE). AMBER (need 1 buyer + delivery): DEED still, AXIS brand-film, Op Kit upsell. HELD: product/edition drop (validate first).
+# OS OFFER STACK (ACTIVE LANE , campaign-house / AI-native)
+STANDING ORDER: old SNIPED photo tiers (Reset/Op Kit/Brand-System shoots) are FALLBACK ONLY, never default.
+
+ACTIVE tiers (anchor high; build via os_offer_builder.py build --tier X):
+- spec / diagnostic  (floor $1,500)  , paid Direction/world diagnostic or a spec frame. Smallest paid entry, on-lane, faceless.
+- demo               (floor $2,500)  , private campaign-house demo package that lands a paying brand.
+- campaign_pkg       (floor $6,000)  , AI-native premium campaign package (stills+motion+kit) for a brand/world.
+- world_build        (floor $12,500) , full premium world / campaign-world build.
+- ip_system          (floor $25,000) , brand / world / IP system (highest ticket, ownable).
+
+Score any offer: os_offer_builder.py score. Price: os_pricing_gate.py. Screen buyer: os_client_fit_gate.py.
+Sellable-now (active): spec_diagnostic + private campaign_demo. AMBER (need 1 buyer + private room): campaign_pkg, world_build, ip_system. HELD: anything needing posting/identity/payment-rail.
+FALLBACK (archived, explicit-only): Reset photo shoot, Pixieset, local photo packages.

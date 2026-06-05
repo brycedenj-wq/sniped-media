@@ -1,5 +1,5 @@
 # OS CLIENT ACQUISITION PLAYBOOK
-1. Source in-lane prospects (LA founders/operators/premium). Warm > referral > cold.
+1. Source ACTIVE-LANE buyers: brands/founders/studios needing PREMIUM campaign/world/AI-native work (NOT local photo clients). Warm > referral > private. OLD SNIPED photo clients = fallback only.
 2. Screen: os_client_fit_gate.py screen. FIT -> pitch; HOLD -> qualify (Mom Test); PASS -> decline/refer.
 3. Reach out (draft only, faceless-safe): os_sales_script.py dm. Soft opener + post-callback + one value line + question. No link, no pitch.
 4. Discovery: diagnose before prescribe (os_sales_script.py discovery).

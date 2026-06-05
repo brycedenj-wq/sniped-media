@@ -4,22 +4,29 @@ os_pricing_gate.py , price the value, not the cost. Enforces the SNIPED pricing 
 
 Doctrine sources (certified): intel_pricing_logic (Blair Enns 3-option + premium-as-insurance),
 intel_new_luxury, intel_status_psychology, intel_wwp_proclamations, feedback_referral_handling
-(Reset floor $1,500, trade scope never price), feedback_payment_follows_proof.
+(ACTIVE: anchor high, trade scope; old Reset $1,500 = fallback only), feedback_payment_follows_proof.
 
-  os_pricing_gate.py check --tier reset|opkit|brand|custom --price N [--basis value|cost] [--scope "..."]
+  os_pricing_gate.py check --tier demo|spec|campaign_pkg|world_build|ip_system|custom --price N [--basis value|cost] [--scope "..."]
   os_pricing_gate.py options --anchor N        , build the 3-option architecture around an anchor
   os_pricing_gate.py doctrine
+
+STANDING ORDER: ACTIVE tiers are campaign-house / AI-native (below). OLD SNIPED photo tiers
+(reset/opkit/brand) are FALLBACK ONLY , flagged, never the default anchor.
 """
 import sys, argparse
-FLOORS = {"reset":1500, "opkit":4000, "brand":12500, "custom":1500}
+# ACTIVE LANE floors (campaign-house / AI-native)
+FLOORS = {"demo":2500, "spec":1500, "spec_diagnostic":1500, "campaign_pkg":6000, "world_build":12500, "ip_system":25000, "custom":2500}
+# OLD SNIPED (fallback-only, archived)
+FALLBACK_FLOORS = {"reset":1500, "opkit":4000, "brand":12500}
 RULES = [
  "Price the value and the meaning, not the cost (no cost-plus, no hourly).",
  "Three-option architecture; anchor high; the middle is the target.",
  "Premium tier framed as insurance (de-risk), not as a bigger expense.",
- "Reset floor holds at $1,500. Trade SCOPE, never price.",
+ "ACTIVE lane = campaign-house / world / IP system; anchor high. Trade SCOPE, never price.",
  "Scarcity / numbered editions for status goods.",
  "Proof before price: do not raise the number before demand/proof exists.",
  "Status is signaled, not stated; the buyer pays to signal, not to get files.",
+ "OLD SNIPED photo tiers (Reset $1,500 etc.) are FALLBACK ONLY, not the default.",
 ]
 def check(tier, price, basis, scope):
     floor=FLOORS.get(tier,1500); v={}

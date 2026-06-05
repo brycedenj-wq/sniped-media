@@ -10,12 +10,14 @@ feedback_payment_follows_proof. Emits the schema for mcp.notion / mcp.airtable t
   os_crm_schema.py dashboard  , the money-path dashboard metrics
 """
 import sys
-NOTION=["NOTION CRM (5 inline DBs in one page):",
- " Pipeline: Name, Status(Target/Engaged/Discovery/Proposal/Booked/Delivered/Lost/Re-engage), Tier, Trigger, VIB sent, Next action(+date), Source channel, Lane, Estimated value, Probability, Forecast(formula), Days since touch(formula), Client(rel), Notes",
- " Clients: Name, Company, Role, LinkedIn, Email, Referral source(rel), Referrals out(rollup), LTV(rollup), Tags, Pipelines/Shoots/Galleries(rel)",
- " Shoots: Shoot ID, Date, Type, Lane, Status, Studio, Card backed up, Delivery target/actual, SLA met(formula), Pixieset URL, Cash collected, Hero image, Client/Pipeline/Gallery(rel)",
- " Outreach: VIB ID, Recipient, Trigger used, Protocol named, VIB sent date, Reply, Reply latency(formula), Discovery date, Pipeline(rel)",
- " Galleries: Name, Pixieset URL, Delivered/Expiry, Upsell window status(formula), Upsell sequence sent, Upsell revenue, Conversion %(formula)"]
+# ACTIVE LANE CRM (campaign-house / AI-native). Old photo Shoots/Galleries/Pixieset are FALLBACK-only.
+NOTION=["NOTION CRM (ACTIVE LANE , campaign-house):",
+ " Pipeline: Name, Status(Target/Engaged/Diagnostic/Proposal/Booked/Delivered/Lost/Re-engage), Tier(demo/spec/campaign_pkg/world_build/ip_system), Trigger, Next action(+date), Source, Lane, Estimated value, Probability, Forecast(formula), Days since touch(formula), Brand(rel), Notes",
+ " Brands: Name, Company, Role, Channel, Referral source(rel), LTV(rollup), Tags, Pipelines/Deliveries(rel)",
+ " Deliveries: ID, Date, Type(demo/world/campaign/film/IP), Status, Private room URL, Cash collected, Hero asset, Brand/Pipeline(rel)  [replaces old Shoots; private room replaces Pixieset]",
+ " Outreach: ID, Recipient, Angle, Sent date(draft-only), Reply, Reply latency(formula), Diagnostic date, Pipeline(rel)",
+ " Proof: signal_id, play(demo/spec/world), signal_type, keep_kill_scale, date",
+ " FALLBACK (archived old SNIPED, only if explicitly running fallback cashflow): Shoots(Pixieset URL, gallery, upsell) , do NOT use by default."]
 AIRTABLE=["AIRTABLE mirror (machine-queryable proof/asset/signal):",
  " Leads: name, lane, fit_score(os_client_fit_gate), status, source, next_action_date",
  " Assets: asset_id, world(AXIS/DEED/LOT00), type(still/motion/kit), gate_status, sellable(y/n), proof_link",
