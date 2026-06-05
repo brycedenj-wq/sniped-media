@@ -83,6 +83,20 @@ CARDS = [
   "technique":"Premiere/edit pacing","steps":"A trailer needs CUTS, not one shot. Cut on motion and on the beat. Vary shot length for rhythm (fast build, hold the hero). J/L cuts: let audio lead or trail the picture for flow. Kill dead frames at head/tail. A single move = teaser, never call it a trailer.","source":"series_3_download"},
 ]
 
+# merge in converted cards from the sprint (workflow agents write TECHNIQUE_CARDS.json)
+import json as _json, os as _os
+_JSON=_os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))),"TECHNIQUE_CARDS.json")
+if _os.path.exists(_JSON):
+    try:
+        _ext=_json.load(open(_JSON))
+        _have={c["id"] for c in CARDS}
+        for c in _ext:
+            if c.get("id") and c["id"] not in _have:
+                # normalize to the minimal fields solve() needs
+                c.setdefault("problem",""); c.setdefault("technique",""); c.setdefault("steps",c.get("exact_steps","")); c.setdefault("tool",c.get("app","")); c.setdefault("source",c.get("source_doc",""))
+                CARDS.append(c); _have.add(c["id"])
+    except Exception: pass
+
 def cmd_list(tool):
     for c in CARDS:
         if tool and c["tool"]!=tool: continue
