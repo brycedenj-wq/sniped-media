@@ -32,3 +32,10 @@ Either: (a) run the Adobe-MCP generative re-stamp on the LOT 00 wrist tag to mov
 - no_enlarge: now PASS (all 7 exports within source). text_legible: now PASS.
 - Premiere/AE still AMBER (single-clip only). Illustrator/InDesign still RED. Adobe generative re-stamp now UNNEEDED for legibility (stays queued for optional seamless cleanup).
 - Next smallest gap: layout layer (RED) via Adobe document_render, OR motion (needs generation approval).
+
+## UPDATE 2026-06-04 , os_campaign.py (one-command kit) ACTIVE
+- `os_campaign.py run --src HERO --name NAME` orchestrates the proven chain: register -> grade -> color-law -> exports -> poster/title/landing/onesheet/lookbook/thumbnail/carousel -> still-based teaser -> pitch board -> gate -> proof dashboard -> caption -> operator note -> manifest.
+- Proven on LOT 00 4K (raw in): 16 steps ACTIVE, gate SHIP, 21 artifacts, idempotent re-run. Tests: test_postproduction.py 22/22.
+- NEW reusable layout renderers: os_adobe_layout thumbnail + dashboard (data-bound RAG).
+- Gate taste checks default PENDING unless --model-scores supplied (never rubber-stamps an unseen asset).
+- Closes the AMBER "automation hooks" creative-output gap -> ACTIVE. Ready for the overnight run.

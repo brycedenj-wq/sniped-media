@@ -207,6 +207,48 @@ def carousel(src, outdir, slides_path, log=None):
         if log: _asset().log_edit(log, "layout:carousel", src, out, f"slide {i+1} {kind}", "")
     return outs
 
+def thumbnail(src, out, title_lines, kicker, log=None):
+    from PIL import Image, ImageDraw
+    import numpy as np
+    W, H = 1280, 720
+    im = _cover(Image.open(src).convert("RGB"), W, H, 0.55, 0.40); d = ImageDraw.Draw(im)
+    a = (np.clip((np.linspace(0, 1, W)-0.42)/0.58, 0, 1)[None, :]*np.ones((H, 1))*205).astype('uint8')
+    im = Image.composite(Image.new("RGB", (W, H), (8, 7, 6)), im, Image.fromarray(a, "L")); d = ImageDraw.Draw(im)
+    x = 770; y = 250; tf = _font("display", 92)
+    if kicker: _tracked(d, (x+4, y-46), kicker.upper(), _font("ui", 22), RED, tracking=6)
+    d.line([(x, y), (x, y+len(title_lines)*int(tf.size*1.02))], fill=RED, width=5)
+    for ln in title_lines:
+        d.text((x+22, y), ln, font=tf, fill=PAPER); y += int(tf.size*1.02)
+    im.save(out)
+    if log: _asset().log_edit(log, "layout:thumbnail", src, out, f"{W}x{H}", " / ".join(title_lines))
+    return out
+
+def dashboard(out, title, sub, rows, log=None):
+    """rows = [(label, status, note)] ; status in ACTIVE/AMBER/RED/PASS/FAIL/WARN."""
+    from PIL import Image, ImageDraw
+    W = 1400; rowh = 58; top = 200; half = (len(rows)+1)//2; Hh = top + half*rowh + 80
+    im = Image.new("RGB", (W, Hh), (22, 20, 18)); d = ImageDraw.Draw(im)
+    d.text((40, 40), title, font=_font("display", 62), fill=PAPER)
+    _tracked(d, (44, 128), sub.upper(), _font("ui", 20), RED, tracking=5)
+    col = {"ACTIVE": (98,197,84), "PASS": (98,197,84), "GREEN": (98,197,84),
+           "AMBER": (245,191,79), "WARN": (245,191,79), "FIX": (245,191,79),
+           "RED": (237,106,94), "FAIL": (237,106,94), "REJECT": (237,106,94)}
+    for i, (label, st, note) in enumerate(rows):
+        cx = 40 if i < half else 720; y = top + (i % half)*rowh
+        c = col.get(str(st).upper(), (150,146,140))
+        d.ellipse([cx, y+12, cx+18, y+30], fill=c)
+        d.text((cx+34, y), label, font=_font("body", 28), fill=(232,227,217))
+        if note: d.text((cx+34, y+30), note[:46], font=_font("ui", 14), fill=(120,116,110))
+        d.text((cx+632, y+4), str(st), font=_font("ui_bold", 17), fill=c, anchor="ra")
+    g = sum(1 for _, s, _ in rows if str(s).upper() in ("ACTIVE","PASS","GREEN"))
+    a = sum(1 for _, s, _ in rows if str(s).upper() in ("AMBER","WARN","FIX"))
+    r = sum(1 for _, s, _ in rows if str(s).upper() in ("RED","FAIL","REJECT"))
+    d.text((40, Hh-52), f"{g} ACTIVE   .   {a} AMBER   .   {r} RED      (of {len(rows)})",
+           font=_font("ui_bold", 24), fill=PAPER)
+    im.save(out)
+    if log: _asset().log_edit(log, "layout:dashboard", out, out, f"{len(rows)} rows", title)
+    return out
+
 def board(out, title, manifest_path, log=None):
     from PIL import Image, ImageDraw
     man = json.load(open(manifest_path)); cells = man["cells"]

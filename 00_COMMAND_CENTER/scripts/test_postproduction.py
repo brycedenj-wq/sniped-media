@@ -68,6 +68,28 @@ def main():
         ok(checks["grade_applied"] == "PASS", "gate: detects grade applied")
         ok(os.path.exists(os.path.join(run,"10_logs","POSTPROD_GATE_LOG.csv")), "gate: wrote gate log")
 
+        # os_campaign one-command smoke (orchestrator), short teaser for speed
+        CMP = load("os_campaign")
+        cfg = dict(CMP.DEFAULT_CONFIG)
+        cfg["teaser_beats"] = [
+            {"type":"title","title":"TEST","bg":"ink","dur":0.6},
+            {"type":"image","fcrop":[0,0,1,1],"move":"in","dur":0.6},
+        ]
+        crun, csteps, cverdict, cchecks = CMP.run_campaign(raw, "TEST_CAMPAIGN_SMOKE", cfg,
+                    {"identity_withheld":"PASS","beats_source":"PASS","text_legible":"PASS"})
+        try:
+            af = os.path.join(crun, "04_artifacts")
+            for art in ("01_poster.png","02_titlecard.png","03_landing_hero.png","09_pitch_board.png","10_proof_dashboard.png"):
+                ok(os.path.exists(os.path.join(af, art)), f"campaign: produced {art}")
+            ok(os.path.exists(os.path.join(crun,"04_motion","teaser_9x16.mp4")), "campaign: produced teaser")
+            ok(os.path.exists(os.path.join(crun,"OPERATOR_NOTE.md")), "campaign: wrote operator note")
+            ok(os.path.exists(os.path.join(crun,"CAMPAIGN_MANIFEST.json")), "campaign: wrote manifest")
+            ok(cverdict in ("SHIP","FIX"), f"campaign: gate verdict ({cverdict})")
+            ok(not any(s=="FAIL" for _,s,_ in csteps), "campaign: no step failed")
+        finally:
+            import shutil as _sh
+            if os.path.isdir(crun): _sh.rmtree(crun, ignore_errors=True)
+
     print(f"\n{P} passed, {F} failed")
     return 1 if F else 0
 
