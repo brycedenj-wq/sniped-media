@@ -1,5 +1,11 @@
 # OS After Effects Automation Audit
 
+> **UPDATE 2026-06-06: AE MCP is now ACTIVE at READ tier (live-proven).** Operator installed the bridge panel (`npm run install-bridge`), enabled allow-scripts+network, opened Window > mcp-bridge-auto.jsx. Probe: `run-script getProjectInfo` -> `get-results` returned live state `{projectName:"Untitled Project", bitsPerChannel:8, timeMode:"Timecode", numItems:0}`. The queue->panel->result round trip works. AE is reachable.
+> - READ tier = ACTIVE (project/comp/layer inspection via run-script + get-results).
+> - WRITE/AUTHORING tier (create-composition, layers, keyframes, expressions) = AVAILABLE, not yet proof-tested. Prove with one throwaway comp create + read-back before claiming motion-design capability. Run os_motion_qa first.
+> - Headless render path = aerender (still needs an `.aep` or build.jsx).
+> Two engines now: the **after-effects MCP** (live authoring via the panel) AND **aerender** (headless render). Supersedes the PREFERRED-PENDING status below.
+
 Audited 2026-06-05. Question: can the OS render titles / motion-graphics automatically?
 
 ## Install

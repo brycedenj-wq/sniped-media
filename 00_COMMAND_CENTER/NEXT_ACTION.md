@@ -1,20 +1,21 @@
 # NEXT ACTION
 
-## STATUS: CURRENT STATE FIRST enforcement layer = COMPLETE (2026-06-05)
+## STATUS: TOTAL TOOL/REPO/SKILL UNLOCK PASS = DONE (2026-06-06)
 
-Built and committed the stale-assumption enforcement layer on top of the Start Here operationalization (85f99098). The OS now loads current state and verifies tool reality before any strategy/build/audit/money/tool/MAX claim. Newest committed truth wins.
+~35 repos/sources classified (OS_TOTAL_UNLOCK_DASHBOARD.md). AXIS retired as a target. Live proofs this pass: Premiere project-write, Blender read, matts-peeker. Next play is chosen from the unlocked stack, not AXIS.
 
 BOOT EVERY SESSION:
-`python3 00_COMMAND_CENTER/scripts/os_current_state_boot.py` (writes OS_BOOT_REPORT.md).
+`python3 00_COMMAND_CENTER/scripts/os_current_state_boot.py` (writes OS_BOOT_REPORT.md). Then read OS_TOTAL_UNLOCK_DASHBOARD.md.
 
-## YOUR NEXT MOVE = manual activations + pick (default = HOLD)
-Nothing creative is in progress. Pending MANUAL steps to unlock editing + sound:
-1. Premiere: DONE at READ tier (2026-06-05 22:31 PDT, PREMIERE_MCP_PROOF.md). Bridge live, 4 read-only calls passed, route = ACTIVE-READ-PROVEN. REMAINING for edit-tier ACTIVE: one real edit-and-export proof through os_premiere_compliance_gate (no creative spend; smallest test sequence). Do not claim edit/export until then.
-2. After Effects: `cd ~/after-effects-mcp && npm run install-bridge` (or run Downloads/ae-mcp-setup/setup-mac.sh) -> new session.
-3. ElevenLabs (sound dept): create an API key WITH "11 Agents" write scope, then `claude mcp add ElevenLabs -e ELEVENLABS_API_KEY=<key> -- uvx elevenlabs-mcp` -> new session. Pick a music engine (Suno or Udio).
-Then options: HOLD; or point the layer at a project (`os_library.py load <type>`); or resume AXIS (still NOT MAX, gates hold it honest). No spend/posting/outreach without go.
+## YOUR NEXT MOVE = 4 quick activations (no spend), then pick the next-level play
+ACTIVE now (proven): Premiere (read+project-write), Blender (read), ffmpeg/HYBRID, Figma read, Adobe/Higgsfield gen, matts-peeker, BJ-WIKI. Pending operator activations:
+1. **After Effects** , DONE 2026-06-06: panel installed+opened, getProjectInfo proved ACTIVE (read). Next AE step (optional): prove authoring with one throwaway comp + read-back via os_motion_qa.
+2. **ElevenLabs** (voice lane): create API key WITH "11 Agents" write scope -> `claude mcp add ElevenLabs -e ELEVENLABS_API_KEY=<key> -- uvx elevenlabs-mcp` -> new session. Pick Suno or Udio for music.
+3. **n8n-mcp** (workflow lane): `claude mcp add n8n-mcp -- node ~/n8n-mcp/dist/mcp/index.js` -> new session.
+4. **Skills**: `/plugin marketplace add anthropics/skills` and `/plugin marketplace add superpowers`, then install.
+Then: pick the next-level play from the unlocked stack. Premiere sequence/export proof (needs a preset) and one live voice-call test are the only remaining "true max" gaps, both behind an explicit go.
 
-Nothing proceeds without one explicit go. No spend/posting/outreach/hosting/identity exposure.
+Nothing proceeds without one explicit go. No spend/posting/outreach/hosting/identity exposure. Do NOT default back to AXIS.
 
 
 ---

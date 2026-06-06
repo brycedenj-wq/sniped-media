@@ -2,10 +2,12 @@
 
 Survey 2026-06-05 (read-first). Status: ACTIVE / PREFERRED-PENDING / QUEUED / DISCARDED / SECURITY-HOLD.
 
+> **AUTHORITATIVE CLASSIFICATION = OS_TOTAL_UNLOCK_DASHBOARD.md (2026-06-06).** This table is the older registry; the dashboard's Table A supersedes it where they differ. Reconciliation 2026-06-06: Premiere -> ACTIVE-WRITE-PROVEN (bin proof); AE -> PREFERRED-PENDING (panel not installed, probed live); Blender -> ACTIVE (live read proof); matts-peeker -> ACTIVE (stdlib); openclaw -> SECURITY-HOLD (audited: messaging daemon, 20+ channel creds); autoresearch -> DISCARDED (no NVIDIA GPU); astro -> DISCARDED (framework source); shannon -> SECURITY-HOLD (real-exploit pentester).
+
 | Repo / folder | Status | Reason | Setup needed | OS library affected | Cards | Gates/routes | Next action |
 |---|---|---|---|---|---|---|---|
-| ~/premiere-pro-mcp | ACTIVE-READ-PROVEN | 269-tool Premiere MCP; bridge LIVE + read-proof 2026-06-05 (PREMIERE_MCP_PROOF.md). Read tier ACTIVE; edit/export tier unproven | edit-and-export proof through os_premiere_compliance_gate for edit-tier | PREMIERE_MCP_OPERATOR | premc_* 13 | os_premiere_compliance_gate; video route #1 | run smallest edit-and-export proof when a real job needs it |
-| ~/after-effects-mcp + Downloads/ae-mcp-setup | PREFERRED-PENDING | AE MCP built+registered; ScriptUI bridge manual | run setup-mac.sh / install-bridge, new session | AE_EXPRESSION_LIBRARY | aexp_* 5 | os_motion_qa; video route #3 | operator runs setup-mac.sh |
+| ~/premiere-pro-mcp | ACTIVE-WRITE-PROVEN | 269-tool Premiere MCP; read-proof 2026-06-05 + project-write proof 2026-06-06 (bin create/verify/delete). Sequence/export sub-tier unproven (needs preset_path) | create_sequence_from_preset + tiny export proof for the sequence/render sub-tier | PREMIERE_MCP_OPERATOR | premc_* 13 | os_premiere_compliance_gate; video route #1 | prove sequence/export when a real job needs it |
+| ~/after-effects-mcp | PREFERRED-PENDING | AE MCP server connected BUT bridge panel mcp-bridge-auto.jsx NOT installed in AE 2026 ScriptUI Panels (probed live 2026-06-06: getProjectInfo queues, get-results 'waiting') | `cd ~/after-effects-mcp && npm run install-bridge` -> AE Prefs allow-scripts+network -> Window>mcp-bridge-auto.jsx -> retry getProjectInfo | AE_EXPRESSION_LIBRARY | aexp_* 5 | os_motion_qa; video route #3 | operator installs+opens panel, then I prove |
 | ~/hyperframes | ACTIVE | proven HTML->mp4 title spine | none | (HYBRID spine) | - | video route #4 | use in edits |
 | ~/remotion | QUEUED | programmable React video (data-driven MG); large, not yet wired | npm install in a project | (video route #4) | - | video route #4 (programmable) | scaffold a Remotion title comp when needed |
 | ~/video-use | ACTIVE (cards) | conversational ffmpeg edit skill | install skill | VIDEO_USE_EDIT | vuse_* 8 | os_premiere_compliance_gate; route #5 | run a proof edit later |
