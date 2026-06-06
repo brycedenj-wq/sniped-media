@@ -31,3 +31,8 @@
 
 ## How the OS handles Alma Love going forward
 Route = `video_campaign` / `social_rollout` (both now load COMMERCIAL_CRAFT). After the shoot: ingest the footage, build the reel, run `os_reference_gate.py check <reel>` against the cards before delivery. Identity-safe: client brand work, drafts/review before any posting; the Sunday rollout is the client's call.
+
+## Edit-judgment (locked): not "looks good" , judged against the craft layer
+After the shoot, route the reel through: video_campaign + social_rollout + COMMERCIAL_CRAFT_LIBRARY, then GATE it:
+`python3 scripts/os_reference_gate.py check <alma_reel.mp4> --type comedy`
+Target band ASL ~1.5-3.5s (energetic), product (swimsuit) = the longest clean hold, cuts on the upbeat-80s beat. Must clear TOO_SLOW / TOO_REPETITIVE / LOW_SHOT_VARIATION / NO_PAYOFF before it is called done. No posting/delivery without approval.
