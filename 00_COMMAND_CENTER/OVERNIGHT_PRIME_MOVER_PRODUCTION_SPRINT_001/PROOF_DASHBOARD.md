@@ -57,3 +57,14 @@
 - **Landing:** hero now uses the real Blender Seal (was a CSS circle).
 - **Spend this pass: 0 Higgsfield credits** (Blender + ffmpeg + free-tier ElevenLabs only). Balance unchanged at 546.5.
 - **Weakest remaining buyer-facing artifact: the PIL sales deck** (rebuild to premium before a serious buyer). Full scored film still pending (current = teaser).
+
+---
+
+## BUYER-FACING HARDENING PASS 001 (2026-06-06)
+- **Premium deck REBUILT.** Live Figma file (`o0fuh72mlvOPi8ZTYPGbCR`): color variables + Bodoni Moda type + cover/claim/pricing slides (real, screenshot-verified). Complete 12-slide buyer deck rendered via headless Chrome with real Didot/Bodoni 72 + all strong images: `08_DESIGN_DECK/deck/SOLE_CATEGORY_BRIEF_DECK.pdf`. PIL slideware retired as the deliverable.
+- **Name gate (real data):** SOLE killed as public name. Live domain + trademark checks: bare premium .coms exhausted; SOVRA/ONORA/SOLUM each carry cross-class incumbents. Recommended buyer-facing name **SOVRA HOUSE** (`sovra.house` available) , PROVISIONAL, pending counsel clearance. `NAME_POSITIONING_GATE.md`.
+- **Film/audio finish plan** written (`07_AUDIO_VOICE/FILM_AUDIO_FINISH_PLAN.md`): teaser strengths, 60-90s gap, Suno-or-licensed music (deferred), v3 tag plan, sound map, render route, ~90-115cr estimate. No paid audio without go.
+- **Buyer package** assembled: `18_BUYER_FACING_PACKAGE/` (deck, teaser v2, seal finals, 5 stills, landing, one-pager, offer sheet, gates summary, what-is-held).
+- **Gates:** privacy SHIP (115 files, 0 leaks), max-readiness READY, elite-art ELITE, figma/design PASS (live). Premium-stack improved (Figma live used); Adobe-edit + live-CRM justified-underuse. Audio PARTIAL (music deferred).
+- **Spend this pass: 0 Higgsfield credits.** Figma + Chrome + domain checks + free-tier audio only. Balance 546.5.
+- **Showable now (private):** deck, teaser, seal, stills, landing. **Held:** public name, full film, music, live booking, outreach, hosting, payment, identity.
