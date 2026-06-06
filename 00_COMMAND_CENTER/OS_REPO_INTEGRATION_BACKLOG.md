@@ -4,7 +4,7 @@ Survey 2026-06-05 (read-first). Status: ACTIVE / PREFERRED-PENDING / QUEUED / DI
 
 | Repo / folder | Status | Reason | Setup needed | OS library affected | Cards | Gates/routes | Next action |
 |---|---|---|---|---|---|---|---|
-| ~/premiere-pro-mcp | PREFERRED-PENDING | 269-tool Premiere MCP; CEP copy installed, bridge not yet visible | full-quit+relaunch Premiere, Start Bridge, new session | PREMIERE_MCP_OPERATOR | premc_* 13 | os_premiere_compliance_gate; video route #1 | operator restarts Premiere -> proof |
+| ~/premiere-pro-mcp | ACTIVE-READ-PROVEN | 269-tool Premiere MCP; bridge LIVE + read-proof 2026-06-05 (PREMIERE_MCP_PROOF.md). Read tier ACTIVE; edit/export tier unproven | edit-and-export proof through os_premiere_compliance_gate for edit-tier | PREMIERE_MCP_OPERATOR | premc_* 13 | os_premiere_compliance_gate; video route #1 | run smallest edit-and-export proof when a real job needs it |
 | ~/after-effects-mcp + Downloads/ae-mcp-setup | PREFERRED-PENDING | AE MCP built+registered; ScriptUI bridge manual | run setup-mac.sh / install-bridge, new session | AE_EXPRESSION_LIBRARY | aexp_* 5 | os_motion_qa; video route #3 | operator runs setup-mac.sh |
 | ~/hyperframes | ACTIVE | proven HTML->mp4 title spine | none | (HYBRID spine) | - | video route #4 | use in edits |
 | ~/remotion | QUEUED | programmable React video (data-driven MG); large, not yet wired | npm install in a project | (video route #4) | - | video route #4 (programmable) | scaffold a Remotion title comp when needed |

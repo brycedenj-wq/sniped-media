@@ -9,7 +9,7 @@ BOOT EVERY SESSION:
 
 ## YOUR NEXT MOVE = manual activations + pick (default = HOLD)
 Nothing creative is in progress. Pending MANUAL steps to unlock editing + sound:
-1. Premiere: fully QUIT (Cmd+Q) + relaunch -> Window>Extensions>MCP Bridge -> temp dir /tmp/premiere-mcp-bridge -> Start Bridge -> NEW Claude session. (CEP copy fix already applied.)
+1. Premiere: DONE at READ tier (2026-06-05 22:31 PDT, PREMIERE_MCP_PROOF.md). Bridge live, 4 read-only calls passed, route = ACTIVE-READ-PROVEN. REMAINING for edit-tier ACTIVE: one real edit-and-export proof through os_premiere_compliance_gate (no creative spend; smallest test sequence). Do not claim edit/export until then.
 2. After Effects: `cd ~/after-effects-mcp && npm run install-bridge` (or run Downloads/ae-mcp-setup/setup-mac.sh) -> new session.
 3. ElevenLabs (sound dept): create an API key WITH "11 Agents" write scope, then `claude mcp add ElevenLabs -e ELEVENLABS_API_KEY=<key> -- uvx elevenlabs-mcp` -> new session. Pick a music engine (Suno or Udio).
 Then options: HOLD; or point the layer at a project (`os_library.py load <type>`); or resume AXIS (still NOT MAX, gates hold it honest). No spend/posting/outreach without go.
