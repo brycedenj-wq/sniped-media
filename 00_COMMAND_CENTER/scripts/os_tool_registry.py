@@ -94,7 +94,7 @@ TOOLS = {
     "blender.gated":{"kind":"local","status":"ACTIVE","call":"scripts/os_blender_gate.py","note":"PROVEN allow in-sandbox + deny ~/.ssh 2026-06-05. The security contract for blender.native; logs every action","role":"3d_gate"},
     "local.aerender":{"kind":"local","status":"ACTIVE","call":"/Applications/Adobe After Effects 2026/aerender","note":"PROVEN aerender 26.2.1x2 2026-06-05. CLI title/motion render; needs an .aep project to exercise a real comp","role":"motion_render"},
     "hyperframes":  {"kind":"local","status":"ACTIVE","call":"npx hyperframes","note":"PROVEN doctor v0.6.73 (ffmpeg+chrome ok) 2026-06-05. OWNS code-defined HTML motion/video; Docker only for containerized render","role":"html_motion"},
-    "red.premiere": {"kind":"app","status":"RED","call":"-","note":"Premiere not installed; cloud Premiere ops via mcp.adobe.* (quick_cut/video_resize) + ffmpeg + AE cover the lane"},
+    "red.premiere": {"kind":"app","status":"AMBER","call":"PREMIERE_HANDOFF","note":"Premiere Pro 2026 INSTALLED (verified 2026-06-05); no headless/MCP authoring -> use PREMIERE_HANDOFF package (EDL + notes). Cloud cuts via mcp.adobe.quick_cut. Latest truth: OS_STALE_ASSUMPTION_LEDGER premiere."},
     # ---- named adobe skills (AMBER: functions callable via MCP, discrete skills not confirmed in-chat) ----
     "skill.adobe.batch_edit":{"kind":"skill","status":"AMBER","call":"adobe-batch-edit-photos","note":"use mcp.adobe.* loop as substitute"},
     "skill.adobe.social_variations":{"kind":"skill","status":"AMBER","call":"adobe-create-social-variations","note":"use mcp.adobe.crop_resize multi-aspect"},

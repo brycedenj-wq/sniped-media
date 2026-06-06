@@ -1,11 +1,17 @@
 # OS_CURRENT_STATE , what is true NOW
 
-> Single source of truth for the active session. Overwrite at session end. (Updated 2026-06-04.)
+> Single source of truth for the active session. Overwrite at session end. (Updated 2026-06-05.)
+> NEWEST COMMITTED TRUTH WINS. If an older line below conflicts with a newer commit, the commit wins. Run os_current_state_boot.py to load current state before any strategy/build/audit/money/tool/MAX claim.
+
+## AS OF 2026-06-05 (latest truth)
+- **Start Here is OPERATING CODE** (commit 85f99098): 935 technique cards, 11 operator libraries as views, project-type loader (os_library.py), Start Here compliance gate, front door os_ask.py. Dashboard: OS_STARTHERE_OPERATIONALIZATION_DASHBOARD.md. NOT reference anymore.
+- **CURRENT STATE FIRST enforcement layer** built this session: os_current_state_boot.py, os_tool_reality_check.py, os_stale_assumption_gate.py (+ OS_STALE_ASSUMPTION_LEDGER.csv), os_max_readiness_gate.py, OS_NO_DUMB_TOOL_SKIPS.md, OS_CURRENT_STATE_FIRST_STANDARD.md.
+- **Tool reality (verified, not assumed):** Blender ACTIVE (object-space proof). Premiere Pro 2026 INSTALLED (MCP-authoring RED -> PREMIERE_HANDOFF). Adobe ACTIVE + premium-stack DEFAULT-ON (not optional). Higgsfield ACTIVE. Figma ACTIVE. After Effects aerender installed but library thin (corpus gap).
+- **Money lane:** Prime Mover campaign-house ACTIVE; OLD SNIPED archive/fallback only (commit fdc4e64). GRAND MONEY PLAY = Campaign Direction Sprint -> World Build.
+- **AXIS is NOT MAX** (compliance + higgsfield gates fail it). No creative run in progress.
 
 ## ACTIVE MISSION (only one)
-**PAUSED at operator line. Read OS_OPERATOR_HANDOFF.md first. PROOF CELL 001 built (2026-06-04): faceless machine proof , certified asset pair + 5-rail proof package, $0 spend, nothing posted. OS_PROOFCELL_001.md. Proof loops staged, awaiting operator go on any spend/posting/domain/public-name. NOT a crowned lane.**
-
-**NONE ACTIVE , start-here folder certification COMPLETE (98/98). Await next direction.**
+**NONE creative. Enforcement-layer build complete. Await operator direction. No spend/posting/outreach/hosting/identity exposure without explicit go.**
 
 
 ## Status

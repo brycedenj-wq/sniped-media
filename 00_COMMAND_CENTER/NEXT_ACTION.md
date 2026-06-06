@@ -1,23 +1,20 @@
 # NEXT ACTION
 
-## STATUS: OS MAX DEMO 001 = COMPLETE + PARKED (2026-06-04)
+## STATUS: CURRENT STATE FIRST enforcement layer = COMPLETE (2026-06-05)
 
-The internal A-Z movie of the machine is built, committed (`9ef69f5`), and inspectable at:
-`00_COMMAND_CENTER/OS_MAX_DEMO_001/` , start at `00_OVERVIEW_BOARD.md`.
+Built and committed the stale-assumption enforcement layer on top of the Start Here operationalization (85f99098). The OS now loads current state and verifies tool reality before any strategy/build/audit/money/tool/MAX claim. Newest committed truth wins.
 
-It decided NOTHING by design. Nothing posted, named, spent, or crowned.
+BOOT EVERY SESSION:
+`python3 00_COMMAND_CENTER/scripts/os_current_state_boot.py` (writes OS_BOOT_REPORT.md).
 
-## YOUR NEXT MOVE = pick from the approval menu
-See `OS_MAX_DEMO_001/10_DECISION_REPORT/decision_report.md`. Default = HOLD.
-1. Run the proof loop (needs Privacy + ToS first) [LEGAL]
-2. Legal pass on the NOW-set stubs [LEGAL]
-3. Brand checklist , clear a name [LEGAL/PROOF]
-4. Fresh generation (~2cr still / ~18cr clip) [spend]
-5. Build a NOW skill (7x7-repurpose or validation-gate) [build]
-6. Stage a rail deeper (method A or print C) [PROOF]
-7. HOLD , leave it parked.
+## YOUR NEXT MOVE = pick (default = HOLD)
+Nothing creative is in progress. No lane crowned. Options when you give a go:
+1. HOLD , enforcement layer parked, no spend.
+2. Point the layer at a real project: `os_library.py load <type>` then build behind the gates.
+3. Refresh any other stale doc the boot report flags.
+4. Resume the AXIS max-stack rebuild (still NOT MAX; the gates will hold it honest).
 
-Nothing proceeds without one explicit go.
+Nothing proceeds without one explicit go. No spend/posting/outreach/hosting/identity exposure.
 
 
 ---
