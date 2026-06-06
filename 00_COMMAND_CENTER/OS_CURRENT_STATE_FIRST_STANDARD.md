@@ -2,6 +2,17 @@
 
 LOCKED 2026-06-05. The OS must stop acting from yesterday's truth. Before any strategy, build, audit, money decision, creative run, tool decision, or MAX claim, it loads current state and verifies tool reality. **Newest committed truth wins.**
 
+## PERMANENT OPERATING LAW (NOT OPTIONAL)
+Before ANY future build, money decision, audit, creative run, tool decision, or MAX claim, the OS MUST run, in order:
+1. `os_current_state_boot.py`
+2. `os_tool_reality_check.py project <project_type>`
+3. `os_library.py load <project_type>`
+4. `os_stale_assumption_gate.py check "<claim>"`
+5. project execution ONLY after 1-4
+6. `os_max_readiness_gate.py check <proof.json>` before calling anything MAX / ELITE / READY / COMPLETE
+
+This boot protocol is mandatory. Skipping it is itself a stale-assumption failure.
+
 ## Why this exists (the disease it cures)
 - Tools were marked missing after they were proven (Premiere, Blender).
 - Old SNIPED kept resurfacing after it was archived.
