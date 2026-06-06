@@ -1,9 +1,14 @@
 # OS ELEVENLABS MCP AUDIT
 
-> Surveyed 2026-06-06. Status: **PREFERRED-PENDING** (not registered; one key away).
+> Surveyed 2026-06-06. Status: **ACTIVE (read-only verified)**. Registered as `ElevenLabs` (absolute-path `uvx elevenlabs-mcp`), connected, proven via check_subscription + list_models + search_voices. Generation/calls still HELD behind explicit go.
 
-## What exists
-- No ElevenLabs MCP registered (claude mcp list: absent). A nested copy lives at `~/Documents/BJ-WIKI/elevenlabs-mcp` (do not double-register).
+## Verified state (2026-06-06 post-restart)
+- Registered + connected. Account tier: **FREE** (0 / 10,000 chars used this month, 3 voice slots, instant + professional cloning NOT available on free, no open invoices).
+- Read-only proof done: `check_subscription`, `list_models` (10 models incl `eleven_v3`, `eleven_multilingual_v2`, `eleven_flash_v2_5`, `eleven_turbo_v2_5`), `search_voices` (premade library). NO audio generated, NO agent created, NO call placed.
+- Duplicate cleanup: a second lowercase `elevenlabs` server (bare `uvx`, **same** API key `sk_d1e2…b65f`) was found and **removed** from user config. Only the verified capital `ElevenLabs` remains. The key was the same known key, not an unknown one.
+
+## What exists (original survey, retained)
+- A nested copy lives at `~/Documents/BJ-WIKI/elevenlabs-mcp` (do not double-register).
 - The OS has the voice-agent **blueprint** carded: ElevenLabs ConvAI + Twilio outbound-call n8n workflow (`POST /v1/convai/twilio/outbound-call`), post-call webhook -> transcript-summary -> structured JSON -> Airtable.
 
 ## Activation (the exact step)
