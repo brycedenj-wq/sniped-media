@@ -64,4 +64,4 @@ Per `os_proof_to_cash_router` (ACTIVE lane, held for go):
 - Tool-reality delta committed to: `00_COMMAND_CENTER/scripts/os_tool_registry.py`
 
 ## L. Commit hash
-See SESSION_LOG / git log (added at commit time).
+**a0cacde** (branch main, AI-Brain-Refinery). Sprint folder + tool-registry deltas + session log + underuse ledger.
