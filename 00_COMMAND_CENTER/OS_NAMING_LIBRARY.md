@@ -47,3 +47,10 @@ python3 scripts/os_name_gate.py score "Sovra" --suffix House   # 14-criteria sco
 python3 scripts/os_name_gate.py batch <namesfile>              # score a list, ranked
 ```
 The gate SCORES heuristically and emits the EXACT domain + trademark queries to run (via the Vercel domain MCP + USPTO/web). It never claims legal clearance , that is counsel's call.
+
+## 8. HARDENING UPDATE (2026-06-06) , incumbent-aware tiers + legal-heavy weights
+- **Matrix re-weighted legal-heavy:** trademark_risk 3->5, distinctiveness 3->4, crowded_bar 2->3, search_uniqueness 2->3; premium_feel + big_idea_fit 3->2. Idea/sound can no longer outvote legal risk.
+- **Gate is now incumbent-aware:** `KNOWN_INCUMBENTS` overrides the optimistic heuristic. A real incumbent that is DESIGN/MARKETING-adjacent (our Class 35/42) crushes the score; a cross-class incumbent caps it to COUNSEL-REQUIRED; a coined name with no known incumbent caps trademark_risk at 8 (never "cleared").
+- **Four risk tiers** every name resolves to: PUBLIC-FACING SAFE-ish (pending clearance) · COUNSEL REQUIRED · HIGH-RISK / DO NOT USE · INTERNAL CODENAME ONLY.
+- **Structural law:** there is NO clean unclaimed pronounceable name. Even invented 5-letter .coms are squatted; fresh coinages keep landing in pharma/tools/fashion. The engine + gate exist to TIER and ROUTE to counsel, not to find a free word. Heuristic SAFE-ish always means "no incumbent FOUND yet," never "cleared."
+- **Hard rule:** design/marketing/fashion/home-adjacent incumbent = DO NOT USE for a brand house, regardless of sound/idea score.

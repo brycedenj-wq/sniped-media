@@ -63,3 +63,12 @@ Domain strategy for all: acquire `[name].house` (matches the spoken wordmark "na
 - **Internal codename:** SOLE (unchanged; do not churn file names).
 - **DO NOT USE PUBLICLY until counsel clears** the chosen mark in Class 35/42 and the domain is purchased. This gate flags risk; it does not grant clearance.
 - **Domain purchase recommendation (HELD for approval):** `sovra.house` ($28) + `solumhouse.com` ($11) hedge. ~$40. Buy nothing without explicit go.
+
+---
+
+## SUPERSEDED BY HARDENING (2026-06-06) , see NAME_HARDENING_REPORT.md
+The provisional lead "SOVRA HOUSE" is DEMOTED after legal-hardening: SOVRA carries a procurement-SaaS incumbent with Class 35/42 adjacency = real exposure. Revised risk-managed order:
+1. **SOLUM HOUSE** , safest usable (incumbent isolated to Class 9 hardware).
+2. **SOVRAN HOUSE** , most legally conservative (no brand-services-class overlap).
+3. **SOVRA HOUSE** , strongest premium sound, but highest legal exposure (counsel-gated).
+KILL FOREVER (public): SOVEN, ONORA, LUMEN, VOREN. Internal codename: SOLE. No purchase; nothing crowned.

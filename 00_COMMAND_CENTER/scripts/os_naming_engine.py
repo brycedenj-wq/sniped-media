@@ -101,29 +101,48 @@ LANES={
  "domain":lane_domain,"suffix":lane_suffix,
 }
 
-def generate(n, lane=None):
-    items=[]
+_DICT={"sole","vault","seal","only","one","reserve","crucible","citadel","sovereign","hallmark","keystone",
+ "monolith","obelisk","bullion","sigil","aegis","plinth","vitrine","mark","stamp","crest","prime","solitaire",
+ "cornerstone","singular","lumen","aurum","unum","solus","signum","sigillum","arx","custos","veritas","petra","regnum","monos"}
+_TECHY=("ify","sy","hub","ster","pay","fi","bit","app","tech","io","sync","ware","verse","gpt","bot")
+_PHARMA=("zil","dra","xa","zep","vyx","nuv","mab")
+
+def _blocked(name, avoid, clean):
+    cl="".join(c for c in name.lower() if c.isalpha())
+    if any(av and av in cl for av in avoid): return True
+    if clean:
+        if cl in _DICT: return True
+        if any(t in cl for t in _TECHY) or any(p in cl for p in _PHARMA): return True
+    return False
+
+def generate(n, lane=None, avoid=None, clean=False):
+    avoid=avoid or []
+    items=[]; seen=set()
     lanes = [lane] if lane else list(LANES)
-    # round-robin across lanes for a balanced spread
     pools={L:LANES[L]() for L in lanes}
     idx={L:0 for L in lanes}
     while len(items)<n and any(idx[L]<len(pools[L]) for L in lanes):
         for L in lanes:
             if idx[L]<len(pools[L]):
-                items.append({"name":pools[L][idx[L]],"lane":L})
-                idx[L]+=1
+                nm=pools[L][idx[L]]; idx[L]+=1
+                base=nm.split(" (")[0]
+                if _blocked(base, avoid, clean): continue
+                key=base.lower()
+                if key in seen: continue
+                seen.add(key); items.append({"name":nm,"lane":L})
                 if len(items)>=n: break
     return items
 
 def main():
     ap=argparse.ArgumentParser(); sub=ap.add_subparsers(dest="cmd")
-    g=sub.add_parser("generate"); g.add_argument("--n",type=int,default=120); g.add_argument("--lane",default=None); g.add_argument("--json",action="store_true")
+    g=sub.add_parser("generate"); g.add_argument("--n",type=int,default=120); g.add_argument("--lane",default=None); g.add_argument("--json",action="store_true"); g.add_argument("--avoid",default=""); g.add_argument("--clean",action="store_true")
     sub.add_parser("lanes"); sub.add_parser("roots")
     a=ap.parse_args()
     if a.cmd=="lanes": print("\n".join(LANES)); return
     if a.cmd=="roots": print(json.dumps(ROOTS,indent=2)); return
     if a.cmd=="generate":
-        items=generate(a.n,a.lane)
+        avoid=[x.strip().lower() for x in a.avoid.split(",") if x.strip()]
+        items=generate(a.n,a.lane,avoid=avoid,clean=a.clean)
         if a.json: print(json.dumps(items,indent=2))
         else:
             for i,it in enumerate(items,1): print(f"{i:3}. [{it['lane']:>12}] {it['name']}")
