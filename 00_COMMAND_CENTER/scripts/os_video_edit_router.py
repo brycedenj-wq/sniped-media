@@ -85,10 +85,15 @@ def higgsfield_plugin_present():
 def classify(d):
     rows=[]
     # 1 DIRECT_PREMIERE_AUTOMATED , the 269-tool Premiere MCP drives Premiere DIRECTLY when the app is open
-    if d.get("premiere_mcp"):
+    proven = os.path.exists(os.path.join(CMD,"PREMIERE_MCP_PROOF.md"))
+    if d.get("premiere_mcp") and proven:
         rows.append(("DIRECT_PREMIERE_AUTOMATED","ACTIVE","FULL_AUTO",
-          f"Premiere MCP configured ({', '.join(str(x) for x in d['premiere_mcp'])}). 269 tools drive Premiere directly while open: requires project open + Window>Extensions>MCP Bridge running + refreshed Claude session. Remove silences, bad-take cut, rough cut, ripple/roll/slip/slide, A-roll/B-roll, captions, effects search, export.",
-          "PREFERRED max-edit route. Confirm bridge live (os_premiere_compliance_gate), then edit natively. ffmpeg is only the assembly/export spine."))
+          "Premiere MCP configured + PROVEN (PREMIERE_MCP_PROOF.md): 269 tools drive Premiere directly while open.",
+          "PREFERRED max-edit route. Edit natively; ffmpeg is only the assembly/export spine."))
+    elif d.get("premiere_mcp"):
+        rows.append(("DIRECT_PREMIERE_AUTOMATED","PENDING-PROOF","FULL_AUTO_PENDING",
+          f"Premiere MCP configured ({', '.join(str(x) for x in d['premiere_mcp'])}) + CEP copy installed, BUT NOT proof-tested: the MCP Bridge panel is not yet confirmed visible/live in Premiere. Config present != bridge live (do not call ACTIVE).",
+          "MANUAL: fully QUIT Premiere (Cmd+Q) and relaunch -> Window>Extensions>MCP Bridge -> set temp dir /tmp/premiere-mcp-bridge -> Start Bridge -> NEW Claude session -> read project info. Then write PREMIERE_MCP_PROOF.md to flip ACTIVE. Until then ffmpeg/HYBRID is interim spine, not the chosen max editor."))
     elif d["premiere_app"]:
         rows.append(("DIRECT_PREMIERE_AUTOMATED","NEEDS_INSTALL","FULL_AUTO_PENDING",
           "Premiere Pro INSTALLED. The 269-tool GitHub Premiere Pro MCP is the PREFERRED automated route but is NOT YET INSTALLED. This is direct control (app open), not headless.",
@@ -123,7 +128,7 @@ def classify(d):
         hf = "HyperFrames project(s) present" if d["hf_projects"] else "ffmpeg-only (no HF project yet)"
         rows.append(("HYPERFRAMES_PLUS_FFMPEG_AUTOMATED","ACTIVE","FULL_AUTO",
           f"ffmpeg + xfade callable; {hf}. drawtext={'yes' if d['drawtext'] else 'NO (titles via HyperFrames render, not ffmpeg text)'}.",
-          "HyperFrames renders animated titles/cards (HTML->mp4); ffmpeg normalizes, applies xfade transitions, assembles, exports all aspects."))
+          "Programmable motion: Remotion (React, ~/remotion) OR HyperFrames render animated titles/cards (HTML->mp4); ffmpeg normalizes, applies xfade transitions, assembles, exports all aspects. Remotion = code-defined data-driven motion graphics; HyperFrames = HTML/GSAP titles."))
     else:
         rows.append(("HYPERFRAMES_PLUS_FFMPEG_AUTOMATED","BLOCKED","BLOCKED","ffmpeg or xfade missing.","-"))
     # 6 HYBRID_AUTOMATED
@@ -141,8 +146,10 @@ def classify(d):
         "Not triggered" if any_auto else "All automated routes blocked -> build the handoff package."))
     return rows
 
-# route order per operator standard: Premiere MCP native -> Higgsfield-in-Premiere/AE -> AE -> HyperFrames -> ffmpeg spine/fallback
-PRIORITY=["DIRECT_PREMIERE_AUTOMATED","AFTER_EFFECTS_AUTOMATED","ADOBE_VIDEO_MCP_AUTOMATED",
+# route order (operator standard, proof-based 2026-06-05):
+# 1 Premiere direct (MCP Bridge) 2 Adobe video MCP 3 AE MCP/render 4 Remotion/HyperFrames programmable
+# 5 video-use/ffmpeg 6 CapCut (only if proven later) 7 handoff only if all automation fails
+PRIORITY=["DIRECT_PREMIERE_AUTOMATED","ADOBE_VIDEO_MCP_AUTOMATED","AFTER_EFFECTS_AUTOMATED",
           "HYBRID_AUTOMATED","HYPERFRAMES_PLUS_FFMPEG_AUTOMATED","CAPCUT_AUTOMATED","BLOCKED_AFTER_VERIFICATION"]
 
 def write_matrix(rows):
@@ -165,7 +172,7 @@ def pick(rows=None):
     by={r[0]:r for r in rows}
     # preferred route pending install? surface it (do not silently default to ffmpeg)
     pending=by.get("DIRECT_PREMIERE_AUTOMATED")
-    pending=pending if (pending and pending[1]=="NEEDS_INSTALL") else None
+    pending=pending if (pending and pending[1] in ("NEEDS_INSTALL","PENDING-PROOF")) else None
     # working pick: prefer turnkey (ACTIVE + FULL_AUTO) in route order, then AVAILABLE, then conditional
     for want in (lambda r: r[1]=="ACTIVE" and r[2]=="FULL_AUTO",
                  lambda r: r[1] in ("ACTIVE","AVAILABLE") and r[2] not in ("BLOCKED",),):
@@ -177,7 +184,7 @@ def pick(rows=None):
 def cmd_pick():
     r,pending=pick()
     if pending:
-        print(f"PREFERRED ROUTE PENDING: DIRECT_PREMIERE_AUTOMATED (Premiere MCP) , NEEDS_INSTALL")
+        print(f"PREFERRED ROUTE PENDING: DIRECT_PREMIERE_AUTOMATED (Premiere MCP) , {pending[1]}")
         print(f"  {pending[4]}")
         print(f"  Until installed, the interim working route is below (NOT the chosen max editor):\n")
     print(f"SELECTED ROUTE: {r[0]}  ({r[1]} / {r[2]})")

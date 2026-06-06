@@ -9,6 +9,9 @@
 - **Tool reality (verified, not assumed):** Blender ACTIVE (object-space proof). Premiere Pro 2026 INSTALLED (MCP-authoring RED -> PREMIERE_HANDOFF). Adobe ACTIVE + premium-stack DEFAULT-ON (not optional). Higgsfield ACTIVE. Figma ACTIVE. After Effects aerender installed but library thin (corpus gap).
 - **Money lane:** Prime Mover campaign-house ACTIVE; OLD SNIPED archive/fallback only (commit fdc4e64). GRAND MONEY PLAY = Campaign Direction Sprint -> World Build.
 - **AXIS is NOT MAX** (compliance + higgsfield gates fail it). No creative run in progress.
+- **Premiere MCP = PENDING-PROOF** (not ACTIVE): CEP symlink replaced with real copy; bridge not yet visible. MANUAL: full-quit+relaunch Premiere -> Window>Extensions>MCP Bridge -> Start Bridge -> new Claude session -> write PREMIERE_MCP_PROOF.md. AE MCP also pending (run ae-mcp-setup/setup-mac.sh).
+- **SOUND department seeded** (was the RED lane): ElevenLabs MCP available (uvx elevenlabs-mcp, NEEDS operator API key w/ Agents-write scope) + 7 elv_ cards + voice-agent/SDR/n8n/booking cards + os_sound_gate. Music engine (Suno/Udio) still TBD. Store 1010 cards, 21 libraries.
+- **BJ-WIKI** second brain integrated at ~/Documents/BJ-WIKI (sync plan OS_TO_BJ_WIKI_SYNC_PLAN.md + os_bj_wiki_sync.py; hot-cache currently newer than this file). Video route order updated (Premiere->AdobeMCP->AE->Remotion/HyperFrames->video-use/ffmpeg->CapCut->handoff).
 
 ## ACTIVE MISSION (only one)
 **NONE creative. Enforcement-layer build complete. Await operator direction. No spend/posting/outreach/hosting/identity exposure without explicit go.**

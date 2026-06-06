@@ -69,8 +69,18 @@ PREFIX_LIBS={
  "PREMIERE_MCP_OPERATOR_LIBRARY":"premc_",
  "HIGGSFIELD_ADOBE_PLUGIN_LIBRARY":"hfplug_",
  "AUTOEDIT_CREATOR_MODE_LIBRARY":"autoedit_",
+ "ELEVENLABS_OPERATOR_LIBRARY":"elv_",
+ "VOICE_AGENT_AUTOMATION_LIBRARY":"vagent_",
+ "N8N_AUTOMATION_LIBRARY":"n8n_",
+ "GOOGLE_WORKSPACE_AUTOMATION_LIBRARY":"gws_",
+ "AI_AUDIT_OFFER_LIBRARY":"audit_",
+ "SALES_AGENT_LIBRARY":"sagent_",
+ "VIDEO_USE_EDIT_LIBRARY":"vuse_",
+ "AE_EXPRESSION_LIBRARY":"aexp_",
 }
-SHORT.update({"premiere_mcp":"PREMIERE_MCP_OPERATOR_LIBRARY","higgsfield_adobe":"HIGGSFIELD_ADOBE_PLUGIN_LIBRARY","autoedit":"AUTOEDIT_CREATOR_MODE_LIBRARY"})
+SHORT.update({"premiere_mcp":"PREMIERE_MCP_OPERATOR_LIBRARY","higgsfield_adobe":"HIGGSFIELD_ADOBE_PLUGIN_LIBRARY","autoedit":"AUTOEDIT_CREATOR_MODE_LIBRARY",
+ "elevenlabs":"ELEVENLABS_OPERATOR_LIBRARY","voice_agent":"VOICE_AGENT_AUTOMATION_LIBRARY","n8n":"N8N_AUTOMATION_LIBRARY",
+ "google_workspace":"GOOGLE_WORKSPACE_AUTOMATION_LIBRARY","ai_audit":"AI_AUDIT_OFFER_LIBRARY","sales_agent":"SALES_AGENT_LIBRARY"})
 def cards_in_prefix(pref): return [c for c in CARDS if str(c.get("id","")).startswith(pref)]
 
 # project type -> ordered libraries that MUST load before executing
