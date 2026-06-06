@@ -60,16 +60,39 @@ def detect():
     except Exception: d["capcut_lib"]=False
     d["capcut_cards"]=capcut_cards()
     d["adobe_video_mcp"]=adobe_video_mcp()
+    d["premiere_mcp"]=premiere_mcp_configured()
+    d["higgsfield_plugin"]=higgsfield_plugin_present()
     return d
+
+def premiere_mcp_configured():
+    # the 269-tool GitHub Premiere Pro MCP, registered with Claude Code, + MCP Bridge CEP extension
+    import os
+    hits=[]
+    for cfg in [os.path.expanduser("~/.claude.json"), os.path.expanduser("~/.config/claude/mcp.json")]:
+        try:
+            if os.path.exists(cfg) and "premiere" in open(cfg,errors="ignore").read().lower(): hits.append(cfg)
+        except Exception: pass
+    if glob.glob("/Library/Application Support/Adobe/CEP/extensions/*[Mm][Cc][Pp]*") or \
+       glob.glob(os.path.expanduser("~/Library/Application Support/Adobe/CEP/extensions/*[Mm][Cc][Pp]*")): hits.append("MCP Bridge CEP ext")
+    return hits
+
+def higgsfield_plugin_present():
+    import os
+    return glob.glob("/Library/Application Support/Adobe/CEP/extensions/*[Hh]iggs*") or \
+           glob.glob(os.path.expanduser("~/Library/Application Support/Adobe/CEP/extensions/*[Hh]iggs*"))
 
 # route classification. automation: FULL_AUTO / PROJECT_FILE_BRIDGE / CONDITIONAL / BLOCKED
 def classify(d):
     rows=[]
-    # 1 DIRECT_PREMIERE_AUTOMATED
-    if d["premiere_app"]:
-        rows.append(("DIRECT_PREMIERE_AUTOMATED","BLOCKED","PROJECT_FILE_BRIDGE",
-          "Premiere Pro 2026 INSTALLED but no supported headless/CLI render; ExtendScript needs the GUI app open. Not unattended.",
-          "Generate FCPXML/EDL (this router) that Premiere opens for an optional finishing pass = partial automated bridge."))
+    # 1 DIRECT_PREMIERE_AUTOMATED , the 269-tool Premiere MCP drives Premiere DIRECTLY when the app is open
+    if d.get("premiere_mcp"):
+        rows.append(("DIRECT_PREMIERE_AUTOMATED","ACTIVE","FULL_AUTO",
+          f"Premiere MCP configured ({', '.join(str(x) for x in d['premiere_mcp'])}). 269 tools drive Premiere directly while open: requires project open + Window>Extensions>MCP Bridge running + refreshed Claude session. Remove silences, bad-take cut, rough cut, ripple/roll/slip/slide, A-roll/B-roll, captions, effects search, export.",
+          "PREFERRED max-edit route. Confirm bridge live (os_premiere_compliance_gate), then edit natively. ffmpeg is only the assembly/export spine."))
+    elif d["premiere_app"]:
+        rows.append(("DIRECT_PREMIERE_AUTOMATED","NEEDS_INSTALL","FULL_AUTO_PENDING",
+          "Premiere Pro INSTALLED. The 269-tool GitHub Premiere Pro MCP is the PREFERRED automated route but is NOT YET INSTALLED. This is direct control (app open), not headless.",
+          "INSTALL FIRST: clone the GitHub premiere-pro MCP, register with Claude Code, open a Premiere project, Window>Extensions>MCP Bridge (running), refresh/new Claude session. Do NOT default to ffmpeg as the max editor; ffmpeg is interim spine only. Headless render stays N/A; FCPXML/EDL is a secondary bridge."))
     else:
         rows.append(("DIRECT_PREMIERE_AUTOMATED","BLOCKED","BLOCKED","Premiere not installed.","-"))
     # 2 ADOBE_VIDEO_MCP_AUTOMATED
@@ -118,8 +141,9 @@ def classify(d):
         "Not triggered" if any_auto else "All automated routes blocked -> build the handoff package."))
     return rows
 
-PRIORITY=["HYBRID_AUTOMATED","HYPERFRAMES_PLUS_FFMPEG_AUTOMATED","AFTER_EFFECTS_AUTOMATED",
-          "ADOBE_VIDEO_MCP_AUTOMATED","CAPCUT_AUTOMATED","DIRECT_PREMIERE_AUTOMATED","BLOCKED_AFTER_VERIFICATION"]
+# route order per operator standard: Premiere MCP native -> Higgsfield-in-Premiere/AE -> AE -> HyperFrames -> ffmpeg spine/fallback
+PRIORITY=["DIRECT_PREMIERE_AUTOMATED","AFTER_EFFECTS_AUTOMATED","ADOBE_VIDEO_MCP_AUTOMATED",
+          "HYBRID_AUTOMATED","HYPERFRAMES_PLUS_FFMPEG_AUTOMATED","CAPCUT_AUTOMATED","BLOCKED_AFTER_VERIFICATION"]
 
 def write_matrix(rows):
     with open(MATRIX,"w",newline="") as f:
@@ -139,14 +163,23 @@ def cmd_routes():
 def pick(rows=None):
     if rows is None: rows=classify(detect())
     by={r[0]:r for r in rows}
-    for route in PRIORITY:
-        r=by.get(route)
-        if r and r[1] in ("ACTIVE","AVAILABLE") and r[2]!="BLOCKED":
-            return r
-    return by["BLOCKED_AFTER_VERIFICATION"]
+    # preferred route pending install? surface it (do not silently default to ffmpeg)
+    pending=by.get("DIRECT_PREMIERE_AUTOMATED")
+    pending=pending if (pending and pending[1]=="NEEDS_INSTALL") else None
+    # working pick: prefer turnkey (ACTIVE + FULL_AUTO) in route order, then AVAILABLE, then conditional
+    for want in (lambda r: r[1]=="ACTIVE" and r[2]=="FULL_AUTO",
+                 lambda r: r[1] in ("ACTIVE","AVAILABLE") and r[2] not in ("BLOCKED",),):
+        for route in PRIORITY:
+            r=by.get(route)
+            if r and want(r): return r, pending
+    return by["BLOCKED_AFTER_VERIFICATION"], pending
 
 def cmd_pick():
-    r=pick()
+    r,pending=pick()
+    if pending:
+        print(f"PREFERRED ROUTE PENDING: DIRECT_PREMIERE_AUTOMATED (Premiere MCP) , NEEDS_INSTALL")
+        print(f"  {pending[4]}")
+        print(f"  Until installed, the interim working route is below (NOT the chosen max editor):\n")
     print(f"SELECTED ROUTE: {r[0]}  ({r[1]} / {r[2]})")
     print(f"  why: {r[4] if r[4] not in ('-','Not triggered') else r[3]}")
     if r[0]=="BLOCKED_AFTER_VERIFICATION":
@@ -207,7 +240,7 @@ def edl(out,clips):
 
 def selftest(outdir):
     os.makedirs(outdir,exist_ok=True)
-    log=[]; r=pick()
+    log=[]; r,_pending=pick()
     log.append(f"selected route: {r[0]} ({r[1]}/{r[2]})")
     # title + end cards: prefer existing HyperFrames renders (proves the HF route); else synth slates
     hf_intro=os.path.join(CMD,"AXIS_ELITE_DEMO_PACKAGE_001","05_MOTION","intro_title_hf.mp4")

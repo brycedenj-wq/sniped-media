@@ -43,7 +43,9 @@ Pull live with `os_ask.py "<problem>"` and `os_library.py show <LIBRARY>` at run
 
 ## 6. Video-edit route (AUTOMATED, not handoff-by-default)
 The edit is automated. Run `os_video_edit_router.py routes && os_video_edit_router.py pick` first; use the strongest automated route; a human handoff is allowed ONLY if every automated route is BLOCKED_AFTER_VERIFICATION. (Standard: OS_VIDEO_EDIT_AUTOMATION_STANDARD.md.)
-- **SELECTED: HYBRID_AUTOMATED** (verified 2026-06-05, selftest passed): HyperFrames renders titles/cards (HTML -> mp4); ffmpeg is the assembly spine (xfade transitions, scale/pad, trim-on-beat, 6s/15s/30s, 9:16/16:9/1:1 exports); the router auto-emits FCPXML + EDL so Premiere can open the cut for an OPTIONAL finishing pass (not required, not a default handoff).
+- **PREFERRED: DIRECT_PREMIERE_AUTOMATED via the 269-tool Premiere MCP** (status NEEDS_INSTALL). Install before the max run: clone the GitHub Premiere Pro MCP, register with Claude Code, open the Premiere project, Window>Extensions>MCP Bridge running, refresh the Claude session. Then edit natively (remove silences, transcript bad-take cut, rough cut, ripple/roll/slip/slide, A-roll/B-roll, captions, effects search, export). Run os_premiere_compliance_gate before calling the edit done.
+- Next-preferred: Higgsfield-in-Premiere/AE plugin (in-editor generate/reframe/remove-bg/upscale/2-frame transitions), then After Effects (aerender) for titles/motion-graphics.
+- **INTERIM (until Premiere MCP installed): HYBRID_AUTOMATED** (verified 2026-06-05, selftest passed): HyperFrames titles + ffmpeg assembly spine (xfade, trim-on-beat, 6s/15s/30s, 9:16/16:9/1:1) + auto-emitted FCPXML/EDL. ffmpeg is the spine, NOT the chosen max editor. Do not default to it when Premiere MCP can be installed.
 - After Effects (aerender, headless) is the heavier title/motion-graphics engine when needed; build a reusable titles.aep/build.jsx once.
 - Adobe video MCP (quick_cut/video_resize) available for cloud cut/reframe after asset upload.
 - CapCut the app is BLOCKED (not installed); its short-form/caption/hook DOCTRINE cards drive creative decisions inside the HYBRID route (OS_CAPCUT_DOCTRINE_AUDIT.md).

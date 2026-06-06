@@ -15,7 +15,13 @@ For any max campaign-film package, the motion/edit layer must resolve to exactly
 "Human handoff by default" is banned. Generating FCPXML / EDL / FCPXML that Premiere can open counts as a partial automated bridge, not a handoff.
 
 ## How the OS decides
-Run `os_video_edit_router.py routes` (probes every route, writes OS_VIDEO_EDIT_ROUTE_MATRIX.csv) then `os_video_edit_router.py pick`. Priority: HYBRID > HyperFrames+ffmpeg > After Effects > Adobe video MCP > CapCut > Premiere-direct > BLOCKED.
+Run `os_video_edit_router.py routes` (probes every route, writes OS_VIDEO_EDIT_ROUTE_MATRIX.csv) then `os_video_edit_router.py pick`. **Route order (operator standard, 2026-06-05): A check current state -> B load video cards -> C Premiere MCP native -> D Higgsfield-in-Premiere/AE -> E After Effects -> F HyperFrames -> G ffmpeg as assembly/export spine or fallback (NOT the default max editor).** ffmpeg/HyperFrames is the spine, not the chosen max edit system. Before any MAX video, run os_premiere_compliance_gate.py.
+
+## Premiere MCP (the preferred native route)
+The 269-tool GitHub Premiere Pro MCP drives Premiere directly while the app is open. Requirements (all must hold, else the route is BLOCKED with that exact reason): (1) a Premiere project open, (2) Window > Extensions > MCP Bridge running, (3) a new/refreshed Claude session after install. Capabilities: read active sequence, remove silences, transcript bad-take cutting, rough cut from scenes, ripple/roll/slip/slide, move clips to tracks, A-roll/B-roll, captions, effects/preset search, bulk rename + color, export, save reusable skills. Status on this machine: Premiere installed; the Premiere MCP itself is NEEDS_INSTALL (clone the GitHub repo + register with Claude Code). Do not default to ffmpeg while this is the preferred uninstalled route, install it for the max run.
+
+## Higgsfield-in-Premiere/AE (the in-editor generative route)
+The Higgsfield Adobe plugin (Window > Extensions > Higgsfield) generates video/images, reframes, removes background, upscales, draw-to-edit, and builds 2-frame transitions INSIDE Premiere/AE. Viewport-native; web app only for Shots/Angles/Skin-Enhancer/Popcorn.
 
 ## Verified machine state (2026-06-05)
 | Route | Status | Automation | Verdict |

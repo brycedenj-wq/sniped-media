@@ -1,5 +1,7 @@
 # OS Premiere Automation Audit
 
+> CORRECTION 2026-06-05 (operator transcripts): Premiere IS directly automatable via the **Premiere Pro MCP** (GitHub, 269 tools) + the **MCP Bridge** CEP extension (Window > Extensions > MCP Bridge). With a project open + the bridge running + a refreshed Claude session, Claude drives Premiere directly: remove silences, transcript bad-take cutting, rough cut from scenes, ripple/roll/slip/slide, move clips to tracks, A-roll/B-roll organization, captions, effects/preset search, bulk rename + color, export/render, and save reusable edit skills. This SUPERSEDES the "headless-blocked -> handoff" verdict below. Headless (no-GUI) render remains the only blocked part; FCPXML/EDL is a secondary bridge. The 269-tool Premiere MCP is the PREFERRED max-edit route (status NEEDS_INSTALL until cloned). Adobe's official "Adobe for Creativity" connectors are NOT this: they drive Adobe Express only (~50 tools, cannot edit video).
+
 Audited 2026-06-05 (read-only, no GUI launch). Question: can the OS control Premiere automatically?
 
 ## Install

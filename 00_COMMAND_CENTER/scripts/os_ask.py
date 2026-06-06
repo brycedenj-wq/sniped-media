@@ -23,7 +23,13 @@ STOP=set("the a an to of in on for and or is it feels like need needs my our thi
 def score(card,terms):
     hay=" ".join([card.get("problem",""),card.get("technique",""),card.get("symptom",""),
                   card.get("when_to_use",""),card.get("quality_failure_prevented","")]).lower()
-    return sum(1 for w in terms if len(w)>2 and w in hay)
+    tech=(card.get("technique","")+" "+card.get("problem","")).lower()
+    s=0
+    for w in terms:
+        if len(w)<=2: continue
+        if w in hay: s+=1
+        if w in tech: s+=1   # weight: a hit in the technique/problem (the heart of the card) counts double
+    return s
 
 FAM_WORDS={"higgsfield":"HIGGSFIELD_OPERATOR_LIBRARY","adobe":"ADOBE_OPERATOR_LIBRARY","photoshop":"ADOBE_OPERATOR_LIBRARY",
  "lightroom":"ADOBE_OPERATOR_LIBRARY","premiere":"PREMIERE_EDITING_LIBRARY","after effects":"AFTER_EFFECTS_MOTION_LIBRARY",
@@ -35,14 +41,17 @@ def ask(q,n=1):
     ql=q.lower()
     print(f"ASK: {q}")
     # tool-skip / underuse questions are COMPLIANCE questions: point at the library + the gate
+    GATE_FOR={"premiere":"os_premiere_compliance_gate.py","photoshop":"os_premium_stack_gate.py","lightroom":"os_premium_stack_gate.py",
+              "adobe":"os_premium_stack_gate.py","higgsfield":"os_higgsfield_compliance_gate.py"}
     if any(s in ql for s in SKIP_WORDS):
         for w,lib in FAM_WORDS.items():
             if w in ql:
                 cnt=len(LIB.cards_in(LIB.LIBRARIES[lib]))
+                gate=GATE_FOR.get(w,"os_starthere_compliance_gate.py")
                 print(f"  COMPLIANCE: '{w}' under-used. That is the {lib} ({cnt} cards).")
                 print(f"  LIBRARY  os_library.py show {lib}")
-                print(f"  GATE     os_starthere_compliance_gate.py check <proof.json>  (will FAIL the run until {lib} is loaded AND >=1 of its cards is used)")
-                print(f"  NEXT     load {lib}, apply its cards, list it in libraries_loaded, then re-run the gate")
+                print(f"  GATE     {gate} (will FAIL the run until {lib} is loaded/used) + os_starthere_compliance_gate.py + os_max_readiness_gate.py")
+                print(f"  NEXT     load {lib}, apply its cards, list it in libraries_loaded, then re-run the gates")
                 break
     terms=[w for w in re.sub(r"[^a-z0-9 ]"," ",ql).split() if w not in STOP]
     ranked=sorted(((score(c,terms),c) for c in CARDS), key=lambda x:-x[0])

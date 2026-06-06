@@ -64,6 +64,15 @@ LIBRARIES={
 }
 SHORT={lib.split("_")[0].lower():lib for lib in LIBRARIES}  # adobe-> ADOBE_OPERATOR_LIBRARY etc
 
+# named sub-libraries resolved by card-id prefix (operator addendum 2026-06-05)
+PREFIX_LIBS={
+ "PREMIERE_MCP_OPERATOR_LIBRARY":"premc_",
+ "HIGGSFIELD_ADOBE_PLUGIN_LIBRARY":"hfplug_",
+ "AUTOEDIT_CREATOR_MODE_LIBRARY":"autoedit_",
+}
+SHORT.update({"premiere_mcp":"PREMIERE_MCP_OPERATOR_LIBRARY","higgsfield_adobe":"HIGGSFIELD_ADOBE_PLUGIN_LIBRARY","autoedit":"AUTOEDIT_CREATOR_MODE_LIBRARY"})
+def cards_in_prefix(pref): return [c for c in CARDS if str(c.get("id","")).startswith(pref)]
+
 # project type -> ordered libraries that MUST load before executing
 PROJECTS={
  "video_campaign":["HIGGSFIELD_OPERATOR_LIBRARY","PREMIERE_EDITING_LIBRARY","AFTER_EFFECTS_MOTION_LIBRARY","ADOBE_OPERATOR_LIBRARY","FIGMA_DESIGN_SYSTEM_LIBRARY","SOCIAL_DISTRIBUTION_LIBRARY"],
@@ -88,6 +97,9 @@ def cmd_list():
     for lib,fams in LIBRARIES.items():
         n=len(cards_in(fams)); tot+=n
         print(f"  {lib:32s} {n:4d} cards   [{','.join(fams)}]")
+    print("  -- named sub-libraries (id-prefix views) --")
+    for lib,pref in PREFIX_LIBS.items():
+        print(f"  {lib:32s} {len(cards_in_prefix(pref)):4d} cards   [{pref}*]")
     print(f"  {'TOTAL CARDS (store)':32s} {len(CARDS):4d}")
     return 0
 
@@ -99,9 +111,9 @@ def cmd_families():
     return 0
 
 def cmd_show(name):
-    key=name if name in LIBRARIES else SHORT.get(name.lower())
-    if not key: print(f"unknown library: {name}\n  options: {', '.join(LIBRARIES)}"); return 1
-    cs=cards_in(LIBRARIES[key])
+    key=name if (name in LIBRARIES or name in PREFIX_LIBS) else SHORT.get(name.lower())
+    if not key: print(f"unknown library: {name}\n  options: {', '.join(list(LIBRARIES)+list(PREFIX_LIBS))}"); return 1
+    cs=cards_in_prefix(PREFIX_LIBS[key]) if key in PREFIX_LIBS else cards_in(LIBRARIES[key])
     print(f"{key}  ({len(cs)} cards)")
     for c in cs:
         cid=c.get("id","?"); tech=c.get("technique","?"); src=c.get("source") or c.get("source_doc","?")
