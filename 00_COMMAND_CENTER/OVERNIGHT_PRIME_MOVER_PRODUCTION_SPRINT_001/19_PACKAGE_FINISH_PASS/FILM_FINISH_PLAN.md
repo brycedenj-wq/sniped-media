@@ -41,3 +41,7 @@ Higgsfield: **0 credits** this build. Audio: free tier. Blender/ffmpeg/AE: 0. Un
 
 ## Final-call rule
 The film is NOT called "final/complete sound" because the music (melody) engine is a paid blocker (see SOUND_MUSIC_BRIEF.md). It is a **complete picture-cut + VO + SFX + room-tone master**; music is the one logged remaining layer.
+
+---
+## STATUS (2026-06-06): MASTER BUILT
+70.2s 1080p master + 30/15/6 cutdowns assembled via ffmpeg (build.sh). Picture + VO (eleven_v3-capable, rendered v2-safe @0.9 speed) + seal-strike SFX + vault room-tone bed. 0 Higgsfield credits this build. NOT called "final sound": MUSIC (melody) remains the paid-engine blocker per SOUND_MUSIC_BRIEF.md. Audio stack gate stays BLOCK on music; everything else done.

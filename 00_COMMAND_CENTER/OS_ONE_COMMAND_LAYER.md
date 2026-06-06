@@ -78,3 +78,6 @@ The `safety_identity` doctrine is a standing floor on all of them.
 ## What is intentionally NOT a command yet (deferred)
 
 - `post` / `publish` / `send outreach` / `host` / `deploy` / `setup payment` / `finalize legal` , all HELD by mandate until proof + explicit go. They exist as gated routes only, never as one-word commands, so they cannot fire by accident.
+
+## NAMING ROUTE (STANDING, added 2026-06-06)
+Any task that NAMES a brand/world/offer/package/campaign/product/identity routes through the naming layer BEFORE the name is used: `os_naming_engine.py generate` -> `os_name_gate.py score/batch` -> respect the risk TIER -> counsel + domain/social checks before any public use. Doctrine: OS_NAMING_LIBRARY.md. Treat naming like copy/design/tools/gates, not a vibe check.
