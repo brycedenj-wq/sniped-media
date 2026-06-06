@@ -94,7 +94,7 @@ TOOLS = {
     "blender.gated":{"kind":"local","status":"ACTIVE","call":"scripts/os_blender_gate.py","note":"PROVEN allow in-sandbox + deny ~/.ssh 2026-06-05. The security contract for blender.native; logs every action","role":"3d_gate"},
     "local.aerender":{"kind":"local","status":"ACTIVE","call":"/Applications/Adobe After Effects 2026/aerender","note":"PROVEN aerender 26.2.1x2 2026-06-05. CLI title/motion render; needs an .aep project to exercise a real comp","role":"motion_render"},
     "hyperframes":  {"kind":"local","status":"ACTIVE","call":"npx hyperframes","note":"PROVEN doctor v0.6.73 (ffmpeg+chrome ok) 2026-06-05. OWNS code-defined HTML motion/video; Docker only for containerized render","role":"html_motion"},
-    "red.premiere": {"kind":"app","status":"AMBER","call":"PREMIERE_HANDOFF","note":"Premiere Pro 2026 INSTALLED (verified 2026-06-05); no headless/MCP authoring -> use PREMIERE_HANDOFF package (EDL + notes). Cloud cuts via mcp.adobe.quick_cut. Latest truth: OS_STALE_ASSUMPTION_LEDGER premiere."},
+    "red.premiere": {"kind":"app","status":"AMBER","call":"see mcp.premiere","note":"Premiere Pro 2026 INSTALLED. DIRECT control via mcp.premiere (269-tool MCP + CEP MCP Bridge) = PREFERRED-PENDING. No HEADLESS render (that part only -> FCPXML/EDL bridge). Superseded by mcp.premiere entry."},
     # ---- named adobe skills (AMBER: functions callable via MCP, discrete skills not confirmed in-chat) ----
     "skill.adobe.batch_edit":{"kind":"skill","status":"AMBER","call":"adobe-batch-edit-photos","note":"use mcp.adobe.* loop as substitute"},
     "skill.adobe.social_variations":{"kind":"skill","status":"AMBER","call":"adobe-create-social-variations","note":"use mcp.adobe.crop_resize multi-aspect"},
@@ -130,6 +130,15 @@ TOOLS = {
     "manual.taste_signoff":{"kind":"manual","status":"ACTIVE","call":"operator","note":"final client-ready taste verdict, handoff"},
     "manual.legal":  {"kind":"manual","status":"AMBER","call":"operator+lawyer","note":"legal finalization, NEVER auto"},
     "manual.payment":{"kind":"manual","status":"RED","call":"operator","note":"payment rail, HELD behind approval"},
+    # ---- cloned tool repos integrated 2026-06-05 (server-reachable; bridges/new-session pending) ----
+    "mcp.premiere":   {"kind":"mcp","status":"AMBER","call":"node ~/premiere-pro-mcp/dist/index.js","note":"DIRECT Premiere control 269 tools; PREFERRED-PENDING (built+registered+CEP installed; needs Premiere open + MCP Bridge Start + new session); gate os_premiere_compliance_gate"},
+    "mcp.after_effects":{"kind":"mcp","status":"AMBER","call":"node ~/after-effects-mcp/build/index.js","note":"AE control; PREFERRED-PENDING (built+registered; ScriptUI bridge install MANUAL + new session)"},
+    "skill.video_use":{"kind":"skill","status":"AMBER","call":"~/video-use","note":"conversational ffmpeg+PIL edit; cards vuse_*; no proof edit yet"},
+    "skill.blender_assembly":{"kind":"skill","status":"ACTIVE","call":"~/Blender-MCP-Assembly-Skill","note":"geometry correctness; cards blasm_*; feeds os_blender_gate"},
+    "skill.taste":    {"kind":"skill","status":"ACTIVE","call":"~/taste-skill","note":"anti-slop design; cards taste_*; feeds FIGMA + elite gate"},
+    "skill.world_builder":{"kind":"skill","status":"AMBER","call":"~/world-builder","note":"reference->Blender scene; cards wbld_*; needs fal ~$4-6/world spend"},
+    "mcp.unreal":     {"kind":"mcp","status":"RED","call":"~/unreal-mcp","note":"Unreal control; OPTIONAL/PENDING, games lane not active"},
+    "tool.hyperframes":{"kind":"local","status":"ACTIVE","call":"npx hyperframes","note":"HTML->mp4 titles; HYBRID edit spine; PROVEN"},
 }
 
 # ADOBE CAPABILITY MATRIX , Adobe is NOT one blob. 16 discrete capabilities, each with its own
