@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fcpxml>
+<fcpxml version="1.9">
+  <resources>
+    <format id="r1" name="FFVideoFormat720p30" frameDuration="100/3000s" width="1280" height="720"/>
+    <asset id="a1" name="n01_title.mp4" src="file:///Users/sniper/AI-Brain-Refinery/00_COMMAND_CENTER/OS_VIDEO_EDIT_SELFTEST/n01_title.mp4" hasVideo="1" format="r1"/>
+    <asset id="a2" name="n02_content.mp4" src="file:///Users/sniper/AI-Brain-Refinery/00_COMMAND_CENTER/OS_VIDEO_EDIT_SELFTEST/n02_content.mp4" hasVideo="1" format="r1"/>
+    <asset id="a3" name="n03_end.mp4" src="file:///Users/sniper/AI-Brain-Refinery/00_COMMAND_CENTER/OS_VIDEO_EDIT_SELFTEST/n03_end.mp4" hasVideo="1" format="r1"/>
+  </resources>
+  <library>
+    <event name="AXIS">
+      <project name="edit">
+        <sequence format="r1" duration="21000/3000s"><spine>
+            <asset-clip ref="a1" offset="0/3000s" name="n01_title.mp4" duration="6000/3000s" format="r1"/>
+            <asset-clip ref="a2" offset="6000/3000s" name="n02_content.mp4" duration="9000/3000s" format="r1"/>
+            <asset-clip ref="a3" offset="15000/3000s" name="n03_end.mp4" duration="6000/3000s" format="r1"/>
+        </spine></sequence>
+      </project>
+    </event>
+  </library>
+</fcpxml>

@@ -41,11 +41,13 @@ Pull live with `os_ask.py "<problem>"` and `os_library.py show <LIBRARY>` at run
 | 7 Package | os_adobe_layout (one-sheet/deck), os_campaign, Notion/Airtable/Drive |
 | 8 Gates | all gates (see Stage 8) |
 
-## 6. Tool handoffs (installed-but-not-directly-callable)
-- **Premiere** authoring: build `05_MOTION/PREMIERE_HANDOFF/` = `EDIT_DECISION_LIST.csv` + project notes + media. Cloud cut via `mcp.adobe.quick_cut`. Premiere Pro 2026 INSTALLED; finishing cut is operator-side in Premiere.
-- **Higgsfield Shots (9-angle) / Angles / Skin Enhancer / Popcorn storyboard / Vibe Motion / Cinema Director Panel**: web-app only. Handoff = approximate via prompted multi-angle generate_image + a `SHOT_LIBRARY_PLAN.md` listing the angles to run in the web app if deeper is wanted.
-- **After Effects**: aerender installed but library thin. Titles via aerender (needs a real .aep) or HyperFrames; do not claim AE-grade motion-design without a real comp.
-- **Social posting**: out of scope (private proof, no posting).
+## 6. Video-edit route (AUTOMATED, not handoff-by-default)
+The edit is automated. Run `os_video_edit_router.py routes && os_video_edit_router.py pick` first; use the strongest automated route; a human handoff is allowed ONLY if every automated route is BLOCKED_AFTER_VERIFICATION. (Standard: OS_VIDEO_EDIT_AUTOMATION_STANDARD.md.)
+- **SELECTED: HYBRID_AUTOMATED** (verified 2026-06-05, selftest passed): HyperFrames renders titles/cards (HTML -> mp4); ffmpeg is the assembly spine (xfade transitions, scale/pad, trim-on-beat, 6s/15s/30s, 9:16/16:9/1:1 exports); the router auto-emits FCPXML + EDL so Premiere can open the cut for an OPTIONAL finishing pass (not required, not a default handoff).
+- After Effects (aerender, headless) is the heavier title/motion-graphics engine when needed; build a reusable titles.aep/build.jsx once.
+- Adobe video MCP (quick_cut/video_resize) available for cloud cut/reframe after asset upload.
+- CapCut the app is BLOCKED (not installed); its short-form/caption/hook DOCTRINE cards drive creative decisions inside the HYBRID route (OS_CAPCUT_DOCTRINE_AUDIT.md).
+- Other handoffs (non-edit): Higgsfield Shots/Angles/Skin Enhancer/Popcorn/Vibe Motion/Cinema Director Panel are web-app only -> approximate via prompted multi-angle generate_image + `SHOT_LIBRARY_PLAN.md`. Social posting out of scope.
 
 ## 7. Credit / budget ceiling (built for excellence, not cheap)
 Higgsfield economics (registry): stills nano_banana_pro 4k ~4cr each; motion Seedance ~18cr/4s; upscale Topaz cost per clip; preflight every call with get_cost.
@@ -72,7 +74,7 @@ After every stage: write the stage artifacts, run that stage's gate, append to `
 - S3 -> S4: graded range beats the source on os_elite_art_direction_gate (>=STRONG) + os_postproduction_gate PASS.
 - S4 -> S5: Blender object-space render passes os_blender_gate (sandbox only).
 - S5 -> S6: design system exists; one-sheet/deck pass elite gate (no template leak).
-- S6 -> S7: motion beats pass os_motion_qa + os_motion_ready; higgsfield compliance >=9/11; Premiere handoff built.
+- S6 -> S7: motion beats pass os_motion_qa + os_motion_ready; higgsfield compliance >=9/11; os_video_edit_router pick = an AUTOMATED route (not BLOCKED); teaser exported in all aspects/durations; FCPXML/EDL bridge emitted.
 - S7 -> S8: package assembled; privacy/identity gates clean.
 - S8: os_max_readiness_gate READY = the only thing that authorizes a MAX claim.
 
@@ -118,8 +120,11 @@ python3 os_postproduction_gate.py <dir> ; python3 os_elite_art_direction_gate.py
 # STAGE 4 (Blender, sandbox)
 python3 os_blender_gate.py ... ; python3 os_mark.py ...
 # STAGE 5 (Figma)  -> mcp.figma ; fallback python3 os_adobe_layout.py onesheet/deck
-# STAGE 6 (Motion) -> Higgsfield video (Seedance/Kling/WAN) + upscale ; aerender/HyperFrames titles
-python3 os_motion_qa.py <beat> ; python3 os_motion_ready.py <dir>   # + build PREMIERE_HANDOFF/
+# STAGE 6 (Motion) -> Higgsfield video (Seedance/Kling/WAN) + upscale ; titles via HyperFrames/aerender
+python3 os_video_edit_router.py routes && python3 os_video_edit_router.py pick   # automated route (HYBRID)
+python3 os_motion_qa.py <beat> ; python3 os_motion_ready.py <dir>
+# edit + export via the chosen automated route (HyperFrames+ffmpeg spine); auto-emit FCPXML/EDL bridge
+python3 os_video_edit_router.py fcpxml 05_MOTION/edit.fcpxml <clips...>
 # STAGE 7 (Package)
 python3 os_adobe_layout.py onesheet ... ; python3 os_campaign.py ...
 # STAGE 8 (Gates)
@@ -145,7 +150,7 @@ python3 os_privacy_gate.py ... ; python3 os_max_readiness_gate.py check ../AXIS_
 os_max_readiness_gate.py returns READY: current state loaded + all 6 libraries loaded + tools checked + underused logged + cards used + every Stage-8 gate passed + all artifacts on disk + Premiere/web-app blocks have handoff routes + no stale claim. Higgsfield compliance >=9/11. Elite gate >=STRONG. Package assembled, faceless, $0 of identity exposure.
 
 ## 17. What cannot be called DONE
-Any of: a library not loaded, a premium tool skipped for convenience, Higgsfield compliance <9/11, elite gate below STRONG, missing Premiere handoff, ffmpeg-only "edit", no upscale, a stale MAX claim, or proof.json failing max_readiness. None of these may be called MAX/ELITE/COMPLETE/READY.
+Any of: a library not loaded, a premium tool skipped for convenience, Higgsfield compliance <9/11, elite gate below STRONG, the edit done as a manual handoff when an automated route was available (os_video_edit_router must resolve to an AUTOMATED route, handoff only if BLOCKED_AFTER_VERIFICATION), no upscale, a stale MAX claim, or proof.json failing max_readiness. None of these may be called MAX/ELITE/COMPLETE/READY.
 
 ---
 ## START COMMAND (when approved)
