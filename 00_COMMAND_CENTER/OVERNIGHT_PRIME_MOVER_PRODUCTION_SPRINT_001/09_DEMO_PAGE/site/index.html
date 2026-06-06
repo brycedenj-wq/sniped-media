@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOLE HOUSE · The 72-Hour Repositioning House</title>
+<style>
+:root{
+  --ink:#0A0A0B; --bone:#EDE8DD; --brass:#A8843C; --concrete:#6B6B6E; --shadow:#1C1C1E;
+  --display:"Didot","Bodoni MT","Hoefler Text",Georgia,"Times New Roman",serif;
+  --body:"Helvetica Neue",Arial,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--bone);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased}
+section{padding:160px 32px;position:relative}
+.wrap{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass);font-weight:600;margin-bottom:24px}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.01em}
+h1{font-size:clamp(38px,6vw,72px);line-height:1.06}
+h2{font-size:clamp(30px,4vw,48px);line-height:1.12;margin-bottom:28px}
+h3{font-size:32px}
+p{font-size:18px;color:var(--bone);max-width:62ch;margin-bottom:18px}
+.sub{color:var(--concrete);font-size:18px}
+.small{font-size:14px;color:var(--concrete)}
+.brassline{color:var(--brass);font-family:var(--display);font-size:24px;margin:32px 0}
+.btn{display:inline-block;background:var(--brass);color:var(--ink);font-family:var(--body);font-weight:600;
+  font-size:16px;letter-spacing:.04em;padding:18px 34px;border:none;cursor:pointer;text-decoration:none;border-radius:1px}
+.btn:hover{background:#bd964a}
+.btn-out{display:inline-block;background:transparent;color:var(--brass);border:1px solid var(--brass);
+  font-weight:600;font-size:15px;letter-spacing:.04em;padding:14px 26px;cursor:pointer;text-decoration:none}
+.btn-out:hover{background:var(--brass);color:var(--ink)}
+.hair{border:0;height:1px;background:var(--brass);opacity:.35;margin:0}
+
+/* hero */
+#hero{min-height:100vh;display:flex;align-items:center;
+  background:linear-gradient(90deg,rgba(10,10,11,.94) 30%,rgba(10,10,11,.55) 100%),url('assets/hero.png') center/cover}
+#hero .wrap{width:100%}
+.hero-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:40px;align-items:center}
+.hero-cta{margin-top:36px}
+.seal{width:130px;height:130px;border-radius:50%;border:2px solid var(--brass);position:relative;
+  background:radial-gradient(circle at 50% 38%,rgba(168,132,60,.30),rgba(10,10,11,.9));
+  box-shadow:inset 0 0 24px rgba(168,132,60,.25);transition:all 1.1s ease;margin-left:auto}
+.seal::before{content:"";position:absolute;left:50%;top:24%;transform:translateX(-50%);
+  width:7px;height:52%;background:var(--brass);border-radius:2px;opacity:.6;transition:all 1.1s ease}
+.seal::after{content:"";position:absolute;inset:14px;border-radius:50%;border:1px solid var(--brass);opacity:.4}
+.seal.live{box-shadow:0 0 36px rgba(168,132,60,.55),inset 0 0 30px rgba(168,132,60,.5);border-color:#d9af57}
+.seal.live::before{opacity:1;background:#d9af57}
+
+/* film */
+.frame{margin-top:36px;border:1px solid rgba(168,132,60,.5);aspect-ratio:16/9;width:100%;
+  background:#000 center/cover;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.frame video{width:100%;height:100%;object-fit:cover}
+.playring{width:84px;height:84px;border-radius:50%;border:2px solid var(--brass);display:flex;align-items:center;justify-content:center;
+  background:rgba(10,10,11,.4);position:absolute;cursor:pointer}
+.playring::after{content:"";border-left:22px solid var(--brass);border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:6px}
+
+/* problem */
+#problem{background:linear-gradient(0deg,rgba(10,10,11,.92),rgba(10,10,11,.82)),url('assets/problem.png') center/cover}
+
+/* system */
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:48px 0}
+.day{border:1px solid var(--shadow);background:rgba(28,28,30,.5);padding:30px}
+.day .k{font-family:var(--display);color:var(--brass);font-size:22px;margin-bottom:14px}
+.deliv{list-style:none;margin-top:20px}
+.deliv li{padding:12px 0 12px 30px;border-bottom:1px solid var(--shadow);position:relative}
+.deliv li::before{content:"";position:absolute;left:0;top:17px;width:12px;height:12px;border-radius:50%;border:1.5px solid var(--brass)}
+
+/* tiers */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.card{border:1px solid rgba(168,132,60,.4);background:var(--shadow);padding:34px 28px;display:flex;flex-direction:column}
+.card .seal-mini{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--brass);position:relative;margin-bottom:20px}
+.card .seal-mini::before{content:"";position:absolute;left:50%;top:25%;transform:translateX(-50%);width:3px;height:50%;background:var(--brass)}
+.card .price{font-family:var(--display);font-size:34px;margin:4px 0 6px}
+.card .tname{font-size:14px;letter-spacing:.12em;color:var(--brass);text-transform:uppercase}
+.card ul{list-style:none;margin:20px 0;flex:1}
+.card ul li{font-size:15px;color:var(--bone);padding:8px 0;border-bottom:1px solid rgba(107,107,110,.2)}
+
+/* compare */
+table{width:100%;border-collapse:collapse;margin-top:36px}
+th,td{text-align:left;padding:18px 14px;border-bottom:1px solid rgba(168,132,60,.25);font-size:16px;vertical-align:top}
+th{color:var(--brass);font-family:var(--display);font-weight:400;font-size:20px}
+td:first-child{color:var(--concrete)}
+
+/* seal section */
+#seal-sec{text-align:center;background:#060607}
+#seal-sec img{max-width:760px;width:100%;margin-top:40px;border:1px solid rgba(168,132,60,.25)}
+
+/* faq */
+.faq{margin-top:30px}
+.faq details{border-bottom:1px solid rgba(168,132,60,.25);padding:22px 0}
+.faq summary{font-family:var(--display);font-size:21px;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+ ";color:var(--brass)}
+.faq details[open] summary::before{content:"\2212 "}
+.faq p{margin-top:14px}
+
+/* booking */
+#booking{background:linear-gradient(0deg,rgba(10,10,11,.9),rgba(10,10,11,.78)),url('assets/gallery.png') center/cover;text-align:center}
+#booking .wrap{max-width:760px}
+
+/* footer */
+footer{padding:70px 32px;border-top:1px solid var(--shadow);text-align:center}
+footer .wm{font-family:var(--display);color:var(--brass);font-size:28px;letter-spacing:.08em}
+
+/* modal */
+.scrim{position:fixed;inset:0;background:rgba(10,10,11,.85);display:none;align-items:center;justify-content:center;z-index:50;padding:24px}
+.scrim.open{display:flex}
+.modal{background:var(--shadow);border:1px solid var(--brass);max-width:520px;width:100%;padding:40px}
+.modal h3{font-size:26px;margin-bottom:18px}
+.modal input,.modal select{width:100%;background:var(--ink);border:1px solid var(--concrete);color:var(--bone);
+  padding:13px;margin-bottom:14px;font-family:var(--body);font-size:15px}
+.modal .seal{width:84px;height:84px;margin:0 auto 20px}
+.confirmed{display:none;text-align:center}
+.x{float:right;color:var(--concrete);cursor:pointer;font-size:22px;line-height:1}
+@media(max-width:880px){
+  .hero-grid,.days,.tiers{grid-template-columns:1fr}
+  section{padding:88px 20px}
+  .seal{margin:0 0 10px}
+}
+</style>
+</head>
+<body>
+
+<!-- 1 HERO -->
+<section id="hero">
+ <div class="wrap">
+  <div class="hero-grid">
+   <div>
+    <div class="eyebrow">SOLE HOUSE · The 72-hour repositioning house</div>
+    <h1>We do not make you better.<br>We make you the only one.</h1>
+    <p class="sub" style="margin-top:24px">In three days, SOLE rebuilds an established business as a category of one. One claim. One world. One name the market cannot copy.</p>
+    <div class="hero-cta">
+      <a class="btn" onclick="openBooking('unspecified')">Claim your category</a>
+      <div class="small" style="margin-top:14px">One HOUSE at a time. Price and scope published below.</div>
+    </div>
+   </div>
+   <div><div class="seal" id="heroSeal" title="The Singular Seal"></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- 2 FILM -->
+<section id="film">
+ <div class="wrap">
+  <div class="eyebrow">The premiere</div>
+  <h2>This is not a press release. It is a premiere.</h2>
+  <div class="frame" id="filmFrame" style="background-image:url('assets/film_poster.png')">
+    <div class="playring" onclick="playFilm()"></div>
+  </div>
+  <p class="small" style="margin-top:18px">60 to 90 seconds. Scored, graded, sealed. The world is built, not filmed. No faces, on either side of the camera. (Demo plays the assembled teaser cut.)</p>
+ </div>
+</section>
+
+<!-- 3 PROBLEM -->
+<section id="problem">
+ <div class="wrap">
+  <div class="eyebrow">The problem</div>
+  <h2>You are competent, profitable, and indistinguishable.</h2>
+  <p>You do good work. So does every competitor on the same template, with the same stock photography, the same three adjectives, and a slightly different logo. The market cannot tell you apart, so it decides on price.</p>
+  <p>AI just made "good enough" infinite and free. The cheaper option now looks identical to yours on the surface. The only position left that cannot be copied is being the only one. Not better. The only.</p>
+  <div class="brassline">A single quarter of "they picked the cheaper option" makes this fee look trivial.</div>
+ </div>
+</section>
+
+<!-- 4 SYSTEM -->
+<section id="system">
+ <div class="wrap">
+  <div class="eyebrow">The system</div>
+  <h2>One strategic act. Six sealed deliverables. Three days.</h2>
+  <p>SOLE performs one act: The Sole Claim. A single sentence that renames your market so you become its only legitimate occupant. Everything else exists to make that claim feel already true and already expensive.</p>
+  <div class="days">
+   <div class="day"><div class="k">Day 1 · The Verdict</div><p class="small">The Sole Claim and Positioning Doctrine. A one-sentence renaming plus a one-page doctrine: who you are the only one for, the enemy you reject, the category you now own. A verdict, not a mood board. No claim, no build.</p></div>
+   <div class="day"><div class="k">Day 2 · The World</div><p class="small">The Brand World Bible and the Manifesto Film. 12 to 16 world-built stills in one signature world, the Vault Room, plus color, type, and motif systems. A 60 to 90 second scored film. All synthetic, zero faces.</p></div>
+   <div class="day"><div class="k">Day 3 · The Seal</div><p class="small">The Category Brief, the Live Landing, and the Offer and Booking Layer. A board-ready deck, a single-page site, premium offer copy with an intake flow. The Seal strikes on the final frame. One timestamped handoff.</p></div>
+  </div>
+  <ul class="deliv">
+   <li>The Sole Claim and Positioning Doctrine</li>
+   <li>The Brand World Bible (12 to 16 Vault Room stills, color, type, motif)</li>
+   <li>The Manifesto Film (60 to 90 seconds, AI-voiced, scored, sealed)</li>
+   <li>The Category Brief (board-ready repositioning deck)</li>
+   <li>The Live Landing (single page, claim, film, one call to action)</li>
+   <li>The Offer and Booking Layer (premium offer copy, intake flow)</li>
+  </ul>
+  <p class="small">Price published. Scope published and closed. One recut only, no revisions inside the 72-hour window. Every deliverable clears the readiness gate before handoff.</p>
+ </div>
+</section>
+
+<!-- 5 TIERS -->
+<section id="tiers">
+ <div class="wrap">
+  <div class="eyebrow">The ladder</div>
+  <h2>A category of one cannot credibly be cheap.</h2>
+  <div class="tiers">
+   <div class="card"><div class="seal-mini"></div><div class="tname">Sprint</div><div class="price">$7,500</div>
+     <div class="small">The full repositioning system.</div>
+     <ul><li>The Sole Claim + Positioning Doctrine</li><li>Brand World Bible (12 to 16 stills)</li><li>The Manifesto Film</li><li>The Category Brief deck</li><li>The Live Landing</li></ul>
+     <a class="btn-out" onclick="openBooking('sprint')">Book the Sprint</a></div>
+   <div class="card"><div class="seal-mini"></div><div class="tname">Signature</div><div class="price">$14,000</div>
+     <div class="small">Everything in Sprint, plus the launch machine.</div>
+     <ul><li>Extended film cut</li><li>Full premium offer rewrite</li><li>Booking and intake automation</li><li>90-day world-asset pack</li></ul>
+     <a class="btn-out" onclick="openBooking('signature')">Book the Signature</a></div>
+   <div class="card" style="border-color:var(--brass)"><div class="seal-mini"></div><div class="tname">Sovereign</div><div class="price">$25,000+</div>
+     <div class="small">Everything in Signature, plus the category locked to you.</div>
+     <ul><li>Named category audit of the whole market</li><li>Exclusivity in category this quarter</li><li>Quarterly world-refresh retainer</li><li>Launch-day drop ops layer</li><li>A machined brass Singular Seal shipped to your desk</li></ul>
+     <a class="btn-out" onclick="openBooking('sovereign')">Request Sovereign</a></div>
+  </div>
+  <p class="small" style="margin-top:28px">Premium price is the proof. One HOUSE at a time protects the promise. If your category needs real faces or regulated human-trust imagery, SOLE is not your house, and we will say so on the call.</p>
+ </div>
+</section>
+
+<!-- 6 COMPARE -->
+<section id="compare">
+ <div class="wrap">
+  <div class="eyebrow">Why not an agency</div>
+  <h2>One fraction of the price. One fraction of the time. Bookable on day four.</h2>
+  <table>
+   <tr><th></th><th>The agency</th><th>SOLE HOUSE</th></tr>
+   <tr><td>Timeline</td><td>8 to 16 weeks, then it slips</td><td>72 hours, fixed</td></tr>
+   <tr><td>Price</td><td>A moving five-figure-plus number</td><td>Published. $7,500 to $25,000+</td></tr>
+   <tr><td>Scope</td><td>Creeps. Every change is a new invoice</td><td>Published and closed. One recut</td></tr>
+   <tr><td>Output</td><td>A logo refresh and a "fresh look"</td><td>A claim that renames your market</td></tr>
+   <tr><td>Faces</td><td>Stock photos and a costly shoot</td><td>World-built. Zero faces, zero shoot</td></tr>
+   <tr><td>The end</td><td>A deck and an open retainer</td><td>A sealed system, live, on day four</td></tr>
+  </table>
+  <div class="brassline">The agency sells you motion. SOLE sells you a verdict you repeat for years.</div>
+ </div>
+</section>
+
+<!-- 7 SEAL -->
+<section id="seal-sec">
+ <div class="wrap">
+  <div class="eyebrow">The Singular Seal</div>
+  <h2>One symbol. One numeral. One client.</h2>
+  <p style="margin:0 auto">A struck brass medallion engraved with the numeral 1 as a single unbroken vertical stroke, set inside a circular vault-door ring. The category of one, made physical. Embossed on your deck cover, watermarked into every world still, struck into the final frame of your film. In the Sovereign tier it ships as a machined brass object on your desk.</p>
+  <img src="assets/seal.png" alt="The Singular Seal">
+ </div>
+</section>
+
+<!-- 8 FAQ -->
+<section id="faq-sec">
+ <div class="wrap">
+  <div class="eyebrow">Before you book</div>
+  <h2>The standing objections, cleared.</h2>
+  <div class="faq">
+   <details><summary>Three days is not enough to rebrand a business.</summary><p>Correct, and SOLE does not rebrand. It performs one strategic act and builds a pre-rigged world around it. The only bespoke unit of work is your claim. Everything downstream is configuration of a world that already exists. That is how the three days is real.</p></details>
+   <details><summary>Is this just AI output?</summary><p>The production stack is invisible plumbing. The product is a strategic outcome: a single sentence that makes you uncopyable, proven out in a world that looks acquired and archived. You are buying the verdict and the world, not the tool that rendered it.</p></details>
+   <details><summary>Why no photos of me, my team, or my clients?</summary><p>SOLE is faceless by construction. The Vault Room never needs a face. That keeps the world consistent, the timeline fixed, and your launch independent of a shoot. If your category legally requires real human-trust imagery, this is not your house.</p></details>
+   <details><summary>What exactly do I get, and when?</summary><p>Six sealed deliverables in one timestamped handoff with a change-log, on day four. The Sole Claim and doctrine, the Brand World Bible, the manifesto film, the Category Brief deck, the live landing, and the offer and booking layer.</p></details>
+   <details><summary>What if I want revisions?</summary><p>One recut only, inside the window. Scope is published and closed before you book. The fixed scope is what protects the fixed timeline and the fixed price.</p></details>
+   <details><summary>Why is only one client served at a time?</summary><p>The capacity gate protects the promise. One HOUSE at a time means your 72 hours are yours. It is also why the Sovereign tier can guarantee your direct rival cannot buy this from us this quarter.</p></details>
+  </div>
+ </div>
+</section>
+
+<!-- 9 BOOKING -->
+<section id="booking">
+ <div class="wrap">
+  <div class="eyebrow">One call</div>
+  <h2>Claim your category.</h2>
+  <p class="sub" style="margin:0 auto 30px">One HOUSE at a time. Tell us about the business you are tired of being mistaken for. If SOLE is right for you, we book the 72 hours. If it is not, we will tell you on the call.</p>
+  <a class="btn" style="font-size:18px;padding:20px 40px" onclick="openBooking('unspecified')">Book the qualification call</a>
+  <div class="small" style="margin-top:16px">No deck pitch. No proposal theater. A short call to confirm fit, claim the slot, and set the start date.</div>
+ </div>
+</section>
+
+<footer>
+ <div class="wm">SOLE HOUSE</div>
+ <p class="small" style="margin:14px auto 6px">One claim. One world. One name the market cannot copy.</p>
+ <p class="small" style="margin:0 auto">One HOUSE at a time. Price and scope published. Faceless by construction.</p>
+ <p class="small" style="margin:14px auto 0;opacity:.6">Internal demo. Static build, no hosting, no live booking. Name pending availability gate (backups VANTABLE / ONLIQ / MONARCH ROOM).</p>
+</footer>
+
+<!-- BOOKING MODAL (mock) -->
+<div class="scrim" id="scrim">
+ <div class="modal">
+  <span class="x" onclick="closeBooking()">&times;</span>
+  <div id="bookForm">
+   <h3>Book the qualification call</h3>
+   <p class="small" style="margin-bottom:18px">SOLE serves one HOUSE at a time. This is a demo form. Nothing is sent.</p>
+   <input id="f_name" placeholder="Your name">
+   <input id="f_biz" placeholder="Business name">
+   <input id="f_cat" placeholder="The category you are tired of being mistaken for">
+   <select id="f_rev"><option>Revenue band</option><option>$500K to $1M</option><option>$1M to $3M</option><option>$3M to $5M</option><option>$5M+</option></select>
+   <select id="f_tier"><option value="unspecified">Tier interest</option><option value="sprint">Sprint $7,500</option><option value="signature">Signature $14,000</option><option value="sovereign">Sovereign $25,000+</option></select>
+   <a class="btn" style="width:100%;text-align:center;margin-top:8px" onclick="submitBooking()">Request the slot</a>
+  </div>
+  <div class="confirmed" id="bookConfirm">
+   <div class="seal live"></div>
+   <h3>Your slot request is in.</h3>
+   <p class="small">SOLE serves one HOUSE at a time. If the fit is right, we confirm your 72 hours and set the start date.</p>
+   <a class="btn-out" style="margin-top:18px" onclick="closeBooking()">Close</a>
+  </div>
+ </div>
+</div>
+
+<script>
+// the one motion moment: strike the hero seal shortly after load
+window.addEventListener('load',function(){ setTimeout(function(){ document.getElementById('heroSeal').classList.add('live'); },1400); });
+function openBooking(tier){
+  document.getElementById('scrim').classList.add('open');
+  document.getElementById('bookForm').style.display='block';
+  document.getElementById('bookConfirm').style.display='none';
+  if(tier && tier!=='unspecified'){ document.getElementById('f_tier').value=tier; }
+}
+function closeBooking(){ document.getElementById('scrim').classList.remove('open'); }
+function submitBooking(){
+  // demo only: capture to local state, no network, no email, no calendar
+  var payload={name:f_name.value,business:f_biz.value,category:f_cat.value,revenue:f_rev.value,tier:f_tier.value};
+  try{ localStorage.setItem('sole_demo_lead', JSON.stringify(payload)); }catch(e){}
+  document.getElementById('bookForm').style.display='none';
+  document.getElementById('bookConfirm').style.display='block';
+}
+function playFilm(){
+  var f=document.getElementById('filmFrame');
+  f.innerHTML='<video controls autoplay playsinline src="assets/manifesto_teaser.mp4"></video>';
+}
+</script>
+</body>
+</html>
