@@ -183,3 +183,15 @@ The booking layer is not a convenience feature. It is the first proof the buyer 
 ---
 
 **Restated for the record: NOT EXECUTED. No credentials. No live webhook. No deployment. Design and validation specification only.**
+
+---
+
+## VALIDATION RESULT (2026-06-06, mcp__n8n-mcp__validate_workflow, profile=runtime)
+Workflow `SOLE_HOUSE_booking_intake` validated against real n8n node types. NOT executed (no credentials, no live webhook).
+- **Structure: SOUND.** 7 nodes, 7/7 valid connections, 0 invalid, 7 expressions validated, 1 trigger.
+- **3 errors to fix before deploy (exact):**
+  1. Fit Gate (IF): unary operator `notEmpty` needs `singleValue: true`, drop `rightValue`.
+  2. Confirmation Email (Gmail): required `To` cannot be empty.
+  3. Intake Webhook: `responseNode` mode requires `onError: "continueRegularOutput"`.
+- **Warnings:** bump typeVersions (webhook 2->2.1, if 2->2.3, airtable 2.1->2.2, gmail 2.1->2.2, respond 1.1->1.5); add `cachedResultName` to the calendar resource locator; add `onError` handling on Airtable/Gmail.
+- Verdict: the booking flow is a **validated blueprint** (graph + expressions sound), not just a sketch. Live execution still HELD (needs N8N_API_URL + credentials + explicit go).

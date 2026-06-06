@@ -43,3 +43,17 @@
 2. Sound lane: VO only. Music engine (Suno/Udio) undecided. ElevenLabs v3 emotional-tag syntax unverified.
 3. Premium underuse (logged): Adobe cloud MCP, live Figma file, live Airtable/Notion bases.
 4. Film length: 25s teaser shipped; full 60-90s scored manifesto pending music + a re-roll of the ip-flagged seal motion.
+
+---
+
+## EXCELLENCE GAP PASS UPDATE (2026-06-06, review mode)
+- **Blender: weak -> STRONG.** Diagnosis-driven rebuild (contact sheet -> standing raking-key fix -> material correction). Canonical brand mark + clean-alpha master in `04_STILLS/blender_seal/`. Weak B1/B1b retired to `04_STILLS/_rejected/`.
+- **Canonical hero artifact = Blender Singular Seal FINAL_1x1** (was: Higgsfield S03, now the photographic alt).
+- **Teaser v2** supersedes v1: Blender seal at the sign-off + seal-strike SFX + VO. (`05_MOTION/SOLE_manifesto_teaser.mp4`)
+- **Audio:** `eleven_v3` API-accepted with inline tags (VO performance verify-by-ear pending); seal-strike SFX generated (free tier). Music engine still unchosen.
+- **n8n:** booking graph VALIDATED (7 nodes, sound structure, 3 named fixes) , blueprint -> validated.
+- **Adobe cloud:** LIVE (op executed + enforced URL whitelist); edit ops redundant here (Blender alpha covers it); next-lift = upload-handshake + InDesign deck.
+- **Figma:** LIVE (pro team); library build = named next action from the authored spec.
+- **Landing:** hero now uses the real Blender Seal (was a CSS circle).
+- **Spend this pass: 0 Higgsfield credits** (Blender + ffmpeg + free-tier ElevenLabs only). Balance unchanged at 546.5.
+- **Weakest remaining buyer-facing artifact: the PIL sales deck** (rebuild to premium before a serious buyer). Full scored film still pending (current = teaser).
