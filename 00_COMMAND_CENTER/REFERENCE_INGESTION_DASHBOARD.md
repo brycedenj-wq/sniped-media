@@ -40,3 +40,10 @@ Ingested batch: creative_tv_comp_1 (6.92s, compilation) · best_comm_2 Super Bow
 - **os_reference_gate.py wired to the benchmark**: named auto-verdicts TOO_SLOW / TOO_FAST / TOO_REPETITIVE / NO_COMMERCIAL_PAYOFF / LOW_SHOT_VARIATION / AUDIO_NOT_MOTIVATING_CUTS + manual WEAK_TRANSITION_LOGIC / COPY_VO_NOT_CARRYING. `--type commercial|comedy|story|cinematic|tutorial`.
 - **Validation:** Heinz single commercial PASSES (ASL 2.47s, no auto-fails); our SOLE manifesto FAILS as a commercial (TOO_SLOW 11.7s, low variation) , correct: it is a luxury art-film pace, not a spot. Gate discriminates real-commercial vs slow-film.
 - Single spots > compilations confirmed: best_comm_4 (single) gives the cleanest data; compilations skew ASL via title cards.
+
+---
+## UPDATE 2026-06-06 (V2) , format profiles + scorecard + reel builder
+- **COMMERCIAL_CRAFT_BENCHMARK_V2.md**: classify FORMAT first; 7 format profiles (comedy/product_spot/beauty_fashion/luxury_manifesto/social_teaser/bts_personality/tutorial), each with its own ASL band / variety / transition / audio / payoff. CORRECTION enforced: slow only fails when unmotivated/repetitive/no-payoff.
+- **os_reference_gate.py V2**: `--type` profiles, format-aware verdicts, `profiles` + `scorecard` subcommands (12-axis edit scorecard). Validated: Heinz PASS as comedy; SOLE as luxury fails only on no-payoff (not for being slow).
+- **os_build_reel_from_footage.py** (NEW, ACTIVE): footage dir -> selects -> shot classify -> edit_plan/EDL -> ffmpeg rough cut (16:9 + 9:16) -> auto-gate. Route plan emitted (ffmpeg spine; Premiere/AE/Adobe/Figma optional finish). Smoke-tested end-to-end.
+- Chanel N5 luxury ingest failed (age/format-gated); retry to add a real luxury-band anchor.

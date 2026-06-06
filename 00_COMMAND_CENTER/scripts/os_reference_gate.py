@@ -36,7 +36,7 @@ def has_audio(vid):
 def main():
     ap=argparse.ArgumentParser(); sub=ap.add_subparsers(dest="cmd")
     c=sub.add_parser("check"); c.add_argument("video"); c.add_argument("--ref"); c.add_argument("--type",default="commercial")
-    sub.add_parser("cards"); sub.add_parser("checklist")
+    sub.add_parser("cards"); sub.add_parser("checklist"); sub.add_parser("scorecard"); sub.add_parser("profiles")
     a=ap.parse_args(); CK=cards()
     if a.cmd=="cards":
         for x in CK: print(f"{x['id']:34} [{x.get('lane','')}] -> {x.get('gate_influenced','')}")
@@ -53,35 +53,63 @@ def main():
     if a.cmd=="checklist":
         for k,d in CHECK: print(f"[ ] {k}: {d}")
         return
-    # COMMERCIAL_CRAFT_BENCHMARK_V1 bands (ASL low,high) by content type
-    BANDS={"commercial":(1.5,6.5),"comedy":(1.5,3.5),"story":(3.0,5.5),"cinematic":(3.0,6.5),"tutorial":(4.0,17.0)}
+    # COMMERCIAL_CRAFT_BENCHMARK_V2 , per-FORMAT profiles. Classify the format FIRST.
+    # CORRECTION: slow is only a failure when unmotivated (low contrast), repetitive (low uniformity), or no payoff.
+    PROFILES={
+     "comedy":          {"asl":(1.3,3.5),"cpm_min":12,"contrast":1.8,"payoff":True,"audio":True,"note":"punchline ad: build to a beat, hard cuts on lines"},
+     "product_spot":    {"asl":(1.5,4.0),"cpm_min":10,"contrast":2.2,"payoff":True,"audio":True,"note":"product is the longest clean hold; demo->proof->CTA"},
+     "beauty_fashion":  {"asl":(1.0,4.5),"cpm_min":10,"contrast":2.0,"payoff":True,"audio":True,"note":"fast texture/detail inserts + a held hero; cut to the track"},
+     "luxury_manifesto":{"asl":(3.5,9.0),"cpm_min":3,"contrast":2.2,"payoff":True,"audio":True,"note":"slow is FINE if motivated: needs contrast + a held payoff, not speed"},
+     "social_teaser":   {"asl":(0.6,2.5),"cpm_min":16,"contrast":1.6,"payoff":True,"audio":True,"note":"hook in <1s, relentless, one payoff"},
+     "bts_personality": {"asl":(2.0,8.0),"cpm_min":5,"contrast":1.4,"payoff":False,"audio":True,"note":"personality carries; looser pacing OK, still needs motion"},
+     "tutorial":        {"asl":(4.0,18.0),"cpm_min":2,"contrast":1.2,"payoff":False,"audio":True,"note":"clarity > pace; b-roll over talking-head; no payoff requirement"},
+     "commercial":      {"asl":(1.5,6.5),"cpm_min":8,"contrast":2.0,"payoff":True,"audio":True,"note":"generic fallback; classify more specifically when possible"},
+    }
+    SCORECARD12=["hook_strength","shot_variety","subject_continuity","audio_motivates_cuts","transition_logic",
+                 "pacing_asl_by_type","visual_hierarchy","typography_captions","payoff","commercial_clarity",
+                 "rewatch_value","premium_feel"]
+    if a.cmd=="profiles":
+        for t,p in PROFILES.items(): print(f"{t:17} ASL {p['asl'][0]}-{p['asl'][1]}s | cpm>={p['cpm_min']} | contrast>={p['contrast']} | payoff={p['payoff']} | {p['note']}")
+        return
+    if a.cmd=="scorecard":
+        print("EDIT SCORECARD (0 absent / 1 weak / 2 strong / 3 undeniable):")
+        for s in SCORECARD12: print(f"  ___/3  {s}")
+        print("  ELITE >= 30/36 and no axis at 0-1. Pacing/variety/audio axes are auto-filled by `check`.")
+        return
     if a.cmd=="check":
         if not os.path.exists(a.video): print("video not found"); sys.exit(2)
-        m=analyze(a.video); lo,hi=BANDS.get(a.type,BANDS["commercial"]); aud=has_audio(a.video)
-        V=[]  # named benchmark verdicts
-        if m["asl"]>hi: V.append(f"TOO_SLOW: ASL {m['asl']}s > {hi}s {a.type} ceiling")
-        if m["asl"]<lo: V.append(f"TOO_FAST: ASL {m['asl']}s < {lo}s (frenetic for {a.type})")
-        if m["uniformity"]<0.4: V.append(f"TOO_REPETITIVE: shot lengths uniform (uniformity {m['uniformity']}, <0.4) , no rhythm")
-        if m["contrast"]<2: V.append(f"NO_COMMERCIAL_PAYOFF(quant): no held hero beat (max/asl {m['contrast']}x <2) , confirm a product hold near the end")
-        if m["cpm"]<6 and a.type!="tutorial": V.append(f"LOW_SHOT_VARIATION: {m['cpm']} cuts/min , likely too few shot types")
-        if not aud: V.append("AUDIO_NOT_MOTIVATING_CUTS: no audio track , an edit must be cut to sound")
-        MAN=["WEAK_TRANSITION_LOGIC , every cut motivated? (cut-on-action/match/J-L, not unmotivated dissolves)",
-             "AUDIO_NOT_MOTIVATING_CUTS , do cuts land on beats + duck before payoff?" if aud else None,
-             "NO_COMMERCIAL_PAYOFF , is the product the longest, cleanest beat near the end?",
-             "COPY_VO_NOT_CARRYING , does the line/structure carry, or is it just pretty footage?"]
+        m=analyze(a.video); P=PROFILES.get(a.type,PROFILES["commercial"]); lo,hi=P["asl"]; aud=has_audio(a.video)
+        slow=m["asl"]>hi; fast=m["asl"]<lo; repetitive=m["uniformity"]<0.4; weak_payoff=m["contrast"]<P["contrast"]
+        V=[]; notes=[]
+        if slow and (repetitive or weak_payoff):
+            V.append(f"TOO_SLOW: ASL {m['asl']}s > {hi}s for {a.type} AND {'repetitive holds' if repetitive else 'no held payoff (low contrast)'}")
+        elif slow:
+            notes.append(f"slow ASL {m['asl']}s (>{hi}s) but MOTIVATED (contrast {m['contrast']}x, varied) , ACCEPTED for {a.type}")
+        if fast: V.append(f"TOO_FAST: ASL {m['asl']}s < {lo}s , frenetic for {a.type}")
+        if repetitive: V.append(f"TOO_REPETITIVE: uniform shot lengths (uniformity {m['uniformity']} <0.4) , no rhythm")
+        if P["payoff"] and weak_payoff: V.append(f"NO_PAYOFF: no held hero beat (contrast {m['contrast']}x < {P['contrast']}) , give the hero the longest clean hold")
+        if m["cpm"]<P["cpm_min"]: V.append(f"LOW_SHOT_VARIATION: {m['cpm']} cuts/min < {P['cpm_min']} expected for {a.type}")
+        if P["audio"] and not aud: V.append("AUDIO_NOT_MOTIVATING_CUTS: no audio track , an edit must be cut to sound")
+        MAN=["WEAK_TRANSITION_LOGIC , every cut motivated (cut-on-action/match/J-L), not unmotivated dissolves?",
+             ("AUDIO_NOT_MOTIVATING_CUTS , cuts land on beats + duck before payoff?" if aud else None),
+             ("NO_PAYOFF , is the hero/subject the longest cleanest beat near the end?" if P["payoff"] else None),
+             "SUBJECT_CONTINUITY , same subject/world/grade across shots?",
+             "VISUAL_HIERARCHY , does the eye land where intended each shot?",
+             "COPY_VO_NOT_CARRYING , does the line/structure carry, not just pretty footage?"]
         MAN=[x for x in MAN if x]
         refband=""
         if a.ref:
-            p=os.path.join(LIB,a.ref,"pacing.json")
-            if os.path.exists(p):
-                rb=json.load(open(p)); refband=f" | ref '{a.ref}' ASL {rb.get('avg_shot_len_s')}s ({rb.get('pacing_band')})"
-        print(f"VIDEO: {os.path.basename(a.video)} [{a.type}]  dur {m['dur']}s | shots {m['shots']} | ASL {m['asl']}s | cuts/min {m['cpm']} | contrast {m['contrast']}x | uniformity {m['uniformity']} | audio {'yes' if aud else 'NO'}{refband}")
-        print(f"\nBENCHMARK VERDICTS (auto): {V if V else 'no auto-fails'}")
-        print(f"MANUAL CHECKS (confirm by eye/ear, card-backed):")
+            pth=os.path.join(LIB,a.ref,"pacing.json")
+            if os.path.exists(pth):
+                rb=json.load(open(pth)); refband=f" | ref '{a.ref}' ASL {rb.get('avg_shot_len_s')}s"
+        print(f"VIDEO: {os.path.basename(a.video)} [{a.type}] {P['note']}")
+        print(f"  dur {m['dur']}s | shots {m['shots']} | ASL {m['asl']}s (band {lo}-{hi}) | cuts/min {m['cpm']} | contrast {m['contrast']}x | uniformity {m['uniformity']} | audio {'yes' if aud else 'NO'}{refband}")
+        if notes: print("  NOTES: "+"; ".join(notes))
+        print(f"\nBENCHMARK VERDICTS (auto, format-aware): {V if V else 'no auto-fails'}")
+        print("MANUAL CHECKS (card-backed, confirm by eye/ear):")
         for x in MAN: print(f"  [ ] {x}")
-        print(f"\n{len(CK)} craft cards loaded. Full craft checklist:")
-        for k,d in CHECK: print(f"  [ ] {k}: {d}")
-        print(f"\nVERDICT: {'PASS (auto)' if not V else 'FAIL , '+str(len(V))+' benchmark issue(s) above'}. Benchmark: COMMERCIAL_CRAFT_BENCHMARK_V1.md. Auto checks structure; manual checks confirm craft + no-copy.")
+        print(f"\nEDIT SCORECARD (score 0-3): {', '.join(SCORECARD12)}  (run `scorecard`)")
+        print(f"\nVERDICT: {'PASS (auto)' if not V else 'FAIL , '+str(len(V))+' issue(s)'} for format '{a.type}'. Benchmark: COMMERCIAL_CRAFT_BENCHMARK_V2.md. Classify format FIRST; slow only fails when unmotivated/repetitive/no-payoff.")
         sys.exit(1 if V else 0)
         return
     ap.print_help()

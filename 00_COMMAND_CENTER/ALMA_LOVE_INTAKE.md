@@ -36,3 +36,7 @@ Route = `video_campaign` / `social_rollout` (both now load COMMERCIAL_CRAFT). Af
 After the shoot, route the reel through: video_campaign + social_rollout + COMMERCIAL_CRAFT_LIBRARY, then GATE it:
 `python3 scripts/os_reference_gate.py check <alma_reel.mp4> --type comedy`
 Target band ASL ~1.5-3.5s (energetic), product (swimsuit) = the longest clean hold, cuts on the upbeat-80s beat. Must clear TOO_SLOW / TOO_REPETITIVE / LOW_SHOT_VARIATION / NO_PAYOFF before it is called done. No posting/delivery without approval.
+
+## After footage drop (reusable command)
+`python3 scripts/os_build_reel_from_footage.py <alma_footage_dir> --type beauty_fashion --hero <swimsuit_hero_clip> --seconds 40`
+-> selects + classify + edit plan + ffmpeg 16:9 (campaign) + 9:16 (Instagrid) + auto-gate. The swimsuit hero clip = the longest CLEAN static hold (high contrast = passes NO_PAYOFF). Everything else = rhythm/inserts. Then hand to Premiere/AE for finish if wanted (FCPXML). Gate must pass (--type beauty_fashion) before "done". No post/deliver without approval.
