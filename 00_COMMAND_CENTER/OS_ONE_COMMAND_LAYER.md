@@ -41,6 +41,7 @@ Read-only routes that emit a verdict, never silently land in the campaign route.
 | Command | Route | Status | Emits | Stop and ask |
 |---|---|---|---|---|
 | `judge visual quality` | judge_visual_quality | ACTIVE | EXCELLENT / TEMPLATE-LOOKING / REJECT + reasons | if it is a real-person identity edit, stop |
+| `second model review` / `gemini review` | second_model_review | ACTIVE | Gemini hostile critique (json+md) + evidence-reconciled repair plan | READ-ONLY; privacy-gate inputs first; never crowns final, never decides delivery. Engines: `os_gemini_review.py` + `os_second_model_gate.py` |
 | `choose tool stack` | choose_tool_stack | ACTIVE | ranked stack from ACTIVE tools only + gaps | if it needs spend or install, ask first |
 | `evaluate legal risk` | evaluate_legal_risk | ACTIVE | identity/employer/IP/privacy flags + reversibility | ALWAYS route binding legal to operator + lawyer |
 | `decide engine stack` | decide_engine_stack | ACTIVE | Blender vs Godot vs Unreal vs Unity + why | if recommending an INSTALL, ask for approval |

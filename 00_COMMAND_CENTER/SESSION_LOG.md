@@ -1,5 +1,9 @@
 # SESSION LOG
 
+2026-06-07 , GEMINI second-model lane WIRED + first Alma review. Gemini CLI 0.45.2 (gemini-3-flash-preview) + ripgrep 15.1.0 verified READ-ONLY (0 edits, totalCalls 0). Built os_gemini_review.py (bundle+run) + os_second_model_gate.py (reconcile) + 3 docs (integration audit, lane standard, usage policy) + SECOND_MODEL_REVIEWS/. Wired into tool registry, one-command layer (`second model review` route), source router (`second_model` intent). First pass on Alma V4.2 hero: Gemini 4.2/10 "social rough cut"; evidence-reconciled -> ACCEPT over-long 7.2s gag (over own pacing spec) + uncertified plates on D94A3308+D94A3310; REJECT poster push-in (breaks mannequin-still), "stop ffmpeg LUT", "Adobe avoid". V5 = surgical re-cut + tracked plate fix. NOT rendered; awaiting go.
+
+2026-06-07 , PREMIERE MCP re-test (timeboxed, sandbox): connection/read/duplicate PASS; apply_lut/apply_effect/list_effects/export FAIL (QE DOM empty + AME no-start). Logged Premiere = timeline/handoff authority, not render authority. ALMA V4.2 finished via ffmpeg+brand-LUT (hero 28s + 15s + 6s, -14 LUFS); SINGLE blocker = tracked plate blur. Finishing department built (STANDARD+DASHBOARD+3 scripts). Premiere repo ~/Adobe_Premiere_Pro_MCP audited clean.
+
 2026-06-04 , certification standard built; start-here folder mission launched (Wave 1 running).
 
 2026-06-04 , start-here Wave 1 complete: 59/60 docx certified w/ coverage proof (1 exception). Bootloader architecture + boot files built.

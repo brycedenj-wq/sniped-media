@@ -59,10 +59,15 @@ INTENTS = {
              ["STORY_PSYCHOLOGY_LAYER","MONEY_OFFER_LIBRARY"],
              [],
              "SNIPED_OS as a LEGACY source library: index/synthesize, never treat as current truth; reconcile against current-state docs."),
+    "second_model": (["command_center"],
+             ["COMMERCIAL_CRAFT_LIBRARY","STORY_PSYCHOLOGY_LAYER"],
+             [],
+             "OS_SECOND_MODEL_LANE_STANDARD.md + GEMINI_USAGE_POLICY.md FIRST. Gemini is a READ-ONLY hostile critic, never source of truth. Build a de-identified bundle (privacy-gate first), run os_gemini_review.py, reconcile with os_second_model_gate.py; accept only evidence-backed notes. Reviews live in SECOND_MODEL_REVIEWS/."),
 }
 
 def detect(q):
     q = q.lower()
+    if any(w in q for w in ["gemini","second model","second-model","second opinion","hostile review","critique","another model"]): return "second_model"
     if "alma" in q: return "alma"
     if any(w in q for w in ["photo", "lightroom", "retouch", "grade", "raw "]): return "photo"
     if "naming" in q or "name " in q: return "naming"
