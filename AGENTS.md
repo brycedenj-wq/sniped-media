@@ -64,3 +64,19 @@ If any check fails, halt and surface to the operator. Do not write to master fil
 - `~/sniped-media/` (web project codebase).
 - Any disk-state change during a planning session.
 - BATCH_005 redefinition (locked as photography canon).
+
+## Orchestration laws (added 2026-06-08, from the Claude Code workflow/agent/routine videos)
+
+The unit of work is a HARNESS, not a chat turn. Default mode = orchestrate -> monitor -> promote. Manual single-thread is the exception (interactive creative judgment only).
+
+1. **Harness-by-default routing.** Long / parallel / adversarial work (whole-watch many clips, whole-read many docs, multi-asset QA, broad sweeps) -> a Workflow (fan out fresh-context agents). A few delegated steps -> subagent. One recurring scoped job, unattended -> Managed Agent. Cadence, laptop-off -> Routine.
+2. **The three single-agent failure modes (defend every time):** agentic laziness (declares done at partial -> count done vs required), self-preferential bias (a model cannot judge its own output -> route judging to a fresh-context / second-model Verify), goal drift (loses "do not do X" across compaction -> re-read the pinned STANDING_ORDER/NEXT_ACTION + constraints each phase).
+3. **Adversarial Verify is a first-class phase.** No serious result is crowned until `adversarial-verify` (or the Gemini lane) tries to break it. Every workflow ends with it.
+4. **Human approval moves to the BOUNDARY, not the middle.** No mid-run pause inside a fan-out or a routine. Approval lives between two harnesses (Routine A drafts+posts -> operator approves -> Routine B ships), at plan-approval before a workflow, or as a per-tool permission policy. Operator authorizes spend/publish.
+5. **Workflow cost laws:** per-phase model routing (Sonnet/Haiku default, Opus only the hardest phase), a hard token budget + maxRounds<=6 stated in the prompt, `isolation:'worktree'` for any file-writing fan-out, a durable backlog file so reruns skip rediscovery.
+6. **Routines/Managed-Agents (when enabled) discipline:** secrets go in the cloud Environment Variables panel, never `.env`; remote runs are stateless (commit master writes to GitHub within the run or they vanish); Claude may only push `claude/*` branches; local-only MCP (Premiere/AE/Blender/ElevenLabs/Higgsfield) is NOT reachable remotely -> keep that work local or use a hosted connector. Managed Agents bill the API key: a budget line + Analytics watch is required before any scheduled run.
+
+Full plan + prioritized actions: `00_COMMAND_CENTER/OS_UPGRADE_FROM_VIDEOS_2026-06-08.md`. Standing Verify harness: `.claude/workflows/adversarial-verify.workflow.js`.
+
+## Harness-mandatory law (added 2026-06-08)
+Serious production work (film/photo/edit/composite/campaign/web/client deliverable) MUST run through a harness: a workflow with role-scoped agents (separate moment/select, grade, brand-taste, edit-build, and adversarial-verify agents), with the orchestrator owning the goal and final decision and the Stop gate blocking false completion. NO single agent selects, cuts, grades, reviews, and crowns its own work (that is self-preferential bias). Single-thread mode is allowed ONLY for casual drafting, quick messages, or low-risk notes. If a serious task is about to be done single-threaded: STOP before editing and spawn the harness.
