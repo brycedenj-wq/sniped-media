@@ -6,12 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "video:preview": "remotion studio video/index.ts",
+    "video:render": "remotion render video/index.ts HelloWorld out/HelloWorld.mp4"
   },
   "dependencies": {
+    "@remotion/cli": "^4.0.477",
+    "@remotion/player": "^4.0.477",
     "next": "16.2.4",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "remotion": "^4.0.477"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
