@@ -1,0 +1,224 @@
+type in Collision that's how this Tracer knows when it hits something so 1:58:03 selects your Collision right there and then for the size we want to make this really small so I
+found a value of 2 to 1:58:11 be good so the smallest it could possibly be also we don't need this default scene root so hold down the left 1:58:18 Mouse button hover over default
+C route and let go now we need to also add in a 1:58:24 sphere basic shape sphere so this will be a static mesh fear and this is just floating in the 1:58:31 air actually let me go
+show what this looks like if we do spawn it so go to BP underscore rifle and instead of spawning 1:58:38 the first person projectile let's spawn the bullet blueprint we just
+created 1:58:44 okay so if I press play and spawn it [Music] obviously that doesn't really look 1:58:50 realistic so we need to make that a lot smaller go back into the bullets and
+1:58:56 within scale I found a value of 0.1 in the x-axis 0.1 Y and a 0.1 Z 1:59:05 okay so now if I spawn you know that's a better size but it's just floating in 1:59:11 space so
+we need to add projectile movement and to do that is really easy just come up to the add button and type 1:59:18 in projectile so now we're able to add projectile movement to the
+ball and it's asking for 1:59:25 initial speed and a max speed if we put in something like 500 and 500 for initial speed and Max Speed 1:59:32 press play now you can see that okay
+it's firing and it's going into the 1:59:38 direction of my gun and the reason why it's going into that direction is because if we go back into the rifle 1:59:45 we are getting the
+arrows rotation so the rotation that this Arrow has is a 1:59:52 direction of our projectile because within the world transform if I 1:59:57 drag from here and break it contains
+the rotation also make sure that if your 2:00:03 bullet scale is off that's because it's grabbing from the arrow scale so if I go 2:00:08 to viewport and select the arrow I could
+have scaled it up with the scale Gizmo 2:00:14 which would actually change those values there and it is those values which will 2:00:19 then be fed into the spawn actor which the
+spawn actor will then use because it's getting the world transform so to 2:00:26 prevent that from happening I scaled it within the arrow components that's how it won't use that
+scale value 2:00:33 now let's jump back into our bullets and of course this has to be a lot more than 2:00:38 500 I found a value of 13 000 to feel like a bullet 2:00:44 of course
+feel free to change these maybe you want your bowl to be faster or slower but this is what we have now so 2:00:51 just buyers into the air 2:00:56 and this looks great but it
+doesn't feel like a bullet because if you've ever seen tracers in real life then you know 2:01:02 that they have an emissive value to them because they light up the world so to
+make our bullet emissive we need 2:01:08 to add an emissive material luckily for you within sci-fi weapons materials we 2:01:14 have M underscore emissive bullets so if I double
+click to go inside of it this is the material it's really simple it's 2:01:21 just being fed a color into the emissive color and if you want to learn how to create your own
+materials you can check 2:01:27 out the other ue5 beginner tutorial where I go over materials and environment design in Dev so let's go 2:01:34 ahead and let's make sure that our
+sphere is selected and then drag this onto the material 2:01:41 slot and let go now this feels this feels like a bullet so I can fire 2:01:48 and everything is working great except
+when I try to fire into the target it's not working and 2:01:55 that's because if we jump back into my Target Blueprint by selecting it and pressing Ctrl e to edit it 2:02:01
+you'll see that uh oh we're checking if a first person projectile is hitting it not if a bullet is that's a simple fix 2:02:08 drag from actor and go cast to VP bullets 2:02:13 and
+then select that and delete it okay so now this will work where if I compile 2:02:19 go back to first person map press play now if I hit it you can see it is still not working and
+2:02:27 that's because we need to make some adjustments to my bullets Collision so number one this sphere that we have 2:02:33 right here I don't want that to collide with anything
+that's just there to make our bolus look more aesthetic 2:02:38 it is this sphere so the Collision sphere which will handle my Collision so 2:02:43 let me press Ctrl Z to move that
+back into the middle and with a sphere selected make sure for Collision presets 2:02:50 it is set to no Collision but for the sphere 2:02:55 this is set to block all now this
+should work now if I hit a 2:03:01 Target the score increases one two three four we won the game but you'll see that 2:03:07 when I do hit it the bullet just sits there or if I hit
+this the bullet isn't being destroyed and that just looks 2:03:13 really weird maybe that's good if you're creating like a bow and arrow but in our case I want the bullet to be
+destroyed when it 2:03:19 hits something so this is where we're finally gonna jump into the event graph we haven't even edited anything yet 2:03:25 let's delete all those and
+select the sphere scroll all the way down and on 2:03:30 component hit so when this does hit something we will drag from here and it 2:03:36 will destroy itself so select destroy
+actor okay so if we hit it it just disappears like 2:03:43 that but I don't want to disappear instead I want it to shoot some Sparks and leave a bullet hole So within the 2:03:50
+bullets before we destroy it I want to spawn a system at location so we're 2:03:58 going to spawn another particle effect just like how we're spying a particle effect for the
+muzzle right here 2:04:06 and instead of spawning system attach because we're attaching this to the muzzle we will just spawn it at location 2:04:13 and this will be the other
+effect that's within sci-fi weapons effects and that 2:04:19 is p underscore projectile Sparks so go ahead and select that right there now 2:04:25 it's asking for a location and we
+could get that location by dragging from Hit And typing in break 2:04:33 so it contains a bunch of useful information on the component that the 2:04:38 sphere did hit and if I
+select this Arrow to bring down the drop down we get all this information so it looks 2:04:45 intimidating but we're only going to use some of it and that is we're going to use the
+hit location so drag location right there 2:04:52 and then we need a rotation so in which direction are the Sparks going to fly because if I press play now let me come 2:05:00 up
+to this wall you'll see that it's spawning in the wrong direction it's going to the right I want it to spawn in 2:05:07 the direction that the bullet hit the wall so let's go into
+bullets and I can 2:05:12 get that direction by dragging out of impact normal so impact normal will give 2:05:18 the hit Direction and then I can hover over rotation and let go so
+even though 2:05:24 this is a normal you could convert that into a rotation and now this should work 2:05:30 so press compile and when I hit something okay we can see the Sparks
+are going in the 2:05:37 direction of the wall and we also of course we need to hook it back up to the destroy actor now when I 2:05:43 play my game and I fire my weapon It's Gonna
+Leave a bullet hole and shoot out Sparks in the 2:05:50 direction of the wall so we can even see all the bullet holes that we're creating and it looks pretty 2:05:56 nice so if I
+restart the game get one two three and four and we won so now our gun 2:06:04 and our bullet feels a lot nicer than the default unreal weapon we do have one big issue and if you
+had 2:06:10 an Eagle Eye you probably notice it and that is our bullet doesn't go into the direction of our Crosshair it doesn't go 2:06:16 into the middle of the screen instead
+it's random or it depends on the animation of my gun 2:06:22 I want to wear when I point at something the bullet will go directly to where the Crosshair is point at so if I'm
+pointing 2:06:28 into the middle of this grid and in fire I want to go into the middle of the square not off to the side the reason 2:06:34 why this is happening is because if you
+go back into the event graph of my rifle we are using the rotation of my arrow 2:06:42 which is attached to the muzzle that means even during an animation when the muzzle is a
+little bit up then our 2:06:49 bullet will be fired in that direction so we get kind of like a recoil effect where the more we fire the less accurate 2:06:56 it is or maybe you
+want that to be intentional kind of like recoil control in CS go but 2:07:02 in our case I do want to get rid of it jump back into BP underscore rifle and go to the event graph and
+instead of 2:07:09 using the rotation of my arrow we will use the rotation of the first person camera so whatever my camera is looking 2:07:16 at is where the bullet is going to go
+which is also where the middle of the screen my Crosshair is pointing at 2:07:23 so go back into BP underscore rifle and luckily for us we already have a reference to the first
+person character 2:07:28 right there so I can drag from here and go get camera and go all the way down here to get the 2:07:36 first person camera now I'm going to drag out and get
+World 2:07:41 rotation okay so I want to use this rotation the only issue is I can't just plug it up right there because it's a 2:07:48 transform and a transform contains the
+location rotation and scale so what I will do is 2:07:55 drag from the transform make transform and then select that 2:08:01 so now that we have access to the location rotation and
+scale individually I can use the first person camera's 2:08:07 rotation and then of course I still want to spawn my bullet at the muzzles 2:08:12 location so I can drag from Arrow
+and go get World location right there and then 2:08:20 plug this up okay we don't need the world transform so I could delete that and now when I play my game and then if 2:08:28 I
+look at the middle of my grid right there and I fire my bullet will go into 2:08:33 that direction and we no longer have that issue where the more I fire the more recoil we have
+again if you did 2:08:41 like that feature then you could leave it in but in my case I want to make it as accurate as possible 2:08:46 now that the gun feels great to fire we need
+to add impact since with a bullet hits the target there's nothing to tell Chaos Physics 2:08:52 the player that the target was hit they have to check their score and see if the
+target was hit that makes our bullet 2:08:58 feel weak normally with a fast moving object hits another object it destroys it so that is what we're going to do 2:09:04 right now we
+will use chaos physics which is unreal physics engine to destroy our Target into a bunch of 2:09:11 different pieces before we go over how to destroy objects we need to cover the
+very basics of 2:09:16 physics in Unreal Engine so right now if I drag in SM underscore 2:09:22 targets Loop this around and if I press play Turn Around by default objects are just
+2:09:29 floating in space they have no physics in order to tell unreal hey I want to add a physics object we need to go into 2:09:36 the details panel and down here under physics
+select simulate physics now when 2:09:42 I press play that object has physics it fell to the ground and I can kick it over 2:09:48 and you can see its physics flying and here's
+another tip notice how I keep on having to play my game in order to see 2:09:54 the physics in my world what I can do instead of playing the game which will possess my player
+character if I still 2:10:00 want to fly around like normal in the editor within the drop down up here I can select assimilate or the shortcut is 2:10:07 alt NS instead of playing
+my game so now if I simulate it then we are assimilating my world I can 2:10:13 see the physics but I can fly around my world and still make edits like normal so I can move this
+box down and then I 2:10:22 can use this box to knock over that Target 2:10:28 when I'm simulating my game not every object can be moved the reason why we 2:10:33 were able to move
+this box was because it is set to movable and also we set to 2:10:38 simulate physics as soon as I turn on simulate physics on an object that will be set to movable unreal's
+default 2:10:45 Behavior if I add in let's go add in a sphere unreal's default behavior is to set it 2:10:53 to static that means throughout the duration of the game or when we're
+simulating our game this object will 2:10:59 never move and we can even see that in action if I press simulate I'm unable to 2:11:04 move this object but as soon as I said it's
+movable then I can start to move it 2:11:10 so I can like knock it down like that and then 2:11:16 grab it in X and Y axis and hit like we're playing air hockey so 2:11:22 now that
+I know how to assimilate my world and still be able to move objects to knock over different physics objects 2:11:28 let's go over the basics of Destruction and before we destroy an
+object we first 2:11:35 need the object that we want to destroy in our world and in this case is going to be our Target now it's very important 2:11:41 before we destroy objects
+and you want your object to be in the rotation and scale that this object will be when 2:11:48 you're reusing it now in our case I did change the rotation make sure this rotation
+is set to zero zero zero 2:11:55 and the scale is set to one one one okay now that it is I can hop over up here to 2:12:02 the mode selector and within the drop down we get all
+these different nodes now we do cover landscape and foliage 2:12:08 within the other beginner tutorial but in this tutorial we will go over fracturing so this is chaos destruction
+2:12:15 this is how you destroy objects in Unreal Engine with this mode now before we can do anything we first have to 2:12:22 create a new destruction object by clicking on the
+new button it's going 2:12:27 to ask us where do we want to save this destruction object I want to save it within targets right there and it 2:12:34 already gave us a name SM
+underscore Target geometry collection so objects that can be destroyed in Unreal Engine 2:12:40 are called geometry collections so let's create it and now you'll see that this
+material 2:12:46 did change and within that folder we saved it to we have this brand new assets and this asset has a bunch of 2:12:53 settings so let me close up for now and let's
+go over what is happening right here and 2:12:58 this looks very complicated now don't worry I always say you're never really going to use any of these tools except 2:13:05 for
+very specific circumstances in my circumstance I just want to add a basic destroy to this mesh so I want to divide 2:13:12 it up and to do that I can use any of these fracture
+tools right here so maybe 2:13:17 you want to destroy a brick wall you would select brick but in my case I'm going to use the default of uniform and 2:13:25 immediately you will
+start to see that we are slowly starting to break up my 2:13:30 object but we're not breaking up our object just yet because within the fracture tool right here I first have to
+2:13:36 select a fracture as soon as I select this then this mesh will be sliced up in 2:13:42 the direction of these lines and you can always change any of these lines let's say
+if you want a little bit more then 2:13:48 you could come up here and change it or you could just leave it at the default of 20 and then scroll down and select 2:13:55 fracture now
+this will create a brand new window in the top right hand corner and right here you'll see that we now 2:14:02 get 20 different individual meshes so these meshes is what our object
+is going 2:14:08 to break into when it hits something and I can even come up here and this is just a preview it's not going to change 2:14:15 anything because it's under view
+settings but if I increase my explode amounts we could get a better sense of 2:14:22 the geometry that's being created now this is the first level of Destruction 2:14:28 we can add
+another level by fracturing it again so we need to make sure that we have the root selected up here and then 2:14:35 I'm going to select fracture another time so now each of those
+20 pieces will 2:14:40 be divided into even smaller pieces and coming up here to explode we'll get 2:14:48 a better sense of that so we will add another layer so I found that three
+2:14:53 layers look good you can honestly play Within These values or add as many layers as you like so let me press 2:14:59 fracture again and now we have three different layers
+of Destruction so the first layer will 2:15:07 be the first to be destroyed and then after that the second layer and the third layer now let me bring that back to zero and I
+2:15:14 think we are good so let me press cancel and we will leave fracture mode go back 2:15:19 into the default of selection mode and we have this really weird material that's
+okay within the details panel we 2:15:26 can get rid of that by going into General and unchecked show bone colors to get back my original material that 2:15:34 material was just
+there to help us the developers see what the different pieces are okay so now if I simulate it falls 2:15:41 to the ground and nothing has happened that's because at least for this
+object it's hard to destroy it so we could 2:15:47 change how easy it is to destroy this object with physics by opening up the geometry collection right here within 2:15:55 the
+contact browser right here so this is where that geometry cluster is being 2:16:00 saved that we just created and to make it easier I will uncheck masses density 2:16:05 and bring
+up minimum Mass clamp to one so now if I press alt and S 2:16:12 you can see that it was destroyed just a little bit but in order to destroy more I can grab this movable sphere
+bring it 2:16:20 down and then let's smash it I like that so it is really fun I could basically 2:16:28 see it be destroyed grab it and then slam it against the wall and see all
+2:16:33 those pieces fly everywhere kind of reminds me of Gary's Mod I don't want gravity to be able to destroy my targets 2:16:40 I want it where when the player Fires at the
+Target it will be destroyed so let me go ahead and let's rest this target 2:16:47 against the wall let's go right here that's how it doesn't get destroyed 2:16:54 immediately I
+want to play my game again so come up here and select the selected 2:16:59 viewport that's why I'm playing my game and then when I fire on it I want it to destroy the Target right
+now it's not 2:17:06 doing anything to do that we need to add a force to my bullets so control space let's go back into my 2:17:13 first person Blueprints and open up the bullet
+blueprints so right here whenever 2:17:19 it does hit a location I want to spawn a force field in that location and luckily 2:17:26 for us unreal is already built in some force
+field blueprints we can use so let's drag from here and go spawn 2:17:33 actor from class and specifically the actor we're going to spawn 2:17:38 is FS Master field and select that
+so this is 2:17:45 a force field that comes with Unreal Engine and we can even open up this blueprint to see what it's doing so if I 2:17:51 click on this little magnifying glass
+it will jump to that location in Unreal Engine and notice how instead of it 2:17:57 being under the content folder it's under the engine folder this means it's built directly into
+Unreal Engine so if 2:18:04 I double click here is the blueprint so it is really complicated but luckily for 2:18:10 us all we need to know is that when it is created it's going to
+add a force at 2:18:15 that spawn location so I can drag from this location and drag it all the way 2:18:20 over to spawn transform and let go so this will convert the location
+into a 2:18:26 spawn transform and the transform will have a rotation of zero zero zero and a scale of one 2:18:32 which is what we want okay so now if I compile what is 2:18:37
+happening is that when the bullet hits something it will spawn our particle effects and then it will spawn the force 2:18:44 field and then destroy itself okay so if I shoot it
+2:18:50 notice how there's a little bit of a delay it's almost like there's a one second delay before I shoot it and then 2:18:56 it explodes so that is by default built into the
+master field it doesn't explode 2:19:02 immediately to make it explode immediately drag from here and type in CE trigger so this will just trigger it 2:19:09 right off the bats and
+then after we trigger it to make sure that the force field isn't being applied anymore 2:19:15 because I want it to just be a burst I will drag from Return value and then destroy
+the actor so it's created and 2:19:24 then it's destroyed immediately and of course hook it up to this destroy actor which is destroying the self to the 2:19:31 actual bullet okay
+so now we spawn on the master field 2:19:36 we trigger that field and then we destroy the field and then destroy the bullets 2:19:41 press play if I come over here and fire it will
+be destroyed immediately and I 2:19:47 could keep on firing at these chunks to destroy different ones also I know this was a glitch when I look at the floor 2:19:53 and then when I
+fire my player is moving and that's because within the bullets 2:19:58 the bullet is colliding with the player character something we don't want to happen so select the sphere and
+then 2:20:05 within in the Collision preset drop down change it from block all to custom and I 2:20:12 want to pretty much block everything except the pawn which is our player so
+that will be ignored 2:20:19 okay now if I press play we don't have that glitch but we can still destroy 2:20:24 targets and increase our score okay we're gonna bring this geometry
+2:20:31 collection we created and add it to the blueprint right here so we can select any of my target Blueprints and press 2:20:38 Ctrl e to automatically edit them now within the
+viewports instead of using 2:20:43 the static mesh targets we're going to use the geometry collection targets that was in Target right here and also let's 2:20:50 save everything
+so we don't lose our progress okay so I'm going to delete that static 2:20:55 mesh and select yes it's giving us a warning because we are making a reference to it right here I can
+delete that too 2:21:02 and then add a geometry collection and within here for the rest collision 2:21:10 and let me dismiss that to get rid of it for the rest Collision drag in
+the geometry Collision we just created and 2:21:18 let go so now we have it but there is a big issue when I press play it just 2:21:23 Falls and they start getting destroyed
+something that shouldn't happen so by 2:21:28 default within the targets for the geometry collection we will go down to 2:21:33 simulate physics and they will not simulate physics
+to start with so if I press play they won't fall and 2:21:40 crumble now jumping back into the targets we need a new hit Collision that 2:21:46 will then activate all this logic
+because right now we don't have any events hooked up to it so to get that 2:21:53 Collision let's create a brand new one and it will be a box Collision so the Bullet will have to
+hit this box 2:22:00 and let me make it it's a little bit smaller like that so that it's encompassing the majority 2:22:08 of the target like right there and also within the
+geometry collection make sure it's set 2:22:15 to block all just in case so the pieces don't fall through the floor 2:22:20 now with box selected I want to set this also to block
+all 2:22:26 so it will be blocking my bullets and select on component hit like that now 2:22:33 we're going to hook up this event to my nodes so when this box is hit we're gonna
+see 2:22:39 if it's a bullet let's double check this is working press play one two three and 2:22:45 four okay so this is working great now this is the part where we add in physics
+so if this is hit and it's the first 2:22:52 time being hit then we will drag out the geometry collection and we will set simulate 2:22:59 physics to true so now we want it where
+it can fall to 2:23:05 the ground but it won't fall to the ground because remember as soon as a bullet hits something then we spawn a 2:23:11 force field okay so if I hit it it
+would be destroyed 2:23:17 so this looks really cool now with my targets but we do have one issue and that is if I destroy a Target and then 2:23:24 try to walk through it the
+player is getting blocked so after that Target is destroyed we need to get rid of that box 2:23:31 Collision right here after we set simulate physics and before we add the score
+let me move it I will drag from 2:23:39 box and go set Collision enabled and then 2:23:44 set it to no Collision so that will allow the player to go through the targets or the
+bullets to 2:23:51 also go through the targets and we didn't have to hook it up right here we could have also hooked it up at the end 2:23:56 of that score the ordering doesn't
+matter for this logic so let's press play again and now if I fire I can go 2:24:04 through it and it won't be blocking the bullets and there's one last change I want to 2:24:09
+make if we destroy something you'll see that okay the interior of my mesh doesn't have a material it just looks 2:24:16 really weird that's because we need to set a material to the
+interior of the 2:24:21 mesh so we don't get these plain colors and to do that we're going to go into the target blueprints go back into the 2:24:28 viewports and make sure we have
+geometry collection selected now element 0 will 2:24:34 be our main material this is the material that we can see but element 1 will be the secondary material so this 2:24:40 is
+the material that's inside and right now it's set to the wrong one so luckily 2:24:46 for us if we go into the target folder I have this other material called M underscore Target
+interior so this one 2:24:53 is pretty simple it's just a texture that will go inside of the wood so let's drag this and place it right 2:25:00 there and now it is filled up so
+that was a small change but it does make a difference where if the player really 2:25:07 inspects it it looks more natural and that is the very basics of how to Environment 2:25:12
+program a game in Unreal Engine using blueprints so now that we have a nice game there is one more issue and that is 2:25:19 the environment the world of our game is very boring
+it's just the default first person map which is a bunch of Cubes now 2:25:26 we are going to go over how we can take that game that we created and migrate it over to any new
+environment that we 2:25:32 choose this part will be really fun but before we begin I highly recommend if you are a complete beginner to watch my 2:25:39 other beginner tutorial
+that focuses more on level and environment design where you will learn how to create your 2:25:45 own environment completely from scratch in that video we create this environment
+you see on screen if you did follow 2:25:52 along with that tutorial you could use that environment for your game for example here I took the castle forest 2:25:57 and Scattered my
+targets around which will force the player to explore and see 2:26:03 what you created now if you don't want to create a world then you could pick any environment that 2:26:08 is
+available to us on the marketplace you can go to browse and then select 2:26:13 environments or unreal comes with a bunch of free content we could use under the samples 2:26:19
+page so here we get a bunch of environments that we can select from in 2:26:24 my case I'm going to select the electric dreams environment because I think this looks the nicest you
+can see it's a 2:26:30 jungle now keep in mind this project is really a tends to run so if you can't run this 2:26:36 project then you could pick a simpler one from the samples
+page so let me go ahead 2:26:41 and select that and to create a project select that you could give it a name and a location to save it in I'm just going 2:26:48 to save it in my
+desktop and press create it might take us a while to create this project because it is 60 gigabytes large keep in mind you don't 2:26:55 have to follow along with the electric
+dreams demo this exact same process applies to every other environment 2:27:01 so now that we have it downloaded it will be on my desktop just double click to open it up and then
+open up the EU 2:27:07 project if this is your first time opening up the project then it may take a while for the shaders to compile right 2:27:13 here we have the recommended
+specs so you can go ahead and look at this and if your computer is less than the minimum 2:27:18 specs then I wouldn't recommend running this project but if you do have a project
+that's not that powerful we have 2:27:25 two examples so we can either open up electric dreams environment which is the full demo or we can do PCG close range 2:27:32 which is a
+lighter weight smaller environment that's easier to run so let's go open up PCG close range by 2:27:38 going to levels PCG and selecting PCG close range okay 2:27:43 so here is the
+smaller environment that you could use or if you have a strong computer we can open up the main one 2:27:50 under levels which is electric dreams underscore EMV and this is what we
+will see and it's 2:27:57 really intense to run if I press Ctrl shift and H then in the top right hand 2:28:02 corner I can see the frame rates and right now we're around 30 frames
+per second on a 30 90. so yes this project 2:28:10 is a tense but it is the nicest looking project in Unreal Engine and here's a good example we see all these editor 2:28:15
+widgets if you want to see what the environment looks like by itself so what the player will see then press the G key 2:28:21 to go into game View mode so I'm going to leave it in
+game View mode for now and press Ctrl shift and H again to get 2:28:28 rid of the frame rate counter so this is our environment and it is really amazing 2:28:34 we can even Zoom
+all the way out and it's an entire world we can look at so unreal created this demo to show off PCG 2:28:41 which is their procedural tool framework and there will be a tutorial
+and different packs in the future that go 2:28:48 over the procedural tools so don't forget to subscribe to check those out now let's go back to where we were right 2:28:55 here
+and if we want a clearer view without these windows you can press F and 10 to 2:29:01 hide those windows and then if you ever want those windows back I can hover over it and click
+on it to individually bring 2:29:06 out each one or I can press F and 10 again so that's a shortcut to hide them and we right now have controls for our 2:29:13 player that's
+because if I press play it will automatically spawn Us in as a drone a lot of these environments come 2:29:20 with a default game and a default player controller so this is that
+controller it is almost exactly like the unreal editor 2:29:27 controls except we get smooth movement now I do not want to use this player character of course I want to bring in
+2:29:34 the game that we've been creating and add it into this environment so let's press escape to get out of the game and 2:29:40 let's select the text because it's in the way
+and to get rid of it press the delete key you want to open up the project where we 2:29:47 created our game in my case I named it my first game and then within here purchase
+control space and get the 2:29:54 blueprint that contains all your game logic and in our case of course that is under first person Blueprints and it is 2:30:01 GM underscore Target
+game so this is the blueprints where we made the majority of 2:30:06 our logic now let's exit out and right click on it then go to asset actions and 2:30:12 select migrates so
+unreal will be smart enough to go through my entire project and find all 2:30:18 the assets that this game mode is referencing so that includes our player character we can go up
+here to first 2:30:25 person Blueprints and see that our player character is being selected our bullet our rifle and all the assets that 2:30:31 These Blueprints are using so the
+static mesh for the rifle the mesh for the Target and all of its materials which is 2:30:38 nice so that's why we don't have to worry about or maybe we migrate it and then we miss
+an asset so let's click on 2:30:44 OK and then navigate to location of your environment project in my case it's just on the desktop and select the content 2:30:51 folder and then
+select it so this will copy and paste those assets into my main 2:30:56 environment and right now it's using the default game of this project and we can see what that is by going
+into World 2:31:02 settings and game mode so it's GM underscore anim sandbox of course we 2:31:08 want to change this to the game mode that we just migrated over if I press control
+and space which was under first person Blueprints 2:31:14 and it is this one right here so GM underscore Target game is what we copied over so go back into your world settings
+2:31:20 and select GM underscore Target game right there so now if I press play 2:31:27 instead of getting the Drone we get the first person player character 2:31:32 and I can walk
+around and fire like normal and also I think my time is a little bit too short so let's go back 2:31:38 into my game mode and select GM underscore Target game to open that up right
+here and then 2:31:44 let's change the time to something a little bit larger like five thousand okay so this is really fun all this time 2:31:52 we've been making a player
+character and now we can see what our player character will feel like in an actual environment 2:31:58 so we can explore this environment with the weapon that we programmed I could
+go 2:32:04 around and I could just start firing a random vegetation and rocks and I can't 2:32:10 go over this so I'll have to jump over that log to continue exploring okay so
+score was 2:32:16 zero out of zero of course that's because we don't have any Targets so let me go ahead and let's set up a 2:32:23 shooting range within this location also we
+don't need a sphere this fear shows off unreal's new material system called 2:32:30 substrates which there will be videos on in the future but for now I can delete that sphere
+because it is in the way and 2:32:36 it's kind of a random so let's press Ctrl space and let's add in a Target 2:32:42 over here rotate this scale it up 2:32:50 turn off snapping
+because that was enabled 2:32:57 and if I press play I will spawn at the wrong location because the player's start is right over 2:33:03 here so let me press the G key to go out of
+game View mode and I can see that the player start is 2:33:10 right there I could move it over there or I can delete it and then manually come over here 2:33:17 to place the player
+start down within this area so let's go to add button basics 2:33:24 player start and drag that in and make sure it's rotated in the direction of my targets and then press play
+2:33:32 now I'm playing my game I can destroy these targets each one and then we have 2:33:37 one more all the way over there so I'm gonna have to fire on it and we won we don't
+have an issue with this 2:33:42 environment but sometimes the bullet will be blocked or the player will be blocked because the player Collision on 2:33:48 my world is different
+from what the player thinks the Collision will be so we can always see what the player 2:33:54 Collision is by going to lit and selecting player Collision now luckily for us in
+this environment it doesn't 2:34:00 look like that we have any Collision volumes blocking my targets so in this case we're okay but let's say you're in 2:34:08 a different
+environment and we can shoot these targets we have no issue but if we try to shoot the target up here you'll 2:34:15 see that our bullet is being blocked and that's because if we
+go into the player 2:34:20 Collision of this level you'll see that the Collision box is blocking the bullets from hitting the targets so in 2:34:27 order to fix this Collision I
+can select that static mesh as a whole press Ctrl 2:34:32 and E to open up its editor and then if we scroll down all the way to Collision 2:34:37 instead of selecting project
+default we're going to select use complex Collision as simple 2:34:43 now if I jump back into here and go into my player Collision you'll see that our Collision is the actual
+geometry of the 2:34:50 mesh which means that this shouldn't block my bullet anymore I am able to hit 2:34:55 that Target and continue playing on like normal I'll be back into our
+game environment 2:35:01 it is now finally time to finish our game and honestly this part can be really fun we aren't even going to open 2:35:08 up any blueprints we're not doing
+anything complicated all we're doing is that we're moving our targets around 2:35:13 creating new targets and just trying to make our game as fun as possible and 2:35:19 also
+trying to adjust how challenging it is depending on how many points you want 2:35:24 to give the starting countdown timer so I'm going to leave it at 5000 but we are going to
+change that in just a moment so 2:35:31 here what I'm going to do is let me bring this target all the way over here 2:35:39 and then duplicate this hold down alt and here's a tip
+whenever I'm moving an object around I can hold down shift to 2:35:46 lock my camera to it that's how I don't have to move it and then move my camera and move it again I get to
+slow down 2:35:52 shift to lock it there so let's go move this target all the way over here then 2:35:58 decrease its size add another Target up here 2:36:04 and finally for the
+very last targets let's bring it to this little area 2:36:12 you see where that kite is Let's Make a massive Target something like a 2:36:17 ridiculous size and then just place it
+here for the player to hit 2:36:24 and you notice that at least the way I'm saying up this level is that the targets are naturally leading the player so the 2:36:32 player starts
+here and then they're going to be led all the way around this rock formation 2:36:38 until they end up with a big Target right there so now what I'm going to do is play my 2:36:44
+game once and pay attention to how fast I can beat the game so let's press the play button all I'm doing right now is 2:36:51 that I'm play testing my game to see if the game is
+fun and if the location of 2:36:56 the targets does make sense so we have one right here that I can break and notice how there is a really long 2:37:02 stretch right here of
+nothing maybe I should add in another Target there just to entertain the player so that 2:37:08 they always have something to shoot that one and then we have the last 2:37:13
+Target massive all the way up there hit it and then it will be destroyed slowly it's kind of like an avalanche and 2:37:20 notice how we beat this with a time of 2000 200 out of
+5000. so that gives me a 2:37:26 good sense of what I can change the countdown time of my game to be so I 2:37:31 could change the time by selecting right there or selecting the
+time variable so right now it's set to 5000 we ended 2:37:37 around 2 000 so let me try 2500 so let's see if that would be good Outro 2:37:43 by going back into my map and
+selecting the play button so this should be the 2:37:49 last time we play our game this is the final product now we gotta race against 2:37:54 the time so shoot that one that one
+at this target we have a Target on this 2:38:00 path that I could hit and I could hit the really big Target right now the fire on it and it's really cool to 2:38:07 watch that
+physics it does look like an avalanche we have one target right there and finally one last Target all the way 2:38:14 over here sorry fire on it and we win the game so
+congratulations you just 2:38:21 created your first video game in Unreal Engine and we did it pretty quickly we had a time of 75 left so I think that 2:38:28 was a good time to

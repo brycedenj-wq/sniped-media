@@ -1,0 +1,224 @@
+models here, 20:56 and you also have access to various tools and MXGp servers which you can put in here. 21:01 Or you can go to rules, memories, and commands. 21:03 Now this is the
+one that I want to show you now. 21:05 So inside of cursor you have the ability to add project rules or global rules. Rules 21:11 Global rules are also user rules. 21:13 Now these
+rules are things that are going to be applied whenever you write code, either globally. 21:19 If you're using a user rule or within this project. 21:23 If you're using a project
+rule. 21:25 Now, rules are really smart to set up. 21:27 If you want the agent to follow a consistent kind of format or pattern, 21:31 or you just have something you don't want it
+to do or that you want to always do. 21:34 For example, if your boss tells you, hey, you can only write in this style of code, 21:38 or you have to use, you know, C plus plus 14,
+you can't use a newer version. 21:42 You can just make a rule in curser and tell it, hey, 21:45 always do this thing, always do this thing, follow this rule. 21:49 And without you
+having to repeat that multiple times, it will just automatically follow it. 21:52 So for example, I can go to add rule for a project because I just want it for this specific
+project. 21:58 And I'm going to say, you know, let's go just general for the name of the rule file. 22:01 And I'm able to just write in the rules here that I want to be followed.
+22:05 And you'll notice 22:06 that there's this thing that says always apply, apply intelligently, apply to specific files. 22:10 So you can be really targeted with your rules,
+like in a specific file. 22:13 Maybe you never want it to touch it. 22:14 You can just do this and say, okay, you know, for any file, I don't want anything to be touched. 22:20 I
+want you to change anything. 22:21 In my case, I'm just going to go always apply and I'm just going to put a rule and I'm going to say 22:26 always generate docstrings 22:30 for
+functions. 22:31 Okay. 22:32 And now that I have this in the rule file, you'll see this folder gets created 22:36 that stores the rule for me in this markdown C file which is
+markdown cursor rules file. 22:40 And if I start writing code now, this rule will just automatically be applied. 22:44 And it should if it writes a function, follow that rule.
+22:47 Now a few other things to go over, but let's quickly go back and check our agent. 22:50 So I'm going to go to the agents tab. 22:52 And we can see that this agent is awaiting
+review. 22:54 So it says that it's kind of done. The landing page. 22:57 The landing page is here I can press on review. 23:00 I can see all the files. 23:01 In this case 23:02 I'm
+just going to kind of blindly press on, keep on because I can just trust that it's done that. 23:06 And then we could check out the landing page and see if that works. 23:08 So
+let's quickly check out the landing page. 23:09 I'm going to go back to the editor again, because this is kind of the view that I prefer. 23:12 I want to understand how to run the
+landing page. 23:14 So I'm going to say okay, let's go to ask mode. 23:17 You know, how do I open 23:20 the landing page. 23:22 And then let's see if it gives me the instructions.
+23:25 And okay, it says that I can just right click it and open it. 23:29 So let's go to I think it's index.html. 23:32 Let's right click it. I'm just gonna open it with the live
+server. 23:35 And you see now that we get the Tetris landing page. 23:37 And if I press play it runs it, it brings me into the game. 23:41 Boom. Right. There you go. 23:42 All
+that's working pretty simple for it to do, but you can see kind of how I'm following 23:46 along with this process. 23:47 Now let's keep going. 23:48 And I want to show you a few
+other features that are worth noting. Version Control 23:50 So first of all, version control okay. 23:53 So if you go to kind of this view again go into the editor. 23:57 You'll
+see that you have this kind of like branch 23:59 looking thing which is your version control window. 24:03 Now if you also go here you can just press on source control or version
+control. 24:06 Now this uses something called git. 24:08 If you don't have git installed on your computer you will need to install it. 24:11 And this is something that allows you
+to essentially track and store 24:15 all of the code changes that you're making. 24:17 So if something goes wrong in the future, you can kind of revert back to a previous version.
+24:21 It's kind of like checkpointing your code or like saving your work in a more permanent way, 24:26 so that if the model goes and makes all these wild changes and it does
+something really, 24:30 really bad, you can at least get back to a state that was working previously. 24:34 Now, I'm not going to explain git in depth, but what I'm going to highly
+suggest you do is watch 24:38 this video that I'm going to put on screen right here, which explains git and how to use it. 24:43 Now, even though the I can do the source control
+for you, 24:47 I would highly, highly, highly recommend that you understand this version control concept 24:52 because it will save you probably a lot of nightmares that will come
+up if you are building, 24:56 especially a large project. 24:58 Now, if you just want to kind of cheat through this, what I'm going to ask you 25:01 to do is just pretty much tell
+the agent to use git. 25:04 So I'm going to tell it, hey, use source control 25:07 slash git and save this work okay. 25:11 So that it's going to just run the commands
+automatically for me to essentially 25:15 save the work for me. Okay. And this is something I would suggest doing. 25:18 So you can see that it's now showing me okay. 25:19 It's
+running this command. 25:21 It's seeing that there's no, you know, git repository here. 25:23 It's creating a git repository for me. 25:25 And this is something the model is
+capable of doing is automatically running commands for you. 25:30 Now sometimes it may ask you to approve a command that's intended. 25:34 You can approve it. 25:35 You can reject
+it. 25:35 In my case I have it set to just always allow. 25:38 So it's always runs the commands. 25:39 And you can see that what it's done is it's initialized a new git repo 25:42
+added the files, created a commit which is like a save or a checkpoint. 25:46 And then actually just save the work for me. 25:48 And now if I go to my source control, you see that
+this kind of new window appears 25:54 and in the bottom left you see that it shows me actually the commit that just occurred. 25:59 And the more commits that you have, 26:00 you'll
+kind of get this timeline of all of the changes that have been made. 26:04 You may not understand 100%, but this is a really useful thing to use 26:08 for your projects, and I
+highly suggest that you do it. 26:10 So that's pretty much it just the last thing I will mention 26:13 is that you can use MCP servers, as I kind of briefly touched on before. MCP
+& Tools 26:18 So you have something called tools MCP, you have the ability here 26:22 to add MCP service by pressing this new MCP server button. 26:26 Now, I'm not going to really
+walk through this, but you can see this is an MCP server that I have 26:30 that allows me to run something called Tiger Data, which is a pretty cool, kind, affordable AI database.
+26:35 And if you add different MCP servers here, your agent now has the ability to call those servers 26:40 and kind of connect to external tools and just has more functionality.
+26:43 So just kind of be aware of that. 26:45 You know, if you've heard of MCP before model context protocol, you can have that in here. 26:49 In my case I've got four tools in
+mind. 26:51 And you can see kind of what some of the tools are and some of the things that it can run. 26:56 You get the idea. Again, you can kind of toggle it on and off. 26:58
+I'm just mentioning it exists, look into it. 27:00 If it's interesting to you. 27:01 Not going to be in the scope of this tutorial. 27:03 So that's it guys. 27:04 For this video,
+if you enjoyed make sure 27:05 leave a like subscribe to the channel and I'll see you in another video. All From Tech With TimOverview 0:00 Today we're checking out cursor AI. 0:02
+An AI powered code editor that promises to make your development significantly easier. 0:07 Now, I've been using this for the past few weeks. 0:09 It's pretty interesting, and I
+wanted to make a quick tutorial on it 0:13 to share with you what I've learned and some of the best practices that you can apply, 0:17 especially if you're a more beginner
+programmer and you haven't used a ton of these AI tools before. 0:21 You don't know exactly how they work and how to get the best results out of them. 0:25 So with that said, let's
+dive into it and let's learn about how to use cursor AI. Setup 0:30 Now, at this point, I'm going to assume that you've downloaded it. 0:32 If you haven't, give it a shot. It's
+free. 0:34 There also is a paid version if you want some more features and unlimited usage, 0:38 but I'd recommend even if you're an experienced developer, because it is pretty
+cool. 0:41 And it kind of makes you question how you've been working in the past, 0:44 and if this is something that you might want to switch to. 0:47 Anyways, once you've got
+cursor, I open what I recommend doing is just opening a new folder. 0:52 So to do that you can go to file and then open folder. 0:55 And then from here you can just make a new
+folder on your desktop for example, and open it up. 0:59 That's because a lot of beginners actually just work in whatever the default folder is, that it starts 1:04 you in, and
+then they can kind of lose their work if they don't know where that folder location is, Make a Plan 1:08 or it can be a bit more difficult to get back to it now, especially if
+you're a beginner here. 1:12 What I'd recommend doing before you start using any of the features that I'm going to show you, 1:16 is making a little bit of a plan. 1:18 AI works
+best at solving really small, discrete, detailed tasks. 1:24 The more specific you can be, the more context and information 1:27 you give it, the better results you're going to
+get. 1:30 You'll notice if you just ask it to do something like generate me a to do list application 1:35 or give me a portfolio website, or you give it like a really general 1 or
+2 sentence 1:39 long task, you can get wildly different results and something that you're not looking for at all. 1:44 And once it starts going in one direction, it can kind of
+branch and just bring you all over the place. 1:49 If you don't know what you actually want. 1:51 So make sure you know what you want. 1:52 You have a clear vision of what it is
+that you want to build, and I highly recommend 1:56 at least jotting down some notes or even drawing out a picture of what you want the user interface, 2:01 at minimum to look
+like, because that's really going to help guide you through this process. 2:06 Anyways, let's imagine you've got a plan at this point. Composer 2:09 You know what you want to do,
+and you've kind of thought about it, at least for a few minutes. 2:13 The first feature I want to show you here is the compose feature now, 2:16 or the composer feature, whatever
+you want to call it. 2:18 Now, in order to enable this, you're going to have to go to file 2:22 and go to Preferences Cursor Settings and then click on features. 2:27 Here. Now
+scroll down you should see the composer. 2:30 And then you can enable it by just selecting enabled I think by default is disabled. 2:34 So that's why I'm mentioning that to you.
+Okay. 2:36 So now that we've got that what we can do is press control AI. 2:40 And that's going to open up the composer view. 2:42 If you're on Mac it's going to be command AI.
+2:44 Now this is what can actually edit multiple files 2:47 at the same time and create new files for you. 2:50 So this is what I like to start with when I'm generating a brand new
+application. 2:54 And then if I want to do a major feature change or there's something that's going to apply 2:57 to a ton of different applications or, sorry, ten different files,
+I'll use this. 3:01 Okay. 3:02 So first thing I'm going to do, I'm just going to open the control panel. 3:04 So it's a bit larger. 3:05 And I can kind of see this here. 3:07 And
+I'm going to ask it exactly what I want it to do. 3:09 All right. 3:09 So I've written a quick prompt here. You guys can read through it if you want. 3:12 But the important thing
+is that I'm specifying exactly what I want it to do. 3:16 And I'm telling it what framework, languages, etc. 3:19 I want it to use. 3:20 Now, if you don't know, you can ask it to
+recommend to you which ones 3:23 you should use, but I do recommend doing a bit of research 3:26 before you just dive into this and use like a random language or a random
+framework, 3:30 and you can actually ask other AIS or even the one inside of this app, which I'll show you in a minute. 3:35 Hey, I want to build this type of application. 3:37
+What's the simplest way to do that? 3:39 And then I can give you some recommendations. 3:41 Point is, I'm asking it that I want to use express, which is a JavaScript framework 3:45
+for the backend, SQLite for storing the recipes, which is my database, 3:49 and I want to use JavaScript, HTML and CSS with tailwind for the frontend. 3:53 Okay. So I'm just going
+to hit enter here. 3:55 And what's going to happen is it's going to start generating a ton of different files for me. 3:59 So it will give me some instructions 4:00 because it
+can't quite do everything like running for example, terminal commands. 4:04 But it can generate a majority of the applications. 4:07 So let me zoom out a little bit, just so that
+we can see this a bit better. 4:12 Okay. And let's go back here. 4:14 All right. 4:14 So you can see that it has generated the server for me. 4:18 We have the index. We have style.
+We have script. 4:21 We'll just wait for that to finish. 4:23 And then we can actually just accept all of these changes and it will apply to our app. 4:27 All right so I've
+finished. 4:28 Now I can go and I can look at all of these files. 4:30 I can ask it for revisions to change things around pretty much whatever I want. 4:34 And then I can just
+accept all of these changes, or I can accept one file at a time. 4:38 So I'm going to go accept all. 4:40 And this is very similar to what you do in like a GitHub pull request or
+something. 4:43 and you can see that it's going to generate these files for me. 4:45 So let me get out of the composer view. 4:47 Now I have my index, my script, my styles and my
+server. 4:51 Okay. 4:51 So that is the first feature that is the composer very useful for generating bigger features, 4:56 a lot of code getting you started, but sometimes you can
+get a little bit crazy. 5:00 And also it's difficult to review all of the code that's inside of there. 5:03 So I want to show you the next feature that I found myself using the
+most. Chat Window 5:07 And this is the kind of the general chat view. 5:09 I'm not sure exactly what they call it, but if you hit control L 5:12 or command L, you're going to get
+into this chat. 5:15 Now in here, you don't actually have to ask anything coding related, 5:18 but this does have access to the entire context of your code base. 5:22 So you can
+ask about a particular file and it can go and look for that. 5:25 Or you can specify context yourself. 5:28 So what I can do is press add for example. 5:30 And I can add different
+files. 5:32 So if I want to ask a question about my server file I just put server inside of here. 5:36 Now I can also do things like ask it to search on the web. 5:39 I can give it
+an image. I can what does it link? 5:42 Different documentation. 5:44 So if I go to app mentioned you see I can give it a PDF file. 5:47 I can give it a folder code. 5:48 Web docs
+get like there's so many different options here. 5:51 And the more context you can give this, the better it's going to perform. 5:55 So feel free to go in here and mention a
+specific file 5:58 or mention, like a website that you want it to go and read from. 6:01 For example, if there's like a brand new feature or framework, you could link the, 6:05
+documentation to that and then get it to read that before it generates you the response. 6:11 Okay. 6:11 So anyways, so let's say we want it to do something inside of server. 6:14
+So I can say server. 6:15 I say okay this is nice, but I want to add for example more recipes. 6:18 So I'll say okay great. 6:22 Can you add some new recipes? 6:25 Please make them
+more unique. 6:29 Okay. So let's hit enter and let's see what we get. 6:31 All right. 6:32 So we got some code here and we could just manually copy this in. 6:35 We also can press
+apply. 6:36 If we do that it's actually going to make a diff inside of the file. 6:40 So you can see that it's showing us exactly what it's going to add. 6:43 right inside of here.
+6:45 And this is completely different from something like ChatGPT, where if you had, 6:49 you know, comments like existing code or insert sample data or whatever, 6:52 you need to
+actually, like, copy parts of this and kind of splice it into your file here. 6:57 This can just do it for you. 6:59 So what I'm going to do is just accept this. 7:01 And you see
+that now we just get more recipes added inside of here. 7:04 And by the way, if I didn't like this, I could just reply to it directly here with this ask button. 7:09 Now it's
+referencing this particular response. 7:12 And I can say something like, hey, I don't like this recipe, swap it out with this one. 7:16 So just a really quick way to inject that
+context. 7:19 And again, the context is so important when you're coding, 7:22 you want to give this as much information as you possibly can. 7:24 That's how you get the best
+replies. 7:26 So that's the chat window. I think it's pretty straightforward. 7:29 You can mention the context, you can choose the different model you want to chat with. 7:33 You
+can link documentation. 7:34 And while we're here, Code Search 7:35 I will mention that there is actually the option to kind of search through your code base. 7:39 So you can just
+do the default chat which is hitting enter or pressing this button. 7:43 Or you can do something like say, you know, where are my recipes defined. 7:48 So if you're looking for a
+specific piece of code, maybe you're in a huge code base. 7:51 It's kind of difficult to navigate. 7:53 And then you can press on this button and it's actually going to search
+through the whole code base. 7:57 You can also do control plus enter 8:00 or command plus enter, obviously more effective in a larger code base. 8:03 But you see it now tells us
+kind of where 8:05 this is and gives us links to the different variables to the files. 8:09 And notice I can actually click on these and go to exactly where they are. 8:13 which is
+pretty interesting. 8:14 So if I go to sample recipes brings me to that variable. 8:16 Anything that's blue is clickable. 8:18 And it's really, kind of easy to navigate through the
+code base. 8:21 Okay. So that's the chat window. 8:23 A lot of stuff you can do here, especially with the context. 8:26 But now what I want to talk about is kind of the inline
+completions. In-line Editing 8:29 So while we're typing code like let's say we actually want to, you know, edit something ourselves. 8:34 So if we go to, for example, index.html,
+8:37 maybe what I want to do is add another select box for some reason. 8:41 So I'm going to say okay select. 8:43 And then notice right away it gives me really long
+autocompletion. 8:46 So if I hit tab that's going to complete it for me I can press enter. 8:49 Go inside of here. 8:50 It's already given me a bunch of options and I can generate
+code significantly faster using these. 8:56 So this is kind of the same one that I already had. 8:59 But if I wanted to, I can change this around and rather than mood select I'm
+going to go 9:03 maybe time select or something and then we'll have an option. 9:07 And what else are we going to do here. 9:10 Breakfast lunch dinner okay. 9:13 Let me just press
+tab correctly here. 9:16 And you can see that I can kind of insert those inside. 9:19 Nice. 9:19 Now let's say maybe I just want to modify this block of code here. 9:23 I can
+highlight on it. 9:24 And then I have two options. 9:25 I can chat with it Ctrl L or I can do control K. 9:29 And Ctrl K is going to bring up kind of the inline editor. 9:32 So if
+I do Ctrl K I can give this instructions on what I want it to do with this. 9:36 So I could even just say something like delete this. 9:39 I don't know why I would do that, but I
+could. 9:41 And you can see now it generates the diff and then I can accept that or I can reject it. 9:46 Now if we go back here, I'll say add some more detailed options please.
+9:53 Okay. Let's hit enter. 9:54 And then it again will give me the diff. 9:56 And you can see that it has early breakfast breakfast lunch etc.. 9:59 Okay let's accept that. 10:00
+And there you go. Now we have our options. 10:03 So as kind of a mini recap, if you want to generate a ton of files you're creating new files. 10:07 You're doing like a big feature
+change. 10:09 It's going to be touching a lot of the areas of code. 10:11 Then if you open up the composer with control I or command I, 10:15 you can make a new composer or use an
+existing one, and then you can read through all of these files 10:20 like something like a GitHub pull request, and kind of make changes that way. 10:24 Now if you want really
+smaller kind of targeted modifications, you can just highlight lines of code 10:30 and you can hit, for example, control K when you do this right in line 10:34 in your code, that
+opening up that other window, you can make the change. 10:38 So this is like a really fast way to change it in the editor when you know exactly what you want. 10:43 And then if you
+want something that's kind of in between that and maybe doesn't 10:46 even have to do with a code change, you can open up the chat window. 10:49 Now here you can ask pretty much
+anything that you want. 10:52 You can get it to recommend changes and then directly apply those. 10:55 You can also ask it to for example explain code. 10:58 So maybe, you know I
+copy this and I paste this inside of here. 11:01 Notice that context is automatically added when I do this. 11:04 And I can say hey, can you, you know, explain these lines, please.
+11:10 Okay. 11:11 And now it's going to go there, explain it and kind of give me a description of what's going on. 11:15 So the chat window is more for that. 11:17 Whereas in here
+it's to make a change and actually modify a section of the code 11:21 in a more targeted approach. 11:22 So that's cool. 11:23 The last major feature I want to show you is that we
+can actually use images to generate code as well. 11:29 So let's do that. Okay. Image to Code 11:30 So I just grabbed a random image here from the web of like a really simple login
+form. 11:35 Now obviously you maybe take like a figma file or something, a designer sending to you. 11:39 But the point is you can take an image and you can pass it here and get it
+to generate code 11:43 based on that. 11:44 So what I can do is pick the image. So let's go. 11:46 I think it's this one right here. 11:48 It's going to show up I'm going to say
+can you please 11:52 make a new HTML file 11:55 that contains this form, make it look exactly like this. 12:01 And let's see what we get to a generated some HTML. 12:03 But notice
+if I press on apply, it's trying to apply that into my index.html. 12:09 Now I wanted a new file and that's one of the things that this kind of gets wrong a lot in the chat. 12:13
+It's not going to make the new file for you unless you use the composer. 12:17 So I need to make a new file myself. 12:18 So I'm just going to go form dot HTML okay. 12:22 And then
+I'm going to apply this. 12:23 So I'm going to click cancel. 12:24 Go back into form. 12:25 When forms open it's going to default to using that. 12:28 And I'm going to go to apply
+notice it. 12:30 Now says form dot HTML. 12:32 And then you'll see that it kind of pops in here. 12:34 And then I can accept this. 12:35 So I'm going to hit control shift y to
+accept that. 12:38 And then let's open this up because I want to see what it actually looks like. 12:41 So let's reveal in File Explorer. 12:43 Let's open the form. 12:45 And that
+is pretty impressive that that is already created. 12:49 So if we go back to the image I was not expecting it to be that good. 12:53 let me open up the image again. 12:54 This is
+what the image looks like. 12:56 And this is the result that we got. 12:57 Now, sure, there's a bit of an issue with the spacing, but at least this like 13:00 diagonal line got
+filled in, which I was expecting it not to do. 13:04 Yes, there's some issue with the padding in the font, but generally that's pretty close. 13:09 and that's pretty impressive.
+13:10 Again, I was not expecting it to give me that good of a result, so that was pretty impressive. 13:13 And overall cursor has been super cool to use and it's definitely
+supercharged my productivity. 13:19 Now, with that in mind, 13:20 I'm only able to use this really effectively because I already know how to code now. 13:25 Sure, you can use this
+as a complete beginner with minor experience, 13:28 but it's going to be significantly harder to actually get anything done 13:32 because if you do get stuck, it just really is a
+little bit of a nightmare. 13:35 to try to figure out what's going wrong with the AI, fixing the files. 13:38 And a lot of times I do find myself having to dive in there and kind
+of make the change myself. 13:43 Now, with that in mind, if you do want to learn how to code 13:45 or you want to learn even how the limbs work or get more into data science, 13:49
+machine learning, kind of all of those interesting and new up and coming fields. 13:53 I recommend that you check out the sponsor of today's video. 13:55 Brilliant. 13:56 Brilliant
+is where you learn by doing with thousands of lessons 13:59 in math, data analysis, programing and AI. 14:03 They adopt a first principles approach, ensuring you understand the why
+behind each concept. 14:08 Every lesson is interactive, engaging you in hands on problem solving, 14:12 which is proven to be six times more effective than simply watching
+lectures. 14:16 The content is developed by top notch educators, researchers, and professionals 14:20 from renowned institutions like MIT, Caltech, and Google. 14:24 Brilliant
+emphasizes enhancing your critical thinking abilities 14:27 through active problem solving rather than memorization. 14:30 As you learn specific subjects, you're simultaneously
+training your mind to think more effectively. 14:35 Consistent daily learning is crucial and brilliant makes it effortless with their bite sized lessons 14:41 allowing you to
+acquire meaningful knowledge in just a few minutes each day. 14:45 Perfect for replacing idle screen time. 14:48 Additionally, brilliant offers a comprehensive range of computer
+science 14:51 and Python courses, as well as extensive AI workshops guiding you 14:55 from a complete beginner to an expert through practical, hands on lessons. 14:59 Try
+everything Brilliant has to offer for free for a full 30 days 15:03 by visiting brilliant.org agtech with Tim or click the link in the description. 15:08 You'll also get 20% off an
+annual premium subscription. All From Tech With TimIntroduction 0:00 Welcome to the complete cursor guide with Kihan Zang. He is the best developer I've ever met and he's used 0:06
+Cursor every single day since it came out. In this video, he's going to give us the most comprehensive course on how 0:12 to use Cursor on the entire internet. And by the end of
+this course, you'll be able to confidently use Cursor to vibe 0:19 Code landing pages, desktop apps, or anything you can imagine. If you've been looking for a comprehensive, easy
+to 0:25 follow, wellorganized, and practical course that takes you from zero to hero, this is the right cursor course for you. 0:32 You don't need any prior knowledge of
+programming. All you need is a computer. If you already have a foundation, the 0:38 whole video is timestamped, so you can switch to any chapter that you want. And in the second
+half of the video, we're 0:44 actually going to be covering the most advanced features inside Cursor. We are truly covering everything. And so if 0:50 you're new here, make sure to
+subscribe as I upload new videos all the time about vibe coding and building with AI. 0:57 This is going to be a very long video. Let's dive in. Khan, welcome. Overview of Cursor
+and Its Features 1:02 Hello. What are we talking about today? Today we're going to be going through in detail what cursor is, everything it can 1:09 do, and we're going to be
+building an MVP, upgrading it into something that's full stack and scalable and deployable, 1:15 and we're going to be comparing it with other vibe coding tools. Amazing. So, we're
+going to talk about why it's the best tool out there. Um, and we're also 1:22 going to go over like all the features, right? Like basically every single feature within Cursor.
+Yeah. We're going to be running through 1:27 all their new features. They just dropped Cursor 2.0 with a ton of amazing features. We're going to be going 1:33 through all of that.
+And we're also going to go through Cursor 1. We're going to use all of its features as well. And Composer. 1:38 And Composer, their new model. Yes. We'll be talking about that
+today and then we'll see how it stacks up against, you know, Replet, Lovable, 1:45 Bolt, etc. Yeah. And we're going to be starting from the basics. We're going to be going through
+things like, you know, what a Getting Started with Cursor 1:51 file is, what a directory is, all the way up into building and deploying an app. Yeah. And we'll talk about
+databases. 1:58 We're going to get to that later today. Oh, that's going to be covered once we start scaling up our app. Yeah. Hell yeah. Okay. Well, let's not waste 2:04 any time.
+Uh for those of you who are watching right now, I will put the sections and the timestamps on the 2:09 screen right here. You feel free to skip ahead. If you are a seasoned
+developer, you may want to skip to like cursor 2.0. 2:17 0 the the third section if you want, but if you are brand new to coding, you do not even need to know what a file is or
+2:24 a variable. You just need your computer. That's it. You literally just need a computer. You are going to be able to build an app by 2:31 the end of this video and not just an
+basic app like an app with a database. And we're going to talk about everything 2:36 in this video. So strap in. It's going to be a fun one. All right. So tell me what is cursor?
+Understanding IDE and Vibe Coding 2:41 Thanks for asking. So, cursor is an IDE, which is basically VS Code's cousin. If 2:47 that isn't making a lot of sense, an IDE is an
+integrated development environment. And Cursor is probably the 2:54 only real true IDE out of most vibe coding tools. And that's kind of lays the groundwork for why Cursor and VS
+3:01 Code is the previous generation, the most popular IDE. And so, I guess shouldn't we go over the reasons like why we should be using 3:07 cursor or like why use cursor over
+other tools and such? Yeah, of course. So, as I mentioned before, cursor being an IDE gives you a 3:14 very solid foundation for kind of beginning your journey as a vibe coder. And
+this matters because you're not 3:20 necessarily writing code, but you should know how all the fundamentals piece together and give you the product that you want. And having a more
+traditional 3:28 IDE framework kind of around this is very beneficial. It's something that you can grow into and cursor is an amazing 3:34 platform for you to just learn. So I
+think the first part about it is that it allows you to build a really solid 3:40 foundation for vibe coding in general. You can grow into it and the ceiling for it is very high.
+There's a lot of 3:45 technicalities that you can jump into it. Real programmers actually use it. So definitely one of the best tools to 3:51 build a strong foundation when you
+begin. Amazing. And yeah, I think I think a lot of people sometimes start their project 3:58 on other vibe coding tools like replet um v 0ero lovable and then they move to cursor
+when they want to expand it when 4:05 in reality if you just actually take two to three hours to learn cursor you can just stay in cursor because switching 4:11 from one platform
+to another it's kind of annoying and cursor has it legit has everything you need that's how I view it 4:18 and you know it also works the other way around if you know cursor you
+can switch to you know replet lovable super easily. 4:25 So, the skill is very transferable, but it isn't necessarily the other way around because of the IDE nature that cursor
+has. 4:30 It just has all of the tools that you might need. Yeah. It's like, you know, if you know how to use Photoshop, obviously you know 4:36 how to use Canva, right? Sure.
+Yeah. 100%. What's the next reason? Yeah. So, the next point is that it's 4:42 not a website. And this kind of bleeds into what we were talking about. A lot of the other
+competitors in the space 4:47 are web- based and that's actually more limiting than you might think as in they kind of only really optimize to allow 4:53 you to build websites and
+that's kind of a very interesting caveat. Although websites are the most common, you know, 4:59 form of software, Cursor actually allows you to build basically whatever you want
+because it's an application that lives 5:06 on your laptop, which means you could use it to build mobile apps. You could use it to build indie games. You could 5:11 use it to build
+landing pages, websites, anything else that everyone else lets you build. But it also gives you the 5:16 control to build anything else. Like you could build your own embedded
+systems, which means you could program your own keyboard if you wanted to. Like it goes 5:23 like all it covers the full range of what code can do. Yeah. And the way that I the way
+that I understand it, right, if you look at a 5:29 popular tool like Replet, Replet is a website, right? As you said, it it is a 5:34 a website that you go to and the code is
+stored on Replet's server, right? It is 5:40 on their servers. Whereas cursor, right, with cursor, your code is on your 5:45 computer. Um, you can basically create literally
+anything with cursor. Yeah. Whatever exists as code, cursor 5:52 can help you with. That is something unique only to cursor actually. And obviously you can use VS Code and 5:58
+actually learn how to code but this is a V coding tutorial. Did you know that the next generation spends about 90% of Cursor For Mobile Apps 6:03 their mobile internet time using
+mobile apps, not websites? That's why you should learn how to build mobile apps 6:08 without writing a single line of code. Well, the most powerful tool in the world to build
+mobile apps is the Vibe Code app. And you can use it directly on 6:15 your phone and ship it to the app store. No coding required. Just describe what you want to build in plain
+English and 6:21 watch the Vibe Code app generate a fully functional app in minutes. Vibe Code even uses Claude Code as its default 6:28 model. Whether you want to build a custom
+productivity app, a social platform, a habit tracker, your idea 6:33 becomes a reality faster than you ever thought possible. And you don't even need a computer. You can test it
+6:39 instantly on your phone and refine it with simple prompts. And when you're ready, you can literally send your app 6:45 to the App Store. Download Vibe Code today and turn your
+app idea into reality in minutes, not months. And 6:52 Riley briefly touched on this, but point number three is that it is local. It's an app that exists on your computer. And 6:58
+this changes a lot of things. You know, you don't need to ask Repid or lovable for the code. It exists on your 7:04 computer. And similarly, you can drag and drop files. You can
+interact it with, you know, your desktop view. It's 7:09 definitely more in your control. and everything just exists locally, which makes developing and streamlining things 7:16
+like down the line amazing. Mhm. Yeah. They just don't baby you in the same way that um tools that aren't 7:22 local do. But like again, that's why we're taking this course. If you
+just learn those few things, you don't need 7:27 to be babyed. You can create a GitHub repo and and save your code and then you can easily transfer it to any other uh 7:34 coding.
+Exact. That's exactly why, you know, if you learn cursor, you can learn anything else and pick it up super easily. like 7:39 this is the Photoshop of you know code writing 100%.
+Yeah. So number four obviously is that 7:45 cursor is the most established player in the Vive coding space. They've been around. I've been using it for like years now and you can't
+really say that 7:51 about a lot of other Vive coding tools and this means they have a large community and I previously touched on 7:57 this before. A lot of engineers such as
+myself actually use it to write code. They're fully professional and it 8:02 exposes you to all the you know extensions that you can get with VS Code. the community that you find
+8:08 general community that you find like regarding any code snippets you can technically take and apply to using with 8:13 cursor meanwhile you know if you're stuck in like
+replet's ecosystem for example you might have to ask some 8:19 replet specific questions and go through their forums like I could just use Google and I could take what I learned
+from there and put it into like 8:25 and on top of this a lot of the professional developers are using extensions for cloud code for codeex and 8:31 Gemini CLI which are like known
+as being the best coding models in the world and will probably continue to be the best 8:37 coding models in the world. You can just plug them into cursor. Yeah. Yeah. Of course.
+And definitely like the VS Code extensions that as I 8:43 mentioned earlier, cursor is kind of VS Code's cousin. It can use all of the benefits that you get from VS Code which 8:50
+is absolutely huge. I don't want to downplay this at all. Amazing. And so number five is obviously very 8:55 recently cursor released agent 2.0 I know and it is a very big game
+changer especially for vibe coders and I think 9:03 for people getting started especially it takes a large chunk and kind of inspiration from chat GPT's chatbased 9:10 interface
+and cursor has always had kind of like a chatbased element to it but this new UI kind of is built for people 9:17 to begin with and kind of get their feet wet and start building
+immediately. So it's they're taking a step into the 9:22 direction of babying you, but also still exposing to you all of the like powerful features behind it. And I think at this
+9:28 point in time, Cursor 2.0 is actually probably the most heavyweight like AI 9:34 like coding agent coding platform. Like it can use agents multiple concurrently. That is, you
+9:41 know, just so powerful. 100%. You still have everything that we just talked about like all of the power 9:46 of cursor but it has this nice little layer on top that makes it
+almost feel a little bit like chat GBT which is nice 9:52 which is with the VS code uh with the extensions that we'll talk about later they're going in the same direction 9:57
+where it's clawed code but it no longer looks messy it's nice and easy to use. Yeah. Yeah. So it is kind of like you 10:03 know with code you get really down to the low levels
+things get scary you're looking at like squiggly lines and small 10:08 text you know VS Code does a great job of oh V code and cursor do a great job of packaging it in a friendly

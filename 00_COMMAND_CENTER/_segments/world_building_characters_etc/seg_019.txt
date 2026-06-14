@@ -1,0 +1,224 @@
+Maps maybe even let's Gog five now this is almost like 1:07:151 hour, 7 minutes, 15 secondsit's from a war zone we can even add some more adjustments so let's jump back into M SC
+Spanish payment and I want to 1:07:221 hour, 7 minutes, 22 secondscontrol the intensity of this normal map with just a simple multiply node so I could select this multiply press
+contrl and D to duplicate it or I could hold 1:07:311 hour, 7 minutes, 31 secondsdown M and left click to bring in a multiply node and hook it up like this now I want to bring in a
+parameter 1:07:391 hour, 7 minutes, 39 secondsscalar value for B so I could hold down one and left click then right click to convert to parameter or a shortcut is to 1:07:471 hour,
+7 minutes, 47 secondshold down the S key and left click to create a constant parameter and it's going to automatically ask us for a name call us want roughness 1:07:561 hour, 7
+minutes, 56 secondsstrength and plug it up like this and this will immediately get rid of any roughness make it pure glossy we don't want that so let's go increase the 1:08:051
+hour, 8 minutes, 5 secondsstrength from 0o to one which won't do anything by default but this gives us the ability within our material instance 1:08:131 hour, 8 minutes, 13
+secondsto then let's say increase this roughness strength to make our payment even more 1:08:201 hour, 8 minutes, 20 secondsrough so maybe beforehand it was at one you think that
+this is a little bit too shiny well you can just increase it and 1:08:291 hour, 8 minutes, 29 secondsget the exact roughness amount you want so with just a couple of controls
+within our parameter value we're able to in 1:08:361 hour, 8 minutes, 36 secondsreal time completely change the way our material looks which is pretty 1:08:431 hour, 8 minutes, 43
+secondsamazing now I prefer the way this material looked like originally so I can reset all the values to its default 1:08:511 hour, 8 minutes, 51 secondsvalue by clicking on the
+Arrow icon so set that to zero 1 0.35 and set it back to a little bit off 1:08:591 hour, 8 minutes, 59 secondsgreen now that we know how to create material instances it's now time
+to go over Master materials essentially a master material is one material to rule Chapter 12: Create a Master Material 1:09:081 hour, 9 minutes, 8 secondsthem all so imagine we
+have a single material and from this material a bunch of material instances are created that are very different from each other these 1:09:171 hour, 9 minutes, 17 secondsinstances
+can be anything from paint concrete wood pretty much anything you can imagine and they all share the exact 1:09:251 hour, 9 minutes, 25 secondssay master material so I know what he
+just said sound a little bit complicated but it's best to show with an example 1:09:331 hour, 9 minutes, 33 secondswe've already done a lot of the work Crea a master material and
+it's actually mcore Spanish payments so we're going to turn this into a generic material from 1:09:411 hour, 9 minutes, 41 secondswhich we can create multiple materials from so
+let's jump back into our map and within the content drawer instead of calling this mcore Spanish payment let's 1:09:491 hour, 9 minutes, 49 secondsright click and go rename and
+call 1more Master material just like that so let's double click on 1:09:571 hour, 9 minutes, 57 secondsit and I want to make this master material pretty generic so I want all my
+parameters to have the default values where if I didn't edit any of them it 1:10:061 hour, 10 minutes, 6 secondswould basically be the same as if we plugged in all three of these
+textures without any of those edits so down here normal flatness won't make any edits or 1:10:151 hour, 10 minutes, 15 secondschanges to the normal map which is what we want normal
+strength is right now set to one which will not change the roughness map or make it more rough or 1:10:231 hour, 10 minutes, 23 secondsmore shiny also I notice I misspelled
+strength so let's go fix that and up here color tint isn't Pure White if it 1:10:311 hour, 10 minutes, 31 secondswas Pure White then it wouldn't edit the base color but it's an off
+green right now so I want to make this Pure White let's double click on this and I can do 1:10:391 hour, 10 minutes, 39 secondsso by grabbing the saturation and bring it all the
+way down like that so now we have 11 one one and make sure your value 1:10:471 hour, 10 minutes, 47 secondsright here is all the way up to the top like that now we have Pure White
+which isn't making any edits to the base color 1:10:541 hour, 10 minutes, 54 secondsnow we are making an edit to the multiply node right here so this is a size of 0.35 so it's
+going to decrease 1:11:011 hour, 11 minutes, 1 secondthe tiling and make our texture a lot bigger than what it would be by default so I need to set this to its default of 1:11:081
+hour, 11 minutes, 8 secondsone right there so let's press apply and as a reminder if I open up miore Spanish payments essentially by 1:11:171 hour, 11 minutes, 17 secondschanging
+the values within the master material in a material instance we see size right here is 0.35 to change it to 1:11:251 hour, 11 minutes, 25 secondsit default all you have to do is
+click on the Arrow like that so for color tint it's right now green which is what it was originally if I click on the Arrow 1:11:321 hour, 11 minutes, 32 secondsnow it's pure white
+so let's go back and I also want to expose the textures right here so I want to be able to swap out 1:11:401 hour, 11 minutes, 40 secondseach of these textures on the material
+instance to do so you can probably guess of course we're going to right click and go to convert to parameter call this one 1:11:491 hour, 11 minutes, 49 secondscolor right click
+right here roughness and right click con convert to 1:11:571 hour, 11 minutes, 57 secondsparameter normal so let's press apply and now we get access to all those textures right
+1:12:051 hour, 12 minutes, 5 secondshere so if I just turn and activate all of these I can switch out any of these textures for something else for example 1:12:121 hour, 12
+minutes, 12 secondsI can switch it out with grass and now we have grass as our base color but our roughness is still using the Spanish payment and the normal map so I'm going
+1:12:201 hour, 12 minutes, 20 secondsto press contrl and Z to get rid of that but you can imagine that if we did have a normal map for grass and a roughness for grass that I can
+just swap it out 1:12:271 hour, 12 minutes, 27 secondsreally quickly and instead of it being a span payment it is now grass but our Master material isn't complete yet it is
+1:12:341 hour, 12 minutes, 34 secondsmissing one function and that is allowing for metallic Maps since our Spanish payment right now isn't metallic but what if we did have a
+metallic 1:12:431 hour, 12 minutes, 43 secondsmaterial and we want to use our Master material unfortunately there is no place that we can put a metallic map so let's jump into mare
+Master material and let's 1:12:521 hour, 12 minutes, 52 secondsadd that right here so we're just going to do duplicate the roughness map so press crl c contrl v because just like
+the roughness map the metallic map is a 1:13:011 hour, 13 minutes, 1 secondmask that shows where in the texture the material should be metallic and instead of calling a roughness
+call this one 1:13:091 hour, 13 minutes, 9 secondsmetallic drag it up right here that's I was using the same UVS and simply plug this into metallic now we do have the 1:13:171
+hour, 13 minutes, 17 secondsissue and that is now even a material like our Spanish payment which is a metallic will have metallic values by default which is something we don't want
+1:13:261 hour, 13 minutes, 26 secondsso we want the ability to be able to turn on and off this metallic map right here so let's jump into mcore Master material and we can give
+ourselves a 1:13:341 hour, 13 minutes, 34 secondstoggle for this with the static switch parameter and select it right there so 1:13:401 hour, 13 minutes, 40 secondslet's call this
+one is metallic and then if it is then we're going to use the metallic map but if it's not we're going 1:13:491 hour, 13 minutes, 49 secondsto use the default value of metallic
+which is just zero so hold on one and left click to in a constant scalar value 1:13:571 hour, 13 minutes, 57 secondsand by default it is zero so plug it up like this and now we
+have a nice switch where 1:14:041 hour, 14 minutes, 4 secondslet's say for example if we do have a metallic material all we have to do in the material instance is check is metallic
+the true and drag in that 1:14:131 hour, 14 minutes, 13 secondsmetallic map right here but if I turn it off then it gets rid of that metallic map so let me go make some adjustments
+to our Spanish payment bring down the 1:14:221 hour, 14 minutes, 22 secondssize also it's a little bit too reflective right now so I'm going to increase the roughness strength just
+a little 1:14:291 hour, 14 minutes, 29 secondsbit to make it a little bit less shiny and now we have a pretty versatile Master material that we can use for a 1:14:371 hour, 14
+minutes, 37 secondswhole range of different scenarios and we're going to use this master material in the next chapter now that we can import textures and have a master Chapter 13:
+Import/Create a Static Mesh 1:14:451 hour, 14 minutes, 45 secondsmaterial let's go over how we can import 3D objects and bring them into Unreal Engine and it's very important to
+know that in Unreal Engine 3D objects are 1:14:541 hour, 14 minutes, 54 secondscalled stat static meshes and static meshes by itself are just a collection of vertices and faces in
+space if you 1:15:021 hour, 15 minutes, 2 secondswant to change the way that object looks then we need to add on a material and generally this material is comprised of 1:15:091
+hour, 15 minutes, 9 secondsmultiple textures so to break down how a 3D asset is constructed in Unreal Engine first we have our static mesh which is a 1:15:181 hour, 15 minutes, 18
+secondsplain 3D object and then to change the way that static mesh looks we need to add a material and this material can be 1:15:251 hour, 15 minutes, 25 secondscomprised of
+multiple textures so to better get a sense of how 3D assets are made Let's create our own 3D asset in 1:15:331 hour, 15 minutes, 33 secondsUnreal Engine the 3D object we're going
+to be importing into Unreal Engine right now is included within the beginner assets so double click to open this up 1:15:421 hour, 15 minutes, 42 secondsand it's the wood crate.
+fpx so we're going to import this into un real engine if I double click on it to see what this 3D model is we can see that it's just a 1:15:511 hour, 15 minutes, 51 secondsvery
+simple crate so nothing too fancy but will get the point across on how we create 3D Assets in Unreal 1:15:581 hour, 15 minutes, 58 secondsEngine so let's go to content drawer and
+under my stuff I'm going to save everything right click let's create a 1:16:051 hour, 16 minutes, 5 secondsbrand new folder call this one wooden crate let's double click to go
+inside of it so wooden crate will have all our assets that combined to create the 1:16:141 hour, 16 minutes, 14 secondswooden crate asset so first let's import the 3D model so hold
+on left Mouse button drag it and simply let go now we 1:16:211 hour, 16 minutes, 21 secondshave a bunch of fbx import options generally I keep it at default if you do see something
+is different click on reset the default to get those default 1:16:291 hour, 16 minutes, 29 secondsvalues back now generally under materials for create new materials I do not create
+a material since we are not going to be starting from scratch we're 1:16:371 hour, 16 minutes, 37 secondsgoing to be using the master material on this and for import textures
+uncheck that to false since we aren't going to be importing any textures since I rather 1:16:451 hour, 16 minutes, 45 secondsimport those textures manually and click on import so
+we might get this warning that's fine you can ignore that and now 1:16:521 hour, 16 minutes, 52 secondsif I double click on the wood crate we can see that our wooden crate has been
+successfully imported into Unreal Engine 1:16:591 hour, 16 minutes, 59 secondsfive I can drag this out into my scene scale it rotate it move it around pretty 1:17:071 hour, 17
+minutes, 7 secondsmuch it has all the same functionalities as any of the objects that Unreal Engine comes with so that's how you import a 3D object let's go over how we can create
+a 1:17:161 hour, 17 minutes, 16 secondsmaterial for this 3D object now luckily for us we've already done most of the work and that is our Master material so 1:17:231 hour, 17
+minutes, 23 secondsmcore master material has everything that we need to create a material for this object except the textures so let's 1:17:311 hour, 17 minutes, 31 secondsimport
+the textures real quickly press control and space to bring up the content drawer select all of them with shift and drag them into the content 1:17:401 hour, 17 minutes, 40
+secondsdrawer so let's double check that all our maps are correct starting with the base color and srgb is turned on which 1:17:471 hour, 17 minutes, 47 secondsis exactly what we
+want would create uncore metallic should have srgb turned off since this is a mask 1:17:551 hour, 17 minutes, 55 secondsand this fancy texture right here we are going to ignore but
+I will go over it in just a bit and right there is wood crate 1:18:031 hour, 18 minutes, 3 secondsunor normal let's double click make sure that it was imported as a normal map srgb
+is turned off and compression settings is set to normal map which is 1:18:111 hour, 18 minutes, 11 secondsexactly what we want and for roughness of course since this is a roughness
+mask make sure srgb is turned off so let's go 1:18:191 hour, 18 minutes, 19 secondssave everything and create a material instance of our Master mat material so let's right click
+create material 1:18:271 hour, 18 minutes, 27 secondsinstance and call us one miore wooden crates so drag this into our wooden 1:18:341 hour, 18 minutes, 34 secondscrate folder and
+move here so double click and we have our material instance so I'm going to apply this to our crate 1:18:421 hour, 18 minutes, 42 secondsand obviously it's using the wrong textures
+so let's open up our material instance for wooden crate and activate 1:18:501 hour, 18 minutes, 50 secondscolor normal and roughness so let's drag those textures that want 1:18:571
+hour, 18 minutes, 57 secondsspecifically color into base color roughness into roughness and normal into normal our material is almost complete 1:19:051 hour, 19 minutes, 5
+secondsbut we are missing one last thing and that is the metallic map to make our nails metallic so to do so this is why 1:19:121 hour, 19 minutes, 12 secondswe added the is
+metallic switch right here and now we get the metallic texture let's turn this on find where our 1:19:191 hour, 19 minutes, 19 secondsmetallic map is and simply drag it onto
+texture and let go like that and now our Nails our metallic we can see it 1:19:271 hour, 19 minutes, 27 secondssuccessfully reflecting the Sun so that's pretty amazing how very
+quickly we were able to automate the process of 1:19:331 hour, 19 minutes, 33 secondscreating a material by using our Master material so we could create a material without ever
+even touching the material graph by just creating an instance of 1:19:421 hour, 19 minutes, 42 secondsthat Master material and what's amazing is that we still have access to all
+the parameters right here so I can change the normal flatness to5 to increase the 1:19:511 hour, 19 minutes, 51 secondsnormals or I can go into roughness strength and decrease the
+roughness value to make our box even shinier I can 1:19:581 hour, 19 minutes, 58 secondseven go into the color tint and give it a slightly orangey reddish tint now it is important
+that if you do drag a 1:20:061 hour, 20 minutes, 6 secondstexture onto an object and the texture looks like this so looks completely out of sync that's because the size value
+1:20:141 hour, 20 minutes, 14 secondsmost likely is not one so come into size and make sure that it's set to one as its default value so now we have a nice 1:20:231 hour, 20
+minutes, 23 secondsbox asset I can hold on alt duplicate this maybe scale it up and even drag it 1:20:301 hour, 20 minutes, 30 secondsfrom the content browser but now we do have an
+issue and that is when we drag a box from the content browser it does not have the material we just created so to 1:20:391 hour, 20 minutes, 39 secondsset our box as default
+material we need to open up the asset static mesh editor and within here we see that we 1:20:471 hour, 20 minutes, 47 secondshave a default material slot right now it's using the
+world grid material we're going to set this to miore wooden like 1:20:541 hour, 20 minutes, 54 secondsthat press save and now that material is applied to all our boxes even when we
+drag out a brand new box before we move 1:21:021 hour, 21 minutes, 2 secondson to the next chapter I think it's important to point out what this texture right here does so I'm
+going to double click on it and this texture does look a 1:21:111 hour, 21 minutes, 11 secondslittle bit weird but essentially what it is is that it combines several different
+masks into one texture using the RGB channels I know that might sound 1:21:201 hour, 21 minutes, 20 secondsconfusing but essentially in computer Graphics color is made up of a red
+Channel a green Channel and a blue 1:21:261 hour, 21 minutes, 26 secondschannel so what developers realize is that they can take these individual channels and then hide masks
+inside of 1:21:331 hour, 21 minutes, 33 secondsthem so for example if we uncheck the blue Channel and the green Channel we see that the red channel of this texture is our metallic
+mask uncheck red check 1:21:431 hour, 21 minutes, 43 secondsgreen our green channel is roughness uncheck green and check blue our blue channel is ambient occlusion although we
+won't use Ambi inclusion I included it 1:21:511 hour, 21 minutes, 51 secondswithin a texture to show that we can hide three different mass in inside a single texture and because
+even though this is a color texture it's actually 1:21:591 hour, 21 minutes, 59 secondsgoing to be used as mass we want to uncheck srgb right there so the way we would use this in
+a material is let's 1:22:061 hour, 22 minutes, 6 secondscreate a brand new material call this one mask example and double click to go inside of it so if we were to create a
+material 1:22:141 hour, 22 minutes, 14 secondsfrom this mask I'm going to drag out our base color in our normal map because of course we still need them and instead of 1:22:221
+hour, 22 minutes, 22 secondsusing our metallic or our roughness texture we combine those into one individual texture right here so we 1:22:301 hour, 22 minutes, 30 secondsdon't
+need those since they're combined into this one and our red channel is metallic so I'm going to grab from the r 1:22:381 hour, 22 minutes, 38 secondspin into metallic and our green
+channel is roughness now roughness didn't have to be the green Channel it could have been blue or red just I decide to use 1:22:461 hour, 22 minutes, 46 secondsthe green Channel
+and if I press apply inside of our map let's apply the new material to this crate and right now 1:22:541 hour, 22 minutes, 54 secondsthere is a slight difference between the two
+since in the material instance I am using color tint so reset that back to 1:23:021 hour, 23 minutes, 2 secondsWhite and jumping back here we can see that there's virtually no
+difference in between combining the textures or using 1:23:091 hour, 23 minutes, 9 secondsthe textures separately so I included it within this course because it's pretty important
+to know why unreal developers use this since you will be seeing this a 1:23:171 hour, 23 minutes, 17 secondslot also it's good to know exactly what these r g and B pins are used
+for that is how you create unreal assets but Chapter 14: Move Assets Between Projects 1:23:261 hour, 23 minutes, 26 secondsyou're probably wondering now how do I move unreal Assets
+in between different unreal projects because it would be a real shame if every time we create a new 1:23:341 hour, 23 minutes, 34 secondsproject we have to remake all the assets
+and we can move Assets in between projects through an easy process called 1:23:421 hour, 23 minutes, 42 secondsmigration so to migrate Assets in between two unreal projects of
+course we need a new Unreal project included 1:23:491 hour, 23 minutes, 49 secondswithin the downloadable content Link in the description below is a project that contains some
+assets I want to bring into our first project that we've been 1:23:571 hour, 23 minutes, 57 secondsworking on So within the zip file go into it and it's specifically intro unreal
+project so just drag it onto our 1:24:051 hour, 24 minutes, 5 secondsdesktop to unzip it and double click to go inside of the project folder to open up an un real project double
+click on theu Project now that I have the 1:24:131 hour, 24 minutes, 13 secondsdownloaded project open up if I press control and space we can see all the content that's currently
+inside of it now if your content folder is empty then 1:24:211 hour, 24 minutes, 21 secondsthat means you didn't unzip the project so make sure you do unzip zip the project before
+opening it up so I have a folder called line in examples with some 1:24:291 hour, 24 minutes, 29 secondsmaps materials meshes and textures they're going to help us demonstrate
+unreal's lighting capabilities I don't want to bring all of these assets into 1:24:371 hour, 24 minutes, 37 secondsour original project called first project so to do so I'm going
+to dock them to the sides of my screen and let's go open up our content drawer so what 1:24:471 hour, 24 minutes, 47 secondsI'm going to do is copy our lighting examples folder
+which is right here and bring it into another project to do so 1:24:541 hour, 24 minutes, 54 secondswe use a process called migration and migration is really simple simply hover
+over the assets you want to breing into another unreal project right click and 1:25:031 hour, 25 minutes, 3 secondsselect migrate now it's going to give us a list of all the assets
+that are going to be migrated and this all looks 1:25:111 hour, 25 minutes, 11 secondscorrect so I'm going to click on okay and now it's asking for a location to migrate them to we
+specifically want to 1:25:181 hour, 25 minutes, 18 secondsmigrate them into the content folder of the destination project and you can find out where the content folder is is by
+1:25:251 hour, 25 minutes, 25 secondsdouble clicking on the original project file so right here is first project which is where this project is stored and if I go into its project
+file we see 1:25:341 hour, 25 minutes, 34 secondsthat there's a Content folder and this is the location that I want to migrate all these assets to so I could go through and
+manually navigate to this 1:25:431 hour, 25 minutes, 43 secondslocation or I can copy its destination with contrl c and contrl V it right here so now I have the content folder of
+our 1:25:511 hour, 25 minutes, 51 secondsoriginal project selected I'm telling a real that I want to move the files from intro on real project to First project 1:25:581 hour, 25
+minutes, 58 secondsand click on select folder so now we can see content migration successful and if I go into first project now press control and space under content we now
+1:26:071 hour, 26 minutes, 7 secondshave lighting examples which are all the same assets from our downloaded project now an alternative that's how we don't have to go and find
+where our project 1:26:151 hour, 26 minutes, 15 secondsfile is located in order to get the content folders location I could press control and space to go into the content 1:26:221
+hour, 26 minutes, 22 secondsdrawer and right click on our content folder and go show and explore this will automatically bring up the content 1:26:301 hour, 26 minutes, 30
+secondsfolder from our project finally let's talk about Unreal Engine 5's brand new lighting system called Lumen and Lumen Chapter 15: Lighting with Lumen! 1:26:371 hour, 26
+minutes, 37 secondsis revolutionary because it gives us real time Global illumination and essentially Global illumination is just a very fancy term for light bounce 1:26:471 hour,
+26 minutes, 47 secondsbecause in Real Life Light doesn't just hit an object and stop instead it hits an object bounces off that object and after each Bounce It illuminates the
+1:26:551 hour, 26 minutes, 55 secondsworld it also takes a little bit of that object's color and projects it onto the next object for example it might be a little bit hard to see
+because the video 1:27:031 hour, 27 minutes, 3 secondsis being streamed but here we have a red mouse and lights is hitting this mouse taking a little bit of its color and 1:27:101
+hour, 27 minutes, 10 secondsthen projecting it onto any nearby objects so if I move the mouse to the table around the table there's a little 1:27:171 hour, 27 minutes, 17
+secondsbit of a reddish Tint that's coming from the bounce lighting so Global illumination is important because it's the SE 1:27:241 hour, 27 minutes, 24 secondsto realistic
+rendering but there's one large problem and that is global illumination is very expensive to calculate real-time Global illumination 1:27:331 hour, 27 minutes, 33 secondsisn't
+possible without a super powerful GPU and this is where Lumin comes in handy Lumen is a brand new way to render 1:27:411 hour, 27 minutes, 41 secondsGlobal illumination at the
+fraction of a cost compared to traditional ways to get Global illumination like Hardware rate 1:27:481 hour, 27 minutes, 48 secondstracing so to show luminant action let's jump
+back into unreal and to do so we need the cont that we just migrated over 1:27:551 hour, 27 minutes, 55 secondsso if you haven't already make sure you download the lighting
+examples Link in the description below and migrate it into our project from the previous 1:28:021 hour, 28 minutes, 2 secondschapter so to begin let's go to maps and light bounce
+so as we can see this is an insanely simple room all we have is four 1:28:111 hour, 28 minutes, 11 secondswalls and two objects and a light source I've also gone ahead and added in
+a post-process volume since by default Lumin is turned on I want to turn off 1:28:201 hour, 28 minutes, 20 secondsalumin to demonstrate how we used to get Global illumination back
+in the unrealed 4 days so as we can see global illumination method is set to none now 1:28:281 hour, 28 minutes, 28 secondslet's just pretend that we're in unre 4 and I want some
+Global illumination since obviously Shadows are never this dark normally you would see some light 1:28:371 hour, 28 minutes, 37 secondsbouncing around to illuminate the shadow
+areas right here so the first thing I would do is number one make sure my light sources are set to static not 1:28:441 hour, 28 minutes, 44 secondsmovable and number two I need to
+build my level and to build you want to come up to the build tab all the way up here select it and within the drop down 1:28:531 hour, 28 minutes, 53 secondssimply select build all
+levels right now behind the scenes unreal is Ray tracing our entire level and creating a light map this light map contains all the 1:29:011 hour, 29 minutes, 1 secondlighting data
+which it then overlays onto our world as a texture now we are done building our lighting it should have been pretty quick because this is a 1:29:081 hour, 29 minutes, 8 secondsvery
+small level and if we look at our level we can see that we do have Global illumination notice how this sphere is no longer Pitch Black in the shadow 1:29:171 hour, 29 minutes, 17
+secondsareas there's now light filling up the Shadows making it look a lot more realistic than beforehand we can even see that there's some red on the sphere 1:29:251 hour, 29
+minutes, 25 secondsthat's bouncing from the red wall same thing over here the entire room has a little bit of a greenish tint since this green wall is also bouncing light off so
+1:29:341 hour, 29 minutes, 34 secondsthis is how we used to get Global illumination on ReliOn 4 and while this is great there are some major issues mostly that our lighting and all
+our 1:29:421 hour, 29 minutes, 42 secondsshadows are static so if I select my sphere and move it around we can see that the lighting breaks press contrl Z to undo that then even if
+I select my 1:29:511 hour, 29 minutes, 51 secondslight source and move it around the lighting also breaks braks notice how if I move my light away we now have two 1:29:581 hour, 29
+minutes, 58 secondsShadows so there's one Shadow that's coming from the light source and another Shadow that's coming from our light map which is no good so I'm press contrl and
+1:30:071 hour, 30 minutes, 7 secondsZ to put our lighting back in the original spot and this is where Lumin comes in really handy because it allows us to have Dynamic Global
+illumination 1:30:151 hour, 30 minutes, 15 secondsso I can move my light around and move my sphere with no issues whatsoever but first we have to get rid of our light map since we
+did bake our world to do so 1:30:241 hour, 30 minutes, 24 secondsso you need the world settings tab Now by default there is no world settings tab we can get that by coming up to
+1:30:301 hour, 30 minutes, 30 secondsWindows and selecting World settings all the way down here and now we have our world settings as you can guess World settings is simply the
+settings of our 1:30:381 hour, 30 minutes, 38 secondsworld so this is where we would control our light baking and we will go over light baking settings in just a bit but for now I
+want to get rid of our light 1:30:461 hour, 30 minutes, 46 secondsmaps by selecting Force no precomputed lighting which will tell unreal that I don't want to use any light maps and
+I don't want to build our lighting and 1:30:541 hour, 30 minutes, 54 secondsthen after I said that to True make sure you press build now that didn't build our lighting instead it
+went through and it got rid of all of our light map 1:31:011 hour, 31 minutes, 1 secondtextures so let's come back to details and now I'm going to set my light source to movable so
+now that it's set to movable we still aren't getting any 1:31:101 hour, 31 minutes, 10 secondsGlobal illumination because if you remember in the post-process volume I turned off
+Lumin so let me zoom in a little bit so we can see this better 1:31:181 hour, 31 minutes, 18 secondshere is unru 5 without Lumen and here is UNR 5 with lumen so this is without and
+1:31:261 hour, 31 minutes, 26 secondsthis is with and what's amazing is that I can move this light around and there are no issues I can even move this 1:31:331 hour, 31 minutes, 33
+secondssphere and make it bigger smaller and unreal is calculating all this Global illumination at a very smooth frame rate 1:31:421 hour, 31 minutes, 42 secondswhich is absolutely
+amazing this was not possible in Unreal Engine 4 so if I grab this light and even if I move it all the way over here we can see that there's 1:31:511 hour, 31 minutes, 51
+secondsbounce lighting coming from the light hitting the wall and then bouncing and hitting the sphere giving our entire sphere a little bit of a reddish tint on 1:32:001 hour, 32
+minutesthe right side which is very realistic we can even come into the point light settings and gives ourselves a softer 1:32:061 hour, 32 minutes, 6 secondsShadow by increasing
+the source radius so if I increase this notice that the Shadows get softer and softer Global illumination used to be 1:32:161 hour, 32 minutes, 16 secondspretty expensive since
+you'd have to use Hardware raid tracing but now thanks to Lumin it's accessible to everyone while 1:32:231 hour, 32 minutes, 23 secondsrunning out smooth frame rate depending on
+your computer and something that was not possible in u4 even with Hardware rate tracing is that if I come into 1:32:311 hour, 32 minutes, 31 secondslighting examples materials and
+use mcore emissive material or emissive materials give off light so I'm able to 1:32:411 hour, 32 minutes, 41 secondslight up a scene by just using our materials which is really
+amazing so I'm going to press contrl and Z to undo those since now it's time to go over all Chapter 16: Types of Lights 1:32:491 hour, 32 minutes, 49 secondsthe different light
+sources that unreal has to offer so to begin let's talk about the point Point light so I'm going to delete it and to get a point light 1:32:561 hour, 32 minutes, 56 secondsyou want
+to come up to the add button of course and under lights drag in a point light so the point light is the most 1:33:041 hour, 33 minutes, 4 secondsbasic of Lights it's just a point
+that emits light in all directions so let's go over the most important settings in 1:33:111 hour, 33 minutes, 11 secondsthe details panel and probably the most important one right
+now is intensity so it's at eight Candelas I can bring this 1:33:181 hour, 33 minutes, 18 secondsdown to one two or even something insanely large like 100 to change the power of
+the light source but for now 1:33:261 hour, 33 minutes, 26 secondsI'm going to leave this at four we also have the source radius which I just went over but if we increase it and
+make sure 1:33:331 hour, 33 minutes, 33 secondsthat you do have game view turned off up here you can see that there is a and hopefully you can see this a little bit 1:33:421 hour,
+33 minutes, 42 secondsbetter with the red background we have the outline of a yellow sphere and this sphere basically tells us the size of 1:33:491 hour, 33 minutes, 49 secondsour
+light emission and the larger our yellow sphere is then the more soft our shadows will be and as I decrease this 1:33:581 hour, 33 minutes, 58 secondsall the way back down to this
+default of zero we get some really harsh Shadows so if you want to soften that up breed up the source radius now right below that 1:34:071 hour, 34 minutes, 7 secondswe have
+temperature so temperature allows us to change how warm or cold our light source is if I bring this down our 1:34:141 hour, 34 minutes, 14 secondslight source gets warmer and
+warmer and if I bring this up it gets colder and colder and I can disable temperature by 1:34:211 hour, 34 minutes, 21 secondsclicking on the temperature button and all the way to
+down here we have light color so as you can guess light color 1:34:281 hour, 34 minutes, 28 secondsjust changes the color of our light the controls are exactly the same as our
+materials and above all these is the 1:34:351 hour, 34 minutes, 35 secondsindirect lighting intensity so right now it's set at one when I set to zero we're going to have very
+little bounce light 1:34:441 hour, 34 minutes, 44 secondsand our shadows end up like beforehand where they're pretty dark not much bounce lighting is happening or instead 1:34:511
+hour, 34 minutes, 51 secondsof one which is its default I can read to 10 and now we have a lot of Bounce lighting so I'm just going to leave it 1:34:581 hour, 34 minutes, 58
+secondsat one for now so those were all the main settings for Point lights I'm going to delete that and let's go over the next light right now and that is the 1:35:081 hour, 35
+minutes, 8 secondsspotlight the spotlight is very similar to the point light although unlike the point light the spotlight is just Illuminating One 1:35:161 hour, 35 minutes, 16
+secondsDirection and you could change the direction the light is pointing by of course rotating it the settings are the 1:35:241 hour, 35 minutes, 24 secondsexact same as the point
+light except we have an inner and outer cone angle so the outer cone angle will control the size of our Spotlight and the inner cone 1:35:321 hour, 35 minutes, 32 secondsangle will
+control the fall off of our light so I'm going to go to game View mode so we can better see this and as I increase the inner cone angle we can see 1:35:391 hour, 35 minutes, 39
+secondsthat our lighting gets sharper and sharper and sharper and if I decrease it all the way to zero there's a very soft fallof so those are the controls for the 1:35:481 hour,
+35 minutes, 48 secondsspotlight I'm going to delete that and go into the next one and that is the rectangle light so rectangle light is pretty similar to the spotlights and
+1:35:561 hour, 35 minutes, 56 secondsdirectional light except now we're emitting from a rectangle pointing in a specific Direction hopefully you can see the outline of the lights
+when it's 1:36:041 hour, 36 minutes, 4 secondsagainst the wall and I control the size of the rectangle by going into Source width and 1:36:121 hour, 36 minutes, 12
+secondsincreasing the width or I can increase the height I can even just like beforehand play with the falloff by 1:36:201 hour, 36 minutes, 20 secondsdecreasing the Barn Door
+angle from 88 all the way to Z Z and hopefully you can better see it from this angle what the 1:36:281 hour, 36 minutes, 28 secondsbarn door is or I can increase the length so we
+have a lot of control over the specific falloff of that rectangle 1:36:361 hour, 36 minutes, 36 secondslight other than that the controls are the same so let's delete that and next
+up is probably the light you're going to 1:36:441 hour, 36 minutes, 44 secondsbe using the most the directional light so we don't see anything with the directional light right now
+because I have to rotate it to see what it does 1:36:531 hour, 36 minutes, 53 secondsand as you can guess this is the sunlight so the sunlight is pointing in a specific Direction
+infinitely and just 1:37:001 hour, 37 minuteslike the spotlight if I rotate this around I'm able to control the direction of our sun the directional light has 1:37:071 hour, 37
+minutes, 7 secondspretty much the same exact controls as our Point lights except if I zoom in on the Shadows we get Source angle bring up the source angle makes the shadow 1:37:151
+hour, 37 minutes, 15 secondssmoother and bring down the source angle makes the Shadows sharper so I'm going to reset value by clicking on the Arrow icon 1:37:241 hour, 37 minutes,
+24 secondsand I'm going to delete our directional light since there's one last Light I want to show and that is the Skylight so 1:37:311 hour, 37 minutes, 31 secondslet's drag in
+the Skylight and you'll notice nothing is happening and the reason why is because the Skylight is pretty unique essentially what it does 1:37:401 hour, 37 minutes, 40 secondsis
+that it captures our sky and then it projects it onto our world and right now our Skylight isn't doing anything because obviously our world doesn't have 1:37:481 hour, 37 minutes,
+48 secondsany sky so the way we can add sky is pretty simple number five you just want to come up to the add button come all 1:37:551 hour, 37 minutes, 55 secondsthe way down to
+visual effects and drag in a sky and atmosphere simply place it right there and again if I look up we 1:38:041 hour, 38 minutes, 4 secondsdon't have any Sky since the sky requires
+a directional light which is the sunlight so let's also come up to 1:38:111 hour, 38 minutes, 11 secondsadd down a lights and drag in a directional light for our Sky now if our Sky
+light isn't working then it has to 1:38:181 hour, 38 minutes, 18 secondsbe refreshed by going into the details panel and turning on and off effects world now the reason why I know
+the lighting in our room right now is from 1:38:261 hour, 38 minutes, 26 secondsthe sky and not from the directional light is because the directional light is not hitting the
+inside of our room so if I move it around then we can see that 1:38:361 hour, 38 minutes, 36 secondsour directional light is Illuminating our room but if I move it that's how it's
+coming from the back the lighting is entirely coming from the Skylight and 1:38:441 hour, 38 minutes, 44 secondswe can see this better by hiding and unhiding the Skylight by using

@@ -1,0 +1,224 @@
+active you could have a 18:0318 minutes, 3 secondsbunch remember so we could say twilio profiles uh list list and you'll see um 18:1118 minutes, 11 secondsthat it is active if you
+have multiple ones here and uh you'll see that it's active and it says true otherwise it would say false if it wasn't so now that we've got the account set up 18:1918 minutes, 19
+secondsand uh authenticated to our client we can send a text message let's do that so if we flip back over to the docs and we 18:2618 minutes, 26 secondscome in here you'll see
+again we're at sms api reference message resource uh in the twilio cli here for uh create a 18:3418 minutes, 34 secondsmessage we we can see it and i'm just gonna go ahead i'm
+gonna copy that i'm gonna copy that and i'm gonna paste it into my terminal 18:4218 minutes, 42 secondsand you'll see that you we have stuff set up here so i'm going to go ahead
+and instead of from we're going to put our phone number there so i'm going to get rid of this 18:5118 minutes, 51 secondsand the phone number is actually on the console as well at
+this point so this is the trial number i'm going to go ahead and copy this because we only have one uh so it's there on the the console and 19:0119 minutes, 1 secondi'll paste that
+awesome and now instead of uh hi there we want this to say ahoy world right that's the hello world of twilio apps 19:1019 minutes, 10 secondsahoy world all right so we did that and
+then i'm gonna put in uh my phone number right because we want to text it now the 19:1719 minutes, 17 secondsreason why we can text to my phone number is because i validated that
+when i set it up now i can only send to myself remember that's the one of the limitations here and it's going to have 19:2619 minutes, 26 secondsuh as you'll see here in a second
+it's going to have a little message on the front of it awesome 19:3419 minutes, 34 secondsand i got it and you'll notice it says sent from your twilio trial account dash and then
+what we did ahoy world so 19:4219 minutes, 42 secondsthat's the prefix that we're talking about any message that's sent out to a verified number during trial will have that that's
+okay we can learn to ignore it 19:5019 minutes, 50 secondsthat of course if we upgrade will go away but this still works for what we're trying to do and remember it worked because
+we sent it to my number which i 19:5819 minutes, 58 secondsverified when we set up the account now one of my favorite things about the cli is if i i'm going to press up arrow i'm
+going to get my message back and at the 20:0620 minutes, 6 secondsend of this i'm also going to pass a dash dash help so if we we're going to pass a help command here and what will
+happen is we'll see 20:1420 minutes, 14 secondsnotes about what what we can do and let's see what else is in here so we could uh wow there's a bunch of stuff oh here's 20:2220
+minutes, 22 secondsone media url the url of a media the media can be of type gif png or jpeg i've got just the media url for us 20:3220 minutes, 32 secondsso i'm going to go ahead
+this is in the notes if you want it when i copy this this is from the giphy site 20:4020 minutes, 40 secondsso we'll i'm going to press the up arrow again so we're going to get
+that back and at the end here what i'm going to do is i'm going to use media url 20:4920 minutes, 49 secondsmedia url and i'm going to paste the gif there all right so here we go
+20:5620 minutes, 56 secondsawesome and i got it so exciting 21:0621 minutes, 6 secondsi know you've heard of the shake shack but that's the shack shake and you'll see that by
+simply adding that image we sent an mms you'll note 21:1421 minutes, 14 secondsthat the mm here at the start of this sid that comes back this this mm the the one before that we
+sent 21:2121 minutes, 21 secondshad an sm on it so you'll see here this is sm so that's the sms but by just adding the media url we automatically 21:2921 minutes, 29
+secondsconverted to use the mms oh i know what we should do let's talk about autocomplete so i'm going to go ahead i'm going to type twilio 21:3721 minutes, 37 secondsauto complete
+you'll see that i'm i'm running so i need to run this here this command 21:4421 minutes, 44 secondsi'm going to run and get the autocomplete setup in my zeesh shell so there we go
+21:5421 minutes, 54 secondsand now if i do uh i might need to do a new window still api core mess yes oh there we go so see how i can 22:0322 minutes, 3 secondsdo messages and i
+can do tab and it will show me what i can do now if i press tab it will automatically create and then uh 22:1022 minutes, 10 secondsso i could do two and then i could i could uh if
+i needed to do that media url do dash dash media url will automatically complete when i 22:1922 minutes, 19 secondspress tab that's super powerful okay so uh we have this create
+but we can also do a list if we want to we can 22:2822 minutes, 28 secondslist things that are here and we can specify what properties we'd like to see so i want to see let's see i
+want to see the sid i want 22:3522 minutes, 35 secondsto see the body and why don't we show the status so that we can see if it was delivered or not so i'm going to take a look at
+the the messages that we sent uh using the api here and i chose the 22:4422 minutes, 44 secondsspecific properties and there we go we've got body us and the status we've got
+delivered and delivered on those uh cool 22:5422 minutes, 54 secondsand so the other thing i can do is on top of if i wanted to get those i could also get them in json format so if
+i do this dash o 23:0323 minutes, 3 secondsjson you'll see that i can get back everything in the json format here check the notes for more on how to work 23:1123 minutes, 11
+secondswith cli output if you're interested awesome we got the twilio cli all set up and we've sent an sms and an mms message 23:2023 minutes, 20 secondsand it felt pretty much
+like the messaging apps on our phones we just had to choose who to send it to and the api did all the work for us now remember the 23:2823 minutes, 28 secondscli is just wrapping
+around the api just like our helper libraries you can now send a message from any of your existing application and it's just as 23:3623 minutes, 36 secondsstraightforward you
+provide the to the from and the body so now that we got the sending out of the way let's take a quick break and 23:4423 minutes, 44 secondswhen you come back let's take a look at
+how our number can receive a text message so we can now send messages from our new Chapter 5: Receiving a message 23:5223 minutes, 52 secondstrial number and that's super handy for
+broadcasting information to your users like 15 off all delivery orders or for important transactional notifications 24:0024 minuteslike your tacos are on the way now it's also
+important to set up our number to handle incoming text messages this is a 24:0724 minutes, 7 secondspowerful way for you to allow new methods of input into your existing
+applications now the way this works in practice is that you configure your 24:1524 minutes, 15 secondsphone number with code that should run when a text message is received twilio
+will pass the control to you via a web hook now i'd love for you to think 24:2424 minutes, 24 secondsabout this like the way that the web works when my browser makes a request for
+a certain web address a server associated with that address kicks off 24:3424 minutes, 34 secondsand returns the code that helps the browser to render my application this code is
+html or hyper text markup 24:4124 minutes, 41 secondslanguage my browser uses that response to display my application now in the case of twilio a similar flow happens 24:4924
+minutes, 49 secondstwilio makes a request to the web address that you've configured for your number and it expects the server at that address to return twiml or twilio markup
+24:5824 minutes, 58 secondslanguage that twiml renders your twilio app much like in a web application it doesn't matter which framework or 25:0525 minutes, 5 secondslanguage you
+use to generate your html it just matters that the return value is valid html now the same is true for your incoming message handler as long as your 25:1425 minutes, 14
+secondsresponse is valid twiml it doesn't matter how who or what generates it twilio provides many ways for you to build your applications and they all 25:2225 minutes, 22
+secondsreturn twiml instructions let's take a look at a common way to return twiml a twiml bin all right so we're going to want to get 25:3025 minutes, 30 secondsto our trial
+number so it's over here on the left under phone numbers if i click this and i come in here under manage and i go to active numbers this is where you 25:3825 minutes, 38 secondscan
+see all the numbers that you have and currently we only have the one trial number i'm going to go into mine and i am going to scroll down here to 25:4825 minutes, 48 secondsthis
+messaging section and so it says when a message comes in do this web hook and this is actually uh what we could do here is we could put 25:5625 minutes, 56 secondsthis url now note
+how it's set to web hook so this url here this is something that we could change in the future give it any sort of address and as long as it 26:0426 minutes, 4 secondsreturns back
+a valid twiml or twilio markup language that's how we would do it but what we're going to do is we're going to make a twiml bin so i'm going 26:1326 minutes, 13 secondsto choose
+twiml bin from the list here and you'll see i could create a new one with this plus button over here but just in case that isn't there for you i'm 26:2126 minutes, 21 secondsgoing
+to go over here to explore products so i'm going to click this explore products button i'm going to scroll down until i see 26:3026 minutes, 30 secondsuh developer tools and in
+here you'll see twiml bins and this will twilio will host for us so i'm going to create a new twiml bin and i'm going to give this a friendly name because i 26:3826 minutes, 38
+secondsmight end up having a lot of these so now we need to decide uh what it is that we're going to do so a common use case for inbound sms is a physical printout 26:4726 minutes,
+47 secondssomewhere that says are you interested in learning more about this doohickey text learn to this number and then when that number is texted it 26:5626 minutes, 56
+secondsresponds back with some information about the doohickey no i'm being vague here because it really works for just about anything so okay you know what um it's 27:0527
+minutes, 5 secondseasier if i just show you something i'm always happy to spread the word about is twilio quest twilio quest is an educational video 27:1227 minutes, 12 secondsgame
+that will teach you how to code and it's got a custom soundtrack an awesome 16-bit retro design i'm pretty obsessed with it i tell just about everyone i 27:2027 minutes, 20
+secondsmeet about it i saw it at a conference once and i was like i have to work for the company who made this and now i do 27:2727 minutes, 27 secondsand i'm in the game hashtag
+goals sorry i went a little overboard there so i could print out a poster with cedric your friendly a i bought from the game 27:3627 minutes, 36 secondson it and said something
+like text quest to this number and then hang it up on telephone poles in my neighborhood so everybody would learn about it so i 27:4427 minutes, 44 secondscould have multiple twiml
+bins and so i'll put a friendly name here for something that we can do so we'll do this twilio quest 27:5427 minutes, 54 secondsand in here you will notice i'm going to blow this
+up a little bit you'll notice that this is a little editor here for where you can put your twiml and we could just put 28:0228 minutes, 2 secondsour twiml directly in here um so
+twiml is tag based and it is case sensitive so it's case sensitive so i'm gonna do 28:0928 minutes, 9 secondsa starting response and i'm gonna close that response and it's tags
+just like html right it looks very similar to html 28:1628 minutes, 16 secondsand now we can use a verb here and that verb that we want to do is we want to send a message back so
+i'm going to use message i'm going to close that message 28:2328 minutes, 23 secondstag too so i don't forget and so we've got an opening and closing message tag and in here is the
+body of what we want so we can say discover 28:3228 minutes, 32 secondsyour power to change the world with code 28:3928 minutes, 39 secondsjust the slogan for uh for twilio which
+is pretty rad uh so it's good at twilio dot com forward slash quest so i can include a link and if i get that link in 28:4828 minutes, 48 secondsmy email it will i'll be able to
+open it up and i can explore what twilio quest is uh from the comfort of my own browser cool so i'm 28:5628 minutes, 56 secondsgonna do that and i'm gonna go ahead and i'm going to
+click create and uh you'll see it says valid messaging twiml 29:0329 minutes, 3 secondssee and it will tell you uh if not so remember they're they're case sensitive so i'm going to
+move this to lowercase m and this the total syntax is invalid 29:1029 minutes, 10 secondsthere's uppercase sam cool so i'm going to save that now i'm going to go back to my phone
+number uh my active numbers here and i'm going 29:1929 minutes, 19 secondsto go into that number i'm going to scroll down and instead of a web hook i'm going to choose a twimle
+29:2629 minutes, 26 secondsbin and now you'll see in the list of my twilio quest is there so i'm going to save the number 29:3529 minutes, 35 secondsand let's go ahead and give
+that a run so i'm going to text my number there i 29:4229 minutes, 42 secondsalways you always double check when you go to text your number that you're texting the right one you
+don't want to text the wrong person and i'm going to text quest to that 29:5029 minutes, 50 secondsand boom i got my response of course it says sent from your twilio trial account
+which is fine discover your power to change the world with code 29:5829 minutes, 58 secondsand just like that you've now got a handy way to set up an autoresponder at twilio we've
+seen this exact pattern used for all sorts of things like 30:0630 minutes, 6 secondsproviding store hours or responding with business addresses we've even seen realtors list open
+houses using it and because your trouble code is hosted on 30:1430 minutes, 14 secondstwilio you don't even need to worry about spinning up your own server and you can change that
+message anytime you want now i know you're clever and you probably 30:2230 minutes, 22 secondsnoticed that there's no logic in our code whatsoever even though on the imaginary
+poster we asked the user to type quest they could actually text in 30:3030 minutes, 30 secondswhatever they wanted and it would respond the same way and in fact if they replied to
+the message we sent that well we just sent it again because our number 30:3830 minutes, 38 secondsis configured to return static twiml on every incoming message but we can
+definitely return dynamic twiml and that's twiml that changes based on the 30:4630 minutes, 46 secondsincoming message and i can tell that you're wanting to see how that works why
+don't we take a look at how to do that next Chapter 6: Responding dynamically 30:5430 minutes, 54 secondsyou're doing great now you can not only send one-way messages but you just
+got two-way messaging working inbound and outbound your number responds when it 31:0231 minutes, 2 secondsreceives an incoming text message but the thing is it always responds the
+same way now for some use cases this is okay 31:0931 minutes, 9 secondsi suppose you could build an affirmation hotline like no matter what someone texts in it comes back with the
+three best words ever you always need to hear 31:1731 minutes, 17 secondsthat no matter what but for most uses you'll probably want to make it more dynamic when your twilio number
+receives an 31:2531 minutes, 25 secondsincoming message twilio will pass control to you so that you can handle it appropriately it passes the information to you by performing an
+http post 31:3231 minutes, 32 secondsrequest to a url that you specify the info will be delivered to you url form encoded so any web framework that 31:4031 minutes, 40
+secondsyou're running will be able to access it now handling it should feel as familiar as handling a web-based form submission this sort of passed the control over to 31:4831
+minutes, 48 secondsyou at the right time it's called a web hook and it allows for you the developer to hook into the flow at just the right times the service does the work that it
+31:5631 minutes, 56 secondsneeds to do and it passes the control to you with the information that you need to continue the job you might also hear this referred to as 32:0432
+minutes, 4 secondsa reverse api instead of you calling the api the service calls you just like they say in hollywood don't call us kid we'll call you 32:1232 minutes, 12
+secondscheck the notes for more information on webhooks as we saw already there are numerous twilio helper libraries available and they all provide a fluid way to generate 32:2132
+minutes, 21 secondsyour twiml the helper library is optional you can of course write your own twimwell by hand but the common practice especially when writing it 32:2832 minutes,
+28 secondsdynamically is to use the helper libraries to generate the twiml for you i was thinking that we probably should show this off a bit so you can see how 32:3632 minutes, 36
+secondsto respond to the body of incoming messages conditionally this will help us build a more dynamic app than the you got this one but i would like to add you 32:4432 minutes,
+44 secondstotally got this let's write some code that will respond appropriately if someone texts our number the word quest and then we'll write some code to tell them that we
+32:5332 minutes, 53 secondsdon't know what they're talking about if they send in anything else okay so we definitely could spin up a new local web server and write an 33:0133
+minutes, 1 secondapplication to respond to the web hook request from twilio but since this is a green field and it's such a quick script why don't we take 33:0833 minutes, 8
+secondsadvantage of a twilio function in the console console.twilio.com we can click over here and explore products now when i answered some questions at the beginning 33:1633
+minutes, 16 secondsi had answered said that i wanted twilio to host my code so functions is in my sidebar over here but i can click explore products just in case it's not 33:2433
+minutes, 24 secondsif it's not in yours click explore project products and then swing down here to developer tools and you'll see this uh 33:3333 minutes, 33 secondsfunctions here
+now i can unpin this from the sidebar by clicking this button or i could click it and bring it back we definitely want it there because we're going to make one so i'm going to open
+33:4133 minutes, 41 secondsthis up and i'm going to click overview here now twilio functions are pretty awesome they let you write scalable code and you don't need to set up your
+own 33:4933 minutes, 49 secondsserver it's all hosted for you they're serverless or server less like you don't need to set up your own you don't need to pick a web server deal with
+dns or 33:5733 minutes, 57 secondsanything like that it's all done for you so the first thing that we need to do is to create a service so we're going to click this create service
+button and 34:0534 minutes, 5 secondsthis is going to be a container for the functions and assets that we use and i'm going to name this exploration exploration and you'll see here
+that 34:1434 minutes, 14 secondsit's going to build this url for us it's going to give us the subdomain of exploration dash and then some numbers it's going to generate for us
+which is pretty awesome 34:2234 minutes, 22 secondsa friendly reminder to check the notes if you're having a hard time following along this flow might have changed a bit i'm going
+to add a new function i'm going to click add and then add function 34:3134 minutes, 31 secondsand i am going to name this uh let's call it auto responder 34:3934 minutes, 39
+secondsnow by default we get some really nice documented function code that walks us through how to use these functions to return twiml now all functions define 34:4834 minutes, 48
+secondsthis handler and it it's a function that receives context so this is your environment your environment variables 34:5634 minutes, 56 secondsyou can set environment variables
+and they'll be available on this context object and then this is this next parameter here the events uh this will contain all the values that 35:0535 minutes, 5 secondswere
+submitted to your function so anything from uh an http post those fields will be there or from a get the uh the query string 35:1335 minutes, 13 secondsparameters will be there and
+then this callback this is a function that you call when you're complete 35:2135 minutes, 21 secondsand see down here on line 17 it'll say return callback the first parameter here
+to this callback is any 35:2935 minutes, 29 secondserror that might have happened so this is kind of standard node so any any error that might have happened and then you can return
+what you want to return now in this case 35:3735 minutes, 37 secondsit's returning the twiml object that was created now you'll note here that the twilio helper library and it's
+using the 35:4635 minutes, 46 secondstwiml module here to create in this case a voice response we'll take a look at voice responses in the future but what 35:5335 minutes, 53
+secondswe really want is a messaging response since that's what we're building so we're going to say messaging 36:0136 minutes, 1 secondresponse and i'm going to change this to a
+const because it's not going to change and then we're going to get rid of 36:0936 minutes, 9 secondseverything else so let's head over to the docs so again 36:1636 minutes, 16
+secondstwilio.com docs and i want to look at the twiml so i can collapse these folders so i'm not it's not the api that we're looking at now we're looking at twiml so we're 36:2436
+minutes, 24 secondslooking for the message twiml and here we are in node.js and you'll see that we make a new messaging response 36:3236 minutes, 32 secondsand it does a
+response.message and then you can see here it does this dot to string and this is what you would see this is what would be returned so 36:4036 minutes, 40 secondsit's a response
+message like we saw and and that so this is a cool way of generating twiml one thing i want to point out is this is 36:4836 minutes, 48 secondsa fluid api notice that when we do
+this dot message it automatically changes the twiml that is uh created there so we can 36:5636 minutes, 56 secondswe're not returning new twiml we're modifying that object back in
+our function code this event here is going 37:0437 minutes, 4 secondsto have all information that was posted to it so when an incoming message happens we are able to get a hold of
+the body of the message 37:1237 minutes, 12 secondsso let's do that so let's let's log that out so we'll do a console.log i'm going to use javascript string 37:2137 minutes, 21
+secondsinterpolation and i'll say the body was and then we'll do event dot body 37:3037 minutes, 30 secondsexcept i'm going to spell event right event dot body and now we only want
+to respond if 37:3837 minutes, 38 secondssomebody types uh quest so we can use some javascript logic so we'll say if the event dot 37:4637 minutes, 46 secondsbody and we don't care
+about case so let's just go ahead and make it all uppercase to uppercase 37:5637 minutes, 56 secondsis uh strict strictly equal to quest so if if they've typed quest then and only
+then do we want to return what we 38:0538 minutes, 5 secondswant so we're going to say twiml dot message and we'll type discover 38:1338 minutes, 13 secondsyour power to change the
+world with code 38:2138 minutes, 21 secondsand otherwise we want to give a what you talking about willis so we'll do twiml dot message uh 38:2838 minutes, 28 secondsi don't no what
+you mean by oh we should use a string interpolation so i'm going to use the 38:3638 minutes, 36 secondsbacktick instead of the actual quote there because i want to use we'll say i
+don't i don't know 38:4338 minutes, 43 secondswhat you mean by the event dot body we can even put those in the quotes if we want to 38:5238 minutes, 52 secondsgo ahead and put
+those in quotes i don't know what you mean by that did you mean 39:0039 minutesquest and you'll see that the callback is returning the twiml that we want 39:1039 minutes, 10
+secondsso let's go ahead and let's save this function now i want you to make note of this little dot that's over here uh when it's actually available it's going to be 39:1839
+minutes, 18 secondsgreen so what this is saying is that we have saved the function but it is not yet deployed so we're going to click deploy all 39:2739 minutes, 27 secondsand
+while that's working let's walk it okay so we're going to get uh twilio is going to do an htt post http 39:3439 minutes, 34 secondspost to our function and we're going to get a
+hold of the body off of the event object which will have all of the 39:4239 minutes, 42 secondsvariables that were passed there we just are curious in the body we're just going to
+log that out and if we enable live logs here we'll see it actually come 39:4939 minutes, 49 secondsthrough i'll clear my logs here and then we're going to make a new messaging
+response and we're going to check and make sure if uh the body is in 39:5739 minutes, 57 secondsfact quest if it is we're going to send this message we're going to modify our twiml
+so the it'll say twiml message and then if not we'll say i don't know 40:0640 minutes, 6 secondswhat you mean by this you know what why don't we actually log out the twiml too so
+we can see what it did so we'll do 40:1440 minutes, 14 secondstwiml and twiml that and automatically in there it will it will do the two-string version of it 40:2140 minutes, 21
+secondsnow this event will also have the from and the two and all the information about the message that's important i'm going to save it again right because i 40:2940 minutes, 29
+secondschanged it and i'm going to do a deploy all and i'm going to come back to my number 40:3640 minutes, 36 secondsi'm going to open up a new go back to my phone numbers i'm
+going to come to manage 40:4340 minutes, 43 secondsi go back to my active numbers i'm going to come in here and now before we were sending it to a twiml bin 40:5140 minutes, 51
+secondsbut now i'm going to use instead of a twiml bin what we'll use is a function and i'll use the exploration and the environment is 41:0041 minutesui and we'll use
+autoresponder here so it says when a message comes in send it to that function i will save that and 41:0841 minutes, 8 secondsthen i'm going to come back to that function let's
+make sure that we have that function up so we can see uh see that so i'm going to go to my services and again that's my exploration 41:1741 minutes, 17 secondsservice so i can
+click into that and i'm going to enable live logs and here we go so i'm going to go ahead and i'm going 41:2541 minutes, 25 secondsto text in to my number i'm going to text in boop
+so we should get the what you talking about willis 41:3341 minutes, 33 secondsand we should see that come across oh and it says yep the body was boop and i did i got back this
+message i don't know what you mean by boob did you mean quest 41:4241 minutes, 42 secondsand so i'm gonna go oh yeah that's right i'm gonna type quest and i'm not gonna even type
+the case right i'm just gonna do one capital q instead of all capital quest 41:4941 minutes, 49 secondsthere we go and boom i got it and i got oh i forgot to include the link so
+again if we're going to include the link we're 41:5641 minutes, 56 secondsgoing to come here https and we'll do slash twilio dot com forward slash quest 42:0342 minutes, 3
+secondsand now you'll see that uh it's not green right so i'm going to click save and now i've already got my phone number 42:1142 minutes, 11 secondsset up so i don't need to do
+that again i've just made my change i'm going to click deploy all i'm going to type quest now now that it's all deployed and it's going to use 42:1942 minutes, 19 secondsthe new
+version of the code which is awesome and when my message comes back i should now have my link and i do have my link and i can click that and i can load 42:2842 minutes, 28
+secondsthe preview and awesome pretty powerful right you can now handle incoming messages based on what the user entered and that means you can build 42:3642 minutes, 36
+secondspretty much whatever you can imagine basically you now have a new input and output device that you can incorporate into all of the applications that you build and remember
+42:4542 minutes, 45 secondswhile we implemented our incoming message handler using a twilio function you can also accept the post from any web framework and return your dynamic
+twiml i've added these samples to the 42:5442 minutes, 54 secondsnodes i'm hoping you're starting to get all sorts of new ideas on how you can incorporate messaging into your
+applications 43:0143 minutes, 1 secondlet's take a quick break and then let's review what we've learned so far in this course you picked up quite a bit so far great Chapter 7:
+Review + Practice 43:0943 minutes, 9 secondsjob how are you feeling i was thinking that we'd take a quick moment to review what we just covered well first you've got yourself your
+very own programmable 43:1743 minutes, 17 secondsphone number because our account isn't trial we currently can only have one but you can definitely buy more numbers and 43:2543
+minutes, 25 secondsin many other countries you can even buy numbers that spell things like i guess what i'm trying to say is it's not too late for your 555 taco dreams 43:3343
+minutes, 33 secondsthere are some limitations to our trial number it's prepended with a message and it can only send outbound messages to verified numbers now if you want to test
+43:4143 minutes, 41 secondsthis out with some of your friends or co-workers you could verify their number check the notes for how to do this next we saw how to send a one-way
+43:4843 minutes, 48 secondsmessage and we did this using the api we happen to use the cli but there are a bunch of other helper libraries that will let you send the message from
+just 43:5743 minutes, 57 secondsabout any environment and remember it's a rest-based api so any language that can send http requests can play make sure to check the notes for more
+44:0544 minutes, 5 secondsinformation then we saw how we could actually make two-way messaging work not only can we send but now we can receive and this happens via a web hook
+twilio 44:1444 minutes, 14 secondsreceives the message and then posts to a url that you define trulia expects that you'll return twilio markup language or twiml we happened to use
+a twiml bin to 44:2244 minutes, 22 secondshost our static twiml and then we made our use of a serverless twilio function to dynamically generate twiml remember 44:2944 minutes, 29
+secondsthis could be any url that returns valid twiml which means you can plug into your existing web applications i hope you've 44:3644 minutes, 36 secondsgot all sorts of new
+ideas for how you can enhance your applications for your customers you can build that experience that you wish you had now one thing that 44:4444 minutes, 44 secondswe didn't talk
+about and you're bound to run into it as you start developing messaging apps is this messaging is stateless the protocols 44:5244 minutes, 52 secondsthemselves send a message and
+once the message received it's all done there is no state so what that means for you as a developer is that you need to keep state of your 45:0045 minutesuser's journey through
+your messaging app like for instance if your users are answering a series of questions how will you know which ones they're 45:0745 minutes, 7 secondsresponding to now the super
+good news is that you aren't alone in this conundrum and in fact this is such a common problem that there's a tool that is 45:1545 minutes, 15 secondsspecifically built for this
+twilio studio is a low code solution that allows you to just drag and drop widgets around with what you're trying 45:2345 minutes, 23 secondsto achieve you specify a flow and it
+does all of the maintenance of state for you it's also elastic and it scales up and down for you now you as a newly 45:3145 minutes, 31 secondsskilled twilio developer may
+recognize that under the covers this is generating twiml for us check the notes for more i've left some 45:3945 minutes, 39 secondsideas on how you can practice your newfound
+skills in the notes but before you get there one thing i always like to stress before building your 45:4645 minutes, 46 secondsdream messaging application is it's this i want you
+to realize that there are lots of rules and regulations from carriers around the type of messages 45:5345 minutes, 53 secondsthat you can send and well you might not be thinking
+about scaling just yet it's always a good idea to think through your messaging use case we do our best to 46:0146 minutes, 1 secondmake things seamless for you as you build and one
+way that we do that is by helping you think through your use cases up front this guide is linked to in the 46:0946 minutes, 9 secondsnotes and will walk you through the best
+practices for messaging at scale it's chef kiss good so why don't you take a moment and 46:1846 minutes, 18 secondsexplore the notes for this video and check in on how you're
+feeling programmable messaging wise and after you're feeling good about your knowledge head on back here and continue your 46:2746 minutes, 27 secondsjourney next we'll discuss my
+favorite corner of the twilio verse programmable voice Chapter 8: Programmable Voice Intro 46:3846 minutes, 38 secondsahoy there you'll hear twilions or people who work at twilio
+they'll greet you with ahoy all the time do you know why 46:4546 minutes, 45 secondsahoy was actually the original way that we used to answer the phone like you'd pick it up and
+instead of saying hello you'd be like ahoy and the other side 46:5346 minutes, 53 secondswould be like ahoy the phone has evolved a ton since those days and so much has been built
+on top of that original invention like so much 47:0247 minutes, 2 secondsso that we often don't even think about it as innovation anymore but it's really incredible what we've been
+able to build on top of it and when i say we i don't 47:1047 minutes, 10 secondsmean we twilio i mean we like team human for instance we figured out a way to wait in a virtual line
+somebody came up 47:1847 minutes, 18 secondswith that concept that holding concept right like we figured out a way to have the phone answer itself and record a message if the
+person wasn't around we figured out a way to prompt a caller for 47:2747 minutes, 27 secondsinformation press one for sales that sort of thing and we route them to the right person
+that's huge what a time-saving life-changing experience and 47:3447 minutes, 34 secondswe came up with a way to connect callers all together in a group in a conference call that
+conference call was just an idea and think about how many that 47:4147 minutes, 41 secondsyou've been on lately so it's pretty impressive what we can do with a speaker a microphone
+and a little bit of connectivity isn't it 47:4947 minutes, 49 secondsso here's the thing any experience that you've ever had on the phone like anything at all you can reproduce
+that with twilio and that's 47:5647 minutes, 56 secondsbecause as a developer you're provided with the building blocks that you need to create whatever you can dream up you just
+snap them together the programmable 48:0548 minutes, 5 secondsvoice api is expansive want to put someone on hold use the on-cue trim over you can record play a sound file you can
+48:1348 minutes, 13 secondsmake it say whatever you want you can route and forward calls by using dial and you can even dial into a conference there is so much you can do with just
+a 48:2248 minutes, 22 secondsfew lines of declarative code and the good news is that the way that you do all this is very similar to what you've already learned and you can build
+it all 48:3048 minutes, 30 secondsover the pstn the public switch telephone network literally anyone with a phone can use your application let's dive in Chapter 9: Receive a Call
+48:3848 minutes, 38 secondstext-to-speech has become super impressive lately it sounds almost eerily human doesn't it it's come a long 48:4548 minutes, 45 secondsway from where it
+started i remember playing with early versions of my computer and it would trip up on the weirdest words i remember once trying to make it say cheeseburger and it came 48:5348
+minutes, 53 secondsback as chas epidur but the tech has gotten so much better and it's had to there are many of these personal assistant devices everywhere 49:0149 minutes, 1
+secondthe alexas or the google home devices whispering because i don't want to trigger yours the advancements in this arena are incredibly impressive and we developers 49:1049
+minutes, 10 secondsget to stand on the shoulders of giants and make use of it in our applications it's time to write the hello world application of programmable 49:1849 minutes, 18
+secondsvoice only of course in our case we'll do ahoy world we're going to be using the say twiml verb to do our text-to-speech so i'll 49:2649 minutes, 26 secondsnavigate to those
+docs so here i am on programmable voice i'm going to collapse this folder clap this tutorial folder the reference folder and here is our 49:3449 minutes, 34 secondstwiml folder and
+i'm going to go down here to say 49:4549 minutes, 45 secondsso you'll see here's the api to build the voice response and it's got a couple of uh we could change the voice that if
+we wanted to or we could also change the language and you'll see that this is 49:5349 minutes, 53 secondswhat uh gets built down here this is the twiml that gets generated down
+here so we've got an attribute of voice and an attribute of language you know what these actually have defaults so 50:0150 minutes, 1 secondbefore we even set it let's just build
+one of these and then we'll see what it sounds like so i'm going to head back over to my 50:0850 minutes, 8 secondsconsole and i'm going to go to my twiml bins and i'm going to pin
+those so if i scroll down under explore products here i'm going to 50:1750 minutes, 17 secondsfind my twiml bins and i'm going to pin those to the side we'll go into my twiml bins
+here 50:2550 minutes, 25 secondsi'm going to make a new one and i am going to call this ahoy world so again it starts with the response tag 50:3450 minutes, 34 secondsand it's case
+sensitive and i'm going to close that response tag and uh we're gonna use that say tag and 50:4150 minutes, 41 secondswe'll just say say ahoy world we'll see that it's valid voice
+twinl 50:5150 minutes, 51 secondsand we'll go ahead and create this and uh just like we did with messaging also our phone number has the ability to set what happens when 51:0051
+minutessomebody calls in so let's do that so we'll go here's our phone number scroll down here to 51:0851 minutes, 8 secondswhen a call comes in instead of a web hook we're going
+to use a twiml bin and we will use ahoy world and i will save my number 51:1651 minutes, 16 secondsand now i'm going to dial in to 415849 again make sure you're doing it right four
+eight zero four with a call 51:2551 minutes, 25 secondsit's uh definitely a little bit weirder if somebody picks up and it's not your number all right so let's make that call
+51:3251 minutes, 32 secondsi'm gonna put that on speaker you have a trial account you can remove this message at any time by upgrading to a full account press any key to execute

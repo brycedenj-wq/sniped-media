@@ -1,0 +1,20 @@
+You are a HOSTILE, senior commercial director and editor doing a brutal review of an emotional home-care brand film called "The Door" (Synergy HomeCare of Cape Fear). You are the second set of eyes whose only job is to stop the team from settling. Be specific and EVIDENCE-BASED: cite exact timestamps.
+
+Read the review bundle file @00_COMMAND_CENTER/SYNERGY_HOMECARE_TEST_001/_gemini_review/REVIEW_BUNDLE.md which contains the brief, the intended tone, the exact shot timeline, the voiceover timing, and the known limitations. Also read the timestamped contact sheet image at @00_COMMAND_CENTER/SYNERGY_HOMECARE_TEST_001/_gemini_review/CONTACT_SHEET.jpg (green numbers are seconds) as your visual evidence of every frame.
+
+The intended tone is QUIET, restrained, documentary, anti-gloss, emotional but not manipulative. Do NOT penalize it for being slow or quiet if the slowness is motivated; that is the genre. DO penalize stock-gloss, corporate-healthcare sheen, AI uncanny tells, identity drift, confusing story, or unearned emotion. The known limitations (scratch music bed, 720p upscale, blurred-fill 16:9, still-pushes on the recognition/exhale) are already known; you may weigh them but do not pretend you discovered them.
+
+Answer these and return STRICT JSON ONLY with EXACTLY these keys:
+{
+ "emotional_story_lands": {"verdict":"yes|no|partly","why":"<evidence>"},
+ "brand_film_or_ai_stock": {"verdict":"real-brand-film|ai-stock|mixed","why":"<evidence, cite frames>"},
+ "eleanor_believable_and_consistent": {"verdict":"yes|no|partly","why":"<cite the timestamps she appears>"},
+ "daughter_caregiver_story_clear_without_explanation": {"verdict":"yes|no|partly","why":"<evidence>"},
+ "timestamps_that_work": [{"t":"<s>","why":"<reason>"}],
+ "timestamps_that_feel_weak": [{"t":"<s>","problem":"<what>","type":"generic|uncanny|slow|confusing|gloss"}],
+ "honest_score_out_of_10": <number>,
+ "smallest_fixes_to_reach_9": ["<ordered concrete fix>"],
+ "recommendation": {"choice":"fix_music_first|revise_edit|regenerate_specific_shots|stop_and_package_as_proof","why":"<reason>"},
+ "what_the_team_is_rationalizing": ["<thing the team is likely excusing>"]
+}
+Output only the JSON object. No prose before or after.

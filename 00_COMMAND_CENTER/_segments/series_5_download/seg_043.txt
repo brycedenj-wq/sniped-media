@@ -1,0 +1,224 @@
+optimization if you want your websites to load quickly and show up in your 0:18 search results. Let me show you what I mean. So, if we take a look at the latest page speed insights
+of the 0:24 website that we just completed in the previous tutorial, I'll leave a link in the description below. You'll see here 0:30 that from a performance standpoint, the
+website is scoring in the green across the board. So, green on performance, 0:36 green on accessibility, green on best practices, and green on SEO. 99, 100, 0:42 100, and 100
+respectively. Okay. If we take a look at some of the other tools that are used to measure page speed like 0:48 pingdom.com, you'll see this is also scoring an Agrade. And if we
+take a look at GTMetrics, you'll see that there's 0:54 also an A grade here as well with a 97% performance, 99 on structure, and a 1 1:00 second large contentful paint and total
+blocking time at 0 milliseconds. So, the 1:05 website loads very quickly and performs very well. What I'm going to be doing in this tutorial is I'm going to show you 1:12 how I'm
+able to achieve these results and how you can do that for yourself. So, if you are ready to learn how to 1:19 optimize your websites for speed, then let's go ahead and jump right
+into it. PageSpeed Insights Overview 1:29 Okay, so I've gone ahead and cleared out those results and we're basically going to do a page speed optimization on a 1:34 website from
+scratch. And we're going to go through it step by step. It's going to be on a fresh version of the website 1:40 that doesn't have any speed optimizations done to it. The website
+that I use for measuring my page speed 1:47 is page speed.web.dev. Essentially, you add your URL into the 1:53 URL field here. Click on analyze and then it gives you the details on
+the performance of that website. The website 2:00 we're going to be using is this site here. This is the site that we built in the last tutorial and we built this from 2:06
+scratch. We converted the site into a child theme and then I also showed how to be able to sell that child theme 2:12 using Shard. So this website currently doesn't have any
+optimizations done on 2:17 it. And what we're going to do is we're going to take a benchmark. So we're going to check the speed before the 2:23 optimization. Then we're going to
+perform those optimizations. And then we'll check the speed uh again. 2:32 Okay. So before we take that benchmark, I just want to share with you the three things that you want to
+focus on whenever you're doing speed optimization 2:38 on a website. The first thing is going to be your hosting platform. So you want The three critical components to build a
+fast-loading website 2:43 to make sure that your site is built on a high performance hosting platform that provides you with enough tools to be 2:48 able to deliver your website
+quickly when site visitors are visiting the website. The second thing is going to be 2:54 your content. So you want to definitely do some content optimization. That's your images
+and the elements that build 3:01 up your pages. You want to make sure that you're using the right amount of elements and that your images are formatted correctly. And then the
+third 3:07 thing is going to be the actual plugin that you use for caching. So sometimes 3:13 there are additional caching opportunities on your site. There are several plugins
+that offer that. I will 3:18 be sharing one of those with you here uh in this tutorial. Now let's start with 3:23 the first one which is going to be your hosting. And that brings
+us to the sponsor of our website today which is 3:29 Cloudways. So, if you're thinking about getting a high performance server to host your websites, then Cloudways is 3:36 the one
+that I would recommend and suggest. And the reason I like Cloudways is because Cloudways basically provides 3:43 you all the tools that you need to be able to have access to a
+highowered high 3:48 performance server. So something like Vulture or Google Cloud or AWS or 3:54 Digital Ocean, these are servers that provide 3:59 better performance than if you
+are on a shared hosting platform. And what 4:05 Cloudways does is that they give you an interface that allows you to be able to configure those servers to your needs 4:10 without
+having to be a server technician. In addition to that, you get to benefit from all the performance 4:16 boosts. You get to benefit from it being flexible enough that if you find an
+4:21 increase or a spike in traffic, you can easily increase your resources with a simple click. And this is all done in a 4:28 way that is very affordable and you can host as many
+websites as you want on your own dedicated server environment. 4:35 Now, I already have a website that is on Cloudway. So, you can see the URL. And 4:40 what we're going to do is
+we're going to take a benchmark on this website. We're just going to see just out of the box 4:46 built on cadence cadence blocks and on cloudways how this website performs. So
+4:52 I'm going to copy the URL and we're going to go to the page speed insights website. I'm going to paste the URL in 5:00 here and click on analyze. Okay, so here are our
+numbers. So you can see here 5:06 from a performance standpoint we're at a 78. Accessibility is 100. best practices 5:13 100 and our SEO is at 61 and this is on the mobile device.
+You can see here the 5:19 first content full paint and the largest content full paint here are in the red 5:24 and the speed index is in the red. Okay. And then below here are all
+the issues that we need to address if we want to 5:31 get this into the green. So this is on the mobile device. If we look at it on desktop the numbers tend to be a lot 5:38
+better. You can see here out of the box 99% performance, 100 accessibility, 100 5:43 best practices, but our SEO is still lagging here. Okay, you can see that this performs better
+on a desktop, but 5:50 ideally we want this to perform great on both. So whether you're on a mobile device or desktop, we want to see all 5:59 green across the board. Okay, so let
+me show you how to do that. 6:04 Okay. So, since our desktop numbers look pretty good with the exception of the SEO number, which we'll take care of a little bit later, we're going
+to be 6:10 focusing on the mobile speed here. So, on the mobile speed, the performance is 6:15 78, which is not bad, but we want to get this uh into the green and as high into the
+green as possible. Okay. So, the 6:23 first thing we want to do is we want to first of all change this URL. So, one 6:29 thing that I know is that the Cloudways app URL, which is
+really supposed to be temporary, uh sometimes can cause low 6:36 performance because it's not really accounting that you are using this as a real website yet. So, you still have to
+6:42 assign a domain. So, assigning a domain or assigning a subdomain is going to 6:48 impact our numbers. Okay. So, let's go ahead and take care of that right now. 6:53 So this is
+the website and you can see here we have the cloudways app URL 6:58 installed here. So what I want to do is you want to go to your domain registar 7:05 go to your DNS records. It
+may be different for everyone. Mine is in cloudflare. 7:10 So and then in here we want to go ahead and add a subdomain in this case. Okay. 7:16 So what I'm going to do is going to
+click on add record. I'm going to keep it as an A record and I'm going to add 7:21 the subdomain of speed coach and then I'm going to add the public IP address 7:27 of my server in
+cloudways and then I'm going to click on save. 7:32 Okay, now that I've done that, I now need to go to my Cloudways account and add that subdomain. So, here is our 7:43 install
+here. We can see it here is Speed Coach. And what I'm going to do now is I'm going to go to domain 7:49 management. Go to add domain. Going to go ahead and add speed coach 7:57 as
+our domain. It's really speed coach.builtinwp.com. 8:06 Okay. And click on save changes. 8:14 All right. So now that has been added. So, it's been added as an alias and we can see
+here that the temporary domain 8:19 is set as a primary. So, what I'm going to do here is I'm going to go to the vertical ellipsus in my Cloudways 8:25 account for the domain and
+click on make primary. We'll say set as primary. And 8:30 now that is done. So, let me just copy this domain here. The next part I want to go is I want to add an SSL 8:36
+certificate to this. So, SSL certificates are free in Cloudways. So, I'm going to go ahead and click on SSL 8:42 certificate. add my email address, add my domain, 8:48 click on
+install certificate. Okay, so now our SSL certificate has been 8:54 installed and our domain is now our primary. So if we go to a new tab and we 9:02 type the word speed
+coach.builtinwp.com, 9:11 that should take me to that coach website. And it does very successfully. Okay, great. So, I'm going to go ahead 9:17 and copy the URL here. We're going
+to go to our 9:23 page speed insights. Let's paste in our URL and see what changes have come about 9:30 just by placing the website on an actual domain or subdomain. All right. So,
+9:36 already you can see there's some improvements in the performance. Our accessibility best practices are at 100, 9:43 but our SEO now is at 92. And then on desktop, this is
+going to be green all 9:49 across the board. Okay, so this looks a lot better already. Okay, but we can 9:55 still get more performance out of this by optimizing it. Now, just so
+you know, 10:00 the numbers that we're seeing right now are just from the basic install of Cadence 10:08 and the buildout of our website using Cadence blocks on Cloudways. And so,
+10:13 it's gotten us a lot of the way there. So, really, we only need to focus on the performance and maybe do a couple things 10:19 on the SEO side if we want to get this to 100.
+Okay, so let's go ahead and work 10:24 on this performance. Let's see where the issues are. So the issue here is the first content full paint. So the first 10:31 item, how long is
+that taking to load? The first item that you're seeing on the site is the question here is how long is 10:37 that taking to load? Second one is largest content full paint. So how
+long does it take the largest item? Typically 10:43 it's going to be a hero item or an image. The question is ask is how long is it taking to load? So it's taking an 10:49
+undesirable amount of time for that to happen. Okay. And so and then over here are some insights where we can see all 10:56 of the issues that we'll need to deal with here. Okay.
+So these are all the issues that we can work on. You can see 11:02 here it's pointing out that image for me. Okay. So we will work on these issues one by one. I'll show you how to
+11:08 take care of all of them. All right. Let's go ahead and get started. 11:14 Okay. So I'm going to reanalyze the websites again at page speed insights just to get some fresh
+numbers. So go 11:20 ahead and click on analyze. Okay. Great. So now let's go ahead and get to work with the optimization. 11:26 So the first thing that I'm going to do is I'm
+going to go back to the site. Make sure that you are logged in and 11:32 we're going to deal with the most obvious things first. So the first obvious thing that we're going to deal
+11:38 with are going to be the images. Okay? And a really great way to optimize your images is to use a plugin. We're going How to convert images to Webp and AVIF format 11:45 to
+use a plugin that's going to allow us to convert our images from JPGs and PNGs 11:51 to WEBP and AVIF. WEBP stands for web picture and they're 11:57 generally smaller sized images
+that look just as good as your PNG or JPG but just 12:04 smaller size. And AVIF is actually stands for AV1 image format. 12:10 and that's more of a video codec for streaming, but
+it also can create images 12:16 that are even way smaller than even WEBP images. So, if you're still using PNG 12:21 and JPG images, then your pages are going to be pretty heavy
+compared to some of the newer formats. So, let me go 12:28 ahead and show you how to convert the images on your website to this to this format. So, we're going to go to 12:34
+dashboard, go to plugins, click on add plugin, and here in the search box, just 12:39 go ahead and type in web p a v i f 12:44 converter and search. Okay, so the one we're going to
+use is from compressx.io. So, this is compress x and it's 12:51 completely free. Let's go ahead and click on install now. All right, so we now have the AV, IF, and WEBP converter
+12:57 installed. Let's go ahead and click on activate. All right, so here it is right here. Okay, we're going to go to settings. And here in the settings, what 13:03 we want to do
+is we're going to go ahead and click on auto optimize new upload so 13:08 that anything that you upload is automatically converted to uh AV1F and WEBP. And then here where it says
+13:15 library to process images, we're actually going to select the immagance. 13:20 Okay. And then make sure the output formats that you have WEBP checked and AVIF checked. Okay.
+Let's scroll down. 13:29 So here you can actually choose the WEBP quality that you want and the AVIF quality that you want that you want. 80 13:35 and 60 are just fine. And then
+here are some general settings. Just leave everything here as is. You don't need to 13:42 make any changes here. Click on save changes. Okay. And now we're ready to go ahead and
+optimize our images. So let's 13:47 go ahead and click on bulk optimization. And then we're going to click on the force all images to be reprocessed. So it's going to process all
+your images. 13:54 And then click on start now. So we have 32 images to be scanned. And uh we're just going to wait until this completes 14:01 the scan. And make sure to keep this
+page open as it's going through the process. Okay, so the optimization process for 14:08 the images has completed. And over here you can see all of the images that were converted
+to AVIF. All the PGs and JPGs 14:17 uh are now optimized and the website will now serve much smaller images to 14:23 the front end of the site. Okay. So if we go to the front end
+of the website right now, you can see that all our 14:29 images are still there. They still look really good and you really didn't lose any quality, right? So all the images 14:35
+are still in place. Now, this is just the beginning of the optimization, but let's just go ahead and see if that has 14:42 made any impact in our page speed. So I'm going to go
+back to my page speed insights page here, and I'm going to 14:48 reanalyze the website again by clicking on analyze. 14:54 Okay, so the analysis is completed and you can see it
+really didn't make a difference. Matter of fact, our performance went down by one point, but 15:03 that's okay. That that's just the beginning. So that's just the first thing that
+we needed to do. Now, let's go ahead and take care of the rest. 15:10 We're going to go back to the website and then I'm going to go to dashboard. Now, if you're on Cloudways, when
+you 15:17 first install a website on Cloudways, it automatically installs two additional 15:22 plugins that are very important. If we go to plugins, go to installed plugins, you'll
+see here that the first one is 15:28 the Breeze caching plugin. Okay, so this is a caching plugin that provides you with options to speed up your site, 15:35 including varnish
+cache, and it's compatible with Cloudways hosting. So the other one is Object Cache Pro and 15:41 Object Cache Pro is actually a premium uh caching plugin for the back end for
+15:46 for WordPress. This mainly deals with cleaning up of your database and keeping your database optimized. So these two 15:52 combined are going to help you speed up your
+website. So from here I'm going to go to Breeze. I'm going to click on 15:58 settings. Now if you're not using Breeze and Object Cache Flow, you can use other caching plugins.
+They'll have similar 16:04 settings. But I just like the combination of having the object cache pro. Most of the other uh platforms 16:11 don't have this automatically and this is
+usually a premium plug-in that you're paying for. But in this case, this is 16:16 available with all your Cloudways optimized sites. So from here, I'm going to go to Breeze, go to
+settings, How to configure the Breeze Caching plugin 16:25 and I'm going to go through all the options here. So the first one is to make sure that the cache system is turned on,
+which it is here. We don't 16:32 need to turn on mobile cache. uh purge after. This is just the amount of time for which to automatically purge the 16:38 site or purge any caching.
+We want to make sure that gzip compression is turned on. This is going to make our 16:44 HTTP request fewer and faster. And then I also want to make sure that browser cache is
+turned on as well. And you want 16:51 you want to enable this as it add expires headers to static static files. Okay, so this will ask browsers to 16:57 either request a file from
+the server or fetch from the browser's cache. Then over here you have lazy load images. 17:03 Now, a lot of people will turn this on because they believe that it forces their
+images to begin to load before 17:09 it's being displayed on the screen. But this can actually impact your speed on your site. So, what I like to do here is 17:16 I actually like
+to turn this off. I don't like to have this on at all because what essentially it does is it 17:23 delays the load of the first image, which can also slow down your site. So, I'm
+actually going to turn on lazy load 17:29 images. I'm going to turn it off. Okay. Okay. And then from here, I'm going to go ahead and click on save changes. 17:36 All right. So, if
+you're using Breeze, it should look exactly uh like this, these settings here. Okay. Really only 17:43 three things are turned on. Cache system, gzip compression, and browser
+cache. Everything else should be off. 17:50 Next, we'll go to file optimization. And the file optimization, I'm going to minifi minify my HTML. It's going to 17:55 remove all the
+white space and comments to reduce the size of the HTML files. I'm going to minify the CSS files as 18:03 well. Now, make sure that when you do minification, if you're using a
+different plugin, make sure you just 18:08 double check your site to make sure that it still looks correct. Sometimes when 18:13 you do these minifications, it tends to break the
+site. But in this case, uh, in using Breeze and Cloudways, I've never 18:20 had my site break from, uh, using this configuration. So, we turned on HTML minify, we turned on CSS
+minify, and 18:27 then here we're going to include inline CSS. Let's go ahead and turn that on. And then we're going to combine CSS. 18:33 We're going to go ahead and turn that on
+as well. We're not going to exclude any CSS at this time. And then for the 18:39 JavaScript settings or JS settings, we're going to minify that as well. We're going to include
+inlineJS 18:46 and we're going to combine JS as well. Going to toggle that on as well. Okay. 18:51 And then everything else here we're going to leave as is. So just to reiterate,
+HTML minify is on. CSS minify 19:00 is on. Keep this font remain visible during load. Turn that, keep that off. 19:05 Include inline CSS is on. Combine CSS is on. JS minify on.
+Include inlineJS is 19:13 on. And combineJS is also on. Okay. And then let's go ahead and save changes. 19:21 All right. And we're done with that part. Now if we go to preload okay
+over here you can preload your web fonts. In 19:27 this case we're not going to utilize the preload. We can preload links just and turn that on so that when people use 19:32 hover
+links the cache is created in advance. And then prefetch of DNS request. We're going to leave this as is. Okay. Under advanced options this is 19:41 where you can put URLs that you
+never want to cach. So if you're using like an e-commerce platform and maybe you don't 19:46 want to cach your checkout page and things like that, you would add that URL here. The
+only thing that I toggle on 19:51 here is to disable the emojis because I don't use that on my website and there's no need to load the emojis libraries in 19:57 CSS. So, I'm going
+to go ahead and turn that off. Everything else we'll leave as is. Let's go ahead and click on save 20:02 changes. All right. When we go to the heartbeat API, I'm going to turn that
+on so that 20:08 it can help save some of the server resources. And then for my database options, you'll see here we have 89 uh 20:16 things in the database that need to be
+cleaned. So, I'm going to go ahead and toggle that on and click on clean. Now, 20:22 okay. So, now all that is now uh cleaned. Okay. Uh CDN. Now, we can use a 20:28 CDN. That would
+definitely help, but we don't even need to use that in this uh tutorial. Although, if you do, it's an 20:33 added bonus. And then varnish over here. We're going to set that to auto
+purge varnish. Let's just leave that on as 20:40 well. And then you have tools, which you can export your settings. And that's really it to do on the Breeze plugin. 20:47 So, now
+that we've done all that, I'm going to come over here to the admin toolbar, hover over the breeze, click on 20:53 purge all cache. This is going to clear out everything that I've
+uh that is cached after I made these settings 20:59 changes. Okay. And then let's view the front end of the website. Let's just check to make sure that the website is 21:04 still
+loading correctly. Nothing here is broken and everything still looks just 21:10 fine. Okay, so now we've made those changes. Now, let's go ahead and go back 21:16 to the page speed
+site and see if those changes impact our 21:22 scores. So, from here, I'm going to go ahead and click on analyze. Okay, so you can see here from the 21:28 results that just from
+those changes we made with the Breeze cache plugin, we've actually now propelled our site speed 21:35 into the green. So, the performance is now at 90 and everything else is still
+in the green. And if we go to the 21:41 desktop, we're almost at 100 across the board, even uh in the performance, 21:46 right? So, at this point, this site is actually pretty well
+optimized. Now, 21:52 we're still seeing some issues with the first content full paints and the largest contentful paints. I'll show you 21:57 how to how we can fix that. But
+overall, right now, this is these are actually pretty good numbers, but we can even 22:03 make it uh even better. So, let me show you how. So if we go back to our site, How to
+activate the Kadence Theme performance settings 22:09 remember our site is actually built using the cadence theme and cadence 22:14 blocks and there are some performance
+optimizations you can make within the theme itself. Let me show you how to do 22:20 that. So when you go to your website, go to customize in the admin toolbar and 22:26 then from
+here we're going to go to general and under general you're going to see 22:31 here a link that says performance. So click on the performance tab and there 22:36 are some things
+that we can turn on here that will help us speed up our site even more. First one is we can load Google 22:42 fonts locally and then toggle on preload local fonts. Okay. And then
+let's go 22:49 ahead and uh flush those local font files. Okay. Next we can enable CSS 22:54 preload and we're going to disable the default sitemap. Okay. So if we just leave these
+on, go ahead and click on 23:01 publish. All right. And then I will close out of this. And then I want to go to the dashboard. 23:08 Go to the breeze link in the admin toolbar.
+Once you're on the dashboard and then from here, click on purge all 23:14 cache. It's going to clear out the cache so we can get a fresh result. And then 23:19 we'll go back to the
+site. And now if we go back to our page speed 23:25 and let's reanalyze this. Okay. Okay. So, you can see with just making those changes in the cadence 23:32 theme performance tab
+under the customizer, we're now at a 98 23:37 performance up from 90. Okay, so this is actually really good. And then notice 23:43 that our first content full paint, our largest
+content full paints are all coming in green. Before these were red. 23:50 Okay. Now, there's additional optimizations that we can do. For instance, if you look over here, you How
+to Improve Image Delivery 23:55 could say it says here improve image delivery. So, if we open this up, we can see the issue that it's having. And what 24:02 it's saying here is
+that this image file is larger than it needs to be, right? So, it's saying that we have a large 24:08 image that's actually being uh manually adjusted either by CSS or by settings,
+24:14 and that's causing uh some issue here. Now, of course, we could just stop here and say this is great. We're happy with 24:21 this. But if you really want to uh make some
+optimization, we can make that change very easily. And then here where 24:28 it says render blocking request, there is let's see here a URL that we can 24:35 defer or add in line.
+Uh this is up to you. You can choose to do this or not. 24:40 Um I can show you how to do this. And then uh and then here 24:47 uh a long cache lifetime can speed up uh repeat
+visits to your site. So this is 24:52 just more about caching. And then we have some unused CSS here that may be coming from it's actually coming from 24:58 the Breeze plugin
+itself. So these are all little minor things that you can also make changes to. So but you know 25:05 we're pretty close here. We're at 98 for the performance and then 100 across
+the board. And if we go to the desktop, 25:11 desktop is pretty much 100 across the board, except for the SEO. I'll show you how to get this SEO to 100, by the way. 25:18 So, let's
+go back to the mobile. And it's about two points. You might be able to squeeze out one more point out of 25:24 this. So, let's just go ahead and address the easiest thing here,
+which is this image. So, really what it's saying 25:30 is that it would like us to have uh an almost an exact image. maybe not have it 25:35 be a large image that's being
+manipulated to be a small image. So, let me go back to the side and show you what 25:42 this means exactly. Okay, so this is the image that it's talking about right now. If I go to
+edit page and we click on 25:49 this image, if you look over here to the right, you can see here that the full image is saying that it's 1,024 pixels 25:56 x,024 pixels. If I click
+on edit image and look at the actual image itself, you 26:01 can see the dimensions of the image. Okay. So, what I've done is I've gone ahead and created the same image, but 26:08
+one that is uh a lot smaller. And let's just go ahead and upload that image to the site. So, I'm going to click on 26:15 select. Actually, let's click on edit image. We'll go to
+upload files. We'll click on 26:22 select files and let's find that image. 26:30 All right. So, here's that here's an image version that's actually smaller in 26:36 dimension. So,
+you can see here it's 637 x 637 pixels as opposed to the other one which 26:42 was 1024. Let's go ahead and uh add our all text. 26:49 Click on select. And the image is still
+there. Still looks great. We'll click on save. 26:58 And then I'm going to exit out of this. Go to my breeze link. Click on purge all 27:03 cache so we can get the latest version
+of the site. All right. Now everything still looks 27:09 great. And then I'm going to go back to our page speed insights website. All right. And let's go ahead and 27:15 reanalyze.
+So I'm going to go ahead and click on analyze. Okay. Okay, so that didn't really make a difference in terms 27:20 of the numbers itself. But you can see down here that the image
+issue is no longer uh appearing anymore as something 27:28 that we need to solve. But I'm pretty happy with these numbers. And if we look at it on desktop, it's pretty much 100
+27:34 across the board. So, as promised, let me show you how to deal with this uh SEO 27:40 issue here. If you want to get this to 100, uh let me show you how to do that. So, I'm
+going to click on this here, and How to improve the SEO Score 27:45 it's going to tell me what the issue is. So over here uh for the 92 it's saying 27:51 that metadescriptions may
+be included in search results also concisely summarize page content. So the 27:56 document does not have a meta description. So essentially what it's saying is we don't have metad
+description in our site but if we did it 28:02 would give us a 100 for our SEO. Now uh 28:07 typically you could install an SEO plugin and add metadescriptions to your site and I'm
+going to do exactly that. I 28:13 actually created a custom plugin uh that I can use to just add a simple uh metad 28:20 description and metatitle to my site. I'm going to go ahead
+and do that right now. So, we're going to go back to the 28:26 site and then from here I'm going to go to dashboard. We're going to go to plugins. Click on 28:33 add plugin and
+let's upload this plugin. 28:40 Choose file. Now, feel free to use any plug-in SEO plugin that you want. I just 28:47 created a custom one for this tutorial. And maybe in a future
+tutorial, I'll show you how I created this. But if you 28:53 use RankMath or you use uh Yoast or if you want to use Shore Rank is another 28:59 one that's free and available, then
+it will still do the same thing. All you 29:04 need is just a plugin that gives you the ability to add an SEO metatitle or SEO 29:10 description. So, I've uploaded mine. Click on
+activate plugin. 29:16 And now we're going to go to our page here. Click on edit page. 29:24 And the way this plugin is built, it's just built to add two fields using a block.
+Right? So, I'm going to come 29:30 here. Let's type a forward slash. And I'm going to do a search for SEO. 29:37 Here are my SEO meta fields. Okay. Okay, let's give it a title and
+we'll give it a meta description. 29:44 Okay, so we've gone ahead and added it. You can see our search preview over here. So, we now have a metatitle and a 29:50 metad description.
+Let's go ahead and click on save. I'm going to exit out of this. Go to the 29:56 breeze link in the admin toolbar. Make sure you're in the dashboard. Click on purge all cache so
+you can get the 30:02 latest version of the site. Go to the front end. And now we're going to go back to our page speed insights website 30:10 and we're going to reanalyze and see
+what the numbers say this time. So I'm going to click on analyze. All right. 30:16 And we can see the numbers are even better. So our performance is now at 99 30:22 uh in the
+green, 100 accessibility, 100 best practices, and 100 at SEO. And this 30:28 is on mobile. Okay. So uh great numbers everything in the green here. and on 30:35 desktop it's 100
+across the board. Okay. And with that, that'll conclude this tutorial on how to optimize your website 30:42 for speed. So you have a high performance website and a site that loads
+quickly when people visit the 30:49 website. And just to reiterate how we got to these numbers is one, we made sure to build our website on a high Thank you and conclusion. 30:57
+performance hosting platform like Cloudways which connects us to high performance servers where we can load up 31:04 our websites. The second thing that we do is we made sure to
+build our website on a high performance theme like cadence 31:11 and also using cadence blocks and using the performance settings within the 31:16 theme. The third thing that we
+did is we optimized the caching using the breeze 31:21 plugin. And we had the benefit of object cache pro which comes for free in every 31:27 cloudways install. And once you
+combine all that together including optimizing 31:33 your images using the webp and AVIF format and for that we used a free 31:38 plugin called the AVIF and webp converter plugin
+for WordPress which is completely free from compress.io. 31:46 Once you combine all those, then you are able to get phenomenal numbers and phenomenal speed on your website. Hey,
+31:54 if you enjoyed this tutorial, please do me a big favor and smash that like button. Also, share it with anyone you 32:01 feel will benefit from the tutorial. If you're new to
+the channel, welcome. And I'm going to go ahead and invite you to 32:06 go ahead and subscribe to the channel, especially if you like detailed step-by-step tutorials such as this
+one. 32:13 For those of you who are already subscribed and are supporting the channel, thank you very much for your 32:19 subscription. Thank you very much for your support. And
+until next time, I'll see you in the next video. All From CliftonWP Background Info 0:00 I cannot believe that I would ever say this. But the internet is full of hacking tutorials.
+Really, 0:06 nowadays it’s not difficult to find some article or tutorial or tool that tells you about possible 0:12 security issues. But this also somewhat has created a problem
+where we feel like 0:17 any small thing can be a serious security vulnerability. But of course not everything 0:23 can be critical and serious. So where is the line, and where is
+the educational content that 0:30 tells you “chill”, “it doesn’t actually matter that much”. Where is the balance? 0:34 In case you didn’t know, me and some other creators have
+been partnered with Google to create 0:38 video content for the Google Vulnerability Rewards Program. So the Google bug bounty program. But we 0:44 didn’t make just more of the
+same hacking tutorial that you can find everywhere online. We try to 0:50 explain why Google does not accept certain kind of reports. Simply speaking, at Google there work 0:56
+tons of skilled hackers who understand the impact of certain vulnerabilities and they always have 1:01 a good reason why they decided they wont reward certain kind of reports. But
+it’s a very fine line 1:06 between what is a vulnerability and what is not a vulnerability, this is a difficult topic and you 1:12 can argue about it a lot. And so we made videos
+where we tried to explain Google’s position. 1:18 And in the video I’m going to share today I talk about various HTTP Security headers, including 1:24 Cookie flags and CORS
+misconfiguration, and I’m going to be a bit more critical about them. 1:30 As I said there is tons of content telling you about why they matter for security and of course 1:36 that
+material is not wrong, of course they exist for good reason, but there is basically 1:42 no content that tries to balance the sides a bit and so in this video I try to be like 1:47
+“calm down. Chill. The world is not gonna end” if a site didn’t use certain security headers. 1:52 Also I believe when you consider, at least for a moment that maybe they 1:57 are
+not so serious issues, it really helps to develop a deeper technical understanding about 2:02 this topic. And even if you watch the video and in the end you say “I still believe
+this should 2:08 be reported”, at least you have actually thought about the other side. Anyway. 2:13 Two more things I wanted to mention as well. First of all, this video was not
+meant to be 2:18 advertisement for google, but of course it kinda is. That’s why I labeled it this way. Google paid 2:25 for this video but not to be shown on here. I know it
+sounds weird but it’s important for 2:30 me to mention this. This video was produced for google, to be embedded on their site. Not as an 2:37 advertisement to be shown on this
+channel. But I thought my video is a very good educational video, 2:43 I really like it myself. And that’s why I wanted to share it with my audience on here as well. 2:49 So I’m
+very curious if any of your opinions about HTTP security headers 2:53 has changed after watching this video. So make sure to leave some 2:56 angry comments at the end. Also this
+video was made before I got glasses. 3:01 So I guess I take them off now to make the transition into the main video less awkward. Intro 3:13 When you are hunting for bugs you
+probably look at all the HTTP requests and responses. 3:18 And they contain a lot of HTTP headers. The response headers are especially interesting 3:24 as they can contain
+interesting information from the target. For example it might tell you which 3:30 web server is running. Other response headers are important for the functionality of a webapp,
+3:34 such as the content-type, telling the browser how to interpret the response. 3:39 Or the content-disposition header, which tells the browser if a returned response should be
+just 3:43 shown or downloaded as a file. But also some of these headers 3:48 are so called “HTTP security-headers” and they can be important for security. HTTP Security Header
+Overview 3:53 I’m LiveOverflow and I run a YouTube channel covering various IT security 3:54 topics. and Google asked me to talk about http security headers in this video. 3:54
+Generally HTTP response headers can be placed in two categories. Headers that 3:59 “weaken” security if they are added, and headers that “strengthens” security when they are added.
+4:06 So the big question is now, if a site does not set certain security headers, 4:12 is that a vulnerability? Online you will find many guides on best-practices on what headers
+to 4:17 set or not set. So if you identify such a header, could this be reported to a bug bounty program? 4:24 Let’s learn more about http response headers for bug bounties 4:27
+Example #1: To figure this 4:28 out we have to look at a few security headers in detail, to understand what exactly they are doing. 4:33 And only then will we be able to assess if
+it's a vulnerability when they are not set. Example #1: X-Frame-Options 4:39 X-Frame-Options: “The X-Frame-Options HTTP response header can be used to 4:44 indicate whether or not
+a browser should be allowed to render the page in an .” 4:51 With the HTML tag you can embed another website into your website. And this could allow 4:56 an attacker to perform a
+so-called click-jacking attack. If you don’t know what clickjacking is, 5:01 checkout this article, which also has a great video from reconless explaining it. 5:06 But they also
+explain why clickjacking is not a very serious vulnerability, and why often 5:12 it is not accepted for a bug bounty reward. The thing is, yes, setting the X-Frame-Options 5:17
+header in the response to SAMEORIGIN or DENY, would prevent such an attack. 5:21 But that’s not the only way you can protect your website from clickjacking. Maybe sounds dumb, 5:26
+but when you simply have a website where there is no actual impact with clickjacking, 5:30 clickjacking makes no sense. In that case it’s safe as well. Does that make sense? 5:35
+Generally speaking: very critical functionality on a 5:38 site + clickjacking can be a vulnerability. Then setting the X-Frame-Options header makes sense. 5:46 “Boring” and less
+critical actions available on a website + clickjacking, doesn’t matter that much. 5:53 Setting the header in many cases doens’t hurt. It probably adds a bit of protection, 5:58 but
+the missing header doesn’t necessarily open you up to attacks. You have to understand that. 6:04 AND then of course there are cases where the website WANTS to allow others to embed
+it. 6:09 For example on YouTUbe, when you click on SHARE, you can copy an HTML snippet for embedding the 6:14 video, and it has an tag. So YouTube WANTS you to be able to embed the
+content, 6:21 it’s a feature, and of course in that case they won’t ever set the X-Frame-Options header. 6:27 So you can see, it depends on the context of the website if it’s
+important for this 6:32 header to be set or not. Which means you shouldn’t blindly follow best-practice guides, or scanners 6:38 that tell you that the header is missing. You need
+to understand if there is actual impact. Example #2: Content-Security-Policy (CSP) 6:43 Example #2 Another important security header is the 6:46 Content-Security-Policy. CSP. And
+CSP is awesome because theoretically it can protect your website 6:53 pretty much from any Cross-Site-Scripting attack. And it even has more features beyond XSS. With CSP 6:59 you

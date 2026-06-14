@@ -1,0 +1,224 @@
+2:46 the pages wrapped with the layout. You 2:48 can also have dynamic metadata where for 2:51 example if we have the title of the post 2:53 and we want to have that displayed. We
+2:55 can also do it by creating a function 2:58 called generate metadata that in the end 3:00 will return a metadata object for an 3:04 X.js. So this will include a title, some
+3:06 open graph information and so on and so 3:09 forth. However, we are also using Metadata in PayloadCMS 3:12 payload CMS and for payload there's also 3:14 documentation on how
+to handle meta 3:17 data. However, this is only regarding 3:19 the admin panel. So this is nothing that 3:22 really we need to worry about. We'll do 3:24 it nonetheless. But
+normally these are 3:26 not links that we'll be sharing on 3:28 social media. All right, let's tackle Admin metadata 3:30 the admin metadata first though, just to 3:34 get our
+hands dirty a little 3:37 bit. Come on. By viewing the 3:40 documentation here on payload CMS, we 3:42 can see that the metadata for the admin 3:45 panel. So, this is all of pages
+3:47 contained in the admin panel, we can do 3:49 in the payload config by adding a meta 3:52 key to our admin object and then having 3:55 this information right here. So, I'll
+3:57 copy this. Now, let's go to our payload 4:00 config in the project. Go to the admin 4:03 area. And here we can already see that 4:06 there are some things that we customized
+4:08 like the icons. But now we want to 4:11 customize even more. I'm just going to 4:12 paste it down here for now and clean 4:15 this up a little bit. So, this goes into 4:17
+here. The icon, let's remove this. We 4:20 already have it. Then, let's sort this a 4:22 little bit. So, maybe the title is on 4:25 top. Cool. Let's say the title here is 4:28
+open- source 4:30 [Music] 4:32 audi. Nothing special about this here. I 4:35 mean, this is purely for us. There's 4:36 nobody really that will be sharing this 4:38 link. All right.
+I was not really 4:41 creative there. Just reading through a 4:43 few of the options that we have here. 4:45 For example, the default open graph 4:48 image type we can set to
+dynamic, which 4:51 is the default, static or off. And I 4:54 believe I want to set this to static so 4:57 I can manage it myself. And then we'll 5:00 just have one kind of cool
+looking image 5:03 that we can always display when the 5:06 admin link would be shared. Let's also 5:09 customize the title suffix here. Let's 5:12 say title suffix. And this
+should also 5:14 be open 5:16 source. Great. So let's give this a 5:20 quick commit. Collection metadata 5:24 And let's move on to the next topic 5:26 which is the collection
+metadata. I just 5:29 wanted to mention it that alongside your 5:32 root metadata, you can also have 5:34 metadata for individual collections. I 5:38 think I will skip this one. As
+I said 5:40 before, admin is not something that will 5:42 be shared. I can only access it and so 5:45 let's just leave it as it is. But 5:46 nevertheless, if you have an admin area
+5:48 where your for example clients are 5:50 logging on, then this could definitely 5:52 be something that you want to customize. generating frontend metadata 5:54 Now let's jump
+to the actual front end. 5:57 So this is the pages that will be shared 6:00 and this is done in payload. We can go 6:03 to generate meta which is a file that is 6:06 automatically
+coming with our website 6:08 template that we chose on initialization 6:11 of the project. And here we have two 6:14 functions. One is to get the image URL 6:18 for the metadata
+image and the other one 6:20 is the generate meta function where we 6:23 will return the meta for nex.js and then 6:26 this will be the metadata. All right, 6:28 first up this is
+the culprit that in the 6:31 browser I just showed you we are not 6:34 seeing an image. We don't have in our 6:37 public folder this image anymore. So 6:40 website template og does
+not exist. So 6:42 let's choose a different image that we 6:45 could always render when somebody is 6:47 just pointing to a page that has no 6:50 particular image itself. So I
+think we 6:53 can go with for example this right here 6:55 for a at least temporary placeholder for 6:59 our default image. Let's enter this 7:02 image right here. It would be
+primary 7:05 light green SVG. So whenever we call the 7:08 get image URL function, we can 7:11 optionally provide an image argument 7:14 which is either of the media type. So 7:17
+from our media collection or from the 7:19 default ID type in our DB I guess. Then 7:23 we get the URL for our server. We 7:25 construct the server URL. We check what 7:28 type of
+argument we actually received 7:31 and then in the end we return the image. 7:33 Great. I think this should work for now. 7:36 Now let's come into the generate meta 7:38 function
+down here. So here we are 7:40 getting our image. If we don't provide 7:42 an image, so we are passing a document 7:45 which is either a partial of a page or 7:48 the partial of a
+post or nothing at all. 7:50 Then we try to get the image from that 7:53 document. And again, if there is no 7:55 image, we'll just get the default that I 7:57 just provided. And
+then we'll construct 7:59 the title. And this is where our pesky 8:02 little thing comes in. 8:05 gay. I'll just remove this entire thing. 8:10 So, either we have a title, then we
+want 8:13 to use the title or we'll use whatever 8:16 this string is. And here I'll say open 8:19 source Odyssey just like this. And here 8:23 little trick, we can do this even
+8:25 shorter with JavaScript syntax. If we 8:28 provide a double question mark, then we 8:30 can just write it like this. So whenever 8:33 this evaluates to something truthy, 8:35
+we'll take whatever this resolves to. 8:37 And if this is a falsy value like null 8:40 or undefined, then we will use this one. 8:44 Great. And then we provide the 8:46 description
+from also our document if we 8:48 have one. We merge the open graph data 8:51 and then we provide also the slug here 8:54 to the page. Let's jump into this merge 8:57 open graph.
+All right. And here we have 8:59 some more defaults. So the default open 9:02 graph we say okay we are of type website 9:05 this is great an open source website 9:07 built with
+payload and nexjs technically 9:10 true but not the thing that we want to 9:12 have here so let's go back to the 9:15 browser and just yoink whatever I 9:18 already have step
+towards digital 9:20 freedom sounds like a good catch line to 9:23 me here we can also replace our image 9:25 again I'm going to do a side by side 9:28 because I'm lazy I'm just
+going to take 9:32 this path right here. Then replace it 9:35 like this. And again, we have the site 9:38 name and title. Both of these should be 9:41 open source or DC, I guess.
+Great. This 9:44 is looking much better. Give it a save. 9:46 And let's commit these 9:48 changes. Just a quick text search to see 9:51 where else we have this payload website 9:53
+template. It's littered throughout our 9:55 website. So we have four more 9:58 occurrences right here in the plugins. 10:01 We'll do the same thing we did before. 10:04 So here
+generate title plugins. What is 10:08 this used for? So this is used in the Zo 10:12 plugin. I think you've seen me once or 10:14 twice in the video before last where I 10:17 was
+adding all of the content. I always 10:19 had to remove the payload website 10:21 template string from the title. And this 10:24 is exactly where this was coming from. 10:27 So
+here we want to have the document 10:30 like if you click the button to generate 10:32 the title then this should be open 10:35 source audi say if the document doesn't 10:38 have a
+title then we'll do the same 10:41 thing regardless. All right let's look 10:44 for the template again. So here on the 10:47 search page we have it website template 10:50 search.
+So this should be open-source 10:53 odyssey search. And this is exactly what 10:56 I was showing you before in the Nex.js 10:58 documentation. On the search page, we 11:00 have our
+own generate metadata function 11:02 that will just return this as the 11:05 title. Same goes for the posts. So open 11:09 source Odyssey posts, we'll have the URL 11:13 as post.
+So we'll just refer to it as 11:16 posts. And then final one in the 11:20 numbered pages for the posts. All right. 11:23 And let's commit these changes as 11:27 [Applause] 11:27
+[Music] 11:32 well. Here I am in the layout tsx for 11:35 our entire front end. So this will wrap 11:38 all of our pages. And here we can see 11:41 that we are getting the base for
+our 11:44 metadata with the server URL. And we 11:47 also get the default open graph 11:50 information that we just adjusted. And 11:52 let's also adjust here the at payload 11:55
+CMS to 11:57 Odyso. So here I am in the detail page 12:00 for each post. We are generating dynamic 12:03 metadata again for each post. So we are 12:06 querying the post by its slug
+running 12:08 through this function right here. And 12:10 then we are passing the document we 12:11 fetched to our generate meta function. 12:14 We looked at this before just
+again. So 12:17 here we have the document will resolve 12:19 the image. We'll resolve the title and 12:21 so on and so forth and then return the 12:24 metadata. So let's also
+commit this meta 12:27 data update creator. And I guess we can 12:32 then check off our to-do item here and 12:35 give it this read me also commit. debugging & testing metadata
+12:39 Now we want to test our changes live and 12:42 for that I have to do a deployment. So 12:45 let's push our 12:48 changes. Here I am on the remote 12:50 machine. So the server
+that is hosting 12:52 our application for the internet. Let's 12:55 do a quick deployment by going into the 12:57 open source odyssey folder. Pulling the 13:01 changes. Great. Now
+let's make sure we 13:04 have everything installed. I'm not sure 13:05 if I installed something since the last 13:07 time. Everything is installed. Let's 13:09 build the
+application. And hopefully 13:11 this will not give us any errors and we 13:13 can just move 13:17 on. Great. The build process was 13:20 successful. We have our new website 13:23
+built. Now we just need to replace it in 13:26 our PM2 runner. If I check the current 13:30 PM2 tab, then we have the website 13:32 currently running. We need to kill this. 13:35
+So let's say delete zero for the ID of 13:39 this 13:41 process. Now I have no process running 13:43 and I can again bring it up by executing 13:47 the PM2 start ecosystem config.
+And now 13:51 our updated deployed website is on the 13:55 internet. Let's check it out. So fingers 13:58 crossed. Hopefully this will work. Check 14:00 the 14:01 website. All
+right. And the check ran. 14:04 So we can see something did happen. We 14:07 no longer have this trailing payload 14:10 website template at the end which is 14:12 great. However,
+the image are still not 14:15 loading. Let's check out what is wrong 14:17 with this. Open the developer tools and 14:20 go to inspect this page item. So this is 14:24 in theory
+looking good. I mean I'm 14:26 referring to the right image, but silly 14:29 me, I forgot to add another path item. 14:33 If we take a look in the public's 14:35 folder, I should
+have referenced the 14:36 logos folder as well. That's on me. 14:39 Let's correct this really quick. Hop 14:41 into the generate meta function file. 14:45 And in here, let's add
+logos at the 14:49 front. Let's also do a full text search 14:51 for this string right here. And here we 14:54 have it also in our open graph function. 14:57 So, we will also
+correct it here. Great. 15:01 Commit these changes. 15:04 push the changes. Pull the changes. 15:07 Build the new website again. 15:11 6 months later. With the website being 15:14
+built, let's check our PM2 process 15:17 again. Delete the zero ID process. And 15:21 let's restart the process. Come back to 15:24 our browser. And drum 15:27 [Music] 15:30 roll.
+Woohoo. 15:32 image is 15:34 there. I have to admit it's looking 15:37 terrible. Probably because the 15:40 dimensions are way out of bounds. I 15:43 mean, okay. Uh I'm going to
+leave it 15:46 like this for now, but there's 15:48 definitely some area to improve here 15:50 with a nicer looking image. Probably 15:53 more of the dimensions 16x10 or 16x9,
+15:57 but whatever. Catch me outside. How 15:59 about that? Proof of concept is in the 16:01 pudding. So, this is how you customize 16:04 your title, description, and image for a
+16:08 website. So, thank you so much for Outro 16:10 watching this video. You learned how you 16:12 can customize your meta data for a 16:15 payload CMS next.js application. Why
+16:18 don't you give this a try and paste a 16:21 link to Open Source Odyssey in the chat 16:24 of your best friend to show them this 16:26 amazing content and get their opinion
+16:28 about it. Yes, yes, yes. So, just share 16:32 opensource-ody.net and I'll see you in 16:34 the next video. Onwards, cipher punks. All From OpenSource-Odyssey Why SEO matters
+for Next.js 0:00 What's the point of spending months building your NexJS website if when it goes live, no one can find it on Google? 0:07 The reason why this happens is because
+developers often skip the crucial parts of making your website rank high in SEO 0:14 because they're either scared of it or too lazy. If you're in either one of those groups, by
+the end of this video, 0:20 you'll be able to make your website rank as number one on Google and get all of that beautiful organic growth. Now, if 0:27 you already have a website
+up and running, do you ever feel like your cloud platform is holding you back? 0:33 Maybe you've hit limits on collaborators, run into surprise bills, or wasted time juggling
+multiple 0:39 services just to get one app online. It's frustrating and it slows your entire team down. But that's where 0:46 today's sponsor, Seala, comes in. It's an all-in-one
+platform with no artificial limits, unlimited 0:52 collaborators, unlimited parallel builds, and no restrictive tiers. So your team can scale without worrying 0:58 about pay walls.
+Savala runs on Google Kubernetes Engine in 25 regions for 1:03 world-class reliability. And with Cloudflare's 260 plus edge network, your static websites will load instantly 1:10
+anywhere around the globe. Plus, it bundles everything you need under one roof. So you get access to managed 1:17 databases, object storage, instant preview apps, advanced
+pipelines, all with a usagebased pricing. So you only 1:24 actually pay for what you use. And because it is backed by Kinsta, you get enterprisegrade security and real 1:30
+developer support when you need it. So if you want to stop fighting your platform to start building, try Savala 1:36 today and you're actually going to get a $50 free credit. Just
+click the link in the description to check them out. Thank 1:42 you Savala for sponsoring this video and let's get into it. Okay everyone, let's get started. To start this off, I
+have Project setup and approach 1:49 this project that I open up on my VS Code, but the project doesn't really matter. I'm just going to use it as the 1:55 example that we're going
+to be testing on. So, uh, none of these pages over here really matter. We're not going to 2:01 run the project. We're just going to use them in order to explain the different
+concepts. So, imagine you want to make 2:07 your website rank higher on the different search engines. How would you start? Well, the first thing you would 2:13 do is make sure that
+you are always using server components over client 2:18 components. So if I go through all of my pages here, you should see that all of them are server components. Uh to 2:25
+distinguish them if you're a beginner next.js, it's just a client component will have this at the top, a use client, 2:32 and that will turn the entire page into a client side
+rendered page. But when there's nothing there, it means that it 2:38 is a server rendered component. Now, whenever you do need to have client side 2:44 functionality, which is
+going to be whenever you have, for example, a button 2:49 that you want to have an event whenever the user clicks on it, or maybe you want to use a hook from React like a use 2:56
+state or a use ref. Then you make a separate component. You don't turn the whole page into it. And in that 3:02 component, you'll make it into a client component. So, we have here
+a navigation component. And this is the only client 3:08 component that we have in this project. And why is it a client component? Well, it's a client component because this 3:13
+navigation component requires a hook. Uh it's a hook from next navigation, but it's a hook nonetheless. And to use 3:20 hooks, you need to have client side rendered capabilities.
+So the first major thing is you need to have most of 3:28 your project being server side rendered. Now you might be asking yourself why. 3:33 Well, the first thing is when a search
+engine bot like the Google bot or the Bingbot, whatever website you're using 3:40 to search, uh when it visits your URL, it will try to read the HTML right away 3:45 to understand
+the page content structure, links, metadata, all of that. However, if your page is clientside 3:52 rendered, then information won't be there because what a clientside rendered
+component does like the navigation one 3:58 we have over here is it actually requests the JavaScript to download the 4:04 UI. So, initially this won't have the HTML tags that we
+have here because it 4:10 needs the JavaScript to download it first. And since the Google bot and ging bot are actually optimized for HTML 4:17 content that arrives immediately in
+the response, this makes it such that client side rendered components such as this 4:23 one over here is worse for SEO. So when we have a page such as this one over here, the
+contact page or I'll go to an 4:30 even better one. Uh we'll go to the products page, this one over here. Right 4:36 on this page over here, what happens is this is a serverside
+rendered page. So 4:41 when the bot enters this page, when the bot finds this URL, it will see the fully rendered HTML with all of the text 4:48 with all of the heading metadata,
+links, all of that in place. So automatically, this is going to increase the ranking of 4:55 this page because it will know all of the keywords and text that is inside of it. But
+if you're familiar with how 5:00 React works on itself because it's client side rendered, you know that on the client components such as the 5:06 navigation, this won't be the case
+because it has to wait for the bundle to download. So this is the first main 5:11 concept you need to understand in order to get SEO in X.js. The whole point why NexJS even exists
+and why we created 5:19 serverside rendered components and why you avoid client side rendered components is because of this. It's 5:25 because search engines are not optimized for
+clientside rendering from React because its entire lifetime uh websites 5:32 were always built with the server in mind and that's just how it is. So you need to make sure that you
+keep a 5:38 minimal amount of client side functionality and only make client components when necessary. Now the Static Metadata 5:44 second thing you need to understand is how to
+implement metadata into your 5:50 pages. Well, what is metadata? Well, metadata is just information that you provide at the head section. So if you 5:56 go to your layout.tsx, you
+know that we have here the structure of the HTML. It's way more understandable. But when 6:04 you add like a head tag just like this then uh you add information to this head 6:10
+tag and that information will tell search engines and social media 6:15 platforms what your page is about. So in nextJS instead of having to add your head like this because also
+this way uh 6:23 the layout is affecting every single page. You want to add specific metadata for each individual page. The way you do 6:30 this is through a very easy way. you go
+to every single one of your routes. So, 6:35 we'll go to the I don't know the about route. And then in here, what I want you to do is I want you to go above your 6:42 component.
+And as long as this is a serverside rendered component, you can 6:47 export a const called metadata and it has to be of type metadata just 6:53 like this. you import that from next
+and you have to maintain the name because if you don't do that then uh nextj won't 7:01 know that this is the metadata you're trying to insert and then in here you can add a bunch
+of information about 7:07 this page now what kind of information can you put on this metadata object the first one is the most basic one is just 7:14 a title you need to define
+what the title of this page is for example if this page is I don't know a website that 7:21 you can uh see recipes. You can put here uh recipes or amazing recipes, I don't 7:28
+know. And then the name of your page of your website, I don't know, recipes.com. 7:34 Uh you can put a title, and this is what's going to appear at the top of your page. Now, not
+only it will appear 7:41 at the top of your browser tab, but also it's what's going to show up in search results and social media previews. The 7:48 next thing is crucial for SEO.
+It's the description. So, in the description, you 7:53 can set a meta description. Uh, and it's what's going to also show up when you search for this website. So, you can put 8:00
+something very detailed like find the best recipes in the world on this 8:08 website. I don't know. But you can put a good description over here and that's really going to impact
+your 8:14 click-through rate. Now, the next thing is also crucial. It's keywords. You can pass a list of keywords that is going to 8:21 help search engine crawlers to understand
+how to read your page. So in here we can put recipes, we can put uh 8:29 food, we can put I don't know best recipes, 8:34 uh whatever you want, anything that would help whenever
+someone is searching for whatever these keywords are, uh it 8:41 will help the bots recognize that this page might be related to that. Now the 8:46 next one is related to open
+graph. Now if you're not familiar what open graph 8:51 is is basically uh when you use a platform such as Facebook, LinkedIn, 8:57 Slack, whatever platform he is and you search a
+URL in those platforms that URL 9:04 will show up in a certain way. Now you want might want to customize how that 9:10 URL will show up. So how do you do this? Well, there's this
+website called 9:15 opengraph.xyz. And in here, you can enter your full URL. For example, I have a website. It's 9:22 called webdev ultra. It's my course platform. And if I were to
+click here on 9:28 webdvtra.com and click on check website, it is going to show what is shown 9:34 whenever I try to share my webdevtra link on one of those platforms. So, for 9:39
+example, if I were to share this on Twitter or on LinkedIn, this is what it 9:44 would show up. And I customized it to uh look exactly like this. Uh it has on 9:50 Discord as well,
+all of the social media platforms. Now, you might want to change this. I might actually want to change 9:55 this cuz I made this a while ago. Uh you want to make it very specific
+to what you specifically want to be seen 10:02 whenever you share your website. Now to customize this kind of stuff, what you do is you come over here and you add an 10:10 open
+graph field and inside of it you can specify everything related to 10:15 sharing such as even the title. Uh you can put something a little bit more concise maybe best recipes in
+the world. 10:24 I don't know. Description, same thing. I'm just going to copy the same description, but you can put something more specific. Then you can even specify 10:32 what
+the URL is. You can specify the name of the site, the overall name of 10:37 the site. So I can put something like webdev ultra. Actually in this case it's amazing recipes. So I'll
+say 10:44 recipes.com. I don't know. And then uh you can put images. So you notice that when I 10:53 had my webdevo form showing up over here, there is an image that is shown.
+10:58 That's because I assigned an image as kind of like the logo uh or the image that I want to show whenever someone 11:04 shares my website. You can edit by passing an array
+over here, not an object, an an array of objects that 11:12 contain the URL of the image uh just like this with the width, 11:18 the height, and whatever else you want to put
+related to the image. Now, I'm 11:24 not going to add it. I'm just showing you as an example and I think that it's going to help a lot. Now when you are 11:29 adding open graph I
+always recommend you to also specify the local which is the 11:34 place in which you're sharing this or you're creating this. In this case I can put that it's in English and it's
+in the 11:40 US for example. And the last thing is what kind of type of website or what 11:45 kind of type of link you're sharing. It can just be a website uh just like this. 11:51
+It can be an article. Uh there's a bunch of options. You can see all the options just like this. You can be sharing a 11:58 song, a book, an album, but you have to be specific
+because again, if you want to rank high in SEO, you got to give the 12:05 bots everything that you have. Now, the next field that I want to talk about is the Twitter field. So, for
+Twitter, it's 12:12 a bit different. Obviously this applies for Twitter as well but because Twitter came back came before uh most of the 12:18 other social media platforms in the
+sense of sharing websites. This uh is 12:24 part of how you structure your metadata as well. You can specify very very clearly how you want your Twitter card 12:30 to show up when
+someone shares your website. And this is how it would look like. So you just add a Twitter object. 12:36 You can add a card value. You can pass a title, a description, the actual
+tag of 12:43 the Twitter creator who uh is the owner of this website and again any images 12:48 that are related to your website. Now the next thing that is part of a metadata
+object is the robots. So you 12:56 can specify in Nex.js how you want robots to behave and treat your page. So 13:03 whenever I have a page like this, here is the kind of
+properties I would apply to a robots. I'll go over each of them 13:10 individually. So when you think of robots, the first thing you need is the robot to be able to index your
+page. And 13:16 the reason for that is because you want your page to appear in search results. If this is set to false, then it will 13:21 block the index and your page won't show
+up on search results, which would just go against everything that we've been 13:27 talking about. So you want to set this to true. This will control whether or not search engines
+can include your page 13:32 in their index. The second one is follow. I recommend that you set it to true because this will tell bots whether 13:38 or not they should follow links
+on this page. And you only should set it to false if you for some reason want to 13:44 hide some linked contents from the crawler. Now the next one is the no 13:50 cache. This will
+prevent search engines from storing a cached version of this 13:55 page. So you want to set this to true uh if you want search engines to not cach it and you want to set it to
+false if 14:01 you want it to allow caching. Now why does this matter? If your page changes frequently or it contains sensitive 14:07 dynamic content disabling caching will ensure
+that search engines will always serve the latest version. But that on 14:15 the other hand if they are not caching uh there's going to be a little bit of a delay in them finding
+your page. If they 14:21 cach it it's instant. If not then there's a bit of a delay. So that's the thing. Uh I would recommend uh caching 14:28 if your page is not dynamic and not
+caching if your page changes a lot. Now there are different types of bots that 14:34 you can specify information for. The the best example is Google bot just because everyone uses
+Google. And with Google 14:40 bot there's a couple things you can specify. All the things that we've mentioned before like specifying that 14:46 you want the Google bot to be able
+to index and follow applies here as well. but also some other things like when 14:52 someone is searching your website on Google or this page specifically is found on Google, you
+can specify the 14:58 maximum number of characters that Google is allowed to display in the search result snippet. So, this can be useful 15:06 for some situations. I'm going be
+honest, I don't really mind. Uh I always set it to negative one, which basically 15:12 says that there is no limit. And this is the default and recommended way. If you set it to
+zero, then no text is shown. 15:19 But if you set it to something like 200, then only 200 characters will be shown on the search results. Again, I 15:25 recommend to set it to
+negative one. Now, the next one is max image preview. This this together with this uh just 15:33 specifies u how you want images to be shown. Uh this is honestly I would 15:38
+recommend putting large if you are uh having a blog post or a marketing page. Uh same thing with the video. We set it 15:45 to negative one which basically it just controls the
+length of a video. If you have a video on your page and you want 15:50 to uh not show the entire video uh or just show I don't know a preview snippet 15:55 of the video on the
+search results, you can put a value here as well. Now, we're pretty much done talking about the most 16:01 important fields that goes inside of a metadata object. I would recommend
+you to go and put this metadata object on 16:09 every single one of your routes. Every single one of them. No exceptions. Why? 16:15 because this is what's going to differentiate
+your pages from being seen and not seen on Google. Now, it is 16:22 annoying for you to do this everything manually. So, my biggest tip for you is use an AI bot or an AI code
+helper like 16:30 cursor or tragic PT. The thing is I don't recommend coding everything with AI. I've always talked about this. 16:36 However, with metadata, it's a lot of
+repetitive work in my opinion. Just go ahead, copy your entire page, post it 16:43 on, paste it on whatever AI model you're using, and ask for it to generate a good 16:48 metadata
+object. When it generates, you can then go ahead and change the small little parts that you don't want or you 16:54 want to change, and then it will work best for you. So, go ahead
+and add all of the metadata to every single route. 17:01 And now, let's talk about the next concept, which is dynamic metadata. Now, Dynamic Metadata 17:06 it's easy for you to
+generate metadata for static pages like the about page 17:11 where the content in it doesn't really change, right? It's just the same thing. So, you know exactly what this page is
+17:17 about. But what if you were for example on this page over here? Now, if you don't know what this page is, this is an 17:24 individual products page. So, if I were to run this
+project, I'm just going to run it so you guys see npm rundev. This 17:30 website is extremely ugly. It was completely AI generated just for the sakes of me uh making this video.
+But if 17:37 you go to the products page, you see there's a list of products. If I click view details, this is a page that is 17:44 dependent on the URL, right? It's dependent on
+the params. Meaning that 17:50 how do I know what product is inside of here? uh in order to make that metadata 17:55 object the information about the product depends highly on
+whatever this value is because this is a dynamic PM. If you 18:03 look at our code over here and I go to the products page, you see it depends on this ID value. So what would you
+do in 18:09 here? Well, this is a great opportunity for you to implement what is known as dynamic metadata. So in this page which 18:17 is a serverside rendered component I am
+going to export an async function not an 18:23 object and call it generate metadata. It has to be called that or else this 18:29 won't work. This is a function that is going to
+allow you to generate a metadata object and utilize information 18:36 about the URL such as the params because with the params we can get the uh the ID 18:44 of the product. So you
+can access that directly from here. Now what is this going to return? Well, this is an async 18:50 function. So it's going to return a promise that resolves a metadata object. So
+the 18:57 idea here is we still want to generate a metadata object just like we did on the other pages. However, in here because 19:04 the page is dynamic because there's an ID
+that comes from the params and that determines the whole UI of the page. 19:11 Then we want to actually use this function to access the params and generate the metadata based on
+that. So 19:17 the first thing we would do is get the params that makes this dynamic, right? Just get that and look at your page to 19:24 see how you would interact with this. So
+first of all, if the product doesn't exist, then we're just returning 19:31 basically nothing. We're not returning a real page. So the metadata should reflect on that. How do you
+do that? 19:37 Well, you do the check here. If product doesn't exist, then maybe return the following UI. You return a an object 19:44 that says the title is product not found and
+the description is requested product could not be found. So we specify the 19:50 metadata of this page even though uh the product isn't found. So to to add the 19:56 metadata, you
+just return an object just like you would uh exporting the metadata object previously. Now what if the 20:02 product is valid? Well, here's a great way for you to make this page be
+fully 20:07 dynamic with its metadata. For the title, for example, maybe include the product's name as part of the title. The 20:14 way you do this is instead of just adding
+something generic like products page, you can do this. You can put the 20:21 name of the product by inserting it. So, product.name. And then do I don't know 20:27 maybe the brand
+of the product. Product.brand. and then just say the name of your website like uh I think we 20:34 call it metadata website I don't even remember we're we're actually using recipes
+as an 20:40 example but in here we'll do this so we just included the uh name and brand of 20:46 the product as part of the title for description a good example would be doing
+something like this uh this is a 20:53 little bit more complicated but we included the product description the price the if the product is on stock or 20:59 not or even the rating
+of the product as part of the description. Many websites do this exact thing. If you go and 21:05 search for a store on Google and search for a product, if you find the website
+link for that product on Google, you'll 21:12 see all of this information. And you might think, "Oh, that's all Google doing." No, it's actually the person who built the website
+specifying how they 21:19 want the metadata to show up. Now, I'd recommend going ahead and adding way more things like you could add the 21:24 keywords and utilize the product
+information for the keywords as well. You could go ahead and add all the stuff 21:30 that we added on the other uh metadata object, but I don't want to repeat everything. So this
+is the idea of 21:36 dynamic metadata. It's very useful for situations like this where the product has a param and it depends on that. Uh 21:44 and in this example, we also have a
+blog post here. This would also be a great example of a page that would benefit 21:50 from having dynamic metadata. Now, the next concept I want to talk about is related to robots.
+And we've talked a Robots.txt in Next.js 21:57 little bit about robots so far when we implemented this uh piece of configuration in our metadata objects, 22:04 but there's a lot
+more that you can do. So there is a file that you can add to your project called the robots.txt. 22:12 The robots.txt is a file that will tell web crawlers like the Googlebot which
+22:19 pages they can and cannot crawl on your website. And it's extremely important for SEO control. Now, usually in normal 22:27 websites without Nex.js, you would make a .txt
+file. But since we are using Nex.js, NexJS has support for generating 22:34 that file for you. All you need to do instead is to create a robots.ts 22:43 file at the root of your
+project. So, at the app. Now, why does this even matter? 22:48 Well, the first thing is you will have SEO control. Direct search engines to important pages whenever you want them
+22:54 to. you will be able to prevent uh web crawlers from wasting time on irrelevant 23:00 pages that you don't want them to find on your website. Maybe for example, the terms and
+conditions or the uh privacy 23:05 policy pages, those are not important for Google searches, right? So, you can basically block them. Also, if you have 23:12 specific pages that
+you don't want information to leak out because of security or anything like that, you can 23:17 block those sensitive areas. And if you don't have a robots.ts, TS I would say 23:23
+that your website will suffer from not having this granular control over how 23:28 you interact with the robots. So what do you do in your robots.tcs? Well, the 23:34 first thing I
+would always recommend is first of all make it simple. I'm just going to import this metadata route 23:41 object and I'm going to export default a function called robots. Again, it
+has to 23:48 be called this because this is how NextJS will know how to get your JavaScript or your TypeScript and 23:54 generate the txt file. What this will return is a metadata
+route robots. 24:00 Inside of here, we're just going to return an object that contains the different rules uh for the robots. So, 24:07 what is the first thing that you can do
+here? Well, you can actually specify what you want to do depending on which 24:14 kind of robot you're talking about. There is this user agents field over here. If you want to make
+changes to 24:21 every single robot, you just apply an all field over there. Then you can pass 24:27 uh routes that you want to allow the robot to interact with. For example, the
+homepage. And you can pass a list of 24:34 pages you want the robot to disallow. So basically, if for some reason, if we're looking over here, we don't want the the 24:41 bot to
+look at the contact page. I don't know for what reason you would put here the contact page with a slash at the end 24:50 as well because then it will include everything after the
+contact page as well. Now if you you also might have an 24:56 API uh route in your project. If you have that definitely include the API route there as well. Now you can go more
+25:03 in details. You can also pass a list of the ones you allow instead of just passing an empty slash over here. You 25:09 can increase the amount of uh lines you or routes you
+want to disallow. But also what you can do is instead of passing 25:15 here just an object you can make this into an array. And this array allows you to give rules for different uh
+user 25:22 agents. Like maybe for Google bot you want to disallow a route that you didn't 25:30 specify here and it's specific for Google bot. I don't know you can put here the
+terms and conditions routes. 25:38 And now I would recommend if you want to be very very uh detailed about this kind 25:43 of stuff to search up all of the different search engine
+bots and see which ones you want to interact with 25:51 your uh website because if you think about it these bots are really making requests to your website. So sometimes 25:57 uh
+if you uh have a lot of bots, some of them might be very aggressive in uh crawling your information. So they might 26:04 impact your website. Uh there's for example a bot called
+MJ12bot uh that I think is is pretty pretty 26:11 aggressive when it searches and crawls for your information. So you might want to for example disallow that bot from 26:17

@@ -1,0 +1,224 @@
+task 31:51 first extend a warm reading to your customer ask if this is a good time to call if it's not a good time to call 31:56 back so this is an outbound agent calling to lead
+qualify for an a real estate property so we go down here we 32:03 have two options a the person might say yes this is a great time to call and I would love to schedule a tour for
+32:08 property X then we would go down to this block this prompt here just schedules 32:16 the tour for the person so you can see we have ask user when they're available 32:21 for
+the tour call function check availability so that's a that's a function call that's going directly into 32:27 cal.com it really organizes everything it's kind of like having
+different chapters in a 32:32 book you keep all the subject information related to that chapter in said chapter and then move on to the 32:38 next chapter and that's kind of what
+we're doing here with these different states so if we go to schedule tour you 32:44 have have all this information you have different tool calls if you actually want the agent to
+transfer over to these blocks what you have to do put in a 32:50 simple line that says okay if yes transition to schedule tour as you can see here if they want a tour schedule
+32:56 tour so it moves moves the agent over into that conversational pathway and if no or hesitant so the Alm has to make 33:03 that judgment call do call function end call to hang
+up politely then it will go to the call back section and I'll even 33:10 test it just so you can see what it looks like hello Sam this is Chloe from retail real estate company this
+is what 33:15 the voice would sound like uh yes great time this ISS you're calling at a great 33:21 time great I'm calling because you recently showed interest in the property at
+524 I want to visit 33:29 it that's wonderful when are you available 33:34 tomorrow what time works for you 700 p.m. I'll check so it checks the availability it seems there was an
+issue 33:41 now obviously it's not connected to cal.com so it's not going to work so it's going to keep going but you see how 33:46 it transitions into the different paths well
+that pretty much sums up everything 33:51 I wanted to say about retail and how you can harness it as a lower latency easier 33:56 to use voice agent building software and platform
+thanks so much for watching to the end of the video I hope this video 34:03 was helpful for you whether you're season retail AI developer or just starting out and saving you time
+and 34:09 money and building these incredible AI voice agents you can find all the information you need in my community 34:15 below including the gpts we talked about and the
+different prompting techniques in this video and if you're serious 34:21 about making money with voice AI I highly suggest joining the community you'll find an incredible group of
+AI 34:27 entrepreneurs who are killing it right now selling these AI voice agents that's all for now see you in the next 34:34 video where AI Finds Its Voice come for the tech stay
+for the transformation 34:43 [Music] All From the series From Tech TomletIntro 0:00 Retail is one of the most powerful AI voice agent tools on the market right now, but most people
+end up only using 0:05 about 10 to 15% of its features. After building dozens of voice agents for real businesses and handling well over 25,000 0:12 real client phone calls, I've
+mapped out every single feature in retail that actually matters. So, in this video, I'm 0:18 going to show you exactly how to master 95% of retail so you can create powerful voice
+agents that actually sound great 0:24 and are ready to roll out to real businesses. So when people hear AI voice agent, they Why Most Users Only Scratch the Surface 0:30 picture
+something closer to one of those automated bank phone systems. You fight with a robotic voice that drones through 0:36 scripted options, leaves long pauses before every response,
+and won't let you cut in even when it's clearly heading in 0:42 the wrong direction. That's not what this is. Retail is a voice agent deployment platform. You build your 0:47
+agent, you give it a real phone number, and it handles inbound and outbound calls all day long without you being Retell vs Other Voice AI Platforms 0:53 involved. Now, people tend
+to lump retail in with 11 Labs and Vapy, but they're pretty different products when 0:59 you get into it. 11 Labs started as a voice generation company, and they're brilliant at
+making synthetic voices 1:04 sound real, probably the best in the industry. They've since added conversational AI on top of that. But at 1:10 their roots, they are a textto-spech
+business. That's turning text into AI voice, not phone calls. And Vapy is more 1:16 like a build it yourself option. It lets developers wire their own voice agent together from
+different pieces. Pick a 1:21 voice from one company, a language model from another, a phone provider from a third. There's plenty of flexibility, 1:27 but it's just not quite as
+beginner friendly as retail. Retail stands out because it was founded specifically to 1:33 handle realtime phone calls by people who actually know and live this stuff. The CTO
+spent four years leading next 1:39 generation speed translation at Google. The founders came out of Google, Bite Dance, and Meta. They're growing 1:45 exponentially and they're now
+powering over 40 million AI phone calls every single month. Retail was built for phone 1:51 calls and in my opinion strikes the perfect balance between newbie friendliness and
+advanced tools for 1:56 power users. So, let me show you exactly how to use it to get set up. Setup, Pricing & Dashboard Overview 2:03 Right, let's get you set up inside Retail so
+you can follow along. Signing up takes about 30 seconds. Email, 2:09 password, verify your account, and then you're in. On pricing, let me show you what retail actually charges
+right now. 2:15 They've got a pay as you go model. So, the base voice engine starts at around 7 cents per minute, and every new account 2:21 gets $10 in free credits with 20
+concurrent calls included. That's plenty for testing. What you'll actually pay 2:28 per minute depends on which language model you choose, which voice engine you use, and your
+phone setup, but I'll 2:34 cover that all as we go. But on average, you're going to use that $10 free and maybe another $20 testing things out as 2:39 you move into production.
+There is one thing worth knowing though. It's a massive benefit for us running this business with retail. It's all on one 2:46 bill. There's one platform and one invoice. If you're
+using 11 Labs agents, your voice cost, your language model, 2:52 and your phone provider are all separate bills from separate companies. VAP is very similar. You'll be stitching
+together multiple vendors. The nice 2:58 thing with retail is it keeps a lot of those costs under one roof, and that matters more than you think when you're 3:03 running agents in
+production. On the dashboard, there's four places you're going to be spending your time. So agents is where you build your voice 3:10 agents. Knowledge base is where you store
+reference materials that the agent can pull from. And phone numbers is where you'll be setting up the numbers 3:16 that allow your agent to call in and receive calls to. Call
+history is where every call you've ever handled lives 3:22 with full transcripts and recordings. And don't worry about the rest of the menus for now. One of them lets you run 3:27
+outbound calls to hundreds of numbers in parallel. And one flags problem calls automatically so you're not listening 3:33 through every recording. We'll come back to all of these
+features later. First, let's build a voice agent. Building Your First Voice Agent 3:41 Let's build a voice agent from scratch right now. When you hit create agent, Retail gives you
+two choices. Single 3:47 prompt and conversational flow. And here's what I'd strongly recommend, and I'll explain why properly in a minute. 3:52 Start with a single prompt agent.
+If you've ever seen my previous video, you'll know I've got a framework called 3:57 the five section framework for structuring your voice agents prompt. And this prompt structure
+will allow you to handle 80% or more of what you need 4:04 without ever touching conversation flow. We'll come back to conversation flow later for the very specific situations The
+5-Section Prompt Framework 4:10 when you genuinely need it. A quick reminder on the five section framework. The five sections are mode settings, 4:15 global rules, structured
+output, call flows, and reference and context. I do have another video that breaks down this 4:21 method exactly. And once you have that prompt, you'll be ready to add it to
+retail. You see there's a single text box here for your system prompt. That's 4:27 where you'll paste your entire agent prompt. I'll paste my example five section framework prompt
+straight in here that's easy for the model to read 4:34 easy to debug when something goes wrong and things will go wrong that's normal but having a structured prompt means you 4:39
+can find the problem quickly instead of hunting through a wall of text in this instance the prompt is for a receptionist for a heating company based 4:46 in the UK now let's select
+a voice retail offers a whole bunch of voices on here and that includes all of the major Choosing Voices (Cost vs Quality) 4:51 synthetic voice providers so 11 Labs OpenAI Cartisia
+Miniax and Fish all 4:56 inside the same platform pricing for each voice platform varies. But as you can see here, we can switch between the 5:02 voice platforms and models to get
+a sense of what the cost will be per minute. If we select the voices that are tagged as retail from Carteesia, Miniax, 5:10 Fish, or OpenAI, they all cost 1.5 cents per minute.
+Meanwhile, 11 Labs voices cost 4 cents per minute. So, that's a 5:16 large increase in cost. But the 11 Labs voices, especially the British accents, are superior to any of the
+other 5:21 platforms. I'd play around here to find a voice and a price that works for you. For this demo, we're going to go with Archer conversational, which is a really 5:27 good
+11 Labs British mail voice for phone calls. One thing I have to mention here, real time conversational, 5:33 synthetic voice generation isn't quite as polished as the pre-rendered
+stuff that you would get from the 11 Labs 5:38 studio if you making an audio book or a pre-rendered voice over. And that's just the nature of voice technology. Hi, I'm 5:45 Archer.
+And this voice is pre-rendered inside 11 Labs and takes a few seconds to generate. 5:52 You can apply different emotions to my voice and I can even laugh. In retail, 5:58 you're
+generating voices on the fly, processing live speech recognition and responding in under a second. But the 6:04 trade-off is worth it because what you get in return is minimal
+latency. That's the gap between you talking and the Real-Time Voice & Latency Explained 6:10 agent responding and proper interruption handling. And I'll show you all of that means
+with a live demo. 11 Labs is constantly updating their voice 6:16 generation engines. And what you're hearing now is the worst the technology will ever be. It's only going to get
+better. In terms of languages, Retail 6:23 and 11 Labs support over 30 languages with automatic detection built in. If you need multilingual agents, it's all 6:29 there. And then
+we can also select the large language model that we want to power the AI receptionist. So, pricing 6:34 for LLM models works in a very similar fashion. You can choose to run your
+voice agents on Google Gemini, Claude, 6:40 or OpenAI. And each of them has an associated cost. You can see here in the dropown. Personally, we have found that 6:46 OpenAI's 4.1
+fast tier, which is 2.4 4 cents per minute has been a solid and 6:51 reliable workhorse for us across dozens of voice agents and tens of thousands of phone calls. Next up is agent
+handbooks. Agent Handbooks (Tone, Accuracy, Safety) 6:57 These are one-click toggles that layer proven behaviors into your agent without you having to write any prompting for 7:03
+them. So, there's three tabs to choose from here. Personality and tone covers things like professional behavior, 7:08 filler words, and empathy. Accuracy and format handles echo
+verification if it hears itself. NATO phonetic alphabet, 7:15 speech normalization, and smart matching, so the agent doesn't treat Emily and Amelia as the same person. And 7:20 the
+trust and safety tab covers AI disclosure and scope boundaries, which keep the agent honest and on task. 7:26 Honestly, I would have killed for some of these about a year ago.
+Getting the NATO alphabet to work reliably without a 7:32 toggle like this used to take hours of prompt testing. Now, it's just a switch. It's super handy. On our end, we've 7:38
+actually at this point built most of these ourselves, and we inject them into every agent that we ship. But if you're starting out, flip these agent handbooks 7:45 off and on and
+see what you like and save yourself the headache that we went through. To the right hand side of your prompt, each agent has a selection of 7:51 settings that you can tweak and
+tune. We'll just run through them. Functions are your tools that you can add to any agent. This includes pre-built tools Tools, Functions & API Integrations 7:57 from retail. Your
+agent can invoke these tools at any time, and there are things here such as transfer a call, end the 8:03 call right now. We've got native integration with Cal.com to check and
+book calendars. We can press digit um if 8:09 we need to navigate an IVR menu. you are able to send and receive SMSS, extract variables from the call, which you can 8:15 then use
+within the brand new code tool. It's a really new feature and it's really very powerful. You can create a 8:21 tool that requires complex logic but doesn't require an API call or
+relying on your AI to figure things out for 8:27 itself. In this example, we have a calculator that could be used to measure the volume of a concrete required for a 8:33
+construction site. You can also create a custom function from scratch and this is where you would create an API call for 8:38 instance if you needed to check a postcode or to talk
+to a CRM or to make a booking or to find a price list for 8:44 example. Next up is the knowledge base and a knowledge base is a standalone collection of information that your
+Knowledge Base Basics 8:49 voice agent can pull from during a live call. There's a lot to cover here which I'll do later in the video. Next is 8:55 speech settings and this is
+where you tune how your agent actually talks. You can drop in a background sound so it Speech & Conversation Settings 9:00 doesn't feel like the agent's calling from an empty room.
+Although I always feel these kind of sound fake. Responsiveness controls how eagerly the 9:06 agent jumps in once it thinks you finished your turn. If it's too eager and it cuts
+people off or too slow and every reply lands with an awkward pause, 9:13 this can actually be adjusted and this can even be adjusted on the fly. Interruption sensitivity is how
+quickly 9:18 the agent stops talking when it hears you cut in. Crank that up if callers tend to talk over the bot. And you can 9:23 ease it off if the background noise is making it
+stop mid-sentence. It's got really good actually at recognizing human speech versus background noise, 9:30 which used to be maybe a year ago a real problem. The reminder frequency
+just decides how many times the agent will 9:35 re-engage a caller who's gone silent before it gives up and ends the call. And there's a pronunciation dictionary 9:40 where you can
+paste in the pronunciation of tricky words or names or things that the model tends to mangle. Real-time 9:46 transcription settings are next. And let's run through these. This is
+the layer that turns what your caller says into text for the language model to work 9:53 with. If a lot of your callers are phoning from building sites or car workshops or anywhere
+with a load of background noise, this is where you tune 10:00 the agent to cope with that. You've got a dnoising mode and a transcription mode to play with. Plenty to experiment
+with 10:05 inside of each. Honestly, we tend to leave these on their defaults for most of our agents and they perform really 10:11 well out of the box. But if you know your callers
+are in tough environments, it's worth testing the alternatives here 10:16 to see what gives you the cleanest pickup and recognition of voice. Below that is vocabulary
+specialization, which 10:22 defaults on general, but retail does have a medical preconfigured here as well. So, if you're running an agent for 10:27 a healthcare business, you can
+flip that on. It'll do a much better job of recognizing clinical terms, drug names, 10:33 and things like that. Finally, we got boosted keywords. If there are specific words that
+the model keeps misharing, 10:38 could be product names, local place names, or or industry jargon, you drop them in here, and it nudges the 10:43 transcription to listen out for
+them. Call settings is mostly stuff you'll set once and forget. We'll do a quick walkthrough because some of these will Call Settings & Post-Call Data 10:49 save you from some
+really annoying production bugs. Voicemail detection and IVR hang up both deal with the awkward 10:55 moments where your agent doesn't actually reach a human. You can tell it to
+hang up, leave a voicemail, or bow out cleanly if it lands in an IVR tree 11:02 rather than a real human picking up. Use a keypad input detection lets the agent listen for key
+presses during a call, 11:08 which can be handy if you're asking for a reference number. End call on silence ends the call if there's too much 11:13 silence for too long, which
+stops you from burning minutes on dead air. And then ring duration is just how long 11:18 retail will let an outbound call ring before it gives up and marks it as a no answer. Post
+call data extraction is 11:24 where you tell Retail what information you want pulled at the end of each call. You define the fields you care about and 11:29 Retail runs an extra
+pass over the transcript once the call wraps up, populates these fields and delivers them back to your dashboard or your web hook 11:36 or the API. You've got four field types to
+work with here. Use text for written output like a call summary. Use boolean 11:42 for yes no flags like whether the caller is a returning customer. Use number for anything
+countable like a quoted price 11:49 or a fleet size. And use selector when you're picking from a fixed list of categories such as job type or region. 11:54 For the first handful of
+agents you ship, this is actually genuinely useful because you get clean structured data out of every call without writing any 12:00 code. But this tool does have a ceiling. Once
+you start pushing it hard, you'll run into the same issues we have. And 12:06 we'll get into that properly towards the end of the video. Next up is security and fallback settings.
+And that's where you set your compliance rules and your Security, Fallbacks & Webhooks 12:12 safety nets. On the security side, you can control what retail stores after each call.
+You can keep everything and 12:17 strip out personal information or hold only the basic attributes. There's also a personally identifiable information 12:23 redaction layer if you
+need fine control. And there safety guardrails to restrict risky content in AI responses. 12:29 You can send signed URLs if you need a URL that your voice agent sends to expire
+within 24 hours. Fallbacks are 12:35 your insurance policy. If your chosen voice provider, say 11 Labs, goes down mid call, retail will immediately switch 12:41 to a backup voice
+that you've nominated so the call doesn't drop and you can set default values for your dynamic variables. So if one of them ever comes 12:48 through empty, the agent has something
+sensible to fall back on instead of tripping up. Quick one if you haven't come across web hooks before. A web hook 12:54 is just a URL that retail will ping with data when
+something happens on a call like the call starting, the call ending, 13:01 or post call analysis finishing. You give Retail the URL, Retail fires an HTTP request at it with the
+call 13:07 details, and whatever's listening at the other end can do something useful with that information. So, at the end of a call, you can send the transcript and 13:13 any of
+the other fields that you nominate via a web hook to further automation tools. We mostly use make.com, uh, which is very similar to 13:20 Zapia or N. In our scenario, after a call,
+the entire thing is passed to a 13:25 make scenario that stores the call data on our server, assesses its quality, puts together an email notification, and 13:31 logs the call
+within our customers CRM. I'll touch more on this in a minute. Again, I have to flag here before we 13:36 wrap up that in retail, there is only a single agent level web hook URL
+per agent. Rather than having dedicated 13:42 slots for different stages, all events you select ping that one specific web hook. That's fine when you're running 13:48 one agent,
+but it starts to pinch when you've got 20 clients wired up. More on that at the end of the video. MCP 13:54 settings is where retail plugs into the model context protocol. That's a
+newer standard that lets AI agents reach out 13:59 to external tools without anyone writing a custom integration. In practice, your agent could verify a caller's account 14:05
+against another system mid call without retail needing a native integration for it. We don't use it ourselves because 14:11 our own APIdriven setup covers the same ground, but it's
+worth knowing that it's there. Live Call Demo (Interruption Handling) 14:18 Now, this is the most important bit of the whole video. We're going to run a live test call, and I want
+you to watch what happens when I interrupt the agent 14:24 mids sentence. Hi, this is Heartwell Heating. How can I help? Hello. I need to get a boiler repair booked in, please.
+14:29 Of course. I can get a repair booked in for you. I'll just need a few details. Can I start with your full name, please? 14:35 Yeah, my name is Ben Milsum. That's M I L S O M.
+Thanks, Ben Milum. Got it. Can you tell 14:41 me a bit about the problem with your Before we do that, why should I choose you guys? 14:46 I'm sorry if that sounded a bit informal.
+Hartwell Heating has been serving South Manchester since 2011 with 14:53 experienced gas-safe registered engineers. We offer a 12-month parts and labor guarantee on all repairs.
+And our 15:00 engineers carry photo ID and gas safe cards for your piece of Okay, you know what? I'm fine. Let's go ahead. Definitely. 15:06 Got it. Can I check? Is it your boiler
+that needs repairing? Yeah, that's right. Yeah. 15:12 Thanks, Ben. Let me grab your address so we can get an engineer out. What's your door number? So, did you hear that? 15:18
+There was no talking over me. The agent heard me cut in. It stopped what it was saying and it picked up my actual 15:23 question cleanly. And that right there is a real retail
+difference. It's not about the raw speed, although the latency is really, really fast in 15:30 retail. It's about that turn taking, the way a real conversation works where people
+interrupt each other and it 15:36 doesn't fall apart. A lot of the other voice platforms I've tested either talk over you or they cut in mid word or 15:41 force this unnatural
+pause before every single response. Configuring agents in the retail platform always seems to get 15:47 this right. Under the hood, retail is using deep gram to manage that turnt.
+But you won't need to mess around with 15:53 those transcription settings to get a really natural sounding call. Everything else in this video, every feature, every 15:58
+integration matters less than the fact that when a real person rings your agent, it sounds like a genuine 16:03 conversation. And before we move on, we can hop over to the call
+history tab where we can find that test call that we just did and we can view the exact cost, 16:10 the recording, the analysis of the call, and lots more granular details, too.
+Finally, within the agent creation 16:16 section, there is simulation. Let's take a look at those simulations before we move on. This is where you test your 16:21 agent without
+having to pick up the phone every single time. The fastest mode is AI simulated chat. You type in a Simulation & Testing Tools 16:27 user prompt, give the simulated caller a
+personality, set a success criterion, and hit run. You'll see the conversation 16:33 play out in real time and whether your agent hit the mark. It's great for spot-checking a
+change you've just made to the prompt. The bulg tool lets you 16:39 line up 10, 20, 100 test cases all in one go. You set each one in the dashboard with its name, user prompt,
+16:45 success criteria, and any dynamic variables the agent needs. You hit run on the lot and you get a pass or a fail 16:51 table showing which test cases behaved and which ones
+didn't. We'll come back to simulations properly later in the 16:56 video when we get to deploying agents to production. for now, just know it's here and it's the single fastest way
+to 17:01 stress test a new agent before you put it in front of real callers and it's all provided in retail. So, that's 17:07 everything that goes into a single agent prompt and it
+sounds really good. So, let's talk about what happens if you really need to get complex with your 17:13 voice agents behavior and that's where we'll introduce conversational flow
+agents. Single Prompt vs Conversational Flow 17:19 Conversational flow is a visual builder where you drag and drop nodes onto a canvas and each 17:25 node represents a different
+stage of a conversation. Each one can have its own prompt, its own language model, its own 17:31 tools, and its own knowledge base if you want. So, I'm going to push back on
+something here because conversational flow agents look amazing and they make 17:38 very impressive screenshots. But if you build your single prompt agent properly using my five
+section framework prompt, 17:44 it will stay on track and you won't need to touch conversational flow. So when do you actually need to build these conversational flow agents? You
+need it 17:51 when your agent has to follow a strict sequence of steps in an exact order and each step depends on the one before it 17:58 completing successfully. This is
+especially useful if those steps require multiple tools and API calls. Let me 18:04 give you a real example. We built an agent here for example heating uh a boiler maintenance
+company. That booking 18:10 process involves 30 separate calls and potentially over 80 steps. We need to check the caller's postcode is exactly 18:17 correct against the UK address
+database. We need to check an engineer's availability from the CRM. We need to 18:22 check that engineer has the appropriate license for the job and we need to actually book that
+job into the CRM. 18:28 Every single step needs the previous one to finish properly before it can start. And every single step requires a 18:34 different API call. That's a
+conversational flow job. You genuinely can't do that with a single prompt. 18:39 We've tried because the agent needs guarantees that step two won't fire until step one has come
+back cleanly. 18:46 You just can't risk the large language model tripping over itself and jumping between call flow steps. But for 18:51 everything else, for the actual
+conversational parts, a single prompt agent handles it better because the 18:56 context of the whole conversation stays intact across the call. One cool thing to add here is that
+Retail have added 19:01 these node level overrides. So you could run your greeting on a cheaper language model, your booking node on something 19:07 beefier. So here's a demo of
+that. In this scenario, we will use the cheapest possible LLM to collect their name 19:13 because that's very simple to do. We might use a slightly more smart model here, GPT 4.1,
+to collect their door 19:19 number and postcode and also read our collection handbook about how to collect and listen out for postcodes. The 19:25 postcode is extracted and the
+door number is extracted. An API call is sent over to the postcode lookup system. And 19:32 then we might use another smarter LLM here just to confirm the address that we've
+collected is correct. And if it's 19:38 not, it would transition back and cycle through that again. They're shipping these new features at a really good pace, which is really
+encouraging. Oh, 19:45 and another nice thing with conversational flow agents are the reusable components. So, you can package up a chunk of a flow and drop it into 19:51 another
+agent, and that becomes useful once you're running more than two or three agents in production, but I'd still recommend sticking with a single 19:58 prompt agent for many, many use
+cases. Right, so we've got the conversation handled, but what if your agent needs to Knowledge Base Deep Dive 20:03 reference a large amount of knowledge? 20:09 Knowledge bases are
+probably the most misunderstood feature in voice agent platforms. A knowledge base is a 20:14 collection of information your agent can pull from during a live call. Could be
+product details, pricing, FAQs, company 20:21 policies. Instead of the agent guessing or making something up, it goes and attempts to retrieve the actual answer 20:27 from the
+source material you've given it in real time. Setting a knowledge base up is really straightforward in retail. 20:33 You can add a URL, upload a file or paste in raw text and they
+all work the way you'd expect. You link a knowledge 20:39 base to your agent and Retail handles the retrieval automatically during calls. You don't need to change anything 20:44 in
+your prompt. In conversational flow, you can attach different areas of a knowledge base to different nodes. So, 20:49 your pricing node pulls from your pricing document. Your
+product node pulls from your product specs. That's the production grade way to do it. But 20:56 here's where I kind of disagree with a lot of tutorials around AI voice agents.
+Knowledge bases are a double-edged 21:02 sword. Used well, they make your agent sound incredibly well informed. Used badly and they'll tank your call 21:08 quality. Here's my rule
+of thumb. Use a knowledge base when the agent needs to quote something structured, factual, and 21:14 likely to change over time. Prices, opening hours, and FAQ list. That's where
+retrieval works brilliantly with 21:20 short, clean chunks of information with clear answers. Don't use knowledge base as a dumping ground. I once audited a 21:27 business where
+someone had uploaded that entire website into the knowledge base, including hundreds of blogs, and was 21:32 just kind of hoping that the language model in real time would fish out
+the right bit during a live call in those fractions of a second between turn 21:39 taking. That's just not how it works. The calls would get slow because the agent was pulling
+chunks from every 21:44 direction. The retrieval was noisy and the agent kept quoting the wrong page from the website. And we've had our own 21:49 lessons, too. Early on, we had a
+knowledge base pointing at a Google sheet that updated daily. retail cached 21:54 an older version of the sheet and we didn't spot that for a day and a half which meant the agent
+was quoting last week's prices to callers. Well, the fix 22:01 was actually really simple once we noticed we had to move to a proper database with an API call. But the lesson
+stuck. When you use a knowledge 22:07 base, own how and when it refreshes. Don't just assume it's pulling the latest version or that the LLM will 22:13 accurately pluck the correct
+chunk of context from a huge unstructured database. Under the hood, retail uses 22:19 something called streaming rag, which is realtime retrieval during the call. And it works well
+when you feed it small, 22:25 well-shaped chunks of information. It falls apart when you treat it like a search engine for everything your 22:30 business has ever published. If you
+need to have one, keep your knowledge base tight and predictable. Now, let's attach 22:36 a phone number to this agent. Okay, this is where your agent stops Phone Numbers (Retail
+vs Twilio) 22:42 being a demo and starts being a real thing that answers a real phone. There's two ways to connect a number in retail. 22:48 You can get a US and Canadian number
+directly through retail, which is the easiest option and costs between $2 and 22:53 $5 a month. Or you can bring your own number from an external provider such as Twilio. If you're
+just getting started, 22:59 get your number through retail. It's one click. The numbers live in a few minutes. You attach it to your agent and 23:04 you're done. If you don't want
+US or Canadian numbers, and for anything at scale though, you'll probably want to bring in your own numbers. And this is 23:10 usually done through Twilio. If you haven't come
+across it before, Twilio is basically a phone network company for 23:16 developers. They let you buy phone numbers, send texts, and route calls through their global infrastructure.
+A 23:21 lot of businesses already use Twilio for their phone systems, so being able to plug those existing numbers into retail 23:26 is important. Now, I do have to be honest here.
+Importing a Twilio number into retail is really more work than it 23:32 should be. On other platforms, you can do the whole thing in the dashboard. With retail, you first need to
+create something called a SIP trunk in Twilio, 23:39 which is essentially a bridge between Twilio's phone network and retails platform. Then you buy the number in Twilio. Then you
+route the number to the 23:45 SIP trunk. Then you import the number into retail. Then you attach it to your agent. There's a guide in the retail docs, but it's not a one-click job,
+and 23:52 it can feel intimidating the first time you see it. So, that's five steps across two different platforms, and you will 23:58 get at least one of them wrong the first
+time. Using the retail API, we've built an automation that handles the entire 24:03 process. You can punch in the client details on one end, and the automation buys the phone
+number, routts it, 24:08 imports it into retail, and attaches it to the right agent in a few seconds. I'll talk about that more in the next section because it's the same piece of
+24:15 infrastructure that lets us go from zero to a live agent in 60 seconds. Now, you'll also need to decide whether your 24:20 agent handles inbound calls, outbound calls, or
+both. Inbound is your classic receptionist setup where people ring in 24:26 and the agent picks up. Outbound is where the agent dials out, which is what you'd use for things like
+appointment 24:32 reminders or sales follow-ups. You choose the direction when you link the agent to the number and retail handles 24:37 the rest. One thing to note here is if
+you're running outbound campaigns in the US, retail supports branded caller ID, 24:43 which is known as CNAM, CNAM, which means the person you're ringing sees your business name on
+their screen 24:48 instead of a random number. That makes a big difference to answer rates, but sadly CNAM is just not supported in the 24:54 UK or in most other places in the
+world in the same way it is in the USA. And there is no national UK CNAM database. 25:01 We get asked about this a lot, so it's worth knowing. And there it is. A real phone, a real
+number, a real AI receptionist picking up and handling the 25:08 call. That's the moment when this stops feeling like a tutorial and starts feeling like a business. Okay, now we're
+25:13 going to get into the features that separate someone who's had a play with retail from someone who's ready to run production voice agents every day. Scaling with Batch Calls
+& Automation 25:22 Batch calling first. This is outbound campaigns at scale with no limits on how many calls can run at once. You get up 25:28 to 20 concurrent calls in your
+standard membership and you can pay retail for more or you can just cue them up. You upload a list of contacts. You assign an 25:35 agent and hit launch. Retail then runs all of
+those calls in parallel. Let's just put that demo into action. So we 25:41 hit create a batch call. Let's call it test one. Now the CSV I'm uploading is completely dummy data. So
+none of these 25:48 names or numbers are real. We've put 50 people in there. The variable is which 25:53 type of boiler they have. We've got a phone number on there. We would then
+choose how many concurrent calls we want 25:59 to reserve for our other agents. We've got a total of 20 to play with. We could schedule what time we want these to go 26:04 out. So
+we can choose the safe window. So let's say we didn't want them to go on a Saturday or a Sunday. And then we would just hit send. And that would 26:11 begin the batch call process.
+This feature is only really useful if you have a process to collect up the result 26:17 of all of those calls. So, I suggest some kind of post call automation that summarizes each
+call, flags any specific 26:23 outcomes or data, and updates each call record into a CRM. Next is Retail 26:29 Assure, their AI quality assurance. This is Retail's native call
+quality assurance tool. It'll monitor your calls 26:34 in the background and flag problems without you having to listen to every single recording. Once you're past the first few
+hundred calls is genuinely 26:41 useful. It catches broken flows before your team hears about them through a complaint. This is a relatively new feature in 2026 and the first
+thousand 26:48 minutes of calls are free to test. So using web hooks or the retail API, you're able to trigger anything you like 26:53 during or after a call. In our common
+scenario, when the call finishes, a web hook fires, an automation plays out that 26:59 results in the structured call data landing in GoHigh level, which is our CRM. We send
+confirmation emails, we 27:05 update the client record, and we store the recording compliantly on our own servers. That entire post call pipeline 27:11 runs in about 3 seconds. and
+retail handled the hard part there. The voice, the language model, and the phone 27:16 network were all orchestrated inside that one platform with a single bill. We handle the
+business logic downstream. If 27:22 you doing this on some other voice platforms, you'll be wiring together four or five different services just to get to this point. And to touch
+on the 27:29 retail API and developer side of things here, this is where things get really serious. Using Retail's API, it's 27:35 possible to drive everything we've talked up to
+this point by code. So that's handsfree from nothing to a live 27:41 deployed voice agent with his own voice number and a properly structured prompt that's been put through 100
+simulated 27:47 calls [music] and is polished, ready to go live. We also use the API to inject our own baseline prompt as a custom 27:52 variable into every single call. Meaning
+every agent we ship starts with our prompting standards already baked in. 27:58 And this is similar to the agent handbooks feature that I mentioned earlier, but customuilt for
+what's worked best for us over time. And that's 28:04 how we go from a blank slate to a new [music] client's agent being live on the phones in under 60 seconds without 28:10
+rebuilding from scratch and without anyone touching the dashboard. So that's what running retail production scale 28:15 looks like, but none of it matters until your agents
+actually taking calls from real customers. 28:22 So you've built your voice agent. It sounds good. It handles calls properly. Now what does it actually take to put 28:28 this thing

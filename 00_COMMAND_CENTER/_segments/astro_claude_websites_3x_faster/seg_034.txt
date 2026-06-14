@@ -1,0 +1,224 @@
+proceedings. But there's so much more we 5:385 minutes, 38 secondscould do here when it comes to running a software as a service business. And it's kind of mind-blowing that we
+have full control over this on a $5 VPS. Huge 5:455 minutes, 45 secondsthanks again to Hostinger for sponsoring this video. And get your own VPS with a discount code using the link
+below. This has been the Code Report. Thanks for 5:535 minutes, 53 secondswatching and I will see you in the next Sync to video time All From FireshipIntro 0:00 Claude just
+released their new MCP 0:01 feature that allows you to create end 0:03 to-end workflows and AI agents from 0:05 scratch using a single prompt. And 0:08 honestly, it still blows my
+mind. So, in 0:10 this video, I'm going to show you 0:11 exactly how it works, but also how you 0:13 can set it up step by step within your 0:15 own claude and niten so you can
+start 0:17 building AI agents in seconds. Let's 0:19 dive in. All right. So, the way that I Model Context Protocol (MCP)? 0:21 would explain MCP to a 5-year-old is we 0:24 have an
+input, which is the uh Claude. 0:26 This is the assistant, the person that 0:27 we talk to. This person right here is 0:29 connected to an MCP which is essentially 0:32 a thing
+that is connected to different 0:33 tools like your Gmail, your calendar, 0:35 your Slack, your documents, your Nit in 0:38 this case. And if you give it an input 0:39 say, hey,
+can you send an email? Can you 0:41 create an edit workflow? Can you do this 0:43 for me? What it will do is it will then 0:45 send a request. So it will send a 0:47 notification
+to this MCP hub which is 0:50 connected to all these apps. And based 0:52 on the input that you give it, it will 0:53 then take action on the thing that you 0:56 want it to do.
+Right? Say it could be 0:57 send an email. It talks to here and then 0:59 this is connected to your Gmail. So it 1:00 actually sends an email right without 1:02 you having to go
+into Gmail and do it 1:04 yourself. And that is the same thing 1:05 when it comes to Nitn when it comes to 1:07 Outlook calendar documents slack 1:10 everything that you have all
+the 1:11 different apps that are connected to the 1:12 MTP. All right. So here I have the Full Setup Guide 1:15 notion document that we're going to use 1:16 to follow the whole
+process step by step 1:18 to connect your claude to the MTP of 1:20 anyone. By the way, if you want this 1:22 document along with other resources, so 1:23 you can set it up step by
+step. Make 1:25 sure to check out the first link down 1:26 below. All right, so step one is Step 1: Install Claude 1:28 installing Claude on your desktop. Press 1:29 this button
+right here, which will take 1:31 you to this page. You can then install 1:33 it based on what um you know MacBook you 1:35 have or what computer you have. In this 1:36 case, it
+will be Mac OS. You didn't have 1:38 it downloaded. Open it and you will see 1:40 a page that looks like this. And all you 1:41 have to do is simply install it here. 1:42 Now, when
+you get to cloud for Mac, you 1:44 want to press get started. Then you can 1:46 sign in. Make sure that if you already 1:47 have an account on the cloud version, 1:48 use the exact
+same account. If not, you 1:50 can make a new one. In this case, I'm 1:52 going to sign in with Google. 1:54 Going to choose my account. 1:57 Continue. And now I can see that I've
+1:59 been logged in into Claude right here. 2:02 Skip. And this will now be your 2:04 interface that you will use to then set 2:05 everything up. The next step once you 2:06 have
+installed Claude into your desktop Step 2: Install Node.js 2:08 is to install Node.js, which is the 2:10 thing that sort of allows us to be able 2:12 to run the MCP. You want to
+press get 2:15 NodeJS. 2:16 Make sure you press Mac OS or whatever 2:18 MacBook or whatever computer you use. 2:19 Make sure you choose that one. Um, leave 2:21 everything else the
+same and press Mac 2:23 OS installer. 2:25 You will then download the NodeJS. Now, 2:27 once you've installed the NodeJS, you 2:29 will have this page right here. Just 2:30 make
+sure to follow the instructions 2:31 step by step. Press continue. Continue. 2:34 Agree. And you want to press install. I 2:36 already have it installed, but it's a 2:38 two more
+clicks and you're good to go. 2:40 So, make sure to have this here. All 2:41 right. So, we finished the first two 2:42 steps, installing Cloud and the 2:43 installing the NodeJS.
+The third step Step 3: Set up n8n MCP Server 2:46 here is to set up the Nitan MCP. So, I'm 2:48 going to go to this page right here. 2:49 Now, this right here is outlining 2:50
+basically the steps that we have to do 2:52 in order to install the N it MCP. Um, 2:55 and there's a few ways that we have to 2:56 do this or we can do this. Uh, in this 2:58 case,
+we can choose to option one 3:00 because it is the latest, the fastest, 3:02 and no installation is needed. So, it is 3:04 the one that we're going to be using 3:05 today. Uh, and
+what you want to do is 3:06 you want to be copying this, right? And 3:09 make sure again that you have Node.js 3:12 installed onto your system in order to 3:13 do this. So, copy
+this and make sure to 3:16 open your terminal or command line if 3:17 you're on Windows. So, go here, look for 3:20 terminal, and you'll have a page that 3:22 looks like this. Make
+sure to then paste 3:24 the the the command that we um copied 3:26 from the GitHub. And now, for me, it 3:29 looks like this. But for you, if it's 3:30 the first time that you
+paste this, 3:32 you'll have to put Y. So, just put Y and 3:34 then press enter. And then you will see 3:36 this right here. And as you can see, now 3:38 we have the Niten
+documentation MCP 3:40 server is running, which means 3:41 everything is good. All right. All 3:42 right. So, now that we have the MCP 3:44 running, uh we have to now add the claw
+3:46 desktop config. So, this is basically 3:48 saying, hey, let's set up the the actual 3:50 MCP on our MacBook. So, it's able to run 3:53 on claude. And we can do this in two
+3:55 different ways. We have the basic 3:56 configuration, which is basically 3:58 saying, hey, we have the code. So, 3:59 Claude, we give the claw the the 4:01 instructions. So,
+make an AI agent. It 4:02 then gives us the code. Then, we have to 4:05 take an action of copying the code and 4:06 then go into Niten and then importing it 4:08 and having it
+there. Or we could do the 4:10 full configuration with the Nitn 4:13 management tool where we basically say 4:15 hey make an AI agent and then it gives 4:17 us a link. So the
+outcome or the output 4:19 will be a link of an N10 workflow that 4:21 we can just press and have it 4:22 automatically installed to our end. This 4:24 is obviously much more
+convenient. So it Step 4: Configure the Claude Desktop 4:26 is the one that we're going to be 4:27 focusing on on today. And all we have to 4:28 do here is press copy. Go back to
+4:30 claude. Make sure that right here as you 4:33 can see I have no connectors. So we're 4:34 starting from scratch which is exactly 4:36 what you should be seeing. And if I go
+4:37 up here and make sure you're going up 4:39 here, not down here for settings to 4:42 collude, go settings and go to the 4:44 developer. Now you want to press edit 4:46 config.
+When you press edit config, you 4:48 will come to this file right here. Now 4:50 it might get a bit technical, but trust 4:51 me, it's actually much more easy than 4:52 you think.
+Uh you just have to paste the 4:54 code that we had on GitHub to here. So 4:57 just open this in a plain text editor, 4:59 and you'll have this one that looks like 5:02 this. And
+all you have to do here is 5:04 just delete this and paste this here. 5:06 And the only two things that we have to 5:08 um get is the enit API URL, right? And 5:12 the API key. Now
+these two things are 5:14 very important because they are the 5:16 things that are going to allow the 5:17 claude MCP to have access to your enit 5:20 account to be able to then
+make the AI 5:21 agent and give you the URL without you 5:23 having to copy and paste the JSON and 5:25 then import it into your own editton Step 5: Adding n8n Management Tools
+5:27 account. It will make much more sense 5:28 once you actually do it. Uh so don't 5:30 worry but the first step is to get the 5:31 API URL. In order to do that you have to 5:33
+go to N10 workflows 5:36 and you can find the URL right here. So 5:37 in the URL the first part right the 5:41 first part here. This is the N10 URL 5:43 that we're going to use to
+then paste in 5:45 the code. So just copy this 5:48 and paste it here without the slash. And 5:51 the second thing is the Nitn API key. In 5:54 order to get your API key, all you
+have 5:55 to do is go here, settings, go to enter 5:59 APIs, and in this case, as you can see, 6:01 I already have the API keys that I've 6:03 made before, but if you haven't made
+one 6:05 before, just press create an API key. 6:07 Name it whatever you want. Let's do Mik 6:10 and it's an YouTube tutorial. 6:15 And you can put an expiration date. This 6:16 is
+basically saying, hey, how many days 6:18 do you want this to run? Now because 6:20 this is a very sensitive API key as in 6:22 the API key is the thing that if someone 6:24 has
+access to they have access to your 6:25 whole account. So expiration is 6:27 basically being safe. Uh but once you 6:29 have 30 days once you put 30 days as the 6:30 expiration
+make sure to go and update 6:32 the time to something like 60 days or 90 6:34 days. In this case let's just put 30 6:35 days it doesn't really matter the scopes 6:37 you can um
+yeah you can't really change 6:39 them cuz you have to upgrade and press 6:41 save. And now you have the API key. As 6:44 you can see, I'm blurring it out because 6:45 it is one of
+the most important, if not 6:47 the most important API key in NS10. Copy 6:49 this and then let's paste this right 6:51 here. Okay, now we have this whole JSON, 6:54 which is a
+thing that now we can just 6:56 press command S, just save the actual 6:58 file, right? So that we're able to then 7:00 go to the next steps. All right, so now 7:02 that we have
+this, all we have to do is 7:03 actually go here and quick load because 7:06 it's not going to be able to read our 7:07 config file and we have to reopen it 7:09 again. So once you
+reopen it, if you go 7:11 down here to this button right here, you 7:13 can now see that you have the niten mcp 7:15 which is connected to all these 7:17 different tools, right?
+Which are all 7:19 for nitn. And this was only done if you 7:22 refresh the actual page because now we 7:24 added this JSON into the actual file 7:27 that's connected to claude.
+Okay, if you 7:29 follow this step by step, you get to a 7:31 point where you have this. Now you 7:32 successfully connected the end mcp to 7:34 cloud right here. And if you press
+7:36 enable all tools, now you're saying, 7:38 "Hey, the uh Claude instance has access 7:40 to the MCP of Nitn." And these are all 7:43 the tools that Claude has access to. So 7:45
+delete execution, you can do list task, 7:47 get node for task, list AI tools, list 7:50 nodes, get nodes, right? You can do a 7:52 bunch of stuff to then make the actual 7:53 AI
+agent right here. All right. And the 7:55 last step here is to make a project 7:57 include. Uh and this right here is only 8:00 for paid members. So you won't have 8:01 access to
+this um to projects if you are 8:04 on a free plan. Um, but if you are on a 8:07 paid plan and you're paying for Claude, 8:09 amazing. Um, make sure to go to command 8:11 F and
+then look for cloud project setup. 8:13 And this right here is an optimized 8:15 prompt that you can use when actually 8:17 making the workflows in claude, right? 8:19 And the way
+that it works is that you 8:20 can just copy this. You can go to Step 6: Create & Configure Your Claude Project 8:21 projects. You can create a new project 8:24 and call it nitn
+mcp and just put 8:27 project to project for nitn agents and 8:31 workflows. Create project. And now for 8:35 instructions, this is where you get to 8:36 paste this prompt right
+here. Now the 8:38 benefit of having a project rather than 8:40 um just talk into a new chat is this 8:42 will have this will be better over time 8:44 because you will give them
+more and more 8:45 context. But also um right here if you DEMO 8:48 were to use here you would use the exact 8:49 same prompt. So I said here's a prompt 8:51 to create an end to
+end workflow. Um 8:54 please let me know once you go through 8:55 it and ready to proceed. I'm going to 8:57 paste the prompt right here. Right? And 8:58 then I can press go.
+Right? But the 9:01 problem with this is that this has to be 9:02 a new conversation every single time. 9:04 And if I just go to my project right 9:05 here, it's just one click and
+it's an 9:08 MTP and I can have this right here and I 9:10 can have all the agents and workflows 9:11 that I'm working on. All right. So, 9:13 actually going through it, I realized
+9:14 that we can actually also add some extra 9:16 stuff. It's sort of like you have the 9:17 Arman suit and then you add some 9:19 extensions that allow the actual MCP 9:21 server
+to be much better when writing 9:23 code. And so, just follow me through. Uh 9:25 the only thing you have to do is really 9:26 just when you have this document which 9:28 you can
+find down below. You have to 9:29 copy this part right here just this part 9:32 right and make sure to then go to the 9:34 code right here that we have and then 9:36 you want to
+delete these. 9:38 Press comma and then you can paste this. 9:41 All you have to do is delete 13 14 and 9:44 15 right here. And then press enter and 9:46 then you can paste this
+code right here 9:47 and press save. And everything else is 9:49 the exact same. Just make sure you have 9:51 the API key and you have the Nitan API 9:53 URL. And as always, we
+have to refresh 9:55 Claude to make sure that we can actually 9:57 see the changes. So I'm going to go here 9:59 and press Claude quit. And I'm going to 10:02 reopen it. So now, if
+I go here, I can 10:04 now see that I also have the context 7 10:06 and the Nitnen workflows documentation. 10:09 And these two allow Claude to be that 10:10 much better at writing
+code and being 10:12 able to have the documentation of Nitnen 10:15 as context when giving us the 10:17 automations and the AI agents. And now 10:19 on to the fun part and the
+reason why 10:20 we're all here. It took us a while uh 10:22 but is to actually go to the project 10:24 itself. And if you don't have a project 10:26 again, just paste the exact
+prompt. This 10:28 one right here that we pasted before and 10:30 if you have the instruction, you can 10:31 follow it step by step. And now I'm 10:33 going to give it a full
+prompt so you're 10:34 able to see exactly how it generates the 10:36 workflow or AI agent that we tell it to. 10:38 So what I'm going to do is paste this 10:40 prompt right here,
+which is a prompt in 10:42 markdown format. So the first thing we 10:43 give it is a goal. Uh create an N10 10:45 agent that access my personal 10:47 productivity voice assistant.
+This agent 10:49 will receive a voice note that I send 10:50 via Slack and intelligently decide which 10:52 tool or service to use based on the 10:54 content. It should then do
+XYZ. We give 10:56 it a trigger. We give in the agent 10:58 setup, the tools, the Outlook, the to-do 11:01 it, the workflow structure, and that's 11:03 it. I'm going to press
+enter. As you can 11:06 see, now the cloud instance is actually 11:08 looking at the nodes and what node it 11:09 should use for each step of the AI agent 11:12 or workflow that
+we're using, which by 11:13 the way is actually insane because this 11:16 is looking through all the documentation 11:18 and everything about it in general for 11:20 it to be able
+to actually uh make the AI 11:23 agent. As you can see, now it's also 11:25 making the structure for the AI agent. 11:28 And now what it's doing is it's creating 11:29 the code for
+the NITN AI agent that 11:32 we're going to use to then give it to 11:34 Nitnen. You can see it's writing it step 11:36 by step. And now we can see that the 11:37 Nitn or the cloud
+right here is starting 11:39 to think about the documentation. It's 11:41 going to map out everything that it 11:43 needs to use, every single node, every 11:44 single step of the
+automation and the AI 11:46 agent that it's going to make. As you 11:48 can see here now, the claude is writing 11:50 the code that we will then use to be 11:53 able to make the AI
+agent and workflow. 11:55 Because by the way, everything in N10 11:57 make.com, Zapier is JSON in the back 11:59 end. Like all of these are nodes are 12:02 different steps in N10.
+All right, cool. 12:04 So, we can see that we have the full 12:06 code that Claude generated for us um for 12:09 the Nitnen uh AI agent and we also got 12:12 the link. So, direct
+link to your 12:13 workflow right here, which you can then 12:15 press. You can then copy this, right? In 12:17 this case, I can open link and this will 12:19 bring me to a
+workflow like this where 12:20 we have all these different items. And 12:22 as you can see, the reality is right 12:25 unlike what most people tell you is that 12:27 this isn't
+perfect, right? It gets you 12:29 to a point where you are able to to have 12:31 a structure for the automation itself, 12:33 right? because you do have the first 12:34 nodes, the
+second nodes and so on. And 12:36 these are actual things that we have to 12:37 do which is amazing. But something like 12:39 an AI agent router with the to-doist add 12:42 a task
+or the outlook that isn't even 12:44 here or the Trello which isn't even 12:46 here. Um I just wanted to show you the 12:48 raw version because that's exactly what 12:49 it looks
+like and what it is. And so now 12:51 what we have to do of course is to check 12:53 it. So you still need to be able to have 12:55 that sort of technical expertise in some 12:57
+sense to know exactly what if this is a 13:00 problem, right? because I know this 13:01 isn't what we're meant to be using 13:02 because I know N10 and know how to build 13:04
+automations and AI agents. So, this 13:06 doesn't completely dismiss the fact that 13:08 you have to know how to use N10, but it 13:10 gives you a starting point that you can 13:11
+start with. Um, especially cuz something 13:12 like this would have taken you one to 13:14 two hours, sometimes even 3 hours, 4 13:16 hours to think about, but with this 13:18
+right here, it gives you a starting 13:19 point which is already good enough for 13:21 us to be able to then do something with 13:22 it. And now assuming that these are 13:24
+actual things that that the AI agent can 13:27 be connected to. All you have to do now 13:29 is to make sure that you can connect 13:31 your um credentials right here on Slack,
+13:34 OpenAI. Obviously, it depends what 13:36 software you use. Uh open here, Slack, 13:39 To-Doist, and so on. Um and once you 13:42 have that, then you can obviously make 13:43
+sure that the the workflow is all good. 13:45 You can test it and then you can launch 13:47 it live. And by the way, if you want the Outro 13:49 full document on notion uh giving
+you 13:51 the step-by-step guide as to what you 13:52 have to follow, uh so you can follow 13:54 along with me on this video and also the 13:56 JSON and the prompt that I gave
+Claude 13:58 to make the AI agent. Make sure to check 14:00 out the first thing down below which 14:01 will take you to my free school 14:02 community right here. Make sure you go
+14:04 to classroom templates vault and you 14:06 will see the latest video. So let's say 14:08 it's an AI proposal generator system. 14:10 you have the link to then download um
+14:12 the notion document or to have the JSON 14:14 file and the prompts that you can then 14:16 use to start making your AI agents from 14:19 scratch. And if you apply and you get
+14:20 in, you also get access to the AI 14:22 automations 101 course, which is a very, 14:24 very comprehensive guide that takes you 14:26 from a real beginner in AI automation to
+14:28 someone who's able to build automations 14:30 for themselves or for other businesses. 14:32 All right, so now you got to see exactly 14:34 how to set up your MCP within
+Claude so 14:37 you're able to generate edit and 14:38 workflows and AI agents within seconds. 14:40 But I wanted to be completely honest and 14:42 tell you that this isn't
+perfect, right? 14:44 This is a starting point. Of course, 14:45 it's amazing that it's able to to do 14:47 these things and it still blows my mind, 14:48 right? But at the same
+time, just 14:50 understand that this is this doesn't 14:52 replace the whole N10 automation 14:55 industry. Like you still have to sort of 14:57 know what you're doing because I
+knew 14:58 that there was a problem there because I 15:00 already know how to use the software, 15:01 right? And of course, it's going to get 15:02 better and better and better
+over time. 15:04 I don't dismiss that. But just know that 15:06 these doctors aren't 100% perfect. They 15:08 get you to a point where you're able to 15:10 get 30 to 40% there, but
+you have to be 15:12 that person that can get yourself to 15:14 that 90 to 100%. And one of the other 15:16 misconceptions that I hear all the time 15:18 is, "Hey, Mikuel, I mean,
+we have this 15:20 MCP that can generate workflows in 15:21 seconds. Why can't a business owner just 15:24 generate workflows and AI agents for 15:26 themselves without having to
+ask you?" 15:27 Well, the problem is that business 15:29 owners don't have the time to even set 15:30 up the softwares to make sure to 15:32 validate the actual workflow to
+validate 15:34 the agents. They don't have the time. 15:35 That is not something that will change 15:37 right now or in the future. So, these 15:39 tools, these softwares are for
+us to be 15:41 able to make automations, get ourselves 15:43 30 to 40% of the way there, but we still 15:45 have to have the knowledge to get 15:46 ourselves to that 100%. And if
+you liked 15:49 this Clawude MCP feature video, then 15:51 you're going to love this video on the 15:53 screen right here, where I show you 15:54 exactly step by step how you can
+set up 15:56 your own MCP within Chat GBT that talks 15:59 to over a thousand apps. With that being 16:01 said, I hope you found value from this 16:02 video and I'll see you in the
+next All From Michele TortiIntro 0:00 You can create engaging videos for 0:02 YouTube, Tik Tok or Instagram without 0:05 showing your face, recording your voice, 0:07 or spending
+hours editing. The best part 0:10 is that you can automate the entire 0:12 process using a software called N8. 0:14 Select the category you want to create a 0:16 video for. Choose
+the video duration 0:22 and you'll get 10 different topic ideas. 0:25 So, just choose the one you like and 0:26 click submit. Now the automation starts 0:29 to work and you'll
+receive the video 0:31 right in your email inbox. 0:34 What if the moon suddenly disappeared? 0:37 Our world would never be the same. 0:39 Imagine our nights suddenly becoming 0:41
+pitch black. 0:42 In this video, I'll show you how to 0:44 build a faceless video system that 0:46 automatically writes scripts, generates 0:48 voiceovers, finds visuals, and
+creates 0:51 videos for you. And by the end of this 0:53 video, you'll have your own AI agent to 0:56 create unlimited faceless videos in any 0:58 niche you want. So, make sure you
+watch 1:00 the video till the end to learn how to 1:02 do it. I'm Brian for website learners 1:04 and let's get started. 1:08 So, we're going to do this in just three Get access to
+the n8n automatic platform 1:09 parts. The first part is to get access 1:11 to the NAN automation platform. NAN is 1:13 an automation tool that lets you connect 1:15 different apps
+and services to automate 1:17 tasks. This is where we'll build and run 1:19 our automations. So to get access to the 1:21 NAT platform, we are going to do three 1:23 steps. The
+first step is to get the N8 1:25 hosting. Now there are three different Get the n8n hosting 1:27 ways that you can use NAT. The first 1:29 option is to host N8 locally on your 1:31
+computer. This option is free but it is 1:33 more complex to set up. The second 1:34 option is using WSK for hosting N8. This 1:37 is the quick and low cost way to host 1:39 NAT.
+This costs just $14 per month 1:42 or,170 Indian rupees per month. The 1:44 third option is the N8 cloud which is 1:46 the official platform by NAT. This costs 1:49 around £24 per
+month which is 1:51 approximately $27. So it's much more 1:53 expensive and the features are limited 1:55 too. In this video we're going to 1:57 purchase N8 from WSK where we get
+1:59 unlimited active workflows and unlimited 2:01 workflow executions. Since N8 is open 2:04 source, you'll get so much more benefits 2:05 when you host it on a platform like 2:07
+webpace kit. So to host N8 on WSK, just 2:10 click the link in the description 2:13 and it'll take you to this page. Scroll 2:15 down and click choose plan. Here, 2:19 choose how
+long you want the hosting 2:20 for. I'm going to choose 12 months. 2:22 Also, choosing this option gives me the 2:24 best price, which is $14 per month. 2:29 Fill in these details.
+2:31 Enter your payment details and click 2:33 check out. 2:36 So now we successfully made the payment 2:37 and got an 18 hosting. Now click here. 2:41 And you can see that our
+plan is active. Setup the n8n automation 2:44 Let's go to step two which is to set up 2:46 the enaden automation. To do that, 2:48 scroll down, click go to setup here. 2:52 Fill in
+the details. 2:55 Click next and it'll take you to this 2:57 page. So now we have successfully set up 2:59 NAN and we have reached the N10 3:01 dashboard which means we can now
+start 3:03 creating our workflows. You have two 3:05 options. You can either create a new 3:07 workflow and then build the engine 3:08 manually by adding each node one by one 3:11
+or you can use the readymade automation 3:12 template which lets you quickly import 3:14 the workflow and lets you use the agent 3:16 immediately. To make it simple, we are 3:18
+going to use the workflow template that 3:20 is already available in webspace kit 3:21 where nan is hosted. So this is going to 3:24 speed up the workflow and let us get the 3:25
+results faster. Let's move on to step 3:27 three which is to import the workflow Import the workflow template 3:29 template. To import the template first 3:31 we need to download
+the template. So to 3:33 download the template, go back to 3:34 webspace kit, scroll down and here 3:38 you'll find different workflow templates 3:40 for various AI agents. Since
+we are 3:42 creating a faceless video AI agent, 3:43 let's select that and click download 3:48 and it'll be downloaded to your 3:49 computer. Once you download the workflow 3:51 to
+import it, go back to nitin. 3:55 Click start from scratch, 3:57 then click here, 4:00 select import from file, and upload the 4:02 file you just downloaded. 4:06 As you can see
+here, we've got our 4:08 workflow. Let's change the name of this 4:10 workflow. 4:14 Okay. Now, to make this workflow work, 4:16 we need to set up a few things. Let's go Connect
+the services needed to run the workflow 4:18 to the second part of this video which 4:20 is to connect the services needed to run 4:21 the workflow. To connect it, we need to 4:24
+sign up for a few services, get the API 4:26 keys and then add them to our workflow. 4:28 To do that, we are going to do three 4:30 steps. The first step is to connect Connect open
+ai to the workflow 4:32 OpenAI to the workflow. OpenAI is used 4:35 to generate video ideas based on the 4:37 category that you select. So to connect 4:38 it, go back to the
+workflow and here you 4:41 can see an exclamation icon which 4:43 indicates that we need to set it up. So 4:46 to connect OpenAI, let's double click on 4:48 this. Click here 4:51
+and select create new credentials. 4:54 Here we need to enter the API key from 4:56 OpenAI. To get the API key, just click 4:58 the link in the description, 5:00 click login 5:02
+and sign in with your Google account. 5:04 Once you're signed in, click create new 5:06 secret key. 5:08 Enter a name for your API key. 5:11 I'm going to enter N8 and click create
+5:14 secret key. 5:15 As you can see, we've got the API key. 5:18 Now, just copy it. 5:20 Go back to this tab, 5:23 paste it here, 5:26 and click save. 5:28 Now, close this. 5:30
+So, now we have successfully connected 5:32 OpenAI to our workflow. Now, go back. 5:36 Once you connect your OpenAI account to 5:37 the first node, all the other nodes that 5:39
+use OpenAI will automatically be 5:41 connected as well. You just need to open 5:43 each node individually 5:46 and confirm that the credentials are 5:47 properly applied. As you
+can see the 5:49 credentials added here and if we go back 5:51 now 5:53 you'll notice that the red warning 5:54 messages have disappeared. We have now 5:56 successfully connected
+OpenAI to our 5:58 workflow. Once you connect to OpenAI Connect Tavily ai to the workflow 6:00 let's go to the next step which is to 6:01 connect Tableau AI to the workflow. 6:03
+Tabletly AI is the tool that we are 6:05 going to use to search the web and 6:07 collect relevant information about the 6:08 topic. Now this will be used to create 6:10 the script
+for our video. So to connect 6:12 Tavly, click on this node 6:16 and here you need to enter the API key 6:17 of Tavi AI. To get the API key, just 6:20 click the link in the
+description, 6:23 click login 6:24 and sign in with your Google account. 6:28 As you can see, we've got the API key. 6:31 Just copy it. 6:33 Go back to the workflow. 6:36 Click
+here and paste the API key. 6:45 So now we successfully connected Tavly 6:47 AI to the workflow. Next, let's go to Connect Claude to the workflow 6:49 the third step which is to
+connect claw 6:51 to the workflow. Claw anthropic takes 6:53 the video idea and the research and 6:55 turns it into a complete script scene by 6:57 scene. So to connect it, open
+the 7:00 Anthropic chat model. 7:02 Then click here and select create new 7:05 credentials. 7:07 And here we need to enter the API key 7:08 from Anthropic. To get the API key, just
+7:11 click the link in the description and 7:13 sign in with your Google account. 7:17 Now go here then click create API key. 7:21 Now select any workspace 7:24 then give a name
+for your API key. 7:28 and click add. 7:30 As you can see, we've got the cloud API 7:31 key. So, let's copy it. 7:34 Go back to the workflow 7:37 and paste it here. 7:43 So now we
+successfully connected 7:44 anthropic cloud model to our workflow 7:46 and with that we have successfully 7:47 connected the AI servers that are needed 7:49 for our workflow. So
+next let's go to Setup Video generation 7:51 the third part of this video which is to 7:53 set up video generation. This is where 7:55 the video generation actually begins 7:57
+using the script that we created in the 7:59 previous steps. So to set it up, we're 8:01 going to do four steps. The first step Create account on JSON2video 8:03 is to create an
+account on JSON to 8:05 video. Now this is the tool that we'll 8:07 be using to generate the video based on 8:09 the script that has been created. So to 8:11 create an account,
+just click the link 8:13 in the description and it'll take you to 8:15 this tool here. Click get API key and 8:18 sign in using your Google account. 8:23 Now if you check your
+email, 8:26 you'll find an API key there. Just copy 8:29 it. 8:33 Go back to JSON to video 8:36 and paste it here. 8:39 Click confirm. 8:41 Now enter your API 8:45 and click sign
+in and your JSON to video 8:48 account will be created. Once you've 8:49 created the account, let's go to the Create the movie template 8:51 second step which is to create the
+movie 8:53 template. The movie template is the 8:55 video layout or the design that you want 8:56 to use for the video. Now this template 8:58 will be used for every video
+maintaining 9:01 the same structure like how many scenes 9:03 it has, where the text appears, what 9:05 images or voiceovers are used and more. 9:08 The template will be in JSON
+format. So 9:10 to create the movie template, click on 9:11 movie templates, 9:14 then click add new template 9:16 and click on this icon here. Give a name 9:19 to your template.
+9:22 Simply click here. Then click edit 9:25 templates JSON. 9:27 Here we need to enter the JSON code. 9:30 To make this super easy, I've already 9:32 created a ready to use JSON
+template. 9:34 You'll find the link to that in the 9:35 description below. So just download the 9:37 file, copy the code, 9:44 paste it into the JSON editor, 9:49 and click update
+JSON. 9:52 As you can see, this is the layout of 9:53 the video. 9:56 Once we've created the movie template, 9:58 next let's go to the third step, which Add Template to your
+workflow 10:00 is to add the template to our workflow. 10:01 And to do that, first we need to get the 10:03 template ID of this layout. So to get 10:05 it, simply click here and
+select show 10:09 template ID. 10:11 As you can see, we've got the template 10:13 ID. Now to add this to our workflow, 10:15 just copy the ID. 10:17 Go back to your workflow. 10:20
+Click on this node. Now paste the 10:23 template ID here. 10:26 So now we have successfully added the 10:27 movie template. And once you've added 10:28 the template ID, click go
+back to 10:30 canvas. Add JSON2Video’s API key to your workflow 10:33 Now let's go to the final step which is 10:34 to add the JSON to videos API key to our 10:36 workflow. Since
+we have already got the 10:38 API key in our email while creating the 10:40 JSON account let's go to our email and 10:42 copy the API key. 10:46 Go back to your workflow. 10:49 Now
+open this node. Click here 10:53 and click create new credentials 10:56 here. Enter X API key. 10:59 Then paste the API key you copied in 11:01 this field. 11:03 Then click save.
+11:05 And that's it. We have successfully 11:08 added the JSON to video API key to the 11:10 workflow. Just go back to the canvas. 11:13 Now open this node 11:15 and make sure the
+JSON to video API is 11:17 connected. We've now successfully set up 11:19 video generation in our workflow. Once 11:21 it is ready, we need to tell the 11:23 workflow how to send
+the video to the 11:24 user. So we are going to send the video 11:26 through mail. So next, let's see how to Connect your email to the workflow 11:28 connect our email to the
+workflow. To 11:30 connect our email, just click on this 11:33 node. Click here and select create new 11:37 credentials. Sign in with your Google 11:39 account. 11:41 So now the
+videos will be sent to the 11:43 user from this email account. Just 11:44 enable the permissions 11:49 and click continue. 11:52 And that's it. We've granted our email 11:54 to the
+workflow. Just close this and go 11:57 back to the canvas. 12:00 Make sure you save the workflow by 12:02 clicking here after you complete each 12:03 setup. 12:05 Okay, so now we
+successfully completed 12:07 setting up our workflow and it is fully 12:09 functional. Now let's test the workflow 12:11 and see how it works. To do that, click 12:13 on test
+workflow to activate it. And as 12:16 you can see, we've got the form. First, 12:18 select the category of the video that 12:19 you want to create and you'll find 12:22 different
+categories. 12:24 If you don't find the category you're 12:25 looking for, you can enter it here. Then 12:27 click here and choose the video 12:29 duration. Then choose the video
+style 12:32 you want 12:34 and you'll find different video styles. 12:36 Just choose the one you want. 12:39 You can choose the voice model that you 12:40 need for the video. Just
+click here and 12:43 choose the voice you want. But the thing 12:45 is you can't listen to the voices from 12:47 here. To listen to these voices, just 12:49 click the link in the
+description 12:52 and here you'll find all the voices 12:53 listed on this form. Just listen to them 12:56 and select the one you want. Once you 12:58 select the voice, then enter
+the email 13:00 where you want to receive this video. 13:02 And once you filled in these details, 13:04 click submit. 13:06 And you can see that the workflow has 13:07 started to
+run. And a window will 13:10 automatically pop up showing the ideas 13:12 it has generated. 13:14 From here, you can simply choose the 13:16 idea you want. The one you choose will
+13:18 be used to generate the final video. So 13:20 just choose the one you want. If you 13:21 don't like any ideas from here, you can 13:23 regenerate them by clicking here. Then
+13:26 select yes and click submit. Now if you 13:30 click here, you can see that we've got 13:33 10 new ideas. Just select the one you 13:35 want and click submit. Now our video
+13:39 will be generated and sent to our email. 13:43 Now if you go to our email, you can see 13:46 that we received the mail with the video 13:47 URL. 13:49 Just click on the link
+and as you can 13:52 see our video is ready. 13:54 What if the moon suddenly disappeared? 13:56 Our world would never be the same. 13:59 Imagine our nights suddenly becoming 14:01
+pitch black. Owls, lions, and countless 14:04 creatures that depend on moonlight for 14:06 hunting would be lost in darkness 14:09 without the mood. 14:10 It took our topic,
+crafted a script, 14:12 generated the visuals, animated them, 14:14 and seamlessly added our music. So 14:16 that's it guys. This is how you can 14:18 create viral faceless videos
+using NA10. 14:20 Now you can start building this workflow 14:22 for yourself. The first step is 14:24 launching NA10 on WSK. To do that, just 14:27 click here and it'll take you
+to the 14:28 same page we saw in the first step. We 14:30 are making many more videos on NA10. You 14:32 just have to leave a comment below and 14:33 we'll build it for you. Also,
+you can 14:35 get our latest videos directly on 14:36 WhatsApp. You can just scan the QR or 14:38 tap the link and hit follow. And that's 14:40 it. Thanks for watching. Bye-bye.
+All From the seriesWhat We’re Covering 0:00 I just built this AI system that 100% automates viral shorts like these while you 0:06 sleep. As you can see, it's a pretty simple
+five-step system and we didn't have to write any code. Step one is 0:12 we're grabbing the main story from our Google sheet and we're feeding it into an AI agent to create those
+prompts. Then step two is we're going to use Flux 0:18 to create those images and they turn out super high quality. Step three is we're going to feed those images into Cling to
+turn them into videos and these also 0:25 turn out super high quality. Then we're going to use 11 Labs to create one unique sound effect for each video. Step 0:30 five, we're going
+to use Creatmate to render all the video files and audio files together in one video. And then 0:35 we're going to be using Botato to auto post to Instagram, Tik Tok, and YouTube.
+As always, I'm giving away all the 0:41 resources that you need for free. So later in the video, I'll talk about how you can access all those resources and how you can actually
+plug them in and 0:47 what you need to set up on your end so you can have the system running in less than 10 minutes. So, let's do a live run 0:52 and then we'll walk through
+looking at every single node in detail so you guys can see exactly how I built this system. Okay. So, before we test this workflow, 0:58 we have to go look at the Google sheet
+template that you guys will be able to access, of course. And this is what it looks like. We basically have a category Some Example Outputs 1:04 and then we're going to have four
+brands within that category. And this is what the workflow is pulling from to start the whole process. And then it's going 1:10 to come back and throw that final URL back in the

@@ -1,0 +1,223 @@
+course bundle that shows you how to make 22:10 an open world multiplayer steam Survival 22:12 game inside of on Engine 5 from complete 22:14 scratch the course has over 250 plus
+22:17 lectures 70 hours of course content and 22:19 you don't want to miss out on the 22:21 survival game course bundle because I 22:23 will be raising the price later on so 22:24
+check it out on my website smartp poly. 22:26 teachable.com and yeah that's pretty 22:28 pretty much it for this video so hope 22:29 you guys enjoyed and I'll see you guys 22:31 in
+the next one All From Smart PolyIntro 0:00 hello everyone if you want to create games in Unreal Engine 5 then this video is for you in this tutorial you will go 0:06 from knowing
+nothing about Unreal Engine 5 to creating this game right here the 0:11 goal is to destroy all the targets before the timer hits zero it is a first person shooter but you can take
+the 0:17 skills you learn here to create your dream game we will walk through the entire programming process and once the 0:24 last Target is hit the player wins the game in this
+tutorial you will learn how to program with unreal's visual 0:30 scripting language called blueprints design a user interface to display game information create custom weapons from
+0:36 scratch destroy objects using chaos physics and finally add our game to any 0:42 environment you choose you don't need any unreal or programming experience to follow along
+everything throughout this 0:49 process will be shown step by step it is important to know that I have another ue5 beginner tutorial that focuses on 0:56 level and environment
+design so if you want to learn how to create your own environments then then you can check out that video this tutorial will mostly 1:03 focus on programming now we are going to
+start with the very Basics if you already know how to navigate inside 1:08 unreal and move objects then you can skip to the next chapter where we dive into programming with
+blueprints so with 1:15 all that being said let's start creating our game we first have to download Unreal Engine 5. you can get on Roger 5 Creating a Project 1:22 in the epic
+games launcher so select Unreal Engine and then select library 1:27 now under here if you don't have any versions of Unreal Engine installed you want to click on the plus icon and
+then 1:34 select the version you want to follow along with now in my case I already have the latest version of unrealgia 5 unreal 1:40 5.2 installed so I don't need to download it
+and if you are watching in the future feel free to follow along 1:46 with a newer version of Unreal Engine like Unreal Engine 5.3 now I could launch unreal by pressing the launch
+1:52 button or within the drop down I can create a desktop shortcut so I can open 1:58 up unreal without having to come through the epic games launcher so now that we have that
+shortcut I could just double 2:03 click on it to launch Unreal Engine 5. when you open up unreal for the first time you will get the unreal project 2:10 browser so the first tab
+that I selected is the reset projects which will of course have all of your recently edited 2:16 projects now this is your first time opening up unreal this will be left blank now
+in our case I want to create a 2:23 brand new project from a template so to create a product from a template go to games and now we get a bunch of starter 2:29 games we can select
+from to start creating our game from now in my case I'm going to select the third person 2:35 game even though we are later going to create a first person game I want to show off
+the features of unreal within 2:41 the third person character project for now we will create a first person project in the next chapter and right 2:46 here we get a bunch of
+project settings I'm going to leave them at default for now and for the project name let's call 2:52 this my first project and then it's going to ask us a location that we want to
+save our project at so if you want to 2:59 change this location select this file folder and navigate to the area on your computer where you want the project to 3:04 be saved now in
+my case I decided to save it onto my desktop and click create now this is going to create a brand new 3:10 folder on my desktop called my Project's name and if I open up this
+folder you 3:15 will see all the folders and assets that make up my game now if I ever exit out 3:21 my game instead of opening up my project through Unreal Engine I can open up
+the 3:27 folder on my project and then double click on the dot U project to open it that way this is what you will see when 3:33 you open up Unreal Engine in this chapter we're
+going to go over the basics like how to navigate it in our world and what all these different 3:39 Windows do if you already know the basics then feel free to skip ahead to the
+next chapter where we cover 3:44 blueprints for those who don't know or if you just want a refresher in the middle here we have the viewports so the Viewport 3:51 viewport is where
+we're going to be doing the majority of our environment work now in order to navigate around in our viewport you want to hold down the 3:57 right Mouse button so hold down the
+right Mouse button will allow us to pan my camera around while I move the mouse 4:04 and with the right Mouse button held down I can use W to go forward s to go 4:10 backwards a to
+go to the left and D to go to the right so that's right Mouse 4:15 button held down wasd to move around and with the right Mouse button of course I 4:21 can use e to go up or Q to
+go down so that's wasd q and E and if you're 4:30 familiar with first person video games then luckily for you you already have the muscle memory to navigate in Unreal 4:36 Engine
+now let's say if you don't like the speed of your camera maybe you think it's too fast or it's too slow you could 4:42 change the speed of your camera by coming up here to this
+camera icon selecting it and then you can bring it 4:47 down to make the camera slower or you could bring it up so we can make it something like 3.2 to make the camera 4:53 faster
+and a shortcut to control the camera speed is to hold down the right Mouse button and scroll wheel so scroll 5:01 wheel up to make the camera fast or scroll wheel down to make it
+slower now that we know how to navigate inside of 5:07 our world it's time to go over how we can move 3D objects so first before we move it object we have to select one so 5:14 to
+select an object hover over it and left click so that's left click to select any object in my world and with 5:22 the object selected and the movement mode selected up here I get
+access to this little Gizmo if I hover over my 5:29 mouse over any of the arrows I'm able to move it in that axis so hold on left 5:34 Mouse button I can move this out like that
+and hold it down on the y-axis to move it in the y-axis now you notice by 5:41 default that there's a little bit of snapping going on and that's because unreal automatically turns
+on Snap to 5:47 grid to disable snap to grid I could come up here to this button and uncheck it to make sure it's no longer 5:53 highlighted now our object will move smoothly we
+are not snapping a grid or 5:58 if I want to say snap to something large like 100 I can select 100 right there and turn on snap it again and now my box 6:06 will snap every 100
+centimeters which is one meter I don't want to snap to the grid so I will just disable it now to 6:13 rotate an object instead of selecting movement I select rotation so now 6:18 I
+can rotate it on the different axes and you notice that it is snapping by 6:24 default we can disable it just like with Movement by unchecking that button so now we get smooth
+rotation and if we 6:31 ever want to undo an Unreal Engine you can always press Ctrl and Z to undo that and finally of course we have scaling so 6:39 now I'm able to scale on the
+z-axis or scale on any of the axes individually 6:44 you'll also notice that snapping is enabled for scaling so I can disable that right there so all the Snap Tools 6:50 are up
+here in the top right now that I get smooth scaling if I want to scale in 6:56 all three axes then I can hover over the white box in the middle to scale it uniformly or I could
+scale it just in 7:04 two axes so let's say if I don't want to scale it on the x-axis I only want to scale it on the z and y then I can hover 7:11 in between the two over the
+little line and then now I'm scaling on the two axes 7:18 likewise if I go back to movement mode if I only want to move it in the Y and 7:23 the x-axis then hover over the square
+in between the two arrows and then I'm only moving it in those two axes and finally 7:31 a shortcut to move in between the different translation modes is to press W to get movement
+e to get rotation and 7:39 R to scale so that is w e and r 7:46 and if you don't like an object in your world you can always press the delete key or even press the backspace key to
+7:52 get rid of that object before we go over how to add objects to the environment let's go over the different view modes 7:58 so you'll probably notice by now that there is a
+grid in my opinion I think this Grid in unreal is pretty annoying 8:04 if you don't want to see your grid then you come up to show and uncheck grid right there to get rid of it
+also you'll 8:10 see that we have all these little editor widgets that are around my world of course when my player actually plays the 8:16 game they will not see these widgets
+these widgets are just here to help us the developer while making our game if 8:23 we don't want to see these widgets and see exactly what the player will see in game then I can
+press the G key to go 8:29 into game View mode so that is very important and this is probably one of the shortcuts you will use the most and 8:34 that is g to toggle on and off
+game View mode so throughout this entire tutorial you'll see me select an icon and then 8:42 immediately press G if I don't need it anymore so generally when I am working the only
+time I toggle off game View 8:48 mode is what I'm trying to select an icon like the Sun make a change and then 8:53 press G to hide it again and up here we have the different view
+modes right next to show here we will change what us the 9:00 developers will see for example I can select wireframe to see all the polygon and edges that make up my world or I can
+9:07 select unlit to see what the world will look like without lighting which is helpful let's say we have a really dark 9:13 environment and we can't see where our object is I
+could just switch to unlit and we have lighting only which as the 9:19 name suggests will only show the lighting of the environments so this is what my world looks like without any
+9:24 materials but for now I'm just going to leave it on lit and finally let's say if 9:29 you only want to see your viewport you don't want any of these other windows then you can
+press these buttons and 9:35 down here select immersive mode or the shortcut is f11 right there and you can 9:41 even toggle on and off game View mode right here so if I press
+immersive mode or f11 we get a full screen version of 9:48 my viewport so I can only focus on my level and then when I'm done I can come 9:53 up here and press that button again or
+I can press f11 on my keyboard to exit 9:59 full screen mode now you're probably wondering how do I add objects into my viewport well you could come up here to 10:05 the add button
+and hover over any of these objects for example I can drag in a sphere 10:11 and then scale it up or I could come up to the add button and add in a brand new 10:17 light like a
+rectangle light to go ahead and light up this corner and you'll 10:22 notice that when I did drag it in we didn't see that widget and that's because I needed to toggle off game
+View 10:27 mode with G in order to see it now that I know that I have my light selected I can rotate this to go ahead and 10:34 illuminate that corner I would delete both of those
+because that was just an example if we want to add custom assets 10:40 that are part of our project into the world then instead of coming up to the add button we will come down
+here to the 10:47 content drawer which will show our content browser the content browser is important because it contains all the 10:54 assets that make up my game any changes we
+make any programs or coding that we 10:59 create will be stored here within the content browser and you navigate this User Interface 11:04 similar to how you navigate your folder
+structure on your desktop so let's say I want to see the programming behind my 11:10 character then I'll select third person and then I'll select the blueprints and 11:16 here I
+get access to my character I can double click to open that up which will open up the blueprints on my character 11:22 and we will go over this within the next chapter and if I want
+to get rid of this window I can click on x 11:28 or I can drag this into my environment so let me go ahead and hover over the 11:33 top here to bring down my content drawer and
+then I can drag out that object into 11:39 my world press the backspace key to delete it because that was just an example now the 11:45 shortcut to gain the content drawer that's
+how we don't have to come down here to the bottom left hand corner and 11:50 select this button all the time is control and space so whenever I want something I can press Ctrl and
+space to 11:57 open up the content drawer and if I want to search my entire content drawer for example let's get these boxes right here 12:04 then I can select on content go to
+search and type in Cube and that will 12:11 filter for all the different cubes and we have two cubes I want the blue cube so I can drag it into my world like this 12:18 and here's
+a shortcut let's say if we want to know where a selected item is located within my content drawer because 12:26 as you could guess if you are going to create a larger game you can
+have thousands of assets contained in 12:31 hundreds of different folders and subfolders so it could be pretty confusing when you're for example just 12:37 trying to find out where
+this ramp is located within the content drawer well the shortcut is Ctrl and B to jump to 12:44 that location so by pressing Ctrl and B it automatically jumped to content level
+12:51 prototyping and the meshes folder so if you just select any object like the Box 12:56 press Ctrl and B that will jump to its location within the content browser because our
+content browser is essential 13:02 to our project you'll be opening it up a lot I would say the most common shortcuts with an Unreal Engine 5 are 13:09 control space to get the
+content browser and a g key to hide and unhide our 13:14 widgets okay so we're going to cover more of the content browser later but before we move on to programming let's 13:20 go
+over our user interface and what exactly all these windows here do to the bottom right of my screen by 13:27 default we have the details panel the details panel as you can guess
+we'll have all the details and properties of 13:33 the object we currently have selected so if I selected this wall then we get the details of the wall or if I select this 13:40
+Cube we get its details and I can come into the details panel depending on what object we have selected and change some 13:46 properties for example let's say if I don't like the
+height of my Cube then instead of scaling it with the r key I 13:54 can instead go into scale right here and within the z-axis manually change it to 2. 14:00 which will make it
+twice as large as beforehand and above the details panel 14:05 by default we have the outliner the outliner contains a list of all the 14:10 objects that make up my world so if I
+hover in between the two windows I can make the outliner bigger so that's 14:17 how we can better see it and already you'll notice that every single object right here is within my
+world 14:24 let's say if I want to grab SM underscore Cube 13 I can select that and now let's see okay I have this object 14:32 right here selected and you'll notice that whenever
+I do select an object for example the blocks right here this 14:40 selection will be reflected within the world or if I select an object within the viewports the object's name will
+be 14:46 selected in the outliner and a details panel will change to that object also if I want to hide an object for example 14:52 what if this cube is in my way then within the
+details panel I can hover over the eye icon to hide it and then I 15:00 can select the eye icon again to unhide it now the shortcuts or hiding and unhiding objects is H so I can
+select 15:07 this press h to hide it and then press Ctrl H to unhide it and here's a good 15:13 tip let's say if our camera speed is really strong by holding down the right Mouse
+button and scrolling up and we 15:20 just fly away and now we lost our world we have no idea where it is well I could come into the outliner select any of 15:26 these meshes for
+example this Cube and press F to focus to it so that will snap 15:32 me to the location of my object so I can select any location press F and I'll snap to it 15:38 and you don't
+like the location of the windows of my user interface then I can hover over any of these tabs for example 15:45 the details tab hold down the left Mouse button and now I can drag
+it around so for example I can drag the details panel 15:52 over there or would I hold down left Mouse button on a tab to drag the window around I can 15:59 drag it up here on top
+of another window now I'm able to switch in between the 16:06 two tabs or I can drag it so hold down left Mouse button and just leave it in 16:13 the middle of my screen to undock
+it from the unreal editor so maybe if I have multiple monitors then I could have 16:19 some of my windows off to the side and if you ever want to close a window you can click on
+the X icon or you can hover 16:26 over the tab and press the middle Mouse Button as a shortcut to remove windows 16:32 and I know sometimes this tab right here can take up a lot of
+valuable space that we can use to show more properties 16:39 so I can right click on that and go hi tab to hide that Tab and then I can 16:44 hover over that little blue triangle
+select that to bring back my tab now 16:50 let's say if I change my user interface to the point of no return I want to get back unreal's default user interface 16:57 well I can
+come to windows down to load layout and select default editor layout 17:02 this will restart Unreal Engine with the original Windows setup we had by default unreal doesn't show all
+the windows 17:09 sometimes if we need to change something for example if we want to change the properties of my entire world then in 17:15 order to get a window that's hidden I
+could come up to Windows and we get access to all my different Windows a 17:22 common window we're going to use is the world settings so if I select the world settings it will
+immediately populate 17:29 right here next to the details Tab and then I can switch in between details and 17:34 World settings so that's how you create Windows and finally up here
+at the very top we 17:40 have our toolbar and our toolbar is helpful because it has some buttons that we're commonly going to use 17:46 for example we've already gone over the add
+tab which allows us to quickly Place unreal's default assets like lighting or 17:54 basic shapes and we have this play button so as you can guess if you press 17:59 the play button
+we are now playing our game so since we selected the third person template our game is just a third person 18:06 character that can walk around and jump and then if I ever want to
+exit my game 18:12 I can press the Escape key to go back into editing mode and another important 18:17 feature of the toolbar is the selection mode up here so I can switch my
+different modes let's 18:23 say if I have a landscape or want to create a landscape then I would select the landscape mode and this gives me all 18:30 my landscaping tools now in
+this beginner tutorial we're not going to go over what these different modes are if 18:36 you want to you can check out the other one if you are curious we are only going to go
+over blueprint programming not the 18:42 environment aspects of unreal which are also really powerful before we go there is one last thing I want to mention and 18:48 that is how
+to duplicate an object so let's say we have an object we made some changes in the details panel we like it 18:55 and we want to duplicate it but we don't have to go through the
+process of pressing Ctrl MB to find where it is and 19:01 then dragging in a new one and changing those properties instead what we can do is press Ctrl and D to duplicate so Ctrl
+19:09 D to duplicate an object and now we have two objects I can press Ctrl D again to 19:15 duplicate it and right now it still looks like one object and that's because they're
+overlapping with each other so if I just move it use see that that was 19:22 duplicated also a shortcut to duplicate an object is to hold down alt before you 19:28 drag with the
+movement tool so hold down alt and then drag to drag out a new 19:33 object so that's alt and drag which is a good shortcut and if we want to select multiple 19:40 objects and move
+them as a group you could hold down shift to select multiple 19:46 objects and then to deselect these objects you can hold down control and left click to deselect so now that I
+19:54 have these four objects selected I can move them rotate them and scale them as 20:00 a group so press Ctrl Z to go back that is shift to select multiple control 20:08 to
+unselect and holy down alt and dragging to duplicate 20:15 now it is finally time to start talking about programming and when I mentioned programming probably the first thing
+Blueprint Programming 20:20 that comes to mind is someone sitting at a desk and typing out hundreds of lines of code and while we can program games 20:26 that way and Unreal Engine
+with the language C plus plus unreal also gives us the option to use their visual 20:33 scripting language called blueprints so instead of writing hundreds of lines of hard to
+recode we can just get boxes and 20:40 stream them together called notes logically they are the exact same thing as typing out code it's just another way 20:47 to visualize your
+program and in my opinion it is a lot easier and faster than C plus plus so a common question is 20:54 should I learn C plus plus or should I learn blueprints for most of your
+projects I would stick with blueprints 21:01 especially if you are a beginner blueprints can do almost everything C plus can but even if you are going to 21:08 use C plus plus
+you're going to encounter blueprints since blueprints are everywhere in Unreal Engine one way 21:14 or another other you're going to have to learn Blueprints and then exactly what
+we're going to do right now we're going 21:20 to jump straight into blueprints let's open up a blueprint and probably the most important blueprint right now for 21:26 our game is
+the third person character so the default third person character that comes with the templates I'm going 21:32 to press escape to exit game mode and then all of our blueprints are
+right now located within third person Blueprints 21:40 and BP underscore third person character so if I double click on this this is all 21:45 the logic that makes up my third
+person character and right now our window is hovering on top of our unreal editor I 21:52 can hold down left Mouse button on the tab and then dock it up here that's how I can
+quickly switch in between my main 21:58 map or any of the editor windows I have open before we dive into blueprints let's cover the user interface so right 22:05 now we have the
+event graph in the middle here and the event graph is where we're going to be doing the majority of 22:10 our blueprint logic and then to the left of that we have the construction
+script we will not be going over the 22:15 construction script within this video because this is mostly used by artist and then to the left of that we have the 22:21 viewport the
+viewport contains all the different objects that make up my Blueprints and it's important to note 22:27 that in unreal objects that are inside of blueprints are called components
+so 22:33 this camera right here is a component and this character is also a component and you notice that when I select on 22:38 both of them their names are being selected within
+the components tab right here so this window is essentially just 22:45 like our outliner for our world but it's for our blueprint so it contains all the 22:50 components that make
+up this blueprint below that window we have the blueprint tab the my blueprint tab has all the 22:57 nodes and variables that are contained in my blueprints for example in order to
+get to the event graph I could come up 23:03 here and select the event graph window or under graphs I can select event graph to jump to that location we are going to 23:10 cover
+more of the my blueprint window when we start to create notes and of course right here we have the details 23:16 panel which allows us to edit any of the details of objects we have
+selected so 23:21 if I have my static mesh right there selected then I can edit some of the details maybe I can even change out the 23:28 mesh so right now it's the female mesh by
+default I can also get go here and 23:33 then select skm underscore Manny to get the mail mesh and the controls of the 23:39 blueprint viewport are the same as the level so I can
+hold on right Mouse button to go ahead and navigate or I can 23:46 press the F key to jump to my selected components and I can use the scroll 23:51 wheel to zoom out and zoom in
+and hold down alt and left Mouse button to rotate 23:56 so alt and left Mouse button to rotate around an object and then use the scroll 24:01 wheel to zoom in and out and here's
+another tip I can hold down the L key and the left Mouse button to then rotate 24:08 my sun to see what my blueprint will look like in different lighting angles and finally up here
+we have our toolbar 24:16 and the most important button up here is the play button so I can also play my 24:21 game from the blueprint and it will open up a new window with my game
+so there are two ways I can play my game press 24:27 escape to exit and all the way over here we have the compile button whenever we make a change to our blueprint like 24:33
+adding a new node within the event graph in order for that change to take effect I'm going to have to recompile my 24:39 blueprint by pressing this button or I can just press play
+which will automatically compile all the blueprints 24:45 that my game needs and finally because all these panels are widgets with tabs I can always grab them and then dock them
+24:52 to the side so I can customize my user interface and if I mess up my user interface I want the default user 24:58 interface back then I can always go to Windows load layout
+and choose the default editor layout to get that back 25:04 now it is time to create our first person shooter but in order to follow along with this tutorial you have to First
+Person Template 25:10 download some custom free assets designed for this tutorial you can download the assets Link in the 25:15 description below now that we know how to navigate
+our blueprint editor I think it's time that we jump into a brand new 25:21 project because of course you probably noticed that wait this is a third person character this isn't a
+first person 25:27 shooter and that's the game we are going to be creating so let's go ahead and create a new project so specifically for 25:33 the first person shooter and to do
+so I could come up to file and select new 25:38 project up here to get the new project window or just like beforehand I can exit out of 25:44 everything and then double click to
+open up on real engine two also get the unreal project browser now I could go 25:51 into games and then start off our game for the first person template but to Future proof this
+video that's how in 25:57 the future if they ever do change the first person template I recommend you start from the first person template 26:03 project that is included within the
+downloadable assets so if you haven't already go ahead and download the target 26:09 game assets Link in the description below once you have that downloaded you want to make sure
+before you open up the 26:15 project you need to unzip it double click to open up and specifically we need to unzip the first person template 26:22 so go ahead and drag that onto
+my desktop to unzip it okay now that it's unzipped let's go exit out of the unreal 26:29 project browser we can rename this to anything I'm going to call this my first 26:34 game
+and double click to open up its folder and I'm also going to rename it right here because the project is still 26:40 called first person template so right click go to rename or
+shortcut is F2 and 26:46 call this my first game also so now I can double click on it and that is how 26:52 you rename projects in case you're wondering this is what you will see
+when you open up the first person templates 26:57 this template is very similar to unreal's first person template except if I press play the gun is automatically 27:03 spawned in
+which will just make it easier for us when I'm demonstrating the very basics of blueprints I could walk 27:09 around with wasd jump with space and if I press left Mouse button I
+fire my 27:15 weapon which are just firing bouncing balls and then I can fire that into one 27:21 of these boxes which will fly away because they have physics and press escape to
+exit now let's go ahead and 27:27 let's jump into our first person character to learn more about blueprints so press Ctrl and space go into first 27:34 person Blueprints and right
+here is the character that we're using so if I 27:39 double click on this this is the blueprints that make up my first person character and here is the viewport so as 27:47 you can
+see it's just a capsule Collision a camera arms and a weapon and 27:54 the weapon is built into the first person character let's go into the event graph now what exactly are all
+these 28:01 notes and before we jump into what these notes are doing the controls are right Mouse button to pan so hold down the 28:08 right Mouse button to pan My Graph and then
+use the scroll wheel to zoom in or 28:14 zoom out so that's right Mouse button pan scroll wheel to zoom out or zoom in now we're going to start creating nodes 28:20 stream them
+together change them to create our own game and don't worry I know this looks complicated we are going 28:27 to create our own blueprint from scratch very soon I just want to have
+this open as an example to show what exactly 28:33 blueprints are doing behind the scene so if we zoom in very simply these red 28:40 nodes are events so these events could be
+linked to other blueprints or they could be linked to the player themselves 28:46 pressing buttons on the keyboard for example this event is telling us that it's going to be
+activated whenever the 28:52 player presses the left Mouse button so when they press the left Mouse button and executable wire will be shot out and 28:59 then all the nodes that
+are connected to it will be executed in order first the 29:05 player is going to press the left Mouse button then an animation is going to play we're going to spawn a projectile
+bullet 29:12 which is the yellow sphere and then we're going to play a sound at location so all three of these nodes 29:18 make up the fire logic or up here we have an action
+called jump which is 29:25 leaked to my space bar so whenever I press the space bar the player is going to jump and then when I 29:31 release the space bar the player is going to
+stop jumping and we can watch these nodes fire in real time now let me 29:38 go move the details panel off to the side so we could see more of our Blueprints and then if I press
+play up 29:45 here we get our little window now if I go into my game by clicking on the 29:50 screen we no longer have access to that Mouse so if I ever want to get back my mouse I
+can press shift and F1 at the 29:57 same time so that's shift F1 to get my mouse cursor so now that I have my mouse 30:03 cursor and I'm no longer playing my game I can go ahead
+and make the window just 30:08 a little bit smaller like that and then put it up here to the top right hand 30:13 corner and I can watch my player characters nodes Run in real time
+by 30:19 coming up to no debug object selected select the first person character to watch that blueprint's notes 30:26 and let me make the windows smaller so I can see my game now
+if I walk around with my debug first 30:33 person character selected we can see that right there if I press space those nodes are running in real time or 30:40 if I fire my weapon
+you'll see the white line becomes orange 30:46 which is telling us that all the nodes connected to the events are firing so 30:51 when I press fire unreal will execute these three
+nodes in order 30:56 and that's why blueprints are amazing it allows us to see the logic of our game running in real time so if there are any 31:03 issues and we need to debug our
+game then we can watch our blueprint to see what's wrong and it helps us get a 31:09 better sense of what is happening behind the scenes of unreal now let's go ahead and create an
+event and a node connected 31:14 to it so to create an event or any nodes you just want to right click anywhere in 31:20 the screen so right click an empty location and then we're
+going to create a new event which is linked to keyboard 31:27 F so type in keyboard F and select it right there now whenever I press the F 31:32 key this event will fire and
+anything connected to press will be executed now 31:38 to connect the node to pressed I can drag from here and let go and unreal is smart enough to ask us what node we want 31:45
+to connect this event to and that is the print screen so go ahead and select grid stream right 31:51 there now if we want to break a node connection hold down alt and left click
+31:57 so that's alt and left click to break a connection and you can always reconnect 32:03 them up like this or you could hold down shift and click on the first pin and then click
+on the 32:09 last pin with shift still held down to automatically connect them without dragging so that is alt to break shift 32:16 to hook up two pins and let's say if you do hook
+up a pin and then you realize hey wait that's in 32:24 the wrong location then you can hold down control and drag the left Mouse button out to go ahead and reconnect the 32:31 PIN
+to somewhere else but in my case I want to leave that at pressed not on release and if you ever want to 32:38 duplicate a node it's just like in our level hover over the nodes you
+want to duplicate and press Ctrl D and to delete 32:44 them press the delete key again to add a node I can delete that node right there and right click and this gives me a list
+32:51 of all the nodes Unreal Engine has for us so specifically we want the registry 32:58 node so I can type it in up here now this is very important let's say if you type in the
+name of a node and then it 33:03 doesn't come up that's because unreal's context sensitive is turned on essentially what context sensitive is 33:08 doing is that it's trying to
+guess exactly what node the player needs and I say for 95 of the time this context 33:16 sensitivity does work but there's some rare cases where it doesn't work and you want a very
+specific node then go ahead 33:22 and uncheck it to get access to more possible notes now in my case I'm 33:27 generally just going to leave this on for now and type in print
+screen 33:32 also this is me personally but instead of holding down shift to connect to pins I like to drag from here by holding down 33:39 left Mouse button and connecting it up
+like that so the print screen will as you can 33:44 guess print a screen onto our viewports so this will say something on the top left hand corner and we can have this 33:51 say
+anything so I'm going to do the very classic hello world exclamation point and then we have a 33:57 duration right now it's going to last for two seconds let's have this hello
+world last for five seconds so now if I 34:05 move it right here and that's how I can see my window and 34:10 press play let's make this a little bit bigger if I press the F button
+that will 34:16 fire and in the top left hand corner we will get Hello World up there so that tells us that this is working and I 34:23 could just Spam F and congratulations you
+just created your first event in Unreal Engine 34:29 so what we're telling unreal is that Hey whenever the player presses f let's go ahead and print screen hello world 34:36 but
+this logic is really boring now it's on to the fun stuff and that is actually programming our game to create a shooter 34:43 game where the player has to shoot a bunch of targets
+within the given time frame but before we could do that we 34:49 first have to migrate some assets so the assets we want to migrate are located within the downloadable content if
+you Migrate Assets 34:55 haven't already gone on that so go ahead and double click on it and we have the beginner game assets so go ahead and 35:02 drag that onto your desktop to
+unzip it now this is going to contain a brand new project so double click to open up this 35:09 second project and this will be the new project it's a completely Blick project
+except it contains some assets we want 35:15 so it has the Sci-Fi weapons if I double click on it you can see what this is and 35:20 it's a weapon that we're going to give the
+player and of course we have the target meshes 35:26 now the reason why I didn't include this within the template is because it's a central note how we can move Assets in 35:33
+between two different projects so I want to bring these folders into my first game and to do that we 35:40 first need to know the location of my first game so where is this project
+located luckily for us we saved it on 35:47 the desktop right here called my first game so open it up go to content and 35:52 then go ahead and copy the location of the content
+folder the reason why is 35:57 because we're going to tell the other project with the assets where we want to duplicate these assets into so go ahead 36:04 and hold down shift to
+select two different folders right click and then select migrates down here 36:12 so it's going to ask us that we want to migrate all these assets click ok now we need to navigate
+to the location of the 36:19 content folder of the project we're copying our assets into and since we already have that location I'm going to 36:25 paste it right there and then
+select folder now I no longer need this beginner game asset project so I can go 36:31 ahead and delete it right here okay now within our main project if I 36:37 press controlled
+space we have our weapons and we have the targets now that 36:43 I have my target mesh it is finally time to create our first blueprint class completely from scratch to create a
+Creating a Blueprint 36:49 blueprint and Unreal Engine let's first navigate to the folder we want to place it in and in my case we 36:55 want to place it in first person blueprints
+so this folder right here and this is where I'm going to store all my 37:00 blueprint programming logic now right click anywhere empty within the content browser and then select
+the blueprint 37:07 class up here so it's the very first one which means it's the most important asset in unreal so let's select that and 37:14 now it's going to ask us to select
+what type of blueprint we want to create and we specifically want to create an actor 37:20 class the reason why is because actors are anything that can be placed in my world so let

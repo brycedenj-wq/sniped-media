@@ -1,0 +1,227 @@
+`Project local settings`. When [managed settings](/en/managed-settings) are in effect, the entry shows the delivery channel in parentheses, for example `Enterprise managed settings
+(remote)`, `(plist)`, `(HKLM)`, `(HKCU)`, or `(file)`. A layer appears in the list only when that source is loaded with at least one key, so an empty list means no settings sources
+were found. The `Setting sources` line confirms which sources are being read. It does not show which layer supplied each individual key. The Config tab in the same dialog is an
+editor for a fixed set of toggles such as theme and verbose output, not a view of your `settings.json` contents. If a settings file contains errors, such as invalid JSON or a value
+that fails validation, `/status` reports the issue so you can fix it. ### Key points about the configuration system * **Memory files (`CLAUDE.md`)**: Contain instructions and
+context that Claude loads at startup * **Settings files (JSON)**: Configure permissions, environment variables, and tool behavior * **Skills**: Custom prompts that can be invoked
+with `/skill-name` or loaded by Claude automatically * **MCP servers**: Extend Claude Code with additional tools and integrations * **Precedence**: Higher-level configurations
+(Managed) override lower-level ones (User/Project) * **Inheritance**: Settings merge across scopes; scalar values from higher-priority scopes override, and arrays concatenate ###
+System prompt Claude Code's internal system prompt is not published. To add custom instructions, use `CLAUDE.md` files or the `--append-system-prompt` flag. ### Excluding sensitive
+files To prevent Claude Code from accessing files containing sensitive information like API keys, secrets, and environment files, use the `permissions.deny` setting in your
+`.claude/settings.json` file: ```json theme={null} { "permissions": { "deny": [ "Read(./.env)", "Read(./.env.*)", "Read(./secrets/**)", "Read(./config/credentials.json)",
+"Read(./build)" ] } } ``` This replaces the deprecated `ignorePatterns` configuration. Files matching these patterns are excluded from file discovery and search results, and read
+operations on these files are denied. ## Subagent configuration Claude Code supports custom AI subagents that can be configured at both user and project levels. These subagents are
+stored as Markdown files with YAML frontmatter: * **User subagents**: `~/.claude/agents/` - Available across all your projects * **Project subagents**: `.claude/agents/` - Specific
+to your project and can be shared with your team Subagent files define specialized AI assistants with custom prompts and tool permissions. Learn more about creating and using
+subagents in the [subagents documentation](/en/sub-agents). ## Plugin configuration Claude Code supports a plugin system that lets you extend functionality with skills, agents,
+hooks, and MCP servers. Plugins are distributed through marketplaces and can be configured at both user and repository levels. ### Plugin settings Plugin-related settings in
+`settings.json`: ```json theme={null} { "enabledPlugins": { "formatter@acme-tools": true, "deployer@acme-tools": true, "analyzer@security-plugins": false },
+"extraKnownMarketplaces": { "acme-tools": { "source": { "source": "github", "repo": "acme-corp/claude-plugins" } } } } ``` #### `enabledPlugins` Controls which plugins are enabled.
+Format: `"plugin-name@marketplace-name": true/false` **Scopes**: * **User settings** (`~/.claude/settings.json`): Personal plugin preferences * **Project settings**
+(`.claude/settings.json`): Project-specific plugins shared with team * **Local settings** (`.claude/settings.local.json`): Per-machine overrides (not committed) * **Managed
+settings** (`managed-settings.json`): Organization-wide policy overrides that block installation at all scopes and hide the plugin from the marketplace <Note> Project settings take
+precedence over user settings, so setting a plugin to `false` in `~/.claude/settings.json` does not disable a plugin that the project's `.claude/settings.json` enables. To opt out
+of a project-enabled plugin on your machine, set it to `false` in `.claude/settings.local.json` instead. Plugins force-enabled by managed settings cannot be disabled this way,
+since managed settings override local settings. </Note> **Example**: ```json theme={null} { "enabledPlugins": { "code-formatter@team-tools": true, "deployment-tools@team-tools":
+true, "experimental-features@personal": false } } ``` #### `extraKnownMarketplaces` Defines additional marketplaces that should be made available for the repository. Typically used
+in repository-level settings to ensure team members have access to required plugin sources. **When a repository includes `extraKnownMarketplaces`**: 1. Team members are prompted to
+install the marketplace when they trust the folder 2. Team members are then prompted to install plugins from that marketplace 3. Users can skip unwanted marketplaces or plugins
+(stored in user settings) 4. Installation respects trust boundaries and requires explicit consent **Example**: ```json theme={null} { "extraKnownMarketplaces": { "acme-tools": {
+"source": { "source": "github", "repo": "acme-corp/claude-plugins" } }, "security-plugins": { "source": { "source": "git", "url": "https://git.example.com/security/plugins.git" } }
+} } ``` **Marketplace source types**: * `github`: GitHub repository (uses `repo`) * `git`: Any git URL (uses `url`) * `directory`: Local filesystem path (uses `path`, for
+development only) * `hostPattern`: regex pattern to match marketplace hosts (uses `hostPattern`) * `settings`: inline marketplace declared directly in settings.json without a
+separate hosted repository (uses `name` and `plugins`) Each marketplace entry also accepts an optional `autoUpdate` Boolean. Set `"autoUpdate": true` alongside `source` to make
+Claude Code refresh that marketplace and update its installed plugins at startup. When omitted, official Anthropic marketplaces default to `true` and all other marketplaces default
+to `false`. See [Configure auto-updates](/en/discover-plugins#configure-auto-updates). Use `source: 'settings'` to declare a small set of plugins inline without setting up a hosted
+marketplace repository. Plugins listed here must reference external sources such as GitHub or npm. You still need to enable each plugin separately in `enabledPlugins`. ```json
+theme={null} { "extraKnownMarketplaces": { "team-tools": { "source": { "source": "settings", "name": "team-tools", "plugins": [ { "name": "code-formatter", "source": { "source":
+"github", "repo": "acme-corp/code-formatter" } } ] } } } } ``` #### `strictKnownMarketplaces` **Managed settings only**: Controls which plugin marketplaces users are allowed to add
+and install plugins from. This setting can only be configured in [managed settings](/en/settings#settings-files) and provides administrators with strict control over marketplace
+sources. **Managed settings file locations**: * **macOS**: `/Library/Application Support/ClaudeCode/managed-settings.json` * **Linux and WSL**:
+`/etc/claude-code/managed-settings.json` * **Windows**: `C:\Program Files\ClaudeCode\managed-settings.json` **Key characteristics**: * Only available in managed settings
+(`managed-settings.json`) * Cannot be overridden by user or project settings (highest precedence) * Enforced BEFORE network/filesystem operations (blocked sources never execute) *
+Uses exact matching for source specifications (including `ref`, `path` for git sources), except `hostPattern` and `pathPattern`, which use regex matching **Allowlist behavior**: *
+`undefined` (default): No restrictions - users can add any marketplace * Empty array `[]`: Complete lockdown - users cannot add any new marketplaces * List of sources: Users can
+only add marketplaces that match exactly **All supported source types**: The allowlist supports multiple marketplace source types. Most sources use exact matching, while
+`hostPattern` and `pathPattern` use regex matching against the marketplace host and filesystem path respectively. 1. **GitHub repositories**: ```json theme={null} { "source":
+"github", "repo": "acme-corp/approved-plugins" } { "source": "github", "repo": "acme-corp/security-tools", "ref": "v2.0" } { "source": "github", "repo": "acme-corp/plugins", "ref":
+"main", "path": "marketplace" } ``` Fields: `repo` (required), `ref` (optional: branch/tag/SHA), `path` (optional: subdirectory) 2. **Git repositories**: ```json theme={null} {
+"source": "git", "url": "https://gitlab.example.com/tools/plugins.git" } { "source": "git", "url": "https://bitbucket.org/acme-corp/plugins.git", "ref": "production" } { "source":
+"git", "url": "ssh://git@git.example.com/plugins.git", "ref": "v3.1", "path": "approved" } ``` Fields: `url` (required), `ref` (optional: branch/tag/SHA), `path` (optional:
+subdirectory) 3. **URL-based marketplaces**: ```json theme={null} { "source": "url", "url": "https://plugins.example.com/marketplace.json" } { "source": "url", "url":
+"https://cdn.example.com/marketplace.json", "headers": { "Authorization": "Bearer ${TOKEN}" } } ``` Fields: `url` (required), `headers` (optional: HTTP headers for authenticated
+access) <Note> URL-based marketplaces only download the `marketplace.json` file. They do not download plugin files from the server. Plugins in URL-based marketplaces must use
+external sources (GitHub, npm, or git URLs) rather than relative paths. For plugins with relative paths, use a Git-based marketplace instead. See
+[Troubleshooting](/en/plugin-marketplaces#plugins-with-relative-paths-fail-in-url-based-marketplaces) for details. </Note> 4. **NPM packages**: ```json theme={null} { "source":
+"npm", "package": "@acme-corp/claude-plugins" } { "source": "npm", "package": "@acme-corp/approved-marketplace" } ``` Fields: `package` (required, supports scoped packages) 5.
+**File paths**: ```json theme={null} { "source": "file", "path": "/usr/local/share/claude/acme-marketplace.json" } { "source": "file", "path":
+"/opt/acme-corp/plugins/marketplace.json" } ``` Fields: `path` (required: absolute path to marketplace.json file) 6. **Directory paths**: ```json theme={null} { "source":
+"directory", "path": "/usr/local/share/claude/acme-plugins" } { "source": "directory", "path": "/opt/acme-corp/approved-marketplaces" } ``` Fields: `path` (required: absolute path
+to directory containing `.claude-plugin/marketplace.json`) 7. **Host pattern matching**: ```json theme={null} { "source": "hostPattern", "hostPattern": "^github\\.example\\.com$" }
+{ "source": "hostPattern", "hostPattern": "^gitlab\\.internal\\.example\\.com$" } ``` Fields: `hostPattern` (required: regex pattern to match against the marketplace host) Use host
+pattern matching when you want to allow all marketplaces from a specific host without enumerating each repository individually. This is useful for organizations with internal
+GitHub Enterprise or GitLab servers where developers create their own marketplaces. Host extraction by source type: * `github`: always matches against `github.com` * `git`:
+extracts hostname from the URL (supports both HTTPS and SSH formats) * `url`: extracts hostname from the URL * `npm`, `file`, `directory`: not supported for host pattern matching
+8. **Path pattern matching**: ```json theme={null} { "source": "pathPattern", "pathPattern": "^/opt/approved/" } { "source": "pathPattern", "pathPattern": ".*" } ``` Fields:
+`pathPattern` (required: regex pattern matched against the `path` field of `file` and `directory` sources) Use path pattern matching to allow filesystem-based marketplaces
+alongside `hostPattern` restrictions for network sources. Set `".*"` to allow all local paths, or a narrower pattern to restrict to specific directories. **Configuration
+examples**: Example: allow specific marketplaces only: ```json theme={null} { "strictKnownMarketplaces": [ { "source": "github", "repo": "acme-corp/approved-plugins" }, { "source":
+"github", "repo": "acme-corp/security-tools", "ref": "v2.0" }, { "source": "url", "url": "https://plugins.example.com/marketplace.json" }, { "source": "npm", "package":
+"@acme-corp/compliance-plugins" } ] } ``` Example - Disable all marketplace additions: ```json theme={null} { "strictKnownMarketplaces": [] } ``` Example: allow all marketplaces
+from an internal git server: ```json theme={null} { "strictKnownMarketplaces": [ { "source": "hostPattern", "hostPattern": "^github\\.example\\.com$" } ] } ``` **Exact matching
+requirements**: Marketplace sources must match **exactly** for a user's addition to be allowed. For git-based sources (`github` and `git`), this includes all optional fields: * The
+`repo` or `url` must match exactly * The `ref` field must match exactly (or both be undefined) * The `path` field must match exactly (or both be undefined) Examples of sources that
+**do NOT match**: ```json theme={null} // These are DIFFERENT sources: { "source": "github", "repo": "acme-corp/plugins" } { "source": "github", "repo": "acme-corp/plugins", "ref":
+"main" } // These are also DIFFERENT: { "source": "github", "repo": "acme-corp/plugins", "path": "marketplace" } { "source": "github", "repo": "acme-corp/plugins" } ```
+**Comparison with `extraKnownMarketplaces`**: | Aspect | `strictKnownMarketplaces` | `extraKnownMarketplaces` | | --------------------- | ------------------------------------ |
+------------------------------------ | | **Purpose** | Organizational policy enforcement | Team convenience | | **Settings file** | `managed-settings.json` only | Any settings file
+| | **Behavior** | Blocks non-allowlisted additions | Auto-installs missing marketplaces | | **When enforced** | Before network/filesystem operations | After user trust prompt | |
+**Can be overridden** | No (highest precedence) | Yes (by higher precedence settings) | | **Source format** | Direct source object | Named marketplace with nested source | | **Use
+case** | Compliance, security restrictions | Onboarding, standardization | **Format difference**: `strictKnownMarketplaces` uses direct source objects: ```json theme={null} {
+"strictKnownMarketplaces": [ { "source": "github", "repo": "acme-corp/plugins" } ] } ``` `extraKnownMarketplaces` requires named marketplaces: ```json theme={null} {
+"extraKnownMarketplaces": { "acme-tools": { "source": { "source": "github", "repo": "acme-corp/plugins" } } } } ``` **Using both together**: `strictKnownMarketplaces` is a policy
+gate: it controls what users may add but does not register any marketplaces. To both restrict and pre-register a marketplace for all users, set both in `managed-settings.json`:
+```json theme={null} { "strictKnownMarketplaces": [ { "source": "github", "repo": "acme-corp/plugins" } ], "extraKnownMarketplaces": { "acme-tools": { "source": { "source":
+"github", "repo": "acme-corp/plugins" } } } } ``` With only `strictKnownMarketplaces` set, users can still add the allowed marketplace manually via `/plugin marketplace add`, but
+it is not available automatically. **Important notes**: * Restrictions are checked BEFORE any network requests or filesystem operations * When blocked, users see clear error
+messages indicating the source is blocked by managed policy * The restriction is enforced on marketplace add and on plugin install, update, refresh, and auto-update. A marketplace
+added before the policy was set cannot be used to install or update plugins once its source no longer matches the allowlist * Managed settings have the highest precedence and
+cannot be overridden See [Managed marketplace restrictions](/en/plugin-marketplaces#managed-marketplace-restrictions) for user-facing documentation. ### Managing plugins Use the
+`/plugin` command to manage plugins interactively: * Browse available plugins from marketplaces * Install/uninstall plugins * Enable/disable plugins * View plugin details (skills,
+agents, hooks provided) * Add/remove marketplaces Learn more about the plugin system in the [plugins documentation](/en/plugins). ## Environment variables Environment variables let
+you control Claude Code behavior without editing settings files. Any variable can also be configured in [`settings.json`](#available-settings) under the `env` key to apply it to
+every session or roll it out to your team. See the [environment variables reference](/en/env-vars) for the full list. ## Tools available to Claude Claude Code has access to a set
+of tools for reading, editing, searching, running commands, and orchestrating subagents. Tool names are the exact strings you use in permission rules and hook matchers. See the
+[tools reference](/en/tools-reference) for the full list and Bash tool behavior details. ## See also * [Permissions](/en/permissions): permission system, rule syntax, tool-specific
+patterns, and managed policies * [Authentication](/en/authentication): set up user access to Claude Code * [Debug your configuration](/en/debug-your-config): diagnose why a
+setting, hook, or MCP server isn't taking effect * [Troubleshoot installation and login](/en/troubleshoot-install): installation, authentication, and platform issuesSkip to main
+content English Search... ⌘K Ask AI Claude Developer Platform Claude Code on the Web Getting started Build with Claude Code Administration Configuration Reference Agent SDK What's
+New Resources Reference CLI reference Commands Environment variables Tools reference Interactive mode Checkpointing Hooks reference Plugins reference Channels reference Glossary
+Glossary On this page CLI commands CLI flags System prompt flags See also Reference CLI reference Copy page Complete reference for Claude Code command-line interface, including
+commands and flags. Documentation Index Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt Use this file to discover all available pages before
+exploring further. ​ CLI commands You can start sessions, pipe content, resume conversations, and manage updates with these commands: CommandDescriptionExample claudeStart
+interactive sessionclaude claude "query"Start interactive session with initial promptclaude "explain this project" claude -p "query"Query via SDK, then exitclaude -p "explain this
+function" cat file | claude -p "query"Process piped contentcat logs.txt | claude -p "explain" claude -cContinue most recent conversation in current directoryclaude -c claude -c -p
+"query"Continue via SDKclaude -c -p "Check for type errors" claude -r "<session>" "query"Resume session by ID or nameclaude -r "auth-refactor" "Finish this PR" claude updateUpdate
+to latest versionclaude update claude install [version]Install or reinstall the native binary. Accepts a version like 2.1.118, or stable or latest. See Install a specific
+versionclaude install stable claude auth loginSign in to your Anthropic account. Use --email to pre-fill your email address, --sso to force SSO authentication, and --console to
+sign in with Anthropic Console for API usage billing instead of a Claude subscriptionclaude auth login --console claude auth logoutLog out from your Anthropic accountclaude auth
+logout claude auth statusShow authentication status as JSON. Use --text for human-readable output. Exits with code 0 if logged in, 1 if notclaude auth status claude agentsOpen
+agent view to monitor and dispatch parallel background sessions. Use --cwd <path> to show only sessions started under that directoryclaude agents claude attach <id>Attach to a
+background session in this terminalclaude attach 7c5dcf5d claude auto-mode defaultsPrint the built-in auto mode classifier rules as JSON. Use claude auto-mode config to see your
+effective config with settings appliedclaude auto-mode defaults > rules.json claude logs <id>Print recent output from a background sessionclaude logs 7c5dcf5d claude mcpConfigure
+Model Context Protocol (MCP) serversSee the Claude Code MCP documentation. claude pluginManage Claude Code plugins. Alias: claude plugins. See plugin reference for
+subcommandsclaude plugin install code-review@claude-plugins-official claude project purge [path]Delete all local Claude Code state for a project: transcripts, task lists, debug
+logs, file-edit history, prompt history lines, and the project’s entry in ~/.claude.json. Omit [path] to pick from an interactive list. Flags: --dry-run to preview, -y/--yes to
+skip confirmation, -i/--interactive to confirm each item, --all for every project. See Clear local dataclaude project purge ~/work/repo --dry-run claude remote-controlStart a
+Remote Control server to control Claude Code from Claude.ai or the Claude app. Runs in server mode (no local interactive session). See Server mode flagsclaude remote-control --name
+"My Project" claude respawn <id>Restart a stopped background session with its conversation intact. Use --all to restart every stopped sessionclaude respawn 7c5dcf5d claude rm
+<id>Remove a background session from the listclaude rm 7c5dcf5d claude setup-tokenGenerate a long-lived OAuth token for CI and scripts. Prints the token to the terminal without
+saving it. Requires a Claude subscription. See Generate a long-lived tokenclaude setup-token claude stop <id>Stop a background session. Also accepts claude killclaude stop 7c5dcf5d
+claude ultrareview [target]Run ultrareview non-interactively. Prints findings to stdout and exits 0 on success or 1 on failure. Use --json for the raw payload and --timeout
+<minutes> to override the 30-minute defaultclaude ultrareview 1234 --json If you mistype a subcommand, Claude Code suggests the closest match and exits without starting a session.
+For example, claude udpate prints Did you mean claude update?. ​ CLI flags Customize Claude Code’s behavior with these command-line flags. claude --help does not list every flag,
+so a flag’s absence from --help does not mean it is unavailable. FlagDescriptionExample --add-dirAdd additional working directories for Claude to read and edit files. Grants file
+access; most .claude/ configuration is not discovered from these directories. Validates each path exists as a directory. To persist these directories across sessions, set
+permissions.additionalDirectories in settingsclaude --add-dir ../apps ../lib --agentSpecify an agent for the current session (overrides the agent setting)claude --agent
+my-custom-agent --agentsDefine custom subagents dynamically via JSON. Uses the same field names as subagent frontmatter, plus a prompt field for the agent’s instructionsclaude
+--agents '{"reviewer":{"description":"Reviews code","prompt":"You are a code reviewer"}}' --allow-dangerously-skip-permissionsAdd bypassPermissions to the Shift+Tab mode cycle
+without starting in it. Lets you begin in a different mode like plan and switch to bypassPermissions later. See permission modesclaude --permission-mode plan
+--allow-dangerously-skip-permissions --allowedToolsTools that execute without prompting for permission. See permission rule syntax for pattern matching. To restrict which tools are
+available, use --tools instead"Bash(git log *)" "Bash(git diff *)" "Read" --append-system-promptAppend custom text to the end of the default system promptclaude
+--append-system-prompt "Always use TypeScript" --append-system-prompt-fileLoad additional system prompt text from a file and append to the default promptclaude
+--append-system-prompt-file ./extra-rules.txt --bareMinimal mode: skip auto-discovery of hooks, skills, plugins, MCP servers, auto memory, and CLAUDE.md so scripted calls start
+faster. Claude has access to Bash, file read, and file edit tools. Sets CLAUDE_CODE_SIMPLE. See bare modeclaude --bare -p "query" --betasBeta headers to include in API requests
+(API key users only)claude --betas interleaved-thinking --bgStart the session as a background agent and return immediately. Prints the session ID and management commands. Combine
+with --agent to run a specific subagentclaude --bg "investigate the flaky test" --channels(Research preview) MCP servers whose channel notifications Claude should listen for in
+this session. Space-separated list of plugin:<name>@<marketplace> entries. Requires Claude.ai authenticationclaude --channels plugin:my-notifier@my-marketplace --chromeEnable
+Chrome browser integration for web automation and testingclaude --chrome --continue, -cLoad the most recent conversation in the current directory. Includes sessions that added this
+directory with /add-dirclaude --continue --dangerously-load-development-channelsEnable channels that are not on the approved allowlist, for local development. Accepts
+plugin:<name>@<marketplace> and server:<name> entries. Prompts for confirmationclaude --dangerously-load-development-channels server:webhook --dangerously-skip-permissionsSkip
+permission prompts. Equivalent to --permission-mode bypassPermissions. See permission modes for what this does and does not skipclaude --dangerously-skip-permissions --debugEnable
+debug mode with optional category filtering (for example, "api,hooks" or "!statsig,!file")claude --debug "api,mcp" --debug-file <path>Write debug logs to a specific file path.
+Implicitly enables debug mode. Takes precedence over CLAUDE_CODE_DEBUG_LOGS_DIRclaude --debug-file /tmp/claude-debug.log --disable-slash-commandsDisable all skills and commands for
+this sessionclaude --disable-slash-commands --disallowedToolsTools that are removed from the model’s context and cannot be used"Bash(git log *)" "Bash(git diff *)" "Edit"
+--effortSet the effort level for the current session. Options: low, medium, high, xhigh, max; available levels depend on the model. Overrides the effortLevel setting for this
+session and does not persistclaude --effort high --enable-auto-modeRemoved in v2.1.111. Auto mode is now in the Shift+Tab cycle by default; use --permission-mode auto to start in
+itclaude --permission-mode auto --exclude-dynamic-system-prompt-sectionsMove per-machine sections from the system prompt (working directory, environment info, memory paths,
+git-repo flag) into the first user message. Improves prompt-cache reuse across different users and machines running the same task. Only applies with the default system prompt;
+ignored when --system-prompt or --system-prompt-file is set. Use with -p for scripted, multi-user workloadsclaude -p --exclude-dynamic-system-prompt-sections "query"
+--fallback-modelEnable automatic fallback to specified model when default model is overloaded (print mode only)claude -p --fallback-model sonnet "query" --fork-sessionWhen
+resuming, create a new session ID instead of reusing the original (use with --resume or --continue)claude --resume abc123 --fork-session --from-prResume sessions linked to a
+specific pull request. Accepts a PR number, a GitHub or GitHub Enterprise PR URL, a GitLab merge request URL, or a Bitbucket pull request URL. Sessions are linked automatically
+when Claude creates the pull requestclaude --from-pr 123 --ideAutomatically connect to IDE on startup if exactly one valid IDE is availableclaude --ide --initRun Setup hooks with
+the init matcher before the session (print mode only)claude -p --init "query" --init-onlyRun Setup and SessionStart hooks, then exit without starting a conversationclaude
+--init-only --include-hook-eventsInclude all hook lifecycle events in the output stream. Requires --output-format stream-jsonclaude -p --output-format stream-json
+--include-hook-events "query" --include-partial-messagesInclude partial streaming events in output. Requires --print and --output-format stream-jsonclaude -p --output-format
+stream-json --include-partial-messages "query" --input-formatSpecify input format for print mode (options: text, stream-json)claude -p --output-format json --input-format
+stream-json --json-schemaGet validated JSON output matching a JSON Schema after agent completes its workflow (print mode only, see structured outputs)claude -p --json-schema
+'{"type":"object","properties":{...}}' "query" --maintenanceRun Setup hooks with the maintenance matcher before the session (print mode only)claude -p --maintenance "query"
+--max-budget-usdMaximum dollar amount to spend on API calls before stopping (print mode only)claude -p --max-budget-usd 5.00 "query" --max-turnsLimit the number of agentic turns
+(print mode only). Exits with an error when the limit is reached. No limit by defaultclaude -p --max-turns 3 "query" --mcp-configLoad MCP servers from JSON files or strings
+(space-separated)claude --mcp-config ./mcp.json --modelSets the model for the current session with an alias for the latest model (sonnet or opus) or a model’s full name. Overrides
+the model setting and ANTHROPIC_MODELclaude --model claude-sonnet-4-6 --name, -nSet a display name for the session, shown in /resume and the terminal title. You can resume a named
+session with claude --resume <name>. /rename changes the name mid-session and also shows it on the prompt barclaude -n "my-feature-work" --no-chromeDisable Chrome browser
+integration for this sessionclaude --no-chrome --no-session-persistenceDisable session persistence so sessions are not saved to disk and cannot be resumed. Print mode only. The
+CLAUDE_CODE_SKIP_PROMPT_HISTORY environment variable does the same in any modeclaude -p --no-session-persistence "query" --output-formatSpecify output format for print mode
+(options: text, json, stream-json)claude -p "query" --output-format json --permission-modeBegin in a specified permission mode. Accepts default, acceptEdits, plan, auto, dontAsk,
+or bypassPermissions. Overrides defaultMode from settings filesclaude --permission-mode plan --permission-prompt-toolSpecify an MCP tool to handle permission prompts in
+non-interactive modeclaude -p --permission-prompt-tool mcp_auth_tool "query" --plugin-dirLoad a plugin from a directory or .zip archive for this session only. Each flag takes one
+path. Repeat the flag for multiple plugins: --plugin-dir A --plugin-dir B.zipclaude --plugin-dir ./my-plugin --plugin-urlFetch a plugin .zip archive from a URL for this session
+only. Repeat the flag for multiple plugins, or pass space-separated URLs in a single quoted valueclaude --plugin-url https://example.com/plugin.zip --print, -pPrint response
+without interactive mode (see Agent SDK documentation for programmatic usage details)claude -p "query" --remoteCreate a new web session on claude.ai with the provided task
+descriptionclaude --remote "Fix the login bug" --remote-control, --rcStart an interactive session with Remote Control enabled so you can also control it from claude.ai or the
+Claude app. Optionally pass a name for the sessionclaude --remote-control "My Project" --remote-control-session-name-prefix <prefix>Prefix for auto-generated Remote Control session
+names when no explicit name is set. Defaults to your machine’s hostname, producing names like myhost-graceful-unicorn. Set CLAUDE_REMOTE_CONTROL_SESSION_NAME_PREFIX for the same
+effectclaude remote-control --remote-control-session-name-prefix dev-box --replay-user-messagesRe-emit user messages from stdin back on stdout for acknowledgment. Requires
+--input-format stream-json and --output-format stream-jsonclaude -p --input-format stream-json --output-format stream-json --replay-user-messages --resume, -rResume a specific
+session by ID or name, or show an interactive picker to choose a session. Includes sessions that added this directory with /add-dirclaude --resume auth-refactor --session-idUse a
+specific session ID for the conversation (must be a valid UUID)claude --session-id "550e8400-e29b-41d4-a716-446655440000" --setting-sourcesComma-separated list of setting sources
+to load (user, project, local)claude --setting-sources user,project --settingsPath to a settings JSON file or an inline JSON string. Values you set here override the same keys in
+your settings.json files for this session. Keys you omit keep their file-based values. See settings precedenceclaude --settings ./settings.json --strict-mcp-configOnly use MCP
+servers from --mcp-config, ignoring all other MCP configurationsclaude --strict-mcp-config --mcp-config ./mcp.json --system-promptReplace the entire system prompt with custom
+textclaude --system-prompt "You are a Python expert" --system-prompt-fileLoad system prompt from a file, replacing the default promptclaude --system-prompt-file ./custom-prompt.txt
+--teleportResume a web session in your local terminalclaude --teleport --teammate-modeSet how agent team teammates display: auto (default), in-process, or tmux. Overrides the
+teammateMode setting for this session. See Choose a display modeclaude --teammate-mode in-process --tmuxCreate a tmux session for the worktree. Requires --worktree. Uses iTerm2
+native panes when available; pass --tmux=classic for traditional tmuxclaude -w feature-auth --tmux --toolsRestrict which built-in tools Claude can use. Use "" to disable all,
+"default" for all, or tool names like "Bash,Edit,Read"claude --tools "Bash,Edit,Read" --verboseEnable verbose logging, shows full turn-by-turn output. Overrides the viewMode
+setting for this sessionclaude --verbose --version, -vOutput the version numberclaude -v --worktree, -wStart Claude in an isolated git worktree at <repo>/.claude/worktrees/<name>.
+If no name is given, one is auto-generated. Pass #<number> or a GitHub pull request URL to fetch that PR from origin and branch the worktree from itclaude -w feature-auth ​ System
+prompt flags Claude Code provides four flags for customizing the system prompt. All four work in both interactive and non-interactive modes. FlagBehaviorExample
+--system-promptReplaces the entire default promptclaude --system-prompt "You are a Python expert" --system-prompt-fileReplaces with file contentsclaude --system-prompt-file
+./prompts/review.txt --append-system-promptAppends to the default promptclaude --append-system-prompt "Always use TypeScript" --append-system-prompt-fileAppends file contents to
+the default promptclaude --append-system-prompt-file ./style-rules.txt --system-prompt and --system-prompt-file are mutually exclusive. The append flags can be combined with either
+replacement flag. Choose based on whether Claude Code’s default identity still fits your task. Use an append flag when Claude should remain a coding assistant that also follows
+your extra rules: per-invocation instructions, output formatting, or domain context for a -p script. Appending preserves the default tool guidance, safety instructions, and coding
+conventions, so you only supply what differs. Use a replacement flag when the surface, identity, or permission model differs from Claude Code’s, like a non-coding agent in a
+pipeline that no human watches. Replacing drops all of the default prompt, including tool guidance and safety instructions, so you take responsibility for whatever your task still
+needs. These flags apply only to the current invocation. For persistent personas you can switch between and share across a project, use output styles. For project conventions
+Claude should always follow, use CLAUDE.md. The Agent SDK guide on system prompts covers the same decision in more depth. ​ See also Chrome extension - Browser automation and web
+testing Interactive mode - Shortcuts, input modes, and interactive features Quickstart guide - Getting started with Claude Code Common workflows - Advanced workflows and patterns
+Settings - Configuration options Agent SDK documentation - Programmatic usage and integrations Was this page helpful? Yes No Commands Ask a question... x linkedin Company Anthropic
+Careers Economic Futures Research News Trust center Transparency Help and security Availability Status Support center Learn Courses MCP connectors Customer stories Engineering blog
+Events Powered by Claude Service partners Startups program Terms and policies Privacy choices Privacy policy Disclosure policy Usage policy Commercial terms Consumer terms CLI
+reference - Claude Code DocsSkip to main content English Search... ⌘K Ask AI Claude Developer Platform Claude Code on the Web Getting started Build with Claude Code Administration
+Configuration Reference Agent SDK What's New Resources Agent SDK Overview Quickstart Core concepts How the agent loop works Use Claude Code features Work with sessions Input and
+output Streaming Input Handle approvals and user input Stream responses in real-time Get structured output from agents Extend with tools Give Claude custom tools Connect to
+external tools with MCP Scale to many tools with tool search Subagents in the SDK Customize behavior Modifying system prompts Slash Commands in the SDK Agent Skills in the SDK
+Plugins in the SDK Control and observability Configure permissions Intercept and control agent behavior with hooks Rewind file changes with checkpointing Track cost and usage
+Observability with OpenTelemetry Todo Lists Deployment Hosting the Agent SDK Securely deploying AI agents SDK references TypeScript SDK TypeScript V2 (deprecated) Python SDK
+Migration Guide On this page Get started Capabilities Claude Code features Compare the Agent SDK to other Claude tools Changelog Reporting bugs Branding guidelines License and
+terms Next steps Agent SDK Agent SDK overview Copy page Build production AI agents with Claude Code as a library Documentation Index Fetch the complete documentation index at:
+https://code.claude.com/docs/llms.txt Use this file to discover all available pages before exploring further. Starting June 15, 2026, Agent SDK and claude -p usage on subscription
+plans will draw from a new monthly Agent SDK credit, separate from your interactive usage limits. See Use the Claude Agent SDK with your Claude plan for details. Build AI agents
+that autonomously read files, run commands, search the web, edit code, and more. The Agent SDK gives you the same tools, agent loop, and context management that power Claude Code,
+programmable in Python and TypeScript. Python TypeScript import asyncio from claude_agent_sdk import query, ClaudeAgentOptions async def main(): async for message in query(
+prompt="Find and fix the bug in auth.py", options=ClaudeAgentOptions(allowed_tools=["Read", "Edit", "Bash"]), ): print(message) # Claude reads the file, finds the bug, edits it
+asyncio.run(main()) The Agent SDK includes built-in tools for reading files, running commands, and editing code, so your agent can start working immediately without you
+implementing tool execution. Dive into the quickstart or explore real agents built with the SDK: Quickstart Build a bug-fixing agent in minutes Example agents Email assistant,
+research agent, and more ​ Get started 1 Install the SDK TypeScript Python npm install @anthropic-ai/claude-agent-sdk The TypeScript SDK bundles a native Claude Code binary for
+your platform as an optional dependency, so you don’t need to install Claude Code separately. 2 Set your API key Get an API key from the Console, then set it as an environment
+variable: export ANTHROPIC_API_KEY=your-api-key The SDK also supports authentication via third-party API providers: Amazon Bedrock: set CLAUDE_CODE_USE_BEDROCK=1 environment
+variable and configure AWS credentials Claude Platform on AWS: set CLAUDE_CODE_USE_ANTHROPIC_AWS=1 and ANTHROPIC_AWS_WORKSPACE_ID, then configure AWS credentials Google Vertex AI:
+set CLAUDE_CODE_USE_VERTEX=1 environment variable and configure Google Cloud credentials Microsoft Azure: set CLAUDE_CODE_USE_FOUNDRY=1 environment variable and configure Azure
+credentials See the setup guides for Bedrock, Claude Platform on AWS, Vertex AI, or Azure AI Foundry for details. Unless previously approved, Anthropic does not allow third party
+developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Please use the API key authentication methods described in
+this document instead. 3 Run your first agent This example creates an agent that lists files in your current directory using built-in tools. Python TypeScript import asyncio from
+claude_agent_sdk import query, ClaudeAgentOptions async def main(): async for message in query( prompt="What files are in this directory?",

@@ -1,0 +1,224 @@
+Skip to main content Super Carl How It Works Who It Helps Why It's Different Pricing About Super Carl — your AI Super Connector. Recruit, fundraise, and acquire customers 100×
+faster. Your network, super-charged. Super Carl connects your contacts with your friends' networks to create an intelligent web of opportunity. It finds who you need, figures out
+the warmest path, and helps you reach them — automatically. Connect with Friends Pool your networks and let Super Carl do the super connecting. Find Real Opportunities Hiring,
+jobs, investors, customers, mentors — whatever you need. AI That Works for You Carl searches, messages, and engages to find what matters. Already helping recruiters, founders, and
+investors — and growing fast. Recruit faster. Find the right hires through shared connections. Raise smarter. Reach investors and partners through warm intros. Discover
+opportunities. Get found by the people looking for you. Connect your circle. Combine networks and grow together. Not a feed. Not a social network. Your AI Super Connector. No
+posts, no noise, no endless scrolling. Just trusted AI that makes introductions and connections using the people you already know. ⚡️ Active Carl does the work for you. 🧠
+Intelligent Learns who you connect with to improve each search. 🔒 Private No feeds, likes or noise. 🌐 Reciprocal Connect with friends, to pool each others networks together.
+Trusted by recruiters, founders, and investors from: Simple, Transparent Pricing Choose the plan that's right for you or your team. Monthly Annual Recommended Free Plan Explore
+core workflows $0 Current Plan ✓ Search, outreach, and scheduling projects ✓ MCP/API access ✓ Network and pooled connections Includes: → 5 credits per month Pro Plan For
+higher-volume workflows $99 / month Seats 1 Monthly total: $99/mo Upgrade ✓ Higher throughput limits for searches and outreach ✓ Full MCP/API automation ✓ Priority access to new
+features Includes: → 1,000 credits per month About Super Carl Super Carl is the AI Super Connector that helps people unlock opportunity, build meaningful professional
+relationships, and tap the hidden value in their networks. Powered by advanced AI and intuitive search, Super Carl enables users to find the right person, at the right time, for
+the right reason. Our HQ is San Francisco, California. Founders Ben Keighran CEO Ben is an experienced technology entrepreneur and product leader with a track record of building
+category-defining products and platforms. Born and raised in Sydney, Ben taught himself to code as a teenager and went on to found multiple successful tech companies. His startup
+Chomp was acquired by Apple, where he led software design on Apple TV. Most recently, he founded Caffeine, a live interactive entertainment platform backed by top Silicon Valley
+investors. Ben's deep expertise in product design, AI, consumer behavior, and building communities fuels Super Carl's ambition to transform how professionals connect. Michael Dale
+CTO Michael brings decades of engineering leadership and product development expertise to Super Carl. With over 20 years in software and media-focused technology, he has built and
+scaled platforms that blend high performance with real-world impact at Wikipedia and Crunchyroll. At Super Carl, Michael leads engineering strategy and technical innovation,
+shaping the architecture behind our AI and intelligent search capabilities. Prior to Super Carl, Michael served as CTO at Caffeine, where he met Ben. At Caffeine, Michael was
+responsible for all aspects of the technology in scaling the platform to support 61 million monthly active users. Where We're Headed Super Carl is building toward a future where
+networking is less awkward, more intentional, and more rewarding — transforming how people discover opportunities in business and life. A search engine for human connections
+Intelligent introductions and context-aware suggestions Tools that elevate your network without friction A world where AI helps you build deeper relationships, not just scroll
+profiles Super Carl Product How It Works Who It Helps Why It's Different Pricing Company About Support Privacy Terms AI Processors © 2026 Super Carl. All rights reserved. ↻OpenAI
+API Masterclass Series Overview hello Legends and welcome to the open AI API Master Class if you're interested in building out AI applications but you don't know where to start
+then you're in the right place in this series we're going to go from zero to building out a full AI document chat application kind of like chat GPT but specialized for your own
+documents here's what we're going to be covering across all five parts part one is about the platform fundamentals and dashboard overview this is where we're going to learn about
+the basics of the open AI platform for for part two we'll be making our first API call so we're going to get our hands dirty with the actual code for part three we'll be exploring
+all major endpoints so we're going to learn about the text audio and vision capabilities for part four we're going to Deep dive into the assistant API so we'll be building out our
+first AI assistant and for part five we're going to be building out our full stack app so that's going to be the document chat application we're going to take everything we learned
+from the previous series and we're going to be building an assistant that we can upload files to we can chat with those files we're going to use super basee as the backend so we
+can actually have user authentication which means you actually have to sign in in order to use the app and we're also going to use super base to store the thread IDs so that we can
+build a nice dashboard that displays all the transcript conversations now whatever code we build out together across all these series including that final full stack app I'm going
+to make it publicly available for you so you can go ahead and download that as well now today for part one we're going to be exploring the open AI platform so I'm going to jump
+into the dashboard and at a high level I'm going to explain the different API calls the different models we're going to go into the playground we're going to read the documentation
+together as well so that we're ready for part two to start coding now don't worry if you're a beginner or if you've never been in the dashboard before I'm going to take things
+super slow and go through step by step okay let's dive into it so we're going to start off by going to platform. open.com so this platform is actually Overview of the OpenAI
+platform open ai's developer documentation on how to use all of their API endpoints we've got two main pages over here we got the docs page which is the page that we're in right
+now and then the API reference page page so these are both pretty much focusing on the same set of information except that the API reference page is more Tech heavy and it has a
+lot more information about making API calls so the main information we're going to find on this platform is how to make API calls the various models we can use for the API calls
+and that's all contained within this docs and this API reference page but then later on when we create an account and we log in we're also going to see two more tabs so we're going
+to see a dashboard Tab and a playground tab so over here I'm not logged in yet so only see the docs and the API reference but later on when I log in I'm also going to get the
+dashboard and the playground tabs now the dashboard is like your main admin panel for your account and it's a space where you can make your API Keys you can look at your billing
+information you can add more funds into your account you could also look at your usage information so how much you're spending on API calls you could also set limits so the
+dashboard is your main admin Center for your uh open AI account and then the playground is a place for you to test prompts and the different models so essentially the playground
+lets you use a variety of the API calls that you're able to use as a developer and then access all the models but in a very fun and friendly interface where you don't actually have
+to write any code you can just access the model kind of like you're accessing chat GPT it's already built there and you can just change the prompt and change some of the settings
+and see what kind of output you get so the playground is actually a fantastic testing ground for before you develop your front-end API Solutions you can just go to the playground
+test everything out find what works and then you can actually build out your API applications so for now I'm just going to stay signed out and just focus on the documentation now
+like I mentioned before in the open AI platform we're going to find information on all API Endpoints & Models the different API calls we can make and all the different models we
+can use inside these API calls so if we go across to the quick start section and scroll down a little bit we see all the various open AI endpoints that we can Target so when you're
+making an API call so just quickly in case you're asking yourself oh what is an API endpoint so for this example I want you to imagine that a phone call is like making an API I
+call and an endpoint is like a different phone number that calls a different friend so over here if we use this endpoint AKA this phone number we're going to call chat completions
+if we use this endpoint AKA this phone number we'll call the image generation and then so on and so forth now for this video I'm only going to be focusing on chat completions image
+generation text to speech and speech to text there's some other endpoints that we can also access but as a beginner getting into this this these four endpoints so chat completion
+image text to speech and speech to text will make up the majority of the API calls You' be making at least initially as a beginner learning how to use the open AI API actually you
+probably be using the chat completions the most so over here I've got a high level summary of the various end points that we discussing in this video and throughout this series so
+like we saw before we had the chat completions image generation and audio endpoints where we can do speech to text and text to speech and that was these two endpoints here text to
+speech and speech to text and I've also added in the assistance API endpoint so you're probably already familiar with gpts a GPT is a custom version of a chat GPT where you can
+upload your own instructions you can create your own prompt you can upload your own knowledge and then you can create your own highly trained chat GPT if you're familiar with gpts
+as well then you'll know that you can only use the GPT inside the chat GPT platform so you can actually pull it out and place it on your website so the assistance API is actually
+your way as a developer to make a custom GPT and then deploy it anywhere you want I.E you can put it onto your website so you have a custom GPT that has all of your knowledge and
+is prompted to act as your own customer support rep or you can plug it into your emails so it can respond to your customers and actually in this series we're working up towards
+creating an AI assistant using the assistant API so to go through each of these endpoints one by one we have the chat completions endpoint which primarily uses the GPT models so
+you might be familiar with the 3.5 one of the earlier models and then as open AI upgrades their models we had the GPT 4 we had the GPT 40 the 4 preview so I'm not including every
+single model here but this is just to show you that these models do get upgraded and they actually do have slightly different use cases so I'll speak more about why the models get
+upgraded and then the specific use cases of certain models and I'll be focusing on the GPT just to give us some context about why there's so many versions of this but to keep going
+with our example the chat completions endpoint is used to generate text to have conversations with the AI to help you write code or to check your code and debug it to analyze
+images to generate audio so this is a very versatile endpoint and it actually accepts inputs of text visual audio so you can really do a lot with this endpoint next up we have the
+image generation endpoint which uses the DI model so the do model is actually specific for image generation and you can't use it in the chat completions or in the audio or in the
+assistance so it's specifically for image generation some use cases of this endpoint and this model are to create images to edit images to give you variations of images then we
+have the audio endpoints which use the whisper and the text to speech models once again they're primarily used for audio you can't use them in image and you cannot use them in the
+chat completions and use cases here are to convert speech to text so let's say you have a meeting and you recorded the meeting you can convert it into a text you also have text to
+speech so you can actually give it a text input and then you'll receive an output audio of that text spoken in a human voice and then you can also do translations so let's say I
+attend a meeting and it's completely in Polish and then I want to get it translated to English later on for myself to review it this is what you would use this audio .4 as well and
+then finally we have the assistance API and like I spoke about before this is for building out custom gpts that have access to your documents that can run certain tools so they
+have function calling which is basically the ability to make an API request within the assistant this is super cool because the assistant itself will recognize when to make a
+certain API request and then make it autonomously and finally you can deploy these anywhere so once again it's a custom GPT and it can be deployed anywhere now typically the
+assistant will use similar models to the chat completions endpoint so that's why over here we see similar models like GPT 3.5 4 and 40 and if you want to read more about these
+endpoints and different models you can actually just click into all of these and read up more about this for yourself but in the part two of this series we're actually going to be
+making API calls using all of these various endpoints and I'll also make the code available so after we write it together live on the video and make it available so you can just
+download it and also try these models out for yourself now I think this is a really good time for us to start digging into some of these models so what are the differences why are
+they getting upgraded and I want to start by focusing on why would open AI upgrade models so for example one of the earlier models GPT 3.5 why would open AI upgrade to GPT 4 so the
+upgrades typically come with enhancements and efficiencies so some reasons for upgrading models would include Improv proved reasoning so the model can think a bit more like a human
+you have better code generation so this is a very big use case for AI in general is just generating code fixing bugs you also have more accurate responses because maybe the model
+now has access to more information you also have improved context understanding so sometimes the model has to read between the lines of either the input that it's receiving or the
+request that you're giving and make some observations that are outside the scope of what's being discussed so this is called contextual understanding and actually the better the
+context the better your experience with the model so you'll find that if you were to use GPT 3.5 for a similar conversation that you would use for GPT 4 or even one of the newer
+models like 40 or the gp01 model your responses would actually carry a lot more depth the improvements also include multimodal capabilities so some of the earlier versions of chat
+GPT would have only worked with text based processing and like I mentioned over here using the various models you can actually process text you can process visual you can also
+process audio so that's what multimodal means it just means it can process a variety of inputs so text Vision Audio and then we also have context cost and speed so as open AI
+upgrades their models maybe they give more context window into the request so you can either send more information or receive a longer extractive information sometimes they'll be
+cheaper sometimes they'll be faster and then looking at the image generation models so they'll behave bit more accurately based on the prompts that you give them they might have
+better artistic style and matching improved text rendering so you may have actually seen this before but some of the original models for the image generation when they were
+creating images that had text the actual writing and the text itself wouldn't be written in English it sometimes would turn into like squiggly lines and stuff like that and the
+upgraded models improve on the text rendering so now you can actually get words coming out in the picture as well you would have higher detailed images and then you would have
+better understanding of objects in a frame so the for graph middle ground and background and finally moving on to the whisper and text to speech models some things you get are new
+voice options better language support so it would work in more languages which is actually in very high demand because people want to have the AI support conversations in their own
+language you'd have more natural speech patterns so sometimes you might get things like ums and ARS a little bit of paes a little bit of higher volume lower volume faster speech
+slower speech to make it seem more natural and human like and then you'd have improved accuracy so that's why we see a bunch of different models coming out all the time but there's
+also another reason why for example we have the GPT 4 40 40 mini 40 preview and to speak about that I want to bring you into the chat completions page so if we scroll down a little
+bit we can see over here that there's a couple of different models that you can use for making an API request and these are the latest models that we have available and they all
+have a different use case so the GPT 40 offers the highest level of intelligence and the strongest performance but it does cost more than a model like the GPT 40 mini which is
+optimized to be faster and cheaper and still highly intelligent but not quite at the same level as the GPT 40 and then we have the 01 model which is used for reasoning now just
+like a human if you get a relatively difficult question sometimes you need to spend a few seconds to just think about the question and then formulate your answer before you
+actually respond much in the same way this model is going to return a slower result and use more tokens to actually think than the models like GPT 40 mini and the 40 but it's a lot
+better at reasoning coding and multi-step planning so let me actually wrap that into perspective for you so let's say you have a friend who is a chef and you have a variety of
+different models of that one Chef friend now let's say you wake up in the morning and you're hungry and you really feel like pancakes but you completely forgot how to make them you
+might call your Chef friend but you might call the GPT 40 mini version of him which is still highly intelligent but a lot lot faster than these two models because you're hungry and
+you just want the recipe so you call the 40 mini version of your Chef friend and you say how do I make pancakes I just woke up I'm starving and I'm craving pancakes give me the
+quick rundown now let's say in another situation you start dating a girl and she's going to come over for dinner for the first time you want to impress her and let's say you want
+to make chicken soup so you would Now call your Chef friend but you would call the GPT 4 model of him which is the most intelligent model and you'd say hey I'm about to have a girl
+come over for dinner and I really want to wow her socks off how do I make the best chicken soup in town and now for the final example let's say you're hosting a formal event at
+your house and you want to prepare a five course meal so in this case we'd use the reasoning model because we're going to be inputting things like dietary requirements what kind of
+food we want to create what kind of ingredients we have we also need to know exactly how to plan everything out when to start cooking things in which order to make things so we'd
+be using the gpt1 model because it's actually going to think about the request and then help us formulate and execute on a multi-step plan which is what we would need in order to
+make that five course meal all right so I hope that clarifies a little bit more about models and why openai would upgrade their models what kind of things you get when the models
+are upgraded and then when to use different types of models to learn all about models and to get more information at your own pace you can just click into this model section over
+here and you can scroll down and you can click into each of these models to learn more about when you would use each one and scrolling down a little bit more we've got got some
+more information about continuous model upgrades different versions of different models and yeah just a bunch of really good information including how many tokens the model accepts
+for the input and output with the token represents the amount of information it can input or output and then the training data for the specific model as well and at the bottom of
+the models page we can see here a list of endpoint compatibility between each model so for example the assistance API endpoint which would be using this over here accept all of
+these models so the GPT 40 the 4 mini the 3.5 turbo and other versions of GPT we have the audio endpoints for transcriptions translations and speech which is this endpoint over
+here and like we mentioned for speech to text text to speech and translations and these endpoints will accept whisper or text to speech respectively for the transcriptions
+translations and speech endpoints we have the chat completions endpoint which is this one over here and that will accept all of these endpoints here which are very similar to the
+assistance endpoint but slightly different and over here we have the images endpoint which is this one over here and that will accept the doly model now I'm back in the overview
+Tab and before I actually sign in and continue with the next section of this video where we're going to be looking at the dashboard and the playground in your own time you should
+actually come here and just flick through all of these sections at a high level and just give these a bit of a browse now in the next video we're actually going to be building out
+some of these API calls and again I'm focusing specifically on what I think is going to be most useful to a beginner starting with the open AI API but there definitely are some
+other tasks you can use the open AI API for so if you just wanted to get a high Lev overview of all the different things you could do you can just come into here and read through
+the resources read through the best practices and just get more acquainted with the developer documentation but for now I'm going to log in and go through the dashboard and the
+playground so if you don't have an open AI account the first thing you'll do is go to sign up where you be prompted to enter your email and a password and then you get an email
+into your inbox and you'll have to verify your your email address by clicking on that button it's a very simple process probably one you've done so many different times for a bunch
+of different software you're using and once you have your account you can just go to log in okay so now that I'm logged in I have access to my dashboard and the playground okay so
+the first thing I want to do is go across to my settings Settings Overview and here's my key information like my organization name organization ID and if using a tool like make.com
+and you want to use an open AI module you'll need to supply information like your organization ID and your API key in order to authenticate your requests next place you want to
+look at is your billing so over in Billing you can see how much credit you have on your account you can add more credit to your account as well and you can add your payment methods
+look at your billing history over in limits depending on how long you've had your account for and how much you've spent total with open aai you get access to different usage tiers
+and to learn more about rate limits and usage tiers back in the platform. open.com you can scroll down to resources and go into rate limits and if I scroll down a little bit you
+can see here all the requirements to get into the different tiers so you start off on a free tier and then once you spend $5 you get into tier one once you spend 50 bucks and have
+the account for at least 7 days you can get to tier 2 and then you can see the rest of the requirements up until tier 5 scrolling down a little bit more here you can see the
+restrictions on the free tier for example The Limited models you have access to how many requests you can make per minute so that's how many API calls you can make per minute and
+if you go to tier one for example you can see now you have a lot more models you can make a lot more requests per minute and then then tier 2 you have even more requests and then
+tier five you have the most requests per minute so right now I'm on usage tier 3 cuz I've had the account for quite a while and I spent a little bit of cash with open AI all right
+next we're going to start looking at the dashboard so in the dashboard you can actually create new API Keys you can OpenAI Dashboard Overview look at your usage you can look at
+your storage so the storage is basically databases where you upload your own custom knowledge and then you can attach it to an assistant which is over here and again the assistant
+is the developer version of a custom GPT so I'm going to be focusing on assistant storage usage and API keys so starting off by looking at the API Keys over here I've got a list of
+all the API keys that I've had and to create a new API key you just click this button and then create a new API key looking at usage I can see my total spend across this last month
+and then I can see my spend for different open AI models so the realtime API is the live speech to speech model and then I've got GPT 40 mini GPT 40 and then over here I can set
+some monthly limits so if I don't want to spend more than 20 bucks in a month I can set a limit and then I'll get a warning when I'm approaching that limit looking at storage you
+have two sections here one is files and one is Vector stores so the files is the individual files that you have uploaded into your openai account and then a vector store is a
+collection of those files and typically you'll get the vector store and you'll attach it to the assistant so if I click into Vector stores I've got a couple different Vector stores
+here and again they can contain a bunch of different files and if I go into the assistant at a high level I'll break this down so you can see that I can set the name of my
+assistant I can set some custom system inst instructions so my own custom prompt for this custom GPT I can choose different models where if I click this I drop down and have access
+to different models and I can enable file search which gives this custom GPT access to different files that I've uploaded so it has access to my knowledge once again you do that by
+creating a vector store which is a collection of files and then attaching it to the assistant we then have code interpreter which I don't typically run for my assistants CU I don't
+do coding tasks with my assistant but this lets you read and write code and then you have function over here which enables your GPT to do custom function calls so it can actually
+make API calls to different places and then you have some more high level model configurations like the response format temperature and top P so this is actually the space where
+you create and configure your custom GPT and over here we have a custom assistant ID and later on in the series when we're working with the assistant API you'll see that we
+actually use this assistant ID to Target this specific assistant and that's you can create many different custom gpts and then isolate them and then pull them out and then plunk
+them wherever you want for example I can create this assistant specifically for my website and then I can Target it using this assistant ID over here all right so that was a high
+level run through of the dashboard and finally let's go across to the playground so like I mentioned before the playground is our testing OpenAI Playground Overview ground for
+prompts and models and the cool thing about the playground is you don't have to write any API calls to use these models and test things out you can actually just choose whatever
+you want over here so using this endpoint over here we can test different models where over here we have a selection of models so if I click this you can see that we have our our
+reasoning models which is the 01 mini and the 01 preview once again the 01 models are for the enhanced reasoning so if you want to plan a five course meal and then scrolling down
+you have the regular chat model so the GPT 40 mini the 40 and then some later versions of the GPT models so you would choose your model over here and then you would create some
+custom system instructions over here to test how your prompt works against that specific model and just like over here we had different use cases for 40 mini for example for a very
+quick recipe or four for the best chicken soup in town you would actually verify that assumption by choosing the 4ro mini and then setting up the system instructions to be a high
+quality Chef so while we're here let's actually demo out my chef Theory so we've got a friend who is a chef and we assume the 40 is going to give us the best chicken soup the 40
+mini is the fastest recipe then the 01 is going to give us the best five course meal plan so back in the playground let's create some system instructions and actually I'm going to
+use this new feature which is called generate and I'm just going to say you are the best chef in town and if I click create now and now open AI has generated a structured prompt
+for me that's going to be tailored for the open AI platform so over here our system instruction is provide detailed and creative responses to culinary questions and I'm not going
+to read the rest of this I'm just going to assume that it's good enough for our use case and I'm going to choose the 40 mini to start with and over here I'm going to ask my
+question all right so I'm going to ask give me a quick pancake recipe let's hit run nice that was a very fast response but as you can see it's not formatted so nicely I can't
+really see the recipe so quickly so then I might go up to here and just readjust the prompt to give me the recipe specifically so let's do that now all right and as you can see
+here now I'm kind of optimizing my system prompt to be suitable for the 40 Mini model so the 40 mini is going to be the fastest response and because I want a fast response I also
+want the shortest output response tailored specifically just to give me the recipe so let's create this now all right nice we can see the prompt kind of just get straight to the
+point in their example and I'm going to copy this now and paste it in and now let's see the updated output using the optimized prompt for the 40 Mini model all right now that is
+awesome so that was just as fast as before and now we have straight away these are the ingredients you need these are the steps and these are the tips so that was fantastic now
+let's say I want to get the best chicken soup in town so I'm going to use the 40 model for this and and I'm going to leave this prompt just to show you that one prompt doesn't fit
+all and I'm going to scroll down and I'm going to say I want to entertain a friend what is the best chicken soup recipe let's hit Run Okay so that was pretty fast but now since I
+want to make sure I have the best chicken soup recipe I kind of just see the recipe here but I'm not fully convinced that it's going to be the best recipe so now let's edit the
+prompt so now I'm setting up the prompt to be once once again you're the best chef in town because we're never going to forget our friend who was a chef but this time we're
+prompting saying that you're going to get asked for premium recipes so please provide the recipe but also explain why you chose that recipe so let's click create all right nice so
+we have the prompt over here I'm not going to read through it I'm just going to send the exact same request and see what the output is so let's hit run all right so that was pretty
+quick and now over here we have okay you want to make an impression with a delightful chicken soup so now I'm actually more appeased because now my chef friend is like okay so you
+want to impress someone I'm going to give you a delightful chicken soup recipe it has fresh flavors aromatic herbs and it's comforting yet sophisticated all out once so scrolling
+down and over here we have this chicken soup is considered premium due to the use of fresh herbs and bright addition of lemon and then more of an explanation this is really cool
+and now if I was hosting my friend I could actually probably take some of what is mentioned over here and when I'm explaining hey I made this soup because of x y and Zed reason now
+I have some more information to back that up so this is this is a really cool way to use this prompt with this model all right and now let's use the 01 model for a five course meal
+now let's choose our model so going up here we have the 01 mini and the 01 preview just like before with the four mini and the four preview the mini is going to be slightly faster
+and cheaper but let's just use the preview model for now and we can immediately see that we don't actually have a prompt over here so right now the 01 model is in preview mode
+which means it doesn't support a system prompt so we would have to actually include the system prompt as part of our first message so I've written out basically hey I want help
+preparing a five course meal suggest a five course meal for me and let me know a plan on how to cook that I made this prompt very short I didn't include anything about you are a
+great chef and you respond in this specific way but let's hit run and see what happens so immediately we get this thinking response which is the assistant in the back end taking
+our request and using some tokens for actually thinking about our request all right and there we go we have our response as you can see it's very long and very comprehensive and it
+took around 10 to 15 seconds to come up with this and wow we have a menu so all five courses we've got a cooking plan from 2 days before one day before the morning of dinner so
+this is actually I wouldn't even thought about starting to cook 2 days before to be honest so I might just show you that I've never made a five course meal before but I might have
+to now so there you go we've just demoed a chef friend to help us make a very quick recipe and we had to use a specific prompt for the 40 Mini model which was different the 40
+model and then we saw for the 01 model which is still in preview mode we couldn't actually include a system instruction but in the same way we made a custom prompt for the 40 mini
+and the 40 we will do the exact same for the 01 model so now looking here a little bit more we have the real time endpoint which is the live speech to speech model then we have the
+assistance model over here so if we click this we can actually select any of the previous assistants that we made and then interact with them over here so once again we have access
+to changing our system instructions changing the model changing the resources that we upload to our assistant and when we have the conversation we can just review the conversation
+and then make edits on the Fly just like before then we have our text to speech model where we can enter our message and have the output generated as human speech and then this is
+a legacy model which is the completions which you can still use but that's been superseded by different models so at this stage just to recap what we've done we've gone to
+platform. Recap of Video open.com and we've looked around the docs specifically looking at the various API calls we can make and the various models that we can use which we
+discussed over here the most common ones that we'll be using would be the chat completions image audio and the assistance API endpoints we spoke about why models would be upgraded
+and when they are upgraded what kind of changes we can expect we spoke about our Chef friend who is excellent at recommending the best chicken soup in town for for giving us a
+quick pancake recipe and for helping us plan days in advance to prepare a five course meal we then logged into our open AI account and we explored the settings tab we looked at our
+organization name and organization ID we spoke about how we would need certain information to authenticate calls within tools like make.com and we also looked at how to access them
+so in the general tab we have organization ID we then looked at billing and limits so how to add funds to our account and how to add certain limits so that we don't overspend we
+then went across to the dashboard and we spoke about generating API Keys how to see our exact usage costs for the month and for different models we looked at the storage section so
+we learned about the difference between a file and a vector store we learned that a vector store can be added to an assistant and that a vector store is a collection of files we
+also briefly looked at assistance and now we know that they are the backend version of a custom GPT that you can deploy anywhere we then went into the playground and we had quite a
+lot of fun with this chat endpoint over here where we were prompting up our Chef friend using this new open AI feature and we were able to see that different models need different
+prompts and they can give out different responses and then at a high level we just browse through these things over here and to get you excited for the next video in the series
+we're actually going to be exploring the API reference information which is going to give us all the information we need on how to get started with making API calls how to
+authenticate API calls and then we're going to be trying out API calls for the chat completions image generation and audio endpoints and all of this is going to get us very
+experienced with using the open AI API so that later in a series when we start using the assistance API this is no hard work for us and that wraps up our introduction to the open
+AI platform now you have a solid foundation of how everything fits Outro & Next Steps together and where to find everything that you need now next up in part two we're going to
+write our first actual API calls and that's where the fun begins we're going to set up our API keys and we're going to start coding with AI thanks for watching the first part of
+the open AI API Master Class if you found this helpful consider subscribing to you can catch the rest of the series all right see you in part two All From Bart
+Slodyczka0:00Yesterday at OpenAI dev day, Sam Waltman walked on the stage in San Francisco and said, "Your entire tech stack is deprecated." That's not a direct quote. 0:088
+secondsI'm just paraphrasing. But we have about a half dozen newly released features that will change the way developers build AI powered apps in the future. The 0:1616

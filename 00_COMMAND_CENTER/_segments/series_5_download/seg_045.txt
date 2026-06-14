@@ -1,0 +1,223 @@
+5:43 serverless options as we'll see later 4. App Engine Flex 5:45 the next option though is the app engine 5:47 flexible environment the primary 5:49 difference 5:49 is that
+instead of a sandboxed 5:51 environment you have full control over 5:52 the environment with docker 5:54 that means you can install any version 5:55 of node.js that you'd like
+along with 5:57 any other low-level system dependencies 5:59 but at the same time the cloud will 6:01 still automatically scale those vms up 6:03 or down based on the incoming
+traffic 6:05 and again this is called a platform as a 6:07 service and is very similar to things 6:09 like heroku 6:10 or elastic bean stock on aws all you 6:12 have to do is
+change the runtime to flex 6:15 in the app.yaml file 6:16 then add a docker file to the root of 6:18 the project app engine will 6:20 automatically manage the docker image 6:22 and
+containers for you 5. Kubernetes 6:23 but in some cases developers want more 6:25 control to orchestrate exactly how their 6:27 infrastructure scales 6:28 and that's where
+kubernetes comes in i 6:30 once heard a wise quote about kubernetes 6:32 that went something like you don't 6:34 [ __ ] need kubernetes 6:35 and i think that's true for the vast
+6:36 majority of developers out there if you 6:38 remember earlier deploying to a regular 6:40 vm 6:40 requires a lot of configuration 6:42 kubernetes also requires a lot of 6:44
+configuration 6:45 but provides a predictable framework for 6:46 scaling your infrastructure 6:48 it's popular for large teams who have 6:50 extreme demands on their infrastructure
+6:51 apps like robinhood and pokemon go use 6:54 kubernetes behind the scenes 6:56 but if you're just deploying a little 6:57 side project then kubernetes is probably 6:59 way too
+expensive and complicated 6. Cloud Functions 7:01 but at the other end of the complexity 7:03 and cost spectrum we have 7:05 serverless functions just like the app 7:07 engine
+standard environment 7:08 cloud functions provide a set runtime 7:10 and allow you to deploy your code 7:12 without ever having to think about the 7:13 underlying infrastructure
+7:15 in fact you can just copy and paste your 7:16 code directly into the ui to deploy it 7:19 the primary difference here compared to 7:20 something like app engine 7:21 is that
+our servers are ephemeral or 7:23 short-lived and that allows google to 7:25 bill us for the exact amount of 7:27 resources that we use instead of paying 7:29 a fixed monthly price
+for a server 7:31 we pay a tiny amount each time a 7:33 function is invoked in addition you can 7:35 trigger cloud functions based on many 7:37 different events that happen in the
+7:38 cloud like when a record is updated in a 7:40 database or when a file is uploaded to a 7:42 storage bucket and that makes it much 7:44 easier to run background jobs compared
+7:46 to other approaches cloud functions are 7:47 a very easy and inexpensive way to 7:49 deploy a node app but there are a few 7:51 caveats that you need to be aware of 7:53 in
+our case we have an endpoint that 7:54 needs to support websockets 7:56 however because cloud functions are 7:58 short-lived we can't really implement 7:59 web sockets in them 8:00
+another issue you might run into is 8:02 something called the cold start time 8:04 when a function is first allocated in 8:06 the cloud it might take a little while 8:08 to get
+things set up and produce a very 8:10 high response time on the initial 8:11 request 8:12 another drawback is the fact that you 8:14 have no control over the runtime when 8:16
+using a serverless function 7. Cloud Run 8:17 but there's actually one more deployment 8:19 option we can use to get around this 8:20 limitation called cloud run 8:22 it works just
+like a serverless function 8:24 but instead of using a predefined 8:26 runtime you can customize it by 8:27 containerizing your application with 8:29 docker 8:30 allowing us to
+specify the bleeding edge 8:32 version of node.js 8:33 along with any other low-level 8:34 dependencies that we might need once 8:36 we're able to run this app with docker 8:37 we
+can then upload the image to the 8:39 container registry then use the image to 8:41 create a new cloud run deployment and 8:43 now we have all the benefits of 8:44 serverless like
+automatic scaling 8:46 and pay-as-you-go pricing while also 8:48 having a lot more control over the 8:50 underlying server and as an 8:52 added bonus we can set a minimum number
+8:54 of instances to reduce the cold start 8:56 time 8:56 although that comes at a higher cost and 8:58 with that we have seven different ways 9:00 to deploy 9:00 a node.js
+application if you want to see 9:02 some of these deployment options in 9:04 action 9:04 consider becoming a pro member at 9:06 fireship io to get access to my full 9:08 courses
+thanks for watching and i will 9:10 see you in the next one All From Fireship Intro 0:00 hey guys and welcome back to a new video 0:01 in this video just very quickly I want 0:03
+to show you five things that you 0:06 definitely need to make sure of when you 0:08 want to deploy your Android app to 0:10 Google Play so take this as a deployment 0:12 checklist
+if you think about pushing an 0:15 app to Google Play to definitely make 0:16 sure you apply these Five Points number 1. Enable code obfuscation and code shrinking 0:18 one is you
+should definitely have code 0:20 obfuscation and code shrinking enabled 0:23 so here I am in a random project from my 0:24 previous video about encrypted data 0:26 store that
+doesn't matter but in Android 0:28 you have this build Gradle file in which 0:30 you have your Gradle config and down 0:32 here for the release build type you have 0:34 this
+Boolean is Minify enabled and by 0:37 default it's actually set to false but 0:39 you want to set this to true because 0:42 that will use R8 which is a code 0:46 optimization tool
+which will in the end 0:48 just obfuscate the source code of your 0:50 app before packaging it into an APK 0:53 obfuscation means that all your function 0:55 variable class names
+that are very human 0:58 readable in the actual source code will 1:00 be converted to very unreadable names 1:03 for the actual release build so what was 1:05 previously main
+activity will maybe just 1:07 be um b c or so so some random sequences 1:11 of letters and this on the one hand has 1:13 the advantage that of course your 1:15 resulting APK will
+be smaller since 1:18 possibly longer class names longer 1:20 source code files will be converted to 1:22 Shorter files with um shorter names and 1:24 it also has the side effect
+that your 1:27 app will be harder to reverse engineers 1:29 so someone a possible attacker who might 1:32 get your APK can of course try to 1:34 extract the source code of that
+again 1:36 and I don't know try to find sensitive 1:39 data try to find certain API Keys 1:41 certain secrets and if you Minify your 1:43 app with code officiation then that'll
+1:45 of course be quite harder since the 1:48 attacker can't easily read your class 1:50 names and can't easily navigate through 1:51 the code base it's important to say that 1:53
+R8 is uh meant to be a code optimization 1:56 tool and not strictly meant to be used 1:58 for security it has that side effect and 2:01 it does make reverse engineering your 2:03
+app harder but if you if you have really 2:05 sensitive data in your app and you um 2:07 really rely on the maximum layer of 2:09 security then the same makers that are 2:11 also
+behind our a and progard also have 2:14 other tools um one of them is for 2:15 example called Dex guard which really 2:17 apply multiple layers of obfuscation and 2:20 uh is really
+meant for security ideally 2:23 your app should not have any secrets in 2:25 the code sometimes that's unavoidable 2:27 but quite often it is apart from uh 2:29 setting is minifi
+enable to true I would 2:31 also set is shrink resources to true so 2:34 this will simply uh just remove 2:36 unnecessary resources in your uh 2:39 resource package here if you
+maybe have 2:41 uh resources that are not used maybe not 2:44 used at all or not used for a certain 2:47 device configuration then um setting 2:49 this to True will really um
+remove the 2:51 unused ones and not package it into your 2:54 resulting APK maybe what's important to 2:57 say um about this code ofation here is 2:59 test this 3:00 um don't just
+set this to true and then 3:02 push your release bu to Google Play you 3:04 need to test this this can and likely 3:06 will break things um especially if you 3:08 have for example
+um dto so the actual 3:13 data classes that represent adjacent 3:15 structure or so where very often we are 3:17 using the cotland data class field names 3:20 as the same field
+names of our adjacent 3:23 structure so it's automatically Powers 3:24 um but if you Minify your code then 3:27 these field names will be renamed and 3:28 then don't match the Chas
+instruction 3:30 anymore for example and then your code 3:31 will break in the release build that's 3:33 of course not what we want um so you 3:35 would need to exclude certain
+classes 3:37 and that works via these prut rules here 3:38 so here you can specify for example 3:40 certain packages you want to exclude 3:42 certain classes certain patterns 3:44
+sometimes also libraries specify um 3:46 which rules you have to adhere to your 3:48 progard rules file in order to not make 3:51 that Library code break then the second 2. Set up
+analytics and crash logging 3:53 thing you should definitely make sure 3:54 before launching and deploying your rep 3:56 to Google Play is to properly set up 3:59 analytics and
+crash logging in your app 4:01 there are tons of analytics and crash 4:03 logging Frameworks the two most popular 4:05 ones are probably Firebase analytics and 4:07 crash litics
+both from Google but I've 4:10 also had clients who say um that is a 4:12 bit problematic maybe for the privacy 4:14 policy of the app if a data is being 4:15 sent to Google um so
+they're also valid 4:17 Arguments for other thirdparty uh 4:20 analytics Frameworks and crash lugging 4:22 Frameworks so feel free to play around 4:24 try whatever works for your
+case but I 4:27 would definitely make use of of these 4:29 framework Works Firebase analytics or an 4:31 analytics framework itself is used to 4:34 just gather more data about your
+users 4:37 behavior and this is just so so 4:39 important to understand what users are 4:41 actually doing in your app in order to 4:43 improve your app if you're launching an 4:44
+app to Google Play you of course want to 4:47 know which parts of your app are used a 4:49 lot which parts um might not be so 4:51 important or might not be worth spending 4:54
+more time on because usually you really 4:56 want to start with an MVP version of 4:58 your app and then find out what users 5:00 like the most and then put more focus on 5:02 that
+put more focus on what users are 5:04 actually requesting and less focus on 5:06 what you think users want but they 5:08 actually don't so that is what analytics 5:10 Frameworks
+are for on the other hand 5:12 crash logging Frameworks like crash 5:13 litics is used for just finding out when 5:17 an app crashed on one of user's devices 5:19 maybe why that
+happens so you get the 5:21 crash locks of course but also to get 5:22 all the relevant uh data around that 5:25 crash so which device it happened on 5:27 which API level maybe
+which uh 5:29 configuration um was it in landscape in 5:32 portrait mode and so on it's everything 5:34 that just helps you to trace down a 5:36 possible bug that causes such a
+crash 5:38 something else that is I would say 5:40 optional but can also help is that you 5:42 just add analytical locks to your app 5:45 that are just part of your crash logs so
+5:47 you could for example lock certain 5:49 things the user does with your analytics 5:51 or crash logging framework like the user 5:54 clicked on the apply button the user 5:56
+entered that the user entered this so 5:58 that you just see this as part of your 5:59 stack Trace because that will really 6:01 help you uh to trace down certain issues 6:03 to
+just understand what the user did but 6:06 most of these crash loging Frameworks 6:07 are actually quite Advanced and also 6:09 show you certain screenshots maybe what 6:11 the
+user sees what they did um so 6:13 depending on your use case you might 6:15 want to add um extra locks if you need 6:17 more information need to place this in 6:19 your source
+code um but if you say you 6:20 don't need that then you're usually fine 6:22 with what the crash logging and analytic 6:24 Frameworks already offer you okay so now 6:26 you've
+enabled code ofation you've 6:27 enabled resource shrinking you have made 6:30 sure that you are using crash loging 6:33 framework analytics framework the third 3. Test your app on
+various devices 6:35 thing you should definitely make sure is 6:37 that you should of course test your app 6:39 not only on the ulators that Android 6:41 Studio offers you but on
+as many various 6:44 device types as possible because that is 6:45 really one of the main difficulties we 6:47 face with Android development that they 6:50 are just different
+manufacturers and 6:51 they all have their own kind of 6:53 adjustment of the Android operating 6:55 system which all has their own kinds of 6:58 tweaks and special 7:00 so just
+because your app runs on a 7:01 Google pixel environment which all the 7:03 Android emulators are based on that does 7:05 not automatically mean that it will also 7:06 run on
+Samsung devices on Hua devices 7:09 and so on so ideally you have some 7:11 physical devices yourself at home as an 7:13 Android developer to to test this on um 7:15 but you will
+probably not have like 15 7:17 devices with the different manufacturers 7:19 different API levels at home um so there 7:21 are of course Solutions around that um 7:23 one very
+popular one is called Firebase 7:26 test lab that's also a service from 7:28 Firebase Al Cloud testing solution where 7:31 Google pretty much provides physical 7:34 Android devices
+various physical Android 7:36 devices you can then um R run and test 7:38 your app on this has a free version for 7:41 I think five or 10 daily uses so daily 7:44 test runs um but
+of course if you have a 7:47 real Financial incentive of deploying 7:49 your app then uh it might also be worth 7:52 actually paying for such a service but 7:53 that's again just a
+popular option with 7:55 Firebase Tesla but there there are 7:56 multiple of such Cloud providers just 7:58 make sure uh that you don't assume your 8:01 app will run on all devices
+just because 8:03 it runs on one point number four is you 4. Read trough the Google Play policy 8:05 should definitely read a little bit 8:07 through the Google Play policies that
+is 8:09 one of the major pains uh that we have 8:11 to deal with when deploying something to 8:12 Google Play Google Play is strict and 8:14 got a lot strict or overtime um based
+on 8:17 which apps are approved what you have to 8:19 comply with and you can definitely save 8:22 a lot of such pain um by just getting an 8:25 impression of such uh policies here
+you 8:27 don't have to read read through these 8:29 from A to Z but getting a feeling for 8:31 what is allowed what Google doesn't want 8:33 to see or maybe here and so I am here
+on 8:36 the Google Play developer content policy 8:38 um just getting a feeling here for 8:40 example for permissions that is a big 8:42 thing if your app uh uses certain 8:44
+permissions then Google often has 8:46 special requirements that your app needs 8:47 to fulfill intellectual property like if 8:50 you're using some other people's images 8:52 in
+your app then this might be declined 8:54 if you have monetization how that needs 8:56 to work that you need to use the Google 8:57 play apis for in a purchases these kinds 9:00 of
+things you should definitely get a 9:01 feeling for what Google wants to see in 9:03 their store and what they don't because 9:05 Google Play rejections are really really 9:07 a
+pain to deal with and the last thing 5. Optimize your Google Play Listing Before Deployment 9:09 you should spend some time for before 9:11 deploying your app to Google Play is
+9:13 your Google Play store listing so how 9:15 will you present your app in Google Play 9:17 so here in Google Play This is now in in 9:19 German but it doesn't matter for what I
+9:21 want to show you for example this game 9:23 just make sure you have a descriptive 9:25 title um maybe do some keyword research 9:28 so to just find out which terms users of
+9:31 Google Play actually search for 9:33 frequently and how much competition 9:35 there is and based on this keyword 9:36 research you can then Place some of 9:38 these keywords
+where there might not be 9:40 a lot of competition but uh for for 9:42 terms that are still searched a lot you 9:44 can place these keywords in your place 9:46 or listing like
+maybe in the title if 9:48 that fits but most importantly also in 9:50 the description make the description 9:51 easy to scan um so don't just Place 9:53 everything in one large
+huge paragraph 9:56 but also work with multiple paragraphs 9:58 maybe work with bullet point so just 10:00 make it easy for a user to scan this to 10:03 avoid them needing to read
+your 10:04 description from A to Z then make sure 10:06 to use wording that your audience also 10:09 understands so for example if you have 10:10 such a Blog blast game here then
+think 10:13 about what your target audience is of 10:15 that app here it's a probably a pretty 10:17 broad target audience from young to old 10:19 so you should make sure that also
+old 10:21 people un understand what your app is 10:23 about if you maybe have an app for 10:25 developers then it's probably more okay 10:28 to make use of technical terms we can
+10:29 assume that someone who installs your 10:31 app also knows these technical terms but 10:33 just make sure that your target audience 10:35 understands your Google Play store
+10:37 listing and think about your target 10:38 audience in the first place if you're 10:39 curious about how to do the keyword 10:41 research there are plenty of websites 10:42
+online just search for um Google Play 10:45 keyword planning tool or so you will 10:47 find lots of websites just enter your 10:49 keywords you want to find out more about 10:51
+you want to research and then they will 10:53 usually show you um how much traffic 10:56 there is how many people search that how 10:57 much competition um what the ual prices
+11:00 if you want to um advertise that so with 11:03 paid advertisement and so on in this 11:05 video description you will find very Outro 11:07 detailed Android premium courses
+that 11:09 will help you to prepare for the Android 11:10 industry in 2025 so if that's something 11:13 you want to get ready for check these 11:15 courses out and other than that
+thanks 11:16 so much for watching I will see you back 11:17 in the next video have an amazing rest 11:19 of your week bye-bye 11:25 [Music] All From Philipp Lackner Intro / What we
+are covering 0:00 So, a couple weeks ago, my app got 0:01 hacked. I made a video about it, shared 0:03 some security tips, and I was honestly 0:04 surprised by the response. A ton
+of you 0:06 guys reached out and said you wanted to 0:07 know more about how to protect your 0:09 apps. So, I decided to make a dedicated 0:11 video about the most common security
+0:12 mistakes that I'm seeing right now, 0:14 especially if you're building with AI or 0:16 you're using something like Superbase or 0:17 Firebase. A quick disclaimer before we
+0:19 get into it. This is not a comprehensive 0:21 security video that would take like 100 0:22 videos. These are just the most common 0:24 things that I'm personally seeing, 0:25
+especially with apps that were quickly 0:27 made with AI. So, keep that in mind. If 0:28 you're new here, welcome to the video. 0:30 My name is Chris and I build 0:30 productivity
+apps. I've been an iOS and 0:32 React developer for over 10 years and 0:34 I've made every single mistake that I'm 0:36 about to talk about in this video. So, 0:37 I'm not coming
+at you saying that I'm 0:39 some amazing developer and I'm better 0:40 than everyone. I'm telling you this 0:42 stuff because I've made these mistakes 0:43 and I've dealt with the
+consequences. I 0:45 mean, even just a few weeks ago, if you 0:46 saw my video, I recently got hacked. But Row level security (RLS) mistakes 0:48 let's jump into it. The number one
+issue 0:49 that I've been seeing so far is 0:51 misconfigured RLS or rowle security. If 0:54 you do any sort of vibe coding with AI 0:56 or you've used Superbase or Firebase, 0:58
+you have probably heard of RLS. And if 1:00 you're not technical, you probably heard 1:01 it and just completely ignored it. 1:03 There's also been a ton of drama with 1:04
+vibecoded apps getting hacked, data 1:06 breaches, all the data leaking. Almost 1:08 every single headline that you've seen 1:09 where this has happened is probably 1:11 because of
+a misconfigured RLS. So, let 1:14 me quickly explain what RLS is in the 1:15 simplest way possible. So, the way that 1:17 apps are supposed to work is you have 1:19 your front end,
+which could be your 1:20 application. This is what your users 1:22 see. And then you have a backend. And 1:23 then [music] you have a database which 1:25 is where all of the user
+data is being 1:26 stored. The way that apps have been 1:28 built in the past, your front end should 1:29 never talk directly to the database. It 1:31 has to go through the back
+end to do 1:33 that. This was the correct and most 1:35 secure way to build an app. And then 1:36 came Firebase and Superbase and their 1:38 whole pitch was you don't need a
+backend 1:40 to develop an app. They gave you these 1:42 client libraries that you install on 1:44 your app directly on the front end and 1:46 your app can talk directly to the
+1:48 database securely. This was a very 1:50 controversial thing because it goes 1:51 against this whole front-end backend 1:52 database architecture that most apps had 1:55 at the
+time. Now, obviously, this wasn't 1:57 great from a security standpoint. People 1:58 were like, "This is really insecure. How 2:00 can your app talk directly to the 2:01 database?"
+So, their solution was to add 2:03 something called role- or in the case of 2:05 Firebase, it's called Firebase Security 2:07 Rules. They're basically the same thing. 2:08 What RLS
+does is it acts as a filter. 2:11 So, even though your app is talking 2:12 directly to the database, RLS limits 2:15 what it can access. So you can set rules 2:17 like a user can
+only access their 2:20 specific data from the database. That is 2:22 an RLS configuration. Without RLS, 2:24 someone could hit your database and just 2:26 download the entire
+thing. But when RLS 2:28 is configured correctly, they should 2:29 only be able to access their own data. 2:31 And technically, this does work. It is a 2:33 good solution. But
+there is a huge 2:35 problem and it's if you misconfigure 2:36 this, it can be very devastating. 2:38 Firebase actually had a huge issue with 2:40 this. Previously, when you spun
+up a 2:41 Firebase instance, their security rules 2:43 or their RLS was completely off. So 2:45 everything was just open to view and 2:47 download by default. They did this so 2:48
+developers could move faster without 2:50 getting bogged down by having to write 2:51 these security rules. And they tried 2:53 adding a warning on their site that 2:54 says, "Hey,
+before you go into 2:56 production, make sure to configure these 2:57 security rules correctly." But that 2:59 wasn't enough. So many apps got hacked 3:00 that they actually had to
+change their 3:01 policy where it's off by default, but 3:04 then they're going to automatically turn 3:06 it off after a certain number of days 3:07 and they'll automatically lock
+your 3:09 database. That's how bad it got. And now 3:11 with things like vibe coding, the 3:12 problem has gotten a lot worse because a 3:13 lot of people don't know how this stuff
+3:15 works. And honestly, I don't even blame 3:16 them because I have misconfigured RLS 3:18 and Firebase security rules so many 3:20 times whenever I was doing it by hand. 3:22 In
+my case, for my calorie tracking, 3:23 Amy, I'm using Superbase and I was 3:25 confident I configured RLS correctly. I 3:27 even had Claude and Cursor double check 3:29 it. But I
+made a big mistake. I had RLS 3:31 configured correctly where users can 3:33 read and write only their own data. But 3:35 I made the mistake of storing the 3:37 subscription status
+and the rate limits 3:39 on the same table, which meant that they 3:41 were able to actually modify their 3:43 subscription status to give themselves 3:45 premium. And even worse,
+they were able 3:46 to modify the rate limits and then they 3:48 could just hit my AI endpoint unlimited 3:50 and just rack up a $10,000 bill. Now, 3:52 before you say, why didn't
+you ask 3:53 Claude or Cursor to audit your RLS? 3:55 Trust me, I did. It did not catch these 3:57 issues either. These tools are great at 3:59 catching most RLS misconfigurations,
+but 4:01 then when it gets to something a little 4:02 more complicated, like thinking through 4:04 how can RLS be manipulated so that they 4:06 can abuse costs and cause financial
+4:08 damage, it sometimes does miss this 4:10 stuff, especially when the RLS is 4:11 technically correct. But the problem is 4:13 with the underlying data that you're 4:15 storing.
+So, I actually decided to audit 4:16 a couple people's apps in preparation 4:18 for this video to figure out how 4:20 prevalent is this problem, especially if 4:22 you're using
+something like Superbase. 4:23 Some of the apps were vibe coded by 4:24 nontechnical people, but a lot of them 4:26 were actually vibecoded by people like 4:28 myself who do have
+technical experience, 4:30 and over half of them had the exact same 4:32 problem. I was able to manipulate the 4:34 apps to give myself premium access and 4:36 basically just
+configure any of the 4:38 fields that I wanted. There was one 4:39 instance I was able to download a user's 4:41 entire table so I can see all the data 4:44 on Superbase. I saw
+information I was 4:46 absolutely not supposed to see. And this 4:48 is a very common problem. Again, you 4:50 probably have seen some news articles 4:52 about vibecoded apps that
+were leaked. 4:54 That is usually due to a misconfigured 4:56 RLS configuration. So, obviously, my 4:58 number one tip here is to doublech 4:59 checkck your RLS configurations. And
+not 5:01 just in a general way like asking cloud 5:03 code, hey, check my RLS configuration. I 5:05 mean in a very specific way, like try to 5:07 think through specific scenarios
+of 5:09 where RLS will fail. So, you need to 5:10 prompt it with very specific things like 5:13 [music] can users bypass their 5:15 subscription status? Can they modify 5:16 their
+rate limits? Is there a scenario 5:18 where a user can read another user's 5:21 data? Can they abuse anything? 5:23 You have to be a little bit more 5:24 creative and do some
+critical thinking 5:26 if you want to catch these things. To 5:27 help you guys out, I actually created a 5:28 markdown file, completely free. I'll 5:30 just leave it in the link
+below if you 5:32 want to go check it out. It has a bunch 5:33 of common scenarios that I've seen. Feel 5:35 free to just feed this in to Claude Code 5:37 and Cursor and ask it to
+go audit your 5:39 codebase. If it does catch something, 5:40 please let me know in the comments 5:42 below. And specifically, the most common 5:43 vulnerability pattern I'm seeing
+with 5:45 RLS is storing sensitive data like 5:47 subscription status or rate limits on 5:49 the user table itself. I don't know why, 5:52 but cloud code and cursor just do not
+5:54 have a problem with you doing this. The 5:55 second most common pattern I'm seeing 5:56 with RLS is misconfiguration where users 5:58 can see other people's data. Probably
+6:00 very surprising to hear for most people. 6:02 Like that just seems so basic, but it 6:04 does happen a lot. Again, check out the 6:05 news articles if you want to see cases
+6:06 of this happening. And one more very 6:08 important thing. If you're using cloud 6:10 code and cursor, please use the 6:11 superbase or firebase mcps. Even if 6:14 you're
+using AWS and Azure, use the CLI 6:16 and give it to cloud code and cursor so 6:17 it can audit the configurations 6:19 directly. It's so much better than 6:21 trying to take
+screenshots or SQL dumps 6:23 and pasting them directly. Just give it 6:25 access directly to the configurations. Wispr Flow (My favorite dictation tool) 6:26 By the way, you
+probably saw me going 6:28 back and forth with cloud code when I 6:29 was asking it about RLS and security. 6:31 And you probably noticed I was dictating 6:32 all of that. I get
+asked all the time 6:34 what I'm using for dictation, and the 6:36 answer is Whisper Flow. And a huge shout 6:37 out to them for actually sponsoring this 6:39 video. Whisperflow is
+smart voice to 6:40 text that works in any app. [music] And 6:42 the reason it's perfect for developers 6:44 is it understands developer terminology. 6:46 So when I say something
+like [music] use 6:48 state superbase RLS policy, web hook 6:51 handler, 6:53 it gets it right every single time. And 6:54 they also have integrations with cursor 6:56 and windsurf
+where it can actually 6:57 understand the codebase and tag files 6:59 and variables without you typing 7:01 anything. So I can say something like, 7:03 [music] can you please
+analyze 7:04 superbase.ts? ts 7:06 and it correctly tags the file. And it's 7:08 not just for coding. They have an iOS 7:10 and Android app that I use all the time. 7:12 Like when
+I respond to YouTube comments, 7:14 this is how I do it. It helps me be very 7:16 thorough with my responses. And 7:17 obviously, I use it in things like 7:18 iMessage and Slack,
+too. I'll leave a 7:20 link in the description if you want to 7:21 check it out. They also gave me a code 7:22 for 1 month free, and that's on top of 7:24 the existing 14-day trial
+you get with 7:26 Whislow Pro. They did not have to give 7:28 me the code. I'm the one that asked for 7:29 that. So, a huge thank you to them for 7:30 providing that. [music] But
+going back Rate limits (even for non AI services) 7:32 to the mistakes, mistake number two is 7:33 adding no rate limits. This is a huge 7:35 one, especially if you have an app
+that 7:37 has any sort of AI features. You might 7:39 be thinking to yourself, well, I put 7:41 limits on my front end, so they can only 7:42 generate five generations a day. But
+the 7:45 problem is, if someone finds your 7:46 endpoint, they can bypass any limits you 7:49 put on the front end because they're 7:50 going directly to the back end. And 7:52
+finding those backend endpoints is not 7:54 hard at all. Anybody can see this in the 7:56 network tab. And yes, this does apply to 7:57 mobile apps. Even though there's no 7:58
+network tab, it is very easy to get 8:00 those requests for a native app. So you 8:02 need rate limits on the back end because 8:04 front-end rate limits are not going to 8:06 cut
+it. It's super easy to implement. 8:07 You can ask cloud codecursor to do it 8:09 for you. The way that I personally do it 8:10 is I have per user rate limits. That way 8:13 I can
+raise them for a specific user if 8:15 there is a legitimate use case. I store 8:17 the number of generations a user has 8:19 made on a table and I store what the 8:21 rate limits
+are for that user also on 8:23 the table. And then every time someone 8:24 calls the back end, I just check to see 8:25 if they're within this limits before I 8:27 let the requests
+[music] go through. But 8:28 let's remember mistake number one, the 8:30 RLS. If you do choose to go this route, 8:32 make sure not to put the limits on the 8:34 same table as the
+user data that they're 8:37 allowed to edit. That's the mistake that 8:38 I made with my calorie tracking app. So 8:40 choose very carefully and audit where 8:42 you're going to
+store them. Another 8:43 approach which you can use in 8:45 combination with this per user rate 8:47 limits is to add IPbased rate limiting. 8:49 So, this is where you set it up
+where a 8:50 single IP address can only hit your 8:53 backend endpoints and specifically the 8:55 AI endpoints a certain number of times 8:57 per hour, per minute, per week if you
+8:59 wanted to. It's super easy to set up. 9:01 Just ask Claude Code and Cursor to do it 9:03 for you because even if someone spins up 9:04 a million accounts and finds a way to
+9:06 bypass your userbased rate limiting, the 9:09 IPbased rate limiter should stop them. 9:11 Technically, they can rotate their IP 9:12 address with proxies, but at that point,
+9:15 it is so costly for someone to do this, 9:17 and it's usually just not worth it that 9:18 I honestly would not worry about it. 9:20 Even if you don't have AI features, it's
+9:22 still good practice to add these limits 9:24 because you don't want someone to 9:25 unnecessarily spam your endpoint, even 9:27 unintentionally. And if you're using 9:29
+something like Firebase and Superbase, 9:30 you should put these limits in place 9:31 because these are still technically 9:33 usagebased services. So, you're getting 9:35 charged
+based on the number of reads and 9:37 writes to the database or how much 9:38 bandwidth you're consuming with 9:39 Superbase. So, you want to add these 9:40 limits because someone
+could in theory 9:42 hit up these services and then just rack 9:43 up a huge bill that way. And there are a 9:45 lot of cases of this happening where 9:46 people woke up to a
+$50,000 bill. So, 9:49 please add these type of limits even if 9:51 you have no AI features. Mistake number Sensitive frontend calls 9:53 three is calling AI endpoints or other
+9:55 sensitive API calls directly from the 9:58 front end. I have seen way too many 10:00 people do this. And to be honest, a 10:02 couple years ago when I was just 10:03 starting
+out, I was also making the same 10:05 mistake. I was calling things like 10:07 Stripe directly from the front end, 10:08 which I don't even think they allow you 10:09 to do that
+anymore. And yes, it's not 10:11 just AI endpoints. It could be something 10:13 sensitive like Stripe calling that 10:14 directly from the front end, which is 10:16 bad because
+that means someone can take 10:17 that endpoint, manipulate prices or 10:19 subscription tiers before it hits your 10:21 server. I've also seen people calling 10:22 things like
+email services like Send 10:24 Grid and Postmark directly from the 10:26 front end, which is bad because someone 10:27 can take those endpoints and those keys 10:29 and then start
+sending emails as you. 10:31 The other thing I've seen is people call 10:32 cloud storage providers like AWS S3 10:35 directly from the front end with 10:36 hard-coded credentials.
+And in some 10:38 cases, this allows people to download 10:39 and upload whatever they want to your S3 10:42 bucket. And obviously, the big really 10:44 bad thing I'm seeing is
+people calling 10:46 AI providers directly from the front 10:48 end. Let's say you have a photo 10:49 generation service, for example, calling 10:50 Vertex AI with Nano Banana
+directly from 10:53 your front end. That is such a bad idea 10:55 to do that because someone can then 10:57 intercept your key and then use it for 10:58 whatever they want and rack
+up a huge 11:00 bill that you have to pay for. The 11:01 solution to this is very simple. All you 11:03 need to do is make sure that these calls 11:05 are being done from your
+backend, not 11:07 your front end. And if you don't have a 11:08 backend setup, this is where Superbase 11:10 Functions and Firebase Functions do come 11:12 in. And by the way,
+this is the solution 11:14 that Firebase and Superbase came up with 11:15 to deal with this problem with their 11:17 whole you don't need a backend type 11:18 offering. There's
+also a huge 11:19 misconception, especially with mobile 11:20 development, that if you put your API 11:23 keys in an environment variable, it is 11:25 just secure automatically.
+That is not 11:27 the case. Most environment variables on 11:29 all front ends are exposed. Environment 11:32 variables are only safe on a backend, 11:35 which is why you have to
+call these 11:36 sensitive endpoints only from your 11:37 backend. So, let me just clear that 11:39 misconception right here. If your 11:40 environment variable is in the front end
+11:42 or again, if it's in the mobile app, it 11:44 can be found. Do not store anything 11:46 truly sensitive there. Another issue I'm 11:48 seeing that's semi-related to this is
+Budget caps (and spend alerts) 11:50 not adding budget caps. Whatever 11:52 provider you're using, make sure to add 11:54 a budget cap so that if you hit that 11:56 budget cap,
+then the services just shut 11:58 off completely. It is so much better for 11:59 your app to go down for a little bit 12:01 than for you to wake up with a $10,000 12:03 bill. This
+is kind of embarrassing, but 12:04 I made a huge mistake a couple years ago 12:06 where one of my environment variables 12:08 got leaked, which was an AWS key that 12:11 just had
+too many permissions attached 12:14 to that key. Absolutely no budget cap 12:16 either. But I woke up to a $30,000 bill 12:19 where someone took the key and then used 12:21
+something called AWS SageMaker to do 12:23 machine learning training on my key. I 12:25 got lucky and the bill was waved to 12:26 about $2,000. So still $2,000, but I 12:29 mean
+way better than $30,000. But that 12:31 was an eye opening experience. I think 12:33 from that day forward, that's when I 12:34 started taking budget caps, hiding 12:36 environment
+variables, all this stuff 12:37 way more seriously. And unfortunately, 12:39 some services don't have budget caps. So 12:41 at the bare minimum, make sure to have 12:42 alerts set
+up where you get notified if 12:44 you're approaching a budget cap. There 12:46 are some workarounds on services like 12:48 Firebase, for example, where you can 12:50 actually set
+something up to call the 12:53 Google billing API and just shut off 12:55 spend automatically for you. I 12:56 absolutely hate how Firebase and some 12:58 services don't do that.
+It's just so 13:00 malicious in my opinion that they don't 13:02 have that. But the world's not fair and 13:03 you sometimes just have to set that up 13:04 yourself. Okay, so let's
+talk about 13:05 something that's probably going to make 13:07 some developers a little bit mad. A Is vibe coding / llm coding insecure? 13:09 question I keep getting is vibe
+coding 13:10 and LLM coding inherently insecure. My 13:13 honest opinion on this is no. I don't 13:16 think that they're inherently insecure. 13:17 This is probably controversial,
+but I 13:19 would actually argue to say that the 13:20 apps where I used AI for coding for vibe 13:23 coding are more secure than the ones 13:25 that I did a couple years ago by
+hand. 13:27 And I can actually say this with 13:28 confidence and prove it because I took 13:30 cloud coding cursor threw it at some of 13:32 my old code bases to see can it find
+any 13:35 vulnerabilities and there were so many 13:37 vulnerabilities that it caught and I 13:38 believe the reason is because LLMs can 13:41 see things that a lot of humans can't
+or 13:43 just miss. It can think through edge 13:44 cases. I would not have necessarily 13:46 thought of. And more importantly, it 13:48 doesn't get fatigued. When I was coding
+13:50 my hand, security was like the last 13:52 thing I was thinking about. I was so 13:53 tired just building features that I just 13:55 didn't have enough time to think about

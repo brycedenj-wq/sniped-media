@@ -1,0 +1,224 @@
+days, weeks, months, and 1:07 even custom. So this is cron, which you 1:09 can put your maybe every 2 p.m. on a 1:11 Tuesday or every 3 p.m. on a Friday of 1:14 every month. and
+you have different 1:15 settings that you can put so that you're 1:17 able to um to run the automation at a 1:20 very specific time of the month of the 1:22 year of the week of the
+day. Right? So 1:23 to give you a use case, let's say we had 1:25 a content system. Let's say we wanted to 1:27 generate content automatically every 1:28 single day. What we would
+do here is we 1:30 would go to trigger interval which is 1:32 days 1 midnight and triggered min zero. 1:36 And this is where we put this as the 1:37 first step of the automation so
+that it 1:39 runs every one day at midnight of the 1:41 week. Right? Right? So, we're able to 1:42 run the automation without us having to 1:44 manually trigger it. And this is for
+the 1:47 time trigger. And then we have the type 1:48 form trigger. Now, this is just to show 1:50 you an example of a trigger that is not 1:52 native to any. These two are native
+to 1:54 N10, which means that N10 owns those 1:56 nodes. But in this case, type form is 1:58 not any. It's a different platform. And 2:00 so, Typeform itself is a platform that
+2:02 generates forms. So, we can generate 2:04 forms. And this trigger right here 2:06 starts whenever someone fills out the 2:08 hiring form in this case. So I have the 2:09 form
+pulled out here which is a form 2:11 that is connected to this type from 2:12 trigger and what happens is that 2:13 whenever someone fills out the form this 2:15 sends a signal to
+this node because it's 2:18 an onapp trigger. Uh that will allow us 2:20 to then be notified and start the 2:22 automation. So I'm going to press exit 2:23 workflow. As you can see
+now this is 2:25 waiting for you to create an event in 2:26 type form which is waiting for me to 2:28 fill out the form. I'm going to press 2:29 submit and as you can see here this
+is 2:32 now triggered and we got the data the 2:34 name the email the phone number and 2:35 location as well. Right? So this 2:37 essentially is an onapp trigger which 2:39 means
+that it triggers whenever an 2:40 single app starts something or whenever 2:42 something happens within an app that we 2:44 can all find right here. Add another 2:47 trigger. We
+have all these triggers and 2:49 the on app event is the one that you can 2:52 use for whatever it is. So these are all 2:53 different softwares that can be the 2:55 first step of
+the automation that 2:56 triggers whenever something happens 2:58 within that software. Now the next part Storage Solutions 2:59 of the nodes are going to be storage 3:01
+solutions. Now, storage solutions is 3:03 just a fancy way to say we use nodes 3:06 that allow us to store information in 3:08 them, right? And so, typically we use 3:09 Google
+Sheets, we can use Air Table, we 3:11 can use Notion, we can use Enit's new 3:13 native data tables, which only came out 3:15 a few days ago in order to store 3:16 information.
+This could be a simple 3:18 Google sheet that looks like this, which 3:19 has full name, email address, location, 3:21 and phone, but could also mean a data 3:23 table within Nitn,
+which has name, 3:25 email, phone number, and location, which 3:26 is the exact same. The only difference 3:28 is that one is stored in Nitn and the 3:31 other one is stored in
+Google Sheets. So 3:32 let me show you exactly what I mean 3:33 here. Let me put the um manual execution 3:37 here and I can see that inside I am 3:40 adding a row. So append row
+means I'm 3:42 adding a row in the N10 17 nodes which 3:45 is the name of the Google sheet right 3:46 here and I'm putting the first name or 3:49 the full name as Mikatory the
+email is 3:51 this and the location is this. I can 3:53 press execute workflow which will now 3:55 run the step right here and it will add 3:57 the row into the Google sheet which
+will 4:00 be mik email and uh location as well and 4:02 I can also add the phone which you can 4:05 also add by refreshing and let me add 4:08 let's do 1 555 1 2 3 4 5 6 7 and if I
+4:13 execute the step again I can now see 4:15 that I will have a new row that will be 4:17 added here with email location and this 4:19 as well. Now the reason why it gave us 4:21
+an error is because Google sheet doesn't 4:22 like when you put plus signs or equal 4:24 signs and so on because these are native 4:27 uh equations within Google Sheets. Uh 4:29
+but you get the gist here. You just 4:30 store information into Google sheet. The 4:32 second one is within the niten data 4:34 tables. So let me connect this. And in 4:36 this
+case we do the exact same thing. It 4:39 will be new people because that is the 4:40 name of the database. And we're adding 4:42 the first name or the name as mik 4:45 authority my
+email my phone number and 4:46 location as well. And if I press execute 4:49 step, I can see that now it was 4:51 successful. And if I go here and I 4:53 refresh, I can now see
+that the data was 4:56 added here. Full name, email, phone 4:58 number, and location as well. Now, the 5:00 amazing thing is that once you master 5:02 Google Sheets and Nit's
+native data 5:03 tables, you can pretty much use Air 5:05 Table, you can use Notion, you can use 5:07 Asana, ClickUp, all these places where 5:10 you store information, they're all
+very, 5:11 very similar, right? So, if you 5:13 understand one, the setup will be very, Universal Data Processing 5:15 very similar for the other ones. All 5:16 right? So now we
+get to the universal 5:18 data processing. So here is where we 5:20 manipulate data, right? Manipulate data 5:21 just means that we take some sort of 5:23 data that comes in and
+then we structure 5:25 it in a way where it makes sense for us 5:26 to structure it in. Now in this case I 5:28 want to take the um manual execution 5:31 here. I'm going to attach
+it here. 5:34 And I can see that inside the edit node 5:37 if I execute the step I can see that I 5:39 have an array which is basically a list 5:41 of people's uh information. So
+we have 5:42 name, email, phone number and location. 5:44 David Smith, David Smith, Emily Chan, 5:47 Carlos Ramirez, and Asia Khan. And these 5:49 are basically giving me the
+different 5:50 pieces of information. Now, the only 5:52 problem with this is that let's say we 5:55 want to add this to our Google sheet. We 5:57 can't because this is an array,
+which 5:58 means that it's inside this right here. 6:01 So, this is where the split out comes 6:04 in. So, what this means is that if you 6:06 want to process each name
+individually, 6:09 right? If you want to process this right 6:11 here individually, then this right here, 6:12 then this right here, and this right 6:13 here, and this right here
+as well, then 6:16 we have to split them out. We have to 6:17 take them, as you can see by the diagram 6:18 here, it's taking them, which is a 6:20 singular thing, and then it's
+splitting 6:22 them out based on the amount of items 6:24 that are in the array. So, let me just 6:26 show you. Let me just run this right 6:27 here. And let me show you that now
+we 6:30 have five items. So, as you can see 6:32 here, it went from one item, which is 6:34 the array, to five items. And so what 6:36 we're doing here is we're processing 6:37
+each person's details individually 6:40 through the automation in the next 6:41 steps. And this is splitting out. So 6:43 this is when you have an array and you 6:45 want to split
+out each item of that 6:46 array. Now aggregate right here is the 6:48 exact opposite. As you can see the 6:50 diagrams are opposites. And so what we 6:53 do here is just bring it
+back to the way 6:54 it was before. Right? And if I press 6:56 execute step I can see that now I have 6:59 the array that is back there which is 7:01 one item. So you can see we
+have one 7:02 item, five items and one item as well. 7:04 Now, typically you would use split out 7:06 whenever you have because a lot of the 7:08 times we get data all within the
+same 7:10 array. We get a bunch of details, 7:12 contacts and so on all within one 7:14 singular item. And so what we want to do 7:16 is go inside that item and take them out 7:19
+of each one and process them 7:20 individually in case you want to add 7:22 them individually to let's say a native 7:24 data table or even a Google sheet, 7:26 right? You have to
+process each one 7:27 individually for it to actually make 7:29 sense to add them to a database or 7:31 whatever it is that you want to do. 7:32 Whilst this node right here
+basically 7:34 when we have a lot of information that 7:36 is a lot of items and we want to put 7:37 them all together smash them all 7:39 together to then send them through to
+7:40 the next steps right so it's aggregating 7:42 data so it's not everywhere it's not in 7:44 different places it's all within one 7:46 place then we get on to the logic which
+7:48 is if so this is saying if this equals 7:51 to this then it's true if not it's false 7:54 so if I say in this case let me just uh 7:57 take this out uh there we go right here
+7:59 so let me say if the name contains 8:04 um contains Sarah 8:07 which should only be one name then we 8:09 send it through the true route right so 8:11 if I go here I can now
+see that only one 8:14 went through here and the other ones 8:15 went through here now this is great 8:17 because automation again is logic so if 8:20 you want to send the
+automation in 8:21 different ways based on whether 8:23 something is true or false then you can 8:25 use the if node right here now the 8:27 switch node is a bit different because
+8:28 it gives you more flexibility right let 8:30 me show you exactly what I mean. Let me 8:33 say right here inside I have options to 8:37 basically route the automation. So I can
+8:39 say if the name equals to Sarah Johnson 8:44 if the name equals David Smith then we 8:47 can rename the output to Sarah rename 8:49 the output to David. And what this will
+8:51 do is that it will run through every 8:53 single one and the ones that are Sarah 8:56 or Sarah Smith in this case. Sarah 8:58 Smith, Sarah Johnson, it will send them 9:00
+through Sarah and if it's David Smith, 9:03 then it will send it through David. So 9:04 if I run this, I can see that we only 9:06 have one item and one item here because 9:09
+those are the only ones that applied to 9:10 that logic. And so how is this different 9:12 from if? Well, if only gives you the 9:14 opportunity to add conditions, but don't 9:17
+add more than true or false options. 9:20 Whilst here you can put as many options 9:22 as you want. And this is great because 9:24 you could have a use case where you have 9:25
+emails. You categorize the emails based 9:27 on whether they're FAQ, whether they are 9:30 uh promotional, whether they are just 9:31 normal, whether they are something else. 9:33
+And an AI categorizes it. And then you 9:35 can use a switch node to then say if the 9:38 email is FAQ, then you send it this way. 9:41 If it's something else, then you send it
+9:42 this way. If it's something else as 9:44 well, because you can keep adding root 9:45 rules. You can say if this equals to 9:49 whatever just hello you can rename it to 9:52
+FAQ and this will be another option 9:54 right and you can do as many options as 9:56 you want which is amazing because that 9:58 allows us to be able to route the 9:59 automation
+based on the type of input or 10:02 the output that we get in the previous 10:03 step. All right then we have the code 10:05 node. Now the code node is amazing uh 10:07 because it
+allows us to be able to do a 10:10 lot of things at once and code is one of 10:12 the things that again a lot of no code 10:14 platforms don't have because in the name 10:16 no
+code uh but the fact that Niten added 10:18 the code option here made it so much 10:20 easier for us to be able to to transform 10:22 information from unstructured to 10:24
+structured in the easiest way possible 10:26 and it's very very fast. Yeah. So let's 10:27 say we have the array here which is the 10:29 exact same as we had before which are 10:31
+just a bunch of names that are all uh 10:33 within the same array and we can process 10:35 each one individually. Now what we can 10:37 do with a code node using code and by 10:39
+the way if you're asking how did you 10:41 write the code I just said split out the 10:42 items from the array and the array is 10:44 this and then if I run this I can see 10:47
+that now really quick it uh split out 10:50 the items in five different um 10:52 separately. So now we can go through 10:53 five items individually. Now this did 10:55 the same
+function as this. So this 10:57 wouldn't make a lot of sense, but if you 10:59 have something a lot more complex and 11:01 you need the data to be transformed in a 11:02 way where
+it would take you seven or 11:05 eight different nodes, then you can do 11:06 it all within the code node. Now, I'm 11:08 not going to get into too detail about 11:09 this because
+again, we're all here to 11:11 not write code, right? Uh but just know 11:13 that you have this option to be able to 11:14 write code with any and it makes it a 11:16 lot easier to
+do more complex stuff. You 11:19 won't really need them for most of the 11:20 time, but just knowing that you have the 11:22 option there to use gives us a lot more 11:24
+flexibility when we're building 11:25 automations. And then we have the merge 11:27 node. So let me actually set this up. 11:29 All right. So for the merge node, what I 11:30 did
+is I put two different fields. One 11:32 is hello yo and then the other one is 11:34 hello ciao. And when I run this 11:36 automation, it will run this one first 11:38 and then it
+will run this one. And let's 11:40 say I put a wait node here. I can put 11:43 two two seconds just for it to wait 2 11:45 seconds. I can show you that this right 11:47 here will
+run first and then it will run 11:49 this one. Right? Now let's say that we 11:52 had an automation where we had to run 11:54 this and then we wanted to run this and 11:56 then we
+wanted to go right without us 11:58 having to go through here first and run 12:00 the whole automation and then run 12:01 through here first. Now let's say that 12:03 we had an
+automation that we start here 12:05 and it goes two different ways but then 12:07 we want to aggregate the data. We want 12:09 to send the data in the same way as two 12:11
+different inputs input one and input two 12:13 to then be able to take both pieces of 12:15 information to then be able to go to the 12:18 next steps. So that's exactly what the
+12:19 merge node does. If I go here, I can see 12:22 also I can add more inputs. So if I 12:24 press four, it basically uh it can it 12:27 can intake more inputs at the same time.
+12:28 In this case, I can do two. I can 12:31 execute the step. And now we can see 12:33 that we got two items, one is yo and one 12:36 is cha. So what it's doing here, it's 12:38
+it's aggregating both of them together. 12:40 Now there are other options as well um 12:42 to combine to then SQL query. So we can 12:45 query different things or different data
+12:47 points and then we can also choose a 12:49 branch. Now honestly the one we're 12:50 mostly going to use is going to be 12:51 combine and it's going to be append. Now 12:54
+append in this case will be output each 12:56 item individually and combine is taking 12:58 these two and just putting them all in 13:00 the same sort of array that you can use
+13:02 for the next steps. Now here's a system 13:03 that I built that uses the merge nodes 13:05 three different ones. Uh and the way 13:07 that this works is that we have um the
+13:10 length post which is made the Facebook 13:12 post which was made and then we want to 13:14 merge them. So we have the Facebook post 13:15 and the LinkedIn post and then we
+have 13:17 the Twitter post which is made, the 13:18 article which is made and then we're 13:20 merging these two together as well to 13:21 then finally merge all four things 13:24
+together. So we can directly send them 13:26 to the Google sheet. And the reason why 13:27 we're merging them is because if we run 13:29 each one individually then we would have
+13:31 to set up a new automation for each row 13:34 at a single time to add them to the 13:35 Google sheet which we can actually just 13:37 remove by just merging them all together
+13:39 in the same sort of structured way as 13:41 different items to then send them to the 13:42 Google sheet. So the next nodes right Connectivity & APIs 13:44 here are going to
+be connectivity and 13:45 API. Now API is the most important skill 13:48 when it comes to automation. And if you 13:50 haven't watched my video about 13:51 fundamentals of API,
+just watch it up 13:52 here. U but it is the reason why apps 13:55 get to talk to other apps, right? It's 13:56 the reason why this app right here can 14:00 talk to an intent, but
+this app right 14:01 here can talk to this one, right? Or we 14:03 can just talk to each other um in 14:05 different ways. So in this case, the 14:07 first node that we have to
+learn is the 14:08 HTTP request. Now this is one of the 14:10 most powerful nodes in any 10en because 14:13 when we go here and I go to action app. 14:16 So this is taking an
+action within a 14:17 single app. We can see that we don't 14:19 have an infinite amount of nodes right 14:21 like we can stop here and then what what 14:23 if we have a software
+that we want to 14:25 use but we can't find it here. What do 14:27 we do then? Well in this case we use the 14:29 HTTP request. So let's say I wanted to 14:31 use the free weather
+API which gave me 14:33 the API of the weather. And if I go here 14:35 to end, I can't see any app that's 14:38 called free weather API. So what I have 14:40 to do is I have to set
+up the HTTP 14:42 request of the free weather API, which I 14:45 can find in the documentation right 14:47 here. By the way, I covered this in the 14:49 API fundamentals video. So
+if this makes 14:51 no sense to you, please go watch that 14:52 video cuz it will help a lot. Um, but 14:54 this right here is the API 14:55 documentation, which is essentially a
+14:57 documentation which allows you to see 14:58 exactly what you can automate and what 15:00 you cannot automate within a software 15:01 and also how to set up the automation.
+15:03 And so by looking at this um 15:04 documentation here, I was able to set up 15:07 the um the automation of the weather API 15:09 which looks at the temperature in London
+15:11 right now. And if I execute the step, I 15:13 can see that now I'm still able to 15:15 actually run the automation. I was still 15:17 able to use the software without having
+15:19 to use these softares here which are 15:22 already pre-made by 10. And you can see 15:24 here we have the different outputs. So 15:26 London, we have the temperature, degrees
+15:28 in Celsius, Fahrenheit, and different 15:30 other informations as well. Then we have 15:31 web hooks right here. Now, web hooks are 15:33 a way for us to get notified when
+15:34 something happens. So, let's say someone 15:36 fills out a form. Well, it sends the 15:38 data to the web hook. You remember this 15:40 right here, the type form trigger.
+Well, 15:42 behind the type form trigger is actually 15:44 a web hook which allows us to be able to 15:46 get notified when something happens. 15:47 Well, in that case, it's
+whenever the 15:49 form is being submitted, it sends the 15:51 data to the web hook through an API. 15:53 Right? So, right here we have the test 15:55 URL which is used for testing
+and 15:57 production URL which is used when the 15:58 automation is set to active. And then we 16:00 have the different type of HTTP method 16:02 which again is very similar to
+there 16:04 because we have post we have all these 16:05 options and these are the same ones that 16:07 we have here. And then we have the path 16:09 which is just the way that we
+uh that we 16:11 name the URL. And then this right here 16:13 is a thing that you would connect to the 16:14 software itself to then be able for us 16:16 to get notified when
+something happens 16:17 within that software. And respond to web 16:19 hook will be the thing that will then 16:21 respond back to the server that we got 16:23 the information
+from. Now, to show you 16:24 exactly how it works, what I'm going to 16:26 do is use a software called Postman API, 16:29 which allows us to send example uh test 16:32 data to the
+web hook, right? I'm going 16:34 to go in here, copy this, make sure you 16:35 change this to post request, and then 16:37 I'm going to paste this here. Make sure 16:39 this is the
+post request as well. And 16:40 then the body will be what is the thing 16:42 that we're sending the web hook. In this 16:43 case, let's just do full name, 16:46 my name. Let me
+run this here. I want to 16:50 press send. This will now start the 16:52 workflow. As you can see here, now we 16:54 started the workflow and we sent the 16:56 full name here which
+is the body, right? 16:58 And this is how we send information from 17:00 one server to another through a web 17:02 hook. Now let's say I had this 17:03 connected. Now all I have to
+do here is 17:05 I have to change this to using respond 17:07 to web hook node. 17:09 And here um what we can do is 17:13 we can just respond with workflow has 17:17 finished.
+17:20 And so when I run this, 17:23 I send this here. I can see that now we 17:25 get the data workflow has finished. Now 17:28 this is amazing when we are sending data 17:30 to a
+software or to a web hook in this 17:32 case and we want to get something back. 17:34 So let's say we send the signup link to 17:37 a user in some sort of software. He 17:39 signs
+up, we get something back. Lastly, AI Integration 17:41 it would be the AI integration. So this 17:43 is one of the ones that are most uh 17:45 commonly used. Um first one is the
+AI 17:47 node. So this is just to create 17:49 something with AI. So in this case we 17:51 can say create a LinkedIn post 17:54 about life and here we have our openi 17:58
+connected the resource is text the 17:59 operation which is the action that we're 18:01 taking is good uh the model it can be um 18:03 you have a list of models here you can 18:05
+use GPT4 or latest or you can use 18:07 whatever you want and then you have the 18:08 prompts right here the prompts there are 18:10 three different prompts that you can 18:11
+write the first one is a system prompt 18:13 the system prompt is a prompt that you 18:14 tell the AI uh you give it an identity 18:17 so you are a helpful intelligent XY YZ 18:19
+assistant. Then you have user. So user 18:22 is when you tell it to do something. So 18:24 your task is to do XYZ. And assistant is 18:27 when you give it some examples. In this
+18:28 case, let's keep it simple. I'm going to 18:30 press execute step. And this will now 18:32 create a LinkedIn post about life. And 18:34 as you can see, sure, here's a 18:36
+thoughtful and professional LinkedIn 18:37 post about life. And then it gives me a 18:38 whole LinkedIn post that we can then 18:40 use. Now this AI step is used whenever 18:42 we
+want to have some sort of data or 18:44 some sort of input sent to AI just like 18:47 we would on chat GBT. automatically and 18:49 then give us the output for content for 18:51
+any structured data that you want 18:53 structured for anything pretty much that 18:54 you can think of AI playing a role in 18:56 the automation just as a linear thing 18:58 for
+it to do just that task in specific 19:00 only that task and then we have the AI 19:02 agent if you haven't watched my AI agent 19:04 101 video make sure to watch it up here 19:06
+uh it explains exactly how you can build 19:08 your first AI agent from scratch using 19:10 N10 but the AI agent is the reason 19:12 probably the reason why uh N10 blew up 19:14 so
+fast is because it had now the um 19:17 opportunity for us to used something 19:19 that was connected to AI that could 19:21 think through or that could remember the 19:22
+different conversation we had but that 19:24 was also uh hooked up to different 19:26 tools. So in this case if you scroll 19:28 down we can see that we hook it up to 19:30 Gmail,
+we can hook it up to Air Table, 19:33 we can hook it up to well pretty much 19:35 anything. Uh we have all these different 19:37 softwares that we can use to then be 19:39 able to
+connect it to the AI agent for 19:41 it to actually take action. And a good 19:43 thing is that the Gmail tool can be 19:46 connected and the air table tool can be 19:48 connected
+and the let's say notion tool 19:51 can be connected and you can have as 19:53 many connections as you want and this 19:55 acts as a personal assistant that allow 19:57 us to be
+able to take action on 20:00 different things based on the input that 20:01 we give it. So in this case what it 20:03 would look like is we would have a 20:06 trigger which would
+be usually would be 20:08 an on chat message which means that 20:10 we're chatting with the AI agent itself. 20:11 And if I open chat, I can now see that I 20:13 can speak to the
+actual AI agent. 20:14 Something that you can't do with the AI 20:16 step. So I can say hello. What this will 20:19 do is that it will then talk to its AI. 20:21 It will remember
+the conversation and 20:22 then bring it back. It's sort of like a 20:24 person that we're talking to. And the 20:26 good thing is that the person itself has 20:28 access to our
+software which is amazing 20:31 because now it can take action on our 20:33 behalf based on the input that we give 20:35 it. So if we say draft an email, it will 20:37 then go to
+the Gmail tool and then do 20:38 its thing. Same thing with air tableable 20:39 and same thing with motion. And the use 20:41 case that you can think of this is 20:42 pretty much
+anything any task that you 20:45 want a singular input data store. So you 20:48 basically have let's say one chat 20:50 message right where you have one place 20:51 and through a
+series of inputs. So 20:53 through a series of send an email Gmail 20:55 send an air table or create a notion 20:57 task or whatever it is it takes actions 20:59 in different
+softwares without us having 21:01 to create a new automation for every 21:03 single action that we want to take. All 21:04 right. And if you want the full Outro 21:05 blueprint to
+this end so you can always 21:07 come back to it as a resource. Make sure 21:09 to check out the first link down below 21:10 which will take you to my free school 21:11 community
+right here. You can go to the 21:13 classroom section. You can go to the 21:14 templates vault and you will see the 21:16 latest video which will be in this case 21:18 uh 17 or 18
+nodes to master 10. You can 21:21 then press this button right here to 21:22 download the Nitan automation blueprint 21:23 and import it into your own account. And 21:25 if you
+have no clue how to do that, no 21:27 worries at all. You can always watch the 21:28 tutorial right here which will show you 21:30 step by step how to do it. And if you 21:31 apply
+and you get in, you also get 21:33 access to the AI automations 101 course, 21:35 which is a very, very comprehensive 21:37 guide that takes you from a real 21:38 beginner in AI
+automation to someone 21:40 who's actually able and willing to uh 21:42 build automations for themselves, for 21:44 other businesses. The only catch is not 21:46 everybody gets in.
+So, please put some 21:48 thoughts into your answers when you 21:50 apply. So, that marks the end of the 21:52 video. And if you're someone who's been 21:53 building with Nitn and
+now actually want 21:55 to go out and sell to businesses and 21:57 apply this to a business use case, then 21:58 make sure to check out this video on the 22:00 screen where I show
+you 10 proven 22:01 business use cases where you can apply 22:03 AI agents and AI workflows within an end 22:06 within sales, marketing, product, and 22:08 service delivery. With
+that being said, 22:09 I hope you found value from this video 22:11 and I'll see you in the next All From Michele TortiIntro 0:00 In this video, I'm going to give you a list of all
+of the things that I wish I knew before starting with Nadn. Tip 1 Cheap AI models 0:06 number one, cheap AI models are underrated. A lot of people that start with Nadn and want to
+build AI 0:12 automations, they only want to build it with the most expensive and the most intelligent models. But what is often 0:18 overlooked are much cheaper and more efficient
+models. I'm talking about something like Google Gemini 2.5 Flash 0:25 Light or something like GPT5 Nano or maybe even some Chinese models. All of 0:33 these cheaper models, they
+run at a fraction of a cost but still have an 0:38 acceptable level of intelligence. And because they're so affordable, this opens up a whole set of new 0:43 possibilities that is
+just not possible with the more intelligent and the more expensive model. So definitely 0:49 experiment with these cheaper and more efficient models and you're going to be
+surprised how good they have actually 2 OpenRouter 0:55 gotten. Tip number two, speaking of different AI models, you have to start using open router in your AI 1:02 automations. So
+I have an open router note here and open router is basically a 1:07 service that allows you to use any available AI model through a single account. So for example here I can 1:14
+quickly switch between let's say GPT5 Gemini pro 1:20 clot sonnet or some open source models or even some uh Chinese models like 1:25 deepseek and I can switch between all of them
+with a single click even if these models are from a completely different 1:32 company and open router has allowed me to make my AI automations a lot better because it allows you to
+always find the 1:39 best model for each individual use case or even for each specific task just because it's so easy to experiment with 1:46 all different types of models and on
+top of that it has some additional advantages. So if you're interested in 1:51 using open router then I've actually recorded an entire video about it and you can find it here on my
+YouTube 3 Telegram is key 1:57 channel. Tip number three is a key application. See if you build 2:02 automations and AI automations you need some way to communicate and manage
+these 2:08 automations. And the best interface for that is Telegram. You can use Telegram to receive notifications from your 2:15 workflows. You can use Telegram to receive
+approval requests. Or you can use Telegram to send a message to your 2:21 AI agent so that it can start to do something. And the reason why it is so good for that is because first
+of all, 2:26 Telegram is completely for free. You can use it on your smartphone, but also on your computer, in your browser. And on 2:33 top of that, Telegram has a fantastic API
+that NN has built a very detailed 2:38 integration for. So you can see all of these different actions that are available within the Telegram node. And 2:44 if you start to learn to
+use some of these actions, then you can use Telegram as an amazing management and 2:51 orchestration tool of all of your workflows and your AI agents. Tip number four. A lot of you
+already know that you 4 Reformat selection 2:57 can reformat a workflow with this tidy up button down here. However, the problem is, as you can see, for larger 3:04 workflow, this
+doesn't really look good because it just stretches it in length. So, what you can do instead, you can 3:10 also just select some of your notes and then click this tidy up button
+and then 3:15 it will only realign the selected nodes and only will make them look better and keep the rest of the workflow aligned as 5 Switch vs. IF 3:22 it is. Tip number five,
+the switch node is always better than the if node. At 3:27 some point in your automations, you have to build some type of conditional branching. So based on a condition, a 3:34
+different type of route will be taken in your workflow. And for that, there are two nodes available in NAN. And that is 3:40 the if node and the switch node. However, the switch
+node is much better than the if node because it can do 3:46 everything that the if node can do, but it can do it much better and has additional advantages. For example, 3:53 right
+here with this switch node, you can see I named my outputs. So the upper branch or the upper output is called 3:59 spam and the lower output is called not spam because this switch
+node does some type of spam categorization. And because 4:06 I can name the outputs, I can immediately see what's going on. Whereas with the if node, the the name of the 4:11
+outputs are always going to be true or false. And I cannot change that. So that means it's always going to be a little 4:17 harder to see what's going on with the if node.
+Additionally, with the switch node, you can add as many conditional 4:23 outputs as you want. So for example, I can go into the switch node and add a new routing rule. For example,
+um a new 4:31 output called maybe spam. And then you can see I've now got a new 4:36 output that I can connect to some other part of my workflow. And this is not possible with the
+if node. Also, the 4:43 switch node has some additional settings down here. Uh for example, send data to all matching outputs, which is really 4:48 useful. And those settings are
+not available in the if node either. Tip number six, data pinning and data 6 Data pin & edit 4:54 editing. So when you run your automation workflow, then every time you run a 4:59
+test, n is going to send a request to all external services that you've 5:05 integrated. For example, here I have Reddit get some posts from Reddit and here I send a prompt to
+Google Gemini. 5:13 There are two problems with that. First of all, every time I run it, it takes some time, a few seconds to complete 5:18 that request. But also when I run a lot
+of tests then the service could view 5:24 that as an unnaturally high amount of tests and start to rate limit or even block me. And in order to avoid these 5:32 two disadvantages,
+what you can do after executing a workflow once for testing, 5:37 you can just select some nodes and then hit P on your keyboard. And now you can 5:43 see they turned purple. And
+that means now the output data of these nodes is 5:48 pinned. which means the output data is saved in NADN. 5:53 If we open up the note, you can see in the output data, it says
+this data is pinned for test executions. When I now 5:59 run the automation again, Nadn will no longer send a request to the external service, but instead it will use the 6:06
+pinned data. So this means our test runs a lot quicker because the data is immediately available. But also it means 6:11 that we no are no longer at risk of being rate limited or
+even blocked by these external services for an 6:17 unnaturally high amount of request. But the coolest thing about this data pinning is that if we open this up and 6:24 have a
+look at the pin data here, you can see once you pin data, you have the option to edit the data with this data 6:31 edit icon up here. And if I click this, you can see I can change
+any section or any part of this output data however I 6:38 want. So if for test purposes I want to try out some specific data for the rest 6:44 of the workflow um instead of hoping
+that it will eventually appear uh in the 6:49 response of this node, I can just pin the data and then enter the test data that I want to run experiments with 6:55 manually here.
+And this is really really useful and allows you to test a lot of different edge cases. Tip number seven, 7 cmd + Enter 7:01 speaking of executing workflows for test purposes,
+whenever you want to execute a workflow, you can obviously come down 7:08 here and click this orange button. But you do not have to do that. Instead, you can use a really useful
+keyboard 7:13 shortcut, and that is command enter on Mac or control enter on Windows. And when you press that, then Naden will 7:20 automatically execute your workflow. Tip number
+eight is called the page size equals 1 trick. And that is one of my 8 Page size 1 trick 7:27 favorite small mini tricks in Naden. Now, before I show you this little trick, I would
+quickly like to ask you 7:32 for a favor. If you enjoyed this content so far, then don't forget to leave a like on the video because that signals 7:40 to me that you like this type
+of content and then I can produce more videos like this in the future. Okay, page size 7:46 equals one trick. A lot of times when you analyze and optimize your automations, it is
+quite difficult to 7:53 see which input led to which output, especially if there are some AI steps involved. So right here I have this AI 8:00 block and it's an AI spam
+categorization node and this nodes receives some form 8:06 submission data from the previous step. Let's switch to table view so that we can see all of them. So here are the 8:12
+form submissions that this node receives and then it looks at these form submissions and then responds with a AI 8:19 spam analysis. So it responds if a certain submission is spam
+and then a 8:24 short explanation for the decision. Now the problem is as you can see it's quite difficult to figure out which of these 8:31 form submission inputs led to which of
+these evaluation outputs. I mean 8:36 obviously what I could do is I could start to count. So for example 1 2 3 4 8:41 5. Okay. So this is number five. Then 1 2 3 4 5. And then
+this generated this 8:47 output. But this is really annoying and also prone to a lot of mistakes. So what you can do instead you can do something 8:53 really interesting and that
+is down here you just switch the page size to one and 8:59 you also do it for the output data. Page size equals one and then NN will only 9:04 show you one input and one output at
+a time. And now each of these numbers down here corresponds to a single data item. 9:11 So for example, if I want to see what output is connected to input number four, then I just
+click on four here and 9:19 I click on four over here and then I can immediately see okay this input this 9:24 form submission led to this output to this analysis. And if you have
+lots of different uh data then what you can also 9:32 do is you can hover over these three dots and then click on this forward icon 9:37 and then this will always jump three items
+at a time and you can also do this over here three items at a time. Tip 9 Expression switch 9:45 number nine. If you want to in nadn turn a new field into an expression field 9:51
+then obviously you can go down here and switch it from fixed to expression. But 9:56 there's a much quicker way. You can also just type equals in it and then NN will 10:02
+automatically turn it into an expression field. Or there's another method that you can also use which is actually the 10:08 one I prefer. You can just start to type your
+expression. So with the double curly brackets, then hit space and NN 10:16 will then automatically turn the field into an expression field and then complete or close the double
+curly 10 Expressions are everything 10:23 brackets. And that leads me to tip number 10, and that is expressions in Nadn are everything. If so far you've 10:30 been only using nadn
+expressions to map data from a previous step into a field, 10:35 then you've been really missing out because these expressions are so much more powerful than that. For example, as
+10:41 you can see up here, I used a simple plus operator in this expression to 10:47 generate a full link because the link that I received from this previous step is only part of
+the full URL. And so 10:55 that it's clickable, I also have to add this uh domain prefix. And so I use this 11:00 expression to add these two together. Or here for the content,
+I've used this 11:06 conditional operator, the double pipe operator. And this basically is kind of like a fallback operator that if the 11:14 text from the post is empty, then I

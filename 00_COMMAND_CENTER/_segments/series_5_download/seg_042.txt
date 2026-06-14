@@ -1,0 +1,225 @@
+users in different regions reach set of features 25:29 Advanced features like security analytics compression improved performance monitoring and threat 25:35 protection pricing the
+cost of CDN service depends on many parameters such 25:41 as usage based fees feature pricing and potential hidden costs support quality 25:49 responsive and moible support is
+essential for quick issue resolution complexity of onboarding a simpler setup 25:57 process with clear ation and tools reduce time to deployment the next area 26:02 for improving
+law times is server side processing this is crucial for 26:07 dynamically generated pages also known as serice site rendering or gation 26:13 server site processing time also
+affects clients at rendering applications but not during the initial loading phase to 26:19 improve server side processing time we need add indexes use appropriate indexes for
+frequently queried colums while 26:27 avoiding over indexing indexes act as a pointer to specific row in a table and 26:33 significantly speed up lookups badge queries fetch data
+in bulk 26:39 instead of executing multiple smaller queries caching using caching CER like 26:45 for example RIS or mcash to store frequently accessed data for example have a
+database queries with multiple 26:52 search parameters can be cached and reused dynamically scale server sources 26:57 based on un load platforms like AWS autoscaling or kubernetes
+HPA make this 27:04 possible automatically depending on infrastructure different tools may be used but the concept Remains the Same 27:12 another Improvement for reducing CLA time
+is DNS lookup optimization when 27:17 users visit your website their browsers performs a DNS lookup to translate the 27:23 domain name into an IP address we cannot access resources
+using only a main name 27:28 like google.com instead we need its IP address which we obtain by querying a 27:35 DNS server the DNS server acts like a map where domain names are
+keys and IP 27:41 addresses are values this x request happens behind the scene but increases 27:47 loading time furthermore it's not just a onetime process it ures every time a
+27:52 resource is requested from a different domain for example font or Styles unless previously C 27:58 DNS prefetching allows the browser to resolve domain in advance for example
+if we know some resources will be needed 28:05 soon but won't be detected automatically we can apply DNS prefetching to speed up 28:10 their loading times later we should apply DNS
+prefetching carefully for critical resources like scripts 28:17 stylesheets or fonts that are essential for rendering the site avoid profishing 28:23 too many domains and use this
+technique only for domains you're confident will 28:28 be required compression is a Improvement that applies to almost all websites it 28:34 helps reduce loading Time by shrieking
+the size of assets sent over the network 28:39 the two most commonly used compression formats are JayZ and Broadley JayZ is 28:45 widely supported JZ is ideal for compressing text
+based files like HTML 28:51 CSS and JavaScript brle a newer and more effective alternative brle offers better 28:58 compression rates and faster decompression in the picture
+broadly outperforms JZ in terms of compression 29:06 Effectiveness however broadly isn't as widely supported by browsers as JZ so 29:12 you can use Broadley as a primary
+compression method and JZ as a fallback 29:18 there are two ways to compress files manual compression and automatic compression in the case of manual 29:24 compression the origin
+server compresses responses before sending them to the C this doesn't mean we need to compress 29:31 each file manually we can have toate this process for example during the cicd
+pipeline however it's important to 29:38 ensure files are compressed before they are sent to the CDN the second method is 29:44 automatic compression on the CDM CDN can use fast
+compression algorithms like 29:50 broadly 5 for a quicker initial delivery and apply slower algorithms for example 29:56 broadly 11 for a sequent requests this works for both
+cashable and non-cashable 30:02 resources meaning even private resources which are not saved in the cach can be compressed automatic compression is 30:09 convenient but less
+flexible that manual compression and may incure additional 30:14 costs of course manual compression also isn't free so we must choose the most 30:20 appropriate method based on
+convenience and costs in addition to assets like CSS 30:26 JavaScript and images that we cach on CN servers we can also cat responses two 30:32 common types of responses to cach
+are heavy database responses and thirdparty 30:37 API responses both can be cached in redit or memcached there are database 30:43 that use a am to store data allowing faster ride
+and read operations than a 30:50 hard drive or SSD however Ram has limited storage space so it's unsuitable 30:57 for cash in large volumes of data we can use it for heavy database
+queries 31:02 frequently accessed data that remains mostly the same for example product list 31:08 user profiles these queries often include many search parameters such as
+filtering or sorting which can be 31:15 resource intensive on large data sets and third party API responses data from 31:21 apis with rate limits or high latency for example
+weather data or stock prices 31:28 another example is if access to a third party API is paid and updates 31:33 infrequently caching the response can save us money HTTP requests
+often 31:38 include unnecessary information like headers or cookies for public requests 31:43 this is referred to as HTTP overhead which increases low time and traffic 31:49 usage
+some headers are not uses in general but might not be necessary for 31:54 specific requests the same applies to cookies we can reduce HTTP overhead by taking 32:01 the following
+steps eliminate unnecessary HTTP headers like for example server and exp powered by 32:08 headers are usually not needed limit cookies to relevant path and domains 32:14 avoid
+sending cookies for static assets use same side and secure attributes to 32:20 restrict unnecessary Transmissions use HTTP 2 or HTTP 3 to automatically 32:27 compress headers the
+next metric we should work on to improve loading time is First contal First-Contentful-Paint 32:33 paint our goal here is to maximize priority by preloading or caching for 32:39
+above theault content and decrease priority by lazy loading for everything 32:44 else later we will take a closer look at the concept of above default content 32:50 steps to
+improve FCP includes purple pattern reload late disc discovered resources inline critical CSS 32:58 lazy loading delay loading non-critical resources and caching use browser 33:03
+caching for static resources the first technique covering four different strategies is purple pattern preload 33:11 render preash and lazy load pread late discovered resources
+render the initial 33:17 Road as quickly as possible preach remaining assets and lazy load 33:22 non-critical assets and additional roads in general the concept be summarized as
+33:29 preload anything critical for initial rendering and Def loading everything else additionally we minimize the data 33:35 users need to load by using lazy loading and caching
+in the picture we see how 33:41 service workers can be used to cash resources service workers store server 33:47 responses in a cache when the client first requests them allowing
+subsequent request to use the cache data this adds 33:54 an extra layer of caching on the client side in the browser as you may recall we 34:00 also use caching on the CDN level
+previously we discussed the concept of DNS Prof fetching preloading is another 34:07 technique that allows us to fetch specific resources in advance before users actually need them
+preloading 34:14 should be applied only to resources that cannot be detected and loaded automatically by the preload scanner the 34:21 prel Conner is an internal browser mechanism
+that identifies assets that 34:26 can be loaded while the rendering process is blocked by parsing CSS HTML 34:31 or other data in the picture we see how the preload scner works as
+the browser 34:37 proces markup step by step it may encounter a blocking resource such as 34:43 CSS the browser must parse the CSS file before continuing but even when the 34:49
+parsing thread is blocked it can still download resources like images or additional CSS files in the background 34:56 however not all resources can be detected this way some
+resources must be preloaded manually preload only critical 35:04 resources necessary for the first interaction with the page over using preloading can negatively affect 35:10
+performance resources like Asing script or images do not require preading 35:15 because they can be detected automatically by the preload scanner however resources like lazy loaded
+35:21 images CSS background images critical CSS fonts defined with a font face rule 35:27 should be preloaded manually because they won't be detected by the preload scanner as
+mentioned preloading should 35:35 be applied only to critical resources which are typically those needed for rendering above theault content in the 35:42 picture we can see what
+above the fault means the part of the page visible without scrolling we should load all 35:49 resources needed to render this section as quickly as possible while everything else
+below theault can be loaded later 35:57 when we we say preloading shouldn't be overused we mean it should primarily focus on above theault content the next 36:05 part of purple PN
+involves rendering the initial Road as quickly as possible which is a broader interpretation of the 36:12 above default concept apply to the entire page while our primary goal is
+to 36:18 render above theault content as soon as possible the secondary goal is to render 36:24 the whole page quickly for above default content we apply in line critical CSS and
+JavaScript to render the entire page 36:32 faster we can use forms of serice site rendering such as full SSR static SSR or 36:39 gation using inline JavaScript and CSS requires
+additional development 36:44 resources for both creation and maintenance server site rendering approaches aren't perfect for every web 36:51 application and techniques like gation
+can negatively impact time to interactive on my Channel I have a 36:58 detailed video explanation Different Page rendering methods their Pros cons 37:03 and use cases the next part
+of purple pattern is preaching client side caching 37:09 Works similarly to other caching types we cach everything that can be cached 37:15 however caching isn't free it consumes
+resources to maintain ensure content 37:20 isn't outdated and handle limited storage on the client side there are three commonly used types of of client 37:28 side caching
+categorized by storage type cached resources and caching strategy 37:34 browser cache this is automatically managed by the browser and is used for static assets or frequently
+updated 37:40 resources we should apply long TTL for static resources and short or no cach 37:46 settings for frequently updated content this reduces bandwidth usage and enables
+37:52 immediate acet loading as resources do not need to be fetched from the CDN or origin server JavaScript memory used by 38:00 store managers like Redux JavaScript memory can
+also cach server responses or 38:05 results of have client side competitions it is caching strategy is session based 38:11 which simplifies maintainance because reling the page
+clears the cache but limits cash Effectiveness due to short 38:18 detail and service worker cache service workers can cash assets and responses 38:23 intercepting request to serve
+cash data without contacting the server this approach supports offline functionality 38:30 and allows for flexible caching strategies but requires more resources to implement and
+maintain caching has 38:38 several challenges stale content or outdated cache users may see all file 38:44 versions even after updates are deployed this happens when the cas GTL is
+too 38:49 long a solution is to use cash boosting techniques such as adding quion has to 38:54 file names for example main. a abc1 123. JS ensuring the browser features new 39:01
+files from the origin server and storage usage caching can consume significant 39:06 storage and browsers often limit storage per site this can result in resources 39:11 not being
+saved to the cash if the user's device Runs Out of Space to address this issue we should set Maximum 39:19 cash sizes and Implement cash cleaning project to manage storage 39:24
+efficiently the last part of purple pattern is LA loading lazy loading is a 39:29 conditional loading strategy where parts of the application are loaded only when specific
+conditions are me for example 39:36 we can loot images only when they are near or visible in the user vport and 39:41 the image the threshold for a lazy loaded image is set
+slightly above the 39:46 image itself allowing the browser time to load it before the user reaches it by 39:51 lazy loading resources we make the loading of critical resources
+faster however lazy load in should be used 39:58 smart overusing it can make a side feel slow especially for users with high 40:03 power devices and good internet connections in
+such cases it might be better to load the entire page up front 40:10 or avoid aggressive La loading what can be lazy loaded images and videos most 40:17 images and videos are off
+screen initially and become visible only through user interactions like scrolling 40:24 this is especially beneficial for media have sites where preloading all content would we
+server and network resources 40:32 application cod cod can be split into components or Pages using Dynamic Imports often at the routing level and 40:39 loaded on demand third party
+libraries libraries not immediately needed such as 40:45 reach text editors can be loaded lazily when required for example for writing 40:51 articles or comments and data fetching
+pation or lazy data pitching can ensure 40:58 data is retrieved only as needed reducing initial load times lazy loading 41:04 also reduces the load on CDM servers potentially
+lowering monthly costs lazy 41:10 loading has its trade-offs overuse of lazy loading overuse can degrade 41:15 performance content above the fault for example should never be lazy
+loaded lazy 41:20 loading should be applied meaningfully quick scrolling issues if user Scrolls quickly a simple lazy loading condition 41:27 for example fix a threshold made fail
+especially with infinity scrolling Qi ptn to handle these we can use more 41:34 advanced strategies like Dynamic CH link with intersection Observer avoiding unnecessary loading
+during rapid 41:40 scrolling time wasting lazy loading only loads content when conditions are made 41:46 missing opportunities to use it all Network time for instance when users
+pause while scrolling you could preload 41:52 upcoming images in the background combining czy loading with smart preloading based on users Behavior can 41:59 address this issue SEO
+impact credle content loading can hinder web cowers 42:05 from fully scanning the website to mitigate this avoid lazy loading SEO 42:11 critical content like keywords and business
+information balancing lazy loading for user experience and search 42:18 engine optimization is crucial the next metric to improve is largest contentful Largest-Contentful-Paint
+42:23 paint or LCP to enhance it we continue prioritizing content but less 42:29 aggressively than with FCP to maintain balance the goal is to display 42:35 meaningful content
+quickly while rendering the full page in minimal time steps include image optimization use mod 42:43 formats compression and lazy loading lazy loading with care avoid lazy 42:48
+loading above theault images to prevent delays and LCP JavaScript optimizations 42:53 reduce JavaScript bundle size deer or as synchron ly loot noncritical JavaScript 43:00 the
+first optimization that can be applied to above the fault below theault and any other Meda content on the page 43:07 is using modern meta formats for images this would include avif
+and Webb avif 43:16 offers Superior compression and image quality making it ideal for high 43:22 resolution and bandwidth sensitive content webp processes faster and has 43:27
+broader browser support making it more compatible choice in the image you see a 43:33 comparison of the uncompressed size of images in different formats WEP has a 43:39 smaller
+uncompressed size than the other formats and is widely supported by 43:44 browsers e if has a larger andc compressed size than Webb and gpack for 43:51 photos but it compresses
+better than Webb for photographic images see since 43:57 we prioritize compression considering the compressed size makes more sense if 44:02 we weren't compressing files we would
+focus on uncompressed size moreover avif 44:09 supports animations like webp overlays and HDR making it a better choice for 44:15 highquality complex photos webp on the other hand
+might be better suited for schemas text images logos Etc a possible 44:24 option is to use a combination of both on the side with PNG and gpeg as 44:30 fallbacks just for context
+avif is the image alternative of the popular av1 44:37 video format developed as an oper Source Ro to free video coding standard next 44:43 commonly encountered meta type is video
+for videos we have three primary formats 44:48 av1 and open source roll to free format for video compression it is ideal for 44:53 streaming and 4K and 8K content is increasingly
+supported in browsers like 45:00 Chrome Firefox and Edge and platforms like YouTube and Netflix vp9 is Google's 45:07 open source alternative to ABC it is widely used on platforms
+like YouTube 45:12 and natively supported in modern browsers and webm is not a video codic 45:18 it's an audio and video container that typically uses vp9 or av1 for video and
+45:24 oppus or Wares for audio in the image we see a comparison of these formats based 45:31 on various characteristic av1 leads in compression efficiency but has weaker browser
+support than vp9 vp9 offers 45:39 moderate compression efficiency but has broader browser support compared to av1 45:45 now that we have reviewed video and audio formats how do we
+choose the right 45:51 one there are four main parameters to consider compression efficiency this 45:56 measures how effectively A codic reduced file size smaller file size lead to
+46:02 faster loading times assess whether compression retains acceptable image or 46:07 video quality this is especially important for high resolution displays but for devices with
+small screens and 46:14 poor internet connections delivering decent quality might be better than delivering the best quality tools like 46:21 squo shown in the image can help
+compare the appearance and compression levels of 46:27 images encode and decode speed this is the time required to compress encode or 46:33 decompress decode a file it is crucial
+if processing large amounts of Meda such 46:39 as on platforms like Instagram or Pinterest for CDN based processing and 46:44 coding the coding cost should also be considered for
+small scale needs this 46:50 metric may be less relevant and browser support perat like gpeg and PNG have 46:57 Universal browser support whereas new formats like avif and webp are
+only 47:03 supported by mod browsers browser support May matter less if proper 47:08 fallback in earn place though this requires maintaining multiple image versions which consumes
+storage space as 47:16 mentioned earlier we don't need to manually transform Meda into formats unless it is necessary or cost effective 47:23 for us instead this can be handled by
+a CDN server many CDN offer a wide range of media 47:30 optimization tools including resolution optimization compression quality settings in the image you see how a CDN 47:38
+server can automatically convert a PNG image to Webb and optimize its 47:43 resolution for different devices next let's discuss font optimization fonts are example of assets 47:51
+that block page rendering because if they will not block the page it will lead to flash of unstalled text in the 47:59 image we see an example of flash of unstalled text during
+font loading the 48:04 website displays unstyled content using the default font this creates a bad user 48:09 experience and increases layout shifts which is why we block page
+rendering until fonts are loaded while this 48:16 approach ensures a consistent layout it's insufficient for loading speed because fonts must be reloaded every 48:24 time even if
+unchanged ID da browser cache fonts just like other static 48:29 resources if you don't want to rely on browser caching we can store fonts in local storage this ensures fonts
+persist 48:38 even if the browser cache is cleared and provides a l support General 48:43 recommendations include using modern font formats like W2 which reduces latency and font
+file 48:52 size for JavaScript optimization we have several options three shaking 48:57 removes unused code during the build process Cod splitting splits the 49:02 JavaScript
+bundle into smaller chunks for example by Road features or dependency loading only the necessary 49:09 code for a specific part of the application and deer or a sync loading 49:15
+delays the loading of non-critical scripts to prioritize critical resources 49:21 let's delve into some of these techniques three shaking relies on yes modelers which which are
+statically 49:27 analyzable their structure is fixed and doesn't change at run time this allows 49:33 bonders to predict and used Cod Market is a de and excluded from the final
+49:39 bundle in the image we see how tree shaking works the bundler identifies and 49:44 used models and excludes them from the final bundle however if a model has side 49:50
+effects for example modifies a global variable or executes code on import Tre 49:55 shaking may still included in the bundle because the bundler can determine which side effects
+are necessary and which are 50:02 not to make these models removable we should manually mark them as side effect 50:08 free in our code the question is why does unused code exist
+in the first 50:13 place why can't we remove it completely there are several reasons modular Cod 50:18 structure when using a single method or class from a model the entire model
+must 50:24 be imported without tree shaking the fault Imports developers sometimes 50:29 import entire libraries instead of specific Parts leading to unused code 50:34 for example
+importing the entire Lish Library when only two or three methods are needed and necessarily blows the 50:42 bundle size and third by libraries even if they minimize and used code
+in our 50:48 code base we can't guarantee the same for third party libraries the next 50:53 technique is called Cod splitting if you have seen my previous video about web 50:58
+rendering approaches you should already be familiar with this concept cut splitting is especially relevant for 51:05 client site render it single page applications where the
+website consists of a single large Javascript file 51:12 loading the en charge G bundle at the start is inefficient because most of it is unlikely necessary for the first time
+51:20 instead we use cod splitting to divide the bundle into smaller parts loading only what is needed Cod splitting can be 51:26 done by Pages components or other criteria in the
+image you can see a 51:31 classic example of cod splitting by pages instead of a single bundle the Cod 51:36 is divided into three parts loaded only when required this approach
+51:41 significantly improves the loading time for SBA the last metric on our list is time Time-to-Interactive 51:48 to interactive time to interactive refers to the time it takes
+for the page to become interactive meaning the user 51:56 can click button or interact with other elements and the page responds accordingly for a page to be fully 52:04
+interactive JavaScript must be loaded parsed and executed our goals here are 52:10 render the page on the server if possible so it is fully interactive from the start discuss this
+topic in detail 52:17 in my video about rendering approaches avoid executing heavy JavaScript on the 52:23 main thread during the initial render and Def non-critical scripts step
+to 52:28 achieve these goals include breaking down long running JavaScript tasks prioritizing loading essential scripts 52:35 first minimizing thirdparty scripts that may block
+interactivity using server 52:41 site rendering for example full SSR gereration or static rendering and 52:46 preloading resources based on users Behavior the first step is
+delegating 52:51 work long running JavaScript tasks can block the main thread causing UI Ines 52:56 And Delay interactivity to improve responsiveness these tasks should be broken
+into smaller chunks or moved to 53:04 background threads in the image you can see why long running task are problematic these tasks occupy the main 53:12 thread which must handle
+them before it can process user interactions like button clicks or opening model Windows 53:20 since JavaScript is a single threaded in the browser the main tread can only perform
+one operation at a time time 53:27 while it processes a long task the page become unresponsive which is unacceptable to address this issue we 53:34 can use web workers for heavy
+computations a FL heavy tasks to the back end or split tasks using set time 53:42 out or request it'll call back we'll discuss this approach in more detail in 53:47 the next
+section here's a detailed schema showing how delegation to web workers works one thing to note is that 53:55 web workers are different from service workers you can think of web
+workers as 54:00 an additional threat used to keep the main thread free for other tasks 54:06 communication between the main thread and a web worker isn't free so web workers
+should be used only for resarch 54:14 intensive competition not for ordinary operations the process works as follows 54:19 a message event send a heavy task to the web worker the
+main thread remains free 54:25 and unblocked the web worker receives the task through the event handler the 54:30 web worker processes this task once completed the web worker sends
+the result back to the main tread using 54:37 another message Event Event listener in the main tread listen for updates from 54:43 the web worker placing the Callback in the
+Callback queue the asynchronous handling ensures the main tread isn't 54:51 blocked similar to how other asynchronous operations work in JavaScript 54:56 another approach is
+performing heavy computations on the server side this makes sense because servers are 55:03 typically more powerful than a user's device however several side computations 55:08 can
+increase infrastructure costs tasks suited for serde processing include data 55:15 processing filtering searching or searching data for instance when rendering a table P only the
+filter 55:23 sorted and paginated data needed for the view in instead of all the data heavy 55:28 computations for example aggregating data or performing intensive calculations
+machine learning and AI 55:35 tasks unlike web workers which rely on a single Communication channel we have 55:41 multiple options for client server communication like long polling
+server cents and web sockets in the 55:48 illustration you see an example of a free tier architecture where the client serves as a them client or presentation 55:55 layer and
+delegate all citations and data processing to the back end the tradeoff of this approach are higher 56:02 server costs and increase debugging complexity the final technique which
+can 56:08 improve multiple metrics not just CTI is predictive prefetching predictive 56:13 prefetching anticipates user actions and preload resources before they are needed 56:18
+tools like cast GS analyze user behavior for example navigation patterns or 56:24 clicks to predict which p or assets the user is likely to access next based on 56:30 these
+predictions the browser PS resources such an images scripts or HTML 56:36 for those pages in other words we don't need to guess which resources to preload manually because the tool
+uses 56:43 behavioral data to make these decisions we have now finished discussing cling UI Speed in detail 56:48 time improvements and can switch to the second part improving UI
+speed when a 56:54 user performs an action on the page it might trigger one or more of the following an animation a request to the 57:00 server cations on the client side as a
+result of this actions the user expects 57:06 the following animation run smoothly the server responds quickly and competitions 57:11 do not block the page the first key to
+achieving smoth animation is GPU 57:17 acceleration to leverage GPU acceleration effectively we need to prefer CSS animations over JavaScript 57:24 animations using JavaScript for
+animations shifts the workflow to CPU 57:29 which can block the main thread use the composition thread for animations whenever possible we'll discuss the 57:35 composition thread
+in detail shortly explicitly create layers to place animations on the composition thread if 57:42 necessary let's start with the basics GPU acceleration means delegating some of
+the workload to the GPU bringing up 57:50 the CPU to handle other tasks the main thread which is responsible for handlink user interactions can become blocked by 57:57 heavy
+animations this is why we should avoid JavaScript based animations especially for websites that need to 58:04 perform well on a wide range of devices such as Amazon we should use
+GPU 58:09 friendly CSS properties like transform and opacity these properties are ideal 58:14 for animations because they can be uploaded to the GPU additionally we should avoid
+animating properties that 58:21 trigger layout or calculations for example width height and Marg as these are handled by the CPU and can 58:29 cause performance bottlenecks why are
+GPU animations better the main reasons are a floating work from the CPU the CPU 58:37 handles critical tasks such as managing the main tread delegating non-essential tasks like
+animations to the GPU allows 58:45 the CPU to focus on its primary responsibilities efficiency in 58:50 repetitive calculations the GPU is optimized for simple repetitive
+calculations making it perfect for 58:57 animations in contrast the CPU is better suited for complex long running tasks 59:03 avoiding relay outs and repaints GPU animations do not
+trigger relay outs or 59:08 repaints because they're are handl at the composition layer what is the composition layer to understand this we 59:15 need to look at the rendering
+pipeline or rendering life cycle of a web page this is the sequence of steps the 59:22 browser takes to render HTML CSS and chav script into visible pixels on the 59:28 screen
+rendering pipeline overview includes JavaScript changes to style 59:33 made dynamically through JavaScript for example via element style or closets can 59:39 invalidate existing
+Styles triggering style recalculation browser determines 59:44 which CSS rules apply to each Dom element and calculates their final computed Styles layout the browser 59:52
+computes the geometry size and position of each element based on the computed 59:58 Styles and their Dome relationships layout recalculations are computationally intensive
+especially for 1:00:05 complex pages and should be avoided when it's possible and paint the browser 1:00:11 feels in visual Styles like background color box Shadow and Border
+radius while 1:00:18 repainting is less expensive than layout recalculations it is still handled by 1:00:23 the CPU and can impact performance and composite layers for performance
+the 1:00:28 browser splits painted elements into layers which are merged into a final 1:00:34 image during the compositing step composite layers can be changed independently
+without triggering the 1:00:41 earlier steps in the pipeline only two CSS properties transform and apacity can 1:00:47 be moved directly to the composition layer as of December
+2024 the first 1:00:53 three steps involve have calculations while repaints and composite layers 1:00:58 involve lightweight recalculations composite layer animations are ideal
+because they can be uploaded to the GPU 1:01:06 for websites intended for a wide range of users with varying device capabilities consider minimizing or 1:01:13 avoiding animations
+altogether for example Amazon rarely use fence animations to ensure consistent 1:01:20 performance across all devices let's examine the composition layer more Clos 1:01:26 L
+browsers typically create composition layers automatically when GPU properties 1:01:32 are used however there are cases where we might want to promote layer creation 1:01:38
+manually for example animation delays if animations start with a lag it might be 1:01:43 because the browser is taking time to promote the element to a composition layer during the
+animation Dynamic 1:01:50 Property changes for example when an element transform or apacity changed in 1:01:55 dynamically for example on hover or click promotion delays can cause
+animation lags overlapping elements 1:02:03 visual conflicts between overlapping elements can benefit from separating them into their own layers to manually 1:02:10 promote layer
+creation use the CSS property will change adding whe change 1:02:16 to an element signals to the browser that the element properties transform or opacity are expected to change
+prompting 1:02:23 the browser to create a composition list layer in advance while wheel change and 1:02:28 composition layers can improve performance there are not silver bullets
+and should be used carefully resource 1:02:36 usage each composition layer consumes GPU memory and processing power applying 1:02:41 wheel change to too many elements can slow down
+performance especially on 1:02:46 lowend devices avoid unnecessary layer creation if will change is applied to 1:02:53 elements that don't change often it will based resources
+allocating and 1:02:58 maintaining layers require memory even if the layer remains unused and low 1:03:03 power devices handling animations via GPU isn't free and may not be fast
+1:03:09 enough on devices with limited GPU capabilities always evaluate the need 1:03:14 for animations based on the target audience and device capabilities now that we know a lot
+1:03:21 about CSS animations let's go through a checklist the fewer layers and animation 1:03:26 effects the better its performance try to perform animations on the composition
+layer if that's not possible use 1:03:33 animations that only triggers repays avoid animations that trigger relay outs 1:03:38 as they are much more expensive that repays and
+recomposing if avoiding them 1:03:44 isn't possible and the animation aren't critical consider removing them all together for example use csor pointers 1:03:51 to highlight
+interactive elements instead of animations use tools like CSS triggers to check which layers your 1:03:58 animation tracked with not that animation properties might behave
+differently across browsers if 1:04:04 animations are necessary but your site must support a wide range of devices a 1:04:09 good solution is to let users control animations via
+setting toggle add an option in user settings to enable or 1:04:16 disable animations across the side by doing this users with low power devices 1:04:21 can switch to a lightweight
+version of the site the final optimization category is unblocking the main thread to ensure 1:04:29 the main thread remains free for handling user interactions avoid javascrip
+competition that can block it 1:04:36 three case steps to achieve this are avoid heavy competition divide work into smaller chunks and minimize and optimize 1:04:44 Dom
+manipulations heavy computations such as image processing data parsing or 1:04:49 large matematical operations can block the main thread causing the UI to freeze to address this
+issue you can use web 1:04:57 workers web workers operate in a separate thread making them ideal for intensive tasks or delegate expensive 1:05:04 operations to the back end use
+serite competitions to a FL tasks from the client if neither of the above 1:05:12 approaches is an option you can still execute competitions on the main Threat by splitting them
+into chunks rather 1:05:18 than performing them in a single iteration break task into smaller chunks and run each Chunk in a new event Loop 1:05:25 cycle to prevent the main thread
+from being blocked you can achieve this using set timeout or request animation frame 1:05:33 here's an example of how to implement this approach for low priority task use 1:05:38
+request itle callback to execute them when the browser is it all after completing tasks like rendering layout 1:05:45 and painting this ensures the main Trad remains available for
+rendering updates 1:05:51 important note even when using request ital call back heavy task should still 1:05:56 be split into smaller chunks large tasks can delay rendering of the
+next frame 1:06:02 computations should be small enough to allow the page to render at 60 frames 1:06:08 per second or one frame every 60 milliseconds achieving 60 frames per
+1:06:14 seconds ensure the most operations another critical optimization technique is minimizing document object model 1:06:21 manipulations if you have worked with the Frameworks
+like react you are likely familiar with this concept the idea is 1:06:29 to reduce the number of page r renderers as there are competition expensive two 1:06:35 strategies to
+improve document object model manipulation performance are group 1:06:40 multiple document object model changes into a single update to minimize layout 1:06:45 recalculations and
+avoid layout tring prevent repeated reading and writing to 1:06:51 the document object model for example in a loop as the forces the pr to 1:06:56 recalculate Styles and layouts
+multiple times which significantly impacts performance in negative way let's dive 1:07:04 deeper into layout trashing layout trashing occures when JavaScript reads 1:07:09 layout
+properties for example offset height or get bouncing C racked then 1:07:14 immediately modifies the document object model this process forces the browser to recalculate the layout
+multiple times in 1:07:21 quick succession in the image you can see how layout trashing has happens styles are read and modified in a single 1:07:29 iteration causing repeat Styles
+and relay outs for example if this Loop 1:07:35 iterates 100 times the browser will perform 100 layout recalculations before 1:07:40 rendering the new frame layout thrashing can
+severly impact performance and must 1:07:46 be avoided avoiding layout thrashing is relatively straightforward separate 1:07:51 style reads and style wres for instance first read
+the Styles outside of the 1:07:57 loop then write them inside the loop this eliminates repeated relay outs and 1:08:02 ensures Optimal Performance finally let's summarize all the
+techniques 1:08:07 patterns and tools we have discussed today some optimizations even those focused on loading time can be applied 1:08:14 to both loading time and UI performance
+for example image optimizations benefits 1:08:20 not only initial loading but also ongoing interactions with the website 1:08:26 that's all for today if you found this video useful
+please don't forget to click the like button and subscribe to 1:08:32 the channel thank you for watching and see you soon bye All From the series Intro: How to speed up your
+WordPress website and pass Google Core Web Vitals 0:00 Hey, what's up everybody? Clifton here, Clifton WP. Welcome back to the channel. In this video, I'm going to show you how
+0:06 I optimize my websites for speed so that my site visitors get a fast loading experience when they get to the website. 0:12 And this is also great for search engine

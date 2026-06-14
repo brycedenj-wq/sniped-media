@@ -1,0 +1,226 @@
+knowledge. It lets the model know about things that are not part of its training data, for example your internal data, so that it can generate more relevant responses. Based on an
+input, you can retrieve the most relevant documents from your knowledge base, and then use this information to generate a response. There are several steps involved in a RAG
+pipeline: Data preparation: Pre-processing documents, chunking them into smaller pieces if needed, embedding them and storing them in a vector database Retrieval: Using the input
+to retrieve the most relevant chunks from the vector database. Optionally, there are multiple optimization techniques that can be used at this stage, such as input processing or
+re-ranking (re-ordering the retrieved chunks to make sure we keep only the most relevant) Generation: Once you have the most relevant chunks, you can include them in the context
+you send to the model to generate the final answer RAG We could write an entire track on RAG alone, but for now, you can learn more about it in the guide below. RAG technique
+overview RAG technique overview Overview of retrieval-augmented generation techniques. guide If you don’t have specific needs requiring to build a custom RAG pipeline, you can rely
+on our built-in file search tool which abstracts away all of this complexity. Learn and build File search guide File search guide Guide to retrieving context from files using the
+Responses API. guide Fine-tuning models In some cases, your application could benefit from a model that adapts to your specific task. You can use supervised or reinforcement
+fine-tuning to teach the models certain behaviors. For example, supervised fine-tuning is a good fit when: You want the output to follow strict guidelines for tone, style, or
+format It’s easier to “show” than “tell” how to handle certain inputs to arrive at the desired outputs You want to process inputs or generate outputs in a consistent way You can
+also use Direct Preference Optimization (DPO) to fine-tune a model with examples of what not to do vs what is a preferred answer. On the other hand, you can use reinforcement
+fine-tuning when you want reasoning models to accomplish nuanced objectives. Learn and build Explore the following resources to learn about core fine-tuning techniques for
+customizing model behavior. You can also dive deeper into fine-tuning with our Model optimization track. Supervised fine-tuning overview Supervised fine-tuning overview Guide to
+supervised fine-tuning for customizing model behavior. guide Reinforcement fine-tuning overview Reinforcement fine-tuning overview Guide on reinforcement learning-based fine-tuning
+techniques. guide Now that we’ve covered how to build AI applications and incorporate some basic AI techniques in the development process, we’ll focus on testing and evaluation,
+learning how to integrate evals and guardrails to confidently ship AI applications that are safe, predictable, and production-ready. Phase 3: Testing and evaluation Learn how to
+test, safeguard, and harden your AI applications before moving them into production. We’ll focus on: Constructing robust evals to measure correctness, quality, and reliability at
+scale Adding guardrails to block unsafe actions and enforce predictable behavior Iterating with feedback loops that surface weaknesses and strengthen your apps over time By the end
+of this phase, you’ll be able to ship AI applications that are safe, reliable, and ready for users to trust. Constructing evals To continuously measure and improve your
+applications from prototype through deployment, you need to design evaluation workflows. Evals in practice let you: Verify correctness: Validate that outputs meet your desired
+logic and requirements. Benchmark quality: Compare performance over time with consistent rubrics. Guide iteration: Detect regressions, pinpoint weaknesses, and prioritize fixes as
+your app evolves. By embedding evals into your development cycle, you create repeatable, objective feedback loops that keep your AI systems aligned with both user needs and
+business goals. There are many types of evals, some that rely on a “ground truth” (a set of question/answer pairs), and others that rely on more subjective criteria. Even when you
+have expected answers, comparing the model’s output to them might not always be straightforward. Sometimes, you can check in a simple way that the output matches the expected
+answer, like in the example below. In other cases, you might need to rely on different metrics and scoring algorithms that can compare outputs holistically—when you’re comparing
+big chunks of text (e.g. translations, summaries) for example. Example: Check the model’s output against the expected answer, ignoring order. // Reference answer const
+correctAnswer = ["Eggs", "Sugar"]; // Model's answer const modelAnswer = ["Sugar", "Eggs"]; // Simple check: Correct if same ingredients, order ignored const isCorrect =
+correctAnswer.sort().toString() === modelAnswer.sort().toString(); console.log(isCorrect ? "Correct!" : "Incorrect."); Learn and build Explore the following resources to learn
+evaluation-driven development to scale apps from prototype to production. These resources will walk you through how to design rubrics and measure outputs against business goals.
+Evals API The OpenAI Platform provides an Evals API along with a dashboard that allows you to visually configure and run evals. You can create evals, run them with different models
+and prompts, and analyze the results to decide next steps. Learn and build Learn more about the Evals API and how to use it with the resources below. Working with the Evals API
+Working with the Evals API Guide to building evaluations with the Evals API. guide Building guardrails Guardrails act as protective boundaries that ensure your AI system behaves
+safely and predictably in the real world. They help you: Prevent unsafe behavior: Block disallowed or non-compliant actions before they reach users. Reduce hallucinations: Catch
+and correct common failure modes in real time. Maintain consistency: Enforce rules and constraints across agents, tools, and workflows. Together, evals and guardrails form the
+foundation of trustworthy, production-grade AI systems. There are two types of guardrails: Input guardrails: To prevent unwanted inputs from being processed Output guardrails: To
+prevent unwanted outputs from being returned In a production environment, ideally you would have both types of guardrails, depending on how the input and output are used and the
+level of risk you’re comfortable with. It can be as easy as specifying something in the system prompt, or more complex, involving multiple checks. One simple guardrail to implement
+is to use the Moderations API (which is free to use) to check if the input triggers any of the common flags (violence, illegal ask, etc.) and stop the generation process if it
+does. Example: Classify text for policy compliance with the Moderations API. from openai import OpenAI client = OpenAI() response = client.moderations.create(
+model="omni-moderation-latest", input="I want to buy drugs", ) print(response) Learn and build Explore the following resources to implement safeguards that make your AI predictable
+and compliant. Set up guardrails against common risks like hallucinations or unsafe tool use. Building guardrails for agents Building guardrails for agents Guide to implementing
+safeguards and guardrails in agent applications. guide Now that you’ve learned how to incorporate evals into your workflow and build guardrails to enforce safe and compliant
+behavior, you can move on to the last phase, where you’ll learn to optimize your applications for cost, latency, and production readiness. Phase 4: Scalability and maintenance In
+this final phase, you’ll learn how to run AI applications at production scale—optimizing for accuracy, speed, and cost while ensuring long-term stability. We’ll focus on:
+Optimizing models to improve accuracy, consistency, and efficiency for real-world use Cost and latency optimization to balance performance, responsiveness, and budget Performance
+optimization Optimizing your application’s performance means ensuring your workflows stay accurate, consistent, and efficient as they move into long-term production use. There are
+3 levers you can adjust: Improving the prompts (i.e. prompt engineering) Improving the context you provide to the model (i.e. RAG) Improving the model itself (i.e. fine-tuning)
+Performance optimization Deep-dive This guide covers how you can combine these techniques to optimize your application’s performance. LLM correctness and consistency LLM
+correctness and consistency Best practices for achieving accurate and consistent model outputs. guide Cost & latency optimization Every production AI system must balance
+performance with cost and latency. Often, these two go together, as smaller and faster models are also cheaper. A few ways you can optimize these areas are: Using smaller,
+fine-tuned models: you can fine-tune a smaller model to your specific use case and maintain performance (a.k.a. distillation) Prompt caching: you can use prompt caching to improve
+latency and reduce costs for cached tokens (series of tokens that have already been seen by the model) Model distillation overview Model distillation overview Overview of
+distillation techniques for creating efficient models. guide If latency isn’t a concern, consider these options to reduce costs with a latency trade-off: Batch API: you can use the
+Batch API to group requests together and get a 50% discount (however this is only valid for async use cases) Flex processing: you can use flex processing to get lower costs in
+exchange for slower responses times Batch API guide Batch API guide Guide on how to use the Batch API to reduce costs guide Flex processing guide Flex processing guide Guide on how
+to reduce costs with flex processing guide You can monitor your usage and costs with the cost API, to keep track on what you should optimize. Keep costs low & accuracy high Keep
+costs low & accuracy high Guide on balancing cost efficiency with model accuracy. guide Set up your account for production On the OpenAI platform, we have the concept of tiers,
+going from 1 to 5. An organization in Tier 1 won’t be able to make the same number of requests per minute or send us the same amount of tokens per minute as an organization in Tier
+5. Before going live, make sure your tier is set up to manage the expected production usage—you can check our rate limits in the guide below. Also make sure your billing limits are
+set up correctly, and your application is optimized and secure from an engineering standpoint. Our production best practices guide will walk you through how to make sure your
+application is setup for scale. Production best practices Production best practices Guide on best practices for running AI applications in production guide Rate limits guide Rate
+limits guide Guide to understanding and managing rate limits guide Conclusion and next steps In this track, you: Learned about core concepts such as agents and evals Designed and
+deployed applications using the Responses API or Agents SDK and optionally incorporated some basic techniques like prompt engineering, fine-tuning, and RAG Validated and
+safeguarded your solutions with evals and guardrails Optimized for cost, latency, and long-term reliability in production This should give you the foundations to build your own AI
+applications and get them ready for production, taking ideas from concept to AI systems that can be deployed and scaled. Where to go next Keep building your expertise with our
+advanced track on Model optimization, or directly explore resources on topics you’re curious about. Feedback Share your feedback on this track and suggest other topics you’d like
+us to cover. OpenAI Developers Home API Codex ChatGPT Resources Start searching Home OpenAI Developers plugin Docs MCP Demo apps Videos Agents Audio & Voice Computer Use Codex
+Evals gpt-oss Fine-tuning Image generation Scaling Tools Video generation Introduction Optimization techniques Optimization in practice Conclusion and next steps Copy Page 1-2
+hours Advanced Model optimization Fine-tune, distill, and optimize models for the best performance and cost. Model optimization Introduction This learning track guides you through
+optimizing models for accuracy, performance, and cost efficiency. Learn fundamental optimization concepts, explore practical techniques like fine-tuning and distillation, and apply
+best practices to ensure your models deliver reliable results. Core learning objectives This shorter track is meant for advanced users who already know how to build with OpenAI
+models and tools but want to dive deeper into how to optimize models. By the end of this track, you will know how to: Choose the right optimization lever for the goal (e.g. which
+kind of fine-tuning to use) Distill models to reduce latency and cost while maintaining quality Use evals to monitor model performance and optimize accordingly If you are not
+already familiar with the concepts of fine-tuning, distillation, and cost and latency optimization, we recommend starting with the AI app development track first. Optimization
+techniques In this section, we’ll introduce the core levers for optimizing model performance: Fine-tuning to improve task accuracy, consistency, and domain fit Distillation to keep
+behavior consistent with a smaller model Evals to measure model performance and detect drift Fine-tuning Fine-tuning adapts a model to your use case’s specific needs, improving its
+reliability and relevance. It can be helpful for: Domain adaptation: Train models to understand specialized language, data, or tasks. Behavior customization: Shape outputs to
+follow your style, tone, or operational rules. Efficiency and reliability: Reduce prompt complexity and improve predictable responses. Applied well, fine-tuning lets you unlock
+outputs that align with your domain, style, and operational needs. There are different types of fine-tuning: Supervised fine-tuning: Train a model on a set of inputs/desired
+outputs Direct Preference Optimization (DPO): Train a model for subjective decision-making by giving examples of what works and what doesn’t Reinforcement fine-tuning: Train a
+reasoning model on a task with a feedback signal Vision fine-tuning: Train a model on a set of input images and desired outputs for better image understanding Supervised
+fine-tuning This type of fine-tuning is helpful when you want the model to follow a certain output style, or when you want the model to process inputs in a specific way and it’s
+easier to “show” than “tell”. This works well for unambiguous tasks where you can clearly show what you want to help the model do the same. While sometimes the same outcomes could
+be achieved by simply prompting the model, fine-tuning allows to achieve the same results with a shorter prompt, and maybe even a smaller model. Direct Preference Optimization
+(DPO) This type of fine-tuning is helpful when you want the model to make decisions based on your preferences. This is helpful when you can’t exactly point out what is good or bad,
+but you can tell which output is better than the other. Example use cases include A/B testing answers, or subjective tasks like writing a summary. Reinforcement fine-tuning This
+type of training is helpful when you don’t have reference answers but you want to teach the model a behavior. For example, if you try to do a backflip, you can’t outline exactly
+the steps needed to get there. But you can tell if you’re going in the right direction or not and adjust each try accordingly. With reinforcement fine-tuning, you can use graders
+to score a model’s output during training and give it feedback on each step so it can get closer to the ideal outcome. The model will try a lot of things and when something goes in
+the right direction, it will get “rewarded” for it. This is especially useful to teach models complex behaviors that you wouldn’t be able to describe—you just know what you want to
+achieve. Vision fine-tuning With vision fine-tuning, you can improve a model’s understanding of visual inputs. Let’s say you want to classify images of your products, that have
+very intricate details. They all look the same to everyone else, but because you built them you know what differences to look for. Since these images are proprietary, it’s very
+likely that the model doesn’t know how to interpret them correctly as it has not seen them before. Vision fine-tuning allows you to teach the model what is special about each image
+input to improve its performance on your specific task. Supervised fine-tuning overview Supervised fine-tuning overview Guide to supervised fine-tuning for customizing model
+behavior. guide Vision fine-tuning overview Vision fine-tuning overview Guide to fine-tuning models on vision tasks. guide Reinforcement fine-tuning overview Reinforcement
+fine-tuning overview Guide on reinforcement learning-based fine-tuning techniques. guide Distillation Distillation is a way to transfer a stronger model’s behavior to a smaller
+“student” model, maintaining performance while improving speed and cost. With distillation, you can deliver the same experience with quicker responses at lower cost. We’ve now
+introduced distillation as a built-in feature in the OpenAI platform, working in tandem with our Evaluations product. Explore the following resources to learn more about the
+concept of distillation. Model distillation overview Model distillation overview Overview of distillation techniques for creating efficient models. guide DevDay — distillation
+breakout DevDay — distillation breakout DevDay session on model distillation techniques. video Evals You can’t measure a model’s performance or compare it to other models if you
+don’t have a way to evaluate it. This is where evals come in. You can use our Evals API and dashboard to create evals allowing to compare models on the same use cases. A typical
+model optimization flow would look like this: Collect input and output data (you can now do this automatically by storing your inputs and outputs, which is the default behavior in
+the Responses API) Create an eval based on your use case to evaluate a model’s performance Tweak the prompt and optionally RAG pipeline to get to a place where the model is
+performing well Distill the larger model’s outputs to a smaller model Evaluate the new fine-tuned model’s performance This process will be very different depending on your use
+case, and will likely require multiple iterations, but you can leverage the Evals dashboard to experiment and iterate fast. Working with the Evals API Working with the Evals API
+Guide to building evaluations with the Evals API. guide Next, we’ll see how you can apply these techniques in practice. Optimization in practice In this section, we’ll cover the
+practical aspects of fine-tuning, evals, and distillation. Graders There are many different ways to evaluate a task—either checking correctness or subjectively evaluating output.
+You can do this with your own custom logic, or you can also use our graders API to define various graders you can use with our Evals and Fine-tuning products. Graders Graders Guide
+to using graders for evaluations. guide Distillation in action Distillation works best when a smaller model can match a larger one’s impact. It’s more than a cost-saving
+measure—it’s a way to make models deployable where speed, memory, or infrastructure constraints matter. Done right, distillation lets you: Adapt to constraints: Ensure models
+perform effectively with available resources. Accelerate iteration: Enable faster experimentation cycles with models that retrain or redeploy quickly. Stabilize production: Reduce
+variability in response times for more predictable user experiences. Try distillation for a real-world example with the cookbook below. Fine-tuning best practices There are
+multiple parameters involved when you do fine-tuning, the most important one being the quality of the data, as well as the quantity. There are other parameters to watch out for,
+whether you are doing supervised or reinforcement fine-tuning. Explore the resources below to learn more about best practices when running fine-tuning jobs. Fine-tuning best
+practices Fine-tuning best practices Recommendations for effective and efficient model fine-tuning. guide Conclusion and next steps In this track, you: Learned about different
+types of fine-tuning, distillation, and evals Gained practical experience with these techniques and our optimization product suite With these skills, you can now optimize for the
+best performance both in terms of quality of the outputs and latency and cost in your AI applications. As a next step, you can explore our other resources on topics you’re curious
+about. OpenAI Developers Home API Codex ChatGPT Resources Start searching Home OpenAI Developers plugin Docs MCP Demo apps Videos Agents Audio & Voice Computer Use Codex Evals
+gpt-oss Fine-tuning Image generation Scaling Tools Video generation What it provides Quickstart Tips OpenAI Docs Skill Copy Page Docs MCP Search and read OpenAI developer docs from
+your editor using MCP. Copy Page OpenAI hosts a public Model Context Protocol (MCP) server for developer documentation on developers.openai.com and platform.openai.com. Server URL
+(streamable HTTP): https://developers.openai.com/mcp What it provides Read-only access to OpenAI developer documentation (search + page content). A way to pull documentation into
+your agent’s context while you work. This MCP server is documentation-only. It does not call the OpenAI API on your behalf. Quickstart Choose an option Codex VS Code Cursor Claude
+Code You can connect Codex to MCP servers in the CLI or IDE extension. The configuration is shared between both so you only have to set it up once. Add the server using the Codex
+CLI: codex mcp add openaiDeveloperDocs --url https://developers.openai.com/mcp Verify it’s configured: codex mcp list Alternatively, you can add it in ~/.codex/config.toml
+directly: [mcp_servers.openaiDeveloperDocs] url = "https://developers.openai.com/mcp" To have Codex reliably use the MCP server, add this snippet to your AGENTS.md: Always use the
+OpenAI developer documentation MCP server if you need to work with the OpenAI API, ChatGPT Apps SDK, Codex,… without me having to explicitly ask. Tips If you don’t have the snippet
+in the AGENTS.md file, you need to explicitly tell your agent to consult the Docs MCP server for the answer. If you have more than one MCP server, keep server names short and
+descriptive to aid the agent in selecting the server. OpenAI Docs Skill If you use skills in your AI tooling, pair this MCP server with the OpenAI Docs Skill. It tells the agent to
+use Docs MCP tools first for OpenAI questions, then fall back to official OpenAI domains. Install the skill from the OpenAI skills repository. Confirm you configured this Docs MCP
+server at https://developers.openai.com/mcp. Enable the skill for your project or session in your agent tooling. Ask OpenAI product/API questions and request citations so answers
+stay traceable to docs sources. # Docs MCP OpenAI hosts a public Model Context Protocol (MCP) server for developer documentation on developers.openai.com and platform.openai.com.
+**Server URL (streamable HTTP):** `https://developers.openai.com/mcp` ## What it provides - Read-only access to OpenAI developer documentation (search + page content). - A way to
+pull documentation into your agent's context while you work. This MCP server is documentation-only. It does not call the OpenAI API on your behalf. ## Quickstart <div slot="codex">
+You can connect Codex to [MCP servers](https://developers.openai.com/codex/mcp) in the [CLI](https://developers.openai.com/codex/cli) or [IDE
+extension](https://developers.openai.com/codex/ide). The configuration is shared between both so you only have to set it up once. Add the server using the Codex CLI: ```bash codex
+mcp add openaiDeveloperDocs --url https://developers.openai.com/mcp ``` Verify it's configured: ```bash codex mcp list ``` Alternatively, you can add it in `~/.codex/config.toml`
+directly: ```toml [mcp_servers.openaiDeveloperDocs] url = "https://developers.openai.com/mcp" ``` To have Codex reliably use the MCP server, add this snippet to your `AGENTS.md`:
+``` Always use the OpenAI developer documentation MCP server if you need to work with the OpenAI API, ChatGPT Apps SDK, Codex,… without me having to explicitly ask. ``` </div> <div
+slot="vs-code"> VS Code supports MCP servers when using GitHub Copilot in Agent mode. Click the following link to add the Docs MCP to VS Code: Alternatively, you can manually add a
+`.vscode/mcp.json` in your project root: ```json { "servers": { "openaiDeveloperDocs": { "type": "http", "url": "https://developers.openai.com/mcp" } } } ``` To have VS Code
+reliably use the MCP server, add this snippet to your `AGENTS.md`: ``` Always use the OpenAI developer documentation MCP server if you need to work with the OpenAI API, ChatGPT
+Apps SDK, Codex,… without me having to explicitly ask. ``` Open Copilot Chat, switch to **Agent** mode, enable the server in the tools picker, and ask an OpenAI-related question
+like: > Look up the request schema for Responses API tools in the OpenAI developer docs and summarize the required fields. </div> <div slot="cursor"> Cursor has native MCP support
+and reads configuration from `mcp.json`. Install with Cursor: Alternatively, create a `~/.cursor/mcp.json` (macOS/Linux) and add: ```json { "mcpServers": { "openaiDeveloperDocs": {
+"url": "https://developers.openai.com/mcp" } } } ``` To have Cursor reliably use the MCP server, add this snippet to your `AGENTS.md`: ``` Always use the OpenAI developer
+documentation MCP server if you need to work with the OpenAI API, ChatGPT Apps SDK, Codex,… without me having to explicitly ask. ``` Restart Cursor and ask Cursor's agent an
+OpenAI-related question like: > Look up the request schema for Responses API tools in the OpenAI developer docs and summarize the required fields. </div> <div slot="claude-code">
+Claude Code supports remote HTTP MCP servers through the `claude mcp` CLI. Add the Docs MCP server from the project where you use Claude Code: ```bash claude mcp add --transport
+http openaiDeveloperDocs https://developers.openai.com/mcp ``` Verify it's configured: ```bash claude mcp list ``` To make the server available across all Claude Code projects on
+your machine, add it with user scope: ```bash claude mcp add --transport http --scope user openaiDeveloperDocs https://developers.openai.com/mcp ``` In Claude Code, run `/mcp` to
+confirm the server is connected. Then ask an OpenAI-related question like: > Look up the request schema for Responses API tools in the OpenAI developer docs and summarize the
+required fields. </div> ## Tips - If you don't have the snippet in the AGENTS.md file, you need to explicitly tell your agent to consult the Docs MCP server for the answer. - If
+you have more than one MCP server, keep server names short and descriptive to aid the agent in selecting the server. ## OpenAI Docs Skill If you use skills in your AI tooling, pair
+this MCP server with the [OpenAI Docs Skill](https://github.com/openai/skills/blob/main/skills/.curated/openai-docs/SKILL.md). It tells the agent to use Docs MCP tools first for
+OpenAI questions, then fall back to official OpenAI domains. 1. Install the skill from the [OpenAI skills repository](https://github.com/openai/skills). 2. Confirm you configured
+this Docs MCP server at `https://developers.openai.com/mcp`. 3. Enable the skill for your project or session in your agent tooling. 4. Ask OpenAI product/API questions and request
+citations so answers stay traceable to docs sources. OpenAI Developers Home API Codex ChatGPT Resources Start searching Home OpenAI Developers plugin Docs MCP Demo apps Videos
+Agents Audio & Voice Computer Use Codex Evals gpt-oss Fine-tuning Image generation Scaling Tools Video generation Get started with Codex Install the plugin Use the plugin Sample
+prompts Copy Page OpenAI Developers plugin for Codex Install the OpenAI Developers plugin in Codex to build, troubleshoot, and ship apps on top of the OpenAI API. Copy Page The
+OpenAI Developers plugin helps you build AI applications and agents in Codex with OpenAI Platform access and OpenAI API setup guidance. It works together with the OpenAI Docs Skill
+that comes bundled with your Codex install. It includes: OpenAI API Platform: connect Codex to the OpenAI API Platform. API key setup: create, save, and connect a project API key
+from Codex when your app needs OpenAI API access. Troubleshooting: identify common OpenAI API failures and route you to the right next step. For API key setup, the plugin creates
+new API keys in your Default Org under the Default project. You can set your default organization in your profile settings. Get started with Codex If you are new to Codex, start
+here before installing the plugin: Download the Codex app for macOS or Windows. Follow the Codex quickstart to sign in, choose a project, and send your first message. Install the
+plugin Choose an option Codex app Codex CLI Open the plugin directory In the Codex app, open Plugins. Find the plugin Search for OpenAI Developers, then open the plugin details.
+Add it to Codex Select the plus button or Add to Codex. Connect the OpenAI Platform If Codex prompts you to connect the bundled OpenAI Platform app, finish that setup so the plugin
+can interact with the OpenAI Platform, such as creating and setting project API keys when needed. Start a new thread Open a new thread before using the plugin for the first time.
+For general plugin behavior, permissions, and removal steps, see Plugins. Use the plugin After installation, start building with Codex! Codex can use the plugin automatically when
+the task calls for OpenAI Platform interactions, such as creating API keys, or troubleshooting API issues. The plugin is useful when you want Codex to: build an app or agent that
+uses the OpenAI API create an OpenAI API key for the app you are building diagnose common OpenAI API errors and explain the next step. Sample prompts Start with one of these
+prompts: Create a project API key to use in this project. Build an app that uses AI to generate haikus. Build an agent with the Agents SDK. You can also invoke the plugin
+explicitly by typing @ in the prompt composer and choosing OpenAI Developers. After selecting the plugin, you can ask for more specific help: Diagnose this OpenAI API error and
+explain what I should change in the code. Create a project API key for this project, wire it into the local environment, and tell me how to run the app. > ## Documentation Index >
+Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt > Use this file to discover all available pages before exploring further. # Overview > Claude Code
+is an agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your development tools. Available in your terminal, IDE, desktop app, and
+browser. Claude Code is an AI-powered coding assistant that helps you build features, fix bugs, and automate development tasks. It understands your entire codebase and can work
+across multiple files and tools to get things done. ## Get started Choose your environment to get started. Most surfaces require a [Claude
+subscription](https://claude.com/pricing?utm_source=claude_code\&utm_medium=docs\&utm_content=overview_pricing) or [Anthropic Console](https://console.anthropic.com/) account. The
+Terminal CLI and VS Code also support [third-party providers](/en/third-party-integrations). <Tabs> <Tab title="Terminal"> The full-featured CLI for working with Claude Code
+directly in your terminal. Edit files, run commands, and manage your entire project from the command line. To install Claude Code, use one of the following methods: <Tabs> <Tab
+title="Native Install (Recommended)"> **macOS, Linux, WSL:** ```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} curl -fsSL
+https://claude.ai/install.sh | bash ``` **Windows PowerShell:** ```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} irm
+https://claude.ai/install.ps1 | iex ``` **Windows CMD:** ```batch theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} curl -fsSL
+https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd ``` If you see `The token '&&' is not a valid statement separator`, you're in PowerShell, not CMD. If
+you see `'irm' is not recognized as an internal or external command`, you're in CMD, not PowerShell. Your prompt shows `PS C:\` when you're in PowerShell and `C:\` without the `PS`
+when you're in CMD. [Git for Windows](https://git-scm.com/downloads/win) is recommended on native Windows so Claude Code can use the Bash tool. If Git for Windows is not installed,
+Claude Code uses PowerShell as the shell tool instead. WSL setups do not need Git for Windows. <Info> Native installations automatically update in the background to keep you on the
+latest version. </Info> </Tab> <Tab title="Homebrew"> ```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} brew install --cask claude-code ```
+Homebrew offers two casks. `claude-code` tracks the stable release channel, which is typically about a week behind and skips releases with major regressions. `claude-code@latest`
+tracks the latest channel and receives new versions as soon as they ship. <Info> Homebrew installations do not auto-update. Run `brew upgrade claude-code` or `brew upgrade
+claude-code@latest`, depending on which cask you installed, to get the latest features and security fixes. </Info> </Tab> <Tab title="WinGet"> ```powershell theme={null}
+theme={null} theme={null} theme={null} theme={null} theme={null} winget install Anthropic.ClaudeCode ``` <Info> WinGet installations do not auto-update. Run `winget upgrade
+Anthropic.ClaudeCode` periodically to get the latest features and security fixes. </Info> </Tab> </Tabs> You can also install with [apt, dnf, or
+apk](/en/setup#install-with-linux-package-managers) on Debian, Fedora, RHEL, and Alpine. Then start Claude Code in any project: ```bash theme={null} cd your-project claude ```
+You'll be prompted to log in on first use. That's it! [Continue with the Quickstart →](/en/quickstart) <Tip> See [advanced setup](/en/setup) for installation options, manual
+updates, or uninstallation instructions. Visit [installation troubleshooting](/en/troubleshoot-install) if you hit issues. </Tip> </Tab> <Tab title="VS Code"> The VS Code extension
+provides inline diffs, @-mentions, plan review, and conversation history directly in your editor. * [Install for VS Code](vscode:extension/anthropic.claude-code) * [Install for
+Cursor](cursor:extension/anthropic.claude-code) Or search for "Claude Code" in the Extensions view (`Cmd+Shift+X` on Mac, `Ctrl+Shift+X` on Windows/Linux). After installing, open
+the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`), type "Claude Code", and select **Open in New Tab**. [Get started with VS Code →](/en/vs-code#get-started) </Tab> <Tab
+title="Desktop app"> A standalone app for running Claude Code outside your IDE or terminal. Review diffs visually, run multiple sessions side by side, schedule recurring tasks, and
+kick off cloud sessions. Download and install: * [macOS](https://claude.ai/api/desktop/darwin/universal/dmg/latest/redirect?utm_source=claude_code\&utm_medium=docs) (Intel and
+Apple Silicon) * [Windows](https://claude.ai/api/desktop/win32/x64/setup/latest/redirect?utm_source=claude_code\&utm_medium=docs) (x64) * [Windows
+ARM64](https://claude.ai/api/desktop/win32/arm64/setup/latest/redirect?utm_source=claude_code\&utm_medium=docs) After installing, launch Claude, sign in, and click the **Code** tab
+to start coding. A [paid subscription](https://claude.com/pricing?utm_source=claude_code\&utm_medium=docs\&utm_content=overview_desktop_pricing) is required. [Learn more about the
+desktop app →](/en/desktop-quickstart) </Tab> <Tab title="Web"> Run Claude Code in your browser with no local setup. Kick off long-running tasks and check back when they're done,
+work on repos you don't have locally, or run multiple tasks in parallel. Available on desktop browsers and the Claude iOS app. Start coding at
+[claude.ai/code](https://claude.ai/code). [Get started on the web →](/en/web-quickstart) </Tab> <Tab title="JetBrains"> A plugin for IntelliJ IDEA, PyCharm, WebStorm, and other
+JetBrains IDEs with interactive diff viewing and selection context sharing. Install the [Claude Code plugin](https://plugins.jetbrains.com/plugin/27310-claude-code-beta-) from the
+JetBrains Marketplace and restart your IDE. [Get started with JetBrains →](/en/jetbrains) </Tab> </Tabs> ## What you can do Here are some of the ways you can use Claude Code:
+<AccordionGroup> <Accordion title="Automate the work you keep putting off" icon="wand-magic-sparkles"> Claude Code handles the tedious tasks that eat up your day: writing tests for
+untested code, fixing lint errors across a project, resolving merge conflicts, updating dependencies, and writing release notes. ```bash theme={null} claude "write tests for the
+auth module, run them, and fix any failures" ``` </Accordion> <Accordion title="Build features and fix bugs" icon="hammer"> Describe what you want in plain language. Claude Code
+plans the approach, writes the code across multiple files, and verifies it works. For bugs, paste an error message or describe the symptom. Claude Code traces the issue through
+your codebase, identifies the root cause, and implements a fix. See [common workflows](/en/common-workflows) for more examples. </Accordion> <Accordion title="Create commits and
+pull requests" icon="code-branch"> Claude Code works directly with git. It stages changes, writes commit messages, creates branches, and opens pull requests. ```bash theme={null}
+claude "commit my changes with a descriptive message" ``` In CI, you can automate code review and issue triage with [GitHub Actions](/en/github-actions) or [GitLab
+CI/CD](/en/gitlab-ci-cd). </Accordion> <Accordion title="Connect your tools with MCP" icon="plug"> The [Model Context Protocol (MCP)](/en/mcp) is an open standard for connecting AI
+tools to external data sources. With MCP, Claude Code can read your design docs in Google Drive, update tickets in Jira, pull data from Slack, or use your own custom tooling.
+</Accordion> <Accordion title="Customize with instructions, skills, and hooks" icon="sliders"> [`CLAUDE.md`](/en/memory) is a markdown file you add to your project root that Claude
+Code reads at the start of every session. Use it to set coding standards, architecture decisions, preferred libraries, and review checklists. Claude also builds [auto
+memory](/en/memory#auto-memory) as it works, saving learnings like build commands and debugging insights across sessions without you writing anything. Create [skills](/en/skills)
+to package repeatable workflows your team can share, like `/review-pr` or `/deploy-staging`. [Hooks](/en/hooks) let you run shell commands before or after Claude Code actions, like
+auto-formatting after every file edit or running lint before a commit. </Accordion> <Accordion title="Run agent teams and build custom agents" icon="users"> Spawn [multiple Claude
+Code agents](/en/sub-agents) that work on different parts of a task simultaneously. A lead agent coordinates the work, assigns subtasks, and merges results. To run several full
+sessions in parallel and watch them from one screen, use [background agents](/en/agent-view). For fully custom workflows, the [Agent SDK](/en/agent-sdk/overview) lets you build

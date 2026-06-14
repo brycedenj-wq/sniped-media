@@ -1,0 +1,224 @@
+code never 13:05 actually leaves your local machine, but 13:07 it's just the remote connection is on 13:09 your phone. So you can start something 13:10 heavy, go grab a coffee, go
+on a walk 13:12 and you can keep building from your 13:13 pocket. Hack number 28 is there's no SQL 13:16 data analytics. So you can connect CLI 13:18 tools like big queries BQ tool
+to cloud 13:21 code and then you can just ask questions 13:22 in plain English like what were our top 13:24 10 revenue sources last quarter and 13:26 cloud will instantly translate
+that into 13:27 the right query run it and then give you 13:29 that answer. No SQL required and this 13:31 should work for any CLI based tool. 13:33 Number 28 is Ultraink. When you
+need 13:35 cloud code to really think through a 13:37 hard problem like architecture 13:38 decisions, complex debugging, big 13:40 refactors, or maybe it's just not giving 13:42
+you the right output after a couple 13:43 prompts, try using ultrathink. You 13:45 literally just type the word and it will 13:46 go all colorful. And this means that it 13:48
+allocates the maximum thinking budget of 13:50 around 32,000 tokens before Claude 13:52 actually responds. So don't always use 13:53 this for a simple fix, but absolutely 13:55 use
+it if you're making decisions that 13:57 might affect the entire system or like I 13:58 said, if after the first couple tries 14:00 it's not giving you what you want. Hack 14:01 30
+is to edit permissions for safe 14:03 autonomy. A lot of people, including 14:05 myself, have shown on videos using 14:07 dangerously skip permissions to make 14:08 sure that
+Claude can just run without 14:10 asking for approval on every single 14:11 step. And yeah, it's much faster, but it 14:13 is called dangerously skip permissions 14:14 for a
+reason. So, the smarter way to go 14:16 about it is to go into your permissions 14:17 and explicitly allow the commands that 14:19 you know are safe. And then explicitly 14:21 deny
+anything that's destructive, like 14:23 deletes or removes. And now you can 14:25 actually get to the point where you have 14:26 the same exact speed and autonomy of 14:28
+dangerously skip permissions without it 14:30 being very dangerous. And anything in 14:32 the deny list is going to take priority 14:34 over anything in the allow list. Hack 14:36
+number 31 is to use agent teams. So, 14:38 remember how we talked about sub agents 14:40 being able to run agents in parallel 14:41 that have fresh context but can't talk 14:43 to
+each other? Agent teams are like 14:45 that, but all of the agents can talk to 14:47 each other. So, it gets really, really 14:48 cool. They share a task list. They can 14:50
+communicate with each other. And they 14:51 can even assign each other work. And you 14:53 can actually talk to each of those 14:54 individual agents instead of just having 14:56
+to go through the main one and then the 14:58 main one would communicate with sub 14:59 agents. These are a little bit more 15:01 expensive and they do run longer, but 15:02 they
+will give you a much more cohesive 15:04 output for a big project. Hack number 32 15:06 is context 7 MCP. This one's a game 15:09 changer. You can install the context 7 15:11 MCP
+server and then whenever you need 15:13 information on current documentation 15:15 just prompted to use that MCP server. 15:17 The problem that it solves is that 15:18 Claude's
+training data has a cut off 15:20 which means sometimes it might suggest 15:22 functions or APIs that have been renamed 15:24 or deprecated or just don't even exist 15:26 anymore.
+So, Context 7 fixes that 15:28 because it has up to eight version 15:29 specific technical documentation about 15:31 live code examples from thousands of 15:33 popular libraries
+that you probably need 15:35 with a coding assistant like Nex.js, 15:37 React, MongoDB, you name it. So, it's 15:40 able to pull and read all current 15:42 documentation and then
+inject it into 15:43 the conversation before Claude actually 15:45 starts writing any code. So, it's 15:47 basically one command to install and 15:48 from there all of your coding
+agents are 15:50 working with much more up-to-date 15:51 information and it's a huge quality Final Thoughts 15:53 improvement. All right, so I know that 15:54 we covered a ton of
+information in this 15:56 video. So, what I did is I threw all of 15:57 this into a PDF resource guide so you 15:59 can just come back and reference them 16:01 whenever you want.
+That's available 16:02 completely for free inside of my free 16:04 school community. The link for that is 16:05 down in the description. But that's 16:06 going to do it for this
+one. So, if you 16:07 guys enjoyed or you learned something 16:08 new, please give it a like. It 16:09 definitely helps me out a ton. And as 16:11 always, I appreciate you guys
+making it 16:12 to the end of the video. I will see you 16:13 all in the next one. Thanks everyone. All From the series Intro 0:00 These are the cloud code hacks that took 0:01 me
+from a complete beginner to 0:02 mass-producing workflows and building 0:04 websites, apps, and AI agents in real 0:06 time. So, today we're going to be going 0:07 from beginner
+hacks all the way to 0:09 advanced power user stuff. And the best 0:11 ones are saved at the end. All right, so 0:12 starting off with our beginner hacks, Beginner Hacks 0:14
+number one is to run /init on every 0:16 project. So, if you already got an 0:18 existing project with files already in 0:20 there, the first thing you should do is 0:21 open it up
+and type /init. Cloud Code 0:23 will then scan your entire codebase, 0:25 your folders, your files, and it will 0:27 generate a cloud.md file, which is 0:29 basically like a cheat
+sheet for that 0:30 project. It'll map out your 0:32 architecture, your conventions, and any 0:33 key files that you have in there. So 0:35 instead of having to reexplain your 0:36
+project every session, Cloud will 0:37 basically just contextualize everything 0:39 and initialize everything and know what 0:41 you're working with. And if you're 0:42 starting a
+new project from scratch, 0:43 then you can have Cloud Code help you 0:45 create that cloud. Mmd file yourself 0:47 just by explaining what's the goal of 0:48 this project, what
+text stack you want 0:50 to use, or any rules or key folders and 0:52 files. All right, number two is to set 0:54 up a status line. So if you're working 0:56 in the terminal, you
+can type /st status 0:58 line and tell cloud code what you want 1:00 to see, your model, your context 1:01 percentage, cost, whatever. It basically 1:03 generates a little script
+that sits at 1:05 the bottom of the terminal. So as you're 1:06 talking every single time, you can just 1:08 see that status line. It's just kind of 1:10 like a mini dashboard for
+your session. 1:11 So, it's really helpful to always be 1:12 able to see how much context you have 1:14 left so you can avoid context rot. Hack 1:16 number three is using voice
+input. So, 1:18 Cloud Code just shipped a native/Voice 1:20 command, which means you can literally 1:22 just talk to your terminal and have it 1:23 code for you now. So, it's still
+rolling 1:24 out. It will be out for everyone soon, 1:26 but another good hack would just be to 1:28 use an app to actually be able to voice 1:30 dictate anywhere. So, if you want
+to see 1:31 the tool that I use, you can check out 1:32 the description. Now, I can just talk 1:33 and words will appear anywhere. Hack 1:35 number four is to keep your context
+1:36 small. So don't dump your entire 1:38 codebase into a conversation. Only give 1:40 Claude what it needs for the current 1:41 task. So try to break big problems into 1:44 small
+focused steps. The less noise in 1:45 the context window, the better Claude 1:47 performs. It's simple, but a lot of 1:49 people ignore this. Hack number five is 1:50 to use
+/context to find your token 1:53 bloat. So if you do /context, you'll see 1:55 exactly what's eating your tokens. 1:57 Whether that's system prompts or file 1:58 contents, MCP
+servers, whatever it is, 2:01 all of that gets broken down into 2:02 percentages. So if your session feels a 2:04 little bloated, you can actually 2:05 investigate it, diagnose
+where the 2:07 problem is, and then restructure. Hack 2:09 number six is to compact at 60%. And 2:11 also clear between tasks. So when your 2:14 context hits around 60%, then type
+2:16 /compact and cloud code will compress 2:18 your conversation history so you can 2:20 keep going without losing important 2:21 stuff. And something interesting is that 2:22 you
+can actually do a /compact, but you 2:25 can tell it to keep certain things like, 2:26 hey, slash compact, but keep all of the 2:28 API integration decisions and database 2:30
+schema. So Claude will automatically 2:32 shrink everything down and preserve the 2:33 stuff that you need to keep in there. 2:35 And if you're actually going to switch 2:36 to a
+completely different task and you 2:38 don't need that conversation history, 2:39 then use /clear to just wipe the slate 2:41 clean and you're starting from a new 2:43
+conversation. But luckily, you still 2:44 have your claw.md. You still have all 2:45 the other files. So it's not like you're 2:47 actually starting from scratch. So hack 2:48
+number seven is to always start in plan 2:50 mode. So that means you can hit shift 2:51 tab to cycle between modes or just 2:53 choose it manually. And once Claude's in 2:55 plan
+mode, it can still read, it can 2:56 still research, but it won't actually 2:58 change anything. So Claude will outline 2:59 the steps. It will ask clarifying 3:01 questions and it
+will map out the 3:02 approach before writing a single line of 3:04 code which has been shown to improve the 3:05 quality. Now once you like the plan, you 3:07 switch out of plan
+mode, tell it to 3:08 execute. And this alone will 3:10 dramatically reduce how many times that 3:11 you have to go back and correct Claude. 3:13 Hack number eight, we have to
+treat 3:14 Claude like a junior developer, which 3:16 means don't always give it direct 3:17 commands like write me a function that 3:19 does X, but try to understand how you 3:21
+can give it problems. So saying, "How 3:22 should we handle growth tracking?" And 3:24 let it think through the approach 3:25 because when it makes its own 3:26 assumptions and it
+thinks through 3:27 decisions, you can ask it to explain 3:29 those. And this has also been shown to 3:31 get better outputs when Claude reasons 3:33 through the problem first. So
+it's like 3:34 plan mode, but now you're having it 3:36 think a little bit deeper. Okay. Hack 3:37 number nine is to make Claude ask 3:39 questions. So a lot of times in plan 3:40
+mode, it will do this natively, but you 3:42 can actually tell it to invoke its ask 3:44 user question tool. You can tell it 3:46 continuously ask me questions until 3:48 you're
+95% confident that you understand 3:50 exactly what I need and exactly what you 3:51 need to do. And once again, this 3:53 alignment helps you from having to go 3:55 back and forth
+with, you know, three or 3:56 four rounds of revisions. All right, 3:58 hack number 10 is build self-checking 4:00 into the to-do lists. So, you know how 4:02 Cloud makes a to-do
+list when it starts 4:04 building? Well, you can actually build 4:05 verification steps right into that list. 4:07 So, let's say one to-do is to build the 4:09 website. The very
+next to-do could be 4:12 take a screenshot of the website and 4:13 check that everything looks right. And 4:14 then maybe the next step is to open 4:16 Chrome DevTools to use the
+browser and 4:18 make sure that there are no actual 4:19 errors in functionality. So you're now 4:21 baking quality checks directly into the 4:22 execution plan. So Claude isn't
+just 4:24 building stuff and handing it to you for 4:26 feedback, but now it's building 4:27 something, checking it, making sure 4:28 everything's good, and then getting your 4:29
+feedback. And another cool thing that I 4:31 like to do here is say, don't move on to 4:33 your next to-do until you're 95% 4:35 confident that that to-do is good. 4:37 Because
+it's AI, it's really hard to 4:39 one-shot what you're looking for, but 4:40 you'd rather have it one shot 90% of the 4:43 way there rather than one shot 60 or 4:45 65%. Okay, so
+those were our beginner 4:47 hacks. Now, let's step it up a little 4:48 bit. These next ones are for the people 4:50 who are already kind of using Cloud Code 4:51 a little bit and
+want to move faster. Intermediate Hacks 4:53 All right, so hack number 11 is to 4:54 deploy sub agents for parallel work. Try 4:57 telling the main session to use sub 4:58 aents in
+your prompt when you're working 5:00 on complex problems. Cloud will spin up 5:02 isolated sub aents that each have their 5:03 own context window. They can each be 5:05 using their
+own model and each agent 5:06 works in parallel which means the main 5:08 thread stays clean while the sub aents 5:10 go do research, write tests or explore 5:12 different
+approaches. When they're done, 5:14 they all report back to that main agent 5:16 with their findings. So it's like having 5:17 a team of developers instead of just 5:18 having one.
+And you can even pair this 5:20 with the model hack for cheaper tokens, 5:22 which means you can have all the sub 5:23 aents running on Haiku for simpler stuff 5:25 and your main
+thread can stay on Opus. 5:27 All right, hack number 12 is to build 5:28 custom skills. This means you can create 5:30 reusable prompt files in your 5:32 do.cloud/skills directory.
+So for 5:34 example, you can have one skill called 5:35 techdebt.md which tells claude exactly 5:37 how to scan for technical debt. Or you 5:39 can have one called code review.mmd
+5:41 which knows exactly how to review your 5:43 codebase and then all you have to do is 5:44 invoke that skill in natural language or 5:46 just use the slash command directly and
+5:48 it will run that entire workflow 5:49 consistently every single time. You can 5:51 even commit them to GitHub and your 5:52 whole team can instantly use them as 5:54 well. So
+you can automate your actual 5:55 SOPs. All right, so hack number 13 is 5:57 something that I alluded to a little bit 5:58 earlier, but that's basically just using 6:00 Haiku for
+sub aents because you can set 6:02 the model for the sub aents that you 6:03 spin up. When you have simple tasks or 6:05 processing a large amount of data, then 6:07 use Haiku.
+It's way cheaper and it still 6:09 gets the job done. Specifically, if you 6:10 need a sub agent to go scrape a ton of 6:12 different articles, read hundreds of 6:13 thousands of
+tokens, and then just give 6:15 Opus, give your main agent just a small 6:17 summary or the key highlights. It just 6:19 doesn't really make sense to have such a 6:20 heavy and
+expensive model reading 6:22 hundreds of thousands of tokens if it 6:23 just needs a few bits of information. 6:25 And if you do this right, it can really 6:26 keep your cost down
+without sacrificing 6:28 quality where it matters. All right, 6:29 hack number 14 is to constantly be 6:32 refreshing your claw.md file. Once 6:33 there's a new discovery about
+your 6:34 project, update the claw.md. Once you've 6:36 made some new skills, update the 6:38 claw.mmd. You want Claude to be logging 6:40 new patterns, new gotchas, and any new
+6:42 conventions that it discovered during 6:43 your session. So next time that you 6:45 start it up, it already knows all of 6:46 this. This will help prevent repeat 6:47
+mistakes, and it will make Claude 6:49 smarter about you, your business, your 6:51 project, all that kind of stuff over 6:52 time. But here's the catch. You don't 6:54 want to let
+it bloat because the claw.md 6:56 file is basically the system prompt and 6:58 it gets loaded into every single 7:00 conversation and everything in there is 7:01 going to eat up at
+your context window. 7:03 So I try to keep mine simple and only 7:05 put the most important information in 7:06 there. I like to keep it between 150 and 7:08 200 lines max. If it
+starts getting 7:10 longer than that, then it's time to trim 7:11 down some things. Which leads perfectly 7:13 into the next hack, number 15, which is 7:15 to have claw.md route to
+other files. 7:18 Because it potentially eats so many 7:19 tokens, you want to keep it lean, but 7:21 you do have a lot of information in 7:22 there. But what's cool is you can
+route 7:23 it to different places. So you can have 7:25 it link out to separate files for stuff 7:27 like style guides or business context or 7:29 reference docs. Just point to
+those 7:30 files in the cloudmd so claude knows 7:32 exactly where to look and then you're 7:34 also not wasting tokens on information 7:35 that it doesn't always need because in
+7:37 its system prompt it doesn't need to 7:38 know the exact status of a certain 7:39 project but it does need to know exactly 7:41 where to go look to find that 7:42 information.
+Hack number 16 is to exit 7:45 early and reask. So if you notice that 7:47 cloud starts going down the wrong path 7:49 don't just wait for it to finish. Hit 7:50 escape, correct
+course, and then 7:52 reprompt. Every token that it spends 7:54 going the wrong direction is just wasted 7:55 context. So steer tight and steer early. 7:58 At the end of the day,
+it is AI. Hack 7:59 number 17 is to challenge outputs 8:01 aggressively. So if Claude gives you 8:03 something that's just okay, push back. 8:05 Say, scrap that. Do a more elegant
+8:07 version. Or, this isn't good enough, try 8:08 again with a completely different 8:09 approach. Claude will often give you a 8:11 dramatically better output on the second 8:12
+try when you set a higher bar and now it 8:14 knows what to not do. The key is once it 8:16 comes back with something better, tell 8:18 it to update itself. whether that be the
+8:19 skill or the claw.md so it doesn't make 8:21 that sort of mistake again. Hack number 8:23 18 is to use slashre for quick undos. So 8:26 if you make a wrong turn just try using
+8:27 slre and claude will roll back to a 8:30 previous point in the conversation 8:31 without you having to start over. So 8:32 it's super quick, super clean. Hack 8:34 number 19
+is using hooks for 8:36 notifications. So if you type / hooks, 8:38 you can set up a notification hook or 8:39 you can just have Claude code do this 8:40 for you in completely
+natural language. 8:42 So, for example, what I like to do is 8:43 when I have Claude finish up a session 8:45 or finish a chat, it sends me an actual 8:48 noise notification
+because now I can 8:49 work on something else on my computer or 8:51 I can literally have 15 different 8:52 sessions of Claude code running and if I 8:54 hear that noise, I know
+that one of them 8:56 is done and needs some more input from 8:57 me. Hack number 20 is using screenshots. 8:59 Just remember that Claude can actually 9:01 see and this is a huge
+unlock which 9:02 means you can feed it error messages 9:04 which means you can feed it, you know, 9:05 inspiration websites. You can also do a 9:07 really cool selfch check loop
+where you 9:09 can say things like take a screenshot of 9:10 the website and tell me if the layout 9:12 looks right. And it will literally 9:13 screenshot it, analyze it visually,
+and 9:15 tell you what's off. So, if you remember 9:16 one of the hacks from earlier where I 9:17 said to have it check itself, when I'm 9:18 building websites, I basically have it
+9:20 design the website, screenshot, and then 9:22 implement new changes, and then do that 9:24 again. And so, it does like three passes 9:25 of building and screenshots before it
+9:27 even gives me V1. And in that flow, the 9:29 V1 that it gives me is so much better 9:31 than a V1 that it used to give me. Hack 9:33 number 21 is to use Chrome Dev Tools. So
+9:35 Claude can open a browser, it can 9:36 interact with an app, it can check the 9:38 functionality of things. And so it's 9:39 kind of like the screenshot loop, but 9:41 instead
+of for like websites and design, 9:43 it's for actual functionality of like 9:44 apps and buttons. This is huge for 9:46 front-end work. So definitely give it a 9:48 try. But this
+also means that it can do 9:49 things like filling out forms and 9:50 potentially like recaps and stuff. But 9:52 this is also huge because if there's not 9:54 an explicit API
+somewhere, it can go in 9:56 and manually do things. I think that it 9:57 could also solve captas, but it's 9:59 probably better if you're already signed 10:00 in somewhere and all
+it has to do is 10:02 navigate, click buttons, fill out 10:04 things. Hack number 22 is to clone 10:06 inspiration sites. So, you can take 10:07 screenshots of sites that you
+really 10:09 like and feed it to Claude and say, 10:11 "Make it look like this." Claude will 10:12 recreate the design patterns without 10:14 making it look like generic AI slot.
+And 10:16 this is huge for front-end quality 10:17 because you could also use the site as 10:19 inspiration by taking some of the actual 10:20 like HTML styling and feed that into
+10:22 Claude, too. So yes, Claude could 10:24 essentially clone a website, but what 10:26 you want to do is take that as kind of a 10:27 template and give it your own touch. Pro
+Hacks 10:29 Okay, so now we're going to move on to 10:30 some more advanced stuff. These hacks 10:32 are for people who really want to push 10:33 cloud code to its limits. So let's
+go. 10:35 All right, hack number 23 is to run 10:37 parallel sessions with git work trees. 10:39 Normally when you're working on a 10:40 project, you've got it in one folder 10:41
+with all your files in it. So if you 10:43 want to run two different sessions in 10:44 the same folder at the same time, they 10:46 might overwrite each other's work. And 10:47
+that's where work trees come in. So 10:48 think of workree like basically making a 10:50 parallel copy of your project except 10:52 it's way more efficient than actually 10:54
+copying the folder. You just type in 10:55 claude-workree 10:57 and then that feature name. So claude 10:58 will then create an isolated workspace 11:00 on its own branch. You
+could then open 11:01 up another terminal and type in the same 11:03 thing with a different feature name and 11:04 it will open up a different branch. So 11:06 now you can be
+working on the same 11:07 project at the same time without having 11:09 those coding agents step on each other. 11:11 You could have three, four, or five of 11:13 these things
+going at once. And when 11:14 you're done, you can have them just 11:16 merge the branches back together just 11:17 like you would with any other git 11:18 branch. So all the work
+could save back 11:20 to the main project once again without 11:22 overwriting each other's files. All 11:23 right, hack number 24 is to use API 11:26 endpoints instead of MCP
+servers 11:28 depending on the situation. But here's 11:29 what I mean by that. MCP servers are 11:30 great because you can look at all the 11:32 different tools and execute any of
+them, 11:33 but they load their entire tool 11:35 definitions into the context window. So 11:37 if you're tight on tokens, sometimes 11:38 it's better to just use direct API 11:40
+endpoints instead. So for example, let's 11:42 say you're using notion and you only 11:43 actually need to be able to read one 11:45 database. It makes no sense to show 11:47
+claude how to do all of the other 11:49 functions if for this specific project 11:50 you only have to read one file. So 11:52 instead just hardcode in that endpoint 11:54 and now
+you're saving tons and tons of 11:56 tokens. All right, hack number 25 is to 11:58 use /loop for recurring tasks. So you 12:01 can type, hey, every 5 minutes check in 12:02 on the
+deployment. And Cloud will rerun 12:04 that prompt in that same session every 12:06 single 5 minutes, unless you close out 12:07 of that session. You can set it to 12:09 monitor a
+PR, check error logs, pull a 12:11 build, whatever. It runs in the 12:12 background, and it only interrupts you 12:14 when something actually needs your 12:15 attention. You can
+even set one-time 12:16 reminders in natural language, like 12:18 remind me at 3 p.m. to check in with the 12:20 team on X. Now, the only caveat here is 12:22 these actual loops
+will only last for 3 12:25 days. So if you need a scheduled 12:26 automation that's a little bit longer 12:27 term, then you're going to want to use 12:28 the desktop scheduled
+tasks. Although 12:30 the only difference here is every time 12:32 one of those tasks spin up, it's in an 12:34 individual session. So it doesn't have 12:35 that context memory.
+Number 26 is to 12:38 host on a VPS for always on sessions. So 12:40 if you want to run cloud code on a 12:42 remote server, it'll stay running even 12:43 when your laptop is
+closed, which means 12:45 you can SSH in whenever you need to 12:46 interact, which means you can talk to it 12:48 through Telegram anytime. This is 12:49 perfect for longrunning
+tasks where you 12:51 don't want to babysit a local terminal. 12:53 Hack number 27 is you can use remote 12:55 control from your phone. So this is a 12:56 pretty new feature, but
+Cloud Code now 12:58 lets you control local sessions from 12:59 your phone or any browser. You start a 13:01 task at your local desk and then you 13:03 walk away and you can keep
+steering it 13:04 from your phone. Your code never 13:05 actually leaves your local machine, but 13:07 it's just the remote connection is on 13:09 your phone. So you can start
+something 13:10 heavy, go grab a coffee, go on a walk 13:12 and you can keep building from your 13:13 pocket. Hack number 28 is there's no SQL 13:16 data analytics. So you can
+connect CLI 13:18 tools like big queries BQ tool to cloud 13:21 code and then you can just ask questions 13:22 in plain English like what were our top 13:24 10 revenue sources last
+quarter and 13:26 cloud will instantly translate that into 13:27 the right query run it and then give you 13:29 that answer. No SQL required and this 13:31 should work for any CLI
+based tool. 13:33 Number 28 is Ultraink. When you need 13:35 cloud code to really think through a 13:37 hard problem like architecture 13:38 decisions, complex debugging, big 13:40
+refactors, or maybe it's just not giving 13:42 you the right output after a couple 13:43 prompts, try using ultrathink. You 13:45 literally just type the word and it will 13:46 go
+all colorful. And this means that it 13:48 allocates the maximum thinking budget of 13:50 around 32,000 tokens before Claude 13:52 actually responds. So don't always use 13:53 this
+for a simple fix, but absolutely 13:55 use it if you're making decisions that 13:57 might affect the entire system or like I 13:58 said, if after the first couple tries 14:00 it's
+not giving you what you want. Hack 14:01 30 is to edit permissions for safe 14:03 autonomy. A lot of people, including 14:05 myself, have shown on videos using 14:07 dangerously
+skip permissions to make 14:08 sure that Claude can just run without 14:10 asking for approval on every single 14:11 step. And yeah, it's much faster, but it 14:13 is called
+dangerously skip permissions 14:14 for a reason. So, the smarter way to go 14:16 about it is to go into your permissions 14:17 and explicitly allow the commands that 14:19 you know
+are safe. And then explicitly 14:21 deny anything that's destructive, like 14:23 deletes or removes. And now you can 14:25 actually get to the point where you have 14:26 the same
+exact speed and autonomy of 14:28 dangerously skip permissions without it 14:30 being very dangerous. And anything in 14:32 the deny list is going to take priority 14:34 over
+anything in the allow list. Hack 14:36 number 31 is to use agent teams. So, 14:38 remember how we talked about sub agents 14:40 being able to run agents in parallel 14:41 that have
+fresh context but can't talk 14:43 to each other? Agent teams are like 14:45 that, but all of the agents can talk to 14:47 each other. So, it gets really, really 14:48 cool. They
+share a task list. They can 14:50 communicate with each other. And they 14:51 can even assign each other work. And you 14:53 can actually talk to each of those 14:54 individual
+agents instead of just having 14:56 to go through the main one and then the 14:58 main one would communicate with sub 14:59 agents. These are a little bit more 15:01 expensive and
+they do run longer, but 15:02 they will give you a much more cohesive 15:04 output for a big project. Hack number 32 15:06 is context 7 MCP. This one's a game 15:09 changer. You
+can install the context 7 15:11 MCP server and then whenever you need 15:13 information on current documentation 15:15 just prompted to use that MCP server. 15:17 The problem that
+it solves is that 15:18 Claude's training data has a cut off 15:20 which means sometimes it might suggest 15:22 functions or APIs that have been renamed 15:24 or deprecated or just
+don't even exist 15:26 anymore. So, Context 7 fixes that 15:28 because it has up to eight version 15:29 specific technical documentation about 15:31 live code examples from
+thousands of 15:33 popular libraries that you probably need 15:35 with a coding assistant like Nex.js, 15:37 React, MongoDB, you name it. So, it's 15:40 able to pull and read all
+current 15:42 documentation and then inject it into 15:43 the conversation before Claude actually 15:45 starts writing any code. So, it's 15:47 basically one command to install and
+15:48 from there all of your coding agents are 15:50 working with much more up-to-date 15:51 information and it's a huge quality Final Thoughts 15:53 improvement. All right, so I
+know that 15:54 we covered a ton of information in this 15:56 video. So, what I did is I threw all of 15:57 this into a PDF resource guide so you 15:59 can just come back and
+reference them 16:01 whenever you want. That's available 16:02 completely for free inside of my free 16:04 school community. The link for that is 16:05 down in the description. But
+that's 16:06 going to do it for this one. So, if you 16:07 guys enjoyed or you learned something 16:08 new, please give it a like. It 16:09 definitely helps me out a ton. And as
+16:11 always, I appreciate you guys making it 16:12 to the end of the video. I will see you 16:13 all in the next one. Thanks everyone. All From the series 7 Claude Skills That Run
+My Business 0:00 Over the past several months, I've 0:01 tested a lot of Claude skills. Skills 0:03 other people have built, skills I found 0:05 online, skills I built for myself
+from 0:07 scratch. And most of them were cool for 0:08 about a day, but then I never used them 0:10 again. But seven of them have stuck and 0:12 they didn't just stick. They
+completely 0:13 took over parts of my business that I 0:15 used to do manually every single day. 0:17 And things that used to take me hours 0:18 every week, I can now handle with a
+0:20 single command inside of Claude. And I'm 0:22 not exaggerating when I say I cannot 0:24 imagine going back. So in today's video, 0:26 I'm going to show you all seven of the
+0:27 skills that I cannot live without. For 0:29 each one, I'll show you what it does, 0:31 how I'm actually using it, and ideas for 0:33 how you can customize it for your 0:34
+business. Now, before we get into the 0:36 list, if skills are new to you, super 0:38 quick recap for you. Now, a skill is 0:40 just a folder with instructions. That's 0:43 it.
+Within the folder is a file that I 0:45 like to call the playbook. This is sort 0:47 of the step-by-step instructions for how 0:49 to do whatever the task is that you 0:51 wanted
+to do. The folder might also 0:53 include maybe some scripts or some 0:55 reference files that Claude loads on 0:57 demand whenever it's relevant to what 0:59 you're doing. And
+skills are best for 1:01 things that you do over and over and 1:03 over again. If you find yourself 1:04 repeating the same kind of task day in 1:06 and day out or week in and week
+out, 1:08 that is a skill waiting to be built. And 1:11 here's why I think this matters way more 1:13 than people realize right now. 1:14 Everything in AI changes every week, 1:17
+right? New tool, new model, new update. 1:19 But the pattern underneath all of it has 1:21 been the same since the 1990s and 1:24 beyond. You write instructions, you put 1:26 them
+into a folder, and a computer can 1:28 read them. That's what skills are. 1:30 That's what agents are built on top of. 1:32 Tools will come and go. Models will keep 1:34 improving
+and changing. But folders with 1:36 instructions, that's not changing. And 1:39 in my opinion, learning how to create 1:41 and use skills is the baseline, no pun 1:44 intended,
+skill that you need to have 1:46 right now and going forward. Everything 1:48 else just builds on top of it. Okay, now Skill 1: Claude Skill Creator 1:50 let's get into the first
+skill that I 1:51 cannot live without. And the first skill 1:53 is super meta here, right? It's 1:54 Anthropic's skill creator skill. You 1:57 describe what you want the skill to
+do 1:58 in plain language. It asks you the right 2:01 questions and then it builds the skill 2:03 for you. Super super easy to do. Now, 2:05 you can access the skill creator
+whether 2:06 you're in co-work or in Claude Code. I'm 2:09 going to take you through my examples 2:10 today using claude code. But if you're 2:12 in co-work, you can just type in
+2:13 for/skill and you'll see it right here. 2:16 and then it'll walk you through the same 2:17 process. If you use cloud code inside of 2:19 the desktop app, you can do that as
+2:21 well. I like to access Cloud Code inside 2:24 of VS Code and that's where I'm going to 2:26 be showing you these examples here 2:28 today. So again, I've already given 2:29
+Cloud Code access to the skill creator. 2:31 So I'm going to go ahead and type in 2:33 slashskll and you'll see it come up 2:36 right here and it's just going to ask me 2:37 a few
+different questions about what 2:39 kind of skill that I want to create. So 2:40 you can see here I'll check the skill 2:42 creator skill which has already been 2:43 loaded above.
+What would you like to do 2:45 with skills today? You can create a new 2:46 skill, improve an existing skill, which 2:47 we'll talk about in a second. Optimize a 2:49 skills
+description. So, I'm going to go 2:50 ahead and choose number one, create a 2:52 new skill, and I'm just going to 2:53 describe the skill that I wanted to 2:55 create. And just in
+plain language here, 2:57 I want to create a new skill that checks 2:58 my Google calendar daily and preps me 3:02 for that day's meetings. So, that's a 3:05 super basic example
+here, but the point 3:07 here is I just want to show you what 3:08 this is doing here. So, again, now it's 3:10 going to interview me a little bit to 3:12 ask some clarifying
+questions. When 3:13 should this trigger? And then it'll just 3:15 continue to ask me a few different 3:16 questions that it needs clarification 3:18 to. And when it feels like it
+has 3:20 sufficient information, it'll go through 3:21 and create the entire skill, all the 3:23 different files that I need, and even go 3:24 and do research that might be
+necessary 3:27 to include in the skill as say like a 3:29 reference file, for example. This is 3:30 what it looks like in terms of the 3:31 results that it'll give you. It gives
+3:33 you the skill.md file, which is again 3:35 what I like to call the playbook or the 3:36 instructions of what this skill actually 3:39 does. And then it includes some 3:40
+additional reference files and it's all 3:42 created. I didn't have to physically go 3:44 create any of these files. I'm just 3:46 talking to Claude and having it create 3:48 it
+for me. And again, I alluded to it 3:50 earlier, but this is something that I 3:51 really like about the skill creator 3:53 skill. If you already have a skill 3:55 that's not quite
+working the way that 3:57 you want it to, you can point, you can 3:59 see right here where it says improve an 4:01 existing skill. So, you can select that 4:03 and the skill
+creator will look at your 4:05 existing skill and it will optimize it 4:08 based on best practices. So, if you take 4:10 one thing away from this video and 4:12 nothing else, it's
+that you don't need 4:14 to be technical to build Claude skills 4:16 at all. This is your starting point. Skill 2: The Day Planner 4:18 Okay. The second skill that I use every 4:20
+single day solves the problem of every 4:22 morning I used to do the exact same 4:24 thing. Open my Google calendar, check my 4:26 email, check Slack, look at my task 4:28 list,
+try to figure out what actually 4:30 matters today. And that whole process 4:32 would take me 20, 25 minutes before I 4:34 even started doing any real work. That 4:36 was every
+single day. And now I just 4:39 type in forward slash today. So I'm 4:40 going to do forward slashto today. 4:42 What's going to come back to me is my 4:44 entire day organized.
+And here's the 4:46 result in a matter of seconds. I have a 4:48 pretty light day in terms of tasks due. 4:50 As you can see here, no task due today. 4:51 Nothing is overdue. Yay
+me. But then it 4:53 says calendar busy afternoon. And it 4:55 outlines what I have on the calendar 4:56 today. And then needs your attention. So 4:58 it's filtered through my
+unread emails 5:00 in my Gmail inbox and is telling me what 5:03 needs my attention right now. And the 5:05 thing I love about this skill is that it 5:07 gets smarter over time
+because the skill 5:09 knows where to look. I've given it 5:11 Slack, Gmail, etc. It knows which 5:13 calendars to pull from, which Slack 5:15 channels matter, which team members
+5:17 emails to prioritize, and all that's 5:19 baked into the skill. I set it up once 5:21 and now it just runs. And not only is it 5:23 showing me all this inside of Cloud 5:24
+Code, this is also because of what I've 5:27 written into the skill, it pulls into my 5:29 Obsidian. So, this is my daily plan. So, 5:32 if we go through, this is my calendar. 5:34
+shows me my entire day. Shows me what 5:36 needs my response in terms of Slack, 5:37 email, what's due today, what's what's 5:39 overdue, anything blocked this week 5:41 coming up,
+etc. And again, this is a 5:43 perfect example of how I want you to 5:44 think about using skills that I'm 5:46 showing you here today. Think about what 5:48 your version of a
+daily plan might look 5:51 like. Maybe you don't use Slack, but you 5:53 have a CRM that you check every morning 5:54 or a dashboard or what have you. Maybe 5:57 you wanted to pull
+from your project 5:58 management tool like Asauna or uh 6:00 Monday.com. The structure of the skill 6:02 works for any business. You just swap in 6:04 your sources and your unique
+6:07 personalization to it. Third skill is Skill 3: Let Claude Watch Any Video 6:09 called watch video. And full props to 6:10 Brad at Brad Automates. This is not my 6:13 skill.
+This is his skill, but I use it 6:15 all the time. And the problem it solves 6:16 is sometimes I need Claude to understand 6:18 what is in a video. Maybe it's a 6:20 competitor
+quote unquote video I want to 6:22 analyze or just something I watch that I 6:24 want to reference later. And normally 6:26 Claude can't do that. You have to go 6:27 find the
+transcript, copy it, paste it 6:29 in. It's a whole thing, right? Well, 6:31 this skill gives Claude the ability to 6:33 watch any video. You just give it a 6:35 link. It can be a
+Loom video. It can be 6:39 a YouTube video, which I'll show you 6:40 here in just a second. You just give it 6:41 the link. It pulls a transcript. It 6:44 extracts the key frames
+from the video. 6:46 And now, without leaving Claude, Claude 6:48 can answer questions about what's in 6:49 that video. You can ask it all kinds of 6:51 questions. It's really,
+really cool. So, 6:53 check this out. So, again, I'll type in 6:55 forward slashwatch and then it's going 6:57 to ask me for a YouTube video link. So, 6:59 I'll paste in the

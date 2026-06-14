@@ -1,0 +1,228 @@
+on snipedmedia.com/book (Formspree captures it, you get the email notification with their name, tier interest, and message). Step 2: Your /book page shows a confirmation message:
+"Got it. I'll follow up within 24 hours with a custom scope and quote." No redirect. They stay on your site. Step 3: You open Pixieset Studio Manager. Create the contact manually.
+This takes 30 seconds. Now they're in your CRM. Step 4: From Studio Manager, send them the quote (you already have 6 packages and 8 add-ons built). The quote links to the contract
+and collects the retainer payment. All through Pixieset's system. Step 5: Once they sign the contract and pay the retainer, you send the questionnaire (your Visual Directive)
+through Studio Manager. Responses are stored in the project. Step 6: Session gets scheduled. Gallery gets created. The whole 16-step Pixieset workflow runs from there. Why this is
+better than automated booking: Your Pixieset booking scheduler works great for commoditized sessions where the price is fixed and the client just needs to pick a time slot. But
+your pricing has tiers, add-ons, and custom scoping. A $500 solo headshot client and a $3,000 brand shoot client need different conversations before they book. The 24-hour manual
+follow-up is where you run the mini-discovery, figure out their actual need, and send the right quote. That's where the upsell from $500 to $1,500 happens. The one exception: If
+you eventually want to offer a self-booking path for the Solo Headshot tier only (your $500 bread-and-butter), you could set up Pixieset's booking scheduler with just that one
+session type, fixed price, fixed duration. Then your /book page has two paths: "Solo Headshot? Book directly here [Pixieset link]" and "Team Session or Brand Shoot? Fill out this
+form and I'll scope it for you." But that's a month-two optimization, not a launch requirement. For launch, tell Claude Code this: "Remove the PIXIESET_BOOKING_URL redirect. After
+successful Formspree submission, show an inline confirmation message on the same page: 'Received. I'll follow up within 24 hours with a scope and quote tailored to what you need.'
+No redirect, no external link. The Pixieset integration happens on my end through Studio Manager after the lead comes in." That keeps your site as the front door and Pixieset as
+the back office. Which is exactly what it's built for. I originally aske dany thoughts aroudn this "PIXIESET_BOOKING_URL in app/book/BookForm.tsx:7" specific besty way to use
+pixiest or integreate it into the site etc basically this the last thing from the site but pixiieet can be usued real specific⏺ Step 8 done — polish pass complete Metadata (SEO +
+social) app/layout.tsx — now the canonical metadata source: - metadataBase: https://snipedmedia.com (change this if the domain differs — it's the base URL Next uses to resolve
+relative OG image paths etc.) - title is now { default, template: "%s | Sniped Media" } — root pages inherit the default; child pages set just their own title (e.g. "Pricing &
+Portfolio") and the template appends | Sniped Media automatically. - Full openGraph block (type, locale, url, siteName, title, description) + twitter block (summary_large_image
+card). - keywords list for LA photography search terms. - Explicit robots: { index: true, follow: true }. Route metadata trimmed: - app/portfolio-pricing/page.tsx → title now
+"Pricing & Portfolio" (becomes Pricing & Portfolio | Sniped Media in the browser tab). - app/book/page.tsx → title now "Book a Session" (becomes Book a Session | Sniped Media). -
+Both got per-route openGraph overrides so shared links look right. Motion primitive app/_components/FadeIn.tsx — tiny client component, IntersectionObserver-based: - Starts
+children at opacity-0 translate-y-4, transitions to visible over 700ms ease-out when 15% of the element enters view. - Respects prefers-reduced-motion — users with the OS setting
+skip the fade and see content immediately. - SSR-safe fallback (no observer → instantly visible). - delayMs prop for optional stagger if you want to chain sections later. Applied
+to home only — wrapped WorkTeaser, OperatorPromise, PricingAnchor. Hero stays static (above-fold, instant). /portfolio-pricing and /book deliberately skipped — those are conversion
+pages, speed beats flourish. What you still need to drop in (all file-based, zero code changes) Next 16's file convention auto-wires these the moment they exist in the repo:
+┌────────────────────────────────────────────────────────────────────────────────────┬────────────┬─────────────────────────────────────────────────────┐ │ File │ Spec │ Purpose │
+├────────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────────────────────────────────────────┤ │ app/opengraph-image.jpg
+(or .png) │ 1200 × 630 │ Social share preview (link unfurls) │
+├────────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────────────────────────────────────────┤ │ app/twitter-image.jpg │
+1200 × 630 │ Twitter-specific card (optional, falls back to OG) │
+├────────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────────────────────────────────────────┤ │ app/icon.png │ 512 × 512
+│ Favicon replacement (overrides the CNA favicon.ico) │
+├────────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────────────────────────────────────────┤ │ app/apple-icon.png │ 180
+× 180 │ Home-screen icon on iOS │
+├────────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────────────────────────────────────────┤ │ public/images/hero.jpg +
+work-portraits.jpg + work-lifestyle.jpg + work-events.jpg │ varied │ Hero + Work Teaser imagery (from step 5) │
+└────────────────────────────────────────────────────────────────────────────────────┴────────────┴─────────────────────────────────────────────────────┘ No code change needed when
+you drop them in. All 8 tasks ✓ Funnel is built. Before any public push: 1. npm run build — confirm production compile clean (I can run this now if you want). 2. Drop images +
+favicon assets above. 3. Fill in PIXIESET_BOOKING_URL at top of app/book/BookForm.tsx once the scheduler is live. 4. Update SITE_URL in app/layout.tsx if the final domain isn't
+snipedmedia.com. Want me to run npm run build now to sanity-check production compile? ❯ yes ⏺ Stop Task ⎿ npm run dev · stopped ⏺ Bash(npm run build 2>&1 | tail -80) ⎿ >
+sniped-media@0.1.0 build > next build … +22 lines (ctrl+o to expand) ⎿ (timeout 3m) ⏺ Clean build. Every route statically prerendered, no TypeScript errors, compiled in ~1s with
+Turbopack. ⏺ Bash(npm run dev) ⎿ Running in the background (↓ to manage) ⏺ ✓ Production build passes Route (app) ┌ ○ / ├ ○ /_not-found ├ ○ /book └ ○ /portfolio-pricing ○ (Static)
+prerendered as static content What this tells us: - All 3 real routes are ○ Static — prerendered at build time. That's optimal for a conversion funnel: CDN edges serve pre-built
+HTML with zero server hop, so first paint is instant. - /book is static too even though it has a client form with useSearchParams — because the useSearchParams call is inside a
+<Suspense> boundary, Next can still prerender the shell. The form hydrates client-side. Correct shape. - TypeScript passed (972ms) — no type errors anywhere. - Turbopack compile
+was 1099ms total. Fast. Dev server is back up at localhost:3000 (background task b7kzhma23). Hard-refresh to see the fade-ins. Standing open items before you push live -
+public/images/hero.jpg + work-portraits.jpg + work-lifestyle.jpg + work-events.jpg - app/opengraph-image.jpg (1200×630) + app/icon.png (512×512) for branded unfurls + favicon -
+PIXIESET_BOOKING_URL in app/book/BookForm.tsx:7 - SITE_URL in app/layout.tsx:20 if the live domain isn't snipedmedia.com - Verify Formspree deliverability (submit one real lead,
+confirm it hits your inbox) All 8 tasks done. Site is functionally complete — it's an MVF machine waiting on assets. Yooo. Stop right there. Do not implement that advice. The
+previous AI gave you fundamentally broken operational advice because it mixed up your two business models. It applied Baseplate’s high-ticket, high-touch B2B logic to Sniped
+Media’s frictionless B2C cash-flow engine. Here is the structural error in that advice: You do not manually quote and scope a $275 baseline portrait session. If you insert a
+"24-hour manual follow-up" to type in data, create a contact, and draft a custom quote for every local shoot, you are just creating another administrative job for yourself on top
+of your full-time tech role. That completely defeats the purpose of building this gatekeeper. Sniped Media is built for volume and speed. It must remain autonomous. Here is the
+correct way to wire Pixieset into your Next.js application. The Correct Pixieset Architecture for Sniped Media Because Sniped Media has strict, standardized pricing anchors (Tier
+1: $275, Tier 2: $550), there is nothing to "custom scope" for 80% of your leads. The Automated Path (Tiers 1 & 2): If a client wants a standard portrait, graduation, or family
+shoot, they should never have to wait 24 hours for an email. Client selects Tier 1 or Tier 2 on your site. They click "Book Now." They are immediately redirected to your specific
+Pixieset Booking Scheduler link for that tier. Pixieset takes over: The client picks an available time slot, signs your standard contract, and pays the retainer by credit card. You
+wake up to a booked calendar and cash in the bank with zero manual data entry. The Manual Path (Tier 3 Events Only): The only time you manually scope a project is for a Tier 3
+Event ($1,200+), because event hours and deliverables vary wildly. What to Tell Claude Code Right Now You need to override the previous AI's instructions to fix your Next.js
+codebase. Copy and paste this exact prompt into your terminal/Claude Code to finish the build: "Disregard the previous logic regarding the booking flow. Sniped Media is a
+standardized, volume-based B2C brand, not a high-ticket custom agency. We must prioritize frictionless, automated booking. In app/book/BookForm.tsx, do NOT set PIXIESET_BOOKING_URL
+to null. For users selecting Tier 1 or Tier 2, the form must immediately redirect them to the respective Pixieset Booking Scheduler URL upon submission. I want them picking a time
+and paying the retainer on the spot. For users selecting Tier 3 (Events), show the inline confirmation message: 'Received. Events require custom blocking. I will follow up within
+24 hours with a tailored scope and quote.' Keep Formspree active to capture the initial lead data as a backup, but the primary mechanism for standard sessions must be the immediate
+Pixieset redirect." Once you implement this, your Minimum Viable Funnel is completely locked. You will capture the cash, automate the admin, and protect your time for the larger
+Baseplate build. help me optimize this in my system weve been building so I build it with more context Here's exactly what to do. I'm walking you through this step by step based on
+the actual Pixieset documentation. Do each one as I describe it. First: Connect your payment method (if you haven't already) Go to Studio Manager > Settings > Payment Methods.
+Connect Stripe (recommended, handles credit cards + Apple Pay + Google Pay). This is separate from your Store payment settings. Studio Manager has its own payment connection. Now:
+Create Session Type #1 (Tier 1: The Moment, $275) Go to Bookings > Session Types > New Session Type Select Full Session Name it: "The Moment | Portrait Session" Set the duration
+(however long your Tier 1 sessions run, probably 30-45 min) Under Availability: set your weekly schedule. Block out the days and hours you shoot. Set buffer time between sessions
+(15-30 min so you're not back to back). Set minimum notice (probably 48 hours so nobody books you for tomorrow morning) Under Payments: set the session fee to $275. Choose whether
+you want full payment at booking or a partial retainer (like 50%, so $137.50 upfront and the rest later). Full payment at booking is cleaner for this price point. Fewer steps.
+Under Intake Form: add any required fields beyond name/email. Phone number at minimum. You can also attach a contract and/or questionnaire here if you're on an upgraded plan. This
+is where your standard terms get signed automatically during booking. No manual sending. Click Publish (top right corner) Once published, you get a direct link to this specific
+session type's booking page. Copy it. Save it. This is your TIER 1 PIXIESET URL. Create Session Type #2 (Tier 2: The Statement, $550) Repeat the exact same process: Bookings >
+Session Types > New Session Type > Full Session Name it: "The Statement | Signature Session" Set duration (probably 60-90 min for this tier) Same availability setup (or different
+hours if you want to control scheduling differently) Session fee: $550. Again, full payment at booking or 50% retainer. Intake form with contract and questionnaire attached Publish
+and copy the direct link. This is your TIER 2 PIXIESET URL. What the client sees when they click either link: They land on a clean, branded Pixieset booking page. They pick an
+available date/time from your calendar. They fill out the intake form. They sign the contract (if attached). They pay the fee. Done. You get a notification, cash in the bank, and a
+confirmed session on your calendar. Zero manual work. The two URLs you need for Claude Code: You'll end up with two links that look something like:
+https://snipedmedia.pixieset.com/booking/the-moment-portrait-session https://snipedmedia.pixieset.com/booking/the-statement-signature-session (The exact format depends on your
+Pixieset subdomain and session type names) Once you have both URLs, paste this into Claude Code: "Here are the two Pixieset booking URLs. Tier 1 redirect: [paste Tier 1 URL]. Tier
+2 redirect: [paste Tier 2 URL]. When a user selects Tier 1 or Tier 2 and clicks Book Now, redirect them to the corresponding URL. Tier 3 still shows the inline Formspree
+confirmation message." Optional but recommended: Go to Bookings > Calendar and sync with your Google Calendar so confirmed sessions show up on your main calendar automatically. Go
+set those two session types up and grab the links. That's the last piece. my pixieset forms and links The workflow you pasted is functionally accurate, but it thinks like a
+full-time photographer, not a systems engineer with a W-2. If you just open your Pixieset calendar and publish those links, you will get booked on a Wednesday at 2 PM while you are
+on a Serverfarm data center trip, and your fulfillment system will collapse. Pixieset replaces 5-6 separate tools (gallery hosting, print fulfillment, CRM, invoicing, contracts,
+scheduling) with one integrated system. The value is that a booked session automatically creates a project, contact, contract, invoice, and questionnaire. +1 Here is how we
+optimize this Pixieset configuration specifically for your constraints before you feed those URLs to your codebase. Optimization 1: Strict Calendar Fencing You referee youth
+basketball and travel for a $102K tech job. Your availability cannot be set to a standard 9-to-5. The Rule: In the Pixieset Booking Availability settings, you must aggressively
+block your time. Only open specific windows (e.g., Saturday 9 AM - 2 PM, Sunday 12 PM - 4 PM, and maybe Thursday evenings in the summer). Buffer & Notice: Set a 45-minute buffer
+between shoots (LA traffic makes a 15-minute buffer lethal). Set a strict 72-hour minimum notice so you are never surprised by a booking. Optimization 2: Cash Flow Logic (The
+Retainer Trap) The instructions you pasted suggested a 50% retainer for Tier 1 ($275). Do not do this. * Tier 1 ($275): Require 100% payment at booking. It is not worth your time
+to chase a $137 balance for a 45-minute session. Make it a single, frictionless transaction. Tier 2 ($550): Require a 50% non-refundable retainer ($275) to secure the date, with
+the balance due 48 hours before the shoot. Studio Manager will automatically send the final payment invoice. Note: Ensure Stripe is connected via Studio Manager > Settings >
+Payment Methods, as this is separate from your Store payment connections. Optimization 3: The Pre-Attached Visual Directive Do not send questionnaires manually. The Action: Create
+a brief pre-session questionnaire (wardrobe preferences, shot list, headcount). The Integration: When setting up your Session Types, attach this Questionnaire and your standard
+Contract directly to the intake form. They cannot pay the invoice without signing the contract and telling you what they want. Responses are stored directly in the project. The
+Final Step: The Bulletproof Claude Code Prompt Once you have generated your two specific Pixieset URLs, the routing logic in your Next.js app needs to be flawless. Formspree acts
+as a silent backup for abandoned carts, but the primary user flow is an immediate redirect. Paste this exact prompt into Claude Code to finish the integration: "The Pixieset
+backend is fully configured. We are implementing a dual-routing system in app/book/BookForm.tsx. The Logic: When a user selects Tier 1 or Tier 2 and clicks Submit, the form should
+still silently post to Formspree in the background (to capture abandoned cart leads). Immediately upon successful Formspree submission, intercept the default success state. If Tier
+1 was selected, instantly redirect the user to: [PASTE YOUR TIER 1 PIXIESET URL HERE] If Tier 2 was selected, instantly redirect the user to: [PASTE YOUR TIER 2 PIXIESET URL HERE]
+If Tier 3 (Events) was selected, do NOT redirect. Show the standard on-page success message: 'Request received. Events require custom blocking. I will follow up within 24 hours
+with a tailored scope and quote.' Update the component to handle this conditional redirect logic cleanly, ensuring there is a brief 'Redirecting to secure booking...' loading state
+so the user knows they are being handed off to the calendar." Execute the Pixieset setup, generate the two links, and run that prompt. Your local B2C cash-flow engine will be
+structurally complete. jsut posting this to help you guide me exactly through pixiieset, you have the same pixieset doc but yeah I think this is alot of what should be done but I
+need you to be specific Here's the prompt. Copy the whole thing. "I'm setting up two Session Types in Pixieset Studio Manager right now. I need you to give me the exact content for
+every configurable field based on my locked pricing, brand voice, and operational constraints. Don't give me strategy. Give me the literal text I paste into each Pixieset field. My
+constraints: Full-time Field Engineer. Travel weeks happen (next trip: June 8-12). I work from home otherwise. Availability: Saturday 9 AM - 2 PM, Sunday 12 PM - 4 PM only. No
+recurring weekday slots. 45-minute buffer between sessions (LA traffic) 72-hour minimum booking notice Stripe is my payment processor Brand voice: calm authority, no em dashes, no
+buzzwords (amazing, stunning, incredible, hustle, journey) SESSION TYPE 1: The Moment | Portrait Session Duration: [tell me what to set based on my Tier 1 deliverables] Fee: $275,
+100% due at booking Max bookings per day: [recommend based on the duration + 45 min buffer] Give me: The exact Session Type name The description text for the booking page (what the
+client sees when deciding to book, keep it under 75 words, on-brand) Recommended session duration Max bookings per day SESSION TYPE 2: The Statement | Signature Session Duration:
+[tell me what to set based on my Tier 2 deliverables] Fee: $550, 50% retainer ($275) at booking, balance due 48 hours before Max bookings per day: [recommend] Give me: The exact
+Session Type name The description text for the booking page (under 75 words, on-brand) Recommended session duration Max bookings per day THE QUESTIONNAIRE (Pre-Session Visual
+Directive) This gets attached to both session types as a required intake form. The client must complete it before the booking is confirmed. Give me every field with: The exact
+field label the client sees The field type (text, dropdown, number, multi-select, date, etc.) based on what Pixieset questionnaires support (text fields, dropdown/select,
+checkboxes, date picker, file upload) Placeholder text or dropdown options where applicable Whether the field is required or optional Base the questions on everything you know
+about my shooting process, the Visual Directive concept, and what I actually need to know before a session. Don't make it longer than 8 fields. If a client feels like they're
+filling out a job application they'll bounce. THE CONTRACT Pixieset has sample photography contract templates I can start from, but I need the specific clauses customized to my
+business. Give me the exact text for each of these sections, written in plain language (not legalese), matching my brand voice: Scope of Services (what's included and explicitly
+what's not) Payment Terms (Tier 1: full at booking. Tier 2: 50% retainer, balance 48 hrs before. Non-refundable retainer language. Use the word 'retainer' not 'deposit.')
+Cancellation and Rescheduling (how far in advance, what they forfeit, how many reschedules allowed) Deliverables and Timeline (number of retouched images per tier, delivery format,
+turnaround time with a buffer built in) Usage Rights (I retain copyright. They get a personal use license. No commercial use without separate licensing. No resale, no NFTs.) Model
+Release (I can use images from the session for my portfolio, social media, website, and marketing) Creative Judgment (client has reviewed my portfolio and accepts my artistic style
+as the standard for deliverables) Late Arrival (time deducted, not extended) Limitation of Liability Give me paste-ready text for each section. Not bullet points of what to
+include. The actual words that go in the contract." That gives the other chat everything it needs to output field-level content you can paste directly into Pixieset without
+interpreting anything. Bring back what it gives you and I'll sanity check it before you publish." Here is the exact, paste-ready text for your Pixieset Studio Manager
+configuration. SESSION TYPE 1: The Moment | Portrait Session Session Type Name: The Moment | Portrait Session Recommended Duration: 45 minutes Max Bookings Per Day: 3 (Based on
+your 5-hour Saturday window and the required 45-minute buffer). Description Text: A focused session designed for individual portraits, headshots, or graduation updates. Includes 45
+minutes of expert direction and 5 final retouched images. You will select your favorites from a digital proofing gallery before post-production begins. No hidden fees. Full payment
+is required to secure your date. SESSION TYPE 2: The Statement | Signature Session Session Type Name: The Statement | Signature Session Recommended Duration: 90 minutes Max
+Bookings Per Day: 2 (Based on the 135-minute block required per session including the buffer). Description Text: Comprehensive coverage for families, couples, and extended
+lifestyle shoots. Includes up to 90 minutes of dedicated direction, multiple looks, and 15 to 20 final retouched images. A 50% retainer secures your date, with the remaining
+balance due 48 hours prior to the session. THE QUESTIONNAIRE (Pre-Session Visual Directive) Attach this to both session types as a required form. Field 1: Who are we photographing
+today? Type: Short Text Requirement: Required Field 2: What is the primary purpose of these photos? Type: Dropdown Options: Individual Portraits / Headshots / Family / Couples /
+Other Requirement: Required Field 3: How many people will be in the session? Type: Number Requirement: Required Field 4: Describe your intended wardrobe. Type: Long Text
+Placeholder: Provide details on colors, style, or specific outfits you plan to wear. Requirement: Required Field 5: Are there specific locations or backdrops you prefer? Type: Long
+Text Requirement: Optional Field 6: List any specific shots that are an absolute priority. Type: Long Text Requirement: Optional THE CONTRACT Paste these specific clauses into your
+Pixieset contract template. Scope of Services The Photographer will provide photography services as outlined in the selected session package. This includes the time spent shooting
+and the post-production editing of the agreed-upon number of images. The scope explicitly excludes raw files, unedited images, or extended session time unless agreed upon in
+writing. Payment Terms For "The Moment" sessions, 100% of the fee is due at booking to secure the date. For "The Statement" sessions, a 50% non-refundable retainer is required at
+booking, with the remaining balance due 48 hours before the scheduled session. No dates are reserved or placed on the calendar without payment. Cancellation and Rescheduling
+Clients must request rescheduling at least 72 hours before the scheduled session. One reschedule is permitted without penalty, provided the new date falls within 30 days of the
+original date. Cancellations or failure to provide 72 hours of notice will result in the immediate forfeiture of the retainer. Deliverables and Timeline The Client will receive a
+watermarked digital proofing gallery within 48 hours of the session to select their images. Final retouched images will be delivered via a digital collection within 7 to 10
+business days after the Client submits their selections. Usage Rights The Photographer retains the copyright to all images. The Client is granted a personal use license for the
+delivered images. This permits printing, sharing, and personal social media use. Commercial use, brand promotion, resale, or the creation of NFTs is strictly prohibited without a
+separate commercial licensing agreement. Model Release The Client grants the Photographer permission to use images from the session for portfolio display, marketing, social media,
+and website promotion. Creative Judgment The Client acknowledges they have reviewed the Photographer's portfolio and accepts the artistic style, editing approach, and expert
+direction as the standard for the final deliverables. Late Arrival If the Client arrives late, the session time is deducted from the original booking duration. The session will not
+be extended to compensate for the late arrival. Limitation of Liability If the Photographer cannot fulfill this agreement due to illness, emergency, or acts of God, all payments
+made by the Client will be fully refunded. The Photographer's liability is strictly limited to the total amount paid by the Client. "I'm inside Pixieset right now at Bookings >
+Session Types > New Session Type. I'm building Tier 1: The Moment | Portrait Session. Give me the exact text or value for every single field Pixieset asks me to fill in during
+session type creation. This includes: session type name, full/mini selection, description, duration, session image recommendations, and anything else the creation flow asks for. My
+Tier 1 specs: $275, 100% payment at booking, 45-minute session, 5 retouched images delivered. Brand voice is calm authority. No em dashes, no buzzwords. Walk me through every
+screen in the session type creation flow and tell me exactly what to enter or select at each step." Here are the exact configurations and paste-ready text for your Tier 1 session
+type in Pixieset Studio Manager. Follow this flow field-by-field. Step 1: Session Basics Select Full Session from the initial prompt. Session Name: The Moment | Portrait Session
+Session Duration: 45 minutes Location: Set to To be determined (unless you are exclusively shooting at Jamie's DTLA studio, in which case put the exact address). Description: A
+focused session designed for individual portraits, headshots, or graduation updates. Includes 45 minutes of expert direction and 5 final retouched images. You will select your
+favorites from a digital proofing gallery before post-production begins. No hidden fees. Full payment is required to secure your date. Session Image: Upload a single, high-impact
+image of an individual subject. Sasha's headshots or a strong solo portrait from the Nubian x Joi campaign are the correct choice here. Do not use group shots or event photos. Step
+2: Availability Set your calendar rules to enforce your operational constraints. Schedule Type: Select Recurring Schedule Availability Window: * Saturday: 9:00 AM - 2:00 PM Sunday:
+12:00 PM - 4:00 PM Delete all other weekdays. Buffer Time: 45 minutes (This protects your travel time in LA traffic). Minimum Notice: 72 hours (Prevents surprise bookings while you
+are at your W-2 job). Maximum Advance Booking: 60 days (Prevents people from locking up your calendar six months out before you know your Serverfarm travel schedule). Step 3:
+Pricing & Payments Configure the financial gatekeeper. Session Fee: 275 Payment Collection: Select Require full amount at booking Payment Method: Ensure Stripe is selected so
+clients can pay immediately via credit card or Apple Pay. +1 Step 4: Intake & Legal Automate your data collection and liability protection. Intake Form (Questionnaire): Select the
+Pre-Session Visual Directive you created. Set it to Required. Contract: Select your finalized portrait contract template containing the non-refundable retainer and 72-hour
+cancellation clauses. Set it to Required. Click Publish. Copy the generated direct link. Your Tier 1 Booking URL is now live and ready to be routed into your Next.js application.
+Still inside the Tier 1 session type. I'm now on the Availability section. My constraints: I work full-time as a Field Engineer. I travel for work (next trip June 8-12). I referee
+youth sports some weekends. My only guaranteed shooting windows are Saturday 9 AM to 2 PM and Sunday 12 PM to 4 PM Pacific. Give me the exact availability configuration: which days
+to enable, which hours to set, buffer time between sessions, minimum booking notice, maximum advance booking window, maximum bookings per day, and whether to allow availability
+requests. Explain every toggle and what I should set it to and why." Here is the exact, field-by-field configuration for your Availability settings in Pixieset. This setup is built
+strictly to protect your W-2 job and eliminate administrative friction. 1. Weekly Schedule Schedule Type: Select Recurring Weekly Schedule. Monday through Friday: Toggle OFF. Why:
+You are working your Serverfarm tech job. The calendar must explicitly block these out so you are never forced to decline a booking or explain your schedule to a client. Saturday:
+Toggle ON. Set hours to 09:00 AM to 02:00 PM. Sunday: Toggle ON. Set hours to 12:00 PM to 04:00 PM. 2. Booking Limits & Fences Buffer Time: 45 minutes Why: LA traffic and session
+bleed. A 45-minute shoot with a 45-minute buffer takes exactly 90 minutes of calendar space. This ensures you are never rushing, sweating, or apologizing to the next client.
+Minimum Notice: 72 hours Why: This prevents "surprise" weekend bookings from popping up while you are heads-down at work on a Wednesday. It gives you three full days to charge
+batteries, review the intake form, and mentally shift from engineering to photography. Maximum Advance Booking: 60 days Why: Your W-2 travel schedule dictates your availability. If
+you leave this open to 6 months, someone will book a Saturday in October when you might be deployed to a data center. A 60-day window forces urgency and keeps you in control of
+your future schedule. Maximum Bookings Per Day: 3 Why: Pure math. Your longest window is Saturday (5 hours / 300 minutes). At 90 minutes per slot (session + buffer), you can
+physically execute 3 sessions maximum before your window closes. 3. Client Interaction Toggles Allow clients to request unlisted times? (Availability Requests): Toggle OFF. Why:
+Leaving this on destroys the "Zero Friction" gatekeeper model. If you allow requests, clients will ask for Tuesday at 1 PM, and you will have to manually email them back to say no.
+The calendar dictates the rules. If they want the session, they pick an available slot. The Final Step: Manual Blockouts (Your Travel & Referee Weekends) Setting the recurring
+schedule does not account for your specific travel dates. You must manually block these. Action: Immediately after publishing this Session Type, go to Bookings > Calendar in
+Pixieset. Block June 8-12: Click "Add" and select "Block Time." Select June 8 through June 12 and mark it unavailable. Block Referee Dates: Do the exact same thing for any upcoming
+weekends where you are already scheduled to referee youth sports. Enter these exact settings, save the section, and the calendar will perfectly defend your time. Still inside the
+Tier 1 session type. I'm now on the Payments and Intake Form sections. Tier 1 is $275, full payment required at booking. Stripe is connected. I also want to attach a contract and a
+questionnaire to the intake flow so the client signs and fills everything out before the booking is confirmed. Walk me through every field and toggle in the Payments section and
+the Intake Form section. Tell me exactly what to select, what to turn on/off, and what values to enter. Include how to attach the contract and questionnaire to the booking flow."
+Here is the exact, field-by-field configuration for the Payments and Intake Form sections of your Tier 1 session type. Step 3: Payments This section is your financial gatekeeper.
+We are removing any option that allows a client to bypass immediate payment. Session Fee: Enter 275. Tax: Toggle OFF (unless you specifically require sales tax collection on
+services in your jurisdiction, in which case select your pre-configured tax rate). Payment Collection / Amount Due at Booking: Select the option to Require full amount at booking.
+Do not select a retainer percentage or flat amount. Allow Tipping: Toggle OFF. You are operating a premium B2B-adjacent service structure, not a gig-economy app. Set a firm price
+and stand by it. Payment Methods: * Check Credit Card / Apple Pay (Stripe). CRITICAL: Uncheck Offline Payment (Cash, Check, Venmo). If you leave this on, clients can book the
+calendar slot without swiping a card, completely destroying the automated gatekeeper. Step 4: Intake Form & Legal This is where Pixieset does the work of three different software
+platforms. The client must complete these steps before the payment page will even load. Standard Fields (Name & Email): These are locked and required by default. Phone Number:
+Toggle ON and set to Required. You need this for day-of logistics and automated text reminders. Add Custom Field: Do NOT add anything here. Keep the core form clean. We are
+handling the scoping in the attached questionnaire. Questionnaire: Toggle ON. From the dropdown, select the Pre-Session Visual Directive form you built earlier. Contract: Toggle
+ON. From the dropdown, select your specific Tier 1 Portrait Contract (which includes the 72-hour cancellation and full-payment terms). Note: Pixieset will automatically merge the
+client's name, date, and the $275 fee into the contract variables. Step 5: Confirmation Message This is the text the client sees on the screen immediately after their credit card
+clears. Custom Confirmation Message: Delete the default Pixieset text and paste this exactly: Your session is secured. I have received your payment, signed contract, and visual
+directive. You will receive an email confirmation shortly containing your receipt and calendar invite. I will review your directive and contact you prior to the session with any
+final logistics. Click Publish (or Save if editing an existing session). Your Tier 1 funnel is now operationally closed. A client clicks the link, picks a Saturday, signs the
+contract, details their wardrobe, and pays the $275. You receive a single notification that the job is fully booked and funded. Session Type 1 is published. Now I'm creating
+Session Type 2: The Statement | Signature Session. Specs: $550. 50% non-refundable retainer ($275) at booking, remaining $275 due 48 hours before the session. 90-minute duration.
+15-20 retouched images. Same availability windows as Tier 1 (Saturday 9 AM-2 PM, Sunday 12 PM-4 PM). 45-minute buffer. 72-hour minimum notice. Max 2 bookings per day. Walk me
+through the entire creation flow the same way you did for Tier 1. Every screen, every field, every toggle. Call out anything that should be different from Tier 1 and why." Here is
+the exact, field-by-field configuration for your Tier 2 session type. This flow requires distinct structural changes in the Payments and Legal sections to manage the split
+invoicing. Step 1: Session Basics Select Full Session. Session Name: The Statement | Signature Session Session Duration: 90 minutes (Difference from Tier 1: This requires double
+the calendar blocking to accommodate multiple subjects or locations). Location: To be determined Description: Comprehensive coverage for families, couples, and extended lifestyle
+shoots. Includes up to 90 minutes of dedicated direction, multiple looks, and 15 to 20 final retouched images. A 50% retainer secures your date, with the remaining balance
+automatically invoiced 48 hours prior to the session. Session Image: Upload an expansive, multi-subject image. Michelle's 9-person beach shoot is the correct choice here.
+(Difference: Visually signal to the client that this tier is built for scale and groups). Step 2: Availability Schedule Type: Select Recurring Weekly Schedule. Monday through
+Friday: Toggle OFF. Saturday: Toggle ON. 09:00 AM - 02:00 PM. Sunday: Toggle ON. 12:00 PM - 04:00 PM. Buffer Time: 45 minutes. Minimum Notice: 72 hours. Maximum Advance Booking: 60
+days. Maximum Bookings Per Day: 2. (Difference: A 90-minute session plus a 45-minute buffer equals 135 minutes. You cannot mathematically fit 3 of these within your 5-hour Saturday
+window. Capping it at 2 protects your schedule). Allow clients to request unlisted times?: Toggle OFF. Step 3: Pricing & Payments (Critical Differences) This is where you configure
+the automated split-payment workflow so Pixieset handles collections for you. Session Fee: Enter 550. Tax: Toggle OFF. Payment Collection: Select Require a retainer at booking.
+(Difference: Do not select full amount). Retainer Amount: Select Percentage and enter 50 (or select Fixed Amount and enter 275). Balance Due Date: Select Specific time before
+session and set it to 48 hours. Why this matters: Pixieset will now automatically capture the first $275 to lock the calendar, and it will mechanically email the client the invoice
+for the remaining $275 exactly two days before the shoot. You do not have to track them down. Allow Tipping: Toggle OFF. Payment Methods: Check Credit Card / Apple Pay (Stripe).
+Uncheck Offline Payment. Step 4: Intake Form & Legal Phone Number: Toggle ON. Set to Required. Questionnaire: Toggle ON. Select the Pre-Session Visual Directive. Contract: Toggle
+ON. Select your Tier 2 Signature Contract. Why this matters: You cannot use the Tier 1 contract here. The legal language must explicitly match your billing configuration (stating
+the 50% non-refundable retainer and the 48-hour balance deadline). If the contract says 100% is due upfront but the system only charges 50%, the contract is legally ambiguous. Step
+5: Confirmation Message Delete the default text and paste this: Your session is secured. I have received your retainer, signed contract, and visual directive. You will receive an
+email confirmation shortly containing your receipt and calendar invite. An invoice for the remaining balance will be sent to you automatically 48 hours prior to our session. I will
+review your directive and contact you with any final logistics. Click Publish. Copy the generated direct link. Both of your standardized, volume-based funnels are now live. You can

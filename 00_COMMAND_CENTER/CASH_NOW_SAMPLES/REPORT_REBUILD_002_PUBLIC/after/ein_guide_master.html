@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Getting Your EIN · Form SS-4 Instructions, Rebuilt</title>
+<style>
+  @page { size: letter; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink: #23272E;
+    --teal: #0E6B5C;
+    --teal-dark: #0A4A40;
+    --paper: #FBFAF6;
+    --sand: #F0EDE4;
+    --amber: #B45309;
+    --line: #D9D5C9;
+    --muted: #6B7068;
+  }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: var(--ink); }
+  .page {
+    width: 8.5in; height: 11in;
+    background: var(--paper);
+    padding: 0.62in 0.65in 0.7in;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .pagefoot {
+    position: absolute; bottom: 0.32in; left: 0.65in; right: 0.65in;
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 7.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+    border-top: 1px solid var(--line); padding-top: 6px;
+  }
+
+  .kicker { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin-bottom: 10px; }
+  h2.sect { font-size: 24px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .sect-sub { font-size: 10.5px; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+
+  p { font-size: 9.6px; line-height: 1.55; margin-bottom: 7px; }
+  .lead { font-size: 11px; line-height: 1.6; }
+  ul { margin: 4px 0 8px 14px; }
+  li { font-size: 9.6px; line-height: 1.5; margin-bottom: 3.5px; }
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+
+  .callout {
+    border-left: 3px solid var(--teal); background: #EDF3F0;
+    padding: 7px 10px; margin: 8px 0; border-radius: 0 4px 4px 0;
+  }
+  .callout.caution { border-left-color: var(--amber); background: #F7EEE2; }
+  .callout p, .callout li { font-size: 9px; line-height: 1.5; margin-bottom: 3px; }
+  .callout .tag { font-size: 7.5px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 2px; }
+  .callout .tag { color: var(--teal-dark); }
+  .callout.caution .tag { color: var(--amber); }
+
+  .linecard { border: 1px solid var(--line); border-radius: 6px; padding: 9px 11px; margin-bottom: 9px; background: #fff; }
+  .linecard .lc-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+  .chip {
+    background: var(--teal); color: #fff; font-weight: 800; font-size: 8.5px;
+    padding: 2px 7px; border-radius: 10px; letter-spacing: 0.06em; white-space: nowrap;
+  }
+  .lc-title { font-size: 11px; font-weight: 700; }
+
+  .two-col { display: flex; gap: 18px; }
+  .two-col > div { flex: 1; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+  th { text-align: left; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); padding: 4px 8px; border-bottom: 1.5px solid var(--ink); }
+  td { font-size: 9.3px; line-height: 1.45; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+
+  .method { background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--teal); border-radius: 6px; padding: 10px 12px; }
+  .method h4 { font-size: 11.5px; font-weight: 800; margin-bottom: 2px; }
+  .method .who { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 700; margin-bottom: 5px; }
+  .method p, .method li { font-size: 9px; line-height: 1.5; }
+  .method .big { font-size: 13px; font-weight: 800; color: var(--teal-dark); }
+
+  .gridwrap { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .gridwrap3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+  .defbox { background: var(--sand); border-radius: 6px; padding: 9px 11px; margin: 8px 0; }
+  .defbox p, .defbox li { font-size: 9px; line-height: 1.5; }
+  .defbox .dt { font-size: 8px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 3px; }
+
+  .activity { background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 7px 9px; }
+  .activity h5 { font-size: 9.5px; font-weight: 800; margin-bottom: 2px; color: var(--teal-dark); }
+  .activity p { font-size: 8.4px; line-height: 1.45; margin: 0; }
+
+  .toc-item { display: flex; align-items: baseline; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line); }
+  .toc-item .n { font-weight: 800; color: var(--teal); font-size: 11px; min-width: 18px; }
+  .toc-item .t { font-size: 11px; font-weight: 600; }
+  .toc-item .d { font-size: 9px; color: var(--muted); margin-left: auto; text-align: right; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 · COVER ============ -->
+<div class="page" style="background: var(--teal-dark); color: #fff; display: flex; flex-direction: column;">
+  <div style="font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: #9DC3B8; font-weight: 700;">A plain-layout rebuild · Demonstration document</div>
+  <div style="margin-top: 2.1in;">
+    <div style="font-size: 64px; font-weight: 800; line-height: 1.02; letter-spacing: -0.02em;">Getting<br>your EIN.</div>
+    <div style="width: 52px; height: 4px; background: #E8A75D; margin: 26px 0;"></div>
+    <div style="font-size: 15px; line-height: 1.55; color: #D7E4DE; max-width: 5.4in;">
+      Rebuilt from the official <strong style="color:#fff;">Instructions for Form SS-4 (Rev. December 2025)</strong>, Application for Employer Identification Number, restructured so a first-time founder, treasurer, or trustee can actually use it.
+    </div>
+  </div>
+  <div style="margin-top: auto;">
+    <div style="display: flex; gap: 30px; border-top: 1px solid rgba(255,255,255,0.25); padding-top: 14px;">
+      <div style="flex:1;"><div style="font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: #9DC3B8; margin-bottom: 3px;">What an EIN is</div><div style="font-size: 9.5px; line-height: 1.5; color: #E4EEE9;">A 9-digit number (for example, 12-3456789) assigned to sole proprietors, corporations, partnerships, estates, trusts, and other entities for tax filing and reporting.</div></div>
+      <div style="flex:1;"><div style="font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: #9DC3B8; margin-bottom: 3px;">What it costs</div><div style="font-size: 9.5px; line-height: 1.5; color: #E4EEE9;">Applicants in the United States or U.S. territories apply for and receive an EIN free of charge on IRS.gov. (The international phone line is not toll-free.)</div></div>
+      <div style="flex:1;"><div style="font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: #9DC3B8; margin-bottom: 3px;">Source</div><div style="font-size: 9.5px; line-height: 1.5; color: #E4EEE9;">IRS Instructions for Form SS-4 (Rev. 12-2025), irs.gov/pub/irs-pdf/iss4.pdf. Not an IRS publication; see the notice on the last page.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 · START HERE ============ -->
+<div class="page">
+  <div class="kicker">01 · Start here</div>
+  <h2 class="sect">The five things to know before you touch the form</h2>
+  <div class="sect-sub">Purpose of the form, the standing rules, and what changed in this revision. Also see "Do I Need an EIN?" on page 2 of Form SS-4 itself. Section references are to the Internal Revenue Code unless otherwise noted.</div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">PURPOSE</span><span class="lc-title">What Form SS-4 does</span></div>
+    <p>Use Form SS-4 to apply for an EIN. The information you provide on this form will establish your business tax account. A Spanish-language version, Form SS-4 (sp), is available.</p>
+    <div class="callout caution"><div class="tag">Caution</div><p>An EIN is for use in connection with your business activities only. Don't use your EIN in place of your social security number (SSN) or individual taxpayer identification number (ITIN).</p></div>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">RULE 1</span><span class="lc-title">One EIN per responsible party, per day</span></div>
+    <p>To ensure fair and equitable treatment for all taxpayers, EIN issuances are limited to one per responsible party, per day. For trusts, the limit applies to the grantor, owner, or trustor. For estates, it applies to the decedent (decedent estate) or the debtor (bankruptcy estate). The limit applies to every channel: online, telephone, fax, or mail.</p>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">RULE 2</span><span class="lc-title">File only one Form SS-4</span></div>
+    <p>Generally, a sole proprietor should file only one Form SS-4 and needs only one EIN, regardless of the number of businesses operated as a sole proprietorship or trade names under which a business operates. However, if a sole proprietorship incorporates or enters into a partnership, a new EIN is required. Also, each corporation in an affiliated group must have its own EIN. Use only one application method per entity so you don't receive more than one EIN.</p>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">RULE 3</span><span class="lc-title">Keep your information current</span></div>
+    <p>Use Form 8822-B to report changes to your responsible party, address, or location. Changes in responsible parties must be reported to the IRS within 60 days.</p>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">RULE 4</span><span class="lc-title">If a return is due before your EIN arrives</span></div>
+    <p>Write "Applied For" and the date you applied in the space shown for the number. Don't show your SSN as an EIN on returns. If a tax deposit is due first, send your payment to the Internal Revenue Service Center for your filing area as shown in the instructions for the form you're filing. Make your check or money order payable to the "United States Treasury" and show your name (as shown on Form SS-4), address, type of tax, period covered, and the date you applied for an EIN.</p>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="callout"><div class="tag">What's new in this revision</div><p>The fax numbers and mailing addresses have moved: they now live under the fax and mail application methods (next page). Applying electronically, if possible, is recommended.</p></div>
+    </div>
+    <div>
+      <div class="callout"><div class="tag">Tip</div><p>For information about EINs and federal tax deposits, see Pub. 15. For the latest developments after publication (such as new legislation), go to IRS.gov/FormSS4.</p></div>
+    </div>
+  </div>
+
+  <div class="pagefoot"><span>Getting your EIN · rebuilt from IRS Instr. Form SS-4 (Rev. 12-2025)</span><span>02</span></div>
+</div>
+
+<!-- ============ PAGE 3 · HOW TO APPLY ============ -->
+<div class="page">
+  <div class="kicker">02 · How to apply</div>
+  <h2 class="sect">Four ways in. Pick exactly one.</h2>
+  <div class="sect-sub">The IRS recommends applying electronically if possible. Use only one method per entity so you don't receive more than one EIN.</div>
+
+  <div class="gridwrap" style="margin-bottom: 10px;">
+    <div class="method">
+      <h4>Online <span class="big" style="float:right;">immediate</span></h4>
+      <div class="who">U.S. + U.S. territories only</div>
+      <p>If you have a legal residence, principal place of business, or principal office or agency in the United States or U.S. territories, apply at <strong>IRS.gov/EIN</strong> and use the EIN immediately to file a return or make a payment.</p>
+      <ul>
+        <li>The principal officer, general partner, grantor, owner, trustor, etc., must have a valid taxpayer identification number (SSN, EIN, or ITIN) to apply online.</li>
+        <li>You can view, print, and save the EIN assignment notice at the end of the session.</li>
+      </ul>
+    </div>
+    <div class="method">
+      <h4>Telephone <span class="big" style="float:right;">same call</span></h4>
+      <div class="who">International applicants only</div>
+      <p>If you have NO legal residence, principal place of business, or principal office or agency in the U.S. or its territories, call <strong>267-941-1099</strong> (not toll-free), 6:00 a.m. to 11:00 p.m. Eastern, Monday through Friday.</p>
+      <ul>
+        <li>The caller must be authorized to receive the EIN and answer questions about the form.</li>
+        <li>It will be helpful to complete Form SS-4 before calling: the representative uses its information to establish your account and assign the EIN. Write the assigned number on the upper right, sign, date, and keep your copy. If requested, mail or fax the signed form within 24 hours to the address the representative provides.</li>
+      </ul>
+    </div>
+    <div class="method">
+      <h4>Fax <span class="big" style="float:right;">~4 business days</span></h4>
+      <div class="who">Fax-TIN program · 24/7</div>
+      <p>Complete and fax Form SS-4 to the right number. Provide your own fax number so the IRS can fax the EIN back.</p>
+      <ul>
+        <li>Residence or business in the 50 states or D.C.: <strong>855-641-6935</strong></li>
+        <li>No state or D.C. presence, faxing from within the U.S.: <strong>855-215-1627</strong></li>
+        <li>Faxing from outside the U.S.: <strong>304-707-9471</strong></li>
+      </ul>
+      <p>Fax-TIN numbers can only be used to apply for an EIN and may change without notice. A long-distance charge applies outside the local calling area.</p>
+    </div>
+    <div class="method">
+      <h4>Mail <span class="big" style="float:right;">~4 weeks</span></h4>
+      <div class="who">Plan 4 to 5 weeks ahead</div>
+      <p>Complete Form SS-4 at least 4 to 5 weeks before you need the EIN. Sign, date, and mail it:</p>
+      <ul>
+        <li>In the 50 states or D.C.: Internal Revenue Service, <strong>Attn: EIN Operation</strong>, Cincinnati, OH 45999</li>
+        <li>U.S. territory or international: Internal Revenue Service, <strong>Attn: EIN International Operation</strong>, Cincinnati, OH 45999</li>
+      </ul>
+      <p>To verify a number or check the status of a mailed application, call <strong>800-829-4933</strong>.</p>
+    </div>
+  </div>
+
+  <div class="callout caution"><div class="tag">Caution</div><p>The IRS no longer issues EINs by telephone for domestic taxpayers. Only international applicants can receive an EIN by telephone. And if you have no U.S. legal residence, principal place of business, or principal office or agency, you can't use the online application.</p></div>
+  <div class="callout"><div class="tag">Tip</div><p>Form SS-4 downloaded from IRS.gov is a fillable form and, when completed, is suitable for faxing or mailing to the IRS.</p></div>
+
+  <div class="pagefoot"><span>Getting your EIN · rebuilt from IRS Instr. Form SS-4 (Rev. 12-2025)</span><span>03</span></div>
+</div>
+
+<!-- ============ PAGE 4 · LINES 1-6 ============ -->
+<div class="page">
+  <div class="kicker">03 · Line by line</div>
+  <h2 class="sect">Lines 1 to 6: who and where you are</h2>
+  <div class="sect-sub">Follow the instructions for each line to expedite processing and avoid IRS requests for more information. Generally, enter "N/A" on lines that don't apply.</div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">LINE 1</span><span class="lc-title">Legal name of entity (or individual) · entry required</span></div>
+    <p>Enter the legal name exactly as it appears on the social security card, charter, or other applicable legal document.</p>
+    <ul>
+      <li><strong>Individuals:</strong> first name, middle initial, last name. Sole proprietors enter their individual name here (business name goes on line 2). No abbreviations or nicknames.</li>
+      <li><strong>Trusts:</strong> the name on the trust instrument.</li>
+      <li><strong>Estate of a decedent:</strong> the estate's name; if it has no legal name, the decedent's name followed by "Estate."</li>
+      <li><strong>Partnerships:</strong> the legal name in the partnership agreement.</li>
+      <li><strong>Corporations:</strong> the name in the corporate charter or creating document, including any suffix such as Inc., Corp., or PC.</li>
+      <li><strong>Plan administrators:</strong> the administrator's name (one who already has an EIN should use that number).</li>
+      <li><strong>Indian tribal governments/enterprises:</strong> the legal name of the tribal government or enterprise applying.</li>
+    </ul>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">LINE 2</span><span class="lc-title">Trade name of business</span></div>
+    <p>Enter the trade name if different from the legal name: the "doing business as" (DBA) name.</p>
+    <div class="callout"><div class="tag">Tip</div><p>Use the full legal name from line 1 on all tax returns. If you enter a trade name and choose to use it instead, then use the trade name on all returns you file. To prevent processing delays, use only one of the two, consistently, on all returns.</p></div>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">LINE 3</span><span class="lc-title">Executor, administrator, trustee, "care of" name</span></div>
+    <ul>
+      <li><strong>Trusts:</strong> the trustee's name.</li>
+      <li><strong>Estates:</strong> the executor, administrator, personal representative, or other fiduciary.</li>
+      <li><strong>Designated person:</strong> if the entity has a designated person to receive tax information, that person's first name, middle initial, and last name.</li>
+    </ul>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="linecard" style="min-height: 1.42in;">
+        <div class="lc-head"><span class="chip">LINES 4a–4b</span><span class="lc-title">Mailing address</span></div>
+        <p>The address for the entity's correspondence; generally used on all tax returns. If line 3 is completed, use the executor's, trustee's, or "care of" person's address. Outside the U.S. and territories: include city, province or state, postal code, and the unabbreviated country name. Filing only to get an EIN for Form 8832? Use the address where the acceptance or nonacceptance letter should go. Report later address changes on Form 8822-B.</p>
+      </div>
+    </div>
+    <div>
+      <div class="linecard" style="min-height: 1.42in;">
+        <div class="lc-head"><span class="chip">LINES 5a–5b</span><span class="lc-title">Street address</span></div>
+        <p>The entity's physical address, only if different from the mailing address. No P.O. box here. Outside the U.S. and territories: include city, province or state, postal code, and the unabbreviated country name.</p>
+      </div>
+      <div class="linecard">
+        <div class="lc-head"><span class="chip">LINE 6</span><span class="lc-title">County and state of principal business</span></div>
+        <p>Enter the entity's primary physical location.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagefoot"><span>Getting your EIN · rebuilt from IRS Instr. Form SS-4 (Rev. 12-2025)</span><span>04</span></div>
+</div>
+
+<!-- ============ PAGE 5 · LINES 7-8 ============ -->
+<div class="page">
+  <div class="kicker">03 · Line by line</div>
+  <h2 class="sect">Lines 7 and 8: the responsible party, and LLCs</h2>
+  <div class="sect-sub">The responsible-party definition, and the LLC classification rules, restructured.</div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">LINES 7a–7b</span><span class="lc-title">Name of responsible party</span></div>
+    <p>Enter the responsible party's full name (first, middle initial, last) and their SSN, ITIN, or EIN.</p>
+    <div class="defbox">
+      <div class="dt">Responsible party, defined</div>
+      <p>The person who ultimately owns or controls the entity or exercises ultimate effective control over it: someone whose control over, or entitlement to, the entity's funds or assets as a practical matter enables them, directly or indirectly, to control, manage, or direct the entity and the disposition of its funds and assets.</p>
+      <ul>
+        <li><strong>Publicly traded or SEC-registered entities:</strong> for a corporation, the principal officer; for a partnership, a general partner. The individual requirement still applies: if a corporation is the general partner of a publicly traded partnership, the responsible party is that corporation's principal officer.</li>
+        <li><strong>Tax-exempt organizations:</strong> generally the "principal officer" as defined in the Form 990 instructions.</li>
+        <li><strong>Government entities:</strong> generally the agency or agency representative able to legally bind the entity.</li>
+        <li><strong>Trusts:</strong> a grantor, owner, or trustor. <strong>Decedent estates:</strong> the executor, administrator, personal representative, or other fiduciary.</li>
+      </ul>
+    </div>
+    <div class="callout caution"><div class="tag">Caution</div><p>Unless the applicant is a government entity, the responsible party must be an individual (a natural person), not an entity. Government entities may enter an EIN on line 7b; everyone else enters an SSN or ITIN. Any entity with an EIN must report a change in its responsible party on Form 8822-B within 60 days (Regulations section 301.6109-1(d)(2)(ii)).</p></div>
+    <div class="callout"><div class="tag">Tip</div><p>Enter "foreign" or N/A on line 7b if the responsible party doesn't have, and is ineligible to obtain, an SSN or ITIN. An entry is required.</p></div>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">LINES 8a–8c</span><span class="lc-title">Limited liability company (LLC) information</span></div>
+    <p>An LLC is an entity organized under the laws of a state or foreign country as a limited liability company. For federal tax purposes it may be treated as a partnership or corporation, or be disregarded as an entity separate from its owner.</p>
+    <ul>
+      <li>If line 8a is "Yes," enter the number of members on line 8b. An LLC owned solely by an individual and spouse in a community property state, choosing disregarded treatment, enters "1."</li>
+      <li><strong>Default, one member (domestic):</strong> disregarded; all income and expenses go on the owner's return (for example, Schedule C (Form 1040)). Check "Other" on line 9a and write "disregarded entity."</li>
+      <li><strong>Default, two or more members (domestic):</strong> a partnership. If you accept that classification, check the "Partnership" box on line 9a.</li>
+      <li><strong>Electing out:</strong> a domestic LLC may file Form 8832 to be classified as an association taxable as a corporation. If you will file Form 8832, or Form 2553 to elect S corporation status, check the Corporation box on line 9a and write the return number (Form 1120 or 1120-S).</li>
+      <li><strong>Foreign LLC defaults:</strong> (1) a partnership if it has two or more members and at least one lacks limited liability; (2) an association taxable as a corporation if all members have limited liability; (3) disregarded if it has a single owner without limited liability.</li>
+    </ul>
+    <div class="callout caution"><div class="tag">Caution</div><p>Don't file Form 8832 if the LLC accepts the default classifications above. If the LLC timely files Form 2553, it's treated as a corporation as of the S election's effective date (if it meets the other S corporation requirements) and doesn't need Form 8832 as well. See the Instructions for Form 2553.</p></div>
+  </div>
+
+  <div class="pagefoot"><span>Getting your EIN · rebuilt from IRS Instr. Form SS-4 (Rev. 12-2025)</span><span>05</span></div>
+</div>
+
+<!-- ============ PAGE 6 · LINE 9a PART 1 ============ -->
+<div class="page">
+  <div class="kicker">03 · Line by line</div>
+  <h2 class="sect">Line 9a: type of entity (part one)</h2>
+  <div class="sect-sub">Check the one box that best describes the entity applying. An alien individual with a previously assigned ITIN enters the ITIN in place of a requested SSN. This is NOT an election for a tax classification (see disregarded entities, next page).</div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">SOLE PROPRIETOR</span></div>
+    <p>Check this box if you file Schedule C or Schedule F (Form 1040) and have a qualified plan, are required to file excise, employment, alcohol, tobacco, or firearms returns, or are a payer of gambling winnings. Enter your SSN or ITIN. A nonresident alien with no effectively connected U.S. income enters "N/A" and needs no SSN or ITIN.</p>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">CORPORATION</span></div>
+    <p>For any corporation other than a personal service corporation. Enter the income tax form number the entity will file.</p>
+    <div class="callout caution"><div class="tag">Caution</div><p>If you entered "1120-S," the corporation must file Form 2553 no later than the 15th day of the 3rd month of the tax year the election is to take effect. Until Form 2553 is received and approved, you're considered a Form 1120 filer.</p></div>
+    <div class="callout"><div class="tag">Tip</div><p>A nonprofit corporation that isn't a church or church-controlled organization checks the "Other nonprofit organization" box instead, and specifies its purpose.</p></div>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">PERSONAL SERVICE CORP.</span></div>
+    <p>An entity is a personal service corporation for a tax year only if both apply: (1) its principal activity during the testing period (generally the prior tax year) is the performance of personal services substantially by employee-owners, and (2) employee-owners own at least 10% of the fair market value of the outstanding stock on the last day of the testing period. Personal services include accounting, actuarial science, architecture, consulting, engineering, health (including veterinary), law, and the performing arts. See the Instructions for Form 1120 and Pub. 542. For a recently formed corporation, the testing period begins on the first day of its tax year and ends on the earlier of the last day of its tax year or the last day of the calendar year in which the tax year begins.</p>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">OTHER NONPROFIT ORG.</span></div>
+    <p>For nonprofits other than churches or church-controlled organizations; specify the type (for example, an educational organization). If the organization is covered by a group exemption letter, enter the 4-digit group exemption number (GEN) in the last entry (don't confuse it with the 9-digit EIN). If you don't know the GEN, contact the parent organization; see Pub. 557 for more on group exemption letters. A section 527 political organization checks this box, writes "Section 527 organization," and must electronically file Form 8871 within 24 hours of formation to be recognized as exempt (and may also need to e-file Form 8872; see IRS.gov/PolOrgs).</p>
+    <div class="callout caution"><div class="tag">Caution</div><p>Seeking tax-exempt status is a separate step: file Form 1023 (or 1023-EZ) or Form 1024. See Pub. 557.</p></div>
+  </div>
+
+  <div class="two-col">
+    <div class="linecard"><div class="lc-head"><span class="chip">ESTATE</span></div><p>A legal entity created as a result of a person's death. Enter the deceased person's SSN or ITIN.</p></div>
+    <div class="linecard"><div class="lc-head"><span class="chip">PLAN ADMINISTRATOR</span></div><p>If the plan administrator is an individual, enter the administrator's taxpayer identification number (TIN).</p></div>
+  </div>
+  <div class="two-col">
+    <div class="linecard"><div class="lc-head"><span class="chip">REMIC</span></div><p>For an entity that elected treatment as a real estate mortgage investment conduit. See the Instructions for Form 1066.</p></div>
+    <div class="linecard"><div class="lc-head"><span class="chip">GOVERNMENTS</span></div><p><strong>State/local:</strong> entities with government characteristics (powers of taxation, law enforcement, civil authority); if unsure, search "What are government entities?" at IRS.gov. <strong>Federal:</strong> the Executive, Legislative, and Judicial branches plus independent federal agencies. Unions, VFW organizations, and political organizations aren't federal agencies.</p></div>
+  </div>
+
+  <div class="pagefoot"><span>Getting your EIN · rebuilt from IRS Instr. Form SS-4 (Rev. 12-2025)</span><span>06</span></div>
+</div>
+
+<!-- ============ PAGE 7 · LINE 9a PART 2 ============ -->
+<div class="page">
+  <div class="kicker">03 · Line by line</div>
+  <h2 class="sect">Line 9a: type of entity (part two)</h2>
+  <div class="sect-sub">Tribal governments, the "Other" box and its named cases, and the disregarded-entity rules.</div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">TRIBAL GOV / ENTERPRISE</span></div>
+    <p>Check this box for the governing body of any tribe, band, community, village, or group of Indians or (if applicable) Alaska Natives, but only if the Secretary of the Treasury (after consultation with the Secretary of the Interior) determines the body exercises governmental functions. Also check it for a tribal enterprise not recognized as a separate entity for federal income tax purposes (for example, a corporation under Section 17 of the Indian Reorganization Act of 1934 or Section 3 of the Oklahoma Indian Welfare Act). See Regulations section 301.7701-1(a)(3), Rev. Rul. 94-16, and Rev. Rul. 94-65.</p>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">OTHER</span><span class="lc-title">Specify the entity type AND the return to be filed</span></div>
+    <p>If your entity isn't specifically listed, check Other and enter the type of entity and the type of return, if any, that will be filed (for example, "Common trust fund, Form 1065" or "Created a pension plan"). Don't enter "N/A." An alien individual applying for an EIN: see Lines 7a-7b. Named cases:</p>
+    <ul>
+      <li><strong>Household employer:</strong> an individual employing someone in their household checks Other and enters "Household employer" and their SSN. A trust that qualifies as a household employer doesn't need a separate EIN; it uses the trust's EIN.</li>
+      <li><strong>Household employer agent:</strong> an agent of a household employer that is a disabled individual or other welfare recipient receiving home care through a state or local program enters "Household employer agent" (see Rev. Proc. 84-33 and Rev. Proc. 2013-39). A state or local government also checks the state/local government box.</li>
+      <li><strong>QSub:</strong> a qualified subchapter S subsidiary checks Other and specifies "QSub." See Rev. Rul. 2008-18 if the QSub election follows a section 368(a)(1)(F) reorganization.</li>
+      <li><strong>Withholding agent:</strong> if required to file Form 1042, check Other and enter "Withholding agent."</li>
+    </ul>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">DISREGARDED ENTITIES</span><span class="lc-title">What they are, and how they fill out this form</span></div>
+    <p>A disregarded entity is an eligible entity treated as not separate from its single owner for income tax purposes (single-member LLCs and certain qualified foreign entities; see Forms 8832 and 8869 and Regulations section 301.7701-3). A disregarded entity must use its own name and EIN to report and pay employment taxes; to register for excise activities on Form 637; to pay and report excise taxes on Forms 720, 730, 2290, and 11-C; to claim refunds, credits, and payments on Form 8849; and, where a U.S. disregarded entity is wholly owned by a foreign person, to file information returns on Form 5472.</p>
+    <div class="defbox">
+      <div class="dt">Complete Form SS-4 for a disregarded entity as follows</div>
+      <ul>
+        <li>Applying because it must report and pay employment and excise taxes, or for non-federal purposes such as a state requirement: check Other on line 9a, write "Disregarded entity."</li>
+        <li>Applying in order to file Form 5472 (section 6038A, foreign-owned U.S. disregarded entity): check Other, write "Foreign-owned U.S. disregarded entity-Form 5472."</li>
+        <li>Applying in order to elect classification as an association taxable as a corporation (Form 8832) or S corporation status (Form 2553): check Corporation, write "Single-member" plus the return number (Form 1120 or 1120-S).</li>
+        <li>Applying because new owners changed its default classification to partnership (Regulations section 301.7701-3(f)): check Partnership.</li>
+        <li>A foreign eligible entity electing disregarded classification via Form 8832: check Other, write "foreign disregarded entity."</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pagefoot"><span>Getting your EIN · rebuilt from IRS Instr. Form SS-4 (Rev. 12-2025)</span><span>07</span></div>
+</div>
+
+<!-- ============ PAGE 8 · LINE 10 ============ -->
+<div class="page">
+  <div class="kicker">03 · Line by line</div>
+  <h2 class="sect">Line 10: reason for applying</h2>
+  <div class="sect-sub">Check only one box. Don't enter "N/A": a selection is required.</div>
+
+  <div class="gridwrap">
+    <div class="linecard">
+      <div class="lc-head"><span class="chip">&#9634;</span><span class="lc-title">Started new business</span></div>
+      <p>For a new business that requires an EIN; enter the type of business being started. Don't apply if you already have an EIN and are only adding another place of business.</p>
+    </div>
+    <div class="linecard">
+      <div class="lc-head"><span class="chip">&#9634;</span><span class="lc-title">Hired employees</span></div>
+      <p>For an existing business that has hired or is hiring employees and must therefore file employment tax returns. Don't apply if you already have an EIN and are only hiring employees. On employment taxes (for example, for family members), see Pub. 15.</p>
+    </div>
+    <div class="linecard">
+      <div class="lc-head"><span class="chip">&#9634;</span><span class="lc-title">Banking purpose</span></div>
+      <p>If you're requesting an EIN for banking purposes only; enter the purpose (for example, a bowling league depositing dues, or an investment club for dividend and interest reporting).</p>
+    </div>
+    <div class="linecard">
+      <div class="lc-head"><span class="chip">&#9634;</span><span class="lc-title">Changed type of organization</span></div>
+      <p>If the business is changing its type of organization, for example a sole proprietorship that has incorporated or become a partnership. Specify the change in the space provided (including the space immediately below), for example "From sole proprietorship to partnership."</p>
+    </div>
+    <div class="linecard">
+      <div class="lc-head"><span class="chip">&#9634;</span><span class="lc-title">Purchased going business</span></div>
+      <p>If you purchased an existing business. Don't use the former owner's EIN unless you became the "owner" of a corporation by acquiring its stock.</p>
+    </div>
+    <div class="linecard">
+      <div class="lc-head"><span class="chip">&#9634;</span><span class="lc-title">Created a trust</span></div>
+      <p>Enter the type of trust created (for example, a nonexempt charitable trust or a split-interest trust). <strong>Exception:</strong> certain grantor-type trusts don't file this form; the trustee needs no EIN if they furnish the grantor/owner's name and TIN and the trust's address to all payers. However, grantor trusts not filing under Optional Method 1, and IRA trusts required to file Form 990-T, must have an EIN. See the Instructions for Form 1041.</p>
+    </div>
+    <div class="linecard">
+      <div class="lc-head"><span class="chip">&#9634;</span><span class="lc-title">Created a pension plan</span></div>
+      <p>If you created a pension plan and need an EIN for reporting purposes; enter the type of plan. For plan types, search "Types of retirement plans" at IRS.gov. Applying for a trust EIN when a new pension plan is established? Check Other on line 9a and write "Created a pension plan," and check this box here (not "Created a trust").</p>
+    </div>
+    <div class="linecard">
+      <div class="lc-head"><span class="chip">&#9634;</span><span class="lc-title">Other</span></div>
+      <p>For any other reason; state it. For example, a newly formed state government entity enters "Newly formed state government entity." A foreign-owned U.S. disregarded entity required to file Form 5472 enters "Foreign-owned U.S. disregarded entity filing Form 5472."</p>
+    </div>
+  </div>
+
+  <div class="callout caution"><div class="tag">Caution · electronic deposits</div><p>You must make electronic deposits of all depository taxes (such as employment tax, excise tax, and corporate income tax) using EFTPS. See Pub. 15 and Pub. 966.</p></div>
+
+  <div class="pagefoot"><span>Getting your EIN · rebuilt from IRS Instr. Form SS-4 (Rev. 12-2025)</span><span>08</span></div>
+</div>
+
+<!-- ============ PAGE 9 · LINES 11-15 ============ -->
+<div class="page">
+  <div class="kicker">03 · Line by line</div>
+  <h2 class="sect">Lines 11 to 15: dates, year-end, and employees</h2>
+  <div class="sect-sub">The calendar questions, and the one checkbox that changes how often you file.</div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">LINE 11</span><span class="lc-title">Date business started or acquired</span></div>
+    <p>New business: the starting date. Acquired an operating business: the date you acquired it. Foreign applicants: the date you began or acquired a business in the United States. Changing the form of ownership: the date the new ownership entity began. Trusts: the date the trust was funded, or the date the trust was required to obtain an EIN under Regulations section 301.6109-1(a)(2). Estates: the date of death of the decedent named on line 1, or the date the estate was legally funded.</p>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">LINE 12</span><span class="lc-title">Closing month of accounting year</span></div>
+    <p>Enter the last month of your accounting or tax year: usually 12 consecutive months, either a calendar year (ending December 31) or a fiscal year (12 consecutive months ending on the last day of any other month, or a 52-53 week year). More detail: Pub. 538.</p>
+    <ul>
+      <li><strong>Individuals:</strong> generally a calendar year.</li>
+      <li><strong>Partnerships</strong> must adopt: the tax year of the majority of partners; the tax year common to all principal partners; the tax year giving the least aggregate deferral of income; or, in certain cases, some other tax year. See the Instructions for Form 1065.</li>
+      <li><strong>REMICs:</strong> calendar year required.</li>
+      <li><strong>Personal service corporations:</strong> generally a calendar year, unless the corporation can establish a business purpose for a different tax year or elects under section 444.</li>
+      <li><strong>Trusts:</strong> generally a calendar year, except tax-exempt trusts, charitable trusts, and grantor-owned trusts.</li>
+    </ul>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="linecard" style="min-height: 1.6in;">
+        <div class="lc-head"><span class="chip">LINE 13</span><span class="lc-title">Highest number of employees expected in the next 12 months</span></div>
+        <p>Complete each box: the number (including zero, entered as -0-) of Agricultural, Household, or Other employees expected in the next 12 months. If no employees are expected, skip line 14.</p>
+      </div>
+    </div>
+    <div>
+      <div class="linecard" style="min-height: 1.6in;">
+        <div class="lc-head"><span class="chip">LINE 15</span><span class="lc-title">First date wages or annuities were paid</span></div>
+        <p>If the business has employees, the date it began paying wages or annuities (foreign applicants: the date you began paying wages in the U.S.). No employees planned: enter "N/A." Withholding agents: the date you began or will begin paying income (including annuities) to a nonresident alien, including individuals required to file Form 1042 to report alimony paid to a nonresident alien.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">LINE 14</span><span class="lc-title">Do you want to file Form 944 (annual) instead of Form 941 (quarterly)?</span></div>
+    <p>If you expect your employment tax liability to be $1,000 or less in a full calendar year, you're eligible to file Form 944 once a year instead of Form 941 every quarter. Liability is generally $1,000 or less if you expect to pay $5,000 or less in total wages subject to social security and Medicare taxes and federal income tax withholding. For employers in the U.S. territories: generally, if you pay $6,536 or less in wages subject to social security and Medicare taxes, you're likely to pay $1,000 or less in employment taxes. If you qualify and want Form 944, check the box; if you don't check it, you must file Form 941 every quarter. For more on employment taxes, see Pub. 15.</p>
+    <div class="callout caution"><div class="tag">Caution</div><p>Once you check the box, you must continue to file Form 944 regardless of the tax shown on your return, until the IRS instructs you to file Form 941.</p></div>
+  </div>
+
+  <div class="pagefoot"><span>Getting your EIN · rebuilt from IRS Instr. Form SS-4 (Rev. 12-2025)</span><span>09</span></div>
+</div>
+
+<!-- ============ PAGE 10 · LINES 16-18 ============ -->
+<div class="page">
+  <div class="kicker">03 · Line by line</div>
+  <h2 class="sect">Lines 16 to 18: what your business actually does</h2>
+  <div class="sect-sub">Line 16: check the ONE box that best describes the principal activity. You must check a box. Line 17 then asks for the detail.</div>
+
+  <div class="gridwrap3" style="margin-bottom: 9px;">
+    <div class="activity"><h5>Construction</h5><p>Erecting buildings or engineering projects (streets, highways, bridges, tunnels); includes special trade contractors (plumbing, HVAC, electrical, carpentry, concrete, excavation, etc.).</p></div>
+    <div class="activity"><h5>Real estate</h5><p>Renting or leasing real estate to others; managing, selling, buying, or renting real estate for others; related services (for example, appraisal). Also mortgage REITs (shares of funds of real estate mortgage assets, income solely from interest earned).</p></div>
+    <div class="activity"><h5>Rental & leasing</h5><p>Providing tangible goods (autos, computers, consumer goods, industrial machinery and equipment) for periodic rental or lease payments. Also equity REITs (income from renting real property).</p></div>
+    <div class="activity"><h5>Manufacturing</h5><p>Mechanical, physical, or chemical transformation of materials, substances, or components into new products; includes assembling component parts of manufactured products.</p></div>
+    <div class="activity"><h5>Transportation & warehousing</h5><p>Transporting passengers or cargo; warehousing or storage of goods; scenic or sightseeing transportation; support activities for transportation.</p></div>
+    <div class="activity"><h5>Finance & insurance</h5><p>Creating, liquidating, or changing ownership of financial assets or facilitating such transactions; underwriting annuities/insurance; selling policies; other insurance or employee-benefit services.</p></div>
+    <div class="activity"><h5>Health care & social assistance</h5><p>Physical, medical, or psychiatric care; social assistance such as youth centers, adoption agencies, individual/family services, temporary shelters, daycare, etc.</p></div>
+    <div class="activity"><h5>Accommodation & food services</h5><p>Providing customers with lodging, meal preparation, snacks, or beverages for immediate consumption.</p></div>
+    <div class="activity"><h5>Wholesale · agent/broker</h5><p>Arranging the purchase or sale of goods owned by others, or purchasing goods on commission for the wholesale market, usually between businesses.</p></div>
+    <div class="activity"><h5>Wholesale · other</h5><p>Selling goods in the wholesale market, generally to other businesses, for resale on their own account, for use in production, or as capital or durable nonconsumer goods.</p></div>
+    <div class="activity"><h5>Retail</h5><p>Selling merchandise to the general public from a fixed store; by direct, mail-order, or electronic sales; or by vending machines.</p></div>
+    <div class="activity"><h5>Other</h5><p>Any activity not described above; describe the principal business activity in the space provided.</p></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="linecard" style="min-height: 1.25in;">
+        <div class="lc-head"><span class="chip">LINE 17</span><span class="lc-title">Principal line of business, in detail · entry required</span></div>
+        <p>Describe the applicant's principal line of business in more detail. For example, if you checked Construction on line 16, add detail such as "General contractor for residential buildings." For mortgage REITs, indicate mortgage REIT; for equity REITs, indicate the principal property type (residential REIT, nonresidential REIT, miniwarehouse REIT, etc.).</p>
+      </div>
+    </div>
+    <div>
+      <div class="linecard" style="min-height: 1.25in;">
+        <div class="lc-head"><span class="chip">LINE 18</span><span class="lc-title">Has this entity had an EIN before?</span></div>
+        <p>Check the applicable box to indicate whether or not the applicant entity was issued an EIN previously.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagefoot"><span>Getting your EIN · rebuilt from IRS Instr. Form SS-4 (Rev. 12-2025)</span><span>10</span></div>
+</div>
+
+<!-- ============ PAGE 11 · DESIGNEE, SIGNATURE, PRIVACY ============ -->
+<div class="page">
+  <div class="kicker">04 · Finishing the form</div>
+  <h2 class="sect">Designee, signature, and the legal fine print</h2>
+  <div class="sect-sub">Who may receive the EIN for you, who must sign, and what the law requires.</div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">THIRD-PARTY DESIGNEE</span></div>
+    <p>Complete this section only if you want to authorize the named individual to answer questions about the completion of Form SS-4 and receive the entity's newly assigned EIN. You must complete the signature area for the authorization to be valid. The designee's authority terminates when the EIN is assigned and released to the designee. EINs are released to authorized designees by the method used to obtain the EIN (online, telephone, or fax); the EIN notice itself is mailed to the taxpayer.</p>
+    <div class="callout caution"><div class="tag">Caution</div><p>If the third-party designee's address or telephone number matches the taxpayer's, the application must be mailed or faxed.</p></div>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">SIGNATURE</span><span class="lc-title">Who signs, by entity type</span></div>
+    <ul>
+      <li><strong>Individual applicant:</strong> the individual.</li>
+      <li><strong>Corporation:</strong> the president, vice president, or other principal officer.</li>
+      <li><strong>Partnership, government entity, or other unincorporated organization:</strong> a responsible and duly authorized member or officer having knowledge of its affairs.</li>
+      <li><strong>Trust or estate:</strong> the fiduciary.</li>
+      <li><strong>Foreign applicants:</strong> any duly authorized person (for example, a division manager).</li>
+    </ul>
+  </div>
+
+  <div class="linecard">
+    <div class="lc-head"><span class="chip">PRIVACY ACT + PRA NOTICE</span></div>
+    <p>The IRS asks for this information to carry out the Internal Revenue laws of the United States and to comply with section 6109 and its regulations, which generally require an EIN on certain returns, statements, or other documents filed with the IRS. If your entity is required to obtain an EIN, you're required to provide all of the information requested. The information may be used to determine which federal tax returns you must file and to provide related forms and publications.</p>
+    <p>The form is disclosed to the Social Security Administration for determining compliance with applicable laws, and may be given to the Department of Justice for civil and/or criminal litigation; to cities, states, the District of Columbia, and U.S. commonwealths and territories to administer their tax laws; to other countries under a tax treaty; to federal and state agencies to enforce federal nontax criminal laws; and to federal law enforcement and intelligence agencies to combat terrorism.</p>
+    <p>The IRS cannot issue an EIN unless you provide all requested information that applies to your entity. Providing false information could subject you to penalties. You're not required to provide information requested on a form subject to the Paperwork Reduction Act unless it displays a valid OMB control number. Books or records relating to a form or its instructions must be retained as long as their contents may become material in the administration of any Internal Revenue law. Generally, tax returns and return information are confidential, as required by section 6103.</p>
+  </div>
+
+  <div class="defbox">
+    <div class="dt">Estimated time to complete and file (varies by circumstance)</div>
+    <table style="margin: 4px 0 0;">
+      <tr><td style="border:none; padding: 3px 8px;">Recordkeeping</td><td style="border:none; padding: 3px 8px; text-align:right; font-weight:700;">5 hr., 58 min.</td></tr>
+      <tr><td style="border:none; padding: 3px 8px;">Learning about the law or the form</td><td style="border:none; padding: 3px 8px; text-align:right; font-weight:700;">1 hr., 17 min.</td></tr>
+      <tr><td style="border:none; padding: 3px 8px;">Preparing, copying, assembling, and sending the form to the IRS</td><td style="border:none; padding: 3px 8px; text-align:right; font-weight:700;">1 hr., 26 min.</td></tr>
+    </table>
+    <p style="margin-top: 5px;">Comments on these estimates or suggestions for making the form simpler: IRS.gov/FormComments, or write to the Internal Revenue Service, Tax Forms and Publications Division, 1111 Constitution Ave. NW, IR-6526, Washington, DC 20224. Don't send Form SS-4 to that address; use the application methods on page 3.</p>
+  </div>
+
+  <div class="pagefoot"><span>Getting your EIN · rebuilt from IRS Instr. Form SS-4 (Rev. 12-2025)</span><span>11</span></div>
+</div>
+
+<!-- ============ PAGE 12 · RELATED FORMS + ATTRIBUTION ============ -->
+<div class="page">
+  <div class="kicker">05 · Reference</div>
+  <h2 class="sect">Related forms, publications, and help</h2>
+  <div class="sect-sub">Everything the instructions point to, in one place.</div>
+
+  <div class="two-col">
+    <div>
+      <div class="defbox" style="margin-top: 0;">
+        <div class="dt">Forms and instructions useful to SS-4 filers</div>
+        <ul style="margin-left: 12px;">
+          <li>Form 11-C, Occupational Tax and Registration Return for Wagering</li>
+          <li>Form 637, Application for Registration (For Certain Excise Tax Activities)</li>
+          <li>Form 720, Quarterly Federal Excise Tax Return</li>
+          <li>Form 730, Monthly Tax Return for Wagers</li>
+          <li>Form 941, Employer's QUARTERLY Federal Tax Return</li>
+          <li>Form 944, Employer's ANNUAL Federal Tax Return</li>
+          <li>Form 990-T, Exempt Organization Business Income Tax Return (and Proxy Tax Under Section 6033(e)), and its instructions</li>
+          <li>Form 1023, Application for Recognition of Exemption Under Section 501(c)(3)</li>
+          <li>Form 1024, Application for Recognition of Exemption Under Section 501(a)</li>
+          <li>Schedule C (Form 1040), Profit or Loss From Business; Schedule F (Form 1040), Profit or Loss From Farming</li>
+          <li>Instructions for Form 1041 and Schedules A, B, G, J, and K-1 (estates and trusts)</li>
+          <li>Form 1042 and Form 1042-S (withholding on U.S. source income of foreign persons)</li>
+          <li>Instructions for Forms 1065, 1066, and 1120; Form 1120-S</li>
+          <li>Form 2290, Heavy Highway Vehicle Use Tax Return</li>
+          <li>Form 2553, Election by a Small Business Corporation</li>
+          <li>Form 2848, Power of Attorney and Declaration of Representative</li>
+          <li>Form 8821, Tax Information Authorization</li>
+          <li>Form 8822-B, Change of Address or Responsible Party (Business)</li>
+          <li>Form 8832, Entity Classification Election</li>
+          <li>Form 8849, Claim for Refund of Excise Taxes</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="defbox" style="margin-top: 0;">
+        <div class="dt">Publications</div>
+        <ul style="margin-left: 12px;">
+          <li>Pub. 15, Employer's Tax Guide</li>
+          <li>Pub. 538, Accounting Periods and Methods</li>
+          <li>Pub. 542, Corporations</li>
+          <li>Pub. 557, Tax-Exempt Status for Your Organization</li>
+          <li>Pub. 583, Starting a Business and Keeping Records</li>
+          <li>Pub. 966, Electronic Choices to Pay All Your Federal Taxes</li>
+          <li>Pub. 1635, Understanding Your EIN</li>
+        </ul>
+      </div>
+      <div class="defbox">
+        <div class="dt">Getting help, forms, and publications</div>
+        <ul style="margin-left: 12px;">
+          <li>Tax help for your business: IRS.gov/Businesses</li>
+          <li>Download or print forms and publications: IRS.gov/FormsPubs</li>
+          <li>Order forms by mail: IRS.gov/OrderForms (orders arrive within 15 business days if items are available)</li>
+          <li>Verify a number or check a mailed application: 800-829-4933</li>
+        </ul>
+      </div>
+      <div style="border: 1.5px solid var(--teal); border-radius: 6px; padding: 10px 12px; margin-top: 10px;">
+        <div style="font-size: 8px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 4px;">About this document</div>
+        <p style="font-size: 8.6px; line-height: 1.55; margin: 0;">This is a design demonstration: a restructured, source-true presentation of the IRS Instructions for Form SS-4 (Rev. December 2025), a U.S. government work in the public domain, downloaded from irs.gov/pub/irs-pdf/iss4.pdf. It is not published, endorsed, or reviewed by the IRS, and it is not tax or legal advice. For filing, rely on the official instructions and IRS.gov, where details such as fax numbers may change without notice.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagefoot"><span>Getting your EIN · rebuilt from IRS Instr. Form SS-4 (Rev. 12-2025)</span><span>12</span></div>
+</div>
+
+</body>
+</html>

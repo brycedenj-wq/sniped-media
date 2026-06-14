@@ -1,0 +1,223 @@
+the Analysis 0:40 So, the first thing we're going to do is 0:42 plan our analysis. We want to ground the 0:44 AI in our data. And so, most of the time 0:46 when we're explaining
+our data to AI, we 0:49 might just do something like we're 0:50 telling it a little bit about the tables 0:52 and columns we're using and the type of 0:54 measure query we're
+trying to create. 0:56 And that's great, but we can take a more 0:58 thorough approach to doing that. So 1:00 throughout this video, we're going to 1:01 look at two different
+methods for how we 1:04 can leverage AI in our analytics. So one 1:07 way is we're going to look at how to do 1:09 it with like a chatbot like ChatG or 1:11 Cloud. We're just kind
+of talking to an 1:14 AI that is separated from our data. 1:17 We're also going to show how to do this 1:18 with an AI analytics tool which is a bit 1:21 more robust. We're going
+to use a tool 1:23 called Fabi.ai AI who are sponsoring a 1:25 portion of the video, but again, we're 1:27 looking at both approaches. So, if you 1:28 have an AI analytics tool,
+awesome. 1:31 There's a lot you can do with that that 1:32 we're going to kind of show in this 1:33 video. Okay. So, let's look at both of 1:35 these approaches for planning our
+1:37 analysis. So, if you're using an AI Fabi.ai Overview 1:39 analytics tool, in this case, Fabi, so 1:41 we can connect our data to a variety of 1:44 different data sources. So,
+if you 1:46 connect to a new data source, you'll see 1:48 there are a bunch of options here. 1:50 Postgress SQL superbase my SQL for this 1:53 example we're going to connect to a
+1:55 simple Google sheet so I'm going to show 1:56 us doing that here you connect to the 1:58 Google sheet we're kind of in the canvas 2:00 now we got the chat on the right we're
+2:03 going to connect to a file and what it's 2:05 going to do is ask you to like connect 2:07 your Google account essentially I've 2:08 already done that it's going to bring up
+2:10 a list of files here that I can connect 2:12 to waiting for it to load cuz it's going 2:15 kind of slow if I type in a search okay 2:18 that made it go a little bit faster.
+2:20 after. So you'll see that as soon as I 2:22 connect my data, it already kind of 2:24 autofills a prompt. Describe the 2:26 connected Google sheet data, analyzes 2:28 it, and
+it gives me like kind of a 2:30 breakdown of the different sheets and 2:33 columns in the data. So that's great cuz 2:36 that was going to be the first step was 2:37 for it to
+explain what the data 2:40 represents. But the next thing I'm going 2:41 to ask is what is this analysis best 2:44 suited for? So it's already connected to 2:47 my data live. uh so
+it understands it. 2:50 That is a huge first step. And now we're 2:52 just going to ask it some insight on the 2:55 analysis itself. So it's saying primary 2:58 use cases here. SAS
+product analytics, 3:00 customer success and account management, 3:02 revenue and growth analysis, user 3:03 behavior analysis, operational insights. 3:06 That is awesome. That
+gives us a lot to 3:09 work with. But if you only had chat GPT, 3:11 you're not connecting to your data live 3:13 in this scenario. So we're going to give 3:14 it a different
+prompt. And this takes a 3:16 little bit more work. But essentially 3:17 what we're saying is here are my tables 3:20 and columns, orgs, users widgets, how 3:22 they relate,
+explain what this data 3:24 represents and what it can be used for. 3:25 And then I've broken down the table 3:27 names and column names. So take the time 3:29 to kind of just give
+it the whole spread 3:32 and ask what the data can be used for. 3:35 So we have what this data represents, 3:37 organizations, it's breaking down each 3:39 table and each column.
+It's telling me 3:42 how the tables relate, which is awesome. 3:45 and then what this data can be used for 3:47 account level insights user level 3:48 insights product usage rights
+business 3:51 and strategy use cases so if you're 3:53 starting from scratch in your analysis 3:55 this is great because it gives you a 3:56 good jumping off point but next we want
+3:58 to add some business meaning to it so 4:00 this is where we give the AI additional 4:03 context because it having knowledge of 4:06 our data is great but without the 4:08
+business context there's a there's a big 4:09 gap and this is often a big gap with AI 4:12 so in this case we're going to help fill 4:14 that gap app a little bit by giving it 4:15
+some context. The prompt we have here is 4:17 relatively simple, just a little bit of 4:19 extra info. Organizations can be free, 4:21 basic, or enterprise. Widgets represent 4:22
+product usage. What business questions 4:25 does this data support? And again, I 4:26 recommend, you know, giving it as much 4:28 business context as you can so that it 4:30 is as
+educated as possible on your data. 4:34 Not just the data, but the context. You 4:36 can see that Fabi actually noticed that 4:38 the first row was a header row. So, it's 4:41
+modifying that for me. It's making it's 4:43 assigning that first row into a header. 4:46 All right. Now, we got something to to 4:47 work with here. Revenue and monetization 4:49
+questions, growth and expansion 4:51 questions, user engagement, product 4:53 adoption questions. It is giving me a 4:55 ton here. This is like insanely 4:58 comprehensive. It's
+almost too much 5:00 information. So, I I have tons to work 5:02 with here. So, to narrow it down a 5:04 little bit, I'm going to ask it this. 5:06 What are the three most
+important 5:07 questions a founder or product manager 5:10 should care about with this data? Let's 5:11 see what it tells me. So, here's what it 5:13 gives me. First, are we
+converting the 5:15 right users from free to paid? That's a 5:17 pretty good one. Which customers drive 5:18 sustainable growth versus drained 5:20 resources? That's another really
+good 5:22 one. And what predicts churn versus 5:25 expansion? Awesome. So, we have top 5:27 three questions here. Let's show how we 5:29 would do this same thing in chatb. So, 5:32
+I'm going to give it the same questions 5:34 that I gave the AI analytics tool. You 5:37 can see that these are a little bit 5:38 different. growth and acquisition 5:39 questions,
+activation and onboarding 5:41 questions, product usage and engagement 5:43 questions, monetization and plan 5:45 effectiveness questions, retention and 5:47 churn risk questions,
+lots of stuff. So 5:49 actually it this is also giving me a ton 5:52 of areas that I can work with here in 5:55 terms of questions to solve. So that's 5:57 awesome. Well, we're
+going to give it 5:58 the same prompt. What are the top three 6:00 questions that a founder product manager 6:02 should care about? So our customers 6:04 actually getting value
+from the product. 6:06 So activation and engagement is usage 6:08 translating into revenue that's 6:10 monetization alignment and where is 6:12 future growth going to come from
+6:14 attention expansion and upsell. Good 6:16 stuff. So that narrows our focus a ton. 6:18 So if you were starting this analysis 6:20 from scratch, you have now given the AI 6:24
+knowledge into your data that you're 6:26 using. You've given it business context. 6:28 you had it assess kind of every 6:30 direction we could take in terms of 6:32 questions that
+we can answer, things 6:33 that we can analyze and distilled it 6:35 into the top three questions. So again, 6:37 starting from scratch, this is an 6:39 excellent starting point.
+We did it very 6:41 quickly and we removed ambiguity between 6:44 us and what we're trying to achieve. And 6:46 I want to take a second to talk about 6:48 Fabi.ai, who are the
+sponsor of today's 6:50 video, and I think fit in very well with 6:53 what we're trying to do. So at a high 6:55 level, Fabi.ai AI is an analyst that 6:57 connects directly to your
+data and 6:59 allows you to use natural language to 7:02 communicate with that data and create 7:04 insights. It's especially useful for 7:06 smaller teams, founders, marketing
+ops, 7:09 PMs, people who have data but need 7:11 easier access to it. Maybe you're on a 7:13 data team but your resources are 7:14 limited. Maybe you're just trying to get 7:16
+your work done faster or you have 7:19 department heads [music] who need faster 7:21 access to the data and can work 7:23 alongside an analyst with this using 7:26 Fab.AI. And what
+I like about it is that 7:28 it's not just a chatbot. So a lot of AI 7:31 analytics tools are really just kind of 7:32 glorified chatbot. And while this does 7:35 have a chat
+feature, it's much more than 7:37 that. You can save items onto the 7:39 canvas. You can create visuals. You can 7:41 show the connections between [music] 7:43 your different cells
+here. You can 7:45 create filters. You can create 7:46 dashboards. You can push these back into 7:48 Google Sheets for exploratory analysis. 7:50 You [music] can push them to
+Slack. You 7:52 can collaborate with team members. It's 7:53 an AI analysis tool that lives on a 7:56 canvas. Allows you to write your own SQL 7:58 or Python if you want to. Can
+explain 8:00 this code and can [music] create a 8:03 robust analysis incredibly quickly all 8:06 in one spot. So, if you're a team, 8:08 whether you're a team of analysts or a 8:10
+different department that's just trying 8:11 to move faster with your data, this is a 8:14 great solution. I think it's one of the 8:15 better examples of how you can leverage 8:17
+AI and analytics [music] quickly. If 8:19 you're interested, I have a link in the 8:20 description so you can check them out. 8:22 And now, let's [music] get back to the 8:23 rest
+of the video. Now, the second step Execute the Analysis 8:25 here is to execute the analysis. So, 8:28 what we're going to do next is we're 8:29 going to ask some questions using
+8:31 natural language. And this is where AI 8:33 analytics tools are helpful because 8:34 they're querying directly from the 8:37 database rather than just the 8:39 information
+we've given it like with 8:40 chat GBT. But again, we're going to show 8:42 both approaches because people will have 8:44 access to different things. So let's go 8:46 ahead and
+give it a prompt. I'm going to 8:48 ask it to show me widget creation over 8:50 time by organization plan. All right, 8:53 waiting for the prompt to finish. Oop. 8:57 And what we
+can see here is that it has 8:59 created a line chart for me answering 9:02 the question that I gave it. So that's 9:04 great. So I'm going to save this 9:06 analysis to the cell.
+And you see that 9:08 it's just automatically plotted that 9:11 visualization into the canvas here. And 9:13 now I'm going to ask it straight up, 9:14 please provide guidance on
+additional 9:16 visuals that we create. I want to have 9:18 more than just this line chart 9:20 represented. So now I'm going to give it 9:22 a followup. Please provide guidance on
+9:25 additional visuals we can create based 9:28 on the top three business questions we 9:32 can answer that you gave earlier. So I'm 9:35 asking it to provide guidance on 9:36
+additional visuals but based on you know 9:39 those top three analysis questions that 9:41 we distilled our direction into. So we 9:44 have a scatter plot, stacked bar chart, 9:46
+box plot, histogram. It's being very 9:49 thorough here which I like. It's it's 9:51 giving me multiple charts we can create 9:54 for each business question essentially. 9:56 Okay.
+And let's do this. Let's create 9:59 the stacked bar chart answering question 10:02 one. Okay. So this is kind of helpful. I 10:05 could see that enterprise plans are 10:08
+creating 16 plus widgets and I can kind 10:11 of see that activation level uh for each 10:13 one of these. So I like that. And then 10:15 it's giving us a whole breakdown on this
+10:18 visual as well which is pretty cool. So 10:20 I want to save this analysis to the 10:21 canvas as well. It's going to append two 10:24 more cells. So we have the plot 10:26
+activation funnel and the the summary of 10:28 the activation metrics. You can kind of 10:30 see all that here. We're kind of 10:31 building a narrative here as we go, 10:34 which
+is pretty cool. And then the last 10:36 thing I'm going to do here is I'm going 10:38 to build a dashboard. I'm just going to 10:40 click this up here. See, it's putting 10:42
+together my analysis, my narrative. I'm 10:45 going to publish that dashboard. And 10:47 then boom, we essentially have a 10:49 dashboard here that users can take a 10:52 look at
+and even ask the AI questions 10:56 about the dashboard that we just 10:58 created. So if we collapse the chat, we 11:00 can kind of see our dashboard here. We 11:02 did this
+pretty quickly. You could 11:03 obviously do a lot more with it if you 11:05 wanted to. And then if we want to ask 11:06 the AI question, we just pull up the 11:08 chatbot here.
+But now let's explore how 11:10 we would kind of do the same thing but 11:12 with a tool like chatbt. And we're going 11:14 to ask it the same thing we asked our 11:16 other tool.
+Show me widget creation over 11:17 time by organization plan. We're also 11:19 going to ask it, please write the SQL 11:22 needed to answer this question. So, 11:25 we're going to
+have it create a similar 11:27 visual for us and we're going to ask it 11:29 to write the SQL. And so, if you're 11:31 using a specific type of syntax, you 11:33 could tell it to
+write it in that 11:35 syntax. And we can see that it gave us 11:37 actually a few options for SQL that we 11:40 can write to answer that question. I'm 11:42 going to ask it again.
+give me a few 11:45 more visual suggestions based on the top 11:49 three questions we uncovered earlier. 11:53 So, it's telling us here we can create a 11:54 histogram or box plot,
+simple bar or KPI 11:58 card, bar chart. So, it's it's giving us 12:00 those options kind of like with Fabi.ai. 12:03 It's taking those three questions and 12:05 it's giving us
+multiple visuals we can 12:07 create to answer those questions in 12:10 different ways. And now we're going to 12:12 start to outline a dashboard. So I'm 12:14 asking it, outline
+how this dashboard 12:15 should be structured and what filters it 12:17 needs. Provide a wireframe example based 12:19 on some of the visuals you provided. I 12:21 love how Chad
+said, "Oh, hell yeah." I 12:24 actually never seen it do that before, 12:26 but that's kind of cool. Oh, hell yeah. 12:28 This is where it turns from analytics 12:29 into a product
+decision tool. Okay, so 12:31 it's giving me the dashboard structure, 12:33 the required filters, some optional 12:36 things, section one, section two, very 12:39 robust. It didn't
+actually give me the 12:41 wireframe. So, let's just say provide me 12:43 with a wireframe visual based on this. 12:47 Okay. And I'll say this, Chad GBT is 12:50 generally not like
+the greatest at 12:52 creating actual like dashboard looks, 12:54 but it gave us some images on kind of 12:57 like sketches of what we can do. And 13:00 while you wouldn't want to
+use this 13:01 obviously for an actual dashboard, it is 13:04 cool to kind of see the style that it 13:06 went with. And it gave us a few options 13:08 here. So again, it's not
+perfect, but it 13:10 kind of gives us a place to start if 13:13 we're not sure how to orient the actual 13:15 dashboard. So now the execution step is Distribute the Insight 13:17
+complete. Let's talk about distributing 13:19 the analysis. So we're going to explain 13:22 the so what and translate the meaning of 13:25 the analysis we've just done. So first,
+13:27 let's go back to Fabida AI. I'm pretty 13:30 sure it's already told us this, but 13:32 let's just ask it to explain what this 13:35 dashboard is telling us and why it 13:38
+matters. And it's giving me a whole 13:40 description on what this dashboard is 13:43 talking about. It's breaking down the 13:45 metrics. So, and that is incredibly 13:48 helpful.
+And now we're going to ask it 13:50 to write a summary in a few different 13:52 contexts. So rewrite this as a Slack 13:54 update, an executive email, and push the 13:57 data back
+to a Google sheet for those 13:59 who want to do some exploratory 14:01 analysis. I hear all the time, you know, 14:03 can I get this data in Excel? One cool 14:05 thing about that
+AI is that it could 14:07 actually push the data back to a Google 14:09 sheet. So say you were querying like 14:11 from a My SQL database, right? In this 14:13 case, we're already
+using a Google 14:14 sheet, but you can ask it to push the 14:17 data to a Google sheet or something like 14:18 that. So that those who want to kind of 14:20 dig into the data
+themselves, maybe they 14:21 want to validate, maybe they want to 14:22 just look at things on a more granular 14:24 level, that always happens. We can just 14:26 push it there for
+them. Awesome. And so 14:29 it put together our like updates. So we 14:32 have like the Slack update here. Hey 14:34 team, just wrapped up our activation 14:35 analysis. So kind of
+like an informal 14:37 breakdown, right? It has the email here 14:40 even with a subject line, which is nice. 14:42 Dear leadership team, sharing these 14:44 executive summary, key
+metrics by plan. 14:46 So there you have an entire email update 14:49 written incredibly quickly explaining 14:51 the analysis we did. Of course, you 14:52 might want to give it a
+onceover for 14:54 accuracy, but it should be good. And 14:56 then an Excel file created that is a bit 14:58 more robust than just the original data 15:01 we started with. And we
+can download 15:04 that Excel file. And so now we're going 15:06 to take that same approach and do the 15:08 same thing in Chia GBT. Explain what 15:10 this analysis is telling us
+and why it 15:13 matters. Let's say this. explain what 15:15 our analysis above is telling us and why 15:18 it matters. It's going to be a little 15:19 bit more specific there. So,
+here we got 15:21 the core story, usage in the proxy for 15:24 value. So, it's giving us a complete 15:27 breakdown on our analysis. Super duper 15:30 helpful. And I'm going to ask
+it the 15:32 same question I asked our other tool. 15:34 Rewrite this as a Slack update, an 15:36 executive email, and create an Excel doc 15:39 for those who want to do some 15:40
+exploratory analysis. And so, here we 15:42 go. We have the Slack update, concise, 15:45 skim, skimable, quick update on the 15:47 product usage analysis. Boom, boom, 15:49 boom.
+Awesome. And then the executive 15:51 email again, complete with a subject 15:53 line, which is a nice detail. Hey team, 15:55 yada yada yada. And then it gave me an 15:58 Excel
+doc for exploratory analysis. 16:00 Again, you'd want to give all this an up 16:02 once over to make sure that it's all 16:05 correct. You should always be validating 16:08 in your
+analysis no matter what. And so 16:10 we've done a lot very quickly with AI 16:13 here. And with all these examples, you 16:15 don't always want to just take 16:16 everything at
+face value. As humans, as 16:19 the analysts, we have agency over what 16:22 we choose to include in our analysis. We 16:24 decide what goes on the dashboard. We 16:26 decide what
+metrics we're going to 16:28 track. We're the ones doing the 16:30 validation to make sure everything looks 16:32 good. At the end of the day, that is a 16:34 huge part of the job
+and something we 16:35 should be doing anyways. But what we've 16:37 done with AI to execute faster in our 16:41 workflow, these were simple examples, 16:43 but the process was
+fast. All right, Final Thoughts 16:45 Matt from the future here had to 16:47 re-record the outro. So, I hope that was 16:49 helpful. We did a lot here today, right? 16:52 We
+planned our analysis, we executed our 16:54 analysis, and we distributed it using AI 16:57 and using a couple of different tools. 16:59 And I think that these are just a few 17:01
+ways that we can use AI to get more out 17:03 of our analysis in less time. So guys, I 17:06 hope it was helpful. If it was, please 17:07 like the video, subscribe to the 17:09
+channel. Goes a long way to helping. 17:10 I'll have a link in the description for 17:12 Fabi.AI and thanks to them for 17:14 sponsoring today's video. And that's it. 17:17 Thanks
+for sticking around and watching. 17:18 I'll see you in the next All From the series From Matt Mike Intro 0:00 if you're a business owner with under 10 0:01 employees you need to
+try out post hog 0:04 so it's an analytics platform like 0:06 Google but 10 times better and I'm going 0:08 to explain why so I actually just found 0:10 out about it like last week
+because I 0:12 had this postco viral we've decided to 0:14 make less money but part one and they 0:17 slash cost like 80% for a lot of the 0:21 paid plans as in it you still pay
+the 0:25 same but you get way more out of the 0:27 plan but even the free plan I think any 0:30 business under 10 employees unless 0:33 you're getting a huge amount of traffic 0:35
+like you run an app you're self-employed 0:37 whatever you're going to be fine just 0:39 using this for free and it's just 0:41 amazing what you can get on a free plan 0:44 so one
+first of all it's easier than Better than Google 0:46 Google so it's just like it just looks 0:48 beautiful it's it's less messy um but 0:50 it's also more relevant than Google so
+0:53 the things you see in Google analytics 0:54 like I have a problem with that because 0:57 it's not really ideal for the small 0:59 business business you know the 1 to 10 1:01
+employee business they don't need to see 1:02 a lot of the stuff in Google analy 1:04 analytics and honestly I think it really 1:08 make it makes a lot of business owners 1:10
+hesitant to even use it which is a big 1:13 mistake because it's like it's much 1:16 better to use something a 1:18 little than to try to use it a lot and 1:21 end up using it not
+at all and that's 1:23 the that's the thing with analytics 1:25 everyone's like oh you know how will 1:26 this actually make me money well of 1:28 course if you're not looking at
+1:29 analytics ever it's going to affect your 1:32 bottom line like for sure and so this Dashboard 1:36 daily active users weekly active 1:37 retention growth accounting referring
+1:39 domain page view funnel and you can you 1:41 can play around with the dashboard I 1:43 actually this is just a default um but 1:46 they have a couple other things that are
+1:49 really impressive to me so hot jar is 1:51 the number one recording platform uh I 1:54 used to pay for it and basically I would 1:56 get screen recordings of how people use
+2:00 my website so I run omnus web 2:03 development and yeah I would be able to 2:06 see how people are interacting with the 2:08 website so the red thing you see is the 2:10
+cursor and this 2:13 is a six minute um visit to my 2:21 website they start scrolling 2:24 anyways it seems like they 2:28 click what do they like oh they leave oh 2:31 okay but
+it's it's amazing because it's Cons 2:35 free so you get all this important data 2:38 you get the screen 2:40 recordings and I've been trying to think 2:42 like okay what's the con
+and honestly I 2:45 think the only con is the marketing like 2:47 open source product operating system 2:49 that sucks right uh and then even on an 2:52 an um 2:54 LinkedIn which
+is a lot less technical 2:56 than YC combinator sort of makes sense 2:58 that they would call it this uh or have 3:00 this sub heading in y combinator but on 3:04 LinkedIn I think
+yeah I think this just 3:06 reflects that their marketing isn't 3:08 ideal um but their product is amazing 3:11 like I can't really find any cons with 3:13 their product it's just
+they're not 3:15 maybe the best at packaging all this and 3:17 getting it out there but I think within 3:19 a year or two everyone's going to be 3:21 everyone's going to know about
+post hog 3:22 because the product is just that good 3:24 and Conclusion 3:26 honestly I always 3:28 thought that that every product or 3:31 service in the space in the entry level
+3:34 was sort of already made right like 3:36 doesn't it feel like there's nothing new 3:39 out there everything's sort of a 3:41 repackaging of something that already 3:43 exists
+but this actually impressed me 3:47 because they did something almost 3:49 impossible they um added complexity 3:53 while making it 3:55 simpler so what I mean by that is they 3:59
+added stuff like screen recordings which 4:02 Google analytics doesn't have but they 4:04 made it simpler because they added a lot 4:06 of a lot of stuff they they removed a 4:08
+lot of stuff that Google analytics has 4:10 that you really don't need and so it 4:13 just really gives you the core of what 4:16 you need to analyze how people are are 4:18 using
+your website or your 4:21 app you get the visit visitor data you 4:25 get retention data which uh Google 4:27 analytics has but it's it's not like a 4:29 big Focus 4:32 um and then
+you get the screen 4:34 recordings and then also you get the AB 4:37 testing which I think 4:40 Mutiny Mutiny HQ they have like a 4:42 raccoon as a mascot they're the number 4:45
+one in doing these AB tests and you can 4:48 do these for free and Mutiny you know 4:49 you're paying like a 100 bucks a month 4:51 so the things you can do with this is 4:53
+actually insane at the price they're 4:57 they're asking for and why I say if 5:00 you're a business owner under 10 5:01 employees use it because it's going to 5:02 be free even
+above 10 employees like you 5:04 got to check it check it out because the 5:06 product is just amazing I just guarantee 5:09 you haven't heard about it because the 5:10 marketing
+is quite weak sorry but the 5:13 the product really is a 10 out of 10 and 5:16 so yeah if you want some help 5:18 implementing post hog onto your website 5:20 I can definitely help
+you with that just 5:22 reach out to me on LinkedIn or my 5:23 website and I'll just bill you like 5:26 $1,000 no I'm just kidding like $100 5:29 I'll get this set up for you and
+yeah we 5:32 can start playing around with it All Google Application software Intro 0:00 Hey friends, today we are gonna cover the best tools to build forms for your 0:04 website
+or any online forms that you need. 0:07 Now, years ago, Typeform was the pretty form builder, but today there 0:12 are a lot more options for you, and I am gonna show you a free
+tool that is 0:16 phenomenal and does everything you want. 0:19 Let's get into it. Typeform: The Former King of Form Builders 0:25 Now, when Typeform came out, it was one of the
+best builders out there to have 0:29 the most elegant, beautiful experience. 0:31 But today their updates seem very nominal in comparison to 0:36 what the technology actually is.
+0:38 So what they offer is cool. 0:40 But it doesn't really feel like they've stayed up with the latest 0:42 tools, tricks, tips, and all of that. 0:45 Now, what's also very
+surprising to me is their pricing. 0:48 When we take a look here, it gets expensive fast. 0:51 I have a client who pays over a thousand dollars a year for a 0:54 Typeform, and they
+truly don't even. 0:56 Offer a great service or that much value to the business. 1:01 What is most surprising to me as well is that they limit the 1:05 number of responses you can
+get. Introducing Tally: The New Form Builder 1:07 And this is where Tally, the tool I'm gonna cover right now and 1:11 give you a high level overview on is literally one of the
+best 1:19 tally offers for. 1:20 Free absolutely blows Typeform out of the water. 1:24 If you're building forms for your website, for leads, for surveys, whatever 1:28 it is, you
+need to start using Tally. 1:31 And they just did some updates that are really cool. 1:34 So you may be asking, why am I so hyped about this? Tally's Unique Features and
+Integrations 1:37 First of all, building forms in tally is incredibly intuitive. 1:41 Forget all this clunky, like drag and drop editors and all of that. 1:45 All you need to do is
+type in forward slash and you get the full experience. 1:49 All of that is built in for free. 1:52 Now, I've partnered with Tally to get you a special price if 1:55 you are gonna
+use their paid. 1:57 Plan, use the link down below to get 50% off your first 2:00 three months with tally today. 2:07 On top of that, they're built in integrations that are 2:10
+for free, is just insane. 2:12 And if you want to embed the form in a lot of different ways, check 2:15 out these options right here. 2:16 First, you can embed it onto your
+website. 2:18 So you could put it on basically any page that you just wanna drop in some code. 2:21 All of that's built in from there. 2:23 If you wanna pop up, you could do that
+as well. 2:25 Look at this. 2:25 So cool tally. 2:27 If you want it as a link, you could do that as well. 2:29 You could also do custom links, so you could do forms dot your 2:32
+domain slash feedback or slash next step, whatever that is. 2:36 I just love how you could personalize it, brand it, and make 2:40 it so unique to your business. 2:42 While there
+is no limitation in the number of responses that you get, check this out. 2:48 This is what they put at the very top of their site that differentiates some from 2:51 a lot of other
+tools, unlimited forms. 2:55 And submissions for free. 2:57 I just use this for an event where there was a very big marketing 3:00 budget and the form was quite robust. 3:03 There
+was conditional logic. 3:04 There was a signature involved. 3:06 We had 10,000 submissions. 3:08 I think it was like just shy of 9,000 on that key form and then other 3:12 forms,
+but that key form had nine. 3:14 Thousand submissions. 3:16 Imagine if we were paying the price with individual forms, like it would be insane. 3:23 The enterprise price probably
+would've been a few thousand dollars. 3:27 And one last time, just to make sure we're on the same page. 3:29 This is everything that they offer. 3:31 For free. 3:32 You could build
+beautiful forms for free unlimited forms, submissions. 3:36 You could collect payments, collect signatures, a custom thank you. 3:39 You could have a redirect on completion. 3:41
+You could sync it with a Google sheet for free. 3:43 You could integrate it with notion, which is huge Again. 3:47 Built in for free. 3:48 You could send it to a notion database,
+uh, Airtable integration. 3:52 Zapier make webhooks. 3:54 You could, uh, close forms on a limited date. 3:57 You could prevent duplicate submissions. 3:59 You could self email
+notifications. 4:01 You could do a lot you. 4:03 There's just so much built in here. 4:05 But then from there, let's say you do wanna go to pricing. 4:07 Let's just say you do need
+more of what they offer. 4:10 You need to do a little bit more. 4:12 Well, if you pay yearly, it's $26 per month. 4:14 If you pay monthly, it's $29. 4:16 Now again, Typeform $25.
+4:19 This is probably yearly. 4:20 Yeah, let's take a look. 4:21 $29 here, you could only have a hundred submissions there and there alone 4:26 is already a ridiculous comparison.
+4:28 They don't even compare. 4:29 Tally is literally the best out there, so peace out. 4:32 Type form. 4:33 Let's take a look at tally. Building a Form with Tally: Step-by-Step
+Guide 4:39 Now let's take a look at the actual form builder experience. 4:42 I have a form that I've started and I've built here that is really, um, 4:45 already designed, but I do
+want to show you kind of how I got here. 4:49 So let me make some space from what I currently have. 4:51 The first thing is the magic of. 4:53 Forward slash So I just hit forward
+slash and here are all the options, all the 4:58 blocks that you could use on your site. 5:00 You could do a short answer, a long answer, multiple choice check boxes, 5:05 a
+dropdown, a multi-select, and as you could see the list goes on. 5:09 You could add a signature, you could add payment, you could 5:12 add a new page, you could add. 5:13 Thank
+you. 5:13 You could have headers, texts, dividers, labels, hidden 5:16 fields, all of that good stuff. 5:18 You need to embed images. 5:19 You wanna have people upload images. 5:21
+You can do that. 5:22 You could also have these advanced blocks, and then these repeat in a way that are 5:27 the, just the input block themselves. 5:28 'cause these include the
+question. 5:30 What I mean is if I click here, it's gonna have the title and the question, 5:34 and then if I go to short answer. 5:36 Input block. 5:37 It's just the block itself.
+5:39 So as you can see here, I just use the block itself and then 5:41 just put the text inside of it. 5:43 Um, it makes the form a little bit like smaller, a little bit tighter
+and neater. Advanced Customization and Conditional Logic 5:48 What is also really important with most form builders is that 5:51 you could actually customize it. 5:52 So if I have
+her here and I hit customize, as you can see here, you have a bunch 5:56 of customization options built in. 5:57 There are some that are only for advance, and then this custom code
+6:01 area, which is more for advance. 6:03 But again, if you really need to get into the nuance of. 6:05 That then it is very useful. 6:07 You can see I have some customizations
+here that help just reduce spacing to 6:11 make the form really tight because a lot of my forms are on mobile, and so I just 6:15 wanna make the experience really, really, really
+specific, uh, in our use case. 6:21 But you have a lot of control here just outta the box With 6:23 fonts, you have a ton of options. 6:25 Most of these, as I look at it, seem to
+be Google fonts, um, with 6:29 some really, really cool options. 6:31 And then you could also select themes if you wanna go light or dark mode. 6:35 And then go from there. 6:36
+Now let's just build some key elements of the form. 6:38 So I'm gonna do a short answer and I'm gonna do name, I'll do actually first 6:43 name, as you could see here, I could just
+basically, I don't even need my mouse. 6:47 I could just go through it. 6:48 Uh, I could do short answer again, do last name. 6:52 You could see the required field, and then they
+all have this dropdown 6:55 here that are all customizable. 6:57 If later on you need to change it, you could further do that and 7:00 customize what this specific field is. 7:02
+Is with relevant options. 7:05 Further down the page, you could see there's dropdowns. 7:07 What I really like about dropdowns that are interesting is that you 7:10 could actually
+do something like this. 7:12 So let's just go to, um, a section here. 7:15 Let's just do, like, let's say we need, say state, but we need 7:19 to do it in a way that is like a
+dropdown, not a multi-select. 7:23 But just an input. 7:24 And then I need to upload 50 states. 7:26 Well, I don't technically wanna do it one by one. 7:29 You could do a bulk
+insert option where you could click here and 7:32 then basically just drop 'em in. 7:34 And so boom. 7:36 I have this list of states here, which I'll drop in. 7:39 Let me do that
+again. 7:40 Boom. 7:41 I just dropped them in. 7:42 I'll do insert. 7:43 Now on the backend, this might look a little confusing as you're getting 7:46 started, but what you could
+do is just hit play right here to like preview it 7:50 and you'll see how it looks and boom, it's right there with all the states, and then 7:54 you could easily just start typing
+it in. 7:56 So if I start typing in California, boom, it shows up. 7:59 It's there. 8:00 And it's all built in, literally just two seconds. 8:03 Now, some other things that tally
+offers that I do want to touch on. 8:07 The first one is gonna be conditional logic. 8:10 Honestly, this is huge. 8:12 Imagine a form where questions appear or disappear based on
+someone's 8:16 answers previously in the form. 8:18 This makes forms smarter and more engaging depending on the responses. 8:23 So let's take a look at it. 8:25 Let's say, for
+example, you want to offer people a way to upload some content, 8:29 whether it would be written or via video. 8:33 Now, you don't wanna give 'em both options because basically
+they're 8:36 just gonna do one, and then you wanna make sure that it's required. 8:40 So this is how you can do it. 8:41 First, you can add in the question. 8:44 Well, I'm just
+gonna basically do a dropdown, which here 8:47 it would be yes or no. 8:49 From here they would say. 8:52 Or let's say written. 8:53 So in this case, I'm just gonna do written or
+video type of response. 8:58 Again, you could adjust this how you like. 9:00 And then down here I'm gonna add in conditional logic again slash and I'm 9:04 just typing in the word
+conditional. 9:06 Press enter. 9:07 Then it says when specifically type of response is, you'll 9:11 see all your options here. 9:13 Is, is not blah, blah, blah. 9:15 Is written
+then show, which I'll put it right here. 9:20 Let me do long, I'm gonna do long answer, then jump to page, calculate, 9:26 require answer, blah blah, blah. 9:28 I'm gonna do show
+specifically this block right here, which 9:32 will be, uh, written story. 9:37 Then I could click here and it says written story there. 9:39 So that's good. 9:40 And then here it
+is going to say written story. 9:44 Boom. 9:44 Just like that. 9:45 I've added it in. 9:46 Oh, and the last thing we need to do here is we'll just click here and 9:49 then we will
+hide this by default. 9:52 So boom, that is now hidden. 9:54 And then I will hit preview. 9:56 Then when I go to type of response here, if I select written, you'll see, boom. 10:00
+It shows up, right? 10:01 There you have so much control, so much that you could do with this. 10:05 It's all built in, which is really, really cool. 10:08 Now, if I was gonna
+finish this out, what I would do is upload, file, upload. 10:12 I would add that in and you could see it here. 10:14 And what I'll do here is I'll actually click here and duplicate
+it. 10:18 Um, and just drag that down, command D on the keyboard. 10:21 And then if the response is video show the video block or the file upload block here. 10:29 Then get rid of
+this block there. 10:32 Boom. 10:32 Just like that. 10:33 And I'll go here and then I will hide this. 10:37 Just like that. 10:37 We've built it out. 10:38 Again, go to preview.
+10:40 If I select written, it shows it. 10:42 If I select video, it shows it. 10:43 And as you can see, it's required. 10:45 So that way I can make sure I get a response here.
+10:48 So intuitive, so easy, have it built, and now we can go into the editor and do more. 10:54 What's also awesome is that if you need to build out a custom quote, 10:57 you
+could actually have tally build, uh, and do calculations 11:00 for you right inside the form. 11:02 Furthermore, if you need to have hidden fields and pass data through URL 11:06
+parameters, you could do that as well. 11:08 Now again, all of this is free and unlimited responses. Publishing and Managing Form Responses 11:17 Alright, now let's talk about
+responses. 11:19 This is really. 11:20 Powerful. 11:21 I wanna take a look at a few key features that they offer 11:24 that you wanna keep in mind. 11:26 Alright, here we are.
+11:27 Once we hit publish on the form, it is now able to go live and you'll see there are 11:31 a few key things here that we have to use. 11:34 First and foremost, you could take
+a look at submissions. 11:37 It will list all the submissions here, and there is a tool that you could see partial 11:41 submissions now that might be paid. 11:44 But it is a
+really cool feature of the tool. 11:47 If we go to share, this is where we get the link, and if you do add 11:50 a custom URL, you could use that here for all your forms as well.
+11:55 If you further want to embed the form, you could do that here. 11:58 If you wanna create this into a template, you could do that as well. 12:00 And if you want any of my
+forms as a template as well. 12:03 Let me know. 12:04 I'll do that and I'll add it to the description down below. 12:07 Earlier in the video I mentioned that I did have a form that

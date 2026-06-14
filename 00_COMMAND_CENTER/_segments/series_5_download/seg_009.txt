@@ -1,0 +1,224 @@
+what we're doing is similar to our previous example where 48:34 we're going to first find account records based on the email domain we're 48:40 saying search for records in the
+accounts table with a condition where 48:45 the email domain is equal to this email domain from the form submission record 48:51 again it's saying in the accounts does this value
+48:58 equal this value is there a record that we can 49:04 find that already exists inside of the system and that's what it's looking for and then we're also doing the same thing
+49:10 for a contact record is there already a contact record who has this email 49:15 address if so we don't probably have to create a new record for it and so this 49:20 is our
+main step here which is to say if it comes back and it can't find any 49:26 record with the same email domain then that means there is no matching account record for it and if
+that's the case 49:32 then we want to create a new account record and we're going to use our account name 49:38 here which is the other formula field that we had and we're going to
+have it with the email domain and now associate 49:44 that and that's very little information I mean at the end of the day it's still going to take someone to go look up on 49:49
+Google information about that account but all we want to do is create that account record and then create the contact record and Associate the two 49:57 so then the next step I
+have is also create the contact record we create a new contact record and we 50:04 say the name and the email address and then we're saying associate it to that account from the
+last step so we 50:12 actually take the airtable record ID of the account that we just created and we link the two this might be a little bit 50:19 complex and I'm happy to go into
+this uh deeper if that would be helpful for folks but mostly I just want to focus on 50:24 the logic that helps get us to that point so if I go back to the data side 50:30 of it
+and that contact submission record again we didn't have anybody with this email 50:36 domain before so it created a new account record what do you know 50:42 automation helpers and
+it doesn't know they're LinkedIn and their website and all these other things right because 50:49 eventually we would have to look up that information or use some bi service to
+look it up but it still created it so 50:57 create our account record and it created a new contact record as Dan Lehman and it Associated those two 51:04 so I can also look on my
+contacts 51:10 I should be able to find yep here's Dan Lehmann from automation helpers it's got my email address and it's got 51:17 the associated account record for it everything
+else can be filled in do some 51:22 research and leg work but this is an example of how we can take a single form submission record instead of just having 51:29 that form
+submission we can now create those two separate records and Associate them together I hope this has been 51:35 helpful for you I know there's a lot of information in this video
+everything from starting off with a form for the 51:41 first time to handling some of these really complex situations but I hope this is helpful for you as you're trying 51:47 to
+see what is possible with airtable forms if you have questions about air table forms what's feasible what's not 51:52 feasible do I need to use a third party to be able to
+accomplish this please let us know in the comments below thanks All From the series ntro 0:00 I'll cover the Crums you shouldn't use 0:02 like notion or air table and the Crums
+0:04 you should consider like copper or 0:06 [Music] 0:12 folk here at aish app we've worked with Why trust us? 0:15 hundreds of businesses over the past 0:16 decade to help them
+set up and Implement 0:18 their CRM and we also have tens of 0:21 thousands of visitors coming to our 0:22 website with people looking for software 0:24 advice so I promise you we
+will not lead 0:27 you astray we're confident that you're 0:29 going to walk away from this video 0:30 knowing exactly which CRM you should use 0:33 especially if your team size is
+between 0:35 1 to 300 and stay until the end of the 0:37 video to hear one of the most common 0:39 mistakes that people make when setting 0:41 up their CRM all right let's get into
+it 0:44 before we get super deep into it let's What is a CRM? 0:46 cover what a CRM should be used for and 0:48 you're going to see why I'm covering 0:49 this in just a moment so a
+CRM is used 0:52 to manage your business relationships 0:54 this can be anything from your leads to 0:56 your prospects to your vendors to your 0:58 colleagues to Partnerships and
+a CRM 1:00 should be the central Hub of 1:02 communication for your business meaning 1:04 that it should ingest all of your team's 1:06 communication with all the different 1:08
+people that your business is interacting 1:10 with in one central place if you have 1:12 worked in sales and you've ever 1:14 contacted the same person twice and 1:17 they've
+replied back and said someone 1:18 from your team just messaged me 1:20 yesterday you know how unprofessional 1:22 that is and that often is the result of 1:24 a team that's not
+using a CRM or at 1:27 least not using it properly so when 1:28 you're choosing a CRM you want to make 1:30 sure that they're doing all of those 1:32 things that I mentioned out of
+the box 1:34 at the very minimum okay so which CRM Don't Use Airtable & Notion as a CRM 1:37 should you use now I know I know there's 1:39 so much hype around air table and 1:41
+especially noce but you're going to see 1:44 in just a moment why they don't make for 1:46 great crms well the first reason why air 1:48 table and notion don't make for great 1:50
+crms is because neither tool will 1:52 automatically ingest your team's emails 1:55 into the CRM this means that that super 1:58 basic feature of a customer relationship 2:01
+management tool of centralizing your 2:02 communication is totally missed when 2:04 using air table or notion this also 2:07 means that you're missing out on 2:08 important
+information like which hot 2:10 lead you should follow up with next 2:12 because in a traditional CRM you'll be 2:14 able to see how many interactions you 2:16 had with someone
+when the last 2:17 interaction was when they last opened 2:19 your email are they opening your emails 2:21 but all of this data is missed out if 2:24 you're using air table or
+notion okay 2:26 and as a side note I have to address 2:28 this because I know there's some of you 2:29 watching that are going to say hey Andre 2:32 you know you can set up an
+integration 2:34 with make or zappier to ingest all of 2:36 your emails if you're using notion or 2:38 air table as a CRM instead of explaining 2:40 the Myriad of reasons why we
+think this 2:42 is a bad idea pause this video to see 2:44 our responses to some of these comments 2:46 in a previous video reason number two of 2:49 why you shouldn't use air
+table or 2:50 notion as a CRM is because they weren't 2:52 built to be a CRM Z notion is a 2:55 knowledge base not a CRM air table is 2:57 first and foremost a database which 2:59
+means it helps you add more structure to 3:01 your data so think of it as a 3:03 replacement for a spreadsheet like 3:05 Google Sheets or Excel which by the way 3:07 if you're
+using Google Sheets or Excel 3:09 as a CRM please don't do that either and 3:11 just keep watching this video for our 3:12 recommendations of what to use instead 3:14 the tools
+that we'll talk about in a 3:15 second we're built to be first and 3:17 foremost customer relationship 3:18 management tools which means all of 3:20 their features actually fit
+Under the 3:22 Umbrella of being great crms their 3:25 entire company is dedicated to building 3:28 the best tool to help you manage 3:30 relationships so with air table or 3:32
+notion you might get excited because 3:34 you're thinking wow these tools are 3:35 super flexible so I can actually built 3:38 my dream CRM for my company but what 3:40 happens in
+that case is you end up 3:43 turning into a product manager you are 3:45 now building a CRM instead of actually 3:47 just using a CRM that was built now this 3:50 is especially
+problematic if you're a 3:52 business owner because my bet is your 3:54 time is way better spent actually doing 3:56 sales or training your team to do better 3:58 sales rather than
+than building a 4:00 software tool especially if your 4:02 business has nothing to do with building 4:04 customer relationship management tools 4:06 okay so now that we've gotten
+the tools 4:08 that we don't recommend you using out of 4:10 the way let's talk about the tools we do 4:12 recommend PS if you've learned something 4:14 so far please like And
+subscribe it just 4:16 supports us and it allows us to make 4:18 more content like this okay so let's folk For Soloprenuers + Small Teams 4:20 talk about folk folk is a fantastic
+CRM 4:23 if you are an individual or a small team 4:26 that is really focused on contact 4:28 management and building relationships if 4:30 you clicked on this video and you are
+4:32 even remotely considering using notion 4:34 or air table as a CRM folk is going to 4:37 be our top recommendation for you and 4:39 that's because the tool is actually 4:41
+built similar to a database structure it 4:44 actually allows you to bulk update 4:46 fields and edit data in line just like 4:49 you would in a spreadsheet or a database 4:51 so
+with all of that it's going to feel 4:53 the most familiar all while having those 4:56 really powerful CRM features built in 4:58 setting up folk is is incredibly easy 5:00 they
+have dozens of pre-built templates 5:02 that you can use for different processes 5:04 that are basically just plug-and-play so 5:07 with folk you really have a great 5:08
+Foundation out of the gate it also has a 5:11 beautiful minable interface and great 5:13 design which we love one of my favorite 5:16 features when it comes to folk is how 5:18
+easy it is to add contacts I'd say folk 5:20 is probably the friendliest CRM when it 5:23 comes to adding contacts into the tool 5:25 they have a Chrome extension and once 5:27
+you've installed it there's a button 5:29 that appear years whether you're in 5:30 Gmail LinkedIn or X that says add to 5:32 folk and you literally have it 5:35 integrated with all
+of these tools right 5:37 there done for you once you've added the 5:39 contact to folk you can use their inrich 5:41 feature which helps you more easily find 5:43 the right email
+address or their job 5:45 title or their phone number Etc if you 5:48 want to bulk email a group of contacts 5:49 folk will allow you to do that and you 5:51 can also set reminders
+to follow up with 5:53 people one-on-one specifically honestly 5:56 for sales teams especially sales teams 5:58 that aren't using a CRM at all folk will 6:01 feel like a game
+changer another cool 6:03 thing about folk is that they're 6:05 experimenting with some AI features to 6:07 help improve your experience within the 6:09 tool while it still has a
+way to go it's 6:11 far from perfect you can experiment with 6:14 it by inserting your own prompts and 6:16 different variables where this could 6:18 come in handy is if you want
+to use the 6:21 AI feature to generate an email that 6:23 you're going to bulk send to a bunch of 6:25 people or a social media DM while the 6:27 drafts aren't perfect they will
+will 6:29 help you get the ball rolling and at 6:31 least get you start thinking perhaps in 6:33 the right direction if you are a 6:34 solopreneur or a small team that is 6:37
+really wanting just a structured tool to 6:39 help you better manage your contacts and 6:41 relationships would highly recommend 6:42 folk it's great for fundraising basic 6:45
+Recruitment and just managing all of 6:47 your relationships in one place to give 6:49 folk a shot use our affiliate link down 6:51 in the description below and if you 6:53 decide
+to upgrade then you can also use 6:55 our partner code to get a discount on 6:57 your first year so what if you're a team Copper & Pipedrive CRM 6:59 that's looking for a CRM that
+goes 7:00 beyond contact management something that 7:02 will be really powerful when it comes to 7:04 Integrations reporting and workflow 7:06 automations in this case you might
+want 7:09 to consider copper or pipe Drive we've 7:11 been a partner with copper for over 7:13 eight years we're actually their first 7:14 Integrations partner you're going to 7:16
+find with copper they're a more 7:17 traditional CRM you're going to have 7:20 your typical structure of your leads 7:21 your people your companies and your 7:23 opportunities like
+for example if you 7:25 want a more simple to use alternative to 7:27 HubSpot or Salesforce then copper or 7:29 pipe Drive are going to be two really 7:31 great choices now as a
+heads up copper 7:33 only works with Google workspace and 7:36 that is our Preferred Choice because we 7:38 love Google workspace but if you are on 7:42 Microsoft 365 then
+definitely check out 7:44 pipe Drive they are very similar and in 7:47 this video while I'll mainly talk about 7:48 copper because it's what we use more so 7:51 here just replace
+copper with pipe drive 7:54 because they're very similar in their 7:55 functionality we recommend that teams 7:58 use copper that are looking to really 8:00 map their processes out
+to a CRM so this 8:03 means that you first of all know your 8:06 processes or you're on your way to 8:07 knowing your processes really well and 8:09 you're looking for a powerful
+CRM that 8:11 can really serve as the foundation for 8:13 you to integrate other tools with it 8:16 like for example your invoicing software 8:18 like zero or QuickBooks or your
+8:20 Voiceover IP like Dad or air call or E 8:24 signature tools like panad do or 8:25 Ironclad like if you're looking for a 8:27 central tool that can integrate well 8:30 with all
+these thirdparty tools then 8:32 copper is a really awesome Choice we've 8:35 seen a lot of agencies financial 8:37 planners home service companies have 8:39 great success with
+copper and I'm going CRM Integrations! 8:41 to take you through an example of an 8:43 entire workflow so you can really get a 8:45 picture of what I'm talking about when I 8:48
+talking about Integrations so let's take 8:50 a home services company they have a 8:52 website and somebody fills out a form on 8:54 their website well that form is 8:56 integrated
+in with the CRM copper and 8:58 all of their data appears in the lead 9:00 section so the team knows to follow up 9:02 you may also have automated emails going 9:04 out to follow
+up with them as well from 9:06 there they might automatically get sent 9:08 a scheduling link where they can book in 9:10 a home visit and then your team would go 9:12 out assess
+if they're a qualified lead 9:14 and if they are they would get converted 9:16 into a person perhaps a company and an 9:19 opportunity and from there you're going 9:21 to take them
+through your sales process 9:23 and perhaps one of those stages is to 9:25 create a proposal if you're using 9:27 something like panad do that integrates 9:29 in with copper you're
+going to have a 9:30 really easy time automatically pulling 9:33 contact details for example straight 9:35 from copper into panad do we've seen 9:37 team Save hours when using
+panad do and 9:40 copper together perhaps after you send 9:42 out the proposal you want some automated 9:44 follow-up emails to go out to that lead 9:46 to make sure that they are
+viewing the 9:49 proposal and to check in with them to 9:51 see if they want a close and in a 9:52 perfect world now they close so they've 9:54 signed their e signature document
+and 9:57 you want to send them an invoice you can 9:58 move move one opportunity to the next 10:00 stage that says invoice sent and an 10:03 integration can automatically create
+10:05 that in your accounting software and 10:06 send it off to them so hopefully this 10:09 gives you a picture of what I'm talking 10:10 about from start to finish the CRM being
+10:13 the foundation of all of this but you 10:15 have these other tools integrated in so 10:18 it makes a really seamless workflow 10:20 experience for your team and also your
+10:22 customer another main difference between 10:24 folk and copper is that copper has 10:26 something called workflow automations 10:28 and there's dozens uses for them you can
+Workflow Automation & Reporting 10:30 create autotask so when a lead comes in 10:32 a task is created for someone on your 10:34 team or when an opportunity gets to a 10:36 stage
+your team member gets assigned a 10:38 bunch of tasks or you can autocreate an 10:40 opportunity Etc there's honestly dozens 10:42 of uses and finally if you're interested 10:44 in
+reporting at all copper is going to 10:46 be your best bet in this case because 10:48 they have some pretty Advanced reporting 10:50 capabilities now as long as you know 10:53 your
+way around and know how to set it 10:54 up all that being said if you want to 10:56 give copper or pipe drive a shot then 10:58 use the the link Down Below in our Secret 11:00
+description and if you decide to go with 11:02 copper and you use our affiliate link to 11:04 sign up you'll receive our $1,200 copper 11:06 crash course for free after your first
+11:08 paid month the course will cover our 11:10 best practices to help you set up your 11:11 CRM now if you're a very small team like Avoid HubSpot and Salesforce 11:14 under 300
+employees using the CRM we 11:17 don't recommend HubSpot or Salesforce 11:19 because they can get very expensive very 11:21 quickly you can check out this article 11:23 where we go
+into a lot more detail on 11:25 this and now for your bonus tip of where CRM Bonus Tip! 11:28 most people make a huge mistake when 11:30 setting up and using their CRM a lot of
+11:32 the time we see that teams rely way too 11:35 much on individual tasks to move things 11:37 forward in the CRM when you assign 11:40 yourself a task for every single contact
+11:42 for example or opportunity what happens 11:45 is you typically have a bunch of overdue 11:47 tasks and all of them are falling by the 11:49 wayside so we encourage teams to
+think 11:51 of their processes more in terms of 11:54 groups of tasks rather than individual 11:56 tasks so for example in a typical sales 12:00 process you would have proposal
+sent or 12:02 invoice sent and Within These stages you 12:05 have within your process your business 12:07 process documented all the steps that 12:09 need to get done in order to
+move this 12:12 opportunity to the next stage so this 12:15 takes it from Individual tasks that are 12:17 everywhere to groups of tasks that live 12:20 under one stage in your CRM
+and this way 12:24 you can also see at a top level an 12:26 overview of where everything is in your 12:29 process and another hot tip is when you 12:31 set up your CRM this way it
+also leaves 12:33 a great opportunity for automation 12:35 because for example if you have a stage 12:38 called invoice sent and you're doing 12:40 that manually we can also use
+that in 12:42 the future perhaps when you scale to 12:44 trigger an integration with QuickBooks 12:46 online or zero to automatically create 12:49 and send that invoice for you
+come on 12:51 that's pretty cool right yeah so as a Best CRM Software Final Verdict 12:54 summary for this video do not use air 12:56 table or notion as your CRM you're going 12:59
+to spend way too much time configuring 13:01 the CRM trying to train your team which 13:04 will likely lead to poor or no adoption 13:06 leaving you in the same place as you 13:08
+started let us save you the time and the 13:11 hours of going down that path and 13:13 instead just use a CRM a tool that was 13:15 built for the job from the start they 13:17 say
+if you're going to do something do 13:19 it right and that's what you're going to 13:21 be doing with either folk or copper 13:23 because they're both great Next: Best Project
+Management 13:25 choices all right now that you know 13:27 which CRM to use Maybe you're looking 13:29 for a project management tool to help 13:31 you get your work done more
+efficiently 13:33 as well and if you are make sure that 13:35 you check out this video over here where 13:37 we go over our favorite PM tools and no 13:40 we don't recommend notion
+or air table 13:42 for that either if you found this video 13:44 helpful we would very much appreciate a 13:46 like And subscribe and if you have more 13:49 CRM related questions
+please drop them 13:51 down in the comments thank you for your 13:53 time and attention see you in the next 13:55 video done All From Efficient App (Alex & Andra) 0:00 In today's
+video, I'm going to teach you 0:01 how to integrate Air Table with HubSpot 0:03 using Zapier. This is the easiest 0:05 method, and I'll be guiding you through 0:06 it step by step.
+So, whether you're 0:08 trying to streamline your workflow, keep 0:10 your data in sync, or automate some of 0:11 those pesky manual tasks, you're in the 0:13 right place. Let's
+dive in and get 0:15 started. First things first, you want to 0:17 open up Zapier. For those who might be 0:19 new to this, Zapier is a powerful tool 0:21 that helps connect
+different apps to 0:22 automate your workflow. Once you're in 0:24 Zapier, you'll see an option to create a 0:26 new Zap. A zap is essentially a workflow 0:28 that connects your
+apps, automating 0:30 tasks between them. So go ahead and 0:31 click on create zap. Now you need to 0:33 choose your air table trigger. This is 0:35 the event in Air Table that
+will trigger 0:36 an action in HubSpot. Some examples of 0:39 common triggers include when a new 0:40 record is created, a record is updated, 0:42 or when there's a new form
+submission. 0:44 Choose the trigger that best fits your 0:46 needs and connect your Air Table account 0:47 to Zapier. This step allows Zapier to 0:49 access your Air Table data and
+monitor 0:51 it for the specified trigger event. 0:53 After your Air Table account is 0:54 connected, it's time to select the base 0:56 and table you want to work with in Air 0:58
+Table. A base is kind of like a workbook 1:00 in Excel and it contains one or more 1:02 tables. Choose the particular base and 1:05 table where your trigger is located. And 1:06
+don't forget to select the appropriate 1:08 view if necessary. This ensures Zapier 1:10 is looking at the right data. Once 1:12 that's done, you'll add the HubSpot 1:13 action.
+This step is where you decide 1:15 what happens in HubSpot when the trigger 1:16 event in Air Table occurs. You have 1:18 several options to choose from, such as 1:20 creating a
+contact, updating a company, 1:22 creating a deal, adding a note, or 1:24 creating a task. Choose the action that 1:26 aligns with your workflow needs, and 1:28 then connect your
+HubSpot account to 1:30 Zapier, establishing the link between 1:32 the two platforms. Next, map the fields 1:34 between Air Table and HubSpot. This step 1:36 is crucial as it tells
+Zapier exactly 1:38 how to transfer data from one app to the 1:40 other. For example, you might map the 1:42 name field in Air Table to the contact 1:44 name field in HubSpot or
+the email field 1:46 in Air Table to the email field in 1:48 HubSpot. Make sure that each piece of 1:50 information matches up correctly to 1:52 avoid any data mixups. Finally,
+it's 1:54 time to test and publish your Zap. Turn 1:56 the Zap on to ensure everything is 1:58 working as expected. You can even 1:59 perform a test run to see if the 2:01
+integration works smoothly and the data 2:02 is transferred as planned. Once you're 2:04 satisfied, your integration is live. 2:06 Just like that, Air Table and HubSpot 2:08 are
+now connected and working in 2:10 harmony. Connecting these two apps using 2:12 Zapier simplifies your workflow 2:13 significantly, saving you time and 2:15 reducing the chance of
+human error. With 2:17 automation in place, you can focus more 2:19 on what truly matters and leave the 2:21 repetitive tasks to Zapier. Thank you 2:23 for watching and happy
+automating. All From Noah Explains Chapter 1: Choosing a Notion CRM template 0:00There are more than 1,000 CRM templates on Notion. So, how do you know which one to use? 0:066
+seconds[music] After weeks of research, testing, and comparing, we built what we consider to be the best Notion CRM template. And in this video, you'll see how it works. Chapter 2:
+The benefits of this template 0:1818 secondsSo, first off, this template is completely free. You don't need to sign up, submit your email address, or upgrade to a paid plan. The
+layout is simple and is just a few columns. 0:2727 seconds[music] So, let's dive in and take a closer look. So, when you open the template, you'll first see your main workspace.
+[music] Chapter 3: Overview of template 0:3434 secondsFrom here, you can keep track of activities, contacts, deals, and organizations. [music] 0:4141 secondsBut this workspace is
+just a summary. To see the full picture, use the navigation menu to [music] jump into individual pages. Let's start with the action string. Chapter 4: Action Stream for activities
+0:5151 secondsThis is where you'll find your list of next actions, which are the specific steps you need to take to stay in touch with contacts [music] and move deals forward.
+These activities are organized 1:001 minuteand color-coded based on their deadlines, [music] so you can instantly see what needs attention. 1:071 minute, 7 secondsYou can also
+switch to a calendar view if you prefer to manage your activities [music] that way. And if you're working with the team, you can view and manage 1:141 minute, 14 secondsother team
+members next actions [music] as well. 1:181 minute, 18 secondsThe action stream is inspired by onepage CRM's core feature, which is why it shares the same name. Now, let's move on
+[music] to contacts. And inside each Chapter 5: Contact management 1:261 minute, 26 secondscontact profile, you can manage their basic details, [music] leave notes, assign
+ownership, and even send emails. 1:351 minute, 35 secondsYou'll also see your next steps with that contact along with any deals currently associated with them. And there's also a
+free web form included. 1:431 minute, 43 seconds[music] So when someone fills it out, a new contact is automatically added to your database. Chapter 6: Deal & pipeline management
+1:491 minute, 49 secondsNext up is the deals page. This is where you manage your sales opportunities 1:521 minute, 52 seconds[music] 1:531 minute, 53 secondsusing a canban board.
+You can see which contacts are linked to each [music] deal, the value of each opportunity, and whether there's a pending activity 2:012 minutes, 1 secondattached. From here, you
+can drag and drop deals as they move through the stages. You can archive closed deals and 2:092 minutes, 9 secondsyou can [music] use a pie chart to get a quick snapshot of how
+your sales are performing. 2:142 minutes, 14 seconds[music] And finally, there's the organizations page. This is where you'll find all of the companies in your database along
+[music] with every 2:212 minutes, 21 secondscontact associated with each one. Now, while this notion template is powerful, it's still not a fullyfledged CRM. It Chapter 7:
+Limitations of Notion 2:292 minutes, 29 secondsworks really well for organizing contacts, deals, and [music] next actions. But once your sales process grows, there are certain
+things Notion 2:372 minutes, 37 secondsjust isn't built for. For example, it doesn't have email tracking, bulk email send, automation, or revenue forecasting. And it can't manage
+things 2:452 minutes, 45 secondslike detecting duplicate contacts [music] or tracking delivery once a deal is won. That's where a dedicated CRM comes in. Like onepage CRM. It's a
+top Chapter 8: Upgrading to a CRM #crmforsmallbusiness #smallbusinesscrm 2:542 minutes, 54 secondschoice for small businesses who use it to manage sales, stay on top of [music]
+follow-ups, and build better customer relationships, but without the unnecessary complexity. 3:043 minutes, 4 secondsIt's also one of the most affordable CRM in the market, [music]
+and comes with a 21-day free trial. You'll find links in the description to get this free notion 3:133 minutes, 13 secondstemplate, as well as that free trial to onepage CRM. And
+if you enjoyed this video or found it helpful, hit like and [music] subscribe. Cheers. Sync to video time All From the series From OnePageCRM | Simple CRM for Small Business Sales
+processes Website Presentations Learning Related Intro 0:00 Notion has been an amazing tool to run your business for years, and thanks to a few recent updates, it can also turn
+0:07 into a really powerful CRM. But getting started can be quite overwhelming. [music] 0:13 In this video, I'm going to walk you through the exact step-by-step process to go from
+a blank page to a fully 0:19 functional CRM in Notion. This advanced CRM will include everything from pipeline management to email integration 0:26 all the way to smart AI
+enablement. Ready? Let's dive right in. Here's a Notion CRM Preview & What You'll Build 0:32 quick preview of what you're going to walk away with at the end of this video. You're
+going to have a sales up with a 0:37 quick snapshot overview of everything that's going on in your pipeline across different stages, your success this year 0:43 so far, as well as
+a KBAN board, right? To track the different elements in your pipeline, recent contracts, recent 0:49 communications, because yes, we are going to sync emails into notion so that
+you can look at any one of your deals. 0:55 For example, this one, Akma, right? And let me just open this and zoom out a little bit because we're always very 1:01 zoomed in for
+demo purposes besides your general content for a deal. You will be able to see all the recent communication 1:07 with people under there directly here together with a few like
+automations and yeah just an overall starting setup CRM. Spec-Driven Notion Development Explained 1:18 Now this video will not be one of the old school notion tutorials, right? It
+won't be, hey, here's how you click 1:24 through every single part of DUI. Instead, we're going to focus on the most efficient way, right, to build 1:30 notion systems in 26, and
+that's specdriven notion development. Now, 1:36 specdriven notion development basically means we're going to separate our build phase into three distinct phases. The 1:43 plan
+phase, the execution phase, and the refinement phase. And then on each step, 1:49 we're going to leverage AI as much as possible to speed up the whole process. Again, this is very
+different, right, 1:55 from sort of like building along to learn Notion as a tool in terms of the UI. I have a different tutorial for 2:01 that, right? Link down below in the
+description. It's our master tutorial for 2026. If you're curious on how to 2:07 use Notion from a beginner's perspective, go check that out. This one assumes, right, that you just
+want to 2:12 get to a finished system as efficiently as possible. And that's what specdriven 2:17 notion development is all about. Now, the reason we do this is that in 2026, 2:23
+it's so much more efficient to co-create with AI rather than to do everything 2:28 from scratch. But the solution isn't to just ask AI, hey, build me a CRM. The results will be
+horrible, right? VIP 2:35 coding has sort of come up with this approach of specdriven development. And that's what we're porting here. where 2:41 the main insight is that a ton of
+the actual work happens now before you even 2:47 start doing anything the plan phase right because you want to hand off as much of the building to AI but it will 2:53 only work if
+you have a very good plan so that's right like these specs that we now define in the beginning like what 2:59 should be built that is the actual product right that's your main work
+contribution the database implementation 3:06 that is just the last mile now with notion there's still a few things right humans have to do, right? But the AI 3:12 can't do it for
+us. That's sort of like part three, the refinements, right? But like this middle block will be greatly 3:17 accelerated. Step one in this process is to tell the AI everything. In a
+moment, we're going to go through this in 3:24 practice and we're going to open an AI chat and we're going to try to give it as much context about our business. I 3:30 highly
+recommend that you turn on AI dictation and your computer, right? You get one of these tools and you just talk 3:36 to it, right? Tell it everything you could possibly need to know
+about your business and then very importantly inter 3:44 have it interview you, right? Don't just jump straight from here's the context now build it. No, very important you 3:51
+need to have it interview you so you can fill in additional blind spots because one of the biggest gaps right in 3:57 deploying AI effectively are hidden assumptions. all that
+tacet knowledge that's in your head, that's obvious to 4:04 you, but that you've never externalized to the AI. It's really hard, right? This is a muscle that we all need to 4:09
+practice. And in the meantime, while we're not fully good at it yet, asking the AI after has ingested all the 4:15 context to ask us questions about all the things that we might be
+missing, that's a key step to significantly 4:21 improve the quality. So, so much for the theory. Let's see this in practice. Here's a new empty notion page. I've Planning Your
+Notion CRM with AI 4:27 opened my AI and I've given it just a demo prompt, right? For this purpose, I run a small creative agency. This is 4:34 what we do. This is what I want to
+track. Now, please when you do this, add more context. Right? This is really the 4:40 absolute minimum and you get much better outputs if you write turn on dictation talk for 2
+minutes straight. What I 4:47 would recommend no matter what you tell in terms of context is that you add this block to it. And this is sort of where 4:52 the specific you know
+notion domain expertise comes in where we know hey what matters in the end are databases 4:59 properties and relations. So that's something right that we want to ingest. So if we
+make sure AI runs in the right 5:05 direction you can simply copy paste this right down below in the description I'm going to link to a bunch of templates. 5:10 One of the
+resources on there is like a prompt collection right for this process so you can speed things up. And then at 5:17 the bottom right keep it lightweight small team not an
+enterprise. You want to again give some context on what you're trying to do here. If you're like 5:23 a small shop, right, with like 15 to 75 people, you don't need an
+enterprisegrade CRM with like dozens of 5:29 databases. If on the other hand, right, you do run an enterprise, well, tell it again that piece of context so it can 5:35 work with
+that better. So, I'm just going to fire this off for now and then we'll see what it comes back with and then we're going to review it. This 5:41 review step is crucial. Again, I
+can't stress enough that working with AI 5:46 doesn't mean you're outsourcing your brain to it. you're just speeding up the process and you're leveraging the right 5:52 things. So
+you need to now go look at this and figure out hey is that what I want to do and the quality of this 5:59 process will largely depend on whether you know how to use a CRM or not.
+Now again it's totally fine if you don't 6:05 know how to use a CRM and this is the first time then tell AI that so it will coach you a bit more through but the 6:11 more
+opinionated you are right the more experience you have with other CRM systems and know what works and what doesn't make sure that your preferences 6:18 flow into this part of the
+process so here might be we can now go through what objects does it have is there anything 6:23 that we think is missing and in terms of the properties very important review this
+carefully and don't be afraid to 6:30 reduce I would say the less properties the better because someone, even if it's AI, has to fill them out. So, if one of 6:37 these properties
+doesn't help you make better decisions for your deal flow, cut it. You can always add it back in later. 6:44 So, that's what I'm exactly what I'm going to do now. And I'm going to
+turn on AI dictation just so you also see how quick and easy this process is to now 6:51 carefully go through this and share again more thoughts with AI. All right. Thank you so
+much for this 6:57 first draft. A few thoughts. I agree as few objects as possible, but there are two more things I would really love to 7:04 track. I want to have emails in
+notion. We're going to sync them in automatically via notion mail and then I 7:09 just want to them to be related to contacts. We don't need any other properties on there. And then
+I want 7:15 also contracts, right? So after deal one, I want to have a simple database where I can track, you know, what on 7:21 active ongoing engagements we have. In terms of
+properties per database, let's remove the phone number and the source 7:28 from contacts. that is not relevant. Let's also make sure that for companies we reduce the size because
+we never make 7:34 decisions based on the size. Um and for the deal we can uh actually remove the 7:40 owner person because I will always be owning this. So we no need to have like
+separate ones on there. Otherwise that 7:47 sounds pretty good but I want to make sure that we have actually everything captured. So before we move on to the 7:53 next stage, can
+you a update the plan with what I just shared with you and then b please interview me and ask me 7:59 any kind of questions that you still have about this? Right? What are some
+unknowns unknowns uh that we might have 8:06 here? Right? What are sort of blind spots for me and what is more context that you need to help me through this 8:12 process? Right? Do
+you see like how in the end? Right? That's probably one of the most important prompts. And again, we have a copy paste version of this at 8:19 a in the template, but ask it right
+to interview [clears throat] you. And I'm going through this process now a bit quicker because this is a demo, right? 8:25 But don't be afraid to have several rounds of iteration
+here to sort of like see where it lands, right? The golden 8:30 rule is the more important the thing that you're building, the more time you want to spend on the plan phase. If
+this 8:36 takes 3 hours, it's well worth it, right? If you get the right CRM plan out of this. And we see it already adds the 8:43 things to the page. I didn't even ask a train. I
+would have otherwise done this afterwards after I asked it, you know, answer the questions. But that's perfect 8:49 because for the demo, we are going to skip right the interview
+part and we're going to go right to building which is 8:56 where we need this externalized. So if you first answer the interview questions, right, once you're done with the whole
+plan, ask it to output 9:03 everything right to the page. So then you can start a new session and the actual building part. Letting AI Build Your Notion Databases 9:11 All right.
+So when it comes to building, right, again, we're going to rely on AI. One thing I forgot to mention, by the 9:16 way, make sure you're on OPUS 4.6 or whatever is the most
+advanced, most 9:21 capable uh AI model available in motion at that time. Right, the whole planning and implementation phase. That's not 9:27 something where you want to optimize
+for speed. Make sure that you get out the big guns for this. Now, right again, we 9:33 have now all our output on this page and we could in theory now continue in this same chat.
+But if you follow this 9:40 planning process right and if you do this sort of like over potentially several hours this might be very large uh context window. So it's better to 9:46

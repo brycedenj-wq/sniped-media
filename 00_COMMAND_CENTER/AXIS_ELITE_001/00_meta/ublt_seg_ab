@@ -1,0 +1,1028 @@
+  $staticlib_paths = @()
+  foreach ($lib_name in $staticlib_names) {
+    Write-Verbose "  Unpacked $lib_name"
+    $staticlib_paths += "$tmp\$lib_name"
+  }
+  if (($null -ne $info["updater"]) -and $install_updater) {
+    $updater_id = $info["updater"]["artifact_name"]
+    $updater_url = "$download_url/$updater_id"
+    $out_name = "$tmp\uv-update.exe"
+    $wc.downloadFile($updater_url, $out_name)
+    $bin_paths += $out_name
+  }
+  return @{
+    "bin_paths" = $bin_paths
+    "lib_paths" = $lib_paths
+    "staticlib_paths" = $staticlib_paths
+  }
+}
+function Invoke-Installer($artifacts, $platforms) {
+  # Replaces the placeholder binary entry with the actual list of binaries
+  $arch = Get-TargetTriple $platforms
+  if (-not $platforms.ContainsKey($arch)) {
+    $platforms_json = ConvertTo-Json $platforms
+    throw "ERROR: could not find binaries for this platform. Last platform tried: $arch platform info: $platforms_json"
+  }
+  $info = $platforms[$arch]
+  # Forces the install to occur at this path, not the default
+  $force_install_dir = $null
+  $install_layout = "unspecified"
+  # Check the newer app-specific variable before falling back
+  # to the older generic one
+  if (($env:UV_INSTALL_DIR)) {
+    $force_install_dir = $env:UV_INSTALL_DIR
+    $install_layout = "flat"
+  } elseif (($env:CARGO_DIST_FORCE_INSTALL_DIR)) {
+    $force_install_dir = $env:CARGO_DIST_FORCE_INSTALL_DIR
+    $install_layout = "flat"
+  } elseif ($unmanaged_install) {
+    $force_install_dir = $unmanaged_install
+    $install_layout = "flat"
+  }
+  # Check if the install layout should be changed from `flat` to `cargo-home`
+  # for backwards compatible updates of applications that switched layouts.
+  if (($force_install_dir) -and ($install_layout -eq "flat")) {
+    # If the install directory is targeting the Cargo home directory, then
+    # we assume this application was previously installed that layout
+    # Note the installer passes the path with `\\` separators, but here they are
+    # `\` so we normalize for comparison. We don't use `Resolve-Path` because they
+    # may not exist.
+    $cargo_home = if ($env:CARGO_HOME) { $env:CARGO_HOME } else {
+        Join-Path $(if ($HOME) { $HOME } else { "." }) ".cargo"
+    }
+    if ($force_install_dir.Replace('\\', '\') -eq $cargo_home) {
+      $install_layout = "cargo-home"
+    }
+  }
+  # The actual path we're going to install to
+  $dest_dir = $null
+  $dest_dir_lib = $null
+  # The install prefix we write to the receipt.
+  # For organized install methods like CargoHome, which have
+  # subdirectories, this is the root without `/bin`. For other
+  # methods, this is the same as `_install_dir`.
+  $receipt_dest_dir = $null
+  # Before actually consulting the configured install strategy, see
+  # if we're overriding it.
+  if (($force_install_dir)) {
+    switch ($install_layout) {
+      "hierarchical" {
+        $dest_dir = Join-Path $force_install_dir "bin"
+        $dest_dir_lib = Join-Path $force_install_dir "lib"
+      }
+      "cargo-home" {
+        $dest_dir = Join-Path $force_install_dir "bin"
+        $dest_dir_lib = $dest_dir
+      }
+      "flat" {
+        $dest_dir = $force_install_dir
+        $dest_dir_lib = $dest_dir
+      }
+      Default {
+        throw "Error: unrecognized installation layout: $install_layout"
+      }
+    }
+    $receipt_dest_dir = $force_install_dir
+  }
+  if (-Not $dest_dir) {
+    # Install to $env:XDG_BIN_HOME
+    $dest_dir = if (($base_dir = $env:XDG_BIN_HOME)) {
+      Join-Path $base_dir ""
+    }
+    $dest_dir_lib = $dest_dir
+    $receipt_dest_dir = $dest_dir
+    $install_layout = "flat"
+  }
+  if (-Not $dest_dir) {
+    # Install to $env:XDG_DATA_HOME/../bin
+    $dest_dir = if (($base_dir = $env:XDG_DATA_HOME)) {
+      Join-Path $base_dir "../bin"
+    }
+    $dest_dir_lib = $dest_dir
+    $receipt_dest_dir = $dest_dir
+    $install_layout = "flat"
+  }
+  if (-Not $dest_dir) {
+    # Install to $HOME/.local/bin
+    $dest_dir = if (($base_dir = $HOME)) {
+      Join-Path $base_dir ".local/bin"
+    }
+    $dest_dir_lib = $dest_dir
+    $receipt_dest_dir = $dest_dir
+    $install_layout = "flat"
+  }
+  # Looks like all of the above assignments failed
+  if (-Not $dest_dir) {
+    throw "ERROR: could not find a valid path to install to; please check the installation instructions"
+  }
+  # The replace call here ensures proper escaping is inlined into the receipt
+  $receipt = $receipt.Replace('AXO_INSTALL_PREFIX', $receipt_dest_dir.replace("\", "\\"))
+  $receipt = $receipt.Replace('"install_layout":"unspecified"', -join('"install_layout":"', $install_layout, '"'))
+  $dest_dir = New-Item -Force -ItemType Directory -Path $dest_dir
+  $dest_dir_lib = New-Item -Force -ItemType Directory -Path $dest_dir_lib
+  Write-Information "installing to $dest_dir"
+  # Just copy the binaries from the temp location to the install dir
+  foreach ($bin_path in $artifacts["bin_paths"]) {
+    $installed_file = Split-Path -Path "$bin_path" -Leaf
+    Copy-Item "$bin_path" -Destination "$dest_dir" -ErrorAction Stop
+    Remove-Item "$bin_path" -Recurse -Force -ErrorAction Stop
+    Write-Information "  $installed_file"
+    if (($dests = $info["aliases"][$installed_file])) {
+      $source = Join-Path "$dest_dir" "$installed_file"
+      foreach ($dest_name in $dests) {
+          $dest = Join-Path $dest_dir $dest_name
+          $null = New-Item -ItemType HardLink -Target "$source" -Path "$dest" -Force -ErrorAction Stop
+      }
+    }
+  }
+  foreach ($lib_path in $artifacts["lib_paths"]) {
+    $installed_file = Split-Path -Path "$lib_path" -Leaf
+    Copy-Item "$lib_path" -Destination "$dest_dir_lib" -ErrorAction Stop
+    Remove-Item "$lib_path" -Recurse -Force -ErrorAction Stop
+    Write-Information "  $installed_file"
+  }
+  foreach ($lib_path in $artifacts["staticlib_paths"]) {
+    $installed_file = Split-Path -Path "$lib_path" -Leaf
+    Copy-Item "$lib_path" -Destination "$dest_dir_lib" -ErrorAction Stop
+    Remove-Item "$lib_path" -Recurse -Force -ErrorAction Stop
+    Write-Information "  $installed_file"
+  }
+  $formatted_bins = ($info["bins"] | ForEach-Object { '"' + $_ + '"' }) -join ","
+  $receipt = $receipt.Replace('"CARGO_DIST_BINS"', $formatted_bins)
+  $formatted_libs = ($info["libs"] | ForEach-Object { '"' + $_ + '"' }) -join ","
+  $receipt = $receipt.Replace('"CARGO_DIST_DYLIBS"', $formatted_libs)
+  $formatted_staticlibs = ($info["staticlibs"] | ForEach-Object { '"' + $_ + '"' }) -join ","
+  $receipt = $receipt.Replace('"CARGO_DIST_STATICLIBS"', $formatted_staticlibs)
+  # Also replace the aliases with the arch-specific one
+  $receipt = $receipt.Replace('"binary_aliases":{}', -join('"binary_aliases":',  $info['aliases_json']))
+  if ($NoModifyPath) {
+    $receipt = $receipt.Replace('"modify_path":true', '"modify_path":false')
+  }
+  # Write the install receipt
+  if ($install_updater) {
+    $null = New-Item -Path $receipt_home -ItemType "directory" -ErrorAction SilentlyContinue
+    # Trying to get Powershell 5.1 (not 6+, which is fake and lies) to write utf8 is a crime
+    # because "Out-File -Encoding utf8" actually still means utf8BOM, so we need to pull out
+    # .NET's APIs which actually do what you tell them (also apparently utf8NoBOM is the
+    # default in newer .NETs but I'd rather not rely on that at this point).
+    $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
+    [IO.File]::WriteAllLines("$receipt_home/uv-receipt.json", "$receipt", $Utf8NoBomEncoding)
+  }
+  # Respect the environment, but CLI takes precedence
+  if ($null -eq $NoModifyPath) {
+    $NoModifyPath = $env:INSTALLER_NO_MODIFY_PATH
+  }
+  Write-Information "everything's installed!"
+  if (-not $NoModifyPath) {
+    Add-Ci-Path $dest_dir
+    if (Add-Path $dest_dir) {
+        Write-Information ""
+        Write-Information "To add $dest_dir to your PATH, either restart your shell or run:"
+        Write-Information ""
+        Write-Information "    set Path=$dest_dir;%Path%   (cmd)"
+        Write-Information "    `$env:Path = `"$dest_dir;`$env:Path`"   (powershell)"
+    }
+  }
+}
+# Attempt to do CI-specific rituals to get the install-dir on PATH faster
+function Add-Ci-Path($OrigPathToAdd) {
+  # If GITHUB_PATH is present, then write install_dir to the file it refs.
+  # After each GitHub Action, the contents will be added to PATH.
+  # So if you put a curl | sh for this script in its own "run" step,
+  # the next step will have this dir on PATH.
+  #
+  # Note that GITHUB_PATH will not resolve any variables, so we in fact
+  # want to write the install dir and not an expression that evals to it
+  if (($gh_path = $env:GITHUB_PATH)) {
+    Write-Output "$OrigPathToAdd" | Out-File -FilePath "$gh_path" -Encoding utf8 -Append
+  }
+}
+# Try to permanently add the given path to the user-level
+# PATH via the registry
+#
+# Returns true if the registry was modified, otherwise returns false
+# (indicating it was already on PATH)
+#
+# This is a lightly modified version of this solution:
+# https://stackoverflow.com/questions/69236623/adding-path-permanently-to-windows-using-powershell-doesnt-appear-to-work/69239861#69239861
+function Add-Path($LiteralPath) {
+  Write-Verbose "Adding $LiteralPath to your user-level PATH"
+  $RegistryPath = 'registry::HKEY_CURRENT_USER\Environment'
+  # Note the use of the .GetValue() method to ensure that the *unexpanded* value is returned.
+  # If 'Path' is not an existing item in the registry, '' is returned.
+  $CurrentDirectories = (Get-Item -LiteralPath $RegistryPath).GetValue('Path', '', 'DoNotExpandEnvironmentNames') -split ';' -ne ''
+  if ($LiteralPath -in $CurrentDirectories) {
+    Write-Verbose "Install directory $LiteralPath already on PATH, all done!"
+    return $false
+  }
+  Write-Verbose "Actually mutating 'Path' Property"
+  # Add the new path to the front of the PATH.
+  # The ',' turns $LiteralPath into an array, which the array of
+  # $CurrentDirectories is then added to.
+  $NewPath = (,$LiteralPath + $CurrentDirectories) -join ';'
+  # Update the registry. Will create the property if it did not already exist.
+  # Note the use of ExpandString to create a registry property with a REG_EXPAND_SZ data type.
+  Set-ItemProperty -Type ExpandString -LiteralPath $RegistryPath Path $NewPath
+  # Broadcast WM_SETTINGCHANGE to get the Windows shell to reload the
+  # updated environment, via a dummy [Environment]::SetEnvironmentVariable() operation.
+  $DummyName = 'cargo-dist-' + [guid]::NewGuid().ToString()
+  [Environment]::SetEnvironmentVariable($DummyName, 'cargo-dist-dummy', 'User')
+  [Environment]::SetEnvironmentVariable($DummyName, [NullString]::value, 'User')
+  Write-Verbose "Successfully added $LiteralPath to your user-level PATH"
+  return $true
+}
+function Initialize-Environment() {
+  If (($PSVersionTable.PSVersion.Major) -lt 5) {
+    throw @"
+Error: PowerShell 5 or later is required to install $app_name.
+Upgrade PowerShell:
+    https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-windows-powershell
+"@
+  }
+  # show notification to change execution policy:
+  $allowedExecutionPolicy = @('Unrestricted', 'RemoteSigned', 'Bypass')
+  If ((Get-ExecutionPolicy).ToString() -notin $allowedExecutionPolicy) {
+    throw @"
+Error: PowerShell requires an execution policy in [$($allowedExecutionPolicy -join ", ")] to run $app_name. For example, to set the execution policy to 'RemoteSigned' please run:
+    Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+"@
+  }
+  # GitHub requires TLS 1.2
+  If ([System.Enum]::GetNames([System.Net.SecurityProtocolType]) -notcontains 'Tls12') {
+    throw @"
+Error: Installing $app_name requires at least .NET Framework 4.5
+Please download and install it first:
+    https://www.microsoft.com/net/download
+"@
+  }
+}
+function New-Temp-Dir() {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
+  $parent = [System.IO.Path]::GetTempPath()
+  [string] $name = [System.Guid]::NewGuid()
+  New-Item -ItemType Directory -Path (Join-Path $parent $name)
+}
+# PSScriptAnalyzer doesn't like how we use our params as globals, this calms it
+$Null = $ArtifactDownloadUrls, $NoModifyPath, $Help
+# Make Write-Information statements be visible
+$InformationPreference = "Continue"
+# The default interactive handler
+try {
+  Install-Binary "$Args"
+} catch {
+  Write-Information $_
+  exit 1
+}The Anthropic News & Blender Integration
+There's been major announcement
+and it changed everything
+or does it?
+I'm talking about Claude
+joining Blender and becoming
+a patron member or
+not.
+We're gonna figure it
+all out in this
+video and I also
+give you an ultimate
+setup of Claude Court
+working in Blender with
+all skills and MCP
+that you need to
+get on the next
+level.
+Bear with me because
+this time is for
+real.
+All right guys, super
+excited because we do
+have two news right
+away.
+The first news was
+that Antropic joins the
+Blender development fund as
+a corporate patron, but
+there was a lot
+of noise in the
+community and many people
+was not happy including
+biggest contributors.
+So we do have
+next news where Blender
+team actually apologized for
+not making this decision
+after talking with some
+biggest contributors.
+So it's sort of
+like a rollback to
+just single donation.
+However, Claude still released
+official connectors, same as
+Blender also released official
+MCP.
+So we do have
+it working now very
+easy, like never before.
+And I'm going to
+show you how to
+install it and how
+to max it out
+and combine with another
+skills and MCPs.
+And I'm really impressed
+by the results so
+ Step 1: Installing Blender MCP & Claude Code
+far.
+Okay, so for this
+to work, we're going
+to need Blender 5
+.1, which is the
+latest one.
+I got it installed.
+The next thing we're
+going to need to
+do this time, official,
+not a community for
+Blender MCP, all the
+links in the description
+and even more.
+The easiest way to
+do that is to
+basically take this thing
+and drag and drop
+it to Blender like
+this.
+Okay.
+And it will basically
+be installed.
+Then you either restart
+the Blender or you
+can go edit preferences,
+add-ons and find
+the MCP.
+And you must make
+sure it is actually
+running.
+It is always set
+to auto start.
+So anytime you open
+Blender, it starts very
+easy.
+The next step, we're
+going to need Claude
+code.
+We're going to go
+press plus connectors, manage
+connectors or add connector.
+And here we're going
+to search for Blender,
+press it and press
+install.
+I already have it
+is just one click.
+Make sure to completely
+restart Claude after you
+do that to make
+it work.
+And now we already
+can test it out.
+I want to clean
+up my scene in
+Blender.
+Okay.
+It actually takes this
+task very serious, which
+is great.
+And it will use
+my open Blender.
+Just remove all objects
+in the scene.
+That's enough.
+All right.
+And my scene is
+indeed clean.
+That was the bare
+minimum.
+But even with this
+setup, there are plenty
+of use cases.
+You can actually use
+Claude to guide you
+to Blender, help you
+to optimize scene, write
+scripts in many more.
+ Step 2: Connecting fal.ai (Patina PBR)
+Now, before I show
+you more use cases,
+we're going to need
+to install two more
+things.
+We're going to install
+all AI MCP to
+get access to all
+possible image and 3D
+generation models.
+That's quite simple.
+Link in the description.
+This is official for
+AI MCP.
+In Claude code, you
+can basically install it
+in one line.
+You just need to
+get your full AI
+API key, which I
+already have and put
+it here.
+Or if you're using
+Claude desktop, which I
+do right now, you're
+going to need to
+take this command and
+do the following.
+We're going to go
+to settings, developer and
+go edit config.
+So here there is
+a JSON file that
+we can open with
+notepad.
+And here is what
+you see.
+There is MCP server
+in commas.
+Here I already have
+one server and here's
+my full AI server.
+I'm going to share
+this exact code by
+link in the description.
+It's basically a definition
+of MCP server.
+And also here you
+specify your API key,
+which you go from
+full AI here in
+API keys.
+Now, if you never
+heard about full AI,
+this is very, very
+popular.
+One of the best
+aggregator of all APIs
+possible.
+It's really built around
+APIs, not about a
+website.
+And you can get
+access to any frontier
+models almost in the
+day of release.
+Now, when you add
+it to the config,
+save it and restart
+your Claude.
+Now, if you did
+everything right by pressing
+plus go to connectors,
+you might see full
+AI in Blender.
+That's exactly what we
+need.
+And right away, I
+got to show you
+one cool use case.
+So recently full, they
+released this patina AI
+model that generates amazing
+PBR models.
+So how about I
+ask Claude to create
+a scene and generate
+materials with patina using
+full AI API and
+combine them all in
+Blender?
+Will that be possible?
+Let's check it out.
+So here's the prompt.
+We're going to ask
+to build simple scene
+with four services, reminding
+a room and use
+full AI patina to
+build up the materials.
+Realistic.
+Let's run it.
+Okay.
+So here's the results.
+All the materials are
+here.
+Look how good the
+materials.
+I mean, this patina
+is insane.
+Like, look, you can
+see the PBR materials.
+Those were generated again.
+Like you can just
+tell, like, I need
+that texture.
+Wallpaper is also very
+nice.
+Again, this patina model,
+crazy.
+I'm even considering like
+a dedicated video, like
+would look at this
+wood texture.
+All materials are connected
+nicely.
+And here we have
+a brick texture, right?
+Here's the thing.
+Like if we go
+to shading, we can
+see this material connected
+extremely nice.
+And that was actually
+created in one go
+in like few minutes,
+all with me without
+touching this thing.
+How can be that
+useful?
+Well, you can create
+materials, 3d models, images,
+everything, and put them
+together.
+Like, well, talking to
+the cloud.
+How cool is that?
+Let's scale it even
+ Step 3: Adding 3D AI Studio (Tripo P1)
+further.
+Now, let me talk
+about skills that you
+can also combine in
+the description.
+I prepared a list
+of really great skills
+that you can use
+on demand, such as
+Blender, 2kit, some skills
+per provider like Chipo
+or Rodian.
+And one skill that
+I particularly like to
+use is 3D AI
+studio skill.
+And they do have
+an amazing API, combining
+them all together, such
+as again, Hunion, Trellis
+2, Chipo P1, every
+model basically, which I
+use 3D AI studio
+has.
+And also thanks a
+lot 3D AI studio
+to sponsoring today's video.
+This is my oldest
+recommendation, a platform where
+you can have all
+things in one place,
+all top image models,
+insane amount of tools
+for 3D artists, like
+different AI saturates, apology,
+texturing and stuff.
+And now also API.
+But link and promo
+code will be in
+the description.
+Now you can choose
+skill of your choice.
+I'm going to show
+it on this example.
+So if you use
+cloud code, it's very
+easy.
+Just drop this link
+to a cloud code
+and it will figure
+it out.
+If you're not, we're
+going to download this
+folder and make an
+archive like this.
+And here's what we
+need to put inside.
+Basically everything is same,
+but we're going to
+need to create dot
+N file.
+And that, that N
+file must be as
+example here, 3D AI
+studio API key equal,
+and you paste your
+key here.
+Basically that's only one
+line that must be
+in that file.
+Now drop it as
+an archive, like you
+can see here with
+skill.md in the
+root.
+The rest is quite
+simple.
+We're going to go
+to settings and go
+to capabilities, go to
+skills and press here
+in the customize since
+they are moved.
+And here we press
+plus create skill, upload
+skill, and just choose
+your zip archive here.
+And it will be
+installed.
+I already have it
+installed.
+So I'm going to
+cancel that again.
+Every time you install
+new skill, don't forget
+to restart your cloud
+completely.
+Now let me show
+you how it works.
+Now in skills, you
+must have this 3D
+AI studio API skill
+available.
+And if you put
+the API key there
+in ends, it's going
+to work.
+Let's test it out.
+I have a prompt
+to create three objects,
+create them with triple
+P1 with PBR on
+and stuff.
+Let's see if it's
+possible without going to
+3D AI studio or
+anywhere else.
+Here is the prompt.
+Here are my images.
+Let's give it a
+try.
+And here we have
+the results.
+Okay.
+All three models here
+actually generated in triple
+P1.
+Okay.
+I generated the body,
+the head.
+Okay.
+The position is a
+little bit off, but
+that's totally fine.
+How good is that?
+Amazing.
+And there might be
+even more use cases.
+ Use Case 1: Auto-Baking Normal & AO Maps
+Here's one more really
+practical example.
+Here's the character that
+I show how to
+create in my 3D
+course, which I just
+recently launched.
+And let's say we
+do have high poly
+and low poly.
+And how about I
+ask Claude to actually
+bake it while I
+go to take sip
+of coffee.
+And I want to
+bake it like normal
+and ambient occlusion map
+and connect it to
+the shader.
+Here's the prompt.
+Here's the scene.
+Let's try it out.
+Oh, and by the
+way, if you don't
+know how to make
+prompts like that, well,
+actually Claude can help
+you to make the
+prompts as well.
+And okay.
+So it's done.
+And here we have
+the results.
+We have ambient map
+connected and we have
+normal map.
+And I already can
+tell it's actually very
+nice.
+So here's the normal
+map.
+So let's turn off
+the high poly and
+here we go.
+Look, it's actually very
+nice.
+Well, it did exactly
+the same job.
+Imagine I can ask
+it to do it
+for all the object.
+Wow.
+How cool is that?
+I just prepared this
+scene and say, okay,
+now do all the
+bakings.
+It can bake another
+map.
+It can explain the
+maps.
+Again, if you are
+lost, they can analyze
+your scene and help
+you some stuff.
+I am actually so
+freaking excited.
+And just come up
+with some use cases
+and it's not that
+useful.
+Now I'm going to
+show you the case
+I use in my
+real job.
+ Use Case 2: Generating Geometry Nodes
+It is related to
+geometry.
+So geometry nodes are
+very powerful.
+I use it for
+animation, procedural scene configurations,
+many things for physics
+simulations.
+Here's one simple example
+that can be done
+in one prompt, but
+imagine what you can
+do in view prompts.
+So here's the idea.
+I do have four
+plants here prepared, just
+random plants.
+And I do have
+a terrain.
+So instead of like
+going to all terrain
+and place them randomly
+and making sure they
+are not colliding with
+other objects, here's the
+prompt.
+I just asking like
+to create a geometry
+node where I can
+control density and stuff
+and distribute all these
+plants across the terrain.
+So let's give it
+a try.
+Now, while we're waiting
+ My 3D AI Course
+for clothes to create
+geometry nodes for me,
+let me remind you
+guys that I recently
+launched my full 2D
+AI course, how to
+create game ready characters
+link in the description.
+This is most complete
+in up to date
+course with group consultations,
+homeworks, and mentors.
+I give you complete
+knowledge about AI tools
+in bar minimum of
+3D skills to achieve
+your goals and build
+your dream games.
+All right, so here
+we go.
+Actually, we have too
+much plants, but if
+I'm not mistaken, we
+can actually control density,
+right?
+Exactly as I wanted.
+So I can control
+density and here are
+my plants.
+How cool is that?
+Wow.
+Wow.
+Wow.
+You saw everything.
+Here's how it's done,
+right?
+So basically now on
+the terrain, I do
+have this modifier.
+I can disable it.
+I can disable my
+plants right now, my
+basic plans, and here's
+how it works.
+Or you of course
+can do geometry notes
+like this, but look,
+it created this bunch
+of geometry nodes to
+give me this parameters.
+So I can do
+that in just five
+minutes, guys.
+That's what I really
+use.
+This is extremely helpful,
+but also not only
+to build, but sometimes
+I use Claude to
+explain me what the
+hell is happening with
+someone else geometry notes,
+because they can be
+quite insane.
+And I really want
+to know in the
+comments, what use case
+you can come up
+with.
+ Use Case 3: Procedural Animation
+One more example with
+the animation, again, with
+object animation and stuff.
+Super cool.
+Here's the input.
+I do have a
+keyboard.
+I do have a
+body and I do
+have a keys.
+It's quite good prepared
+geometry.
+So each key is
+going to ask you
+to separate each key
+and then do animation
+like true.
+Like it's go from
+the top and like
+a wave combining.
+Here's the prompts.
+Let's give it a
+go.
+Also for beginner artists,
+it can be cool
+to check the way
+it does things.
+It not necessarily does
+it right, but it
+can give you some
+ideas what's possible.
+So let's say here
+it's split geometry by
+loose geometry.
+And you can see
+the keys are split.
+Imagine doing that manually
+and say, now we
+have 66 separate keys.
+Okay.
+So I guess now
+we're going to do
+the animation.
+Okay.
+So how about we
+do review the results
+and that looks sick,
+right?
+I even see this
+like small bounce animation
+after they dropped.
+Okay.
+So this is like
+a pre-render.
+It is not a
+real render.
+It's like viewport, but
+it looks amazing, right?
+So how long it
+will take you to
+do this animation.
+Okay.
+And can you imagine
+this was done in
+one prompt?
+This is extremely great
+assistant tool.
+I do have more
+ Use Case 4: Custom Shaders & Outlines
+cool examples.
+So here is my
+scene with the car
+and here you can
+see the body.
+Body is just white,
+whatever metal or something.
+How about we make
+it really cool pearl
+chameleon paints, right?
+I saw that in
+some need for speed
+series.
+Let's shoot.
+This should be simple,
+right?
+So we're going to
+ask to create a
+procedural shader.
+Okay.
+Dang, look at this.
+Wow.
+All right.
+So yeah, this is
+indeed purple chameleon, something
+like that.
+So what if we
+check a shader?
+Okay.
+So quite simple shaders
+though, right?
+It's a color ramp
+layer weights.
+Okay.
+What looks quite cool,
+right?
+So again, that was
+just like one simple
+prompt.
+I also tested it
+on this scene where
+I do have my
+character that later I
+ask it to create
+a toon shader and
+here's the result in
+one prompts quite good.
+Actually what it did
+is he created the
+modifier called outline.
+So I can control
+the outline like that.
+And also the shader,
+basically that's a quite
+simple shader, but it
+looks like toon shader,
+right?
+ Use Case 5: Automating Game-Ready LODs
+So quite interesting actually,
+or some automations for
+game developers where you
+need to export some
+stuff in a batch.
+Here's one cool example
+from my team.
+So we can ask
+to create LODs right
+away, like decimating both
+texture and mesh.
+So to go and
+decimate mesh, it's very
+easy, but like go
+to extract textures for
+each LOD, right?

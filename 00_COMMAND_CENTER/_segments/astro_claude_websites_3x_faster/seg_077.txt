@@ -1,0 +1,224 @@
+go to new agent, give it a 0:46 name. I'm just going to call it my 0:49 Slacky Slackbot. I'm giving it a random 0:52 name. I would encourage you to give it a 0:53 name that would
+make sense to the task 0:55 this agent is performing. So just to 0:57 practice healthy naming convention. So 0:58 we start from scratch and we're going to 1:00 see this interface
+right here. So this 1:02 interface is going to have a list of all 1:03 our previous chats with an agent. Any 1:05 previous tasks this agent has performed. 1:07 So we can go back
+always to see what is 1:09 happening within the agent. But to build 1:10 one, we're going to go here to run 1:12 behavior. And if we don't have one, Creating Behavior 1:13 we're
+going to create the behavior. So 1:15 essentially this is a place where we 1:17 teach or instruct our agent on what it 1:19 needs to do. Essentially, when we're 1:21 building this
+agent, we're going to give 1:23 instructions on what this agent has to 1:25 do and we're going to connect our tools 1:26 this agent can talk to to make the magic 1:29 happen. So,
+first step here is to offer 1:31 is to start a trigger. So, either we can 1:33 pick any app or any trigger for within 1:35 those applications or we can do on 1:37 demand. So, we we
+go to this AI agent 1:40 like hey now do this thing. So, for this 1:41 R agent we're going to use Slack as our 1:44 application and our trigger action is 1:47 going to be reaction.
+So essentially 1:48 what we're doing here is that so when we 1:50 have a long Slack thread which we have 1:52 no idea what's going on it's just super 1:54 complicated and hard to
+follow. We're 1:55 going to react to the Slack thread. Now 1:57 AI agent will automatically summarize 1:59 what's happening in the Slack thread and 2:01 send us an email with the
+action items 2:03 and the things we need to know about for 2:04 the Slack thread. It's a simple agent 2:06 but the principles are the same. We just 2:08 have to connect the apps
+and define the 2:09 behavior. So, we're going to keep this 2:10 simple in the video, but you can go nuts 2:12 like, you know, connect a whole bunch of 2:13 different apps, define
+the behavior, 2:15 what you want AI agent to do, and you 2:16 can test and see if the agent is 2:17 actually doing the work or not. So, for 2:19 this tutorial, how my Slack account
+is 2:21 connected. So, I'm just going to save 2:22 this as my trigger. Now, my 2:24 instructions. So, I'm going to say here Setting Instructions 2:26 is when I react to the Slack
+thread, 2:30 please 2:32 summarize all the important info I need 2:35 to know and any action items from the 2:40 Slack thread. Send me an email with the 2:43 summary. All right.
+So, now these are 2:45 instructions, but right now it doesn't 2:47 know what Slack thread is, like you 2:49 know, what information is or how to send 2:51 me an email. So, here
+we're going to go 2:52 here and insert the tools. There's like Tool Integration 2:54 over 8,000 apps you can choose from. So 2:56 first we're going to pick Slack. We're 2:58 going
+to find here Slack tools which is 3:00 going to be like just going to search 3:02 for thread. We have retrieve thread 3:04 messages. So now I'm just going to like 3:06 keep it over
+here. And now back down 3:08 here I'm going to go again or you can do 3:10 for slash. I'm going to do tools. I'm 3:13 going to go mail or 3:15 Gmail and send email. Perfect. But
+again 3:20 right now it doesn't know like we know 3:22 which slack thread to configure or like 3:24 whom to send the message to. So we have 3:26 to configure these tools by just
+3:27 clicking on the settings icon over here. 3:29 So the difference between like an AI 3:31 agent and a automation is that a agent 3:33 is like doing a lot more thinking by 3:34
+itself compared to an AI automation. In 3:36 an AI automation workflow, we would 3:38 define what channel we need to go, what 3:40 sort of time stamp the message should be 3:42 and
+all that stuff. Here we can 3:43 essentially like let AI sort of like 3:45 come up with those values automatically 3:48 on the fly. So under channel we have 3:50 three drop downs
+here. One is that let 3:52 your agent select a value for this 3:53 field. Let your agent select a value 3:55 from one of these choices or set a 3:57 specific value for this field.
+So 3:58 depending on depending on your workflow 4:00 maybe you want only certain channels you 4:02 want this agent to work on or you want 4:04 only specific channel you want this
+4:05 agent to work on. So you can pick the 4:07 second or the third option. But for our 4:09 scenario for this little test here, 4:10 we're just going to let it select any 4:11
+value for the field. And likewise for 4:13 the thread time stamp as well, we're 4:15 just going to let agent select the value 4:16 for us. That one's set. Now we go here. 4:19 So
+send me a summary with the email. Email Setup 4:21 We're going to go here and again my 4:22 email account is connected here. It 4:24 doesn't know whom to send it to. I don't 4:26
+want AI to decide whom the email should 4:28 go to because this is a very specific 4:30 agent for myself. So I'm just going to 4:32 add a specific value which is just going 4:34 to
+be my email. So in this scenario, I 4:37 wanted AI to have a very specific value 4:39 and I've just added that here. And then 4:41 for in terms of the subject line and all 4:43
+that other stuff, I'm just going to let 4:45 AI agent generate the value. body. I'm 4:47 going to let air generate the value and 4:49 all that stuff. All right, our agent is 4:51
+pretty much built. How easy was that? 4:53 All right, so let's save it and see if 4:55 it actually works. So I've already Testing 4:57 reacted to a few me few Slack threads 4:59
+before. So if we test the behavior, 5:01 let's see if it's able to pull that 5:04 information automatically. All right, so 5:06 trigger uh Slack reaction added. So if 5:09 we go
+here, it's retrieving all this 5:12 information automatically from our Slack 5:14 account which is connected. Now it's 5:16 preparing a summary of the Slack thread 5:19 and we'll
+send it to my email shortly. 5:22 Cool. Now here I have this email to 5:24 myself. It's already giving me a 5:26 preview. This is the body. This is the 5:28 summary. These are the
+action items 5:30 which seems correct based on the Slack 5:31 thread that I actually reacted to. And 5:33 if I say approve, it's going to just run 5:36 the action. Okay, we go down
+here. We 5:38 see it's being sent to me. And this is 5:40 like the the body type, the subject 5:42 line, and then we have the output. And 5:44 once you're done, you just turn off
+the 5:46 behavior. My Slacky Slack bot Live Demo 5:48 summarizer. Okay, so now once our test 5:50 is done, uh, we just turn it on to make 5:53 sure it's working. All right, so it's
+5:55 published. It's live. Let's do a test. 5:58 So I just went to the Slack thread and 5:59 did a little reaction to the Slack 6:01 thread with about 16 replies. Let's see 6:03 if
+our agent actually does it thing. All 6:05 right, here. So now on our dashboard for 6:08 our Slack, our Slicky Slack bot, we see 6:10 a new chat is being triggered. So this 6:12 is
+where we can see all the runs like 6:13 every time this AI agent is running 6:16 something. Based on the time stamp we 6:17 can see that it got a new reaction 6:19 added. So and
+this was the eyes. So this 6:22 looks correct. And now we have our Slack 6:24 preparing the summary of the Slack 6:26 message which is going to email it to me 6:28 shortly. So here
+we have action complete 6:30 Gmail sent. Hi Kashank. Here's a summary 6:33 of what's being discussed. Here's the 6:35 body. Here's a subject line and all 6:38 done. And I've
+summarized important 6:39 information and action from the Slack 6:41 thread and send it to your email which 6:43 looks to be correct. So everything's 6:45 looking correct here. All
+right. And now 6:46 if I go into my inbox, I get to see the 6:49 exact same email in my inbox. Perfect. 6:51 Our AI agent is working. How simple is 6:53 that? So just to summarize,
+we're using Summary 6:56 Zapier to build our AI agents. We're 6:58 connecting the tools and the behaviors 7:00 AI agent can do and then we're just 7:02 giving instructions on what
+to do based 7:04 on a trigger scenario. Now AI is talking 7:05 to our tools. It's doing its thinking 7:07 and making our life easier. Thanks to 7:09 Zap here for sponsoring the
+video and Next Steps 7:11 now you've seen how easy it is to build 7:12 an agent. I would say go do this right 7:14 now. Like if you don't do it right now, 7:16 you're going to
+forget about it and 7:17 you're not going to learn the skill. And 7:18 I want you to be accountable. So let me 7:20 throw a sweet offer here. If you go 7:22 right now, build in
+your agent and leave 7:25 a comment what agent you built, how it 7:27 changed your life, you will get one 7:29 month free plan on Promp Genie. How 7:30 about that? Anyway, if the
+video was 7:32 useful, give a thumbs up, share it with 7:34 a friend who should learn how to build 7:36 an AI agent without coding. And if 7:37 you're new here, subscribe to the
+7:39 channel so you can keep learning for 7:40 free. I'll see you next time. All From the seriesIntroduction to Zapier 0:00 Do you ever feel like you're drowning in repetitive
+tasks? You copy data 0:05 from one app over to another. Wouldn't it be nice to automate 0:09 all of those time-consuming chores? In this video, we'll learn how to use 0:15 an
+automation tool called Zapier. Zapier is the ultimate tool that connects over 7,000 of your 0:22 favorite apps, even if they weren't designed to talk with each other. And it makes
+automation dead 0:28 simple with no coding, and now it even comes with AI. I partnered with Zapier to show you how we can 0:36 create a very basic Zap with the help of AI. At the
+Kevin Cookie Company, we receive user feedback 0:43 and I have to manually respond to all of that feedback. We'll use Zapier to read the feedback 0:50 and then respond via email to
+that feedback and it'll do it all automatically without needing to 0:56 involve me. This will help me save so much time every single week and I'm sure you can too. Let's Sign Up
+for a Free Zapier Account 1:03 dive in. First off, head to the following website. You can click on the card in the top right-hand 1:08 corner, and I've also included a link in the
+description below. It's completely free to set 1:13 up a Zapier account, which gives you much of the core functionality. For even more features, Zapier 1:20 offers a number of
+premium plans. Click on sign up. When you finish signing up and also signing Navigate the Zapier Dashboard 1:26 in, you'll land here on the main Zapier dashboard. Right at the very
+top, you can prompt the AI to 1:32 automate something for you. You just describe what you need and then Zapier will generate a workflow 1:38 suggestion. It works really fast and
+we'll do this in a moment. If we look down just a little bit, 1:44 we also have the option to start from scratch. This gives you full control to build a custom, 1:50 what's called
+Zap, tailored specifically to your needs. You also have a few other options, 1:56 like you could set up a table, an interface, a chat bot, or a canvas. In this video, 2:01 we're
+focusing on automated workflows or zaps. If we scroll down a little bit more, the homepage 2:08 also makes it really easy to get back to any recent projects. For example, you could
+jump back 2:12 to Zaps or tables or canvases all right here. And if we go down to the very bottom, we can also see 2:18 some of the popular templates. Let's have a quick look at
+some of the things that you can do with 2:22 Zapier by clicking on browse all templates. Here we are on the templates page and this gives you a Browse Popular Templates for
+Inspiration 2:28 really good sense for all of the different types of apps that you can connect to using Zapier. As 2:33 an example, here at the top, we see one of the most popular
+integrations. Let's say that you're 2:38 running an ad on Facebook and you get a new lead, and maybe you'd like to take all of the lead’s 2:43 details and bring them over to Google
+Sheets. Now, these two apps don't natively talk to one another. 2:50 However, with Zapier, you can make a connection between these two apps and you can connect all 2:55 sorts of
+different apps. Here we see Gmail. If I scroll down, you have things like Stripe, 3:00 Calendly, Slack, Instagram. Here we have YouTube and Discord and the list goes on and on. In
+fact, 3:06 they support over 7,000 different connections between apps. So, chances are if you want to 3:11 connect different apps together, you'll be able to do it. If you find a
+workflow that meets your 3:16 needs, you simply click on it, make a few tweaks, and then you've automated one of your tasks. It's 3:22 really a perfect way to start automating
+without feeling overwhelmed. However, I'd like to set 3:27 up a workflow using AI, so let's go back to the homepage by clicking on back. At the Kevin Cookie Start a New Zap with AI
+Assistance 3:32 Company, we love hearing from customers, which is why we have a customer feedback form hosted in 3:38 Google Forms. The customer can type in their name, their email
+address, if they want to hear back 3:43 from us, and then at the very bottom, they can send us their feedback. Then in Gmail, I compose a 3:49 personalized response to the
+customer, and as you can imagine, this takes up quite a bit of time. 3:54 Back here in the Zapier homepage, I'd like to see if I could automate that workflow by connecting 3:59
+Google Forms together with Gmail. So, what's the best way to do that? Right up here on the top, 4:05 we have this text field where we can prompt the Zapier AI to help us with this
+workflow. So here 4:11 I'll type in my prompt, just use natural language. When someone submits a response in Google Forms, 4:17 send them a thank you email via Gmail, and over
+here, let's send that to the AI. Right down below, 4:23 the AI proposes a new Zap or a workflow automation. Let's take a quick look. Right here, 4:29 it looks like step one, a new
+form response is submitted via Google Forms. And then step 4:35 two is to send an email via Gmail. Now, this is just a really simple example, but you could also 4:40 use more
+complex prompts up above. Now, I think this all looks good, so over here, let's click on 4:47 try it. This now drops us into a canvas where we can continue building and also
+refining our Zap. 4:54 Right here in the center, you'll see a visual of the current workflow. So right up on top, 4:59 we have step number one, someone submits a new form response.
+This is also referred to as the 5:07 trigger. This is what triggers this Zap when someone submits a new form. Then we have step 5:13 number two, and this is referred to as the
+action. So once someone submits a new form, 5:19 we take some type of action, and in this case, we're sending a new email message. If we look Configure the Trigger: Google Forms
+Submission 5:24 right up above at the trigger, you'll notice that there's this yellow exclamation mark. I'll click 5:30 on this. We need to provide Zapier with a little bit of
+additional information for this Zap to be 5:35 able to work. When I click on the trigger, over on the right-hand side, here too, we also see the 5:40 yellow exclamation mark under
+configure. So right down here, we have to tell Zapier what Google Form 5:46 we want to use. So here I could click on this dropdown and it'll look at my Google account and 5:51 find
+all the different forms that I have. Here, I have one called customer feedback and that's the 5:56 form I would like to use. So, I'll select that and over here, let's click on
+continue. On this 6:01 next screen, we need to test it to ensure that it's working properly. So down here, 6:06 let's click on test trigger. Zapier found three different form
+responses. Let's click into form 6:11 response B and here I can see all of the data that Zapier gets back from Google Forms. Right 6:17 over here, I can see the customer email
+address. I can see their feedback. Tasty cookies, bruh. 6:22 That's the feedback we like to hear. And I could also see the customer's name. That looks good, 6:27 so let's continue
+with the selected record. On the main canvas next to Google Forms, you'll now 6:32 see that there's a green check mark, meaning that we've configured Google Forms successfully.
+Down 6:37 below, you'll notice that there's now a yellow exclamation mark next to Gmail. We haven't yet 6:41 configured that. If you run into issues with any one of these steps,
+over on the left-hand side, 6:46 we have the Copilot or the AI, and this will assist you with setting up your Zap. So, feel 6:52 free to type in a prompt down below and it can help
+you. Now, right here, I see that I still need Configure the Action: Send an Email via Gmail 6:56 to configure Gmail. So, with this step selected, over on the right-hand side, make
+sure that you're 7:02 in the configure view. Down below, we need to fill in some of these details. For example, who 7:07 are we sending this email to? Where is it coming from?
+What's the subject? What's the body? Now, 7:13 one thing you might've noticed is every time someone submits a form, we'd like to send it to 7:18 the person who submitted the form.
+So, the email address is going to vary every single time. So, 7:24 if I click in here, I don't want to just type in a fixed value. I need it to be based on the form 7:29
+submission. When I click into the to field, over on the right-hand side, you'll see this helpful 7:34 hint that says forward slash for field mapping. Let's press the forward slash
+key. This opens up 7:41 a screen over on the left-hand side that allows us to insert dynamic values that will change 7:46 with every single submission. Right at the top, we have
+some of the AI Copilot suggestions, and 7:52 down below, we can see all the different data that we get back from the Google Form. Now, of course I 7:57 want to send this to the
+person who submitted the form and right up here under Copilot suggestions, 8:03 we can see one of the Google Form questions, which is what is your email address, and then 8:08 we
+see the value of the email address. I'd like to respond to that email address. So, I'll click 8:14 on this. Then we could close out of this, and here we see that the email will be
+sent to the 8:19 person who submitted the form. The beautiful thing here is Zapier will use whatever email address is 8:24 included on the form, and then it'll use this email
+address and send the email there. Next, 8:30 let's go down to the from field, and I would like this to come from my email address. Over here, 8:35 I'll select my email address and
+that fills it in. Let's now scroll down a little bit more. And 8:40 right here, I need to enter in the subject. I'm going to keep this simple. I'll type in thanks for 8:44 your
+feedback. Then let's look down at the body. I'd like to type in a personalized message. So, 8:50 let's start by saying hi, and here I'd like to insert the person's name. So, this
+is another 8:55 dynamic value. Now, if you remember from earlier, we entered in the forward slash key to expose 9:00 all of the different dynamic values. And when I enter in the
+forward slash, here I see all of the 9:05 different suggestions again. So, I'd like to refer to their name, and here I see in the Google Form, 9:10 we collect the customer's name.
+So here I'll select this and there it's inserted 9:15 that dynamic value. Then I'll insert a comma and let me type in something like we appreciate your 9:20 feedback. Now that I've
+entered that and maybe it makes sense to actually show what their feedback 9:25 was. So here too, I could also insert another dynamic value. Here I see everything that I get 9:30
+back from Google Forms, and right up on top, we have the option that says what's your feedback, 9:34 and then we see what the feedback was. I'll click on this and that again
+inserts another dynamic 9:40 value. Let's close out of this by clicking on the X. I think all of this now looks good, 9:44 so in the bottom right-hand corner, let's click on
+continue. On the last step, I can preview all the 9:49 data that will be included in the email. So here I see the to field, the from field, the subject and 9:55 the body, including
+all of those dynamic values filled in. This all looks good, so down here, Test and Publish Zap 10:00 I'll click on test step. Here in my inbox, I now received an email and it
+filled in all of those 10:05 different dynamic values. Back in Zapier, now that we confirmed that it worked successfully, 10:10 in the bottom right-hand corner, let's click on
+publish. This now opens up a prompt and it tells 10:15 us that the Zap is on. Congratulations. You've created your very first Zap. Over here, we have a 10:21 few different options.
+We can run the Zap against all the previous submissions on Google Forms, 10:26 or we could simply run it on new data coming in. I'm fine running it just on new data coming in. So
+10:32 over here, I'll click on go to my Zaps and now you could go to Google Forms, submit an entry, 10:37 and you'll see an email automatically go out. I'll click on go to my Zaps.
+Over on the left-hand 10:41 side, we're now in a view that shows us all of the different Zaps that we've created, and right here, 10:46 we can see that new Zap. And right here, we
+can see that it's currently turned on. This is a super 10:52 simple automation, but hopefully it shows you how powerful Zapier can be. In just a few clicks, 10:58 we set up a
+workflow that runs automatically in the background. That way you'll save time and 11:04 effort every single day. Of course, this is just the beginning. The Zap that we set up is
+pretty Extract First Names with Zapier Formatter 11:10 basic. It doesn't really send out personalized messages, which is what I had been doing. So, 11:16 let's see if we could take
+this Zap to the next level. To edit one of your Zaps, 11:20 simply hover over the name and then click on it. This opens up the canvas with my Zap. To edit it, 11:26 in the top
+right-hand corner, let's click on edit Zap. When I sent that email to the customer, I 11:31 used their full name. I said, hi Calvin Biggs, but instead I think it would be a little
+nicer to just 11:37 refer to them by their first name. So, let's see if we can add another step to change that. Right 11:43 over here, I can click on this plus icon to add another
+step. This opens up a prompt where we can 11:47 see all the different apps that we could add into our workflow. Right up on top, you can also search 11:53 across the 7,000 plus
+apps and tools. Now, I would like to take that name, but I only want to use a 11:59 portion of it and Zapier offers a tool called the formatter. Now what's really neat about this
+12:04 tool is it helps you manipulate, format, and also transform data between different apps in your Zaps 12:11 or your automated workflows. It's kind of like a bridge to make
+sure that the data fits the correct 12:16 format. So right over here, let's click on the formatter. Just like we did with Google Forms and 12:20 Gmail, we need to configure the
+formatter. Over on the right-hand side, first off, we have to choose 12:26 the action event. I'm working with text, so right here, let's select text and down below, let's 12:32
+click on continue. Now that we've told it that we're working with text, we need to tell it how we 12:36 want it to change the text or transform the text. I'll click on this
+dropdown and here we have all 12:43 sorts of different options. For example, you could capitalize text. Right over here, if we go down a 12:47 little bit more, you could trim the
+white space and let's continue going down to see if we could 12:52 find an option for splitting text. Right here, we have an option to split. I'll select that. Next, 12:58 we need
+to tell it what we would like to split. So over here, we can tell it what the input is. I'll 13:03 click on this and we want to split some text from the Google Form. So, let's
+enter in the forward 13:09 slash and this opens up all the different fields from the Google Form. And if we look right here, 13:14 let's see if we could find the user's name. If I
+go down just a little bit, here we see what's your 13:19 name. I want to split this. So, let's select that. Right up on top. Let's close out of that view. In 13:24 the next field,
+I can define what the separator is. Is it a character? Is it a word? In my case, 13:31 I have a space between the first name and the last name. So, I want to separate based on a
+space. 13:37 Now, if I click on separator, I get some helpful information. Here, it tells me that the default 13:42 is a space, so I don't have to do anything. I'll simply leave it
+like this and it'll separate on 13:46 a space. Down below, let's click on continue. On this next screen, here I can see the input is the 13:52 name and let's test it to see if it
+successfully splits it. Right up above, I can see the output. 13:57 It looks like it just gives me the first name Calvin. That's great. In the bottom right, 14:01 let's click on
+continue. Now that we've separated out the first name using the formatter, we can now 14:06 use that first name in the email message. So here on the Gmail step, let's go back to
+configure. In 14:13 configure, let's go down to the body. So right here, I say hi, and then currently I'm including 14:19 the full name, but I just want the first name. So over
+here, I'll delete that. Then let's enter 14:24 in the forward slash, and here I see all the different dynamic values and right down at the 14:29 bottom, here I see a value that I
+get back from the formatter. I'll click on this and here we 14:34 see the output with just the first name. I'll select this. Let's close out of this. And now 14:39 when we look at
+the email message, it'll say hi, and then it'll just include the first name. That's 14:44 exactly what I want. This is a little bit more personal, but let's actually see if we
+could take Use AI to Generate Automated Email Responses 14:48 this to the next level by using AI to respond to the feedback. Right over here on the canvas, 14:54 let's again add
+another step, click on this plus icon. And over on the right-hand side, 14:59 we have all the different popular built in tools. And at the very top, we have an option called 15:03
+AI by Zapier. Let's click on this one. Over on the right-hand side, let's now configure it by 15:08 clicking on initiate prompt assistant. Over on the left-hand side, let's
+describe the desired action. 15:15 I'd like to read the customer feedback and then respond via email to the feedback. I'd like to 15:20 address the customer by their first name and
+then include my response. Let's now have AI generate 15:24 a prompt. It now generates a prompt over on the right-hand side. Let's have a quick look. You are 15:31 a master of
+customer service and you were asked to respond to customer feedback. And here it wants to 15:37 reference the customer feedback, but we need to tell it where to look for that
+feedback. Over on 15:43 the left-hand side, we have different input fields and here there's one for customer feedback. So, 15:48 let's click into this and then press the forward
+slash for all those different dynamic values. 15:52 Let's now scroll down, and right here we see what's your feedback along with the feedback. 15:58 I'll click on this. Now, if we
+look over at the prompt, it'll feed in the actual customer feedback 16:03 directly from that Google Form. Next, it also says address the customer by their first name, 16:09 but it
+needs to know what the customer's first name is. So, let's scroll over back to the input 16:13 fields, and here we see one for customer first name. Let's enter in the forward
+slash. And here 16:18 we see all those different dynamic values, but remember we don't have the first name directly 16:23 on the Google Form. We set up that additional step using
+the formatter and that splits out the first 16:29 name from the last name, so let's use the output from that. I'll click on this and here we see the 16:34 output with just the
+first name. I'll select that and we'll now feed in the first name to 16:39 the prompt. Let's scroll back up and here we can review the rest of the prompt. I think this all 16:45
+looks pretty good. I don't think we need to make any other changes. Down at the bottom, we also see 16:49 the output field name. It'll be email underscore response. This all looks
+good, so at the bottom, 16:55 let's click on continue. Right up above, we see all the different instructions with all of 17:00 those dynamic values filled in. Here we see the
+feedback and here we see the first name. Let's 17:05 now test this step. Right up above, we can see the output. So here it addresses the customer by their 17:10 first name and then
+here it reads the customer's feedback and it writes a response. Now this was 17:15 positive feedback, so here it responds: thank you for your enthusiastic feedback about our
+cookies. 17:21 Down below, it also asks us to fill in the name. Of course, we could probably go back and modify 17:25 the prompt to make sure that's filled in, but I think for now
+this is good enough, so let's click 17:29 on continue. On this screen, let's now configure Gmail to use this response. Right up on top, let's 17:34 click on configure. Then let's
+scroll down until we get down to the body. Right here, let's select 17:40 all the previous texts in the body and then let's remove that. Now let's enter in the forward slash 17:46
+because we want to insert a dynamic value and here we see all the different dynamic values. If we go 17:52 all the way down to the bottom, we see this option for analyze and return
+data in AI by Zapier. Let's 17:57 click on that and that expands this category, and here we see that email response that includes all 18:02 of the output from the AI. Let's select
+that and here that inserts it into the body of the email 18:08 message. This is now all good, so at the bottom, let's click on continue. And over here, we can now 18:13 test this
+step and there it's been sent. I think this all looks good, so let's click on publish. 18:17 Right up above, I could give it a new version. So here I'll call it V2 and then click
+on publish. 18:23 And look at that. It's now been published. Let's now test this out. I have a Google Form and I Test the Workflow and Publish the Zap 18:27 filled out all the
+details with some feedback. Let's click on submit. And here I immediately 18:32 receive a personalized response to that feedback. And honestly, this is really high quality. Now,
+Leverage Advanced Features: Paths, Webhooks, Loops 18:37 that's pretty impressive, right? Who would have thought you could create an automation that 18:41 responds to emails and
+hey, we just did it. But of course, this is just the tip of the iceberg. 18:48 Zapier offers so much more. For example, when I click on this plus icon to add another step, 18:53 we
+have all these different apps and you also have all these different built-in tools. As an example, 18:58 you could add paths. That way you could have conditional logic or over
+here, you could set 19:02 up web hooks for advanced integrations. You can even add custom code. You could set up loops 19:08 and there's so much more to explore. Now, today we just
+focused on connecting Google Forms with 19:13 Gmail, but again, you could apply this exact same process to thousands of other apps like HubSpot, Wrap Up 19:20 Trello, and so many
+more. And there you have it. With just a few clicks, 19:25 we've set up an automation that saves time and also hopefully makes life easier, and we've just 19:30 scratched the
+surface of what Zapier can do. Let me know in the comments if you'd like to see any 19:36 other videos on Zapier. Also, please consider subscribing and I'll see you in the next
+video. All From the seriesIntro: What We're Building Today 0:00 The easiest way to get started with AI agents is using Zapier's AI agent tool. 0:05 Now, Zapier lets you build AI
+agents from a single prompt. You don't need to know how to code. You don't need to know 0:11 anything about automation. And in this video, we're going to walk you through how to
+build your first agent from 0:16 scratch, from beginning to end, how to test it, and how to put it live into production. and I sit down with Tom 0:22 Nasser who's been doing this
+for over 5 years and he's going to show us a master class on how to build AI agents from 0:29 scratch using Zapier. So enjoy the video and let's dive in. 0:34 Tom, what are we
+building today? We are going to start building with Zapier agents. Now I know you might be Tom's Background: X-Ray Workflow Consultancy 0:40 thinking agents, AI agents, it's a
+scary new frontier, but we're going to make it really simple for you today. We're going 0:46 to show off Zapier's agent builder. And I'm also going to show you how to build an
+automation that does some similar 0:53 things, but also uses AI in the middle. So, that's what we're going to focus on. Awesome. And Zapier is such a powerful 1:00 tool and and I
+think the agent feature really helps take it to the next level. So, uh, right before you jump into your 1:06 screen, Tom, why don't you just give us your background and kind of
+tell the audience why it is that folks should listen to you? 1:12 Sure. Uh, my name is Tom Nasser. I'm co-founder CEO at X-Ray. We're a workflow consultancy. We have helped 1:18
+hundreds of different companies from dog groomers to VCs build better operations 1:24 and design the way that people work. We're a peopleoriented organization. We 1:29 design work
+for humans and that happens to use AI and automation on the back end, but by orienting around the person Screen Share: Inside Zapier Agent Builder 1:36 and the work that the person
+wants to do, it really helps figure out what the right tool is for the job. So, we 1:42 started about five years ago. Uh we have a handful of products of our own. Um and really
+we're one of the the thought 1:48 leaders in the space. And you also happen to have a really awesome YouTube channel, too, which of course we'll link in the description, 1:54 but
+for folks that want to go deeper on this stuff, I'd say check out Tom's YouTube. So, uh with that said, Tom, why 1:59 don't you go ahead and share screen and we'll dive right in
+and look at some Zapier agents. 2:04 Let's do it. So, here I'm inside of the agents 2:11 product by Zapier. Um, on their home screen, just click on agents, right? If assuming you
+logged in, assuming you 2:17 have an account, uh, chances are you're already paying for Zapier. If you're not, you could start a trial, but 2:23 Zapier's free plan really doesn't
+give you much to play with. So, you're probably going to end up pwning up some 2:29 dollars for uh for Zapier. So, you can just go ahead and click on create agent. 2:34 And there's
+a bunch of different agent templates that they have for you. Now, Building an Email Summary Agent from Scratch 2:40 they're pretty good. Uh, but today we're going to focus on a new
+type of agent 2:45 that we're going to build from scratch. You can follow along and just explain in natural language what it is you actually 2:52 want to do. So in our case, we're
+going to say uh look for emails from 2:59 or about orchestrated connecting 3:06 in my Gmail. And orchestrated connecting is a peer 3:13 group that I'm a part of. Okay. So we're
+going to say look for these emails. Then at the end of every week, 3:22 send me a Slack message with a general summary of these emails 3:31 and link me to them so I can respond
+3:39 or read it. So very general prompt. Great. Let's start building. So when you click you 3:47 know the send the prompt what Zap year agent builder is going to do is actually
+3:53 parse the message that you send to create a a set of different triggers. So 4:00 triggers and actions. So in this case, it's looking at a weekly trigger for a preferred time
+and then it's going to do 4:06 a Gmail search just like you would go to Gmail and search, you know, subject or 4:11 body contains, in this case, orchestrated connecting. Um, it
+would do that search on your behalf inside of 4:18 your Gmail and then send me a Slack message. So, what I'll end up doing and 4:23 just uh zoom out a little bit here so the UI
+looks a little bit better. Um, is How Zapier's Co-Pilot Has Improved 4:29 we're going to add a trigger and it's going to be scheduled by Zapier um every week. 4:36 And we're going
+to choose the day Monday. How about 6:45? 4:43 And that's it. We just added that. Right now, I did that manually. We could also just say to the co-pilot like, "Looks 4:50 good,
+build it." Now, the co-pilot has gotten a lot better in the last year or so. It used 4:58 to be a glorified tutorial, you know, like I said, do it, you know. 5:05 What' you say? I
+was just saying, yeah, it used to be that there wasn't much that it could do. It was kind of more of just like a like 5:10 a interactive knowledge base, more or less, and it would
+point you to the help docs all the time. It was really a pain. Uh, 5:16 so now it's a lot better. So in this case, right, you see it, it's filling out instructions. It's adding
+actions to 5:22 the instructions. Um, one nice thing about Zapier agent is like the action 5:28 that you want to perform inside of any given uh app is like inserted into the 5:34
+directions. So you really know when it's calling certain things, right? So I need to connect my Gmail and I need 5:40 to connect my Slack account. So let's fix this setup error.
+I'm going to connect my Gmail. 5:47 Great. Continue. This is just regular OOTH login through Google like you would 5:52 normally do. If you haven't done it on your account, you'll
+need to do that. That's just how Zap year works. Um, so 5:58 the search string, we could let the agent determine the value for this field Connecting Gmail and Slack Accounts 6:04
+or we could be specific about it. So in this case, I'm just going to let the agent decide for now and and just save. 6:12 So that find email step, the agent is going to actually
+draft, 6:17 you know, the the string inside of the search that is going to search for emails about orchestrated connecting. 6:24 Um, and then I have a Slack step that's broken. So
+I'll connect that. 6:31 Uh, I am not sure if this is going to work 6:39 the way I want it to work. It's basically saying that like, hey, 6:45 this Zap isn't going to work until you
+authenticate your Slack account, obviously. Right. 6:50 Exactly. Yeah. Uh so let me just open up my one password here 6:58 to get these fancy codes. Normally you would have already
+done did 7:04 this. I actually uh logged out of everything to give people a authentic 7:11 authentic look. Um obviously that's biting me in the butt right now. I mean no I think it
+helps because again 7:18 it's like when you're kind of building it from scratch and walking through it step by step. I mean the idea with this 7:23 this podcast and this channel is
+to help people you know give people something that they can follow step by step. So a 7:30 lot of people don't know it's like oh well yeah naturally I have to connect my Gmail and
+I've got to connect my Slack 7:36 and I've got to give it access to all the tools that I want it to operate within. 7:41 That's exactly right. Uh maybe 7:51 of course. Oh, actually
+wait. Could I uh sign in with a password instead? 7:59 There we go. There we go. Um just needed to trigger the right the right way to do it. Um so I'm just going 8:07 to log into
+my X-Ray Slack account. And now I'm in. I should be in. 8:16 Should have already connected. Sometimes I have to do it twice, too. That's happened to me before. Testing the Agent in
+Preview Mode 8:21 Really weird. Okay. And now I have three accounts. There we go. [laughter] Yeah. Hey, you know what? Um there everybody's 8:28 dealing with a bug, right? So here

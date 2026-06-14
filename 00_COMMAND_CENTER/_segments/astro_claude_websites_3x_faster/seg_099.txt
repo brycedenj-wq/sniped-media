@@ -1,0 +1,224 @@
+talk about a few more things that you can do. 13:55 So that's the chat window. 13:56 Obviously you can change the model here as well depending on the plan that you have. 13:59 GPT
+400 cloud 3.5 I usually just use cloud 3.5. 14:03 And now we have the ability to edit directly in line. Targeted AI Edits 14:07 So let's say you want to get rid of that chat window
+I just removed that with control L 14:11 what I can do is I can highlight these for example, and I can hit control. 14:15 I now if you hit ctrl I or command I on your keyboard,
+14:18 you can see that it will give you the different models. 14:20 First of all I'm going to change that to cloud 3.5. 14:22 And then you can do a really quick instruction for
+modifying just a very targeted section of code. 14:27 So if you want to do something small, you just want to refactor something. 14:30 Change naming conventions, do this. 14:32 Use
+the inline editing here with control AI, and we could ask it something like, can you make this 14:39 Pascal case not, 14:42 you know, camel case? 14:43 Okay, just a simple thing.
+Again, I don't know why we would do that. 14:46 I'm just giving you some random examples. 14:47 And you can see now it makes the changes. We can see the diff. 14:50 And then we can
+add a follow up here. 14:51 So I can ask it again to do something else. 14:53 Or I can just accept all of these changes or reject them as you just saw. 14:58 If I want to go back I
+can use control Z. 15:00 And you see actually shows me the diff when I go back. 15:02 So what I'm going to do now is I'm just going to go to my chat window "Continue" Feature 15:05
+and I'm going to ask you to do something like, can you add a, 15:10 a timer to my 15:13 trivia quiz? Okay. 15:15 So a feature that we probably want to add. 15:17 And after this
+15:18 I want to show you something really interesting that windsurf can do, that a lot of editors cannot. 15:22 All right. So it's gone ahead here and added this timer. 15:25 And
+we see it's added a bit CSS and it's added some logic here in app.js. 15:29 So I'm going to go ahead and press accept all. 15:31 And what I'm going to do next is a little bit
+interesting. 15:33 I'm just going to type continue. 15:35 Now when I do this what windsurf is going to do is continue along 15:39 the same chain of execution based on what I was
+doing previously. 15:43 It's essentially going to guess what I want to do next 15:46 based on all of the conversation history that I have, and then just go ahead and do that. 15:50
+So in this case, it says it's going to add a visual indicator when the time is running 15:53 low and ensure it's properly integrated with the existing game logic. 15:56 Now
+obviously we just asked it one thing. 15:58 It doesn't have a ton of context, but that's a reasonable thing to do next. 16:02 So what you can do is when you're working on a
+feature, whether you're coding it yourself 16:06 or you're asking it in the chat window, you can just stop and type continue. 16:10 And based on what you've been doing, it will
+make a logical guess on what to do next 16:14 and continue down that path. 16:16 Now, obviously if you don't like what it does, you can just reject it. 16:19 But in my case, that
+seems like a fine feature. 16:21 So I'm going to go ahead and press accept. 16:23 And let's go back to our UI and let's try this. Sorry. 16:26 I go Tim okay. 16:28 And I don't see
+any timer popping up. 16:30 So I assume it made a mistake. 16:32 But already this looks a lot better than what we had before. 16:35 And what are we doing here? I'm just guessing
+randomly. 16:37 And there we go. 16:38 Okay, so the timer doesn't appear to be showing up. 16:40 But again, I just always get everything right. 16:43 And also my front end isn't
+running, so I should probably rerun this and that might fix it for me. 16:49 All right. So whatever. That made a few mistakes happens. 16:51 That's I also I'll mention here, you
+can see that when you've selected something it'll show it up here. 16:56 And you have the ability to explain, refactor or add a docstring. 16:59 Just kind of some neat buttons to
+handle something that you might want to do pretty repetitively. 17:03 To be honest, I don't use these very often, but they do exist. 17:06 And there are some other features with
+windsurf here, 17:08 but generally those are the main ones you're going to use 99% of the time. 17:12 You can do things like add images, you can reference multiple files, right?
+17:15 You can go through, you can mess with the features yourself and see how they work. 17:18 But generally I found this works a lot 17:20 better than cursor, especially when you
+have a lot of different files. 17:24 Now with that in mind, just a rapid fire and off the video, I'm going to share with you 17:28 a few tips to keep in mind when you're using this
+to get the best possible results. Tips for The Best Results 17:32 First tip just tell it what file you want it to edit. 17:34 So if you only wanted to edit 1 or 2 files, just tell
+it exactly the ones by tagging the file. 17:39 Because a lot of times it makes mistakes and create a new file. 17:42 Or it'll go edit a file that you didn't want it to change.
+17:45 Tip number two the more work you do by yourself and the more context you give it, the better it performs. 17:50 So the longer you work in a conversation chain, the more code
+you actually physically 17:55 write yourself in the code editor, the better that this works. 17:58 If you just purely use the AI to generate 18:00 everything, you can start getting
+a little bit lost and do some really crazy stuff. 18:04 Next thing, make sure you understand what it's doing. 18:07 Actually read through the code, see what is edited. 18:10 If the
+edit is too big, 18:11 ask it to make it smaller and review this like you would review anyone else's code. 18:16 Obviously, if you're a beginner programmer, that's a bit more
+difficult, 18:18 but the point is, you want to have some grasp of what's going on 18:21 because when it does eventually make a mistake, it can be very difficult to untangle that
+mess. 18:26 If you haven't been keeping track of all of the kind of changes it's made up until that point. 18:31 Last point to add, try to have good directory structures, good
+variable names, good file names. 18:36 The better you name stuff, the easier it is at tracking the context automatically. 18:41 So try not to have files named like ABC main 123.
+18:45 Try to name them things that are reasonable and logical that the AI can 18:48 then infer what's inside of them. 18:49 All right, so there you go guys. 18:51 That is my
+tutorial on windsurf. 18:53 I hope that this taught you how to use it one over some of the main features. 18:56 And if you're excited to try it out again, really depends if you're
+willing 19:00 to pay the price or not per month in my opinion it is worth it. 19:03 But if you just want to go on a free model, then I would recommend using cursor 19:06 because
+this is a very, very limited unless you are paying. 19:09 Anyways. If you guys enjoyed make sure leave a like. 19:11 Subscribe to the channel and I will see you in the next one.
+19:15 Maybe. All From Tech With TimGetting started with Windsurf 0:00 Today we're taking a look at Windsurf, a 0:02 powerful code editor that uses AI to 0:04 help you code much
+faster. Now, it's a 0:07 great starting point for beginning your 0:09 AI coding journey, but it also works 0:11 well on large code bases. So, regardless 0:14 of your experience
+level and the size of 0:16 your project, it's a great tool to use 0:18 when you're coding with AI. It shares a 0:21 lot of similarities to other AI coding 0:23 tools, but it does
+have certain features 0:26 that help it stand out. Today, I'll show 0:28 you all of the core features and build a 0:30 basic full stack application from 0:32 scratch. To get
+started, you can head 0:35 over to windsurf.com and download the 0:37 editor. And it is going to be something 0:39 that runs on your computer instead of in 0:41 the browser like
+some other AI coding 0:43 tools. In terms of price, there is a 0:46 free tier, but it's pretty limited. So, 0:48 it's pretty much only there to let you 0:50 try out the tool. But
+then you're going 0:52 to want to upgrade to the pro plan, 0:54 which I find to be a very cost-effective 0:56 solution for coding with AI. Now, once Windsurf Panel Layout 0:58
+you've downloaded Windinsurf and you 1:00 open it up, it's going to look something 1:01 like this. If you've used VS Code or 1:04 other coding tools before, you can feel 1:06 free
+to skip along, but I'm going to 1:08 cover all of the different panels on 1:10 here so that beginners know what to 1:12 expect. So, first of all, on the left, 1:15 we have the file
+explorer. And this is 1:17 going to be pretty much just looking at 1:19 files in a folder on your computer. So 1:22 if I open a folder here, let me go ahead 1:25 and open this blog
+demo. Now I'm looking 1:28 at the files in that blog demo folder. 1:31 And right here in the middle, it's 1:33 looking at this posts.ts file. So we can 1:36 see the code inside of
+that file. You 1:39 can quickly navigate across different 1:41 files up here. They basically act like 1:44 tabs. And then on the right we have the 1:46 cascade panel. And this is
+the primary 1:48 AI tool within Windsurf. Think of it 1:51 kind of like chat GPT that's hooked up 1:53 to your entire codebase. It can answer 1:56 questions about your code. It can
+create 1:58 new files. It can even modify existing 2:00 files and insert changes directly into 2:03 them. Of course, there's a lot more to 2:04 it and we'll dig into all of the
+details 2:06 shortly. One more thing I want to show 2:08 you is that if you click up here in 2:10 terminal, new terminal, there will be a 2:13 new panel that shows up down here,
+and 2:15 that is going to allow you to run 2:17 commands on your computer, which you 2:19 might want to do if you need to install 2:21 specific software or actually start your 2:24
+program. You will also be able to run 2:26 certain commands from the Cascade chat 2:28 window, which I'll demonstrate shortly. 2:30 But at a high level, these are the most 2:32
+important parts of Windsurf. got the 2:34 file explorer, the code viewer in the 2:37 center, and the cascade panel to the 2:39 right. And then optionally, you can have 2:41 the
+terminal window open in the bottom. Windsurf AI Chat 2:44 Okay, so let's go ahead and start a new 2:46 project so I can show you how I can 2:48 build a full stack application from
+2:50 scratch very quickly using Windsorf. I'm 2:52 just going to go to file, open folder, 2:55 and I'm going to open up this 2:56 Windinsserve demo 3, which is currently 2:59
+empty. Now, the first thing I'm going to 3:01 do is actually think about the design of 3:04 my software. So, I'm going to go over 3:06 into Cascade and switch into the chat 3:08
+mode. And then I'm going to choose the 3:10 AI model that I want to use. The thing 3:12 to keep in mind about Windinsurf is that 3:15 it uses state-of-the-art models from 3:17
+companies like Google, OpenAI, and 3:19 Anthropic. And every time a new model 3:21 comes out, they simply integrate it into 3:23 the tool. So, you're always able to use 3:25 the
+latest and greatest models as they 3:27 come out. Currently, as I'm recording 3:29 this video, the two models that I've 3:31 personally found to be the most useful 3:33 have been
+Claude 3.5 Sonnet and Gemini 3:37 2.5 Pro. I find that Sonnet does a 3:40 really good job of doing exactly what 3:42 you want, and Gemini 2.5 Pro does a 3:45 pretty good job of
+considering 3:46 alternative designs and helping you 3:48 architect solutions. So, those are the 3:51 ways that I typically use these models. 3:53 There is also Claude 37 on it,
+but I've 3:56 personally found it to overengineer 3:58 solutions and write too much unnecessary 4:01 code, so I don't really use it. As of 4:03 this last week, we also have 4:05
+GPT4.1 and04, and I simply haven't had a 4:09 chance to experiment with those models 4:11 just yet. Let's go ahead and use Gemini 4:13 2.5 Pro. And I'm going to describe the 4:16
+type of software that I want to build, 4:18 and we'll get a highle architecture from 4:20 it. I'm going to be using voiceto text 4:22 and I'm simply using my computer's 4:24 native
+dictation without any additional 4:27 software which you can also do by simply 4:30 pressing the function key twice on a Mac 4:32 or Windows plus H on a Windows. I want 4:35 to
+build an application that helps me 4:37 check domain names for availability. I 4:40 want to be able to provide a name and 4:43 check multiple TLDs all at the same time 4:46 using
+the who is API. Can you please 4:49 help me choose the right technologies 4:50 for this and give me a highle overview 4:53 of the architecture? I'll go ahead and 4:55 submit 4:57
+that. Okay, so it's giving me some 4:59 suggestions in terms of languages and 5:01 libraries that I can use. I personally 5:03 like to use JavaScript for everything 5:05 because
+you can use it in the front end 5:07 and the back end. So I'll give it that 5:09 suggestion. It looks like out of the box 5:11 it was thinking we could create a 5:13 command line
+tool, but I do want to make 5:16 it a full stack kind of thing with a 5:18 React front end. So I'll explain that. I 5:21 want to use React and make this a full 5:24 stack
+JavaScript application. How would 5:26 you organize the code and which 5:27 libraries would you use in this 5:29 case? Okay, so in this case it's telling 5:32 us you know we can
+use create react app 5:34 or vit and saying we can use Node.js JS 5:37 and Express and it's giving us an 5:39 overview of what the project might look 5:41 like. So this gives you
+an idea of how 5:43 you can have this kind of direct 5:45 conversation with the AI in the editor. Windsurf AI Agents 5:48 And now we're going to take this plan 5:50 and make it a
+reality and just ask 5:52 Windinsurf to implement the rough draft 5:55 of the project for us. I'm going to say 5:57 let's go ahead and create a project with 5:59 a UI folder that
+will contain a V react 6:02 project and a server folder for our 6:04 Node.js backend. We can use the who is 6:06 package for checking the domains and an 6:08 express API. I'm also
+going to switch it 6:11 into write mode which will allow 6:13 Windsurf to start creating files 6:14 directly for 6:16 me. All right, so it's getting started 6:18 and take a look at
+that. It's already 6:20 created several files that are going to 6:23 act as our server. Now that it's done 6:26 writing some code, it's giving us some 6:28 commands to run and we
+can run these 6:29 directly from the Cascade chat. So in 6:32 this case, it's asking us to install 6:34 these dependencies which are going to be 6:36 necessary for our code to
+function 6:38 properly. So I'm going to go ahead and 6:40 run that and then I'll go ahead and run 6:42 this other command. All right. Now it 6:45 looks like it's moving on to the
+UI. So 6:47 it's going to run this command to create 6:49 the V react project. It looks like this 6:52 command is asking for a confirmation. So 6:54 I'm going to click this open in
+terminal 6:56 button and I'm going to just click Y 6:59 here so that we can run the UI setup. 7:02 And we can see immediately that a bunch 7:05 of different files got created. So
+we 7:08 can see our 7:09 app.jsx and various other configuration 7:12 files. We'll also want to run the npm 7:15 install inside of the UI folder. All 7:17 right, so it looks like
+it's finished 7:18 the UI setup and now we can run npm 7:21 rundev to hopefully start our servers 7:24 and the UI. Okay, so I ran npm rundev, 7:27 but it looks like the UI didn't
+load. So 7:30 it's suggesting I run this additional 7:32 command. I'll go ahead and do that. And 7:34 now we have two services running. We got 7:37 the UI and the server in
+separate 7:39 terminal windows. Now what I can do is Windsurf Previews 7:42 go over here and open this preview. And 7:45 this is something that's unique to 7:47 Windsurf. You can
+actually take a look 7:49 at what your website's going to look 7:50 like directly in the coding tool. So you 7:53 don't have to open up a browser and do 7:54 this separately. And
+the other cool 7:56 thing I love about this is that you can 7:58 actually pick certain elements to give 8:01 to Windsurf as context when you're 8:03 trying to change things. So
+we'll see if 8:06 we can use that a little bit later. But 8:08 right now we have this basic UI up and 8:11 running. Let me try a domain and see if 8:13 it works. So, I'll just type
+in 8:15 windsurf. We'll click check 8:17 availability. And over here, we actually 8:20 see that the server is running some 8:22 checks for us. And hopefully, we'll see 8:24 it
+respond to the front end. All right. 8:27 So, this doesn't look very readable, and 8:30 we're going to improve the UI in a 8:32 moment, but at least we have the UI and 8:35 server
+communication properly working. Adding Features & Troubleshooting 8:37 Okay. So, what I'm going to do now is 8:39 actually open up a new chat. Now, keep 8:41 in mind when you do
+this, it is going to 8:44 shut down this preview server. So, you 8:46 need to simply ask it to restart the 8:48 preview if you want to go back to it and 8:50 interact with it in
+the new chat. But I 8:53 do like to start a new conversation 8:54 whenever I'm working on a new feature 8:56 because you got to keep in mind that 8:58 every time you send a
+message, it's 9:00 sending that full chat history to the AI 9:03 to use as additional context. And that 9:05 can actually have a negative impact on 9:07 the AI performance because
+it simply 9:10 gets distracted by all of the additional 9:12 context. When you give it a prompt that 9:15 is very focused and you limit the amount 9:17 of context that is
+submitted, the AI is 9:20 more likely to do exactly what you want. 9:22 So a good habit to keep in mind is just 9:24 open a new chat for every new feature 9:26 that you're working
+on. So in this case, 9:29 I'm going to ask it the following. 9:30 Please use Tailwind to make the UI look 9:32 nicer. And I'm going to use Sonnet 35 9:35 because it tends to do a
+better job at 9:37 these focused sort of tasks. Now, one 9:39 thing you'll notice is that I simply ask 9:42 that question without tagging any files. 9:45 And Windinsurf
+automatically identified 9:48 that it needs to modify this app.jsx 9:51 file. And that is one of the powerful 9:52 features of Windinssurf is that it's 9:54 really good at context
+management. It 9:57 can figure out the files that are 9:59 relevant to your request, read them, and 10:01 then modify them. So in this case, it's 10:04 doing some additional
+searches and it's 10:06 suggesting here we go. We should run 10:08 this command. I'll go ahead and do that. 10:10 All right. When we ran this command, it 10:12 looks like it ran
+into an error, but 10:14 Windsurf automatically identified that. 10:16 And now it's going to create this 10:17 configuration manually instead. Okay. 10:20 Looks like this edit was
+going to remove 10:23 a large portion of the 10:25 index.css, which I think is actually 10:27 what we want. So I'm going to go ahead 10:29 and apply it anyway. And now it's 10:31
+modifying 10:33 app.jsx. Okay, so it's made some 10:35 changes. And when you open up the file, 10:37 you can actually see the specific 10:39 changes that it made because it will
+10:41 highlight things that it has removed 10:43 with this red highlight and then things 10:45 that it has added with this yellow green 10:48 kind of highlight. This can be really
+10:50 useful for seeing what changes the AI 10:52 made so that you can figure out, you 10:54 know, how did it work before, how does 10:56 it work now, is this actually what I 10:58
+wanted to do. And you can go through and 11:00 accept these one by one, but I will 11:02 typically accept all of the changes for 11:04 a file and either roll back if there's a
+11:07 problem or try to iterate and see if it 11:09 can improve the code. By default, all of 11:12 these changes are already a part of your 11:14 file. So when I go ahead and run
+this 11:16 npm rundev, it is going to use the 11:19 updated version of the file. Let's check 11:21 out this preview. All right, and it 11:23 looks like we ran into an error. I know
+11:26 this is a problem with Tailwind version 11:28 4 and I wonder if Windinsurf can 11:31 actually pull the documentation and see 11:33 if it can properly install it because 11:35
+the AI seems to be a little bit outdated 11:38 on how to install the latest version of 11:40 Tailwind. So, what you can do is 11:43 actually tag additional context in the 11:45
+chat. And I'm going to tag at Tailwind 11:49 CSS docs and we're going to see if it 11:52 can actually change the code to use 11:54 version 4. So I'm going to tag the 11:56 Tailwind
+docs and say that it did not 11:59 properly install it. I'm going to paste 12:00 this error and ask it if it can use the 12:02 docs to properly install Tailwind 12:05 version 4.
+Now we see that windsurf is 12:08 actually going and searching across 12:10 these number of different web sources 12:12 which we can check out and it's using 12:14 that additional
+context to help us 12:16 modify the code. All right, let's go 12:18 ahead and try to uninstall these 12:20 packages and we'll install these 12:22 instead. Okay, so it looks like
+it's 12:24 still running into this error. I'm going 12:26 to go ahead and copy paste this directly 12:28 in and we'll just submit it and see if 12:30 it can fix the problem. And if
+not, 12:32 we're just going to roll back and we're 12:34 going to set the Tailwind version to V3, 12:37 which I know is going to work. Okay, so 12:39 it looks like we're back to
+the same 12:41 error. So, what I'm going to do is 12:43 actually go and scroll up here to the 12:46 part where we were going to use the new 12:48 Tailwind docs, and I'm going to
+revert 12:50 to this step, which is going to actually 12:53 undo all of the code changes that it did 12:56 past that point. So this can be a really 12:58 powerful way to code with
+AI because you 13:01 can ask it to do something and then if 13:03 you don't like the result, you can 13:05 always just roll back to that previous 13:07 checkpoint. So in this case,
+I'm going 13:09 to go ahead and ask it to use Tailwind 13:11 version three instead. Okay, here we go. 13:14 Now after changing to Tailwind v3, this 13:17 is what our UI looks like.
+Let's try 13:19 this again. Windsurf and we'll check the 13:23 availability. Oh, now it failed to 13:26 fetch. And that is because our server is 13:28 no longer running because I
+opened this 13:31 new chat. So, let me go ahead and open a 13:34 new terminal down here. I'm just going 13:35 to click this little plus. We'll cd into 13:38 the server, which will
+move us into the 13:39 server folder. And in here, I'm going to 13:41 use npm rundev. And that is going to 13:45 start up our server. So, let's try this 13:47 again. Check
+availability. Now, we see 13:49 it running those checks. And here we go. 13:52 Now, we have a pretty decent looking UI. 13:55 Let's see if we can improve this a 13:56 little bit.
+I'm going to go ahead and 13:58 take all of these logs and just select 14:01 them and then add it to the chat with 14:04 this button over here. This is going to 14:06 allow
+Windinsurf to actually use the 14:09 contents of these logs to help answer 14:12 questions. And the specific thing that I 14:14 want to do is make it a little bit more 14:15
+resilient to things like this timeout 14:18 error. So I'll just say please improve 14:20 our server code to be more resilient to 14:22 timeout errors and other possible error 14:24
+cases. So it's made a bunch of code 14:26 changes. I can go open up this file and 14:28 take a look. And the cool thing here is 14:31 that it does apply the changes directly 14:33
+to the file. So it's not like Chad GPT 14:36 where I have to take the results and 14:37 then figure out how to slot them in. 14:39 Windsurf is able to take that AI 14:42 response
+and actually apply it to the 14:44 file. I'm just going to go ahead and 14:46 trust these changes. I'm going to 14:47 accept. And by the way, this is a little 14:49 toolbar that
+you can go and review all 14:52 your files through. So you can navigate 14:55 across the files pretty quickly here and 14:57 then jump through the different changes. 14:59 This is
+a really good idea to do because 15:01 you at least want to be aware of what 15:04 your code is doing high level so that 15:06 you can properly prompt AI as your 15:08 codebase
+grows. For the moment, I think 15:11 I'm just going to go ahead and accept 15:12 all of the changes across all of these 15:14 files. And we're going to give this 15:16 another try.
+So, let me just go to the 15:18 preview. I'm going to press CtrlP and 15:21 just click preview over here because I 15:24 had it recently open. I'll refresh and 15:27 we're just
+going to check windsurf 15:28 again. Okay. And in this case, 15:31 windsurf.com.net and.org are all taken. 15:34 But how about windsurf 15:36 now? Let's check the availability for
+15:38 that. All right. Well, we could get 15:41 windsurf now.net. That's available. So, Using Context (@Web + @Files) 15:43 we're definitely off to a strong start 15:45 here, but I
+want to add another core 15:47 feature to my application, which is 15:49 going to use AI to come up with domain 15:51 names for me based on a description of 15:54 my business idea.
+I'm going to go ahead 15:56 and start a new chat. And I'm gonna 15:58 actually tag at web so that it searches 16:01 the web because I want to use the latest 16:05 Gemini API in my
+application. And when I 16:08 tag web like that, it's going to look 16:10 for those additional resources like we 16:13 saw when I tagged the Tailwind docs. And 16:15 it's going to
+be able to use that 16:17 context to properly modify my file. I'm 16:20 tagging web here because this request 16:22 requires some context that is outside of 16:24 my codebase. But
+you should also know 16:27 that you can tag specific files in your 16:29 codebase if you want to focus the AI's 16:32 attention. This is going to help a lot 16:34 in large code
+bases where you might have 16:36 multiple files with similar names or 16:38 just complicated folder structures. You 16:40 can tag specific files so that the AI 16:42 has a better
+idea of where it should do 16:45 its work. But for now, let's go ahead 16:46 and use this web context. So I'll say I 16:49 want to add a feature that lets me input 16:52 my
+business idea. and we use Gemini 2.5 16:57 API to actually generate the domain 16:59 names. Can you please add this across 17:02 the full stack? So, this request is 17:04 pretty
+representative of the scope that 17:06 I found to be the best mix for working 17:08 with AI in the sense that it's not so 17:11 small that it's only modifying one 17:13 little file
+or function, but it's also 17:15 not so large that it's trying to build a 17:17 whole product for you all in one go. 17:19 It's a full stack feature that's going 17:21 to impact a
+number of different files, 17:23 but it's focused enough where the AI is 17:26 actually going to do a good job. Okay, 17:28 looks like it's finished writing the 17:29 code, and now
+it's telling me to put my 17:31 Gemini API key in AENV file. Now, one Special Files (.gitignore & .windsurfrules) 17:35 thing you should know is that 17:36 Windinssurf will listen
+to the.get 17:39 ignore file, which will allow us to 17:42 prevent things like our sensitive API 17:45 keys from being sent to Windsurf 17:47 servers. So if I create this env file
+17:50 and I put my Gemini API key here, 17:53 Windinssurf is going to ignore the 17:55 contents of this file. Now there is one 17:57 other special file that you should be 17:58
+aware of which is the windsurf rules 18:02 file. I'm going to go ahead and create 18:04 it over 18:05 here. Windsurf rules. Now this is a 18:09 special file that allows you to give
+18:12 instructions that windsurf will listen 18:14 to in every single request. I personally 18:18 don't really rely on these types of 18:20 rules files because there's nothing that
+18:22 I want to go with every single request 18:24 that I make to the AI, but it can be a 18:27 great way to give instructions in 18:30 situations where you're, for example, 18:32
+doing test-driven development or you 18:35 have a particular set of technologies or 18:38 approaches that you want to use that you 18:40 want to make sure that the AI is 18:41
+constantly aware of. So, they give you 18:43 some examples here. You might say what 18:46 your testing framework is. You know, 18:48 certain files you don't want to modify 18:49 or
+certain APIs you don't want to use. 18:52 In my case, I just typically tend to 18:54 include that in the prompts that I write 18:57 instead of using a rules file to define 18:59 it
+for every single request. There is a 19:02 whole directory of windsurf rules that 19:04 you might use. So, be sure to check that 19:06 out if this is something you're 19:08
+interested in. Okay. So, for the moment, 19:10 I went ahead and added my API key to myv 19:14 file. And let's take a look at what the 19:17 UI looks like. Now, I'll open the 19:19
+preview. And now, we have a way to 19:21 generate domain name suggestions. Let's 19:23 see. The default it has is an online 19:25 marketplace for handmade artal soaps. 19:28 Sure,
+that sounds good. Let's see what 19:30 domain suggestions it has for that. All 19:31 right, so it looks like we got an error. 19:33 Let's take a look at the server code. 19:35 I'm
+just going to go ahead and copy 19:37 paste this into the chat and we'll see 19:38 if it can fix 19:41 it. This is a pretty common flow with 19:44 troubleshooting and you shouldn't
+expect 19:47 the AI to always get the code right the 19:49 first time. It is often the case that 19:52 it'll write something and it's a good 19:53 starting point, but you're going
+to run 19:55 into errors and then you'll ask it to 19:57 fix it or you might have to roll back. 19:59 And that's just the flow of coding with 20:01 AI. I'm going to make this
+request 20:03 again. 20:05 All right, looks like we got another Windsurf Tab 20:07 error. And when I look here, I see this 20:09 model name. Looks like it's incorrect. 20:12 And
+actually, Windsurf is automatically 20:14 suggesting something for me. I can just 20:16 press tab and it will use this model 20:18 instead. But I'm actually going to use 20:20 the
+Gemini 2.5 Pro 20:24 preview. Let me use that. And now, if I 20:27 try this again, now we have some 20:29 suggestions. So, let's take a look. 20:32 Look, I can just press these and
+it's 20:33 going to populate the domain name here 20:35 and then I can quickly check that. But 20:38 something that I wanted to do is 20:39 actually be able to check all of these.
+20:41 So let's take a look at that code and 20:43 I'll show you how you can use windsurf 20:45 tab to quickly make code changes 20:47 directly in the code. So first of all, 20:49
+I'm just going to accept all of the 20:51 changes so that I can see a little bit 20:53 more clearly. And now I'm going to look 20:55 for the code that's responsible for 20:57
+adding the suggestions into the domain 20:59 search. So, it's going to be some kind 21:01 of on click. I'm just going to search 21:03 for that. Set domain name to suggestion. 21:07
+So, what I actually want to do is set 21:09 the domain name to the suggestion plus 21:12 whatever it is currently set to. So, I'm 21:15 going to say if there is a domain name 21:17
+and automatically, you see windsurf 21:19 comes up with the code that it thinks 21:21 I'm going to write. I'm going to say 21:23 plus suggestion. I actually want to have 21:25 a
+comma in between those. There we go. 21:28 And I can just press tab. it'll 21:30 autocomplete for me. But now that I 21:32 think about it, if I don't currently 21:34 have a domain
+name, I do want it to just 21:36 be the suggestion. So, I'm going to 21:38 start typing here. If domain name, then 21:41 it's the domain name plus the 21:43 suggestion. Otherwise,
+it's just a 21:45 suggestion. And you can see this was a 21:47 lot smoother than me having to type 21:49 everything out. So, Windsurf does a 21:51 pretty good job of predicting how
+you're 21:52 going to want to change the lines. So, 21:54 now that I've made that change, I'm 21:56 going to go back over to the preview. 21:58 And if I click these, we can see
+that 22:01 they get added. So if I run the check 22:03 for all of these, we can see that it is 22:06 working end to end and we can see which 22:07 domains are available and which
+ones are Windsurf Deployments 22:10 not. Now there's one more powerful 22:11 Windsor feature that I want to show you 22:13 and it is the ability to directly deploy 22:16 your
+application from the code editor. 22:19 Now this is something that only works 22:21 with static frontends currently, but I 22:23 hope that they continue to evolve the 22:25 feature
+and allow you to deploy backends 22:27 as well. So an application like this 22:30 could be deployed entirely from 22:31 windsurf. So let me show you how that 22:33 works. And I'm
+just going to open an 22:35 empty project so that we can create a 22:37 simple front end. So for this quick 22:39 project, I'm just going to ask for 22:41 create a 3JS game that is
+basically 22:45 space invaders that allows me to control 22:47 a spaceship and shoot aliens that are 22:50 coming towards me. All right. And with 22:52 some work, we have a working
+game here. 22:55 Now what I'm going to do is deploy this 22:57 so that you could play it too. So the 23:00 way you do this is you simply ask 23:02 windsurf to deploy the 23:05
+application. Windsurf is going to look 23:07 at your project and then create a 23:09 netlefi tommo file that is going to 23:12 specify how your application should be 23:14
+deployed. So under the hood they are 23:16 using netlefi to host these 23:18 applications. And right now when I click 23:21 deploy, it's going to deploy it to Space 23:23 Invaders
+3D 23:26 game.wwindsurf.build. So I'm going to go 23:27 ahead and deploy that. And now it is 23:29 running a quick app build and I should 23:32 be able to access it shortly. Now
+it's 23:34 deploying. And now the deployment is 23:37 live. So I can go over here and play the 23:41 game. There we go. So I didn't need to 23:44 have any other special software to
+23:47 actually deploy this application. I did 23:49 all of this from within Windsurf. So, I 23:51 think this can be really useful for 23:53 quick games and one-off tools that you
+23:55 might want to deploy. And hopefully in 23:57 the future, they will also add support 23:59 for deploying servers. So, that's MCP & Additional Features 24:01 Windinsurf in a
+nutshell. Now, there are 24:03 some other features that I didn't cover, 24:05 such as the ability to use images to 24:08 generate code. There are also memories 24:10 that Windsurf
+can create based on the 24:13 conversations that you have with it. And 24:15 it also has integration with MCP 24:17 servers, which is a little bit more of 24:19 an advanced topic,
+but essentially it 24:21 allows the AI agent to utilize other 24:24 tools and query things like your 24:27 database or other services. I have a 24:30 dedicated video about MCPs
+that you can 24:32 watch, but I would say the most 24:34 important next step is to learn how to 24:36 best word your prompts so that you can 24:38 get the most out of AI. So, make
+sure to 24:41 check out this next video and I'll see 24:42 you there. Thanks for watching. Take 24:44 care. All From Volo BuildsIntroduction and Overview 0:00 I have received some
+requests on a tutorial on how I use Windsurf. So, in today's video, I'm going to show you how 0:06 I set up my Windinsurf IDE, which is currently my favorite IDE to do my daily
+0:12 coding. So, I know that there's tons of tutorials already out there, but this is personally how I set it up. And as a 0:18 bonus, I will show you how I set up my cloud desktop
+as well since I use it in pair to tackle some of the hardest 0:24 programming task out there. So whether I'm building a web application, desktop app, or a Chrome extension, I use
+these 0:31 tools for I'd say 95% of my coding task, and I rarely have to use Google search any longer. So if you're new here, my 0:38 name is Dennis, and I've been a software
+developer for the last 18 years. And if you like this type of content related to 0:44 coding, AI, and automation, please do consider subscribing to follow along my journey as we
+explore these AI tools 0:50 together. So with that said, let's get straight into what Windinsurf is and the basics. All right, so here's the things Setting Up Windsurf IDE 0:56
+that we're going to be covering today. We're going to be covering the basics of Windsurf as far as like installation and 1:02 pricing, comparing also with cursor and VS Code just
+for momentarily. We're also 1:08 going to go through the extensions and the left-hand panel. Uh we're going to go through the helpful key shortcuts 1:13 that will enable you to be
+productive inside of a Windsor IDE. I'm going to be showing you guys how to use the terminal 1:19 and I'm going to be doing a comparison between the chat versus the right feature
+within Windsurf. I'm also going 1:25 to be showing you guys how to set up the MCP servers and the different servers that I use within the Windsorf IDE. I'm 1:32 going to go through
+the settings of setting up Windsurf including the MCP. We're also going to be covering the 1:37 basics of Cloud Desktop and why we need it. And also I'm going to be showing you
+guys the MCP server setup inside of 1:45 Cloud Desktop and what type of MCP servers I use and what I use it for. All right, let's quickly go through and walk Exploring Claude
+Desktop 1:51 you through the cloud desktop which is an application by Anthropic. Go ahead and download it for your specific 1:58 operating system and then install it. Once you have
+it installed, you can go to your profile and set up certain 2:03 things. Since I'm a developer, I set up engineering here. And then in addition to that, you can also include a
+certain 2:10 preference. So this is going to be included as part of your conversation when you're using cloud desktop. So 2:16 certain things such as your coding preferences, what
+type of languages to use when you code so that when it's time 2:22 for you to ask certain questions, it's going to know which coding languages are you using. In addition, I also
+tell it 2:28 to ask clarifying questions to make sure that it fully understands what I'm asking about before it comes up with a 2:35 response. So, it's really just a way for me to
+just do like a little bit of brainstorming with the tool so it can 2:42 properly respond to my question. So, I kind of add a little bit of context here and some things here so that
+it will 2:48 pick it up when I ask some questions. Once you have cloud desktop installed, you can see here that this is how it 2:54 looks like. It's just a desktop application that
+basically you can use anywhere within your operating system. Right on the bottom right, you can pick 3:00 here the latest model. So, the reason why I like to subscribe to Cloud Pro
+is 3:06 because I can use the latest model, which is Cloud Opus, which is like the smartest LM that's currently available 3:12 as of this recording. But, you can also go back and
+use their Claus Sonnet 3.7 3:17 if you just want to have more conversation with Claude. So, that's kind of one of the things that you can 3:23 choose here. I just use Sonnet
+because it's quick. But if I'm going for a bit more complicated task where sonnet uh 4 3:30 is not enough, I would switch to opus 4. But generally solid 4 is good enough for 3:36
+90% of the queries that I give or provide claude. Next thing I want to 3:41 show here is the installation for tools. So you can see here that I have extended 3:46 thinking toggled

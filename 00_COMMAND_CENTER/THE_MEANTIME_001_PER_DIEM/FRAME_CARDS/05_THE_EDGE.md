@@ -1,0 +1,11 @@
+# 05 · THE EDGE
+**Register:** undecided
+**Subject:** a Black man seated on the bed's edge, seen ONLY in the dark rectangle of the OFF television: a black-mirror reflection (medium-brown skin tone reading naturally wherever the reflection carries hands/forearms; face never discernible). Forearms on knees, weight forward, head down-angled.
+**IDENTITY/AUTHORSHIP GATE (hard):** faceless; skin accurate where the reflection makes it visible; white-reading or ambiguous-default = kill; caricature/stereotype = kill; ordinary contained body language, no posing. E2 NOTE: e2_f05_b/a proved the reflection-only conceit; figure re-renders at R under this language.
+**The authorship core (operator, verbatim):** "boots still on because I haven't fully arrived anywhere yet." The boots are the sentence: tan work boots, still laced, on the corporate carpet, at an hour when boots should be off.
+**Composition (E2 revision, operator order):** REFLECTION-ONLY enforcement. The figure exists ONLY as a dark, imperfect reflection inside the OFF TV's glass: no direct-view man anywhere in the real room, no visible face even in reflection. TV centered or slight off-center, dresser edge framing below; the real room around the TV is empty and falls soft/dark. Imperfect reflection falloff wanted (a black mirror, not a render of a mirror). E1 finding: 3 of 4 takes put the man directly in the room; if reflection-only fails again in E2, STOP and recommend composite strategy (render room+TV empty, render figure separately, comp into the glass in Adobe) instead of more blind rerolls.
+**Light law:** sodium blade as the room's only source, catching the boot leather and the TV's glass edge.
+**Insider detail:** boots laced at 1am.
+**Must prove:** the emotional center. Reads unarrived, weighted, still processing, contained, unresolved. NOT sad, NOT broken, NOT performing loneliness, NOT despair. Forward-weighted and contained is the law. If this frame performs instead of earns, the series fails on emotional truth (hostile Q3 targets this frame first). Reflection physics must survive Q4.
+**Banned here (operator-confirmed):** head-in-hands despair pose, slumped defeat posture, visible face in reflection, dramatic rim light, anything that captions as "the grind is lonely."
+**Takes:** Stage E x4 · survivors to R x3 + reserve (second hardest render: reflection physics).

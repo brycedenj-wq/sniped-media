@@ -1,0 +1,224 @@
+25 minutes, 13 secondssame is true about serverless technology it's not that the server is no longer around it's just well someone else's server and you the 1:25:201 hour, 25
+minutes, 20 secondsdeveloper don't need to worry about things like scale and domain name registration and all that jazz that comes along with server maintenance your code just runs
+1:25:291 hour, 25 minutes, 29 secondson someone else's server we've built our twilio functions through the console ui but there's another way to write twilio function code and i'm
+excited to show off the serverless 1:25:371 hour, 25 minutes, 37 secondstoolkit it's designed to feel like your standard development tools and i think you're going to dig it it's
+awesome for greenfield projects and we're about 1:25:451 hour, 25 minutes, 45 secondsready to start one of those up so let's go get it all set up the twilio cli allows for plugins
+and one way to make your toyo life so much easier is to use 1:25:541 hour, 25 minutes, 54 secondsthe serverless toolkit plugin so i'm here in the doc and i'm on the getting started
+page and a link to this is in the notes so over here there is a way to 1:26:021 hour, 26 minutes, 2 secondsinstall it so i'm going to use this i'm going to copy this i'm going to
+pop over to my terminal and i am just going to paste that in you'll see that it's going to install 1:26:101 hour, 26 minutes, 10 secondsthis plugin and then it's going to call
+twilio serverless and it should show us a list of what's available awesome so here's what we can do here's the things that we can do we're going to 1:26:181 hour, 26 minutes, 18
+secondsdo this serverless init we're going to create a new twilio function product but first i'm going to create a directory if you haven't seen this before and and zsh 1:26:271
+hour, 26 minutes, 27 secondsthere's a thing called take which i just learned about and i thought i'd share with you so i'm going to make a new folder here called twilio essentials
+i'm going to make a folder and add cd into 1:26:351 hour, 26 minutes, 35 secondsit one command called take pretty awesome anyway unrelated let's make our new project so 1:26:421
+hour, 26 minutes, 42 secondshere we go twilio serverless init and it is called phonemo so this is going to go and it's going to get a 1:26:501 hour, 26 minutes, 50 secondsoh i
+forgot actually glad that this error happened first we need to log in so we need to create a profile so i'm going to do twilio 1:26:591 hour, 26 minutes, 59 secondsprofiles and
+we're going to add one so we're going to get the account sid 1:27:051 hour, 27 minutes, 5 secondsfor my account i'm going to pop over to my newly upgraded console 1:27:121 hour, 27
+minutes, 12 secondsand i'm going to uh copy my account sid i'm going to paste it here and again like the account sit is the uh string 1:27:191 hour, 27 minutes, 19
+secondsidentifier it's like my my user id and now i'm going to go and i'm going to get uh my auth token and again the auth token's like a password uh we don't show 1:27:281 hour,
+27 minutes, 28 secondsit it's not shown here it's like how you don't leave your keys on the front seat of your car i'm gonna call this uh essentials yeah so that's a secret key
+1:27:361 hour, 27 minutes, 36 secondsit's stored now what happened is a new api key got created for us and we can now we're logged in with that and if you look at twilio profiles
+list you can 1:27:441 hour, 27 minutes, 44 secondshave multiple accounts right so this is how you can see uh which one is active and so now we have that essentials active anytime
+we use twilio we have an 1:27:531 hour, 27 minutes, 53 secondsauthenticated client now so now i'm going to use the up arrow and jump back to what i tried to do originally which is
+init the new directory here called 1:28:011 hour, 28 minutes, 1 secondphonemo so this is getting a list of starter files and setting up the directory 1:28:091 hour, 28 minutes, 9
+secondsstructure for what we need to make one of these serverless apps run it's pretty neat it has a local server that you can run on your machine so i'm going to get 1:28:171
+hour, 28 minutes, 17 secondsinto that directory so i'm going to cd into my phone mode directory and i'm going to start up my code editor i happen to use visual studio code and i'm
+going to look at 1:28:261 hour, 28 minutes, 26 secondsthis folder awesome so first off let's navigate a bit in here i want to show you this dot env file so this dot emv file
+1:28:341 hour, 28 minutes, 34 secondsis where you'll set your environment variables so i could do super secret passwords in here like passwords for 1:28:421 hour, 28 minutes, 42
+secondsmy luggage tell anybody and that'll be available in my function if i needed to use it now this is common 1:28:501 hour, 28 minutes, 50 secondsfor storing third-party api
+keys that you might want to use from within your functions oh speaking of functions there are a couple here in this functions folder so 1:28:581 hour, 28 minutes, 58 secondslet's
+open up this functions uh and let's take a look here at the uh the very uh opening hello world let's take a look so here is that standard function stanza 1:29:071 hour, 29 minutes,
+7 secondsand again the context has access to your environment and events has access to the information 1:29:151 hour, 29 minutes, 15 secondsthat was posted to it or actually query
+parameters or or form fields that were posted to it and then call back is the callback that stops the 1:29:241 hour, 29 minutes, 24 secondsjavascript right so the callback takes a
+an error parameter if any errors that occurred and then this is what is returned and again because we're 1:29:311 hour, 29 minutes, 31 secondsreturning one of these twiml objects
+it will return twiml which means that i should be able to see this because like i said there's a local 1:29:401 hour, 29 minutes, 40 secondsserver that's running i'm going to make
+sure i save my m-file there so i'm going to open up a terminal here inside my visual studio code 1:29:481 hour, 29 minutes, 48 secondsi'm going to do terminal new terminal awesome
+and then here we are going to start uh the server so 1:29:571 hour, 29 minutes, 57 secondsi'm going to do that with twilio serverless start now this will bring up a local web
+server on my machine you'll see here 1:30:061 hour, 30 minutes, 6 secondsthat i have this twilio functions available hello world and look it's on my localhost 3000 now visual
+studio code allows me to command click i could open 1:30:141 hour, 30 minutes, 14 secondsthis up copy and paste it right and we'll see here is hello world and that is awesome right
+so now i've got uh this 1:30:221 hour, 30 minutes, 22 secondsweb server running locally where i can develop uh the code in my normal environment this is where i write my code one
+of my favorite things about this is 1:30:301 hour, 30 minutes, 30 secondsthat it's hot reloadable so check this out so if i come back here if i come back to my uh my visual studio
+1:30:371 hour, 30 minutes, 37 secondscode here and we come in let's make this let's do the you know the second part of uh of hello world is typically where you 1:30:441 hour, 30
+minutes, 44 secondsreplace it with what somebody passed in so we know that we can pass things in on the event object so we'll say first name and i'm using um string interpolation
+so 1:30:531 hour, 30 minutes, 53 secondswe'll of course have to make these back ticks here so what this is saying is now whenever there is a first uh whatever's on the event called
+first 1:31:021 hour, 31 minutes, 2 secondsname uh it should show it now i just saved i didn't start and stop my server note that i just all i did was save my file and i'm gonna
+come back 1:31:121 hour, 31 minutes, 12 secondsand we'll look here at hello world and i'm gonna pass in question mark first name and we'll pass in ada 1:31:191 hour, 31 minutes, 19
+secondsand boom there we go we got it this totally helps me speed up things as i develop and i can test things out here locally 1:31:281 hour, 31 minutes, 28 secondsyou'll see that
+down here you'll have the status uh the the verb and then actually what had happened here i can also log out there so if i use my 1:31:351 hour, 31 minutes, 35 secondsconsole log
+we'll see it'll show up there so we'll say console log oh let's let's show off my luggage uh secret 1:31:431 hour, 31 minutes, 43 secondsluggage password um and again that's on the
+context object so we'll do context dot 1:31:511 hour, 31 minutes, 51 secondspassword for my luggage 1:32:001 hour, 32 minutesawesome we'll save that again i didn't start and stop
+the server i come back here i'm going to change this just to 1:32:081 hour, 32 minutes, 8 secondsmake a new one there we go it ran and if we look we can see here's the secret
+luggage for the password it just came out there 1:32:171 hour, 32 minutes, 17 secondslogged out so awesome way to get your console logs here and you can see that the different
+requests are coming through all right next up i want to show 1:32:251 hour, 32 minutes, 25 secondsoff the fact that there's this sms folder so it has in here a file called
+reply.protected.js now check this out if something is in a 1:32:341 hour, 32 minutes, 34 secondspath you'll see that it is it makes the url this way the url is in the path as well
+so it's sms reply now note it 1:32:411 hour, 32 minutes, 41 secondsdoesn't have the protected or the dot js now protected it is a protected file that's how you set the ability that
+only 1:32:481 hour, 32 minutes, 48 secondstwilio can see this so when we deploy this and we will deploy some code uh if it's marked protected you'll notice that 1:32:561 hour, 32
+minutes, 56 secondsonly twilio can see it it uses a special header that would that is signed and by just automatically making it protected nobody else will be able to just hit it
+1:33:041 hour, 33 minutes, 4 secondsthey'll have to actually have that header uh in the code to make it work and again just note that it's you don't put the dot js 1:33:121 hour,
+33 minutes, 12 secondson on it it the name of the function is just the first part of the file name minus any extension at the end now in order to use these functions right 1:33:201
+hour, 33 minutes, 20 secondsthey're returning twiml and it's twilio that we want to get it to twilio is going to need to be able to see them right now remember this is only on my
+1:33:271 hour, 33 minutes, 27 secondslocalhost only i can see this it's not exposed but in order to configure our number to be able to get the twiml 1:33:351 hour, 33 minutes, 35
+secondswe're going to need this server to be web accessible i'm excited to show you this trick because this will not only solve our 1:33:431 hour, 33 minutes, 43 secondsproblem but
+it also lets you share web projects without deploying them there is a very amazing tool called ingrock and it allows you to open up or 1:33:521 hour, 33 minutes, 52 secondsexpose a
+port on your machine to the internet installation instructions are in the note once you get it installed you can then open up a new terminal window which i'll do here i'm going to
+1:34:001 hour, 34 minutesopen up a new terminal window and i'm going to start in grok and i'm going to tell it i wanted to use http and i'm going to say what port i want so
+1:34:071 hour, 34 minutes, 7 secondsremember it was on localhost 3000. so that's going to open up this port it's going to have this forwarding address here so 1:34:161 hour, 34
+minutes, 16 secondsautomatically if i if i click into this i can click into this and if i go to dash 1:34:241 hour, 34 minutes, 24 secondshello world now notice this is not on my
+local host this is public to the internet so anybody can see that including twilio but you can use this to 1:34:331 hour, 34 minutes, 33 secondsshare and test out your stuff i use
+this all the time with my mom to have her look at my creations before they're ready because she's so good at breaking things and very nice about reporting my 1:34:411 hour, 34
+minutes, 41 secondsbugs but in addition to my mom twilio can now execute this function which is important uh because it's it's 1:34:481 hour, 34 minutes, 48 secondstwiml and that's
+for twilio so why don't we update our number but uh instead of using the console uh let's update it from the command line i think i think 1:34:571 hour, 34 minutes, 57 secondswe're
+ready for that let's do it from from this space here so we're going to open up another terminal so i've got three going on over here 1:35:051 hour, 35 minutes, 5 secondswe've got
+the server we've got ngrok and we've got this and i'm going to go and i'm going to say twilio phone numbers because the cli gives us access 1:35:121 hour, 35 minutes, 12 secondsto
+that and we'll do list and so using that same api call there i can i can update this so i 1:35:211 hour, 35 minutes, 21 secondscan say twilio phone numbers update i'm going to pass
+in the number and i'm going to tell it where i want uh what i want to have 1:35:301 hour, 35 minutes, 30 secondshappen when somebody calls it so remember that was configured before
+in our phone number configuration but here we're going to do voice url and i am 1:35:371 hour, 35 minutes, 37 secondsgoing to go and i'm going to give it this we want it to return
+this it's going to say it's going to return a statement says hello undefined so let's 1:35:441 hour, 35 minutes, 44 secondsdo that so we will go back here i'm going to set the
+voice url to that exactly and i press enter and now my phone 1:35:531 hour, 35 minutes, 53 secondsnumber is set up to do that also because i've upgraded my account i can now call
+from my home line so now i don't need to just use my cell phone so i'm going to 1:36:001 hour, 36 minutescall from one of these old school phones that i have here check this out
+1:36:061 hour, 36 minutes, 6 seconds[Music] 1:36:181 hour, 36 minutes, 18 secondshello undefined and notice i didn't have to press one for the upgrade thing there awesome now check
+this out this is even cooler 1:36:261 hour, 36 minutes, 26 secondsso i'm going to go back to where ngrok was and i'm going to come in here to this web interface and i'm going to
+click to open this up 1:36:351 hour, 36 minutes, 35 secondsand this happens by default you can see all the things that went through your ngrok like i clicked on the slash git right
+we got the 404 and then i did a get on it to show you but this is the 1:36:441 hour, 36 minutes, 44 secondspost that twilio sent and you can see all of the other information that
+came across so you can see my home number there and uh don't call too late at night and 1:36:531 hour, 36 minutes, 53 secondswake the kids up uh so uh but you can see this is the
+information that got sent as the call came so this is information that i could have used right 1:37:001 hour, 37 minutesfrom my event object all this is available right i could
+have looked at the caller state all that stuff oh i'm sorry that's the called state the caller 1:37:081 hour, 37 minutes, 8 secondsstate is oregon astoria where the goonies are
+from as you can see this is super handy for debugging all sorts of web hook all 1:37:161 hour, 37 minutes, 16 secondsright a few more things to point out if we go back here and we
+look in the assets directory you'll see that there 1:37:231 hour, 37 minutes, 23 secondsare some files that have been included and if we look at the server log again we can see
+that there's this index.html so you can actually host 1:37:311 hour, 37 minutes, 31 secondsindex.html pages i'm going to click that and open it up you can actually host pages here
+eventually we're going to deploy this so you can actually show this live but there's great information 1:37:401 hour, 37 minutes, 40 secondshere if you want to do a little bit more
+we'll cover all of this stuff in the remainder of this course but there's great stuff that is available here for you so feel free to give this a read and 1:37:491 hour, 37 minutes,
+49 secondswhat i'm going to do is i'm going to come back and i'm just going to clean out all of these because we don't need this for what we're doing so i'm going to clean out all
+of those assets i'm 1:37:561 hour, 37 minutes, 56 secondsgoing to delete them and i'm going to get rid of all of these very nice functions that were given to us because we want to
+start with a clean 1:38:041 hour, 38 minutes, 4 secondsslate as we go and start building out our application there's been a lot of talk about how all these audio apps are just
+another Chapter 15: Create a Conference 1:38:121 hour, 38 minutes, 12 secondsconference call and that's what actually got me thinking about this originally twilio has an awesome
+ability to create and maintain conference calls let's 1:38:201 hour, 38 minutes, 20 secondscreate one creating a conference call on twilio is extremely straightforward and much
+like you saw with cues just by giving it a 1:38:281 hour, 38 minutes, 28 secondsname it creates a new conference with that name so to show this off let's build a function that will
+return twiml to connect to a conference call so uh in 1:38:371 hour, 38 minutes, 37 secondsmy functions here i'm going to create a new file and i'm going to call that incoming call
+incoming dashcall.js 1:38:461 hour, 38 minutes, 46 secondsnow this isn't my first function rodeo so i know the stands of my heart but don't feel bad if you haven't picked it up yet
+so it's exports 1:38:541 hour, 38 minutes, 54 secondsdot handler and then it's going to take a function that takes context event and callback 1:39:021 hour, 39 minutes, 2
+secondswe're going to make a new voice response so it's defaulting the four spaces i'm going to make a default two 1:39:091 hour, 39 minutes, 9 secondsthere we go so we'll say
+const that's still four there we go 1:39:161 hour, 39 minutes, 16 secondsconst twiml equals twilio twiml 1:39:251 hour, 39 minutes, 25 secondsdot voice response awesome so with the
+fluid api you can kind of just 1:39:331 hour, 39 minutes, 33 secondschange things together to make them nest properly so the the twiml that we're trying to build is this twiml dot
+dial so this will create a new dial verb and 1:39:421 hour, 39 minutes, 42 secondsthen we're going to do dot conference because there's a conference noun inside of the dial verb
+and then you just give it a name so we'll call 1:39:511 hour, 39 minutes, 51 secondsthis sample conference name and we would in our situation we want that 1:39:581 hour, 39
+minutes, 58 secondsto be the unique talk that's happening so i'm going to leave a to-do here for us to to do later uh this should 1:40:061 hour, 40 minutes, 6 secondsbe the name of
+the current talk because again what happens is it's going to create 1:40:141 hour, 40 minutes, 14 secondsa conference if there's not a conference that's currently active called
+sample conference name it's going to create a brand new one and connect the caller to 1:40:211 hour, 40 minutes, 21 secondsthat and let's just print the twiml out so we can see it
+again so we'll do console.log 1:40:271 hour, 40 minutes, 27 secondsand we will do twiml is twiml that will automatically do the two 1:40:351 hour, 40 minutes, 35 secondsstring on
+it and we're gonna call our callback so i'm gonna say return the callback and uh there's no errors and we're gonna return the twiml there 1:40:441 hour, 40 minutes, 44 secondswe go
+and i'm gonna save that and i'll just make sure that my server is running it is you'll see that i can now get to my new incoming call url let's uh let's 1:40:531 hour, 40 minutes,
+53 secondstake a peek at that uh i forgot to do new here actually 1:41:001 hour, 41 minutesso let's uh let let's take i got a 500 um and the the 500 that came back that popped up
+on a different monitor here 1:41:071 hour, 41 minutes, 7 secondslet me just show you in case you get to see that sometime that popped up it looked like this so my incoming call
+1:41:151 hour, 41 minutes, 15 secondswas giving me a 500 of uh it said that dial was undefined and that's because i didn't instantiate 1:41:241 hour, 41 minutes, 24 secondsthe
+object if you take a look here i always like to share my errors in case you see them too so i forgot to put this new here i just did this voice response 1:41:321 hour, 41 minutes,
+32 secondsand that was not what we need we need to make a new instance of that cool so our twiml is looking good and it's a it's doing a dial this is a dial verb to the conference
+noun and the name of the 1:41:411 hour, 41 minutes, 41 secondsconference is sample conference name so let's hook our number up to this function let's 1:41:501 hour, 41 minutes, 50
+secondsmake sure that ingrock is still running uh it is and this is my in ingrock address i'm going to click that and 1:41:581 hour, 41 minutes, 58 secondsagain it's not there's
+nothing at the root here so we want to look at slash incoming dash call and again this is publicly 1:42:061 hour, 42 minutes, 6 secondsaccessible uh because of my ingrock address
+so now i've got this twiml being returned so now i am ready 1:42:141 hour, 42 minutes, 14 secondsto go and update my phone number right i need to update my phone number to have
+that for the incoming when somebody calls we want 1:42:221 hour, 42 minutes, 22 secondsthem to automatically dial into this conference all right so do you remember how to update
+that incoming voice url from the command line do you remember how to do 1:42:311 hour, 42 minutes, 31 secondsthat i bet you could figure out how to do it from the console but can
+you do it for the command line you want to give it a shot okay let's do this go ahead and 1:42:391 hour, 42 minutes, 39 secondspause me and give it a try and when you're all done
+unpause me and i'll show you how i did it remember that you can use your command line history it's it's 1:42:471 hour, 42 minutes, 47 secondstotally allowed uh it don't feel bad if
+you can't do this we only did it once all right want to give it a try up so here let's do this so i want you to update 1:42:551 hour, 42 minutes, 55 secondsyour in coming your
+incoming voice url to point to 1:43:021 hour, 43 minutes, 2 secondsthis new function okay so that's what i want you to do i want you to update your incoming voice you're all to
+point this new function ready 1:43:111 hour, 43 minutes, 11 secondsyou got this pause me 1:43:141 hour, 43 minutes, 14 seconds[Music] 1:43:211 hour, 43 minutes, 21 secondsokay
+how'd you do so let me show you how i did this how i updated my incoming phone number so um i went and got my phone number so phone numbers uh list 1:43:301 hour, 43 minutes, 30
+secondsand then uh because i know what my phone number is i've got this phone number i'm gonna say twilio phone numbers update i'm going to paste that and then i'm 1:43:381 hour,
+43 minutes, 38 secondsgoing to do voice url and the voice url is uh this one this is the ingrok one right so that's that's 1:43:461 hour, 43 minutes, 46 secondsimportant for for
+twilio to be able to hit it it's the ngrok one and there we go it's now updated so i'm 1:43:521 hour, 43 minutes, 52 secondsgoing to call uh from my landline 1:44:011 hour, 44
+minutes, 1 second[Music] 1:44:101 hour, 44 minutes, 10 secondsand it's going to be on speakerphone here and the conference plays this lovely 1:44:181 hour, 44 minutes, 18
+secondshold music by default until at least two people have joined by default this is the functionality but what i wanted to show you is that you 1:44:261 hour, 44 minutes, 26
+secondscan now see the conference from the api because the conference has been uh created so if we go uh twilio i'm just gonna start typing conf and do a tab 1:44:351 hour, 44
+minutes, 35 secondslet's do conference so there we go uh twilio api core conferences i'm gonna do a list and you'll see i was playing around in 1:44:431 hour, 44 minutes, 43
+secondshere before you'll see some others that have been completed and in fact one with the same friendly name as sample conference name because i was again testing it's been
+completed but this is 1:44:511 hour, 44 minutes, 51 secondsthe one that i am connected to now it's in progress i'm gonna go ahead i'm gonna grab that uh sid that string identifier
+and i'm going to go ahead and fetch that 1:45:001 hour, 45 minutesconference i'm going to take a look actually i'm going to take a look at the participants in that conference and
+i'll do a 1:45:071 hour, 45 minutes, 7 secondslist so the participants there should be only one right now right because it's me so we'll say conference sid is equal to that
+conference that i just got and see 1:45:161 hour, 45 minutes, 16 secondsthere's one call that's available right now there's one call i'm going to go ahead i'm going to add an
+additional uh call and a call from my cell phone so 1:45:231 hour, 45 minutes, 23 secondsthat we could get a little weird here so calling in 1:45:321 hour, 45 minutes, 32
+secondsokay so now we hear some crazy reverb but now if we look at the participants 1:45:421 hour, 45 minutes, 42 secondswe'll see if there's two i'm gonna hang up because it's
+getting weird but now that i've hung up and i've hung up from uh both of them and we go and 1:45:501 hour, 45 minutes, 50 secondslook at the participant list uh you'll see that
+it's empty because those are active participants and i wanted to show you that because if you 1:45:581 hour, 45 minutes, 58 secondswanted to track the participants what you'll want
+to do is you'll want to use the status callback and then capture when you get a participant joined event 1:46:061 hour, 46 minutes, 6 secondsand you could store that someplace in a
+database if you wanted to but i wanted to call this out because it's a lot like the status callback that we saw for the 1:46:131 hour, 46 minutes, 13 secondscall resource and a lot
+of twilio apis use the same web hook pattern so because you know that pattern of how to do the status callback this is very similar you 1:46:211 hour, 46 minutes, 21 secondscould
+say uh notify me every time a participant joins and you'll get a notification oh i should also note that you can use this participants api this 1:46:291 hour, 46 minutes, 29
+secondsuh that we're on right here you can actually create from here so if we go to um participants create you can right from the api you can add somebody to this so 1:46:381 hour,
+46 minutes, 38 secondsif we do a help on this we'll get uh the this is called the add participant api and you can see that you can add and you can do a from 1:46:461 hour, 46
+minutes, 46 secondsand a two and you can set the callback and again same sort of thing if you use this this participants you add a participant it'll automatically create it if it
+doesn't exist we'll use this 1:46:541 hour, 46 minutes, 54 secondshere in a bit check the notes for more on participants but i also wanted to show off this page that we started out
+on here this voice conference um there's 1:47:011 hour, 47 minutes, 1 secondthe voice conference is used for quite a bit and uh you might not see it right out of the gate so uh if
+you look down here there's some great features that are available and 1:47:101 hour, 47 minutes, 10 secondsone of the ones that i think a lot of people use is this participant
+coaching this is the same sort of thing of like you might hear this call might be 1:47:171 hour, 47 minutes, 17 secondsmonitored for training purposes so somebody might be sitting
+there and listening and they can actually talk to just one party that's called coaching or whispering to the to the other uh 1:47:261 hour, 47 minutes, 26 secondsparty that's there
+so i i don't know if you knew this but maybe when you're on the phone with your bank you're talking to somebody they might have somebody guiding them with how to answer some of
+1:47:341 hour, 47 minutes, 34 secondsthe questions you can't hear them but they can't this is this is one way that you could do it totally not the use case that we're we're in
+right now but i just wanted you to know about it because it's 1:47:421 hour, 47 minutes, 42 secondssuper powerful and now you have the ability to do it but let's get back to our
+use case so right so we want when somebody uh when somebody calls in we 1:47:501 hour, 47 minutes, 50 secondswant to put them in the right talk that's happening but we don't know
+what that is right now which means we are going to need to store some data about what talks are 1:47:581 hour, 47 minutes, 58 secondshappening let's take a quick break and when you
+come back we'll take a look at how to deal with private data we're at that part of project creation Chapter 16: Use Private Data 1:48:061 hour, 48 minutes, 6 secondswhere we need
+to have access to some mock data that doesn't yet exist we need to define what talks are happening but we don't have those stored 1:48:141 hour, 48 minutes, 14 secondsanywhere heck
+we don't even have the data model built yet i can see that those eventually will live in a database and maybe we expose a 1:48:211 hour, 48 minutes, 21 secondsrest api later but
+now we don't really even know what it feels like i find that during prototype development it's best to create a module that 1:48:291 hour, 48 minutes, 29 secondsreturns mock data
+that feels similar to how we anticipate things to behave in the future i abstract away the unknowns and then i 1:48:371 hour, 48 minutes, 37 secondsuse what i create as a
+specification for the yet to be created api and there's probably a programming term 1:48:441 hour, 48 minutes, 44 secondsfor this but i call it a hack job in this serverless world
+i typically do that by creating a module and i host it 1:48:511 hour, 48 minutes, 51 secondsusing a private asset this will be a good example of a common question about functions
+how do i share code between functions so let's get our mock data all 1:48:591 hour, 48 minutes, 59 secondsset up hack job commence okay so first things first we're gonna create a
+new asset so i'm gonna go in 1:49:071 hour, 49 minutes, 7 secondsthe assets folder and do a plus here and we're gonna name it uh what it is that we're gonna be abstracting so let's
+uh abstract away 1:49:161 hour, 49 minutes, 16 secondsdata yeah right data and we're going to make it private so i'm going to call it private and then i'm going to do dot js
+1:49:231 hour, 49 minutes, 23 secondsand i'm going to make my spaces be 2 into using two now this file that we're going to create is going to be a standard javascript module now if
+you 1:49:321 hour, 49 minutes, 32 secondshaven't seen one of those no sweat at all what we're going to do it's basically just a way to do encapsulation so what we're going to say
+is we're going to say module 1:49:401 hour, 49 minutes, 40 secondsdot exports and uh what happens is whenever somebody imports uh this file they'll get this object uh so you can do
+1:49:481 hour, 49 minutes, 48 secondswhatever code you want up here and then only export what it is that you want so let's see we're gonna be mocking data that might come from
+other systems so 1:49:561 hour, 49 minutes, 56 secondslet's create a new class we'll say class and we'll call that data now a trick that i always like to use is 1:50:041 hour, 50
+minutes, 4 secondsto pass along the context object to the constructor so when somebody builds one of these they'll just pass in that context object that you get from the 1:50:111
+hour, 50 minutes, 11 secondsfunction right so we'll pass that in and we'll store that in the instance we'll do this.context equals context and that way you can get access to any
+sort of 1:50:191 hour, 50 minutes, 19 secondsenvironment variables or things like that that you might need and then to export this class all we would do is we would come down here
+and we would just say its name now if you haven't seen 1:50:281 hour, 50 minutes, 28 secondsthis style before this is actually like this like it's a key of data in the value of
+data but uh javascript lets you just say data so that will be a key data 1:50:361 hour, 50 minutes, 36 secondsand the value will be data there and that's nice to have without all
+that duplication now we have a class that we can export and when it's imported it can 1:50:441 hour, 50 minutes, 44 secondsbe instantiated with a context object i imagine we'd have
+some sort of list of upcoming talks and it would return talks that haven't yet happened right so that 1:50:531 hour, 50 minutes, 53 secondsthey're ones that are upcoming so let's
+call that uh get upcoming talks so we'll add a new method here to this uh this class 1:51:011 hour, 51 minutes, 1 secondget upcoming talks probably won't take anything and uh what
+we'll do in this case when we're mocking it we'll just 1:51:081 hour, 51 minutes, 8 secondsreturn the shape of what we expect it to look like eventually right so it's definitely an
+array it's an array of talks and now we get to decide uh 1:51:161 hour, 51 minutes, 16 secondsbecause we're just on the fly making stuff up here we get to decide what that looks
+like so let's see first of all let's think about a talk so uh there seems to be a lot of 1:51:251 hour, 51 minutes, 25 secondsbillionaires going to space and i can't figure out why
+but there keep on being these talks about it and i keep missing them i think it's kind of like the next 1:51:321 hour, 51 minutes, 32 secondslevel of yacht it's like yacht plus
+plus so but there's been talks going on uh we've missed them i'd love to host a 1:51:401 hour, 51 minutes, 40 secondstalk on fomo to learn more about these these billionaires go
+into space so um let's do that let's let's let's talk about 1:51:481 hour, 51 minutes, 48 secondswhat that talk would look like so the the title is probably something like
+billionaires in space 1:51:571 hour, 51 minutes, 57 secondsall right and uh we need some sort of slug to get to it later let's call that a code i don't really like the word slug
+1:52:041 hour, 52 minutes, 4 secondsuh and we'll make that code uh astronaut okay so um we can talk about astronauts um there 1:52:111 hour, 52 minutes, 11 secondsuh and let's see
+what else would this have i'd imagine to probably have a start time right uh and that would be in a format um uh what is the format there 1:52:201 hour, 52 minutes, 20 secondsi'm
+going to add a new we'll add a new one here get the javascript format i always forget what that looks like so i'm going to open up my node reply and i'll just say new 1:52:281
+hour, 52 minutes, 28 secondsdate there we go this is uh today uh my today right so so happy october it's october 1st and we'll just say that 1:52:361 hour, 52 minutes, 36
+secondsthis starts at uh at 17 whatever that time zone is awesome 1:52:431 hour, 52 minutes, 43 secondscool uh so i'm gonna do uh exit uh from this there we go oh you know we
+probably also need to 1:52:511 hour, 52 minutes, 51 secondsknow the speaker's phone number so that we can call the speaker and and treat them a little bit differently right because
+remember some people will be on mute so we'll do speakers we'll make 1:52:581 hour, 52 minutes, 58 secondsthat an array right there's probably going to be multiple speakers well
+why not and while i'm totally not qualified to talk on either space or being a 1:53:061 hour, 53 minutes, 6 secondsbillionaire i'm going to go ahead and put my number here so i'll
+be the speaker on this one five oh three three eight 1:53:141 hour, 53 minutes, 14 secondsthree six eight eight seven three one there we go i've got the man i'm not typing that
+very good eight 1:53:221 hour, 53 minutes, 22 secondsthree six eight seven three one don't call late all right there we go so that's one talk let's see what else could we talk
+about 1:53:301 hour, 53 minutes, 30 secondsi'm just gonna go ahead and copy and paste it like a good developer uh and uh you know what something i'm very very 1:53:371 hour, 53
+minutes, 37 secondspassionate about is uh taco tuesdays uh should probably be every day why limit ourselves right 1:53:441 hour, 53 minutes, 44 secondsuh and we'll have a well the
+the code will be taco we'll have a talk a taco let's taco about tacos that's like a greeting card all right 1:53:521 hour, 53 minutes, 52 secondsand uh that's gonna be tomorrow at
+the same time um and uh i am definitely qualified uh to talk about this something i'm passionate 1:54:001 hour, 54 minutesabout i have a lot of feelings about this okay awesome so
+uh we've got this git upcoming cox let's go ahead let's do a get current talk right 1:54:081 hour, 54 minutes, 8 secondsso this would return um what was currently happening if
+there was a talk happening and that probably we'd return undefined if not let's make 1:54:171 hour, 54 minutes, 17 secondsuse of our code that we just did so we'll do this.get
+upcoming talks uh we'll get that and then just whatever the first one is uh yeah and if we need 1:54:251 hour, 54 minutes, 25 secondsto test it we can switch it to make it i guess
+return undefined right if there's not a current talk it'd be undefined ooh and now we could take care of our uh to 1:54:321 hour, 54 minutes, 32 secondsdo that we left here an
+incoming call right it should be the name of the current talk we have the current talk now so um uh let's do this uh if we look at the 1:54:411 hour, 54 minutes, 41 secondsserver
+that's running you'll see that when i saved it i got this new data js and you'll see this is how i get access to these private ones see it's private 1:54:491 hour, 54 minutes, 49
+secondsbecause i remember we named it private so that's why it's private and this is how you get it and notice that it has the data.js at the end of it 1:54:561 hour, 54 minutes,
+56 secondsum and this runtime.getassets let's go ahead let's let's uh let's put that at the top of this this file here outside of the function 1:55:041 hour, 55 minutes, 4
+secondswe're going to go ahead and do this uh run time or we'll we'll store it okay so i'm going to store assets equals runtime dot get 1:55:121 hour, 55 minutes, 12 secondsassets
+and what this is what this ad sets object is is the key is the asset name right so it's this it'll be this data.js 1:55:211 hour, 55 minutes, 21 secondsand and the value is an
+object that provides some helper methods and properties that we can we can get to check the notes for more on that and 1:55:281 hour, 55 minutes, 28 secondsbecause i've stored that
+in an object i'm going to use that and we're going to we're going to get that out so first thing i'm going to do 1:55:361 hour, 55 minutes, 36 secondsis i'm going to pull out
+because we we made data we made that data class available to be exported by name right so i'm going to pull data out that way 1:55:431 hour, 55 minutes, 43 secondsand i'm going to
+use a require statement now a require statement takes a path and the good news is that if we use our 1:55:501 hour, 55 minutes, 50 secondsassets object with that key of slash
+data.js we will see that it has a dot path at 1:55:581 hour, 55 minutes, 58 secondsthe end of it so what's going to happen is it's going to import this file as a module and this is
+what has been exported so now we have access to that 1:56:061 hour, 56 minutes, 6 secondsdata class so since we have it let's instantiate it so i'm going to say const data equals
+1:56:131 hour, 56 minutes, 13 secondsnew data and remember that constructor takes a context object and we happen to have one from this function so i'm going to pass in that context
+object and now i 1:56:211 hour, 56 minutes, 21 secondscan get the current talk so the talk is equal to data that get current talk right 1:56:301 hour, 56 minutes, 30 secondsit's
+pretty clean and uh let's see we said it would return undefined if if it's not right so we said we return undefined so uh we'll do 1:56:391 hour, 56 minutes, 39 secondsuh if talk
+is not undefined if we actually got one we are going to come in here 1:56:471 hour, 56 minutes, 47 secondsand let's move this guy here we are going to dial uh the talk and the talk
+is actually instead of sample 1:56:551 hour, 56 minutes, 55 secondsconference name now we have access to that let's let's use the code that we did so we did talk dot code here we

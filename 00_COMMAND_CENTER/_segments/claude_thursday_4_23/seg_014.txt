@@ -1,0 +1,224 @@
+prompts are ephemeral. They only exist for like a short period of time. Their context windows are all self-contained. 3:18:513 hours, 18 minutes, 51 secondsDo I really wanna rerun
+that thing a hundred times, even if it's cheaper? Probably not, right? Chapter 32: Creating Useful Sub-Agents 3:18:543 hours, 18 minutes, 54 secondsNext up, I wanna show you guys
+how to create what I'd consider to be the three most useful subagents as of right now. 3:19:003 hours, 19 minutesSo what I'm doing is I'm actually having Claude code create these
+as we speak. One's called code reviewer, the other is called researcher, and the last one's going to be called QA. 3:19:083 hours, 19 minutes, 8 secondsAnd we're going to insert
+all three of these agents into this folder here alongside email classifier. 3:19:123 hours, 19 minutes, 12 secondsAnd then I'm gonna update my Claude.md to reference the proposed
+workflow. Then I'm gonna show you what all that stuff looks like. Now, in order to use agents, 3:19:193 hours, 19 minutes, 19 secondswhat we actually have to do is we have to exit
+a specific instance that we generated the agents in. 3:19:243 hours, 19 minutes, 24 secondsOtherwise we're not gonna see them as available in our task definition. So I'm just going
+to create a new instance of Claude code. What subagents do we have access to? 3:19:333 hours, 19 minutes, 33 secondsI also refresh this so we could see them all. And as we can see,
+we have four. We have code reviewer, QA, research, and then email classifier. 3:19:413 hours, 19 minutes, 41 secondsOkay, what is the proposed workflow every time we develop some
+software? 3:19:503 hours, 19 minutes, 50 secondsWhat I want it to do now is I want it to go through and then tell me, first we write the edit, the code, and the parent agent.
+3:19:543 hours, 19 minutes, 54 secondsThen we code review, which spawns a code reviewer subagent and the change falls, fixes any blocking issues. Then we do a QA, spawning a QA
+subagent on the code, 3:20:023 hours, 20 minutes, 2 secondsgenerates tests, runs them, reports results, and fixes failures. Then finally we do a ship. So now that we have all that
+ready, 3:20:073 hours, 20 minutes, 7 secondslet's actually go and then let's use our new workflow on the flow that we just created before. So I think it was the Gmail-label. Use
+our new workflow on Gmail-label. 3:20:163 hours, 20 minutes, 16 secondsIt's the skill that looks through my inbox and then labels emails. 3:20:213 hours, 20 minutes, 21 secondsSo
+what I want to do is I want to read through the Gmail-label skill to understand what we're working with. So it's going to read the skill. That's also going to go through all of the
+scripts. 3:20:293 hours, 20 minutes, 29 secondsBut I basically want us to take these scripts and then apply our little flow. 3:20:333 hours, 20 minutes, 33 secondsSo the first
+thing it's going to do is run the code review agent on all four scripts. And as you can see here, we can run these in tandem in parallel. So first we're going to code review,
+3:20:413 hours, 20 minutes, 41 secondsand then we're also going to generate tests and run them for the Gmail-label scripts. So we're going to use both of these, 3:20:463 hours, 20
+minutes, 46 secondsand then we're going to use them to feed back to our parent agent. 3:20:493 hours, 20 minutes, 49 secondsOur parent agent is going to make changes to this code
+and significantly improve the quality of said code. Now is this like required to do every single time? No, as you guys could see, 3:20:563 hours, 20 minutes, 56 secondswe're
+capable of writing some pretty damn good code, but knowing a lick of code, with just like the vanilla Claude Code installation. 3:21:023 hours, 21 minutes, 2 secondsThis sort of
+stuff becomes more and more valuable when you're working at enterprise and you're creating code that requires the ability to, 3:21:083 hours, 21 minutes, 8 secondsone, be like
+really secure and verifiable by both agents and then human beings if they read them. And then two, to like account for all possible edge cases. 3:21:173 hours, 21 minutes, 17
+secondsYou know, in my case, 3:21:173 hours, 21 minutes, 17 secondsI don't really care too much accounting for all possible edge cases, 3:21:203 hours, 21 minutes, 20
+secondsbecause most of the software I'm making is for my own internal tooling. 3:21:233 hours, 21 minutes, 23 secondsYou know, it's like a one-off landing page for a client to use,
+that sort of stuff. You know, if I'm working in a big business, 3:21:273 hours, 21 minutes, 27 secondsworking in a Versel or I'm working in an open AI or I'm working in a, you
+know, I don't know, Oracle big database or whatnot, this stuff becomes significantly more important. 3:21:343 hours, 21 minutes, 34 secondsAnd that's where these sorts of code
+design patterns become valuable. 3:21:383 hours, 21 minutes, 38 secondsOkay, so we're still waiting on the output of the other task, but if I scroll down here, you can see there's
+actually some recommendations already. This is being provided inside of this task output, 3:21:463 hours, 21 minutes, 46 secondsso it's not written very well or nice. So we're
+gonna have to squint a bit, but code is correct, readable, it handles errors appropriately. Batch fetching uses 100 per batch, 3:21:543 hours, 21 minutes, 54 secondsbut could use
+the Gmail API max of a thousand requests per batch. 3:21:573 hours, 21 minutes, 57 secondsThat means that we could significantly improve the total efficiency of this flow. 3:22:013
+hours, 22 minutes, 1 secondAnd that's one piece of value that the code reviewer has already given for us. Then we have some callback stuff. So basically it's identified an error or
+an issue, 3:22:083 hours, 22 minutes, 8 secondswhich is quite useful. 3:22:103 hours, 22 minutes, 10 secondsIt's giving us some insights on the readability and, you know, a little
+commenting that we could be doing to make the code better and so on and so forth. Okay, now the tests are completed. 3:22:193 hours, 22 minutes, 19 secondsSo it looks like we've
+passed most of the tests. There's only one that had a wrong exception. 3:22:233 hours, 22 minutes, 23 secondsAnd now it's feeding in all of this information to the parent agent.
+The parent agent is gonna go through and do the fix. So 16 to 18 characters, 3:22:323 hours, 22 minutes, 32 secondsit's gonna jump through, accepting uppercase and variable length
+hex IDs. No idea what that means, 3:22:373 hours, 22 minutes, 37 secondsbut of course this agent is now thinking dozens of times faster than I'd be able to. So I'm just gonna trust
+that it's doing well. And then front load all of this double checking, 3:22:443 hours, 22 minutes, 44 secondstriple checking, QA, and so on and so forth to minimize the possibility
+of longer term errors. So that looks great. We've now run our new flow, 3:22:523 hours, 22 minutes, 52 secondswhich has yielded significantly better benefits. Okay, great. 3:22:563
+hours, 22 minutes, 56 secondsNow use the research sub agent to go and find me the best MCP server currently available for PandaDoc. 3:23:063 hours, 23 minutes, 6 secondsSo now I
+wanna show you guys the value of the research sub agent. This has now spawned one of my research. So it's going through, 3:23:133 hours, 23 minutes, 13 secondsit's doing tons of
+research simultaneously, 3:23:173 hours, 23 minutes, 17 secondstrying a bunch of different search queries and so on and so forth. It's now returned one of the web search results.
+And as you can see, 3:23:253 hours, 23 minutes, 25 secondsit's also doing tons of different like HTTP requests and stuff like that simultaneously. 3:23:293 hours, 23 minutes, 29
+secondsNow I should note that like we already technically have a research sub agent built in, 3:23:333 hours, 23 minutes, 33 secondsbut you can modify that research sub agent flow
+by telling it, hey, you know, I want you to use specific sources. I want you to trust these websites. 3:23:393 hours, 23 minutes, 39 secondsI want you to preferentially go directly
+to the API docs and stuff like that. And so that's what that research sub agent allows us to do. 3:23:453 hours, 23 minutes, 45 secondsIt allows us to research things the way that
+we typically research things, 3:23:473 hours, 23 minutes, 47 secondswhich is gonna be different from just like doing a general Google request for, I don't know, good APIs for
+PandaDoc. 3:23:523 hours, 23 minutes, 52 secondsSo again, just to really impress upon you the value of these, 3:23:563 hours, 23 minutes, 56 secondsreally a big chunk of value is
+it's cheaper to use Sonnet as of right now versus Opus. 3:24:063 hours, 24 minutes, 6 secondsAnd so rather than do your research or do your low, you know, leverage or low ROI
+stuff, 3:24:123 hours, 24 minutes, 12 secondslike reading through a large amount of data to extract something, it's better to use the cheaper models. The next is that it's
+parallelizable, 3:24:203 hours, 24 minutes, 20 secondswhich just means that you can spin up multiple simultaneously and then wait for all their inputs as opposed to going one at a
+time. Like for instance, if this is us, 3:24:273 hours, 24 minutes, 27 secondsand this is sort of our task flow, let's say, you know, this is sort of the serial method, which is
+what we were doing before. Let's say every search takes one minute. 3:24:353 hours, 24 minutes, 35 secondsSo, you know, this is task one, takes one minute. This is task two, which
+takes one minute. And then this is task three, which takes one minute. 3:24:453 hours, 24 minutes, 45 secondsI guess this is two and then this is three. That means in order to get
+to, you know, the start of our query to the end of our query, 3:24:543 hours, 24 minutes, 54 secondsClaude Code takes three minutes in total, right? Well, obviously the parallel
+approach here is a lot better. 3:25:013 hours, 25 minutes, 1 secondWe start, and then what we do is we just spin up three different boxes here simultaneously. 3:25:093 hours, 25
+minutes, 9 secondsAnd now these all take one minute. And, you know, by the time that we end, 3:25:143 hours, 25 minutes, 14 secondswhat we've done is we've basically taken one
+minute because each of these are executing side long sort of with each other. The last major benefit is the way that the context works. 3:25:233 hours, 25 minutes, 23 secondsAnd so
+there's some situations like a, you know, 3:25:253 hours, 25 minutes, 25 secondsreviewer sub agent where it's actually beneficial not to have any of the context of the code.
+3:25:303 hours, 25 minutes, 30 secondsIt's not to have any of the biases of the decision-making of the previous parent agent. 3:25:343 hours, 25 minutes, 34 secondsAnd sometimes,
+you know, choosing a different model to do some of the reasoning can, you know, 3:25:393 hours, 25 minutes, 39 secondsreveal things that maybe the parent agent didn't necessarily
+think of. 3:25:433 hours, 25 minutes, 43 secondsSometimes it makes more sense to look at the ground at your feet, for instance, the dumbness, 3:25:473 hours, 25 minutes, 47
+secondsrather than look up in the sky at like all the complex advanced stuff. Same thing with sort of like a QA agent. 3:25:523 hours, 25 minutes, 52 secondsThe value of both of
+these is they don't necessarily know what's going on in terms of the broader world. All they're really focused on is the code itself, 3:26:003 hours, 26 minutesthe way that it was
+written. 3:26:013 hours, 26 minutes, 1 secondAnd so they get to optimize objectively at like the way to make that thing as efficient as possible. And that's sub agents in a
+nutshell. It doesn't have to be any more complicated than that. 3:26:083 hours, 26 minutes, 8 secondsIt's basically just a folder structure and it's very similar to skills.
+3:26:113 hours, 26 minutes, 11 secondsMy recommendation is use this in conjunction with things like skills to accomplish preexisting workflows many times faster because of
+parallelization. 3:26:193 hours, 26 minutes, 19 secondsBut don't rely on sub agents because a lot of the time, 3:26:213 hours, 26 minutes, 21 secondsthe time it takes to spin up a
+sub agent for a simple query can be just as long as it would take to use just a parent agent to do the thing instead. While sub agents sound really sexy, Chapter 33: Understanding
+Agent Teams 3:26:293 hours, 26 minutes, 29 secondsand obviously everybody wants to have giant fleets and swarms of them working for you on your behalf, be pragmatic and be
+efficient here. 3:26:363 hours, 26 minutes, 36 secondsAnd now it's time to discuss one of Claude Code's most commonly hyped and misunderstood, but also pretty powerful features,
+agent teams. 3:26:443 hours, 26 minutes, 44 secondsIf you're unaware, Claude Code recently unveiled new functionality where you can orchestrate a team of agents and you actually
+don't do the orchestration yourself. 3:26:523 hours, 26 minutes, 52 secondsYou can actually spin up a team of agents that are managed by another agent for you. 3:26:573 hours, 26
+minutes, 57 secondsAnd then all you really need to do is just report back to that manager agent, let them know what you want to do and so on and so forth. 3:27:023 hours, 27
+minutes, 2 secondsObviously, given the fact that this is pretty interesting at first glance, a lot of people are pretty stoked about it and they've made tons of videos talking all
+about how agent teams run their whole life and have revolutionized programming and so on and so forth. 3:27:133 hours, 27 minutes, 13 secondsHopefully in this module, I'm going to
+show you that this is more of the same and agent teams are just another way that you can parallelize your workflow. 3:27:193 hours, 27 minutes, 19 secondsSo the way I want you to
+think about agent teams are basically just a more advanced version of sub-agents. 3:27:253 hours, 27 minutes, 25 secondsBasically, both agent teams and sub-agents are a mechanism
+of parallelization. 3:27:303 hours, 27 minutes, 30 secondsLike we had earlier when I showed you that example of doing a bunch of classification, we have a task and we could do the
+task one by one. 3:27:403 hours, 27 minutes, 40 secondsAnd if we do the task one by one, 3:27:423 hours, 27 minutes, 42 secondswhat we're doing is we're incurring a fair amount of
+fixed time cost. 3:27:453 hours, 27 minutes, 45 secondsNot to mention there are some instances where task steps aren't even necessary. And so if each of these are one minute,
+3:27:523 hours, 27 minutes, 52 secondsobviously that's one minute plus one minute plus one minute equals a total time of three minutes to complete the task. Multiply this by 60,
+you get an hour, an hour, an hour, 3:28:003 hours, 28 minutesthree hours. I'm sure you can start understanding why we parallelize work. 3:28:053 hours, 28 minutes, 5 secondsMuch
+better to be able to spin up three separate solutions, 3:28:093 hours, 28 minutes, 9 secondshave those operate simultaneously and then merely integrate their results into one
+thread. Okay, in a situation like this, 3:28:173 hours, 28 minutes, 17 secondsassuming one, two, three, take one minute, obviously the total time spent is about one minute.
+3:28:213 hours, 28 minutes, 21 secondsSo just like subagents allows one agent to spin up a bunch of these different tasks and then parallelize them, so too do agent teams. 3:28:283
+hours, 28 minutes, 28 secondsIt's just they operate one level even higher. Instead of splitting one thread into three, 3:28:343 hours, 28 minutes, 34 secondswhat you end up doing
+is you basically end up splitting as many threads as you want into as many sub threads as you want as well. 3:28:423 hours, 28 minutes, 42 secondsAnd so in this specific case,
+basically, I have one what's called team lead agent. 3:28:493 hours, 28 minutes, 49 secondsAnd this team lead agent, as opposed to doing one, two, three, four, five, and six
+himself, 3:28:563 hours, 28 minutes, 56 secondswhat he's doing is he's splitting things up into two separate agents here, 3:29:013 hours, 29 minutes, 1 secondhaving them both run
+three subagents on their own and then combine that into one call. 3:29:073 hours, 29 minutes, 7 secondsAt the end of it, this agent then combines them back into the main thread and
+then can reason about things and so on and so forth. 3:29:133 hours, 29 minutes, 13 secondsMuch in the same way that if you think about it, organizational hierarchies work. You'll
+have like a manager up here in a business, 3:29:213 hours, 29 minutes, 21 secondsand then you'll have, for lack of better words, like grunts down at the bottom. The manager tells
+the grunt what to do. 3:29:293 hours, 29 minutes, 29 secondsThe grunt goes, does what they want, and then reports back. 3:29:333 hours, 29 minutes, 33 secondsSo too, do we have
+sort of the same system with subagents and now manager agents as well. And then you basically sit outside of this whole thing, 3:29:423 hours, 29 minutes, 42 secondsjust watching
+it all occur and then nudging different people within the organization or letting the team lead know you wanna change something where necessary. So if you break things down,
+3:29:513 hours, 29 minutes, 51 secondssubagents own all of the context window and the results return to the agent that called them. So in our case, we have a parent agent, we have
+a child agent. 3:29:593 hours, 29 minutes, 59 secondsOur child agent owns its own context window and the results, every time, always go directly to the person or the agent, I
+should say. 3:30:073 hours, 30 minutes, 7 secondsLook at me, anthropomorphize and these damn things that called it. On agent teams, they own their own context window completely.
+They're also fully independent. 3:30:153 hours, 30 minutes, 15 secondsAnd so they don't necessarily have to return their results back to the caller. In fact, agent teams can
+communicate between them. 3:30:223 hours, 30 minutes, 22 secondsSo earlier, where we saw the grunts communicating with the manager, grunts also have the ability to basically
+communicate between each other. 3:30:293 hours, 30 minutes, 29 secondsAnd while I think that this is ultimately less powerful or less effective than communicating with the manager
+because the manager is responsible for synthesis, there are some instances where, you know, 3:30:383 hours, 30 minutes, 38 secondsGrunt 1 does have a interesting revelation or time
+saver for Grunt 2 that could save them a fair amount of time. 3:30:443 hours, 30 minutes, 44 secondsAnd in that way, this sort of cross contamination and cross pollination of
+ideas, 3:30:483 hours, 30 minutes, 48 secondswhile consuming significantly more tokens can lead to a better quality final product. And that takes us to communication, right?
+3:30:543 hours, 30 minutes, 54 secondsWith sub-agents, you always report back to the main agent only, but here teammates can message each other directly. 3:30:593 hours, 30
+minutes, 59 secondsBasically, what occurs in an agent team is they build this mutual scratch pad, which is almost like a message board or a BBS board, if you guys remember from way
+back in the day. 3:31:073 hours, 31 minutes, 7 secondsIt's like a forum, it's like they're on mini Reddit and they'll post tasks that they're currently working on. If they have any
+questions, 3:31:133 hours, 31 minutes, 13 secondsthey'll ask specific people that are responsible for those things. And they'll always just have that stored in their context. So if
+they, you know, have a question from one person, 3:31:213 hours, 31 minutes, 21 secondsthey can prioritize that question and then go and find it in another context and immediately
+reply. 3:31:263 hours, 31 minutes, 26 secondsIn that way, you could save individual agents significant amounts of time. In terms of coordination here, the main agent manages all
+the work, but with agent teams, 3:31:343 hours, 31 minutes, 34 secondsit's a shared task list with self-coordination. 3:31:363 hours, 31 minutes, 36 secondsSo just like we had a
+little Trello board or maybe, you know, a click up task list or something like that. So too do these agents work off the JSON equivalence. 3:31:453 hours, 31 minutes, 45
+secondsThey say that sub-agents are best for focused tasks where only one result matters, 3:31:493 hours, 31 minutes, 49 secondswhereas agent teams are best for complex work
+requiring discussion and collaboration. 3:31:533 hours, 31 minutes, 53 secondsYou know, this is just one of those like little marketing isms. 3:31:553 hours, 31 minutes, 55
+secondsThe definition between focused task and complex task is very, very fuzzy, and there is no real delineation between them. 3:32:023 hours, 32 minutes, 2 secondsIt's sort of
+like how there's a certain point at which a hill becomes a mountain, 3:32:053 hours, 32 minutes, 5 secondsbut nobody could tell you exactly how many feet high the hill needs to be
+or whatever, right? It's just one of those things where when you know, you know. 3:32:123 hours, 32 minutes, 12 secondsAnd finally, the token costs of sub-agents are quite low,
+relatively speaking, 3:32:163 hours, 32 minutes, 16 secondswhereas agent teams are very, very high because every teammate is actually a whole separate clot instance. So when you
+scale up and spin up a bunch of these, 3:32:243 hours, 32 minutes, 24 secondsyou can use a fair amount of tokens quite quickly. 3:32:253 hours, 32 minutes, 25 secondsNow I should
+note that agent teams are not enabled by default because they're what we call an experimental feature. 3:32:313 hours, 32 minutes, 31 secondsThis may not necessarily be true by the
+time you're watching, by the way, but for now they are. They have set them to off essentially by default. 3:32:393 hours, 32 minutes, 39 secondsAnd so only advanced users really
+get to peer behind the curtain and use them. 3:32:433 hours, 32 minutes, 43 secondsThe way that you enable them is you edit your settings.json in your current workspace, and you
+just create this sort of little string. You have this curly brace, you have env, env, 3:32:533 hours, 32 minutes, 53 secondsyou have clod code, experimental agent teams, you set
+that to one, and then you have some closing curly brackets. You don't need to worry too much about that. We'll do that in like five seconds. Chapter 34: Enabling and Using Agent
+Teams 3:32:593 hours, 32 minutes, 59 secondsFinally, the cool thing about agent teams as mentioned is you can't just, it's not only that you can communicate with the parent agent,
+you can communicate with all of the agents. 3:33:073 hours, 33 minutes, 7 secondsSo if, I don't know, you want to context switch and tell agent three in the sequence to do
+something different than it was currently doing, you can absolutely do that really easily. 3:33:163 hours, 33 minutes, 16 secondsThere are two different ways to do so. 3:33:173
+hours, 33 minutes, 17 secondsThere's what's called in process mode and then split pane mode, at least this is the time of this recording. 3:33:213 hours, 33 minutes, 21 secondsOne
+is where you basically just like alt tab through all of them. The other is where there's just multiple panes. And so you'll see agent one over here, you'll see agent two over here,
+agent three over here, 3:33:303 hours, 33 minutes, 30 secondsand then you'll kind of get their feed. I will note, I've done this before, unfortunately, because Claude Code renders
+your, it's not just like a simple text terminal. 3:33:383 hours, 33 minutes, 38 secondsBasically they're like rendering this 2D image constantly on your screen. It can consume a
+fair amount of compute. So I don't actually like using it that way anymore. 3:33:463 hours, 33 minutes, 46 secondsI basically always use it in process, 3:33:483 hours, 33 minutes,
+48 secondsbut I'll run you through what that looks like if you did want to use split pane mode. 3:33:513 hours, 33 minutes, 51 secondsAnd then obligatory agent team tokens cost way
+more because you're spawning tons of different cloud instances. 3:33:573 hours, 33 minutes, 57 secondsAnd every single one has its own context window and can do its own stuff. So
+if you have like 10 active agents running, you're gonna consume about 10 times the context, 3:34:043 hours, 34 minutes, 4 secondsif not more, because there's also gonna be some
+coordination and communication lag and overhead. So they have some recommendations here. They say use Sonnet for teammates, 3:34:123 hours, 34 minutes, 12 secondskeep teams really
+small because every teammate runs its own context window. So token usage is roughly proportional to team size. Keep the spawn prompts focused. We don't know what those are.
+3:34:213 hours, 34 minutes, 21 secondsSo I'll tell you that in a second. Teammates will load their own cloud MD, MCP servers and skills automatically, 3:34:253 hours, 34 minutes,
+25 secondsbut everything in the spawn prompt will also add to their context from the start. Clean up teams when the work is done. So you can actually roll them down or shut them
+down. 3:34:333 hours, 34 minutes, 33 secondsAnd then, yeah, agent teams are disabled by default because they don't want anybody blowing $10,000 on agent teams in the day, which you
+can absolutely do if you're not careful. 3:34:413 hours, 34 minutes, 41 secondsThat's why limits are so important. Okay, so first things first, we have to actually enable agent
+teams. So I'm just gonna jump over here to this URL. And then I'm just gonna copy all of the text on this page. 3:34:513 hours, 34 minutes, 51 secondsAnd then I'm gonna go over to
+anti-gravity, open that puppy up. And just for the purposes of this example, I'm actually just gonna open a new folder. 3:34:583 hours, 34 minutes, 58 secondsSo go to my Mac and
+then I'll say agent teams example. Okay, and I open that. And then what I'm gonna do is go over to cloud, 3:35:073 hours, 35 minutes, 7 secondspaste this in, and I'm gonna say
+enable agent teams. I'm gonna go bypass permissions, close this puppy out so we can all see it. 3:35:153 hours, 35 minutes, 15 secondsMaybe bump this out a bit so you guys can
+always see the text. 3:35:193 hours, 35 minutes, 19 secondsSo it's now added my settings.json here and it's kind of fixed it. Okay, so this is now good to go. And it's enabled this
+across my global workspace. 3:35:283 hours, 35 minutes, 28 secondsSo it's not actually even in my file. Let's start with a really simple example of agent teams. So I could show you
+the parallelization aspect. 3:35:333 hours, 35 minutes, 33 secondsAnd then what we'll do is we'll actually go into an open source code base. 3:35:373 hours, 35 minutes, 37
+secondsAnd I'll use agent teams to act as both code reviewers and then also debaters to debate between each other until they determine that consensus on how to make the code even
+better. 3:35:463 hours, 35 minutes, 46 secondsSo our first super simple example is gonna be, I'm designing a simple personal website for Nix or Iave. 3:35:513 hours, 35 minutes, 51
+secondsGenerate three agents using a team and create three fundamentally different designs. 3:35:543 hours, 35 minutes, 54 secondsOpen all three once done and I'll compare,
+contrast and give feedback. 3:36:013 hours, 36 minutes, 1 secondAlso make sure they know everything there is to know about me so nobody is waiting on anything. 3:36:113 hours, 36
+minutes, 11 secondsSo I'm using a terminal for this just because the terminal UX is much nicer for agent teams than the GUI UX. I'm sure that'll change at some point, but yeah,
+3:36:183 hours, 36 minutes, 18 secondsI also have fast mode on up here, which is just allowing me to do this a little bit faster. And so as you see, what's occurred is the agent,
+this parent agent here, Opus 4.6, 3:36:273 hours, 36 minutes, 27 secondssort of made the executive decision for its very first task, basically. Oh, that's so cool, I didn't even
+know I could do this, to do research on Nix. 3:36:363 hours, 36 minutes, 36 secondsAnd so after it's done the research, basically, it's now gonna spin up three agents, one for site
+one, another for site two and another for site three. 3:36:453 hours, 36 minutes, 45 secondsI really gotta figure out how to do this with hotkeys, it's super annoying. 3:36:493
+hours, 36 minutes, 49 secondsAnd then these three agents are gonna go working on this thing simultaneously and independently and then they're going to combine those three websites
+back into just like we did with subagents, 3:36:573 hours, 36 minutes, 57 secondssort of that main thread. But what's cool is these three different agent teams, since they're all
+individual Claude Code instances, they get to do a variety of different things. 3:37:063 hours, 37 minutes, 6 secondsThey also get to access their own agents, use their own code
+base and stuff like that. 3:37:103 hours, 37 minutes, 10 secondsSo what's really cool is we have three agents now working in parallel. The first is called Design Minimalist, the
+second is called Design Dark, and the third is called Design Warm. 3:37:193 hours, 37 minutes, 19 secondsI asked for fundamentally different types of designs, which is why they're
+doing this. 3:37:223 hours, 37 minutes, 22 secondsNow, if you wanted to see all these agents run simultaneously, all you'd have to do is just go shift up or down. And so right now
+I'm in the Team Lead context, 3:37:303 hours, 37 minutes, 30 secondsbut I could actually go down here and then press enter. And now I'm in the Design Dark. 3:37:343 hours, 37
+minutes, 34 secondsAs you see here, we got a ton of information here with some context about who NixRyf is, and then it says you're designing a personal website, create a single
+self-contained file. 3:37:413 hours, 37 minutes, 41 secondsIt's now creating a bold dark tech website. 3:37:443 hours, 37 minutes, 44 secondsWe could also go up to the main Team
+Lead and then you could see that it's let me know that the Design Minimalist is done and it's still waiting on Design Dark and Design Warm to finish their builds. 3:37:533 hours,
+37 minutes, 53 secondsSo I mean, like how exactly is this different from, I don't know, like sub-agents right now? 3:37:583 hours, 37 minutes, 58 secondsWell, it's different from
+sub-agents in that you can treat every one of these as basically having its own whole Clawed code instance available to it, okay? 3:38:063 hours, 38 minutes, 6 secondsWhereas
+before every individual sub-agent only had access to the contacts that the parent agent gave, realistically, what I could do is I could add a Clawed.md, 3:38:143 hours, 38 minutes,
+14 secondsand all three of these would have access to Clawed.md, you know, style guides and stuff like that. So I'm gonna take a look at this, okay? Saying that it's all done now,
+3:38:223 hours, 38 minutes, 22 secondsand it actually shut down all three of those agents as well, which is really, really important. If they're constantly running in the
+background, 3:38:283 hours, 38 minutes, 28 secondsyou're also gonna be consuming compute resources just as well as UR tokens. Now I'm gonna compare which ones I like more. 3:38:353
+hours, 38 minutes, 35 secondsThis one up here is building at the intersection of AI and human ambition. Wow, look at that, that's nice. Geez, insane. It's got a couple things wrong
+here. 3:38:433 hours, 38 minutes, 43 secondsDefinitely have more than 150K YouTube sales, but what are you gonna do? Looks like it does have my links, which is kinda cool. This is
+like, you know, dark coding one. 3:38:513 hours, 38 minutes, 51 secondsLook at that, isn't that neat? And this one over here is very interesting. There's no picture of me on it,
+but hey, what are you gonna do? 3:38:593 hours, 38 minutes, 59 secondsThat was my little nightclub promotions party. Business, that's a hell of a throwback. And yeah, what happens
+if I click this? Okay, cool, we go back to our YouTube. 3:39:073 hours, 39 minutes, 7 secondsThat's really exciting. So I mean, like, I don't know, maybe, hmm. Maybe I really like
+the first one. 3:39:163 hours, 39 minutes, 16 secondsSo now what I'm gonna do is I'm gonna go back and I'm gonna say, hey, I really liked the warm narrative option, looks great.
+I'd like you now to spin up three more agents. 3:39:253 hours, 39 minutes, 25 secondsI then want you guys to do research on effective design principles and copywriting principles
+that convert. 3:39:363 hours, 39 minutes, 36 secondsOnce done, I want you to spin up a bunch of agents to iterate on this design and come up with their own flavors or versions,
+then report back to me. 3:39:443 hours, 39 minutes, 44 secondsSo now what I'm doing is I'm taking, you know, this winning design here, the warm one, it's gonna take this warm,
+beautiful thing, and then I basically want it to like iterate on it even more. 3:39:533 hours, 39 minutes, 53 secondsAnd as you saw, this occurred pretty quickly, right? I mean,
+this took me maybe like two minutes or so. Is it perfect? No, but because it's not perfect, 3:40:003 hours, 40 minutesI basically just wanna have Claude do a bunch of iterations on
+it and then give me what I consider to be an even better version, which I think it can do pretty quick. So it's gonna spin up a bunch more. 3:40:083 hours, 40 minutes, 8 secondsWe
+have research, copy, research, design, and research examples. This is a good, you know, actual use case here. It's doing three research agents in parallel. 3:40:173 hours, 40
+minutes, 17 secondsWe have one that's figuring out like strong design principles based off of, you know, winning combinations. There's another that's doing some copywriting
+fundamentals. 3:40:253 hours, 40 minutes, 25 secondsAnd then the third that is looking for high quality creator sites. So Ali Abdel, guy that I like, Hormozi, obviously. Dan Coe,
+these guys are perfect. 3:40:333 hours, 40 minutes, 33 secondsIt's more or less exactly what I'm looking for. So it's gonna go do a bunch of research on them. 3:40:363 hours, 40
+minutes, 36 secondsAnd then it's going to incorporate that in presumably some other type of designer. I could see the status by going shift up and down. So this person here,
+research copy, 3:40:453 hours, 40 minutes, 45 secondsit's looking up, I don't know, best hero copy formulas, personal brand, scannable web copy best practices, 3:40:523 hours, 40
+minutes, 52 secondsDavid Ogilvie copywriting principles, headlines that work, right? If I go down here to research examples, 3:40:583 hours, 40 minutes, 58 secondsthis agent is now
+writing up a bunch of high quality website styles. 3:41:033 hours, 41 minutes, 3 secondsIt's then analyzing the websites and, you know, giving me all of the copy and stuff like
+that. 3:41:073 hours, 41 minutes, 7 secondsPresumably it's going to integrate this into something nice. But if I go back up to the team lead, then I can see that it's, you know,
+basically just waiting on all three of these to finish. 3:41:153 hours, 41 minutes, 15 secondsWhat's cool is these three all have their own token usages, as you see here. So
+53,000, this one here is 56,000, this one here is 50,000. 3:41:223 hours, 41 minutes, 22 secondsWhen they finish, it then says idle and it tells you how many seconds that the agent
+is idle. This is, you know, mildly useful, 3:41:293 hours, 41 minutes, 29 secondsobviously not utilizing your cloud agents is one of like the biggest issues with them. 3:41:333
+hours, 41 minutes, 33 secondsSo what this thing is going to do is basically wait for these other two to finish. 3:41:363 hours, 41 minutes, 36 secondsAnd then if these other two
+don't finish after a certain amount of time, 3:41:393 hours, 41 minutes, 39 secondsthey'll actually just wind down the research design agent to stop consuming my compute and stuff.
+3:41:433 hours, 41 minutes, 43 secondsProbably the research examples is going to take the longest time, 3:41:453 hours, 41 minutes, 45 secondsjust because I think that that's like
+less of a clear cut definition of done, but we'll see. And then what's really nice is these are cheaper models, right? 3:41:533 hours, 41 minutes, 53 seconds58,000 tokens on the
+cheaper model, 56,000 tokens on the cheaper model, then only 2000 tokens on the most expensive model. 3:42:003 hours, 42 minutesAnd so we haven't actually integrated all of that
+stuff back into the main yet, but as these finish, they will eventually, you know, take all of their tokens and then bring them back in. 3:42:083 hours, 42 minutes, 8 secondsAnd so
+this token count will increase significantly. Okay, now that all three of these are done, we've collapsed these three agents into the team lead. 3:42:173 hours, 42 minutes, 17
+secondsNow we have these big design principles doc, research copywriting doc, you know, research site example doc. 3:42:233 hours, 42 minutes, 23 secondsAnd because I've empowered
+the team lead to be able to spin up new agents based off of, you know, various things like the conversion rate, 3:42:313 hours, 42 minutes, 31 secondsthe copy, the creative and the
+style, it's now generating new ones. So there's an iterate dark, iterate conversion. 3:42:393 hours, 42 minutes, 39 secondsI don't know how many of these it's going to spin up, but
+it's definitely gonna spin up some. In the meantime, we also have these really dense research summaries. 3:42:463 hours, 42 minutes, 46 secondsSo I can actually open this research
+design principles doc. If I just scroll down a bit so you could see, we now have things like there's a Z pattern layout. 3:42:553 hours, 42 minutes, 55 secondsSince the eye starts
+in the top left and moves to the top right, your nav and CTA should be at particular places. 3:43:003 hours, 43 minutesThere's also an F pattern layout and different actionable
+recommendations on color psychology and so on and so forth. I mean, this is a tremendous amount of text. Is this the most efficient way to like get all this across? 3:43:093 hours,
+43 minutes, 9 secondsProbably not. 3:43:103 hours, 43 minutes, 10 secondsBut because these models just think so much quicker than we do at this point, we don't really need it to be
+as efficient. 3:43:143 hours, 43 minutes, 14 secondsWe can actually just throw a tremendous amount of text out of prompt and it can actually do a pretty good job. 3:43:183 hours,
+43 minutes, 18 secondsWhat I really like about this is it took key inspirations from different people. So in this case, Justin Welsh's upside down homepage. I really liked Justin
+Welsh, so that's great. 3:43:263 hours, 43 minutes, 26 secondsDan Coe and Seahill Bloom's dark premium, 3:43:283 hours, 43 minutes, 28 secondsbold typography, origin story is some
+sort of cinematic centerpiece. Like it's taken inspiration from all these different people. 3:43:343 hours, 43 minutes, 34 secondsThen it's combining them with slightly different
+copywriting directions to create things that are ultimately new and presumably going to be quite different. 3:43:423 hours, 43 minutes, 42 secondsAnd you know, I think a lot of
+people rag on agents and AI is not really being creative. 3:43:463 hours, 43 minutes, 46 secondsBut like what is creativity if not just like combining things over and over and over
+again in like a million different combinations. 3:43:523 hours, 43 minutes, 52 secondsI'd wager most things that you probably consider to be creative are things that like whose
+preexisting pieces and principles existed before 3:43:593 hours, 43 minutes, 59 secondsand AI just combined them into something that maybe hadn't really been put together in that
+way. 3:44:033 hours, 44 minutes, 3 secondsThere are certain sentences that have never been said before or written before. You could be the first to write one. Some of them are
+quite creative. Okay, and we are done. 3:44:103 hours, 44 minutes, 10 secondsSo the first site here is I hope aspiring entrepreneurs build their first 25k month automation agency.
+I like this, this is really clean. That's actually quite the value prop. We do have an issue with the button, obviously. 3:44:203 hours, 44 minutes, 20 secondsSo the thing is this

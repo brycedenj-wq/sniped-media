@@ -1,0 +1,224 @@
+this data directory populated with some kind of PDF and some kind of Python file. 7:08 We then want this requirements.txt. TXT file again. You can find it from the link in the
+description. 7:14 I'll put a direct link to the requirements.txt so you can just copy the contents of the file. 7:19 Or you can download the file directory directly. Sorry. And put
+it inside of your VS code folder. 7:25 Now that we have that, what we're going to do is make a new Python virtual environment. That's where we're going to install 7:30 all these
+different dependencies that we have this isolated on our system. So to do that we're going to type the command python 3-MV env 7:39 and then I'm going to go with the name of AI.
+You can name this anything that you want. If you're on Mac or Linux this is the correct command. 7:46 If you're on windows you can change this to simply be Python. And this should
+make a new virtual environment for you in the current directory. 7:53 This is where we'll install all of the different Python dependencies. Now once we've done that, we need to
+activate the virtual environment. 7:59 The command will be different depending on your operating system. If you are on windows or sorry if you're on Mac or Linux, so Mac or Linux.
+8:06 Here you can type source the name of your virtual environment, which in this case is I Symbian 8:12 and then slash activate and you'll know this is activated. If you see the I
+prefix you can ignore this base prefix. 8:18 For me it's just because I have kind of a separate installation in Python. But you should see this prefix in your terminal indicating
+8:24 that this is activated. Now if you're on windows what you're going to do is open up PowerShell and you should be able to type slash I slash 8:32 and then this I believe is
+scripts and then slash activate. And that should activate the virtual environment for you. 8:39 Otherwise you can just look up how to activate a virtual environment on windows. And
+again make sure you have this prefix once the virtual environment is activated. 8:47 If we want to deactivate it we can type deactivate. We're not going to do that though, and we
+can install the different packages 8:54 that we need. So what we can do is type pip3, install dash r and then requirements.txt. 9:01 Notice this is in the current directory where
+we are. When I do that, it's going to read through all of the different requirements 9:07 and then install them in this Python installation or in this virtual environment. So we'll
+do that. 9:13 It's going to read through requirements.txt and install everything for you. This is going to take a second. For me it's already cached so it's going pretty quickly.
+9:20 And that should be it. So once this is finished I'll be right back and then we can move on to the next steps. All right. So all of that has been installed. Ollama Setup 9:27
+And the next thing we need to do is install a lama alarm. Again. Let's just run all of this locally. 9:33 So in order to install Lama I'm just going to clear in my terminal here.
+And I'm going to go to a new browser window and paste in this URL here. 9:41 I'm going to leave it in the description. Now this is the GitHub page for Lama. And it shows you the
+installation setup steps here. 9:47 So again this will be linked in the description. So if you're on Mac or Windows you can see the download buttons right here. 9:53 Linux. This
+will be the command I'm on Mac. So I'll just click on download. When I do that it's going to download the Lama installation for me. 10:01 Once that's done I'm going to unzip this.
+And then I'm going to run the installer. Now I've already installed it, but I will still run you through the steps. 10:08 And then on windows same thing. You're going to download
+this and then run through the installer. And what this will do is download a kind of terminal tool for you 10:16 that you'll be able to utilize to interact with Allama. So you can
+see it says Lama Run. And that's something like Lama two. 10:22 And this will actually download the Lama to model for you. And then allow you to utilize it and interact with it.
+10:28 In our case, we're actually going to use the Mistral model. But there's a bunch of different models here that you could install, 10:33 and there's a bunch of other ones as
+well. These are just some examples of ones that you can use. Okay. So what we'll do here is unzip this folder. 10:41 And once it's unzipped we're going to run the installer. So you
+can see here that I can click on oh Lama two. 10:47 That's going to load the installation tool for me. So I'm going to go ahead and click on open. We're going to move it into
+applications. 10:54 And then we should be good to go with a lama. So we'll go next. And then it says install the command line okay. 11:00 So we're going to go ahead and install it
+again I already have this installed. So I'm not going to run through this tool. But once you do that you should be able to run 11:06 the O Lama command, which we'll do in just one
+second. All right. So once you've gone through that installer, what you can do is simply open up a terminal, 11:14 which we're going to do here. And we can type. Let me just zoom
+in here so we can read this O Lama and just make sure that that command works. 11:21 So if we get some kind of output here we're good. And then we can type O Lama run. And then
+we're going to run the Mistral model. 11:29 Okay. So you can see here it shows you all the different models you can potentially run. In this case this one is seven billion
+parameters. 11:35 It's 4.1GB. There's a lot larger models here which obviously would perform better. But they need some more intense hardware to actually run properly. 11:44 So
+we're going to install Mistral which is only four gigabytes by doing a lama run Mistral. It's going to then download that model for you and then we can utilize it. 11:53 Now in my
+case it's already downloaded. So what I can do is start interacting with it by typing something like Hello World. 11:58 And then it's going to give me some kind of output. Perfect.
+So what I'm going to do now is I'm going to quit this. 12:03 So I think I can just type quit or something. or Ctrl c, Ctrl d okay, let's get out of that control D 12:11 I'm going
+to close this terminal and I'm going to show you now how we can run this from code. So let it go through, let it install. 12:18 It is going to take a second because that's the
+download all of this stuff. And then we'll go back to VS code and see how we interact with Allama 12:24 from our code. All right. So I'm back inside of VS code here. And I'm going
+to continue here by creating a file. 12:29 Now this file will be main.py. And the idea here is just to initially test out Lama and make sure that it's working as an alala. 12:37 So
+I'm going to say from and this is going to be lama underscore index dot LMS. 12:43 If we type this correctly.au lama like that, we're going to import Allama. 12:51 And then we're
+going to say hello Lam is equal to oh Lama. And inside of here we're going to say the model is equal to Mistral 12:58 because this is the one that we want to use. And we can
+provide a request timeout equal to something like 30s just so that it doesn't take too long. 13:08 Now that we have the lamp, we should be able to do Lambda run, and then we can
+say something like hello world. 13:15 If we say the result is equal to this, we should be able to print out the result. 13:21 So let's see if that's going to work. I can type
+Python three and then main.py. 13:27 We'll give this a second and we'll see if that was a valid command or not, or if we need to use, a different one. 13:33 So actually my bad here
+guys, rather than Lambda run, this is going to be Lemke complete. 13:38 And then we can type in something like hello world. And if we run this, we should see that we get some kind
+of output. 13:44 Give this a second. It says, hello. Here's a simple hello, World program. Gives us the output and there we go. 13:49 So this is just a simple test to make sure
+that Alama was running locally on our computer. We also can run different types of local models. 13:55 For example, in a second we're going to run a code generation one. but now
+you can see that this is indeed working. 14:01 And we didn't need to have any API key use ChatGPT, etc.. This is a local model running on our own computer. 14:08 So now what we
+want to do is set up a little bit of the Rag application so we can load in some files, 14:15 pass that to the LM and see how it can query based on that. All right. So let's go to
+the top of our program here. Loading PDF Data 14:21 And we're going to import a few things that we need in order to load our Python file as well as to load our documentation. 14:27
+We're going to start by looking at how we load in our PDF, which is unstructured or semi-structured data, depending on the way that it's set up. 14:35 And we're going to use
+something known as Lama Pass, which can give us a much better parsing of this file. 14:40 So what I'm going to do is say from Lama underscore pass, we are going to import 14:46 and
+then with capital Lama pass like that we'll talk about this in one second. Don't worry I'm going to say it from lama underscore index dot core. 14:56 And we're going to import the
+vectors store index and the simple directory reader as well as the prompt template. 15:04 While we are here we're then going to say from lama underscore index dot core dot. 15:11
+And this is going to be embeddings. And we are going to import the resolve embed model. 15:17 And I believe for now that is actually all that we need. So let me break down what
+we're about to do here. 15:23 We need to load in our data. Now in this case we're loading in PDF documents. But with Lama index we can load in really any type of data we want.
+15:30 And in the previous video I showed you how to load in, for example, CSV data. But in this case we have a PDF. 15:36 Now what we need to do is we need to parse the PDF into
+logical portions in chunks. For example, if the PDF had something like a chart, we'd want to extract that 15:44 because that's some structured data that we could be able to look
+at. Then once we have that, we need to create a vector store index. 15:52 Now a vector store index is like a database that allows us to really quickly find the information that
+we're looking 15:58 for, rather than having to load the entire PDF at once. What's going to happen is our LM is going to utilize this database and extract 16:07 just the
+information that it needs to answer a specific query or a prompt. Now, the way that we'll build 16:13 this vector store index is by creating something known as vector embeddings.
+Vector embeddings take our textual data or whatever type of data it is. 16:21 And they embedded into multidimensional space, which allows us to query for it based on all different
+types of factors, based on the context, 16:29 based on the sentiment, we don't really know exactly how it works. It's handled by LMS and some machine learning models in the
+background, and I'm 16:36 not quite qualified to talk about it in this short section of the video. But the point is that rather than loading all of the data at once, 16:44 we're
+going to query this vector store index, which is like a really, really fast database. It's going to give us the information we need injected into the LM. 16:52 And then the LM will
+use that information to answer the prompt. So really all that means for us is we've got to create this index. 16:59 And I'm going to show you how to do that. All right. So to do
+this we're going to delete these two lines because these were really just for testing. 17:05 But we will leave this LM. And what we're going to do is start by setting up a parser.
+Now the parser is going to be a llama parse. 17:11 And then we can specify what we want. The result type to be, which in this case is markdown. Now Llama parse is a relatively new
+product that's provided by Llama Index. 17:20 What this will do is actually take our documents and push them out to the cloud. They'll then be passed and then that parsing will be
+returned to us. 17:28 Now, the reason we use something like this is because it gives us significantly better results when we are trying to query 17:34 pieces of data from something
+like a PDF, which is typically unstructured. I'll talk more about it in a second, because we do need to make an account 17:41 with llama parse. But again, it's totally free. You
+don't need to pay for it. So we're going to make this parser. 17:46 And then what we're going to do is we're going to create a file extractor. Now the extractor is going to be a
+dictionary. 17:53 And we're going to specify a file extension, which in this case is dot PDF. And we're going to say whenever we find a PDF 18:00 we want to use this parser which
+is a llama parse to parse through the PDF, and then give us back some results that we can then load. 18:08 Next we're going to say documents is equal to. And this is going to be
+the simple directory reader. 18:14 And inside of here we're going to specify the directory that we want to read from which is the data directory. 18:19 And then we're going to
+specify our file extractor here. So file extractor is equal to the file extractor that we specified. 18:27 And then we're going to say dot load data okay. So let's write that now
+if we hover over this you can see that what this is doing is loading 18:34 data from the input directory. So we're using llama index. We have something called a simple directory
+reader. 18:40 Well what this will do is go look in this directory. Grab all of the files that we need and then load them in and use the appropriate file extractor. 18:49 Now that
+we've done that, what we can do is we can pass these different documents which have been loaded to the vector 18:55 store index and create some vector embeddings for them. So we're
+going to say the embed underscore model is equal 19:03 to the resolve embed model. And then this is going to look a little funky. But we're going to type local colon. 19:09 And
+then bam I/BGE-M3. 19:15 Now this is a local model that we can use because by default when we create a vector store index it's going to use the OpenAI model, like something like
+ChatGPT. 19:24 We don't want to do that. We want to do this locally instead. So what we're doing is we're getting access to a local model. 19:30 And this model will be able to
+create the different vector embeddings for us before we inject this data into the vector store index. 19:37 So I know it seems a bit weird, but we're just grabbing that model. This
+is the name of it here and we're specifying. We want it locally, 19:42 which means the first time we run this, it's going to download that model for us and then use it 19:47 okay.
+We're then going to say the vector index is equal to the vector store index and then dot from documents. 19:55 And then we're going to pass the documents that we've loaded here
+with the simple directory reader. And we're going to specify manually the embed model is equal 20:03 to the embed model that we got above which is our local embedding model. Now
+that we've done that we're going to wrap this in 20:09 something known as a query engine. So we can actually utilize it to get some results. So we're going to say query engine is
+equal to the vector indexed as 20:17 query engine. And the MLM that we're going to use is going to be the Alama l11. 20:24 Now what this means is that I can now utilize this vector
+index, as kind of like a question and answer bot. 20:31 So what I can do is I can ask it a question like, what are the different routes that exist in the API? 20:37 And it will
+then go utilize the documents that we've loaded in which in this case are the PDF documents in this readme pdf file, 20:44 and it will give me results back based on that context.
+Now, in order to test that we can say query engine Dot, 20:51 and then we can actually send this a query and we can say what are some of the routes in the API question mark? 21:00
+And then it should give us back some kind of reasonable response. Now we do need to print that. So we'll say result 21:06 is equal to this. And we will be able to run this code in
+one second once we get access to the API key for Lambda Pass. 21:14 So let me show you how we do that. So I am going to show you how to use Lama Pass here. But I quickly want to
+break down what it actually is. Using llama Parse 21:21 So on February 20th, 2024, Lama Index released Lama Cloud and Lama Pass. 21:27 Now this brings production grade context
+augmentation to your LM and Wragg applications. 21:32 Now Lama Parse specifically is a propriety pre parsing for complex documents that contain embedded objects such as tables and
+figures. 21:41 In the past, when you were to do some kind of querying over this data, you get really, really bad results when you have those embedded objects. 21:48 So Lama Parse
+is kind of the solution to that, where it will do some parsing and actually break out these embedded objects 21:55 into something that can be easily ingested and understood by your
+model. This means you'll be able to answer 22:00 complex questions that simply weren't possible previously. As you can see, Rag is only as good as your data if the data is not
+good. 22:07 If the vector index isn't good, then we're not going to get good results. So the first step here is that we parse out our documents into something 22:13 that's more
+effective to pass into the vector index. So when we eventually start using it, 22:19 we get better results which drastically affect the accuracy. in a good way. So you can kind of
+read through here and you can see exactly what it does. 22:26 I'll leave this link in the description. But just understand that what this does is give us much better results 22:31
+when we are parsing more complex documents, specifically things like PDFs. So what we're going to do here is create a new llama cloud account. 22:38 You can do that just by signing
+in with your GitHub. I'll leave the link below. And this will give us access to a free API key so we can use the llama parts tool. 22:46 All right. So once you've created that
+account or signed in you can simply just click on Use Llama Pass. It's pretty straightforward here. 22:53 And then what you can do is you can use this with a normal API. Or you can
+use it directly with llama index, which is exactly what we're doing here. 23:00 So what we want to do is just get access to an API key here. So we can click on API key and we can
+generate a new key. 23:07 I'm just going to call this tutorial. I'm going to press on Create new key. Can read through the docs if you want. 23:13 But I'm just going to copy this
+key. And we're going to go back into our Python file. And I'm going to make a new dot env file here. 23:21 And then I'm going to create an environment variable that stores this key
+that we'll have access to in our code. 23:27 So we're going to say that this is llama underscore cloud underscore API underscore key. 23:32 This is going to be equal to. And then
+I'm going to paste in that API key. Obviously make sure you don't leak this I'm just showing it to you for this video. 23:38 And I'll delete it afterwards. Then we're going to go
+into Main.py and we're just going to load 23:44 in that environment variable. And it will automatically be detected by our parser. So I know I went through that quickly, but the
+basic idea is 23:50 we're going to make a new account here on Llama Cloud. We're then just going to use the free parser. So we're going to go and generate an API key. 23:57 Once we
+generate the API key we're going to paste that inside of an environment variable file with the variable Llama Cloud API key. 24:05 We're going to close this. Then we're going to go
+to our Python file. And we're going to write the following code which will allow us to automatically load in this environment variable. 24:14 So we're going to say in lowercase is
+from dot env imports load underscore dot envy. 24:23 We need to spell these correctly though. And then we're going to call this function. And what the location v function will do
+is look for the presence 24:31 of a dot env file, and then simply load in all of those variables which will give this line right here the parser access to that variable. 24:40 So
+we can use llama pass. Great. So now that we've written this code we can test this out. 24:45 So what I'm going to do is type Python three and then main.py. 24:50 We're going to
+wait a second for it to install everything that we need. And then we're going to see if we get some kind of output. 24:56 All right. So this is finished running. And you'll see
+then what happened here is it started parsing this file using llama parse. 25:02 It actually pushed that out to the cloud. Which means if we had hundreds of files, thousands of
+files etc., 25:07 we could actually handle all of those, push them out to one person and get the results back. Then what it did is gave us the result here after querying that PDF.
+25:15 So it says the API supports several routes for performing various operations. These include items, items, items, ID, items, ID, etc. 25:23 so it used that context to actually
+answer the question for us. So now that we've created this, this is going to be 25:30 one of the tools that we provide to our AI agent. The idea here is that we're going to have
+this, 25:35 and we're going to have a few other tools. We're going to give it to the agent, and the agent can use this vector index 25:41 and this query engine to get information
+about our PDF or about our, API documentation. 25:48 And then using that information, it can generate a new response and answer questions for us. So the agent is going out there
+utilizing multiple different tools. 25:56 Maybe it combines them together, maybe it uses one, maybe it uses two three, etc. and then it aggregates all of the results there and
+gives us some kind of output. 26:05 So now let's look at how we start building out the agent. And we'll build out another tool that allows us to read in the Python file. 26:10
+Because right now we're just loading in the PDF. All right. So we're going to go back to the top of our program here. 26:16 And we're going to say from Lama underscore index dot
+core Creating Tools & Agents 26:23 dot tools. And we are going to import the query engine tool. 26:28 And then the tool metadata. Then what we're going to do is we're going to take
+this query engine. 26:34 So I'm going to delete this right here. And we're going to wrap it in a tool that we can provide to an AI agent. 26:39 So I'm going to say tools are equal
+to. And then this is going to be query engine tool for the query engine. 26:46 This is going to be the query engine for our PDF or for API documentation. 26:51 We're then going to
+say metadata is equal to and then this is going to be the tool metadata. 26:57 And here we're going to give this a name and a description. Now the name in the description will tell
+our agent when to use this tool. 27:04 So we want to be specific. So I'm going to call this API documentation. And then we want to give this a description. 27:11 So we're going to
+say the description is equal to. And I'm just going to paste in the description to save us a little bit of typing here okay. 27:17 So let's paste it in. And this says this gives
+documentation about code for an API. Use this for reading docs for the API 27:26 okay. So we're just giving some information about the query engine tool. Now we are going to write
+another tool in here in a second. 27:33 But for now I want to make the agent and then show you how we utilize the agent. So we need to import another thing in order to use the
+agent here. 27:41 So we're going to go up to the top and we're going to say from Lama index dot. 27:48 And this is going to be core dot agent. And we're going to import the react
+agent okay. 27:55 We're now going to make an agent. So we're going to say agent is equal to react agent dot from underscore tools. 28:03 And we're going to give it a list of tools
+that it can use okay. So we're going to say tools. And then we need to give it an LM which we're going to define in one second. 28:12 We're going to say verbose equals true. If you
+do this it will give us all of the output and kind of show us the thoughts of the agent. 28:18 If you don't want to see that, you can make this false. And then we're going to
+provide some context to this, 28:24 which for now will be empty, but we'll fill in in one second. Okay. So this is great. But what I want to do now is I want to make another LM
+28:32 that we can use for this agent, because we want this to generate some code for us rather than just be a general kind of question answer. 28:39 But so what I'm going to do
+here is I'm going to say my code. Hello, LM is equal to oh llama. 28:45 And we're going to use a different LM. And this is going to be model equal to code llama. 28:51 Now code
+Llama is something that does code generation specifically. So rather than using the normal Mistral model which we had here, 28:59 we're just going to use the code L because we want
+to do code generation. So now I'm going to pass code LM here. 29:04 And you can see how easy it is to utilize multiple LMS locally on your own computer. Again all of these are open
+source and when you do this 29:11 it should automatically download it for you. Okay. Last thing we want to do is provide a bit of context to this model. 29:18 So just to clean up
+our code a bit we're going to make a new file. We'll call this prompts.py. 29:23 And inside of prompts I'm just going to paste in a prompt for the context for this model okay.
+29:29 You can find this from the link in the description from the GitHub. But it says purpose. The primary role of this agent is to assist users by analyzing code. 29:36 It should
+be able to generate code and answer questions about code provided. Now you can change that if you want, but that's really what it's doing, right? 29:43 It's going to read code,
+analyze it, and then generate some code for us. So that's what we're doing. 29:48 So now what I want to do is import that context. So I'm going to go to the top and I'm going to
+say from prompts 29:55 import and then context. And then down here I'm going to pass that context variable 30:01 okay. So now we have made an agent. And we can actually test out
+the agent and see if it utilizes these tools. 30:09 So let's do a simple while loop here. And let me just make this a bit bigger so we can see it. 30:14 We're going to say well
+prompt colon equals to input. 30:20 And we're going to say enter a prompt. And we're going to say Q to quit. 30:25 So if you type in Q then we're going to quit. And we're going to
+say well all of that does not equal Q 30:31 okay, so let's type this correctly. Then we are going to do the following, which is result equal to agent dot query. 30:40 And then
+we're just going to pass in the prompt and then print the result okay. 30:46 So you might be wondering what we just did. Well we simply wrote an inline variable here using
+something known as the walrus operator in Python. 30:53 This just means it's only defined in the while loop, and it will get redefined each time the while loop runs. Just make
+things a little bit cleaner and we say, okay, let's get some prompt. 31:02 When it's not equal to Q, then we'll simply take the prompt, pass it to our agent. 31:07 The agent will
+then utilize any tools it needs to, and then it will print out the result. So let's test this out and see if it's working. 31:14 So let's clear and let's run. And this time we're
+not just going to be using the API documentation vector index. 31:22 We'll use an agent and it will decide when to utilize that tool. I know it seems a bit weird because we only
+have one tool right 31:29 now, but imagine we had 20 tools, 30 tools, 100 tools, and the agent would pick between all of them and have the ability to do some really complex stuff.
+31:37 All right, so this is running. Now I'm going to give it a prompt. I'm going to say something like send a Post request to make 31:45 a new item using the API in Python. 31:51
+Okay. Let's see what this is going to give us here. And if this is going to work or not okay. Sweet. 31:56 So it looks like that works. If we go here we can see that we get I need
+to use a tool to help me answer this question API documentation. 32:03 It's looking for post items okay. The API documentation provides information on how to create an item 32:08
+using the post method. I can answer the question to create a new item, blah blah blah. And then it generates the response and then it gives it to us here, right? 32:15 To create a
+new item we do this import requests URL payload response okay that actually looks good. 32:22 And then come down here and says this will create a new item. And then we can ask it
+another question or hit Q to quit. 32:29 Perfect. So that is working. However I want to add another tool to this agent The Code Reader Tool 32:34 that allows it to load in our
+Python files. So llama parse itself can't handle Python files. 32:40 It's actually not what it's designed for. But what we'll do is we'll write a different tool that can just read
+in the contents 32:46 of any code file that we want, and then give that into the LM. So this way can have access to the API documentation. 32:53 And it can also have access to the
+code itself. So it can read both of them. So let's start doing that. 32:59 And the way we'll do that is by writing a new file here called Code reader.py. 33:05 So let's go inside
+of Code Reader. And we're going to make a new tool that will then pass to our Lola. 33:11 So we're going to say from llama underscore index score dot tools 33:17 imports the
+function tool. Now this is really cool because what we can do is wrap any Python 33:24 function as a tool that we can pass to the LLN. So any Python code that you'd want the model
+to be able to execute 33:31 it could do that. You just have to give it a description of the tool, and it can actually call that Python function with the correct parameters. 33:38
+This to me is super cool and it really has a lot of potential and possibilities. Now I'm also going to import OS, and then I'm going to define a function 33:45 which will act as my
+tool. So I'm going to say the code reader function. And we're going to take in a file name okay. 33:53 Now what we're going to do is say path is equal to OS dot path dot join. And
+we're going to join the data directory and the file name 34:01 because we want to look just inside of data here. Perfect. And then we're going to try to open this. 34:06 So we're
+going to say try. We're going to say with open okay. And this is going to be the path. 34:12 And then we're going to try to open this in read mode as F. Then we're going to say the
+content equals f dot read. 34:22 And then we can simply return the file underscore content. 34:28 And this will be the content okay. Then we're going to have our accept exception
+34:35 as E we got to spell accept correctly. And then what we're going to do here instead is we're going to return 34:42 some kind of error. And that error is going to be the
+string of E. 34:47 And that's it. That's actually all that we need for this function. Now this is something that we can wrap in a tool and we can provide to the agent. 34:53 It can
+then call this function and get back either the file content or the error that occurred okay. 34:59 So we're going to say the code underscore reader is equal to the function tool.
+35:04 And this is going to be dot from underscore defaults. And then we're going to say fn standing for function is equal to the code 35:11 reader func. And then what we need to do
+similar to before is we need to give this a name. And we need to give this a description so the agent knows what to use 35:20 or when to use this. So we're going to call this the
+code reader. And for the description I'm just going to paste in a description like I had before. 35:28 Let me see if I can move this on to separate lines okay. Let's just do it
+like this so that you guys can read it. 35:36 Okay. So it says this tool can read the contents of code files and return the results. Use this when you need to read the contents of
+a file. 35:44 Perfect. That looks good to me. Hopefully that's going to work for us. And now we can go to Main.py and we can import the code reader tool. 35:52 So we're going to
+say from code Reader, Import Code Reader which is our tool, our function tool. 35:59 And now we can just simply pass that in our list of tools. So imagine right you can write any
+Python function you want. 36:06 Just wrap it like I said or I did here with the function tool and then just pass it in this list. 36:11 And now all of a sudden your agent has
+access to this and it can start manipulating things on your computer, interacting 36:18 with Python functions. This really makes the possibilities of agents quite unlimited. And
+that's what I really like about this. 36:24 Okay, so we have the code reader tool now. And we also have the API documentation. So now our agent should work exactly as before. 36:31
+And we can simply read the contents of that file. So let's try running this and see what result we get 36:39 when we give it a prompt that asks it to say read that file. Okay. So
+start parsing the file 36:45 and then we'll write a prompt and we'll say something like read the contents of test.py and generate some code okay. 36:51 So read the contents of test
+up hi and give me the exact same code back. 36:59 Now remember we're running some local models that don't have a ton of parameters and aren't the best one, so we're not always
+going to get the best result. 37:06 But I hope this is going to work, or it should give us at least some kind of result. So you can see it says, okay, I need to use a tool. 37:12
+So it says we're going to use the tool code reader file name test.py. And then it gets the contents of the file. 37:19 And then what it says here is you provide a Python script
+that contains an in-memory database for simplicity, which implements a list called items. 37:24 The script defines four endpoints one for creating new items, blah blah, blah and
+then gives us this whole result. So it didn't give us the code that we wanted, 37:31 but it did actually give us a description of what was inside of that file, which to me says
+this is indeed working. 37:37 And notice it only used this tool. It didn't use the other tool because it didn't need that for that specific prompt. 37:44 Okay. So I think that's
+good. That means that it's working and we're able to utilize both the tools. Now the next thing that we need to do is we need to take any code 37:52 that this model is generating
+for us, and we need to actually write that into a file. Now this is where we're going to use another lamp. 37:59 So what we want to do is we want to get the result that we just saw
+there. We want to determine if it's a valid code, 38:06 and then we want to take that code and write it into a file. Now in order to do that, we need an Lem to analyze the result
+of this output. 38:16 So what we're really going to do. Right. So we're gonna take this result. We're going to pass it to a different Lem in that Lem is going to have 38:21 the
+responsibility of taking that result and formatting it into something that we can use to write the code into a file. 38:29 Now, I'm not sure if I'll be able to show this here,
+because I think I cleared the console. Yeah, I did, but you would have seen before that it gives us some code output, 38:36 but the code is mixed with like descriptions and other
+information that we don't want to write into the file. 38:42 So the other LMS job is going to be to parse that output into a format where we can take it and we can write it into
+the file. Output-Parser & Second LLM 38:50 So let's start writing that. This is where it gets a little bit more complicated, but I also think it's where it gets quite cool. 38:56
+So we're going to go to the top of our program here. And we're going to start importing some things that can do some output parsing for us. 39:02 So we're going to say from
+pedantic imports, the base model, 39:08 we're then going to say from Lama index dot core dot output. 39:14 And I believe this is underscore parsers. We are going to import the
+pedantic output parser. 39:20 We're then going to say from Lama index dot core query pipeline import the query pipeline, 39:29 which allows us to kind of combine multiple steps in
+one. So now we're going to scroll all the way down. 39:34 And after we create our agent and our code alarm, we're going to start handling the output parsing. 39:39 So we're going
+to make a class here. And we're going to say class code output. And this is going to be a base model from pedantic. 39:48 Then what we're going to do is define the type of
+information that we want our output to be parsed into. 39:54 Now this is super cool because we can use Lama index and these output parsers to actually convert a result from an LM
+into a pedantic object. 40:04 So we can specify the type that we want in the pedantic object. And then lama index. And another lm can actually format the result to match this
+pedantic object. 40:13 Super cool. So I'm going to say code and this is going to be type string. I'm going to say description. 40:19 And I want this to be a string as well. But we
+could make it other types. But in this case we're just going to need strings. 40:24 And then I'm going to say file name is a string okay. So I've just made a pedantic object. This
+is just a class that we're going to use to do our formatting. 40:32 And then we're going to write some things for our query. So we're going to say parser is equal to the pi Dan tic
+output parser. 40:41 If I can write this here and we're going to pass the code output which is specifying, we want to use this pedantic output parser 40:49 and get our result and
+pass it into this code output object. We're then going to have a Json prompt underscore string. 40:57 And this is going to be equal to a parser dot format. And we're going to
+format the code parser template 41:05 which is a variable that I'm going to write in one second. So now what we're going to do is go to prompts. 41:11 And I'm going to write in a
+prompt here I'll explain how this works. We just got a bear with me, because there is a bit of code that we need to write. 41:16 Okay. So let me copy this in again. You can find
+this from the GitHub. Or you can just write it out yourself. And what this says is parse the response from a previous Lem into a description 41:26 and a string of valid code, and
+also come up with a valid file name. This can be saved. I also come with a valid file name. 41:32 This could be saved as that doesn't contain special characters. Here is the
+response. And then this is the response from the previous all of them. 41:38 You should parse this into the following Json format. Okay, so this seems weird, but this is what I'm
+providing 41:45 to my output parser to tell it how to take the result from this Lem and parse it into the format that I want. 41:53 So let's import that and then we'll look at how
+this works. So from here we're going to do the code parser template. 42:00 And then I'm going to pass the code parser template here. Now with the parser dot format will do is it
+will take this string. 42:07 And it will then inject at the end of that string. The format from this pedantic model. 42:13 So I've written my pedantic output parser. Pass the code
+output. It's saying hey, this is the format we want. 42:19 Code string description, string file name string. What the output parser will do when I do parser dot format is 42:26 it
+will take this format, find the Json representation of it, and then pass it or inject it into the code parser template. 42:33 So then when I start using this template on the next

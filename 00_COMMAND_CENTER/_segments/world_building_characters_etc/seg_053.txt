@@ -1,0 +1,224 @@
+building library survivors 9:14 following the development plan. Let me 9:16 begin with phase one core foundation. 9:18 It's building a checklist now of 9:20 everything it needs to
+do. And you can 9:22 see it's just going to go now. And at 9:23 this point, it's asking me if I want to 9:25 proceed cuz it needs to run some extra 9:27 initialization stuff. Let's
+just go 9:29 ahead and say yes and don't ask again. 9:32 So, it just goes and does the stuff it's 9:34 supposed to do. We'll see over here it's 9:36 starting to actually build out
+new files 9:38 and the game is now underway. So cool. I 9:41 could just kind of step away and let it 9:43 do its thing now. 9:45 [Music] 10:13 So now it gave us a summary here and
+we 10:17 can see everything that it did. I've 10:19 successfully built the foundation of 10:20 library survivors following the 10:22 development plan, project setup, game 10:24
+loop, state management, input system, 10:26 asset loading, camera system, rendering 10:28 system, player energy, etc., etc. Now, 10:30 it says run npm rundev to play the game 10:34
+at localhost 3000. So, let's go ahead 10:36 and do that. I'm going to go ahead and 10:38 open up a terminal. I do this by 10:40 clicking up in the top right this little 10:42 I
+don't know how to describe this 10:43 button, but it's got like a larger box 10:44 on top and a smaller rectangle on the 10:46 bottom. I click this. This opens up my 10:48 terminal
+down here directly inside of 10:50 wind surf. I can copy this npm rundev 10:53 here. Paste it down into this terminal. 10:56 And we get a screen that looks like 10:58 this. Library
+survivors. It's got start 11:00 game instructions and settings. Says you 11:02 can use the arrow keys or WS to 11:05 navigate. Those don't appear to be 11:07 working. Yeah, it's
+pretty much just a 11:09 frozen screen here. So, let's jump back 11:12 to Wind Surf here. First, switch it to 11:14 plan mode. I tried opening the game on 11:16 local host and the
+menu loads up, but 11:17 nothing works. Arrow keys, WS buttons, 11:19 mouse clicks, etc. None of it is working 11:22 when attempting to play the game. We'll 11:24 go ahead and
+submit that and let it 11:25 review its code. See if we can find the 11:27 problem. Okay, it seems like it found 11:29 the issue after about a minute of 11:30 thinking. It figured
+out the error, 11:32 explain the changes needed, and says 11:34 it's a simple fix. So, let's go ahead 11:36 and just click yes and accept edits. And 11:38 a few minutes later, it
+says try 11:40 refreshing the browser, and the controls 11:42 should work. Now, let's go check this 11:44 out here. Refresh. Uh, still no luck 11:47 here. So, I'm still running
+into some 11:48 issues after some back and forth. This 11:50 time, it told me to check the console 11:53 and send over any issues it's seeing in 11:55 the console. I tried again.
+And as you 11:57 can see, I'm clicking buttons, but 11:58 nothing is working over in the main 12:00 screen. But as I click down or one of 12:03 these arrow keys, you can see in the
+12:04 console, it is noticing that I'm 12:06 clicking these buttons. Just nothing's 12:07 happening on the homepage. So, I'm going 12:09 to go ahead and in this console here, 12:10
+rightclick, copy console, jump back to 12:12 Windsurf, and I'll say it's still not 12:15 working. Here is the contents of the 12:18 console. And then I'll just kind of give 12:20
+it a space, and then paste everything in 12:22 here and hit enter. Here's everything 12:23 that it saw in the console. So, it can 12:25 actually read that and figure out the 12:27
+issue. And I'm going to continue my 12:28 troubleshooting now. All right. After 12:30 several back and forth messages with 12:32 Claude Code saying, "Hey, it still 12:34 didn't
+work. Try again. Still didn't 12:36 work. Try again." I finally got 12:37 something that seemingly works. So, I 12:40 can actually press up and down or SNW or 12:44 the mouse
+doesn't work yet, but the 12:45 keyboard works with it. Settings doesn't 12:47 do anything. If I click on settings, 12:49 nothing happens. Instructions gives us 12:51 some basic
+instructions here. Hitting 12:53 escape comes back to the main menu. And 12:54 if I click start game, you can see we're 12:56 in the game. However, that chaos meter 12:58 at the
+top is going insanely fast and 13:00 we're already a game over. So, it's not 13:03 quite working the way we want it to. The 13:05 game loop isn't quite doing what we 13:08 want.
+It's time to get into actually 13:10 refining and dialing in the game. But 13:12 before we do that, I want to tell you 13:13 about this really cool platform that 13:15 I've been
+playing with. And this is not 13:18 sponsored. This is just something that I 13:20 thought was cool and wanted to share 13:21 with you. And it's called Deli. If you 13:23 head on
+over to deli.ai/mattwolf, 13:27 this is trained on my YouTube videos, my 13:30 podcast, my newsletter, various blog 13:32 posts I've written, things like that. 13:34 And you can
+actually ask it questions 13:36 and it will respond in a way that I 13:38 would likely respond because it's 13:40 trained on all of this information I've 13:42 put onto the web.
+So, I can ask it a 13:44 question like, "What AI tools should I 13:46 use to develop a video game?" And it 13:48 will respond in a way that I'd be likely 13:50 to respond. If
+you're diving into game 13:52 development with AI, there's some killer 13:54 tools. Google's AI Studio, Leonardo, 13:56 Runway, Stable Diffusion, MidJourney, 13:58 Luma AI. And
+well, it's not trained on 14:00 the video you're watching right now just 14:02 yet. But after this video is live, this 14:04 would actually probably be a different 14:06 response
+because it's got essentially 14:08 like my brain in it at this point. So, 14:11 if you want to check it out and actually 14:12 chat with my Deli, my digital clone, 14:15 head on
+over to deli.ai/matwolf 14:19 and have a conversation. It's even got a 14:21 cool voice mode where you can simulate 14:23 having a call with me. Anyway, just 14:25 wanted to share
+that with you really 14:27 quick cuz I thought it was cool. Now, 14:28 let's get back to chapter 4, refining. 14:31 So, I'm going to jump back over to Wind 14:32 Surf and just give
+it a bunch of details 14:35 about what I'm seeing. Starting with 14:37 stating the obvious, the chaos meter 14:39 moves way too fast. You can only last 14:41 about 4 seconds when
+you start the game. 14:43 And two, books should start on the 14:45 bookshelves. They shouldn't start on the 14:46 floor. Kids entering the library are 14:48 supposed to be knocking
+the books off 14:50 the bookshelf or picking them up and 14:52 running away with them. They shouldn't 14:53 already be on the floor when the game 14:54 starts. All right, let's try
+again after 14:56 it ran that update and we can see. Okay, 14:59 cool. So, the chaos meter isn't moving 15:01 yet and all the books are starting on 15:03 the bookshelf. I don't
+like that I can 15:05 walk through the bookshelf, so that's 15:08 not ideal. And also, I'm not seeing any 15:11 kids come in to knock books off the 15:14 bookshelf. I also noticed
+an issue that 15:15 if I hold shift, I can move a little bit 15:17 faster. And that stamina bar in the top 15:19 left moves down really, really fast. But 15:21 when I run out of
+stamina, I can keep on 15:23 moving just as fast. It didn't seem to 15:25 have any sort of impact whatsoever. So, 15:27 I gave it a few notes on what needs to 15:29 be fixed based
+on what I'm seeing. Let's 15:31 run it with plan mode and have it map 15:33 out a plan for us. So, we've got a new 15:35 plan mapped out here. So, let's go ahead 15:37 and say yes,
+auto accept edits, and let 15:40 it work through its plan again. From 15:41 here, Claude Code spit out a new 15:43 version. I was starting to realize that 15:45 this was going to
+need quite a few 15:47 rounds of refinement. This version took 15:49 about 30 seconds for the NPCs to 15:51 actually show up. And for some Oh, wait, 15:53 wait. I take that back.
+We have our 15:55 first NPCs at 30 seconds in. The main 15:58 character can walk through bookshelves. 16:00 The shelves had empty slots without any 16:03 books being on the floor.
+And there were 16:05 a bunch of other elements that just 16:07 needed some finetuning. So, I gave 16:08 Claude Code a new round of instructions, 16:10 and it got to work updating
+the plan and 16:12 putting together a new version. This 16:14 next one was a bit better, but still 16:17 full of holes. The NPCs were constantly 16:19 running away to the edges of
+the map. 16:21 Books were still missing on the 16:22 bookshelves, and the overall gameplay 16:24 logic just wasn't quite dialed in yet. 16:27 So, I added another round of 16:28
+instructions and sent Claude back on its 16:30 merry way. And then I did it again. So, 16:33 you can see the books are just like 16:34 disappearing. And again. They will run 16:37
+away from me if I try to get close, 16:38 which is good. And again. And again. And 16:41 again. So, this is actually starting to 16:43 be like a fun game now. Let's go chase 16:46
+this person down. Give me my book. It 16:48 ended. My chaos got to 100%. So, it 16:50 seems to be working. All right. Now, I 16:52 finally got the game to a point where 16:53 I'm
+pretty happy with it. It's actually 16:55 fun to play. And it's not too hard, but 16:58 also not too easy. And it gets 17:00 increasingly more difficult. And this is 17:02 the
+current result of the game. My 17:04 little blue square is my librarian. You 17:08 can see all the bookshelves. We've 17:09 already got two kids knocking books off, 17:12 causing
+havoc. Over here, I could go and 17:14 uh put these books on the bookshelf. We 17:17 can see the chaos is already starting to 17:18 move up, but I can grab a book, put it 17:20 on
+the shelf, knock that chaos back down 17:23 by cleaning up after these dang kids. We 17:25 have level ups. It will randomly pick 17:27 among the three available level ups. I 17:29
+think we've got five or six total level 17:31 ups right now, but you've got things 17:32 like increase your maximum stamina, 17:34 reduce the chaos gain, how quickly that 17:36
+chaos meter goes up, increase the 17:38 distance you can pick books up from. I'm 17:41 going to increase the stamina cuz if I 17:42 hold down shift, I can actually sort of 17:44
+speedrun. But if you look in the top 17:46 right, I've got a stamina bar that runs 17:48 down. So, I can only run for so long. 17:51 And the game is actually legitimately 17:54
+fun. All of the little kinks and bugs 17:56 are worked out. There's just a couple 17:58 problems with this still. One, it still 18:01 looks ugly. I wasn't shooting for a game 18:03
+that was just a bunch of rectangles 18:04 moving around. And two, there's no sound 18:06 effects. It would be nice if there was a 18:08 little bit of that like satisfying sound
+18:10 when you pick up a book and put it on 18:11 that shelf. And as you pick up more 18:14 books, the sound effects get more rapid 18:16 and more satisfying. At this point in
+18:19 the process, when I have something that 18:21 I like and I want to build off of, I 18:24 kind of want to back it up. I want to 18:25 make sure that I can restore back to
+18:27 this point. If I start trying to add 18:28 graphics and sound effects and do other 18:30 stuff and it just totally breaks the 18:32 game, I want to be able to jump back to
+18:34 this sort of save state. And to do that, 18:36 I'm going to use GitHub. If you don't 18:38 already have a GitHub account and you 18:39 want to follow along, make sure you
+18:40 create a free GitHub account. I'm going 18:42 to create a new repository for this 18:44 game. I'm going to call this one the 18:47 librarian game for now. I'm going to 18:50
+make it private and I'm just going to 18:52 click create repository. That's all I 18:54 have to do. So now I have this URL to my 18:56 repository, 18:56
+github.com/misterflow/thelbrarianame. 19:00 I will copy this URL to this repository 19:03 and I will jump back into Windsurf down 19:05 here. Now to do this, I'm actually going
+19:07 to use Cascade inside of Windsurf 19:10 instead of actually having Claude Code 19:11 do it. I feel like when I have Cascade 19:13 do the backup for me, it actually seems
+19:15 to do a little bit better job than when 19:16 I use Cloud Code. So, I'm going to say, 19:19 I created a new private GitHub 19:20 repository for this game at 19:22
+github.com/blah blah blah. Please commit 19:24 and push this current version to GitHub. 19:26 And it's going to go ahead and just do 19:29 the work for me to push it over to 19:31
+GitHub. And it took about a minute, but 19:33 we can see here, perfect. I've 19:34 successfully committed and pushed your 19:36 library survivors game to GitHub. Here's 19:38 what
+I did. Initialized the Git 19:39 repository, added a remote origin, 19:41 staged all files, etc. Now, at any 19:44 point, if I ever want to, I can actually 19:46 come back over to
+this right side and 19:48 say, "Restore my game from this version 19:51 on GitHub." If I open up GitHub in my 19:53 browser here and just reload this, we 19:55 should see all of
+our files here now. 19:57 So, everything is backed up for us on 20:00 GitHub, ready to go, and I can restore 20:02 from this backup at any time now. Just a 20:04 nice little way
+that if you start going 20:06 down the path of building something out 20:08 and you just go off in the wrong 20:10 direction and it totally gets all messed 20:12 up and you go,
+"Man, I want to restore 20:13 from an old save state." Well, this is 20:15 what GitHub does for you. It lets you 20:17 get back to that old like save state 20:19 essentially. So,
+let's start creating 20:20 some graphics for the game. And we'll 20:22 start replacing our little rectangles 20:24 and background and things like that with 20:26 some actual good
+graphics. I'm going for 20:28 more of like a cozy style game, 16bit 20:32 graphic kind of thing, similar to like a 20:34 Stardew Valley sort of graphics. So, I 20:36 started with
+the floor for our library. 20:38 To do this, I jumped into Leonardo and 20:40 used Flow for the first handful of 20:42 prompts, but I wasn't really getting 20:45 what I wanted. I
+did test out one 20:47 version that Flow generated, but got 20:49 some ugly tiling when importing it into 20:51 the game. So, I went to the regular 20:53 image creation section on
+Leonardo, 20:55 clicked to turn on the tile option, and 20:57 entered this prompt here, and finally 21:00 got something way cooler that fit the 21:02 vibe I was looking for. Yeah,
+this is 21:04 this is looking really really good. I 21:06 like that background. I think the the 21:08 tiling of it is good. The size they 21:10 picked of it is good. You can't
+really 21:12 see any seams. Yeah, that's I think 21:14 that's our background. Now, we need a 21:17 character. We need a librarian character 21:19 that's not just like a cube
+running 21:20 around. Next, it was on to our 21:22 librarian. I started with this prompt 21:24 for the style of the librarian, but was 21:26 using Leonardo Phoenix, and it wasn't
+21:28 quite generating the style I was looking 21:30 for that would match that retro 16-bit 21:33 vibe. So, I switched over to Lucid 21:35 Realism, which is kind of funny because
+21:37 I was trying to create 16-bit characters 21:39 that aren't realistic, but using the 21:42 same prompt as before was spitting out 21:44 images that were much closer to what I
+21:46 wanted. Once I settled on a look, I 21:48 asked it to make me a second version 21:50 with the legs together so that I could 21:52 make a basic walking animation. I then 21:55
+tried out removing the background before 21:57 heading back into Claude to implement my 21:59 new character changes. After testing a 22:01 bit, I saw some issues with the 22:02
+character size, the image colors, and 22:05 how the character looked when standing 22:07 still. So, I gave Claude a few new 22:09 instructions and realized I would need 22:11 to
+adjust the image colors myself. Now, 22:13 it was on to those pesky kids. I first 22:15 uploaded the image of our librarian as a 22:18 style reference and then asked it to 22:20
+generate some images of kids who were up 22:22 to no good. And for some reason, and I 22:24 can't imagine why, all the results were 22:27 boys and brunettes. So, I tweaked the
+22:31 prompt a bit and settled on three 22:33 different characters that fit the bill. 22:34 Then I repeated the process I did for 22:36 the librarian of generating a second 22:38
+image to simulate walking and removing 22:41 the backgrounds. All right. So, I've got 22:43 these players dialed in now. They still 22:46 have the color issues. I'm going to fix
+22:48 that in a minute. But you can see we've 22:49 got some characters walking around now 22:51 that steal the books. We've got multiple 22:53 characters. We've got our little
+22:54 brunette kid, a little red-haired girl, 22:57 and then there also should be like a 22:58 little blonde character that pops in as 23:01 well at some point. And then they just
+23:02 keep on multiplying as the game goes on, 23:05 causing more and more chaos, knocking 23:06 more books off the shelf, making the 23:08 game harder and harder as you go. I
+23:10 think we're going to be pretty good on 23:12 graphics for this. I'm going to do a a 23:14 part two video later on where I actually 23:16 rebuild this game in either GDAU or
+23:18 Unity. And uh we'll really dial in the 23:20 graphics when we go for that game. But 23:23 this one I wanted to make a basic 23:24 JavaScript version. And we've got a 23:26
+pretty solid game here. So I'm going to 23:29 go fix the colors in Photoshop real 23:30 quick. Then we'll add some sound effects 23:32 and we've got our game. I'm going to do 23:34
+this real simply. I'm in Photoshop now. 23:36 I opened up this character and this 23:38 character. We can see that the jacket's 23:40 slightly different color on this one. 23:42
+So, what I'm going to do is I'm just 23:44 going to color drop, grab the color of 23:47 the jacket here. And I'll jump over to 23:49 this one. And we'll make sure the 23:50
+jacket's the same color on this 23:52 character. We'll go ahead and use the 23:53 color replacement tool here. And we'll 23:56 just paint in the jacket color like so 23:59 until
+we're happy that it looks pretty 24:01 much the same. And then I'm going to go 24:03 do that for all the characters. And 24:04 hopefully we get a much more consistent 24:06 color.
+All right. So, here's where we're 24:08 at with the game right now. I actually 24:10 created a little background animation 24:12 for our loading screen here. Uh, 24:14 basically, I
+just generated an image in 24:16 Leonardo, said I wanted it to be like a 24:18 Stardew Valley style 16bit animation of 24:22 a librarian sitting in the library, and 24:25 then I
+took the image that it made, put 24:27 it through VO3 to animate it. And that's 24:30 this background that you're seeing 24:31 animated here. And I also got rid of the 24:33
+settings since we didn't have any 24:34 settings to change. So, we just have 24:36 start game and instructions. 24:38 Instructions needs some work here. I 24:40 just gave Claude
+code some instructions 24:42 to fix it. And now we have an 24:44 instructions page that's actually 24:45 readable. So, perfect. When we actually 24:48 play the game, there's still
+some issues 24:50 with the characters kind of changing 24:52 colors, but you can see our character 24:54 walks around. They face in the direction 24:55 that they're walking. Our
+NPCs walk 24:58 around. They're little kids. There's a 25:00 few different variations of the kids. 25:02 We've got our leveling up and the game 25:04 is currently working as
+intended and 25:07 pretty much looking as intended as well. 25:09 And now that everything's working the 25:11 way I want it to, let's add some sound 25:14 just to sort of tie it
+all together and 25:16 make it feel like we're actually playing 25:18 a game. The gameplay is actually cool. 25:20 It's fun. I'm really, really enjoying 25:21 it. Every time I sort
+of demo it or test 25:25 it, I find myself like playing for 25:27 longer and longer and longer and trying 25:29 to beat my last score, which I think is 25:31 an indicator that it's
+a pretty good 25:33 game. That's pretty fun. I'm digging it. 25:35 But let's get some sound effects in 25:36 here. First off, I want some background 25:38 music. And to do that,
+I'm going to jump 25:40 over to Suno.ai. I think it'd be cool to 25:43 have two songs. one for the sort of main 25:47 home screen and then one for when you're 25:49 actually
+playing the game. So, it's not 25:50 the same song throughout. So, I'll go to 25:52 create. I'm going to turn it on 25:54 instrumental. I don't need any lyrics in 25:56 this song.
+And I'm going to do lowfi 25:59 cozy retro video game music. Calming 26:04 soothing. I just want it to be like 26:05 relaxing, comfy music. So, let's see 26:07 what it gives us for
+that. Here's the 26:09 first version. 26:15 Let's go ahead and download it. Toss it 26:17 into our assets here. Copy the path. Set 26:20 this song as the background music for 26:24
+the opening menu screen. Loop the song. 26:28 And it finishes playing. All right. So, 26:31 it should set that as our opening 26:33 background song. And while it's 26:34 generating
+that, let's go back to Sunno 26:37 and generate another one. I'm going to 26:39 use the same prompt again. 26:42 [Music] 26:46 I'll pull this other song into Wind Surf 26:48 into
+my assets folder as well. Copy the 26:51 path, paste that in there, and let it 26:53 set that as the background to the actual 26:55 game play. And then I also want some 26:57 sound
+effects. So for the sound effects, 26:59 we're going to go to 11 Labs, and they 27:02 actually have a sound effects generator 27:04 over here. Let's see what happens if I 27:06
+just do like menu select. Kind of like 27:10 this one. this sample three here. Let's 27:12 download that. Pull this menu select 27:14 sound into our assets. And then I'll 27:16
+start typing up my prompt while it's 27:18 still working on our background music 27:19 here. So I'll copy the path here and say 27:22 on the menu screen, use this audio when 27:26
+a new menu item is selected. And now I 27:30 finally got a game that I'm actually 27:32 pretty happy with. We've got our main 27:34 menu with our background music, 27:38 our
+instructions. Let's go ahead and 27:40 start a game. The game volume was a 27:42 touch loud, but as you can hear with 27:45 this clean recording, we added all of 27:47 our music. A
+really satisfying thud when 27:50 you drop a book off, kids giggling when 27:52 they're being little jerks, and I even 27:55 added a sound effect for when you run 27:57 out of
+stamina. You'll also notice from 27:59 this gameplay recording that I was able 28:01 to fix the graphics using Photoshop and 28:03 made some additional minor tweaks to the 28:05
+pace of the gameplay. But overall, this 28:07 game is really fun and kind of 28:10 addictive. I was able to do all of this 28:12 in a day, and I'm going to continue 28:14 refining
+and improving over the next 28:16 couple of weeks. I'm thinking part two 28:18 of this series will be moving the game 28:20 over to Unity or GDAU, where I can 28:22 really take the
+game to the next level. 28:24 But in the meantime, here's a link to 28:27 both the game and the GitHub, which will 28:30 also be linked up in the description so 28:32 you can try
+it out or even take it and 28:34 make your own version. If you do make 28:37 your own version, please link me up over 28:39 on X so I can try it out. Thank you so 28:42 much for
+nerding out with me. I hope you 28:43 enjoyed this video and learned something 28:45 from it. I'm super excited to keep 28:47 working on this game and hopefully I'll 28:50 see you
+in part two. Bye-bye. 28:54 [Music] 29:02 Thank you so much for nerding out with 29:03 me today. If you like videos like this, 29:05 make sure to give it a thumbs up and 29:07
+subscribe to this channel. I'll make 29:08 sure more videos like this show up in 29:10 your YouTube feed. And if you haven't 29:12 already, check out futuretools.io where 29:14 I
+share all the coolest AI tools and all 29:16 the latest AI news and there's an 29:18 awesome free newsletter. Thanks again. 29:20 Really appreciate you. See you in the 29:22 next
+one. All From Matt Wolfe Video game development Application software Strategy video games Learning Related For you Recently uploaded 0:00 I just used cloud code Opus 4.7 to build
+0:02 a high [clears throat] demand digital 0:04 product web app in under an hour. This 0:06 is the app. So, it's a social media 0:08 dashboard. And if we look, these kind of 0:10
+dashboards are generating as much as 0:13 $21,000 in revenue on Etsy as boring 0:16 Excel sheets or static PDFs. And what I 0:19 did is that I simply used Opus 4.7 to 0:23 build
+the upgraded interactive version 0:25 of these because, as you can see, it's 0:27 much more interactive. users can better 0:29 visualize their progress [music] 0:31 and it
+certainly feels less overwhelming 0:33 than a Google sheet. So, Opus 4.7 was 0:36 just released last week by Anthropic and 0:39 [music] this new AI model is not just a 0:41 small
+update. It sets a brand new set of 0:44 benchmark for what you can achieve 0:45 without a developer and without any 0:47 coding skills. So, today I'm going to 0:50 show you exactly
+how I have built this 0:52 dashboard. I'm going to show you every 0:54 prompt, [music] 0:55 every step, and show you as well how to 0:58 sell it. So, let's get into it. The 1:00
+quick thing before we get into the 1:01 build. If you're somebody who's tired 1:03 [music] into pouring your energy into 1:05 ebooks that actually go nowhere and 1:07 you're ready
+to actually get traction 1:09 selling mini apps, well, you should know 1:11 about the AI Profit Lab. It's a 1:13 community that I put together recently 1:15 where I walk you
+through building these 1:17 mini web apps and I show you how to get 1:19 them in front of buyers, even if your 1:22 social media following is small. And by 1:23 the way, we just
+ran a challenge where 1:26 members submitted their own mini apps. 1:28 The submissions truly blew me away and 1:30 the people in sites are already miles 1:32 ahead seeing updates
+and strategies 1:35 before anybody else. So, if that's your 1:37 goal and where you want to be, the link 1:40 is in the description. All right, so 1:41 let's get into the build.
+Before we 1:43 start building, we need to validate the 1:45 ideal because the last thing we want is 1:47 to pour ours into building something 1:50 that nobody wants to [music] buy.
+So, 1:52 there's a tool that you should add to 1:53 your arsenal. It's called Profit Tree. 1:55 And I pulled the sales data using Profit 1:58 Tree, which is essentially an Etsy spy
+2:01 tool. [music] 2:01 And I like this tool specifically 2:03 because it shows real time demand 2:06 because you want to know what's selling 2:07 right now, not 3 [music] months
+ago. And 2:09 that's where product validation comes 2:11 in. And Profit Tree makes it [music] 2:13 super simple. So, what I do is I simply 2:16 hop on Etsy and search for social
+media 2:18 planners and dashboards. [music] And 2:20 what I found actually shocked me. Some 2:22 of these listings are pulling in as much 2:24 as $21,000 in revenue. And here's the
+2:27 part that got me excited when I first 2:29 saw this. [music] These are boring, 2:31 overwhelming Excel sheets or Google 2:33 Sheets that don't really help you 2:35 visualize
+your data. And it's 2:37 overwhelming. And in 2026, if a static 2:39 [music] Excel sheet is generating this 2:42 kind of revenue, imagine the 2:44 opportunities if you put a little
+bit 2:45 more effort up front and [music] sell an 2:48 interactive version where you can 2:50 quickly visualize what's working and 2:51 what isn't where essentially a business 2:54
+owner can look at it and immediately 2:56 understand what is happening with their 2:58 social media without needing to spend 30 3:01 minutes reverse engineering an Excel 3:03 sheet
+formula that somebody else wrote. 3:06 [music] 3:06 So that is the gap, that is the 3:08 opportunity, and that is exactly what 3:10 we're building today. And this is why 3:12
+[music] I specifically picked this 3:13 product. And by the way, if you want to 3:16 use Profit Tree to validate your own 3:18 product ideas the way that I just showed 3:20 you, I
+have a special offer code that 3:22 you can use. Use code Luna for 50% off 3:25 your first billing cycle for [music] any 3:28 plan. The link is in the description 3:29 below. And
+by the way, it's one of the 3:31 most useful tools [music] in my product 3:33 research process and I use it every 3:35 single day before I build anything. 3:37 [music] So go check
+it out. So before I 3:39 open Claude, let me quickly walk you 3:41 through how it works. So Claude has 3:44 three distinct areas [music] 3:46 and most only ever touch one of them.
+So 3:49 understanding the difference is what 3:51 makes everything I'm about to show you 3:53 possible. So the first area is claw 3:55 [music] chat. This is where most people 3:57
+live. You simply type a question and 3:59 claude answers [music] and then you 4:02 close a tab. And for general use, that's 4:04 fine. But the way I use cla [music] 4:06 is
+actually a little different. I use it 4:08 as my planning partner. So before I 4:10 build a single [music] thing, I actually 4:13 go on cloud chat and work through the 4:16 entire
+idea. So this is what I use to 4:18 essentially understand what I want to 4:20 build. So [music] I brainstorm what 4:22 should the dashboard include, how it 4:24 should be
+structured, what should the 4:25 user see, and what design directions I 4:28 want to take. So I try to give it as 4:30 much context as possible. And when it's 4:33 available, I
+also like to upload 4:35 reference files because what I do is I 4:37 go through all the kinks until the idea 4:40 is crystal clear. And then once I know 4:43 exactly what I want to
+build, I ask 4:45 Claude chat [music] to write me the full 4:48 vibe coding prompt that I will then 4:50 paste [music] into clot code. This step 4:53 alone is the act of building
+your prompt 4:56 inside clot chat [music] first before 4:58 you ever touch clot code. And actually, 5:01 this will help you not burn through your 5:03 credits. And that is what
+separates a 5:05 first build [music] that you're actually 5:08 proud of than something that you spend 3 5:10 hours trying to fix. So the second area 5:12 is cloud co-work. So this
+handles 5:15 automated [music] task and agents. It's 5:17 a really powerful for workflows, but 5:21 we're not going to be using it today and 5:23 I can certainly cover it
+separately in 5:25 another video. The third area is where 5:28 [music] everything changes. Cloud code. 5:30 This is where you build. You paste your 5:32 prompt in claw write the
+code in real 5:34 time and you watch a fully working 5:36 interactive application appear in the 5:39 preview on the right side of the screen. 5:42 So without a developer, without
+[music] 5:44 any coding skills, and without waiting 2 5:47 weeks for a revision. [music] Now to 5:50 access Cloud Code, you do need a $17 a 5:53 month subscription. [music] It's
+not 5:54 free, but here's how I look at it. one 5:57 dashboard you could sell it for $20 5:59 [music] and that could cover more than a 6:02 month subscription in a single 6:04
+transaction. [music] 6:04 So yes, there is a cost involved, but if 6:08 you start using cloud code, you're going 6:09 to see that it pays for itself really 6:11 fast. And now with
+Opus 4.7 6:13 specifically, I've been building with 6:15 claude for long enough to notice the 6:17 difference between model updates. Some 6:20 of them are incremental, some of them
+6:21 are a bit better, some of them are 6:23 cleaner, but this one is different. The 6:25 quality that comes out of the first 6:27 build with Opus 4.7 is on another level. 6:31 The
+design looks sharper. The UX is 6:33 cleaner. The interface logic is more 6:36 robust. You're going to see exactly what 6:39 I mean when we build this together live. 6:41 [music]
+6:42 But first, we need to do some research. 6:44 So, I know that research sounds super 6:46 boring, and I know that you want to skip 6:48 straight to the build, but this is 6:50
+actually the step [music] that 6:52 determines whether your product will 6:54 sell or not. So, here's how I approach 6:56 it. I start on Etsy. I simply search for 6:59 social media
+dashboards or any other 7:01 niche that I'm interested in, and then I 7:03 spend some time actually looking at the 7:06 listings to see what's performing well. 7:08 And then I
+analyze and study the 7:10 listings. I browse through all the 7:12 mockups. I look at exactly which 7:15 features are being highlighted. I read 7:17 the reviews and I also look for
+what 7:20 people specifically like or dislike 7:23 because the reviews, they tell you 7:25 something that the listing itself never 7:27 will. And they tell you exactly where 7:29
+there's room for improvement [music] and 7:31 that is gold because you're not guessing 7:33 what matters, the customers actually 7:36 telling you. So, personally, I like to 7:38
+screenshot everything. I like [music] to 7:40 screenshot the features that are 7:41 included. I like to also take into 7:43 consideration the design choices that 7:45 are made. And
+then this is an extra 7:48 step, but I personally like to go to 7:50 Creative Fabrica and search for even 7:52 more references. So I'm looking for 7:54 Excel sheets [music] that
+include the 7:56 data that I want to track inside my 7:58 dashboard. And then what I do is I can 8:00 easily edit them to fit my needs because 8:03 again the more data we give
+Claude the 8:06 better our output is going to be. So for 8:09 instance, I know that for my dashboard I 8:11 want to include follower growth. I want 8:13 to include post engagement.
+I want to 8:16 include as well reach. [music] I also 8:18 want to have platform breakdowns. So 8:21 this is going to help me visualize the 8:23 entire structure of my social media
+8:25 dashboard. And what I like to do is 8:26 simply download a few, [music] study 8:28 them, and then sort out what could be 8:30 improved. Because my goal is to solve my 8:32
+customer's problem in the most efficient 8:35 way. So I'm not looking to make it 8:37 complex. [music] 8:38 I'm looking to help a business owner 8:40 look immediately at this
+dashboard 8:42 [music] and understand their data 8:44 because that's the target. And once I 8:45 have my screenshot saved and my Excel 8:48 sheet references [music] ready, then I'm
+8:50 ready to go to Cloud Chat. So, this is 8:52 where most people go wrong. Even the 8:54 ones who know that they should give 8:56 Claude context, [music] 8:57 they will still
+give very vague prompts 9:00 like, "Build me a social media 9:01 dashboard." Unfortunately, that's just 9:03 bad [music] prompting. and Claude is 9:05 going to give you something
+super 9:06 generic because that is the only 9:09 information you gave it [music] to work 9:10 with. So the more context and the more 9:12 specific you are, the better output 9:15
+you're [music] going to get. So here's 9:16 what I actually type into a cloud chat. 9:19 I tell it this act as a senior product 9:22 strategist, UX thinker, and front-end 9:25
+engineer. Your job is to help me [music] 9:28 turn my app idea into a build ready 9:31 viing prompt for a single file app. I 9:34 also like to include the [music] Excel 9:36 sheets
+that I just created on my own and 9:40 also whatever other references that I 9:42 gathered. I simply tell it which 9:44 platforms I plan to track. So, YouTube 9:47 threads,
+Instagram, and I also tell 9:49 Claude that I want to add a statistics 9:51 [music] bar so I can quickly get a 9:53 glance of the most important data 9:55 without having to scroll
+or click on 9:57 anything. And then I include the 9:59 technical details that are really 10:01 important. I tell it that all the data 10:03 should persist using local storage and
+10:06 local storage means that the data lives 10:08 inside the user's browser. There's no 10:10 database and there's no backend server 10:13 and there's no monthly hosting cost.
+The 10:15 dashboard works, the data saves between 10:18 sessions, and it costs [music] 10:20 nothing extra to run. So then you don't 10:22 need to have a membership. You can 10:24
+simply sell this as a onetime fee. And 10:26 this actually really matters when you're 10:28 selling this because it means your 10:30 product has no ongoing infrastructure 10:32
+cost attached to it. [music] So then 10:34 what I like to do is that I like to 10:35 upload my Excel sheet as reference. I 10:38 also like to upload my [music] Etsy 10:39
+screenshot. And I also like to give 10:42 Claude visual context alongside 10:44 everything I just described. And once I 10:46 have worked through all of that, I ask 10:48 Claude
+one specific thing. Based on 10:50 everything that we have discussed, give 10:52 [music] me a complete vibe coding build 10:54 prompt that I can paste directly into 10:56 cloud
+code. [music] So this is not a 10:58 one-s sentence prompt. This is a fully 11:01 structured brief that describes every 11:03 tab, every feature, [music] every design 11:05 details
+and every piece of functionality 11:08 and every data point needs [music] to 11:10 track. So now we have our prompt. We're 11:13 simply going to copy it. And now we're 11:15 going
+to go to clot code. So we're going 11:17 to open clot code. We're going to paste 11:19 the full prompt [music] and we're going 11:20 to simply read through it one more time 11:22
+before we hit build just to confirm that 11:25 everything we want is actually there. 11:27 And then we're going to hit build. And 11:29 then watch what happens. Claude is 11:31
+writing the code in real time. And once 11:33 it's ready, the preview will appear on 11:35 the right hand [music] side. And guys, 11:37 like I want you to sit with this just 11:39
+for a second because I remember the 11:41 first time I built my first app, I was 11:44 mesmerized [music] 11:44 because it's one thing to know that 11:46 Claude can actually build
+these many 11:48 apps. It's another thing to actually do 11:51 it on your own and realize that you just 11:53 described something in plain [music] 11:54 English 20 minutes ago and
+now it's 11:57 live. And there it is. So let me show 11:59 you what we actually [music] built. You 12:01 can add your post metrics directly. You 12:04 can add the engagement data.
+You can 12:07 also include the actual [music] post. 12:09 And also there's something that makes 12:11 this super useful for business owners 12:13 who already have historical data.
+They 12:16 can simply upload their existing Excel 12:18 [music] sheets and the dashboard is 12:20 simply going to pull that data in 12:22 automatically. So there's no need for
+12:24 manual re-entry. So you just upload and 12:27 you get a visual representation of your 12:29 social media analytics instantly. 12:31 [music] 12:32 So you have 7-day
+performance, you have 12:35 30 days and then you have 90 days. 12:37 [music] Then you simply click and toggle 12:39 between each different views. And guys, 12:41 like this is a
+type of functionality 12:43 that a business owner understands 12:44 immediately. They do not need a 12:46 tutorial. They just use it. So each 12:48 platform has its own tab, its
+own 12:51 metrics, its own view. And this can be 12:53 good for a restaurant [music] who's 12:55 trying to track their Instagram or 12:57 Facebook performance and they can see
+12:59 exactly what they need to improve to 13:02 have better reach. Or this could be 13:03 great for a creator who needs to track 13:06 [music] their YouTube and threads and 13:08

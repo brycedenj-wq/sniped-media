@@ -1,0 +1,1028 @@
+Introduction
+When the shadows fall around me and the
+road [singing] is hard to see,
+I can hear a voice inside [music] me
+calling me to. Welcome back everyone.
+Today we're going to build a complete
+vehicle construction [music] builder
+combat game in Roblox Studio using
+Roblox Studio MCP and the latest Claude
+Opus 4.8. The core concept of this
+project is modular vehicles. Every
+vehicle is split into three main parts.
+A chassis, a turret mounted on top, and
+wheels. This allows us to mix and match
+components dynamically [music] inside
+ Designing Vehicle Chassis with ChatGPT
+the game. To design the chassis, I open
+chat GPT and use the prompt, draw for me
+a car shooter chassis in multiple views.
+No wheels, just chassis. Make it clear,
+low poly, without details, [music] just
+multiple views. The AI generated a nice
+chassis sketch. Next, I wanted more
+chassis variants. I asked, "Nice, draw
+for me another variant with different
+style, like F1 for example." The AI
+generated a really nice Formula 1 style
+chassis with white and red colors. After
+that, I generated a militarystyle
+chassis as well. With the chassis
+ Creating Wheel Variants
+designs finished, it was time to create
+wheels. I used the prompt, nice, now I
+want to make wheel. Let design a wheel.
+The AI generated a wheel design and
+[music] then I created additional wheel
+styles including Formula 1 wheels,
+off-road wheels, [music] and chain
+ Designing Turrets and Weapons
+wheels. Now, let's talk about turrets. I
+needed ideas for weapon [music] systems.
+So, I asked, "Okay, now I need
+suggestions for turret styles so I can
+put them on top, and a machine gun or a
+rocket launcher would [music] be okay,
+too." The AI gave me multiple turret
+concepts with visual references. I
+captured one machine gun turret concept
+and asked ChatGpt to create a detailed
+design. The result included multiple
+views, material suggestions, wireframe
+examples, and color variations. For
+easier modeling later, I asked for
+another version showing only clean
+multiple view drawings. Next, [music] I
+created a dual rocket turret. The first
+version looked good, but the color was
+boring. After requesting a color update,
+the AI generated a nice [music] blue
+turret with two parallel launchers. My
+plan was to have each barrel launch a
+rocket independently later in the game.
+I also wanted a rail gun turret inspired
+by military [music] games. I provided a
+reference image and asked chat GPT to
+generate a similar design. The AI
+produced a nice blue and [music] yellow
+color scheme, but since the dual rocket
+turret was already blue, I changed the
+rail gun turret to a red theme instead.
+Now that all designs were complete, it
+was time to turn [music] them into
+ Generating 3D Models with Meshy AI
+actual 3D models. I opened Meshy AI and
+clicked Workspace to begin. For the
+chassis, I prepared four reference
+images and placed the main image first.
+I selected standard model type and chose
+meshy 6, which is currently the latest
+AI model. I enabled [music] multiple
+views and uploaded the remaining chassis
+images.
+After clicking generate and waiting a
+few seconds, the result was not exactly
+what I expected. Meshi added four wheel
+rings even though the design images
+contained no wheels.
+I decided to keep the result anyway
+[music] and fix it later inside Blender.
+Next, I click texture to generate
+textures. One important thing to note is
+that Meshi's initial results are usually
+very high poly. This chassis came out at
+around 400,000 triangles, which is far
+too much for Roblox. To optimize it, I
+[music] clicked remesh. Meshi provides
+both fixed and adaptive options, but I
+usually prefer adaptive because it gives
+better results. After remshing, [music]
+the triangle count dropped to around
+6,000 triangles, which is perfectly
+acceptable for Roblox. I then downloaded
+the model as an FBX [music] file.
+ Optimizing Models in Blender
+Next, I opened Blender. Since Meshi had
+added those unwanted wheel rings,
+[music] I needed to remove them
+manually. I imported the chassis,
+switched to edit mode by pressing tab,
+selected any [music] vertex on a wheel,
+then pressed L while pointing at it.
+Blender automatically selected the
+entire wheel mesh. I pressed X and
+deleted it. After repeating the same
+process for the remaining wheel rings,
+the chassis was clean.
+I switched back to object mode and
+exported [music] the chassis as FBX. I
+set path mode to copy, enabled embedded
+textures, enabled [music] selected
+objects, and set scale to 0.01.
+After that, I returned to Meshi and
+generated all the remaining vehicle
+parts. The F1 [music] chassis had a
+small issue because Messi generated four
+side mirrors. I removed those in Blender
+as well.
+The military chassis looked great. All
+wheel models were fine.
+All turret models were also good. Since
+we don't need turret bones [music] for
+this project, there was no need to rig
+them. We can simply rotate turrets
+directly in Roblox Studio later. All
+ Importing Assets into Roblox Studio
+models completed, it was time to move
+into Roblox Studio. I created a new
+project and imported the F1 chassis.
+First,
+after scaling it up, I imported a wheel
+model and positioned it at the wheel
+[music] location.
+Then I duplicated it three more times
+for the [music] remaining wheels.
+and placed it on top of the F1 chassis.
+Now we [music] had a complete vehicle
+assembled from individual modular parts.
+ Creating Wheel and Turret Attachment Points
+The next step was very important. We
+needed attachment points so AI could
+dynamically assemble vehicles later.
+Inside the F1 chassis model, I created a
+folder called wheel points. Inside that
+folder, I added an attachment named
+front left and positioned it exactly at
+the wheel location.
+I repeated this process for the
+remaining three wheels.
+Never back down. Hold your head. Stand
+your ground. The fire inside
+will guide me home.
+Then I created another folder [music]
+for turret attachments. Inside it I
+added an attachment named main turret
+and positioned it where the turret
+should be mounted.
+I repeated the same setup process for
+the racing chassis and military chassis.
+After importing all remaining wheels and
+turrets, my final asset structure looked
+like this. A chassis folder containing
+every chassis type. Each chassis
+contained wheel points and turret point
+folders. a wheels folder containing all
+wheel variants and a turrets folder
+containing every [music] turret type.
+Since attachments are children of the
+chassis, they automatically move with
+the model. This setup works perfectly
+for dynamic assembly. With all assets
+ Setting Up Roblox Studio MCP
+ready, [music] it was time to connect
+Roblox Studio with Claude Opus 4.8 using
+ Open Claude Opus 4.8
+MCP.
+Before connecting, make sure Roblox
+Studio MCP is installed. Inside Claude
+desktop, open settings and go to the
+developer tab. There you should see the
+Roblox Studio MCP server installed and
+enabled. If not, copy the MCP
+configuration from Roblox Studio AI
+assistant and paste it into Claude's MCP
+configuration. [singing]
+battle.
+[snorts]
+ Creating the Claude Project & GDD
+After that, I created a new claude
+project called vehicle combat builder
+and added a game design document
+describing the project structure,
+objectives, and the three development
+phases.
+ Phase 1 - Vehicle Construction System
+Once everything was prepared, I verified
+the Roblox Studio connection. After
+Claude successfully connected, we
+started phase one. For the vehicle
+selection interface, I opened asset
+manager and bulk imported all preview
+images I had captured earlier. After
+ Building the Vehicle Selection UI
+importing, I copied [music] all content
+IDs and pasted them into claude.
+ Testing Dynamic Vehicle Spawning
+Claude generated a really nice vehicle
+selection gooey with chassis, wheel, and
+turret selectors along with a spawn
+vehicle button. The only issue was that
+I forgot to import the machine gun
+turret icon. So that slot appeared
+blank. Besides that, everything looked
+great. After selecting different parts
+and clicking spawn, the vehicle
+assembled successfully using the
+attachment [music] points we created
+earlier. This was exactly the modular
+system I wanted. Players could freely
+[music] mix different chassis, wheels,
+and turrets to create completely
+different vehicle combinations. Phase
+ Phase 2 - Vehicle Driving System
+one was complete, and we were ready to
+make the vehicles drivable. For phase
+two, Claude added a vehicle seat and
+basic driving controls. The vehicle
+could move immediately, but there were
+ Fixing Physics and Wheel Rotation
+several issues. Whenever the vehicle
+collided with something, it would
+sometimes launch into the air. The
+wheels did not rotate properly, and the
+player's sitting position was much too
+high. I reported these [music] problems
+to Claude and asked it to improve the
+system. Claude updated the vehicle setup
+by adding motor 6D wheel rotation,
+improving suspension and physics
+behavior, and fixing the seating
+position. After testing again, the
+difference was huge. The wheels rotated
+correctly. The player sat properly
+inside the vehicle. The vehicle handled
+much better overall. Driving finally
+felt smooth and natural. With vehicle
+construction and driving complete, it
+was time to add combat.
+ Phase 3 - Turret Combat System
+For phase three, Claude created dummy
+targets with HP bars and implemented the
+entire combat system. Turrets could
+ Adding Projectiles, Damage & HP
+rotate using mouse aiming. Projectiles
+fired correctly. Impact effects worked
+properly. Different turrets had
+different fire rates, projectile types,
+and damage values. Everything was
+working surprisingly well. The only
+issue was that high-speed collisions
+[music] could occasionally flip the
+vehicle vertically and leave it stuck.
+After reporting the issue, Claude fixed
+the problem. At this point, the
+ Integrating Combat VFX
+prototype was already fun, but I wanted
+better visual effects. For shooting
+effects, I imported a free VFX pack from
+the toolbox. Inside each turret model, I
+created fire VFX, hit VFX, and bullet
+VFX folders. I added muzzle flashes,
+rocket projectiles, impact explosions,
+and other effects into those folders,
+and positioned everything using
+attachment points.
+For the machine gun turret, I used a
+realistic muzzle flash effect.
+[music]
+For the rocket launcher, I added custom
+rocket models. For impact effects, I
+[music] used explosion VFX packs from
+the toolbox.
+Claude then integrated all of these
+effects into the combat system. [music]
+Muzzle flashes looked great. Impact
+effects felt satisfying. Rocket
+ Improving Rocket Projectiles
+projectiles looked much better. I later
+[music] improved the rocket flight path
+because the homing behavior was too
+aggressive. I also added a vehicle
+ Vehicle Spawn Effects
+[music] spawn aura effect so vehicles
+would appear with a much more impressive
+visual presentation.
+ Adding Enemy AI Vehicles
+The game was becoming much more
+polished, but playing alone gets boring
+quickly. To solve that problem, I added
+enemy AI vehicles. The AI vehicles
+follow way points around the racetrack
+and engage the player during combat. I
+ Environment Building
+also added buildings and trees around
+the environment to make the map feel
+more alive. After that, I updated
+ Damage Counters & Kill UI & sound fx
+building colors, added floating damage
+numbers, created a kill counter UI,
+improved the crosshair colors, and added
+sound effects. The result is a fully
+ Final Gameplay Showcase
+playable vehicle combat builder
+prototype created using Roblox Studio
+MCP and Claude Opus 4.8. What's really
+impressive is how quickly we went from
+AI generated concept art to 3D assets,
+modular vehicles, driving systems,
+turret combat, visual effects, enemy AI,
+and a complete gameplay prototype. If
+you enjoyed this video, don't forget to
+like, subscribe, and let me know what
+features you'd like to see added next.
+ ClaudIntro: animate a Blender character from one prompt
+Today I'm going to show you how you can
+use Claude Opus 4.8 Ultra Code to start
+animating your characters in Blender.
+Now, if you watch any of my content or
+you watch content revolving around
+Claude Code and coding or just AI in
+general, you've definitely heard of
+Claude, but you probably haven't heard
+of Ultra Code or Ultra Think. That's
+what it used to be called in the past.
+ What Ultracode actually is (sub-agent orchestration)
+Ultradeode essentially is the X high
+reasoning effort with automatic workflow
+orchestration. So with Ultra Code, as
+the text is saying from these enthropic
+docs, with Ultra Code on, Claude decides
+when a task warrants a workflow. So for
+example, if you're working in Blender
+and you have this really detailed prompt
+you gave it to recreate a scene in
+Blender, there's character animation,
+there's animation inside the scene
+itself, Claude can then spin up sub
+agents to work on each of those, so your
+outputs are way more high quality and
+way faster. One thing to note though, it
+does use a lot more tokens. So, I would
+recommend that you're on like the max
+plan if you're going to start using
+this. And so, just for example, like I
+showed in the beginning, I gave Claude a
+super simple prompt. Animate this
+character singing. Put a microphone in
+his hand and put him on a stage. And it
+was able to animate this for me in like
+2 minutes. This is just a rigged
+character from Blender Studio. It
+analyzed the entire rig. It built the It
+built the stage with one agent. It built
+the facial structure and facial
+animation with one agent. And then it
+built the hand positioning where he has
+his hand up like this. and then the
+microphone in one hand and then built
+the microphone in his hand with another
+agent. So, they all work together to
+speed up your processes again using more
+tokens, but you get a lot faster outputs
+with a little bit higher quality. And
+it's really cool to see this being
+created in Blender. Obviously, this is
+not like amazing. This is not an amazing
+output. Doesn't look like a
+professionally animated character inside
+of Blender, but I was able to do this in
+2 minutes. If I had no animation
+experience and I need something quick
+for a project inside of Blender, this
+would help me out substantially. So, how
+do you actually load this in? How do you
+ Installing Claude Code in VS Code
+actually use Ultrathink? So, I'm going
+to be working through VS Code and the
+Cloud Code extension. If you're not
+familiar, this is where you can go to
+download VS Code. This is just an IDE
+where you can install all of your
+project files, all of your extensions
+into one organized place. I use this
+primarily when I'm working with Claude.
+So, download this and open it. When
+you're inside of VS Code, you'll
+probably have a completely empty project
+folder. You might not see the Claude
+icon or like the Codeex icon, any of
+your extensions that are installed.
+That's fine. To install the Claude
+extension into VS Code, go to your
+extension tab right here and then find
+Claude Code for VS Code. Find the one
+with 16 million downloads to this date.
+Download it, install it, then go into
+the authorization once it's installed.
+Authorize your account and then it will
+bring you back. Then you have the actual
+extension plugged into VS Code. Now,
+there's two ways to work with Claude
+Code inside of your IDE, which is VS
+Code. You can use the normal extension
+like this. This is what the interface
+looks like. Let me just close out of
+this really quick. Or you can run
+through your terminal. So if you right
+click on this tab up here and you click
+new terminal, it opens up your terminal
+and you can type in claude to open up
+claude. Now what I primarily do is I use
+ Running Claude in the terminal (skip-permissions)
+dangerously skip permissions because I
+hate waiting on accepting edits by
+claude. Usually they're not super
+destructive at all. They're not deleting
+stuff on my computer. I will say if
+you're using this for work, just make
+sure that you're giving Claude access to
+the right things. You don't want it
+searching through like private data or
+private or private info about your
+company or your workplace. But if it's
+just for personal projects like these
+creative projects, it's not going to do
+anything invasive on your computer. So
+what I run is just claude and then
+d-dangerously
+skip-permissions.
+And then that will if you type it in
+right. Okay, so I just typed it in
+wrong, but all you have to do is
+claude-dangerously-s
+skip-permissions. And that will open up
+the bypass permissions mode inside of
+your terminal. So I don't have to sit
+and wait through the accept edits. So
+when you have claude inside your
+terminal, it's just how you would work
+inside of the CLI or the integration or
+extension, but it works a lot faster.
+You can understand, you know, where
+Claude is inside of your computer. In my
+opinion, it's a little intimidating at
+first, but once you start actually using
+it and utilizing it, you learn so much
+about like how Claude works with your
+computer. But that's not the point. I
+ Turning on Ultracode with /effort
+want to show you how we can turn on
+Ultra Code. So, if we type in slash,
+this brings up our our slash commands.
+And we type in effort. You can see that
+we have these different variations of
+effort levels. We have low, we have
+medium, we have high, which is what I
+usually work in for pretty simple
+projects. Then we have X high. And then
+you see it starts bringing out some
+animations for the higher models. And
+then we have max. So, it plays this
+rainbow animation. And then we have
+ultra code. And ultra code gives this
+really cool like takes over your entire
+terminal animation. And it uses XH high
+and the workflows I was talking about in
+the beginning of this video. So where it
+spins up sub aents on certain workflows
+that you're working with. To select this
+you just hit enter. And now we are in
+ultraode mode inside of cloud code in
+your terminal. Now if you're already
+ Connecting the Blender MCP and grabbing a rig
+connected to Blender, perfect. That's
+great. You can skip this part. But if
+you're not, make sure that you check
+MCP/mcp.
+That will bring up all of your connected
+MCP servers on this account. And then
+you can see my first one. Blender is
+connected. If you aren't connected to
+Blender, click this video up here. I
+walk through an entire breakdown of how
+to connect the official Blender MCP from
+blender.com to Claude Code to actually
+to actually start utilizing all of
+Blender's functionality with the MCP in
+Claude. It's really mind-blowing. So, we
+are connected to the Blender MCP. And if
+we look into the tools, you can see
+there are a ton of tools that we have
+access to that Claude has access to to
+actually start controlling Blender,
+start creating in Blender, which is
+great. Now, before we start prompting
+inside of Claude Code in Blender, I
+highly recommend if you want to find
+high quality rigged characters, go to
+Blender Studio. Now, I will say Blender
+Studio is a paid service, but Blender is
+is a completely free and open-source
+platform that has been free forever. So,
+I highly recommend that you support
+Blender so it can still stay free for
+all the people that are working in it.
+So, in Blender Studio, this is where you
+can find all of their assets. And I
+really like this Storm one. So, if we
+choose Storm and you just download it,
+it'll download the blend file. As you
+can see right here, the Storm V1. If we
+open that, it'll open Blender for us.
+And now we have our rigged character.
+So, we don't have to go find like a
+bootleg rig on the internet. For this
+demo, we're just going to be using a
+professionally rigged character from
+Blender. Okay. Now that we have an open
+Blender session with a character already
+in, and we have Claude code open,
+everything is connected because we have
+the MCP already connected and Claude
+connected. Whenever there's an open
+session, Claude will recognize that and
+start building inside of there. So, now
+that we have Claude set up and we have
+Blender set up and they're connected, we
+need to create a prompt for Claude to
+build out our scene. I'm going to go off
+of that same singing scene that I had
+created before, but I'm going to give it
+a super dry prompt to show you how
+Ultraink or Ultra Code works with the
+ The one prompt (watch the sub-agents spin up)
+with Blender and your prompts. So, I'm
+going to say is create a scene where the
+character in the open blender session is
+holding a microphone and singing into
+the camera. Add camera. Add facial
+movements. Move his mouth as he's
+singing. Add some sway to his body. Make
+it feel very natural, very smooth. Put
+him on a stage with stage lights. And
+then add a camera with a depth of field
+so the camera is focused on the
+character and the background stage is
+blurred. So, that's all I'm going to
+say. It's not a super in-depth prompt,
+but when I shoot that off, it's going to
+start spinning up its sub agents to
+start creating the scene. So, first it's
+just going to call Blender to make sure
+what is actually in the scene. So, it's
+saying there's no camera, stage, mic, or
+lights yet. So, it's going to start
+creating those. It's going to spin up
+those sub agents for those specific
+tasks. Now, it's going to get the
+precise measurements of the actual rig.
+So, the character height, all the
+control bone, world positions, so that's
+the head, jaw, mouth, and browse. And
+it's going to confirm those control
+names that actually exist in the file.
+the Blender project file. Okay. And as
+you can see, it started spinning up the
+sub agent. So the first one is the scene
+setup. So it's a dark world hero camera
+and render settings. The second one is
+the model microphone setup prop. The
+third one is the pose character intro
+singing stance and gripping the mic. The
+fourth one is actually building the
+stage, the background, the backdrop, and
+the light truss. And then the fourth one
+is stage lighting and volutric haze. And
+then there's three more agents that will
+spin up once everything gets kicked off.
+I'm going to come back when this is done
+ The result: rendered character with depth of field
+and I will show you the output that it
+gives me. And then boom, within a few
+minutes, we get this animation of our
+character swing. He's singing to a song.
+Got a microphone in hand. He's on a
+stage of some sort. It looks really bad,
+honestly. So, definitely need to do some
+updating with that. Again, I didn't give
+it an insane prompt to create like this
+master stage, super in-depth. It was a
+very simple prompt, but you can see that
+we have our character animated, moving,
+his mouth is moving. He has facial
+features that are moving. He's swaying
+his body as he is singing. And if we
+render just an image out, we can see
+that it added some depth to the actual
+camera. So, you can see like it's
+focused on his face, on his body, but
+then the background is a little bit
+blurred. There's some depth between the
+background and the character itself. It
+just feels a lot more immersive and a
+lot more animated as you can see in this
+image here, which looks really good,
+actually. So, that's how you use Claude
+Ultra Code to rig up your scenes,
+animate your characters, and start
+building some really cool stuff in
+Blender. If you like AI content like
+this, I highly suggest that you join the
+free school community in the description
+below. You can post all of your wins,
+all of your creative ideas, meet some
+other fellow creatives in the AI space.
+There's a lot of cool people in there,
+and I also post all of my free resources
+so you can set this up yourself. So, hit
+that subscribe button. I really
+appreciate it. Like this video if you
+found it useful and comment something
+you'd like to see next.
+
+All
+From AI Aidan0:00
+Bye-bye 3D donut Blender tutorial. Hello
+Cloud Plus Blender via MCP. By the end
+of this tutorial, Blender will be fully
+connected to Cloud via MCP. Ready for
+you to create realistic 3D objects with
+AI and it's completely free. First,
+let's get Blender installed. Head over
+to blender.org, download it, and follow
+the steps to install.
+Next, we'll set up Cloud Desktop. Go to
+cloud.ai, download the desktop app, and
+install it.
+Now it's time to connect Blender to
+Claude via MCP. We need to add the MCP
+addin in Blender. I have linked the
+GitHub add-on. py in the description
+under Blender addin. Download it. Then
+open Blender. Go to edit, preferences,
+add-ons, install from disk. Select the
+add-on and install.
+Once it's in, press N to open the side
+panel on the right. Look for Blender MCP
+and connect to the MCP server.
+Before we go further, we need to install
+UV, the required package manager.
+Open PowerShell and run the command I've
+listed in the description under
+PowerShell UV. With that done, open
+Cloud Desktop. Go to settings,
+developer, edit config, and add the
+lines from the description under cloud
+desktop config.
+Close and reopen Cloud. Click plus
+connector and make sure Blender is
+enabled. Finally, let's test it. Try
+this prompt. Create a realistic doughnut
+with glossy chocolate icing and
+pistachio sprinkles in blender.
+And just like that, no more hours of
+Blender tutorials just to create
+something simple.
+
+All
+From the series0:00
+Bye-bye 3D donut Blender tutorial. Hello
+Cloud Plus Blender via MCP. By the end
+of this tutorial, Blender will be fully
+connected to Cloud via MCP. Ready for
+you to create realistic 3D objects with
+AI and it's completely free. First,
+let's get Blender installed. Head over
+to blender.org, download it, and follow
+the steps to install.
+Next, we'll set up Cloud Desktop. Go to
+cloud.ai, download the desktop app, and
+install it.
+Now it's time to connect Blender to
+Claude via MCP. We need to add the MCP
+addin in Blender. I have linked the
+GitHub add-on. py in the description
+under Blender addin. Download it. Then
+open Blender. Go to edit, preferences,
+add-ons, install from disk. Select the
+add-on and install.
+Once it's in, press N to open the side
+panel on the right. Look for Blender MCP
+and connect to the MCP server.
+Before we go further, we need to install
+UV, the required package manager.
+Open PowerShell and run the command I've
+listed in the description under
+PowerShell UV. With that done, open
+Cloud Desktop. Go to settings,
+developer, edit config, and add the
+lines from the description under cloud
+desktop config.
+Close and reopen Cloud. Click plus
+connector and make sure Blender is
+enabled. Finally, let's test it. Try
+this prompt. Create a realistic doughnut
+with glossy chocolate icing and
+pistachio sprinkles in blender.
+And just like that, no more hours of
+Blender tutorials just to create
+something simple.
+
+All
+From the series# Licensed under the MIT license
+# <LICENSE-MIT or https://opensource.org/licenses/MIT>, at your
+# option. This file may not be copied, modified, or distributed
+# except according to those terms.
+<#
+.SYNOPSIS
+The installer for uv 0.11.19
+.DESCRIPTION
+This script detects what platform you're on and fetches an appropriate archive from
+https://releases.astral.sh/github/uv/releases/download/0.11.19
+then unpacks the binaries and installs them to the first of the following locations
+    $env:XDG_BIN_HOME
+    $env:XDG_DATA_HOME/../bin
+    $HOME/.local/bin
+It will then add that dir to PATH by editing your Environment.Path registry key
+.PARAMETER NoModifyPath
+Don't add the install directory to PATH
+.PARAMETER Help
+Print help
+#>
+param (
+    [Parameter(HelpMessage = "Don't add the install directory to PATH")]
+    [switch]$NoModifyPath,
+    [Parameter(HelpMessage = "Print Help")]
+    [switch]$Help
+)
+$app_name = 'uv'
+$app_version = '0.11.19'
+if ($env:UV_DOWNLOAD_URL) {
+  $ArtifactDownloadUrls = @($env:UV_DOWNLOAD_URL)
+} elseif ($env:INSTALLER_DOWNLOAD_URL) {
+  $ArtifactDownloadUrls = @($env:INSTALLER_DOWNLOAD_URL)
+} elseif ($env:UV_INSTALLER_GHE_BASE_URL) {
+  $installer_base_url = $env:UV_INSTALLER_GHE_BASE_URL
+  $ArtifactDownloadUrls = @("$installer_base_url/astral-sh/uv/releases/download/0.11.19")
+} elseif ($env:UV_INSTALLER_GITHUB_BASE_URL) {
+  $installer_base_url = $env:UV_INSTALLER_GITHUB_BASE_URL
+  $ArtifactDownloadUrls = @("$installer_base_url/astral-sh/uv/releases/download/0.11.19")
+} else {
+  $ArtifactDownloadUrls = @("https://releases.astral.sh/github/uv/releases/download/0.11.19", "https://github.com/astral-sh/uv/releases/download/0.11.19")
+}
+$auth_token = $env:UV_GITHUB_TOKEN
+$receipt = @"
+{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"cargo-dist","version":"0.31.0"},"source":{"app_name":"uv","name":"uv","owner":"astral-sh","release_type":"github"},"version":"0.11.19"}
+"@
+if ($env:XDG_CONFIG_HOME) {
+  $receipt_home = "${env:XDG_CONFIG_HOME}\uv"
+} else {
+  $receipt_home = "${env:LOCALAPPDATA}\uv"
+}
+if ($env:UV_DISABLE_UPDATE) {
+  $install_updater = $false
+} else {
+  $install_updater = $true
+}
+if ($NoModifyPath) {
+    Write-Information "-NoModifyPath has been deprecated; please set UV_NO_MODIFY_PATH=1 in the environment"
+}
+if ($env:UV_NO_MODIFY_PATH) {
+    $NoModifyPath = $true
+}
+$unmanaged_install = $env:UV_UNMANAGED_INSTALL
+if ($unmanaged_install) {
+  $NoModifyPath = $true
+  $install_updater = $false
+}
+function Install-Binary($install_args) {
+  if ($Help) {
+    Get-Help $PSCommandPath -Detailed
+    Exit
+  }
+  Initialize-Environment
+  # Platform info injected by dist
+  $platforms = @{
+    "aarch64-pc-windows-gnu" = @{
+      "artifact_name" = "uv-aarch64-pc-windows-msvc.zip"
+      "bins" = @("uv.exe", "uvx.exe", "uvw.exe")
+      "libs" = @()
+      "staticlibs" = @()
+      "zip_ext" = ".zip"
+      "aliases" = @{
+      }
+      "aliases_json" = '{}'
+    }
+    "aarch64-pc-windows-msvc" = @{
+      "artifact_name" = "uv-aarch64-pc-windows-msvc.zip"
+      "bins" = @("uv.exe", "uvx.exe", "uvw.exe")
+      "libs" = @()
+      "staticlibs" = @()
+      "zip_ext" = ".zip"
+      "aliases" = @{
+      }
+      "aliases_json" = '{}'
+    }
+    "i686-pc-windows-gnu" = @{
+      "artifact_name" = "uv-i686-pc-windows-msvc.zip"
+      "bins" = @("uv.exe", "uvx.exe", "uvw.exe")
+      "libs" = @()
+      "staticlibs" = @()
+      "zip_ext" = ".zip"
+      "aliases" = @{
+      }
+      "aliases_json" = '{}'
+    }
+    "i686-pc-windows-msvc" = @{
+      "artifact_name" = "uv-i686-pc-windows-msvc.zip"
+      "bins" = @("uv.exe", "uvx.exe", "uvw.exe")
+      "libs" = @()
+      "staticlibs" = @()
+      "zip_ext" = ".zip"
+      "aliases" = @{
+      }
+      "aliases_json" = '{}'
+    }
+    "x86_64-pc-windows-gnu" = @{
+      "artifact_name" = "uv-x86_64-pc-windows-msvc.zip"
+      "bins" = @("uv.exe", "uvx.exe", "uvw.exe")
+      "libs" = @()
+      "staticlibs" = @()
+      "zip_ext" = ".zip"
+      "aliases" = @{
+      }
+      "aliases_json" = '{}'
+    }
+    "x86_64-pc-windows-msvc" = @{
+      "artifact_name" = "uv-x86_64-pc-windows-msvc.zip"
+      "bins" = @("uv.exe", "uvx.exe", "uvw.exe")
+      "libs" = @()
+      "staticlibs" = @()
+      "zip_ext" = ".zip"
+      "aliases" = @{
+      }
+      "aliases_json" = '{}'
+    }
+  }
+  $arch = Get-TargetTriple $platforms
+  if (-not $platforms.ContainsKey($arch)) {
+    $platforms_json = ConvertTo-Json $platforms
+    throw "ERROR: could not find binaries for this platform. Last platform tried: $arch platform info: $platforms_json"
+  }
+  Write-Information "downloading $app_name $app_version ($arch)"
+  $download_result = $false
+  $first_url = $true
+  foreach ($url in $ArtifactDownloadUrls) {
+    if (-not $first_url) {
+      Write-Information "trying alternative download URL"
+    }
+    $first_url = $false
+    try {
+      $fetched = Download -download_url "$url" -platforms $platforms -arch $arch
+      $download_result = $true
+      break
+    } catch {
+      Write-Information "failed to download from $url"
+      # keep going, maybe we have backup download URLs
+    }
+  }
+  if (-not $download_result) {
+    throw "failed to download binaries"
+  }
+  # FIXME: add a flag that lets the user not do this step
+  try {
+    Invoke-Installer -artifacts $fetched -platforms $platforms "$install_args"
+  } catch {
+    throw @"
+We encountered an error trying to perform the installation;
+please review the error messages below.
+$_
+"@
+  }
+}
+function Get-TargetTriple($platforms) {
+  $double = Get-Arch
+  if ($platforms.Contains("$double-msvc")) {
+    return "$double-msvc"
+  } else {
+    return "$double-gnu"
+  }
+}
+function Get-Arch() {
+  try {
+    # NOTE: this might return X64 on ARM64 Windows, which is OK since emulation is available.
+    # It works correctly starting in PowerShell Core 7.3 and Windows PowerShell in Win 11 22H2.
+    # Ideally this would just be
+    #   [System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture
+    # but that gets a type from the wrong assembly on Windows PowerShell (i.e. not Core)
+    $a = [System.Reflection.Assembly]::LoadWithPartialName("System.Runtime.InteropServices.RuntimeInformation")
+    $t = $a.GetType("System.Runtime.InteropServices.RuntimeInformation")
+    $p = $t.GetProperty("OSArchitecture")
+    # Possible OSArchitecture Values: https://learn.microsoft.com/dotnet/api/system.runtime.interopservices.architecture
+    # Rust supported platforms: https://doc.rust-lang.org/stable/rustc/platform-support.html
+    switch ($p.GetValue($null).ToString())
+    {
+      "X86" { return "i686-pc-windows" }
+      "X64" { return "x86_64-pc-windows" }
+      "Arm" { return "thumbv7a-pc-windows" }
+      "Arm64" { return "aarch64-pc-windows" }
+    }
+  } catch {
+    # The above was added in .NET 4.7.1, so Windows PowerShell in versions of Windows
+    # prior to Windows 10 v1709 may not have this API.
+    Write-Verbose "Get-TargetTriple: Exception when trying to determine OS architecture."
+    Write-Verbose $_
+  }
+  # This is available in .NET 4.0. We already checked for PS 5, which requires .NET 4.5.
+  Write-Verbose("Get-TargetTriple: falling back to Is64BitOperatingSystem.")
+  if ([System.Environment]::Is64BitOperatingSystem) {
+    return "x86_64-pc-windows"
+  } else {
+    return "i686-pc-windows"
+  }
+}
+function WebProxyFromUrl {
+    param([string]$ProxyUrl)
+    if ([string]::IsNullOrWhiteSpace($ProxyUrl)) {
+        return $null
+    }
+    try {
+        # Parse the proxy URL
+        $uri = [System.Uri]$ProxyUrl
+        # Create WebProxy instance
+        $webProxy = New-Object System.Net.WebProxy($uri)
+        # Set credentials if provided in URL
+        if (-not [string]::IsNullOrEmpty($uri.UserInfo)) {
+            $userInfo = $uri.UserInfo.Split(':')
+            $username = [System.Uri]::UnescapeDataString($userInfo[0])
+            $password = if ($null -eq $userInfo[1]) { "" } else { [System.Uri]::UnescapeDataString($userInfo[1]) }
+            $webProxy.Credentials = New-Object System.Net.NetworkCredential($username, $password)
+        }
+        return $webProxy
+    }
+    catch {
+        Write-Verbose("Failed to parse proxy URL '$ProxyUrl': $($_.Exception.Message)")
+        return $null
+    }
+}
+function WebProxyFromEnvironment {
+    $httpsProxy = [System.Environment]::GetEnvironmentVariable("HTTPS_PROXY")
+    $allProxy = [System.Environment]::GetEnvironmentVariable("ALL_PROXY")
+    $proxyUrl = if (-not [string]::IsNullOrWhiteSpace($httpsProxy)) { $httpsProxy } else { $allProxy }
+    $webProxy = WebProxyFromUrl -ProxyUrl $proxyUrl
+    return $webProxy
+}
+function Download($download_url, $platforms, $arch) {
+  # Lookup what we expect this platform to look like
+  $info = $platforms[$arch]
+  $zip_ext = $info["zip_ext"]
+  $bin_names = $info["bins"]
+  $lib_names = $info["libs"]
+  $staticlib_names = $info["staticlibs"]
+  $artifact_name = $info["artifact_name"]
+  # Make a new temp dir to unpack things to
+  $tmp = New-Temp-Dir
+  $dir_path = "$tmp\$app_name$zip_ext"
+  # Download and unpack!
+  $url = "$download_url/$artifact_name"
+  Write-Verbose "  from $url"
+  Write-Verbose "  to $dir_path"
+  $wc = New-Object Net.Webclient
+  $proxy = WebProxyFromEnvironment
+  if ($null -ne $proxy) {
+    $wc.Proxy = $proxy
+  }
+  if ($auth_token) {
+    $wc.Headers["Authorization"] = "Bearer $auth_token"
+  }
+  $wc.downloadFile($url, $dir_path)
+  Write-Verbose "Unpacking to $tmp"
+  # Select the tool to unpack the files with.
+  #
+  # As of windows 10(?), powershell comes with tar preinstalled, but in practice
+  # it only seems to support .tar.gz, and not xz/zstd. Still, we should try to
+  # forward all tars to it in case the user has a machine that can handle it!
+  switch -Wildcard ($zip_ext) {
+    ".zip" {
+      Expand-Archive -Path $dir_path -DestinationPath "$tmp";
+      Break
+    }
+    ".tar.*" {
+      tar xf $dir_path --strip-components 1 -C "$tmp";
+      Break
+    }
+    Default {
+      throw "ERROR: unknown archive format $zip_ext"
+    }
+  }
+  # Let the next step know what to copy
+  $bin_paths = @()
+  foreach ($bin_name in $bin_names) {
+    Write-Verbose "  Unpacked $bin_name"
+    $bin_paths += "$tmp\$bin_name"
+  }
+  $lib_paths = @()
+  foreach ($lib_name in $lib_names) {
+    Write-Verbose "  Unpacked $lib_name"
+    $lib_paths += "$tmp\$lib_name"
+  }

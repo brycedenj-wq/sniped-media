@@ -1,5 +1,17 @@
 # NEXT ACTION
 
+## OPERATING RESET · 2026-06-10 · OPERATOR INSTRUCTION · OVERRIDES EVERYTHING BELOW
+
+Treat the OS as FRESH. All prior projects and lanes are capability proof and archive, NOT active missions:
+- Synergy/FMO: DEMOTED (friend's pitch, weak brief, back burner, zero spend without a fresh operator go).
+- Alma/swimwear: open client obligation, handled when the operator raises it. Not the mission.
+- Prime Mover / campaign-house direction (2026-06-05 lock below): SUPERSEDED as the default. History, not orders.
+- Corpus batches, AXIS, Kingdom of the Sun: archive.
+
+**THE ONLY FORWARD MISSION: figure out the new thing.** The one lane/product BJ embodies and pushes. The system is built and proven; the question is what to point it at. Working artifact: `00_COMMAND_CENTER/LANE_DISCOVERY_LEDGER.md` (constraints, candidates, reps, kill criteria). Rules: no lane crowning without real reps (proof-before-crowning), candidates earn rank only through served/paid reps, operator's live word beats every old doc. Sessions boot into this question, not into old projects.
+
+---
+
 ## STATUS: TOTAL TOOL/REPO/SKILL UNLOCK PASS = DONE (2026-06-06)
 
 ~35 repos/sources classified (OS_TOTAL_UNLOCK_DASHBOARD.md). AXIS retired as a target. Live proofs this pass: Premiere project-write, Blender read, matts-peeker. Next play is chosen from the unlocked stack, not AXIS.

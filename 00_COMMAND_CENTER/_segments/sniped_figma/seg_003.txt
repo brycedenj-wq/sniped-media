@@ -1,0 +1,223 @@
+flow that's 1:16:19 out there. So if I'm looking at Wise as an example, like the money transfer app, I can come in here see all of their 1:16:24 specific screens. I can break down
+those screens into specific flows. I can see here on the lefth hand side where I'm 1:16:30 able to come in here and get a lot of good inspiration and see how others are doing it.
+where, you know, this card 1:16:35 example, you know, maybe I like this one. I can save this. I can copy it. They have a Figma plugin where I can 1:16:40 just take these
+screenshots and upload them right to Figma. It saves me a ton of time when it comes to designing. And 1:16:47 especially now with AI, what it allows me to do is take screenshots of
+examples that I like. So AI has something to go 1:16:54 off of. So I found this example uh that I like from this tool, Tonal. So what I'm going to do, I'm just going to come
+1:17:00 in here. I'm going to take a screenshot. Again, you can download it, too, but I just always take screenshots. And then I can see more like this down below. Um, 1:17:07
+which is great because you you always want to feed AI multiple different examples. Um, so you can come in here 1:17:12 and take different screenshots of ones that are similar uh at
+least. But maybe I want to use this as inspiration to 1:17:19 recreate one of these designs for me now. So, let's flip back to Claude. And Building Production UI’s with Claude Code
+1:17:24 I believe I said it earlier, but with the link that's in the description, you can take 20% off the annual mobin plan. I've gotten to know the Mobin team 1:17:31 pretty
+well. Um, they're a great group. So definitely check out definitely consider supporting them and checking out Mobin if you haven't already. Um so 1:17:38 what I did here is I just
+dragged in a copy of the research that we got. This is going to help us inform claude code. 1:17:45 So using the screenshot uh attached or the uh reference example 1:17:52 attached
+along with the uh variables 1:17:59 type styles and component skills 1:18:06 skills. Please build please uh build a 1:18:14 page like this uh using our uh design system. And one
+1:18:20 thing I forgot to do that you should always do is let me just uh go back to Figma here. Sorry, I know you can't see 1:18:26 it where I'm just going to copy a link to that
+Figma design system just in case 1:18:32 it needs to reference it. It's always best to do I always do it as best practice. Here is our design uh system 1:18:42 uh uh file if you
+need it. But all info 1:18:48 uh should be encompassed inside uh the clawed skills inside the 1:18:56 claude skills. Again, it's just something that I do even though we're not
+pushing to Figma yet. Um, it's just something that I do. Do not push to 1:19:04 Figma to Figma yet. Uh, simply just uh generate it locally. So, what this is 1:19:11 doing is we're
+telling it what skills to reference so it doesn't miss any, especially if you have a lot of skills. 1:19:17 Sometimes it might just skip over like a textile skills. Again, we gave
+it the design system file. It's just something 1:19:23 I do. It's best practice. and then telling it not to push to Figma yet because we want to see the design that 1:19:29 it
+comes up with first and we can refine it here or in codeex and bring it back here before we end up pushing to the 1:19:36 actual Figma file. So let's go ahead let's run this. One
+thing I should have also done is to specify that we don't 1:19:41 want it a onetoone to what's here because of course that's somebody else's design. Um and also too if you provide
+1:19:47 more examples it's going to find some synergies between those examples. Just something I want to call out. You shouldn't just provide mobin screenshots 1:19:54 and have
+Claude copy it one to one because that's so that's someone else's design. So just wanted to call that out. 1:20:00 While that's generating, we now have an example pretty similar to
+the one that we wanted. So you can see how just by 1:20:07 giving AI an example or examples, we're able to get to our result first try 1:20:12 because how difficult would the
+prompt be to sort of describe what we're looking for here? what we're looking for 1:20:18 here with all like like the the arc and this green you know dot here and 1:20:24
+everything sort of the layout it'd be one hefty prompt and a whole lot of back and forth to try to get this but in that 1:20:30 one prompt by providing an example we were able to
+go from zero to 100 relatively quickly again ideally what we 1:20:37 would want is for Claude to not produce something one to one but I'm just showing you the 1:20:43 workflow here
+so always be sure to provide a couple examples so we can find synergies so that your design is more unique. 1:20:50 But there's an issue with this on our design system. We don't
+have 1:20:56 buttons that are this round. So something was clearly off there where 1:21:03 it didn't use like it said it used the button, but it overrode 1:21:08 the corner radius
+variables on that button to make it round. 1:21:15 This is an example of what I mean where sometimes you're going to need to make tweaks in 1:21:21 Claude. And if it's just this
+one tweak, it doesn't make sense to push it into 1:21:27 Figma, then bring it into codec codeex because that's a lot of tokens on its own. So instead of focusing on this 1:21:34
+small item for now, what I might want to do if I was building out the rest of this onboarding, the rest of this 1:21:40 application, is get all the other pages in there first. And
+then once I have all 1:21:46 the other pages in there, I can take stock of what needs to change, how many 1:21:52 items need to change, what is wrong, and then once I have a list
+of everything that needs to be changed, I can make the 1:21:58 call as to whether it's worth the tokens and worth the time to push everything 1:22:03 into Figma, then bring it into
+codeex to make those iterations, and then push it back to Figma, then 1:22:09 bring into clawed code when I'm ready. So just because some one item is off 1:22:15 here does not mean
+that I need to go into codeex and make that change there and then push it back for smaller 1:22:21 changes. It's still okay to work within claude. But I think the best use of your
+1:22:27 time here was to build is to build out as much as you can in claude code. And if there's a lot that needs to change, 1:22:33 instead of smok focusing on those some of those
+smaller items, you can do that in codeex at a cheaper token cost and 1:22:40 with less time and then bring back to claude code when you're ready. I want to drop some knowledge on
+you here because Building UI’s with Chat GPT 1:22:46 believe it or not, Mobin is actually not the only place to spin up inspiration 1:22:51 is here. We are just in chat GPT and I'm
+just going to configure this here. We're 1:22:57 going to use thinking 5.5. We're not in codeex. We're just in chat GPT. 1:23:02 Something I want to let you know is what I'm going
+to do is I'm actually going to 1:23:08 provide that screenshot here. Let me drag it in to chat GPT and say uh 1:23:14 generate me some alternate options of a screen like uh this.
+Let's run. And look 1:23:23 what we have now. we have a little bit of a different option 1:23:28 and a couple different options at that. And this is what not a lot of people
+1:23:34 know is GPT 5.5 is really good at generating 1:23:41 designs based on even just a prompt or other pieces of info that you give it. 1:23:47 It's really good and it's fast.
+It's included in your chat GBT plan. I've 1:23:53 gotten a lot of value from this so far. We can change aspect ratios of things. We can um usually just there's usually a 1:24:01
+Come on. What's going on here? There's us there's usually a little like um pencil or highlight button where I can 1:24:08 highlight specific parts on an image that I want changed.
+Maybe it might just be if I only have one generation, not 1:24:13 multiple. But it's a wicked tool and something not a lot of designers know. So, what I'm going to do is I'm just
+1:24:19 going to download this image specifically. Maybe we're going to have Claude just adjust that initial design so it's not like a onetoone match. Back Refining Our AI Design
+1:24:26 inside Claude code, let's drag in that uh item that we downloaded from chat GPT. Uh here is another example. I like 1:24:36 can you tweak the design uh to match? And let's
+run. And look what it came 1:24:41 back with now. A little bit of a different example. So it's not a onetoone match to what uh was there before. Now some of the coloring is a
+1:24:48 little bit off. I could have been a little bit more explicit, but I think that's fine. For the most part, it looks 1:24:53 as if it's following our design system relatively
+to a te and you know, I can't really complain except with some of the 1:24:59 smaller things as well. But again, now that we have some of these colors and this color isn't in our
+design system, something wrong with the button here. 1:25:04 Some of the radiuses are off as well. Those are things that you know, if it's worth it to bring it into codeex and make
+those changes, we can do that or we 1:25:11 can do it right here inside cloud code. What I want to do now, let me just copy a Figma link is uh sorry, here we go. Pushing to Figma
+and Final Result 1:25:18 back in Claude. Uh we're going to push this to Figma. Please push this to Figma. Uh remember uh to follow uh the 1:25:27 design system and reference the
+text styles, 1:25:34 variables, and component uh rules. So let's run this. This is what's in Figma 1:25:40 now. Looks really good where we have, you know, our different sections.
+It looks like our styles and variables are 1:25:46 all applied well, which is great. Um, you know, it didn't apply the drop shadow style, but it's just cuz I didn't 1:25:52 include
+it in like one of those skills. Probably didn't know to look with look for it. But you can see here that it's using some of the raw the the instances 1:26:02 of the components.
+Now, personally, I would have loved for this to be a radio button label and not just the radio button, but that's okay. Not the end of 1:26:08 the world. And looks like our items
+are applied here. Let's see what color it used here. there. So, it used Okay, so 1:26:14 surface warning default subtle is the variable it used for this kind of treatment. I think
+it looks pretty good, you know, and it fixed like the rounded 1:26:20 corner that I was that I was showing in um Claw Code and it like adjusted it to 1:26:26 the actual button with
+the actual corner radius instead of it being round. It's just a little bit curved. So, I think it 1:26:31 looks pretty good for the most part. One thing that's important to note
+here is before if you were to bring this into codeex, say you have a bunch of app 1:26:37 screens here, you need to make a bunch of changes and you don't want to do it in Figma and
+you can bring it into codeex then is one thing you want to do 1:26:44 is make sure that a lot of the small things are cleaned up like the styles are applied, variables are applied
+1:26:51 because you don't want to do that in codeex. You can just do it right in Figma itself and then bring it into codeex or back to clawed code. So if you 1:26:57 ever have to
+push a design to Figma, try to polish it as much as you can in Figma before you bring it back into Claude or 1:27:03 back into Codeex or, you know, back into Claude as I mentioned.
+So just something for you to be aware of. Hey, thanks for Outro 1:27:09 watching this one. Really appreciate you being here. Be sure to drop a subscribe. Um going to have a lot
+more content coming on working with Claude, codecs, 1:27:17 AI workflows, and a whole bunch of other things as well. So be sure to, you know, check the channel out, subscribe,
+check 1:27:23 back in. Uh, also be sure to check out our website. A link for that is in the description where I'm sort of teaching 1:27:29 everyone about AI workflows, design,
+leadership, and a whole bunch of other things as well. I'm always adding new 1:27:34 courses to this. Working on a user testing course right now as we speak. So again, that link is
+just in the description. And yeah, thanks for being 1:27:40 here. Be sure to share this video and rock and roll. See you at the next one. All From the series From UI
+CollectiveFigma basics 0:00 you're here to learn figma because you 0:01 want to design websites apps or some 0:04 kind of digital Graphics well let's not 0:06 waste any time go to
+figma doccom sign 0:08 up for an account and you can start 0:10 right away in the browser but it's 0:11 better to download the desktop app click 0:14 new design file and this light
+gray area 0:16 in the middle is your canvas where our 0:18 beautiful work's going to appear at the 0:19 bottom we've got a toolbar you can move 0:21 things around we'll come back
+to that 0:23 the next options is our frames or 0:25 sections we're going to do frame click 0:27 and drag to make one let's undo that and 0:30 use one of the presets click F to
+select 0:32 frame again click desktop and it gives 0:34 us a desktop website type frame the next 0:37 items are the shapes you can draw any of 0:40 these common shapes let's click
+ellipse 0:43 click and drag to make an ellipse or 0:44 hold shift and you'll get a perfect 0:46 circle you can also go over to the 0:48 properties panel on the right and type 0:50
+in the dimensions so let's do 104 pixels 0:53 for our Circle we'll might use that 0:55 later next is the pen tool if you want 0:57 to draw more complex shapes or the 0:59 pencil
+tool if you want to scribble next 1:02 to that is text we just click anywhere 1:05 and you can start typing let's type 1:08 Smart Choice the reasons why will become 1:11 more
+apparent later and this is just 1:13 like any word processing software just 1:15 make sure the things selected you can 1:16 click on it in the canvas or you can go 1:18 over to the
+layers panel on the left and 1:22 click on the item there and it'll be 1:23 selected and then let's change the size 1:25 of the type up to 1:27 96 and the weight to both fold you
+1:30 should start with inter that's usually 1:32 the default font on there and then we 1:34 can change the letter spacing as well 1:36 push up to make it bigger down to make 1:38
+it narrower minus 4 looks 1:41 good and we can click anywhere on the 1:43 canvas to deselect our text next item on 1:47 the toolbar is the comments just click 1:49 anywhere where
+you want to leave the 1:51 comment uh type in some witty 1:54 comment on the left we have the pages 1:57 and the layers that we're using you can 2:00 add multiple pages and all the
+layers 2:01 appear here for anything that you create 2:03 and as I said before you can click 2:05 directly onto the layer to select 2:07 something so I select the desktop that 2:08
+way let's first of all with the desktop 2:10 selected change the fill 2:15 color but we're going to go back to the 2:17 hex and I'm going to type in a reference 2:18 here 2:20 171
+2:23 52d that gives me this dark 2:26 purple or you can go to a gradient 2:29 that's the next option you can also fill 2:31 it with an image or with a video in the 2:33 background
+let's go back to gradient 2:35 let's change the second one to a 2:37 different color 2:39 532 2:45 BDC now we can click and 2:47 drag our gradient around by clicking on 2:51 these
+white solid circles that are next 2:54 to the color on each part of our 2:56 gradient you can add more stops to this 2:58 but let's start with something like this 3:01 now click on
+our text again on the 3:02 canvas and we're going to change the 3:03 fill here I'm going to type in a value 3:06 here you can do it directly F9 d a d 3:10 a 100% for this light
+pink so this pink 3:14 I'm going to make a style of this so I 3:17 click plus I'm going to type in the name 3:19 Pink and then I can reuse this anywhere 3:22 I 3:23 want on my 3:25
+design so you can drag this around to 3:27 move it that's one way to do things but 3:29 you can use these position tools so 3:31 align it all the way to the left or to 3:32 the top
+for now let's do the horizontal 3:35 Center and the vertical middle if you 3:38 want to align things accurately you can 3:40 also use a grid this is a square grid so 3:45 if we
+change that to 120 pixels we 3:47 change the opacity of the color of the 3:49 grid line so we can actually see them in 3:51 fact red on this isn't great so maybe 3:53 we'll use
+this kind of greeny yellow 3:58 color but more often and if it's on the 4:00 web you're going to be using something 4:02 like columns like a 12 column grid you 4:04 can set the
+margins and the outer The 4:05 Gutter The Space Between each column 4:08 change again the level of the opacity 4:10 and this helps you align your objects 4:12 consistently let's
+get rid of that cuz 4:14 we don't need this for this quick demo 4:16 you can just press shift and G to show 4:17 or hide it zoom 4:20 out I'm going to hold down alt as I 4:23 click
+and drag to make another one of 4:25 these canvases delete that another way 4:28 to do it is just copy and paste paste 4:30 crl c contrl v or command C command v as 4:33 I'm using
+here on the Mac now we have 4:35 two desktop canvases I'm going to uh 4:39 frame sorry I'm going to edit this first 4:41 one and type the word flux I'm going to 4:44 align it again
+to the 4:47 center now to scale this we can also use 4:51 this tool scale let go and select it at 4:53 the bottom the shortcuts 4:55 K and if I hold down alt as option as 4:59 I'm
+draging I can scale from the center 5:03 so I'm going to make this just go off 5:04 the edge of the uh 5:07 frame to the move tool and just just 5:10 slightly tighten up that type
+a 5:15 bit and look if you drag it like this it 5:18 won't work command Z so you need to be 5:20 make sure you're on the scale 5:21 tool when you're scaling the objects 5:24 that's
+definitely one thing to be aware 5:26 of in figma let's move this comment out 5:28 of the way sh shift command K to import 5:31 an 5:32 image or you can just copy and paste the
+5:35 image or you can just drag it from 5:38 finder from a folder on your computer so 5:40 now I've got that in hand I'm going to 5:42 click and drag it out you can see it 5:43
+drags it with a sort of messing with the 5:46 aspect ratio so if we hold down shift 5:48 that'll just make sure it maintains the 5:50 aspect ratio of the 5:52 image now you can
+zoom in and out you 5:54 probably see me moving around by 5:56 pressing command plus or command minus 5:58 you can also press press Zed and click 6:00 and drag to zoom so now I'm
+going to 6:03 change the size of this image click on 6:05 the image I can type into the width 1440 6:07 which is the same as our desktop and 6:09 again I can align this to wherever
+I 6:11 want I'm going to align it to the center 6:14 you can see it's covering over 6:16 everything right now at the moment what 6:19 I want to do is use that type as a mask 6:21
+so I'm going to select both layers right 6:23 click on them and click users mask hey 6:26 Presto the image is masked within the 6:29 text and because this is a mask I can 6:31 move
+things like if I click K again and 6:34 scale the type it carries on scaling so 6:37 I'll just do command Zed if you click on 6:39 the image Again by selecting it in the 6:41
+layers panel on the left you can have 6:44 some basic image 6:45 editing right within figma without 6:48 having to go to an image editing program 6:50 so we can mess it with
+exposure contrast 6:52 saturation tin highlights Shadows all 6:56 this kind of 6:57 thing to get that how we want 7:02 another way to transform the image is to 7:03 use a blend
+mode so I'm going to add 7:05 another fill in here and for the color 7:08 I'm going to use that second purple that 7:11 we used in our gradient the lighter one 7:14 I'm going to
+select that and I'm going 7:15 to go to this icon for blending modes 7:18 and I'm going to change the blending 7:19 mode to 7:22 color so now the whole thing has this 7:26 purple
+color overlay onto it okay that's Higher-level features 7:29 that's the basics but you can do almost 7:31 all of this in any design program even 7:34 PowerPoint let me show you
+what figma 7:37 can do press T and then we're going to 7:39 type learn 7:42 figma if your type has been changed 7:44 we're going back to into bold 96 minus 4 7:48 on the letter
+spacing to get this to 7:49 look exactly the same as mine I'm just 7:51 going to click on it and drag it over 7:53 close to my circle then I'm going to 7:54 click and drag to
+select both then I'm 7:56 going to press shift a and this puts 7:59 these not only in a frame but using Auto 8:01 layout and this is one of the really 8:03 powerful things about
+figma that we can 8:05 use Auto layout to arrange things uh 8:09 according to the the rules and the 8:11 spacing that we set in the properties 8:13 panel I'm going to put a stroke
+around 8:15 it of one point just so we can see what 8:17 we're actually working with I'm holding 8:20 down Zed there just to zoom in let's go 8:23 back to 100% I'm also going to
+add a 8:25 fill to this of white now let's change 8:27 it to the pink that we've got saved 8:30 let's change the color of this ellipse 8:31 actually to this dark purple and this
+8:35 type also to dark 8:44 purple let's save this dark purple cuz 8:46 we're reusing it as a 8:49 style and click on the button so let's 8:52 adjust the space between these items
+we 8:54 can click and drag to do this to see 8:56 what it looks like visually and I think 8:58 somewhere around 80 we'll be good then 9:00 for our left and right padding I'm going
+9:03 to set that as 80 as 9:05 well and for the top and bottom 9:09 padding we can drag that out see what 9:11 feels right I think it's going to be a 9:14 little bit less 48 looks
+good click and 9:16 drag this button to move it to the side 9:18 a little bit 9:20 now and we've not changed the color of 9:22 our stroke let's also make that the dark 9:24 purple
+that within our libraries and 9:26 let's change the size of this stroke to 9:29 10 that's the line around the edge the 9:31 Border you might call it eight looks 9:34 enough so at
+the moment the height is 9:36 set to hug so if we make these Corners 9:40 uh rounded to larger than the height of 9:45 this whole frame it will turn the whole 9:48 thing into a a
+pill shape I'm just going 9:50 to finesse the padding a little bit if 9:52 we bring that down to 60 on the right it 9:54 makes that Circle fit nicer on the right 9:57 hand side of
+the button so your setting 10:00 should be the same as mine now and you 10:02 can just copy them if they're not let's 10:04 make another one of these buttons just 10:06 hold out
+and then click and drag on the 10:09 bottom one I'm going to double click on 10:10 its name actually on the canvas and 10:11 change that to button hover that can be 10:13 a hover
+State and then click back onto 10:15 the top button and I'm actually going to 10:16 change the The Fill type in D FF 10:22 c7d and we have this lime yellowy greeny 10:26 kind of
+color click and drag on on the 10:29 canvas around both buttons to select 10:31 them both then click on the down arrow 10:33 next to the component symbol and we 10:36 we're
+actually going to create a 10:37 component set now components are things 10:40 that you can reuse in 10:43 your design and also used to 10:47 prototype so we have a component set
+10:49 here now with the button and the button 10:52 hover what I'm going to do is I'm going 10:53 to click on button and then I'm going to 10:55 to prototype Tab and then click on
+10:57 interactions then select while hovering 11:00 and the action is going to be that we're 11:02 going to change to button hover so while 11:06 we hover over it's going to change
+from 11:08 button to button hover and we can choose 11:12 the animation for this let's dissolve it 11:14 with an ease out duration of 300 11:16 milliseconds just basically means
+it'll 11:18 have a nice little fade on it you'll see 11:20 that in a moment when we put this all 11:21 together so if you click on the assets 11:23 tab 11:25 here you can see that
+we have this now 11:28 as a component this 11:30 button so we can click and drag that 11:33 onto our desktop one 11:34 canvas and uh oh what's going on here 11:37 it's being masked
+so we need to select 11:40 the two items originally in the mask and 11:42 just group them by pressing command G 11:45 hey Presto we can see our button now 11:47 let's call this
+11:49 background component one click on that 11:53 we can align it again to the left or the 11:55 bottom let's go to the middle and middle 11:58 that looks pretty pretty good if
+you 12:00 hold down spacebar you can use the hand 12:02 tool to just drag around your canvas and 12:04 that's what I'm doing there so let's 12:06 prototype this thing so if we
+click on 12:07 the button then just click on the 12:08 Prototype menu you can see there's a 12:10 little Plus on the edge if we just click 12:12 and drag that over to this desktop
+it 12:14 will give some options here so yes on 12:17 click we want to navigate to this other 12:18 frame desktop 2 and that's going to 12:20 dissolve as well we can play this flow
+12:23 now to see how it works let's make it 12:25 full screen so you can actually see it 12:30 hover over the button yep we get that 12:33 nice hover transition to the pink click
+12:35 on it and we navigate to our next page 12:39 you've made something the last things 12:41 you might want to do is share this figma 12:43 is very collaborative so you can share
+12:45 this with colleagues you can share it 12:47 with clients and choose the access that 12:50 people can have whether it's just to 12:51 view or to edit and comment on it you
+12:54 may also might want to export these as 12:56 Stills so if you click on export When 12:58 selecting any frame you can select the 13:00 options like at 1X scale we're going to
+13:01 have a JPEG at 2x scale we might want a 13:05 PNG you can also do scalable vector 13:08 graphics or PDFs then click export and 13:11 save that somewhere on your computer to
+13:12 take the next steps in learning figma 13:14 follow along with our long form 13:15 tutorials here on the flux Academy 13:17 Channel until next time happy designing All From
+the series From Flux Academy0:00 In today's video, we are going to design 0:01 this animated website for this fictional 0:04 snowboard company. We're going to use 0:05 Figma to
+design it. We're going to 0:07 generate assets using Midjourney. We're 0:09 going to animate those assets using 0:11 Gemini. And then at the end, I'll show 0:13 you guys how to
+package it together and 0:15 really present it. Let's get to it. 0:18 Okay, so first things first, we'll jump 0:20 into Figma. We're going to click on our 0:22 frame tool here, and
+then we will go to 0:24 desktop. And then we're going to choose 0:27 MacBook Pro 14in. This is the idea. 0:29 We've got the snowboard goggles like 0:31 this. They're going to be,
+you know, 0:32 part of like some pro pro model. And 0:35 then we're going to have some text just 0:37 at the bottom and then a button here. I 0:39 want to make it really stand out
+and 0:41 look very high-end. I don't want it to 0:43 come across as a snowboard company that 0:44 sells hundreds of different goggles. 0:46 This is more like the Apple store of
+0:49 snowboard goggles. But these goggles I'm 0:51 talking about don't currently exist. So, 0:53 let's head over to MidJourney and we'll 0:54 generate some assets. To start off
+this 0:56 prompt, I'm actually going to use a 0:58 style reference. Now, I found these 1:00 goggles just online, which I think look 1:02 quite cool, but this is someone else's 1:04
+creation or product. We're just going to 1:06 use it for inspiration. So, I'm going to 1:08 use that image as a style reference. So, 1:11 this is just going to say like product
+1:12 design inspired by the shape and design 1:15 camera, white background, clean 1:16 background. So, MidJourney comes back 1:18 with these four images here. Now, they 1:21 look
+pretty good. This one's a little 1:23 bit wonky. There's something going on 1:24 there. We're just going to click here 1:26 and rerun it and see what else it gives 1:28 us. I think
+this is exactly what we 1:30 want. So, let's just go down here to 1:31 subtle upscale. We'll click that. And 1:33 then now we've got our super high-res 1:36 product imagery for
+this fictional 1:38 website. So, we'll copy this. Now, 1:40 actually, as a little extra step here, 1:41 I'm going to bring it over into 1:43 Photoshop and I'm going to go select
+1:45 subject and we're just going to refine 1:47 this. You can use any sort of background 1:48 remover tool and then we can go down 1:50 here to mask and then now our image is 1:53
+cut out. Now, as a final little step, 1:55 what we can also do as well is we can 1:57 take this little visor. Then we do 1:59 command X and V. And then we'll just 2:01 paste that
+back in to just where it was. 2:04 And then we can reduce the opacity of 2:06 this slightly, just like 10% or 2:09 something. Now, if we save this as a 2:10 PNG, now this is a
+massive file size, 2:12 but we can optimize that down. And then 2:13 we'll pull that image into Figma. You 2:15 can kind of see that text coming through 2:17 underneath cuz it's
+goggles. You can see 2:19 through goggles. It's kind of cool. And 2:21 then if we click up here, let's actually 2:23 change this to this color here. This is 2:26 this kind of nice
+blue. Right. Next up, 2:28 let's add our text behind. So we'll take 2:30 our text tool. Now we're going to go 2:31 proer. 2:33 And the font that we're going to choose 2:35 is just
+Babass New. And you know, we've 2:38 got this a big size here. It's like 426. 2:40 And then we've also got minus 5 letter 2:42 spacing there. And we're going to get 2:44 this
+position just in the center. And 2:47 then we'll go we'll actually make this a 2:49 gradient. We'll go from white to and 2:52 then we'll just move that behind our 2:53 goggles
+there. You can kind of see that 2:55 that text is kind of coming through 2:57 behind that image, which just looks kind 3:00 of cool. It's a little extra touch. It's 3:01 totally
+not necessary, but it's cool. 3:03 Now, let's do our navigation and logo. 3:05 So, let's go shred. And then, let's 3:09 actually just change the font. We're 3:10 going to go enter,
+and then we're just 3:12 going to go like black. Size, we'll go 3:14 like 24. And we'll do something like 3:16 this. And then, you know, we could go 3:19 maybe we'll do like a
+line. And if we go 3:21 down here to settings, we can maybe do 3:23 something like this. And then if we 3:25 rotate that like 45° and duplicate it, 3:28 then we can take the other
+one. And now 3:30 if we select both of them, we'll go up 3:32 here and then we'll click union. And 3:34 then we'll also click flatten just so 3:36 we've got our kind of cross
+there. We 3:39 select both of these. Then we'll do 3:40 shift and A to make it an auto layout. 3:43 Just adjust this a little bit. And then 3:45 that little X, let's just give it
+this 3:47 orange color as well. There's a logo. 3:49 So, let's just use our frame tool. And 3:51 then we'll draw a frame around it like 3:53 this. And then we'll go fill and we'll
+3:55 make this white. Corner radius. We'll 3:58 just blast that all the way up so it's 3:59 completely rounded. For our navigation, 4:02 we're just going to go shop. We'll make
+4:04 sure that's enter semi-bold. Super 4:07 simple navigation. We'll select all of 4:09 these and we'll go shift auto layout. 4:11 And then we'll just adjust the gap of 4:13 these
+a little bit. Then I've got these 4:14 three icons that we're just going to add 4:16 in. So we've got kind of a search icon, 4:18 car icon, and then you've got like your 4:20
+profile, that sort of thing there. Now 4:22 these are just in an auto layout as 4:24 well. This is an auto layout, and this 4:26 is our logo. So if we select our main 4:28 frame
+here, and on this we go shift and 4:30 a it's going to turn that into an auto 4:32 layout. And then now we have control. So 4:34 padding here, let's go 24. And then at 4:37 the top
+and bottom, we'll do like 16. 4:39 And then the gap between them, we'll do 4:41 64. And that's looking pretty good. So 4:44 here we'll just make sure that's 4:45 positioned in the
+center and then we'll 4:48 make sure that's positioned like 40 4:49 pixels from the top. Now we're almost 4:51 done with the hero section. We just want 4:52 to add in a kind of
+white snow effect on 4:55 this. And so using Google images, I'm 4:57 just going to search something like snow 4:59 texture PNG. And then if we paste that 5:01 in, we can do
+something like this. What 5:05 we're going to do to fill it out as well 5:07 because I love a bloody cloud PNG. We're 5:09 going to do cloud PNG. And then if we 5:11 paste that in
+too, we'll resize this 5:14 down. And we'll do something like that. 5:17 Now, we could have this setting just 5:20 behind the goggles, but maybe having one 5:23 of them over the
+goggles or both of 5:26 them. 5:28 Just get it fine tuned for how you like. 5:30 And then we'll take this text here and 5:32 we'll duplicate this down. The mountain 5:34 has never
+been clearer. And we'll make 5:36 this 32 pixels. And then we'll go like 5:40 and then the size of this one, we'll 5:41 change that to like 24. Then we'll make 5:44 this a kind of
+gray. Make this an auto 5:47 layout. And we'll go 24 16 corner radius 5:52 full. And then we'll give this a fill 5:55 that is just black. We select all three 5:58 of these things
+and we make that an auto 5:59 layout. Then we can adjust the gap to 6:01 something like 24. And there we go. And 6:04 we're pretty much there. The last final 6:06 thing I want to
+add a mountain image 6:08 into this background to really tie it 6:10 all together. So you can generate an 6:12 image or you can just find an image 6:13 online if you're just doing
+this for 6:14 fun. And basically drag this to the very 6:17 back. And I just have the opacity of 6:19 this kind of down to like 18 20%. So now 6:22 you've got your website hero
+design down 6:25 in Figma. You've got a few options. You 6:27 could either work on fleshing out the 6:29 rest of the page into a full web store 6:32 which could look something like
+this. 6:33 And then if you want to then turn that 6:35 web page into a functioning website, you 6:37 could use something like Framer. Now I 6:39 have a whole video on turning a
+website 6:41 design into a framer website. So go 6:44 check that out if that's what you want 6:45 to do at this stage. But what we want to 6:47 do just with this cuz we want to be
+able 6:49 to just present this to a client. So 6:51 we're going to take this design and 6:52 we're going to jump into jitter and 6:54 we're going to animate it. Okay. So if 6:56 we
+click on our main frame here and we 6:58 go down here, we can search jitter. Now, 7:02 there's a plugin that takes it straight 7:03 from Figma into Jitter, and then we can 7:06
+just open that in Jitter. Sometimes it 7:09 might mess up the positioning just a 7:10 little bit, so you can kind of fine-tune 7:12 that. But now, what we're going to do is 7:13
+we're going to click up here, which is a 7:14 new thing in Jitter, and it's going to 7:17 just kind of do a lot of the work for 7:19 us. We're just going to click cinematic, 7:21
+and then we'll do brainstorm. 7:24 And then now we got a pretty cool 7:25 looking video that's just done that 7:27 automatically. Now, this isn't going to 7:29 be functional on a
+live website right 7:31 away, but this is a really good way of 7:33 just getting inspiration for when it 7:35 comes to turning it into an actual 7:37 website. Now, we're going to
+head over 7:38 to Google Gemini for one little final 7:40 ingredient. So, we're going to ask it, 7:42 generate me snow spray as if you're 7:44 skiing into it. It should be
+realistic 7:46 white snow on a solid black background. 7:49 Gemini comes back with this image here. 7:51 Can you animate this into a video with a 7:53 perfect loop? Comes back with
+this here. 7:57 Now, that's almost good, but that's a 7:58 lot of snow. So, I say I need it to be 8:01 50% less snow and not have any cropping 8:04 at the top. 8:06 Now, there's
+still some cropping, but 8:08 that's less snow. And so, we're going to 8:10 take that video and we're going to 8:11 download that. Then, in Jitter, if we go 8:13 to our snow layer
+and we replace the 8:15 media, and then we change the layer mode 8:18 of that and play with the layer modes to 8:20 let's say something like this. And then, 8:22 now if we preview
+it. 8:25 So once you get to this stage, you could 8:27 either just take your Jitter video and 8:28 you could share that to your client or 8:30 share that online, add it to your
+8:31 portfolio. If you did the full website 8:33 design, you could take that and you 8:35 could jump into Framer, turn it into a 8:37 fully functioning website. But let's 8:38 just
+say you wanted to show off each of 8:40 these in a nicer way. You could do that 8:41 using my app that I made called Show 8:43 Off. This is the app here, and I'll show 8:45 you how
+easy it is to mock up your 8:47 design. Let's just say you've got a full 8:49 long web page in Figma, and you want to 8:51 show that off. Well, you can just export 8:52 that as one
+big image and you can simply 8:55 just add it into showoff. Now, we'll go 8:57 here. Device orientation, we'll go 9:00 landscape. Canvas, we'll go 16 by9. 9:04 We'll resize this
+slightly. Just 9:06 something like that. And then the 9:08 background color, let's just color pick 9:10 something like this. Now, we can click 9:12 preview animation, and it's
+going to 9:14 just scroll through our website design 9:16 that we just made. But let's just say 9:18 you want it to stop at certain sections. 9:20 Then we can do that. We can click
+down 9:22 here and then we'll go human step and 9:25 we'll go custom stop. So we'll just do 9:27 something like this. So then this 9:30 section we've got this 10second video 9:32
+showing off our design that we just 9:35 made. And it's going to export it out 9:36 straight in our browser. And if we 9:38 wanted to, we could also add our video 9:40 straight
+into showoff. And we can just 9:42 export that in the exact same way. So 9:44 hopefully this was useful. This is all 9:46 the tools I do to kind of play around in 9:48 Figma, come
+up with a concept, design 9:50 it, generate assets, bring it to life 9:53 using Jitter, and then present it to 9:54 clients and on my portfolio using 9:57 Showoff. If this was
+useful for you 9:58 guys, please hit the like button, 10:00 subscribe if you want to see more stuff 10:01 like this. Again, this video is really 10:03 just mainly about the design
+part. If 10:05 you guys are here for design and 10:07 development, then you can check out my 10:09 video on Framer. Thanks for watching, 10:11 guys. I'll catch you guys in the next
+All From Kyle Skelly User interface designIntro 0:00 For this video, I'm going to do a crash 0:01 course on Figma in 2025 and how you 0:04 should be using it to design websites
+0:06 from scratch, including things like 0:07 creating components, creating style 0:09 guides, creating website sections, and 0:11 then finally publishing them online. 0:13 Let's
+begin. I'm going to take you 0:15 through creating this design right here, 0:17 which is one from Olga that you can 0:19 download and access at any point in the 0:21 description of
+this video. Here's an 0:23 overview of what this video will look 0:24 like. We'll begin learning Figma and 0:26 creating a basic style guide like this 0:28 one here. After that,
+we'll take a look 0:30 at components, creating things like 0:31 buttons and labels and reusable 0:33 components we can use throughout the 0:34 design. These components can then be

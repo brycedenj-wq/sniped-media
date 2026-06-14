@@ -1,0 +1,224 @@
+minute, 11 secondsand now i've got two phone numbers right and this number now isn't configured i can go and configure it and i'm gonna name it actually i'm gonna 3:01:183 hours, 1
+minute, 18 secondscall this my my survey number uh and you know remember remember it's been a while but you can come in here and you can see these different places 3:01:263 hours,
+1 minute, 26 secondsuh where it goes and look we're gonna make one of these messaging services here and right now there's not any messaging service so i think that we should make
+one we could use this number 3:01:353 hours, 1 minute, 35 secondsthis number that we just got we could use this number directly in our code but let's think for just a second let's
+think about scale now in the us i can 3:01:443 hours, 1 minute, 44 secondsonly send one message segment per second and when this thing takes off which it will i'm not going to want
+to have my 3:01:513 hours, 1 minute, 51 secondsfeedback gathering delayed i can get around some limitations by buying other types of numbers like i could buy short codes or i could
+buy 3:01:583 hours, 1 minute, 58 secondstoll-free numbers and that's a thing to note that there are different rules and the msps the message segment per second 3:02:063 hours, 2
+minutes, 6 secondsare is different on number types but i don't really want to worry about that now i want to worry about that later when the need arises but i can prepare 3:02:153
+hours, 2 minutes, 15 secondsmyself because if you think about it if you come here and you look at twilio sms regulations here's these uh there's these guidelines 3:02:233 hours, 2
+minutes, 23 secondsfor sms and you can see in different countries and if you come in and you go into i don't know let's go into uh argentina okay bueno uh we'll come in 3:02:313
+hours, 2 minutes, 31 secondshere we'll look at some of their information and they have different things there's different guidelines that you can do you can uh you'll things will
+get converted automatically you can see 3:02:403 hours, 2 minutes, 40 secondsdown here what's supported and what's not supported so um i can't do a long code isn't supported on a
+local number there so all these 3:02:493 hours, 2 minutes, 49 secondscountries have these different guidelines and uh it's important to think about it and know that it exists
+3:02:553 hours, 2 minutes, 55 secondsand one way to do that is is to instead of sending from a number if you send from a message 3:03:043 hours, 3 minutes, 4 secondsservice you can
+have this collection of numbers and i think that that's important to think about because we're going to need to do that when 3:03:113 hours, 3 minutes, 11 secondsphonemo goes
+global right so these days when i'm building any sort of messaging app like right when i start 3:03:183 hours, 3 minutes, 18 secondsoff like right where we are basically i like to
+start my my number off in a messaging service so uh you can think of a messaging service as like a bundle of 3:03:273 hours, 3 minutes, 27 secondsoptions and settings that you can
+apply to multiple numbers through your account and friendly reminder that this may look 3:03:343 hours, 3 minutes, 34 secondsvery different so keep the notes if this doesn't line
+up with your reality future you so if i come here underneath messaging 3:03:423 hours, 3 minutes, 42 secondsand i go down here to services i can create a messaging service and see
+the bundle messaging functionality for your specific use cases and that's a nice 3:03:493 hours, 3 minutes, 49 secondsthing to do because it it follows use cases and some of those
+regulations are around use cases of how you can use uh or your number and so the 3:03:583 hours, 3 minutes, 58 secondsvesting service allows you to be smart and be able to let us
+help you out with with how the numbers could be used so i'm going 3:04:063 hours, 4 minutes, 6 secondsto call this uh my survey messaging service so let's let's call it the phonemo
+survey right uh we could be very specific about the numbers that we put 3:04:153 hours, 4 minutes, 15 secondsin here because i could end up putting a bunch in right now i'm only
+going to put the one that we have but um we could do that and we could say what our our use case is in my use case here 3:04:233 hours, 4 minutes, 23 secondsuh we're going to use
+this to pull or survey our users and i'm going to go ahead i'm going to create this uh create a messaging service and it's going through a very 3:04:313 hours, 4 minutes, 31
+secondsnice little wizard thing here that might very well look differently i'm going to add a sender to the service and i'm going to add a phone number right the 3:04:393 hours, 4
+minutes, 39 secondsphone number that we just bought but you could also add whatsapp number so it would you could choose the appropriate ones this is the one that i just created i
+must have not have saved the friendly 3:04:473 hours, 4 minutes, 47 secondsname when i did it i'm going to add that phone number cool so that that's now in my cinder pool and if
+you take a look at it there's these settings that are here 3:04:563 hours, 4 minutes, 56 secondswhich are really rad um there's a sticky sender so if i ever send a message to you
+it will always come from that like if i have this pool of numbers and i 3:05:033 hours, 5 minutes, 3 secondssend you one uh it will always go to it and like for instance it could
+choose if i was in the 503 area code which i mean and i have a number that's 503 it'll 3:05:123 hours, 5 minutes, 12 secondsautomatically try to connect to that for the us or or
+canada and then there's also this fallback to long code some like we saw some of the regulations 3:05:193 hours, 5 minutes, 19 secondsdon't allow short codes to work typically
+you're going to want to use your short code because you'll get better throughput for them but some countries don't allow it so you can fall 3:05:273 hours, 5 minutes, 27
+secondsback to your long code pretty great cool so i've added those senders and i'm going to head over to the integration and this is pretty powerful right so i 3:05:343 hours, 5
+minutes, 34 secondscould go through and configure each one of my numbers or i could set up the settings to always do something so we're going to want 3:05:423 hours, 5 minutes, 42
+secondseventually we're going to want this number that we have we're going to want to have it do a web hook right we're going to want to respond back eventually to whatever the
+3:05:513 hours, 5 minutes, 51 secondsfeedback is and we could do that with a web hook we could automatically by default it's going to defer to the sender's web hook so whatever we
+set in the phone number configuration we'll do 3:05:593 hours, 5 minutes, 59 secondsthat but this will overwrite it which is very powerful because i can eventually just buy a bunch
+of numbers i don't have to go configure them all because they're part of the messaging service and all of 3:06:083 hours, 6 minutes, 8 secondsthe numbers in there would behave the
+same way so again it's a bundling of options for your pool of numbers this is awesome i can always uh specify 3:06:163 hours, 6 minutes, 16 secondsa status callback so i'll know
+when messages are sent and i could build a little handler and we easily could build a little function here and it will get posts every time 3:06:243 hours, 6 minutes, 24 secondsthe
+status changes on any message that's sent from any of these phone numbers and because it's about this use case we can be very specific about what that status 3:06:323 hours, 6
+minutes, 32 secondsis finally here in the in the wizard currently we talk about compliance info and so this is pretty important right because there's some changes that are 3:06:393
+hours, 6 minutes, 39 secondshappening and we're on top of it and by being part of the messaging service we can help you define uh what you need 3:06:473 hours, 6 minutes, 47
+secondsto be able to be successful in the changes that happen so a to p 10 dlc is something that's happening in the united states and a to p is application to 3:06:553 hours, 6
+minutes, 55 secondsperson and 10 dlc is 10 digit long code and the the carriers are starting to change uh the way that they work they 3:07:023 hours, 7 minutes, 2 secondsneed to
+know who you are and what you're planning to do with your use case and so by answering these questions we can help make sure that the numbers are sent and 3:07:103 hours, 7
+minutes, 10 secondswe can warn you uh if they're not so you'll want to fill this out so that you can get more right you can get more for 3:07:173 hours, 7 minutes, 17 secondsit but
+again this is just one new regulation that's happening it's a use case of by using this message service we 3:07:243 hours, 7 minutes, 24 secondsgot your back we know what you're up
+to we can help you make sure that you're making the right decisions i'm going to click complete this messaging service and i can try to send it out but i'm 3:07:323 hours, 7
+minutes, 32 secondsgoing to say view my new messaging service and so you'll see that it has this messaging service sid which is important i'm going to click that so that i have
+that here's the best practices guide 3:07:413 hours, 7 minutes, 41 secondsthat i talked about when you're thinking about scaling i definitely think you should check that out that's
+really nice and handy right here two more things to talk about real quick 3:07:493 hours, 7 minutes, 49 secondsin content settings here uh we have smart encoding turned on you
+might not know this but uh you know those 160 characters those are pretty important 3:07:573 hours, 7 minutes, 57 secondsespecially if you're paying by the message segment um so
+you don't want to accidentally put something in like a fancy quote where it takes up 3:08:063 hours, 8 minutes, 6 secondsextra characters that you don't need to so this will
+automatically uh make the encoding smarter by sending from here it's turned on by automatically for the 3:08:143 hours, 8 minutes, 14 secondsall of them and also this mms converter
+you saw um i believe it was argentina that you can't send mms it will 3:08:223 hours, 8 minutes, 22 secondsautomatically convert to an sms and then give you a url instead so so the
+person will still be able to see what it was that you were 3:08:303 hours, 8 minutes, 30 secondstrying to do when you sent an mms we will handle that for you all just by this
+default here and there's also this opt-out management there's regulation 3:08:383 hours, 8 minutes, 38 secondsaround uh contacting people over sms and this allows you to configure
+it and there is this 3:08:453 hours, 8 minutes, 45 secondsadvanced op out so if you're starting to think about other words or other sorts of flow come in here and check out this
+advanced opt out and you can do this again for all of the numbers that you're 3:08:543 hours, 8 minutes, 54 secondsusing for this use case so i copied my messaging service sid and
+i am going to uh put this i'm going to 3:09:033 hours, 9 minutes, 3 secondsadd this messaging service sid i'm going to put the key value like that 3:09:113 hours, 9 minutes, 11
+secondsi'm going to copy this i'm going to not let you see what i'm doing i'm going to put this in my env file i want to make my code 3:09:203 hours, 9 minutes, 20 secondsshareable
+and that way i can use it from the context and if i ever decide to change my messaging service i can do it in my 3:09:293 hours, 9 minutes, 29 secondsenvironment variable now
+instead of from what you do now is you do messaging 3:09:363 hours, 9 minutes, 36 secondsservice sid and that will automatically choose the right number right that's kind of the
+magic of the messaging service it's going to choose the right one now of 3:09:443 hours, 9 minutes, 44 secondscourse it doesn't seem very magical there's only one in there it's
+going to choose the one that we have but it's going to do that and it's going to send this message 3:09:523 hours, 9 minutes, 52 secondsto the attendee number which we got and it's
+going to say thanks for attending the talk and so we need to catch that right we need to we need to bring that 3:09:593 hours, 9 minutes, 59 secondsback we need to to whatever they
+do we need to to catch it so why don't you do that why don't you make 3:10:073 hours, 10 minutes, 7 secondsa new function so let's let's write this to do out so so your to-do is uh
+write a protected function 3:10:163 hours, 10 minutes, 16 secondsnamed survey handler that logs out uh the feedback that they gave so i want 3:10:253 hours, 10 minutes, 25
+secondsto see the feedback they gave on the console and respond to the the survey taker 3:10:323 hours, 10 minutes, 32 secondsuh with a message thanking them and then deploy it and
+then i want you to deploy it so 3:10:403 hours, 10 minutes, 40 secondsi want you to make a function uh log the feedback respond just thanking them for filling out your survey and
+then i want you to deploy it 3:10:503 hours, 10 minutes, 50 secondsso why don't you give that a go remember you could totally use existing code so so pause me and when you're done
+on pause me and i'll show you how i did 3:10:573 hours, 10 minutes, 57 secondsit don't stress out you got 3:11:003 hours, 11 minutes[Music] 3:11:063 hours, 11 minutes, 6
+secondsthis how'd it go did you remember to to name it protected that's i forget that often uh so i'm gonna make a new 3:11:143 hours, 11 minutes, 14 secondsone here we're gonna
+call this a survey handler and i'm gonna do dot protected dot js right i'm going to make 3:11:243 hours, 11 minutes, 24 secondsmy spaces 2 and i'm going to export that handler so
+and i totally fine if you copied and 3:11:313 hours, 11 minutes, 31 secondspasted this i don't expect you to to remember all this but remember we got the context that's where the
+environment variables are in any sort of settings that's what the domain name was we've 3:11:393 hours, 11 minutes, 39 secondsgot event and that's basically what's passed into the
+function uh via a request uh or you know any sort of post that sort of thing and then we got the 3:11:473 hours, 11 minutes, 47 secondscallback and that's how we do our response
+and so that callback takes a null we got null and we are going to 3:11:563 hours, 11 minutes, 56 secondsreturn back uh twiml which we have not yet defined and we're going to say
+return on that so that's the stanza we got the stanza all right 3:12:043 hours, 12 minutes, 4 secondsnow we're going to return some twiml right and the twiml there is in
+functionland we have this twilio and it automatically pops that up there i don't 3:12:123 hours, 12 minutes, 12 secondslike that that it does that because we don't need it right
+because we don't need that our functions don't need that to work so we've got twilio.twiml dot voice response 3:12:203 hours, 12 minutes, 20 secondsnope we're going to send a
+messaging response aren't we we're going to send messaging response so this is getting a little little twiml helper library and we'll say we wanted 3:12:303 hours, 12 minutes, 30
+secondsto log that out so that's with a console.log right and we will do feedback 3:12:373 hours, 12 minutes, 37 secondswas and we'll do event event.body and we'll respond back
+with 3:12:463 hours, 12 minutes, 46 secondstwiml.message and we'll say uh thanks for not 3:12:523 hours, 12 minutes, 52 secondsletting us miss out right the mo and the fomo on your
+important 3:12:583 hours, 12 minutes, 58 secondsfeedback all right um so we did it definitely did that and uh oh we need to deploy it so we'll do twilio serverless 3:13:073 hours,
+13 minutes, 7 secondsdeploy oh and now actually i'm thinking about this as this deploys we're going to need to wire up 3:13:163 hours, 13 minutes, 16 secondsthe function to
+something right we're not going to wire it up to to uh the phone number directly but we let's wire this up to the messaging 3:13:243 hours, 13 minutes, 24 secondsservice and that
+way anybody we can add numbers to this as we go so i'm going to copy my phone mo link here i'm going to copy this 3:13:333 hours, 13 minutes, 33 secondsand i am going to head over
+to my messaging service i'm going to go to integration and we are going to send to a web hook and that web hook is our function that we just built so we're 3:13:413 hours, 13
+minutes, 41 secondsgoing to save that and now if this is all good i should be able to kick off that request that we did that 3:13:503 hours, 13 minutes, 50 secondsfomo request
+right remember before i made the start talk i should be able to click start talk and we should get some text messages right so 3:13:593 hours, 13 minutes, 59 secondswe're running
+on the server so i'm going to click send we will kick these off okay 3:14:083 hours, 14 minutes, 8 secondsoh i don't have my ringer on but the the dolphin ringer is going or the
+c-line ringers okay i'm gonna hang up i'm gonna hang up 3:14:163 hours, 14 minutes, 16 secondsand i should get a text coming in there we go i got my message on a scale of one to
+3:14:233 hours, 14 minutes, 23 secondsten however likely are you recommend i am definitely i think that this deserves a uh tin 3:14:313 hours, 14 minutes, 31 secondsand uh it came
+from from a fomo number so perfect and i got it back thanks for not letting 3:14:383 hours, 14 minutes, 38 secondsus letting you miss out on this important feedback we did it now
+now it seems a little remiss to celebrate this survey doesn't 3:14:463 hours, 14 minutes, 46 secondsit i mean we have two-way communication going on that's cool that's super cool
+but we can only do like one line back and forth right it's not it's not even 3:14:553 hours, 14 minutes, 55 secondschecking that they answer correctly right like it could say on a
+scale of one to ten how do you rate us and they could respond with anything they could like type ches abajor or if they wanted 3:15:043 hours, 15 minutes, 4 secondsto and we'd
+still thank them we could write some code to handle that and somehow store their states so that we 3:15:113 hours, 15 minutes, 11 secondscould ask multiple questions and let them
+progress through the survey or we could just check out studio now it's out of the 3:15:193 hours, 15 minutes, 19 secondsscope of this course but just really really quick i want to
+show you this really quick if you come in your environment over here you come 3:15:283 hours, 15 minutes, 28 secondsinto studio if you go to explore products and under developer
+tools we've got studio so again studio is that uh no 3:15:373 hours, 15 minutes, 37 secondscode solution uh it's super powerful i guarantee you're gonna love it um it might feel
+like it's two point 3:15:453 hours, 15 minutes, 45 secondsclicking you don't wanna do that you'd rather be coding but it's really really powerful and you actually do end up doing
+quite a bit of code 3:15:533 hours, 15 minutes, 53 secondsif you need to when you but sometimes you don't need to so let's just we'll just do this survey example i'm going to show
+you really quick we'll make a new 3:16:003 hours, 16 minutesflow and i'm just going to uh click if you look there's this text survey and this is literally what we're doing there's
+a tutorial for it i'm going to click it and we're just going to look at 3:16:093 hours, 16 minutes, 9 secondsit i'm not going to walk through it because like i said we could do a
+whole other course on how to do these things but i just want to show you really quick how this could feel 3:16:173 hours, 16 minutes, 17 secondsuh for you and there's some dork
+right here that shows up the first time you come in um so what's going to happen is you can call it from the rest api just like how we 3:16:253 hours, 16 minutes, 25 secondscalled
+the rest api to send this is your your canvas here and these are widgets and these widgets have uh some settings 3:16:323 hours, 16 minutes, 32 secondsand you can do all sorts of
+stuff and as a as a wise uh twilio developer now you'll know that this is really just 3:16:393 hours, 16 minutes, 39 secondskind of uh doing twiml under under the the hood it's
+returning twiml and now this is nice because it waits for a 3:16:463 hours, 16 minutes, 46 secondsreply and you can uh do a response and if the condition doesn't match you could do
+an unknown answer and it can loop back and forth and so like as you can 3:16:543 hours, 16 minutes, 54 secondssee you can do all sorts of really nice flowy things and it maintains
+the state so here this is a looking at the first 3:17:033 hours, 17 minutes, 3 secondsquestion the name of the widget is the first question and it's looking at the body uh the
+inbound body of what was texted in and so you kind of can store 3:17:113 hours, 17 minutes, 11 secondsinformation as it goes and this asks three questions and there's a loop about
+validating and you can see that it's making sure that the number is one 3:17:193 hours, 17 minutes, 19 secondsto ten and it's really really powerful it's a lot of fun actually i
+find i i was a little nervous uh to be honest 3:17:273 hours, 17 minutes, 27 secondsabout the no code thing but playing with this is really fun and one of the most powerful things
+is you can pass html in and out uh you can run one of the 3:17:353 hours, 17 minutes, 35 secondsfunctions that we just did uh if we come in here you'll actually see if i drag one
+of these out here you'll see that we can use the different 3:17:433 hours, 17 minutes, 43 secondsfunctions you'll see that if we put the service on a phone mode we can see our
+different functions that are here in the dev environment all the different functions 3:17:513 hours, 17 minutes, 51 secondsthat are available so i could actually pass stuff to a
+function from here again totally out of the the scope of the course uh but as you're as you're going 3:17:583 hours, 17 minutes, 58 secondsyou can publish this and then you can
+attach this either to uh our messaging service and we can send this out uh from it and there's there's web hooks that 3:18:073 hours, 18 minutes, 7 secondsthis all provides very
+very powerful and if you're interested in feeling what it feels like to do this why don't you send me a text 3:18:143 hours, 18 minutes, 14 secondsi'd love to get your feedback on
+this this course so um if i would love for you to call me and my number my number and put it on the sticky right 3:18:233 hours, 18 minutes, 23 secondshere for you to for you to
+call me my number is 503 836-8731 and i will make that bigger 3:18:323 hours, 18 minutes, 32 secondsso 503 836 873 why don't you give me a call i've built a little studio flow and
+we'll do a 3:18:403 hours, 18 minutes, 40 secondssurvey text me what you felt about this course and then i'll ask you some follow-up questions we'll go from there because i love
+hearing your feedback check the notes 3:18:483 hours, 18 minutes, 48 secondsfor more on how i did this so we've got a very nice feedback mechanism in place and i think we basically
+have our application messaging services take care 3:18:563 hours, 18 minutes, 56 secondsof so many of the niceties for you that you really ought to put every number that you plan
+to send a message from in a service even if it's just one 3:19:053 hours, 19 minutes, 5 secondscan't wait for that feedback to start rolling in you did it you made it to the end of
+this course great job you should be proud of what you just built and i also Chapter 21: Wrap-up 3:19:133 hours, 19 minutes, 13 secondshope that you can feel your twilio muscles
+forming i hope your mind is opened with all sorts of new communications applications that you can build and that you're 3:19:223 hours, 19 minutes, 22 secondsthinking about how you
+can use your new super powers in existing applications you just saw how to use the serverless toolkit to build a completely new 3:19:303 hours, 19 minutes, 30 secondscloud-based
+application i love how the flow of the development process is so similar to the way i do my other web-based development projects i feel at 3:19:383 hours, 19 minutes, 38
+secondshome in my editor and the ability to do everything from within it feels so powerful i know that when i first got the ability 3:19:453 hours, 19 minutes, 45 secondsto quickly
+spin up applications like this it really got me experimenting around and building with twilio apps i expect it will do the same for you 3:19:533 hours, 19 minutes, 53
+secondsremember that there are existing function templates available that can get you ramped up quickly on whatever it is that you're thinking 3:20:013 hours, 20 minutes, 1
+secondabout building they're awesome starting points i know that our app isn't completely all fleshed out yet and therefore i've put 3:20:083 hours, 20 minutes, 8 secondssome ideas
+in the notes on how you can make our app even better remember if you run with this project and you end up getting some vc backing i want to be 3:20:173 hours, 20 minutes, 17
+secondsinvited to your launch party i've also added some practice ideas for more serverless application development as well as a couple of other project 3:20:243 hours, 20 minutes,
+24 secondsideas that would look great on your github we'd love for you to share what you build ideas spawn ideas 3:20:313 hours, 20 minutes, 31 secondswhen your applications scale
+and they will i want you to know about awesome tools called insights that are available 3:20:383 hours, 20 minutes, 38 secondsto you both in programmable voice and programmable
+messaging these will help you visualize all the activity on your applications and help you figure out 3:20:463 hours, 20 minutes, 46 secondsways to better serve your customers i'm
+glad that we use the elastic nature of serverless it allows us to grow and 3:20:543 hours, 20 minutes, 54 secondsshrink with demand as you've seen there are a lot of web hook
+requests that can happen in your twilio applications now 3:21:023 hours, 21 minutes, 2 secondswhile you can handle these from within your existing web application at scale this can
+sometimes prove to be difficult like for instance 3:21:113 hours, 21 minutes, 11 secondslet's say that you build a customer support line with your twilio skills you wouldn't want
+to stop working if your website becomes overloaded or worse yet 3:21:183 hours, 21 minutes, 18 secondsif it goes down keeping your communications app scalable and separate is a
+great best practice i hope you're feeling comfortable 3:21:263 hours, 21 minutes, 26 secondsnavigating the documentation i just wanted to point out that on a majority of our pages
+there's a button that says talk to an expert we totally mean it 3:21:353 hours, 21 minutes, 35 secondsdon't hesitate to reach out we have teams of twilions who love to help you
+build tell them i sent you also there are many 3:21:423 hours, 21 minutes, 42 secondsother ways to be a part of our twilio community please check the notes for more ways to get
+involved we'd love to hang out with you and while you're building if you ever 3:21:523 hours, 21 minutes, 52 secondshave doubts just remember you got this thanks so much for
+hanging out and if it wasn't clear i can't wait to see what 3:22:003 hours, 22 minutesyou build 3:22:033 hours, 22 minutes, 3 seconds[Music] 3:22:203 hours, 22 minutes, 20
+seconds[Applause] 3:22:203 hours, 22 minutes, 20 seconds[Music] 3:22:303 hours, 22 minutes, 30 secondsyou Sync to video time All From the series From TwilioDevsIntro 0:00 What's
+up, guys? In this video, I'm 0:01 going to be teaching you the simplest 0:02 and quickest way to set up an SMS agent 0:04 inside of an N. So, essentially, you're 0:06 just going to
+be able to text an AI 0:07 agent through your phone the same way 0:09 you text anyone else. Just quickly, if 0:10 you don't know how I am, my name is Rory 0:12 Ridges and I run an
+agency called 0:13 Autonomously AI, where we find and 0:15 eliminate operational bottlenecks in 14 0:17 days to keep business owners working on 0:19 the business rather than in the
+0:20 business. So, if you're looking to get 0:22 out of the day-to-day operations of 0:23 running your business and start working 0:24 on decisions that actually move the 0:26
+needle, then I'll leave a link to my 0:27 website in the description and you can 0:28 go ahead and book up a free discovery Twilio credentials 0:30 call. Okay, so we're in N now
+and the 0:32 platform that we're going to be using to 0:33 do all of this is a platform called 0:34 Twilio. And if you haven't heard of 0:36 Twilio before, it's one of the biggest
+0:37 SMS automation platforms. So, a lot of 0:40 the time when you're say for example um 0:42 you've ordered something, you've got 0:43 something out for delivery and you might
+0:45 get a text message saying it's on its 0:46 way or it's being delivered. A lot of 0:48 the time things like that are going to 0:49 be through a platform like Twilio. It 0:51
+could even be through Twilio. So we're 0:53 going to be using Twilio because it's so 0:54 easy to buy and set up numbers and get 0:57 it connected up to something like N. So 0:59
+the first thing we're going to need to 1:00 do here is we're going to need to add a 1:01 Twilio trigger. So if we go to trigger 1:04 and then we just go to Twilio and then 1:05
+we're just going to say on new SMS and 1:07 now we're going to need to set up our 1:09 Twilio account. So I'm going to walk you 1:11 through the Twilio setup now so you can 1:12
+get your credentials set up. So when we 1:14 go to the Twilio credentials in you can 1:17 see what we need is the account SID and 1:19 then the orth token. And the way we do 1:20
+that is by going to Twilio and it's free 1:23 to set up an account with Twilio. It's 1:24 just your standard. You can sign in with 1:25 Google or anything like that, but it's 1:27
+free to set up. And you're going to want 1:28 to go to your account dashboard here. 1:30 And it should look something like this. 1:31 And if you scroll down, you can see 1:33
+you've got an account SID and an OR 1:35 token. So I'm just going to copy this 1:37 and paste them both in. So that's the 1:38 account SID and then the OR token. Paste 1:42 that in
+and then hit save. And then now 1:44 we're all connected. So that's all we 1:45 have to do to connect Twilio. So what N8n Structure 1:47 we're going to do after that is we're 1:49
+going to have an AI agent step. So if we 1:51 go to AI and then AI agent and then 1:53 quickly connect up a chat model. So I'm 1:56 just going to go to open AI then GPT 4.1 1:58
+Mini. Okay, cool. So now we have our 2:01 trigger set up. We have our AI agent 2:03 that's going to be able to respond to 2:04 the message that you're sending. And 2:06 then now we
+need something that's just 2:07 going to send that message back through 2:08 Twilio. So all we do at the end here, we 2:11 just add another node. go to Twilio and 2:13 then we go
+to send an SMS/ms/ 2:16 WhatsApp. So, you can do all of those 2:18 things. Um, you can also do WhatsApp 2:19 with this. Uh, but for this we're just 2:21 going to be doing SMS. So,
+we're going 2:22 to put this down already connected up to 2:24 our Twilio account. And then the 2:26 resource is going to be SMS. Operation 2:27 is send. And now we just need to
+add in 2:29 a from number, a to number, and then 2:32 also the message that we're going to be Twilio Phone number setup 2:33 sending. So now what we need to do is we 2:35 need to
+actually set up a phone number 2:37 in Twilio. And the way you do that, you 2:39 come to Twilio. You're going to want to 2:40 go to phone numbers here and then 2:43 manage. And
+then for me, if I go to 2:45 active numbers, it will say the numbers 2:46 I have. I already have bought a number 2:48 inside of Twilio, but this is going to 2:50 be blank for you.
+So, you can either go 2:51 to buy a number here, or just go to buy 2:53 a number in this side menu. And here you 2:56 can do exactly what it says. You can buy 2:57 a number. So,
+you can first choose the 2:59 country. For me, I'm going to go United 3:01 Kingdom because I'm from the United 3:03 Kingdom. And then up here, you can just 3:05 select the
+capabilities that you want. 3:06 So, you got voice, SMS, MMS, or fax. And 3:10 for this video, it's just SMS. So, we 3:12 can turn off fax and voice. And then we 3:14 can hit
+search. And then it's just going 3:16 to show you all of the different numbers 3:17 you can buy that fit into those 3:19 categories. For us, it's, like I said, 3:21 just going to
+be the SMS that we're 3:22 looking for. And now you can see here 3:24 the price. And these are ridiculously 3:26 cheap. This one's going to cost me 80p 3:28 or 83p to buy. I think
+that's about 3:31 5060, something around that. And that is 3:33 a monthly fee. But with Twilio, you get 3:36 £10 of usage uh for completely free. So 3:39 you can upgrade and you
+can top up money 3:41 onto your account, but you get £10 for 3:43 completely free. So you can see if 3:45 they're only costing this much, £10 does 3:47 actually go a long way with
+this, 3:48 especially if you're sort of only using 3:50 one number. So it's an initial fee of 3:52 83p and then it's just going to be 83 3:54 per month. So every 30 days after you
+3:56 initially buy it. So to buy it, just 3:58 click on buy and then it's going to show 4:00 the capabilities and a little bit of 4:01 information on the number. We're just 4:03
+going to hit next and then business or 4:05 individual. Obviously, if you're buying 4:06 it as a business to do sort of business 4:08 related things, then you'd go business. 4:10
+But for this, I'm just going to go 4:11 individual. Hit next. And then what 4:13 we're going to need to do is we're going 4:14 to need to assign a regulatory bundle. 4:17 And I
+already have one set up. So, when 4:19 I click on it, you can see it pops up 4:20 here. But like before, you're not going 4:22 to have this set up. So, the way you do 4:23 it is
+you go to create a regulatory 4:25 bundle. And then this process is really, 4:27 really simple. It does take a little bit 4:29 uh of time to set up, but it is really 4:31 simple.
+So there's just a few questions 4:32 that we have to go through. So first 4:34 it's just the country and the type of 4:36 phone number. So for me it's United 4:37 Kingdom and
+mobile. Then we hit next. 4:40 And then are you a direct customer or 4:42 independent software vendor? For this 4:44 we're just going to go direct customer. 4:45 And then again
+it's business or 4:46 individual. So we're going to say 4:47 individual. Hit continue. And then it's 4:49 just going to ask for things like our 4:50 first name, last name, contact
+email. So 4:52 we can just put this in quickly. And 4:54 then our phone number as well. We hit 4:55 continue. And then it's just going to 4:57 ask for our address. And I'm not
+going 4:58 to go through this because I've already 4:59 set this up and it's just really really 5:01 basic questions. So, it's just like 5:02 basic information. Uh your name, your
+5:04 email, your phone number, and then your 5:06 address. And it's also going to ask for 5:07 some form of ID. So, like a driving 5:09 license or a passport. You put all of 5:11
+that in. And then what happens is they 5:13 send you over an email just to say like 5:14 your application is being processed. And 5:16 then it says it can take up to 72 hours 5:18
+for it to be fully processed, but I 5:20 found when I do it, it sort of takes a 5:21 couple minutes most of the time. So, 5:23 you'll fill out all of these questions, 5:24 put in
+your ID, get an email saying it's 5:26 been processed, and then you should get 5:28 an email um a few minutes later just 5:30 saying it's all gone through. And then 5:32 once you
+get that email, when you come 5:34 back over to here, it is going to pop up 5:35 with that regulatory bundle. So, you 5:37 just hit that. And then I'm not going to 5:38 buy this
+number because I've already 5:39 bought one. But you just hit buy and 5:41 then it's just going to take it out of 5:42 your free credits. Okay. So, now that we 5:44 have our number
+set up, what we can do 5:46 is we can click on this and then we're 5:48 going to configure it. So, all we need 5:49 to do here is just add in a web hook 5:51 URL. So we can scroll
+past the voice 5:53 configuration because we're not doing 5:54 voice, we're doing SMS. And then down 5:56 here, this is what we're looking for. So 5:58 when a message comes in, we
+put in a web 6:00 hook URL. So when a message comes in, 6:02 it's going to ping the web hook URL 6:04 which is going to be in our nan 6:05 instance. So it's got this example one
+6:07 in here. You can just delete that. And 6:09 then if you come back over to an end, go 6:11 into this Twilio trigger and then open 6:12 the web hook URLs, you get a test URL
+6:14 and a production URL. For this, we're 6:16 going to do the test and then we'll 6:17 switch it over after. Um, so you can 6:19 just copy that, paste it into there, hit 6:21
+save configuration. The reason we're 6:22 doing test is just so that we can test 6:25 this out. When we're testing out, it's 6:26 easier to have a test URL because we can 6:28 hit
+execute workflow and then we can 6:30 actually see it run through. And what Testing 6:31 we're going to do now is we're just 6:32 going to test this out. So I'm going to 6:33 hit
+the test button up there and then 6:35 I'm going to send a message on my phone. 6:37 As you can see, I'm just going to send a 6:39 message to that number saying, "Hey, 6:40 send
+that off." And then that should 6:42 come through in here. Yep. Perfect. So 6:44 what we need to do now is we get this 6:46 information here and we just need to put 6:48 this into
+the AI agent. So if we go to 6:50 AI agent, we're going to change the 6:52 prompt to define below and it's just 6:54 going to be the message body. So we're 6:56 looking for one
+where the value is hey 6:58 because that was the message that came 6:59 through. So body hey. Perfect. And then 7:03 also what we can do is if we go to 7:05 memory and go to simple
+memory and then 7:08 we can put in an ID here. So if we 7:10 change this from connected chat trigger 7:11 nodes to define below again and then 7:14 we're looking for an ID. So SMS
+message 7:16 ID. Perfect. We can drag that in. And 7:19 now the memory is actually going to be 7:21 saved in here. Cool. And then if we run 7:22 this AI agent, we're just going to
+get 7:23 some type of output that's just going to 7:25 say like, yeah, hello. How can I help 7:26 you today? Perfect. Connect this up to 7:28 this last node. And then now we have
+the 7:30 data to configure the rest of this. So 7:32 the from number is going to be uh the 7:35 number that we just bought in Twilio. So 7:37 this one, if I just copy this, come
+back 7:40 over from. Perfect. And then two is 7:43 going to be whichever number we receive 7:44 that message from. So we're just going 7:46 to drag in the from variable here 7:47
+because we received a message from my 7:49 number. We're now sending it back to my 7:51 number. And then the actual message 7:53 itself is just going to be the output 7:54 from
+this AI agent. So now if we hit 7:56 execute step and then we're going to get 7:58 a message back. So now on my phone, as 8:01 you can see, we have this message back 8:02 from the
+Twilio agent. Perfect. And now 8:05 all we have to do to make this 8:06 completely automated is if we switch 8:08 this on uh so from inactive to active. 8:11 And then we need to
+change the URL from 8:12 a test URL to production URL. So we're 8:14 just going to change the production and 8:16 then copy that. Come back over to the 8:18 configuration here. And
+then swap this 8:20 out for the production URL. Then we hit 8:23 save configuration. And now on my phone, Demo 8:26 if I'm messaging this, I can say 8:27 something like, "Hey, tell
+me a joke." 8:30 So as you can see, I said, "Hey, tell me 8:32 a joke." Send this off. And then we can 8:34 look in the executions here. And then if 8:36 we go to executions, you
+can see this is 8:38 now running. And pretty quickly back, I 8:41 got a message that says this. I haven't 8:42 actually read it. It says, "Why don't 8:43 scientists trust atoms?"

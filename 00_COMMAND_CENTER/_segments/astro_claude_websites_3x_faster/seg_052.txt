@@ -1,0 +1,224 @@
+51:4151 minutes, 41 secondsyour code ahoy world ahoy world indeed so that's great let's 51:5051 minutes, 50 secondsgo find a voice so uh back here over in the docs if we go to this
+say docs here uh we'll see that there's this amazon 51:5851 minutes, 58 secondspoly uh voices that are here which allows you to get some cutting edge voices from amazon it's kind
+of like a parrot right like polly want a cracker 52:0652 minutes, 6 secondsget it polly actually offers some cool neural voices which sound even more real and they use machine
+learning to do the 52:1352 minutes, 13 secondsbreathing so uh let's see let's see if we scroll down here uh we get some 52:2052 minutes, 20 secondsuh poly see this dash neural so
+we'll go ahead and we'll grab this poly matthew knurl 52:2752 minutes, 27 secondsi'm gonna pop back put that in my twiml bin my world here 52:3752 minutes, 37 secondsso i'm just
+going to set the attribute of voice equal to that one that i wanted there and in order to hear how good it is 52:4552 minutes, 45 secondslet's find some text oh let's do the
+cheeseburger test let's let's see if there's a is there a cheeseburger wikipedia page cheeseburger 52:5352 minutes, 53 seconds[Music] 52:5552 minutes, 55 secondsoh my god there is
+there's a cheeseburger wikipedia page i wonder how contentious this page is so i'll just grab some uh copy here 53:0353 minutes, 3 secondswe'll see how how the cheeseburger test
+that gets passed or not so we'll go and we'll go back to the tomal bin and i'm just going to put this after here so 53:1153 minutes, 11 secondsthat we can hear um uh how nice it
+sounds there's a lot of a lot of areas to breathe there saying saying that 53:1953 minutes, 19 secondsthank you wikipedia moderators and my numbers still set up so i'm going to go
+ahead and call that put it on 53:2653 minutes, 26 secondsspeaker and i want you to listen to uh listen to how good the breathing is 53:3253 minutes, 32 secondspress any key to
+execute your code ahoy world 53:4053 minutes, 40 secondscheeseburgers can include variations in structure ingredients and composition as with other hamburgers a cheeseburger may
+53:4753 minutes, 47 secondsinclude toppings such as lettuce tomato onion pickles bacon mayonnaise ketchup and mustard 53:5453 minutes, 54 secondssorry if that made you hungry it's
+impressive right now of course this speech to text is wonderful for creating 54:0154 minutes, 1 seconddynamic experiences but there are some cases where you might want a really
+highly produced message and don't worry we got you 54:0954 minutes, 9 secondsyou can play an audio file with the play verb so let's use it so let's go ahead we can use both here so
+we'll use we'll use matthew to announce 54:1954 minutes, 19 secondsthat and now an important message and so see how we can use two in a row so we can you say when that's done it
+54:2754 minutes, 27 secondswill do this it'll kick off this play and i have a really professional sounding recording here we have twill.io 54:3554 minutes, 35 secondsprofessional
+recording example uh it's it's great it will show you the different levels that you can actually create 54:4454 minutes, 44 secondsum using this uh for your for your things let's
+let's uh save this and i'm gonna give that give that a call 54:5254 minutes, 52 secondsand i'm gonna press one and it will do the say and then it will do the play you have a trial
+account you can remove this message at any time by upgrading to 55:0055 minutesa full account press any key to execute your code and now an important message 55:0955 minutes, 9
+seconds[Applause] 55:1255 minutes, 12 secondsgotcha never gonna give that joke up sorry about that rick roll no if you don't know what that is it's when 55:2055 minutes, 20
+secondssomeone says hey check out this important thing and they send you over a link and then you click on it and that rick astley video pops up you know that that one from the 90s
+where he's like 55:2755 minutes, 27 secondsnever gonna give you up it's like the whoopee cushion of audio applications but now you can do it programmatically 55:3455 minutes, 34
+secondstoo but more importantly you can now handle incoming voice calls and respond with text to speech or audio recordings these are super handy for informational 55:4355 minutes,
+43 secondsbased applications like for store hours addresses and many other sorts of updates but chances are you'll probably want your caller to interact with your application
+55:5255 minutes, 52 secondsand let's deal with that right after a quick break so we have output working on our phone call we can create the experience using Chapter 10: Gather
+Input 56:0056 minuteseither text-to-speech with the say twiml verb or we can use an audio recording with the play verb now it's time to take input from the 56:0856 minutes, 8
+secondsuser on the call now the most common way is to allow the user to press the buttons on their phones this will send what is known as dtmf or dual tone 56:1656 minutes, 16
+secondsmodular frequency you know the beep boop boop when you press the numbers you can capture this input by using the gather verb and when your caller submits 56:2556 minutes, 25
+secondstheir digits the information will be passed along to a url of your choosing this is using that web hook pattern from before when your call receives dtmf 56:3456 minutes, 34
+secondstwilio passes control to your app via a url that you specify and that request your application will contain the digits that were pressed and your expected 56:4256 minutes,
+42 secondsreturn follow-up twiml let's dive in okay why don't we just extend our existing twiml bin a little bit 56:5156 minutes, 51 secondslet's see why don't we let the caller
+tell us about how they feel about being rick rolled so what i'll do is i'll start a new 57:0057 minutesgather tag here so i'll come in here and i'll start a new gather tag 57:0757
+minutes, 7 secondsyou can kind of think of this like a a html form element so i'm going to leave the action blank right now this is 57:1657 minutes, 16 secondsyou give it a url
+here of where it wants to submit to i'm going to put the song inside of 57:2357 minutes, 23 secondsthe gather tag so then i'm going to close the gather text so see how it's nested
+there so it's nested just like a form element 57:3057 minutes, 30 secondsso let's see let's we'll do a say we'll we'll use the same matthew so i'm going to yoink this and we'll say
+57:3957 minutes, 39 secondsuh press one to approve approve of this joke 57:4657 minutes, 46 secondspress two to talk to a manager so therefore anything inside this gather as soon
+as they press a button it's 57:5457 minutes, 54 secondsgoing to submit the form and in fact we can tell it how many digits we want there's only going to be one there so we're going
+to say num digits equals one you might want to ask them to 58:0258 minutes, 2 secondsenter a pin code a four digit pin code so you would say four digits but we only want one
+because we're gonna press either one or two and as soon as they press it it's going 58:1058 minutes, 10 secondsto go off and it's going to hit this action right here whatever we
+put in this url for this action and then i also wanted to say 58:1758 minutes, 17 secondsum if they don't press anything it will it'll go through the it was as if it didn't get um
+submitted so we'll say say uh you 58:2558 minutes, 25 secondslistened to the whole song wow a way to never give up 58:3658 minutes, 36 secondsso we want to handle what happens when
+someone submits a digit and we can handle it by providing any web server 58:4458 minutes, 44 secondsthat can accept an http post request we could spin one up or we could just use
+the twilio functions now i typically 58:5158 minutes, 51 secondslean on functions because i don't really want to concern myself with finding a hosting provider and worrying about
+all scaling and all that other jazz if i had an existing web application i might want 59:0059 minutesto plug into it but i don't in this case so let's lean on functions i'm going
+to open up uh my existing service remember we we built 59:0859 minutes, 8 secondsone of these in the previously uh exploration with exactly what we're doing here it doesn't have to
+live in here i can make a new service and do 59:1759 minutes, 17 secondswhatever but we already have this one let's go ahead and let's go into this service and we'll just make a
+new function that 59:2559 minutes, 25 secondswill run the code for us so we'll add function and i'm going to call this uh handle feedback 59:3159 minutes, 31 secondshandle the
+rickroll feedback now in this case it actually ended up 59:3859 minutes, 38 secondsbuilding a twilio voice responses which is what we want so i'm going to say change that to a
+const because we're not going to change it and i'm going to get rid of everything 59:4759 minutes, 47 secondselse except for what gets returned here because we're going to want to
+return twiml from this based on what what they say 59:5559 minutes, 55 secondsokay so when the gather submits to this url we're gonna we're gonna push this into the gather when it
+submits the event is gonna have a new 1:00:031 hour, 3 secondsproperty on it it's gonna be posted uh with the url encoded uh field called digits so uh let's let's 1:00:111 hour, 11
+secondslog that out we can we can log that out real quick so we can say console.log user pressed 1:00:181 hour, 18 secondsand then we can do event dot digits and it will be a
+string and it will be whatever they entered there on the gather so we 1:00:251 hour, 25 secondswant to say if the event.digits is equal to 1 this is when they said that they liked
+it 1:00:331 hour, 33 secondsand so we'll do a twiml.say that's great glad we didn't 1:00:411 hour, 41 secondslet you down never gonna do that all right and then uh otherwise uh if
+they uh entered 1:00:531 hour, 53 secondstwo they were not happy they're reporting they want to talk to the manager um so this is a case where we could look 1:01:001 hour, 1
+minuteup maybe we could look up the user's phone number if we had a database here or an api we could from the phone number we could get it let's let's leave it to 1:01:071 hour, 1
+minute, 7 secondsdo here um we could say uh look up user from uh phone number and that phone number uh is available on uh if i was uh 1:01:161 hour, 1 minute, 16 secondscatching
+here so it would post i could get this from event dot from i'd be able to see who uh called right so so the phone number is is stored there in 1:01:251 hour, 1 minute, 25
+secondsevent.from um uh but we don't have that so we'll just go ahead we'll hard code a name so we'll say uh we'll say that karen is the one 1:01:331 hour, 1 minute, 33 secondswho
+reported and uh let's see twiml dot say and we'll say thank you 1:01:421 hour, 1 minute, 42 secondsfor reporting this joke and then we can use whatever that name is that came
+across 1:01:491 hour, 1 minute, 49 secondsand we'll say connecting you with the supervisor 1:01:581 hour, 1 minute, 58 secondsokay so we could make this actually call the
+supervisor you could do that with this dwimor with voice formula so we could say twiml.dial and i can put in the 1:02:071 hour, 2 minutes, 7 secondssupervisor's number here um but
+supervisors change often so maybe we want to store that in a variable and a 1:02:141 hour, 2 minutes, 14 secondscool way to do this is to say context dot uh supervisor number um
+1:02:241 hour, 2 minutes, 24 secondsand this context remember this is coming from the environment variable so i'm gonna go ahead and save this just for now so we can come back to
+it and i'm gonna come here into the environment 1:02:321 hour, 2 minutes, 32 secondsvariables and i could add a supervisor number and i could do you know plus one four one five
+blah blah blah right and 1:02:411 hour, 2 minutes, 41 secondsthen i could do uh add and now the supervisor number would be available in the code to use which is cool right so that
+way i can just go and change the 1:02:491 hour, 2 minutes, 49 secondssupervisor number in my environment variables instead of hard coding it but i'm expecting a lot of people are
+1:02:571 hour, 2 minutes, 57 secondsnot going to be very happy about this and so there's probably going to need to be a queue so why don't we do that instead let's just go ahead
+1:03:051 hour, 3 minutes, 5 secondswe'll put them right into a manager uh queue so so anybody who's available to take the call 1:03:121 hour, 3 minutes, 12 secondscan call in and
+call into this manager's cue so what we'll do is we'll stick them in a queue um and then 1:03:191 hour, 3 minutes, 19 secondsotherwise we'll just tell them that we don't know why
+they pressed what they did so we could say uh you pressed 1:03:281 hour, 3 minutes, 28 secondsevent dot digits but why why why'd you do that 1:03:361 hour, 3 minutes, 36 secondsuh
+okay cool and uh i always press save accidentally okay so uh we're gonna save that 1:03:451 hour, 3 minutes, 45 secondsokay and i am going to deploy it and we'll walk it again so
+um what's gonna happen is uh we're gonna send 1:03:521 hour, 3 minutes, 52 secondsa post request here to this uh uh account we're gonna return back a twiml for it to speak because
+it's going 1:03:591 hour, 3 minutes, 59 secondsto be a it's a voice application uh we're going to log out what digits got pressed we can enable these live logs here um 1:04:071
+hour, 4 minutes, 7 secondsand we're going to uh press uh if somebody presses one so the digits is where where it's been posted that there's a value that's in there um and 1:04:151
+hour, 4 minutes, 15 secondsif you know you're working in a different framework web framework that would be uh stored in the uh fields typically right or request.params right that
+would be 1:04:241 hour, 4 minutes, 24 secondsstored in the fields the url fields right so so um event.digits if it's equal to one we're going to say thanks for not letting us down
+if it's equal to 1:04:311 hour, 4 minutes, 31 secondstwo we are going to uh we could go get the phone number and use this event.from because it's also in there what's been posted
+and then we'll use their name and 1:04:391 hour, 4 minutes, 39 secondsthen we'll put them in a queue and otherwise we'll say why didn't you do that and we're going to return that
+twiml no matter what with that callback and there's no errors with no errors 1:04:471 hour, 4 minutes, 47 secondsthat we can see possible here so that's been saved i can come here
+i'm going to do this copy url i'm going to flip back to my tumble and 1:04:561 hour, 4 minutes, 56 secondsi'm going to paste that there and you'll see that it's this exploration
+it's got the tool.io handle feedback because it's live it's serverless uh and let's do it 1:05:041 hour, 5 minutes, 4 secondsyou have a trial account you can remove this message at
+any time by upgrading to a full account press any key to execute your code 1:05:131 hour, 5 minutes, 13 secondsso now notice important message press one to approve of this joke
+anytime in here when i do it will barge in so i'm going to press two and you'll 1:05:211 hour, 5 minutes, 21 secondssee immediately it will stop thank you for reporting this joke
+karen connecting you with a supervisor and you'll see that it says user press two 1:05:301 hour, 5 minutes, 30 secondsright from here which i did and there's our weight music by
+default now the manager could call in and it would immediately connect us uh to this 1:05:381 hour, 5 minutes, 38 secondsso we could set up a number for managers to call in and
+then we'd get off this on hold music pretty cool right and that queue didn't even have to exist i just typed the word 1:05:471 hour, 5 minutes, 47 secondsmanagers and it made a
+brand new cue and people will queue in there and we could have another phone number that called in and they would automatically get the 1:05:541 hour, 5 minutes, 54 secondsnext
+person in the queue and be connected with them to talk about uh how they're offended by the rickroll joke more on cues in the nodes pretty awesome 1:06:011 hour, 6 minutes, 1
+secondright we just created an ivr an interactive voice response and our options were able to trigger any code 1:06:091 hour, 6 minutes, 9 secondsthat we wanted over a url super
+powerful concept right twilio passes control to whatever web application via webhook 1:06:171 hour, 6 minutes, 17 secondsour example is currently only one menu level deep however
+we could return another menu in our action handler and then that could point to another action 1:06:251 hour, 6 minutes, 25 secondsand that had a menu in another menu and yo dog i
+i heard you like menus so i put a menu in your menu 1:06:321 hour, 6 minutes, 32 secondsfair warning though large menus can get a little squirrely over time also the bigger they
+get the harder they are to visualize 1:06:411 hour, 6 minutes, 41 secondswhat's actually happening editing them can get increasingly challenging but but have no fear there's a tool
+for this problem we talked a bit 1:06:491 hour, 6 minutes, 49 secondsabout it previously and twilio studio is a great tool to handle this issue not only does it make it easier to
+visualize it also makes it easier to add and to 1:06:581 hour, 6 minutes, 58 secondsmaintain existing flows these widgets are very rich they represent the twiml and all of their
+configurations you can pass code off to 1:07:061 hour, 7 minutes, 6 secondsfunctions or any url whenever you need to it's powerful scalable and you can import and export the entire
+flow in json format which means you can keep it 1:07:151 hour, 7 minutes, 15 secondsalongside your code in version control i can't recommend it enough especially for ivrs check the
+notes for more info 1:07:221 hour, 7 minutes, 22 secondswhat we've seen with programmable voice so far has all been inbound through webhooks well you can also create an outbound
+call using the api just like 1:07:311 hour, 7 minutes, 31 secondshow we sent that outbound message let's check that out after a quick break we've been handling calls as they come
+in but now let's take a look at kicking Chapter 11: Create an Outbound Call 1:07:391 hour, 7 minutes, 39 secondsone off ourselves the call api is very similar to the message api so
+it should feel pretty familiar 1:07:461 hour, 7 minutes, 46 secondsso on twilio dot com forward slash docs i'm going to click on voice and in here i'm going to look for the
+1:07:551 hour, 7 minutes, 55 secondsapi reference i'm going to collapse these folders here we go and i was looking for the call resource 1:08:021 hour, 8 minutes, 2 secondsand over
+here if you look at the the library you'll notice that it's very similar we got calls and then we got create and we have a 2 and a from and a 1:08:091 hour, 8 minutes, 9
+secondstwiml trimble here is what you'd like to have happen when the two numbers are connected so in this case here it's 1:08:171 hour, 8 minutes, 17 secondsgoing to do a response
+say ahoy there now also on call creation instead of passing twiml you can also pass a url so 1:08:261 hour, 8 minutes, 26 secondsif you open this up you can see that you can pass a
+url as long as the url returns a valid twiml uh you will be able to to use that 1:08:351 hour, 8 minutes, 35 secondsoh we have a url just like that our twitter bin exposes the url
+for situations just like this so let's go back to our twin movement i'll show you that 1:08:431 hour, 8 minutes, 43 secondsso uh here you'll see that uh the the twiml bin the ahoy
+world swimming that we've been playing with this rickroll one if we go ahead and we uh click this 1:08:521 hour, 8 minutes, 52 secondscopy i'm going to copy that now i've got that
+in my clipboard and if we go back we look at the notes i could definitely do this in node or c 1:08:591 hour, 8 minutes, 59 secondssharp or python but i don't really have one of
+those servers and we're just kind of exploring so i'm going to go ahead i'm going to do that in the cli and 1:09:061 hour, 9 minutes, 6 secondsyou'll see very similar calls create
+url to and from so let's do it let's do that exactly so we're going to go back to uh 1:09:141 hour, 9 minutes, 14 secondsmy command line here and we're going to say twilio api core
+calls create 1:09:231 hour, 9 minutes, 23 secondsand we will do uh from our number 1:09:301 hour, 9 minutes, 30 secondswhich was you can find that in your console 1:09:401 hour, 9
+minutes, 40 secondshere i'm going to copy my number from that number my 415 number to my number 1:09:491 hour, 9 minutes, 49 secondswhich is plus 1 503 836 8731 1:09:581 hour, 9
+minutes, 58 secondsplease don't call late and i've got uh in my clipboard i've got that url for the the twilio number no i 1:10:061 hour, 10 minutes, 6 secondsdon't i copied and
+pasted that so i'm going to go back to my uh my twiml bin 1:10:161 hour, 10 minutes, 16 secondsand again i'm going to copy that that's the thing with these clipboards right you
+keep on throwing stuff in there so i copied the url to the clipboard and i'm going to paste that 1:10:241 hour, 10 minutes, 24 secondshere and now we see that it has this unique
+number and i'm going to go ahead and make that call 1:10:331 hour, 10 minutes, 33 secondsand it's ringing press any key to execute your go and you'll see that it goes an important
+message 1:10:421 hour, 10 minutes, 42 secondspress 2 to talk to a manager and we've got the rip roll happening again there's our rick rolling ivr that's pretty awesome right and
+you can also uh 1:10:511 hour, 10 minutes, 51 secondsuse that to get the call log right so if we wanted to go and we wanted to see uh we could say twilio api 1:10:581 hour, 10
+minutes, 58 secondscore calls list and we could see specifically we could 1:11:061 hour, 11 minutes, 6 secondsuse the help again and we could see what we could push in so we could
+say c only show calls made to this number and we could do only calls made from this number which is 1:11:141 hour, 11 minutes, 14 secondswhat we just we just did a from so let me
+get that number the clipboard here and we could do 1:11:221 hour, 11 minutes, 22 secondswe could say twilio api core calls uh list this would be all of them but we 1:11:291 hour,
+11 minutes, 29 secondscould say all only the ones that were made from our number and we should see the call that uh just happened to me there we go 1:11:371 hour, 11 minutes, 37
+secondsso as a developer i'm pretty sure you're probably wondering now wait a second what happens if there's an error so let's do that let's create a call so i'm 1:11:461 hour, 11
+minutes, 46 secondsusing the up arrow here let's create a call and let's instead of using a url let's just give it some bad twiml right so 1:11:531 hour, 11 minutes, 53
+secondsinstead of passing a url here we'll uh we'll put in some twiml that is invalid uh this is really bad twiml and uh i'll 1:12:021 hour, 12 minutes, 2 secondsgo ahead and i'll
+try to create that and you'll see that the the call got created and status is that it's got queued and i'm gonna go ahead and answer my call 1:12:111 hour, 12 minutes, 11
+secondsyou have a trial account you can remove this message at any time by upgrading to a full account press any key to execute your code 1:12:191 hour, 12 minutes, 19 secondswe
+are sorry an application error has occurred oh no so an application error occurred so what happens 1:12:271 hour, 12 minutes, 27 secondsuh what what can we do now to to take a look
+at that and this type of error could happen at any time maybe there's an error in your code that generates the twiml or like 1:12:351 hour, 12 minutes, 35 secondsmaybe you write
+bad twiml and we'll get an error that call will have an error in it so if we head over to the console actually we'll see that there's this 1:12:431 hour, 12 minutes, 43
+secondslittle red dot here it shows that we've got a new problem so if i go under monitor and then i go under error logs you'll 1:12:501 hour, 12 minutes, 50 secondssee that i have
+this document parse failure and you can see at what times they happened so i'm going to come in here 1:12:591 hour, 12 minutes, 59 secondsand you can see what the request was and
+here's the body it was really bad twiml indeed and it will tell you uh what's what's 1:13:071 hour, 13 minutes, 7 secondsgoing wrong there now if you wanted to get a hold of these
+programmatically you could come in here under those web hooks and alerts and you could put in your web hook and 1:13:151 hour, 13 minutes, 15 secondsthis will get the information
+posted to you and we'll show you what the payload will look like this is the payload that will come across so in addition there's 1:13:221 hour, 13 minutes, 22 secondsalso a
+debugger from the awesome twilio cli we've got this debugger logs list function and 1:13:301 hour, 13 minutes, 30 secondsagain i auto completed with tab there and if i just press
+enter i can see the most recent errors that happen and here you see this is the error that we just got error on line one of document 1:13:381 hour, 13 minutes, 38 secondscontent is
+not allowed in prologue which is the error that that generated by having bad twiml check the notes for more information on this now again as a 1:13:461 hour, 13 minutes, 46
+secondsgood developer this may make you start to wonder about how best to keep track of the status of the calls that you create now remember just this just said 1:13:551 hour, 13
+minutes, 55 secondsuh cued it was fine it looked like it went right but there was an error and so you might want to know that and you don't want to 1:14:021 hour, 14 minutes, 2
+secondsactually just keep on hitting the same call over and over again and checking the status of it you actually want to use a web hook so instead of of you 1:14:101 hour, 14
+minutes, 10 secondscalling the api let the api call you so let's fix that twiml first and we will instead of uh 1:14:181 hour, 14 minutes, 18 secondsreturning some bad twin we'll
+make a good one we'll do some response uh response and we'll we'll do a say 1:14:281 hour, 14 minutes, 28 secondshi there well no not a high there we should definitely say ahoy
+there oh there friend all right and we'll close the say off 1:14:361 hour, 14 minutes, 36 secondsand we've got the response there so when you create a call and this actually works
+true too with messages there's a feature called a status callback now the 1:14:451 hour, 14 minutes, 45 secondsstatus callback again takes a a url so it's a web hook so we'll post
+uh to that and uh we can make one real quick i i 1:14:531 hour, 14 minutes, 53 secondsthink we probably should let's let's do that real quick so we're going to pop over and we'll
+go into our functions here um that we have going and i'm going to go 1:15:001 hour, 15 minutesahead and add a new function and we'll just call this status displayer now obviously
+you probably would want to make something trigger in 1:15:091 hour, 15 minutes, 9 secondsyour application if something went wrong right or or if it was completed you might want to
+track that um somebody got the call and it got successfully uh delivered you might want 1:15:181 hour, 15 minutes, 18 secondsto track that on your side um so you could get posts to
+this thing i'm just going to delete all of this stuff that comes in here and instead of returning 21 we don't 1:15:261 hour, 15 minutes, 26 secondsneed to return anything we're
+just going to kind of use this to to log out some stuff so we'll say console.log and we will say call 1:15:351 hour, 15 minutes, 35 secondsand we'll do event call sid status is
+1:15:421 hour, 15 minutes, 42 secondsevent dot call status and we will close that off 1:15:501 hour, 15 minutes, 50 secondsthere we go um so so this is called uh status displayer
+so i'll click save 1:15:561 hour, 15 minutes, 56 secondsawesome and i will deploy that and again so it's gonna post every time uh the status changes and by default the 1:16:041
+hour, 16 minutes, 4 secondscall status handler will only post when we complete the call but we can change that we can actually specify multiple things that we're looking for
+1:16:121 hour, 16 minutes, 12 secondsso so first first we'll get a hold of this url so i'm going to copy this url and we will paste that in the status 1:16:191 hour, 16 minutes, 19
+secondscallback and then there's this status callback event and i want to know uh when it's ringing uh i want to know when it's answered so 1:16:271 hour, 16 minutes, 27 secondsi'm
+just going to do a little copy and paste here because we can paste this a couple times we'll know answered and completing so 1:16:361 hour, 16 minutes, 36 secondsso instead of
+ringing when it's answered and one more uh when it's completed we will push through here so you gotta you pass 1:16:451 hour, 16 minutes, 45 secondswhat the events are that you are
+looking to to track i'll come over here i'm going to clear this enable our live logs let's go ahead i'm going to kick this 1:16:541 hour, 16 minutes, 54 secondscall off to my phone
+just kidding i'm not um event not fat oh that looks weird 1:17:031 hour, 17 minutes, 3 secondsstatus callback equals answered equals completed twiml equals response oh i've got it
+right in the middle 1:17:101 hour, 17 minutes, 10 secondslook at that i don't have that's very strange so um so we'll say ahoy there friend oh i must have put an 1:17:181 hour, 17
+minutes, 18 secondsexclamation point you know what it doesn't like that um the command line doesn't like exclamation points so i ended up like executing some bizarre code okay cool
+so 1:17:261 hour, 17 minutes, 26 secondsthat's a good thing to know uh good thing we i showed you that um so so we've got the status display there we've got the rigging the answer
+and the completed and now when i hit this 1:17:361 hour, 17 minutes, 36 secondsuh it's gonna go and it's gonna create the call and if i come over here my phone's ringing 1:17:431
+hour, 17 minutes, 43 secondsi'm going to go ahead and click answer by upgrading to a full account and press 1:17:521 hour, 17 minutes, 52 secondsone execute your code and you'll
+see that i got the status is ringing the status is in progress and the status is uh completed which is 1:18:001 hour, 18 minutesreally nice if i were needing to track exactly what
+happened with each one of the calls uh that i got created i could reassociate this in the database uh 1:18:081 hour, 18 minutes, 8 secondssomeplace and one more thing i wanted to
+just call out is that you can update a call that is in progress so if you uh look at this drop down here you can say 1:18:161 hour, 18 minutes, 16 secondsupdate a call in progress
+with twiml so a call could be happening you just go ahead and you get a hold of the sid and then you change the twiml and the experience the phone on the experience 1:18:251 hour,
+18 minutes, 25 secondson the phone will automatically get updated so this is handy if there's some like processing that's happening outside of your call you're doing something on
+your other end but you want to update 1:18:321 hour, 18 minutes, 32 secondsthe caller with something this is a nice way to interject information into a call more on modifying calls
+and progress in the 1:18:401 hour, 18 minutes, 40 secondsnotes awesome now you know how to use the api to call people now this is super handy for notifications like think about a
+1:18:491 hour, 18 minutes, 49 secondsschool you could use us to notify about closures or maybe a notification that your child was absent and just a quick reminder that the twin
+will that you return when the call begins 1:18:571 hour, 18 minutes, 57 secondsit can be anything we've seen very innovative solutions that will try to call a series of numbers and
+only when a person is detected does it connect to a 1:19:051 hour, 19 minutes, 5 secondswaiting agent for more information on answering machine detection or amd check the teacher's
+notes there's a configurable limit to the amount of calls that you can make per 1:19:141 hour, 19 minutes, 14 secondssecond that's called cps and twilio will queue up your calls so
+they go out one per second by default again check the 1:19:211 hour, 19 minutes, 21 secondsnotes for more on cps and sorry for all the acronyms especially if they're new to you
+don't worry they'll all stick soon in fact let's do a little review of 1:19:301 hour, 19 minutes, 30 secondsthose acronyms and all the other skills that you just picked up with
+programmable voice awesome job diving into programmable voice first we learned how to respond to Chapter 12: Review + Practice 1:19:381 hour, 19 minutes, 38 secondsincoming calls
+using the say twiml verb text-to-speech has improved a ton and we can even use the most cutting-edge technology to make the voices of our 1:19:461 hour, 19 minutes, 46
+secondsapplications sound nearly human in many languages and for when those voices don't quite meet the mark we can always fall back on the twiml verb play which 1:19:541 hour, 19
+minutes, 54 secondsallows us to play any sound file we want even that rickroll song we then collected information from callers by using the gather twiml verb which 1:20:021 hour,
+20 minutes, 2 secondsallowed users to press numbers on their keypads and would then submit to a url that could handle their request the response from the url was the 1:20:101 hour,
+20 minutes, 10 secondsappropriate twiml to keep the call moving much like a web form submission we didn't cover it directly but you can also allow the caller to respond with
+1:20:181 hour, 20 minutes, 18 secondstheir voice like a press one or say support to connect with an agent check the notes for more information on that and if you're looking to do
+more 1:20:261 hour, 20 minutes, 26 secondsreal-time work with voice make sure to check out media streams this gives you direct access to the audio from the phone in real time and
+even lets you 1:20:341 hour, 20 minutes, 34 secondspipe audio back in we explored the api and used the call resource to create new outbound calls when creating a call you 1:20:411
+hour, 20 minutes, 41 secondschoose whether to write twiml directly or pass it a url that responds with the appropriate twiml and you can do all of this with anyone 1:20:491 hour,
+20 minutes, 49 secondswho has a telephone it works all over the pstn or public switched telephone network we sure did run across a lot of acronyms along the way 1:20:571 hour, 20
+minutes, 57 secondswhen the user presses a button on their phone and it makes that beat boop noise that's dtmf or dual tone multi-frequency typically they're pressing those buttons
+1:21:061 hour, 21 minutes, 6 secondsbecause they are responding to prompts like press one to chat with an agent these applications are called ivrs or interactive voice response
+1:21:141 hour, 21 minutes, 14 secondsmost likely you'll be sending out a lot of calls and there's a default throughput of one cps that's call per second check the notes for how to
+change 1:21:221 hour, 21 minutes, 22 secondsthis value it's possible to detect when a human answers the phone instead of an answering machine that's amd or answering machine
+detection 1:21:311 hour, 21 minutes, 31 secondsand while out of the scope of this course sip stands for session initiation protocol and it allows voice calls to happen over the
+internet instead of the 1:21:391 hour, 21 minutes, 39 secondspstn you might have heard of this as voip or voice over the internet protocol sip is the protocol that kicks things off
+1:21:461 hour, 21 minutes, 46 secondstwilio offers rich solutions like sip domains and sip trunking in this space with all the programmability available please check the notes for
+more information another thing out of the 1:21:551 hour, 21 minutes, 55 secondsscope of this course but i'd love for you to know about it is that there are voice sdks as we talked
+about it's pretty amazing all that you can do with 1:22:031 hour, 22 minutes, 3 secondsjust a microphone and a speaker and guess where else you have those that's right your browser
+the voice sdk allows you to quickly build web 1:22:111 hour, 22 minutes, 11 secondsapplications that embed a phone directly into your user interfaces using the sdk allows you to
+have a fully functional 1:22:181 hour, 22 minutes, 18 secondsbrowser-based phone that can do all the programmable tricks that you just learned the sdk is also available for ios and
+android so you can build a phone 1:22:271 hour, 22 minutes, 27 secondswherever you need one check the notes for more on voice sdk i've put together some ideas on how to practice
+your new found voice skills in 1:22:351 hour, 22 minutes, 35 secondsthe notes i'd love for you to explore more and practice building out some of the application ideas and keep me
+posted on how you're doing next up we're going 1:22:421 hour, 22 minutes, 42 secondsto use messaging and voice skills to build a fun greenfield app from scratch i can't wait to
+build with you Chapter 13: Putting It All Together 1:22:541 hour, 22 minutes, 54 secondswell ahoy there twilio developer are you ready to apply some of those skills that you've
+been picking up along your journey i love this part the building part no i 1:23:031 hour, 23 minutes, 3 secondsdon't know about you but when i'm learning something new i try to
+learn by building a well-known existing application using it this is common in 1:23:101 hour, 23 minutes, 10 secondsthe front-end web development world where they build a to-do
+list application in the bazillion front-end frameworks that exist it really lets you understand the intricacies of the 1:23:191 hour, 23 minutes, 19 secondsspecific bits of the
+framework so i was thinking something along those lines but some sort of application that uses notifications and the microphone 1:23:281 hour, 23 minutes, 28 secondsand the speaker
+and i came up with one and honestly i kind of love it depending on when you're watching this video chances are a new 1:23:361 hour, 23 minutes, 36 secondsversion of this type of
+app just popped up i'm talking about these audio only apps that are making their way into just about every application they allow 1:23:441 hour, 23 minutes, 44 secondspeople to
+chat and others to observe i think they're great i love people chatting and sharing ideas and i love the idea of allowing people to be part 1:23:521 hour, 23 minutes, 52 secondsof
+the live experience it's like a performance that will only happen once i have such fomo about this sort of thing and it kills me that i keep missing them 1:24:011 hour, 24 minutes,
+1 secondand i plan to attend and then i forget that's why the product that we're going to build is going to face fomo head on we're not going to let you miss these 1:24:091 hour,
+24 minutes, 9 secondsincredible conversations and we're going to build this without a ui whatsoever all over the pstn ladies and gentlemen may i present to you 1:24:171 hour, 24
+minutes, 17 secondsphone mode we're going to build an audio only conversation app that allows you to register over text messaging and listen 1:24:251 hour, 24 minutes, 25 secondson
+actual phone calls you'll sign up to attend the talk via text message and you'll be called when the talk begins you'll never miss out i've been working on a couple of slogans
+1:24:341 hour, 24 minutes, 34 secondslet me know what you think so here we go slogan number one fomo nomo or 1:24:411 hour, 24 minutes, 41 secondsslogan number two phone mo don't
+call us kid we'll call you we'll work out the marketplace we're going to build this entire 1:24:491 hour, 24 minutes, 49 secondsapplication using the serverless tool kit all the
+code will be hosted on twilio and i realize if you're still in trial mode this is probably going to be 1:24:571 hour, 24 minutes, 57 secondsa little bit difficult to test out so
+i'm going to upgrade my account and i've put a special upgrade code for you in the notes so you can have the same 1:25:051 hour, 25 minutes, 5 secondsexperience as i do i can't
+wait to build this with you let's get started there's this saying that goes the cloud is just other people's computers and the Chapter 14: Use the Serverless Toolkit 1:25:131 hour,

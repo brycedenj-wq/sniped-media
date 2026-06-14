@@ -1,0 +1,224 @@
+points on the graph, zooms in where 17:08 needed, and then wraps things up with a 17:10 clear overview at the end. I especially 17:13 like the way it uses zoomins, key 17:15
+frames, and highlights to guide your 17:16 attention. It makes the data much easier 17:19 to follow, and overall, it just looks 17:21 very polished. So, yeah, this is another 17:23
+really solid output. Now, just to keep 17:25 things fun, I'm going to try out one 17:27 more prompt. I'll head back to the 17:29 Google document, scroll down to find 17:32 another
+animation, copy that prompt, and 17:35 then paste it into Claude and send it. 17:39 All right, so after a couple of minutes, 17:41 we've got our next animation. I'll go 17:43 ahead
+and click on the local host link 17:45 to preview it. This one is about the 17:47 largest countries by land mass, and I 17:49 wanted it styled as a globe animation in 17:51 space,
+slowly rotating and highlighting 17:53 the specific regions being mentioned. 17:55 So, let's see how it turned out. Right 17:57 away, it starts with a rotating globe 17:59 and a
+title at the top. The world's 18:01 largest countries by land area. And as 18:04 the animation continues, we get these 18:06 card style pop-ups showing each country 18:08 along
+with its size and ranking. This 18:10 looks really clean. I like how the globe 18:12 keeps rotating throughout and then at 18:14 the end it zooms out to give a full 18:16 overview.
+It just ties everything 18:18 together nicely. And again, this all 18:20 came from a basic prompt. Now, if I 18:23 wanted to refine this further, for 18:25 example, make it zoom in
+on each 18:27 specific country as it's mentioned, I 18:29 could easily go back and adjust the 18:31 prompt to include that. One thing you'll 18:33 notice though is that there's
+still no 18:35 voice over or external images. 18:38 Everything looks a bit flat in that 18:40 sense. That's because right now Claude 18:42 Code is only using Remotion to generate
+18:44 these animations. If you want to take 18:47 things further, adding voiceovers, 18:49 images, and more dynamic elements, 18:51 you'll need to bring in APIs. 18:54 Those APIs
+basically tell Claude Code 18:56 where to fetch additional content from. 18:58 Now, an API stands for application 19:01 programming interface. It's basically 19:03 what allows
+different platforms to 19:05 communicate with each other. So, for 19:07 example, if we want Claude code to 19:09 generate voiceovers, we need to give it 19:12 access to an 11 Labs
+API. That way, it 19:16 can take a script and turn it into a 19:18 voice over automatically. The same idea 19:20 applies to images. If you want clawed 19:22 code to generate
+images, you'll need to 19:24 connect it to an image generation 19:26 platform through its API, something like 19:29 Wavespeed or a similar service. And the 19:31 good news is
+creating an API key is 19:34 actually very simple. I'll walk you 19:36 through it step by step. All right, so 19:38 the first API we're going to set up is 19:40 for voiceovers
+using 11 Labs. Go ahead 19:43 and head over to 11 Labs. Once you're on 19:46 the platform, you should land on their 19:47 main dashboard. Now, quick heads up to 19:50 use AP is on
+most platforms. You'll need 19:52 to be on a paid plan. Some platforms 19:55 make this pretty affordable, usually 19:56 around $5 to $10, but you do need an 20:00 active plan for
+the API to work. Once 20:02 you're inside 11 Labs, look toward the 20:04 bottom left corner and click on the 20:05 developer section. From there, you'll 20:07 see options like
+overview, API, web 20:10 hooks, and a few others. Click on API 20:13 keys and that will take you to the 20:15 section where you can manage your keys. 20:17 From here, all you need
+to do is create 20:19 a new API key. All right, quick note 20:22 here. You need to keep your API key 20:24 private. So, when you click on create 20:26 new key, just give it a name.
+Something 20:28 like code remotion works fine. You can 20:31 choose whether to make it restricted or 20:33 unrestricted depending on your workflow. 20:35 In my case, I'll just
+leave it as 20:37 unrestricted. Then click create key. And 20:40 once it's generated, go ahead and copy 20:43 it to your clipboard. And again, make 20:45 sure you keep this key
+safe. Anyone with 20:47 access to it could potentially use your 20:49 account, so don't share it publicly. 20:51 I'll copy mine. It's blurred out here 20:54 for security. And then
+paste it 20:55 somewhere secure for later use. 20:58 Now that the 11 Labs API is set up, 21:00 let's move on to the next one. Go back 21:03 to your browser and search for 21:04
+Wavespeed. This platform gives you 21:07 access to various video and image 21:09 generation models. Wavespeed is also 21:11 relatively affordable. For example, I'm 21:13 on a plan
+that costs around $10, which 21:15 is more than enough to get started. Once 21:18 you're inside Wavespeed, click on your 21:20 profile, then go to API keys. Click 21:24 create a PI
+key. Give it a name. I'll 21:27 use Claude code reotion again, and then 21:30 click create key. Once it's generated, 21:33 copy the key and store it somewhere 21:35 safe. Just like
+before, keep it private 21:37 since it gives access to your account. 21:39 All right. So now that you've created 21:40 both API keys, the next step is to 21:43 connect them to
+Claude code. If you 21:45 scroll down to the bottom of the Google 21:47 document, you'll find a section called 21:49 API templates along with something 21:51 labeled the remote
+master prompt. For 21:54 now, go ahead and open the API 21:56 templates. It'll take you to another 21:58 document. Inside that document, you're 22:00 going to copy everything and
+paste it 22:02 into your terminal. But before you do 22:04 that, there's one important step. You 22:06 need to insert your own API keys, both 22:09 for 11 Labs and Wavespeed, into
+the 22:11 template. You'll see highlighted 22:13 sections where those keys are supposed 22:14 to go. Just replace those placeholders 22:17 with your actual API keys. Now, quick
+22:19 note, the example key shown there is 22:22 just a placeholder. It won't work, so 22:24 don't try to use it. Once you've pasted 22:26 your own keys into the correct spots,
+22:28 copy the entire template and send it 22:30 over to Claude Code. At that point, 22:32 Claude will process it and let you know 22:34 whether the keys were saved 22:35
+successfully. Depending on your 22:37 operating system, it might ask you to 22:39 perform a couple of simple steps like 22:41 moving a file from one folder to 22:43 another, but
+nothing complicated. After 22:45 that, you can ask Claude to confirm that 22:47 your keys are stored. I usually double 22:49 check this and Claude will confirm by 22:51 showing
+that the placeholders are gone 22:53 and the keys are properly set. Once 22:56 that's done, you're all set. And this is 22:58 where things really start to get 23:00 interesting.
+Now that Claude Code has 23:02 access to both 11 Labs and Wavespeed, 23:05 you can start creating full videos with 23:07 voiceovers, visuals, and everything all 23:10 directly
+inside Claude Code. All right, 23:12 so once you've connected your APIs and 23:14 Claude Code has access to both waves for 23:17 visuals and 11 Labs for voiceovers, 23:19 you're
+ready for the next step. Go back 23:21 to the Google document and scroll down 23:23 to the section called the Remotion 23:26 Master prompt. When you open that, 23:28 you'll see the
+main prompt used to 23:30 generate a complete video. This prompt 23:32 combines everything. Remotion for motion 23:34 graphics, 11 Labs for voiceovers, and 23:37 wave speed for
+additional visuals, all 23:39 working together to create one full 23:41 video. If you scroll further down, 23:43 you'll see two examples, production 23:45 prompt one and production
+prompt 2. 23:48 These are just templates you can use. 23:50 Let's say we're using production prompt 23:52 one. It's quite detailed and a bit long, 23:54 but that's intentional. So,
+what I'll do 23:57 is copy everything under that prompt. 23:58 Now, if you're wondering how I created 24:00 something like this, I actually used 24:02 Claude itself. You can take a
+similar 24:04 prompt, give it to Claude, and ask it to 24:06 generate a version for a completely 24:08 different topic, and it'll handle that 24:10 for you. So, once you've copied
+your 24:12 version of the master prompt, head back 24:14 to Claude code, paste it in, and send 24:16 it. At this point, Claude brings 24:18 everything together. It calls the 11
+24:20 Labs API to generate the voice over. In 24:23 this case, I specified a female voice 24:25 with a confident, fast-paced tone to 24:27 keep things engaging. At the same time,
+24:30 it generates the visuals, pulls in the 24:32 flags, builds the motion graphics using 24:34 Remotion, and edits everything together 24:36 into one final video. And in the end,
+24:39 you get a fully polished video that's 24:41 ready to download and upload directly to 24:43 YouTube. All right, so after a few 24:45 minutes, and not going to lie, this one
+24:47 took a bit longer, around 6 or 7 24:49 minutes, we finally have our result. 24:52 Claude gives us a preview link and the 24:54 final video has been rendered in the 24:56
+exact resolution and format I asked for. 24:59 In this case, I specified a long form 25:01 video. If you wanted a short form 25:03 version instead, you could easily 25:05 include
+that in your prompt. So, when I 25:06 click on a link, it opens up a preview 25:08 window where I can watch the video. 25:10 Let's go ahead and play it and see how 25:12 it turned
+out. 25:15 What country has the highest population? 25:17 Number 10, Mexico, 129 million. Number 25:20 nine, Russia, 144 million. Number eight, 25:23 Bangladesh, 25:24 175 million.
+Number seven, Brazil, 216 25:28 million. Number six, Nigeria, 230 25:31 million. Number five, Pakistan, 241 25:34 million. Number four, Indonesia, 284 25:37 million. Number three,
+the United 25:39 States, 345 million. Number two, China, 25:44 1.41 billion. And number one, India, 25:48 1.48 48 billion people. 25:50 Also, if you're wondering where your 25:51
+videos are saved, they'll be in the 25:53 folder you created earlier. Everything 25:55 you generate gets stored there 25:56 automatically. 25:58 All right, so let's keep going and
+try 25:59 another prompt to see what kind of 26:01 output we get next. 26:03 All right, so while the second prompt is 26:05 running, you might notice that it's 26:07 asking a few
+questions. These are just 26:09 permissions you need to grant so 26:10 Remotion can function properly. Now, 26:13 this is where things start to get really 26:15 powerful. For the
+first time, you have a 26:17 system where you can connect multiple 26:19 APs from different platforms and then 26:21 simply describe what you want and it 26:24 builds the entire
+video for you. From 26:26 motion graphics to full animations, it 26:29 all comes down to how you prompt it. 26:31 Your prompt is everything. It determines 26:33 how your final
+output turns out. For 26:35 example, even with voiceovers, you can 26:38 specify exactly what you want. You can 26:41 choose a specific voice in 11 Labs like 26:44 Adam and include
+that directly in your 26:46 prompt. You can also control things like 26:48 tone, cadence, and speed depending on 26:51 how you want the narration to sound. If 26:53 you're creating
+short form content, you 26:55 can mention that in your prompt, too. 26:57 Tell it to keep things punchy, 26:58 fast-paced, and attention-grabbing, and 27:01 it will adjust
+accordingly. So, really, 27:03 the key here is being clear about what 27:05 you want. The more specific your prompt, 27:08 the better your result. At this point, 27:11 there's a
+lot you can do with this, from 27:13 simple motion graphics all the way to 27:15 fully edited videos. It gives you a huge 27:18 amount of flexibility in how you create 27:20 your
+content. All right, so let's 27:22 preview this new output and see how it 27:24 turned out. 27:25 How many people have ever lived on 27:26 Earth? Let's go back. 10,000 BC, just 5
+27:30 million humans on the entire planet. 27:32 1,000 BC, 50 million. Year 1 AD, 300 27:36 million. 1500, 500 million. Then 27:39 everything changed. 1,800 1 billion. 27:42 1930 2
+billion. 1975 4 billion. The year 27:47 2000 6 billion. And right now 2026, 8.3 27:52 billion people. But here's what's 27:54 incredible. An estimated 117 billion 27:58 humans have
+ever existed. We are just 7% 28:01 of everyone who ever lived. 28:03 Now, one thing I really like here is the 28:05 editing style. It's very punchy and 28:07 fast-paced, which is
+exactly what I 28:09 asked for in the prompt. The cuts happen 28:11 beat by beat, and the pacing keeps 28:13 things moving quickly, which makes it 28:15 perfect for short form
+content. That 28:17 kind of style is great for holding 28:19 attention and improving retention, 28:21 especially on platforms where people 28:23 scroll quickly. And keep in mind,
+this 28:25 is still just the beginning of what you 28:27 can do with Claude code, especially when 28:30 you combine them with APIs. So, I'm just 28:32 going to download this. And
+yeah, that's 28:34 pretty much it for this part. Later on, 28:36 we'll go deeper into some of the other 28:37 features Claude offers, like claw design 28:40 and a few more advanced
+tools. All From the series From Jacksons AI0:00Good morning everybody. In this video, I'm going to be teaching you how to use Claude Code to create motion graphics for your YouTube
+channel or any social media platform. For example, this 0:088 secondschannel right here has almost 300,000 subscribers and over 100 million views without showing his face. This
+channel 0:1616 secondsis faceless. And we can use Claude Code to help us create the animations this channel is using. Now, based on my own experience of making YouTube videos, I
+0:2525 secondsassume a channel like this one earns around $2 to $3 for 1,000 views, which means for 100 million views in total, 0:3232 secondsthis channel generated around $200,000
+or $300,000. And as I said, the crazy part is that you can create these visuals using Cloud Code. Literally, 0:4141 secondseveryone on the internet right now is talking about Cloud
+Code. And that's because Cloud Code really is exceptional. So, if you don't want to be left behind and you want to take 0:4949 secondsadvantage of this in this video, I'm going to
+be teaching you how to use cloud code, I'm going to show you how to install it and how to use it. And I promise I'm going to keep it as simple as possible. So, if that sounds
+0:5757 secondsinteresting and you want to learn something new today, let's begin the course. Okay, the first thing we have to do is install clot code on our computer. 1:051 minute,
+5 secondsAnd for that, you need a cloud account. 1:071 minute, 7 secondsIf you don't have a cloud account, open a new browser tab and search for cloud AOT. Go to their website over
+here and create a new account or log in with your 1:151 minute, 15 secondsGoogle account. And by the way, for this to work, you need a subscription to Claude. If you don't have a
+subscription or you don't want to pay, I still suggest you watch this entire video 1:221 minute, 22 secondsbecause maybe by the end of the video, you might want to get a
+subscription to Claude because you're going to be surprised by how awesome Claude is. I actually unsubscribed from Chad Gypt 1:311 minute, 31 secondsbecause I prefer Claude way
+more. So create an account on Claude if you don't have one. Now once you have an account with Claude, we can download Claude code 1:391 minute, 39 secondson our computer. And for
+that, we have two options. The first option is the simple one which most people use. So you just open a new browser tab and search 1:461 minute, 46 secondsfor claude code right and
+then scroll down and click over here where it says cloud code by entropic and you can literally just download cloud code like 1:541 minute, 54 secondsthis over here by clicking get
+cloud code for desktop right but that's not how we want to install it instead we want to use the visual code because this 2:032 minutes, 3 secondsis going to make things much
+easier to use. So for that what you want to do is open another browser tab and search for Visual Code 2:122 minutes, 12 secondsand download Visual Code Studio over here. Click on
+this website and just click over here where it says download for Windows. You click on this. It's going to download Visual Code over here. 2:222 minutes, 22 secondsAnd once it's
+done downloading, open the file, right? And then just click accept the terms and click agree. Next, install, right? And just install Visual 2:302 minutes, 30 secondsCode. I already
+have it installed, so I'm going to cancel. Now, for this to work, we need to install something else. 2:352 minutes, 35 secondsWe need to install NodeJS. So, open a new browser tab.
+Search for NodeJS. Just like me over here, you see NodeJS. 2:422 minutes, 42 secondsEnter. Go to this website over here, NodeJS, and just click get NodeJS over here. 2:482 minutes,
+48 secondsThere's a button over here. Click on this. And then scroll down over here where it says Windows installer. Just click on this button over here. And as you can see, it's
+going to download NodeJS. Open this application over here. 2:592 minutes, 59 secondsJust click next. Um, for me it asks me to change a repair because I already have it installed.
+All you have to do is click next, next, next, next, install it 3:083 minutes, 8 secondsand finish, right? And just install NodeJS. Now we have to install one more thing and that is
+git. So open a new browser tab over here and search for git 3:153 minutes, 15 secondsdownload. Right? Just like this git download and over here where it says get install, click on
+this, choose your operating 3:233 minutes, 23 secondssystem. So I have Windows. So just click Windows, right? And then click over here where it says click here to download. 3:293
+minutes, 29 secondsJust click over here to download. It's going to download on your computer over here the application. Open the application. And again, just click next, 3:363
+minutes, 36 secondsnext, next, next, and install and finish. That's it. You've just installed all the applications you needed in order 3:433 minutes, 43 secondsto run Cloud Code
+and create videos with Cloud Code. Now, we have to open Visual Studio Code, which is the first application we've downloaded. For that, 3:513 minutes, 51 secondsgo over here on your
+search bar on the computer and search for Visual Studio Code, right? and it should appear over 3:593 minutes, 59 secondshere, Visual Studio Code, and just open this application.
+This is where we're going to be using Cloud Code, and this is where we're going to be creating the 4:064 minutes, 6 secondsvideos. Now, when you first open Visual Code, it should
+say all those things over here. Use AI features, blah blah blah. Just click over here, mark done to 4:144 minutes, 14 secondsremove all of them. Just like that. Now, we want to
+install Clot Code to Visual Studio. For that, go over here to the left where it says extensions over here. 4:234 minutes, 23 secondsDo you see this icon? Click on this. And over
+here on the search, type claude code just like that. And in a few 4:304 minutes, 30 secondsseconds, it should search for it. And it's this one over here. It's usually the first
+one. It says cloud code for VS. VS means Visual Studio. So click on 4:384 minutes, 38 secondsthis. And then click over here where it says install. And also make sure you clicked
+auto update over here. So make sure if it's unchecked by some random reason, make sure it's checked because 4:474 minutes, 47 secondswe want to autoupdate cloud code every single
+time. And then just click install over here to install it. And then just click trust publisher and install and 4:554 minutes, 55 secondswait for cloud code to install in your
+visual studio code. Then you might get a message like this where firewall is blocking this application. So just click 5:035 minutes, 3 secondsover here allow to allow the
+application to run. Right? That's it. Now once cloud code is installed you should see something like this over here. Get 5:115 minutes, 11 secondsstarted with cloud code. Usually I
+like to check mark all those things over here because I do want to open cloud code. I do want to chat with clot and I do like 5:185 minutes, 18 secondsmy past conversations to be
+saved just for memory. Right? If I want to prompt something, I want cloud code to remember. And then just click mark as done. Just like that. Now we need to 5:275 minutes, 27
+secondsconnect our cloud account with clot code because as I said, we need a subscription to use cloud code. So over here where my mouse is, right click and 5:345 minutes, 34
+secondsselect new text file. Then over here where it says chat on the right, click on cloud code and you can as you can see it says over here cloud AI subscription. 5:425 minutes,
+42 secondsClick on this and then click open. 5:445 minutes, 44 secondsRight? And this is going to open the cloud website and it's going to ask you to authorize cloud code to access
+your cloud chat account. Right? and just click authorized. This basically 5:535 minutes, 53 secondsconnects your cloud AI account with clot code. That's it. It says over here
+you're all set up for clot code. You can now close this window. So we can close 6:016 minutes, 1 secondthis window and we can go back to visual code over here. And as you can see
+over here on the right now we can chat with cloud code in order to create code in 6:096 minutes, 9 secondsorder to create graphics in order to create websites. Literally anything
+you can imagine you can create with this thing. Now in order to create motion graphics with cloud code we actually 6:176 minutes, 17 secondshave to install something called
+remotion skill. This is a separate plugin. There's no need to explain what it is. I'm just going to show you how to 6:246 minutes, 24 secondsinstall it. For that, go over here to
+the top left where it says terminal. Click on it and select new terminal. 6:306 minutes, 30 secondsNow, inside the terminal, I want you to write the following thing I'm going to be
+writing. So, I'm going to write npx 6:376 minutes, 37 secondsskills addion dot actually not that slashdev slash um 6:456 minutes, 45 secondsskills. So, I'm going to zoom in on the
+screen so you can clearly see. I need you to write exactly this thing over here in your terminal. After you're done writing this, I want you to hit enter. 6:556 minutes, 55
+secondsAnd once you hit enter, you might be hit with this error. Some computers are not hit with this error. Some computers are hit with this error. Now, here's how you 7:047
+minutes, 4 secondsfix this error if you have it on your computer. Go over here to the search bar on your computer and search for Windows PowerShell. So, just search PowerShell or
+search for terminal. Doesn't matter. 7:157 minutes, 15 secondsSo, search for this. And over here, I want you to write the following text. Get execution policy space line list.
+7:227 minutes, 22 secondsRight? I'm going to copy and paste this inside the description of this video. 7:257 minutes, 25 secondsSo, you can literally just copy and paste it in your
+PowerShell. And after you copy and paste this, I want you to type enter. Just like that. Right? And 7:327 minutes, 32 secondsnow over here, I want you to type the following text
+again. So, this over here, I'm going to also copy and paste 7:407 minutes, 40 secondsthis in my video description. So, I want you to copy and paste this in your terminal into your
+PowerShell and then hit enter. Now depending on your computer, sometimes it does nothing. 7:487 minutes, 48 secondsSometimes it asks you if you agree. And in order to agree and
+accept, all you have to do is type Y and press enter just like that. But for me, it's not 7:567 minutes, 56 secondsgoing to do anything because for some reason it's not asking me
+to accept or agree. So just type these things. Then you can close your PowerShell and your 8:038 minutes, 3 secondsterminal. And then I want you to restart the Visual Code Studio.
+So I'm just going to close Visual Studio Code and I'm going to open it again. Now in 8:118 minutes, 11 secondsVisual Code Studio, you want to open a new terminal. So again over
+here on the top left where it says terminal. Click on this and click new terminal. And 8:198 minutes, 19 secondsagain we want to type the same thing. So I'm going to type npx
+skills addion line dev/sklls. 8:298 minutes, 29 secondsSo I'm going to zoom in on the screen over here. I want you to type exactly the same thing. And once you type this I want you
+to hit enter on your keyboard. 8:378 minutes, 37 secondsAnd as you can see now we don't get an error. It's going to ask you need to install the following packages. skills 1.4.6.
+8:468 minutes, 46 secondsOkay, to proceed and basically in order to agree all you have to do is type Y on your keyboard over here and then press enter. And this is how you agree.
+Now, 8:548 minutes, 54 secondsas you can see down below in the terminal, it says 43 agents installing to cloud code. Now, it says installation scope. Here is where you have to
+choose 9:029 minutes, 2 secondsyour settings. So, basically on your keyboard over here, you want to use the arrows over here, up arrow and down arrow to select. So basically over
+here 9:109 minutes, 10 secondsif I use the down arrow on my keyboard I can go to global or I can go to project. 9:159 minutes, 15 secondsProject means you're only installing these
+remote skills for this project only. If you select global you're 9:229 minutes, 22 secondsinstalling remotion for the entire visual code platform basically and usually I would
+prefer global so we can always have this skill installed on our 9:319 minutes, 31 secondscloud code. So I'm going to select global as you can see on the screen and I'm going to hit
+enter. And then over here where it says installation method, you can choose to copy to all agents or 9:409 minutes, 40 secondsyou can choose sim link which is recommended and I
+also recommend you use sim link. So select sim link and click enter on your keyboard just like that. 9:489 minutes, 48 secondsAnd then it's going to ask you proceed with the
+installation. Obviously you don't want to type no, you want to type yes. So then just hit enter. And then 9:559 minutes, 55 secondsit's also going to ask you if you want to install
+the fine skills. Just hit enter, right? Just click yes. I mean and then it's going to install them as you can see. And it should be done pretty 10:0410 minutes, 4 secondsquickly.
+And by the way, congratulations because you just finished the hardest part of the tutorial. This was the hardest part, installing cloud code, 10:1210 minutes, 12 secondsinstalling
+all those applications, and basically installing Remotion using this code. That's it. The hardest part is done. So, if you've managed to install 10:2110 minutes, 21 secondsit,
+congratulations. You now have cloud code on your computer, and you also have Remotion on your cloud code. This is where the fun part starts because now we 10:2810 minutes, 28
+secondscan actually generate the visuals in the motion graphics I was talking about in the beginning. So, let me show you how to do it. So, for example, let's say I 10:3610
+minutes, 36 secondswant to generate a motion graphic of a chart rising up and next to it there's going to be a text that goes from zero to, I don't know, 78%. Right? To do 10:4310
+minutes, 43 secondsthat, we only have to write a simple prompt over here in the chat. Now, because I have my webcam, you can't really see the chat. So, I'm just going to drag the
+window over here. You can 10:5110 minutes, 51 secondssee my mouse. I'm going to drag it like this to increase the size of the window. 10:5510 minutes, 55 secondsSo, now you can
+literally see the chat over here. And basically over here in the chat, you want to type the following thing. Let's say use the remotion skill 11:0311 minutes, 3 secondsto generate
+a video where a chart rises 11:0911 minutes, 9 secondsup and next to it there is a number that goes from 0% to 78%. With a nice smooth 11:2011 minutes, 20 secondsanimation and glow
+effect, right? So this is a super simple prompt. So basically if you're creating YouTube videos or if you're creating social 11:2811 minutes, 28 secondsmedia content literally
+depending on your video you can just write a simple prompt like this and cloud code is going to generate a visual for your video 11:3611 minutes, 36 secondswhich you can use in
+your video. So after you write this just send this prompt to cloud code. If I remove my webcam over here for a second you will see that we have this arrow over here. 11:4611
+minutes, 46 secondsJust send this message to clot code and clot code is going to start creating the motion graphic. So let me bring back my 11:5411 minutes, 54 secondswebcam over
+here. And this usually can take around from 30 seconds to 1 minute to 2 minutes. Now clot code is always going to ask you if you allow him to use 12:0312 minutes, 3 secondsspecific
+commands because basically clot code now runs inside your computer. He can literally code for you. So you have to allow him to use a command. So over 12:1112 minutes, 11
+secondshere as you can see it says allow this bash command. Just click on yes. Just like that. And basically every time it's going to ask you to allow him to use a 12:2012 minutes,
+20 secondscommand. you want to allow him to use the command. So over here you can type yes allow command. You can also set the setting to always allow him. So you 12:2812 minutes,
+28 secondsdon't always have to click yes. Over here if you use your arrow keys on your mouse and you click one time below you can click yes allow npn install for this 12:3612
+minutes, 36 secondsproject. And now because cloud code has to do a different task. It's again going to ask you if you allow him to create the chart animation. So again if you don't
+want to press yes for every single 12:4512 minutes, 45 secondscommand just press yes allow all edits this session. Right? So for any type of animation, you don't always have to
+12:5212 minutes, 52 secondsallow permission. Now while cloud code is creating our animation, I want to explain how this actually works. So basically cloud code and reotion are not
+13:0013 minutescreating graphics in a similar way you would usually create with After Effects. 13:0513 minutes, 5 secondsIt's actually using code to create the graphics. It's using
+ReactGS. So it's basically how websites use code to 13:1213 minutes, 12 secondscreate smooth motion graphics. Instead of creating them for a website, we have Remotion which will
+turn them into a video. It's a very cool way to create 13:1913 minutes, 19 secondsmotion graphics. Now over here, as you can see, we again have to allow the next command. So again,
+I'm just going to allow any npx command over here. So 13:2813 minutes, 28 secondsallow all of them. And by the way, once you're done allowing all of them, the next time you don't
+have to allow them. 13:3413 minutes, 34 secondsThis is happening only because you're using cloud code for the first time. As you can see over here, even NodeJS, you're using it for
+the first time. So even here, you have to click allow. But 13:4213 minutes, 42 secondsonce you click allow right now on all of them, usually the next time you don't have to click
+allow. This is only happening because you're using it for the first time. Now, once Cloud Code is 13:5113 minutes, 51 secondsdone creating the animation, this is what you're going
+to see. There's no animation inside Cloud Code and you're going to be confused. You're going to be like, "Where's my animation?" Well, in 13:5913 minutes, 59 secondsorder to watch
+your animation and download it, you have to visit this website over here. So, we can see then visit this website. So, copy the link 14:0714 minutes, 7 secondsover here of this
+website. I'm going to zoom in on the screen so you can see exactly what I'm copying. Rightclick, copy. Go back to your browser and inside 14:1514 minutes, 15 secondsa new tab paste
+this website. And if you click enter, you will see this. This is the Remotion video editor. And if we hit 14:2314 minutes, 23 secondsplay over here, just like in a video editor, we
+can see the motion graphic we have created using clot code. So I'm going to hit play. And there we go. We 14:3214 minutes, 32 secondshave some charts that are going up. And it
+shows the text over here exactly how I've said 78%. Now obviously this has way too many charts in it. It also says 14:4114 minutes, 41 secondsperformance. This is because the
+prompt was super simple. You want to generate specific animations. You need to make a more detailed prompt. And I'm going to show you right now how you can do that. 14:5014
+minutes, 50 secondsSo, if I go back to YouTube over here and I show you this channel, as I've said, this channel has almost 300,000 subscribers. It posted 1,500 videos. And 14:5814
+minutes, 58 secondsI'm sure he's posting this this much videos with the help of AI. And if we click over here, we will see that it has more than 100 million views, which as I've
+said, it probably generated around 15:0715 minutes, 7 seconds$200,000 to $300,000. Now if we look at the videos we will see that he's making ranking videos. He ranks different
+15:1515 minutes, 15 secondsthings. We can see over here cartoons from different countries, most followed Instagram accounts from different countries. So basically we can write a
+prompt for cloud code which will 15:2315 minutes, 23 secondsgenerate us a graphic that will show for example the top 10 richest people in the world or the top 100. Basically I'm
+going to be using a prompt like this. 15:3215 minutes, 32 secondsIt's a much more complicated prompt as you can see. And if you want to create a prompt like this you can literally
+just use cloud. Ask Claude to create a prompt 15:4015 minutes, 40 secondsfor you based on what you want to generate. And once you write this prompt, you can just send this message
+to Claude. And again, the same thing will happen. Claude will start 15:4815 minutes, 48 secondsgenerating the motion graphics. It's going to ask you if you allow him to use the
+commands. You just type yes. And in one or two minutes, you're going to have 15:5615 minutes, 56 secondsthe motion graphic ready. So, let's just wait for Clot Code to generate our
+video. Now, by the way, if you want to learn more about AI and how to use AI 16:0416 minutes, 4 secondsand how to grow on YouTube and how to make money with YouTube and how to make
+money with AI, you might want to consider joining my private community. 16:0916 minutes, 9 secondsSo, down below in the description, there's going to be a link down to my website.
+So, this is how my website looks. So, go to this website, look at my website, learn a little bit about me, 16:1716 minutes, 17 secondslook at the testimonial. All right. Now, just
+like before, once the motion graphic is ready, it's going to look like this. And in order to open it, you just click on this link over here, or you copy and paste it to your
+browser. 16:2816 minutes, 28 secondsSo I'm just going to click on it and it's going to open the editor where we can actually see the motion graphic. So basically the prompt for
+this animation 16:3616 minutes, 36 secondstold Claude to create a chart that goes like this and it goes higher and higher and it showcases the richest people. So let's see what
+Clot Code created. 16:4716 minutes, 47 secondsThe richest people keep getting richer. 16:4916 minutes, 49 secondsSo we have the chart. Everything looks super clean. 16:5416
+minutes, 54 secondsAnd as you can see, we have the names of the richest people, their net worth, and the chart keeps going up. 17:0217 minutes, 2 secondsAnd then we have Elon Musk,
+which seems to be the richest person in the world with $700 billion. It also calculated 17:0917 minutes, 9 secondsthe combined wealth of the top 10, which is over 3 trillion. So
+this is how the graphic looks, which is absolutely insane. It's super clean. It's super 17:1817 minutes, 18 secondssmooth. It's super simple. And basically now what you can do, you
+can literally just render it over here. You click render. You choose the format, you choose the FPS, and you just render the 17:2717 minutes, 27 secondsvideo, and it's going to
+render the video on your computer. And then you can take it, put it in your video editing program and use it as a motion graphic 17:3417 minutes, 34 secondsfor your video. That is
+absolutely insane. Now, I tried to keep this as easy as possible for you to learn. And if you found it helpful, you might like 17:4217 minutes, 42 secondsthis video over here for
+me as well, because inside this video, I teach you how to use AI to create animations for a faceless YouTube channel that actually 17:4917 minutes, 49 secondslook as if an actual
+human created All From Danny WhyIntroducing Claude + vidIQ MCP 0:00 This is Claude AI and we've just 0:02 directly connected it to the YouTube 0:04 algorithm and your channel. With
+Vid 0:06 IQ's new plug-in, AI models like Claude 0:09 can audit your channel, search YouTube, 0:11 spot outliers, and reverse engineer 0:13 viral videos. That is the type of 0:15
+research that took hours, but now can be 0:18 done by any creator of any skill level 0:20 in a [music] matter of seconds. So, 0:22 let's take a look at what this can do 0:23 for
+you. I'm here with Eric, one of the 0:26 Vid IQ coaches. I think everybody's 0:27 really keen to see how this works. There 0:29 is though like just a tiny bit of setup 0:31 here is
+that we have to get Vid IQ and 0:34 Claude to communicate with each other. 0:36 So how do we do that? 0:36 All right. So in order to connect it, How to connect vidIQ to Claude 0:38
+there's two ways you can do it. There is 0:39 the link in the description uh or you 0:42 can go to vidiq.com/cloud. 0:44 That's going to bring you to this 0:46 landing page here
+and then you're going 0:47 to scroll down here and you're going to 0:49 copy the server URL. So once you do 0:51 that, all you have to do is go over to 0:53 your claude and you
+will go to your 0:56 settings and then go to connectors and 1:00 you're going to go to add custom 1:01 connectors and then let's just type vid 1:04 IQ and then you're going to
+paste 1:08 and then you're going to go to add. All Prompt 1: Channel Audit 1:11 right, Eric, let's try something that's 1:12 probably very familiar to a lot of 1:14 people when
+talking to AI and that is 1:15 asking for a channel audit. But what I'm 1:17 interested in is how the Claude and Vid 1:20 IQ MCP bring something new and fresh to 1:23 this type of
+conversation. 1:24 All right. So, first we're going to 1:25 paste this prompt inside of CHBT. Now, 1:28 CHBT is is is awesome, but it's not 1:30 currently connected to our YouTube
+data. 1:32 So, it gives us some good advice, but 1:34 it's just general YouTube advice that 1:38 would be good for any channel maybe 1:40 outsides because it's only looking at 1:42
+our public facing data. This is what 1:44 happens when you connect claw to Vid IQ 1:46 and you do you run that prompt for 1:48 channel audit. This is not just generic 1:51 YouTube
+advice. This is detailed data 1:53 based on what is actually happening in 1:56 our channel. And I actually think that 1:57 it provided some great insight. When we 1:59 go down what
+what Cloud begins to do is 2:04 it lets us know where we're leaving 2:06 views on the table. So I guess in 2:08 summary it's observation of channel uh a 2:10 reason why this might
+be happening and 2:12 then actual actionable steps here over 2:14 the next 30 days. 2:15 Yeah, I first of all shout out to you 2:17 the one of the uh the shadowban video 2:20 seems

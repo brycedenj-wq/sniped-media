@@ -1,0 +1,224 @@
+everything to enable MCP through 4:14 Unreal Engine. Let's test the full MCP Automates Building 4:16 pipeline. I'm going to just try create 4:18 five different color cubes stacked
+on 4:20 top of each other. And there it is. The 4:22 server received the tool call, use the 4:24 physics actor spawn function, and sent 4:26 them to Unreal. Let's try something a
+4:27 little more complex, though. I'll try 4:29 build a mansion complex with an east and 4:30 a west wing with towers and an arch in 4:33 the front. And look at that. The AI is
+4:35 able to understand that this needs 4:36 multiple tool calls. It calls construct 4:39 house, create tower, create arch, and 4:41 our server executes them all in 4:43 sequence.
+Next, let's say I want to 4:44 spawn in a maze for my game. This uses 4:46 the create maze tool with a recursive 4:49 backtracking algorithm. Notice how it 4:51 marks the entrance
+and the exit. But let 4:54 me show you what really makes this MCP 4:56 server unique. It's able to build out 4:58 dynamic structures based on your input. 5:00 Some of my favorites
+are asking it to 5:01 build a full metropolis city. And in 5:04 this example, you can see after the city 5:06 was built, I asked it to build a 5:07 residential area nearby. And you
+can see 5:10 how much room in the map this is able to 5:12 cover from just two function calls. It's 5:14 able to build full fortresses ready to 5:16 be spawned into your games. And
+we are 5:18 actively working on improving the 5:20 physics logic. So you'll be able to 5:22 spawn in actors that can bounce super 5:24 high or act in a certain way for your 5:26
+game. I try to parameize as many 5:29 variables as possible. So this way the 5:32 user can create multiple types of 5:33 structures from the same MCP tool. Here 5:36 are some pro
+tips I've learned for 5:38 prompting. You have to be specific. 5:40 Instead of saying make a building, say 5:42 create a three-story office building. 5:45 You should also use
+coordinates at this 5:47 moment when you want to build something. 5:49 So, for example, you would say, "Build a 5:51 tower at location 1,000 0. It prevents 5:54 overlapping of
+other objects." Save your 5:57 commands. Keep a document of commands 5:58 that work well. And for debugging, if 6:00 something fails, check both the Python 6:02 terminal and
+Unreal's output log. We 6:05 have a long-term goal to build this out 6:06 to cover all Unreal Engine capabilities 6:09 and support all of them through the use 6:10 of natural
+language and AI. I promise 6:12 you, if you like Unreal Engine, you'll 6:14 want to follow along on this as we are 6:16 going to start making some big updates 6:18 soon. And that's
+the Unreal Engine MCP Outro + Updates 6:20 plugin. You've just unlocked the ability 6:22 to build entire worlds with natural 6:24 language. Remember though that this is 6:26
+experimental software that we're 6:28 actively developing. Join our Discord to 6:30 report bugs, share your creations, and 6:33 get updates as we work towards 6:34 production
+readiness. If you found this 6:36 helpful, please like and subscribe. I'll 6:38 be making a lot more videos in the 6:40 future on the MCP and the progress we 6:42 make towards it.
+Drop a comment with 6:43 what you'd like to see built with this 6:45 system. The code is open source and 6:47 constantly being updated, so join our 6:48 Discord to stay current.
+And thanks to 6:50 our higher tier Patreon, Morgan Heidman. 6:52 Thanks for watching and happy building. 6:58 [Music] Intro 0:00 Today I'm going to show you how you can 0:01
+connect Claude to an Unreal Engine MCP. 0:04 And so if you've never opened up Unreal 0:06 Engine or you're a pro in Unreal Engine, 0:08 this applies to everybody. It helps 0:10
+speed up your workflow and you can 0:11 actually ask questions about the 0:13 software on what you're building. So 0:15 jumping straight into the tutorial. I What you need before
+starting 0:16 don't want to waste any of your guys' 0:18 time. The first part of this process is 0:20 actually going into the description and 0:21 downloading the project folder.
+You'll 0:23 find a zip folder. Download that. And 0:25 once you've downloaded that, open that 0:26 up in your IDE. So, VS Code, 0:29 anti-gravity, cursor, whatever you 0:31 prefer
+to use. And then make sure you 0:33 have the cloud code extension downloaded 0:35 into your IDE. Now, if you have no idea 0:36 what I'm talking about, you have no idea 0:38 what an
+IDE is. An IDE is just 0:39 essentially a place where you can store 0:40 all your files, load in extensions. This 0:43 is just where I talk to Claude Code to 0:44 actually build
+out the MCP, connect it 0:46 to all your tools. But if you do prefer 0:48 using just the Claude desktop app, 0:50 that's totally fine. You just find the 0:52 code tab right up
+here, and then you 0:54 open your project right here. And then 0:56 it's essentially an IDE but just on the 0:58 Cloud Desktop app. If you're still 0:59 confused, I have a ton of
+videos all 1:00 over my page and there's a ton of other 1:02 videos on YouTube walking you through 1:03 how to set up an IDE, what to download, 1:06 how to install Cloud Code into
+your 1:08 terminal or how to install it as an 1:10 extension on your IDE. I'm not walking 1:12 through any of that in this tutorial. 1:13 This is strictly just setting up the 1:15
+Unreal Engine MCP. So when you do load Inside the .claude folder (skills and commands) 1:17 in the project that you've downloaded in 1:20 the description folder and you open it
+1:21 up in your IDE, you will see a cloud 1:24 file. And in the statcloud file, there 1:26 are going to be two folders, a commands 1:27 file and a skills file. Focusing firstly
+1:29 in the skills file, we have the build 1:31 folder and then the Unreal Engine MCP 1:34 setup folder. These are both just 1:36 skills. And if we go into the Unreal 1:38 Engine
+MCP setup, there's a few errors 1:40 right now, but that's because I'm 1:41 running at a current session, which I'm 1:43 going to go over with you guys quickly 1:44 here. I just
+don't want to delete any of 1:45 this text because I'm going to walk you 1:47 through how the MCP is set up with 1:49 Unreal Engine using Claude's chat. 1:52 Anyway, in the Unreal
+MCP setup, this 1:54 walks you through how to set up the MCP 1:56 via Claude Code. I'm not going to bore 1:58 you guys with actually downloading all 1:59 the certain things that
+you need to set 2:00 up this MCP with Claude Code. This is 2:03 what this skill is for. I built this on 2:04 purpose to save you time so you're not 2:06 spending hours watching a
+video. I me 2:08 downloading stuff, showing you what you 2:09 need to download to set up the MCP. This 2:11 skill does this all for you. So, whether 2:13 you're on Windows or
+you're on Mac, 2:14 you're going to run the skill file, 2:15 which I'll show you how to do in a 2:17 second here, and it's going to walk you 2:18 through a bunch of questions. This
+is a 2:20 huge skill file. So firstly, the Unreal The 7 gates of the MCP setup skill 2:22 Engine MCP setup, the operating 2:24 principles, the prerequisites check, and 2:26 then
+it's going to open up a bunch of 2:27 gates. There's seven gates in this 2:29 skill. So the first gate is the Epic 2:30 Games Launcher and Unreal Engine 5.5 2:33 plus versions. The
+second gate is C++ 2:36 Build tools. If it's on Mac, it'll 2:38 prompt you on Mac. If it's on Windows, 2:39 it'll prompt you on Windows. So again, 2:41 it's user specific. The
+third gate is 2:43 Python 3.12 plus and UV. The fourth gate 2:46 is clone the repo and set the Python 2:48 server. So we're going to be using a 2:49 repo off of GitHub. We're going
+to clone 2:50 it and that's how we're going to connect 2:52 to Unreal Engine. And then the fifth 2:54 gate is building the Unreal MCP plugin, 2:56 which you'll see I have this
+Unreal MCP 2:58 right here. You're not going to have 2:59 that in your folder. It's going to build 3:00 that for you in real time. And then the 3:02 sixth gate is the wire MCP
+server into 3:04 Claude Code. The seventh gate is the 3:06 live connection test and some 3:07 troubleshooting stuff for Claude. When 3:09 setup completes for Claude and then 3:11
+notes for Claude running this skill. So 3:13 again, ignore this box right here. This 3:15 is just an old chat that I'm going to 3:17 walk through to show you like what 3:18 Claude
+prompted me. had me download to 3:20 set up this MCP. But this is just like 3:22 any normal skill. You would just type in 3:24 slash and then you'd run the Unreal 3:27 Enginemc
+right here. When you see that Running the setup in real time 3:29 pop up, you click that and it'll start 3:31 building out this process. I am not 3:32 going to run that because
+I've already 3:34 ran this MCP, built it up. It's a really 3:36 long process. So again, this is saving 3:38 you time on watching a video that's 4 3:40 hours long. You can do this
+process on 3:42 your own. Pause this video, set it up, 3:44 and then you can start prompting to 3:46 create an Unreal Engine. But I just want 3:47 to walk you through what this
+skill is 3:49 asking me. So I ran the / Unreal Engine 3:51 MCP setup and the command fired and it 3:53 walked through all of this stuff. And so 3:55 the MCP skill started creating
+these 3:57 gates, gates 1 through 7. And just like 3:59 we went over in that description, that 4:01 MD file, we have the Epic Games 4:03 Launcher, we have the C++ build tools, 4:05
+we have the Python Python 3.12 plus and 4:07 UV download, clone Unreal MCP, and run 4:09 UV plus sync plus smoke test. Because 4:11 I'm a Mac, it made me download Xcode so 4:13 I
+could run Unreal on Mac OS. As you can 4:15 see, it cloned the repo. It download 4:17 Python, UV, Xcode, and it's tracking the 4:20 status as you're building it out in real 4:22
+time. It'll wait for you. You just give 4:23 it updates. So, if you need to download 4:25 Xcode, it'll say download Xcode. Go to 4:27 the app store, downloaded it, and then 4:29
+it'll update. Okay, you download that. 4:30 Let's move on to the next step. Props me 4:32 to download the Epics game launcher. 4:33 This is just where we run Unreal Engine. 4:35
+Well, we got that done. While that was 4:37 downloading, it was pretty hefty. And I 4:38 do recommend that you have a lot of 4:40 storage on your computer. If you don't 4:41 have
+Unreal Engine or Xcode or Epic 4:44 Games Launcher, it eats up a bunch of 4:46 storage. But while Epic Games Launcher 4:47 in Unreal Engine was downloading, it 4:49 downloaded C++
+Build Tools and Python 4:51 and UV for me. It noticed that we hit a 4:53 blocker because this MCP runs off of the 4:56 Unreal Engine 5.5 and the most recent 4:59 version is 5.7.
+So, it pulled all the 5:01 information that it needed from the 5.5 5:03 and then added on top for the 5.7 5:06 version. All living under this Unreal 5:07 MCP. This will build out
+in real time as 5:09 you're answering questions, as you're 5:10 downloading stuff. And it's really funny 5:12 because I focus a lot of my content on 5:14 Blender. And Blender is so
+easy to set 5:15 up with the MCP server. This is a lot 5:17 more technical. This is a lot more 5:19 technical for a beginner in the 3D 5:21 space. So, as everything is downloading,
+5:23 it just told me to go grab a coffee. And 5:24 then finally, we got 5.7 installed. 5:26 First gate is done. So, we have the 5:28 first four gates ready to go. And it Building
+the Unreal MCP plugin 5:30 moved to gate 5, which was building the 5:31 Unreal MCP plugin. Open MCP game 5:34 project. So, it opened a project for me 5:36 in this folder, my Unreal
+MCP folder 5:38 right here, my MCP game project to keep 5:40 myself organized. And so, here is the 5:42 actual file right here. And if I were to 5:44 go into this project on my
+finder, my 5:46 file explorer, you could click that and 5:47 it will open the Unreal project for you. 5:49 Then, it's prompting me to download 5:51 Xcode because I didn't have that
+5:52 downloaded in the first place. Again, 5:54 make sure you have a lot of storage on 5:55 your computer. And then, we finished 5:56 gate five, which moved us to gate six, 5:59
+which is wiring the MCP server into Claw 6:01 Code. And then it prompted me to keep 6:03 the Unreal editor open, quit this Claude 6:05 code session, and refresh, start a fresh 6:07
+Cloud Code session, and then open the 6:09 new session's first startup. And so, 6:10 it's just essentially just restarting 6:12 the entire session to verify that we are 6:14
+connected to the Unreal Engine MCP. So, 6:16 this is a quick overview of how this 6:18 Unreal Engine MCP setup works. It's Wiring MCP into Claude Code 6:20 purposely there to help
+guide you 6:23 through the entire process. Think of 6:24 this as a tutor that's sitting right 6:26 next to you, helping you build, 6:28 download, and execute all the things 6:29
+that you need to set up this Unreal 6:31 Engine. MCP because it is a lot more 6:33 technical. It's not like Blender where 6:34 it's super easy to connect, but now you 6:36 have
+this tutor in the background 6:38 helping you, walking you through. And 6:39 just to remind you how you run that, if 6:41 you're not familiar with skills, this is 6:43 like your
+first time opening up Claude 6:44 Code and Unreal Engine. You would type 6:46 in slash and then you type in the actual 6:48 skill name. So, Unreal Engine-mup. 6:56 I have two, but
+this is the one that 6:58 you're going to want to focus on. Once 7:00 you click that, it'll start running you 7:01 through the process. And that's the cool 7:02 thing about claw.
+You can essentially 7:03 automate processes that take super long. Starting a fresh session and verifying the connection 7:05 Okay. So to get to gate 7, which is 7:08 actually start
+prompting inside of 7:09 Unreal Engine, we need to keep the 7:11 Unreal editor open. We need to quit this 7:14 cloud code window. We need to open a new 7:16 cloud code session in
+the same project 7:18 directory. And we can do that from the 7:19 terminal. So running this command or 7:21 whatever command it gives you or just 7:22 relaunch the cloud code and
+make sure it 7:24 opens this project. And then we need to 7:26 approve the new MCP server when 7:27 prompted. and we need to verify the 7:29 connection with the /mcp command. Okay,
+7:31 so I've just opened up a new code 7:33 session. Literally just click the code 7:36 extension up here and it opens up a new 7:38 chat. But now we're going to check if 7:39
+we're connected to Unreal. We just do 7:41 /mcp. Click on MCP servers. And you can 7:44 see right here, Unreal MCP, we are 7:46 connected. So I'm just going to ask list 7:48 all
+the actors in the current level. And 7:49 as you can see, I already have Unreal 7:51 opened up. Just like I was saying, you'd 7:53 have Unreal open. You're following 7:55 Claude
+throughout the entire Unreal 7:57 Engine MCP Claude code setup. And so 7:59 here's a summary of what we get. We have 8:01 world, system actors, lighting and 8:02 atmosphere,
+gameplay, landscape, and 8:05 hlods, which please correct me if I'm 8:07 butchering this. I am not very familiar 8:08 with Unreal Engine. This is kind of like 8:10 my test to see
+if this actually works 8:12 using AI inside of Unreal. But that's 8:14 great. We have the scene setup. Claude 8:16 understands what is in the scene. It's 8:18 reading the data that
+is inside of 8:19 Unreal this project right now. So, this 8:22 brings us to the second part of the 8:23 video, which is the actual build skill. The build skill: best-practice
+prompting 8:25 So, if we type in /build, which you can 8:27 see right up here is the build skill, 8:29 it'll prompt us and say Unreal MCP is 8:32 connected. I just ping the editor
+and 8:34 got back 145 actors. What do you want to 8:36 build in Unreal? Here are a few 8:38 examples. And so, instead of prompting 8:39 just blindly, hey, create a stone head 8:42
+circle of 12 tall stones with the sunset 8:44 lighting in your prompt box right here, 8:46 the skill is utilized to help build in 8:48 Unreal based on the best practices. So, 8:51
+for example, step one, pre-flight. Step 8:54 two, ask what to build. Step three, plan 8:57 before executing. Plan mode is huge 8:58 inside of Claude Code. If you've ever 9:00 used
+it, it's it's amazing. Step four is 9:02 execute via MCP tools. And it gives it a 9:04 bunch of description to actually build 9:06 with the MCP tools. Step five is verify 9:08 and
+offer iteration. I've got some stuff 9:10 for failure handling and notes. And so, 9:11 instead of just prompting blindly, you 9:13 can mitigate the risk of stuff failing. 9:15 And
+if stuff does fail, you can then 9:17 update it inside the build skill being 9:19 like, "Hey, this didn't work. Can you 9:21 update this in the build skill so you 9:23 don't do
+this again?" The more you build 9:24 on the skill, the better it gets. And 9:26 this is honestly the first time I'm 9:27 testing this. So, I want to see what we Building Stonehenge
+with sunset lighting 9:29 can do if we build a stone hedge circle 9:31 of 12 tall stones with sunset lighting. 9:33 I'm going to give it that description. 9:34 I'm going to shoot
+it off and I'm going 9:35 to let this build in Unreal Engine. So, 9:37 it gave us a plan, which it used plan 9:39 mode to spawn this environment. And so 9:42 the build plan is the
+stone hedge circle 9:44 geometry 12 stones using basic shapes 9:47 which are cubes arranged in a circle 9:49 gives us some radius stuff each stone is 9:51 scaled name each stone
+place Z 300 so 9:54 the base sits on the ground the sunset 9:56 lighting it gives us some rotation a 9:57 little note for itself and then finally 9:59 to verify it then gives us
+some notes 10:01 and limitations when building in Unreal 10:03 before it starts actually building and 10:05 executing so stones will be great cubes 10:07 no stone material the
+plugin doesn't 10:08 author materials that's okay we can 10:10 apply those later existing ing landscape 10:12 and sky rig stay as is. I'm not touching 10:14 the fog or clouds
+unless you want. I'm 10:16 just going to say that works for me. I 10:18 just want to see this actually build. I 10:19 want to see if it can actually build 10:21 inside of IRL
+engine. So, I'm going to 10:22 say that works. Let's start building. 10:24 Okay, so I just shut that off. That 10:25 works. Let's start building. We're going 10:27 to go back into
+Unreal and see this Claude self-heals through a bug 10:28 build out. Okay, so the cool thing in 10:31 Unreal right now, the actors or the 10:33 stones are invisible. And Claude
+noticed 10:36 that as a bug. And this is the cool 10:37 thing about Claude is it is essentially 10:39 like selfhealing. So, if it notices a 10:41 bug, it'll fix it inside of the
+skill. 10:44 So, right now, it's saying, "Are you 10:45 ready to run the blueprint fix? Create 10:47 the BP stone, delete 12 empty stones, 10:49 and spawn 12 new ones." Because
+right 10:51 now, we have all of these stones that 10:52 are sitting here, 1 through 12, but we 10:54 can't see any of them. They're all 10:55 invisible. And that's just because
+10:57 there's a bug inside of the MCP. So, 11:00 it's just saying to say go, and it will 11:01 execute. So, I said go and we're going 11:03 to see what this does. So, it created a
+11:04 to-do list for itself. So create the BP 11:06 stone blueprint, add static mesh 11:08 component, compile BP stone, delete the 11:10 12 empty stones, spawn 12 new ones, and
+11:13 then scale the stones. Okay. And boom, 11:15 we have our five stones in our 11:17 environment here. It added some nice 11:19 little lighting. And obviously, this is 11:20
+just default Unreal Engine starting 11:22 page. But this does confirm that it 11:24 works. Funny thing though is Claude made 11:27 me add in a cube and then it sized it Final
+result and what went wrong 11:30 and then it made me duplicate it 12 11:31 times to create the circle. So it kind 11:33 of like half worked. So I wouldn't call 11:35 that like a
+successful run of claw. This 11:38 is a pretty simple thing and if we were 11:39 doing this in Blender it would have been 11:41 seconds. It would have built it. But 11:42 maybe
+this is Unreal Engine. Uh and 11:44 maybe just because the GitHub repo that 11:47 we pulled from is an older version. But 11:49 that's the most recent one I could find. 11:50 But
+we can confirm if we move around, we 11:52 can see that there are 12 stones that 11:54 are lined up. There's a nice little 11:55 sunset in the background here. But going 11:57 back
+into cloud code, it's saying next 11:59 tweaks you might want to add is make the 12:00 stones taller or a bigger circle or add 12:03 five capstones on top. and we can 12:04 iterate
+from there. And so, like I was 12:06 saying, this definitely needs some work. 12:08 It's not perfect. And the purpose of Iterating on the build skill 12:10 this tutorial is not to
+show you like 12:12 how to create this insanely detailed 12:14 scene. It's to show you that we can now 12:16 connect Claude via MCP and build with AI 12:20 maybe in a lower quality
+rate. You know, 12:22 it's not perfect. Obviously, this is not 12:23 like amazing. It's weird that it made me 12:25 duplicate all the 12 stones, which 12:27 should not be hard at
+all. This might 12:28 just be the MCP server that set this up. 12:31 But you can build and iterate on top of 12:33 this MCP now. So we pulled the framework 12:36 from GitHub. Now
+you can add all these 12:38 features on top. So if you wanted to 12:40 duplicate, you can create a feature in 12:41 that skill saying okay yeah I want to 12:44 duplicate. Teach
+cloud how to do it. 12:45 Iterate a bunch of times and you can 12:47 continuously build on top of this build 12:49 skill to build an Unreal Engine. So if 12:51 you like AI content
+like this, feel free Wrap up and what's next 12:53 to drop some suggestions in the comments 12:54 below. This could be 3D work, Blender, 12:56 Unreal Engine, or even motion
+graphics 12:58 like After Effects, MCP, which I've done 13:00 a bunch of videos on before. Feel free 13:01 to drop some suggestions in the comments 13:03 what you guys want to see
+next. And as 13:04 always, subscribe, hit that like button. 13:06 It means the world to me. And I will see 13:08 you guys in the next 0:07 It’s time for your comeback! Purdue
+Global has over 175 programs built for working adults. PurduIntro 0:00 All right guys, so this is actually just a quick intermediary update. 0:04 For those of you who do not know,
+I actually released an MCP server 0:09 for Unreal Engine just last week. 0:12 I was actually pleasantly surprised to see that there was quite a lot 0:15 of interest in what was
+doing. 0:17 So what I decided to do is to record a very quick video showing some of 0:22 the capabilities of what it can do my plan was to actually record a 0:26 much longer video
+going from what we see here, which is a blank project, 0:31 and then getting a full game. 0:32 Just using text prompts. 0:34 But I still need a bit of time to get to that stage,
+and I didn't want to 0:37 go too long without having an update. 0:39 So I decided to record this video. 0:40 There'll probably be bugs and I'm still fixing things on the fly, but
+0:43 hopefully this provides a little bit of a lens into the process. Spawn a blueprint cube 0:46 So just to show you here on the left hand side you can see that 0:49 there's a
+bunch of tools that are exposed into the Unreal MCP server. 0:53 Alright so let's try this, right? 0:54 So we say create a blueprint for a cube, and then add it to the, world. 1:03
+Alright. 1:04 So what is this gonna do? 1:05 Is that it's gonna determine what kind of tools to call from the left and then 1:08 translate it to within unreal Engine. 1:10 So it
+says it's gonna create something called BP Cube. 1:12 And if you go to the content browser here. 1:14 You can see it actually has created BPQ. 1:17 But because it's a blueprint it
+actually, if I open this up right 1:20 now, that it doesn't actually have any visualization, right? 1:23 It's just an empty blueprint. 1:25 And what it's gonna do now as you can
+see here is I'm going to add 1:28 a component called a static mesh component and call it a cube mesh. 1:31 'cause it's, that's what is needed to actually make it look like a cube.
+1:35 Like I said, if you're familiar with Unreal, this will. 1:37 Be quite familiar to you. 1:39 If you're not familiar with Unreal, this is actually a good way to learn 1:41 how
+Unreal actually thinks about things. 1:43 So it's actually added, and you can see now your blueprint has mesh, and 1:46 then it set the mesh to a static cube. 1:50 and now it's
+actually going to compile it. 1:53 So as you can see here there's this top left hand corner here is the compile, 1:56 and it can actually compile it for you. 1:59 And if it
+compiles with no errors like it says here successful, it's 2:02 going to spawn it within the wall. 2:03 So I'm gonna run it now and you can see it's gonna spawn the blueprint
+actor. 2:07 And usually I will have to take a look at this and it spawn it and it says 2:15 it spawned and you can take a look. 2:17 Here it is. 2:18 It is, yeah, BP Cube one. 2:20
+So it's managed to do that. Create and spawn multiple blueprints 2:21 Alright. 2:22 So what we're gonna try to do now is something slightly different. 2:24 So I'm gonna say let's
+make The letters A and i next to each other using cubes, use 2:34 quite a few cubes so that it is legible. 2:39 First show me how you would do it in ASCII. 2:44 Then if it looks
+good, we'll put it in game. 2:48 So let's see what he comes up with here. 2:51 And okay, so it's gonna do it something like this. 2:54 Okay, so about seven units tall, made
+diagonal, height and horizontal bars. 2:59 A letter i simple white column. 3:01 Same high. 3:01 Perfect. 3:02 Alright, so you want to do it this way? 3:04 Okay. 3:05 So how many
+cubes you need? 3:08 this is just to give it a little bit more idea of the spatial requirements. 3:12 So it says top row of A is three cubes. 3:15 And then it's gonna do a second
+row. 3:16 Perfect. 3:17 Please keep in mind unreal in terms of coordinate system 3:24 and units so that the cubes. 3:28 And eventual letters are properly spaced out. 3:32 Alright
+and like I said, you can do a lot more things with this MCP server. 3:36 you can add input and controls. 3:37 I actually did a quick flappy but clone in my original video, and I'm
+3:41 planning to build a full tutorial series of How you can use the 3:43 MCP server to build a full game. 3:45 And I'm still working on that. 3:47 I still have a couple more tools
+to make, but I just wanna do this one just so you 3:50 can see how this whole thing works Okay, so he's using this coordinated system. 3:54 I say, let's begin spawning the actors.
+3:58 And I am going to say I'm actually gonna delete this cube for now. 4:03 'cause you might want to use a smaller cube. 4:05 Okay, let's begin by creating a blueprint cube of
+decent size, and then we 4:12 shall spawn multiple instances of it. 4:15 All right let's it's quite verbal and I'm spending a lot of time like 4:18 making sure that it has enough
+context, but I think you can actually get. 4:21 Quite far by just letting it do its same. 4:23 Alright, so first thing it's gonna do is gonna do create blueprint. 4:26 Let the
+cube, okay, so we go, it's gonna create there, and then it's 4:30 gonna add a static mass component. 4:31 So it's gonna actually give it a cube look. 4:34 And you will see over
+here it will change this, you'll change 4:38 to a to a cube quite shortly. 4:40 There you go. 4:41 It's changed to a cube now, and then it's gonna compile it so that we can
+actually 4:44 start spawning it within the wall. 4:45 And let's let's make sure, let's let's take a look. 4:47 Let's see if it's gonna be able to create the the letters for me.
+4:51 Okay. 4:51 So it's gonna do Spawn Blueprint, and I can see it's starting to spawn, right? 4:54 There's one that, oh, there we go. 4:56 And then it's gonna do it's gonna focus
+the view part my focus view part. 5:01 Okay, there you go. 5:01 So you can see it automatically focused the viewpoint to make 5:04 sure that it looks great. 5:05 So that's good,
+but I actually don't really care about that. 5:07 It looks good to me. 5:10 Let's build the rest of the letter A. All right. 5:15 So let's see. 5:16 how he can go around. 5:17 So
+it's gonna do bottom and work up using our coordinate system. 5:21 So it says left y is left right, and Y is up, down and cool. 5:26 And he actually deleted the the act that I had
+over there. 5:29 Because he needs to actually think about how to do this. 5:31 Okay, cool. 5:32 So it's gonna do the first one. 5:33 It's actually created a little script for
+itself to know how to do the letter. 5:36 And there we go. 5:37 Okay. 5:37 So that's the first part. 5:39 I actually can turn on YOLO mode, where you'll just automatically just
+5:42 run these in sequence without me having to click yes all the time. 5:46 And that's actually hide the landscape for a while so we can actually see 5:49 how this is actually
+being created. 5:50 So you remember our Ask E Art kind of looks, can I get to the top kind 5:56 of lost context, but it's fine. 5:58 Let's just keep pressing run tool and let go.
+6:02 All right. 6:03 You can see, oh, there we go. 6:04 Yep. 6:05 And it's gonna do, yep. 6:07 So he is gonna do nine cubes. 6:09 Cool. 6:10 And we go. 6:11 Okay, so he's doing the
+cross bar and little bar nine cubes, it says. 6:18 And sometimes because of the rate that it spawns the cubes 6:21 sometimes he forget, right? 6:24 So that doesn't look very much
+like letter A does it? 6:27 Let's see. 6:27 Maybe you end up looking like a letter A. Who knows? 6:31 AI knows better than I do. 6:32 Okay. 6:33 I can see LA showing up now. 6:35
+Cool. 6:35 I guess this bar cross probably could have just used one cube for 6:39 the bar, but, okay, that's fine. 6:40 I'm not an artist. 6:41 I'm sure AI knows art better than I
+do. 6:43 And this is just done very scrappily. 6:45 So we have a letter A here. 6:47 Yep. 6:47 Okay, so now it's gonna do the top row. 6:49 There's still one more row I guess. 6:50
+It really wants to have a very high fidelity. 6:52 There you go. 6:52 Perfect. 6:53 All right. 6:55 Nice. 6:55 Cool. 6:56 so it's done a All right, so he's gonna focus the view
+pod. 6:59 Let's see if he can actually do that. 7:01 Sometimes it gets a bit buggy with how it focuses. 7:03 Okay. 7:04 Yeah, that's pretty good, right? 7:05 It actually
+automatically focus the view part for the letter A. Modify actors in scene 7:08 So let's do letter. 7:10 I, but instead of multiple cubes, just use one and scale it, just showing
+7:16 you a different way of doing this. 7:17 So 7:17 It says a straight column. 7:18 We can just use a single cube and match the height. 7:20 So he's gonna spawn one of the cubes
+here. 7:22 Okay, there you go. 7:23 So he is going to do it here and stretch it. 7:25 same center. 7:25 It's gonna scale. 7:27 Okay, good. 7:28 I think it didn't realize that it
+needed to scale it. 7:30 All right, so that's a bug there, which I need to fix. 7:33 It's gonna try to focus a view part once again. 7:35 There you go. 7:35 Okay, cool. 7:36 The
+letter IQ is not scaled. 7:41 Please scale it now. 7:42 All right, so let's see if that works. 7:44 I've been changing and refactoring a little bit of Debugging 7:45 How you change
+properties of blueprints. 7:47 It says invalid type of parameter, scale in set, act, transform. 7:51 So that's spawning a new, it's gonna try to delete it and create 7:54 a new one
+with the right scale. 7:56 So there's definitely a bug here in how the scale was actually sent. 8:00 In fact, I'm actually pretty sure that there must be a way to so I'm going 8:04
+to do a live debugging session here. 8:06 Invalid parameter for scale in two sectors, transform. 8:09 Cool. 8:09 Yeah. 8:10 Okay. 8:10 So where can we go? 8:12 I would say it is
+probably in Editor tool. 8:16 So in editor tools that's set at Transform and yeah so it's actually here, right? 8:22 It's a list of in type scale. 8:25 So I suspect that this is
+the annoying thing with Cursor at the moment And 8:31 Python MCP services that you can't actually do stuff like this, right? 8:35 You could just have to say you actually, the
+easiest way to do 8:38 it is actually to just do this. 8:42 And I think this will work. 8:43 So I'm gonna reset the, I'm gonna actually just get the MCP server to refresh. 8:48 And
+let's try stepping the scale again using SetActorTransform 8:55 alright let's take a look and see if that works. 8:57 'cause I think that's probably the reason why Yeah. 8:59 It's
+a bit annoying and I can't wait for them to fix it because without 9:02 the type hints this technically doesn't make sense, right? 9:04 It should be list float. 9:05 And if you
+don't supply it, it should be an empty. 9:07 It does make sense. 9:08 It's just that it's not good practice. 9:09 And losing the type hints isn't great. End Result 9:11 So let's
+try it this time. 9:12 All right, so he's gonna set it all right. 9:14 Success. 9:15 Okay, cool. 9:15 And there you go. 9:16 Right there you have it. 9:17 you actually set the
+transform to to what it should have been. 9:21 So discover the bug fix the bug. 9:23 All live in front. 9:24 So anyway, this is just a quick overview of how the MCP server works.
+9:27 Like I said, there's a lot more stuff you can do. 9:29 And check out the post that I made on Twitter. 9:32 If you wanna see it creating a Flappy Bird clone. 9:35 And what I'm
+gonna do is, like I said, this video is more of a stopgap, trying 9:38 to give an update on where we are. 9:39 There's gonna be a new update that has a lot more tools and fixes a
+lot of bugs. 9:43 Including this one. 9:44 and I'll be doing a full video on how you can build an entire game using 9:48 pretty much just prompts in cursor. 9:49 I'll probably do
+it for Claude Desktop as well. 9:51 But hopefully it'll be useful and exciting and so you stay tuned for a lot more. 9:55 Alright, see ya. All From Chong-U — AI Oriented Dev0:02
+All right. So, what we're looking at 0:04 here is 0:06 uh Unreal uh 5.5. 0:12 Uh we've got a simple world 0:17 and we have uh this 0:21 uh camera capture actor. 0:25 But we also
+have a 0:29 um 0:33 MCP 0:35 server. 0:38 And what that means is is that if we 0:42 have something like claude 0:45 and we can connect to an MPC server, 0:52 then we can control
+the environment. 0:56 But with the camera capture 1:00 um you know class that I built about a 1:03 year ago 1:06 with AI 1:08 now it's part of this system. 1:13 So we've got Unreal
+running. We've got a 1:17 uh camera capture actor. We're gonna run 1:21 it 1:24 and then we're gonna come to 1:27 Claude 1:30 and uh we can see Claude says, "Oh, 1:33 well, I can
+see this uh Unreal MCP 1:36 server." 1:41 And then I could say, uh, 1:44 can you take a picture 1:50 of the scene 1:54 and what it's going to do is it's going 1:56 to go out there
+and it's going to talk 1:58 to the MC MCP server 2:03 and it's going to talk to the 2:06 U 2:07 camera, 2:12 you know, and it's this image. Let me 2:14 show you what it looks like.
+Here's the 2:16 scene. A desert landscape with a tiled 2:20 floor, mountainous terrain, 2:23 and a rainbow rainbow colored u 2:29 cube in the center. 2:34 So, we're talking to
+Claude 2:39 and Claude knows to reach out to the 2:44 Unreal M MCP server 2:49 and tell 2:52 the camera capture object 2:55 to take a picture. 3:00 All right. So, we do escape. we
+stop. 3:07 So, let's go over here and let's click 3:10 on this the camera capture object 3:16 and let's turn it around here. 3:22 And let's run this thing again. 3:32 And we come
+back to 3:34 Whoops. Let's run it. And then we come 3:38 back to 3:41 Claude. 3:44 What do you see now? 3:50 So, it's going to go back out and it's 3:53 going to talk to the Unreal
+MCP server. 3:58 Uh, it's going to get the camera capture 4:01 object 4:05 and it's going to tell you what it sees. 4:07 Same desert environment with mountains 4:10 tah, but the
+cube has changed. 4:15 It's now a plain white. 4:18 So 4:19 this is Claude code 4:22 communicating with Unreal 4:27 and using the this year old camera 4:31 capture object that I
+built. 4:37 It can see the environment. 4:41 So let's shut down and let's back up for 4:44 a little bit and see how we're doing 4:45 this. 4:49 All right. So, there's camera
+capture 4:52 actor. 4:54 Uh, this was a piece of code that I 4:57 think maybe even Open AI um helped me 5:01 code over a year ago. 5:06 But what we're doing with this MPC 5:11 MCP
+server 5:14 is we're adding 5:17 NPC 5:19 functionality. 5:24 And um 5:27 this site right here, this person uh has 5:30 a uh an example of how 5:35 he has a skill for Claude to
+help set 5:41 the environment up. 5:47 You don't necessarily need the skill, 5:50 but it goes through and it uh checks 5:53 things out. I would watch this video 6:00 and I I cloned
+6:04 Unreal MCP from this person, 6:09 which did a fantastic job. And then I 6:12 added 6:15 my 6:16 camera capture 6:20 uh class 6:22 right there. And then I added the 6:27
+ability to 6:29 control 6:31 allow Claude to control 6:36 the 6:39 uh the camera. 6:45 So, we are leaps and bounds 6:48 ahead of what I originally wanted to do 6:53 and what I've
+been trying to do for the 6:55 past couple of years. 6:58 Now clawed 7:00 and really any other uh environment that 7:05 can understand MCP 7:09 can control 7:12 you know we have
+MCP that's the model 7:17 control you know language 7:20 and then we have the NCP 7:24 or uh NPC I'm Sorry. Uh, which is the 7:30 these characters that you're going to 7:32 have in
+the the world. 7:37 Anyway, bear with me. 7:40 This is something I just finished up 7:44 and um 7:47 merged in the 7:50 uh u the the camera 7:53 class. 7:56 And 7:57 the next thing
+is going to be telling 8:01 Claude or any MCP 8:06 um 8:12 usable whatever the word would be uh 8:16 connectivity 8:18 um model with Unreal Engine. 8:25 So 8:27 literally these
+models can come in and 8:31 see the world 8:33 based off of the classes and then do 8:36 things. Uh you can, you know, totally 8:40 imagine, you know, where this possibly 8:43
+could go. I don't know if it's a 8:46 commercial project uh product 8:50 uh but 8:52 you know finished it up today and it ha 8:56 in an hour using clawed code and it went 9:01
+through and uh copied over the camera 9:05 capture class that I did a year ago 9:10 and it was Claude was literally 9:13 intrigued 9:14 by itself because it's like oh I can see
+9:18 I can see the this world even though 9:21 it's a plain world that that's not the 9:23 point the point is is that 9:26 uh the next step is 9:31 uh the 9:33 AIS can using this
+MCP protocol 9:40 which might not be the best and the 9:43 highest per performant protocol, 9:47 but you know, 9:50 all of a sudden they will be able to 9:52 move and take pictures
+9:56 and observe 9:58 uh 3D environments. 10:02 Uh, and I think that's kind of crazy. 10:05 So, 10:06 uh, this person right here did the 10:10 original MCP work. 10:13 I added in
+the camera capture 10:16 and then added in the uh there's some 10:20 other NPC 10:24 um 10:26 verbs or what do you however you want to 10:29 call them uh to be able to move 10:33
+uh these actors around. And you know, 10:37 this actor, you know, may be uh 10:41 eventually an NPC character 10:45 and you can just kind of tell, 10:50 you know, Claude to, you
+know, do the 10:52 thing. 10:54 So 10:56 anyway, how does this work? 11:00 Um, 11:01 uh, first things first is that, 11:05 uh, you're going to have to have you're 11:09 going to
+have to already have 11:12 a environment that 11:15 in Unreal that can compile C++ code. And 11:20 I'm not going to go into all those 11:22 details because there's uh, email, I'm
+11:25 sorry, there's YouTubetubes on all of 11:27 that. 11:30 But this person goes through and guides 11:33 you through that. Of course, he talks a 11:35 little bit about um 11:38

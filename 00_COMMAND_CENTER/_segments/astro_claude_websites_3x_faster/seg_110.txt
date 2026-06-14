@@ -1,0 +1,230 @@
+set up voicemail detection and what to do when voicemail is detected. See more at [Handle Voicemail](/build/handle-voicemail). * End call on silence: set up if user is active for a
+certain amount of time, the call will be ended. * Call duration: set up maximum duration of the call. * Pause before speaking: For the beginning of the call, if agent speaks first,
+it will wait for the configured duration before speaking, useful to handle scenarios when user is still picking up the phone. </Step> <Step title="Configure Post Call Analysis">
+Probably set up later, read more at [Post Call Analysis Guide](/features/post-call-analysis-overview). </Step> <Step title="Configure Privacy & Webhook"> Here's where you can set
+up whether to opt out sensitive data storage, and configure webhook settings for receiving call related events. </Step> </Steps> ### Video Tutorial <iframe width="360" height="200"
+src="https://www.youtube.com/embed/um2mU8KhOBI?si=vO3Y86FVFbBh_UCB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+gyroscope; picture-in-picture" allowfullscreen /> See community templates in
+[docs](https://docs.google.com/document/d/1hx6hdTEjAR4y4xXZ7RLMH2byQNVW1ABxC8S4FwvTx_Y/edit?tab=t.0#heading=h.wf5bktkelope) ## Next Steps Once you've configured these basic
+settings, your agent is ready for basic interactions. To enhance its capabilities, proceed to [adding capabilities by using function
+calling](/build/single-multi-prompt/function-calling). > ## Documentation Index > Fetch the complete documentation index at: https://docs.retellai.com/llms.txt > Use this file to
+discover all available pages before exploring further. # Function Calling Overview > Enable your AI agent to perform actions like transfers, bookings, and API integrations through
+function calling ## Introduction Function calling transforms your AI agent from a conversational interface into an action-oriented assistant. By connecting your agent to functions,
+you enable it to interact with external systems, manage call flows, and perform real-world tasks. ## Common Use Cases Function calling enables your agent to: ### Call Management *
+**Transfer calls**: Route to human agents or other departments * **End calls**: Gracefully terminate conversations * **Send DTMF tones**: Navigate phone menus ### Business
+Operations * **Book appointments**: Integrate with scheduling systems * **Check availability**: Query calendars or inventory * **Process orders**: Create, modify, or cancel orders
+### Data Integration * **Retrieve information**: Pull data from CRMs, databases, or APIs * **Update records**: Modify customer information or case details * **Send notifications**:
+Trigger emails, SMS, or push notifications ## How Function Calling Works ### The Process 1. **Agent Decision**: Based on the conversation context, the LLM determines when a
+function is needed 2. **Parameter Extraction**: The agent extracts required information from the conversation 3. **Function Execution**: Retell calls your function with the
+extracted parameters 4. **Response Handling**: The function result is processed and incorporated into the conversation ### Technical Overview Function calling uses structured JSON
+to communicate between the LLM and your systems: ```json theme={null} { "function": "book_appointment", "arguments": { "date": "2024-03-15", "time": "14:00", "customer_name": "John
+Smith" } } ``` ### Additional Resources * [OpenAI's Function Calling Guide](https://platform.openai.com/docs/guides/function-calling): Technical deep dive * [Function Calling
+Tutorial](https://semaphoreci.com/blog/function-calling): Step-by-step implementation guide ## Configuring Tool Calls ### Dashboard Configuration Access and manage tools in the
+agent detail page under the "Functions" section. <Frame> <img height="700"
+src="https://mintcdn.com/retellai/M9QYKZE4hbt00HfL/images/multi-prompt/functions.png?fit=max&auto=format&n=M9QYKZE4hbt00HfL&q=85&s=0c6fcd4ff45d3ebc43bef2fb728caed9" alt="Functions
+section in dashboard" data-path="images/multi-prompt/functions.png" /> </Frame> ## Available Function Types ### 1. Pre-built Functions Retell provides ready-to-use functions for
+common scenarios: | Function | Purpose | Common Use Cases | | ------------------------------------------------------------- | --------------------------------- |
+-------------------------------------------- | | [**End Call**](/build/single-multi-prompt/end-call) | Terminate conversation gracefully | After completing tasks, when caller
+requests | | [**Transfer Call**](/build/single-multi-prompt/transfer-call) | Route to human agents | Escalation, department routing | | [**Press
+Digits**](/build/single-multi-prompt/press-digit) | Send DTMF tones | Navigate IVR systems, enter codes | | [**Check Availability**](/build/check-availability) | Query available
+time slots | Appointment scheduling | | [**Book Calendar**](/build/book-calendar) | Create calendar events | Confirm appointments, meetings | | [**Send
+SMS**](/build/single-multi-prompt/send-sms) | Send text messages | Confirmations, follow-ups | ### 2. Custom Functions Create your own functions to: * **Integrate with your APIs**:
+Connect to CRM, ERP, or custom systems * **Execute business logic**: Validate data, calculate prices, check inventory * **Trigger workflows**: Start processes in other systems ####
+Custom Function Features * **Flexible parameters**: Define any input structure * **Async execution**: Run in background without blocking conversation * **Error handling**: Graceful
+fallbacks for failures * **Response control**: Customize what the agent says during/after execution [Learn more about custom functions
+→](/build/single-multi-prompt/custom-function) ### 3. Code Tool Run JavaScript code directly in Retell's sandbox without setting up an external server. Useful for: * **Data
+transformation**: Format, combine, or compute values from dynamic variables * **Simple API calls**: Fetch data using the built-in `fetch()` function * **Logic and calculations**:
+Implement conditional logic, math, or string operations [Learn more about Code Tool →](/build/single-multi-prompt/code-tool) ## Video Tutorial <iframe width="360" height="200"
+src="https://www.youtube.com/embed/0iGAFUYhuoE?si=_IYtfQNmb1haneif" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+gyroscope; picture-in-picture" allowfullscreen /> ### Additional Resources * [Community
+Templates](https://docs.google.com/document/d/1hx6hdTEjAR4y4xXZ7RLMH2byQNVW1ABxC8S4FwvTx_Y/edit?tab=t.0#heading=h.wf5bktkelope): Real-world function examples * [API
+Reference](/api-references/create-agent): Technical documentation * [Best Practices](/build/prompt-engineering-guide): Writing effective function promptsSkip to main content
+Search... ⌘K Ask AI Homepage Support Compliance Dashboard Documentation API Reference Deprecation Notice Community Changelog Status Pricing Enterprise Plan Introduction Get Started
+Build your first phone agent in 5 minutes SDKs MCP Server Build Setup single / multi prompt agent Step 1: Write the prompt Single/Multi Prompt Agent Overview Write a single prompt
+Build a multi-prompt agent Step 2: Configure the basic settings Step 3: Add function calling Function Calling Overview End call Transfer call Send SMS Check Calendar Availability
+Book Calendar Press digit (IVR navigation) Integrate any system with custom function Code Tool Extract Dynamic Variables Agent Transfer MCP Setup conversation flow agent Create
+chat agent Set language for your agent Configure a multilingual agent Understand user speech better Generate better responses from LLM Customize the synthesized speech Integrate
+telephony features Provide context to the agent Guardrails Test Testing Overview LLM Playground LLM Simulation Testing Audio Testing Deploy Purchase phone number A/B Testing
+Connect to custom telephony providers via SIP Make & receive phone calls International Calling and Fees Create Chat Completion Retell Website Widget Send & receive SMS Setup
+versioning for agents Compare agent versions Create Batch calls Increase call pickup rate Connect to web call Understand concurrency & limits Monitor Monitor sessions via dashboard
+Get analytics insight Alerting Register & handle webhooks Post Call Analysis Reliability & Debugging Reliability Overview Latency Fix agent behaviors Debug phone call issues
+Prevent abuse Fraud Protection Accounts and Workspace Workspace Account Access Control KYC Verification Billing Keys Privacy Other Topics Custom LLM Audio Basics Integrations
+HubSpot Integration AI Quality Assurance AI Quality Assurance Create QA View QA Results AI QA Metrics Address Metric Issues Step 3: Add function calling End call Copy page
+Configure the Retell AI agent to end calls automatically based on user-defined conditions. Documentation Index Fetch the complete documentation index at:
+https://docs.retellai.com/llms.txt Use this file to discover all available pages before exploring further. By default, the agent won’t end the call automatically. You’ll need to
+configure when and how the call should be terminated using the end call tool. 1 Add End Call Tool Click ”+ Add” in the tools section and select “End Call” from the dropdown menu.
+Adding end call tool 2 Configure Termination Conditions Define specific conditions under which the call should be terminated. For example: “If the user says ‘thank you’, ‘goodbye’,
+or ‘bye’, use the end_call tool to terminate the conversation.” Configuring end call conditions 3 Update the Prompt Enhance the agent’s understanding by incorporating the end call
+conditions into the prompt. Include specific instructions such as: “If the user says ‘thank you’, ‘goodbye’, or ‘bye’, use the end_call tool to terminate the conversation.” Adding
+end call instructions to prompt Was this page helpful? Yes No Function Calling Overview Transfer call Ask a question... x linkedin github Powered by This documentation is built and
+hosted on Mintlify, a developer documentation platform End call - Retell AI> ## Documentation Index > Fetch the complete documentation index at: https://docs.retellai.com/llms.txt
+> Use this file to discover all available pages before exploring further. # Transfer call <Warning> This feature only works during phone calls instead of web calls. It's available
+for Retell numbers and imported numbers. </Warning> It is common in call operation to transfer the call to another human agent or another AI agent. <Steps> <Step title="Add
+Transfer Call Tool"> Click "+ Add" in the tools section and select "Transfer Call" from the dropdown menu. <Frame> <img height="700"
+src="https://mintcdn.com/retellai/rxvYffEkEJPRL1KD/images/end_call.png?fit=max&auto=format&n=rxvYffEkEJPRL1KD&q=85&s=53ae902cbe4dbfa4edff788fff3ca94e"
+data-path="images/end_call.png" /> </Frame> </Step> <Step title="Setup Transfer To Target"> Set transfer number to be either: * a number in e.164 format, or a SIP URI in the format
+of `sip:username@domain` (e.g. `sip:user@retellai.com`). * [dynamic variable](/build/dynamic-variables) that gets substituted at runtime * (Optional) if your transfer destination
+is not in e.164 format then you can choose to keep the input as is by choosing raw format. This only applies when you are using custom telephony and does not apply when you are
+using Retell Telephony <Frame> <img
+src="https://mintcdn.com/retellai/KbPnDie7AMuPy50b/images/transfer_call_function_e164.png?fit=max&auto=format&n=KbPnDie7AMuPy50b&q=85&s=79a165e0c4774a6905f90becb99fa244"
+width="1254" height="1048" data-path="images/transfer_call_function_e164.png" /> </Frame> Set the transfer number extension if needed. Extension must be 0-9, '\*', '#' (E.g. 123#)
+</Step> <Step title="Update the Prompt"> Enhance the agent's understanding by incorporating the transfer call conditions into the prompt. Include specific instructions such as: "If
+the user is angry or frustrated, use the transfer\_call tool to transfer the conversation to a human agent." <Frame> <img height="700"
+src="https://mintcdn.com/retellai/rxvYffEkEJPRL1KD/images/end_call_3.png?fit=max&auto=format&n=rxvYffEkEJPRL1KD&q=85&s=c9f4683f55f36dae81c83b91bd607ad0"
+data-path="images/end_call_3.png" /> </Frame> </Step> <Step title="Configure Transfer Type"> Choose between cold transfer or warm transfer: * **Cold transfer**: The call is
+transferred to a destination number and that's it. * **Warm transfer**: After the call is transferred to the destination number, the AI agent can attempt to detect if the other
+side is human, leave private messages that are not heard by user, do a three-way introduce, etc. (more details in Step 5). </Step> <Step title="Configure Caller ID (Optional)"> You
+can configure which caller id shows up to the transfer destination: 1. **Retell Agent's number**: The transfer destination will see the Retell agent's number 2. **User's Number**:
+The transfer destination will see the number of the user. Please note that the telephony provider must support caller id override for this feature to work. * For warm transfer,
+it's using SIP DIAL, and we are setting `from` and `P-Asserted-Identity` headers to the user's number. * For cold transfer, it's using SIP REFER, and it's up to the telephony
+provider to support caller id override for SIP REFER. * Retell Twilio numbers support showing user's number on both warm and cold transfer, Retell Telnyx numbers only support this
+when using SIP REFER via cold transfer. * If caller id override is not supported, the transfer would fail. <Frame> <img height="700"
+src="https://mintcdn.com/retellai/_QrxQEoxP5f0zRlL/images/telephony/caller-id-setting.png?fit=max&auto=format&n=_QrxQEoxP5f0zRlL&q=85&s=6f73a184623714e31913189556b39f59"
+data-path="images/telephony/caller-id-setting.png" /> </Frame> </Step> <Step title="Configure Warm Transfer Specific Settings"> For warm transfers, you can configure the following
+settings: * **On-hold music**: The audio played to the caller while they are on hold. The default is a standard ringtone. * **Navigate IVR**: Provide an prompt to help you navigate
+if the transfer target is an IVR system. * **Enable human detection**: When enabled, the agent will check if a human is present after the transfer target answers. The original
+caller will only be connected once a human is detected. * **Auto-greet**: If enabled, the agent will immediately say “Hello” when the transfer target picks up. This encourages a
+response, increasing the likelihood of detecting a human. * **Agent detection timeout**: The maximum amount of time the AI agent will wait to determine whether the transfer target
+is a human. The caller is connected only if human detection succeeds within this timeframe. Otherwise, the transfer is marked as failed. The default timeout is 30 seconds. *
+**Whisper message (optional)**: A message spoken privately to the transfer target before connecting them to the original caller. * **Three-way message (optional)**: A message
+spoken to both the transfer target and the original caller once the connection is established. <Frame> <img height="700"
+src="https://mintcdn.com/retellai/_QrxQEoxP5f0zRlL/images/telephony/warm-transfer-settings.png?fit=max&auto=format&n=_QrxQEoxP5f0zRlL&q=85&s=d813bc6a8f2fdb7c3dbb1ae8b8078c4b"
+data-path="images/telephony/warm-transfer-settings.png" /> </Frame> </Step> <Step title="Add Custom SIP Headers (Optional)"> Add custom SIP headers for outbound calls. These
+headers are forwarded to your SIP provider on the SIP INVITE and can be used for custom routing, tagging, or metadata. <Warning>Custom SIP headers are preserved only when
+transferring the call directly to a SIP endpoint. They may be stripped if you are transferring the call to a PSTN number.</Warning> <code>All header names must start with `X-` or
+must be `User-To-User` (case insensitive)</code> <br /> <Frame style={{ marginTop: '1rem' }}> <img
+src="https://mintcdn.com/retellai/zL2HeUqUnagEN9eK/images/cf/custom-sip-headers.png?fit=max&auto=format&n=zL2HeUqUnagEN9eK&q=85&s=e598e83c6f9a6a6b018a340f36f97e8e" width="380"
+height="178" data-path="images/cf/custom-sip-headers.png" /> </Frame> </Step> </Steps>Skip to main content Search... ⌘K Ask AI Homepage Support Compliance Dashboard Documentation
+API Reference Deprecation Notice Community Changelog Status Pricing Enterprise Plan Introduction Get Started Build your first phone agent in 5 minutes SDKs MCP Server Build Setup
+single / multi prompt agent Step 1: Write the prompt Single/Multi Prompt Agent Overview Write a single prompt Build a multi-prompt agent Step 2: Configure the basic settings Step
+3: Add function calling Function Calling Overview End call Transfer call Send SMS Check Calendar Availability Book Calendar Press digit (IVR navigation) Integrate any system with
+custom function Code Tool Extract Dynamic Variables Agent Transfer MCP Setup conversation flow agent Create chat agent Set language for your agent Configure a multilingual agent
+Understand user speech better Generate better responses from LLM Customize the synthesized speech Integrate telephony features Provide context to the agent Guardrails Test Testing
+Overview LLM Playground LLM Simulation Testing Audio Testing Deploy Purchase phone number A/B Testing Connect to custom telephony providers via SIP Make & receive phone calls
+International Calling and Fees Create Chat Completion Retell Website Widget Send & receive SMS Setup versioning for agents Compare agent versions Create Batch calls Increase call
+pickup rate Connect to web call Understand concurrency & limits Monitor Monitor sessions via dashboard Get analytics insight Alerting Register & handle webhooks Post Call Analysis
+Reliability & Debugging Reliability Overview Latency Fix agent behaviors Debug phone call issues Prevent abuse Fraud Protection Accounts and Workspace Workspace Account Access
+Control KYC Verification Billing Keys Privacy Other Topics Custom LLM Audio Basics Integrations HubSpot Integration AI Quality Assurance AI Quality Assurance Create QA View QA
+Results AI QA Metrics Address Metric Issues On this page Choose where to send from Configure SMS content Configure SMS destination Talk while waiting Speak after sending message
+Step 3: Add function calling Send SMS Copy page Documentation Index Fetch the complete documentation index at: https://docs.retellai.com/llms.txt Use this file to discover all
+available pages before exploring further. This tool is used to send an SMS during a phone call. You can send to the caller’s number or a different number. This tool only works for
+phone numbers that have SMS enabled, or when using an SMS-approved Retell number. Read more about enabling SMS. Agents can also receive SMS during an active call and understand the
+content, including text, images, audio, and video. This works out of the box for Retell Twilio numbers, and for custom telephony numbers that passed A2P applications. Read more at
+Receive SMS during call. ​ Choose where to send from Send In-Call SMS tool configuration showing SMS-approved Retell number and agent's associated number options Send from options
+for in-call SMS (Single/Multi Prompt) You can choose one of two options for the sending number: SMS-approved Retell number: Send from Retell’s pool of numbers that are already
+approved for SMS. This bypasses the A2P application process entirely. The message content is a preset template provided by Retell — you cannot customize the text or use a prompt.
+Agent’s associated number: Send from the phone number bound to the agent. This requires your number to have SMS enabled through the A2P application. ​ Configure SMS content When
+sending from the agent’s associated number: You can write a prompt to let the agent infer the SMS content, or use static SMS content. Dynamic variables are supported for static SMS
+content. When sending from an SMS-approved Retell number: The message is a preset template provided by Retell. You cannot edit the content. ​ Configure SMS destination By default,
+the SMS is sent to the caller’s number. You can also choose to send to a different number — either a static number or a dynamic variable (e.g. {{customer_phone}}). ​ Talk while
+waiting Enable this option to have the agent say a short phrase while the SMS is being sent. You can configure the message as a prompt or a static sentence. ​ Speak after sending
+message Enable this option to have the agent speak after the SMS has been sent. This is useful for confirming to the user that the message was delivered. Was this page helpful? Yes
+No Transfer call Check Calendar Availability Ask a question... x linkedin github Powered by This documentation is built and hosted on Mintlify, a developer documentation platform
+Send SMS - Retell AISkip to main content Search... ⌘K Ask AI Homepage Support Compliance Dashboard Documentation API Reference Deprecation Notice Community Changelog Status Pricing
+Enterprise Plan Introduction Get Started Build your first phone agent in 5 minutes SDKs MCP Server Build Setup single / multi prompt agent Step 1: Write the prompt Single/Multi
+Prompt Agent Overview Write a single prompt Build a multi-prompt agent Step 2: Configure the basic settings Step 3: Add function calling Function Calling Overview End call Transfer
+call Send SMS Check Calendar Availability Book Calendar Press digit (IVR navigation) Integrate any system with custom function Code Tool Extract Dynamic Variables Agent Transfer
+MCP Setup conversation flow agent Conversation Flow Overview Step 1: Configure global settings Step 2: Add nodes Node Overview Conversation Node Subagent Node Function Node
+Function Node Overview Custom Function Check Calendar Availability Book Calendar Code Node Call Transfer Node Press Digit Node End Node Logic Split Node SMS Node Extract Dynamic
+Variable Node Agent Transfer Node MCP Node Step 3: Add transition conditions Components Flex Mode Advanced features Debug guide Create chat agent Set language for your agent
+Configure a multilingual agent Understand user speech better Generate better responses from LLM Customize the synthesized speech Integrate telephony features Provide context to the
+agent Guardrails Test Testing Overview LLM Playground LLM Simulation Testing Audio Testing Deploy Purchase phone number A/B Testing Connect to custom telephony providers via SIP
+Make & receive phone calls International Calling and Fees Create Chat Completion Retell Website Widget Send & receive SMS Setup versioning for agents Compare agent versions Create
+Batch calls Increase call pickup rate Connect to web call Understand concurrency & limits Monitor Monitor sessions via dashboard Get analytics insight Alerting Register & handle
+webhooks Post Call Analysis Reliability & Debugging Reliability Overview Latency Fix agent behaviors Debug phone call issues Prevent abuse Fraud Protection Accounts and Workspace
+Workspace Account Access Control KYC Verification Billing Keys Privacy Other Topics Custom LLM Audio Basics Integrations HubSpot Integration AI Quality Assurance AI Quality
+Assurance Create QA View QA Results AI QA Metrics Address Metric Issues On this page Get Event Type ID Get API Key Step 3: Add function calling Check Calendar Availability Copy
+page Integrate Cal.com availability checking to find open time slots. Documentation Index Fetch the complete documentation index at: https://docs.retellai.com/llms.txt Use this
+file to discover all available pages before exploring further. This guide explains how to integrate cal.com’s calendar availability checking functionality into your application.
+This integration allows you to check available time slots for your cal.com event types. Check availability tool interface 1 Create a Cal.com Account Visit cal.com to create an
+account 2 Configure Event Type Navigate to the “Event Types” section in your cal.com dashboard Click “New” Configure your event settings Click “Save” to create the event type 3
+Obtain Required Credentials API credentials location ​ Get Event Type ID Open your created event type Look at the URL in your browser The event type ID is the number in the URL
+Example: https://app.cal.com/your-username/event-type/1427703 In this case, 1427703 is your event type ID ​ Get API Key Go to “Settings” in your cal.com dashboard Navigate to
+“Developer” section Click on “API Keys” to retrieve your API key 4 Add a check calendar availability function in Retell Enter the following details: Tool name: this has to be
+unique within that agent API Key from cal.com Event Type ID Tool description (example: “Checks availability for 30-minute consultation calls”) (optional): add a timezone to be used
+in the function Click “Save” to complete the setup 5 Update prompt for function It’s best to include in the prompt explicitly when is the best time to invoke the custom function.
+For example: When user stated a time range, please check the calendar availability by calling the `check_calendar_availability` function and let user know whether that range work
+or not. Video tutorial (based on single / multi prompt agent): Was this page helpful? Yes No Send SMS Book Calendar Ask a question... x linkedin github Powered by This
+documentation is built and hosted on Mintlify, a developer documentation platform Check Calendar Availability - Retell AISkip to main content Search... ⌘K Ask AI Homepage Support
+Compliance Dashboard Documentation API Reference Deprecation Notice Community Changelog Status Pricing Enterprise Plan Introduction Get Started Build your first phone agent in 5
+minutes SDKs MCP Server Build Setup single / multi prompt agent Step 1: Write the prompt Single/Multi Prompt Agent Overview Write a single prompt Build a multi-prompt agent Step 2:
+Configure the basic settings Step 3: Add function calling Function Calling Overview End call Transfer call Send SMS Check Calendar Availability Book Calendar Press digit (IVR
+navigation) Integrate any system with custom function Code Tool Extract Dynamic Variables Agent Transfer MCP Setup conversation flow agent Conversation Flow Overview Step 1:
+Configure global settings Step 2: Add nodes Node Overview Conversation Node Subagent Node Function Node Function Node Overview Custom Function Check Calendar Availability Book
+Calendar Code Node Call Transfer Node Press Digit Node End Node Logic Split Node SMS Node Extract Dynamic Variable Node Agent Transfer Node MCP Node Step 3: Add transition
+conditions Components Flex Mode Advanced features Debug guide Create chat agent Set language for your agent Configure a multilingual agent Understand user speech better Generate
+better responses from LLM Customize the synthesized speech Integrate telephony features Provide context to the agent Guardrails Test Testing Overview LLM Playground LLM Simulation
+Testing Audio Testing Deploy Purchase phone number A/B Testing Connect to custom telephony providers via SIP Make & receive phone calls International Calling and Fees Create Chat
+Completion Retell Website Widget Send & receive SMS Setup versioning for agents Compare agent versions Create Batch calls Increase call pickup rate Connect to web call Understand
+concurrency & limits Monitor Monitor sessions via dashboard Get analytics insight Alerting Register & handle webhooks Post Call Analysis Reliability & Debugging Reliability
+Overview Latency Fix agent behaviors Debug phone call issues Prevent abuse Fraud Protection Accounts and Workspace Workspace Account Access Control KYC Verification Billing Keys
+Privacy Other Topics Custom LLM Audio Basics Integrations HubSpot Integration AI Quality Assurance AI Quality Assurance Create QA View QA Results AI QA Metrics Address Metric
+Issues On this page Get Event Type ID Get API Key Step 3: Add function calling Book Calendar Copy page Integrate Cal.com appointment booking with Retell AI. Documentation Index
+Fetch the complete documentation index at: https://docs.retellai.com/llms.txt Use this file to discover all available pages before exploring further. This guide explains how to
+integrate cal.com’s book appointment functionality into your application. This integration allows you to book appointments on cal.com. Check availability tool interface 1 Create a
+Cal.com Account Visit cal.com to create an account 2 Configure Event Type Navigate to the “Event Types” section in your cal.com dashboard Click “New” Configure your event settings
+Click “Save” to create the event type 3 Obtain Required Credentials API credentials location ​ Get Event Type ID Open your created event type Look at the URL in your browser The
+event type ID is the number in the URL Example: https://app.cal.com/your-username/event-type/1427703 In this case, 1427703 is your event type ID ​ Get API Key Go to “Settings” in
+your cal.com dashboard Navigate to “Developer” section Click on “API Keys” to retrieve your API key 4 Add a book on calendar function in Retell Enter the following details: Tool
+name: this has to be unique within that agent API Key from cal.com Event Type ID Tool description (example: “Book the appointment for 30-minute consultation calls”) (optional): add
+a timezone to be used in the function Click “Save” to complete the setup 5 Update prompt for function It’s best to include in the prompt explicitly when is the best time to invoke
+the custom function. For example: When user selected a slot, please book the appointment by calling the `book_appointment` function. Video tutorial (based on single / multi prompt
+agent): Was this page helpful? Yes No Check Calendar Availability Press digit (IVR navigation) Ask a question... x linkedin github Powered by This documentation is built and hosted
+on Mintlify, a developer documentation platform Book Calendar - Retell AISkip to main content Search... ⌘K Ask AI Homepage Support Compliance Dashboard Documentation API Reference
+Deprecation Notice Community Changelog Status Pricing Enterprise Plan Introduction Get Started Build your first phone agent in 5 minutes SDKs MCP Server Build Setup single / multi
+prompt agent Step 1: Write the prompt Single/Multi Prompt Agent Overview Write a single prompt Build a multi-prompt agent Step 2: Configure the basic settings Step 3: Add function
+calling Function Calling Overview End call Transfer call Send SMS Check Calendar Availability Book Calendar Press digit (IVR navigation) Integrate any system with custom function
+Code Tool Extract Dynamic Variables Agent Transfer MCP Setup conversation flow agent Conversation Flow Overview Step 1: Configure global settings Step 2: Add nodes Node Overview
+Conversation Node Subagent Node Function Node Function Node Overview Custom Function Check Calendar Availability Book Calendar Code Node Call Transfer Node Press Digit Node End
+Node Logic Split Node SMS Node Extract Dynamic Variable Node Agent Transfer Node MCP Node Step 3: Add transition conditions Components Flex Mode Advanced features Debug guide
+Create chat agent Set language for your agent Configure a multilingual agent Understand user speech better Generate better responses from LLM Customize the synthesized speech
+Integrate telephony features Provide context to the agent Guardrails Test Testing Overview LLM Playground LLM Simulation Testing Audio Testing Deploy Purchase phone number A/B
+Testing Connect to custom telephony providers via SIP Make & receive phone calls International Calling and Fees Create Chat Completion Retell Website Widget Send & receive SMS
+Setup versioning for agents Compare agent versions Create Batch calls Increase call pickup rate Connect to web call Understand concurrency & limits Monitor Monitor sessions via
+dashboard Get analytics insight Alerting Register & handle webhooks Post Call Analysis Reliability & Debugging Reliability Overview Latency Fix agent behaviors Debug phone call
+issues Prevent abuse Fraud Protection Accounts and Workspace Workspace Account Access Control KYC Verification Billing Keys Privacy Other Topics Custom LLM Audio Basics
+Integrations HubSpot Integration AI Quality Assurance AI Quality Assurance Create QA View QA Results AI QA Metrics Address Metric Issues On this page Steps Step 3: Add function
+calling Press digit (IVR navigation) Copy page Enable Retell AI agents to navigate IVR systems using DTMF input. Documentation Index Fetch the complete documentation index at:
+https://docs.retellai.com/llms.txt Use this file to discover all available pages before exploring further. When making outbound phone calls, voice agents often encounter IVR
+(Interactive Voice Response) systems. The agent needs to navigate the IVR to reach the right department or person, or to enter necessary information. There are two types of IVR
+systems: Audio input IVR: Accepts spoken responses. Your agent can navigate these through standard prompting. DTMF input IVR: Requires pressing digits on the phone keypad
+(Dual-Tone Multi-Frequency signals). This guide shows you how to configure your agent to navigate DTMF-based IVR systems by pressing digits. ​ Steps 1 Add a Press Digit Tool Give
+your agent the ability to press digits. The tool description is optional—you can specify when and what digits to press if desired. 2 Add Navigation Prompts Provide clear
+instructions on when and what digits to press. Include preferred keywords/phrases, keywords to avoid, and guidance for uncertain situations. Example prompt: ## IVR Navigation When
+interacting with automated systems, menus, or IVR prompts: Your goal is to reach the scheduling or appointments department. Preferred navigation keywords: • Scheduling •
+Appointments • New patients • Front desk Avoid: • Billing • Referrals • Medical records • Clinical departments If you are unsure which IVR option is correct: Choose the option most
+closely related to scheduling or appointments. Alternative approach: If you know the exact digit sequence beforehand, you can provide direct instructions: Press digit 1 to reach
+the support department. 3 Add Interaction Rules Provide detailed instructions on when to press digits and how to handle edge cases, such as reaching the wrong person or needing to
+hang up. Example prompt: ## IVR Interaction Rules 1) If the IVR allows you to speak a department name or short phrase: - Speak the appropriate department name clearly. 2) If the
+IVR explicitly instructs you to press a number: - Use the press_digit function with the instructed digit. 3) If the IVR does not accept speech and requires numeric input: - Use the
+press_digit function to select the best option. 4) If the IVR indicates that you have reached the wrong company: - Immediately call end_call. 5) If you are transferred: - Wait
+silently or respond with NO_RESPONSE_NEEDED if prompted to hold. - Resume navigation or follow the live agent flow once connected. 4 Extract IVR Post-Call Data (Optional) Extract
+IVR navigation data for deeper insights. Below are field-by-field extraction prompts you can add in your agent’s Post-Call Data Extraction settings: hit_ivr (boolean) reached_human
+(boolean) ivr_loop (boolean) ivr_type (enum) ivr_outcome (enum) ivr_steps_count (number) ivr_retries_count (number) ivr_path (text) ivr_notes (short text) ivr_tree_text (multiline
+text) 5 Test Your Configuration After saving your agent, test it by: Placing an outbound call to a number with an IVR system, or Calling yourself and mimicking an IVR system by
+saying phrases like “Press 1 for customer service” Was this page helpful? Yes No Book Calendar Integrate any system with custom function Ask a question... x linkedin github Powered
+by This documentation is built and hosted on Mintlify, a developer documentation platform Press digit (IVR navigation) - Retell AISkip to main content Search... ⌘K Ask AI Homepage
+Support Compliance Dashboard Documentation API Reference Deprecation Notice Community Changelog Status Pricing Enterprise Plan Introduction Get Started Build your first phone agent
+in 5 minutes SDKs MCP Server Build Setup single / multi prompt agent Step 1: Write the prompt Single/Multi Prompt Agent Overview Write a single prompt Build a multi-prompt agent
+Step 2: Configure the basic settings Step 3: Add function calling Function Calling Overview End call Transfer call Send SMS Check Calendar Availability Book Calendar Press digit
+(IVR navigation) Integrate any system with custom function Code Tool Extract Dynamic Variables Agent Transfer MCP Setup conversation flow agent Conversation Flow Overview Step 1:
+Configure global settings Step 2: Add nodes Node Overview Conversation Node Subagent Node Function Node Function Node Overview Custom Function Check Calendar Availability Book
+Calendar Code Node Call Transfer Node Press Digit Node End Node Logic Split Node SMS Node Extract Dynamic Variable Node Agent Transfer Node MCP Node Step 3: Add transition
+conditions Components Flex Mode Advanced features Debug guide Create chat agent Set language for your agent Configure a multilingual agent Understand user speech better Generate
+better responses from LLM Customize the synthesized speech Integrate telephony features Provide context to the agent Guardrails Test Testing Overview LLM Playground LLM Simulation
+Testing Audio Testing Deploy Purchase phone number A/B Testing Connect to custom telephony providers via SIP Make & receive phone calls International Calling and Fees Create Chat
+Completion Retell Website Widget Send & receive SMS Setup versioning for agents Compare agent versions Create Batch calls Increase call pickup rate Connect to web call Understand
+concurrency & limits Monitor Monitor sessions via dashboard Get analytics insight Alerting Register & handle webhooks Post Call Analysis Reliability & Debugging Reliability
+Overview Latency Fix agent behaviors Debug phone call issues Prevent abuse Fraud Protection Accounts and Workspace Workspace Account Access Control KYC Verification Billing Keys
+Privacy Other Topics Custom LLM Audio Basics Integrations HubSpot Integration AI Quality Assurance AI Quality Assurance Create QA View QA Results AI QA Metrics Address Metric
+Issues On this page Steps to create a custom function Troubleshooting Request & response spec Verifying Request is from Retell Step 3: Add function calling Integrate any system
+with custom function Copy page Extend Retell AI with custom functions, integrating external APIs for advanced capabilities. Documentation Index Fetch the complete documentation
+index at: https://docs.retellai.com/llms.txt Use this file to discover all available pages before exploring further. Custom functions allow you to extend your agent’s capabilities
+by integrating external APIs, providing additional knowledge, or implementing custom logic. ​ Steps to create a custom function You can create custom functions that will be called
+by the LLM when needed. When called, Retell sends a POST request to your specified URL with the function name and parameters. 1 Add custom function in dashboard Click ”+ Add” in
+the tools section and select “Custom Function” from the dropdown menu. Adding custom function 2 Configure function details Add a name and description for the custom function. The
+name should be unique and separated with underscore. Adding custom function For example: Name: get_user_details Description: Get user details based on name and age 3 Select HTTP
+Method Choose the HTTP method that Retell will use to send the request to your endpoint. Available methods include: GET POST PATCH PUT DELETE 4 Add endpoint URL Add the URL where
+Retell will send the request to execute your custom function. This has to be a valid URL. 5 Set request headers (optional) You can define custom headers to include with the request
+Retell sends to your endpoint. Header values can be static or include dynamic variables. 6 Set query parameters (optional) You can define query parameters to include in the request
+URL that Retell appends to your endpoint. There is a switch to change between parameter description or const value. Both description and const value could be dynamic variables.

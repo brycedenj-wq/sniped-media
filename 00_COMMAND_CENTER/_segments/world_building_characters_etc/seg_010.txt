@@ -1,0 +1,223 @@
+open it up, quest 1:22:58 completed. It is working, guys. As you can see, it is super easy and universal, which is 1:23:05 the best part. And I mean, how easy was that, right? We
+already have this created which is insane. Quest Systems 1:23:12 and a quick reminder, you can actually download the complete project through my Unreal Club in the pro tier and 200
+1:23:20 other assets. So what are you waiting for? Join my Unreal Club now. Okay, so we have completed the main mechanics 1:23:27 that I wanted to introduce in this master class.
+So now it is time to start 1:23:32 adding the cool stuff, all the visuals and the character. So, for the 1:23:37 character, I'm going to be using a character that is actually
+included in this um template over here for the 1:23:45 motion matching, and it's Echo, and it's officially from Epic Games, and it's like a Tom Rider character. You will see
+1:23:52 it in a second. If we go to blueprints, we targeted characters and open up Echo, 1:23:59 we can go to the viewport, and you can see it over here, which is super super cool.
+is a really nice uh character. So, 1:24:07 we don't need to import another character from Fab or whatever. But 1:24:12 obviously, if you want to import your own custom character,
+you can go ahead and do so. But anyway, now we have to go 1:24:19 ahead and select this character as our character. And we could have used this 1:24:26 blueprint from the start
+because it already has Echo as the character. And the parent as you can see is also 1:24:34 sandbox character as with our own adventure but we didn't do it from the 1:24:40 start
+but we can do it very easily. The only thing that we have to do is literally copy these two things which is 1:24:48 echo body and echo hair. Literally that's it. Then just Ctrl C
+to copy this 1:24:54 over here and go back and open up our adventure character with the viewport 1:25:00 and then simply click on the mesh over here. Okay. And press Ctrl +V to go
+ahead and paste. 1:25:08 Now if it didn't paste um as a child of mesh again just drag these two things 1:25:14 under mesh. Very important. It has to be a child of mesh. Okay. And
+then just 1:25:19 make sure that for the hair you click on this things over here. So it's in the 1:25:25 default position. And the same with the body. Just click this arrows over
+here. So it's perfectly on position. And as 1:25:33 you can see from the go, it's already animating everything because if we go here to tag, you can see that we have a 1:25:41
+custom tag that we copied from the other character. And we also have another 1:25:46 generic retarget animation blueprint. And to make it easy for you guys, this 1:25:52 animation
+blueprint just copies the animations from the main mesh, which is 1:25:59 the mannequin, into Echko's body. As simple as that. And we do this through a 1:26:05 tag so we can know
+what specific retargeter we can use. Okay, literally 1:26:11 as simple as that. It is uh quite quite easy. Um you could go ahead and spend 1:26:17 time seeing everything over here.
+But if we go to the IK retargeter map and open 1:26:22 this up, it might lag a bit because it's loading a lot of stuff, but we can see that we have the echo retargeter here.
+1:26:29 And this is what it's doing. It's literally copying the animations from one into the other uh in real time. So 1:26:36 we do this as we play. And that way we don't have to
+create a whole new animation blueprint for Ekko. We can 1:26:43 just use the one that we have. And that's it. Perfect. So let's close everything. Uh and if we now uh go ahead
+1:26:51 and close Echo, leave adventure character and press play. You can see that it's here and everything works. But 1:26:56 obviously we have to do one thing which is to disable
+the mannequin, right? We 1:27:01 only want echo. So select the uh mesh over here which is the parent. Go to the 1:27:07 details, search for visibility and disable visible. But make
+sure in this 1:27:13 dropown for optimization then you have always stick pose and refresh bones 1:27:19 because otherwise if we don't have that the character for echo will not be
+1:27:24 animated because if we disable it it's like for performance it disables everything. So put this over here. Now 1:27:31 also as you can see for the hair it's not exactly um
+putting it how it should 1:27:37 be. So this is a skeleton mesh. So let me just uh double check what we had for echo 1:27:46 and the hair. Uh let's just click this icon over here.
+So it will take us here. Go 1:27:53 to adventure. Paste it up. And then just double check the location. It doesn't 1:28:00 have any. Okay, I know what's happening. As you can see,
+the hair is not a child of body. Just drag it in. There we go. 1:28:06 Now I snapped into position. Okay, perfect. Okay, so now if we actually press play, we have the echo
+character 1:28:13 and everything works as it should with the chest, the lever, with the quests 1:28:19 and also the uh torch. So everything is going ahead and working. We have a
+new character which is kind of Uncharted/TOM 1:28:28 Raider that looks amazing which is really cool. And of course you can use any other character that you have using 1:28:34 the
+same method. And now it is time to finally add the environment into the 1:28:40 game. Now for this video I'm going to be using Temples of Cambodia which is 1:28:46 amazing. Now
+unfortunately this is no longer free. It was free for the month a 1:28:52 couple months ago or even more than a year ago. So, if you have it, you can go ahead and add it into your
+project. If 1:28:57 you don't have it, simply find another alternative and fab or whatever you want. It's kind of a shame that it's no 1:29:04 longer for free, but it is really
+amazing and definitely worth it if you're going to create sort of, you 1:29:10 know, Assassin's Creed uh or Uncharted or Tom Raider. Um, yeah, this level 1:29:16 looks insane. It's
+the one we'll be using. So, just uh add this into your Epic Games library if you have it for 1:29:21 free. If you have to buy it, well, if I mean, if you want to buy it, go ahead.
+If not, you can use an alternative. This 1:29:27 asset is not sponsored in this video or anything like that. I literally just like this asset a lot for this video. I 1:29:34 think
+it fits the Uncharted vibes, so I'm going to be using it. Okay, so it's your choice. So, as we would do with any 1:29:40 asset, you search it over here, add to product, and it
+might not appear depending on the version. Okay, this 1:29:46 might happen for other assets as well. If it doesn't appear, just click on show all projects and then select this and
+1:29:52 you will see that it isn't compatible with the latest version that you might be using for the adventure masterass. In 1:29:58 this case, it is 5.6. But don't worry, just
+click here and select the most recent version that this asset is 1:30:06 supported and click add to project. And this will automatically convert and make 1:30:12 sure that we can
+use Temples of Cambodia in our print. Okay, no worries. It would 1:30:17 still go ahead and work. So just leave it a couple seconds and it should be already completed. There we go.
+So now 1:30:24 once it has been imported into the Prite, I can go to the content browser, scroll down, and here it is. Temples of 1:30:30 Cambodia. I'm going to go to demo maps and
+then we have a couple of different maps that we can choose. In this case, I 1:30:37 want to go to interior and open this map up. And once this loads, you will see 1:30:43 that is
+insane. Now, uh, as you can see, by default, this specific map is super bright. This is basically because of the 1:30:50 post process. Don't tell me why it is like this. But just
+find the post process. Again, if you're using this 1:30:56 map, if not, it will be up to you. It depends on the map. But I'm going to go to exposure. I'm going to put this like
+1:31:03 to maybe, you know, one or something. And now, as you can see, it kind of goes 1:31:09 ahead and drops the exposure. And it's actually good. I'm going to put the min and
+max to be like minus five. And that 1:31:18 way there's more illumination. And then I'm going to go to this part over here. And boom. This part is 1:31:25 literally insane. As you
+can see, this is one of my favorite ones. Um, so we can even put this to two maybe to have a 1:31:33 bit more of a brightness. And yeah, I mean this is the starting point. So now
+1:31:39 that you are in your map, what you're going to do is just go to wall settings. And again, if you don't see wall 1:31:44 settings, go to window and then find over here. And
+then on the game mode override, just go ahead and make sure 1:31:50 that you have GM sandbox, which is the one for motion matching and for our adventure character. So, if we don't
+1:31:58 have a player start, which I think we don't have. Yeah, we don't have a player start. We need to add one so it will 1:32:04 actually spawn. So, uh, let's find a spot over
+here. And in my case, I'm 1:32:09 going to go right here. Okay. Um, and yeah, let me just quickly go ahead and 1:32:15 put this to unlit so I can see it because it's a bit dark.
+I'll add a bit more lighting here. But now in the 1:32:21 quickly add to the project, just go to all and then find the player start and 1:32:27 drag it up. And then I'm gonna just
+rotate it 180° so it faces forward. And 1:32:34 there we go. But obviously maybe in your project you already have a player start in the level. You just move it. All 1:32:41 right.
+So now when I press play, this happens. Now I can walk. Now the um 1:32:46 bloom is absolutely crazy. And there's some things that are being kind of 1:32:52 broken. Also, the
+texture streaming pool is over the budget. So, these are things that might depend on your level. In my 1:32:58 case, I just simply have to find the post process and play around
+with the 1:33:05 lens flares. So, literally, I'm going to like disable it. And then also find the 1:33:11 things like bloom. So, I'm going to just go ahead and search for bloom.
+1:33:18 And then we can find the intensity. As you can see, it's literally seven. That is crazy. I'm going to just put it by 1:33:24 default and disable it. And there we go. Okay.
+Still crazy. 1:33:30 Um, I'm going to play around with the settings a bit more. But, uh, ignore the fire. Right now, you can see that this 1:33:37 level looks absolutely amazing.
+Okay, it's really pretty cool. So yeah, let me 1:33:43 go ahead and just play around a bit more with the post-process and see if I can get that intensity a bit lowered. Okay,
+1:33:50 so I play a bit with the post-process and on top of that, I went to my adventure character and to the torch 1:33:56 fire and I basically changed it from the starter content
+one to one that is 1:34:01 included in the temples of Cambodia, which is torch. And it does look a bit 1:34:06 better. If I press play, you will see it. It's kind of cooler,
+honestly. Um, so yeah, I mean this is already looking 1:34:14 pretty cool. We can maybe increase a bit more exposure in some areas, but yeah, I 1:34:19 mean I'm very happy with how
+this is looking. You might have noticed that um the feet were not really lined with the 1:34:26 floor. This is just because of the collision grounds and all that stuff. Um, this
+doesn't have a very, you know, 1:34:36 um, accurate collision, let's say. So if you wanted to improve how this collision is, you can just go ahead and open up 1:34:42 the actual
+mesh and then you can scroll down until you see the collision prox uh 1:34:48 proximity, sorry. You can put use complex as simple and now if I play from 1:34:56 here, it's a bit
+more accurate. Um, as you can 1:35:01 see, the feet are actually touching the ground. Now the shadow is another thing. the shadow of a 1:35:08 is not really um doing some good
+work. But uh yeah, if you want to change the ground, you can basically do that. I 1:35:15 could uh repeat it here. I don't know if it's the same one or if it's another one, but I
+could go here, use complex as 1:35:22 simple and the feet will align a bit better. Okay, now I am on a Mac, so I 1:35:29 need to reduce a bit the shadows from what I'm used to, but
+I'm going to 1:35:34 increase a bit the shading, and maybe this 1:35:41 creates a better look on the feet. It will lag a bit 1:35:46 more, but maybe it does look a bit better. Let
+me double check this for a second. 1:35:54 It's similar, honestly. But yeah, it's uh still pretty cool. All right, so now 1:36:00 it is time to actually introduce the mechanics
+that we added in the other level into this level and actually make 1:36:07 it like a playable game, you know. So, what I'm going to do is go into this 1:36:12 area and I'm going to
+create like a sort of pit. And this pit is only going to be able to be crossed with the lever, which 1:36:19 was going to be here. Right? So, that's how we going to introduce our
+thing. And then I'm going to basically add the 1:36:25 quest over here. And then you just need to go over here. And then we have the chest that we added. Let's go ahead and 1:36:32
+add all this. And obviously this will kind of depend on the level that you're using. In this case, I'm using this 1:36:39 Temples of Cambodia. But what I'm going to do is change
+from lit to unlit so I can see this a bit better. And as you 1:36:45 can see, we have this whole ground. So, I'm gonna just change this to the um you 1:36:51 know scale tool and
+I'm gonna make it until here basically. So, this part is 1:36:57 going to be the pit as you can see. Well, maybe I'm going to make it a bit longer, you know. Um let me just go here
+1:37:03 and disable the snapping and that way and kind of can go over here and 1:37:10 you know make this a bit bigger. Maybe even bigger. 1:37:16 Okay, maybe that's too much. But
+yeah, um it's just 1:37:22 Okay, this is perfect. So, this is going to be my pit here. So, I'm going to start to get this things here and just 1:37:28 delete them, which is kind of
+the degrees in this area. As you can see, I 1:37:34 deleted this whole degrees. Uh we're going to do instead is just kind of move it more 1:37:40 into this area so we can uh reuse
+them. Uh, perfect. And the same with this 1:37:47 parts over here. I'm gonna Oh, there's also some light rays over here. If it's 1:37:53 in the middle, I can just go inside and
+start to delete some stuff. And then I'm 1:37:59 going to leave the spikes because I want to leave them at the bottom of the tip of the tip, sorry, of the pit. So, it's 1:38:05
+like funny. Okay, perfect. Get this over here. Delete. 1:38:12 Get this here. And just move it more like here. 1:38:18 And go here. And you know, I guess I would just need 1:38:24
+to put this more here. We go align. 1:38:30 And then this part here. I can delete this. And perfect. There's some more 1:38:36 things that I can get here. by anyway. So, what I
+want to do now is get all the 1:38:41 spears and simply put them more inside 1:38:46 the pit. So, I need to make sure that it doesn't hit the walking bridge when it 1:38:54 goes
+up. So, maybe like here. Perfect. Now, I think there also Yeah, 1:39:01 there's also like a ground here that I'm going to delete. There we go. Now, there's no ground. And 1:39:08
+then what I'm going to do is go to content and search for wall. And I 1:39:14 should find all the walls here that we're using for the temp of Cambodia. 1:39:19 So, you know,
+there's a couple of them. For example, this one. Drag this here. 1:39:25 And now with this, I'm going to simply just put this on the ground 1:39:31 and create like a little bit.
+Okay. So this part of the tutorial is less step 1:39:36 by step and it is just more like okay I'm just building this. If you want to 1:39:43 follow along similarly with your own
+level go ahead. If not it doesn't matter 1:39:48 you know but let me just fill this in. And for the stretching going to just increase it upwards as well and put it 1:39:55 down. So
+there's not a lot of stretching. And obviously I'm doing this fast. You could spend more time going to 1:40:01 alt duplicate it. But also, if you think about it, this pit, you
+know, it's kind 1:40:06 of hidden. Not a lot of people's going to see there because there's no light. I'm right now in unlit. So, you know, 1:40:14 you get me. It doesn't have to
+be perfect. Perfect. But let me just put this here. 1:40:21 Perfect. Kind of like this. I'm going to get this part here and delete this. And also this ones over here. If you cannot
+1:40:28 select stuff, always, you know, just get it closer because it will be that there's like a little 1:40:35 collider in front. Oh, yeah. And also this part here, I need to
+maybe take it 1:40:41 a bit more like maybe here. Okay. Oh. Oh, yeah. Maybe we need to uh 1:40:48 get the walls, which are this three, and maybe put them a bit higher. There we
+1:40:54 go. There's no gap. And I think that I'm pretty happy with 1:41:00 this. Okay, so now we can actually add our own uh stuff. If I put this to a 1:41:05 lid, you can see how
+cool this looks, right? Oh, there's one flying here. Let me uh delete this. 1:41:12 Actually, you know what? We could put this on a spike, but uh you know that's 1:41:18 that's
+okay. Um okay, perfect. Uh okay, so we're good to 1:41:25 go. I just need to add pi to truth path, you know. So, let me go here back to lit 1:41:30 so it's kind of easier to see
+everything. And let me go to our blueprints folder. Go to custom. 1:41:38 And here we have our bridge. So, let me just drag it up. Now, as you might know, 1:41:45 this bridge
+cannot just be white. We have to actually improve it a bit. So, what I'm going to do is actually delete 1:41:51 this one. And I'm going to right click on our bridge in the content
+browser and create a child. Okay. I'm going to 1:41:56 customize this bridge to be like with also bricks, you know. And I'm going to create a child so it's cleaner and we 1:42:03
+have a clean bridge with this just the white thing but then a child which has 1:42:09 this biomes kind of you know visuals into it. So we're going to do bridge 1:42:18 uh temple. I
+think that makes sense. Perfect. And 1:42:23 what I'm going to do is instead of changing the base mesh, which will change up the size and scale of 1:42:29 everything, what I'm
+going to do instead is uh open up the content drawer and I'm 1:42:36 going to search for floor and I'm going to get this uh floor over here and drag 1:42:41 it into the scene
+route. And then this will be automatically a child of the 1:42:47 cube. If not, make sure that it's a child. We're going to do a trick and it's just get it out of a child, right?
+1:42:54 So it's not under cube. I'm going to reset it so it has a correct scale and then put it again as a child cube. And 1:43:00 now it has the correct uh size. So let me get
+this part 1:43:06 into the corner here. And I'm going to simply just make sure that this fits the 1:43:13 scale of this part. So this like this 1:43:20 and it's like this.
+Literally perfect. It might be a bit stretched but um you 1:43:25 know it's okay for me. And then obviously we have to go to cube go to details visibility and this whole 1:43:33
+visibility. And that's it. So still everything will work. So now I can get the temple bridge and actually put it 1:43:40 like right here and then just put it here and then kind of
+make it fit this 1:43:46 part over here. Now obviously I might still need to go ahead and increase the size but you know what? I want to leave 1:43:54 a gap here and a gap here. I
+think it looks like more adventurous, you know. So I'm going to leave this here. And 1:44:01 we need to put this on the bottom by default, right? Because that's the starting point.
+So, it's going to be 1:44:07 like maybe like here and then um or even more. Yeah, maybe like here. I don't 1:44:13 know what's going on with this glitches. Okay, just ignore that.
+Um anyway, so then click on the destination location 1:44:20 uh widget and move this widget up. And then we want to go ahead and put this 1:44:26 kind of aligned with the ground
+here. And that's it. This is the destination point. Perfect. 1:44:33 So now with that said, I just want to get the lever and maybe put this like here 1:44:39 and maybe 90°. Now
+this is kind of wood and it doesn't really fit the 1:44:45 tempo vibe, but you know it's it's okay, right? You can change the models or whatever you want. And then I just need
+1:44:53 to go ahead and click on the actor to activate with a lever selected on the details panel with the pipet. Select the 1:45:00 bridge tempo. Make sure you have selected the
+bridge temple. And that's it. So now if I press play and I go 1:45:06 towards the bridge, I can go ahead and press the lever and it will go up and 1:45:12 then I can cross. Now I
+see it didn't look very good because it was too fast. 1:45:17 So let's click on the bridge and open this up. And then what I'm going to do is click on the interp movement. 1:45:25
+Select it again. the duration going to put like like a good 3.8 seconds. 1:45:34 Okay, let's try like that. So now we go here, press E, 1:45:41 and it takes more time to go up. And
+you could put like a sound of, you know, a 1:45:46 lever going up. And okay, I fell. So um yeah, just make sure that I that I jump 1:45:53 there. But yeah, if I go back to lid, as
+you can see, looks pretty good. Uh maybe 1:45:58 I can put this spear on the right and then rotate it like this. So it will not 1:46:05 go like through the ground if that makes
+sense. And maybe this one I can put it more like this. Yeah, in general, I 1:46:12 think I just have to put them more like on the ground. 1:46:17 Uh perfect. And that's it. We got
+everything working. So now I just need to add maybe the quest right over here. 1:46:23 So on this little hallway over here, I'm going to put it on lid so you see better. Going to
+get the quest trigger 1:46:29 and just drag this here. And then let me place 1:46:36 this over here. There we go. Perfect. This is the 1:46:41 trigger. So now for the quest name it
+will be like you know 1:46:47 uh yeah we can put a cam body temple 1:46:52 and then for the description we can get still 1:46:58 the chest and escape. 1:47:03 Okay. And then we can
+go here and maybe right here we can get the chest. 1:47:11 And I don't know what's the I think this is the forward direction. 1:47:17 I'm going to put this like here. Rotate it
+like a bit. 1:47:24 And then that's it. I'm going to go here 1:47:30 and Okay, that's not the the correct direction. Okay, it was uh here. 1:47:35 Um wait. Oh, here. Sorry. Okay,
+select the 1:47:42 trigger and make sure that for the chest you have selected this chest over here. 1:47:49 Perfect. So I mean it should work. I should go over here. We cannot
+cross 1:47:54 like oh my god. What do we do? Oh just enable the lever. It will go up. 1:48:02 Super cool. Then we can kind of jump here. Got a trigger which we need to disable this
+uh visible thing. And now 1:48:09 it says Cambodia Temple. Steal the chest and escape. Then we go to the chest. 1:48:15 Open it. Quest completed. And there we go. This is the base
+of the adventure 1:48:20 game that we built over here. And I mean, it's looking pretty pretty cool, I must say. So, with the quest trigger 1:48:28 selected, just do Ctrl E to open
+up. Then click on the trigger, search for hidden in-game, and enable this. And 1:48:37 that's it. now will not appear when we press play which is very important and I left a very
+important detail to fix to 1:48:44 the end which is the arm of the torch. So to fix this just go to content 1:48:50 blueprints and the sandbox character find the layered blend per
+bone node that we added at the end and then under 1:48:57 the mesh space rotation blend also enable root space rotation blend. And 1:49:03 now you'll see that we will actually go
+ahead and we go to light fix this. So 1:49:08 now the torch is completely good. Perfect. So that's it. We fixed it. And 1:49:14 also to fix the hair real quick. As you can see kind
+of glows on the dark and it looks a bit weird. Let's just go ahead 1:49:20 and open up the blueprints adventure character. Then go ahead and select the echo hair and double click
+on hair cards 1:49:29 on the material. And then you see this uh brightness over here. Just split this to zero. And yes, it will kind of darken 1:49:34 the hair, but it will also
+make it not glow, which is I think more important. Then obviously 1:49:40 you can just increase the saturation and things of the colors. But that's it. We fixed it. And that's it
+guys. You 1:49:46 successfully created an adventure game that looks insane in Unreal Engine 5 in 1:49:51 only a couple of hours. If you enjoyed this master class, make sure to like
+the video and subscribe to my channel 1:49:57 because I have over 800 other tutorials on learning Unreal Engine 5. And as I 1:50:02 mentioned before, if you want to get access to
+more than 500 assets that I use to create my viral games, join my 1:50:09 Unreal club now. Yes, with all I said, bye-bye. 1:50:19 [Music] All From Gorka Games0:0028 28 that is when
+I decided to start my creative career let's talk about why it's never too late to start creating art and why you should start 0:088 secondstoday when I was a kid I I loved making
+art I have such a distinct memory of drawing these massive convoluted guns 0:1717 secondswith all these crazy Parts going off of them it would take hours and hours for me to draw
+them but I loved every single second doing it I love getting sucked into it but somewhere along the line I 0:2626 secondslost it I lost that spark I ended up getting 2° thinking I
+had to make as much money as possible as quickly as I could I ended up learning programming 0:3434 secondsand getting a job at a okay tech company I was about I think I was about
+24 at the time I I started late fast forward 0:4141 secondsto 27 maybe 28 years old I'm in a job I hate the soul is completely sucked out of my body I'm not doing anything 0:4848
+secondscreative I'm barely working out I'm just I'm just not in a good place and this entire time I felt like I felt like 0:5656 secondssomething was missing I didn't realize at
+the time that that was the need for a creative outlet but what it felt like was was empty I just felt empty I felt 1:041 minute, 4 secondslike there was something that I was
+supposed to be giving to the world that I that I wasn't doing and I wasn't fulfilling I don't know exactly when I 1:111 minute, 11 secondsfell in love with 3D art but I was always
+super into video games and I was always super into how things worked 1:191 minute, 19 secondsbehind the scenes so maybe that's the original spark one day I decided I just I just
+had enough so what I did was I sat down and I was like hey I'm a little 1:271 minute, 27 secondscurious about this like this whole 3D art thing how how do we actually do this like
+right so I hopped onto YouTube and I searched around and I found my first 1:351 minute, 35 secondstutorial it was some course about hard surface 3D modeling and we modeled like a
+character's weapon like a gun 1:421 minute, 42 secondsbasically it was like 3 hours long I absolutely suffered through every second of it but it was incredible I was making 1:491
+minute, 49 secondssomething from scratch I never felt never felt this fulfilled in my entire life you know creating something from scratch that was that was mine even 1:571 minute,
+57 secondsthough it was a tutorial it was mine I still made it that made me more satisfied than any high-paying job that I that I've had and then I did another 2:042 minutes, 4
+secondstutorial and then I did another and then suddenly I was making stuff I was I was really into hyper realistic and sci-fi 2:112 minutes, 11 secondshard surface stuff at the
+time so I was really chunking through all these courses it was super fun yeah it was a it was a really it was a really cool time very simple and then at some point 2:202 minutes,
+20 secondsI was like you know what I want to give this uh this educating thing a try I think I've learned enough one of the very first tutorials you can go back and 2:272 minutes,
+27 secondslook at it on my channel I made um like a giant Buster sword kind of thing and it's like horrible the mic quality was 2:342 minutes, 34 secondsawful I didn't know what
+the hell I was doing I didn't know how to teach it was just like 3 hours of mess but after that 2:412 minutes, 41 secondspoint it was too late I I had fallen in love with it and I
+had fallen in love with education and I didn't realize this was something I always loved at my old 2:492 minutes, 49 secondsjob I ended up falling into an education role as well
+because I loved learning about topics and then I loved sharing what I learned with other people and I I love watching other people grow based on 2:582 minutes, 58 secondsthe stuff
+that i' I've taught them that was it and that sparked it so fast forward 5 years I'm now 33 we are coming 3:053 minutes, 5 secondsup on half a million subscribers on YouTube I
+ended up creating a 3D art course which made me more money than I've ever seen in my life I've learned 3:133 minutes, 13 secondsall these incredible skills like editing how to work
+these cameras how to make 3D art how to just be an artist in general how to live a more fulfilled life and 3:203 minutes, 20 secondsnow we're even collaborating with all these cool
+artists on making courses and and growing a business I I would have never done this before if it wasn't for just taking that first step it's crazy 3:293 minutes, 29 secondsit's
+crazy that I just get to sit here and talk about art as my my full-time job I am I am so incredibly thankful now 3:363 minutes, 36 secondssome people that are watching this video
+may be thinking okay I'm in a similar situation you know so let's talk about it a little 3:443 minutes, 44 secondsbit let's talk about just just getting started when it comes to
+starting late I was coming up on my 30s when I started doing this but in my opinion I started 3:533 minutes, 53 secondsexactly when I was meant to all my life experiences all the
+paths that I've been on all the mistakes all the fail 4:004 minutesall the success had led me to this point my life would be completely different if I started making art and doing
+this stuff when I was 14 it could be it could 4:084 minutes, 8 secondsbe worse my life could be worse off who knows I could have crashed and burned because I wasn't ready I we
+don't know so I will always always always say if 4:154 minutes, 15 secondsyou are starting now you are starting at the best possible time because that is the time where you were
+supposed to start and that's right now one of the biggest things to take away from all 4:234 minutes, 23 secondsthis is that art and and being a Creator and being creative has no
+age limit just because you started this at at 14 doesn't make you a bigger Creator or a 4:314 minutes, 31 secondssmaller Creator or better or worse than than someone who started at
+45 because trust me if me as a 33y old man go up to 4:394 minutes, 39 secondsa 50-year-old dude or woman and say hey like is it too late for me to start whatever is it too late for
+me to start 4:464 minutes, 46 secondspainting that 50-year-old person is going to be like dude you are so young you don't know how lucky you have it and if that 50-year-old goes up
+to a 4:554 minutes, 55 seconds70-year-old person and says hey is it too late to start to start gardening the 70-year-old is going to say to the 50-year-old you have no idea how
+lucky 5:035 minutes, 3 secondsyou are to be so young so I think the whole concept of of starting too late is it too late to start it's kind of in the first place I get so 5:115
+minutes, 11 secondsmany comments on my on my YouTube channel saying like hey I'm 18 I'm 19 I'm 20 I'm 22 23 like it's too late I 5:195 minutes, 19 secondscan't believe I waited so
+long it's I I it's over it's over for me like dude I I only have like a decade on you and trust me like you're young dude you got so 5:275 minutes, 27 secondsmuch time it's amazing
+what you canpl in a few years look at me I was 28 33 now where I am if you're worried about technical skill uh and thinking that you 5:365 minutes, 36 secondsaren't good enough as
+as some of these other people who are like currently doing it I will say that technical technical skill in 3D is I guess is 5:435 minutes, 43 secondsimportant but in general in art
+uh it's not as important as you think it is some of the best artists out there aren't technically gifted at all they just have 5:515 minutes, 51 secondsa good eye and they're able
+to convey the lessons that they've learned in a way that reaches and touches people that's what art is Art isn't necessarily 5:585 minutes, 58 secondsbe about being being
+incredibly technically talented and plus if you start making stuff anyway you're going to get better over time right it's your 6:066 minutes, 6 secondsown personal Journey
+everything that you've done in the past up to this point doesn't really matter it matters in the sense that you've you've built this this 6:126 minutes, 12 secondspool of
+experience but it doesn't matter in the sense that all that matters is just starting now right the past is the past you're doing something now and then 6:216 minutes, 21
+secondsthat's what's important if you are starting late I 6:296 minutes, 29 secondswould say it's actually a benefit in in a in a way because you have more experience points than
+than someone younger starting right you have the potential to grow faster uh you know 6:386 minutes, 38 secondsmore about yourself so you're able to communicate your art more
+effectively to other people I think that's pretty special I'm glad I started when I started because if I started when I was 6:466 minutes, 46 seconds14 I would just be making slop
+I'd be technically better at at what I do but I'd just be making slop anyway so I don't remember you are on your own 6:546 minutes, 54 secondsjourney we'll talk about this a little
+more later in the video but it doesn't really matter where everyone else right or it doesn't really matter where you started and and where you're ending 7:037 minutes, 3 secondsup
+right it's it's it's art is the Journey of your own soul if you're starting at what you feel 7:137 minutes, 13 secondsis late you're going to feel uncomfortable right you're going
+to feel scared and the main reason for that is because you're in your comfort zone 7:197 minutes, 19 secondsright you've been doing things your way for a while right and and you
+know what works you know what makes you happy you know what makes you sad typically avoid 7:277 minutes, 27 secondsthose sad things you know what makes you uncomfortable you
+typically avoid those things that make you uncomfortable and I think that's what stops a lot of people from from doing this stuff because they 7:367 minutes, 36 secondsknow they're
+going to have to leave their comfort zone to make art and let's be totally honest at first it's going to be fun it's going to be exciting but it's also going to suck every single
+7:447 minutes, 44 secondsthing you do is going to be a challenge right like if you're if you're learning how to draw on paper right like drawing simple shapes if you haven't been
+7:527 minutes, 52 secondspracticing and doing it dude it's hard man like it's really hard I did a bunch of lessons a few years ago and like even just like making like like making
+like 8:008 minutessquares properly and cubes in a 3D space with like depth and perspective it is so hard dude like I I spent months on it 8:088 minutes, 8 secondsbefore I really
+got my head around it but it is a good paint there's nothing wrong with pushing yourself and and and and challenging yourself uh with things 8:168 minutes, 16 secondsthat are worth
+it the one piece of advice I will give to you is to just show up that can be 5 minutes a day it could be 30 minutes a day whatever time you have it doesn't really matter right
+8:258 minutes, 25 secondsyou just want to get yourself used to to showing up and integrating this into a part of your life you can do it off of like pure discipline and willpower
+but I 8:338 minutes, 33 secondsfind that finding your reason why you're doing this is so much more powerful for me I do this stuff because I want to inspire people right I want to
+grow my 8:418 minutes, 41 secondsbusiness I want to improve myself as an artist I want to learn how deep this Rabbit Hole of my soul goes that's my 8:488 minutes, 48 secondsreason
+and that's what pushes me through day after day and I think knowing where you want to be but not knowing how you 8:558 minutes, 55 secondsare going to get there is okay that's fine
+uh most people live their day-to-day life like that everyone everyone does we're just muddling through doing the daily work that we 9:049 minutes, 4 secondsknow needs to be done
+and then hoping we land on our feet another thing I used to do when I had a hard time getting started was I created like a check mark system every day I did 5 minutes of art 9:129
+minutes, 12 secondshad a little piece of paper and I and I threw a little threw a little check mark down and then I had like a a big one of like I had like a hundred or so uh check
+9:219 minutes, 21 secondsmarks going it felt really good and really help me get started I think one thing with that is if you're going to do a system like that do not beat yourself
+9:299 minutes, 29 secondsup if you miss a day okay I miss days all the time I didn't look like a perfect check mark system there were there are pieces missing you get sick you go
+on vacation family members need 9:389 minutes, 38 secondsyour help whatever it happens that's a part of life right like art isn't really supposed to take over your life it's
+supposed to enhance it it's supposed to enhance your life so as a rule of thumb 9:469 minutes, 46 secondsfor me I would allow myself to miss a day but I would never allow myself to
+miss a second day so no two two x's in a row right that's that's how I would do 9:559 minutes, 55 secondsit whatever works for you really but that worked for me now during this
+phase it's going to be 10:0210 minutes, 2 secondshard um but I do want to say that it's okay to be scared you were going to be constantly all day bashing your head against against
+a wall that's what it's 10:1010 minutes, 10 secondsgoing to feel like you're going to have a good day where you like feel like you made something pretty great and you really got it
+out there and you're going to have really bad days where you feel like you feel like you didn't get 10:1810 minutes, 18 secondsanything done you didn't really learn anything but
+that all that means you're just heading in the right direction right if you're feeling friction in your life with something that you are trying 10:2610 minutes, 26 secondsto do it
+means you're learning right you're bumping up on on that edge of of what you know right and pushing through that wall to make the wall and your 10:3510 minutes, 35 secondswhatever
+bigger your sphere of knowledge bigger is hard and it takes a lot of pushing now being a little older you probably already know that which is great and that's what I mean when I
+say 10:4310 minutes, 43 secondslike being older is a bit of an advantage maybe you know how to work hard for things maybe you know that things are going to take a little more work
+again that's why I'm glad I didn't start when I was 14 cuz I probably would 10:5210 minutes, 52 secondshave like given it 110% for a week thought it was impossible and then maybe
+scared me off for the rest of my life so remember when you're leaving your 10:5810 minutes, 58 secondscomfort Zone this is supposed to be hard okay especially at the beginning it's
+supposed to be hard and that is 11:0511 minutes, 5 secondscompletely okay it will get easier but that's part of the artistic Journey right if you're not challenging yourself and

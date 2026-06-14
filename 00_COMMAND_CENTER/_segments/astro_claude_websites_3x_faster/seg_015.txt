@@ -1,0 +1,224 @@
+It could also 8:58 contain just database records of stuff. 9:00 Like for example, there's just like 9:02 information that you're storing like 9:03 contracts, meeting recordings,
+and 9:05 notes. Then there's also prompt 9:07 templates. These are structured prompt 9:09 blueprints so that you don't have to 9:10 force your user to have to come up with 9:12
+their own prompts. Like for example, if 9:14 you are someone who's trying to use an 9:15 MCP server that uh is able to summarize 9:18 like a certain transcript from a meeting 9:20
+and then generate a report based upon 9:22 it, you could just write something like, 9:23 oh, summarize this transcript into key 9:25 action items, then generate a report, 9:28
+right? Like you could write something 9:29 like that, but that probably won't yield 9:31 the best results. So instead, the people 9:32 that actually built the MCP server can 9:35
+put within their MCP server a prompt 9:37 template that is much more flushed out 9:39 that's able to actually extract the 9:41 insights and generate the report in a 9:42 much
+better fashion so that the user all 9:44 they have to do is input like some 9:46 specifics into that template. This takes 9:48 the burden of the prompt engineering 9:50 from the
+user. As a full example, you 9:52 can have like a SQLite MCP server which 9:55 gives access to like a database which is 9:57 the SQLite database. Don't worry if you 9:59 don't know
+what that is. is basically 10:00 just like a database that can store 10:01 information. Anyways, so you can have 10:03 tools that allow you to read the SQL 10:06 database to insert
+information into the 10:08 database to change the information in 10:10 the database and to delete information 10:11 from the database. In addition to that, 10:13 there is a
+resource that is logging all 10:16 of the changes that are happening to the 10:17 database so you have a historical track 10:19 record of what's happened. And there's 10:20 also
+some prompt templates that 10:22 incorporates the best practices to 10:24 interact with that database. Make sense? 10:25 All right, time for our next little 10:27 assessment.
+Please answer the questions Quiz 2 10:28 on screen now and put it into the 10:31 comments so you are following along. MCP 10:33 is all about giving your agents more 10:35 context
+so that they can do really 10:36 powerful things. So when you're ready to 10:38 deploy your AI agents with a lot more 10:40 functionalities and you want really good 10:41 UI, NA10
+plus Bolt is a really powerful 10:45 combination and you don't need to write 10:46 a single line of code or you can just 10:48 directly build via Bolt. Bolt can take 10:50 you from
+an idea to a fully functional 10:52 product within minutes. Whether that is 10:54 software for your team, an internal tool 10:56 or a website. It has everything that you 10:58
+need, whether that's hosting, backend, 11:00 database, off, domains, and even SEO. 11:03 One of the things I really like about 11:04 Bald is that it seamlessly handles the 11:06
+entire process so that you can focus on 11:08 building real things as opposed to 11:11 handling infrastructure. You don't need 11:12 to handle like setup, configs, war, 11:14
+external tools. Bolt puts the most 11:16 powerful tools used by developers into 11:18 your hands with an intuitive chat 11:20 interface. It really is as simple as 11:22 this. So,
+here we have the Bolt new 11:24 landing page. And we can just type 11:26 something like build an app that blurs 11:29 out people's faces in pictures and just 11:33 click build now
+and then let it do its 11:36 thing. Of course, you can go into a lot 11:38 more details and have a lot of like 11:39 specific specs within the app as well. 11:42 And look at that.
+Here we have this 11:44 application and let's actually try it 11:45 out. We will put an image. Here is a 11:49 picture of me when I was still a little 11:50 Tina. And there you go.
+We have the 11:52 original and then we have the blurred 11:54 version. And you can download the 11:56 blurred image as well. As well as you 11:58 keep building, you can include a
+lot 11:59 more features and tweak things however 12:01 it is that you want. Let Bald do the 12:03 heavy lifting so you can focus on your 12:04 vision instead of fighting bugs. You
+can 12:06 try out Bald V2 for free today at this 12:09 link over here, also linked in 12:10 description. Now, back to the video. 12:12 Okay, so the final concept that I want 12:14
+to cover for MCP before diving into 12:16 actually building them is the Communication Life Cycle 12:18 communication life cycle. The way that 12:19 the MCP client and the MCP
+server 12:22 communicate with each other. The first 12:23 step is the initialization when the MCP 12:25 client interacts with the MCP server 12:27 being like, hey, I would like
+things 12:29 from you now and they initiate a 12:31 connection. Then you have the message 12:33 exchange phase when the MCP client makes 12:35 a request to the server. for example
+12:37 like I want to use this tool and the MCP 12:40 server goes like okay and gives it back 12:42 which is the response. So you do that 12:44 exchange the messages and then
+finally 12:46 there's the termination phase when the 12:48 client and the server terminate and stop 12:51 interacting with each other. Now the way 12:52 that the messages are done
+is called a 12:54 transport. The transport handles the 12:56 underlying mechanics of how messages are 12:58 sent and received between the client and 13:00 the server. And there are
+two different 13:01 categories of how transports work. First 13:03 one is when the server is running 13:05 locally like your MCP server and your 13:07 host all of this is within a
+single 13:09 machine. The analogy that I like to give 13:11 here is say that your MCP client is like 13:13 the diner and the chef is like your MCP 13:16 server who is going to be
+the one 13:18 preparing the food for your diner. Now 13:19 for the server and the client running 13:21 locally, it'll be like just you and your 13:23 friend cooking at home with
+like a 13:24 notebook. You as the chef is just like 13:26 cooking it and maybe you're just like 13:28 writing down what it is that you're 13:29 doing and like just passing a note
+to 13:30 your friend the diner for some reason. 13:32 So they're like keeping updated about 13:34 what's happening while you're cooking. 13:35 That is like the standard out a
+running 13:37 log that's just like living locally 13:39 between you guys. You don't need to rely 13:41 on like a waiter or a cashier or 13:43 anything like that. The other category
+13:44 of transports is for remote servers. So 13:46 these are servers that live in other 13:48 machines on the cloud somewhere else. 13:50 And there are two different approaches
+13:51 to interact with a remote server. The 13:53 first one is called HTTP plus SSE which 13:55 is server sent events. Don't worry so 13:57 much about the terminologies. It 13:58
+supports what is called a stateful 14:00 connection. Going back to that analogy, 14:02 in this case, you would have to like 14:03 leave your house and say you're at a 14:04
+restaurant. You, as a diner, would sit 14:06 down at the restaurant. You're the 14:08 client, and you would interact with a 14:10 waiter, which is a server, and you would 14:12
+tell it stuff like, "Oh, here's my 14:13 table. Here's the appetizers that I want 14:15 to order, blah, blah, blah." And then 14:16 your server would like bring you those 14:17
+things, and say if you want to order 14:19 like the same drink again, you could 14:20 just say something like, "I'll like to 14:21 have the same drink again." And you 14:22 don't
+have to like exactly specify 14:24 whatever it is that you ordered the 14:25 first time. So this is called a stateful 14:27 connection because the server maintains 14:28 the state
+of it like remembering the 14:30 knowledge the memory of what you ordered 14:31 all this information throughout the 14:33 entire interaction. Now there's also 14:35 what is called
+stateless stateful 14:37 stateless. This kind of transport 14:38 supported by a streamable HTTP. To be 14:41 stateless is sort of like if you go to a 14:43 fast food restaurant as
+opposed to like 14:45 a sitdown restaurant. Like if you're at 14:47 McDonald's for example, you would order 14:48 like a Big Mac and I don't know like 14:50 fries. But then like if
+you want to get 14:52 something else, you want to also get 14:53 like chicken nuggets, you would actually 14:55 have to go and like input your order all 14:57 over again and get
+like a new ticket and 14:59 you have to wait again. The cashier 15:00 that's clashing you out, the server 15:01 doesn't actually remember everything 15:03 that you ordered
+previously. So that's 15:05 why it's called stateless because it 15:06 doesn't remember all of the knowledge 15:08 that came with your prior interactions. 15:10 Each request is
+independent of each 15:12 other. So without going into way too 15:13 much detail about this like the 15:14 streamable HTTP is the preferred 15:17 transport method because it's able
+to 15:19 support both stateful and stateless and 15:21 there are instances in which you want to 15:23 have like stateful interactions and 15:25 instances in which you want to have
+15:26 stateless interactions as well. So this 15:28 section might sound a little bit like 15:29 detailed and theoretical but it does 15:31 become very important when we're 15:33
+actually going to be using our MCP 15:35 servers and building our MCP servers 15:37 which is right after I give you this 15:38 final little assessment. Quiz 3 15:44 Okay, I'm going
+to show you the no code 15:46 implementation of building your very own Building MCP Server (No-code) 15:47 MCP server now. And we're going to be 15:49 doing this by using n10. So
+you can do 15:52 stuff like send an email to Tina with 15:55 the address tina@ lonelyotopus.com 15:59 asking her if she wants to grab a coffee 16:04 sometime. 16:07 Execute
+workflow. Press enter. goes 16:11 through this. We can see that it's 16:12 accessing the AI agent is accessing the 16:14 MCP client which is here. It contains 16:17 the ability to
+have a calculator and 16:19 also the tool that allows to send a 16:21 message to Gmail. So, it's able to 16:23 access the tool to send a message to 16:25 Gmail so that you will be
+able to get 16:27 this email. Hi Tina, I hope this message 16:30 finds you well. I was wondering if you 16:31 like to grab a coffee sometime. Let me 16:32 know what works for you.
+Best regards. 16:33 Email was automatically sent with NATO. 16:35 Okay. So, how to build this from 16:37 scratch? start off with a fresh new 16:39 workflow using NA10. If you have
+no idea 16:41 what NA10 is and you're not familiar 16:43 with it at all, check out this video 16:44 over here. I go into details about how 16:46 to build AI agents using NA10. I'm
+not 16:48 going to go into this here, so the video 16:49 is not super long, but basically it's a 16:51 no code low code tool that allows you to 16:53 build workflows. Also allows
+you to 16:54 build MCP servers. So you have your 16:56 server trigger over here and you want to 16:58 add some tools. Like for example, we can 17:00 add the calculator tool, which
+is just 17:02 like the ability to calculate things and 17:04 do math. Not super innovative but yes. 17:07 And then we can also add the email tool. 17:09 So maybe like a Gmail tool.
+And in here 17:13 we need to set up the credentials like 17:14 create new credential. You can kind of 17:16 go through the process. So all you have 17:19 to do is like sign into
+your Gmail um 17:21 which I will do here. And then you'll 17:23 have the account that is connected. Yay. 17:26 Then um because we just want to send 17:28 emails here. So the
+operation here is 17:29 going to be send. So for two we're going 17:31 to let the model decide these. So, let 17:33 the model decide the subject. Let's al 17:36 also let the model
+decide uh we'll have 17:38 the email type HTML and the message. 17:42 Let's also let the model decide that as 17:43 well. Wonderful. Amazing. So simple. 17:45 Right now, let's save
+this. Now, in 17:48 order to actually use our server, we 17:50 want to come here, make sure that it's 17:52 active. So, the server itself is going 17:54 to be active. And we want
+to take this 17:57 production URL. So, this allows access 17:59 to the server. Now I have another 18:01 workflow over here which is an AI agent 18:03 in which you can prompt it
+directly and 18:05 respond also attach the open AI chat 18:07 model here. So in order to add the MCP I 18:10 can click the MCP client tool the 18:12 endpoint we're going to copy
+paste what 18:14 we got from the MCP server and here in 18:17 the server transport see we have the 18:19 server send events which is deprecated 18:20 and the HTTP streamable the
+two 18:22 different transport right so we're going 18:24 to click HTTP streamable transport and 18:26 we don't need to change anything else 18:28 over here. Wow. Now we have the
+MCP 18:30 client. So let's actually test it out. 18:32 Let's actually do math this time. 18:34 Calculate 10 18:37 11 * 99. 18:41 We can see here that the AI agent goes 18:44 over
+here. Human says calculate 11 * 99. 18:46 It goes to the MCP client and it uses 18:48 the tool cal the calculator tool which 18:50 we have. And it says useful for getting 18:52 the
+results of a math expression. And 18:54 then the open AI chat model was able to 18:55 get the results by using the MCP client. 18:58 And then we were able to get the final 18:59
+result here with the output being the 19:01 result of 11 multipi by 99 is 1,089. 19:05 Yay. See how easy it is. There's a lot 19:08 that you can do with this. Of course, 19:09 you
+can add like so many more tools into 19:11 your MCP server. And you also don't need 19:13 to have NAN as your host. We can easily 19:16 switch out the host for something else.
+19:17 Like for example, maybe you want to 19:19 change out the host for cloud desktop. 19:20 So what we need to do is go on cloud 19:23 desktop. So go on help, type in 19:25
+developer. So switch to developer mode 19:28 and then under developer open the claw 19:30 desktop config file. So this should be 19:33 empty. You can open it with whatever 19:35
+text editor. So I'm here I'm just using 19:36 VS code for it. And you want to copy 19:38 paste this. So this is defined MCP 19:40 server and we're using NAN because 19:42 that's
+where the server is and we are 19:44 using SSE over here. And over here just 19:48 paste the endpoint here. So command S or 19:52 control S. Save it. Restart Claude and 19:56 wow
+amazing. We have NA10 over here 19:58 under the tools and includes send a 20:00 message in Gmail and the calculator. And 20:02 then you can do the same thing here. 20:04 Send an
+email to Tina@ lonely 20:08 octopus.com 20:09 asking her to host an octopus party. 20:13 Click enter. 20:15 See it'll say over here Claude wants to 20:17 use send a message in
+Gmail from NA10. 20:19 And you can click allow once to allow it 20:21 to use the tool from the MCP server. And 20:24 moment of truth, we have over here, "Hi 20:27 Tina, I hope this
+message finds you 20:28 well. I want to reach out to see if 20:29 you'd be interested in hosting an 20:30 octopus party. I think it'll be a 20:32 wonderful event and you'll be the
+20:33 perfect host for it. Let me know if 20:34 you're available and interested. Looking 20:35 forward to hearing from you. Best 20:36 regards. Yes, automatically sent with 20:38
+NAT." Voila. See, super easy, right? 20:41 Okay. So, now I want to show you the Building MCP Server (Code) 20:42 code implementation of doing this. Now 20:44 with code you are able
+to do a lot more 20:47 than this no code approach. I think the 20:49 no code approach is amazing. It's great, 20:50 right? It's really accessible and easy 20:52 to use. Remember we
+talked about earlier 20:53 about having like additional resources 20:55 and also prompt templates. You as of 20:57 right now cannot do that using NAT. You 21:00 can't actually put
+in the prompt 21:01 templates and specify those and you also 21:02 can't put in additional resources as 21:04 well. And in the code implementation you 21:06 can. So I'm not going
+to go and show you 21:08 every single line of code right now 21:10 because I don't want to make this video 21:11 like super duper long. But I want to 21:13 show you like the
+snippet of these are 21:14 the tools that we're going to be using 21:16 and this is how you can actually get it 21:17 to run. Okay. So for this code demo, 21:19 we're going to be
+using cloud desktop as 21:22 the host and I'm going to showcase a 21:24 simple MCP server that's able to provide 21:26 tools, resources, and prompts for 21:28 working with Google
+Sheets and Google 21:30 forms. So we can tell that the MC3 21:32 server is connected because if you go to 21:34 G Sheets over here, which is the MCP 21:36 server name, you can see
+all the tools 21:37 that are contained over here. So I have 21:39 a lot of different spreadsheets that are 21:41 available. So let's actually ask list 21:42 out the spreadsheets
+that are available. 21:49 It will want to use the list 21:50 spreadsheets. So this is the tool and it 21:53 tells us that we have 20 spreadsheets 21:55 that are available in the
+Google account 21:57 like NA10 form, anonymous feedback, the 22:00 only octis alumni blah blah blah etc. 22:02 All of these different ones. Would you 22:04 like me to read the data
+from any of 22:05 these spreadsheets here? I can say use 22:08 read sheet to get the columns 22:13 of the anonymous 22:17 feedback spreadsheet. 22:20 So it wants to use read sheet
+and this 22:22 is actually a resource. So it allows you 22:26 it's a readonly file where you can 22:28 actually read what the column names are. 22:30 You can see the spreadsheet ID
+and the 22:33 information that's contained over there. 22:35 And finally, I want to show you what it 22:36 looks like to use some of the prompt 22:38 templates. So, if we click
+over here, 22:40 add from sheets, here are some of the 22:43 prompt templates. So, let's click 22:44 analyze sheet data. And we can say use 22:46 this to analyze the anonymous
+22:52 pretty spell anonymous 22:55 feedback 22:57 spreadsheet 22:59 and create a dashboard just to make it 23:02 look pretty. 23:04 And we can see here is what the prompt 23:06
+template actually looks like. And it 23:09 shall do this. Let it do its thing. So 23:12 while it's doing that, let me actually 23:13 show you what the code looks like and 23:14 how
+to run this MCP server. Here's the 23:16 readme. If you follow these 23:17 instructions, you'll be able to run this 23:18 MCP server yourself. You can see that 23:21 the tools that
+it contains include 23:23 things like list spreadsheet, read the 23:25 sheet, write the sheet, append the 23:26 sheet, etc. It also has the resource 23:29 where you can use the
+sheet in order to 23:31 access sheet data as the resource. And 23:33 it has prompt templates including 23:34 analyze sheet data which is template for 23:36 analyzing sheet data.
+Creating report 23:38 template. So a template for creating 23:40 report spreadsheets and form to sheet 23:42 which is a template for form to sheet 23:44 workflow in the code
+itself. Not going 23:47 into too much detail over here. You can 23:50 see that after we define the credentials 23:52 the way that you can define these tools 23:54 that you can
+decorate the function. So 23:56 you know that's MCP tool. So this one is 23:58 the function for listing the 23:59 spreadsheet. This one is for reading the 24:01 sheet etc. And then
+the way that you can 24:04 show that it's a resource is that you 24:06 just decorate it so that you know that 24:07 it's a resource. So get sheet resource. 24:10 And here are the
+prompt templates 24:12 themselves. So they're actually 24:13 hardcoded directly in these different 24:15 prompt templates. So let's go back to 24:17 claude here and see what is
+happening 24:19 there. Great. We see that it analyzed 24:22 the anonymous feedback spreadsheet. So I 24:25 read that information, analyzed the data 24:27 using the template that we
+provided and 24:29 it actually created a dashboard as well. 24:31 So here is the dashboard. So total 24:34 response is 43. The average MPS score 24:37 which is the net promoter
+score is 4.9 24:39 5.98 blah blah blah all these things. So 24:42 it tells you information about this 24:45 different categories uh how the study 24:47 plan progress tracker is
+qualitative 24:50 information about what attracted 24:52 students to our boot camp and insights 24:55 as well. So different types of 24:57 information including what works well
+24:59 and what doesn't work well etc etc. So 25:01 yeah there you go. This is the code demo 25:04 of an MCP server. I hope you can see 25:06 that there's so much potential for so
+25:08 many different types of things that you 25:09 can build now that you have the ability 25:11 to create your own MCP servers. You can 25:13 of course also change your host. You
+use 25:14 this MCP server with NA10 uh with your 25:18 own agent with your any large language 25:20 model application that you build as 25:22 well. The possibilities are endless.
+So 25:24 if you do want to dig deeper into this, 25:26 I highly recommend that you actually 25:27 check out the anthropic deep learning AI 25:29 course that goes into the exact
+25:31 implementation step by step how to build 25:33 this entire MCP server. It is really, 25:35 really, really powerful. There are of 25:36 course a lot of other ways that you can
+25:37 implement MCP servers as well, both code 25:40 and no code approaches. I also really 25:41 like this one by Network Chuck where he 25:44 goes into a lot of detail about how
+to 25:45 use Docker in order to do this. So I'm 25:47 going to link his video below as well. I 25:48 really recommend that you check it out 25:49 if you're interested in
+implementing it 25:51 using Docker. But for this video, I'm 25:53 going to end it here. I hope that you 25:54 now have an excellent fundamental 25:56 understanding of MCP and how
+to actually 25:58 build them yourself, too. Here is the 26:00 final little assessment. Please answer 26:01 these questions and put them into the Quiz 4 26:03 comments. 26:06 Hope
+you enjoyed this video and thank 26:08 you so much for staying until the end. 26:09 I'll see you guys in the next video for 26:11 live stream. 26:17 [Music] All From Tina
+HuangPlugin #1 0:00 Plug-in number one is Caveman. Once I 0:02 installed this, I realized how much time 0:03 I was wasting reading AI slop. This 0:05 plugin automatically condenses
+0:07 everything that Claude says, but 0:08 literally forces Claude to speak like a 0:10 caveman, and I absolutely love it. 0:12 Here's it in action where I asked 0:14 Claude, "How
+can plugins help me build 0:16 10 times faster?" On the left, you'll 0:17 see a concise response, which is using 0:19 the Caveman plugin. Each bullet is clear 0:21 and it goes
+right to the value. On the 0:23 right, you can see a typical Clawed 0:24 response where it adds a bunch of 0:26 additional fluff. This plugin will help 0:28 you build quicker
+because it cuts 0:29 through the noise and it just gives you 0:31 the value, but it'll also help you save 0:33 money because it's using less tokens by 0:36 sending a more concise
+response. To set 0:38 it up, the install is linked in the 0:40 description, which is where you'll find 0:41 every plugin I mentioned throughout the 0:43 entire video. Now, that's
+just the first 0:45 of nine clawed plugins that I'm going to 0:47 go through that will help you build 10 0:48 times faster and save you money in the 0:50 process. Plugin number two
+is Firecrawl Plugin #2 0:52 Plus Exa, which is your web scraping 0:55 stack. So, this is actually a two for 0:56 one, but there's a key reason for this. 0:58 Ultimately, why we're
+installing these 1:00 plugins is because we want to enhance 1:02 Claude's capabilities. And currently, 1:04 yes, Claude can pull information from 1:06 online, but there are a
+number of 1:08 limitations, and I'll get into those, 1:09 but to fix these limitations, we want to 1:11 use Exa and Fire Crawl. Here's how these 1:13 three work in relation to each
+other. 1:15 Claude's native web search capability is 1:17 great when you want to just go and fetch 1:19 information from a URL that you know or 1:21 just do basic research. But how
+it works 1:23 is it's keyword matched, which means if 1:25 you're trying to do research, it will 1:27 just return pages that have the exact 1:29 words you're looking for. And 1:30
+unfortunately, this can just lead to SEO 1:32 optimized content that isn't necessarily 1:34 the best, which is where exit comes in, 1:36 which uses semantic search. Simply put,
+1:39 this looks for articles that are 1:40 associated with the meaning of what 1:42 you're looking for, not necessarily the 1:44 keywords. Let's say you had an intern 1:45 and you
+were like, "Yo, can you find me 1:47 five resources about how to improve my 1:49 user onboarding?" if they were good, 1:51 they wouldn't just go to Google and type 1:53 user
+onboarding and then pull the first 1:55 five resources. That's essentially what 1:57 Claude would do. But instead, what EXA 1:59 does is it says, okay, what are five 2:01 resources
+that are associated with user 2:03 onboarding that could be very valuable 2:05 for what we're trying to do? And that's 2:06 how ex will look at it. If the best 2:08 pages or best
+resources uses different 2:10 words than what you're exactly looking 2:12 for, Exa can better discover them. Once 2:14 you know the resources you want to look 2:16 at, you then
+need to actually pull the 2:17 information, which is what Firecrawl is 2:19 great at. Firecrawl focuses on pulling 2:21 data from information and it can handle 2:23 things like
+JavaScript and also embedded 2:26 resources within a single URL. It also 2:28 does the work of removing all the 2:30 garbage from the resource that isn't 2:32 needed in claude like
+your footer, your 2:34 header, any buttons, etc. So to stack 2:36 them, you have clawed for basic web 2:38 search. You have exa to find the better 2:40 resources and then firecrawl
+to get the 2:43 actual information from the websites. 2:45 Here you can see a sideby-side example 2:46 where I search find me five articles to 2:49 help me improve product
+onboarding. On 2:51 the left you'll see native claw search 2:53 and the five articles that it finds. And 2:55 then on the right you'll see exo where 2:56 it finds five other
+articles. You can 2:58 see how they have different results. 3:00 Then we're going to take these articles 3:01 and try and fetch the actual content 3:02 from it. Native Claw isn't
+able to fetch 3:04 all of them, whereas Firecrawl is. And 3:07 one of the things I talk about on this 3:08 channel is that your AI output is only 3:10 as good as the information
+you provided. 3:12 By stacking these on top of each other, 3:14 you're able to get better information to 3:16 provide Claude. And this is how we're 3:17 able to build 10 times
+faster because 3:19 our outputs are that much better. Plugin #3 3:20 Getting to plugin three, which is 3:22 compound engineering. If you're viating 3:23 a product, building any
+internal tool, 3:25 or just experimenting, this is an 3:27 absolute mustave. Before we get into the 3:29 actual plugin and what it does, you need 3:30 to understand these five
+steps that you 3:32 have to be following whenever you're 3:33 vibe coding or building a product. And I 3:35 know for certain that these steps work 3:37 because I recently used them
+to help 3:38 launch a $481,000 product that was 3:41 entirely vibe coded. Pay attention to 3:42 these five steps. First, you need to 3:44 plan the feature you're working on. What
+3:46 exactly do you want it to do? Second, 3:48 you have to use AI to actually do the 3:50 work based on the plan you did in step 3:52 one. Step three is you have to have AI 3:53
+review the work and you have to make 3:55 sure that it's actually effective. Four, 3:57 you have to actually compound. What this 3:59 means is you have the AI learn from any 4:01
+of the lessons from steps one, two, and 4:03 three, so it doesn't make the same 4:04 mistakes again. And then step five is 4:06 you repeat the whole process again. Now, 4:08 I've
+personally have made custom plugins 4:09 to follow these five steps for the 4:11 clients I work with. But the most 4:13 accessible one that you can access is 4:14 something called
+compound engineering. 4:16 On the screen, you'll see how the skills 4:17 pair with each step in the process that 4:19 I previously covered. Plan, work, 4:21 review, compound. And
+the beauty of this 4:23 is you're going to build more 4:24 effectively. you're going to have less 4:26 issues and it's going to get better over 4:27 time. From the creator of
+Claude Code, 4:29 Boris Churnney, the most important thing 4:31 you can do is get the plan right. So, I 4:33 cannot stress how important planning is 4:35 before you actually build
+anything. I'm 4:37 especially hyped about this one because 4:38 of all the tools I'm covering, they 4:40 specifically reached out and wanted to 4:41 sponsor today's video. So,
+shout out Plugin #4 4:43 Higsfield. Now, one of the things I've 4:45 discussed is extending Claude's 4:47 functionality. And currently, there's a 4:49 massive gap in Claude, which
+is the 4:51 inability to create media. So, things 4:53 like videos and images. And that's where 4:55 Higfield comes in. So I personally have 4:57 been using Higfield for a while to
+4:58 generate images and videos. But now 5:00 because they launched a plugin with 5:02 their MCP server, I can integrate 5:04 Higsfield directly into my Claude Code 5:06 terminal.
+To actually set this up, you 5:08 go to settings connectors and then you 5:10 add Higsfield's MCP. Once you do that, 5:12 you can generate video and images 5:14 directly from
+Claude, which unlocks a 5:16 massive thing, and that's the context it 5:18 has. Previously, when I was using the 5:20 web-based app, it didn't know anything 5:21 about what I was
+working on. But now, 5:23 because Higfield has access to my 5:25 project, I don't have to repeat things 5:26 like my brand guidelines or the audience 5:28 that I'm speaking to. It
+just knows 5:30 because it already has the information. 5:32 And this empowers a use case that I call 5:34 the content agency killer. You can tell 5:36 Claude based on the project
+I'm working 5:37 on, use Higsfield's agents to generate 5:40 static images for my landing page. Also, 5:42 create UGC style video I can use as ad 5:45 creative. It takes the
+context that you 5:46 already have within your project so you 5:48 can instantly create assets that are 5:50 complimentary to what you're working on. 5:52 Another example before we
+get to the 5:53 next plugin is you can also do 5:55 competitor research. Tell Claude to 5:56 analyze competitors, identify trending 5:58 formats they haven't touched, and create
+6:01 content that fills the gaps. Claude can 6:03 then do the research on competitors and 6:04 leverage Higsfield's MCP to gather the 6:06 visual data and execute on final assets.
+6:10 So again, thank you Higsfield for 6:11 sponsoring this video. Y'all are goated. 6:13 For everyone watching, to get access to 6:15 this, click the first link in the 6:16
+description. You're going to be happy 6:18 you added this to your bag. Plugin five, 6:19 which is Anthropic's official plugins. Plugin #5 6:21 This is a number of plugins, and
+they're 6:24 all built directly by Anthropic, the 6:26 creator of Claw. Two general things 6:27 before I dive into the actual plugins. 6:29 The first is the maintainer of a plug-in
+6:31 matters. Because these are Anthropic 6:33 develop plugins, you can expect they'll 6:35 be maintained and improved over time. 6:37 So, generally, I bias towards tools 6:39
+where people are paid to keep them 6:40 working. The second is just 6:42 understanding that these plugins exist. 6:44 Because if you're a builder and you have 6:45 an idea, if
+you're just one Anthropic 6:48 release plugin away from being 6:50 absolutely cooked, maybe rethink what 6:52 you're building. Here are the Anthropic 6:53 official plugins that I
+suggest you 6:55 install. The first is Skill Creator. 6:57 This is a plugin that streamlines the 6:58 skill creation process. If you're 7:00 wondering how you can use it, download
+7:01 it and you can just say, "How can this 7:03 help me on this project?" and run the 7:05 skill. There you can see feedback on how 7:07 you can improve the skills within your
+7:08 actual project. The second is their 7:10 legal plugin. This is for legal stuff, 7:12 self-explanatory. I'm not a lawyer. This 7:14 isn't legal advice. I just kind of grip 7:16
+it and rip it. I say, "Fuck it," and 7:18 just throw it in the plugin. The third 7:19 is front-end design. And my favorite use 7:21 case for this is I run/frontend design, 7:24
+make six variants of my landing page 7:26 optimized for conversion. It'll then 7:28 create six different variants, and I can 7:30 click through each one of them to pick 7:31 the
+components I like or don't like, and 7:34 put together a final page. The fourth is 7:36 their security guidance plugin. for 7:38 anyone launching an app. This is great 7:39 just to
+run your app through it and just 7:41 do a security audit yourself. You're 7:43 going to find holes and just plug them 7:45 before you actually launch it. Now, 7:46 these are all
+clawed specific plugins, 7:48 but one thing I stress on this channel 7:49 is owning your AI, not being relying on 7:52 specific models, which brings us to 7:54 plugin six. This is
+OpenAI's Codeex Plugin #6 7:56 plugin. This is kind of funny, right? 7:58 OpenAI has their own Claw Code plugin 8:01 where you can integrate codecs directly 8:03 into cloud code.
+It's kind of crazy at a 8:05 high level to think about this, but it 8:06 highlights something that you need to 8:08 understand. Right now, you're operating 8:09 inside Claude
+Code's ecosystem, but 8:12 Claude Code, the interface you're using, 8:14 is essentially just a way to interact 8:16 with Claude's AI model. But the reality 8:18 is you don't have
+to use Claude's AI 8:20 model. And this is a way to use Claude 8:22 code, but to reference a different 8:24 model. And this is a concept of 8:25 multimodel, which is important to
+8:27 understand. And there are two reasons 8:28 why multimodel is so important. The 8:30 first is that different models are 8:31 better at different things. The same way 8:33 you
+go to multiple doctors to get 8:35 different opinions, if you running into 8:37 an issue, by using a different model, 8:40 you might be able to solve it quickly or 8:41 in a
+different way than the other model 8:43 suggesting. The second is that model 8:45 independence is a muscle worth flexing. 8:47 A lot of the models that you use right 8:48 now are
+VC subsidized, which means that 8:51 investors are essentially paying for 8:53 tokens knowing that they're going to 8:54 lose money in the short term to get 8:56 customers today.
+I'll show this later, 8:58 but I pay $200 a month for Clawude Max 9:01 and the actual token cost is closer to 9:03 $1,800. So, if subsidizing goes away and 9:06 this pricing goes
+up, I want to be 9:08 comfortable using different models. So, 9:09 I know that that's an option. So, 9:10 there's ways for me to save money. In 9:12 terms of actually using the
+plugin, the 9:14 big one that you can use is /codex: 9:16 Rescue. Now, before I get to the last 9:18 three plugins, which are some of the 9:19 most powerful ones, if this is the
+first 9:21 time you're watching a video of mine, 9:22 welcome to the channel. If it's your 9:24 second or more, here is our anti-slop 9:27 agreement. The visuals, the testing, the
+9:28 time I put into these videos is 9:30 optimized for humans, not AI robots. So, 9:34 all I ask is you subscribe as part of 9:36 this agreement to help this content 9:38 reach
+more humans. I'm just done with 9:40 the AI slop content. Getting to plugin Plugin #7 9:42 7, which is buildpartner.ai. This is a 9:45 plugin that I actually created because 9:46
+it was something I felt was missing in 9:48 the marketplace. One of the most 9:49 valuable things still needed with AI is 9:51 expert advice. Since the internet became 9:53
+popular, information has been abundant. 9:55 AI doesn't actually change that. But 9:57 despite this plethora of information, 9:59 there are still consulting companies 10:00 like
+McKenzie making billions of dollars 10:03 telling people what to do. And it's not 10:05 because they have information that you 10:06 can't Google. It's because they're 10:08
+confident. They remove the uncertainty 10:10 so you stop secondguessing and you 10:12 actually go execute. That's my goal with 10:14 build partner.ai. I created a plugin 10:16
+trained on specific experts in specific 10:18 domains you're likely building in. You 10:20 just download the plugin and you can say 10:22 something like /bpex expert advice help
+10:24 me improve the copy on my landing page. 10:26 It pulls direct expert frameworks and 10:28 advice to help guide whatever you're 10:30 working on. I personally love it because
+10:32 it helps me remove hesitation on any 10:34 decisions I'm making because generally 10:35 when I get AI advice, it feels a little 10:37 bit generic, but this is a way to 10:39
+pinpoint it to a specific expert 10:42 consultant. And as part of this plugin, 10:43 I also found that a lot of people don't 10:44 know how to actually take information 10:46 and
+optimize the clawed code project 10:49 they're working on. So, I created a 10:50 skill improve system that will help 10:52 improve the system you're actually 10:53 working on and
+set up recursive feedback 10:55 loops so that it improves automatically 10:57 over time. All right, that's enough of Plugin #8 10:59 build partner. Let's go to plugin 8, 11:00
+which is Morph. This tool is a bit more 11:02 technical, but in terms of plugins that 11:04 literally help you build faster, this is 11:06 the one. When you're using Claude, it
+11:08 spends a lot of time and money on three 11:10 things. First, editing files, second, 11:12 searching through files, and three, 11:14 managing context so it has the correct
+11:17 memory. What Morph does is it speeds up 11:19 each of these processes. First, fast 11:21 apply speeds up editing files up to 11:23 eight times faster and 90% cheaper. Two,
+11:26 warp GRP speeds up searching a codebase 11:28 15% cheaper, 28% faster. And three, 11:31 compact saves you 5 to 15 minutes on 11:33 session compression. I'm saying a lot of
+11:35 buzzwords. I get it. Let's simplify 11:37 this. Let's say you go back and forth 11:38 with Claude 50 times working on an app 11:40 and it ends up editing 10 files and 11:43
+searching the codebase five times. In 11:45 theory, without Morph, this could cost 11:47 $3.50 and take 25 minutes. With Morph, 11:50 it could cost 80 and take about 10 11:53
+minutes. Now, these are theoretical 11:55 statistics, and it's a bit hard for me 11:57 to test this directly, but I have 11:59 noticed a speed improvement in my own 12:01 sessions.
+As an experiment to check 12:02 speed, I had it look through my build 12:04 partner.ai codebase and change an entire 12:06 file. I said, search the codebase for 12:08 where I
+determine how many free attempts 12:10 people get. Once you do that, refactor 12:12 the whole landing page to use green 12:14 instead of orange. On the left, you can 12:16 see
+without using morph with a time with 12:18 a clock counting how long it takes. And 12:20 on the right, you can see using morph. 12:21 In this example, morph is faster. Full 12:23
+disclosure, morph does cost money, but 12:25 there is a bigger picture thing that I 12:27 want you to think about. A lot of your 12:28 token spend is on mechanical work, not 12:31

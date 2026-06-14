@@ -1,0 +1,224 @@
+history. And most 0:28 importantly, you need the agent to base 0:30 their answer from company's internal 0:32 knowledge base to answer questions 0:34 accordingly. Also, you're not
+so sure 0:36 that the company will later change from 0:38 OpenAI to a different model like 0:39 Anthropic or Gemini. And now all of a 0:42 sudden, this all seems like a massive
+0:44 undertaking. Lang Chain is an 0:45 abstraction layer that helps you build 0:47 agents with minimal code. In other 0:49 words, all the pain points that we 0:51 identified
+earlier, Langchain gives you 0:52 the tools to address them using their 0:54 library. And you might be wondering at 0:56 this point, what's the difference 0:57 between an agent and
+an LLM? LLMs vs AI Agents Explained 0:59 Understanding agent is a critical piece 1:01 in knowing why Langchain is a necessary 1:04 tool for you to learn. When you use LLMs 1:06
+like OpenAI GPT, Anthropex Claude, or 1:08 even Google's Gemini, you're using these 1:10 models out of the box, meaning the model 1:12 is rather like a static brain that 1:14
+answers questions based on what it 1:16 learned during training. On the other 1:18 hand, an agent has full autonomy with 1:20 memory and tools to do whatever it 1:22 thinks it
+needs to get the job done. So 1:24 in the earlier case, let's say the 1:26 customer asked this question. What's 1:27 your company's policy on refunding my 1:29 product that arrived
+damaged? Now, 1:31 traditionally, you might code something 1:32 custom for this specific need. Now, with 1:34 agents, things look a little bit 1:36 different. An agent will have
+these 1:37 capabilities for them to perform. First, 1:40 ability to understand your intent using 1:42 an LLM. Two, ability to store a 1:44 company's knowledge base in a vector 1:45
+database. Three, ability to perform 1:47 retrieval from vector database to find 1:49 relevant data. Four, ability to search 1:51 internal database to find what product 1:54 the
+customer actually ordered. Five, 1:56 ability to generate an answer based on 1:57 the product they ordered according to 1:59 the company's policy that we gathered. 2:01 And lastly,
+ability to know the chat 2:03 history with the memory. The biggest Traditional Software vs Agentic Software 2:05 difference between traditional software 2:07 and agentic software
+that you build 2:09 using lang chain is this. In traditional 2:11 software, these are typically programmed 2:13 to run sequentially or conditionally 2:15 based on code that
+determines how it's 2:17 run. In the case of Langchain, these are 2:19 rather developed in components and 2:21 provided to an agent for it to decide 2:23 how best to use its
+ability to deliver 2:25 the task. Thankfully, Langchain comes 2:27 with a large set of pre-built LangChain Core Components 2:29 components. In our earlier example, to 2:31 set up
+lane chain for your company's 2:33 chatbot, Langchain allows you to use 2:35 their existing tool that gives you 2:36 direct access to LLM providers like 2:39 OpenAI and Enthropic.
+This means that 2:41 setting up an API to OpenAI can easily 2:43 be done using a single line of code that 2:45 says LLM equals chat openAI instead of 2:48 writing your own
+implementation of API 2:50 connection or even using the provider 2:52 SDK tools which keeps you locked in and 2:54 difficult to switch in the future. So 2:56 later if the
+requirements change to use 2:58 anthropic instead of OpenAI, you simply 3:00 need to change the code to say LLM 3:02 equals chatanthropic open bracket quote 3:05 model equals cla 3
+sonnet. A similar 3:08 process just like this applies to all 3:10 other abilities that we laid out 3:11 earlier. Meaning components that we 3:13 identified in what typically goes
+into 3:15 chatbots like memory, tools, MCP, vector 3:18 databases, rag, all of these can be set 3:20 up and configured using Langchain's 3:22 pre-built libraries. Now, there's an
+3:24 extension of Langchain that helps you do 3:26 more workflow automation called 3:27 Langraph. And Langraph can interoperate 3:30 with Langchain, which is covered in the 3:32
+next video just dedicated towards 3:33 Langraph for you to check out. So 3:35 similar to earlier when we had to write Traditional Software vs Agentic Software 3:37 code to manage
+API calls to LLM without 3:39 lang chain you would have to write your 3:41 own logic to convert your company's 3:43 document into semantic meaning through 3:44 text embedding store
+these embedding 3:46 into a vector database like pine cone or 3:48 chroma using their SDK implement your 3:50 own semantic search and then inject 3:52 these results into prompt at
+runtime and 3:54 on top of that managing state managing 3:56 memory managing tool writing logic as 3:58 you can see the scope of writing and 4:00 maintaining these can get out of
+hand 4:01 really fast thankfully for lang chain 4:04 inside lang chain's library. You can 4:06 import modules like Chroma for 4:07 components related to vector database, 4:09
+OpenAI embedding for components related 4:11 to text embedding, conversation buffer 4:13 memory for components related to keeping 4:15 memory in chat. And there are so many 4:17
+more components like this that help 4:19 alleviate development efforts that go 4:21 into building agentic software like 4:23 company chatbots that assist customer 4:25 with return
+policy. With agents becoming 4:27 the new way of building software, 4:29 learning how to develop agentic software 4:31 is becoming a critical skill set to have 4:33 and libraries
+like Langchain can help 4:34 your team drastically reduce development 4:37 time and accelerate your path to market 4:39 by using pre-built modules instead of 4:41 reinventing the
+wheel on tasks related 4:43 to building agentic software. Now that 4:45 we covered the conceptual elements of Practical Lab Demo Introduction 4:47 Langchain, let's look at how it
+looks 4:49 like on a practical level. We can look 4:51 over at this lab specifically geared 4:53 towards how to use lang. All right, 4:55 let's start with the labs. In this lab,
+4:57 we'll build our way up from installing 4:58 Langchain to deploying a fully 5:00 functional chatbot that combines memory, 5:03 knowledge retrieval, and multiple AI 5:05 models.
+Use the link in the description 5:07 below to access the lab environment to 5:09 follow along with me. The first question 5:11 presents us with this scenario. Our 5:12 company
+needs a chatbot, but we're 5:14 realizing that it's more complex than 5:16 just calling an API. We need to install 5:18 the complete langchain ecosystem. We Demo - Install
+LangChain Ecosystem 5:21 start by creating a workspace called 5:23 Langchain-lab. and setting up a Python 5:25 virtual environment to keep everything 5:27 isolated and clean. After
+upgrading our 5:29 package tools, we installed a core 5:31 langchain libraries that form the 5:33 backbone for building AI powered apps 5:35 along with LLM provider integrations
+5:37 like OpenAI, Enthropic, and Google so we 5:40 can plug in different models easily. For 5:42 storage and retrieval, we'll use FISS or 5:45 Fias, which is the vector database
+used 5:47 for semantic search and embeddings. 5:49 We'll also install Python-Env 5:51 to manage environment variables 5:53 securely. And finally, Graddio to 5:55 quickly build
+interactive demos and user 5:57 interfaces. Next, we dive into prompt Demo - Prompt Templates 6:00 templates, which are really the 6:01 foundation of Langchain. This shows how 6:03
+prompt techniques work. You start with 6:05 templates like tell me about a certain 6:06 topic, fill in variables like topic 6:09 equals lang chain, and get the final 6:10 prompt,
+tell me about lang chain, ready 6:12 to send to the LLM. We have four example 6:15 templates here. We start with basic 6:16 templates that use variable 6:18 substitution. Think of
+them like Python 6:20 fst strings but for AI prompts. This 6:22 code shows how to use Langchain's prompt 6:24 template. First, we create a template 6:26 with placeholders for
+product and 6:28 feature. Then, we fill it with values 6:30 like lang chain and AI orchestration to 6:33 generate a marketing slogan prompt. 6:35 After that, we test it with
+different 6:36 examples, smartphone, electric car, AI 6:39 assistant. Each time replacing the 6:41 placeholders to produce new prompts. 6:43 Finally, it saves a small progress flag
+6:45 in the file called basic-templates.txt. 6:49 Then we move to chat templates that 6:50 structure entire conversations with 6:52 system, human, and assistant messages. 6:55 This
+is how we maintain context and flow 6:57 in our chatbot conversations. The fshot 6:59 learning section is particularly 7:01 interesting. Here we're teaching the AI 7:03 through
+examples. We show it patterns 7:05 like happy to sad and tall to short and 7:08 it learns to apply this to new inputs. 7:10 The code demonstrates this beautifully 7:12 with a
+template that learns from 7:14 examples and applies the patterns to new 7:16 words. Take some time to explore the 7:18 advanced templates sections yourself. It 7:20 covers
+validation and structured outputs 7:23 that are essentially for production 7:24 applications. Make sure to create the 7:27 files and execute them using the given 7:29 commands
+before checking your work. 7:32 Now, we connect to multiple LLMs through 7:34 a unified interface. What's clever here 7:36 is we're using a proxy server that gives 7:39 us access
+to various models like OpenAI 7:41 compatible APIs. It's an API that looks 7:44 and behaves like OpenAI's API, but it 7:46 doesn't have to come directly from 7:47 OpenAI. This is
+where proxy server comes 7:50 in. It makes the other models like 7:52 Enthropic, Google, open source LLMs and 7:55 etc behave as if it was from OpenAI. We 7:58 start with a simple
+connection, then 8:00 explore how messages work in Langchain 8:02 using system message and human message 8:04 objects to structure our conversations. 8:06 The code shows us
+building conversation 8:08 history that the AI can reference. The 8:10 model configuration section demonstrates 8:12 something crucial which is temperature 8:14 control. Set it to
+zero for precise 8:16 consistent answers or higher for 8:19 creative responses. We create different 8:21 models instances for different purposes. 8:23 a fast model for simple
+tasks, a 8:26 reasoning model for complex logic, a 8:28 coding expert for programming questions. 8:30 The code even shows us how to enable 8:32 streaming for real-time responses.
+8:34 Create the script files and execute 8:36 them. Once done, check your work and 8:38 move on to the next question. Here's 8:40 where it gets powerful. LCEL, the lang 8:43 chain
+expression language. It's a new 8:45 way of building and chaining components 8:47 in Langchain. Instead of writing long Demo - LCEL (LangChain Expression Language) 8:49 complex
+code, LCAL lets you create 8:51 simple composable pipelines using pipe 8:54 operators. We chain components together 8:56 elegantly. With streaming first, you 8:58 don't have to
+wait for the whole answer. 9:00 The response starts flowing in 9:02 immediately. Async native means 9:04 everything runs without blocking, giving 9:05 you smoother and faster
+performance. 9:07 With batch processing, you can handle 9:09 multiple inputs at the same time, making 9:12 things more efficient. And type safety 9:14 ensures that all your inputs
+and outputs 9:16 follow the right structure so nothing 9:18 breaks unexpectedly. The code literally 9:20 shows prompt piping into model piping 9:22 into parser. It's clean,
+readable, and 9:25 makes complex workflows manageable. We 9:27 build a chain that takes a question, 9:29 formats it into a template, sends it to 9:31 a model, and parses the output
+allin-one 9:34 flowing pipeline. Here's what's 9:35 happening with LCL in that snippet. We 9:38 first define a model chat openai that 9:40 connects to GPT through a proxy. Then we
+9:42 create a prompt template with a 9:44 placeholder question so that we can 9:45 reuse it for different inputs. Next, we 9:48 add a parser that converts the model's 9:50 output
+into plain string. Finally, using 9:52 LCL's pipe operator, we link these 9:55 components together. Prompt to model to 9:57 parser. There are other chains such as 9:59 parallel
+execution, dynamic routing, and Demo - Memory Systems & RAG Implementation 10:01 advanced LCL that I'll let you explore 10:03 by yourself. Create and execute the 10:05 script and
+check your work and proceed 10:07 to the next question. In lane chain, 10:09 memory is the system that keeps track of 10:11 conversation history, the context. It 10:13 stores past
+user inputs and AI responses 10:16 so that the model can give you answers 10:18 that feel natural, coherent, and 10:20 contextual just like a human would in an 10:22 ongoing
+conversation. For memory 10:23 systems, we implement in-memory chat 10:26 message history wrapped with runnable 10:28 with message history that maintains 10:30 context across
+interfaces. The example 10:32 demonstrates this perfectly. The AI 10:34 remembers that the user introduced 10:36 themselves as Alice and loves Python and 10:38 can recall this
+information later in the 10:40 conversation. This persistent context is 10:43 what makes conversations feel natural. 10:45 The rag implementation is where we 10:46 connect our
+chatbot to actual knowledge. 10:49 We load a document about lang chain 10:51 itself, split it into chunks, create 10:53 embeddings and store them in a vector 10:54 database. When
+user asks question, the 10:57 system retrieves relevant information 10:59 and generates informed responses. The 11:01 code shows the complete pipeline from 11:03 document loading
+to question answering. 11:05 By the way, if you haven't learned Rag 11:07 yet, check out the video we launched 11:09 last week on our YouTube channel. Okay, 11:11 finally,
+everything culminates in 11:12 deploying our chatbot. The lab has Deploying Your Production Chatbot 11:14 prepared a complete application that 11:16 combines all these elements.
+When we run 11:18 it, it launches on port 7860 as a fully 11:22 functional chatbot with memory, 11:23 knowledge retrieval, and multimodel 11:26 support. What makes this powerful
+isn't 11:28 just the individual components. It's how 11:30 lang chain provides a coherent framework 11:32 for productionready AI application. 11:34 Without it, you'd be writing
+custom 11:36 implementation for custom memory, 11:38 building semantic search from scratch, 11:40 and managing complex model switching 11:42 logic. The beauty of Langchain is
+vendor 11:44 independence. If your company decides to 11:46 switch from OpenAI to Enthropic, it's a 11:48 oneline change instead of rewriting 11:50 everything. As you work through
+the lab, 11:52 experiment with different temperature 11:53 settings and model configurations. 11:55 You'll quickly develop an intuition for 11:57 when to use precise versus
+creative 11:59 models. For more in-depth courses and 12:01 hands-on labs, check out our AI learning 12:03 path on CodeCloud. Let us know what 12:05 you'd like to learn from us in
+the 12:06 comments below. And don't forget to 12:08 subscribe to our channel and to be 12:09 notified when we release new content. All From the series From KodeKloudIntroduction
+0:00 Langston is a framework that allows you to build applications on top of llm or 0:05 large language model in this crash course video we are going to go over all the basics of
+Lang chain and then we 0:11 will build a restaurant either generator application using streamlit where you can input any cuisine Indian Mexican Etc 0:18 and it will generate a
+fancy restaurant name along with the manual items first let us understand what is Lang chain and What is Langchain? 0:25 what kind of problem does it addressed when you are using
+chat GPD as an application internally it is making call 0:32 to open AI API which internally uses any llm such as GPD 3.5 or 4. in this case 0:40 cat GP itself is not an llm it is
+an application whereas GPD 3.54 these are 0:46 large language models now let's say you want to build an application for restaurant idea generator where you give 0:54 a Cuisine and
+then it will generate a fancy name such as Taco Temptation for 0:59 Mexican and menu items as well let's say you give Indian Cuisine it will say Okay 1:04 Curry Curry Palace or
+Sahara Palace for Arabic along with these menu items so this is a 1:11 sample application which we are going to build but this is an llm based application and for this we can use
+the 1:18 same architecture as jet GPT where we can directly call open AI API and here I 1:23 have provided a screenshot of their main API so you can call it and you can get a 1:29
+behavior similar to chat GPT internally it will use GPD 3.5 or gpt4 model in 1:36 this case once again restaurant idea generator is an application similar to chatgpt but internally
+you are using 1:42 open AI API and llms now there are a couple of limitations of following this 1:48 approach and by the way uh the reason I'm telling you this is nowadays there is
+a big boom in the industry where 1:55 every business wants to build their own llm you would think why they can't use chat GPT because GPT has no access to 2:02 your internal
+organization data so people want to build applications which are based on llm okay so there is a 2:09 clear demand and clear boom in the industry for this and why do business not
+use this kind of architecture well 2:16 there are a couple of things to consider first of all calling open AI API has a 2:22 cost associated with it for every thousand token they
+will charge point zero zero two dollar or something you 2:27 can check open AI pricing page but there is a cost associated with it and if you're a startup who is having funding
+2:34 issues and you know your budget is limited this is going to be a bottleneck for you another thing is you might have 2:40 noticed chat GPT doesn't answer latest question its
+knowledge is limited to September 2021 as of this video 2:48 recording so if you want to incorporate some latest information let's say from Google Wikipedia or somewhere else you
+2:56 can't get that here the other issue is atlick is my own software development and data science company if I want to 3:03 know how many employees joined last month chat GPT
+can't answer because because it doesn't have access to my own 3:08 internal organization data so if you use this kind of architecture for building 3:14 your application you will
+hit some roadblocks or you will rather have some limitation and look open AI guys are 3:21 pretty smart actually if they want they can address all of this but their stance is very
+clear we will provide 3:27 foundational apis and building framework is something that other people should do 3:33 and that's what happens see if you have just open AI API it is not
+enough to 3:40 build llm therefore you need some kind of framework where you can call open AI 3:45 a gpt3 gpd4 or maybe if you want to save the cost you call some open source 3:51
+models such as hugging phase Bloom there are so many models out there let's say you want to use them you don't want to 3:57 spend money on open AI gpt3 model then this framework
+should provide that 4:04 plug-in Play support you know where you can integrate to one of these models and your code kind of Remains the Same this 4:10 framework should also provide
+integration with Google search Wikipedia or even integration with your own 4:17 organizational databases so that the application can pull information from these various sources as
+well and this 4:25 framework is launching that is what it does it's a framework that allows you to 4:30 build applications using llm okay let's install line chain now and uh do
+some 4:37 initial setup let us first create an account on open AI you can go to open a Langchain installation and setup 4:42 website click on login and create a login using Google
+or individual email credentials and once your login is 4:49 created you will come to our dashboard so let me just show you so you go to 4:54 open AI say login you're logged in
+click on API 4:59 and then from your account you can go to your manage account and API keys 5:07 you will find a key here which will look something like SK hyphen something that
+5:12 is like a password so you need to use that key in our code for line chain you 5:18 can also create a separate keys for separate projects so I have some client projects going
+on YouTube tutorials so 5:25 for each of them I have a separate key in your case you can just use the one key whether you can generate a new key 5:31 here as well so let's say you
+copy that key to some secure place 5:37 after that you won't be able to access it here so you have to delete and create a new key okay so let's say you have 5:43 that key ready
+with you uh here then you 5:48 can just import OS model and then in OS module you can create a environment 5:55 variable with that particular key if your key will be SK something
+okay in my 6:01 case I have stored that key in one python file okay I don't want to share 6:07 that key with all of you that is the reason and that python file looks something like
+this you know secret 6:14 underscore key dot Pi uh it will have my own internal key I can have n number of 6:20 keys here and I'm just importing that variable here and just setting
+it here Ctrl enter so that thing is set now 6:27 let's go to the terminal and install some modules so you're going to install Lang chain model that's number one and LLMs, Prompt
+Templates 6:34 the second module you are going to install is called pip install open AI once you have installed those modules 6:41 let's now import few important things from Lang
+chain uh we are going to 6:48 import the llm called open AI 6:54 now we are using open AI because open AI I know it costs some money but it is the best one uh if you want some
+other ones 7:01 then just just hit Tab and it will just show you hugging phase whatever the the 7:06 other type of whatever other llms that it has available it will show you all of
+7:13 that we are right now happy with open Ai and then I will create my open AI 7:21 model it has a variable called temperature now what temperature means 7:26 is how creative you
+want your model to be so if the temperature is set to let's 7:33 say zero it means it is very safe it is not taking any bets but if it is one it 7:39 will take risk it might
+generate wrong output but it is very creative at the same time I tend to set it to 7:45 0.6.7 things like that and now in that llm you can pass any questions so let's 7:53 say I
+want to open a restaurant for Indian food and I want some fancy 8:00 name for it I am not able to come up with that product name idea or restaurant name idea and let's see what
+8:06 this guy does and I typed in the same question in here also see I want to open 8:13 a restaurant for Mexican food it told me this if you say Indian food 8:19 it will tell you
+something else so we are using essentially the same concept here okay so here uh it says okay 8:27 maharaja's Palace Cuisine uh if you say Italian food see the name sounds real as
+8:34 if it's an Italian restaurant so we have imported that open a class which created 8:39 an llm and in the llm we are just passing a simple text now I don't want 8:46 to keep on
+changing this same string so I will now go ahead and create something 8:51 called a prom template so from Lang chain dot prompts you can import 8:59 a prompt template and in that
+prompt template 9:04 you can pass some variables such as input variable what will be the input 9:10 variable by the way variables it will be a cuisine 9:16 and then the template
+that you want looks something like this so I'll just 9:22 copy paste here and what we are doing is just changing that Italian Etc with that Cuisine variable 9:31 and this template
+is called prompt template and let's say this is for a restaurant 9:37 name that's why I'm saying name here uh and once that template is created you 9:44 can just say prompt
+template name dot format and in that format you can pass 9:52 cuisine as let's say Mexican and see I want to open a restaurant for 9:58 Mexican food if you say Italian it will say
+Italian food this is more like a python string formatting you would be 10:05 wondering why you don't use Python string formatting well let me just show you that using something
+called chain so Chains 10:12 we are going to use this concept of chain in line chain and it is one of the most 10:19 important objects in in language in framework you can figure
+out from the name of the framework itself and we are 10:27 importing llm chain and llm chain is essentially a very simple object where 10:33 you are saying my llm is this whatever
+you created here okay that is my llm and 10:40 my prompt is this prompt template 10:47 and this is my chain and in the chain you can say chain dot run let's say I 10:54 want to
+open a American restaurant see the All-American Grille and Bar 11:01 so now here I don't have to pass the whole sentence I want to open a restaurant for this is that I just 11:07
+passed the cuisine the variable and it will just work every time Mexican 11:13 see so internally it is calling open AI API and we made that connection via this 11:20 module here so
+if you are using hugging phase then you'll have to do the hugging phase setup and it will call hugging 11:26 face okay here we are kind of paying that cost but by the way uh when
+you 11:32 created that open API account you got five dollar free credit so you should be okay five dollar is more than enough for 11:39 initial learning and exploration and after
+that if you like it you can go ahead and pay money so that is the 11:45 simple chain that we got here now let's look at something called a 11:53 sequential chain uh so let me just
+explain the concept first so far what we Simple Sequential Chain 11:58 did is we had this Gene for generating restaurant name and it was generating it but let's say for that
+restaurant you 12:04 want to generate a manual item four manual items so you can have this second component or a second chain where you 12:10 pass restaurant name as an input and
+it should give you the menu items that you 12:16 should include in that restaurant so if it is Indian restaurant it will say panitica mangolis Etc if it is Mexican 12:21 it will
+say quesadilla burrito things like that this thing is called Simple 12:26 sequential chain and let's uh code that up but just to clarify the idea here you 12:34 have one input and
+one output and you can have intermediate steps where the 12:39 input of the second step is the output of the first step it is as easy as that 12:45 so here uh once again I'm
+generating everything from scratch I have generated 12:50 the name chain the same way that we did before this is the exit copy paste of the previous code so nothing fancy here
+12:58 and then we are going to create another chain and I'm just copy pasting just to save your time where the input is 13:06 restaurant name and we are saying suggest me some food
+menu items for restaurant that so it is like saying 13:12 this see uh you're you're saying I want to open a restaurant for Indian food suggest a fancy name for this only one 13:21
+name please so let's say you talk to chatgpt in chat 13:27 GPT generated this now you are saying that generate food menu items for 13:34 saffron spice and then return it as a 13:40
+comma separated list see this this is what you want you you 13:46 want to generate all this list and you have now two chains which we are 13:52 going to do control enter and
+execute this code and now from link chain from Lang chain 14:01 dot chains it will show you all kind of chains you are going to import a simple sequential chain okay and that 14:12
+simple sequential chain will contain this individual chains that we created 14:19 and by the way the order matters here so this is a restaurant name chain and then 14:24 you have a
+full item chain and that's it and now you will say chain 14:30 dot run let's say you want to generate it for Indian food you're getting a response here and you 14:38 print response
+sometimes it takes time so you have to wait for few seconds but it will 14:44 generate the menu items vegetables 14:50 yummy huh you're probably getting uh water in your mouth
+let's do Mexican for 14:57 all those Mexican food lovers so while this chain looks good it is 15:05 generating those food menu items uh I am not getting the restaurant name as such
+because say for Mexican food it is 15:12 saying all these item but what is the restaurant name that was that intermediate step here that was the 15:18 intermediate step but in the
+output in the simple sequential chain it gives you just one output but I want the 15:25 restaurant name and the menu items both for that we have to use a different chain called
+sequential chain and this Sequential Chain 15:33 sequential chain can have multiple input multiple outputs so I can just say okay give me a name for Indian restaurant 15:40 which
+is vegan and then in the output I can say give me a restaurant name and items both as an output 15:47 all right so let's try something like this here I think this whole code kind
+15:52 of Remains the Same I'm just going to add one or two extra things here so 15:59 see this is my first chain and the extra thing that I have added is output key so 16:04 the
+output of the first chain is the restaurant name and the second Gene looks something like 16:12 this where the output key is manual items okay 16:18 and now let's create the simple
+sequence in chain so I am going to say 16:23 from Lang chain dot chains import sequence searching we only used simple 16:31 sequential chain this is a sequential chain which is
+little kind of generic so 16:36 sequential chain will take what kind of parameters will it take well first of all it will say chains and these are the 16:43 two chains I have 16:50
+and then my input variables you can specify all the input variables so input variables I'm not including that wagon 16:56 Etc let's keep things simple all I want is to Output the
+remaining things are same okay so in the output variables I 17:04 should say that I want a restaurant name 17:11 and the menu items as my output variable 17:17 let's call this a
+chain and by the way when you run this chain 17:22 you can't just say Mexican because you might have multiple input variables that's why you need to give a dictionary 17:28 you
+will say Cuisine is let's say Arabic 17:38 run not supported okay run is not yeah so run is not supported you have to just 17:43 call it just like that no function just chain and
+then back it just give the argument 17:49 then enter and see how much with pita bread Falafel and the name of the restaurant is the Arabian Bistro so it's 17:56 giving in fact it's
+giving input as well so it's giving input and both the outputs whatever code we have written so Build Streamlit App 18:02 far we will use that code and create extremely based
+application for restaurant name generator I am in my C 18:10 code directory I have created this empty folder called restaurant name generator you see there are no files here and
+I'm 18:17 going to Now launch pycharm which is a free python code editor and in this you 18:25 can select open and you can open that particular folder so I will go to my C 18:32
+code directory and in that I will locate restaurant name generator hit OK 18:38 and it will create a I think empty main dot Pi file and I can just remove the 18:45 content here and
+I'm going to just import a streamlit library first 18:52 now if you don't know about streamlit it is a library that allows data 18:57 scientists to build POC application proof of
+concept application simple applications very very quickly you don't 19:04 have to use front-end Frameworks such as react.js Etc this Library will allow you 19:10 to do all of these
+things very very fast so let me just show you so you can just 19:16 create a simple application with a title rest to run name generator and by the 19:23 way you have to do pip
+install pip install streamlit before you start using 19:28 it otherwise you'll get an error so make sure you have run that and this is the simple app with one title now I can go
+19:35 to terminal and I can just say streamlit run main dot pi and it is going to open 19:43 up an application in my browser see simple application with this particular 19:49 title
+now I can create the Picker where 19:54 you can pick the cuisine and for that I'll use the sidebar so in streamlit there is something called sidebar where 20:01 you can create a
+select box and give a name to that box so you will say pick a 20:07 cuisine and give all the options that you want in that particular drop down so I will 20:14 just put bunch of
+Cuisines Indian American Mexican and so on 20:22 and then here you will say if or let me just show you how this looks 20:28 so just say hit Ctrl s save and click on rerun you can
+click go here and rerun or 20:35 just press R key and it will show you see you get this kind of nice picker and 20:40 if someone picks any entry let's say someone picks Mexican
+what's gonna happen is 20:46 that call is going to return that value in a variable which will store in this 20:52 Cuisine okay so I will just store it in this particular variable
+and you can say 20:58 if Cuisine then do something okay what do I want to do I want to generate the 21:04 restaurant fancy restaurant name and list of manual items here for that
+let me just write a 21:12 a dummy code here so I will just call that function let's say get restore name 21:17 and item where you supply the cuisine as input and it returns let's
+say rest or a 21:26 name foreign it is always a good idea to write this kind of stub function or empty function 21:32 so that you can check your wiring and then you can write the
+actual code in that function so let's say my 21:39 restaurant name is curry delight and my menu items is 21:45 whatever items you like okay so if 21:52 if Cuisine then 21:58 get
+those things as a response and then from the response let's say the 22:06 restaurant name I can show it here on the right hand side see here somewhere 22:11 below this header I
+want to show it and I will use maybe let's say St dot header 22:20 I will use St dot header as a UI control 22:25 so let's do this S3 dot header 22:32 and when I get the menu items
+so let me get the menu items here so 22:39 the menu items are going to be this 22:45 menu items here and whenever you have comma separated string or you can call this split 22:52
+function and specify the separator which is comma here and this should return you a list 23:00 and once you get that list you can iterate over that list 23:06 and you can write
+those items here [Music] um 23:12 I can just say item and maybe I can put some character just to indicate this is an item 23:18 you can also uh all right like kind of like a header
+where you'll say okay these are menu 23:24 items manual items okay hit save this code is ready 23:31 you go back to your UI rerun and see you're getting the restaurant name and
+23:37 the menu items now when you change this selection it's not going to change because obviously we are returning the 23:43 hard-coded response and the next step is to write that
+code which we wrote in our 23:48 Jupiter notebook and put that code here okay and since I like to modularize my 23:54 code I'm going to create a new python file let's call it Lang
+chain helper 24:01 and in this file I will copy paste this function 24:08 and here you can import that module 24:16 and you just simply call that here see now let's focus on line
+chain helper 24:23 so what do we need to do here well the same thing that we did in our notebook so I'm just going to copy paste 24:30 some code from my notebook here okay we don't
+need to go over it because we have already written that code 24:39 I will also create a file for my secret key so I will call it 24:44 secret key and in that secret key file I
+24:50 will place my open AI security now I'm not going to show you my key because of 24:56 course it's private thing but you will type whatever key you got remember you got five
+dollar credit so you can do a 25:02 lot of things with five dollar is more than enough uh so put that that thing here 25:08 and then you are using that key you are importing that
+variable from that python file here directly 25:14 okay so my key is ready what else do I need to do well again copy paste 25:21 business folks copy paste is a boon for any
+programmer or a data scientist 25:27 so we just copy pasted the code for the sequential chain that we wrote in our 25:33 notebook see here we create a restaurant name chain here we
+create menu item chain and we just return this response 25:40 folks this is this is so straightforward okay and I have this 25:46 habit of creating this function main function just
+so that 25:51 I can test it so I will say if name is underscore underscore main uh 25:59 then print generator store name let's say Italian 26:05 okay and now what I'll do is I'll
+pause the video and put my real secret key 26:11 here all right my secret key I have placed it and now I can run it 26:18 and see what happens so we are generating Italian food
+restaurant name in the menu items perfect so the 26:24 restaurant name is La Dolce Vita whatever and menu items are Margarita Pizza alfredo lasagna and all that one 26:31 thing I'm
+noticing here is I see some extra slice and characters here so maybe we need to remove them so the way to do 26:39 that would be let's go back to our streamlit code and instead of
+just saying responsible restaurant name we 26:45 can call this stripp function that will remove the leading and trailing white 26:51 spaces including those slash and characters and
+you can use that same 26:56 thing here as well before calling split so hit Ctrl s save 27:02 let's go back rerun dental and see Italian food this is my 27:10 restaurant name menu
+item you can change it to Mexican change it to whatever just 27:15 play with it and folks The Art of Getting skillful at coding is to practice just by watching this video 27:21
+you're not going to learn it so make sure you're practicing while watching this video all right our streamlit 27:27 application is ready as a next step we are going to look into
+something called agents which is a very powerful Concept 27:33 in Lang chain and by the way all the code that we are writing check video description we are going to give you all
+27:39 of that code if agents is a very powerful Concept in Lang chain Agents 27:45 what happens when you type this in chatgpt when you say give me two flights options from New York
+to Delhi on a 27:52 given date obviously it won't be able to answer because it has knowledge till September 2021 27:58 but if you have chat GPD Plus subscription there is this
+thing called plugins and I have installed those 28:04 plugins especially the Expedia plugin Expedia as a website which helps you 28:09 find tickets and when I give the same
+question now with the plugin enabled 28:15 magically it will start working so it will go to Xperia plugin try to pull the 28:23 information on the flights for a given date and
+given source and destination and then it will start typing those two 28:30 options see number one option is only I think 500 ticket 518 ticket which is a 28:36 pretty good deal by
+the way actually I think I should book it for my next India trip and there is the second option and 28:43 it will give you a link where you can go and book those tickets on Expedia
+so 28:49 what exactly happened when we enable this plugin let's try to understand that 28:56 so when you think about llm many people think that it is just a knowledge engine 29:01
+it has knowledge and it just try to give answer based on that knowledge but the 29:06 knowledge is only limited to September 2021. the thing that we miss out is it 29:12 has a

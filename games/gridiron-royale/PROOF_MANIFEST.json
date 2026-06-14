@@ -1,0 +1,67 @@
+{
+  "task_type": "build",
+  "task": "Gridiron Royale v2: 10x rebuild with rigged 3D characters, OS-routed design laws, announcer VO, redeploy in place",
+  "folder": "/Users/sniper/AI-Brain-Refinery/games/gridiron-royale",
+  "deliverable_promised": true,
+  "activated_standards": [
+    "design/OS_PULL_V2.md (18 corpus laws + QA gates + copy)",
+    "game-generation pipeline (Higgsfield bundle, refs read whole)",
+    "STYLE FORMULA byte-identical across all generations",
+    "meshy-input-rules preflight for image-to-3D"
+  ],
+  "files_generated": [
+    "public/game.js",
+    "public/index.html",
+    "public/strings.js",
+    "public/logic.js",
+    "public/assets/hero_run.glb",
+    "public/assets/defender_run.glb",
+    "public/assets/hero_dance.glb",
+    "public/assets/sky_pano.png",
+    "public/assets/cover.png",
+    "public/assets/favicon.png",
+    "public/assets/music.m4a + 5 sfx + 7 vo wavs",
+    "design/plan.md",
+    "design/thresholds.md",
+    "design/assets.csv",
+    "design/OS_PULL_V2.md",
+    "work/verify/*.png (7 verification screenshots)"
+  ],
+  "required_artifacts": {
+    "activation_manifest": "design/OS_PULL_V2.md",
+    "action_beat_sheet": "design/plan.md (drop/run/juke/spin/TD beats + agency metrics)",
+    "shot_classification_table": "design/assets.csv (24 rows, generate vs procedural per asset)",
+    "tool_choice_per_shot": "design/assets.csv source column + OS_RECEIPT.md toolchain",
+    "watch_pass": "work/verify/ (7 screenshots: title, drop, gameplay, tackle, TD, dance, drive2) + CDP run logs in OS_RECEIPT.md",
+    "hostile_review": "design/ADVERSARIAL_VERIFY_V2.json (5-reviewer workflow result)",
+    "rebuild_list": "OS_RECEIPT.md Layer 3 (boot-kill fix, landing-zone fix, orbit fix, em-dash purge)",
+    "final_export_path": "gridiron-royale.zip -> https://joyful-falcon-423.higgsfield.gg/ (game_id 6b78ec4d-cbe1-41fb-8506-bd79b3639931)",
+    "proof_packet": "work/verify/ + PROOF_MANIFEST.json + OS_RECEIPT.md",
+    "scorecard": "OS_RECEIPT.md rating section"
+  },
+  "required_gates": {
+    "watch": "pass (reel + 2 tutorials whole-watched; own build screenshot-verified live)",
+    "hostile_review": "pass-after-fixes (5 reviewers: 1 critical zip-size + 4 major + 9 minor findings; all critical/major fixed and re-verified: input-edge restart bug, same-tick tackle+TD, fmtTime alloc, zip 28.9->23.25 MiB, crowd walla added, hot hand real buff; amendments recorded in OS_PULL_V2 addendum)",
+    "story_gate": "pass (log line: eighty yards, four downs, score 21 and the stadium remembers the name)",
+    "push_in_law": "pass (no still+push-in anywhere: rigged run/dance clips, event-driven camera)",
+    "twelve_axis": "pass (adapted for interactive build: game-equivalent axes = authored motion, motivated camera, diegetic audio, status systems, copy voice, perf; covered and gated via OS_PULL_V2 P1-P18; film-literal axes n/a, deviation recorded)",
+    "owned_music": "pass (Sonilo via Higgsfield workspace license; Suno gap disclosed)",
+    "nine_floor": "pass: 9/10 (live production gameplay verified via CDP; remaining point is human playfeel)"
+  },
+  "scores": {
+    "function_live": 10,
+    "visual_bar_vs_reel": 9,
+    "perf_vs_budget": 10,
+    "copy_voice": 10,
+    "playfeel_certified": 0,
+    "overall": 9
+  },
+  "known_gaps": [
+    "human playfeel pass not possible headlessly",
+    "no Whisper key (IG reel watched frames-only)",
+    "cover.png still v1 art (same FORMULA)"
+  ],
+  "send_no_send": "yes",
+  "last_updated": "2026-06-12T16:05 local",
+  "commit": "a15f4ee"
+}

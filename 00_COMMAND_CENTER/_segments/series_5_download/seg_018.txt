@@ -1,0 +1,224 @@
+lockin however on my personal blog I 0:12 now have about 75 blog articles in both 0:15 French and English and it's becoming 0:16 increasingly difficult to get that 0:18 content
+organized I've explained 0:20 previously how I ensure that the data 0:22 stored in the front matter follows the 0:24 right shape using an SDK called content 0:26 layer but is there
+a better way to 0:28 organize it I want something trivial to 0:31 set up I want to be able to edit content 0:33 on my phone when I'm commuting to work 0:35 I've tried different
+solutions but I've 0:37 settled on using notion to track all my 0:40 content if you don't know notion it's a 0:43 free tool for organizing your life and 0:46 it allows you to
+easily set up tables 0:47 with custom fields and that's great for 0:49 my content because each type of content 0:52 has different fields for example I have 0:53 a table for blog
+posts one for pages and 0:56 another one for newsletter issues and 0:58 incidentally I've provided Link in the 1:00 description if you want to sign up the 1:02 reason why notion
+markdown and content 1:04 layer are a perfect fit for my use case 1:07 and my situation is because all three 1:09 allow you to Define your data schema in 1:12 the content itself so
+what happens when 1:15 I want to update content well I simply 1:17 run a script that downloads data from 1:19 notion and saves it as markdown I'll 1:22 explain that script in a
+second first 1:24 how do we get setup allow me to walk you 1:27 through the different steps we'll use 1:29 the example 1:30 of portfolio content because it's simple 1:33 and as I
+live in Paris France I'll use 1:35 photos that I've taken in Paris as 1:37 content now let's dive in let's start by 1:40 setting up the content in notion I'll 1:42 create a page
+called website and within 1:45 that page I'll create a page called blog 1:47 posts and one called portfolio now 1:50 inside portfolio let's set up a table 1:53 that will hold our
+content we'll start 1:56 by defining the fields that the table 1:57 will hold for convenience sake 2:00 I'll set the field names to follow 2:02 JavaScript variable naming
+conventions 2:04 we already have a title and tags but 2:07 let's edit their name down to lowercase 2:09 now let's add a date where we'll store 2:13 when the photo was taken and
+we'll call 2:15 that field date we'll also add a text 2:18 field called location to state where the 2:21 photo was taken and I also like to have 2:23 a checkbox field called
+enabled that 2:25 allows me to indicate when my content is 2:27 ready to go live or not finally let's 2:31 add an image and media field that I'll 2:33 call image that should do for
+starters 2:35 and we can always add more later now we 2:38 need to add content to the table so that 2:40 it returns something when we fetch it um 2:43 I'm just going to set that
+2:58 up 3:11 now that's done the next step is to 3:13 create a notion integration there are 3:15 various ways to get to where you do so 3:18 the easiest way is to head to the
+notion 3:20 website sign in and go to slm my 3:22 Integrations you can also get there by 3:25 clicking on the three dots at the top 3:26 right of the page as we'll be using this
+3:29 menu quite a bit let's call it the page 3:31 menu now scroll down to add connections 3:33 and again to manage connections then at 3:36 the bottom of the page you have a link
+3:38 that says develop or manage integration 3:41 once we're there we need to click on 3:43 create a new integration your 3:45 integration will be internal and linked 3:47 to your
+workspace you need to give your 3:49 integration a name for example notion 3:52 CMS you can also add an image if you're 3:55 so inclined uh but it's not required 3:58 here now once
+you're done click click on 4:00 submit now that we have the information 4:02 for the integration we need two things 4:04 first on the capabilities tab check that 4:07 your
+integration has the rights to read 4:09 and to update content next head over to 4:12 the secrets Tab and copy the secret 4:15 before we go any further let's head back 4:17 to the
+next s project I have all my 4:20 secrets stored in a n file we don't need 4:23 the notion secrets in production so the 4:26 N file is the perfect place to store it 4:29 so let's
+create a line in the file 4:31 called notion secret equals and copy 4:34 paste the secret in there before we do 4:37 any more work on the nexs project we 4:40 also need to share
+our content with the 4:42 integration let's go back to the master 4:45 page that we created that references our 4:47 different databases and open the page 4:49 menu again then
+let's head down to add 4:51 connections now we need to select the 4:54 connection that we created while we're 4:56 here let's get the database ID let's 4:58 open the page that
+holds our portfolio 5:00 content again open the page menu but 5:03 this time click on copy link now let's 5:07 head back to the NEX s project and open 5:09 up the EnV file again
+let's type notion 5:13 portfolio database _ ID equals and paste 5:17 in the link that we just copied it 5:19 should look something like 5:22 this now as you can see there are four
+5:25 parts to the link the first part is the 5:27 notion website URL that we can delete 5:30 the second part is your username so in 5:32 my case codap followed by a slash we can
+5:35 delete that too we're left with a long 5:37 heximal string and then a question mark 5:40 V equals followed by yet more characters 5:44 we only want to keep the first heximal
+5:46 string part we delete everything after 5:49 the question mark including the question 5:51 mark itself and what's left is the ID of 5:54 the database that holds your content
+yay 5:56 now let's go about retrieving data from 5:58 notion and saving it that involves quite 6:00 a bit of code however to save time for 6:03 everyone I've packaged that code
+into an 6:06 mpm Library uh maybe at some point I'll 6:08 do a video to explain how to create npn 6:11 packages I'll in that case I'll put a 6:13 video the card here now the first
+thing 6:15 to do in your nexs project is to open 6:18 the terminal and to add the at COD apps 6:21 notion hyen pars and the NV packages to 6:26 your Dev dependencies so using in
+the 6:28 package manager for example in my case 6:30 pnpm add at codep notion pass space. NV 6:36 space dasd now notion pass is still a 6:40 very young Library I justed up this
+6:42 weekend and it supposes a number of 6:43 things about the layout of your folders 6:46 and it doesn't yet have much 6:47 documentation because I cooked the thing 6:49 up over
+the weekend however it's really 6:51 simple to use I've created a script 6:53 folder in my nexts repository and I've 6:55 created a script called notion. JS this 6:58 script uses
+the environment variables 7:01 and the library to fetch the content the 7:04 package that I created exposes a past 7:06 notion function that takes three 7:08 parameters the first
+is the notion 7:10 secret that we fetched earlier and that 7:12 we're going to use M to go and uh 7:15 retrieve the second is the folder where 7:17 we'll be putting the markdown
+content so 7:19 in our case SRC content and the third is 7:23 an array of objects each object needs to 7:26 specify the notion database ID using the 7:30 database ID field and the
+content type 7:32 using the content type field the object 7:35 can also specify which fields to ignore 7:37 from the notion database by specifying 7:40 filter Fields And if you
+have a field in 7:42 your database that specifies the content 7:44 language you can pass the name of that 7:46 field in using language field so here 7:49 for example the portfolio
+content is 7:51 managed as is and I've given the example 7:54 of post content that will be stored in 7:56 different directories that are based on 7:57 the post language uh and
+there are some 8:00 fields that are ignored right now let's 8:02 just run this script to see how it works 8:05 we run it as a noes executable as you 8:08 can see it's downloading
+the DAT data 8:10 it's downloading the images from each of 8:11 the different portfolio items if we head 8:14 over now to the um the SRC content 8:18 folder we can see the content
+the 8:19 markdown that's been downloaded if we 8:21 open that up we can see there's front 8:23 met on it that displays the front matter 8:25 that corresponds to the data we entered
+8:26 in the database and if we head over to 8:28 the images folder we can see the images 8:31 that we've downloaded from the database 8:33 that correspond to the photos that I 8:35
+uploaded now for the moment this code 8:38 supposes several things first that the 8:40 files are stored each in a subfolder of 8:43 the folder passed into as a parameter so 8:45
+here slsrc content and it's stored based 8:50 on the content type second that the 8:52 content layer type names map to the 8:55 subfolders so for example for the Post 8:58 content
+type the files will be stored in 9:01 SLC content 9:03 slost third that the notion token and 9:05 database isds is stored in the 9:07 environment variables and that there's 9:09
+one database per content type and 9:12 finally that the title of the content is 9:14 stored in a title field or lowercase in 9:18 notion now if you're interested I've 9:20 shared
+the code for the repository uh 9:22 for the npm package in the description 9:24 so you can see how the code fetches the 9:26 content from notion and if you want 9:28 adapt to your
+use case if you've missed 9:31 the content layer video that explains 9:33 how to use content layer with markdown 9:34 um it's available here um and the next 9:37 step is going to
+be to bring all this 9:38 content together to make the portfolio 9:40 page and that's going to be the next 9:41 video you'll find it here as soon as 9:43 it's ready and so I'll see
+you in the 9:45 next video All From Kodaps Academy 0:00 hey what's up my name is chris and 0:01 welcome to coding in public this is a 0:04 series on using notion as a simple cms
+0:06 for a website now i recently had a 0:08 client with a small team that needed to 0:10 occasionally update a small section on 0:12 their website and it was really the only 0:14
+thing they needed that wasn't just 0:16 static and so i learned that they were 0:18 using notion to keep track of the 0:20 content and figured it might be a nice 0:21 time to try
+to explore the relatively 0:24 new notion api so you don't need to 0:26 always reinvent the wheel or require 0:28 some client to learn a cms however basic 0:31 that might be 0:33
+so here's the way i set it up for them 0:34 you can see here that they have a team 0:36 here and they might want to move these 0:38 little cards i've got it just set up 0:39 like a
+little kanban board here move 0:41 them from needs review 0:43 or to to ready to publish and then they 0:46 might move it over to live once it's 0:47 ready anything that's live
+then just 0:49 dynamically pulls whenever somebody 0:51 visits their site and we're using a 0:53 netify function to do the back end and 0:56 then we're just making a javascript
+0:58 fetch on the front end it's not the 1:00 fastest thing because it's not really 1:01 meant for this but like i said sometimes 1:03 you don't need to reinvent the wheel if 1:05
+it's something basic like this so i'm 1:06 going to show you how to do this and you 1:08 can see that i can come in here and 1:10 let's see here's there is a title let's 1:12
+change this to 1:14 uh here is a title 1:16 like that and then i'll go ahead and go 1:18 here and then refresh here and 1:20 automatically it's already updated here 1:22 is the
+title i can also drag things over 1:24 this way and then refresh and again that 1:26 fetch will happen and you can see it 1:28 shows up in the second card right here 1:31 and then
+these other ones show below so 1:33 i'm going to show you how to set this up 1:34 so that you can just basically from an 1:36 app on your phone from the web view from 1:38 the
+desktop client you can just add 1:40 stuff to your notion database and it 1:41 will automatically populate on your site 1:44 so in this series i'm going to show you 1:45 how to set
+up a notion integration with 1:46 the database how to publish your site 1:48 with netlify how to create a netlify 1:51 serverless function with the cli and the 1:54 notion sdk for
+javascript how to fetch 1:56 your notion data and finally how to 1:58 improve the loading user experience with 2:00 a skeleton loading animation 2:02 along the way we'll use vjs to
+build out 2:05 the site play along with a new open 2:07 props web design system and more 2:10 now before you jump into the series let 2:11 me lay out a few assumptions and 2:13
+dependencies i'm assuming you have a 2:14 basic grasp of html css and javascript 2:18 i'm going to try to keep the series as 2:19 short as possible so i'm not going to be 2:21
+thoroughly explaining all those concepts 2:23 as we move 2:24 for dependencies i'm going to assume 2:26 that you have git and node.js 12.0 or 2:29 greater on your machine 2:30 if
+you're not sure if you have git or 2:32 node.js you can type either and then 2:34 dash dash version like this and it will 2:36 show that you have some version i'm 2:38 running git
+2.2 9.2 2:41 you can do the same thing with node 2:43 version like that you do need npm as 2:45 well 2:46 like that so you'll want to make sure 2:47 you have that if you don't have
+those 2:49 i'll leave some links to the description 2:51 in the description you can just grab 2:52 node.js here install it and you should 2:54 be good to go and then you want git
+on 2:56 your machine and then some kind of 2:57 repository that you can point towards 2:59 netlify 3:01 all right well finally if you get stuck 3:02 go ahead and check out the
+github link 3:03 i've got it in the description here the 3:06 finished code for the entire project is 3:07 in the main branch here and then the 3:09 starting point for each video
+is in 3:11 these following branches starting 2 3 4 3:14 5 6. now i don't have one for starting 3:16 one because in lesson one we're gonna 3:17 start with nothing so you don't need
+to 3:19 download that but if you're jumping in 3:21 halfway through you can just jump 3:22 straight into lesson two and you'll pick 3:24 up with whatever code we finished in 3:26
+lesson one 3:27 finally i do have a community 3:28 improvements branch and feel free to go 3:30 ahead and leave an issue or fork it 3:33 create a pull request if you have some 3:35
+improvement you'd like to see or you can 3:36 just leave a comment in the description 3:38 i'm sure you can make this better than 3:40 what i've done here in this simple 3:41
+tutorial but enough talking let's go 3:43 ahead and jump right in with video 3:45 number one setting up the basic site 3:47 with vjs thanks for watching i will 3:49 catch you in
+the next one happy coding All From the series Chapter 1: Welcome to Syntax! 0:00Welcome to Syntax. We got a potluck episode for you today, which is you bring the questions, we
+bring the answers. We got some really good questions today on should I use markdown 0:099 secondsinstead of a CMS? No, never. Please. We Scott and I have several thousand markdown
+files as a CMS and it sucks. 0:1717 secondsLeaving the country for a job. Should I should I pack up my whole family and leave the country for less money? How should I master
+keyboard shortcuts, 0:2525 secondsScott? And I have some really good tips on mastering your keyboard shortcuts. 0:2929 secondsShould a young person get into webdev because of AI?
+This is the question we get from every person of every age but 0:3636 secondsuh or can attempt to answer that. And then finally, backup strategies. Well, how do I after the
+Halloween episodes? 0:4343 secondsEveryone's freaking out about how how poor their backup strategies is. So, me and Scott talk about that. Let's get into it. You ready for some
+potluck questions there, Scott? 0:5252 secondsOh, hold on. I like your Figma hat. That's cool. Where'd you get that? 0:5656 secondsUh GitHub Universe was one of those swag ones. I
+uh I've done this two years in a row now where I pulled the do you know who I am card to them [laughter] where I 1:051 minute, 5 secondsI walk up and I say they say oh you would
+you like to learn about Figma and I was like I'm going to be honest I'm just here for the hat but I did do your 1:131 minute, 13 secondsvery first tutorial videos for Figma's
+website back in 2015 and they'll be like 1:211 minute, 21 secondsoh okay here's a hat [laughter] like like I've been around way longer than you have. Yes, I uh I was offered uh
+like 1:301 minute, 30 secondsemployee number eight at Figma or something. Uh and I turned it down and that's why I'm still working. Uh 1:381 minute, 38 secondswell, I don't think
+those I don't think those folks got their payout either because of the Adobe the Adobe thing got nixed as well, which I'm sure there was 1:461 minute, 46 secondssome pissed
+employees when that didn't fall through. Oh, dude. Can you imagine? The Ferrari on order. 1:521 minute, 52 secondsCan you imagine? And there was a scene in the Wei Work doc uh the
+not documentary, the Wei Work show that they did and super good. 2:002 minutesYeah, that was super good. And they had like employees like adding stuff and clicking by before the uh
+it went public and uh just like man to know that 2:092 minutes, 9 secondsthere's that much money on the line and like there's a a a future where you could have that type of money
+and yet it 2:172 minutes, 17 secondsgets pulled away from you. That would crush me honestly. Yes. [laughter] 2:222 minutes, 22 seconds[gasps] 2:222 minutes, 22 secondsOh, brutal,
+brutal, brutal. All right, let's get into the first question here. You want to grab that one, Scott? Yes. From Josh Doveham. Chapter 2: Do keyboard shortcuts actually improve
+productivity? 2:322 minutes, 32 secondsI've been obsessed with learning keyboard shortcuts recently. Everything from MacOSS shortcuts to Chrome VS Code. 2:392 minutes, 39 secondsMy
+goal is to start weaning off the mouse over time and see what I can lock with the extra productivity and a deeper sense of flow. What are your guys' 2:472 minutes, 47
+secondsthoughts on keyboard shortcuts? Do they really make you more productive or are they just micro times savers that don't really help developers all that much? 2:552 minutes,
+55 secondsLove from Vancouver. Uh yeah, so me personally, yes, I love keyboard shortcuts and I I do use them quite a 3:033 minutes, 3 secondsbit. Uh the ones I use most honestly
+are like window manage management stuff and I I have everything to like hyper like hyper F to do full screen but not like 3:123 minutes, 12 secondsthe actual full screen just to
+have it take up like maximize just like stuff like that. And I have like hyperl wraps 3:183 minutes, 18 secondsthe current line in a console log. But I I've tuned my personal ones
+in a way that like especially in my text editor 3:263 minutes, 26 secondsthat I feel very comfortable getting around on the keyboard and then in my system as as well. But I think
+so much 3:353 minutes, 35 secondsvalue can come out of learning the uh the shortcuts that exist in anything. 3:413 minutes, 41 secondsLike when I teach my kid how to use the
+computer, I don't tell him to go click on the X. I tell him to do command W or 3:503 minutes, 50 secondswhatever. I tell him to do command Q or command V, command, you know, those
+things because if that's just how you know how to do it, it it becomes so much 3:593 minutes, 59 secondsfaster overall. But like one place that I've always felt has been like
+really good for me in video or in shortcuts is 4:074 minutes, 7 secondslike video editing stuff where I I have my own custom set of shortcuts for everything and I basically am
+playing my 4:154 minutes, 15 secondskeyboard like a like a piano when I'm video editing because it's just like once you get that dialed like people buy macro pads, they'll buy
+giant knobs, all 4:244 minutes, 24 secondskinds of stuff and like you can do so much with just the key. The keyboard's got it's got buttons on it. I forgot how many buttons, but
+it's got a lot of 4:324 minutes, 32 secondsbuttons. Uh, so you get a hyper key on there. You got a whole another set of buttons. It's pretty cool. 4:384 minutes, 38 secondsHyper
+key is so key that that is you are mapping your control, shift, option, and 4:454 minutes, 45 secondscommand to the caps lock key. Um, and that essentially opens up a whole new
+world of combinations. I think a lot of people get frustrated with keyboard 4:534 minutes, 53 secondsshortcuts cuz a they can never remember them. um like like what was it and
+what's the little hat symbol, you know? 5:015 minutes, 1 secondBut if you if you just know that it's caps lock plus something else, you can go nuts. And like I have the like
+extended Mac keyboard. 5:105 minutes, 10 secondsUm and what that allows it gives you the whole the whole set of num the whole numpad and then it also gives you 5:185 minutes, 18
+secondsF what is that F16 to F19 and it gives you all these like like um Oh, my keyboard is disgusting. you're 5:265 minutes, 26 secondsYeah, I'm like going to going to throw up.
+5:295 minutes, 29 secondsYeah, that's I I need to clean that. It gives you like home, page, end, page down, page up. So, like all of those keys are like almost unused in most 5:385
+minutes, 38 secondsapplications. And hooking those up to hyper plus any of those has been such a game changer for me. The only downside is like you can't use it when you're on
+5:455 minutes, 45 secondsyour laptop, but I don't use laptop straight away all that much. 5:495 minutes, 49 secondsI pretty much only like my main keyboard is the laptop keyboard.
+I never have an external. I love just laptop keyboard and then I also use I use better touch 5:585 minutes, 58 secondstool as well. One interesting thing I did a video and we
+actually have to edit this yet and get it up on the channel. I did a video with John Linquist and just 6:076 minutes, 7 secondstalking about John Yeah, John Linquist is like the
+most like dialed in productivity guy ever. um he has this whole like app 6:166 minutes, 16 secondscalled Script Kit and whatnot, but he was showing me how he he uses his mouse
+quite a bit because I've always been like, "Yeah, get away from the mouse. 6:256 minutes, 25 secondsDon't touch the mouse." But he also uses like like holding a combination and
+clicking. 6:326 minutes, 32 secondsSo now if you hold any key and then click or right click or middle click or click and drag down, then you can do any number of things, you know.
+6:436 minutes, 43 secondsAnd I we'll we'll get the video edited and show and throw it up on the YouTube channel cuz it was like kind of eye opening that adding mouse gestures along
+6:526 minutes, 52 secondswith a keyboard holding down a key is just like a like a whole another world of of adding things in there. And I've done that a little bit with my like
+7:007 minutesspaces on the what is this? The MXM mouse. 7:047 minutes, 4 secondsYeah. Yeah, when I when I press it down, I can press a button and and go down or press a button and
+go up and it will uh what will it do? 7:137 minutes, 13 secondsThere's so much cool stuff gestures and all kinds of stuff. Yeah, expose. Same. Yeah, I expose with this one. 7:217
+minutes, 21 secondsPush it down and and mouse right and it will move it to the next space. There's a lot you can do with it and it's it's a 7:297 minutes, 29 secondsrabbit hole.
+like you could spend your entire day trying to become productive, but I also certainly think it's well worth your time in learning keyboard shortcuts, especially the built-in ones.
+7:387 minutes, 38 secondsLike my one tip is if an app doesn't have like a command pallet like like like a VS Code has the help in OSX, if 7:487 minutes, 48 secondsyou click on
+help, there's a little search bar in there and instead of hunting around the menus for everything, you can just type in there. There's also 7:567 minutes, 56 secondsa raycast
+extension, but this one will show you the where they are in the menus and it will show you the shortcut for them. And that's a a quick way to find 8:038 minutes, 3 secondswhat you
+want and then memorize the shortcut. 8:068 minutes, 6 secondsYou know what I have on my MXM? I have like uh undo and redo tied to this middle scroll bar, this horizontal 8:138
+minutes, 13 secondsscroll bar or scroll bar scroller. So, I can just swipe back to undo, swipe forward to redo. 8:198 minutes, 19 secondsI can't I fidget with it so much that I
+can't do that. I use I use it for horizontal scrolling because I use uh tweet deck on horizontal scrolling quite 8:278 minutes, 27 secondsa bit but I just fidget with it all day
+long so I can't I had it in Photoshop up to undo redo and I kept accidentally 8:368 minutes, 36 secondsundoing stuff. [laughter] Yeah, [gasps] I love that. Chapter 3: What is Error
+Lens, and why use it? 8:418 minutes, 41 secondsAll right, next question from Anan says in episode 956 and you an alternative to Git Lens was called air lens and was 8:488 minutes,
+48 secondsmentioned but I can't find anything about it. Can you share more on this? So that was not air lens, that was error lens. And this is a VS Code extension 8:588 minutes, 58
+secondsthat I absolutely love. So I've on the video I've got it up right now. Um, this is what it does is when you have like a 9:059 minutes, 5 secondsany error, um, so most like
+like a TypeScript error, a linting error, markdown error, you know, anything that 9:129 minutes, 12 secondsis happening in your code, um, it will usually add like a little squiggle
+underneath your thing. So what I do is I 9:199 minutes, 19 secondsuse error lens to inline those right beside the actual code. So you can see 9:269 minutes, 26 secondshere I've got
+some cannot redeclare block scope variables cannot find name cool and I've installed that. But then I 9:349 minutes, 34 secondswent into my settings and I added a couple changes.
+First of all I made the font size much smaller so that it's not 9:439 minutes, 43 secondsso obnoxious. Um, so it's like it's it's pretty small when you're you're looking at it
+right now. I guess I'm I'm zoomed 9:509 minutes, 50 secondsin a bit right now, but I I I found that to be a good size. Um, and then I also have it set up for 9:599 minutes, 59
+secondserror, warning, and hint, as well as I have customized the colors for each of those. Um, so the background 10:0710 minutes, 7 secondsand the foreground, so it's it's not as
+obnoxious as well. I found it was by default it was way too jarring. Like the whole line would turn red or the whole 10:1610 minutes, 16 secondsline would turn yellow and it was
+just like way too obnoxious. So I really toned it down there. And then I finally also I said airline.exclude. 10:2610 minutes, 26 secondsUm, and then just common things that I
+don't care about because I know that they will be fixed either by me because 10:3510 minutes, 35 secondsthere's already a squiggle or they'll be fixed when I hit save. My eslint or
+my prettier or whatever will kick in and fix those. So like I ignore anything 10:4410 minutes, 44 secondsthat's like this variable is never used or never read um because I already
+have a squiggle and that happens all the 10:5110 minutes, 51 secondstime. I create a variable and then it's like hey you never use that variable. 10:5410 minutes, 54 secondsIt's
+like I I'm getting to it. It's the next line, you know, or unknown word. 11:0011 minutesUm, this is just like spell check. I I ignore all spell check in line. And then the 11:0711
+minutes, 7 secondsthe new line uh eslint error that pops up all the time when you have like whites space. I don't care about that. 11:1411 minutes, 14 secondsIt's going to as soon
+as I hit save, it's going to fix itself. So, um, and you can see actually this this setting here is deprecated in favor of error lens.exclude. exclude by message. 11:2511 minutes,
+25 secondsSo the error lens itself is showing me an error I have with my error lens config and that's that's really helpful. 11:3211 minutes, 32 secondsFor the really long ones, it
+gets kind of obnoxious, but you just hover over top of it and go ahead and read it. 11:3711 minutes, 37 secondsYeah. Yeah, I do like that. Yeah, thank you for sharing. I I do use
+airlines myself. It's dope. Cool. Next question Chapter 4: How Scott is using a Svelte 5 service worker 11:4511 minutes, 45 secondsfrom Josh. Scott teased us with a really cool
+spelt 5 service worker when discussing his syntax site rewrite. 11:5311 minutes, 53 secondsCould could he please do a tutorial on this? Uh specifically, we'd love to see these
+superpowers on our sites. It 12:0012 minuteslooked pretty cool. The community could benefit from such information. So, the service worker thing that I did was uh 12:0812 minutes, 8
+secondsbasically storing like intercepting queries essentially the remote functions. it would intercept them and 12:1712 minutes, 17 secondsdo a stalew wall revalidate using
+indexed DB and it was it's actually 12:2412 minutes, 24 secondsreally nice. It what it does is then it like initially will just load from your index DB basically giving you that
+12:3112 minutes, 31 secondslightning fast initial data load from from your local data. The only problem is what I haven't done with this service 12:3912 minutes, 39 secondsworker
+yet is I haven't put in any code to do like invalidation on mutation uh which 12:4712 minutes, 47 secondswhen you're updating data and then you browse to the data and it's the
+stale data. So it is it is raw. I'll post a 12:5512 minutes, 55 secondslink in this video to the gist. If anybody would like to work on this or uh elaborate on this or modify this
+go 13:0313 minutes, 3 secondsright ahead. I think it's a pretty cool neat little thing, but nothing that I've had time to like really solidify yet. 13:1113 minutes, 11 secondsJust
+uh man, I got a lot of work to do. 13:1413 minutes, 14 secondsYeah. Um I have a question about this though. Like so this is basically every time you have a request to like an API
+to grab like the latest podcast or 13:2213 minutes, 22 secondssomething like that, it will intercept it, check if you've already done that query and if the data is stored locally
+and if so, it will just return that from 13:3113 minutes, 31 secondsthe cache instead of actually hitting the server. That that's what it does, right? That's correct. 13:3513
+minutes, 35 secondsHow is this different than just putting like a cache header on the request um that's returned from the server so that 13:4313 minutes, 43 secondsthe client
+itself will just oh I already made that request. I could just reuse the the response there. 13:5013 minutes, 50 secondsYes, because I don't believe you can do cache headers on the
+remote functions yet. 13:5713 minutes, 57 secondsOh, from from speltkit. Yes. 14:0014 minutesOh, okay. Don't believe so. I think you can have cache headers on page routes and stuff
+to cache the pages but yeah 14:0814 minutes, 8 secondsindividual functions and and that might be different by now. So spell folks uh comment below if that that is incorrect 14:1514
+minutes, 15 secondsbut yeah that's that's why this is doing that. Plus, uh, like you just said, if you if you want to have custom logic 14:2314 minutes, 23 secondsabout
+invalidating, uh, queries, like a header is not really going to help you there because if if you set 14:3014 minutes, 30 secondslike an hour on on something and you don't you can't
+clear your cache, you don't have dev tools open, then it's just going to it's going to be cached 14:3814 minutes, 38 secondsfor an hour in the browser. Whereas with this, you can
+at least put some logic inside of there to explicitly 14:4614 minutes, 46 secondsinvalidate it or like when something is mutated, you can just go into the cache and blow it out
+manually. Yeah. Chapter 5: Does tech stack choice still matter with AI coding? 14:5214 minutes, 52 secondsBlaze says in just listen to the remix episode and got me thinking with
+the rapid rise of AI assisted coding, does the choice of framework still really 15:0115 minutes, 1 secondmatter? If generative AI can already produce 80 to 90% of reliable code and
+developers can use their experience to 15:0915 minutes, 9 secondsfix the remaining 10 to 20%, how should we think about selecting a tech stack for a new web or mobile app? Should
+we 15:1615 minutes, 16 secondsstick with what we know now like the tried andrue react ecosystem explore frameworks that align more closely with web standards and performance
+15:2415 minutes, 24 secondsoptimization like remixers spelt? Or should we focus focus shift entirely to using wellsupported well doumented tools 15:3315 minutes, 33 secondsthat
+generative AI can most effectively interact and produce production quality code. Yeah, this is this is actually 15:4015 minutes, 40 secondssomething that I was talking to some
+folks at at Google that work at Chrome just a couple days ago because I was 15:4715 minutes, 47 secondslike, man, we got like customizable select, we've got CSS anchor, we've got
+scroll snap, we've got scroll driven 15:5615 minutes, 56 secondsanimations, and I know it's early, but like a lot of people are not using those things. 16:0216 minutes, 2
+secondsThere's just npm install blah blah blah, whatever. and and it it works right off the bat. And I was I was kind of 16:1016 minutes, 10 secondsthinking like like why aren't
+why aren't people why aren't people using these things? Um is it because it's easier just to boop boop boop npm framework 16:1816 minutes, 18 secondsthat it already knows? So the
+question here was does choice of framework really matter? I think it matters 16:2616 minutes, 26 secondsa lot that the the AI understands how to how to produce your framework, but
+I don't think that that's going to stop 16:3316 minutes, 33 secondsthe progression of this stuff because we're we're going to hit a point where like [clears throat] we're already
+seeing it with with a lot of the React 16:4116 minutes, 41 secondsecosystem where it will just it knows to install Tailwind 3 and a whole bunch of UI frameworks and it just adds a
+whole bunch of stuff and there's better stuff 16:5016 minutes, 50 secondsout there. there's new tech out there and you're I think you're going to start to see especially like let's
+talk about performance and and accessibility and 16:5816 minutes, 58 secondsall those things where your website is going to start to get slow and laggy and it's you're going to
+have Perf problems 17:0617 minutes, 6 secondsif you're just installing all of this crap when there are significantly better options out there. Choice of framework does matter, but
+I don't think that 17:1417 minutes, 14 secondsthat's going to stop the fact that everything is just on the React ecosystem right now. I think that we will continue to see web
+standards 17:2217 minutes, 22 secondsframeworks that use browser primitives a lot more and use like web fetch, web 17:2917 minutes, 29 secondsrequest, web response a lot more so
+that you can pick up these new things. 17:3417 minutes, 34 secondsYeah. Yeah. I think it really matters ultimately at the end of the day. Some people would just say as long as the
+code works whatever but man some of the code is so non-performant. 17:4717 minutes, 47 secondsIt's so dog It's duplicating stuff left and right. That's hard to maintain up the
+wazoo. 17:5317 minutes, 53 secondsIt's hard to maintain. You edit one thing and your CSS doesn't cascade because everything is set with individual micro styles on every single
+18:0218 minutes, 2 secondsindividual element. So now you're editing a ton of billion things everywhere. It is tough. What I'm 18:0718 minutes, 7 secondshopeful for is that as AI
+matures, the systems in which the code is generated 18:1518 minutes, 15 secondswill start to be able to utilize more modern techniques, more performant techniques rather than just
+what was the 18:2318 minutes, 23 secondsmost code on GitHub that day. Uh, which was questionable, right? It it is so funny because every time I do wonder 18:3218 minutes, 32
+secondsabout why the CSS that AI writes, even the tailwind that AI writes is bad, but the CSS that it writes is bad. And I 18:4018 minutes, 40 secondsalways wonder like is it
+really just that there's so many people that are bad at CSS and then I go onto any open- 18:4818 minutes, 48 secondssource project that is like for my server like not like not like
+Plex, but I have like the my audio 18:5618 minutes, 56 secondsbookshelf or audio bookshelf. I have Copy Party. I have all these apps that I run personally. And then you go into the
+CSS of those big open source projects 19:0519 minutes, 5 secondsand they're setting background color on everything. They're they have font size on every single thing and you're
+just like, "Oh, there's no system here and no 19:1219 minutes, 12 secondswonder the AI can't write it just cuz so much of that CSS is bad. It makes me upset." Yeah. 19:1919
+minutes, 19 secondsYeah. It's you see that a lot with especially projects where like a backend Python dev has has built 19:2719 minutes, 27 secondsit and you need a UI, you know,
+and you reach for something and and they've also been around for 10 years, you know. 19:3419 minutes, 34 secondsYeah. HTML is bad, CSS is bad. 19:3719 minutes, 37 secondsYes. So I
+think yeah it's I hope and pray that everything will get better especially as like even these UI 19:4619 minutes, 46 secondsframeworks start to pick up a lot of the new built-in
+primitives you know like these UI frameworks are not going to go 19:5319 minutes, 53 secondsaway but they will start to use popover and anchor and that's going to reduce a lot of
+the code that is necessary it's 20:0120 minutes, 1 secondgoing to be way more declarative um we'll use the new invokers API that's probably going to be a big one as well and I
+think that that stuff is 20:0820 minutes, 8 secondssignificantly simpler and AI likes nice clean declarative simple UIs. Chapter 6: What stack should you choose for a greenfield
+SaaS? 20:1520 minutes, 15 secondsYes, sick. All right, next question from Pointy. For a green field SAS today, 20:2220 minutes, 22 secondswould you pick a batteriesinccl included
+framework like Laravel or Rails or go lean with a minimal stack? What specific criteria make that choice futureproof? 20:3420 minutes, 34 secondsYeah, I think most people would
+probably want to pick uh something that is mature, widely supported, popular stuff 20:4320 minutes, 43 secondsthat people like and use. So many times when you're you're building
+these stacks out, you're like, who do I know that's a 20:5220 minutes, 52 secondsgood developer who is going to work on this and what do they know and what are they skilled at and
+let's build that stack around what we're most comfortable 20:5920 minutes, 59 secondsin. I mean something like Rails has certainly like worked for a lot of people. React in general
+on any kind of 21:0721 minutes, 7 secondsnode ecosystem, you're going to have a wide variety of developers who can work in those systems. You know, database technology and stuff
+like that. It 21:1621 minutes, 16 secondsreally depends what the SAS today is. So just to say for green field SAS you can't really give a generic answer to 21:2421 minutes, 24
+secondsthat because if you were building Sentry right Sentry has very different data 21:3121 minutes, 31 secondsneeds than let's say an email app or Fresh Books or a financial
+tracking app. 21:3921 minutes, 39 secondsAll of these have very different needs in what type of data they're storing and how they're storing it and where they're accessing it. If
+you're asking me 21:4821 minutes, 48 secondspersonally, I'm using Spell and Drizzle and Better Off because that's the stack that I like and it's uh but like that's 21:5621 minutes,

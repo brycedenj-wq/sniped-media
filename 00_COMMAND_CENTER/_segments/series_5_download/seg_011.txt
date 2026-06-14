@@ -1,0 +1,224 @@
+usually would recommend, right, that you create a view and then create some pre-filtering. We're going to touch on why in a second. But in this 42:35 case, why I said, "Okay, just
+everything with the demos here." But you might say, "Hey, let's apply auto labels, right? 42:40 Notion mail has AI built in it. So you can say hey auto label everything right that
+looks like it's a client email 42:45 right based on whatever categories you have and if you know they're inquiring about our services then let's tag them 42:51 with a certain tag
+and then let's filter this view right through our filter setting where we say okay certain label 42:56 is applied then it should show up here. Once you have that view set up right
+now you can go to your settings and say 43:02 database and here select your workspace and then your um database. Now, 43:08 currently there's a little bit of a bug going on where
+often times notion mail can't find the database you're looking 43:13 for. In that case, you want to go back to notion, rename uh your database where just like change some things
+with it, 43:19 add a view to it, right? Do something and then refresh notion mail using command R, then it shows up. It's a 43:25 little bit of a dance. I hope they fix that bug
+soon. But basically, you want to locate your database and select it. 43:31 So, after a bit of back and forth, I was able to negotiate with notion mail to show it here. So, I'm
+going to select 43:37 this now. I'm going to click on save connection. Once this happens, every new email going forward that comes in here 43:44 will be added to it and will be
+added on a thread basis. Right? So emails within the same thread will appear in sort of 43:50 one line item and they will simply append. But if you have like sort of a new message
+then that will be like you 43:56 know outside of the same thread it will appear as a new line item. So let me just send a test email and then we see 44:01 how this looks in notion.
+So here we are in notion right? So here's the email that came through and you see we have 44:07 now this new nice little email object from notion right that actually adds the so
+like email that was sent here to the 44:13 body of the page and again right if you would have several messages in it would simply show them below here one of the 44:19 drawbacks of
+this is that this doesn't carry over any structured data right it doesn't tell me the contact date I 44:26 couldn't extract the email none of that works but AI can do this and sort
+of here is where we're moving right now Building a Notion AI Agent for Your CRM 44:32 into the last part of that refine step Right, the ones where we add automations 44:37 and
+advanced flows like AI uh on top of the whole CRM. And the first thing that we're going to build here is a small 44:43 little agent that will go in and simply process every single
+email to make sure that if that we connect it right to the 44:50 right contact in our system. In order to set up this agent, we again going to use AI. And you could use the
+personal agent 44:56 right in your left uh bottom right corner, but you can also just go to agents on plus and here add your prompt. 45:03 Now again, this is a prompt that you can
+get with the template, but basically what we're asking this agent to do is, 45:08 hey, whenever we get a new email in our email sync database, check it and see 45:14 whether we
+have a contact in our contact database with the same email. If that's the case, link it. Great. If you can't 45:21 find a contact, please create a new contact with those details
+and then link it. And then we basically want to have 45:26 this run as optimized for um, you know, token consumption as possible, right? or 45:31 as minimal as um possible. All
+right. So, we're going to add this in. And one thing I'm going to take out, right, as 45:37 uh that the email address of an external person that will be in yours, but since we do a
+test one, right, we will want to 45:43 have that uh grab result. And I'm just going to send this off. And that means the agent is going to start building 45:49 itself, which is
+amazing, right? Keeps uh things a lot easier for us. But just a quick run through for you of how this 45:56 works. Your custom agent first has a trigger that determines when it
+runs and based on the template run that we've 46:03 given this, it'll automatically set itself as a trigger when a new page is added to the demo email sync, right? 46:08 Because
+that's when we need to connect it to a contact. Then it has its instructions which is basically the 46:14 prompt that will execute wherever this runs and this is already optimized
+right to be as token efficient as possible. So 46:20 it should exter identify the external participants and so on right extract everything right we need to again 46:25 include uh
+that one here right extract just this case all email addresses present for each extracted email address 46:33 right do your best effort search and so on and so on right then we'll
+do the contact lookup and then link or create 46:40 and then last but not least access right because it needs of course access to the database where the emails are and 46:45
+contacts and it needs to have can edit content both because it needs to create a relation and that only works if it has 46:50 edit content permissions on that. Last but not least,
+that's the token optimization part number two. We need to 46:56 switch the model and just use haiku or minimax. Although those are very lowc cost models, minimax even is in our
+47:02 testing enough for this. Although um it is a little bit more susceptible to mistakes. So let's pick hik. All right. 47:09 So let's click on save and then let's uh test this.
+Right. And we can test it 47:15 right here. Right. So at the very top we're going to use the run agent button. And that gives us here sort of like um 47:20 this like preview
+interface where it will check the agent hey is it set up correctly do I have all the information I need right and then it tells me you 47:27 know it can either generate a test use
+case or um it can take actually a specific one right so in this case um we 47:33 can say like you know um there's uh one entry in the database please process 47:40 that one so you
+can't chat with it even though it gives you preconfigured uh information now it will run and it 47:46 should hopefully like link our one um email that we have there, right, to a
+contact. There's no one in the system 47:51 yet. So, it should create a new contact and then automatically populate. And that's exactly the workflow that we want 47:58 cuz now,
+right, we see, okay, we have a new contact in the system. And we have now this little watcher that keeps our CRM updated. And if I go now to our 48:06 contact database, we can make
+sure we pull in all those emails on that record. Here's our contact database, right? 48:11 Here's a new contact linked to an email. And one thing that I haven't done here on this
+one yet, right, since we are in the demo flow, is I haven't set up a Connecting Notion Deals, Contacts & Emails 48:17 database layout. So, let's do that while we're here. Right,
+customize layout. Move the property group to the side. 48:23 Make sure we pin properly prop probably the email and the company, right? On the company uh property, we can rename
+this 48:29 quickly and make sure we have uh the right icon, right? All our best practices. And then what we can now do 48:35 here is we can say let's switch to a tab view full
+width and pull in the communication, right? Add new tab. And 48:42 we see currently this doesn't properly um show up here. Right? So one of the reasons can be that sometimes the AI
+48:48 when it sets up its databases sets up um relations as one way. Right? That's one of the things if you know it right you 48:54 can just add it to your prompt that hey in terms
+of the properties right this contact relation this should be a two-way relation. So we can sync from 49:00 the other side. And we're going to call this um emails here. Perfect. And
+now we 49:06 can go back to our contacts. Make sure okay let's open this up. D customize 49:12 layout new option right emails perfect and now rather than having um this table 49:18
+what I'm actually going to do is I'm going to use the feed view and on the feed view we can then say okay on feed 49:24 right don't show the author by line don't care about that
+right and we can now have this um load through with the 49:30 email so we're going to like as a sort use the created time descending so we have a chronological one and we now have
+49:36 whenever I want a contact line I can have my general content or I can tap over to the emails and I can see all the 49:42 emails that have popped up in here. What's more, we
+can extend our system so that it also happens on deals. 49:48 Currently, right, um, uh, deals are not directly connected to emails and we don't have to because a deal will be 49:54
+connected to a contact and a contact is connected to an email. That's enough to show them on the emails page, right? On 50:01 the deals page. All we need to do is go to our emails
+and make sure we set up a roll. And these are again right the 50:07 refinements where AI can't help us yet quite as good as we can simply do it ourselves. So in this case right
+while 50:13 we're here let's make sure we add our visual identity and oops we're going to quickly add a new property to the uh 50:19 email [music] sync which is a rollup. This
+rollup is going to look at and we're going to call this an 50:28 rollup can pull in now information from a relation. The relation that we have is contact, right? So, we click on
+relation 50:34 contact. The target property is the um the deal. Oops. And we see currently 50:39 there's another thing, right, where we probably don't have the two-way relation set
+up. So, on deal, let's make sure we 50:44 have that turned on, right? So, let's go to deals. We should have contacts on here. And this is like sort of like the 50:50 the cleanup
+steps, right? That sometimes have to happen when you start building with AI, right? You just want to make sure that this is all on. Usually when 50:56 you would write your PR, you
+would simply say make sure to create all as two-way relations. But for this demo, I 51:03 forgot to mention it explicitly, but good so that we run into some issues, right? And you
+see how to troubleshoot. 51:08 All right, back to deal. Right, target property is the deal database and we want to show the original. So now if I 51:14 link Matias to any kind of
+deal, right, let's say, okay, Matias is relevant oops for this deal that we have here, the 51:21 atma corp 8week transformation. Perfect. That means on our D level we also um see
+51:27 that showing up right if I look at any any kind of deal we now see okay um the contacts right Sarah and Matias and now 51:35 we can go ahead right and we can also pull in
+emails here to do so we're going to go through the same steps on a deal 51:42 customize layout and it doesn't matter right where you do it a database layout is always the same for
+all entries in a 51:47 database move this to the panel right um pin the stage the owner and the um value 51:54 if we can without you know clicking on myself. Perfect. And then
+clicking 51:59 outside of it, right? Full width tab view. And we want to add in again 52:04 emails. And while there is no email object here, that doesn't matter, right? We can
+simply say link existing uh data 52:10 source. And we can choose the um the email sync. We don't need to add a 52:16 relation. Right? That's very important. If we add a relation,
+then these are directly linked. And then we would somehow make sure that we can add deals 52:22 to um emails. That is theoretically possible, right? You can extend your AI
+automations, but then it needs a lot 52:28 more reasoning which will cost a lot more tokens. So most of the time, right, just adding one person there and just putting all the
+communication from that 52:34 person to the deal will be all you need. But just so you know, you can of course create a direct relation and then just 52:40 have a more advanced
+agent that does the linking. In our case, this is more enough. Right? We're going to swap back 52:45 to feed view. And then again here we need to now set a filter. In all the other
+cases right it auto filtered based 52:51 on the relation because it knew hey if we show something related we only want to show things where that relation is the case. Here it won't
+do that. So we 52:58 need to set the filter ourselves. So we click on filter advanced filter. We want to say where the deal contains this page 53:05 which creates exactly the same
+effect. So now again like we have our content and then we can swap over and we can see 53:11 the emails and we can see yes the email from Matias is here. And if we were to remove
+Matias from this deal, right, his 53:17 emails no longer show there, right? Now they disappear, right? Because now that person is no longer linked to the deal. 53:23 So this was
+just a very quick walk through, right, of how you can take this serum that was built by AI and where you 53:29 refine right the visuals and some of the interfaces and now layer
+advanced integrations on top of it. Making sure 53:35 your emails pull in, adding an AI agent that automatically adds your emails to the right contact or creates new 53:41 contacts
+if they're missing in your CRM. and then the ability right to link contacts to entries in your notion 53:47 database so that these things show up. These are all quite advanced
+notion concepts and we don't have the time right in this video to go into the 53:54 details of relations rollups and these things but again right there's a very very thorough video
+if you want to sort 54:00 of learn notion from scratch focus in this video building a CRM right so you can simply follow along and now the last Automating Your Notion Deal Pipeline
+54:06 thing that we need to do is automations again there's a whole video linked down below on notion automations for this one 54:13 we just want to pick one simple situation what
+happens when a deal is won right remember we created contract 54:19 conts. So, we probably automatically want to create a contract whenever a deal is one without having to do this
+54:24 manually. We don't we could use an AI agent to do that, but I would advise against it because that's one of the 54:31 biggest traps with AI is to use AI for things that are
+actually deterministic, 54:36 right? AI is perfect for non-deterministic things where you need reasoning to decide how something should 54:42 be linked. for automations, right? You
+want like when sort of when the rules are hard in this case, you know, when 54:48 deal is one create contract with these values from the deal. That's a case for well code or hard
+automations. And 54:55 that's exactly what we're going to set up. Now, back in Ocean, we are on our deals database, right? We want to create 55:00 that automation on the database
+where the trigger will happen. To do so, let's click on the flash icon and let's say, 55:07 you know, create contract for one deal. And I'm going say okay new trigger when 55:14
+the stage right is changed to one then what I want you to do is new action 55:21 create add a page two right add a page to and this will be our contracts 55:27 there they are and
+now we can map values we can say the name should probably be the same as the deal name so we can 55:33 click on formula and say give me from the trigger page right the one that
+just won dot and then the actual name by the 55:40 deal name. So the deal name will be the same as the um and if you want to attach 55:46 something to the contract but if you want
+to modify it differently you could of course do that right so we could say deal name and then maybe plus company 55:53 name if that was if that was relevant but in this case we
+have that separately right so we just will do that and we 55:58 could add additional properties as well so we're going to click on here and what we definitely want to do right is
+we want to link the deal to the contract so 56:05 click on deal and then say hey please link this to the trigger page now currently contract is super lightweight 56:11 for So why
+we just had these two properties but if you had more for example if you said hey I want to connect it to the company I want to you 56:16 know fill other values from that I want to
+have the for example the value right the annual recurring revenue these sort of [music] things you could now map all 56:23 these properties over with the same principle right of
+selecting the values and then clicking on formulas to modify 56:29 it and if you have troubles with that you can always ask AI right to help you also through this or you know watch
+our 56:34 dedicated tutorial down below for now we're just going to click on enable we could if you want to also add a slack 56:40 message Right? So like send a celebration message
+to our channel. Hey, we just closed this and that deal for now. Let's just keep it simple. Let's 56:47 click on enable. And then let's take our sample deal. Right? And let's set
+this one to one. And now in a moment, right, 56:54 if we look at our contracts database, we should have a new contract pop up. And there it is. Right? Sample deal picked 57:00 over
+the name and carried over the D relation. But again, right, this is just the starting point. You can layer so 57:06 many more things on top of it. For example, you could layer
+communication on top of it, right? You could maybe 57:11 have some flows in relay or some other no code tools to send out some email sequences when you can trigger it from 57:17
+the deal flow, right? With an automation or you could say something, hey, you know, when we create a new contact for 57:22 the first time, maybe not just reach out to them, right,
+and ping them. Or maybe we need to ping a certain selection, right? If the deal uh reaches the um 57:30 sort of negotiation stage, right? Maybe you have a contracting station. You
+know, when that's the case, you want to notify a person or set a specific person 57:37 as the owner for this deal so they can go in and create a contract. The world is yours. All
+right, learning notion Outro 57:42 automations is usually really worth your time. So, highly recommend you check out that video. So much for building an AI 57:49 enabled CRM in
+Notion. This is of course just the beginning. Notion's superpower 57:55 is customization. If you have specific needs, right, then you can simply adapt this blueprint to those
+specifics. For 58:03 example, I have also a full tutorial that shows you how to set up Notion for VCs. Link for that in the description. 58:10 And as you saw, Notion's custom
+agents are incredibly powerful, and it's well worth investing the time to learn how to 58:16 make the most of them. That's why I've put together a full tutorial that will walk you
+through everything you need to 58:22 know, including a few cool tips and tricks. Just click here, and I will see you in a few seconds. All From Matthias Frank AI Courses Learning
+Related 0:00 In today's video, I'm going to teach you 0:01 how to build a CRM in Notion. We'll 0:03 start from a blank workspace and end 0:05 with a clean, functional system you
+can 0:07 actually use to track clients, deals, 0:10 and follow-ups. Open Notion and make 0:13 sure you're in the workspace where you 0:15 want your CRM to live. If you're part of
+0:17 multiple workspaces, glance at the top 0:19 left to confirm you're in the right one 0:20 before you begin. 0:22 Next, open the template menu by clicking 0:24 the small drop-
+down arrow in the top 0:26 left corner. This reveals options for 0:29 creating pages, importing templates, and 0:31 managing different parts of your 0:32 workspace. From there,
+choose browse 0:34 templates. Think of this gallery like an 0:36 app store for Notion. It's packed with 0:38 pre-built page designs that can save you 0:40 a ton of setup time. Use
+the search bar 0:42 and type CRM database. You'll see a 0:45 range of templates from simple lists to 0:47 advanced pipelines with dashboards and 0:49 charts. Take a moment to
+preview a few. 0:51 Pick a clean, minimal version if you 0:53 prefer a lightweight setup, or go for a 0:55 detailed option if you need pipelines, 0:57 tracking stages, and
+analytics builtin. 0:59 When you found one that matches your 1:00 workflow, click add to bring it into 1:02 your workspace. Notion will generate the 1:04 CRM structure for you,
+often including 1:07 databases for companies, contacts, and 1:09 deals, plus a few sample entries so you 1:11 can see how it works. Give it a moment 1:13 to load if the template is
+on the 1:14 heavier side. Now, explore the layout. 1:17 You'll likely find tables for data entry 1:18 and maybe board or calendar views that 1:20 show progress at a glance. These
+1:23 examples are there to guide you. Start 1:24 replacing the sample data with your own. 1:26 Add your clients or customers, any 1:28 partners you work with, and active deals 1:30
+or projects. Inside each entry, you can 1:33 upload files, drop in notes from 1:35 meetings, and use date fields to set 1:37 reminders for follow-ups so nothing 1:39 slips through
+the cracks. Customize the 1:42 database properties to fit your 1:43 business. Open the properties panel and 1:45 add or edit fields like next contact 1:47 date, industry, deal
+stage, and priority 1:49 or status. Trim any fields you don't use 1:52 so the interface stays focused and 1:54 clean. Personalize the look and feel to 1:56 make it pleasant to use
+everyday. Update 1:58 icons, tweak colors, and arrange views 2:01 to surface what matters most. If it 2:04 helps, you can embed calendars, maps, or 2:06 other widgets to centralize
+your 2:07 workflow. Finally, refine over time. 2:11 Notion is flexible, so adjust as your 2:13 needs evolve. You've just built a 2:15 professional CRM in a few simple steps. 2:17
+If this was helpful, don't forget to 2:19 like the video and subscribe for more 2:21 Notion tips and tutorials. All From Easy Click Fix Introduction: What is the Notion Sales CRM
+0:00 Welcome to the Notion sales CRM 0:02 template. A complete all-in-one system 0:05 designed to help you manage every stage 0:07 of your sales process in one organized 0:09
+workspace. Whether you're a freelancer, 0:11 agency owner, or part of a growing sales 0:14 team, this dashboard lets you capture 0:16 new leads, track active deals, manage 0:19
+client relationships, and stay on top of 0:22 every meeting and task, all inside 0:24 notion. In this walkthrough, we'll 0:27 explore the main dashboard, then go step 0:29 by step
+through each database, leads, 0:32 deals, and opportunities, activities and 0:34 tasks, the all client directory, Dashboard Overview: Leads, Deals, and Accounts Charts 0:38
+accounts, and the products and services 0:40 catalog. When you open the sales CRM, 0:43 the first row gives you instant context. 0:46 On the left is the leads chart, a quick 0:49
+breakdown of new, contacted, in 0:52 progress, and qualified. In the middle, 0:54 the deals chart shows how many 0:56 opportunities are in each stage of the 0:58 pipeline. On the
+right, the qualified 1:01 accounts bar chart highlights the value 1:03 or count of accounts you've progressed. 1:06 These snapshots answer three questions. 1:09 How many leads do
+we have? Where are our 1:11 deals right now? And which accounts are 1:14 qualified? Next is quick actions. Use 1:17 this strip when you're moving fast. add 1:20 a new lead, create
+a new opportunity, or 1:23 log an activity in seconds. These 1:25 buttons reduce clicks so you spend more 1:28 time selling, not searching. On the Quick Actions & Navigation Panel
+1:30 left, the pre-sales panel is your 1:32 navigation. It links to every database 1:35 you'll use, leads, opportunities or 1:38 deals, sales team and reps, the all 1:41 client
+directory, accounts, meetings, 1:45 products catalog, and tasks. To the 1:48 right, you'll see sales team cards. Each 1:51 card is a person in your team. You can 1:53 filter
+dashboards by owner to focus on 1:56 your own pipeline. If you're a manager, 1:59 these cards give a quick headcount and Team Section and Task Management 2:01 let you assign
+ownership. This is the 2:04 team tasks section, the heartbeat of 2:06 execution. Every task is an activity 2:09 tied to a lead or opportunity. Calls, 2:12 emails, demos, and
+follow-ups. Use the 2:15 due date and priority columns to focus 2:18 your day. Because tasks are relational, 2:20 they automatically roll up to the deal 2:23 and to the account, so
+you always know 2:25 the last touch and the next action. 2:28 Let's open leads. This is your inbox for 2:31 new prospects. Add the company, contact 2:34 info, source, and status.
+As you 2:37 progress a lead from new to contacted to 2:40 qualified, you can convert it into an 2:42 opportunity with one click that creates 2:45 a connected record in the deals
+pipeline 2:47 and keeps the history linked to the same 2:49 company. Here's the opportunities board. 2:52 Each card is a deal moving through 2:54 stages like qualification,
+proposal, 2:58 negotiation, and closed one or closed 3:01 lost. Open any card to add value, 3:04 probability, and expected close date. 3:07 The template also supports weighted 3:09
+revenue so your forecast becomes more Leads Database: Capturing and Qualifying Prospects 3:11 accurate as you update probabilities. 3:14 This is the all client directory, a 3:16
+searchable list of every client and 3:18 decision maker you interact with. Each 3:21 person links to their account and any 3:23 open opportunities. If you sell to 3:25 buying
+committees, use the rollin deal 3:28 property to tag decision makers, 3:31 influencers, and users. When you open an 3:34 opportunity, setting the primary contact 3:36 ensures all
+your communication is 3:38 traceable to the right person. Accounts 3:41 are the final destination for one 3:43 business. Think of each account as a 3:46 360° page. You'll see
+linked 3:49 opportunities, total pipeline value, 3:51 last activity date, next action, and the 3:55 client's contacts all in one place. Use 3:58 account type to segment prospects,
+4:01 customers, partners, and former 4:03 customers. The products and services 4:06 catalog standardizes your offers and 4:08 pricing. Finally, the meetings calendar 4:11
+centralizes your sales events, 4:13 stakeholder calls, demos, vendor 4:16 check-ins, and internal standups. The 4:19 one-s sentence rule of this CRM is 4:21 simple. Leads become
+opportunities. 4:24 Opportunities roll up into accounts. 4:27 Activities keep everything moving. Add Opportunities & Pipeline: Tracking Deal Stages 4:30 services from the catalog
+when needed 4:32 and rely on the dashboard to show 4:34 charts, totals, and overdue work. All From the series Chapter 1: Introduction 0:00Hi there, I'm Alex Cunningham and I'll
+walk you through this Notion tutorial step by step. Let's jump right in. Are you ready to streamline your customer 0:077 secondsrelationships and boost your business organization
+all from the comfort of Notion? Today, I'm walking you through exactly how to build a small business 0:1515 secondsCRM using Notion's free small business CRM template. By the end
+of this tutorial, you'll not only have a professionallook CRM setup, but you'll 0:2424 secondsalso know how to customize it specifically for your workflow. So, let's dive right in.
+We're going to start by leveraging one of Notion's best 0:3131 secondsfeatures, templates, instead of building your CRM from scratch. We'll be using Notion's free small business
+CRM template. Why? Because templates save 0:4040 secondsyou time and give your workspace a clean, professional design right out of the box. Plus, you can easily tweak things later
+to fit your style or 0:4747 secondsbusiness needs. It's truly the best shortcut for getting set up fast. First, go ahead and open up Notion on your desktop or browser. Don't worry
+if 0:5656 secondsyou're new to Notion's interface. I'll walk you through each click. At the very top left corner of your workspace, you'll see a little drop- down menu icon. It
+might look like three 1:041 minute, 4 secondshorizontal lines or little stacked dots depending on your version. Click on that. This opens up more options for managing your
+workspace. From here, 1:131 minute, 13 secondsyou're looking for an option that says browse templates. Sometimes it's tucked under a templates or more tab. So, take a moment to
+scan through the menu. Found Chapter 2: Why Use Notion for CRM 1:201 minute, 20 secondsit. Excellent. Click into browse templates and you'll be greeted by a library of pre-built
+setups designed for everything from goal setting to project 1:281 minute, 28 secondsmanagement. In the search bar, simply type small business CRM. Notion will instantly filter the
+results and you should see a handful of CRM templates 1:361 minute, 36 secondstailored for small businesses, each with different layouts and features. Take a moment to preview the
+ones that catch your eye. Maybe you prefer something 1:441 minute, 44 secondssimple, or maybe you need a more datariich interface. When you find one that feels right, just select
+it and hit add. This will copy the entire template 1:511 minute, 51 secondsinto your workspace, ready for you to start building on top of. Now you'll see the template open up in
+your notion page. At this point, you can start 1:591 minute, 59 secondsentering your business information. Fill in your credentials, company name, email addresses, contacts,
+whatever fields the template has. These initial details 2:082 minutes, 8 secondsserve as the backbone of your CRM, helping you keep everything organized from day one. If you work
+with a creative team, you can even start adding relevant links or files to your CRM. 2:182 minutes, 18 secondsNotion makes it easy to attach documents, images, or notes right where
+you need them. Here where the fun really begins, while the template gives you a 2:252 minutes, 25 secondsgreat foundation, it can and should be personalized. Maybe you want to add
+extra columns for notes, project deadlines, or payment stages. Or you 2:332 minutes, 33 secondsprefer a different color scheme to match your brand's vibe. All of this is possible.
+Notion lets you customize the template however you like. So don't be 2:422 minutes, 42 secondsafraid to experiment and tweak sections until it feels truly tailored to your
+business. There's no penalty for trying new things, and you can always revert or 2:492 minutes, 49 secondsadjust later. And that's it. After just a few steps, you've built a fully
+functional small business CRM in Notion faster and more professionally than if you tried to piece it together solo. 3:003 minutesRemember, your CRM can grow and evolve alongside
+your business. Set aside some time each month to refine it, add new features, or update your contact lists. 3:093 minutes, 9 secondsIf you found this tutorial helpful, please hit
+that like button to support the channel. Got questions or want to share how you customized your CRM? Drop 3:173 minutes, 17 secondsa comment below. I love hearing new ideas. And if
+you're hungry for more Notion tutorials and small business tips, don't forget to subscribe so you 3:243 minutes, 24 secondsdon't miss out. Thanks for watching and good luck
+organizing your business. Chapter 3: Setting Up the CRM Database All Web pages Website 0:00In today's video, I'm going to teach you how to build a CRM in Air Table. If you don't
+have Air Table yet, there's a link 0:077 secondsto the website at the very top of the description so you can follow along. 0:1111 secondsWe'll build a simple, flexible CRM you can
+expand over time without writing any code. Start by opening Air Table and 0:1919 secondscreating a new base. Choose add a base, then start from scratch. Give it a clear name like
+customer CRM so it's easy to 0:2828 secondsfind later. Pick a color and an icon that stand out. This is a small touch that makes your workspace cleaner when 0:3535 secondsyou have
+multiple bases. A solid CRM revolves around three tables. First, customers, where you'll store your 0:4242 secondscontacts and companies. Next, deals or opportunities, where you
+track potential sales or projects. Finally, interactions 0:5151 secondsor notes, where you record calls, emails, and meetings. Creating these three lets you keep information
+organized but connected. In the 1:001 minutecustomers table, keep the default name field for the customer's name. Then add fields for email using a single line 1:071 minute, 7
+secondstext type, phone number using the phone field type, and company as a single line text. Add a status field as a single 1:151 minute, 15 secondsselect with options like lead,
+contacted, and customer. Finish with a notes field using long text so you have 1:221 minute, 22 secondsspace for context, pain points or next steps. You can always adjust the
+status options later to match your process. 1:301 minute, 30 secondsMove to the deals table. Add a deal name as single line text. Create a customer field that links to the
+customers table. 1:391 minute, 39 secondsThis is key for keeping everything connected. Add deal value using the currency type stage as a single select 1:461 minute, 46 secondswith
+options like new in progress closed one and closed lost and close date as a 1:531 minute, 53 secondsdate field. In the interactions or notes table, add an interaction name, a
+linked customer field pointing back to 2:012 minutes, 1 secondcustomers, a date field, type single select with options like call, email, meeting, and other, and a long text 2:102
+minutes, 10 secondsnotes field. Linking the customer field here and in deals lets you see every deal and every interaction directly from 2:172 minutes, 17 secondsa customer's
+record, making follow-ups simple and complete. Now, set up useful views. In customers, keep a grid view 2:262 minutes, 26 secondsfor all details and add a comb view grouped by
+status for a quick pipeline snapshot. In deals, use a grid view and 2:342 minutes, 34 secondsa combine view grouped by stage to visualize progress. In interactions, add a calendar
+view so meetings and follow-ups don't slip through the 2:422 minutes, 42 secondscracks. Start using your CRM by adding customers, logging deals, and interactions, and using views
+to track progress. Analyze activity with 2:512 minutes, 51 secondsgrouping, filters, and charts to spot trends and prioritize work. Grab the link in the description to get into Air
+Table, and thanks for watching. Sync to video time All From SmartMoneyTutorials Lead generation Sales processes Website Computers Related For you 3:05:45 Han What this video covers
+0:00 Gareth Pronovost: In this video, I'm going to be breaking down 0:02 for you the most common use case that we see across all of our 0:06 airtable clients, and that is building
+some sort of a CRM or 0:10 client resource management tool inside of airtable. If you're 0:13 ready to get out of spreadsheets and start stepping into the 0:17 future of technology
+and software, you're going to love 0:20 this video because I'm going to show you how to build your own 0:24 custom CRM in just a few moments. Give you plenty of tips 0:27 and
+tricks along the way. If that's of interest, stick around 0:31 and let's get into it. Welcome back to the channel. If you're 0:35 new here. My name is Gareth, and this is GAP
+Consulting. It's our 0:38 mission to help you get the full potential out of your no code 0:42 tools through no code education. So in this video, as I 0:46 mentioned, we're going to
+be diving into one of our favorite 0:49 no code tools, Airtable, and we're going to be showing a lot 0:53 of the different things you might consider when building a 0:56 CRM. We're
+going to be doing this specifically for 2024 we're 1:00 towards the end of the year, a lot of new enhancements have 1:03 been added to Airtable, and we're going to leverage them as
+1:07 much as we can. But before we get into the heart of things, I 1:11 first want to invite you to join me for some training. I've got a 1:15 free Airtable Crash Course put
+together. You can sign up at 1:18 https://www.gapconsulting.io/airtable/crash-course. We'll include the link wherever 1:23 you find this video, and if you sign up there, you're
+going to 1:27 get the basic building components of Airtable sent to 1:30 you in email. So in this training, I break down for you 1:33 all the core building blocks of Airtable, one
+at a time, step by 1:37 step, so that you can unlock the full potential of Airtable in Leveraging AI to build CRM 1:41 your business. But without further ado, let's hop on into
+1:44 my screen. We're going to start building our own CRM from 1:48 scratch, but we're going to be actually leveraging some AI. So 1:52 obviously AI is out in force in 2024 and
+Airtable is no 1:55 different. They allow us to build an app with AI. So we're 1:58 going to do this right here, and we're going to get a little bit 2:02 of a prompt. So here as an
+example, tell us about your 2:05 world. I work at test company. We're in this industry, I build 2:09 apps for this. Let's skip this, and we're just going to go right 2:13 into what
+we are building. So we're going to say building a 2:17 CRM system that includes, and I find it really helpful too. 2:20 Whenever I'm working with an AI builder, tell it the
+different 2:24 tables of data that I'm looking at creating here. So I'm going 2:28 to say that includes tables for and then inside of here, I'll 2:31 use parentheses, and I'll list
+out all my different tables. Now 2:35 all CRMs are going to have the contacts table most of the time, 2:39 then a contact will link to an organization, but not always. In 2:43 our
+particular example, I'm going to be imagining contacts 2:46 that link to an organization. So we might know multiple people 2:50 who work over at Acme Company, for example, and
+we're going to 2:54 have those in two different tables. So I'm going to say 2:57 companies is a separate table. Now I'm going to also think 3:00 about the type of work that we do,
+and what we're trying to use 3:04 this CRM to track. Usually, a CRM is going to include some 3:08 element of lead flow, deal flow, like you're going through the 3:11 pipeline
+process, we're going through some sort of sales 3:15 process, and ultimately, we then have to deliver our service or 3:19 product to you at the end of the actual sales process
+itself. So 3:22 in our example, again, we're going to imagine that we're a 3:26 service based company, and we are going to go through, let's 3:29 say, projects, and we'll attach
+those projects to tasks. So I'll 3:33 say we also have projects tasks, and we might have some sort of 3:37 deal flow table as well. A little TBD on this one, if I'm 3:41 being
+honest, I'm curious to see what the AI puts together for 3:44 us, but this is what we're starting with, building a CRM 3:48 that includes tables for this. And I'll give it a little
+bit 3:51 more context as well. I'll say we are a service based company, 3:55 and we will use this tool to track our leads through our 3:58 pipeline, and ultimately deliver
+services. All right, so let's go 4:02 ahead and just set this up. We've got the settings here. We 4:06 can set up our organization, industry, audience, if we would 4:09 like. I'll
+skip it for now. We're just going to go to next, 4:13 and it's going to build the tables for us. Now. We can do 4:16 this ourselves in airtable pretty quickly, but it's so much
+4:20 faster to have the AI do it for us. And as you're going to see Customizing the build 4:24 in a moment, in many cases, we can have the AI doing more for 4:27 us than just
+building the back end. So here you can see that 4:31 the app that they've built also includes two forms they've put 4:35 in, contacts, companies, project, services, deal, flow.

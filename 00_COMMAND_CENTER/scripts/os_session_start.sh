@@ -6,7 +6,7 @@ python3 "$CC/scripts/os_checkpoint.py" 2>/dev/null
 echo ""
 echo "## NEXT_ACTION / STANDING_ORDER:"
 for f in NEXT_ACTION STANDING_ORDER; do
-  for d in "$CC/../00_BRIEF" "/Users/sniper/Downloads/    SNIPED_OS/00_BRIEF"; do
+  for d in "$CC" "/Users/sniper/Downloads/    SNIPED_OS/00_BRIEF"; do
     [ -f "$d/$f.md" ] && { echo "[$f]"; head -8 "$d/$f.md"; break; }
   done
 done

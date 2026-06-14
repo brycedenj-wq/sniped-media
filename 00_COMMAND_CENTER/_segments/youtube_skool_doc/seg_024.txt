@@ -1,0 +1,230 @@
+first screen so new users aren't overwhelmed. The idea is: someone reads this gist, runs npx @swarmvaultai/cli quickstart ., and has a compiled wiki + knowledge graph + interactive
+viewer in under a minute. Then swarmvault next tells them what to explore from there. Everything after that is progressive disclosure: chat for multi-turn conversations with your
+vault, context build for agent handoff packs, export ai for portable llms.txt bundles, graph serve for the visual workbench, install --agent for wiring into your coding tool. Still
+local-first. Still works fully offline. Still MIT. 100+ releases and counting. Repo: https://github.com/swarmclawai/swarmvault @equationalapplications equationalapplications
+commented 5 days ago • Offline-first, SQLite-backed library ready for production. Repo and the superpowers documentation here:
+[equationalapplications/expo-llm-wiki](https://github.com/equationalapplications/expo-llm-wiki) Most RAG implementations treat every "chunk" of data as equal. The result? Your LLM
+gets "context pollution"—distracted by a random observation from three days ago while ignoring your core system instructions. Inspired by Andrej Karpathy's LLM Wiki spec, the
+expo-llm-wiki monorepo introduces a Tiered Memory Architecture. This allows you to give your AI a structured "brain" using cross-entity namespaces and configurable weights. The
+"Brain" Hierarchy The LLM Librarian manages a knowledge hierarchy that mimics human expertise: The Fact Tier (Immutable Truth) What it is: Static documents (specs, PDFs). The Role:
+The highest source of truth; if the Librarian finds a contradiction, the Fact always wins. The Benefit: Immutable so hard truths never get diluted. The Working Memory Tier (The
+Context) What it is: The active project environment (codebase or work-in-progress). The Role: Real-time episodic events and observations. The Benefit: Uses recency weighting to
+stay aligned with the "now." The Wisdom Tier (The Evolving Wiki) What it is: A synthesized repository where the Librarian "remembers" lessons and patterns. The Role: Consolidates
+Working Memory into long-term architectural or stylistic preferences. The Benefit: Uses accessCount weighting so frequently referenced "lessons" graduate into Core Wisdom.
+Production-Grade Superpowers Hybrid Retrieval Engine: Uses Cosine Similarity for semantic search when online, with an automatic fallback to MiniSearch for full-text search when the
+device is offline. The Pipeline: Uses runLibrarian() to consolidate episodic events into durable facts and runHeal() to resolve contradictions and prune stale claims. Multi-Entity
+Architecture: Support for thousands of isolated users/agents within a single SQLite database using entityId namespaces—zero memory leakage. React & Mobile Native Optimized:
+Includes reactive hooks (useMemoryRead) and "Emoji-Safe" chunking to prevent common mobile LLM UI bugs. Security & GDPR: Built-in runPrune and forget methods for "Right to be
+Forgotten" compliance, plus source normalization to prevent path injection. Implementation Example: const bundle = await wiki.read(['facts', 'wip_codebase', 'wisdom_cache'],
+'Synthesize current state.'); const systemPrompt = formatContext(bundle, { factWeights: { confidence: 1.5, // Prioritize immutable Facts recency: 0.9, // Keep Working Memory
+relevant accessCount: 0.5 // Surface Wisdom that the user relies on most } }); Tech Stack: Expo, React Native, SQLite, MiniSearch. @nowissan nowissan commented 5 days ago Built a
+desktop editor implementation of this idea — nohmitaina. Works with Claude Code or Codex CLI (no API key), local Markdown, macOS. After a month of feeding it my own notes, three
+problems showed up that I think most implementations of this pattern will hit: Identity — The same concept gets extracted under slightly different names from related sources. The
+wiki ends up with duplicate pages ("Cognitive Dissonance Marketing" and "Cognitive Dissonance and Urgency" from the same book, in my case). Level — Life-scale themes ("Personal
+AGI") end up at the same level as tactical findings ("Urgency Trigger"). When everything is flat, importance disappears. Relationship — Concepts get linked as "related," but the
+type is lost. Similar, contains, contradicts — all collapsed into one word, which makes the graph useful for navigation but not for thinking. I did a DDD event-storming pass on the
+wiki domain and treated each as a first-class domain event (DuplicateCandidateDetected, ConceptsMerged, ConceptRelationshipTyped, ConceptLevelChanged). These run on what I call a
+Dream cycle — a background pass borrowed from how human memory consolidates during sleep. It also handles the "lint" operation mentioned in the gist. Found another commenter
+(Andrii) on X who's solving Level a different way — by extracting citable claims first, then building the concept layer on top of claim collections. The claim approach makes Level
+fall out structurally (high-claim concepts are heavyweight, low-claim ones are light), which feels more elegant than my event-driven approach. I'm going to try integrating both.
+Thanks for the framing — it's already shaped how a small group of us is thinking about this. @jianghailong-xy jianghailong-xy commented 5 days ago Spent the last few months
+building basically this — three buckets (raw sources, agent-maintained wiki, agent config) with a self-healing maintenance loop on top. The mapping ended up surprisingly literal:
+sources/ — append-only raw research the researcher agent writes; URLs deduped across runs so we don't crawl the same page twice. wiki/ — structured markdown the curator agent
+(re)writes from sources. One ingest run typically touches 8–15 pages, exactly as you describe. agents table — per-wiki schedules + trigger graph. A daily cron fires the researcher,
+which cascades into ingest, which cascades into lint. The piece that ended up mattering most was your line about periodic linting. We pushed it into a self-healing loop: the
+inspector agent reports cross-page contradictions, stale claims, orphan wikilinks, and data gaps, then auto-chains a scoped re-research + refine for anything that needs fresh
+sources. High-confidence fixes (e.g. basename-exact missing-page links) apply with no LLM call; lower-confidence ones either auto-apply or queue for human review, per-wiki toggle.
+A few wikis built this way: OpenAI — https://wikova.com/wiki/od60853y Elon Musk — https://wikova.com/wiki/tzg3ChuB NVIDIA — https://wikova.com/wiki/VmhKV1Gd Karpathy Wiki —
+https://wikova.com/wiki/UirQd0U3 ChatGPT — https://wikova.com/wiki/F7D3aoql Anthropic and Claude — https://wikova.com/wiki/GmFezP53 Google — https://wikova.com/wiki/wtK2dHcL Andrej
+Karpathy — https://wikova.com/wiki/lAuGSDQ7 Live at https://wikova.com — drop a topic in the search bar and the pipeline kicks off. @tigerlaibao tigerlaibao commented 5 days ago
+Love this. The "compile once, keep current" framing nails why RAG alone feels so stateless. I've been building something adjacent but for a different audience — Memex, a
+local-first mobile app (iOS + Android) where you just capture thoughts, photos, and voice memos as they come. A multi-agent system quietly organizes everything into structured
+cards, surfaces patterns, and builds up a picture of your life over time. No manual filing, no schema design — you just record, and the knowledge accumulates. The other angle we
+lean into is emotional companionship. A lot of what people want to capture — reflections, frustrations, half-formed thoughts — they won't post publicly. So we pair the knowledge
+layer with AI companion characters you can actually talk to about your day. It's less "research wiki" and more "private space that understands you and remembers." Same
+philosophical root (Bush's Memex, persistent personal knowledge, LLM as maintainer), different surface: low-friction capture + companionship rather than deep research workflows.
+Open source if anyone's curious : https://github.com/memex-lab/memex @belmendo belmendo commented 4 days ago With the powers vested in me, I heretofore henceforth dub thee, “Lemon
+Wiki”. @JeanHuguesRobert JeanHuguesRobert commented 4 days ago This pattern feels exactly right: the key move is shifting from query-time retrieval to a persistent, compounding
+knowledge artifact. One extension I’ve been exploring is what happens when the LLM-maintained wiki becomes multi-agent or shared. At that point, many wiki edits hide judgment
+points: update an existing claim? mark a contradiction as unresolved? create a new page? require human review before mutating shared state? I’m experimenting with a lightweight
+“resumable judgment” pattern: instead of letting the agent silently decide, the tool emits a typed continuation object with context, alternatives, constraints, and an expected
+result schema. A human, agent, script, workflow, or digital twin returns a structured step_result; the tool validates it and resumes. So, roughly: RAG → LLM Wiki → governed LLM
+Wiki / Cogentia Raw sources remain the territory, the wiki is a derived map, and continuations expose the judgment points where the map is updated. Related CLI write-up:
+https://github.com/JeanHuguesRobert/cogentia/blob/main/research/agent_resumable_cli.md @JotaSXBR JotaSXBR commented 3 days ago my humble contribuition on this idea:
+https://github.com/JotaSXBR/obsidian-infinite-brain @7xuanlu 7xuanlu commented 3 days ago Small update after trying to turn this idea into a daily AI-work ritual. Origin ended up
+less like “another LLM wiki” and more like a local AI-work layer: captures, handoffs, memories, distilled pages, review, and retrieval in one loop. The daily flow starts from what
+should survive: decisions, lessons, preferences, project context, notes, and things future agents should not have to rediscover. Those stay as granular memory records. Distilled
+wiki pages give the bigger picture. The distill loop does more than create new pages: it absorbs new memories into existing pages, refreshes stale pages when sources change, and
+keeps user-edited pages locked unless rebuilt. Still early, but this is the shape that has been useful day to day. https://github.com/7xuanlu/origin @Sistema2D Sistema2D commented
+3 days ago I've built FrameCode VibeWork, a documentation and governance framework based on this LLM Wiki concept to reduce context loss during AI-assisted development. It
+organizes plans, changelogs, and an incremental technical memory. Check it out here: https://github.com/Sistema2D/FrameCode-VibeWork @HabermannR HabermannR commented 3 days ago I
+built a Nexidion, a knowledge database, with an optional LLM agent. Really fits this style! https://github.com/HabermannR/Nexidion It works with OpenAI or local LLMs. @TrueHOOHA
+TrueHOOHA commented 3 days ago This is my implementation of Karpathy's LLM Wiki. A key highlight is the use of agent skills to enforce workflow rigidity and mitigate agent
+behavioral deviation. https://github.com/TrueHOOHA/LLM-Wiki-Skilled @mikhashev mikhashev commented 2 days ago Follow-up on our v0.25.0 knowledge graph post above. The graph works —
+fourth retrieval channel alongside BM25 / FAISS / NER. But it surfaced a question we can't stop thinking about: what if knowledge encoding belonged in weight space rather than text
+space? Current state: agent reads knowledge files (seconds of retrieval and reading), synthesizes. Works, but each file is independent. Cross-file connections require the agent to
+guess which files to load together — and synthesis happens at the language-model layer, not at the knowledge layer itself. Hypothetical: a small, specialised model (~50–100M
+params) holding the corpus in its weights. Not a general-purpose LLM — purely a knowledge encoding and retrieval layer alongside the primary reasoning LLM. Trained on graph triples
+rather than raw text. Cross-file synthesis becomes a single forward pass through learned associations. The twist is the update mechanism. TTT-E2E (Tandon et al., arxiv 2512.23675)
+shows models can compress context into weights during inference — but they reset per call. We're asking whether persistence becomes safe when the model is knowledge-only: bounded
+domain, predictable update patterns, no general reasoning to corrupt. If it works, updates look like graph operations: new fact → locate affected weight region (ROME/MEMIT-style,
+Meng et al. 2022/2023) → update only that region. The routing key is the knowledge-graph node_id — a stable structural identifier, not a learned embedding. Unused regions decay
+exponentially (Hebbian / Fusi-Abbott, Nat Neuro 2007). Every update carries bi-temporal provenance through the graph audit layer, so weight changes stay traceable to source
+decisions. Essentially: what if your knowledge store wasn't a database, but a tiny neural network that learned your corpus and updated incrementally — like a graph, but in weight
+space? The combination we haven't found prior art for: TTT-style intra-inference updates that persist, sparse weight regions addressed by graph-structured IDs, and bi-temporal
+audit on weight changes. Individually each piece is published — closest mentions in this thread are OpenCrab (self-distillation from corrections, mo-vic, April 24) and Larimar (Das
+et al., episodic memory). But neither routes updates through an explicit knowledge graph, and neither attempts audit on the weight deltas themselves. Early research, no
+implementation yet. Curious if anyone is exploring specialised knowledge-only models — not general LLMs with RAG bolted on, but models whose entire purpose is to know one specific
+corpus, and update like a graph. @theafh theafh commented 2 days ago Quick follow-up on the per-repo wiki skill from earlier in the thread. Since the original comment, a few things
+have landed based on what hurt during daily use: Triage-first ingest. Two new skills sit in front of the wiki: wiki_import for one named source (URL, PDF, paper, transcript,
+paste), and wiki_wrapup for the current chat session. Both capture the raw source, diff every candidate against the existing wiki, and emit a triage report (new pages, extensions
+to existing pages, and contradictions with both excerpts and concrete reconciliation options) before any wiki page is written. Approved writes route back through the wiki skill, so
+ingest logic stays in one place. Cross-page contradiction detection. The cleanup agent now flags contradictions between existing pages instead of silently picking a side. It
+surfaces them as a contested-page report with both sides quoted, so the human decides. wiki_fix one-shot. A thin wrapper around the cleanup agent. Discovers the wiki of the current
+repo, runs the linter, fixes every fixable issue, re-lints until clean. Useful when you just want the wiki tidied without a back-and-forth. Provenance via sha256. Raw sources carry
+a body-only sha256 in frontmatter, so the linter can detect when a source has drifted from what was originally filed. Ships as a bundled helper script alongside discovery, init,
+and lint. Walk-up discovery. The skill resolves the wiki from any subdirectory of the repo (with .no_wiki opt-outs and a candidate prompt when ambiguous), instead of requiring you
+to be at the root. Thanks to everyone who tried it and posted their own updates upthread. Code: https://github.com/theafh/ai-modules/tree/main/plugins/knowledge_management
+@jdbranham jdbranham commented 2 days ago Very curious how many of these comments are from bots. There can't be this many people that think an LLM wiki is good solution for
+knowledge at scale. I've seen a few voices of reason here, but most everything is "What a great and novel idea". Which is wrong on both accounts. Folks - for your own sake, please
+research information retrieval and storage to understand why this doesn't work. If you're still reading... Check out CIBFE or https://headkey.ai for a pluggable cognitive solution
+that's more than memory. @TheSeitzGroup TheSeitzGroup commented 2 days ago • If you're still reading... Check out CIBFE or https://headkey.ai for a pluggable cognitive solution
+that's more than memory. Cute --a human bot. Cool product. Value prop is a little noisy. Why are you different than all others building the insert semantic for knowledge graph here
+product? Unsolicited recommendations: Start with "Your Agent Thinks. We Handle the Rest." as your hook Target Enterprise VP's of IT 50-100MM in USA only. Build an ICP and a pitch
+for that specific audience Read this book: A. Savoia's Pretoyping set 10 appointment/presentations per week and cater to this ICP if this strat. works message me in 3 months Cheers
+Amigo. @lastforkbender lastforkbender commented 2 days ago # rev9_bnn_rnsl_system.py """ (• Multi-Layered Architecture: 4 layers with 12 control points each (• Rotational Node
+Pairs: 2 paired nodes per control point in 3D space (• 3D Residual Cognition Subspace: Complex-valued gradient scoring (• Recursive Meta-Commutators: Discrete evolution with child
+generation (• RNSL System: High/low frequency filtering for gradient scoring (• Polarity Interval Management: Adaptive N_low/N_high bounds (• Inequality Decision Gate: n{yX-R(t+1)}
+>= n{zX+R(t+1)} (• Curvature Set Matching: Matches computed signatures to nodes (• Full Visualization Suite: Training history, node distributions, 3D curves (• Performance
+Benchmarking: Speed & memory analysis (• Comprehensive Logging: All phases tracked and reported """ import numpy as np import torch import torch.nn as nn import torch.optim as
+optim from scipy.interpolate import BSpline from scipy.special import comb import numba as nb from typing import Tuple, List, Dict from dataclasses import dataclass #
+============================================================================ # NUMBA-OPTIMIZED COMPUTATIONS FOR SPEED #
+============================================================================ @nb.jit(nopython=True, cache=True) def compute_rotation_matrix_3d(angles: np.ndarray) -> np.ndarray:
+"""Compute 3D rotation matrix from Euler angles (roll, pitch, yaw)""" roll, pitch, yaw = angles[0], angles[1], angles[2] # Rotation matrices for each axis Rx = np.array([ [1, 0,
+0], [0, np.cos(roll), -np.sin(roll)], [0, np.sin(roll), np.cos(roll)] ]) Ry = np.array([ [np.cos(pitch), 0, np.sin(pitch)], [0, 1, 0], [-np.sin(pitch), 0, np.cos(pitch)] ]) Rz =
+np.array([ [np.cos(yaw), -np.sin(yaw), 0], [np.sin(yaw), np.cos(yaw), 0], [0, 0, 1] ]) return Rz @ Ry @ Rx @nb.jit(nopython=True, cache=True) def compute_curvature_score(points:
+np.ndarray) -> float: """Compute local curvature at control point using discrete approximation""" if len(points) < 3: return 0.0 # Central difference for first derivative dp1 =
+points[1] - points[0] dp2 = points[2] - points[1] # Discrete curvature from cross product magnitude cross = np.cross(dp1, dp2) curvature = np.linalg.norm(cross) /
+(np.linalg.norm(dp1) * np.linalg.norm(dp2) + 1e-8) return curvature @nb.jit(nopython=True, cache=True) def complex_norm_3d(real_part: np.ndarray, imag_part: np.ndarray) -> float:
+"""Compute norm of complex 3D vector""" return np.sqrt(np.sum(real_part**2 + imag_part**2)) # ============================================================================ #
+RECURSIVE CURVATURE NODE SCORING LENGTH (RNSL) SYSTEM # ============================================================================ class RNSLSystem: """Recursive curvature Node
+Scoring Length with complex-valued filtering""" def __init__(self, dim: int = 3, high_freq_cutoff: float = 0.7): self.dim = dim self.high_freq_cutoff = high_freq_cutoff
+self.recursion_depth = 0 self.max_recursion = 5 def high_low_filter(self, signal: np.ndarray) -> Tuple[np.ndarray, np.ndarray]: """Decompose signal into high and low frequency
+components""" fft_signal = np.fft.fft(signal, axis=0) freqs = np.fft.fftfreq(len(signal)) # High/low split high_mask = np.abs(freqs) > self.high_freq_cutoff low_mask = ~high_mask
+fft_high = fft_signal * high_mask[:, None] fft_low = fft_signal * low_mask[:, None] high_filtered = np.fft.ifft(fft_high, axis=0).real low_filtered = np.fft.ifft(fft_low,
+axis=0).real return low_filtered, high_filtered def score_node(self, control_point: np.ndarray, node_probability: float) -> complex: """Compute recursive curvature score as complex
+number""" # Curvature-based real component curvature = np.linalg.norm(np.diff(control_point, axis=0)) real_score = curvature * node_probability # Probabilistic imaginary component
+imag_score = np.angle(node_probability + 1j * curvature) return complex(real_score, imag_score) # ============================================================================ #
+ROTATIONAL NODE PAIR SYSTEM # ============================================================================ class RotationalNodePair: """Pairwise rotational node in 3D residual
+cognition subspace""" def __init__(self, node_id: int, dim: int = 3): self.node_id = node_id self.dim = dim # Primary and secondary node positions in 3D self.position_primary =
+np.random.randn(dim) * 0.1 self.position_secondary = np.random.randn(dim) * 0.1 # Rotation parameters (Euler angles) self.rotation_angles = np.random.randn(3) * 0.01 #
+Complex-valued gradient scoring self.score_real = np.random.randn(1)[0] * 0.1 self.score_imag = np.random.randn(1)[0] * 0.1 # Node length probability (Π_i(t)) self.node_prob =
+np.random.rand() # Polarity interval bounds [N_low, N_high] self.N_low = np.random.rand() * 0.5 self.N_high = self.N_low + np.random.rand() * 0.5 def get_rotation_matrix(self) ->
+np.ndarray: """Get 3D rotation matrix from angles""" return compute_rotation_matrix_3d(self.rotation_angles) def apply_rotation(self, vector: np.ndarray) -> np.ndarray: """Apply
+rotation to a 3D vector""" R = self.get_rotation_matrix() return R @ vector def get_complex_score(self) -> complex: """Get complex-valued gradient score""" return
+complex(self.score_real, self.score_imag) def set_complex_score(self, score: complex): """Update complex score""" self.score_real = score.real self.score_imag = score.imag #
+============================================================================ # META-COMMUTATOR (ADAPTIVE CONTROL MECHANISM) #
+============================================================================ class MetaCommutator(nn.Module): """ Recursive meta-commutator with discrete evolution control.
+Parameterizes R and manages second-pass decisions. """ def __init__(self, num_nodes: int, dim: int = 3): super().__init__() self.num_nodes = num_nodes self.dim = dim # Parameter R:
+recursive junction matrix (learnable) self.R = nn.Parameter(torch.randn(dim, dim) * 0.1) # Filter parameters (y, z parameterization) self.filter_y = nn.Parameter(torch.randn(dim) *
+0.1) self.filter_z = nn.Parameter(torch.randn(dim) * 0.1) # Second-pass probability predictor self.second_pass_net = nn.Sequential( nn.Linear(dim * 2, 32), nn.ReLU(), nn.Linear(32,
+16), nn.ReLU(), nn.Linear(16, 1), nn.Sigmoid() ) # Meta-commutator generation counter self.generation = 0 self.child_commutators: List['MetaCommutator'] = [] def forward(self, X:
+torch.Tensor, t: int) -> Tuple[torch.Tensor, bool]: """ Forward pass with inequality decision gate. Inequality: n{yX - R(t+1)} >= n{zX + R(t+1)} Returns: - Updated X - Boolean flag
+for second-pass activation """ # Compute paths path_y = self.filter_y.unsqueeze(0) * X - torch.matmul(X, self.R.T) path_z = self.filter_z.unsqueeze(0) * X + torch.matmul(X,
+self.R.T) # Compute norms norm_y = torch.norm(path_y, dim=1, keepdim=True) norm_z = torch.norm(path_z, dim=1, keepdim=True) # Inequality decision: n{yX - R(t+1)} >= n{zX + R(t+1)}
+inequality_satisfied = (norm_y >= norm_z).float() # Predict second-pass probability combined = torch.cat([norm_y, norm_z], dim=1) second_pass_prob = self.second_pass_net(combined)
+# Select path based on inequality X_updated = torch.where( inequality_satisfied.bool(), path_y, # Use yX path if inequality TRUE path_z # Use zX path if inequality FALSE ) #
+Activation threshold for second pass second_pass_active = (second_pass_prob > 0.5).squeeze() return X_updated, second_pass_active.item() > 0.5 def create_child_commutator(self):
+"""Recursively create child meta-commutator for second pass""" child = MetaCommutator(self.num_nodes, self.dim) child.generation = self.generation + 1
+self.child_commutators.append(child) return child # ============================================================================ # B-SPLINE LAYER WITH ROTATIONAL NODES #
+============================================================================ class BSplineLayer(nn.Module): """B-spline basis layer with multi-layered rotational nodes""" def
+__init__(self, num_control_points: int, spline_degree: int = 3, num_nodes_per_cp: int = 2): super().__init__() self.num_control_points = num_control_points self.spline_degree =
+spline_degree self.num_nodes_per_cp = num_nodes_per_cp # Create knot vector for B-spline self.knot_vector = np.concatenate([ np.zeros(spline_degree + 1), np.linspace(0, 1,
+num_control_points - spline_degree + 1), np.ones(spline_degree + 1) ]) # Control points (learnable) self.control_points = nn.Parameter( torch.randn(num_control_points, 3) * 0.1 ) #
+Create rotational node pairs for each control point self.node_pairs = [ [RotationalNodePair(i * num_nodes_per_cp + j, dim=3) for j in range(num_nodes_per_cp)] for i in
+range(num_control_points) ] def evaluate_bspline(self, u: torch.Tensor) -> torch.Tensor: """Evaluate B-spline curve at parameter values u""" u_np = u.detach().cpu().numpy() spl =
+BSpline(self.knot_vector, self.control_points.detach().cpu().numpy(), self.spline_degree) result = torch.tensor(spl(u_np), dtype=torch.float32) return result def
+get_node_gradients(self, u: torch.Tensor) -> torch.Tensor: """Get gradient scores from all rotational nodes""" gradients = [] for node_pair in self.node_pairs: node_score =
+sum([node.get_complex_score() for node in node_pair]) gradients.append([node_score.real, node_score.imag]) return torch.tensor(gradients, dtype=torch.float32) #
+============================================================================ # FULL B-SPLINE NEURAL NETWORK #
+============================================================================ class BSplineNN(nn.Module): """ Complete multi-layered B-Spline Neural Network with: - 3D residual
+cognition subspace - Rotational node pairs - Recursive meta-commutators - RNSL gradient scoring """ def __init__(self, num_layers: int = 3, num_control_points: int = 10,
+spline_degree: int = 3): super().__init__() self.num_layers = num_layers # Multi-layered B-spline components self.bspline_layers = nn.ModuleList([ BSplineLayer(num_control_points,
+spline_degree) for _ in range(num_layers) ]) # Meta-commutators for each layer self.meta_commutators = nn.ModuleList([ MetaCommutator(num_control_points, dim=3) for _ in
+range(num_layers) ]) # RNSL system self.rnsl = RNSLSystem(dim=3) # Global residual cognition projection self.residual_projection = nn.Linear(3 * num_layers, 3) def forward(self, u:
+torch.Tensor, control_input: torch.Tensor) -> Tuple[torch.Tensor, Dict]: """ Forward pass through multi-layered BNN. Args: u: Parameter values for B-spline evaluation
+control_input: Initial control point positions (batch_size, num_cp, 3) Returns: - Output: Predicted curve - Metrics: Dictionary with debugging info """ metrics = { 'second_passes':
+[], 'inequality_satisfied': [], 'gradient_scores': [] } # Initialize with control input X = control_input.clone() residual_outputs = [] # Process through each layer for layer_idx
+in range(self.num_layers): # Get B-spline basis evaluation bspline_curve = self.bspline_layers[layer_idx].evaluate_bspline(u) residual_outputs.append(bspline_curve) # Apply
+meta-commutator decision gate meta_comm = self.meta_commutators[layer_idx] X_updated, second_pass = meta_comm(X, layer_idx) # Compute RNSL gradient scores X_np =
+X.detach().cpu().numpy() low_freq, high_freq = self.rnsl.high_low_filter(X_np) # Update X for next layer X = torch.tensor(low_freq, dtype=torch.float32)
+metrics['second_passes'].append(second_pass) metrics['inequality_satisfied'].append((X_updated.norm() > 0)) metrics['gradient_scores'].append( torch.norm(torch.tensor(high_freq,
+dtype=torch.float32)).item() ) # Create child commutator if second pass activated if second_pass and len(meta_comm.child_commutators) == 0: meta_comm.create_child_commutator() #
+Combine residual outputs residual_combined = torch.cat(residual_outputs, dim=1) output = self.residual_projection(residual_combined) return output, metrics #
+============================================================================ # TRAINING SYSTEM # ============================================================================ class
+BNNTrainer: """Training and optimization system for B-spline neural network""" def __init__(self, model: BSplineNN, learning_rate: float = 0.001): self.model = model self.optimizer
+= optim.Adam(model.parameters(), lr=learning_rate) self.loss_fn = nn.MSELoss() self.training_history = { 'loss': [], 'second_pass_ratio': [], 'gradient_norm': [] } def
+compute_curvature_loss(self, predicted: torch.Tensor, target: torch.Tensor) -> torch.Tensor: """Compute loss with curvature regularization""" # L2 prediction error mse_loss =
+self.loss_fn(predicted, target) # Curvature regularization: penalize high second derivatives second_deriv = torch.diff(torch.diff(predicted, dim=0), dim=0) curvature_loss =
+torch.mean(torch.norm(second_deriv, dim=1)) return mse_loss + 0.1 * curvature_loss def train_epoch(self, dataloader) -> Dict: """Train for one epoch""" self.model.train()
+epoch_loss = 0.0 epoch_second_passes = 0 epoch_gradient_norm = 0.0 num_batches = 0 for batch_idx, (control_input, target_curve) in enumerate(dataloader): self.optimizer.zero_grad()
+# Generate parameter values u = torch.linspace(0, 1, target_curve.shape[1]) # Forward pass predicted, metrics = self.model(u, control_input) # Compute loss loss =
+self.compute_curvature_loss(predicted, target_curve) # Backward pass loss.backward() torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0) self.optimizer.step() #
+Accumulate metrics epoch_loss += loss.item() epoch_second_passes += sum(metrics['second_passes']) epoch_gradient_norm += np.mean(metrics['gradient_scores']) num_batches += 1 #
+Average metrics avg_loss = epoch_loss / num_batches avg_second_passes = epoch_second_passes / (num_batches * self.model.num_layers) avg_gradient = epoch_gradient_norm / num_batches
+self.training_history['loss'].append(avg_loss) self.training_history['second_pass_ratio'].append(avg_second_passes) self.training_history['gradient_norm'].append(avg_gradient)
+return { 'loss': avg_loss, 'second_pass_ratio': avg_second_passes, 'gradient_norm': avg_gradient } def validate(self, dataloader) -> float: """Validate model on validation set"""
+self.model.eval() val_loss = 0.0 num_batches = 0 with torch.no_grad(): for control_input, target_curve in dataloader: u = torch.linspace(0, 1, target_curve.shape[1]) predicted, _ =
+self.model(u, control_input) loss = self.compute_curvature_loss(predicted, target_curve) val_loss += loss.item() num_batches += 1 return val_loss / num_batches #
+============================================================================ # DATA GENERATION FOR TRAINING #
+============================================================================ class SyntheticBSplineDataset: """Generate synthetic 3D B-spline curves as training data""" def
+__init__(self, num_samples: int = 100, num_control_points: int = 10, num_curve_points: int = 50): self.num_samples = num_samples self.num_control_points = num_control_points
+self.num_curve_points = num_curve_points def generate_sample(self) -> Tuple[np.ndarray, np.ndarray]: """Generate one sample: random control points and resulting curve""" # Random
+control points control_points = np.random.randn(self.num_control_points, 3) * 0.5 # Create knot vector degree = 3 knot_vector = np.concatenate([ np.zeros(degree + 1),
+np.linspace(0, 1, self.num_control_points - degree + 1), np.ones(degree + 1) ]) # Create B-spline and evaluate try: spl = BSpline(knot_vector, control_points, degree) u =
+np.linspace(0, 1, self.num_curve_points) curve = spl(u) except: # Fallback to simple interpolation curve = np.interp( np.linspace(0, 1, self.num_curve_points), np.linspace(0, 1,
+self.num_control_points), control_points[:, 0:1] ) return control_points.astype(np.float32), curve.astype(np.float32) def generate_batch(self, batch_size: int) ->
+Tuple[torch.Tensor, torch.Tensor]: """Generate a batch of samples""" control_batch = [] curve_batch = [] for _ in range(batch_size): control, curve = self.generate_sample()
+control_batch.append(control) curve_batch.append(curve) # Pad curves to same length max_len = max([c.shape[0] for c in curve_batch]) curve_padded = [] for curve in curve_batch:
+padded = np.pad(curve, ((0, max_len - curve.shape[0]), (0, 0)), mode='constant', constant_values=0) curve_padded.append(padded) return (torch.tensor(np.array(control_batch),
+dtype=torch.float32), torch.tensor(np.array(curve_padded), dtype=torch.float32)) # ============================================================================ # POLARITY INTERVAL
+CONSTRAINT MANAGER # ============================================================================ class PolarityIntervalManager: """Manages polarity intervals for all nodes in the
+network""" def __init__(self, num_layers: int, num_control_points: int): self.num_layers = num_layers self.num_control_points = num_control_points # Initialize polarity intervals
+for each layer and control point self.intervals = {} for layer in range(num_layers): self.intervals[layer] = {} for cp in range(num_control_points): N_low = np.random.rand() * 0.3
+N_high = N_low + np.random.rand() * 0.7 self.intervals[layer][cp] = (N_low, N_high) def check_within_interval(self, layer: int, control_point: int, value: float) -> bool: """Check
+if value is within polarity interval""" N_low, N_high = self.intervals[layer][control_point] return N_low <= value <= N_high def adaptive_update(self, layer: int, control_point:
+int, second_pass_frequency: float): """Adaptively adjust polarity interval based on second-pass frequency""" N_low, N_high = self.intervals[layer][control_point] # If second passes
+are frequent, expand interval if second_pass_frequency > 0.7: N_high += 0.05 # If second passes are rare, tighten interval elif second_pass_frequency < 0.3: N_low += 0.02
+self.intervals[layer][control_point] = (N_low, N_high) # ============================================================================ # COMPLETE TRAINING PIPELINE #
+============================================================================ def train_bnn_system(num_epochs: int = 50, batch_size: int = 8, num_layers: int = 3,
+num_control_points: int = 10): """ Complete training pipeline for B-spline neural network """ print("="*80) print("B-SPLINE NEURAL NETWORK WITH RECURSIVE META-COMMUTATORS")
+print("Multi-Layered Rotational Node Pairs in 3D Residual Cognition Subspace") print("="*80) # Initialize model model = BSplineNN(num_layers=num_layers,
+num_control_points=num_control_points, spline_degree=3) # Initialize trainer trainer = BNNTrainer(model, learning_rate=0.001) # Initialize polarity interval manager polarity_mgr =
+PolarityIntervalManager(num_layers, num_control_points) # Generate training data print("\n[1] Generating synthetic B-spline training data...") dataset =
+SyntheticBSplineDataset(num_samples=100, num_control_points=num_control_points, num_curve_points=50) # Create data loaders train_batches = [] for _ in range(20): # 20 batches batch
+= dataset.generate_batch(batch_size) train_batches.append(batch) val_batches = [] for _ in range(5): # 5 validation batches batch = dataset.generate_batch(batch_size)
+val_batches.append(batch) print(f" Training samples: {100}") print(f" Validation samples: {25}") print(f" Control points per curve: {num_control_points}") print(f" Network layers:
+{num_layers}") # Training loop print("\n[2] Starting training...\n") best_val_loss = float('inf') patience = 10 patience_counter = 0 for epoch in range(num_epochs): # Train metrics
+= trainer.train_epoch(train_batches) # Validate val_loss = trainer.validate(val_batches) # Update polarity intervals adaptively avg_second_passes = metrics['second_pass_ratio'] for
+layer in range(num_layers): for cp in range(num_control_points): polarity_mgr.adaptive_update(layer, cp, avg_second_passes) # Early stopping if val_loss < best_val_loss:
+best_val_loss = val_loss patience_counter = 0 else: patience_counter += 1 # Print progress if (epoch + 1) % 5 == 0: print(f"Epoch {epoch+1:3d}/{num_epochs} | " f"Train Loss:
+{metrics['loss']:.6f} | " f"Val Loss: {val_loss:.6f} | " f"2nd Pass Ratio: {metrics['second_pass_ratio']:.3f} | " f"Grad Norm: {metrics['gradient_norm']:.4f}") if patience_counter
+>= patience: print(f"\nEarly stopping at epoch {epoch+1}") break # Final evaluation print("\n[3] Final Model Evaluation") print("="*80) test_batch =
+dataset.generate_batch(batch_size) with torch.no_grad(): u = torch.linspace(0, 1, test_batch[1].shape[1]) test_output, test_metrics = model(u, test_batch[0]) test_loss =
+trainer.loss_fn(test_output, test_batch[1]).item() print(f"\nFinal Test Loss: {test_loss:.6f}") print(f"Second-Pass Activations: {sum(test_metrics['second_passes'])}/{num_layers}")
+print(f"Mean Gradient Score: {np.mean(test_metrics['gradient_scores']):.4f}") # Polarity interval statistics print("\n[4] Polarity Interval Statistics") print("="*80) all_ranges =
+[] for layer in range(num_layers): for cp in range(num_control_points): N_low, N_high = polarity_mgr.intervals[layer][cp] all_ranges.append(N_high - N_low) print(f"Mean Polarity
+Interval Width: {np.mean(all_ranges):.4f}") print(f"Min Interval Width: {np.min(all_ranges):.4f}") print(f"Max Interval Width: {np.max(all_ranges):.4f}") # Meta-commutator
+statistics print("\n[5] Meta-Commutator Recursion Statistics") print("="*80) total_children = sum([len(mc.child_commutators) for mc in model.meta_commutators]) print(f"Total
+Recursive Meta-Commutator Generations: {total_children}") print(f"Child Commutators Created: {total_children}/{num_layers}") # Training history print("\n[6] Training History
+Summary") print("="*80) print(f"Final Training Loss: {trainer.training_history['loss'][-1]:.6f}") print(f"Final Second-Pass Ratio:
+{trainer.training_history['second_pass_ratio'][-1]:.4f}") print(f"Final Gradient Norm: {trainer.training_history['gradient_norm'][-1]:.4f}") return model, trainer, polarity_mgr #
+============================================================================ # INFERENCE AND VISUALIZATION #
+============================================================================ def inference_example(model: BSplineNN, num_samples: int = 5): """Run inference on example samples"""
+print("\n[7] Inference Examples") print("="*80) dataset = SyntheticBSplineDataset(num_samples=num_samples, num_control_points=10, num_curve_points=50) model.eval() with
+torch.no_grad(): for sample_idx in range(num_samples): control, target = dataset.generate_sample() control_tensor = torch.tensor(control, dtype=torch.float32).unsqueeze(0) u =
+torch.linspace(0, 1, target.shape[0]) predicted, metrics = model(u, control_tensor) # Compute error error = np.linalg.norm(predicted[0].numpy() - target) print(f"\nSample
+{sample_idx+1}:") print(f" Prediction Error: {error:.6f}") print(f" Second Passes: {sum(metrics['second_passes'])}") print(f" Output Shape: {predicted.shape}") print(f" Target
+Shape: {target.shape}") # ============================================================================ # MAIN EXECUTION #
+============================================================================ if __name__ == "__main__": # Train the model model, trainer, polarity_mgr = train_bnn_system(
+num_epochs=100, batch_size=8, num_layers=3, num_control_points=10 ) # Run inference examples inference_example(model, num_samples=5) print("\n" + "="*80) print("TRAINING COMPLETE")

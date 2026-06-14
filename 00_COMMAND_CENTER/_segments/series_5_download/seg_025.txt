@@ -1,0 +1,224 @@
+you 10:22 have a bunch of lease contracts and you 10:24 want to be able to go through them and 10:26 consolidate them, you'd be able to run a 10:28 workflow that says abstract
+every lease 10:30 in this portfolio, pull rent, renewal, 10:33 term, and key dates into one table, 10:36 verify each extraction against the 10:38 document, and flag anything
+unusual. So, 10:41 especially when it comes to anomaly 10:43 analysis, looking for weird things 10:45 amongst large swaths of data, this 10:47 becomes a very helpful tool and in
+many 10:50 cases it's worth the token burn. use case, software security review 10:52 Naturally, given that it's clawed code, 10:53 this feature is primarily designed for 10:55
+software engineering. Even though I'm 10:57 showing you more businessoriented use 10:58 cases in software, naturally, you could 11:01 ask it to go through a very large 11:02
+codebase to find one bug hiding across 11:05 hundreds of files. So I just actually 11:07 used this morning for one of my more 11:09 enterprise code bases using all kinds of 11:12
+AWS Amazon Web Services microservices 11:15 and it probably has 7 to 10,000 lines of 11:18 code. So every single time I load it up, 11:20 I'm very specific with what files I give
+11:22 Cloud Code access to to increase the 11:25 likelihood that I can use my entire 11:27 context window. But if I want to run a 11:29 security review, if I want to look for 11:31
+any key gaps or open ports in this 11:35 application that's deployed online, this 11:37 would be an interesting way to run all 11:39 of these agents to battle test and look 11:41
+for every single gap that my existing 11:44 security reviewer might not catch. My 11:47 prompts could say, "Build a workflow 11:48 that audits every file under SRC for the 11:51
+missing authorization checks, has a 11:53 second agent try to refute each finding, 11:56 and return only the confirmed issues 11:58 with the file and the exact line." So, 12:00 in
+case you don't want to make any 12:01 changes to the code, but all you want is 12:03 a review of where to review said code 12:06 for a human in the loop developer to 12:07 take a
+look and see, is it worth 12:09 actually changing this, then this could use case, marketing 12:11 put it on a silver platter for you. Now, 12:13 for marketing folks, you could use
+this 12:14 for competitor analysis. So, let's say 12:17 you lined up a list of a hundred of your 12:19 closest competitors in your country, 12:21 your region, etc. You could write
+a 12:23 prompt that says, "Audit each competitor 12:25 site in this list for messaging, offers, 12:28 and SEO gaps, and then cross-check the 12:30 findings and return one overall
+12:33 competitor sheet." Now, could you run 12:35 this without this feature? Potentially. 12:37 What if the number becomes a thousand or 12:40 3,000? an agent team or a series of
+sub 12:43 aents would struggle to accomplish this use case, recruiting 12:45 task. Now, for our second last example, 12:47 when it comes to recruiters, you're 12:48 dealing with
+hundreds, if not thousands 12:50 of applications that you have to sift 12:52 through or you rely on your existing 12:54 application tracking system to go 12:56 through instead of
+using that ATS that 12:59 could be flawed. If you have a certain 13:01 criteria that you want to be able to 13:03 filter through and not have it offloaded 13:05 onto another
+system, then you could say 13:07 build a workflow that scores every 13:09 resume in this folder against the rubric 13:12 in let's say a markdown file that you 13:14 put together
+potentially using AI and 13:16 has another agent or in this case many 13:18 agents check each score for bias 13:21 inconsistency and return a ranked short 13:23 list with reasons
+and rationale. So now 13:26 instead of just getting this spit it out 13:28 list from your ATS system which is 13:30 basically looking for keywords or use case, compliance 13:32
+semantic search, you now have something 13:34 that's a lot richer. And last but not 13:36 least, when it comes to the thorny topic 13:37 of compliance, you could write a prompt
+13:39 that says, "Build a workflow that checks 13:41 every policy in this folder against the 13:44 standard in, let's say, some markdown 13:46 file you put together, flags each
+gap, 13:49 has a second agent or a series of 13:51 agents, refute false positives, and 13:53 return a ranked remediation list." So 13:56 hopefully you can get the gist now. Big
+13:58 tasks, many documents, large scope, 14:01 ideally all done in one shot. And that's 14:03 pretty much it. So hopefully this gives wrap up 14:04 you a good walkthrough of what
+dynamic 14:07 workflows are and when it might make the 14:09 most sense for you to use them. If you 14:10 want access to all the prompts I showed 14:12 you right now on top of the
+ones I 14:14 showed you at the very beginning, you 14:15 can grab all of them completely for free 14:17 in the second link down below. And for 14:19 the rest of you, if you found
+this to be 14:20 a hyperee walkthrough of this feature 14:23 and you want to see more content just 14:24 like this, then please leave me a like 14:26 on the video. And if you so
+choose, a 14:28 comment would be super helpful as well. 14:29 I'll see you the next one. All Watched 0:00In this video, I'm going to show you how to connect Stripe with CL using
+the built-in connector and then I will also show you some three examples how you can 0:088 secondsuse this integration in a real work. So, let's get started. CL now includes a
+built-in Stripe connector, which means you don't have to deal with API keys or 0:1717 secondsdeveloper settings. You can simply connect it from your profile. So, I'm going to open
+my profile in cloth. Then I will click on the settings and from 0:2727 secondsthe settings you have this option connectors you want to click on browse connectors and here we want
+to find our 0:3434 secondsstripe. So I'm going to search for it and you want to click on this plus icon next to it and this is going to redirect 0:4343 secondsus to Stripe page
+where you want to connect your account. So you can either choose uh live account or test mode. You can also switch the account from here. 0:5454 secondsIf you click on switch
+account and we want to enable this MCP access. This is basically like bridge that allows clo to 1:031 minute, 3 secondstalk to other apps. So if this is turned off on my account,
+we can't use it properly. So we have to enable it for 1:101 minute, 10 secondsthis account. Right? And after that you want to choose your permissions. So you have let's say you can
+uh grant access 1:181 minute, 18 secondsto read your accounts, your balance or etc. So you have many different things over here. So you can choose from 1:271 minute, 27
+secondsspecific permissions you want to like allow. So I'm going to keep it like for all permissions, right? So we can test it. So it's going to like be able to 1:371 minute, 37
+secondsalso read and also write some data into the system. Okay. Then simply click on authorize. 1:451 minute, 45 secondsAuthorization successful. You can now close this window.
+And now we should be able to see our stripe in uh our 1:521 minute, 52 secondsconnectors. So you can see the configure button next to it. You can still like configure permissions
+from here. 1:591 minute, 59 secondsAfter this we can try some prompts. All right. So I'm going to go to new chat. 2:032 minutes, 3 secondsAs in first example I prepared this
+prompt. So clothes can pull your daily revenue compare it to previous days. 2:112 minutes, 11 secondsanalyze trends and explain what's happening in your business. Imagine like you
+want a quick overview of how your business performed today. Instead of 2:192 minutes, 19 secondslogging into Stripe, clicking through charts and comparing numbers manually, you can
+just ask cloud simple prompt like this and it's going to tell you 2:272 minutes, 27 secondseverything you need to know. You can see I currently don't have anything on my stripe. So
+my payments are like empty. I 2:352 minutes, 35 secondshave also the testing account. But if you have any informations in stripe, it's going to pull them out and you will see all
+your summaries from here. Okay. 2:472 minutes, 47 secondsSo I can see I have total revenue zero today. Yesterday also zero and last seven days zero as well. We have some number of
+payments. So everything is 2:552 minutes, 55 secondscorrect because I know I didn't make any payment and I have zero like revenue. 3:013 minutes, 1 secondBut in your case if you
+have some you will see it over here and you don't have to manually search for it in stripe. So 3:083 minutes, 8 secondsthis is really like good uh way how you can use stripe with
+cloth. Okay. So this was the first example. 3:153 minutes, 15 secondsSo another example is customer insights and behavior analysis. So what I mean I'm going to paste my prompt
+which I 3:233 minutes, 23 secondshave prepared and with this we can analyze my stripe customers from the last 30 days. And you want to identify 3:313 minutes, 31 secondslike the
+highest value customers. So top 10 customers, customers with multiple failed payments, customers likely to 3:393 minutes, 39 secondschurn, most purchased products, and countries
+with the highest conversion rate. Explain the insights in the simple 3:473 minutes, 47 secondslanguage. This prompt is going to basically tell you like who are your best customers,
+who is at risk of 3:543 minutes, 54 secondschurning, who buys the most or who refunds the most. So I'm going to send it. 4:044 minutes, 4 secondsI'm going to leave all those
+prompts in my description so you can use them for your like case and you can try it. 4:144 minutes, 14 secondsSo you can see if I had some customers there would be like uh which
+are top 10 highest value customers then there would 4:224 minutes, 22 secondsbe like which payment methods fails like most so you can then do something with it. Also 4:304 minutes,
+30 secondsyou will see the most purchased products. So you can let's say adjust pricing for those products. Okay. So this was the second example quickly. So 4:384 minutes, 38
+secondsthe third example is generating financial reports and invoices automatically. So Colot can create monthly revenue reports, summarize 4:474 minutes, 47 secondsrefunds, break
+down subscription revenue, generate invoices, export transaction summaries, and explain financial trends. 4:574 minutes, 57 secondsSo I'm going to send this prompt and we will see
+what we get. And after that clot should generate full report that 5:055 minutes, 5 secondsyou can let's say send to your accountant shared with your team or use it for planning.
+5:115 minutes, 11 secondsSo you can see your total revenue, subscription revenue, one-time payments, net revenue after refunds, some payment 5:195 minutes, 19 secondsactivity. You
+also have like chart created from here. 5:245 minutes, 24 secondsYou have top you have top products by revenue, revenue by country, balance summary, customer growth. 5:335 minutes,
+33 secondsYou can for example also create invoices. So if we create prompt like create me invoice for customer, you're going to name you're going to add your 5:415 minutes, 41
+secondsname of your customer using my stripe data. 5:465 minutes, 46 secondsAnd we want to include products purchased, prices, taxes, total amount, payment statuses, payment
+status, and 5:545 minutes, 54 secondsinvoice number. And we are going to send this. 5:585 minutes, 58 secondsIt this is going to remove the manual work of creating reports and
+invoices. 6:066 minutes, 6 secondsSo you can see everything from your stripe. This is my company. You have some example of your customer. This is 6:156 minutes, 15 secondsthe
+invoice number and you can see a description of or purchase sheet of all purchases. 6:296 minutes, 29 secondsSo you can see some quantity, price, tax and then total amount. 6:376
+minutes, 37 secondsAnd this is basically how you can create easy invoices with Stripe integration. 6:446 minutes, 44 secondsAnd this was all for this video. So I wanted to show you
+some examples how you can use a stripe with clo. And I'm going 6:516 minutes, 51 secondsto leave the prompts in the description so you can try them. And if you found this video
+helpful, consider subscribing for more tutorials like this one. Sync to video time All From the series Watched 0:00 If you want to manage payments smarter 0:02 and connect your
+financial tools with 0:04 AI, this tutorial is exactly what you 0:07 need. In this video, I'll show you how 0:09 to connect Stripe to Claude AI step by 0:13 step so you can
+streamline your workflow 0:15 and handle tasks more efficiently. Let's 0:18 get started. Start by opening Claude AI 0:21 and logging into your account. Once 0:23 you're inside,
+look for the customize 0:25 option. This is where you can manage 0:27 settings and connect external tools. 0:30 Click on customize and then go to the 0:32 connectors section. This
+is where all 0:35 integrations are available. Now, inside 0:38 the connectors section, look for the 0:39 plus icon. Go ahead and click on it to 0:42 add a new connection. You'll
+now see a 0:44 list of tools you can connect. Scroll 0:47 through the list or use the search 0:48 feature to find Stripe. Once you find 0:51 it, click on it to begin the setup 0:53
+process. At this point, you'll be asked 0:56 to connect your Stripe account. You may 0:58 need to sign in and grant permission for 1:00 Claude AI to access your Stripe data. 1:03
+Just follow the instructions and approve 1:05 the connection. Make sure you're 1:07 connecting the correct account, 1:09 especially if you manage multiple Stripe 1:11 accounts.
+Taking a moment here will help 1:13 avoid issues later. Once you've 1:15 completed the authorization, the 1:17 connection will be successfully 1:18 established and Stripe will now
+be 1:20 linked to Claude AI. From here, you can 1:23 start managing payments, tracking 1:25 transactions, and automating financial 1:27 tasks using AI. If Stripe doesn't appear
+1:31 in the connectors list, try refreshing 1:33 the page or checking your account 1:35 settings. Small issues like this are 1:37 usually easy to fix. And that's it. 1:39 You've
+successfully connected Stripe to 1:41 Claude AI. If you found this tutorial 1:44 helpful, don't forget to like the video 1:46 and subscribe to the channel for more 1:48 simple and
+beginnerfriendly guides just 1:50 like this. Thanks for watching and I'll 1:52 see you in the next All APIs AI Learning Related For you Recently uploaded Watched 1:28:07 Claude
+COWORK Full Course: Ze 0:00 I'm going to show you how you can add 0:01 Stripe subscription and payments to your 0:04 web app. I want to add a monthly $5 plan 0:07 and a $100
+lifetime plan. This is the 0:10 process I'm going to go through. First, 0:12 I'm going to add a Stripe MCP to make it 0:15 faster and more reliable to add my 0:17 Stripe
+integration. Then I need to go 0:20 into my Stripe, go to sandbox mode, add 0:23 my product, 0:25 copy the product ID, and then test if it 0:28 actually works. To add the Stripe
+MCP is 0:32 really simple. All I need to do is 0:36 go to docs.stripe.com/mcp. 0:39 I'm using cloud code. All I need to do 0:42 is copy and paste this and type it into 0:45 my
+cloud code. You just put in that 0:47 command and then it will ask you to log 0:51 into Stripe. Click a few buttons and 0:53 you'll be able to add Stripe. 0:56 One small note with
+Cloud Code is that 0:58 you need to close the terminal and then 1:00 restart it in order for it to show up as 1:02 added. Now that you've added it, the 1:05 second step is really
+simple. You go to 1:08 your Stripe account and you go to 1:11 sandbox. I'm already in sandbox. What 1:13 sandbox means is just a test 1:15 environment. is not actually charging
+1:17 people money. Then you go to product 1:20 catalog and you add the product you 1:23 want. I added a new product and I named 1:26 it add a new product and I set as 1:30
+recurring $5. I picked my currency and I 1:34 have my first $5 recurring plan and the 1:37 lifetime plan is a onetime fee flat rate 1:41 $400. 1:43 You don't need to create a
+product. 1:46 You can get Vibe coding to do what's 1:49 called dynamic pricing and it'll create 1:51 the product, but that's not the best 1:52 practice. It's easier to manage later
+on 1:55 if you create these products and then 1:57 copy the product ID and then go into 2:01 your cloud code and say, I have a 2:05 product that's $5. There's a product ID. 2:09
+Add it to my web app. Let's tell Claw to 2:12 add the code and see what we get. Okay, 2:16 it's saying that I need to find my price 2:19 ID. I'm guessing is this. But I'm going
+2:23 to open my comment just to verify. 2:26 Okay, so I think if you come in here, 2:28 this is the price ID and copy this. And 2:32 then let's go back. Product catalog 2:35
+lifetime plan. This says price. So, I'm 2:38 going to click on this. This is the 2:41 price ID. I copy it. Okay. So, it says 2:44 it's done. Let's go to the website. 2:46 Monthly
+plan. Check out. Okay. So, I 2:50 plugged in a random card number. See if 2:53 it works. 2:54 And it works. Payment successful. And 2:58 now I have payments. And that's how you
+3:01 add Stripe to your website. 3:06 If it works in sandbox, all you need to 3:08 do is go back to exit sandbox, recreate 3:11 the product, 3:13 copy the new IDs into your
+non-Sandbox 3:17 environment, and then tell AI to update 3:21 the product, and you will have a live 3:23 paying subscription. That's how you add 3:26 a onetime fee and a monthly
+subscription 3:28 to your web app using Vive Coding. If 3:31 you like this video, please like and 3:33 subscribe. And if you're working on 3:35 adding Stripe to your vibe coded
+product 3:38 and you're getting stuck, you can join 3:40 my vibe coding course where I go into 3:44 more depth and more details 3:46 on how to build your dream product in 3:49 the
+fastest possible time. Click on the 3:52 link in the description to join my Vibe 3:54 coding All APIs Website Courses Learning Related For you 0:00 Hello guys, in this video I'm
+going to 0:01 show you how to connect a stripe to 0:04 clone AI. First you need to enter to the 0:09 add files connectors and more. In this 0:12 area you need to uh go to the
+connectors 0:16 and here to the add connector. 0:20 In this uh search bar you are going to 0:22 search for a stripe and you have the 0:25 first option here. As you can see, this
+0:27 is a stripe official connector. You are 0:31 going to click on the connect um button 0:34 and here the cloud AI will redirect us 0:38 to the stripe official page. You just
+0:41 need to enter your credentials and click 0:43 on sign in or if you want you can sign 0:47 in with Google pass key or SSO. Once you 0:52 enter to your account, you just need to
+0:54 crown the permissions and then you have 0:57 already uh connected your stripe account 1:00 to Oh, they are. All From Mindly Nova Source code AI Learning Related For you
+Recently uploaded Introduction & Overview 0:00 In this video, we'll build a complete Stripe payment system for your SAS using cloud code, subscription plans, checkout 0:05 flow,
+and customer portal integration that handles plan switching and cancellations automatically. I'll show 0:10 you how to use MCPS for Superbase, Stripe, and Playright so that Claude
+can build your database, Stripe products, 0:16 and test everything automatically. Plus, I'll navigate real coding issues that come up so that you can, too. And if you 0:21 haven't
+seen the previous videos where I build out the core framework, user authentication, and navigation, check those out, too. All right. So, I have 0:27 the SAS framework that I've
+been building out here running locally on my computer so I can test everything. First, I'm going to install some Setting Up Claude Code Agents 0:33 specialized agents and MCPs into
+Cloud Code. Then, I'm going to go over the prompt for the project and then we'll 0:39 get started. I'm going to open up a new terminal and I'm going to jump into the Vibe Encoders
+SAS accelerator framework 0:46 and I'm going to run claude code from here so that I can install the new agents. I'm going to do / aagents and 0:52 now from here we can create a new
+agent. I'm going to create two agents. one to build out the product itself and then 0:57 another one that handles Stripe. We'll go ahead and create the agent within cloud. And now
+what we want to do is just describe the agent that we need. 1:04 Expert next.js TypeScript developer with deep knowledge of 1:13 superbase and next.js best practices and next.js
+1:21 community best practices. So, we'll go ahead and hit enter. And then it's going to go ahead and generate a custom agent 1:28 that is familiar with Nex.js and understands all
+of the community best practices. And then from here, you can 1:33 tell it what tools it has access to. I'll go ahead and just say continue. And we'll go ahead and use sonnet. And
+we'll just let allow it to pick its own color. 1:40 So, here we have our new agent. And I always recommend that you go over it and add anything that you feel is important. 1:46
+First, you have the description, which tells Cloud Code when to use this agent. And then we've got the system prompt 1:52 down here. So, we'll go ahead and hit enter. And then if
+you ever want to take a look at that agent again, you can just jump in there, view the agent, and you 1:59 can see all of the details related to that agent that you created. And
+this looks good. So now we're going to go 2:04 back and we're going to create one more agent project agent. We'll create it with cloud code. This time we're going to create a
+expert stripe payment 2:12 engineer with specific knowledge of Nex.js and TypeScript and Superbase 2:20 authentication. Now, I'm still playing around with these agents. you might
+have been able to just create one that had all three. I've been playing around with 2:26 specializations and whether it's better to have more specialized agents or have fewer with
+all of the skills they need. 2:32 We'll go ahead and give it access to all of the tools and the pick the color and we'll go ahead and hit save. And so now 2:39 we've got these two
+agents. Looks good. So next up, I'm going to install some important MCPs for our project. First 2:44 I'm going to install the MCP for Superbase. And what this will allow us to do
+is allow cloud code to do all of Installing MCPs (Supabase, Stripe, Playwright) 2:50 the work in Superbase without us having to do it. So now we need our Superbase key and the
+project name. Going to jump 2:56 into Superbase. Pick our SAS framework project. Jump up here to account preferences. Then over to access tokens. 3:04 Then I'll generate a new
+token. Temp YouTube demo expires in 1 day. Generate 3:11 the token. And then we have our token right here. We can copy it. Jump back over to cloud code and you can copy the 3:17
+command just as I have it and I'll drop in the key here. Then I'll get the project ID. Copied. Reposition this so 3:23 you can see. Drop that here. All right. Now if we jump into
+cloud /mcpase 3:30 is connected. Perfect. We'll jump back to the terminal. I'm going to install this one next just because it's easy. 3:35 It's playright. This will allow cloud
+code to automatically launch a browser and test our code visually. Let's add 3:40 that one. Now the final one we need to add is for Stripe. So for this I'm going to come to Stripe
+and I'm going to have 3:46 to create a new account. We'll create a separate account. We'll call this our SAS 3:52 framework demo. Create. Now I can't remember if we need a sandbox
+or the live account. I think we can go to the 3:57 live account and just turn it into test mode. So I'm going to come up here. I'm going to switch to the sandbox. It looks like I
+should have done that from the 4:02 beginning. And we'll turn on test mode. There we go. Then I'm going to jump over to developers API keys. Then I'm going 4:09 to jump back to
+notion. I'm going to grab the Stripe MCP. Jump back to cloud code. We'll drop that here. Go back to 4:16 Stripe. Grab the secret key. Copied. And you can copy this just as I have
+it here. Paste that right there. Add the 4:22 MCP. Now, if I jump into cloud code MCP, we have Playright Stripe and Superbase 4:28 connected. And we've got our two agents. So,
+we're good to go. All right. So, now we're ready to run this prompt here, which is going to integrate Stripe into 4:34 this SAS framework. If you're interested in getting access to
+the SAS framework, make sure to jump into the Vive Encoders 4:39 community. I'm going to take this prompt and drop it into VS Code here. I'm inside the Vibe Encoder SAS accelerator
+Creating Stripe Account & API Keys 4:46 framework. Going to open up Cloud Code. Just going to double check the MCPS that we set up are there. There they are. And 4:51 our agents
+ready to go. Now, I will share this entire conversation so that you can see how I built out this prompt. 4:58 But I built this because even though I can go into plan mode in cloud
+code here and we can build a plan depending on the 5:04 project, I like to think things through a bit in Cloud as well and have it build a prompt that I can use in Cloud Code. 5:10
+And I created this little diagram here to help explain how I create these prompts. So first and foremost, I always 5:16 tell Claude and Cloud Code to keep things simple as I
+describe what I'm trying to do. That's the most important 5:21 thing so that it knows to do that. Sometimes it will create more complex plans than are needed. I also tell it to
+5:27 make sure it's using best practices from the community itself and to also use 5:32 search documentation. So when you actually build these prompts, I want it to do a web search
+and look up these 5:38 different things. So instead of just saying use best practices from the community, I say actually search and 5:43 look for these things. I also tell it what
+MCPs it's going to have available to it so that it knows that. I also ask 5:49 it to tell me if it has any questions so that I can provide those specific answers. And then I also
+tell it to give 5:55 me instructions. It's going to have access to the MCPS. So, it's going to be able to go into Stripe into Superbase. 6:00 It's going to be able to create
+databases, those types of things. But there are some things that it's not going to be able to do. I want those additional instructions so that I can 6:07 just quickly walk through
+and do the things that I need to do. And so, if you scroll back all the way to the top using 6:12 the link that I provided in the description below, you'll see that entire
+conversation that leads to this final prompt that I'm going to come here Building the Integration Prompt 6:19 and copy. And then real quick, you can see that we told it what MCPs
+it has, the tech stack, the subscription setup, 6:25 the database requirements for Superbase, the Stripe configuration, the testing requirements, the core features, the 6:31 user
+flow, the environment variables that we'll need, and then the instructions that we came up with through our discussion that I outlined 6:37 here. If you're enjoying this video,
+make sure to like and subscribe. It tells me what type of content you want more of. So now I'll jump back into 6:43 Visual Studio, go over to Cloud Code. I'm going to go into plan
+mode by hitting shift tab twice. So now I'm in 6:49 plan mode. I'll go ahead and paste in the prompt that I created in Claude. Please review these plans. Let me know 6:58 if you
+have any questions. And then from here, I'm going to dictate into Cloud Code using a tool called Whisper Flow. 7:06 Please look at the plans here and then let me know if you have
+any questions and then go ahead and prepare a step-by-step plan that we can walk 7:12 through to implement Stripe payments into this SAS framework. So here we have 7:17 our prompt
+that we built in cloud and then our instructions and now it's going through and it's just investigating Starting the Implementation 7:23 first the MCP capabilities for Superbase.
+We'll go ahead and give it permission to access Superbase and then 7:29 also Stripe. So it wants to do a bit of research. We'll go ahead and just say yes, you can do that and you
+don't need to ask next time. All right. So here's 7:36 the analysis of our MCPs and how they can help in this process which was one of the things that I outlined in this 7:42
+prompt which was the MCPs that it had access to and to analyze the 7:47 capabilities so that it knew what it could do on its own and what it needed to tell me to do. All right, so
+here's 7:52 our plan phase one MCP automated setup and configuration Stripe products and 7:57 price creation. So it's going to go ahead and create the products inside of Stripe for
+me. It's going to create the 8:03 database that stores all of our different products. It's going to update the ENV variable. These are some of the 8:09 new routes that it wants to
+create. I'm going to ask a quick question on that. I just want to make sure that it's using as much of the integrated Stripe 8:15 processing as possible. It's going to build out
+our subscriptions page and then it's going to do some testing, some 8:20 production readiness. And here's why it's good to make sure you read the plans because it's going to do
+some stuff that we didn't actually have it 8:26 do. It might be good to do that, but we didn't discuss that. So, I'm going to tell it to make sure not to move forward with phase 4.
+And I want to just confirm 8:33 here that it's using as much built-in functionality from Stripe as possible. So before we move on, I'm just going to come over here. In phase two, I
+wanted 8:39 to make sure that you're using as much of the built-in Stripe integration as possible in terms of checkout pages and 8:46 also being able to manage your subscription.
+That should be done as much as possible on the Stripe side 8:52 instead of trying to implement things into our app. Our app should be using the most simple Stripe integration 8:58
+possible. Let's go ahead and leave phase 4 out for now, unless there's something that we need there for actually testing 9:05 this implementation. So, we'll go ahead and put that
+in there. So, it looks like I might be revising the plans based off of my feedback. This was something that 9:10 I did have in the prompt. So, it's always good to just double
+check. There's no need to rush. Looks like it changed the routes here. Personally, 9:17 just in terms of consistency, I like checkout and portal better. So, I'm just going to copy
+what it had here. Can we 9:23 use these endpoint names instead? And then it looks like it took off phase 4. 9:28 So, we'll just make that quick update. All right, there we go. So,
+what it does simplify here is all of the things that 9:33 we're building out. And just so you know, I know to use the hosted Stripe checkout only because I did research. 9:39 I'm
+not a Stripe payment expert. All I did was before in this process, I used 9:45 Claude here to just learn a bit about the best practices for building the most simple setup. And it
+told me about these 9:50 different features, and that's why I'm using them. All right, so that's probably as good as we'll get it. Let's go ahead and move forward. I'm going to
+9:56 go ahead and give it permission to execute these different MCP commands. It's got to create the price and the 10:01 products. All right, so it started to add some things and
+then notice that it needs to create reoccurring prices for 10:06 subscriptions. And I'm noticing here it's not using the MCP. I'm not exactly sure why it's calling the API
+directly. 10:11 I'll go ahead and let it proceed. I'm going to break out and say it looks like you didn't have the right key. Any reason you're not using the MCP? Did the 10:18 MCP
+not have that capability? Is that why you're using the API directly? I'm going to turn off auto accept off just 10:24 for a moment while we figure this out. And then if it needs to
+use the API directly, I'll just give it the key. So basically, it's just noticing that the 10:30 MCP doesn't have the ability to do it. All right, so it's moving on here, which I
+don't want it to do. So this is where 10:35 you kind of have to stay aware. We definitely want to have reoccurring prices. I can give you the Stripe key so 10:42 that you can
+create reoccurring prices for this project. Let's do this. Correct. Are you ready for the key? Do 10:48 you want to do it that way? All right. So I'll just give it the key here.
+All right. All right. So now I noticed that it's creating a constants file, but I 10:54 had wanted it to use the database to store the information about the subscription. So I'm a
+little bit 10:59 curious about this. So I'm just going to break out of this real quick. I'm a bit curious what that constants file is for. 11:06 We had originally talked about
+storing all of the subscriptions within the Superbase database and creating the 11:12 tables needed to do that. Is there a specific reason why you're using a constants file instead
+of the database 11:17 itself? Great question. You're absolutely right to ask. The constants file serves as a different purpose than the database tables. So the constants 11:24
+files purpose. So this is where it's good to just understand what it's building for you. And if you're ever at a spot where you don't understand, take 11:30 some time to learn. The
+constants file purpose is static configuration for displaying pan static configuration for 11:35 displaying plans on the front end for front-end rendering features definitions UI
+logic database tables purpose dynamic 11:43 user data which specific user has which subscription stripe sync data real-time 11:49 status how they work together. So the constants
+file is for what plans exist and then it's using the database for 11:55 what subscriptions a user actually has. So, it's suggesting that we use the constants file, and it's saying
+that 12:01 it's more complex and usually overkill for most SAS applications. Is it really 12:06 all that much more complicated to just use the database to store which subscriptions
+the user has the 12:12 availability for? This is also a SAS framework that is going to be configurable, should be easy to update. 12:18 So, I think in this case, storing everything
+in the database makes a lot more sense. And I don't think it's really all that much more complicated. 12:24 Can you please think critically about this and let me know if I'm wrong?
+So you're absolutely right. I was being overly simplistic. Let me think through 12:30 this critically. So why database is better? So now it's asking should I redesign the schema to
+include products, 12:36 prices, and features. So now this is where you need to be careful because features itself are not something that 12:43 are integrated with Stripe. We really
+only need to include in the database the stuff that Stripe needs. So features is 12:49 something that we can just add to the page itself on the subscriptions page. So then it's
+asking, should I redesign 12:55 the schema to include products, prices, and features table that sync with Stripe? All right, so let's be careful 13:01 here. So features have
+nothing to do with Stripe. So we need to be careful that we're only designing the tables 13:07 needed, and we don't need to sync back and forth. We just want to have the
+information inside of our database so 13:13 that we can build and render the pages as needed, and the framework and the SAS 13:18 framework can function as planned. We don't need
+to sync them back and forth. that can be done manually very easily. 13:24 And then in terms of the features, I don't think that has anything to do with Stripe at all. So, let's
+make sure we're building something simple. Take a second 13:30 to think about how we should do this. And then I'm going to jump back into plan mode. Now, the tendency is to just
+13:36 want to like push forward and not have to think about any of this stuff. It's important to make sure that you're going 13:41 about this in a way that makes sense and is
+simple cuz the AI will tend to take you down different paths that you might 13:47 not have been expecting. So it looks like it might have updated products, prices, features, and
+subscriptions. So 13:54 these are the database tables it's going to create in Superbase. And then it's going to go ahead and put in some initial data. So let's go ahead and and
+Database Setup & Configuration 14:00 move forward. All right. So now it's trying to use the MCP to create our tables. I'm going to go ahead and say you have permission and you
+don't need 14:06 to ask again. So now if I jump over to Subabase, we should see that we have some tables here in the database. 14:12 Features, prices, subscriptions, and products.
+All right. So now it wants to just double check that the data is 14:18 there. Now I'm noticing here that it's creating a test suite with playright. It might be a little bit
+overkill. We'll go 14:23 ahead and I'm just curious to see what it comes up with. While it's doing this, I'm going to just check out how things are going. If I come back to the SAS
+14:30 itself, does it actually load? And if I go to slash subscription, believe that 14:35 was the URL that we had. So it's been sitting here for just a second. I'm going to go
+ahead and escape out. Can you let me know exactly where we're at? 14:41 It looks like you might be trying to create some playright tests using the MCP. I'd like to understand where
+we are 14:47 and if there's any manual testing that we can take a quick look at just to see progress and then from there we can 14:53 decide what to do with the Playright MCP. And
+I'm going to turn off auto accept. So it's going to give us a quick 14:58 update. All right. So it's built out the database, the API routes. It says it built out the front-end
+subscriptions 15:04 page. So we can take a look at this here. I'm going to jump back here and just stop the previous run and then 15:10 rerun the site. Sometimes you have to clear
+the cache, but we'll just see if we need to do that. Put in the 15:16 subscriptions page. All right, so we're getting an issue. All right, so I'm going to copy this issue. Come
+back to 15:21 Visual Studio, paste that in here. Looks like I had an error. Can you go ahead and just make sure that all the cache is 15:26 cleared and you've rebuilt everything
+and you take a look at this error and then we'll go ahead and test it again. 15:32 So next, what it's going to do is it's just going to clear the cache for Nex.js JS and then run
+the build to make sure 15:37 everything loads properly before we test it again. All right, so it had another error. So, it's going to go ahead and 15:42 just start to fix these
+items for us. That way, we don't have to go through the pain of starting it over and over again over here on our own. Go ahead and Troubleshooting Build Errors 15:48 let it fix all
+these bugs. Auto accept. Let it rerun the build. All right, so we're still having some additional 15:54 errors. We'll go ahead and fix those. All right, so these are the little
+things that I like to look out for. It just went ahead and disabled something 16:00 here so that we could test. And I'm just going to back out and just ask. So basically, I noticed
+that it turned off something that it uses to ensure 16:07 quality. And so when you see that type of thing, you know, just question it. And then it basically said, you're right to
+question that. Disabling this was a 16:13 lazy approach and not a good practice. So we're back on track now. And now it's running npm rundev, but I didn't see it 16:20 actually
+create the build yet. I didn't actually see you correct the build before you ran npm dev. Is that an 16:26 oversight or something that's not needed? All right, so let's run the

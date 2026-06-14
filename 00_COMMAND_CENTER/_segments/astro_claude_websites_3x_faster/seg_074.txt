@@ -1,0 +1,224 @@
+catherinesmithviolin.com. 14:45 Notice anything interesting? While this is a pretty common way to share websites with other people, 14:50 most of the time, your browser or
+automation tools, are going to need the full URL. 14:56 For example, everything that comes before this. HTTPS, that sort of thing. 15:02 So let's set up our automation to check if
+the URLs are properly formatted when coming in from the web form. 15:08 In Make, on the right side of the Google Sheets module, click the plus button to add another module. 15:13
+Then click flow control, and then select router. 15:19 A router is a module that allows us to split the automation into several paths. 15:24 By default, both paths will run
+automatically. But you can also set up filters so that only one 15:31 out of several paths runs if certain conditions are true. Let's set up our first path with a filter to only
+run 15:38 if the URL is properly formatted. And we'll set up the second one to run if the URL is not properly formatted. 15:46 To add a filter, click the wrench, then click set up
+a filter. 15:51 Let's give this filter a label. We'll call it URL formatted correctly. 15:58 Next, we need to set up a condition to evaluate. In the first blank field, click to
+open our input options. 16:04 Scroll down to Tally, select website or social media link. 16:09 Click the dropdown to change the operator, and then select contains case insensitive.
+16:17 Then we'll type http://, 16:23 then click add OR rule. This makes it so the first path will run if the first condition is true, 16:28 or the second condition is true. If you
+wanted to run this path only if both conditions were true, 16:35 you would select add AND rule. But in our case, what we wanna do is evaluate for HTTP or HTTPS. 16:43 So in the new
+blank field, add our website, change the operator to contains case insensitive. 16:52 And then add HTTPS://, then click save. 16:58 Because we only have one other path, setting up
+our other path is super easy. We can click the wrench, 17:05 click setup filter, label it URL not formatted correctly. 17:11 And then set the route as a fallback. A fallback route
+is the route that'll be used 17:16 if the information didn't pass any other filter. So here, we can just simply click save. 17:24 Now, before we go any further, let's save our
+automation so that we don't lose any progress if we need to leave or refresh the page. 17:30 Click the save icon in the bottom middle. If you haven't saved in a while, it should be
+lit up as a light orange colour 17:35 and then change green once you've saved. That covers the basics of logic and filters. Scrape the Web Automatically 17:41 Next, let's set up a
+web scraping tool that automatically looks at the website that the contact form provides 17:47 to gain insights about its contents automatically. To automatically pull information
+from the website provided in the contact form, 17:54 we'll use a tool called Browse AI. Use the link on screen or in the description below 17:59 to get signed up for free. Go ahead
+and follow the prompts to get signed up, and then meet me on the next page. 18:05 Once you create an account, you'll get this onboarding survey. Go ahead and fill that out. For
+the, how did you hear about us dropdown, click YouTube. 18:17 When you get to the question that says, how do you want to extract data? Go ahead and click, I want to do it myself,
+but have no experience in scraping web data. 18:26 All right, we're in. The first page you land on after signup is the build new robot page. 18:31 It prompts you to select one of
+these options, either extracting structured data or monitoring site changes. 18:37 These are fine if you wanna build from the ground up. But I'll show you how to grab a pre-built
+robot so that you don't have to build from scratch. 18:43 In the address bar of your browser, navigate to browse.ai/prebuilt-robots. 18:54 Here, you can scroll through and find
+tonnes of pre-made web scraping robots. There's tools for WordPress, LinkedIn, 19:02 Make, and tonnes of other tools. What we're going to use is a tool that simply extracts HTML
+from the website. 19:11 In the search prebuilt robots field, type HTML. And select the robot named extract HTML code 19:19 and capture a screenshot from any webpage. Then click set
+up now. 19:26 You'll need a webpage URL for testing. So I'll grab the URL from our spreadsheet 19:34 and paste it in. And, of course, we wanna make sure that it's formatted
+properly with the http://. 19:41 If you don't include that, this won't work. That's why we set up the filters earlier. 19:46 Scroll down and click next step. Then review that
+everything looks good, and click finish. 19:53 This will run a test task. You can watch as Browse AI navigates to that URL 19:59 and pulls information from the webpage. I'll fast
+forward to show you the results. 20:04 When it's done, you should get a success message. And if you scroll down, you'll see it captured a screenshot of the website, 20:10 which we
+can click on to see bigger. Oof, yeah, that website needs some help. No wonder they're reaching out to Joe about web design. 20:16 You can click the X in the upper right corner to
+close the screenshot. And to see the HTML, you can click read more. 20:22 And there's the full HTML code from the site. Now, unless you know how to work with HTML code, this can
+look kind of intimidating. 20:29 But don't worry about it, we're going to use AI to process this information. And AI knows exactly what to do with HTML. 20:36 Let's go back to
+Make. Now that we've got our robot set up in Browse AI, let's set up Browse AI inside of Make. 20:43 We'll need to pick one path of our automation to start with. For me, since I
+know that the URL in the web form 20:49 is not formatted correctly, I'll start with the fallback path. Click the plus button, search for Browse AI, 20:56 and select run a task.
+Click create connection to link your account. 21:02 Give your connection a name if you'd like, then click save. Just like with the other apps, 21:07 you'll get an authorization
+window that pops up. This one doesn't require any additional steps though if you're already logged into Browse AI. 21:16 Next, we need to pick our robot. Now, if you click in the
+robot field, it'll pull up our inputs list, which we don't actually want. 21:23 That's because right now, make.com is set to map mode. See this toggle on the right side that says
+map? 21:30 Toggle it off. Now this blank field turns into a dropdown, which we can click. 21:36 And then select our robot, extract HTML code. Here it pulls in the webpage URL,
+21:43 the catherinesmithviolin.com for me. But we actually wanna set this dynamically. Instead of just checking this website every time, 21:50 we wanna check the website that comes
+in on our web form. So let's get rid of that URL. 21:55 And then in our inputs list, select website or social media link. 22:00 Then click save. Now let's test our automation to
+make sure it runs correctly. If our logic is set right, this fallback path should run. 22:09 Click the dropdown arrow next to run once, select the most recent successful scenario
+run, 22:15 then click run once. Here we got an error. This happens sometimes. 22:20 It's pretty normal to need to debug while you're building automation. If you ever get an error,
+click the red icon that appears to see the logs. 22:27 Remember how I said Browse AI wouldn't run unless the URL was formatted correctly? 22:32 That's what this error is here.
+Invalid URL in parameter origin URL. 22:38 Let's click close and fix this. Open Browse AI, and click into the webpage URL field. 22:45 And then move your cursor to the left of the
+website or social media link dynamic input. 22:52 Then type http://. 22:57 Now, if the URL that's included in the contact form does not have the HTTP prefix, 23:03 our automation's
+logic will check for that and add it before it hits Browse AI. 23:08 Click save, and then let's run a test again. Click the dropdown next to run once. 23:15 Again, select the most
+recent successful run. The last one was not, so let's choose the one before that. 23:22 Then click run once. Now our automation runs correctly. And if we click the two check marks
+button 23:28 to open our operation summary, we can see that Browse AI ran and generated an output bundle. 23:35 But you'll notice something here. If you click to open capture
+texts, it's empty, why is that? 23:41 Browse AI can take a little while to run its task. What's happening here is that Make 23:47 successfully starts the task, but it doesn't wait
+for Browse to finish before continuing with the automation. 23:54 In order to continue building our automation workflow, we'll actually need to set up another scenario. 24:00 We
+can trigger the new scenario to start once Browse AI finishes its task. 24:05 But in order for the new scenario to know anything about what happened in this one, we need to send it
+some information. 24:12 So let's log some additional information in our Google Sheet to help pass the form information 24:18 along to the next scenario. To the right of Browse AI,
+click the plus button to add another module. 24:25 Select Google Sheets, then select update a row. Because you've already connected 24:30 your Google account, it's already linked,
+and we don't need to create a new connection. Click the blue button under spreadsheet ID 24:36 to select your spreadsheet. Then select your contact form. 24:42 Pick sheet one, and
+for row number, we'll need to update the row 24:48 that we just created in Google Sheets. So click into the blank row number field, 24:53 find the Google Sheets input section, and
+then select row number. 25:00 We'll make sure to let it know the table contains headers. And let's find a blank column. 25:06 The last column that we named earlier was the event ID
+column. In this case, column I. So let's put some new information in column J. 25:14 Click into whatever your final empty field is. And then from the Browse AI input section,
+select task ID. 25:24 The Browse AI task ID is a unique identifier that gets assigned to every task. 25:30 By logging this in our spreadsheet, we can pick up right where we left
+off in our next automation by looking up this task ID. 25:37 Go ahead and click save and then return to your spreadsheet, and give the final column a name. 25:43 In my case, that's
+J. And I'll call it Browse AI Task ID. 25:50 Let's return to Make and run one more test here. Again, we'll run it with our last successful run data 25:57 and run once. And if we
+check out our spreadsheet, you can see that there's a few duplicate entries here 26:03 from all the testing we've been doing. But now, our last column, Browse AI task ID, 26:08
+includes the task ID that was generated when we started the Browse AI task. Let's return to Make and save our work. 26:16 Let's finish setting up our URL formatted correctly path.
+Click the blank module and set up Browse AI 26:21 just like we did for the other path. 26:31 But this time, for the webpage URL, all you'll need to do is select website or social
+media link. 26:37 You don't need to add the HTTP or HTTPS prefix this time, because this path only runs if the URL 26:43 was formatted correctly in the first place. Next, the
+Google Sheet module should run pretty much the exact same in either path. 26:50 The only thing that really changes from path to path is what we do with the Browse AI module. So
+instead of clicking through and manually setting up 26:58 a new Google Sheets module, let's simply copy this one. Select the module by holding Shift on your keyboard 27:03 and
+clicking the module you wanna copy. Then hit Command + C on Mac or Ctrl + C on Windows to copy, 27:10 click into a blank space. And then hit Command + V on Mac or Ctrl + V on
+Windows to paste. 27:17 And just like that, the new Google Sheets module's been added. And if we drag it right next to the Browse AI module, 27:23 it will connect automatically.
+Now, there's one small configuration change we need to make. Click the module to open it. 27:30 Scroll down to the field where we're logging the task ID from Browse AI. 27:35
+Delete that one, and then select task ID from the input list on the left. 27:41 The old one wouldn't have worked because it was referencing the Browse AI module in the first path.
+27:47 We need to reference the Browse AI module in this new path. This scenario's looking pretty good. 27:52 Before we close out of it, let's click this magic wand icon at the
+bottom to auto-align everything and make it look nice and pretty. 27:58 Then we'll click save and we're good to go. Now we're all set to start building the next phase 28:04 of our
+automation with our new scenario. As we build the next scenario, we'll need to do some testing. 28:10 And that testing will require activating this scenario. So right click the
+scenario' menu button on the left, 28:17 and click open in new tab. Then click on your new tab. 28:22 Then click the create scenario button in the top toolbar. Just like the first
+time we created a scenario, 28:29 we have a big purple plus button in the centre of the screen and the apps list opens up. Go ahead and search for Browse AI. 28:37 And select watch
+task execution finished. In the configuration popup, click create a webhook. 28:44 Select your robot from the dropdown. And then, from the event dropdown, select task finished
+successfully and click save. 28:53 Make set up the webhook for you. Go ahead and click save. All right, now we need to get some test data, 28:58 and this is why we left the other
+tab open. Go ahead and click run once in the bottom left. Now, Browse AI is looking for a completed task. 29:06 But we need to initiate a task to have a complete one. So go back to
+your first scenario, 29:12 and then click the dropdown to run with existing data. And, again, select the most recent successful task run. 29:19 Our scenario ran unsuccessfully, so
+let's return to our new scenario. Now, when you return to this new scenario, 29:25 you may see a couple of different things. The first thing you may see is that the run once button
+turns red and starts looking for data to come in live. 29:33 Or if the task finished, you'll see that now there's unprocessed data in the webhook queue. 29:40 This means that the
+webhook received information, but hasn't done anything with it. 29:45 This is perfect. Let's run this scenario using existing webhook data. 29:52 And there we go, now we have some
+data to work with. Under the operation one output, click to open the task details with the plus button. 30:00 And here we can see the task ID. If we go back to our Google Sheet, we
+can see that the most recently logged 30:06 Browse AI task ID is the same ID as what just got pulled in in our new scenario. 30:12 This is great. So now we need to look up this row
+in our new scenario. 30:17 Let's return to our new scenario in Make, close out this operation summary. And click the plus button to add a new module, 30:24 then select Google
+Sheets. Now we want to look up information, not add information to the Google sheet. 30:30 So we'll select search rows for our action. Select your spreadsheet from the list, 30:35
+select the relevant sheet, table contains headers. 30:40 And then let's set up a filter. Click the first blank dropdown, and select the Browse AI task ID. 30:47 Then leave text
+operators equal to, click in the blank space below, 30:54 and select the Browse AI task ID. Click save, and now let's test our new module. 31:03 Click the dropdown arrow next to
+run once, select the most recent successful scenario run, 31:09 and click run once. Now if we click to open the operation summary for Google Sheets and we scroll down 31:15 to see
+the output bundle, we can see all the information was pulled in from that row in our Google Sheet. 31:22 This is the same information that we logged from the contact form. Great,
+so now we're operating with all the same information 31:28 that we had before. Let's go ahead and save our progress. Make Your Automation Smart with AI Agents 31:33 Our automation
+is now logging submissions, filtering data, scraping websites, and passing everything to a second scenario. 31:41 Now, let's make it smart with an AI agent that can actually make
+decisions, schedule meetings, and send emails for you. 31:49 An AI agent is essentially an LLM with access to tools. 31:54 It can actually do things for you, like scheduling events
+or sending an email, rather than just giving you a text output. 32:01 To add an AI agent in Make, let's click the plus button on the right side of our Google Sheets module, 32:07
+and then search for agent. The very first option is Make AI agents, 32:13 and we'll select run an agent. In the settings panel that appears, click create an AI agent. 32:21 Then
+click create a connection. Give your connection a name if you'd like, and then click save. 32:26 Next, give your agent a name. I'll call mine AI autoresponder. Next, select a model
+from the dropdown. 32:32 Personally, I like to use the larger models because they're smarter. Next, we need to give our agent a system prompt. 32:39 A system prompt is essentially
+a primer message that tells our agent how to behave, what its purpose is, 32:45 and if there are any guidelines it should follow when crafting a response. To Make it easy to build
+your first system prompt, 32:51 I've created a template that you can use. To use the template, click the link in the description below. 32:57 I'll give you a quick rundown of this
+template, and you can modify it to fit your own purposes. First, we have an identity. We tell the agent who it is. 33:05 In this case, we're telling it that it is acting as Joe
+from Joe's Web Design. And the context is it's responding 33:11 to contact form submissions, and we're telling it what tools it will have access to. We're telling it what input
+data we're going to give it, 33:18 and then we're giving it a few tasks. Task one is to evaluate and determine 33:23 whether it's appropriate to schedule a meeting or not. If it is
+appropriate to schedule a meeting, it'll check the calendar to see if their preferred date 33:30 is available and then schedule it if it is. If not, it'll find some available times
+to propose. Task two is to write a response. 33:37 It'll analyse the provided website HTML to analyse their business and anything about them. 33:43 There's also some parameters
+that it should follow in crafting a response. Finally, task three is to send that message via Gmail 33:50 to the provided email address. Go ahead and hit Command + A on a Mac or
+Ctrl + A on Windows to highlight everything. 33:57 And then Command + C or Ctrl + C to copy, and return to Make. 34:03 Then paste it in for your system prompt, and click save.
+34:08 Now, a quick note, we set this up using Make's built in AI capabilities. 34:14 However, you can also use other third party LLMs, like OpenAI, Claude, or Gemini. 34:20 I
+actually prefer to use the most recent model from ChatGPT because I think it does a really good job as an agent. 34:26 But it's a little bit more complicated to set up. So for our
+tutorial today, we're keeping things simple by using Make's built-in AI capabilities. 34:33 Next, let's give our agent some inputs. Scroll to the bottom of the configuration panel.
+And, under messages, click add item. 34:42 Click in the blank space under message one, and then let's pass along all that information from our spreadsheet. 34:47 For example, we'll
+say first name:, and then we'll click on the first name from our spreadsheet. 34:53 We'll create a new line, type last name, and then add the last name from our spreadsheet. 34:59
+Continue until your message looks something like this. We want to include the name, the website, email, 35:04 the message, the preferred date, and preferred time. Next, create a
+new line, say HTML. 35:11 And then let's add the HTML that was captured by our Browse AI module. Under the Browse AI inputs, click the arrow 35:17 to the left of the captured texts
+section to expand it. And then grab the HTML output. 35:25 Once you've done that, click save. Now let's go ahead and test our agent. Click the dropdown arrow next to run once,
+35:33 and rerun a recent successful scenario. 35:39 Our agent ran successfully. And if we click to open the operation summary, 35:44 under output and bundle one, we can see a
+response item, which we can expand to see the subject line 35:50 and the message it created. Now, we told the agent that we gave it access to our calendar and Gmail, Automate
+Events with Google Calendar 35:56 but we haven't actually done that yet. So let's set up our calendar now. To connect the calendar, we're going to do something a little bit
+different. 36:03 Instead of adding it by adding a whole new module after the Make AI agent, instead we're going to give 36:09 the AI agent a calendar as a tool. So click to open
+the agent. 36:14 And then in the tools section, click add tools, and click module. 36:20 Click the select a module tool dropdown, and then click create module tool. 36:25 Search
+for calendar and select Google Calendar. Next, find get free/busy information, 36:32 and select that from the list. You can change the name and description if you want, 36:37 but
+you don't really need to. For connection, select your connected Google account. 36:43 And then if prompted to update the connection permissions, click continue and follow the
+prompts. 36:50 Next, for time range from, click let the AI agent decide. 36:56 And then for time range to, select let the agent decide. 37:01 Finally, under calendars, click add
+item. Change the mapping toggle to off. 37:08 And then click the dropdown and select the calendar you want to check. Once you've done that, click add. 37:15 Now our AI agent has
+access to check this Google Calendar to see if it's free or busy on any particular date and time. 37:22 Now, let's give it the ability to add events to the calendar. Again, click
+add tools, module. 37:30 Select a module tool, and create module tool. Again, select Google Calendar, 37:36 and then select Create an event. Again, you can change the name and
+description if you want, 37:44 but you don't really need to. Scroll down, and your connection should already be set. 37:49 Change create an event from quickly to in detail. Select
+your relevant calendar from the calendar ID dropdown. 37:57 Then for event name, check let AI agent decide. For add Google Meet video conferencing, 38:03 check the button for yes
+if that's how you want to do your meetings. For attendees, select let the AI decide. 38:11 All day event, we'll say no. Start date, we'll say, let AI agent decide. 38:18 For end
+date, check let AI agent decide. Then for duration, let's set how long 38:24 we want our meetings to be. Let's say 30 minutes. The format is HH:MM. 38:31 So we'll say 00:30 to make
+the default duration 30 minutes. 38:38 Next, check the toggle for advanced settings and scroll down. Then, let's check the box to let the AI agent 38:44 decide what the description
+should be. Since Joe of Joe's Web Design does video conferencing, 38:51 a location isn't needed, we can skip that. Then go through and set the rest of the calendar settings 38:56
+the way you want them. These defaults work for me, so we'll click add. Automate Personalized Emails with Gmail 39:03 Now that our AI agent has access to the calendar, let's also
+give it access to Gmail as a tool. 39:08 In the Make AI agent configuration popup, click add tools, module, select the module tool, 39:16 then create module tool. And select Gmail
+in the app search, then send an email. 39:22 Again, you can give it a name and description. I'll just leave it as it is. Then click create a connection. 39:28 Then click sign in
+with Google. And follow the prompts. Once you're all connected, scroll down. 39:37 And for the to field, check the box to let the AI agent decide. Let the AI agent decide the
+subject. 39:43 Change the body type from collection of contents to raw HTML. 39:49 And then check the box to let the AI agent decide the content. Finally, click add. 39:54 Now,
+when I click add here, it doesn't take. And if we scroll to the top, you can see why. There's an error, it says, maximum number 40:01 of active scenarios has been exceeded. In
+Make, on the free plan, you can only have two active scenarios. 40:08 Now, you might say, "Well, we haven't activated any scenarios yet." That's because each module inside of the
+AI agent 40:15 counts as an active on-demand scenario. It's technically a little mini scenario that the agent can run whenever it needs to. 40:22 So in order to finish our work and
+save this module, we'll need to sign up for a paid account. Without closing this tab, on the left side, 40:29 right click on the org button and click open link in new tab. 40:35
+Then, in the white menu on the left side, click subscription. Scroll down to compare plans, and upgrade to at least the Core plan. 40:43 Once you've done that, you'll get a
+confirmation saying your plan was successfully changed. Great, we're now in the Core plan. Let's get back to work. 40:51 We'll close out this tab. And then in our open add module
+tool for Gmail, let's click add, and there we go. 40:58 Now, our AI agent has access to our calendar and it can send emails on our behalf. Click save the lock in the changes for
+your AI agent. 41:05 And then, let's save our scenario also. Now our AI agent has access to our calendar and our email, 41:12 but we still need to test it. In a new tab, let's open
+up our calendar and in another tab, 41:17 let's open the email account for the email that was included on the contact form. 41:22 I just so happen to have access to Catherine
+Smith's email address here. Returning to Make, let's make sure that our new AI agent 41:29 is working properly with all its tools. Click the dropdown arrow to run once, and run a
+test with the data from a recent scenario run. 41:37 Make shows a success, but here's the moment of truth. Let's open up the calendar, and we can see that a consultation has been
+added 41:43 for January the 7th. Checking the email account, let's refresh the inbox. 41:49 And there's both an invite to the consultation event, as well as an email response. Test
+& Activate Your Workflow 41:55 Now our automation is fully built, when someone submits the contact form, they should get a personalised reply within a minute. 42:01 But we've only
+tested this in pieces. Let's turn everything on and see if it actually works. 42:07 Let's make sure our scenario is saved. And then on the left side menu, click scenarios. Let's
+turn on both of our scenarios here. 42:14 On the right side, next to each of them, toggle the switch. Now, theoretically, as soon as a contact form is submitted, 42:20 the
+automation should run. With the first one being our Tally trigger, and the second one being activated 42:26 by our Browse AI task completion trigger. Let's submit some information
+for our contact form. 42:31 I'll fill it out with the same information as last time. Although this time, I'll type a slightly different question 42:37 and give a different date.
+Once your test form is filled out, go ahead and hit submit. 42:43 And after about a minute, a new event appears on our calendar. And if we click to open it, we can see the agenda's
+included, 42:49 as well as a Google Meet link. And then if we go to our inbox, click refresh, and the new event invitation appears 42:55 along with the corresponding personalised
+email. Our automation is live and working, booking meetings 43:01 and sending personalised emails within moments. But when you're building on your own, you'll run into errors and
+that's normal. Troubleshooting & Error Handling 43:07 Let's look at how to troubleshoot when things don't go as planned. If your automation doesn't run successfully, you'll get
+some sort of error notification. 43:14 For example, here in the all scenarios view, we can see a little yellow triangle here saying the scenario requires your attention. 43:21
+Let's click to see more details. Here it says, the reason for the error is that validation failed for one parameter. 43:29 Let's click the history tab. Then let's click the details
+button on the last erred run. 43:37 Here we can see in the log that it says, validation failed for one parameter, and then the invalid parameter is the URL. 43:43 This is for our
+Browse AI module. So if we click the module, we can see more details of the operation. 43:51 It's almost inevitable that you'll need to debug your automation at some point, but
+Make makes it super easy. 43:57 Simply go to your history, look through the logs, find the point in your automation which has an issue, 44:02 read the error message. And then
+update your automation accordingly. Now that you know how to troubleshoot Templates & Community Resources 44:08 and fix common automation issues, let's make things even easier. Why
+build everything from scratch when make.com 44:14 has a huge library of ready-to-use templates? Let me show you how to jumpstart your next automation. 44:21 From your dashboard, on
+the left side, find and click templates from the menu. 44:26 And here you'll get a massive list of ready-made automations that you can grab and working with immediately. 44:32 Or
+instead of scrolling, you can search for apps or functions by name. For example, let's say you wanted 44:37 to connect Tally with Slack. You could search for Tally, then click it
+in the list. 44:43 And then type Slack and click it in the list. And now by using those filters, we get a personalised list 44:50 of templates that use those two apps. To start
+using one of these pre-made automations, 44:55 simply click on the one you want to use. Click on the start guided setup button. 45:00 And then follow the instructions provided by
+the light bulb popups throughout the configuration panels. You just learned how to automate tasks, add AI and logic, 45:08 troubleshoot issues, and connect all of your favourite
+apps. You now have the foundation to automate anything with make.com. 45:15 If you haven't already, sign up for your free make.com account with the link in the description below.
+45:20 Thanks for watching. All From Metics Media0:00 in today's video I'm going to be sharing 0:01 with you a simple no fluff guide to 0:04 make.com make is a no code or very 0:06
+minimal code platform that allows you to 0:08 build automated workflows by connecting 0:11 together different apps and tools and 0:14 services you can use it to automate 0:15
+repetitive tasks in your business pass 0:17 data between apps and tools or trigger 0:20 actions in one app based on activities 0:22 in another think like somebody submits a 0:25
+Google form to you and when they click 0:27 submit that triggers a whole automation 0:29 if you want to simplify and make your 0:31 business more efficient by connecting 0:33 all
+the different Tools in your Tech 0:35 stack mate can do all that now before I 0:37 take you inside of make the first thing 0:40 that I recommend that you do before 0:41 building
+any automation is to actually 0:44 think through it sounds so obvious right 0:46 but think through exactly what you want 0:48 to build by the way if you're new here 0:50 my name is
+Rick mold ready and for the 0:51 past decade I've been running a seven 0:53 fig online business coaching other 0:55 online businesses and today I help 0:57 online businesses use AI
+to to become 1:00 more efficient streamline your business 1:02 and also in the process become a lot 1:04 more profitable now as I mentioned just 1:06 a moment ago I highly
+recommend that you 1:08 before building anything in make.com 1:11 that you draw out the automation that 1:14 you want to create really think through 1:16 it first start with the
+end in mind what 1:18 is the end goal that you want to create 1:20 with this automation I like to draw it 1:22 out sometimes I'll draw it out on my 1:24 iPad you can draw it out in
+your 1:26 notebook I like to also use a tool 1:27 called whimsicle or miror 1:30 this is going to make building the 1:32 actual Automation and make so much 1:34 easier all right
+here we are inside of 1:36 make this is the main dashboard area it 1:39 starts you off with the organization tab 1:42 now this is a test account that I have 1:44 I'm not going to
+take you through each 1:45 of the tabs along the top here but 1:47 suffice to say these are more like 1:48 administrative tabs the one thing that 1:50 you will want to check out if
+you do not 1:52 currently have a make subscription is 1:54 the different plans that they have 1:55 highly recommend that you do monthly not 1:58 yearly and that goes for any AI
+tool out 2:01 there do the monthly even though the 2:02 yearly is has some savings there go with 2:05 the monthly I also recommend doing the 2:07 Pro Plan and that's going to be
+more 2:10 than sufficient for what you want to do 2:12 for most of you want to do in your 2:14 business using these automations then 2:17 the the next tab here is your team so if
+2:19 you want to have people on your team who 2:22 are going to be in your make account 2:23 you're going to want to add them to the 2:25 team area here you can see also on the
+2:27 organization dashboard here by the way 2:30 your talks about your current plan how 2:31 many operations that you have and also 2:34 that you've used the number of 2:35
+operations here and then active 2:37 scenarios down here at the bottom 2:39 scenarios is a key term in make.com 2:42 scenario is basically the automation 2:45 okay and you'll see
+that here in the 2:47 lefthand column the next one that you 2:49 can go down to and you're going to see 2:51 all the scenarios here we're going to 2:53 build an actual scenario
+here in just a 2:55 second but before we do I want to 2:57 continue taking you through this 2:58 left-hand column here and show you sort 3:00 of like what is what I consider 3:02
+important and what I consider not so 3:04 important again I want to give you the 3:06 simple no fluff guide to getting 3:08 automations going inside of make below 3:11 scenarios
+you have templates these are 3:13 exactly what they sound like there's I 3:16 want to say in hundreds of templates 3:18 that you can check out here pre-built 3:21 scenarios that
+you can go into I highly 3:23 recommend even if it's not something 3:25 that you're going to use I highly 3:26 recommend clicking into a few of these 3:29 just to kind of see how
+they work but 3:31 you can do they have a good search 3:32 functionality here you can search by you 3:34 know what is the automation that you 3:35 want to do by Tool Etc me
+hundreds of 3:38 templates here in the templates section 3:41 the connections area here is just 3:42 basically these are all the tools and 3:45 apps that you are using in your 3:48
+scenarios in your automations they're 3:49 all listed out here if you need to 3:51 reauthorize or verify any of the 3:54 connections you can just come over here 3:55 to this
+connections tab they're all 3:57 going to be listed out right here any 3:59 web hooks that you are using in any of 4:02 your scenarios and I'll explain web 4:04 hooks here in just
+a minute but they're 4:06 going to be listed all out here so if 4:08 you need to go reference a specific web 4:10 hook for any reason you can come in over 4:12 to the web hooks tab
+if you just what it 4:14 says here if you want to manage public 4:15 or private Keys easily as you can see 4:17 here I don't use it I don't need to I I 4:20 don't find the need to
+to do that then 4:22 you can see devices here so this 4:24 basically allows you to download the 4:25 make app to your phone I don't do that 4:28 because I want to be building
+scenarios 4:29 and such on my computer here data stores 4:33 and data structures data stores 4:35 basically allows you to create a 4:37 database of information right here 4:39
+within make again you can see here I 4:42 don't use this I don't find the need to 4:44 do that I use other databases and then 4:46 also data structures a bit more advanced 4:49
+again I don't need to be using it for 4:52 what I'm building in my business the 4:54 custom apps you can build a custom app 4:56 right here inside of make again as you 4:58 can see
+it is a little bit more advaned 5:00 I'm not doing custom apps in here don't 5:02 find the need to all right let's go back 5:04 up to the scenario section as I 5:06 mentioned
+earlier scenarios are the 5:08 automations this is your Hub basically 5:10 building out your automations here 5:12 inside of make so I'm going to go to the 5:14 upper right hand
+corner I'm going to 5:15 click on new scenario so this big circle 5:19 here with the plus you can adjust the 5:21 size make it smaller you can drag it 5:23 around here but this is
+a each time you 5:26 see one of these circles this is what 5:27 they call a module here inside side of 5:30 make and the apps I mean they have 5:32 thousands of apps that you can
+choose 5:36 from now this first module as you're 5:38 building out your scenario this is going 5:40 to be your trigger meaning the whole 5:43 automation gets kicked off by whatever
+5:45 is in this module right here so let's 5:47 start building a super simple automation 5:50 here and I'll explain as we go through 5:52 here the finer points of likely the 5:55
+things that you'll be using most inside 5:57 of make here so I'm going to click on G 5:59 Gmail I'm going to type in Gmail and 6:01 let's just say that I want to build an 6:03
+automation when I get an email in a 6:06 specific folder in my Gmail I have 6:09 Claude write in email response I wanted 6:13 to read the email that came in write an 6:16 email
+response and then send that email 6:19 back to Gmail in my draft folder for me 6:22 to review before sending out okay so 6:25 super simple this is going to be a 6:26 three-step
+automation so I'm going to 6:28 click on watch emails so from here you 6:32 have your connections at the top this is 6:35 where you are connecting the tools and 6:37 apps that are
+in make to your actual 6:40 account so for example for my Gmail 6:42 account I need to connect it to my 6:44 Google account so if you have not set 6:46 this up already and this is
+going to be 6:48 for any module or any tool that you're 6:50 using for the first time you're going to 6:52 want to go to the ad here you're going 6:54 to want to give your
+connection a name 6:55 and click on sign in in this case Here 6:58 sign in with Google and I'll walk you 7:00 through the steps super super easy 7:02 you'll want to do this with
+each of the 7:04 modules that you are adding and in a 7:06 second I'll show you the anthropic 7:07 module for Claud and in the anthropic 7:11 module you will have to add your 7:12
+anthropic API key so you want to get 7:14 your API key first I'll show you that 7:16 here in just a second and now that I 7:18 made that connection now I can start to 7:20 build
+out the actual automation of what 7:23 I want it to do so remember the trigger 7:25 in this whole automation is when a new 7:28 email comes in in to Gmail and I want to 7:32
+specify when it comes into a specific 7:34 folder so I'm going to click right here 7:36 in the folder field takes a second to 7:38 load and I'm going to click AI 7:40 newsletters
+let's just say that I click 7:41 AI newsletters the filter type is a 7:44 simple filter so if you do a little drop 7:46 down you have simple filter and Gmail 7:48 filter I'm going
+to keep that and I'm 7:49 going to say the criteria is all emails 7:52 so all emails coming into the AI 7:55 newsletter folder that I have in Gmail 7:58 I'm going to keep this to
+know maximum 8:00 number of results basically it's all all 8:02 that's saying is one email at a time I'm 8:05 going to click okay and this is another 8:07 key thing that you're
+really going to 8:09 want to understand when you start 8:10 building out automations in make so 8:12 you're basically saying choose where you 8:13 want this to start so you're

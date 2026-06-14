@@ -1,0 +1,224 @@
+So it's a little 47:27 bit random. We can kind of just select this and tell it to make the background green, modify something, whatever. 47:33 That's what it's built for. Then all
+the way at the bottom here, we've got message actions. So this is specifically 47:38 for when we're receiving messages from the agent itself. I'll turn both of these on. And if I
+just go ahead and 47:44 send a message off to this agent, you'll see in the response that we get back from the agent that there's a few 47:50 different options that we get for that
+response. So, as we can see here, I just said hello and it gave us back this 47:56 response right here. At the bottom, you can see we've got these options here. And so, for the
+feedback, this is the 48:01 thumbs up and the thumbs down button. So, if we hit thumbs up, that just sends a request off to chatt to tell it that 48:07 we liked the answer. If we
+did a thumbs down, that sends it off to chatbt to tell it that we didn't. So, what we can 48:12 do is literally just turn that off and then we don't see them anymore. And then
+there's also a retry button, which is this one right here. This is if we want 48:19 to retry the response back from the chatbot. So, if we want to get a better answer, we can do
+that just by clicking 48:25 it. Once again, we can literally just turn that off if we didn't want it. For the next part of the video, I'm going to E-Commerce AI Agent Live Build
+(Step-By-Step) 48:30 be going through and creating an agent step by step from scratch. So, I'm not going to be using a template. I'm 48:36 literally just going to start from
+scratch and I'm going to build an entire agent. But before I get started, and if 48:41 you have made it this far, I really appreciate you watching. If you could let me know in the
+comments below what you think of this brand new agent 48:47 builder, whether you think it's an NN killer or not, let me know in the comments below. And also, if you could subscribe
+to the channel, I'm going to 48:53 have a lot more content around this coming out soon. And if you could like the video as well. And YouTube also just 48:58 released a new hype
+feature. So, if you do see a hype button below this video as well, please hit that button. That 49:04 actually really helps out a lot for whatever reason. Really helps push the
+video. So, if you could hit the hype button, that would be amazing. But 49:10 anyways, let's jump back into it. So, coming back to the main dashboard page right here. I'm going to
+hit create and 49:16 we're going to jump into a brand new workflow. For this agent that I'm going to build, I want to use and reference some of the widgets from the widget 49:22
+builder page right here. So, I'm going to sort of build it and structure it around some of the widgets. So, just looking at the page here, there's quite 49:28 a few different
+widgets, but I think one that comes up quite a bit is the e-commerce example. So, we can get a 49:34 checkout widget right here. we can get a purchase complete widget as well. And
+so I'm just going to use maybe this one as 49:40 well as this one in the actual build. And we're going to have sort of multiple different widgets just because I think they're so
+cool. The first thing that I 49:45 do like to do when building out an instruction set, if you've seen any of my other videos, is just start to build 49:50 out the sort of structure
+of our prompts. Now, most of Open AI's examples have been super simple. Their prompts 49:56 are very basic. Uh but I would do like to do these titles just for the sake of prompt
+engineering. I'm going to say you 50:02 are a so you are a support assistant for a surf shop called Blue Surf Shop. 50:07 Your role your role is to help greet the user and 50:15
+make them feel welcome on our website. So we're assuming this would be added to 50:21 some sort of a website widget uh and this would be shown to the user immediately as they jump
+on the page. 50:26 Now, the next thing that I'm going to change is I'm going to try to swap the model from GPT5 to GPT 4.1 for whatever 50:32 reason. At the moment, GPT5 seems to
+not be working on this particular agent builder, only maybe because it came out 50:38 literally 4 hours ago. But otherwise, I'm just going to do 4.1. 5 is probably working by the
+time that you're watching 50:44 this. And that's it for now. We're just going to go ahead and see if this actually works. So, I'm just going to click preview. I'm just going to
+say, 50:49 hey, and we'll see if the message pops up. So, there we have it. Hey there, welcome 50:54 to Blue Surfer Shop. Got a cool emoji as well. Whether you're looking for new
+boards, gear, or just have questions about surfing, we're here to help. What 51:00 can I do for you today? Cool. Pretty standard message. That's what I would be expecting it to do.
+The next thing I'll 51:06 probably do is give it some knowledge. So, obviously, this is going to be connected to a real company, a real business, uh, with real products and 51:13
+real prices and real information about them. So, what we can do is add some knowledgebased files to our tool. So, 51:19 I'll just click on the plus button. I'm going to jump into
+file search. I'm just going to upload some files related to 51:24 the company. So, I just generated this file here on Chat GBT. I just told it that I have a fake surf shop called
+Blue 51:31 Surf Shop. I need a list of products and prices uh for this surf shop and output 51:36 it in a PDF. And so, that's what I got back. I'm going to be able to upload this
+to my agent and it should be able 51:43 to reference this for just the testing purposes. So, there we go. I just went ahead and uploaded that PDF right there 51:48 and that is now
+been uploaded. We'll just hit attach. And now this agent should have access to that entire file. 51:54 Reference any information about our products and pricing. We'll give that a
+go. Now I'm going to hit preview and I'm going to ask it about a particular 52:00 product. So I'm going to jump back to this. We've got the blue glide longboard. So I'm going to
+ask it what 52:05 is your best board. See if that picks it up through there. Hopefully it should. 52:11 Still welcomed me because that's what it's been prompted to do. It just
+searched through my files. And here we go. Here are some of our top surfboards. 52:18 the blue glide longboard, turbo shortboard, bunch of other stuff as well that I assume looks
+to be it looks like 52:24 it just took the top products right here, which is perfect because these are all of the surfboards. So, the next thing that I'm going to do is create
+52:29 maybe a conditional step to move forward with all different types of requests. So, obviously, this agent needs to be 52:35 able to handle returns. Somebody that maybe wants
+to purchase a product that we can use those widgets for. Maybe 52:41 somebody just wants more general information as well. We want to be able to handle all of those different
+flows. 52:46 And in order to do that, what we need is the condition step. So just dragging in the if else condition step, I can drag 52:52 the greeting straight into this step
+right here. And we can start to map out everything that we need for it. But 52:57 before we do that, we do still need our agent right here to output all of the variables and values
+that we can use in 53:04 that if condition step if you can remember from the template earlier in the video. So what I'm going to do is change the output format to JSON so we 53:11
+can actually get some values assigned to some variables. I'm going to click on the add schema 53:16 button and this is going to pop up right here. And what I'm going to do is just
+use the AI generator at the bottom here 53:22 to generate a bunch of properties and values that we can use without having to do it all manually. So I just wrote 53:27 this. I need
+to have a value assigned to a property depending on the pathway the user wants to go down. If they are 53:33 returning it, it needs to be assigned with returns. If they are
+purchasing a product, it needs to be assigned with purchasing. If they are needing more 53:39 info, it needs the info assigned. So hopefully it understands that. I just wrote that
+up very roughly, but here we 53:44 go. We've got the pathway enum right here. This is pretty much exactly what we're looking for. Pathway is the name of the property and it is
+going to get 53:51 assigned one of these three values of either returning, purchasing or info. So, we can use these values in the next 53:57 step and it is going to be decided on
+by AI. So, our AI agent is obviously going to do all of that work for us. It is 54:03 going to decide which one to select. Now, right after this, we got this next step that it
+automatically generated. We 54:08 don't actually need this. I'm not sure exactly what that's for. That's not necessary. we just need this one. So once we've done that, we've got
+our 54:14 values coming out of the agent, we can jump back into this step and we can start to configure our conditions. So 54:20 once we're on this step right here, what we can do
+is click into this condition right here. If we just type the 54:25 brackets, it's actually going to allow us to get access to those variables. And this is what we're going to be
+using to 54:30 obviously depend which pathway to go down. So once we've opened this up right 54:35 here, we're just jumping into the output path and then we're jumping into the
+pathway string. So this pathway string 54:40 is what will contain the pathway on which we're going to be going down. So just clicking on this is going to populate these fields
+right here. So 54:47 this is just showcasing where that value is located. We want to use the equal to condition. 54:54 And then we want to obviously set it to one of the values
+from our agent earlier. So we could just set this to 54:59 whatever value it would have been set to. So we jump back to the agent. Jump back in here. We've got returning, 55:05
+purchasing, or info. So, I'm going to change this to returning. 55:11 And then I'm going to create another pathway and just copy this once again. Paste it in here and just type
+purchasing. 55:17 Copy that once again. Paste that in there and just type info. Once again, these are all coming from our agent step 55:23 depending on what it will assign it. Just
+to fix this up and clean it up a little bit, we can actually copy this and just paste it as the case name. That 55:30 just makes it a little bit more organized on the actual
+dashboard itself. So I can just copy this, change 55:36 that, copy info as well. And there you go. Look, it looks a lot more organized on the dashboard. So next up, I'm going 55:43
+to create individual agents for each of these pathways. So I can grab the agent node once again. And if somebody is 55:48 interested in purchasing, I can drag that to this
+particular agent. So I'll give it a prompt. I'll give it a role 55:54 once again as well. You are the purchasing helper at Blue Surf Shop. you 56:02 will assist in helping someone
+find the right product for them and purchase it. 56:12 So, super basic prompt just to give it a good enough amount of context to be able to handle the conversation. I'm going to
+swap this over to 4.1 once again. And 56:19 once I've done that, right after this agent, I'm actually going to be adding another agent. And this is going to be the one that
+contains our widget. 56:42 So, I've just prompted this next widget to say, you will display the product the user is interested in purchasing in the 56:48 checkout widget. So, I'm
+going to jump back to the widget builder. I'm going to grab this checkout widget right here. 56:53 I'm going to open it in the widget editor. I'm going to download this. I'm going
+to come back to the output format. 56:59 Click on the widget. Click on widget again. And I've just uploaded this right in here. And now what we can do is 57:05 pretty much do
+nothing and it's going to populate that entire thing by itself. So our entire flow has just ran through 57:10 from start to finish. Uh we were able to just say that I'm looking to
+purchase surfboard. It ran through the purchasing 57:15 flow as it should have. We can see here we've got this next agent step which is here. This is pretty much given us a 57:22
+bunch of details around some of the surfboards that were on option. Right after that, it pretty much went straight 57:27 to the widget. And we can see here that it has taken all of
+the products that it was most relevant to all of the 57:33 surfboards that I was inquiring about and it's populated them within the widget. Now, obviously, there's a bit of work
+required here to make this all 57:39 fleshed out and nice. Obviously, the total here isn't calculated properly of this particular cart. We wouldn't want 57:45 to purchase all of
+these surfboards at the same time, but hopefully it gives you a good idea as to how we can integrate widgets in different use 57:51 cases. So, next, I might want to also use this
+purchase complete widget as well. So I can open this in the widget 57:56 editor. I can download this and then also add it into our agent step. So what I can do is go ahead and
+maybe I'll add 58:02 a condition step to get a user approval based on the items that they've been given. So we're essentially going to 58:07 give them a bunch of items in this
+particular purchase items, checkout widget, whatever it does, we're going to 58:13 give them those items and then based on the user approval, if they accept it, they would want to
+go ahead with purchasing those items, we can 58:19 essentially have that sent through to another step. And so for this next agent, I've given a prompt that says, "Your role is to
+give the user the 58:26 completed purchased widget based on the item they were interested in." So I've pretty much just referenced this 58:31 purchase widget from the widget
+builder once again, adding this into our actual agent and just uploading it as the 58:38 widget. So the first few agents have ran through and you can see here that we've got the
+classic longboard surfboard 58:43 that's just popped up right here. We can click approve to continue. It's obviously given us the top result right 58:49 here. Uh we can click
+approve and we happy with that purchase. It's going to move on to the next widget which is 58:54 related to the purchase complete. So there we go. Classic surfboard has now been
+purchased. Uh obviously there's a 59:00 lot of work that's involved in obviously getting these widgets to populate the right data. This is obviously not going to be $20. It was 378
+up here. We do 59:08 need some context to be brought through from here over to here. Uh so there are little things here and there that you will need to obviously populate. So 59:14
+there we have it. Hopefully, you are now a much better agent builder than you were at the start of the video. If this 59:19 wasn't enough and you want to learn more about the agent
+builder and you want to learn more about other platforms as well, I've actually got a completely 59:26 free AI school community. We've got over 17,000 members with 50 plus other AI
+59:31 agent templates and courses all for free. I've got a link in the description if you want to join. 59:39 [Music] 59:48 [Music] 1:00:06 Hello. 3. [Music] 1:00:28 I love you.
+1:00:33 [Music] 1:01:38 It's okay. [Music] All From the series0:03 [music] Now every few decades a technology changes the way we think, the way we 0:11 work, the way we create. It
+happened with the internet. It happened with smartphones. And now it's 0:18 happening in the world of AI. And in November 2022 is where the story 0:23 began when Chad GPD was first
+introduced to the world. 0:30 In this YouTube series, I want to go through the usage of charge APD as a 0:36 tool. But our main focus is going to be using Open AI as a platform and
+how we 0:43 can create programs to interact with Open AI APIs. 0:49 But before I do go on to using open AI as a platform, I do want to go through 0:54 chat GPD as a conversational
+AI model. As we know, this was developed by Open 1:01 AI. It was launched in November 2022 and it took the world by storm. It was 1:07 probably the fastest to reach around 100
+million users. As of November 2025, 1:14 I believe Charpd has estimate around 800 million weekly active users and is 1:22 closely approaching 1 billion active users globally. You
+know, I've always felt that when you 1:29 make products available to the consumer, make it easy to use, it drives growth 1:35 and adoption. And with Chad GP, it was something
+revolutionary, right? We had 1:41 humanlike conversations wherein we could interact with the 1:46 model. We could ask it to write essays, summarize text, help us in coding. The
+1:54 list is endless. Over time, Charge JPD has evolved from just being kind of that textbased 2:01 uh chatbot onto being something more capable. Today it supports voices, 2:08
+images, data analysis and even file uploads. I said we're going to cover charge APD 2:14 and then we'll go through the open AI platform. Uh this is where developers go and build
+with AI. So while chargd is 2:21 meant for consumers, the open AI platform is where developers can go and start building AIcentric solutions. 2:28 So I said as part of the YouTube
+series we are going to go through how do we use charge GPD as a conversational AI 2:35 assistant and at the same time I said I want to dwell into using Python as a programming
+language that can interact 2:41 with the models. So let's go ahead with the series. I said let's start with the basics. I want to start with how do we 2:47 use chart GPD what are
+some of the basic concepts when it comes on to large 2:52 language models. Now we need to start somewhere. Let's start with understanding the basics about using 3:00 chat GPD as a
+creative assistant. So this is that conversational AI system 3:05 that is developed by open AI. It has the ability to understand natural language 3:11 means that it can understand
+and interpret human text. It has the ability now to even reason and responds in a way 3:20 that feels more natural, more comfortable to, you know, work with. You 3:25 know, you can
+think of Tajibd as a AI system that can help you to maybe answer 3:30 questions, generate code, summarize text, summarize documents, generate ideas, translate languages, the list
+3:37 goes on and on. I mean, I use ChadB on an ongoing basis every day just in my 3:44 workflow. Now if you look at the key word of GP this stands for a generative pre-trained 3:50
+transformer. Generative means that it has the ability to generate new content. This could be 3:57 code this could be ideas. This could be text. It's pre-trained. 4:03 We are
+interacting with an underlying large language model that has already 4:09 been pre-trained on large data sets. This includes text from books, articles, 4:16 the web. The model is
+what we interact with in 4:22 the end. The chat part is just the UI that is used to interact with the 4:27 underlying model. It generates text for us. Then we have the transformer.
+The 4:34 transformer refers to a neural network architecture that actually powers the 4:39 underlying GPD models. The transformers are actually designed to take in the 4:46
+sequence of words based on our prompt, based on our query. It converts it into 4:51 tokens. It then predicts the most likely next token when it generates a response. 5:00 Now we
+can directly start using Charg as a platform. If I just go on to hbschpb.com, 5:07 I could ask it a query. I could send it something known as user prompt. So I'm 5:13 sending it a
+very simple prompt. I'm saying I want to learn how to use the open AI platform. What is the best place 5:19 to start? Let me submit this query. 5:25 What it's doing is it's using
+now that underlying model that already been 5:31 pre-trained I said on large data sets and it's giving you a response back. 5:37 It's telling us that in order to you know the best
+place to start learning about the open AI platform is obviously 5:45 to go onto the official documentation. If you go on to platform.openai.com/doccks 5:52 this is the best single
+place wherein we can get a lot of information about the open AAI platform itself. It'll also 5:59 tell you how you can try out the playground how you can learn about the core API.
+Everything is structured in 6:06 terms of its response with the free account. We can go ahead 6:12 and chat with the underlying model. Now here as a guest, yes, we can go 6:19
+ahead and submit our queries, our prompts onto the underlying GP model, 6:25 but then we get very limited features. For example, we can't choose from the 6:31 models that are
+available in chart GP itself. There is no concept of seeing the 6:38 underlying chats having chat history in place. We don't get access on something 6:44 known as projects memory.
+So it's very limited in terms of its scope. 6:50 What you can do is you can actually sign up for a free account, right? that you 6:55 can sign up for free. When you do sign up for
+an account, when you do login, then you get features such 7:02 as, you know, saved history for your chats. You get access to projects. 7:08 You get new features also. You know, you
+can use you also have the ability to use new features when it comes on to chat GP 7:15 itself. But again, there are limitations. Uh for example, there are message caps per day.
+7:23 That means you know I could probably converse with Charg maybe four to five 7:28 times maybe within an hour. After some time it will tell that okay we have exceeded some kind
+of message cap. We 7:36 need to wait for some time before we can submit another query and get a response back. 7:41 There are different plans in place. There's something known as a
+plus plan. 7:46 That's $20 per month. Here there are higher caps. So you know you can keep on 7:52 conversing with chargu and you get a lot of features. I have actually subscribed
+onto that plan but it's not only charged 7:59 I also use anthropic claw as well and there I also pay a subscription. Uh the 8:05 reason I do this is I said I use these large
+language models in my daily workflow. Hence I need continuous access 8:13 to the large language models. What I'll do is let me log in with one 8:18 of my existing accounts. So we
+can sign up with our existing Google account with 8:25 our Apple account Microsoft. I will continue with I said one of my 8:30 existing Gmail accounts. Now here I've sign in onto
+one of my existing 8:35 accounts. This is based on a plus subscription. I 8:41 told you there are different subscriptions in place here. I pay 20 USD per month, but with my
+subscription, 8:48 I do get access to the latest features. I also don't have any sort of daily message caps when interacting with Chat 8:56 GPD itself. Now, we can generate and
+create new 9:01 chats. We can see a history of our chats. We get access to codeex that can 9:07 be used for generating code. We can explore other custom GPDs and we can 9:12 also
+create some you know projects and here we can start I said interacting 9:17 with the underlying chat GPD model. Now as an example you know let's say 9:24 that I want to use CH GPD
+as a learning assistant. I'm preparing for one of the 9:29 exams when it comes onto Azure certifications. Let's say for a water 4, 9:35 I want to use charge GP as kind of a
+learning assistant. In my day-to-day 9:42 work, I do use LLM's large language models to actually assist me when it 9:48 comes on to learning and also helping me in creating
+content. 9:55 There are so many use cases that there are so many use cases when it 10:01 comes on to using a large language model here. I'm just asking the underlying 10:08 model
+please help me in terms of building a 10:14 twowe plan for learning for the a 104 exam. So I said let's say that I am 10:20 trying to prepare myself to give the a 104 Azure
+certification. 10:27 I need some help in building a plan. This is the amount of time that I can 10:34 dedicate in a day. I'm also giving some context onto the model. I'm saying to
+the model, please 10:41 go ahead and assume that or take the role of an Azure exam coach. 10:48 Give me kind of a plan with daily topics. This is for two weeks with a 10:54 tiny
+hands-on for each topic and three review questions per day. 11:00 If I now submit this, this is something known as now a prompt, 11:06 a user message that is going via the chat
+interface. 11:12 This message is being sent onto an underlying large language model. 11:19 And now what you will see is the model is giving you information. 11:24 It's giving you a
+twoe plan for each week for each day. It's telling what we 11:31 should cover. It's beginning with the basics of Azure fundamentals and governance. Then it 11:38 goes on to
+role-based access control. So on and so forth. Here the entire premise is I'm trying to use CH GPD as a 11:46 learning assistant at the end of my entire conversation. So I can copy
+the entire output. I could 11:55 share it. And it's also giving me kind of a follow-up prompt. It's saying that 12:00 would you like me to add any sort of direct portal or CLI
+step-by-step commands. So, it's not only giving me a 12:07 response back. It's kind of a follow-up question saying that do you want more information on certain topics. 12:15 You
+know, think of charge as a versatile assistant. You can ask it almost anything when it comes on to writing, 12:22 coding, studying, brainstorming or planning your day. Now here I'm
+covering very very basic concepts 12:29 but this is all very important to understand because later on we'll be looking at interacting with the open AI 12:37 playground also seeing
+Python programs that can interact with open AI. 12:42 We have to understand the basics such as what are we doing? We are interacting 12:49 with an underlying model. Here we are
+interacting with a model as 12:55 GPD5. There is something known as auto which decides on how long to think. This is 13:03 the inbuilt reasoning that's available with GPD5. We'll
+go to this later on. 13:09 What we're doing right now is we are sending something known as a user prompt. 13:16 We are asking a question or a query onto the underlying model. The
+large language 13:23 model is based on its information. It has returned a response 13:30 and it's not a small response based on our prompt. Right? And we're trying to 13:36 be very
+concise in what we want. We are first asking the underlying model to 13:43 kind of assume a role. We are telling that behave has an Azure exam coach. I'm 13:52 preparing for taking
+an Azure examination certification exam. 13:57 I want you to build for me a plan, a two week steady plan that I can use. 14:05 Give me topics that I should cover on a day-to-day
+basis. This is the amount of time that I have 14:12 within the day. Give me a tiny hands-on for each topic 14:17 and some review questions per day. This is known as the user
+prompt. When 14:25 you start prompting underlying large language models, 14:31 take your time, experiment, see what gives you the best results. 14:37 There is a concept known as
+prompt engineering. This looks into designing your prompts 14:44 in such a way because see here the entire uh purpose of the prompt is to 14:50 get the information that you want.
+So you want something from the underlying large language model. In order to get 14:57 the answer that you want, obviously you need to ask the right question to the underlying large
+language model. It does 15:06 take time to design prompts. If you ask it something, it might not 15:12 give you exactly what you want. You can go ahead and always refine the
+prompt. 15:17 You can change it. Submit the prompt. Again the large language model will understand okay maybe before I did not 15:25 give my end user what they wanted. It'll change
+the way that it approaches your 15:31 problem now and it'll give you a different answer. You can just keep on 15:37 refining your prompts in a way that you know you design in such
+a way that you 15:43 get what you want has the required answer. I said these are all very important in 15:50 terms of basics when ID professionals and students when they you know
+start building projects 15:58 and programs to interact with services what I normally see is students don't 16:04 first of all try to understand the basics about the service 16:10
+what can the service do how would you get the best out of a service and I said 16:15 what are all the basic building blocks all very important. 16:20 Now next always understand
+that open AI has a 16:26 platform has a variety of models. A lot of companies nowadays when they release 16:33 like when you have anthropic when you have meta you have Microsoft
+you have a 16:40 lot of companies that have their own different sets of models. 16:45 Even open AI they have different models. Their current flagship model is GBD 16:52 version 5.
+So this is the best model when it comes on to a variety of task but they do also 17:00 have right on this page if we scroll down we will see a variety of models. 17:07 They have
+the prior one which is GP 4.1. They now also have openbait models as 17:13 well and they have specialized models. For example, they have Sora that's used for genic videos. They
+have separate 17:21 models that can be used for generic images. So on and so forth for each and every model. So for 17:28 example, let's go on to GPD5. Here we have all of the
+information 17:33 pertinent to the model itself. For example, we can see a description. This 17:38 is the current flagship model. It has reasoning capabilities. That means it 17:45
+has the ability to first think before it answers. Before when you're looking at 17:52 the initial set of large language models, you ask it a query, it would then fire back an
+answer based on its 17:58 knowledge. But now you can ask it to think like a normal human being. Think 18:04 before you give the answer. So you have that reasoning capability. 18:10
+There's also something known as the speed. We'll go through these concepts as we start interacting with the models 18:17 on OpenAI. We have a price. Now this price is important
+when you 18:24 start interacting with APIs on the open AI platform. For me as a consumer, 18:32 right? So we have two aspects. As a consumer, I am using charge GPD. Here 18:37 I'm
+already paying based on my subscription, my plus plan 20 USD per 18:44 month. Hence, this pricing of 1.25 to 10 USD 18:52 for the tokens does not apply to me. It's only has a
+developer when you start 18:58 developing programs that interact with the open AI platform. At that time we have to consider these 19:05 costs. As said as a consumer when I'm using
+charging I'm only paying for a 19:11 subscription on a monthly basis. Hence I don't need to think about these cost. 19:16 Next for each model we have key parameters such as one is
+the context 19:22 window. This is how much of conversation or the text history the model can remember at 19:29 once. It is a pretty large context window. We have the number of max
+output 19:36 tokens that can come back from the model. This is the longest response the model can generate in just one go. 19:44 There's something known as the knowledge cutoff. A
+model 19:49 remember has already been trained on large data sets but these large data 19:55 sets have a knowledge cutoff of se of September 30th 2024 20:02 that means it has no
+knowledge the model has no knowledge beyond this particular point but nowadays the large language 20:10 models can use tools such as web search to go onto the internet and search
+for 20:17 recent data. In addition to its own inbuilt trained knowledge up till this 20:24 particular point, it can use tools such as web search to search the internet and 20:30
+get more recent information. But we can get a lot of more 20:35 information. uh when it comes on to the model itself, we will be interacting with these models 20:42 in subsequent
+chapters as part of this kind of YouTube series on OpenAI. I said 20:49 what we're trying to do is we're going to start we're trying to start very simple. I first want to introduce
+the 20:54 concept of interacting with models by the use of chat GPD. Now obviously we 21:01 will be interacting with these models in further videos as well. 21:06 I said I just
+want to first of all start simple. I want to introduce the concept 21:11 to students that we first of all can interact with large language models 21:18 from a consumer aspect by
+the use of charg. We can create an account. We can pay a 21:26 monthly subscription to get access to a lot of features and we don't have that 21:33 daily message cap on how much we
+can interact with the large language model. 21:38 We have seen that the simple interaction is we present a user prompt and we get a 21:45 response back. Now let's move on to an
+introduction onto the open AI platform. 21:53 Now we move on to the open AI platform. The open AI platform is a developer 22:00 suite that helps you to build applications using the
+current frontier 22:06 models. So you have GPD version 5 that's currently available 22:12 with chat GPD. Again remember that is the consumerfacing application that 22:17 helps you
+interact with the underlying models. As a company, you would want to develop 22:24 applications that consume these models via the use of APIs. 22:31 And for this, we can make use
+of the open AI API platform. 22:38 Similar concept, we first need to kind of sign up for an account. It's a very 22:45 simple process. I will log in onto the API platform 22:50
+using one of my current Google accounts. Once you register for an account on the 22:58 OpenAI platform, you can start now consuming the APIs. The OpenAI platform 23:04 also has
+something known as the playground. The playground allows you to call the models. If you want to see how 23:11 the models behave, you want to send in your prompts, you have this
+kind of 23:16 playground concept in place. If I go on to the dashboard 23:22 here on the left hand side, we have different types of playgrounds. We can 23:28 work with normal
+chats. We have something known as an agent builder. 23:34 We can work with audio. We can generate images. So we have these different sort 23:39 of areas in place in which we can
+interact with the large language models. 23:45 If I try to create a simple chat prompt. So remember here we are not interacting 23:52 as a consumer with charg here we want to 23:57
+consume the underlying APIs on the open 24:02 AI platform that interacts with the underlying GPD models. 24:09 In order to be able to now consume APIs, 24:15 we need to have a
+payment method in place, we will also need to buy has a minimum 5 24:23 USD worth of credit. Now, this credit goes a long way. I said you need to 24:29 complete the account setup
+by first adding payment details. 24:36 Once you add your payment details in place, the next step is you will need to buy asset has a minimum at least $5 24:44 worth of credit. This
+credit can then be used 24:50 on to consuming the APIs on the open AI platform. 24:57 Now, in one of my other accounts, I've already set up the payment details. I've 25:04 already
+purchased that $5 worth of free credit. Let me log onto that account. So 25:10 now what I've done is I've just opened up the Open AI platform. I've logged 25:16 into one of my
+other accounts in which I do have, if I just scroll 25:22 down, if I just go on to billing, I can see I 25:30 have roughly around $3 worth of remaining credit balance. And this
+25:35 balance goes against the API calls that you make against the Open AI platform. 25:42 But this 5 USD that you spend, I said it goes a long way if you just want to 25:48
+experiment, if you want to see how to work with the APIs, that $5 worth of 25:53 free credit is sufficient for months on end. I said it for me, I've been using 25:59 it for at
+least about 3 to 4 months. I said it goes a long way. It's only when 26:04 you start as an organization having extreme usage in terms of consuming tokens and using the different
+models at 26:13 that point in time then you will be consuming more has an initial understanding learning 26:22 process you won't get that much of a cost in terms of calling and
+consuming the 26:28 underlying models. So I said the first thing is you need to 26:35 set up that billing profile that payment method pay that initial 5 USD. 26:42 Then when you
+want to start experimenting with the models that open AI has to offer 26:49 we can go onto the dashboard within the dashboard we can now create a chat 26:55 prompt. So now we get
+the sort of interface in place in which we can submit a user 27:03 prompt. We have something known as a developer message. Here under the model 27:11 you will see that you now have
+the ability to interact with various models 27:17 on demand. When you compare this with charg there 27:22 you had a limitation on the models available. So that was more from a
+27:27 consumer perspective. Here from a development perspective I said we have the ability to consume 27:36 different models. So we have the flagship GB5. 27:41 We have the pro
+version. We have the nano that is a fastest and more cost 27:46 efficient. We have the prior versions of the GPD models. So on and so forth. So we can go 27:54 ahead and choose the
+underlying model. Once you choose the model, we also have 27:59 these various other parameters that we can tweak. We have something known as 28:04 the text format. By default, it
+is text. We have something known as the reasoning 28:10 effort. We have the verbosity. We have the summary and storage of logs. 28:16 I can now chat with the underlying model. Now,
+as an example, if I just ask 28:21 it, what are the benefits of the Azure 28:27 web app service? Now, please know that you can ask the 28:33 model anything based on your work
+profile. Go ahead and send it queries 28:40 and see how it responds back. I said for me primarily I teach students about 28:47 cloud platforms like Azure and Amazon web services.
+So obviously on a daily 28:52 basis I use these large language models as a learning assistant. That's why I'm more 28:59 familiar with the queries such as these. These are very
+simple queries that you can send onto the model and get the 29:06 response back for you all. Send in prompts that matter to you. Send 29:13 in prompts that you want answers to.
+Send in prompts that are based on I said 29:20 your work profile. See what you get back as a response. 29:25 So if I just send this on, what's happening is my prompt is being sent
+29:34 onto GB5 as a model. 29:39 What's the core difference now between this open AI platform and charge GPD? So 29:46 with charge GPD remember there I am paying on a monthly basis
+20 USD per 29:52 month there there is no concept of any sort of additional costs when it comes 29:59 on to now sending and receiving content from a model. But now on the open AI
+30:05 platform I am going to be charged based on the 30:11 token usage based on each and every interaction that I have with the underlying model. 30:19 Here we have something known
+as a playground. The entire purpose of this playground is 30:28 we get to see how to work with the different models. Normally an 30:33 organization would first decide which model
+to choose from. 30:40 It depends very heavily on what's the end goal. What is it that they want in 30:47 terms of responses from the model? See, GB5 is powerful, it's smart, but at
+30:56 the same time, it's also more costly. Maybe as a company, the requirement 31:02 doesn't need such a big frontier model. You could probably go for a nano base 31:10 model.
+Here it is fast 31:15 and it's more cost efficient. Just there are some more enhanced maybe 31:21 thinking reasoning better responses that you might get with 31:27 the frontier
+model. But I said if you have simple queries that you want to 31:32 fire against the large language model then maybe you don't need to use GPD 31:38 version 5. That is a higher

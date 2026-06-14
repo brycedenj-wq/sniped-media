@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Gridiron Royale</title>
+<link rel="icon" href="./assets/favicon.png">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js" } }
+</script>
+<script>
+  document.documentElement.dataset.boot = "html";
+  addEventListener("error", function (e) {
+    document.documentElement.dataset.bootError = String(e.message || e.error || "unknown");
+    var n = document.getElementById("loadNote");
+    if (n) n.textContent = "ERR: " + (e.message || e.error);
+  });
+  addEventListener("unhandledrejection", function (e) {
+    document.documentElement.dataset.bootError = "promise: " + String(e.reason && e.reason.message || e.reason);
+  });
+</script>
+<style>
+  :root{
+    --violet:#3a1b6e; --violet2:#241047; --gold:#ffd34d; --cyan:#27e0ff; --pink:#ff4fd8; --cream:#fff2dd;
+  }
+  html,body{margin:0;height:100%;overflow:hidden;background:#160a33;font-family:"Arial Black",Arial,sans-serif;-webkit-user-select:none;user-select:none;touch-action:none}
+  canvas{display:block}
+  #dev{position:fixed;top:4px;left:4px;color:#0f0;font:12px monospace;display:none;z-index:50}
+  .hud{position:fixed;z-index:10;color:#fff;text-shadow:0 2px 8px rgba(10,0,40,.8);pointer-events:none}
+  #hudTop{top:10px;left:0;right:0;display:flex;justify-content:center;gap:14px;font-size:clamp(13px,2.4vw,21px)}
+  .hudCell{background:linear-gradient(180deg,rgba(58,27,110,.78),rgba(36,16,71,.78));border:2px solid rgba(255,211,77,.5);border-radius:14px;padding:6px 14px;min-width:72px;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.18)}
+  .hudLabel{display:block;font-size:.5em;letter-spacing:.14em;color:var(--gold)}
+  #chainPill{position:fixed;top:74px;left:50%;transform:translateX(-50%);font-size:clamp(12px,2vw,17px);color:var(--cyan);background:rgba(36,16,71,.8);border:2px solid var(--cyan);border-radius:999px;padding:4px 16px;opacity:0;transition:opacity .2s;z-index:10}
+  #staminaWrap{position:fixed;bottom:118px;left:50%;transform:translateX(-50%);width:min(320px,58vw);height:14px;background:rgba(20,8,48,.75);border:2px solid rgba(255,211,77,.55);border-radius:9px;z-index:10;overflow:hidden}
+  #staminaFill{height:100%;width:100%;border-radius:6px;background:linear-gradient(90deg,var(--cyan),#7cff6b);transition:width .12s linear}
+  #banner{position:fixed;top:30%;left:0;right:0;text-align:center;font-size:clamp(26px,7vw,64px);color:var(--gold);-webkit-text-stroke:2.5px var(--violet);opacity:0;z-index:11;transform:scale(.8)}
+  #banner.pop{animation:bannerPop .45s cubic-bezier(.2,1.6,.4,1) forwards}
+  @keyframes bannerPop{0%{opacity:0;transform:scale(.5)}60%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+  #subBanner{position:fixed;top:42%;left:0;right:0;text-align:center;font-size:clamp(14px,3vw,24px);color:var(--cyan);opacity:0;z-index:11}
+  #vignette{position:fixed;inset:0;pointer-events:none;z-index:9;opacity:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(39,224,255,.35) 100%);transition:opacity .18s}
+  #arrowL,#arrowR{position:fixed;bottom:46%;font-size:36px;color:var(--pink);opacity:0;z-index:10;text-shadow:0 0 14px var(--pink)}
+  #arrowL{left:10px}#arrowR{right:10px}
+  .overlay{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:radial-gradient(ellipse at center,rgba(46,18,100,.86),rgba(13,5,38,.96));z-index:20;color:#fff;text-align:center;padding:18px}
+  #coverArt{width:min(430px,72vw);border-radius:18px;border:3px solid rgba(255,211,77,.6);box-shadow:0 18px 70px rgba(0,0,0,.6)}
+  #titleH,#goTitle{font-size:clamp(30px,8vw,72px);color:var(--gold);-webkit-text-stroke:2.5px #5a2d9e;margin:0;letter-spacing:.02em}
+  #goTitle.mvp{color:var(--gold);text-shadow:0 0 30px rgba(255,211,77,.9)}
+  .sub{font-size:clamp(13px,2.4vw,19px);color:#cfe8ff;margin:0}
+  .ctl{font-size:clamp(11px,1.9vw,15px);color:#9fb8ff;margin:0}
+  .chip{display:inline-block;background:rgba(36,16,71,.85);border:2px solid var(--gold);border-radius:999px;padding:5px 18px;color:var(--gold);font-size:clamp(12px,2.2vw,17px)}
+  .pulse{animation:pulse 1.1s infinite}
+  @keyframes pulse{50%{opacity:.4}}
+  .bigBtn{pointer-events:auto;font-family:inherit;font-size:clamp(15px,2.8vw,22px);padding:12px 32px;border-radius:16px;border:3px solid var(--gold);background:linear-gradient(180deg,#8b3bff,#6322c9);color:#fff;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.45)}
+  .bigBtn.alt{background:linear-gradient(180deg,#1fb6d8,#0e7f9e);border-color:var(--cyan)}
+  .tbtn{position:fixed;z-index:15;width:76px;height:76px;border-radius:50%;border:3px solid rgba(255,242,221,.5);background:rgba(80,30,170,.5);color:#fff;font-family:inherit;font-size:11px;display:none;align-items:center;justify-content:center;pointer-events:auto;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+  #btnSprint{right:18px;bottom:120px;background:rgba(20,180,140,.5)}
+  #btnSpin{right:104px;bottom:36px;background:rgba(255,79,216,.45)}
+  #btnJukeL{right:190px;bottom:120px}
+  #btnJukeR{right:18px;bottom:206px}
+  #gameoverOverlay,#pausedNote{display:none}
+  #loadNote{position:fixed;bottom:18px;left:0;right:0;text-align:center;color:#9fb8ff;font-size:13px;z-index:21}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="dev"></div>
+
+<div id="hudTop" class="hud">
+  <div class="hudCell"><span class="hudLabel" id="lblScore"></span><span id="vScore">0</span></div>
+  <div class="hudCell"><span class="hudLabel" id="lblTime"></span><span id="vTime">2:00</span></div>
+  <div class="hudCell"><span class="hudLabel" id="lblDowns"></span><span id="vDowns"></span></div>
+  <div class="hudCell"><span class="hudLabel" id="lblWave"></span><span id="vWave">1</span></div>
+  <div class="hudCell"><span class="hudLabel" id="lblBest"></span><span id="vBest">0</span></div>
+  <div class="hudCell"><span class="hudLabel" id="lblRank"></span><span id="vRank"></span></div>
+</div>
+<div id="chainPill"></div>
+<div id="staminaWrap"><div id="staminaFill"></div></div>
+<div id="banner" class="hud"></div>
+<div id="subBanner" class="hud"></div>
+<div id="vignette"></div>
+<div id="arrowL" class="hud">◀</div>
+<div id="arrowR" class="hud">▶</div>
+
+<button class="tbtn" id="btnSprint"></button>
+<button class="tbtn" id="btnJukeL"></button>
+<button class="tbtn" id="btnJukeR"></button>
+<button class="tbtn" id="btnSpin"></button>
+
+<div class="overlay" id="titleOverlay">
+  <img id="coverArt" src="./assets/cover.jpg" alt="">
+  <h1 id="titleH"></h1>
+  <p class="sub" id="tagline"></p>
+  <p class="sub"><span class="chip" id="goalLine"></span></p>
+  <p class="ctl" id="ctlKeyboard"></p>
+  <p class="ctl" id="ctlTouch"></p>
+  <p class="ctl" id="ctlPad"></p>
+  <p class="sub pulse" id="dropPrompt"></p>
+  <p class="ctl" id="loadNote"></p>
+</div>
+
+<div class="overlay" id="gameoverOverlay">
+  <h1 id="goTitle"></h1>
+  <p class="sub" id="goReason"></p>
+  <p class="sub"><span id="goScoreLabel"></span>: <span id="goScore">0</span> · <span id="goBestLabel"></span>: <span id="goBest">0</span></p>
+  <p class="sub" style="margin-top:6px"><span class="chip" id="hofTitle"></span></p>
+  <p class="ctl" id="hofList" style="line-height:1.7"></p>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+    <button id="restartBtn" class="bigBtn"></button>
+    <button id="shareBtn" class="bigBtn alt"></button>
+  </div>
+</div>
+
+<p class="hud sub" id="pausedNote" style="position:fixed;top:48%;left:0;right:0;text-align:center;z-index:30"></p>
+
+<script type="module" src="./game.js"></script>
+</body>
+</html>

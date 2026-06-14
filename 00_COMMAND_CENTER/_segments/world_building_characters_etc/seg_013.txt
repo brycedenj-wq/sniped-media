@@ -1,0 +1,223 @@
+me exit out that so this 37:27 box is an actor this son is an actor even our sky is an actor because we're 37:32 able to place it in our world and since our Target will be inside
+of our world that means when we create the blooper 37:38 class it has to be an actor so go ahead and select that it will ask us to create a name I'm going to call this BP 37:44
+underscore Target and BP stands for blueprints now you don't need to name 37:49 this BP underscore Target you could just call this Target but I like to start all my blueprints off
+with BP just as naming 37:56 convention but that's completely optional also if you ever want to rename an asset you can right click and select 38:02 rename or the shortcut just
+like on Windows is F2 to quickly rename now 38:08 let's double click to open up our first blueprint and immediately notice it is a blank except this little Widget theme in 38:15
+the middle here and that's just our scene's root so that's the origin point of our blueprints now in order to add 38:21 our Target mesh to this blueprints we're going to go to
+Target right here and we 38:27 have that static mesh so there are two ways to add it to the blueprint number one I can simply drag it on top of that 38:34 default scene root and
+let go and then that will add it to my world or pressing Ctrl Z to undo that I can come up here 38:41 and type in static mesh and select a static mesh component 38:47 and then
+within the mesh component right here I can select the Target in the drop down so in the drop down type in Target 38:54 and select it right there so those are two ways the shortcut
+is to just drag it onto the default same route 39:01 which is easier now that we have our first blueprint we can start to add logic within the event 39:07 graph right here which is
+completely empty except for the three events but for now let's compile 39:14 and simply drag in that new blueprint that we created within the first person blueprint folder so if I
+drag in my 39:21 targets now this is the blueprint we just created so all the logic we're going to 39:27 add right here will affect this object in my world and because it's a
+blueprint I can hold down alt and duplicate it 39:35 around my level and one thing I also notice that I have snapping turned on let me go turn it off snapping 39:41 up there now
+here's a tip to open up Blueprints and that is let's say if I 39:46 have my BP underscore targets window closed then I can always come up to my 39:51 Blueprints and let's say I
+want to quickly edit it I could press Ctrl m b to find where it is within my content 39:58 browser then double click to open it up that way or the shortcut is to press Ctrl and E
+to open up an assets editor 40:06 so you can select any asset in your world for example this box press Ctrl D 40:11 to start editing that assets let's add a little bit logic to the
+Target and that 40:16 is specifically I want to create an event that will be activated whenever my projectile hits a Target so when it hits 40:23 the targets I want the projectile
+to do something so first let's create the event by going back into our targets and 40:29 then I want to select the static mesh Now by selecting the static mesh if I scroll down we
+get all these events we 40:36 can create I specifically want the on component hits so whenever something hits this target this event will be 40:42 fired so click on the plus icon
+to create it we don't need these events right now so let me delete them we will 40:47 go over what they do later and I'm going to hook up a new note to this so just 40:53 double
+check that this is working and that is a print screen so I use print screens everywhere to debug and make 40:59 sure that I'm going on the right track when programming my game and
+the stream will be let's call this target hit 41:05 exclamation point and some nodes will have advanced options if I select this arrow and protect color let's make this 41:13
+reddish so that's why I can actually see it because our sky is blue it's kind of hard to see blue text in the top left 41:19 hand corner and for duration make it five seconds a
+little bit longer so press play and now if I fire my weapon 41:27 boom we'll see that the target is hitting this event is working but we have a glitch right now and that is my
+41:33 player can come up to it hit the target and then they will start saying that the target is hit so this is exactly what I 41:39 don't want to happen I only want that event to
+run when we fire on it so in 41:45 order to do that move the events and drag from other actor and then type in 41:51 cast to and then the name of our bullet so our bullet blueprint
+right now is 41:57 called BP underscore first person projectile so if I open this up this is 42:02 the blueprint that's been spawned whenever my character fires so right here I
+could drag from other actor and 42:09 go cast to first person projectile which is the name of my sphere bullet and hook 42:16 it up like this so casting is a whole nother lesson
+but 42:21 essentially what it's doing right now is that's asking hey is this actor that's currently hitting my static mesh is it a 42:29 first person projectile and if it is a
+first person projectile then we can 42:34 execute everything that's connected to this pin if it's not then this pin will 42:39 run and we can see if this logic is correctly running
+in real time buy first let me go ahead and let's delete those 42:46 two Targets so we only have one target to make it a little bit simpler and also let me scale it up so it's
+bigger go 42:52 back into my Target Blueprint and press play so now if I press fire 42:59 then Target his hit but then if I walk up to it you'll see that the execution gets to the
+cast so it gets the blue 43:06 node and then it stops because hey this isn't a projectile that's hitting the static mesh it's the player character so 43:13 it's not gonna run only
+when I fire on it will it run now we need a way to track how many targets are hit so if I 43:19 come into here and if we have multiple targets I want to be able to know how many
+targets have been hit so for Gamemode 43:26 example it would be two right there and then if there's only two Targets in my world then that means the player has won 43:31 the game
+in order to do that we will use a game mode and the game mode is what you expect it's a blueprint but it 43:36 handles a lot of the game features so if you're playing Capture the
+Flag then the game mode will keep track of how many 43:42 flags each team has captured but in our case the game mode we keep track of how many targets the players hit and the 43:48
+timer of the game press control space to go back into reverse person Blueprints and the template already comes with a 43:54 game mode I want to create one from scratch to go ahead
+and show how you create one so let's right click go to 43:59 blooper class and select game mode base and I'm going to call this one GM underscore for game mode and let's call 44:06
+it Target game so this will keep track of all the logic of my game it will tell 44:12 us where not the player one or whether or not the player lost and if I select 44:17 last
+defaults we already get a bunch of details that we can set right here so I can select what the default Pawn class 44:23 is this will essentially tell us what blueprint should the
+player control and right now it's set to default Pawn which 44:29 is not what we want I want to set this to BP underscore first person character like that now in order to tell
+unreal 44:37 hey I want to use this game mode we need to go back to first person map and then go into the world settings Now by 44:44 default we don't have the world settings so to
+get it to go to Windows down here to World settings select that 44:50 and Within game mode override go ahead and select the new game mode we created 44:55 GM underscore Target game
+like that so now we're using GM underscore Target game also right now our character 45:02 doesn't have a Crosshair I want there to be something in the middle screen to tell our
+player where they're aiming at 45:09 so let's go to HUD and then select first person HUD which was included in the 45:14 assets you migrated over it is this first person HUD that
+we're using now if I press play we get a little Crosshair 45:20 in the middle of my screen so as you can guess the game mode is essential to any game you create and 45:27 this game
+mode will have to keep track of how many targets the player has hit and in order to do that we need 45:33 variables so if you've ever coded before you know exactly what I'm talking
+about but essentially variables contain data 45:41 so whenever we have something we want to store we store that within a variable and to create a variable we want to come 45:48 all
+the way over here and select the plus icon now this is going to go ahead 45:53 and create a new variable down here and let's call this my VAR for my variable 45:59 and then it's
+going to ask us what type of variable do we want for demonstration let's select an integer which is a whole 46:05 number now you'll notice that within the details panel we're
+unable to change that value that's because I have to 46:11 First Press compile and now we get access to my VAR so this could be any number this could be 0 10 or even 46:18 negative
+10. we can leave it at 20 for now and then in order to get this 46:24 variable I can drag it out into my graph let go and it's going to ask us if you want to get it or set it I'm
+going to 46:31 select get for now also it created two custom events by default we are going to recreate them but let me delete them for 46:37 now so now that we have our variable
+inside of a graph that's set to 20. 46:42 whenever I drag this out it's going to get the value that's currently storing which in my case is 20. now I'm going to 46:50 go bring back
+that event that we deleted called begin play now a begin play is very simple this 46:58 will fire once at the beginning of every game so as soon as I play my game this 47:03 event
+began play will fire and we could see this in action right now by dragging from here and typing in print screen 47:10 once again let's go ahead and let's see what this variable is
+currently holding by reading it out to the print Street 47:17 holding it over the input and letting it go like that so this will convert my integer into a stream which is what the
+47:24 print screen is asking and let's make this text color red so I can actually see it and press compile now then the 47:32 first person map because within World settings we have
+that game mode selected that event begin play should fire so if 47:40 I press play the top left hand corner we get 20. so that tells us that everything is working and this variable
+is storing 47:47 our values that's how you create a value when you're starting off what if you want to change this value during 47:52 gameplay well I can drag my bar back into the
+graph then instead of selecting get we select set so this is how we 48:00 override whatever value is currently within your variable so for example 48:06 let's go event beginplay
+and then instead of 20 which is what it is by default it will be let's go negative 48:14 five right so then we plug that up to print stream that means when I play my game 48:19 our
+value is first going to start off as 20 then immediately it's going to set it to negative 5 and then that should print 48:25 out negative 5 instead of 20. and up here we get
+negative 5 instead of 20. so 48:32 that's how we change the variables of our game so now that we know how to handle variables let's create a new 48:38 variable that will keep track
+of how many targets the player has hit so let's go ahead and hover over all those and 48:45 click delete now I'm going to delete that variable and click the plus icon again and
+call this current score I 48:53 could have renamed the previous variable because we want an integer but in case if the variable that you created is not 48:58 an integer make sure
+you select it right here now I'm going to drag this into my world and we're going to get it so we're 49:04 just going to get this current score and then drag from here and type in
+plus plus so this would be increment integer 49:11 what this node will do is that it's just going to add 1 to this variable people and then is going to set it so if this 49:17
+variable was 3 and then this ran then the variable would be four but we need a way for our Target blueprints so our 49:25 Target right here to be able to tell the game mode hey I
+want you to execute this 49:30 node and we could do that with a custom event so I can right click anywhere in 49:35 my graph and type in custom events and click enter to get it now
+we can name 49:41 this event anything because it's custom and we will call this add score and then 49:46 plug it up right here so now whenever this event is called then we're going
+to add one to the current score 49:54 and in order to see the current score of course we're going to use a print screen so when you are creating a game from 50:01 scratch in Unreal
+Engine you will be using a lot of print screens and I can drag from here or I can even drag from 50:07 here but I'll just drag from the output right there and let's make a duration
+of five with a 50:14 text color of once again orange so it's easier for us the developers to see and 50:21 press compile now of course if I just go into my game and I start firing
+all my 50:26 targets nothing's gonna happen and that's because I need to tell unreal when we want to call this event 50:32 so we want to call it through the targets that's why we
+created this on component hit event because now I want 50:39 to get the game mode and add one to the score so let's go ahead right click 50:44 anywhere and type in get game mode
+which will get our world game mode and then if I drag from here and type in the name of 50:50 the custom events which was add score nothing is going to come up that's because I
+need to tell unreal hey when 50:57 you get the game mode I want you to treat it as GM underscore Target game 51:03 so what do you tell unreal exactly what game mode are we getting
+and that is cast to GM underscore Target game which 51:10 is the game mode we just created and we will hook it up here like that and also I can delete this bridge trains 51:18
+because we no longer need it now I can drag from GM Target game and then type in add score 51:26 and click enter so now we are calling the custom event that we just created and I
+could double 51:33 click on this ad score which will take me to that event now this should work so 51:38 let me go move this off to the side Press Play If I have my first Target
+selected so let's go ahead and select GM 51:45 underscore Target game now if I fire on it you'll see that we get one two three four five six seven eight and 51:54 I keep on firing
+and that increment will increase so that's how we know our ad 51:59 score custom events is being called from our targets now we do have a really bad exploit players could use and
+that is 52:06 what I want to happen is that the player hits one target so 1.2 and 3 and since 52:12 it's three out of three that means the player wins but right now the player can
+get to a count of three by coming up to 52:18 just one Target and going one two and three so I want it where whenever I hit an 52:25 object after I hit it again this event right
+here no longer runs and we're 52:30 going to do that with a new variable and that is a Boolean so let's come to variables and add a brand new one within 52:36 our targets and by
+default it is a Boolean we can always change that by 52:41 clicking on this button and selecting Boolean and let's rename this variable up here to is hit question mark since 52:50
+this variable is a Boolean it stores a true and a false value this variable will tell us whether or not this target 52:56 has already been hit if it was hit this is true if it
+hasn't been hit yet then it will be false so I could drag this 53:04 into my graph and we will get it now we're going to go over one of the 53:09 most essential notes or probably
+the most essential node of Unreal Engine or just programming in general and that is 53:16 the if statement so right click on the graph and type in if and in Unreal 53:22 Engine
+they call it a branch so select a branch but the branch is an if statement or hold down B and left click to create 53:31 a branch and that's how Central this node is the fact that
+we have a shortcut so be it left click to create it means 53:39 it's pretty important so I could delete those because we don't need it and now let me go ahead and let's move all
+these 53:45 nodes over there and first we're going to see whether or not this object was hit so if this 53:52 object was hit which means if this value is true then we don't want
+anything to 53:58 be plugged up here because the object was already hit we don't need to make another call to the ad score I only want 54:04 to make a call to the ad score if the
+object hasn't been hit yet so if it is false but I can't just plug it up like 54:11 this because we have to set the is hit so let me drag from this variable and 54:17 select set
+now let me go and let's move these nodes right there and then hook up 54:22 the is set to false and then hook it back up to the casting node when a 54:30 projectile hits our static
+mesh we're gonna check has this already been hit if it has a bit hit if it's still false 54:36 then we're going to set it to true so that means our object has been hit and 54:41
+then we make a call to the ad score so the next time it is hit because is hit is now set to true then the true 54:47 statement will be Rand and not the false statement and since
+nothing is plugged up that means nothing is going to happen 54:53 now if I play my game walk up to a Target hit it once it adds to the score and then if I hit again it doesn't add
+55:00 anything I have to hit the other targets to add a score so now we're at a score of two and three and now we won the game I 55:07 can't just keep spamming these different
+targets to increase the score so let's jump back into BP underscore targets now 55:15 generally and this is just Aesthetics you do not have to do this we want to hook up the bulk
+of my nodes 55:21 to the true pin and not the false pin the reason why is because it just looks 55:26 nicer so it organizes our graph just a little bit better and we could do that
+by checking if this is hit is a not 55:34 Boolean so type in not Boolean and then plug it in so now we're checking if is 55:40 hit is not set to true so if it is not set to true
+then we will hook it up 55:45 through here and set it to true just like that so all we did was added a 55:51 knots to go ahead and flip the executable and here's a tip instead of
+dragging a 55:58 variable into my graph and then selecting get or sets I can hold down control and drag it in to automatically 56:05 get it or hold down alt and drag it in to
+automatically set it so that is 56:11 another nice shortcut to prevent one more click before we move on to the next chapter let's briefly go over what we 56:16 did this event will
+run whenever our Target is hit then we're going to check if it was the first person projectile that hit 56:22 it and if it was we will then check whether or not this target has
+already been hit and then if it hasn't already 56:28 been hit then we're going to set that variable to is hit to true so that these nodes will be ran again in the future 56:34 and
+then we tell the game mode to add a score to our current score and if we 56:41 jump into the first person map here's what we have we could add one two and 56:46 three so our game
+is slowly forming but there is one gallerian issue and that is it User Interfaces 56:52 looks kind of ugly have a new rely on the print screen note to keep track of all of our
+scores looks really bad this 56:58 is where user interfaces come in handy in unreal you could create a user interface using unreal's motion graphic 57:04 UI designer which is a
+mouthful so it is called umg for short right now we will 57:11 create a user interface to keep track of the player's score which is how many targets are left for the player to hit
+57:16 and we can create the user interface by making a widget blueprint before we create our user interface 57:23 don't forget to save everything because I'll be very unfortunate
+if we lost all our progress so select save all and go 57:29 to save selected Now to create a user interface we need to create a widget so right click and go all the way down here
+57:35 to user interfaces and select widget blueprints now it's going to ask us what type of widget blueprint do we want to 57:41 create we just want to create the basic one and
+call this wbp for widget blueprint underscore UI because this is 57:50 our main user interface that will be displayed whenever the player is playing the game so let's double click
+to go 57:55 inside of it and here in the middle is where we're going to create the user interface on the top left hand corner we 58:01 have the palette the palette contains all the
+items we could display to the player and before I drag in anything the 58:09 very first item you need to drag in is the canvas panel so whenever you create a new widgets the first
+thing you need 58:16 to do is add in a canvas panel and let go so let's go ahead and let's move the 58:21 details panel off to the side so we can better see it and the controls are
+the exact same as the blueprints hold down 58:27 the right Mouse button to pad and use the scroll wheel to zoom out and zoom in now we will add in text so I could come 58:36 to
+comment and drag out text or I could type in text right here and drag it out like this so now we have text that will 58:43 be displayed within the game and you'll also notice that
+we have this little flower icon right here and this flower 58:49 icon is anchoring so let me go show what this is so let me go place this at the 58:55 very top left hand corner or
+I could come up to Anchors within the details panel and select the top left hand 59:01 corner now in order to change the text within details go to text and we could 59:07 call this
+something let's call this top left now all the items we add to this 59:13 widget will be down here within the hierarchy so you see we already have text top left if I control C
+control V 59:19 we now have another top left that I'm going to drag all the way to the right over here and within anchors select the 59:27 right hand corner now we're going to call
+this one top rights 59:32 and then Ctrl C Ctrl V again drag this into the center and for the 59:39 anchor select Center and this one will be called center now 59:44 I'm doing this
+that's how we know exactly what these anchors are doing now let's press compile and I want to 59:50 display this widget blueprint as soon as the game starts so we could do that
+within the game mode and we go plug it 59:57 up to event beginplay as a reminder in case you don't have it just right click anywhere and type in event beginplay so 1:00:04 as soon
+as our game starts we will create a widget and that widget will be 1:00:09 the one we just made which is wbp underscore UI okay so let's compile and if we play our 1:00:17 game uh
+oh we do not see our widgets and that's because within the game mode I'm 1:00:22 creating the widget but I'm not displaying it so drag from the return value which contains our
+widget and now 1:00:29 we're going to tell unreal to add that widget to the viewport so we'll create 1:00:35 it add to viewports and now if I press play our event begin play will
+fire and 1:00:40 create our widgets and we have our widgets so we have top left top right 1:00:45 Etc and notice how when I change the size of my window the center is saying
+1:00:52 in the center and the left-handed right hand Corners are staying within their corners and that's exactly what anchors 1:00:59 do it's essentially like responsive design it
+ensures that this piece of the 1:01:04 user interface will always stay there in relation to the player's window because not every window will be 1080 by 1920 1:01:11 some windows
+can be really long or maybe even someone's gaming on a one by one 1:01:16 monitor people's setups can be pretty weird so I do not need the center and I did not need the top right
+because now 1:01:22 just an example I want the top left right there and we will call this score 1:01:28 so this will contain the score of my game but if I press play honestly this
+1:01:35 widget is a little bit too small right now I want to make it bigger so let's select score and within appearance we 1:01:43 have size so let's make this a size of let's go
+64. because that was too big we don't want 1:01:49 it to take up the entire screen actually let's try 45 1:01:55 okay that looks good I will actually just increase that a little
+bit more to 50. 1:02:01 and now that we have a score in the top left hand corner I want that score to update whenever I hit a Target and to do 1:02:10 that we can add some
+blueprint logic within my user interface to tell the user interface exactly what score should 1:02:17 be displayed and we could do that within the graph so not only do our widgets
+allow us to create a user interface they 1:02:23 also allow us to create logic right here and I'll go select all that and delete it 1:02:28 now I specifically want to update this
+text right here and I first have to name 1:02:34 this text so let's call this score text the reason why is because I want a clear 1:02:40 name so when I'm in the graph I'm able to
+grab score text and update it but you notice that wait there's nothing within 1:02:47 my blueprints I can't update that yet and that's because you also want to make sure that is
+variable is turned on so 1:02:54 select it and turn on this variable now we get access to score text right here 1:02:59 so I can drag from here and get the score text and then in
+order to update the score text drag from here and go set 1:03:07 text text and select that so now this is going to change that text 1:03:13 to whatever is inputted right here and
+to show that it is working let's change 1:03:19 this to hello world and then hook it up to an event begin play but widgets don't have an event begin play instead they 1:03:25 have
+an event construct which will run as soon as the widget is created so it's essentially like an 1:03:31 event beginplay so if I press play now hello world is being displayed instead
+1:03:37 of score now I want this to display the current number Counts from our game mode 1:03:43 so get current score and we can do that by first the leading event construct
+because that was just an example and 1:03:49 create a brand new custom events call this one updates score 1:03:56 and then hook it up right there but actually before we do we need
+to first get the game mode 1:04:02 and then do exactly what we did within the targets and that is cast to GM underscore Target game so cast to GM 1:04:10 underscore Target game to
+get access to current score all the variables and 1:04:15 custom events that are located within our custom game mode and then I get 1:04:22 dragged from here so let's drag them
+here and go get current score and select 1:04:28 that now I will drag from it hover over hello world and let go to convert that integer 1:04:36 into a string and hook this all up
+like that 1:04:42 says compile save and now of course if I play my game and if I fire 1:04:48 that score will not be updated that's because we need to call update score within the
+game mode so as soon as we 1:04:56 add a score then we're going to update this widget up here but in order to call the update score custom events 1:05:03 we first have to get a
+reference to it so we're going to take this event and store it inside of a variable so to do 1:05:10 that I can come to variables create a brand new one and call this one user
+1:05:16 interface now as for the tie instead of selecting one of these types I will type in the 1:05:23 name of my widget which is wbp underscore UI and then just select an 1:05:30
+object reference now I can hold down alt to set it and then I'm going to plug up 1:05:35 the return value right there and plug it up like this so that's how 1:05:41 as soon as I
+create my widget we will store that widget so now that I have 1:05:47 access to my widget I can come down here so let's drag this user interface by 1:05:52 holding down control so
+I can get it and then we will call that custom event that we made called update score and select 1:06:01 that and luckily for us we no longer need that ugly print screen so we
+could kill it 1:06:06 and then plug up update score like that now I know that was a lot to just create 1:06:12 a variable to store my user interface instead what I can do it let's
+delete user interface real quickly 1:06:19 and also delete the variable hold on alt to break that here's a shortcut instead of having to come down to variables and 1:06:26 manually
+create it I can right click on this output and go promote to variables that will automatically create a 1:06:32 variable that stores wbp underscore UI and then we can call this one
+user 1:06:37 interface just like that and hook it up like this and then hold down Ctrl drag and hook it 1:06:43 back up to update score so that's the shortcuts to quickly created
+variables you can pretty much come to any of these 1:06:49 outputs for example this integer right click and promote to a variable to quickly create one without clicking on 1:06:55
+the add button now if I press play we will update that score so it goes to 1:07:03 one two and three which is what I want but I also want it where before we 1:07:10 display the
+number we have the word score so it's score space and then it displays a number so let's go back into 1:07:17 our widget blueprint and we're going to do that by dragging from in
+text and type in append now this 1:07:24 is one of those cases where it's not showing up so we have to uncheck on text sensitive and we will append the string down there 1:07:32 so
+select that and now that's going to automatically create two different nodes 1:07:37 so the purple node is streamed and then this string is being converted into text essentially
+strings and text are the 1:07:44 exact same thing they store words and then I can delete this two text right there 1:07:49 and let's go move everything over here and this append
+will add two sentences 1:07:56 together so for sentence a let's call this score space 1:08:02 and then B will be current score so we're going to add current score to the sentence
+of score space which will then 1:08:10 be displayed in the text okay so let's compile save again and now 1:08:15 if I press play we have score one two and three So within the user
+interface 1:08:23 let's go back to designer select score and then for the text let's make this 1:08:28 score space zero now we start off with a score of zero and then in increments
+as 1:08:35 we hit different targets one last thing I want to do with our user interface if we go into graph and that is this is 1:08:42 pretty messy we have to get the game mode
+and then we have to cast to it get the current score 1:08:48 what I can do is simplify this so I can delete good game mode and the cast and 1:08:53 the current score and then
+within my custom events in the details panel we have this inputs so I 1:09:01 can pass variables through events so let me click on the plus icon so that's what 1:09:06 we better
+understand what I'm talking about and this input will be called current score and we're going to ask for 1:09:11 an integer so now we can plug that up and it is this current score
+that will be plugged 1:09:18 up right there so if I press compile and go back to GM underscore Target game you'll see that 1:09:25 when we call that custom events we're able to
+pass data through it in our case current score 1:09:30 to the custom events where then that variable can be used so this current score will of course 1:09:36 just be the current
+score outputs right there so if I press play now it increases 1:09:45 without having to make a call to the game mode now before we go over adding a win condition to our game mode
+1:09:51 I want to briefly mention how we organize graphs now let's say for some reason our current score is random as Organize Nodes 1:09:59 soon as we create our widget well I
+can't within the widget just manually set the score to zero instead I'm going 1:10:05 to have to call the update score right here so I will drag from the user interface 1:10:11 and
+then type in update score and then hook it up but you notice that now it is 1:10:16 pretty messy because we have a line that's going through a node holy could leave it as is there
+is nothing wrong 1:10:22 with that and our game will be completely fine but for a sanding check for us the developers this is messy 1:10:30 so what I can do is hover over any lines
+and then double click to add a reroute 1:10:36 node so this will allow me to just move my line for organizational sake 1:10:42 just like this so now my graph looks a lot nicer and
+in 1:10:47 my opinion it's a lot more readable reroute nodes are amazing you get pretty much organize your graph whatever way 1:10:55 you may like so let's press Ctrl Z to undo
+those and another thing we could do is hover over a set of nodes and press 1:11:03 the c key to comment so this is going to add in a comment and I can say add score 1:11:10 by
+calling the widgets which is useful for us or other members of our team to 1:11:15 remind us exactly what a set of nodes are doing so I can delete that comment and we can even
+comment individual notes 1:11:23 so if I hover over any of these nodes we'll get this little comment icon right 1:11:28 there I can select it and then I can say hello world so I
+can add comments to any 1:11:35 of these nodes which is helpful if we're doing something confusing and then I can press that button again to get rid of 1:11:41 that comments and in
+my case I'll just leave updates for right there because we do want to start off the event begin 1:11:47 play with a current score of zero always don't forget to save everything
+we've done so we don't lose our progress 1:11:53 and now let's go see our game and we have three targets so I hit one two and 1:11:59 three and at this point I want to be able to
+tell the player that hey you won the game because you hit all the targets Get Targets 1:12:06 so in order to do that we need to go into GM underscore Target game and we have to
+create a brand new variable that 1:12:12 will be our Max score so our current score is how many targets we hit so far and our Max score is how many targets we 1:12:19 need to hit
+to beat the game so let's go to variables click on a new one and call 1:12:24 this one Max score and then for variable type this will of 1:12:29 course be an integer because it's
+just a whole number now we need to give ourselves the ability to somehow count 1:12:36 how many targets are in my world right now there's three and we can do that by first let's
+break these notes 1:12:44 and select them all then move them off to the side and then drag from event beginplay and 1:12:50 we're going to get all actors of class and specifically
+we're going to get all 1:12:55 actors of class for a Target so BP underscore targets so 1:13:02 now we get a reference to all the targets and you'll see we have this really weird
+Al pin which is a bunch of 1:13:08 squares this is an array don't worry we are not going over a raise in this video but what matters is that this stores all 1:13:15 the different
+targets and because it stores all the Targets in my world that means I can see how many targets there 1:13:20 are by dragging from here and typing in length so it is this outputs
+that gives me the 1:13:27 amount of targets we need to hit so let me move all that over and then hold down alt drag Max score to set it and we will 1:13:34 set that length to the
+max score so what these three nodes are doing is 1:13:40 that it's going through my entire world counting up all my targets and then it is setting it to the max score variable
+1:13:46 right there and now let's jump back into update score by double clicking on it we need a 1:13:53 new input variable so click the add button and this one will be Max score
+of 1:13:59 course of integer and then we will add another pin 1:14:04 and let's make this a slash so we're gonna current score slash the 1:14:10 max score so the player knows how
+many more targets they have to hit so drag from 1:14:16 there and add it like that Fresco pile and now back in our Target game we need to fill up the max score 1:14:23 with the max
+score integer so hold down control and I could drag it into my graph and then plug it up or shortcuts 1:14:31 holding down control I can hover over Max score and let go to
+automatically connect that up so same thing right here 1:14:38 because right now the max score is set to zero now if I play my game we have a score of 0 out of zero which doesn't
+1:14:44 make any sense so for Max score drag that right there 1:14:49 so press play we have a score of zero out of three one out of three two and three out of three and then at
+this 1:14:56 point I want to tell the player congratulations you won so let's go add in that win condition whenever the 1:15:02 current score is equal to the max score so after we
+update the score we will add 1:15:09 a Boolean value so hold down B and left click to breed in a branch node or you 1:15:14 could right click and type in if so let's go plug this
+up right there and 1:15:20 grab the current score and grab the max score so we have a bunch of comparison notes 1:15:25 now we could check if one is greater than the other but in
+our case we're going to check if one is equal to so 1:15:33 equal equal the other so when current score is equal to Max score that means if this is true 1:15:40 congratulations the
+player has won and in just a minute we're going to create a proper widget but to make sure that this 1:15:46 is working you guessed it we will use a print screen so let's go
+congrats you 1:15:54 won Miley face okay compile and actually we won't be able to Win Screen 1:16:00 see this so make sure this is red with a duration of five seconds also here's a
+1:16:06 shortcut you could press alt and P to automatically play my game instead of 1:16:11 selecting the play button so that is another shortcut is alt and P to play the game we
+hit one two three top left 1:16:19 hand corner we get the print string congrats you one now it's time to create a widget that will stop everything in 1:16:25 the game stop what I'm
+doing and tell the player you won because right now as is with the little prince to read they 1:16:31 probably won't recognize that hey the game is over stop playing we will use
+the exact same process to create the 1:16:38 windscreen as we did when creating the user interface right here so press Ctrl 1:16:43 space and let's create a brand new user
+interface widget blueprints 1:16:48 and that is wbp underscore end screen because this will handle both the 1:16:54 windscreen and the lost screen so let's double click to go
+inside of it first thing you need to do with all widgets is 1:16:59 add in a canvas panel now in Unreal Engine 4 this was added by default I 1:17:05 don't know why we have to
+manually add it now and then we're going to go to text and drag this in let's put this 1:17:11 into the middle of the screen make this fairly large so let's go 60. and let's
+1:17:17 even make this bigger and I want to justify it in the middle of the screen so go ahead and do justification and 1:17:24 select the middle one now right now our text is
+looking just a little bit Bland 1:17:29 so we can add some spice to it with a drop shadow so first in order to enable 1:17:35 drop Shadows I need to go within the shadow color

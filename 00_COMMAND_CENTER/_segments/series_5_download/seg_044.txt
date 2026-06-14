@@ -1,0 +1,224 @@
+can also set the frame-ancestors to “none” - which kinda acts like setting X-Frame-Options. 7:05 So if it could block XSS, wouldn’t it be a very important header to set? 7:10 Let’s
+do an example and let's go to the Google bughunter site and have a look at their CSP. 7:15 Oh?! There is no CSP. mh… There is this awesome tool 7:19 from Google engineers called
+CSP evaluator. And it can help to assess a given policy. 7:24 In this case there is literally no policy. So let’s just submit an empty text. And 7:29 the tool reports a
+high-severity finding. script-src [missing]. 7:33 So is this a vulnerability in itself? Well… as I said, CSP can protect websites from XSS 7:40 attacks or other kind of attacks.
+But because CSP “just” protects, it doesn’t make it the fix for an 7:48 issue. If there is an XSS CSP doesn’t fix it, it could just block exploitation. it’s a defense in 7:55 depth
+strategy. So setting script-src CSP only matters in the context of an XSS issue existing 8:01 in the first place. And that means, missing CSP in itself is not really a
+vulnerability. 8:08 again, it depends on how critical the website is, 8:11 if this protection is really important or doesn't matter. Example #3: Strict-Transport-Security (HSTS)
+8:16 Example #3 8:18 Let’s have a look at another header. HSTS. HTTP Strict Transport Security. This really 8:23 sounds like an important header to set! But what does it exactly
+do? 8:27 [it] lets a web site tell browsers that it should only be accessed using HTTPS, 8:32 instead of using HTTP. [...] for example, the visitor types http://www.foo.com/ or
+even 8:38 just foo.com. This creates an opportunity for a man-in-the-middle attack. [...] The HTTP Strict 8:43 Transport Security header informs the browser that it should never
+load a site using HTTP and should 8:49 automatically convert all attempts to access the site using HTTP to HTTPS requests instead. 8:56 This sounds very useful but then why is it
+considered an invalid report if 9:00 a site from google is missing it? Well right below there is also this note: 9:05 The Strict-Transport-Security header is ignored by the browser
+when your site is accessed using HTTP; 9:12 this is because an attacker may intercept HTTP connections and inject the header or remove it. 9:18 [ONLY] When your site is accessed
+over HTTPS with no certificate errors, 9:23 the browser knows your site is HTTPS capable and will honor the Strict-Transport-Security header. 9:30 So we already have this weird
+situation where the header is supposed to prevent 9:34 users from loading the site with HTTP, but if the site hasn’t been loaded yet, 9:39 the browser doesn’t know about it. And
+only honors it once the site was loaded securely once. 9:44 Which of course is better than nothing, but modern browsers do the same anyway. For example when 9:50 I visit
+liveoverflow.com with an http URL, you can see that it tries to go to the http version, 9:56 but it was redirected to https. Now let me try to go to the HTTP version again, and
+there is 10:03 no HTTp request going out. We directly go to the HTTPS version. All of that without an HSTS header. 10:12 So as you can see, HSTS is not a silver bullet protection
+and browsers kinda mitigate it anyway. 10:18 But it’s still generally recommended, and especially together with the hsts preload list 10:23 (by the way a project by google) it’s
+good. But you also see that it’s a very known 10:28 and popular header, Google knows about it. Which you can also see here in the article: 10:33 “Internally, we are already well
+aware of our HSTS posture and are actively working on adding 10:39 HSTS support to additional endpoints” So it’s a known issue to them. Example #4: Cross-Origin Resource Sharing
+(CORS) 10:46 CORS Now we just talked about headers that “add” 10:49 security to a site. But there are also headers that could “weaken” the security of a site. And 10:55 a very
+typical report is “CORS misconfiguration”. Generally websites are protected by the same 11:01 origin policy. This means javascript code on for example liveoverflow.com 11:07 can
+not send HTTP requests to gmail and leak your emails - the browser says “no 11:13 I won’t allow liveoverflow.com to access your gmail”. But a webserver can use CORS headers 11:18
+(Cross-Origin Resource Sharing) to actually allow another website to send requests to itself. 11:24 And at first sight this seems to weaken the same origin policy. Which it does,
+11:29 so why would anybody do that? Is there any negative security impact? It of course depends. 11:36 Let’s imagine two websites. One website uses cookie authentication. There is
+a session cookie. 11:41 And the other website has token authentication. For each request the code on the site 11:46 adds an Authorization header with a token. Both websites have
+very permissive CORS setting, 11:51 allowing arbitrary origins to make requests. And even allow setting credentials. 11:57 Is this a security issue in both cases? Only for one of
+12:02 them this CORS setting is actually an issue. Setting Access-Control-Allow-Credentials tells 12:07 the browser, that it can add the session cookie to the request. So in this
+case the request would be 12:13 authenticated as the current user. And the security impact of this is similar 12:18 to Cross-Site-Request-Forgery CSRF or XSS. In this case you can
+perform authenticated requests as the 12:25 current user. And even read the response. This is really bad. And definitely a security issue. 12:32 But for the other website with
+token authentication, 12:35 there is no session cookie. The browser doesn’t set the authorization header for you. So this 12:40 request would not be authenticated as the user, thus
+there is no CSRF-like attack possible. 12:46 So as you can see, context matters and you have to understand if there really is any impact. 12:52 And you cannot blindly report an
+open “misconfigured” CORS. 12:57 So keep in mind that CORS exists for good reasons. Many websites from Google allow 13:02 CORS requests, because it’s meant as an open API, that is
+intended to be accessed from 13:07 other origins. So you always need to be sure that there is really security impact. Example #5: Cookie Security Flags (HttpOnly) 13:15 Cookie
+HTTPOnly And before we have a 13:18 summary of this video, I briefly wanted to mention the httponly cookie flag as well. 13:24 Cookies are technically part of the headers, so it
+fits into this video. 13:28 And the setting causes cookies to only be transmitted in HTTP request, but cannot be 13:34 read from javascript. It often is considered a defense
+against XSS attacks stealing cookies, 13:40 but it’s rather ineffective. Yes the cookie cannot be stolen, so you as the attacker cannot 13:45 perform requests as the user, but when
+you have a XSS, the XSS can just send the requests you want 13:52 for you. And those requests will be authenticated. So it’s really not that big of a deal. 13:58 And on top of
+that, not every cookie is really used for authentication. Cookies are a great way 14:04 to “store” a bit of information about a user and the app. And they don’t really have any
+security 14:10 relevance. So if they are missing the http only flag, or even the secure flag, it doesn’t matter. 14:16 So as always, you have to really understand what a cookie is
+for and if there is really any impact. 14:24 Security Header Summary So let’s summarize what Summary 14:27 we learned. There is a reason these security headers exist. They do
+really good things and 14:32 can protect an application from exploiting other vulnerabilities. But them missing, 14:38 doesn’t necessarily create a vulnerability. Most websites
+probably could benefit from setting 14:44 some of them, but it depends a lot on the context. You have to understand the functionality 14:49 of websites to judge if there is a
+significant risk. And if it even makes sense to set them, 14:54 because maybe there is an intended feature why they don’t want it. For example YouTube embedded 14:59 videos that
+deliberately don’t want to set the x-frame-options. You cannot blindly copy & paste 15:04 the result of a scanner reporting that headers are missing. So make sure to read and
+understand 15:09 what certain headers do and make sure you understand if it makes sense for an app to add it 15:15 or not. Does it really do that much for security? Or are maybe
+developer resources better invested 15:21 into working on other things? When it comes to bug bounty, always think about the realistic impact. All From LiveOverflow Why Headers
+Matter for Web App Security 0:00 Most developers lock down their back end 0:03 but miss a simple trick on the front 0:05 end. HTTP secure headers. For example, 0:09 CSP helps stops
+things like cross-ite 0:12 scripting. HSTS make sure your site 0:16 always loads over HTTPS. And then there 0:18 is course or COS, referral policy, 0:21 permissions policy and
+more. Each 0:24 closing a different security loophole. 0:27 These headers are built into the 0:29 browser. You just have to use them 0:31 right. In this video, you'll learn 0:33
+exactly what secure headers are, why 0:35 they are critical, and how to quickly 0:37 implement them, making your apps 0:40 dramatically safer. Let's dive in. 0:44 [Music] What Are
+HTTP Secure Headers? 0:48 Secure headers are tiny rule books your 0:50 server sends to the browser, telling it 0:53 how to treat your content securely. They 0:56 don't touch your
+app logic, but they 0:58 quietly enforce critical rules in the 1:01 browser like only load scripts from 1:04 trusted resources, always use HTTPS or 1:08 don't leak sensitive
+referral data. And 1:10 just like that, you have shut down 1:12 entire classes of attacks without 1:14 changing a single line of JavaScript. 1:17 Let's start with one of the most
+1:18 powerful content security policy or CSP. Content-Security-Policy (CSP) 1:22 CSP is like a white list for your front 1:25 end. It tells your browser only load 1:27 scripts,
+styles, and assets from these 1:30 trusted places. For example, this says 1:34 load everything from your own domain by 1:35 default. Scripts can also come from your 1:38 trusted
+CDN and block object tags 1:41 entirely. No flash, no surprises. So 1:44 without CSP, malicious scripts can run 1:47 via XSS. Attackers can load code from 1:49 any domain and
+plugins like Flash may 1:52 execute. With CSP, only trusted scripts 1:55 are allowed. Browsers block unknown 1:57 sources and risky elements are blocked. 2:00 One pro tip, start
+with content security 2:03 policy report only. It logs violations 2:05 without blocking anything, so you can 2:07 test it safely. Now, let's talk about HSTS
+(Strict-Transport-Security) 2:10 HSTS. 2:12 Some websites still load over plain HTTP 2:15 if the browser doesn't start with HTTPS. 2:18 And that's a problem because in that 2:20
+initial moment, the connection is still 2:22 unencrypted. 2:24 That tiny window where the browser first 2:26 reaches out over HTTP is all an attacker 2:29 needs. On a public Wi-Fi
+network, 2:31 someone could intercept the request, 2:34 redirect you, or inject malicious 2:36 content before the site even switches to 2:38 HTTPS. 2:40 HSTS fixes this. Once the
+browser sees 2:43 the HSTS header, it knows always use 2:46 HTTPS for this domain. No exceptions. 2:50 And here is what it looks like. This 2:52 tells the browser, enforce HTTPS
+for one 2:55 full year, include all subdomains. And 2:58 preload this rule into browsers so even 3:00 firsttime visitors connect securely. 3:03 It's a small header with a big
+impact, 3:05 shutting down a common attack vector 3:07 most people don't even realize exists. 3:09 Next up is a small header that blocks a X-Content-Type-Options 3:12 surprisingly
+sneaky attack, MIME 3:15 sniffing. Let's say your server sends a 3:18 file with a .txt extension, but inside 3:21 that file is actually some malicious 3:23 JavaScript. Some older
+or lenient 3:26 browsers might try to guess what kind of 3:28 file it is and decide, hm, this looks 3:31 like a script. Let me run it. That's 3:33 called mimen sniffing and it can
+lead to 3:36 unexpected script execution. even if the 3:39 content type says otherwise. To prevent 3:41 this, we use Xc content type options no 3:44 sniff. This tells the browser,
+trust 3:47 what I said the file is. Don't try to 3:50 guess. It's simple and it blocks a whole 3:52 class of attacks where the browser gets 3:54 a little too smart for its own
+good. 3:56 Without this header, browser may sniff 3:58 file types and misinterpret them or a 4:00 txt file with script content might get 4:03 executed. So this header makes
+browsers 4:06 strictly follow declared content type 4:08 and malicious files are treated as plain 4:10 text not scripts. Now when a user clicks Referrer-Policy 4:13 a link from
+your site to another the 4:15 browser sends a referral header. 4:18 Basically saying hey this is where the 4:20 user came from. But here's the catch. 4:23 That header might include
+full URLs 4:26 including query parameters, tokens or 4:29 even user ids. And that's risky. 4:32 You might be leaking sensitive info to 4:34 third party websites without even 4:36
+realizing it. To control this, we use 4:39 referral policy strict origin when cross 4:42 origin. This means if the next page is 4:45 on your own domain, send the full URL. 4:48 If
+it's going to another domain, just 4:50 send the origin, say bitemong.io, and 4:53 nothing more. It's a simple tweak that 4:56 protects your users's privacy and keeps 4:58 your
+internal data from leaking to the 5:00 outside. Without this policy, full URLs 5:03 including your query params can leak to 5:05 other sites and sensitive data like 5:07 tokens or
+ids may be exposed. With this 5:10 policy in place, only the domain is 5:12 shared on cross- site requests and user 5:14 privacy is protected by limiting 5:16 referral info. Let's
+talk about course CORS (Cross-Origin Resource Sharing) 5:18 or cross origin resource sharing. Course 5:21 is all about control. Who is allowed to 5:23 talk to your back end and who
+is not? By 5:26 default, browsers block JavaScript 5:28 running on one domain from making 5:30 requests to another. And that's a good 5:32 security feature, but your front end and
+5:34 back end might live on different 5:36 domains. Say your React app is on 5:39 app.bitemunk.io 5:41 and your API is on api.bitemunk.com. 5:45 To make that work securely, you
+need to 5:47 explicitly allow that connection. And 5:49 that's where course headers come in. And 5:51 here's an example. This tells the 5:54 browser only allow requests from 5:55
+bitemunk.io and only accept safe methods 5:58 like get or post. Only allow specific 6:01 headers like content type and 6:03 authorization. And again guys here avoid 6:05 using star
+or wild card unless you are 6:08 absolutely sure there is no sensitive 6:09 data involved. Think of course as a 6:12 gate. You decide who gets in. By the way 6:15 I have done a
+full deep dive on how 6:17 course works, why it exist, common 6:19 pitfalls and how to fix course errors. 6:22 Check it out in the security playlist on 6:23 this channel if you
+want the complete 6:25 picture. So basically without proper 6:28 course legit cross origin request may 6:30 fail. APIs may unintentionally expose 6:33 data to any site. Course make
+sure that 6:36 only trusted domains can access your API 6:39 and the access is tightly controlled by 6:41 origin and method. But headers don't 6:44 just control what comes in and
+out. They 6:46 can also control what your site is 6:48 allowed to do inside the browser itself. 6:51 And that's where permissions policy come Permissions-Policy 6:53 in. Modern
+browsers give websites access 6:55 to features like geoloccation, camera, 6:58 microphone, full screen, and even 7:01 vibration. But here's the thing, not 7:04 every script on your
+site should have 7:05 that power. Imagine emitting a third 7:08 party widget and it quietly asks for a 7:10 mic access. Yeah, not great. Permissions 7:14 policy let you take that
+control. You 7:16 define who gets access to what right 7:19 from the response header. Only your own 7:21 site can access your location. Mic and 7:24 camera blocked completely even
+by 7:26 accident. It's clean, declarative, and 7:29 gives you a security budget you control. 7:32 So now you have got a toolkit of 7:34 powerful HTTP secure headers. Each one 7:37
+closing a specific security gap. And 7:39 here's the best part. They work 7:41 silently. No UI changes, no user 7:44 friction. the smart defaults that make 7:46 your app safer. If
+this helped you, 7:49 share it with your team. And if you want 7:51 more, hit like, subscribe, and check out 7:53 my security and system design playlist 7:55 for more deep dives
+like this. See you Wrap-up: Secure Your App by Default 7:57 in the next one. Stay secure. 8:00 [Music] All From the series 0:00 now what is going on guys today we are 0:02 going to
+talk about content security 0:04 policy 0:05 what it is why you need it and how you 0:07 might use it in your own application so 0:09 the main reason why content security 0:11
+policy 0:12 exists is that we want to protect 0:14 ourselves 0:15 against cross-site scripting i just want 0:17 to explain cross-site scripting with 0:19 one very specific type of
+cross-site 0:22 scripting 0:23 so cross-site scripting is always uh 0:25 like abbreviated with xss 0:28 what i want to demonstrate or to explain 0:30 is like stored 0:31 cross-site
+scripting so let's make a 0:33 practical example let's say you were on 0:35 youtube 0:36 and you were scrolling through the 0:37 comments uh maybe through the comments 0:39 of this
+video let's imagine 0:41 like normally people put text in the 0:43 comments right something ah 0:44 nice video or they have like a question 0:46 they ask something that's all cool
+0:48 but literally anyone can write a comment 0:51 on youtube 0:52 right so let's say you're a hacker then 0:54 you could put something like 0:56 this so you instead of putting
+like a 0:58 text 0:59 you could put an html tag which is 1:01 attempting to load like some script 1:04 from your website and this is especially 1:07 this is very dangerous because
+1:09 if you save this comment then like 1:12 the server is going to store it in the 1:14 database for everyone who is 1:16 scrolling through the comments like 1:18 afterwards 1:21
+this text here will be loaded yeah and 1:23 that itself would not be a problem 1:25 if the text you put here is actually 1:28 treated as text and not as html 1:30 but just as it
+happens oftentimes you 1:33 know we're all just human we just 1:34 forget about it so if you by accident 1:37 say 1:37 okay the inner html of this div is the 1:40 text 1:41 and you
+just say oh yeah people are just 1:42 going to put the text 1:44 then you have a big security 1:45 vulnerability because what this means is 1:48 that 1:49 once this comment here is
+posted and 1:51 stored in the database 1:52 everyone who's going to scroll through 1:54 the comments after that 1:57 will have this additional html tag in 1:59 your website 2:00
+and all of a sudden everyone who's 2:02 watching this video 2:04 everyone who gets on that page the 2:06 browser will just load like this script 2:08 from this 2:09 origin and the
+script will execute you 2:11 do evil things and that's why this thing 2:13 is called 2:14 a cross-site scripting so basically the 2:16 idea is that 2:17 some attacker is able to
+inject some 2:20 script 2:21 into another person's browser or the 2:23 hacker can do so by 2:24 exploiting the belief that everything 2:26 that comes from your own server is kind
+2:28 of safe 2:29 and what i've just shown here is a 2:30 special type of cross-site scripting 2:32 which is called the stored cross-site 2:34 scripting 2:34 simply because the
+attack is actually 2:37 stored in the database so there's also 2:39 other types of cross-site scripting uh 2:41 reflected cross-set scripting dom based 2:43 cross-site scripting
+2:44 but i think this one is like the easiest 2:47 variant to understand 2:49 okay and what we want to do with content 2:51 security policy we want to protect 2:53 ourselves
+against this 2:54 and the idea here is that we just 2:58 come up with a policy and that tells the 3:00 browser look 3:01 no matter what happens you're only 3:03 allowed to load
+script from 3:05 this origin this origin or this origin 3:08 and you're only allowed 3:09 to load images from that url or this 3:12 origin 3:13 and the other your origin and you're
+3:14 only allowed to load fonts from here 3:16 here and here 3:18 and that is the main idea of the content 3:20 security policy so you basically 3:21 hard code which from which
+origins you 3:24 kind of expect 3:25 to load content and even if something 3:28 like this happens so even if you make a 3:30 mistake here and 3:31 and you know you just forget
+about it 3:33 even if that happens you will not have 3:34 issues if you have like a proper content 3:36 security policy 3:37 the browser would just block the script 3:39 so it
+would not load it the way this 3:40 works is 3:41 you can just return an additional header 3:44 in your server response so that means 3:47 once the person goes to the website and
+3:48 the html file is sent back 3:50 you just add like an additional header 3:52 and that header is called the 3:54 content security policy inside of this 3:56 policy you have
+directives 3:58 and you have values and the important 4:00 thing i want to 4:01 make clear here is that it's not key 4:04 colon value 4:05 basically the default syntax in 4:07
+javascript but it's just the 4:10 key so to say the directive space and 4:12 then the value 4:14 and then you have a semicolon and then 4:16 you can have the next directive as long
+4:18 as your server has like this header 4:19 you're pretty well protected against 4:22 like most types of cross-site scripting 4:24 so that's pretty good and another thing 4:25 i
+wanted to mention is that you can also 4:27 put this inside of the html file 4:29 by using this meta tag so you can say 4:31 hey here's like some metadata and the 4:34 http 4:34
+like equivalent is the content security 4:36 policy and then you put 4:38 the string inside of like the content 4:41 property 4:42 and yeah this is like how this works so 4:45
+hopefully this is 4:46 this now made clear what the purpose of 4:48 content security policy is 4:51 and let's just take a look at the 4:52 documentation so 4:55 i would recommend
+you go through this 4:56 mdn web docs 4:58 i think it explains really well what it 5:00 is so with the explanation i just gave i 5:02 think it's 5:03 this page is way easier to
+understand 5:04 now you can scroll through all of this 5:06 and you know there's also a couple of 5:08 examples 5:10 over here and these examples are very 5:12 useful because you
+just see what's going 5:14 on 5:14 so for example here this is i think also 5:18 important to understand 5:19 what is this default source and what is 5:21 the self so 5:23 the
+thing is the content security policy 5:25 allows 5:26 or gives you very fine grain control so 5:28 you can say i only want 5:30 to load fonts from this origin and 5:33 i allow
+scripts from this origin and 5:36 i'll allow images from this 5:38 origin and so on sometimes people are 5:40 not you know that specific and in that 5:42 case 5:43 this default
+source kicks in so think of 5:46 like a if you think of a switch case 5:47 statement this is like the default 5:49 clause right so if there's nothing 5:51 specified it will just
+say self 5:53 and self means like your own origin so 5:56 that means if you don't 5:58 explicitly like specify 6:01 um that this url 6:04 that we can load like fonts from this 6:06
+url then the default source 6:08 will be self which will mean if you 6:11 attempt to load like the font from 6:12 another url it's going to be blocked 6:15 yeah and you can you can
+see like more 6:17 sophisticated examples here right you 6:19 can see like media sources and and these 6:21 type of things i'm not going to go 6:23 through all of these directives
+6:24 i also don't think you need to learn 6:26 them by heart i think you just need to 6:27 know what it is 6:29 and then you can like systematically and 6:31 step by step develop
+your own 6:33 policy and what i would also recommend 6:35 is that 6:36 you go over here and click on this 6:39 because here you can see like here it 6:42 explains like all the
+different 6:44 directives 6:45 you can have the thing i just mentioned 6:47 where can i load fonts from 6:48 where can i load images from uh where 6:51 can i load like uh 6:52
+objects from and so on and so on so you 6:54 can see here 6:55 yeah script shows as well so these are 6:58 the directives that exist 7:00 and the question is now is what does 7:02
+that mean for you in practice 7:03 so in practice this means if you have a 7:06 server 7:07 or if you have any type of like website 7:09 or front-end that you return to the 7:10
+browser 7:11 regardless of whether you're doing 7:13 server-side rendering or whether you use 7:16 you know whether you have a single page 7:18 application and you make like 7:20
+cross-origin 7:21 requests to like an api gateway later on 7:24 you should always include this header 7:25 like this meta html 7:27 tag because if you do you are just very 7:30
+well protected 7:31 against these stored and reflected 7:34 cross-site scripting attacks 7:36 yeah so make sure that if you deploy 7:38 whatever you want to deploy 7:40 your react
+vue.js app and that you have 7:44 some sort of content security policy and 7:46 then 7:47 you can mitigate most types of 7:50 cross-site scripting attacks yeah 7:53 another thing i
+just 7:54 forgot to mention is that it also put 7:57 like 7:58 the content security policy also 7:59 protects against against packet sniffing 8:02 so that means if someone accesses
+like 8:04 their page over http 8:05 so unencrypted uh then you can say hey 8:08 look uh i 8:09 only allow traffic like from https 8:13 and yeah you can use that in together 8:15
+with strict transport security 8:17 uh header which is also an header you 8:18 should add and like so 8:21 you're pretty well protected against 8:23 most 8:24 type types of
+cross-site scripting 8:26 attacks yeah so that's it pretty much 8:28 thank you so much for watching leave a 8:29 like and subscribe to the channel 8:31 i hope content security
+policy like the 8:34 concept 8:34 is now a little bit clearer i hope 8:36 cross-site scripting is a little bit 8:38 clearer 8:39 let me know what you think about this in 8:40 the
+comments below ask me some questions 8:42 maybe if you have some video ideas post 8:44 them 8:44 below as well you can also reach out to 8:46 me on twitter my twitter handle is at
+8:48 productioncoder 8:49 so thank you so much for watching and 8:51 i'll see you next video 8:52 bye All From Jan Goebel In this video Chapters Transcript 0:00 Releasing a mobile
+app can be tricky, with tough rules that could delay our launch. In this video, 0:05 we'll guide you through releasing an app on both iOS and Android. 0:08 Grab a notepad—we're
+about to share essential tips and tricks to navigate these challenges 0:14 and release a smooth, efficient app that users will enjoy. Let's get started! 0:19 To start building our
+iOS app, we first need to join Apple's Developer Program, 0:24 which comes with an annual fee. 0:26 For Android, we register as developers on the 0:28 Google Play Console and pay a
+one-time registration fee. 0:32 Next, we choose our programming language: 0:34 Swift or Objective-C for iOS, and Java or Kotlin for Android. 0:38 We write our apps with key
+development tools like Xcode for iOS and Android Studio for Android. 0:45 Alternatively, we might opt for a cross-platform development tool like React Native or Flutter. 0:51 These
+let us write code once and deploy it on both platforms. 0:55 They can speed up development and reduce costs. 0:58 However, they might not always offer the same 1:00 performance or
+access to device-specific features as native development. 1:05 Once we've written our code, it's time to build and test. 1:08 We compile our app's binary and conduct thorough 1:11
+testing using tools like XCTest for iOS and Espresso for Android. 1:16 Device farms help us to automate testing across hundreds of device configurations, 1:22 catching issues that
+could affect different hardware or OS versions. This automation is 1:26 integrated into our CI/CD pipelines to streamline the build and test process. 1:32 Our goal is to deliver
+top-notch quality and performance across all 1:36 devices, aiming for a rock-solid release candidate build ready for the next stage. 1:41 It’s important to mention that while
+device farms like AWS Device Farm or 1:45 BrowserStack provide significant benefits, they can be expensive. 1:49 Their use might be planned later in the development cycle based
+1:53 on budget allowances and project requirements. 1:56 Quality Assurance The next stage is QA. 1:58 It starts with internal alpha testing to catch initial bugs, 2:02 followed by
+"dogfooding," where the team uses the app extensively. 2:06 After this, we invite a group of users to try the app and provide feedback 2:11 through beta testing platforms like
+Apple’s TestFlight and Google Play beta testing. 2:17 It’s important to note that TestFlight limits us 2:19 to 10,000 testers, and Google Play has similar constraints. We need to
+2:24 choose our external testers carefully to gain the most meaningful insights. 2:29 These platforms help us gather feedback under real-world conditions and identify 2:33 any
+issues that didn't surface during earlier testing stages. 2:39 Before we submit our app to the stores, we need to obtain internal approvals. 2:43 This requires getting the green
+light from key stakeholders, 2:46 focusing on criteria like UX consistency, brand alignment, and technical performance metrics. 2:53 We also need to make sure our app meets all the
+necessary app store guidelines 2:57 and adheres to industry regulations on security practices and privacy compliance. 3:03 App Store Optimization is about making our app more
+visible in the app stores. 3:07 It involves optimizing our app's metadata, such as titles, descriptions, and keywords, 3:13 and localizing our content for different regions to
+boost search rankings and attract more users. 3:19 It’s also important to design eye-catching screenshots and 3:23 icons that showcase our app's best features. 3:26 When it comes
+to release notes, 3:27 get creative and highlight all the exciting new updates and improvements. 3:32 Now comes the moment of truth: App Submission. 3:35 For iOS, we submit our app
+through App Store Connect, 3:38 closely following Apple's strict guidelines. 3:41 Android developers will proceed via the Google Play Console, adhering to Google's policies. 3:47
+Prepare for potential delays and be patient—especially if this is a new app. 3:52 The app review teams sometimes may seem unreasonably picky. They may 3:57 request changes or
+additional information, so it's 3:59 important to allow extra time for this phase to ensure we secure approval. 4:04 Finally, it's time to release our app to the world! 4:07 If
+possible, coordinate a simultaneous launch on both iOS and Android platforms. 4:12 Make sure our marketing efforts are in full swing to generate buzz and 4:16 anticipation for the
+launch. This can maximize our visibility and impact right out of the gate. 4:22 But the journey doesn't end there. 4:24 Once our app is live, it's crucial to monitor user feedback
+and analytics. 4:29 We use this data to improve and update the app, 4:32 fixing bugs and adding new features based on user demand. 4:36 We also engage with users through reviews
+and social 4:39 media to build a loyal community around the app. 4:43 If you like our videos, you might like our system design newsletter as well. 4:47 It covers topics and trends
+in large-scale system design. 4:51 Trusted by 500,000 readers. 4:53 Subscribe at blog.bytebytego.com. All From the series Deployment ain't easy 0:00 in this video we'll look at
+seven 0:02 different ways to deploy 0:03 a server side application i built this 0:05 api with node.js 0:06 and now i'm ready to share it with the 0:08 world but one does not simply
+deploy an 0:10 app to production 0:11 there's all kinds of different ways to 0:13 get the job done with trade-offs between 0:15 cost complexity and scalability 0:17 on the surface
+deployment seems like it 0:19 should be easy we just need a computer 0:21 to host the app which we connect to the 0:22 internet so it can handle requests from 0:24 all of our users
+0:25 but resources are limited and that means 0:27 we need to synchronize many computers 0:29 all over the world 0:30 just to keep things running fast by the 0:31 end of this video
+you'll be able to 0:33 analyze the trade-offs like a cto to 0:35 choose the best deployment strategy for 0:37 your server side application 0:38 if you're new here like and
+subscribe 0:40 then let's jump right into it Node.js App Tour 0:42 first of all let's look at some of the 0:43 features in this node.js application 0:45 it requires node 16 which
+is the current 0:48 bleeding edge version and that means 0:49 wherever we deploy 0:50 needs to support that exact version of 0:52 node it provides a basic rest api built 0:55 with
+the express js framework nothing 0:57 too special 0:58 but we want these endpoints to have 0:59 extremely fast response times 1:01 one of the endpoints though creates a 1:03
+websocket connection with the client 1:05 that means that the connection between 1:06 the client and server needs to stay 1:08 open for a long time that'll come into 1:10 play
+later because not every deployment 1:12 strategy 1:12 supports long-lived connections like 1:14 that now one other important feature of 1:16 this server 1:17 is that it's stateless
+that means it 1:18 doesn't store any persistent data in 1:20 memory or on the disk 1:22 that's needed between different http 1:24 requests anything related to the 1:26 application
+state would be stored in a 1:27 dedicated database 1:29 now to run this app on our local machine 1:31 we use the npm start command made 1:33 available in the package 1:34 json file
+now the question becomes how 1:36 do we do the same thing for a computer 1:38 that's accessible to the greater 1. Server in your Garage 1:40 internet the first option 1:41 is to
+use your own hardware you might 1:43 have an old pc laying around or maybe 1:45 you want to invest in your own server 1:47 rack or you can even use a 100 1:48 raspberry pi like i
+showed in this video 1:50 this was actually a common way to deploy 1:52 a web application 15 1:54 years ago because back in those days the 1:56 cloud didn't exist yet 1:57 almost
+every startup today will use the 1:59 cloud because it's convenient and 2:00 inexpensive but deploying to your own 2:02 hardware has some unique advantages 2:04 most importantly
+you own your 2:05 infrastructure it's not owned by a tech 2:07 company 2:08 like amazon or google who can sync you 2:10 at any moment if they don't like the cut 2:11 of your jip
+2:12 but managing your own hardware is a 2:14 major pain not only do you need to think 2:15 about the server configuration itself 2:17 but you also have to worry about things 2:18
+like electricity 2:19 air conditioning natural disasters and 2:22 things like that 2:22 if the electricity or internet goes out 2:24 then your website goes down another 2:26
+challenge is that if you're an 2:27 individual working out of your garage 2:29 you'll need to request a static ip 2:31 address from your internet service 2:32 provider 2:33 if they
+don't give you one then you're 2:34 pretty much screwed now as your app 2:36 grows in popularity 2:37 the only way to scale is to buy more 2:39 computers and ideally those
+computers 2:41 are located 2:42 in different parts of the world which 2:43 means you'll also want an international 2:45 real estate portfolio 2:46 luckily there is an easier way to
+deploy 2. Cloud VM 2:49 a node.js application and it's called 2:51 the cloud 2:52 i'm going to focus on google cloud 2:53 platform for this video but keep in mind 2:55 that there
+are many different cloud 2:56 providers out there 2:57 offering similar services one option for 3:00 deploying to the cloud 3:01 is to use compute engine to create a 3:03 virtual
+machine which is basically just 3:05 a computer in the cloud 3:06 that you pay for by the hour and every 3:08 customer on google cloud gets one free 3:10 micro instance per month
+so the cost to 3:12 get started in the cloud is way lower 3:14 than if you were to buy your own 3:15 physical hardware 3:16 after creating a new vm on compute 3:18 engine it'll
+take a few steps to get 3:20 your app deployed 3:21 first you'll need to ssh into it to 3:23 interact with the operating system 3:25 install your preferred node.js version 3:27
+then clone your source code to the file 3:29 system from there you can start the 3:30 application 3:31 then go to the firewall settings and 3:33 open up port 8080 so it can be
+accessed 3:35 on the internet and now technically your 3:37 app is deployed but there are a lot of 3:39 things missing here for one you'll need 3:41 to reserve a static ip address
+3:43 then update your dns settings to point a 3:45 custom domain to it in addition you'll 3:47 need to manage your own ssl certificate 3:49 to serve it over https and another 3:52
+problem 3:52 is that it's not going to scale 3:53 automatically once the cpu and memory 3:56 has been fully utilized the app will 3:58 just stop working we could address that 3:59
+by bringing in 4:00 nginx or setting up load balancers but 4:02 it's a lot of extra configuration work 4:04 that most people don't want to deal with 3. App Engine Standard 4:06 so
+the next option we'll look at 4:08 is the app engine standard environment 4:09 for node.js which is a platform as a 4:12 service 4:12 it makes it incredibly easy to get our 4:14
+local node app to a production server 4:16 and the cloud fully manages the virtual 4:18 machines which means your app scales 4:20 automatically as more traffic comes in 4:22 all
+that manual configuration we had to 4:24 do in the virtual machine is unnecessary 4:26 in app engine 4:27 because it's pre-configured to scale 4:28 popular types of applications
+4:30 first we install the google cloud sdk on 4:33 our local system 4:34 second we create an app.yaml file in the 4:36 root of the project 4:37 inside the file we specify the
+runtime 4:39 as node 14. we can also use this file to 4:42 customize the hosting behavior 4:44 and set limits on how the infrastructure 4:45 will scale then the third step is to
+use 4:47 the gcloud app deploy command which will 4:50 upload the local code to the cloud 4:52 then look for the npm start command in 4:53 the package json 4:55 to run the
+application then it provides 4:56 a url where the actual hosted app can be 4:59 accessed and notice how it's http secure 5:01 because google manages the ssl 5:03 certificate for
+you 5:04 in addition app engine provides task 5:06 queues cron jobs 5:08 login and a bunch of other tools that 5:10 you wouldn't have in a normal vm 5:11 it's also important to
+point out that 5:13 app engine is a persistent server which 5:15 means it's capable of handling long live 5:17 connections like websockets and it's way 5:19 easier to get your app
+online compared 5:21 to a regular vm 5:23 but here's the catch the reason it's 5:24 called the standard environment is 5:26 because you have no control 5:27 over the runtime itself
+that makes it 5:29 easier for google to scale 5:30 but if you have custom runtime 5:32 dependencies or a version of node that's 5:34 not supported then you won't be able to 5:35
+use it on the free tier 5:37 now although app engine standard is free 5:39 initially it becomes more and more 5:40 expensive as you scale up 5:42 and there may be less expensive

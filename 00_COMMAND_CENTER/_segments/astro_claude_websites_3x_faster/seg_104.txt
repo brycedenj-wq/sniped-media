@@ -1,0 +1,227 @@
+your own agents powered by Claude Code's tools and capabilities, with full control over orchestration, tool access, and permissions. </Accordion> <Accordion title="Pipe, script,
+and automate with the CLI" icon="terminal"> Claude Code is composable and follows the Unix philosophy. Pipe logs into it, run it in CI, or chain it with other tools: ```bash
+theme={null} # Analyze recent log output tail -200 app.log | claude -p "Slack me if you see any anomalies" # Automate translations in CI claude -p "translate new strings into
+French and raise a PR for review" # Bulk operations across files git diff main --name-only | claude -p "review these changed files for security issues" ``` See the [CLI
+reference](/en/cli-reference) for the full set of commands and flags. </Accordion> <Accordion title="Schedule recurring tasks" icon="clock"> Run Claude on a schedule to automate
+work that repeats: morning PR reviews, overnight CI failure analysis, weekly dependency audits, or syncing docs after PRs merge. * [Routines](/en/routines) run on Anthropic-managed
+infrastructure, so they keep running even when your computer is off. They can also trigger on API calls or GitHub events. Create them from the web, the Desktop app, or by running
+`/schedule` in the CLI. * [Desktop scheduled tasks](/en/desktop-scheduled-tasks) run on your machine, with direct access to your local files and tools *
+[`/loop`](/en/scheduled-tasks) repeats a prompt within a CLI session for quick polling </Accordion> <Accordion title="Work from anywhere" icon="globe"> Sessions aren't tied to a
+single surface. Move work between environments as your context changes: * Step away from your desk and keep working from your phone or any browser with [Remote
+Control](/en/remote-control) * Message [Dispatch](/en/desktop#sessions-from-dispatch) a task from your phone and open the Desktop session it creates * Kick off a long-running task
+on the [web](/en/claude-code-on-the-web) or [iOS app](https://apps.apple.com/app/claude-by-anthropic/id6473753684), then pull it into your terminal with `claude --teleport` * Hand
+off a terminal session to the [Desktop app](/en/desktop) with `/desktop` for visual diff review * Route tasks from team chat: mention `@Claude` in [Slack](/en/slack) with a bug
+report and get a pull request back </Accordion> </AccordionGroup> ## Use Claude Code everywhere Each surface connects to the same underlying Claude Code engine, so your CLAUDE.md
+files, settings, and MCP servers work across all of them. Beyond the [Terminal](/en/quickstart), [VS Code](/en/vs-code), [JetBrains](/en/jetbrains), [Desktop](/en/desktop), and
+[Web](/en/claude-code-on-the-web) environments above, Claude Code integrates with CI/CD, chat, and browser workflows: | I want to... | Best option | |
+------------------------------------------------------------------------------- |
+------------------------------------------------------------------------------------------------------------------ | | Continue a local session from my phone or another device |
+[Remote Control](/en/remote-control) | | Push events from Telegram, Discord, iMessage, or my own webhooks into a session | [Channels](/en/channels) | | Start a task locally,
+continue on mobile | [Web](/en/claude-code-on-the-web) or [Claude iOS app](https://apps.apple.com/app/claude-by-anthropic/id6473753684) | | Run Claude on a recurring schedule |
+[Routines](/en/routines) or [Desktop scheduled tasks](/en/desktop-scheduled-tasks) | | Automate PR reviews and issue triage | [GitHub Actions](/en/github-actions) or [GitLab
+CI/CD](/en/gitlab-ci-cd) | | Get automatic code review on every PR | [GitHub Code Review](/en/code-review) | | Route bug reports from Slack to pull requests | [Slack](/en/slack) |
+| Debug live web applications | [Chrome](/en/chrome) | | Build custom agents for your own workflows | [Agent SDK](/en/agent-sdk/overview) | ## Next steps Once you've installed
+Claude Code, these guides help you go deeper. * [Quickstart](/en/quickstart): walk through your first real task, from exploring a codebase to committing a fix * [Store instructions
+and memories](/en/memory): give Claude persistent instructions with CLAUDE.md files and auto memory * [Common workflows](/en/common-workflows) and [best
+practices](/en/best-practices): patterns for getting the most out of Claude Code * [Settings](/en/settings): customize Claude Code for your workflow *
+[Troubleshooting](/en/troubleshooting): solutions for common issues * [code.claude.com](https://code.claude.com/): demos, pricing, and product details> ## Documentation Index >
+Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt > Use this file to discover all available pages before exploring further. # Run agents in parallel
+> Compare the ways Claude Code can take on multiple tasks at once: subagents, agent view, agent teams, and isolated worktree sessions. [Subagents](/en/sub-agents), [agent
+view](/en/agent-view), [agent teams](/en/agent-teams), and [worktrees](/en/worktrees) each parallelize work in a different way. The right one depends on whether you want to stay in
+each conversation yourself, hand tasks off and check back later, or have Claude coordinate a group of workers for you. | Approach | What it gives you | Use it when | |
+:----------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
+:-------------------------------------------------------------------------------------------------------------------------- | | [Subagents](/en/sub-agents) | Delegated workers
+inside one session that do a side task in their own context and return a summary | A side task would flood your main conversation with search results, logs, or file contents you
+won't reference again | | [Agent view](/en/agent-view) | One screen to dispatch and monitor sessions running in the background, opened with `claude agents`. Research preview | You
+have several independent tasks and want to hand them off, check status at a glance, and step in only when one needs you | | [Agent teams](/en/agent-teams) | Multiple coordinated
+sessions with a shared task list and inter-agent messaging, managed by a lead. Experimental and disabled by default | You want Claude to split a project into pieces, assign them,
+and keep the workers in sync | | [Worktrees](/en/worktrees) | Separate git checkouts so parallel sessions never touch each other's files | You're running several sessions yourself,
+or your subagents edit overlapping files | | [`/batch`](/en/commands) | A planned split of one large change into 5 to 30 worktree-isolated subagents that each open a pull request |
+A repo-wide migration or mechanical refactor you can describe in one instruction | In every approach the workers are Claude sessions. To involve a different tool, expose it to
+Claude as an [MCP server](/en/mcp). You can combine these approaches. Agent view automatically moves each dispatched session into its own worktree when it needs to edit files, and
+a session you're working in can spawn subagents that each get their own worktree. <Note> Running several sessions or subagents at once multiplies token usage. See
+[Costs](/en/costs) for usage and rate-limit details. </Note> ## Choose an approach The right approach depends on who coordinates the work, whether the workers need to communicate,
+and whether they edit the same files: * **Who coordinates the work?** If you want Claude to delegate and collect results inside one conversation, use [subagents](/en/sub-agents).
+If you're handing off independent tasks and checking back on them, use [agent view](/en/agent-view). If you want Claude to plan, assign, and supervise a group of workers, use
+[agent teams](/en/agent-teams), which are experimental and disabled by default. * **Do the workers need to talk to each other?** Subagents report results back to the conversation
+that spawned them, and agent view sessions report only to you. Teammates in an agent team share a task list and message each other directly. * **Do the tasks touch the same
+files?** Isolate the work with [worktrees](/en/worktrees). Subagents and sessions you run yourself can each use a separate worktree. Agent teams don't isolate teammates in
+worktrees, so [partition the work](/en/agent-teams#avoid-file-conflicts) so each teammate owns a different set of files. ## Check on running work The command for checking on
+running work depends on which approach you used: * For background sessions, `claude agents` opens [agent view](/en/agent-view): one screen showing every session, its state, and
+which ones need your input. * For subagents in the current session, `/agents` opens a panel with a **Running** tab listing live subagents and a **Library** tab where you [create
+and edit custom subagents](/en/sub-agents#use-the-%2Fagents-command). Despite the similar name, this is separate from `claude agents`. * For anything running in the background of
+the current session, `/tasks` lists each item and lets you check on, attach to, or stop it. For a desktop view of all your sessions, see [parallel sessions in the desktop
+app](/en/desktop#work-in-parallel-with-sessions). ## Learn more Each guide below covers setup and configuration for one approach: * [Create custom subagents](/en/sub-agents):
+define reusable specialists and control which tools they can use. * [Manage agents with agent view](/en/agent-view): dispatch sessions, watch their state, and attach when one needs
+you. * [Orchestrate agent teams](/en/agent-teams): set up a lead and teammates, assign tasks, and review their work. * [Run parallel sessions with worktrees](/en/worktrees): start
+Claude in an isolated checkout, control what gets copied in, and clean up afterward. Skip to main content English Search... ⌘K Ask AI Claude Developer Platform Claude Code on the
+Web Getting started Build with Claude Code Administration Configuration Reference Agent SDK What's New Resources Setup and access Administration overview Advanced setup
+Authentication Server-managed settings Auto mode Deployment Overview Amazon Bedrock Claude Platform on AWS Google Vertex AI Microsoft Foundry Network configuration LLM gateway
+Development containers Usage and costs Monitoring Costs Track team usage with analytics Plugin distribution Create and distribute a plugin marketplace Plugin dependency versions
+Security and data Security Data usage Zero data retention Adoption Communications kit Champion kit On this page Choose your API provider Decide how settings reach devices Decide
+what to enforce Set up usage visibility Review data handling Verify and onboard Next steps Setup and access Set up Claude Code for your organization Copy page A decision map for
+administrators deploying Claude Code, covering API providers, managed settings, policy enforcement, usage monitoring, and data handling. Documentation Index Fetch the complete
+documentation index at: https://code.claude.com/docs/llms.txt Use this file to discover all available pages before exploring further. Claude Code enforces organization policy
+through managed settings that take precedence over local developer configuration. You deliver those settings from the Claude admin console, your mobile device management (MDM)
+system, or a file on disk. The settings control which tools, commands, servers, and network destinations Claude can reach. This page walks through the deployment decisions in
+order. Each row links to the section below and to the reference page for that area. SSO, SCIM provisioning, and seat assignment are configured at the Claude account level. See the
+Claude Enterprise Administrator Guide and seat assignment for those steps. DecisionWhat you’re choosingReference Choose your API providerWhere Claude Code authenticates and how
+it’s billedAuthentication, Bedrock, Vertex AI, Foundry Decide how settings reach devicesHow managed policy reaches developer machinesServer-managed settings, Settings files Decide
+what to enforceWhich tools, commands, and integrations are allowedPermissions, Sandboxing Set up usage visibilityHow you track spend and adoptionAnalytics, Monitoring, Costs Review
+data handlingData retention and compliance postureData usage, Security ​ Choose your API provider Claude Code connects to Claude through one of several API providers. Your choice
+affects billing, authentication, which compliance posture you inherit, and which Claude Code features your developers can use. ProviderChoose this when Claude for Teams /
+EnterpriseYou want Claude Code and claude.ai under one per-seat subscription with no infrastructure to run. This is the default recommendation. Claude ConsoleYou’re API-first or
+want pay-as-you-go billing Amazon BedrockYou want to inherit existing AWS compliance controls and billing Google Vertex AIYou want to inherit existing GCP compliance controls and
+billing Microsoft FoundryYou want to inherit existing Azure compliance controls and billing Some Claude Code features require a Claude.ai account. Claude Code on the web, Routines,
+Code Review, Remote Control, and the Chrome extension are not available through Console API keys or cloud-provider credentials alone. If you deploy through Bedrock, Vertex, or
+Foundry, plan whether developers also need Claude for Teams or Enterprise seats. Each feature page lists its plan requirements. For the full provider comparison covering
+authentication, regions, and feature parity, see the enterprise deployment overview. Each provider’s auth setup is in Authentication. Proxy and firewall requirements in Network
+configuration apply regardless of provider. If you want a single endpoint in front of multiple providers or centralized request logging, see LLM gateway. ​ Decide how settings
+reach devices Managed settings define policy that takes precedence over local developer configuration. Claude Code looks for them in four places and uses the first one it finds on
+a given device. MechanismDeliveryPriorityPlatforms Server-managedClaude.ai admin consoleHighestAll plist / registry policymacOS: com.anthropic.claudecode plist Windows:
+HKLM\SOFTWARE\Policies\ClaudeCodeHighmacOS, Windows File-based managedmacOS: /Library/Application Support/ClaudeCode/managed-settings.json Linux and WSL:
+/etc/claude-code/managed-settings.json Windows: C:\Program Files\ClaudeCode\managed-settings.jsonMediumAll Windows user registryHKCU\SOFTWARE\Policies\ClaudeCodeLowestWindows only
+Server-managed settings reach devices at authentication time and refresh hourly during active sessions, with no endpoint infrastructure. They require a Claude for Teams or
+Enterprise plan, so deployments on other providers need one of the file-based or OS-level mechanisms instead. If your organization mixes providers, configure server-managed
+settings for Claude.ai users plus a file-based or plist/registry fallback so other users still receive managed policy. The plist and HKLM registry locations work with any provider
+and resist tampering because they require admin privileges to write. The Windows user registry at HKCU is writable without elevation, so treat it as a convenience default rather
+than an enforcement channel. By default WSL reads only the Linux file path at /etc/claude-code. To extend your Windows registry and C:\Program Files\ClaudeCode policy to WSL on the
+same machine, set wslInheritsWindowsSettings: true in either of those admin-only Windows sources. Whichever mechanism you choose, managed values take precedence over user and
+project settings. Array settings such as permissions.allow and permissions.deny merge entries from all sources, so developers can extend managed lists but not remove from them. See
+Server-managed settings and Settings files and precedence. ​ Decide what to enforce Managed settings can lock down tools, sandbox execution, restrict MCP servers and plugin
+sources, and control which hooks run. Each row is a control surface with the setting keys that drive it. ControlWhat it doesKey settings Permission rulesAllow, ask, or deny
+specific tools and commandspermissions.allow, permissions.deny Permission lockdownOnly managed permission rules apply; disable
+--dangerously-skip-permissionsallowManagedPermissionRulesOnly, permissions.disableBypassPermissionsMode SandboxingOS-level filesystem and network isolation with domain
+allowlistssandbox.enabled, sandbox.network.allowedDomains Managed policy CLAUDE.mdOrg-wide instructions loaded in every session, cannot be excludedFile at the managed policy path
+MCP server controlRestrict which MCP servers users can add or connect toallowedMcpServers, deniedMcpServers, allowManagedMcpServersOnly Plugin marketplace controlRestrict which
+marketplace sources users can add and install fromstrictKnownMarketplaces, blockedMarketplaces Hook restrictionsOnly managed hooks load; restrict HTTP hook
+URLsallowManagedHooksOnly, allowedHttpHookUrls Disable agent viewTurn off claude agents, --bg, /background, and the on-demand supervisordisableAgentView Version floorPrevent
+auto-update from installing below an org-wide minimumminimumVersion Permission rules and sandboxing cover different layers. Denying WebFetch blocks Claude’s fetch tool, but if Bash
+is allowed, curl and wget can still reach any URL. Sandboxing closes that gap with a network domain allowlist enforced at the OS level. For the threat model these controls defend
+against, see Security. ​ Set up usage visibility Choose monitoring based on what you need to report on. CapabilityWhat you getAvailabilityWhere to start Usage
+monitoringOpenTelemetry export of sessions, tools, and tokensAll providersMonitoring usage Analytics dashboardPer-user metrics, contribution tracking, leaderboardAnthropic
+onlyAnalytics Cost trackingSpend limits, rate limits, and usage attributionAnthropic onlyCosts Cloud providers expose spend through AWS Cost Explorer, GCP Billing, or Azure Cost
+Management. Claude for Teams and Enterprise plans include a usage dashboard at claude.ai/analytics/claude-code. ​ Review data handling On Team, Enterprise, Claude API, and cloud
+provider plans, Anthropic does not train models on your code or prompts. Your API provider determines retention and compliance posture. TopicWhat to knowWhere to start Data usage
+policyWhat Anthropic collects, how long it’s retained, what’s never used for trainingData usage Zero Data Retention (ZDR)Nothing stored after the request completes. Available on
+Claude for EnterpriseZero data retention Security architectureNetwork model, encryption, authentication, audit trailSecurity If you need request-level audit logging or to route
+traffic by data sensitivity, place an LLM gateway between developers and your provider. For regulatory requirements and certifications, see Legal and compliance. ​ Verify and
+onboard After configuring managed settings, have a developer run /status inside Claude Code. The output includes a line beginning with Enterprise managed settings followed by the
+source in parentheses, one of (remote), (plist), (HKLM), (HKCU), or (file). See Verify active settings. Share these resources to help developers get started: Quickstart:
+first-session walkthrough from install to working with a project Common workflows: patterns for everyday tasks like code review, refactoring, and debugging Claude 101 and Claude
+Code in Action: self-paced Anthropic Academy courses For login issues, point developers to authentication troubleshooting. The most common fixes are: Run /logout then /login to
+switch accounts Run claude update if the enterprise auth option is missing Restart the terminal after updating If a developer sees “You haven’t been added to your organization
+yet,” their seat doesn’t include Claude Code access and needs to be updated in the admin console. ​ Next steps With provider and delivery mechanism chosen, move on to detailed
+configuration: Server-managed settings: deliver managed policy from the Claude admin console Settings reference: every setting key, file location, and precedence rule Amazon
+Bedrock, Google Vertex AI, Microsoft Foundry: provider-specific deployment Claude Enterprise Administrator Guide: SSO, SCIM, seat management, and rollout playbook Was this page
+helpful? Yes No Advanced setup Ask a question... x linkedin Company Anthropic Careers Economic Futures Research News Trust center Transparency Help and security Availability Status
+Support center Learn Courses MCP connectors Customer stories Engineering blog Events Powered by Claude Service partners Startups program Terms and policies Privacy choices Privacy
+policy Disclosure policy Usage policy Commercial terms Consumer terms Set up Claude Code for your organization - Claude Code Docs> ## Documentation Index > Fetch the complete
+documentation index at: https://code.claude.com/docs/llms.txt > Use this file to discover all available pages before exploring further. # Claude Code settings > Configure Claude
+Code with global and project-level settings, and environment variables. Claude Code offers a variety of settings to configure its behavior to meet your needs. You can configure
+Claude Code by running the `/config` command when using the interactive REPL, which opens a tabbed Settings interface where you can view status information and modify configuration
+options. ## Configuration scopes Claude Code uses a **scope system** to determine where configurations apply and who they're shared with. Understanding scopes helps you decide how
+to configure Claude Code for personal use, team collaboration, or enterprise deployment. ### Available scopes | Scope | Location | Who it affects | Shared with team? | |
+:---------- | :--------------------------------------------------------------------------------- | :----------------------------------- | :--------------------- | | **Managed** |
+Server-managed settings, plist / registry, or system-level `managed-settings.json` | All users on the machine | Yes (deployed by IT) | | **User** | `~/.claude/` directory | You,
+across all projects | No | | **Project** | `.claude/` in repository | All collaborators on this repository | Yes (committed to git) | | **Local** | `.claude/settings.local.json` |
+You, in this repository only | No (gitignored) | ### When to use each scope **Managed scope** is for: * Security policies that must be enforced organization-wide * Compliance
+requirements that can't be overridden * Standardized configurations deployed by IT/DevOps **User scope** is best for: * Personal preferences you want everywhere (themes, editor
+settings) * Tools and plugins you use across all projects * API keys and authentication (stored securely) **Project scope** is best for: * Team-shared settings (permissions, hooks,
+MCP servers) * Plugins the whole team should have * Standardizing tooling across collaborators **Local scope** is best for: * Personal overrides for a specific project * Testing
+configurations before sharing with the team * Machine-specific settings that won't work for others ### How scopes interact When the same setting appears in multiple scopes, Claude
+Code applies them in priority order: 1. **Managed** (highest) - can't be overridden by anything 2. **Command line arguments** - temporary session overrides 3. **Local** - overrides
+project and user settings 4. **Project** - overrides user settings 5. **User** (lowest) - applies when nothing else specifies the setting For example, if your user settings set
+`spinnerTipsEnabled` to `true` and project settings set it to `false`, the project value applies. Permission rules behave differently because they merge across scopes rather than
+override. See [Settings precedence](#settings-precedence). ### What uses scopes Scopes apply to many Claude Code features: | Feature | User location | Project location | Local
+location | | :-------------- | :------------------------ | :--------------------------------- | :----------------------------- | | **Settings** | `~/.claude/settings.json` |
+`.claude/settings.json` | `.claude/settings.local.json` | | **Subagents** | `~/.claude/agents/` | `.claude/agents/` | None | | **MCP servers** | `~/.claude.json` | `.mcp.json` |
+`~/.claude.json` (per-project) | | **Plugins** | `~/.claude/settings.json` | `.claude/settings.json` | `.claude/settings.local.json` | | **CLAUDE.md** | `~/.claude/CLAUDE.md` |
+`CLAUDE.md` or `.claude/CLAUDE.md` | `CLAUDE.local.md` | On Windows, paths shown as `~/.claude` resolve to `%USERPROFILE%\.claude`. *** ## Settings files The `settings.json` file
+is the official mechanism for configuring Claude Code through hierarchical settings: * **User settings** are defined in `~/.claude/settings.json` and apply to all projects. *
+**Project settings** are saved in your project directory: * `.claude/settings.json` for settings that are checked into source control and shared with your team *
+`.claude/settings.local.json` for settings that are not checked in, useful for personal preferences and experimentation. Claude Code will configure git to ignore
+`.claude/settings.local.json` when it is created. * **Managed settings**: For organizations that need centralized control, Claude Code supports multiple delivery mechanisms for
+managed settings. All use the same JSON format and cannot be overridden by user or project settings: * **Server-managed settings**: delivered from Anthropic's servers via the
+Claude.ai admin console. See [server-managed settings](/en/server-managed-settings). * **MDM/OS-level policies**: delivered through native device management on macOS and Windows: *
+macOS: `com.anthropic.claudecode` managed preferences domain. The plist's top-level keys mirror `managed-settings.json`, with nested settings as dictionaries and arrays as plist
+arrays. Deploy via configuration profiles in Jamf, Iru (Kandji), or similar MDM tools. * Windows: `HKLM\SOFTWARE\Policies\ClaudeCode` registry key with a `Settings` value (REG\_SZ
+or REG\_EXPAND\_SZ) containing JSON (deployed via Group Policy or Intune) * Windows (user-level): `HKCU\SOFTWARE\Policies\ClaudeCode` (lowest policy priority, only used when no
+admin-level source exists) * **File-based**: `managed-settings.json` and `managed-mcp.json` deployed to system directories: * macOS: `/Library/Application Support/ClaudeCode/` *
+Linux and WSL: `/etc/claude-code/` * Windows: `C:\Program Files\ClaudeCode\` <Warning> The legacy Windows path `C:\ProgramData\ClaudeCode\managed-settings.json` is no longer
+supported as of v2.1.75. Administrators who deployed settings to that location must migrate files to `C:\Program Files\ClaudeCode\managed-settings.json`. </Warning> File-based
+managed settings also support a drop-in directory at `managed-settings.d/` in the same system directory alongside `managed-settings.json`. This lets separate teams deploy
+independent policy fragments without coordinating edits to a single file. Following the systemd convention, `managed-settings.json` is merged first as the base, then all `*.json`
+files in the drop-in directory are sorted alphabetically and merged on top. Later files override earlier ones for scalar values; arrays are concatenated and de-duplicated; objects
+are deep-merged. Hidden files starting with `.` are ignored. Use numeric prefixes to control merge order, for example `10-telemetry.json` and `20-security.json`. See [managed
+settings](/en/permissions#managed-only-settings) and [Managed MCP configuration](/en/mcp#managed-mcp-configuration) for details. This
+[repository](https://github.com/anthropics/claude-code/tree/main/examples/mdm) includes starter deployment templates for Jamf, Iru (Kandji), Intune, and Group Policy. Use these as
+starting points and adjust them to fit your needs. <Note> Managed deployments can also restrict **plugin marketplace additions** using `strictKnownMarketplaces`. For more
+information, see [Managed marketplace restrictions](/en/plugin-marketplaces#managed-marketplace-restrictions). </Note> * **Other configuration** is stored in `~/.claude.json`. This
+file contains your OAuth session, [MCP server](/en/mcp) configurations for user and local scopes, per-project state (allowed tools, trust settings), and various caches.
+Project-scoped MCP servers are stored separately in `.mcp.json`. <Note> Claude Code automatically creates timestamped backups of configuration files and retains the five most
+recent backups to prevent data loss. </Note> ```JSON Example settings.json theme={null} { "$schema": "https://json.schemastore.org/claude-code-settings.json", "permissions": {
+"allow": [ "Bash(npm run lint)", "Bash(npm run test *)", "Read(~/.zshrc)" ], "deny": [ "Bash(curl *)", "Read(./.env)", "Read(./.env.*)", "Read(./secrets/**)" ] }, "env": {
+"CLAUDE_CODE_ENABLE_TELEMETRY": "1", "OTEL_METRICS_EXPORTER": "otlp" }, "companyAnnouncements": [ "Welcome to Acme Corp! Review our code guidelines at docs.acme.com", "Reminder:
+Code reviews required for all PRs", "New security policy in effect" ] } ``` The `$schema` line in the example above points to the [official JSON
+schema](https://json.schemastore.org/claude-code-settings.json) for Claude Code settings. Adding it to your `settings.json` enables autocomplete and inline validation in VS Code,
+Cursor, and any other editor that supports JSON schema validation. The published schema is updated periodically and may not include settings added in the most recent CLI releases,
+so a validation warning on a recently documented field does not necessarily mean your configuration is invalid. ### Available settings `settings.json` supports a number of options:
+| Key | Description | Example | | :-------------------------------- |
+:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| :----------------------------------------------------------------------------------------------------------------------------- | | `agent` | Run the main thread as a named
+subagent. Applies that subagent's system prompt, tool restrictions, and model. See [Invoke subagents explicitly](/en/sub-agents#invoke-subagents-explicitly) | `"code-reviewer"` | |
+`allowedChannelPlugins` | (Managed settings only) Allowlist of channel plugins that may push messages. Replaces the default Anthropic allowlist when set. Undefined = fall back to
+the default, empty array = block all channel plugins. Requires `channelsEnabled: true`. See [Restrict which channel plugins can
+run](/en/channels#restrict-which-channel-plugins-can-run) | `[{ "marketplace": "claude-plugins-official", "plugin": "telegram" }]` | | `allowedHttpHookUrls` | Allowlist of URL
+patterns that HTTP hooks may target. Supports `*` as a wildcard. When set, hooks with non-matching URLs are blocked. Undefined = no restriction, empty array = block all HTTP hooks.
+Arrays merge across settings sources. See [Hook configuration](#hook-configuration) | `["https://hooks.example.com/*"]` | | `allowedMcpServers` | When set in managed-settings.json,
+allowlist of MCP servers users can configure. Undefined = no restrictions, empty array = lockdown. Applies to all scopes. Denylist takes precedence. See [Managed MCP
+configuration](/en/mcp#managed-mcp-configuration) | `[{ "serverName": "github" }]` | | `allowManagedHooksOnly` | (Managed settings only) Only managed hooks, SDK hooks, and hooks
+from plugins force-enabled in managed settings `enabledPlugins` are loaded. User, project, and all other plugin hooks are blocked. See [Hook configuration](#hook-configuration) |
+`true` | | `allowManagedMcpServersOnly` | (Managed settings only) Only `allowedMcpServers` from managed settings are respected. `deniedMcpServers` still merges from all sources.
+Users can still add MCP servers, but only the admin-defined allowlist applies. See [Managed MCP configuration](/en/mcp#managed-mcp-configuration) | `true` | |
+`allowManagedPermissionRulesOnly` | (Managed settings only) Prevent user and project settings from defining `allow`, `ask`, or `deny` permission rules. Only rules in managed
+settings apply. See [Managed-only settings](/en/permissions#managed-only-settings) | `true` | | `alwaysThinkingEnabled` | Enable [extended
+thinking](/en/model-config#extended-thinking) by default for all sessions. Typically configured via the `/config` command rather than editing directly. To force thinking off
+regardless of this setting, set [`CLAUDE_CODE_DISABLE_THINKING`](/en/env-vars) in `env` | `true` | | `apiKeyHelper` | Custom script, to be executed in `/bin/sh`, to generate an
+auth value. This value will be sent as `X-Api-Key` and `Authorization: Bearer` headers for model requests. Set the refresh interval with
+[`CLAUDE_CODE_API_KEY_HELPER_TTL_MS`](/en/env-vars) | `/bin/generate_temp_api_key.sh` | | `attribution` | Customize attribution for git commits and pull requests. See [Attribution
+settings](#attribution-settings) | `{"commit": "🤖 Generated with Claude Code", "pr": ""}` | | `autoMemoryDirectory` | Custom directory for [auto
+memory](/en/memory#storage-location) storage. Accepts an absolute path or a `~/`-prefixed path. Accepted from policy and user settings, and from the `--settings` flag. Not accepted
+from project or local settings, since a cloned repository could supply either file to redirect memory writes to sensitive locations | `"~/my-memory-dir"` | | `autoMemoryEnabled` |
+Enable [auto memory](/en/memory#enable-or-disable-auto-memory). When `false`, Claude does not read from or write to the auto memory directory. Default: `true`. You can also toggle
+this with `/memory` during a session. To disable via environment variable, set [`CLAUDE_CODE_DISABLE_AUTO_MEMORY`](/en/env-vars) in `env` | `false` | | `autoMode` | Customize what
+the [auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) classifier blocks and allows. Contains `environment`, `allow`, `soft_deny`, and `hard_deny` arrays of prose
+rules. Include the literal string `"$defaults"` in an array to inherit the built-in rules at that position. See [Configure auto mode](/en/auto-mode-config). Not read from shared
+project settings | `{"soft_deny": ["$defaults", "Never run terraform apply"]}` | | `autoScrollEnabled` | In [fullscreen rendering](/en/fullscreen), follow new output to the bottom
+of the conversation. Default: `true`. Appears in `/config` as **Auto-scroll**. Permission prompts still scroll into view when this is off | `false` | | `autoUpdatesChannel` |
+Release channel to follow for updates. Use `"stable"` for a version that is typically about one week old and skips versions with major regressions, or `"latest"` (default) for the
+most recent release. To disable auto-updates entirely, set [`DISABLE_AUTOUPDATER`](/en/setup#disable-auto-updates) in `env` | `"stable"` | | `availableModels` | Restrict which
+models users can select via `/model`, `--model`, or `ANTHROPIC_MODEL`. Does not affect the Default option. See [Restrict model selection](/en/model-config#restrict-model-selection)
+| `["sonnet", "haiku"]` | | `awaySummaryEnabled` | Show a one-line session recap when you return to the terminal after a few minutes away. Set to `false` or turn off Session recap
+in `/config` to disable. Same as [`CLAUDE_CODE_ENABLE_AWAY_SUMMARY`](/en/env-vars) | `true` | | `awsAuthRefresh` | Custom script that modifies the `.aws` directory (see [advanced
+credential configuration](/en/amazon-bedrock#advanced-credential-configuration)) | `aws sso login --profile myprofile` | | `awsCredentialExport` | Custom script that outputs JSON
+with AWS credentials (see [advanced credential configuration](/en/amazon-bedrock#advanced-credential-configuration)) | `/bin/generate_aws_grant.sh` | | `blockedMarketplaces` |
+(Managed settings only) Blocklist of marketplace sources. Enforced on marketplace add and on plugin install, update, refresh, and auto-update, so a marketplace added before the
+policy was set cannot be used to fetch plugins. Blocked sources are checked before downloading, so they never touch the filesystem. See [Managed marketplace
+restrictions](/en/plugin-marketplaces#managed-marketplace-restrictions) | `[{ "source": "github", "repo": "untrusted/plugins" }]` | | `channelsEnabled` | (Managed settings only)
+Allow [channels](/en/channels) for the organization. On claude.ai Team and Enterprise plans, channels are blocked when this is unset or `false`. For [Anthropic
+Console](/en/authentication#claude-console-authentication) accounts using API key authentication, channels are allowed by default unless your organization deploys managed settings,
+in which case this key must be set to `true` | `true` | | `claudeMd` | (Managed settings only) CLAUDE.md-style instructions injected as organization-managed memory. Only honored
+when set in managed or policy settings and ignored in user, project, and local settings. See [organization-wide CLAUDE.md](/en/memory#deploy-organization-wide-claude-md) | `"Always
+run make lint before committing."` | | `claudeMdExcludes` | Glob patterns or absolute paths of `CLAUDE.md` files to skip when loading [memory](/en/memory). Patterns match against
+absolute file paths. Only applies to user, project, and local memory; managed policy files cannot be excluded | `["**/vendor/**/CLAUDE.md"]` | | `cleanupPeriodDays` | Session files
+older than this period are deleted at startup (default: 30 days, minimum 1). Setting to `0` is rejected with a validation error. Also controls the age cutoff for automatic removal
+of [orphaned subagent worktrees](/en/worktrees#clean-up-worktrees) at startup. To disable transcript writes entirely, set the [`CLAUDE_CODE_SKIP_PROMPT_HISTORY`](/en/env-vars)
+environment variable, or in non-interactive mode (`-p`) use the `--no-session-persistence` flag or the `persistSession: false` SDK option. | `20` | | `companyAnnouncements` |
+Announcement to display to users at startup. If multiple announcements are provided, they will be cycled through at random. | `["Welcome to Acme Corp! Review our code guidelines at
+docs.acme.com"]` | | `defaultShell` | Default shell for input-box `!` commands. Accepts `"bash"` (default) or `"powershell"`. Setting `"powershell"` routes interactive `!` commands
+through PowerShell on Windows. Requires `CLAUDE_CODE_USE_POWERSHELL_TOOL=1`. See [PowerShell tool](/en/tools-reference#powershell-tool) | `"powershell"` | | `deniedMcpServers` |
+When set in managed-settings.json, denylist of MCP servers that are explicitly blocked. Applies to all scopes including managed servers. Denylist takes precedence over allowlist.
+See [Managed MCP configuration](/en/mcp#managed-mcp-configuration) | `[{ "serverName": "filesystem" }]` | | `disableAgentView` | Set to `true` to turn off [background agents and
+agent view](/en/agent-view): `claude agents`, `--bg`, `/background`, and the on-demand supervisor. Typically set in [managed settings](/en/permissions#managed-settings). Equivalent
+to setting `CLAUDE_CODE_DISABLE_AGENT_VIEW` to `1` | `true` | | `disableAllHooks` | Disable all [hooks](/en/hooks) and any custom [status line](/en/statusline) | `true` | |
+`disableAutoMode` | Set to `"disable"` to prevent [auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) from being activated. Removes `auto` from the `Shift+Tab` cycle
+and rejects `--permission-mode auto` at startup. Most useful in [managed settings](/en/permissions#managed-settings) where users cannot override it | `"disable"` | |
+`disableDeepLinkRegistration` | Set to `"disable"` to prevent Claude Code from registering the `claude-cli://` protocol handler with the operating system on startup. [Deep

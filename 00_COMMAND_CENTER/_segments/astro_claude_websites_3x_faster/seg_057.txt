@@ -1,0 +1,224 @@
+Because they 8:45 make up everything. Perfect. And you can 8:47 see also it says sent from a trial 8:49 Twilio account. Not too sure if that's 8:50 focusing. There you go. So sent
+from a 8:52 trial Twilio account. And this is just 8:54 because it's a trial Twilio account. And 8:56 the way that you get around that is just 8:58 by paying for it. So with
+Twilio, 8:59 there's no monthly subscription. I think 9:00 there is actually for some aspects cuz 9:02 it does quite a lot of different things. 9:03 But for what we're trying to
+do, it's 9:05 not a monthly subscription. You just top 9:06 the money up as it needs it. I think the 9:08 minimum you could put in there is $20. 9:11 So you can just top it up and
+it's going 9:12 to get rid of that message at the 9:13 beginning of your SMSs. All From Rory Ridgers Text messagingWhy most WhatsApp automation fails 0:00 Most automated systems
+would have 0:02 already messed this up. This one didn't. 0:05 We built this with no.js, Twilio, and 0:08 OpenAI. Plus, you can run it locally. 0:12 Businesses already use WhatsApp
+as their 0:14 main communication channel, but the 0:16 automation behind those conversations 0:18 usually falls apart the moment things 0:20 get slightly complex, and they will get
+0:23 complex. Users give information out of 0:26 order. People change their minds. And 0:29 everyone expects the system to remember 0:31 what they just said. I'm going to show What
+this AI agent can actually do 0:34 you how to build an agent that can 0:35 actually handle those kinds of 0:37 conversations. That means answering 0:39 common questions, keeping
+conversation 0:41 context, guiding users through a short 0:44 reservation flow, and escalating to a 0:46 human when needed through WhatsApp 0:48 messaging. 0:49 To keep this
+moving, I'm starting from a 0:51 GitHub repo that already has the boiler 0:53 plate wired up. The link is in the 0:55 description and the full walkthrough 0:57 lives in the blog if
+you want every 0:58 detail. We'll clone the repo to our 1:01 local machine, navigate into the folder, Setting up the project locally 1:04 and launch VS Code, our code editor. 1:06
+From here, now that we're in VS Code, we 1:09 need to plug in some variables in order 1:10 for our code to run. You can see an 1:12 example of what yourv file should look 1:14 like
+by viewing the conveniently 1:16 named.env.ample example file. You can 1:20 make a copy of this and rename it to 1:22 env. At this point, you're going to need 1:25 your Twilio
+account SID, Twilio O token, 1:28 and your Open AI API key. If you don't 1:31 already have a Twilio account, it's 1:33 okay. We forgive you. Just pause this 1:35 video and click
+the link in the Configuring environment variables 1:37 description below to sign up. Our code 1:39 requires the public web hook URL in ourv 1:42 file in order for our server to
+properly 1:45 validate the Twilio web hook. Let's set 1:47 up Enro real quick. The server by 1:49 default runs on port 3000. To receive 1:53 inbound messages from Twilio, I'm using
+1:55 Enro to expose this locally. Now that 1:58 our environment variables are filled 1:59 out, we can run npm install in the 2:01 terminal to install the necessary 2:03
+dependencies. Then we can run npm run 2:06 start to start the server. 2:09 You don't need an approved WhatsApp Connecting Twilio WhatsApp Sandbox 2:11 sender to test this. Tulio's
+WhatsApp 2:13 sandbox is perfect for demos and local 2:15 development. 2:16 From the Twilio console, I set the when 2:19 a message comes in web hook to point at 2:21 the local
+angro URL. Once that's saved, 2:25 inbound WhatsApp messages hit my local 2:27 server. Now I will join the WhatsApp 2:30 sandbox by either texting the message 2:31 shown on the
+screen to the Twilio 2:33 WhatsApp sandbox number or I can scan 2:36 this QR code and it will pre-populate 2:38 for me. Easy. Now I'll send the message 2:41 to join the session.
+All right, we're Testing inbound messages 2:44 live and we're sending and receiving 2:46 messages. Now, let's talk about how the 2:49 code actually works. At a high level, 2:52
+this app does one thing. It takes an 2:54 incoming WhatsApp message and decides 2:56 what should happen next. Twilio delivers 2:59 the message. The server validates it and 3:02
+then everything interesting happens 3:04 inside the agent. So, let's dive into 3:06 the more interesting stuff. The server 3:09 itself is intentionally simple. It 3:11 validates
+the Twilio request, loads 3:13 session state, and hands control off to How the AI agent works internally 3:16 run agent. That function in agent.js is 3:20 the brain of the system.
+Now, there are 3:22 a few things more frustrating than 3:24 having to repeat yourself. To prevent 3:27 this, we need the agent to keep context. 3:30 We store a small session object
+per 3:32 user, which tracks recent messages, 3:34 whether we're in a flow, and any partial 3:37 data we've collected. That's why the 3:39 agent doesn't forget what it's doing 3:41
+when a user asks a follow-up question. 3:44 For common business questions like hours Managing conversation context 3:46 or location, we don't rely on the AI to 3:49 invent answers.
+Instead, we match 3:52 against a simple FAQ.json file first. 3:55 That keeps responses consistent and lets 3:57 you update content without touching 3:59 prompts. AI is great, but
+doesn't need 4:02 to do everything. This is where a lot of 4:05 bots fail. 4:07 If a user sends reservation for 2 at 7 4:10 p.m. tonight, most systems read the 4:12 reservation
+keyword and ignore the rest, 4:15 frustrating your users by asking them 4:17 the questions that they've already 4:18 answered. Our agent will succeed by 4:20 extracting details
+immediately, even on Extracting structured reservation data 4:23 the first message, and then they only 4:25 ask for what's missing. Let's see this 4:28 in action. Instead of
+dealing with a 4:30 classic scenario of the bot responding 4:32 with, "I can make you a reservation," 4:34 and then asking you a bunch of questions 4:36 like, "How many people,
+what day, and 4:39 what time, which you already answered in 4:41 one simple sentence, we can have a 4:43 natural conversation while the AI 4:45 interprets the meaning. Now that
+this is 4:48 working, your next step isn't adding Where to extend the system next 4:50 more prompts. It's deciding where this 4:52 connects. In a real system, this is 4:55 where
+you'd plug in a database, a 4:57 booking platform, or a human handoff 4:59 using Slack, Twilio Conversations for 5:02 Web Chat, or even a call with Tulio 5:05 voice. Want to let
+your AI agent answer 5:07 phone calls? Click here to check out 5:10 part two where we add voice to our 5:12 WhatsApp agent. All the code is linked 5:14 below and the blog walks
+through 5:16 everything line by line. Subscribe if 5:18 you want more practical content like 5:20 this. All From TwilioDevs APIsChapter 1: What is Airtable? 0:00If you don't know
+Air Tableable in 2025, you're missing out big time. Air tableable may look like a spreadsheet, but behind the scenes, it's a powerful 0:099 secondsdatabase that can automate your
+workflows and replace entire tools. The problem is that most people have no idea how to use it effectively or what to use it for. If that's your case, stay along. 0:2020 secondsIn
+the next 20 minutes, I'm going to take you from zero to confidence so you can start using Air Table like a pro in 2025. I'm Alex, one of the co-founders 0:2929 secondsof 9x. I
+teach AI and automation. I've taught airable to hundreds of people already. I'm happy that you're the next. 0:3636 secondsIf you want to see more videos like this, make sure to
+subscribe to our YouTube channel. Let's dive in. So, let's start with an overview. Air table 0:4444 secondsis the easiest way to build internal applications. If like me, you're
+using dozen of SAS applications every day, 0:5151 secondsyou've probably encountered the situation where an application is not working exactly the way you want it to work, that's
+frustrating. The reason for 0:5959 secondsthat is tools are built with a specific use case in mind and yours just doesn't cut it. The promise from Elable is that 1:071 minute, 7
+secondsyou will be able to build a tool that fits your exact needs, that matches your exact requirements. Now, what this means also is that you're going to have to 1:161 minute, 16
+secondsbuild this tool yourself and building can be daunting. After all, we have software developers that help us build applications usually. And so, my goal in 1:241 minute, 24
+secondsthis video is to show you how easy it is to build with Air Table. Now, before we take a look at the platform, some basics 1:321 minute, 32 secondsof software architecture.
+At a high level, any app you use has three layers. 1:371 minute, 37 secondsthe interfaces. Those are the screens you interact with, what you see as an end user, the buttons you
+press. Then you have the logic. This is the part 1:461 minute, 46 secondsthat automates workflow steps for us, the things that run in the background. 1:511 minute, 51 secondsAnd
+finally, you have the database. This is where we have our applications data where we have this data persist. So 1:591 minute, 59 secondsremember those three layers, interfaces,
+logic, and database. Building an airable happens on the three same layers. You have a data section from the database. 2:102 minutes, 10 secondsYou have automations where you will
+handle the logic. And we have interfaces. Throughout this video, I'm going to use the same example of a 2:182 minutes, 18 secondscampaign approval workflow to show you how you can
+take an existing process and turn it into an application with air tableable. We're going to take this very Chapter 2: Software Architecture Basics 2:262 minutes, 26 secondssimple
+process of a campaign approval where a campaign manager is going to create first a campaign. the budget 2:332 minutes, 33 secondsowner, another user is going to approve or reject
+that campaign ID and we'll have two possible outcomes. Either the 2:422 minutes, 42 secondscampaign is approved. That's a win. And in this case, we want to already generate the
+campaign tasks or that campaign is rejected, bad news, and we 2:512 minutes, 51 secondswant to notify the campaign manager back. So this is our starting point. I am inside Air
+Table. I just created a 2:582 minutes, 58 secondsnew project also called B for short of database. 3:033 minutes, 3 secondsAnd this is where everything starts which I personally
+find amazing. But if this is your first time, you probably 3:103 minutes, 10 secondsdon't know what to do here. As mentioned, we have three layers. We are in the data section. So
+this is where we manage our database. Next, we have the 3:193 minutes, 19 secondsautomations section right here. This is where we're going to build the logic. And finally, we have
+the interfaces. 3:263 minutes, 26 secondsForms are interfaces that are also available to external users. We're not going to see them in this 3:323 minutes, 32 seconds[Music] 3:353
+minutes, 35 secondsvideo. So, first thing, every Elable project starts with data. No data, no body. And if you want to know how to Chapter 3: Database Fundamentals 3:433 minutes,
+43 secondsstart building inside Elable, you need some knowledge on databases. So, here are the five essential things you need 3:503 minutes, 50 secondsto know about databases in
+general, but also databases in Air Table. Well, first you need to know what a table is and how to create one, edit one. Second, you 3:593 minutes, 59 secondsneed to know the
+difference between records and fields and how these are configured inside tables. Then you need to understand how to create table 4:074 minutes, 7 secondsrelations, record
+associations. And finally, when you work with data, understanding the difference between table and views is going to make all the difference. So let's start with tables. 4:174
+minutes, 17 secondsThis is a table in air table. And if I want to create another one, can just click here. There are different options. 4:244 minutes, 24 secondsWe're going to
+create from scratch. And here I'm creating a second table. Why would we want to create different tables? You want to create different 4:324 minutes, 32 secondstables when you want
+to store different types of informations also called records. The information that you store in each table is going to be defined by 4:414 minutes, 41 secondsits fields. Let's
+first name our two tables in our example. Uh we have on one 4:474 minutes, 47 secondsside we have campaigns and further along in the process we have tasks. So, we're going to store
+two types of records. And right now, the two tables are identical. 4:594 minutes, 59 secondsThe way we're going to modify what type of information is stored in each is by creating
+and editing the fields. To add 5:065 minutes, 6 secondsa new field inside an existing table, there are various options. You can either press plus here and the different field types
+will appear. More on that in 5:145 minutes, 14 secondsa second. You can also go to tools and manage fields here. And this is also different interface. Same same different. Now the
+most important thing 5:235 minutes, 23 secondsto understand with fields is the notion of field type. As you can see in the table campaigns we have right now 5:305 minutes, 30
+secondsdifferent types. We have a single line text user long text and single select. 5:365 minutes, 36 secondsThe type of the field is going to determine the type of data you are
+allowed to store in that field. I'll give you a quick example. If I want to 5:455 minutes, 45 secondsadd a campaign start date, I may want to store it as a date. 5:515 minutes, 51
+secondsAnd so there's a dedicated field for that which once created only allows me 5:575 minutes, 57 secondsto put dates, no text, no numbers. In a similar fashion, our status
+field that 6:036 minutes, 3 secondswe have here only allows me to put these three values, one of these three values. 6:096 minutes, 9 secondsSo you define the properties that you
+want to store inside a dedicated table by defining the fields and the types of 6:186 minutes, 18 secondsthese fields. Now, this is a crash course, not a two-hour master class. So,
+I invite you to explore the different field types. One way to do that is to 6:266 minutes, 26 secondshave a look at the documentation with here the list of field types supported by
+Air Table. Another way, more practical in my opinion, is to just play 6:366 minutes, 36 secondsaround with this window here. Add the different fields, see how they behave, and and
+sooner than later, you will get 6:446 minutes, 44 secondsfamiliar with all the field types. Fast forward 2 minutes. I just adjusted the fields for my campaigns table. We have 6:526
+minutes, 52 secondsnow a name field. We have a long text field to store the description. Our user field is now the campaign manager. We 7:007 minuteshave a status field with open,
+approved or rejected. Remember we have our process in mind. And a start date just 7:097 minutes, 9 secondsas illustration. So that's for the columns. That's for the fields. Now I
+use my magic wand again. I pasted some 7:167 minutes, 16 secondsdata inside this table. And you can see there that we have now three different campaigns, three different campaign
+7:247 minutes, 24 secondsrecords. Each row in the table being a separate record. We can see and then we can open the record to see information. 7:337 minutes, 33 secondsCampaign
+name winter promotion with the following description. I'm the campaign manager. Lucky me. That campaign is it status open and will start end of 7:427 minutes, 42 secondsNovember
+2025. If we move on to the second record, we have different information and so on and so forth. So 7:497 minutes, 49 secondsall the data points we have on a single row are related
+to each other and they point to the same type of record, the 7:577 minutes, 57 secondssame object we also see sometimes which in this case is a campaign. I've done the same
+exercise in the tasks table. We 8:048 minutes, 4 secondscan see here we have different properties. I have a task name, assigne, which is also a user field, a status 8:128 minutes,
+12 secondswith different values this time, and a task due date. You will need to create as many tables as required in order to 8:218 minutes, 21 secondscapture the requirements of
+your process. In this simple example, we just need campaigns and tasks, but in reality, edit tableable bases can get 8:298 minutes, 29 secondsmuch more complicated with more tables
+related to each other. Speaking of related, that's the next key fundamental 8:378 minutes, 37 secondstopic you should know about. In databases, in particular, relational databases,
+we are able to relate data from different tables to each other. 8:478 minutes, 47 secondsRight now, my campaigns table and my task table don't know about each other. 8:518 minutes,
+51 secondsBut if I want to associate certain tasks to a given campaign or I want to relate a campaign to its associated tasks, I 8:598 minutes, 59 secondswill need to build this
+relation. And that you do with one field, the first one called link to another record, which 9:079 minutes, 7 secondsif you click on it will give you the option to connect to
+existing tables or create a new one. Here I'm in the task 9:159 minutes, 15 secondstable. So I'm going to link to the campaigns table. And a very important setting you should know
+about. I'm not going to dive into this right now, but 9:239 minutes, 23 secondsthis is sort of the key parameter to determine the nature of the relation between two tables is that
+little 9:319 minutes, 31 secondssetting here, whether you want to allow linking to multiple records or not. And for this, use common sense. So, let's do it in the case of campaigns
+and tasks. 9:419 minutes, 41 secondsShould tasks be related to multiple campaigns at the same time? For me, it doesn't make sense in this case because 9:489 minutes, 48 secondsI
+want to have the series of tasks needed to run this campaign. So, we're going to create the field. On the other 9:569 minutes, 56 secondsside, a new field has been created because
+relations go in both ways. And here I can check the settings and I can 10:0410 minutes, 4 secondsdouble check. Does it make sense for a campaign to have multiple tasks? If we think
+that building a campaign, running a campaign requires collaboration of 10:1210 minutes, 12 secondsmultiple people and different tasks, then I will leave that setting as yes.
+10:1710 minutes, 17 secondsOnce we have that, we can link campaigns to tasks. And for instance, I could say that these three tasks are related to 10:2410 minutes, 24 secondsthe
+first campaign. I'm going to reflect that. And you will see that now we have 10:3210 minutes, 32 secondsalso the link on the other side with the different tasks. So table relations
+are paramount to understand if you want to 10:4010 minutes, 40 secondsbuild proficiently with air tables. Last key point to understand on the database side are views as opposed to
+tables. So 10:4810 minutes, 48 secondsthe table store all the information whereas views are going to allow me to view certain fields, view certain 10:5610 minutes, 56
+secondsrecords and also arrange that information in the way that I see fit. 11:0111 minutes, 1 secondSo let's create a view. We can click create and for instance we can filter only
+for approved campaign. So here I 11:0911 minutes, 9 secondshave two views. The first one approved the second or default view. And here are 11:1511 minutes, 15 secondsthe view
+settings that I can use. And if I want to filter for approved campaigns, 11:2111 minutes, 21 secondsI can for instance filter by status is approved. Now what happens when I toggle
+the status of one campaign to approved? 11:3111 minutes, 31 secondsIt is still in this view because we're not filtering for any records or any type of values here. But this record
+has 11:3911 minutes, 39 secondsnow landed in my approved view that shows all the campaigns with the status approved. One last thing on views, not 11:4611 minutes, 46 secondsonly
+you're able to display information a bit different way, you can also select different types of visualization. Once 11:5511 minutes, 55 secondsagain, I invite you to create these,
+play around with these, to experience them and know which type of layout is the best for you. Now, let's move on to 12:0312 minutes, 3 secondsautomations, shall we? There are five
+things you need to know about automations to get started. Chapter 4: Automation Essentials 12:1312 minutes, 13 secondsFirst, triggers. How to trigger automations. You need to
+understand the notion of record idea because we use it all the time inside automations. the 12:2212 minutes, 22 secondsdifferent actions, how you're going to test automations, and
+then what are the different advanced options you have 12:2912 minutes, 29 secondsinside automations. So, let's take a look. To build your first automation, you need to head to the
+automations section. So far, so good. And there you 12:3812 minutes, 38 secondscan create various automation. So, by default, you have the first one. And the first concept of
+automations is the trigger. That's the event that's going 12:4712 minutes, 47 secondsto start initiate the automation. And here we have all the options tableable gives you. We have
+some database 12:5512 minutes, 55 secondstriggers. We have the possibility to trigger via web hook when an email is received when a button is clicked from the interface. That's a
+great one. And 13:0413 minutes, 4 secondswe have also a bunch of integrations that allow you to trigger editable automations from the outside. For instance, we can trigger an
+automation when a Google calendar event is created. 13:1413 minutes, 14 secondsThe most common triggers you're going to use are the database triggers we have here. So I have my
+trigger when a record is created. Here you will need to 13:2213 minutes, 22 secondsspecify always in which table. So when a campaign is created, when a record is created in the
+table campaigns, 13:3113 minutes, 31 secondssomething is going to happen. So here's one example of an simple automation we can build within minutes. And this 13:3913 minutes, 39
+secondsautomation is going to notify the budget owner that a new campaign was created and requires their approval. So if I take a look in more detail, we have a 13:4813 minutes, 48
+secondstrigger when the record is created in the table campaigns and then we picked one of these actions. We picked Slack. 13:5613 minutes, 56 secondsWe built an actionable message
+in this case. So that's a message with two buttons, one to approve and one to reject. And we configured this action. 14:0714 minutes, 7 secondsWe specified that we would send it to
+the budget owner. Why? Because we have it stored in this table as an 14:1314 minutes, 13 secondsinformation. And we are going also to insert a specific message. So requested
+14:2214 minutes, 22 secondsby the campaign manager's name, the name of the campaign, a short description, and then some actions here to approve or 14:2914 minutes, 29 secondsreject
+the campaign with some implications. It's going to in the first case send the status as approved and in 14:3714 minutes, 37 secondsthe second case send the status as rejected. Now,
+one key thing to understand is that all of this is possible updating the campaign back or 14:4614 minutes, 46 secondsupdating a record inside air table using an automation thanks
+to a record ID. So, 14:5314 minutes, 53 secondslet's zoom in for a second on that. The record ID is the unique identifier given to each record inside a table. One way 15:0215
+minutes, 2 secondsyou can see the record ID of each individual record is by using a formula field. So that's one type of field we 15:0915 minutes, 9 secondswon't cover in this
+video. Uh but it allows you to build custom formulas and using that function record ID. And here 15:1715 minutes, 17 secondsyou can see each row each record has a unique identifier
+and that identifier is what we're passing inside automations to 15:2715 minutes, 27 secondsspecify which record in the table we're going to update here. In this case, which
+campaign will we approve or 15:3415 minutes, 34 secondsreject? Now heading to testing. You can turn automations on and off this way. If you want to test how they behave, you
+15:4415 minutes, 44 secondscan also use this panel here. Select a particular record and go through the whole process. You will see the 15:5115 minutes, 51 secondsdifferent modules
+executing. Here you can see this is the notification that was generated. Uh with the two buttons, 15:5815 minutes, 58 secondsI can approve the campaign. And if we head back, we can
+see that the test results were completed. We can see that 16:0716 minutes, 7 secondseventually the button approve was clicked and our first campaign was approved. So one example of
+an 16:1616 minutes, 16 secondsautomation that can be built with just two modules, a trigger and a Slack notification. Now to close the chapter on automations, let me give you
+another 16:2316 minutes, 23 secondsexample that is using advanced logic and that would be our next step in the flow. 16:2916 minutes, 29 secondsWhenever the campaign is approved,
+we want to create the campaign tasks and whenever the campaign is rejected, maybe we want to notify the campaign manager. 16:3816 minutes, 38 secondsAnd this is very easy to build
+thanks to conditional logic. This automation will be triggered whenever a campaign's 16:4616 minutes, 46 secondsstatus changes, which is what happens when we approve or reject it.
+And we have two branches of a conditional logic 16:5416 minutes, 54 secondsinside this automation. If the status is approved, we're going to execute this branch, which creates the
+three tasks 17:0317 minutes, 3 secondsrelated to the campaign. And if the status is rejected, we're going to send instead a Slack message back to the 17:1117 minutes, 11
+secondscampaign manager informing them that the campaign was rejected. I will run this live at the end so we can see the whole 17:1817 minutes, 18 secondsflow. But before that, one
+last thing on automation and let's move on to interfaces. That last thing are advanced 17:2517 minutes, 25 secondsactions I won't cover in this video which are running a script and
+generate with AI. With running a script, we can 17:3317 minutes, 33 secondsexecute JavaScript instructions right inside an artable automation. And it's a more advanced topic, but
+it allows you 17:4217 minutes, 42 secondsbasically to do pretty much anything you want inside an airable automation. 17:4617 minutes, 46 secondsThat's a very powerful use case for
+advanced users. Much more accessible for everyone is this other advanced action, 17:5317 minutes, 53 secondsgenerate with AI, where you'll be able to use the data of a record,
+inject it 17:5917 minutes, 59 secondsinside a prompt during the automation, and use eventually the result. We'll cover that in a separate video. There 18:0718 minutes, 7 secondsare
+bazillions of use cases from this action. I just wanted to let you know that this is right inside air table automations. 18:1618 minutes, 16 seconds[Music] Chapter 5: Interface
+Design 18:1918 minutes, 19 secondsAll right, and we're already at part three, interfaces in airable. Here are the five things you should know about 18:2718 minutes, 27
+secondsinterfaces. This is where we're going to bring everything together and create custom interfaces for our users. First, 18:3418 minutes, 34 secondswe're going to take a look
+at the designer and how it works. And then you can configure interfaces in four ways. 18:4118 minutes, 41 secondsYou can define the permissions, who has access to what, who can do
+what. You can pick a layout. There are different layouts available and customize these. 18:4918 minutes, 49 secondsWe're going to be able to filter data. 18:5118 minutes, 51
+secondsAnd finally, we're going to be able to define specific user actions. Let's go. 18:5718 minutes, 57 secondsSo, the first time you open interfaces in a new project, you will
+have this menu. We can click start building. 19:0519 minutes, 5 secondsSelect build an interface. And here we're going to give our interface a name. Let's say campaigns. Click
+next. 19:1219 minutes, 12 secondsAnd it's always the same steps. First, we have to choose a layout. And these are the different layouts available. And that's one of the big
+advantages with 19:2119 minutes, 21 secondsairable. These interfaces are already pre-built for you. We'll take a list for this example. We'll click next. The 19:2819 minutes, 28
+secondssecond step is always to choose the source. Here we have two tables. So, we can either create an interface 19:3519 minutes, 35 secondsdisplaying tasks or an interface
+displaying campaigns. I'll pick the first one. And pretty much you could 19:4319 minutes, 43 secondsalready press publish and have a first interface that gives access to the data
+19:5019 minutes, 50 secondscontained in the campaigns table. Now one thing with this interface not much is happening in it because by default 19:5819 minutes, 58 secondseverything
+you see here is read only. So I can perform some actions I can search uh and filter group but I'm not going to be able to do much with the data itself. 20:1020 minutes, 10
+secondsIf we take a look at the interface designer, the canvas is the interface we're customizing. On the left side, we 20:1720 minutes, 17 secondshave the different interfaces and
+pages uh that we are creating for users to interact with the data from our 20:2420 minutes, 24 secondsdatabase. And whenever we select an element here, for instance, this area, we
+are switching to the right panel, 20:3220 minutes, 32 secondswhich is where you're going to be able to configure everything. Before we do so, let's talk about permissions. 20:3920
+minutes, 39 secondsPermissions are managed at interface level. And so let's create another interface so you can see the difference. 20:4620 minutes, 46 secondsLet's call it admin.
+Create it. Create another page. Maybe this time we're going to create a 20:5320 minutes, 53 secondsdashboard on the campaigns and publish it as well. Now I have not one but two
+21:0221 minutes, 2 secondsseparate interfaces and permissions are managed at interface level. Which means, for instance, if I want to restrict the 21:1021 minutes, 10 secondsadmin
+dashboard to a specific type of users, I'm going to be able to restrict that and only give a certain group of 21:1821 minutes, 18 secondspeople access to this interface. That way,
+you can ensure that people only see or are able to interact with the data 21:2621 minutes, 26 secondsthat is only relevant or allowed for them. In interfaces, I can add multiple
+pages. For instance, inside campaigns, I 21:3421 minutes, 34 secondscould add a canban with the tasks. You see, it's very easy. I can just grab the layout that I want, select the
+right 21:4321 minutes, 43 secondstable, and we are already done. And we have now two interfaces. One where I can work with the task. Right now, we can 21:5121 minutes, 51
+secondsonly see them and one where I can work with the campaigns. Now, let's configure these interfaces. To add some functionality, we are going to click 22:0022 minutesinside a
+specific page and we're going to click on the elements right here. So, we're able to customize them. Everything 22:0722 minutes, 7 secondsyou can customize is contained within this
+column. So, whenever I select an element, I am able to see the different 22:1422 minutes, 14 secondsoptions there. We're not going to cover all of these now. I'm just going to
+leave you with two essential things 22:2122 minutes, 21 secondsright here, which are filters and user actions. First filters. Right now, we're seeing all the campaigns available,
+but 22:2922 minutes, 29 secondsyou are able to filter out some of the records. And one thing we can do in interfaces that's a very common pattern 22:3622 minutes, 36 secondsis to
+filter the records that are associated to the user. So, one thing you can do here is filter 22:4322 minutes, 43 secondsby and for instance the records that are associated to the
+current user. So now you won't see much of a difference right 22:5222 minutes, 52 secondsnow because I'm the campaign manager of all. But let me quickly change the data in there
+and assign this last campaign 23:0023 minutesto PF. If we go back to the interface, I am now only viewing the records that are assigned to me. So filtering records and 23:0823
+minutes, 8 secondsyou can filter from any of the properties inside the specific table. 23:1223 minutes, 12 secondsLast item for today and there's so much more to tell but I really
+want to keep it compact for this introduction are the user actions. Right now it's a little 23:1923 minutes, 19 secondsbit sad. You cannot really interact with the data. You can
+just read it and you're going to be able to change that inside this panel. So usually user 23:2823 minutes, 28 secondsactions are available at the bottom. And by toggling this I
+can suddenly change the data from the interface. So if we 23:3723 minutes, 37 secondspublish that again can see that we are able to now change all of these 23:4423 minutes, 44
+secondsproperties right here. You can also allow users to delete records, add new records. There are plenty of other actions, but basically, you're going to 23:5223 minutes, 52
+secondsbe able to define all of that from the interface designer by grabbing a specific element and heading to user 23:5923 minutes, 59 secondsactions. All right, we're done. I
+just added a little button here that allows me to create a new campaign right from 24:0624 minutes, 6 secondsthe interface. Let's test our flow end to end and see whether I get my
+campaign approved. So here's the form filled. 24:1524 minutes, 15 secondsLet's click create and let's see what we get. So first of all, our campaign is created. I should have
+gotten a 24:2324 minutes, 23 secondsnotification on Slack. Here's my notification with all the information. That looks pretty good. Let's approve. 24:2924 minutes, 29 secondsThat
+was updated air tableable. We can see that our Valentine special campaign is approved back in air tableable. And 24:3624 minutes, 36 secondsmost importantly, we can also see that
+our three tasks were created by the automation and associated to the right 24:4424 minutes, 44 secondscampaign. I'll stop here for this overview. I hope that with this video I
+pointed you in the right direction so that you can start exploring this tool 24:5324 minutes, 53 secondsconfidently. If what we've covered today was interesting and you want to
+learn more about Air Table, I'd be happy to do some follow-up videos to dive into each Chapter 6: Final Tips & Conclusion 25:0225 minutes, 2 secondsof these subtopics. If that's
+the case, let me know in the comments. And I'll end this video with a simple piece of advice. Just get started. Try to find a 25:1125 minutes, 11 secondsproject that you could
+build inside air table and try to figure out how you're going to build it using this tool. I can 25:1825 minutes, 18 secondsguarantee you that if you spend a couple of hours in the
+tool, a lot of things are going to start to click and you will realize the power of air ball and I don't think you will want to look back. 25:2825 minutes, 28 secondsAnyways, I
+hope you enjoyed this video. Until next time. 25:3625 minutes, 36 seconds[Music] Sync to video time All From the series From 9xIntroduction to Airtable 0:00 In this video, I'll be
+breaking down 0:02 exactly what Air Table is, what is great 0:05 about it, and why you should seriously 0:06 consider adding it to your tool stack. 0:08 And the reason is simple.
+If you've ever 0:11 needed a business tool that doesn't 0:13 quite exist, that actually combines 0:15 aspects of different software all 0:18 tailored to your specific workflows,
+0:20 look no further. That tool is elitable 0:23 and it might just forever change how you 0:25 think about software and internal tools. 0:27 Don't believe me? See for yourself.
+This Real-world Airtable examples 0:30 is air tableable to manage your product 0:32 road map. This here is also air 0:34 tableable but for event planning. And 0:36 here this is one
+of our air tableable 0:38 apps that we use internally at 9x to 0:40 manage all our content operations in one 0:43 place. YouTube, LinkedIn posts, blog 0:46 articles, etc. I just
+give you entirely 0:49 different use cases, all very specific 0:52 but supported by the same platform. And 0:54 we're just scratching the surface here. 0:56 Air tableable can
+support a whole wide 0:58 range of use cases no matter your role What is Airtable? 1:00 or business function. How is this 1:02 possible? Let me explain what is air 1:04 tableable.
+At its core, air tableable is 1:06 a custom objects software solution. What 1:09 this means with air tableable you can 1:11 create and manage objects in a dedicated 1:13 database
+and build custom interfaces and 1:16 automations on top of it without writing 1:18 a single line of code. What are objects 1:21 in programming? Objects are basically 1:23
+containers for data that have certain 1:26 properties and behaviors. Think of them 1:28 as digital representations of real world Understanding objects in software 1:31 items.
+Objects are involved with 1:33 absolutely everything we do with 1:35 software every day. Let me give you some 1:37 examples. To represent our relationships 1:39 with people and
+organizations, we work 1:41 all day with companies, people, users, 1:44 or partner objects. To track our 1:46 conversations, we are going to use 1:47 emails, messages, meetings,
+call objects 1:50 to manage our work on a daily basis. We 1:53 use deals if we work in sales, tickets 1:55 if we work in customer support, invoices 1:57 if we're part of the
+finance team, ads 1:59 if we are in the marketing team. And so 2:01 what are objects for? They're here to 2:04 structure the information we work with 2:06 when we use software.
+Now, why am I 2:08 telling you all this? One way to look at 2:10 the tools you use on a daily basis is 2:12 that they are interfaces to work with 2:14 these objects. Most software
+2:16 applications you use daily like 2:17 Salesforce, Asana or HubSpot come with 2:20 predefined objects that serve specific 2:23 purposes. Salesforce has accounts, 2:25 contacts,
+opportunities so you can sell. 2:27 Zero has invoices, credit notes, bank Why traditional software might not work 2:31 transfer objects which are great for 2:33 accounting. Zenesk,
+which is a customer 2:35 support platform, has chats, tickets, 2:38 user objects. These predefined objects 2:40 work great when your business processes 2:43 align perfectly with
+how the software 2:45 was designed. When your business 2:47 processes don't match existing software, 2:49 you're going to typically end up with 2:51 one, scattered spreadsheets
+trying to 2:53 track everything, two, endless email 2:55 chains for approvals and updates, or 2:58 three, too many meetings to coordinate 3:00 what should be automated or supported
+3:02 with software. This creates 3:04 inefficiency, wastes valuable time, and 3:07 introduces errors that could cost your 3:09 business. What makes Air Table great is 3:11 that it
+lets you define your own objects 3:14 and functionalities. You're no longer 3:15 constrained by someone else's idea of 3:18 how your business should operate. You're 3:20 now in the
+driver's seat and you can 3:22 define how software should work for you. 3:24 If you want to create a custom client 3:26 project object that combines elements of 3:29 projects,
+invoicing, and client Building with Airtable's visual interface 3:31 communication inable, you can build that 3:33 exact structure without writing a single 3:36 line of code. The

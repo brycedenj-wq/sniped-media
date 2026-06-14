@@ -1,0 +1,224 @@
+describing 0:40 what they are. And don't get worried 0:41 about the technical terms. 0:42 Skills are organized collections of 0:44 files that package composable procedural 0:46
+knowledge for agents. In other words, 0:48 they're folders. 0:49 Barry describes it as procedural 0:50 knowledge for agents, which is a fancy 0:52 way to say a way to get a task
+done. And 0:54 there's an art to actually creating 0:55 these skills, which we'll cover in rules 0:57 2, three, and four. But first, you need 0:58 to have the mental shift. Stop
+thinking 1:01 in traditional prompts. Start thinking 1:03 in prompting clawed skills. This may 1:05 sound complicated, but it really it's 1:06 quite simple. Here's what it could
+look 1:08 like if you wanted to draft a response 1:09 to an email. Instead of you having a 1:11 crazy prompt to help you respond to an 1:13 email with your voice, your tone, and
+1:14 your writing style, you would just type 1:16 /draft email and then bring in the email 1:18 you want to respond to. So, that's how 1:19 you do it in practice. But conceptually,
+1:21 how should you think about this? I 1:22 pulled this graph from the anthropic 1:24 engineering presentation and added a 1:26 slight tweak to it. Layer one, you have 1:27 the AI
+models. This is the AI that 1:29 you're using. Layer two is you have the 1:31 AI agents and the prompts. This is 1:33 likely how you've been interacting with 1:34 AI to date. But
+you want to move up a 1:36 layer to layer three, which is skills. 1:38 This is the application layer of the AI 1:40 world. If you were to compare this to 1:41 your cell phone,
+Anthropic is building 1:43 the phone itself. You have to create the 1:45 apps. That's the layer to control. And 1:48 before we get to how to best create 1:49 these skills, here's a
+prompt you can 1:51 run to help you identify these skills 1:53 that are worth creating. So you're no 1:54 longer writing custom prompts, you're 1:56 writing more specific prompts
+that 1:58 clearly reference skills. And this leads 1:59 to the next topic which most people get 2:01 wrong, which is how do you actually 2:03 build a skill that works. Rule number
+Rule #2: Skills Are More Than Prompts 2:05 two is skills are more than prompts. So 2:07 you're convinced you need to change how 2:08 you prompt to prompt skills. So the next 2:10
+question is how do you actually create 2:11 skills that work? There's an art to 2:13 this, a lot like when prompt engineering 2:15 went viral when chatbt first came out. 2:17 And
+it's important that you get this 2:18 right. The act of actually creating the 2:20 skill is super easy. You can just write 2:22 in Claude, "Build me a skill for X and 2:24 I'll
+just create a skill for you." But 2:25 to use these skills, well, you need to 2:27 understand what's actually inside them 2:29 because it's not just a prompt that 2:30 lives in a
+folder. A skill is more than 2:32 a prompt. Inside a skill, there are 2:34 three layers. Layer one is the 2:36 description. This is what Claude checks 2:38 every time you ask a
+specific question, 2:40 and it determines if it should use the 2:42 skill or not. Think of it like a title 2:43 on a folder. If the label's vague, 2:45 Claude's going to have tough
+time 2:47 identifying when to use it. If it's 2:48 specific, it'll know exactly when it 2:50 needs to use it. And yes, when you're 2:51 prompting Claude, you don't need to 2:53
+explicitly call a skill. If it's 2:54 properly described, Claude will 2:56 automatically know when to use it, which 2:57 is awesome. Layer two is the 2:59 instructions. Once Claude
+grabs the 3:01 skill, this is the playbook it follows. 3:03 This is the step-by-step process on how 3:05 to actually complete the task. And layer 3:07 three are the tools it has
+access to. 3:09 This is code scripts, API calls, 3:11 reference files. This is where a skill 3:13 becomes a lot more than prompts. And 3:15 this layer three is where most of the
+3:17 leverage lives, but most people stop at 3:19 that layer two. Here's Eric from the 3:21 anthropic team talking about exactly 3:23 this. And I think maybe the funniest 3:24
+things I see is that people will put a 3:27 lot of effort into creating these really 3:28 beautiful detailed prompts. Um and then 3:32 the tools that they make to give the 3:33
+model are sort of these incredibly bare 3:35 bones uh like you know no documentation 3:39 fun like the parameters are named A and 3:41 B and it's kind of like oh like an an 3:43
+engineer wouldn't be able to like you 3:45 know work with this as a um you know 3:48 work with this as if this was a function 3:50 they had to use. People obsess over the 3:52
+prompt and skip the tools the third 3:54 layer of a skill. Anthropic engineers do 3:56 the opposite. They focus on these tools. 3:58 So instead of this whole back and forth, 3:59 I
+created my own custom skill that could 4:02 check these domains programmatically so 4:04 that whatever domains it was telling me, 4:05 it has already verified that I could go 4:07
+and buy it. So I gave this skill access 4:09 to the right tool and it leveled up the 4:11 entire process. And like I mentioned in 4:13 rule one, instead of manually thing 4:14
+about domains, I could have 10 different 4:16 sub aents using this skill to look 4:18 through 10,000 plus domains to find the 4:21 right one. Now I can do something that I 4:23
+literally would have never been able to 4:24 do before. Here's a prompt you can use 4:26 to think deeper about the skills you 4:27 create. So when you actually go ahead 4:29 and
+prompt them, they'll be that much 4:30 more effective. So rule number two 4:32 covers how anthropic engineers make 4:34 skills. But what skills do they actually Rule #3: Build
+Composable Skills, Not Custom Skills 4:36 create? Rule number three is they build 4:37 composable skills, not custom skills. 4:40 Pulling directly from Anthropic's 4:41 engineering
+blog about what skills are 4:43 and how to position them. They are 4:45 composable, portable, efficient, and 4:47 powerful. Composability means multiple 4:49 skills can work
+together with Claude 4:51 automatically coordinating which to use. 4:53 What this means is you should have 4:54 small, focused, and reusable skills that 4:57 can work together
+versus having a single 4:59 massive skill that does everything. A 5:01 concrete example that I experienced when 5:03 I first started building skills for my 5:05 content engine, I
+built a single/content 5:07 creation skill that did everything. 5:10 Generate ideas, wrote scripts, drafted 5:12 social post, all of it. One skill, a 5:14 million possibilities.
+And it just 5:16 became unmanageable. Every time I wanted 5:18 to change how scripts were written, I 5:20 had to rewrite the whole skill. and I 5:22 didn't know what it actually
+impacted. 5:23 And so instead, I split it up to more 5:25 specific skills, right? YouTube idea 5:27 research, YouTube script writer, 5:29 LinkedIn post. Each skill had a specific
+5:32 goal in mind. And the benefit is that 5:34 each can call the other skills so that 5:37 they start chaining them together. This 5:39 may seem a bit overkill, but it really 5:40
+isn't for three specific reasons. The 5:42 first is that issues are easy to spot. 5:44 When a focus skill breaks, you know 5:46 exactly where to look. Whereas if it's a 5:48 giant
+skill, you don't know what exactly 5:51 the issue was. The second is that 5:53 improvements compound. If you update, 5:55 let's call it YouTube idea research, 5:57 every workflow
+that uses the same skill 5:59 automatically gets upgraded. Whereas, if 6:01 you're using a giant skill, you're going 6:03 to have overlapping functionality, which 6:05 means you'll
+fix it in one skill and it 6:07 will still be broken in the other. The 6:09 third is that you can reuse instead of 6:11 rebuilding. If you build something like 6:12 the check
+domain skill I mentioned 6:14 earlier, you can plug that into any 6:16 workflow you want. You're not rebuilding 6:17 the wheel every time with a new 6:19 workflow. So, you know,
+you should break 6:20 them up, but what's some more technical 6:22 patterns that you should consider to 6:24 make these even more powerful. So, both 6:26 of these come from
+directly how 6:27 anthropic engineers actually use them. 6:29 So, pattern one is save scripts inside Pattern #1: Save Scripts Inside Skills 6:32 of skills. This is part of the
+tools 6:33 layer of a skill and it's how you 6:35 actually make them sharper. Here's Barry 6:36 at the AI engineering code summit 6:38 talking about how he does exactly this. 6:40
+We kept seeing Claude write the same 6:41 Python script over and over again to 6:43 apply styling to slides. So we just ask 6:45 Claude to save it inside of the skill as 6:47 a
+tool for his version for his future 6:50 self. Now he can just run the script and 6:51 that makes everything a lot more 6:52 consistent and a lot more efficient. Let 6:54 me break
+down what he said. Claude kept 6:56 rewriting the same Python script every 6:57 session and instead of them letting it 6:59 rewrite it, they save the script inside 7:00 of a skill
+folder. So now the next 7:02 session Claude doesn't have to rewrite 7:04 the script, it just reruns it. And this 7:06 is so powerful because code is 7:08 deterministic, which
+essentially means 7:09 if you give it the same input, it will 7:11 give you the same output every single 7:13 time. Whereas in the AI world, that's 7:14 not necessarily the case.
+It interprets 7:16 it. It guesses. It uses tokens that cost 7:19 money. And when you have a script inside 7:20 a skill, you're trading AI tokens for 7:23 code compute, which is
+cheaper, faster, 7:25 and repeatable. A general rule of thumb 7:27 is if you can use code instead of AI, 7:29 you should. And you don't have to write 7:31 the code. You can just
+have AI write it 7:32 for you once and then you can reuse it 7:34 as much as you want. The second pattern Pattern #2: Control Who Invokes What 7:35 is you can control who invokes
+what. 7:37 Most people don't know this exists, but 7:39 Anthropic built two flags into Claude 7:41 skills that are important to understand. 7:43 The first is user invocable. If you
+set 7:45 this to false, it hides the skill from 7:47 your slash menu. It means that the user, 7:49 you or me or whoever, can't directly 7:51 invoke this skill. It's only a skill
+for 7:54 agents. This is perfect for any AI agent 7:56 specific tools that you don't even want 7:58 to think about. And then disable model 8:00 invocction. This does the opposite.
+Only 8:02 you can run it and the model can't. This 8:04 is great for higher risk things like a 8:06 skill that sends a message or deploys a 8:08 new version of your code to
+production. 8:10 Most of you watching this have likely 8:11 never heard of either of those things, 8:13 but now you have it in your bag when 8:14 you're designing these skills.
+Here's a 8:16 prompt you can run to audit your setup 8:18 to make sure that you're properly 8:19 applying these things into your skills. 8:21 Screenshot this and just send the
+photo 8:23 into Claude. And I highly recommend you 8:25 do this so you know how to build skills 8:27 and what to build. But how do you make 8:29 these improve over time? And before
+I 8:31 get to that, if this is your first video 8:33 of mine, welcome to the channel. But if 8:34 it's your second or more, here is our 8:36 anti-slop agreement. The visuals, the
+8:38 testing, the time I put into this video 8:40 that's entirely built for humans, not 8:42 for AI robots or data scrapers. So all I 8:45 ask is you subscribe as part of this 8:46
+agreement to help this content reach 8:48 more people so I can keep making videos 8:50 like this. Rule number four is their Rule #4: Skills Get Smarter Every Session 8:52 prompts
+get smarter every session. 8:54 Here's where anthropic engineers really 8:55 pull ahead. Their skills and in turn 8:57 their prompting doesn't just work. They 8:59 get better every
+session. When you 9:01 prompt Claude with a sentence, that 9:02 prompt just vanishes the moment you 9:04 close the chat. When you prompt with a 9:06 skill, the skill stays. And
+every time 9:08 you use it, you have a chance to sharpen 9:10 it. Listen to their engineering team 9:12 talk about exactly this. When you first 9:14 start using Cloud, this
+standardized 9:16 format gives a very important guarantee. 9:18 Anything that Cloud writes down can be 9:20 used efficiently by a future version of 9:21 itself. Our goal is that
+Cloud on day 30 9:24 of working with you is going to be a lot 9:26 better on Cloud on day one. Every time 9:28 Claude learns something about how you 9:30 work, your voice, your
+process, your 9:31 edge cases, you write it down in the 9:33 skill. Next session starts smarter than 9:35 the last. So, how do you actually do 9:36 this? Every time you run a skill
+and the 9:39 output isn't exactly what you want, ask 9:41 yourself one question. Is this a 9:43 one-time fix or should this be in the 9:45 skill forever? If it's forever, update
+9:47 the skill. Add the rule, the example, 9:49 the edge case. And a lot of people skip 9:51 this entirely. They're just like, "Okay, 9:52 run the skill, get an output, like 9:54
+continue with their day." But anthropic 9:56 engineers use a skill, get the output, 9:58 then update the skill so that there's a 10:00 compounding loop that improves over 10:02
+time. And it's really quite simple. Like 10:04 it's literally you can just use your 10:06 chat history as a reference point to 10:09 improve the skill itself. Just say, 10:10
+"Review the back and forth I just had 10:13 after using this skill. Can we enhance 10:15 the skill so this is handled 10:16 automatically or we don't make the same 10:18 mistake
+again?" So zooming out, these 10:20 four rules are clear. Use skills, not 10:22 prompts. Build tools, not just skills 10:25 with prompts. Build skills that are 10:27 composable,
+not custom, and update your 10:29 skills every time you use them. Using 10:30 Claude like an engineer doesn't have to 10:32 be complicated. And if you like this, 10:34 you'll love
+this video where I break 10:36 down how Boris Churnney, the creator of 10:38 Claude Code, uses Claude skills. It's 10:40 pretty wild and builds on a lot of what 10:42 we covered
+here. I'll see you over 10:44 there. Pace. FChapter 1: Intro 0:00At Enthropic, the way that we thought about it is we don't build for the model of today. We build for the model six
+months from now. That's actually like still my advice to to founders that are 0:088 secondsbuilding on LLM. Just try to think about like what is that frontier where the model is
+not very good at today cuz it's going to get good at it. All of Quad Code has just been written and rewritten 0:1616 secondsand rewritten and rewritten over and over and over.
+There is no part of Quad Code that was around 6 months ago. You try a thing, you give it to users, you talk to users, you learn, and then 0:2424 secondseventually you might end up
+at a good idea. Sometimes you don't. Are you also in the back of your mind thinking that maybe like in 6 months you won't need to prompt that explicitly? Like the model 0:3232
+secondswill just be good enough to figure out on its own? 0:3434 secondsMaybe in a month, [laughter] no more need for plan mode in a month. Oh my god. 0:4646 secondsWelcome to
+another episode of the light cone and today we have an extremely special guest, Boris Churnney, the 0:5353 secondscreator engineer of Claude Code. Boris, thanks for joining us.
+Thanks for having me. 0:5959 secondsThanks for creating a thing that has taken away my sleep for about 3 weeks straight. [laughter] I am very addicted to Cloud Code and uh 1:071
+minute, 7 secondsit feels like rocket boosters. Has it felt like this for people like for you know months at this point. I think it was like end of November is where uh a 1:161
+minute, 16 secondslot of my friends said like something changed. 1:191 minute, 19 secondsI remember for me I felt this way when I first created Quad Code and I didn't yet know if I
+was on to something. I kind of felt like I was on to something and then that's when I wasn't sleeping. 1:271 minute, 27 secondsYeah. [laughter] And that was just like three
+straight months. 1:301 minute, 30 secondsThis was uh September 2024. Yeah. It was like three straight months. I I didn't take a single day vacation. Worked through the weekends.
+Worked every 1:371 minute, 37 secondssingle night. I was just like, "Oh my god, this is I think this is going to be a thing. I don't know if it's useful yet because it it couldn't
+actually code yet." Chapter 2: The most surprising moment in the rise of Claude Code 1:451 minute, 45 secondsIf you look back on uh those moments to now, like what would be like
+the most surprising thing about this moment right now? 1:521 minute, 52 secondsIt's unbelievable that we're still using a terminal. That was supposed to be the starting point. I
+didn't think that would be the ending point. And then the second one is that it's even useful cuz 2:002 minutesuh you know at the beginning it didn't really write code. Even in
+February when we G it wrote maybe like 10% of my code or something like that. I didn't really 2:072 minutes, 7 secondsuse it to write code. it wasn't very good at it. I still wrote
+most of my code by hand. Uh so the fact that it it actually like our bets paid off and it 2:152 minutes, 15 secondsgot good at the thing that we thought it was going to get good at
+because it wasn't obvious. At Enthropic, the way that we thought about it is we don't build for the model of today. We build 2:242 minutes, 24 secondsfor the model 6 months from
+now. And that's actually like still my advice to to founders that are building on LLM is, you know, just try to think about like 2:322 minutes, 32 secondswhat is that frontier
+where the model is not very good at today. um because it's going to get good at it and you just have to wait. Chapter 3: How Boris came up with the idea for Claude Code 2:382
+minutes, 38 secondsGoing back though, but when do you remember when you first got the idea? 2:412 minutes, 41 secondsCan you just talk us through that? Like was it some like a
+spark or what was even the first version of it in your mind? 2:462 minutes, 46 secondsYou know, it's funny. It was like it was so accidental that it just kind of evolved into this.
+Um you know as as anthropic I think for Ant the bet has 2:542 minutes, 54 secondsbeen coding for a long time and the bet has been the path to save to safe AGI is through coding
+3:023 minutes, 2 secondsand this is this has kind of always been the idea and the way you get there is you you teach the model how to code then you teach it how to use tools then
+you teach it how to use computers um and you 3:113 minutes, 11 secondscan kind of see that because the the first team that I joined at Enthropic it was called the anthropic labs
+team uh and it produced three products it was 3:183 minutes, 18 secondsquadcode MCP and in the desktop app. So you can kind of see how these like weave together. The particular
+product that we built, you know, like no one no one asked me to build a CLI. 3:293 minutes, 29 secondsUm we kind of knew maybe it was time to build some kind of coding product cuz
+it seemed like the model was ready, but no one had yet really built the product 3:373 minutes, 37 secondsthat harnessed this capability. So like still there's this insane feeling
+of product overhang. But at the time it was just like even crazier cuz like no one 3:443 minutes, 44 secondshad built this yet. And so I I started like hacking around uh and I was
+like, "Okay, we build a coding product. What do I have to do first? I have to 3:523 minutes, 52 secondsunderstand how to use the API because I hadn't used anthropic API at that
+point." Um and so I I just built like a little terminal app to use the API. 4:004 minutesThat's all that I did. And it was a little chat app because you know like you think about
+the you know AI applications of the time and you know for non-coders today most what what are 4:084 minutes, 8 secondsmost people using is just a chat app. So that's what I built.
+Uh and you know it was in a terminal. I can ask questions. 4:134 minutes, 13 secondsI give answers. Then I think tool use came out. I just wanted to try out tool use because I I
+don't really understand what this is. I was like to use this is 4:204 minutes, 20 secondscool. Is this actually useful? Probably not. Let me just try it. 4:234 minutes, 23
+secondsYou built it in terminal just because it was the easiest way to get something up and running. Yes. Cuz I didn't have to build a UI. Okay. 4:304 minutes, 30 secondsIt was
+just me at that point. It was like the IDEs, Cursor, Windsurf taking off. Were you sort of under any pressure or getting lots of suggestions 4:384 minutes, 38 secondsof, hey, like
+we should build this out as a plugin or as a as a fully featured ID itself? There was no pressure because we didn't even know what we wanted to build. Like the the team was just in
+4:474 minutes, 47 secondsexplore mode, you know, like we we didn't we know vaguely we wanted to do something in coding, but it wasn't obvious what no one was high confidence
+enough. That was like my job to figure 4:554 minutes, 55 secondsout. And so I g I gave the model uh the batch tool. That was the first tool that that I gave it just cuz I think
+that was literally the example in our docs. 5:025 minutes, 2 seconds[laughter] I just like took the example. 5:045 minutes, 4 secondsIt was in Python. I just ported it to
+TypeScript because that that's how I wrote it. You know, I didn't know like what the model could do with bash. So I asked it to like read a file. It could like cat the file. So
+like that was 5:125 minutes, 12 secondscool. And then I was like, "Okay, like what can you actually do?" And and I asked her, "What music am I listening to?" He wrote some like
+Apple script to 5:195 minutes, 19 secondsscript my my Mac and look up the music in my music player. Oh my god. And this was Sauna 3.5. 5:265 minutes, 26 secondsAnd you know, like I
+I didn't think the model could do that. And that was my first I think ever fuel the AGI moment where I was just like, "Oh my god, the 5:345 minutes, 34 secondsmodel it just wants
+to use tools. That's all it wants." That's kind of fascinating. I mean it's very kind of contrarian that clocker Chapter 4: The elegant simplicity of terminals 5:445 minutes, 44
+secondsworks so well in such an elegant simple form factor. I mean terminals have been around for a really long time and that 5:515 minutes, 51 secondsseemed to be like a good
+design constraint that allowed a lot of interesting developer experiences like 5:585 minutes, 58 secondsit doesn't feel like working. It just feels fun as a developer. I don't
+think about files where everything is and that came by accident almost. 6:076 minutes, 7 secondsYeah, it was an accident. I remember so after the terminal started to take off
+internally. Um and honestly like after building this thing I think like 2 days 6:156 minutes, 15 secondsafter the first prototype I started giving it to my team just for dogfooting
+cuz you know like you know if you come up with an idea and it seems useful the 6:226 minutes, 22 secondsfirst thing you want to do is you want to give it to people to see how they
+use it. And then I came in the next day and then Robert who sits across from me who's another engineer he he just like 6:316 minutes, 31 secondshad quad code on his computer and he
+was like using it to code. I was like I was like what what are you what are you doing? Like this thing isn't ready. It's just a prototype. But yeah, it it was 6:386 minutes, 38
+secondsalready useful in that form factor. And I remember when we did our launch review to kind of launch quad code externally, this was in December, November, 6:476 minutes, 47
+secondssomething like that in 2024. Um Dario asked and he was like, "The us chart internally like the the Dow chart is like vertical. Are you like forcing 6:556 minutes, 55
+secondsengineers to use it? Like why are you mandating them?" And I was just like, "No, no, we didn't. 7:007 minutesWe I just like posted about it and they they' just been like
+telling each other about it." Honestly, it was it was just accidental. We we started with the CLI because it was the cheapest thing and it just kind of stayed there for a bit.
+Chapter 5: The first use cases 7:097 minutes, 9 secondsSo in that 2024 period, what how were the engineers using it? Were they sort of shipping code with it yet or were they using
+it in a different way? 7:187 minutes, 18 secondsThe model is not very good at coding yet. I I was using it personally for automating git. Um I think at this point I I probably
+forgotten most of my git 7:267 minutes, 26 secondsbecause [laughter] cloud code has just been doing it for so long. But yeah, like automating uh bash commands that that was a very
+early use case and like operating like Kubernetes and kind of 7:347 minutes, 34 secondsthings like this. People were using it for coding. So there were some early signs of this. I
+think the first use case was actually writing unit tests because it's a little bit lower risk and the model was still pretty bad at it 7:437 minutes, 43 seconds[laughter] 7:447
+minutes, 44 secondsbut people were were were kind of figuring it out and and they were figuring out how to use this thing. 7:497 minutes, 49 secondsUm and one thing that we saw is
+people started writing these markdown files for themselves and then having the model read that markdown file. And this is 7:577 minutes, 57 secondswhere QuadMD came from. Probably
+the single for me biggest principle in product is latent demand. Um and the just every bit of this product is built 8:048 minutes, 4 secondsthrough latent demand after their
+initial CLI. Uh and so quadmd is an example of that. There's this other general principle that I think is maybe 8:128 minutes, 12 secondsinteresting where you can build for the
+model and then you can build scaffolding around the model in order to improve performance a little bit and depending 8:208 minutes, 20 secondson the domain you can improve
+performance maybe 10 20% something like that and then essentially the gain is wiped out with the next model. So either 8:288 minutes, 28 secondsyou can build build the scaffolding
+and then you know get some performance gain and then rebuild it again or you just wait for the next model and then you kind of get it for free. the quantumd 8:368 minutes, 36
+secondsand kind of the scaffolding is an example of that and really I think that's why we stayed in the CLI is because we felt there is no UI we could 8:448 minutes, 44
+secondsbuild that would still be relevant in 6 months because the model was improving so quickly earlier we were saying like we should compare cloud MDs but you said something
+8:528 minutes, 52 secondsvery profound which is you know yours is actually very short which is almost like the opposite of what you know people might expect why is that what's in
+your Chapter 6: What’s in Boris’ CLAUDE.md? 9:019 minutes, 1 secondcloud MD okay so I I checked this before we came so my my cloud has two Um, one is, uh, there it's just two 9:099
+minutes, 9 secondslines. So, the first line is whenever you put up a PR, enable automerge. Um, so as soon as someone accepts it, it's merged. That's just so I can like code 9:179
+minutes, 17 secondsand I don't have to kind of go back and forth with CR or whatever. And then the second one is whenever I put up a PR, post it in our internal team stamps 9:249
+minutes, 24 secondschannel. Uh, just so someone can stamp it and I can get unblocked. Uh, and the idea is every other instruction is in our quadmd that's checked into the 9:339
+minutes, 33 secondscodebase and it's something our entire team contributes to multiple times a week. And very often I'll see someone's 9:409 minutes, 40 secondsPR and they make
+some like mistake that's totally preventable and I'll just literally tag Claude on the PR. I'll just do like add quad, you know, like 9:489 minutes, 48 secondsadd this to the quad
+MD and I'll do this, you know, like many times a week. 9:519 minutes, 51 secondsDo you have to like compact the Claude MD? Like I definitely reached a point where I got the message
+at the top saying your cloud MD is like thousands 9:589 minutes, 58 secondsof tokens now. What do you do when you guys hit that? 10:0110 minutes, 1 secondSo our quadm is actually
+pretty short. I think it's like couple thousand tokens maybe something like that. Um if if you hit this my recommendation would be delete your quadmd and just start fresh. 10:1010
+minutes, 10 secondsInteresting. 10:1110 minutes, 11 secondsI think a lot of people like they try to overengineer this right and and really like the capability changes with every
+model. And so the thing that you want is 10:1910 minutes, 19 secondsdo the minimal possible thing in order to get the model on track. And so if you delete your quadd and then you
+know the model is getting off track, it does the 10:2610 minutes, 26 secondswrong thing. That's when you kind of add back a little bit at a time. And what you're probably going to
+find is with every model, you have to add less and less. For me, I consider myself a pretty 10:3410 minutes, 34 secondsaverage engineer to be honest. Like I don't use a lot of
+fancy tools. Like I I don't use like Vim. I use, you know, VS Code because it's simpler. Um I don't 10:4210 minutes, 42 secondsreally Wait, really? I would have assumed that
+because you built this in the terminal that you were sort of like a dieh hard ter terminal like Vim Vim only person 10:4910 minutes, 49 secondsyou know screw those VS code people
+you know well we have people like that on the team there's you know like Adam Wolf for example he's he's on the team he's like you will never take Vim for my cold dead 10:5810
+minutes, 58 secondshands [laughter] like yeah so there's definitely a lot of people like that on the team and this is one of the things that I learned early on is every engineer
+likes to hold their dev tools differently they like to use different 11:0611 minutes, 6 secondstools there's just no one tool that works for everyone but I think also this is one
+of the things that makes it possible for quad code to be so good 11:1411 minutes, 14 secondsbecause I kind of think about it as what is the product that I would use that makes
+sense to me and so to use quad code you don't have to understand Vim you don't have to understand TMX you 11:2211 minutes, 22 secondsdon't have to know how to like SSH you don't
+have to know all the stuff you just have to open up the tool and it'll guide you it'll it'll do all this stuff how do you decide how verbose you want Chapter 7: How do you decide
+the terminal’s verbosity? 11:3011 minutes, 30 secondslike sort of the terminal to be like sometimes you have to go you know control O and check it out and is it like internal bike
+shed battles around 11:3811 minutes, 38 secondslike longer shorter I mean every user probably has a for an opinion like how do you make those sorts of decisions? 11:4511 minutes,
+45 secondsWhat What's your opinion? Is it is it too verbose right now? 11:4811 minutes, 48 secondsOh, I love the verbosity cuz basically sometimes it just like goes off the deep
+end and I'm watching and then I can just read very quickly and it's like, "Oh, 11:5511 minutes, 55 secondsno, no, it's not that." And then I escape and then just stop it and then
+it just like stops an entire bug farm like as it's happening. I mean, that's 12:0312 minutes, 3 secondsusually when I didn't do plan mode properly. 12:0512 minutes, 5 secondsThis
+is something that we probably change pretty often. Um, I remember early on, this is maybe six months ago, I tried to get rid of bash output just internally just to like summarize
+it 12:1412 minutes, 14 secondsbecause I was like these giant long bash commands, I don't actually care. And then I gave it to anthropic employees for a day and everyone just
+revolted. 12:2112 minutes, 21 seconds[laughter] 12:2212 minutes, 22 secondsI want to see my dash because it it actually is quite useful for, you know, like for something like git
+output, maybe it's not useful, but if you're running, you know, like Kubernetes jobs 12:3012 minutes, 30 secondsor something like this, you actually do want to see it. We recently
+hit the hid the file reads and uh file searches. So you'll notice instead of saying, you 12:3812 minutes, 38 secondsknow, like read food.md said, you know, like read one file,
+search searched one pattern. And this is something I think we could not have shipped six months ago 12:4512 minutes, 45 secondsbecause the model just was not ready. It would have,
+you know, it still read the wrong thing pretty often. As a user, you still had to be there and kind of catch it and debug it. But nowadays, I just 12:5312 minutes, 53
+secondsnoticed it's on the right track almost every time. And because it's using tools so much, it's actually a lot better just to summarize it. Um, but then we shipped 13:0113
+minutes, 1 secondit. Uh, we dog fooded it for like a month and then people on GitHub didn't like it. Uh so there was a big issue where people like no like I want to see the details
+and that was really great 13:0913 minutes, 9 secondsfeedback. Um and so we added a new verbose mode and so that's just like in slash config you can enable verbose mode and if you
+want to see all the file 13:1613 minutes, 16 secondsoutputs you can continue to do that and then I posted on the issue and people still still didn't like it which is again awesome
+because like my favorite thing in the world is just hearing 13:2513 minutes, 25 secondspeople's feedback and hearing how they actually want to use it. Um and so we just like
+iterated more and more and more to get that really good and to make it the thing that people want. I'm 13:3213 minutes, 32 secondsamazed like how much I enjoy uh fixing bugs now.
+And then all you have to do is uh have really good logging and then 13:4013 minutes, 40 secondseven just say like hey check out that you know this particular object it messed up in
+this way and it like searches the log. It figures everything 13:4713 minutes, 47 secondsout. It can like go into your you can make a production tunnel and it'll look at your
+production DB for you. It's like this is insane. Bug fixing is just going 13:5513 minutes, 55 secondsto sentry copy markdown. You know pretty soon it's just going to be straight
+MCP. 13:5913 minutes, 59 secondsIt's like an autobug fixing like and test making sort of uh what's the new uh term they call it like a making a startup factory. Oh yeah. 14:0814
+minutes, 8 secondsRight. There's like all these concepts now of rather than having to review the code, you know, I'm I'm old school, so I 14:1614 minutes, 16 secondslike the
+verbosity. I like to say, "Oh, well, you're doing this, but I want you to do that." Right? But there's a totally different school of thought now 14:2314 minutes, 23 secondsthat
+says like anytime an a real human being has to look at code uh that's bad. Yeah. Yeah. Yeah. Which is fascinating. 14:3114 minutes, 31 secondsI think like Dan Chipper talks about
+this a lot as kind of when whenever you see the model make a mistake try to put in the quadmd try to put it in like skills or something like that so it's 14:3914 minutes, 39
+secondsreusable. But I I think there's this meta point that I actually struggle with a lot. And I people talk about like agents can do this, agents can do that, 14:4714 minutes, 47
+secondsbut actually what agents can do, it changes with every single model. And so sometimes there's a new person that joins the team and they actually use quad code more than I
+would have used it. 14:5614 minutes, 56 secondsAnd I'm just constantly surprised by this. Like for example, there was a we had like a memory leak and we were trying to debug it. Um
+and by the way, 15:0415 minutes, 4 secondslike Jared Sumar has just been on this crusade killing all the memory leaks and it's just been amazing. But before Jared was on the team,
+I had to do this and there was this memory leak. I I was 15:1215 minutes, 12 secondstrying to debug it. And so I I took a heap dump. I opened it in DevTools. I was looking through
+the profile. Then I was looking through the code and I I was just trying to figure this out. And then 15:2015 minutes, 20 secondsanother engineer on the team, Chris, he just like
+asked Quad Code. He was like, "Hey, I think there's a memory leak. Can you like run this?" And then like try to 15:2815 minutes, 28 secondsfigure it out. And Quad Code like took
+the heap dump. It wrote a little tool for itself to like analyze the heap dump. And then it found the leak faster 15:3415 minutes, 34 secondsthan I did. And this is just something
+I have to constantly relearn because my brain is still stuck somewhere six months ago at times. Chapter 8: Beginner’s mindset is key as the models improve 15:4415 minutes, 44
+secondsSo what would be some advice for technical founders to really become maximalists at the latest model release? 15:5215 minutes, 52 secondsIt sounds like people off of fresh
+off of school or that don't have any assumptions might be better suited than maybe sometimes engineers who have been 16:0016 minutesworking at it for a long time. And how do the
+experts get better? I think for yourself it's kind of beginner mindset 16:0716 minutes, 7 secondsand uh I don't know maybe just like humility like I feel like engineers as a
+discipline we've learned to have very 16:1416 minutes, 14 secondsstrong opinions and senior engineers are kind of rewarded for this in my old job at a big company when I hired like
+architects and this kind of a type of engineer you look for people that have a 16:2316 minutes, 23 secondslot of experience and really strong opinions but it actually turns out a
+lot of this stuff just isn't relevant anymore and a lot of these opinions should change because the model is 16:3116 minutes, 31 secondsgetting better um so I think actually the
+biggest skill is people that can think scientifically and can just think from first principles. 16:3816 minutes, 38 secondsHow do you screen for that when you try to hire someone
+now for for your team? 16:4216 minutes, 42 secondsI sometimes ask about what's an example of when you're wrong. It's a really good one. You know, some of these like classic
+behavioral questions like not even coding questions I think are quite 16:5016 minutes, 50 secondsuseful because you can see if people can recognize their mistake in hindsight, if
+they can claim credit for the mistake and if they learn something from it. And 16:5816 minutes, 58 secondsI think a lot of these like very senior people especially there there are
+some founder types like this but I think founders in particular are actually quite good at it. Um but other people 17:0617 minutes, 6 secondssometimes will never really take uh
+they'll never take the blame for a mistake. But I don't know like for me personally I'm wrong probably half the 17:1417 minutes, 14 secondstime. Like half my ideas are bad and you
+just have to try stuff and you know you try a thing you give it to users you talk to users you learn and then 17:2217 minutes, 22 secondseventually you might end up at a good idea.
+Sometimes you don't. And this is the skill that I think in in the past was very important for founders, but now 17:3017 minutes, 30 secondsI think it's very important for every
+engineer. 17:3217 minutes, 32 secondsDo you think um you would ever hire someone based on the uh claude code transcript of uh them working with the 17:3917 minutes, 39 secondsagent
+cuz we're actively doing that right now. We just added uh just as a test like you can upload a transcript of 17:4717 minutes, 47 secondsyou coding a feature with cloud code or

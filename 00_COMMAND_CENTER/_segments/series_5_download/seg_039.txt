@@ -1,0 +1,224 @@
+reaching out to certain pages that would impact your performance. So you might want to specify that kind of information 26:24 over here. Now the next concept that I want to talk
+about actually plays into Sitemaps for Better Crawling 26:29 what we're doing over here which is a sitemap to your website. Now, what is a sitemap? Well, a sitemap is a file that
+26:37 tells search engines about the pages on your website, helping them discover, crawl, and index your content more 26:43 easily. So, when you create your site map, you can
+specify how search engines 26:48 will find all your pages, the priority of each of the pages, how frequent they change, when they were less modified, 26:55 and because of all of
+that, your SEO will improve. Now, to make a site map, you have to create a file similar to 27:01 this robots.ts. ts. You come over here and actually I'll just copy and paste this
+because it will be very similar. 27:08 We'll create a sitemap.ts which will generate the sitemap for our file because uh in reality a sitemap file is 27:15 not a ts file. It's an
+XML file. But using Nex.js we can just make it like this. We'll create a sitemap and in here 27:23 we can get the sitemap as the return type. Now how does a sitemap looks like?
+27:29 Well, it looks like this. You can pass a list on this return and on this list you 27:35 need to pass a URL. Now in reality put the real URL of your website here. So in 27:41
+my case for example with my website I would put webdev ultra and the thing is 27:47 or webdevultra.com I would recommend getting this as a base URL and 27:53 extracting it because
+you will be changing as we go through this list. Now what do I mean by that? Well, the first 27:58 one is just your base route. So, it's your main pages. If I go to my website
+28:03 here, it would be uh whatever is over here. And you might want to rank this in 28:08 a different way. But what you would do is for each route, you would put a last modified
+field, which for example, I'm 28:15 modifying it right now, so I'm going to say today. Then the second one is you would pass a change frequency. How often 28:22 does this page
+specifically changes? Maybe it's all the time. Maybe it's daily, maybe it's always, maybe it's 28:29 hourly, I don't know. I'm going to put weekly just as an example. Then what
+28:34 else can we put? We can put a priority. Most times the landing page is super important for a website. So maybe the 28:41 priority is number one. So we'll make this be number
+one. Now let's go and add 28:47 another page. Let's go into the about page because we have the base URL. The about page is just the base URL plus we 28:55 can add the value here
+slashabout at the end. We can pass a less modified just 29:01 the same way. We can change this to maybe monthly and the priority to something below one like 0.8. What you 29:08
+would see in a real website is something on the lines of this. every single uh URL would be specified with their own 29:15 priority and uh frequency and this will help uh search
+engine crawlers get our 29:22 website more easily. Now you can also create dynamic site maps. However, I won't go into details about this. 29:28 Dynamic sitemaps are basically the
+exact same concept as what we learned through dynamic metadata over here but with site 29:35 maps. If you have pages like this, you can specify the priority of the different items
+uh depending on some 29:41 sort of a program. Now, because we created this site map, we have to uh specify to the bots where our site map 29:47 is. So, in our robots over here, we
+can actually add a field called sitemap and 29:54 just link our website which has this base URL. I'm just going to copy this, paste it over here, and then I can go 30:01 ahead and
+say sitemap base URL/sitemap.xml. 30:08 If you go to any website, you should be able to see this. If I were to go to my own website, right, this is webdev 30:14 ultra. You can see
+that if I go to sitemap.xml, this page is public for everyone because obviously it needs to 30:20 be public for um the bots to be able to access it. And you can see in most
+websites there is a sitemap.xml XML 30:27 associated with it. Now, in here, we're just setting the sitemap URL to be this. 30:32 So, this is basically it for sitemaps and robots. I
+understand that at this 30:37 point you might be like, "Okay, I've it feels like we're just adding the same thing over and over again, right? We're 30:43 just adding so much detail
+for no reason." But trust me, this is why I recommended you to use maybe an AI bot 30:49 to to at least generate the structure of this kind of stuff. But you really need to be good
+at knowing the different 30:55 fields and what they do because then you will be able to fully control the SEO of your website. And I know this sounds 31:02 this all sounds like why
+am I even wasting time doing this? Well, the reason is you built a website for other 31:08 people to use. So, you really should be spending a lot of time trying to get the real
+players out there like Google to 31:14 rank your website high. And all of this kind of uh stuff will just help you with that. So, now it's time for us to go to Canonical URLs and
+JSON-LD 31:21 our next concept, which is canonical URLs. So, a canonical URL is the 31:27 preferred version of a web page when multiple URLs point to the same or very similar
+content. So it will tell search 31:34 engines which URL should be considered the let's say authoritative version of a 31:40 page like the the main version of the page. And it is
+really good because when you have a big website like this there 31:47 might be some duplicate content. So you're going to uh be penalized uh by 31:52 the SEO gods like the the
+search engines if you have duplicate content. So you want to prevent that. Also, it will 32:00 combine ranking signals from multiple URLs which will end up ranking your page 32:05
+higher. Also, similar to what we've been doing all along, we want to help search engines focused and uh improve its 32:12 efficiency. And by using canonical URLs, you will have
+that. Now, what is a scenario in which this might be an 32:17 issue? So, imagine here we have this products page, right? We have each individual product and the uh ID of the 32:26
+URL, right? the PM changes, right? Depending on what product we're in. Maybe if I go to uh let me go to this 32:33 website, I go to products and I were to click on this product.
+It's a laptop pro, right? Now, imagine that on this 32:40 URL, I would add search params. If you're not familiar with search params, basically imagine I could come here and 32:45
+put black or actually no, I can put something like color is equal to black. 32:51 This is a search param that if this was implemented on this website, maybe this laptop could have
+different uh colors. 32:59 And because I'm on the URL that says color equals to black, it will default the page to show the laptop that has 33:05 that color. That's done all the
+time on different uh websites and they usually 33:11 have different filters as well. Just the same way how they have a color equal to black, they might have a size equal to 33:18
+15, I don't know, something like that. But the thing is there's no difference between this URL and the one with the 33:25 caller. There's no difference based on a search engine.
+And we have to explain to the bots that there is no difference. So 33:33 in a real scenario, you might find yourself with something like this. I'm just going to use this as a place
+for me 33:39 to write some comments. You might see something like this. A bunch of different uh URLs that are kind of the 33:46 same thing um but they are slightly different. So
+the bots will treat them 33:51 as different unless you prevent them. So here is what can URLs do. To implement a 33:57 simple one, I would recommend going to all of your pages. For
+example, the about page and somewhere in here just 34:04 adding an alternates field and passing a canonical field with the exact URL of 34:11 this page. So if this page is I think
+we used a recipe example for this one. We said recipe.com. 34:17 Let's just do that. recipes.com/about. Just just do this. This is all you need to do for a static page like the
+about 34:24 page. But for a dynamic page such as the example that we talked about, this one 34:30 over here in the generate metadata, which is the uh dynamic uh function that 34:35
+will generate different metadata depending on uh which uh param you have. What you can do is do this. you add the 34:42 alternatives and here you can add I'll keep the same example
+with recipes.com 34:47 but what you do is you insert the params to this so you just do this you insert 34:54 the params id directly into this also you have to put products here and
+now we 35:00 should have dynamic canonical urls also make sure that you always use absolute 35:06 urls never something like this always put directly the base URL as well so 35:11
+that it can work better. Now the next thing I want to talk about is the concept of JSON for linked data. Now I 35:18 don't want to go too much into detail because I feel like the
+other things are more important and this is a little bit more advanced but basically JSON for 35:26 linked data also known as JSON-LD. It's basically a method for encoding 35:31
+structured data using JSON as a format. It will help search engines understand the content and the context of your 35:38 pages which will help you with everything ranging from
+having better search results uh better ratings uh page 35:45 like search engines will understand your pages more and and even new things like AI assistance and uh voice search. So
+35:53 normally you would use a script tag in a normal website and specify that uh it's a script tag for a link data JSON 36:01 object. However, we are in Nex.js and Nex.js has
+great support for this. So, how would you do this? Well, I'm going 36:07 to go here to our products file and this is would be a great example for this. The whole idea here is that
+JSON is a 36:16 very used format of data, right? And when we have JSON in our page in some 36:24 way or another, that page become more becomes more valuable because web crawlers
+can read JSON very easily. So 36:32 in here, this is our products page. It has a bunch of HTML depending on the UI, 36:37 but it has no JSON in it obviously. So one thing we can do
+is somewhere in here 36:43 we can create this uh object. We'll call it structured 36:48 data and then set it equal to um a JSON 36:54 that will include a bunch of informations
+about um what this page is. 36:59 So, I'm actually going to copy and paste how I would create the JSONLDD structure data for this page. It would look a bit 37:07 like this. Now, I
+recommend you going to schema.org and looking at um how you 37:13 would structure this kind of information, but the idea here is you're giving a very concrete and clear example
+37:21 of what this page is. So, for example, what is this page? What is the name of the product? What is the description? 37:27 the brand, the category, the offers, the rating, all
+this kind of stuff. You're 37:32 just adding it to here. Now, just having this object is not enough. We actually want to insert this uh script or we want 37:39 to insert this
+object into our um HTML. So what I do is above the nav anywhere 37:44 in your page actually you add a script tag and you put a type for this script 37:53 call it application
+slashldd plus JSON which will stand for 37:59 link data JSON and then you're going to have to use a dangerously set inner HTML 38:05 because obviously we're inserting into the
+script and you add an HTML field 38:10 with a JSON dot stringify of the structured data and 38:16 that's it. You do this for the pages that you find valuable to have this and you
+will benefit from it. Now, I 38:23 wouldn't recommend doing this on every page. I think on the products page, on the blogs page, it should make sense, 38:28 but on the other ones,
+it's it seems totally fine. So, I would only add this if you find absolutely necessary. Now Semantic HTML and testing 38:35 it's time for us to talk about the last topic. And this
+is actually a bit easier 38:41 from the other one compared to the other ones. And I left this for last just because uh I wanted to talk about the 38:46 more in detail ones, the
+more specific ones. And this one is more of like uh something that you should already know 38:52 if you start building Nex.js, JS even if you're not at the point where you're
+worrying about SEO, which is when you 38:57 build your pages, you make sure to use um HTML elements that pages understand. 39:05 So, what is a great example of this? So, let's go
+here to our um I'll go to the 39:12 components here to the navigation. First of all, you see how we're using this nav component over here. This has no like 39:19 there's no
+difference in the utility of it compared to me just using a div. But why did I use a nav? I used a nav 39:25 because on HTML nav stands for navigation and this is a navbar or a
+navigation component. So when a web 39:32 crawler crawls our website and it sees there is a nav, it knows for a fact that this is this is a navbar. If it saw a 39:38 div, it would
+have to understand the page first in order to get that this is a navbar. So you want to use components 39:45 like that. Another great example is on the blog post. If I go to this
+page over here, this should render a blog post. If 39:52 I go to the uh let me go to the blog. So you guys see there's three blogs. If I were to click on this, you see this is a
+39:57 blog post. Even though it's super ugly, again, I don't really care about that. It is a blog post. Now, if you come over 40:03 here, you might have noticed that I have an
+article tag surrounding this entire 40:10 blog post. Now, why do I have that? Well, because again this is an article 40:15 and even though this does nothing to the page, if I were
+to delete this, you'll see that it doesn't change the UI of the 40:22 page. Having this helps um search engines to understand what we are 40:28 dealing with. Same thing with making
+the header be a header instead of just a div because it is the header. So, might be a 40:35 good idea to add the header tag. So I would make sure you always are using 40:40 this
+kind of component structure so that uh search engine crawlers will understand how your page looks like. 40:47 Now, on top of that, if you want to test to see how good your website
+is, I would recommend you going to your website and 40:53 then clicking inspect, not view page source, inspect, and then just open up your Google Chrome, going to the 41:01
+lighthouse, and then literally doing this, just go ahead and click analyze page load. This might take, I don't 41:07 know, like like a minute, and it will give you a score of how
+your website ranks. Now, this is on my local host, so 41:14 I personally don't think this is the best example. And also we don't have any database calls here. So it might be a
+41:19 perfect website. However, when I started building my website, my course platform, 41:24 WebDev Ultra, and I was going to have that platform work for uh thousands and 41:30
+thousands of users, I was really really worried about this. So you see the result of this gave us a 99% score. Uh 41:38 it gave us 99 for performance, accessibility, and best
+practices, but only a 91 for SEO. So this is the kind 41:45 of thing that you need to account for because when you click on SEO you'll see that it will give you information on why
+41:51 this is the score and I purposefully uh made sure to make this mistake so that 41:57 you guys would see how easy it is to fix those issues. So you see it gave it gave us a
+91% score. But why is it? It says 42:04 that our robots.txt is not valid. Now let's go to our robots.txt txt and I 42:09 want you guys to see if there's an issue at least an issue
+that would be clear on this uh analyze page load over here. 42:17 Well, the issue is that the base URL is set to web devotra instead of for 42:23 example localhost 3000. Now, in
+reality, make this base 42:28 URL be an environment variable. So, it's different in the local host and it's different on um production. But if I 42:34 click here, you should see
+that yeah, this is exactly the error. If I were to analyze this again, this should be fixed. But what I recommend is every 42:41 time you have a website uh and you want to produce
+it, go to your website and analyze the page load consistently. For 42:49 example, in here, I could I would constantly go into the course pages and I would just analyze the page
+load. And 42:55 in the first run, it wasn't the best, but then I just kept fixing it, especially with SEO, until I got a 43:01 perfect score. So, this is what I recommend. And this
+is the basic idea of 43:06 this video. If you feel like you learned a lot from SEO in Nex.js in this video 43:11 and you want to learn a lot more, don't forget to check out my
+Nex.js course for beginners. It is this course over here. 43:18 We recently launched. We're still in early bird pricing. So, if you want to get it before it gets more expensive,
+43:25 feel free to do so. Um, I will teach you everything from the beginning up until being able to build a full stack 43:31 application. We build a Twitter clone that has all of
+the important features 43:37 that Twitter has and will teach you not only how to build them, but how to optimize them to be able to run as fast 43:43 as possible and deploy the
+application. So, if you're interested in learning XJS and you are a beginner, feel free to 43:49 check out the code will be the link for the website will be in the description. And
+again, we are in early bird pricing. 43:55 So, if you want to learn XJS and you're having a hard time, this is the best time to do so. So, thank you so much for 44:01 watching this
+video. If you enjoyed it, leave a like down below and comment which you want to see next. Subscribe cuz I'm posting every week or every 44:07 other week and I would massively
+appreciate it. And I see you guys next time. All From the series From PedroTech Web Development Search engine optimization AI 0:06 what's happening everybody this is 0:08 Hayden
+Adams with a designer who codes 0:10 in this project we're taking a look all 0:12 about how to add a featured image inside 0:15 your project in react now what is a 0:18 featured
+image a featured image is 0:19 courtesy of Facebook's what's called 0:21 open graph or OG in the OG or the 0:25 metadata I know OG can mean a lot of 0:27 things but in the OG
+metadata we have 0:30 have this actual picture for this link 0:32 preview and what I want to do in this 0:34 design and react is essentially when you 0:36 share a link what you see
+by default is 0:39 this picture so I've got these palm 0:41 trees in my finished project the open 0:43 graph image demo I'm going to build this 0:46 from scratch from start to
+finish so 0:49 with that let's get started all right so 0:53 I have my basic react project working 0:55 here in this case I'm running a Gatsby 0:57 project just to make sure it is
+working 0:58 live on the server add some exection 1:01 points perfect hello world we're going 1:03 to spend a lot more time in the inspect 1:05 area mostly in the head in fact all
+the 1:07 time in the head section and really not 1:10 any time inside the body this is just 1:12 extra fluff and the head section where 1:14 we're going to spend all of our time so
+1:17 I first have to do is create a new 1:19 project or a new file so I'm going to 1:21 create command n for new and I'm going 1:23 to go into my component section now in 1:26
+different Frameworks with next or any of 1:30 react framework you might put this 1:31 somewhere else in Gatsby it goes inside 1:34 the components folder so here I'm going 1:36 to
+do is I'm going to say SEO image. JS 1:41 and from here what I'm to do is I'm 1:42 going to import asteris as react from 1:46 react and what I'm going to do is I'm 1:48 going to
+bring in my featured image 1:50 first and foremost now how my folder 1:52 structure works is I've got my SEO 1:54 image. JS in my components folder and I 1:58 have a lake default
+and a lake specific 2:00 we're going to do it two ways where by 2:02 default this Lake default picture comes 2:05 up and then in our specific file this 2:08 case I only have one
+file I'm going to 2:10 change it to Lake specific so if you 2:12 have multiple Pages by default the 2:16 default image I should almost name that 2:18 to specific shows up and then
+you can 2:20 change this later to Lake specific so 2:22 I'm going to bring this in Lakes 2:24 specific. jpg I'm going to do is I'm 2:27 going to say import 2:30 and I will say 2:32
+featured image from and go inside that 2:36 folder images and drop it in now I'm 2:40 going to do is I'm going to write a 2:41 statement and say 2:43 export const and we'll say
+2:47 featured image and we're going to add 2:50 equals and bring in some props in here 2:52 so we'll say props and then equals 2:55 greater than symbol we actually type the 2:58
+right key and we'll drop drop our open 3:00 pin close pen and drop this down here 3:03 now we have to add an open and closing 3:06 div or some kind of tag so I'm going to 3:09 say
+open and close just to bring this in 3:11 so I'm not really going to bring any 3:12 divs in but I have to open and close it 3:15 so here I'm going to do is I'm going to 3:17 say
+open and close curly brackets and in 3:20 here I'm going to say props do custom 3:24 image is there a custom image like a 3:26 specific image if so do something if not 3:30 do
+something else so I'm going to do is 3:33 I'm going to open and close my 3:34 parentheses and down here I'm going to 3:37 say colon to say if there's not a 3:40 picture or a custom
+picture what do I do 3:44 so then if there's an if then statement 3:47 essentially I'm going to say well if not 3:51 then default to a default picture so 3:53 we'll start below and
+go up I know it's 3:55 a little counterintuitive first so in 3:57 this case right here I'm going to say 3:59 say less than sign meta name equals OG 4:05 colon image now this image
+is going to 4:08 come from the featured image above at 4:10 the top so I'm going to do is I'm going 4:12 to say content equals now put my curly 4:15 brackets in I'm going to write
+two 4:17 statements the first is going to be the 4:20 URL of the website 4:24 website there we go and then we'll say 4:27 plus this case I'll drop it down so it's 4:29 one line Al
+together the content is 4:32 going to be the URL of the website plus 4:35 then we're going to say featured image 4:37 so we're going to then plus sign equals 4:39 feature an image
+now this is not going 4:41 to work yet so don't hit the save button 4:43 otherwise your terminal is going to go 4:45 Haywire in here at the very top what I 4:49 want to add is a
+meta property of a 4:51 custom image so I'm going to say in this 4:54 case 4:55 meta whoa that was a weird typing meta 4:59 property and in here we'll say again OG 5:03 image for
+the sake of readability I'll 5:06 drop down the content just a little 5:08 lower and we'll say content curly 5:11 brackets and then oh you know I forgot I 5:14 just realized helps
+if you close the 5:17 meta name that's what I was wondering 5:19 about again I'm typing a little out of 5:22 order because I want to start at the 5:23 bottom and go to the top so
+it's a 5:24 little funky but we'll fix that really 5:27 quick by closing this one and making 5:30 everything look better that looks better 5:32 almost gave meoo that was a tough
+one 5:34 right there let's just drop down the 5:36 content and we'll just drop it down so 5:38 it's the same there we go if we go 5:41 indent this one now we're looking good 5:44
+so what I had to do is I just didn't 5:45 close this one I forgot to close this 5:47 one too so of course everything went 5:50 haywire so back up to the Custom Image 5:54 up here
+what I'm going to do here is 5:57 Type in 5:58 props 6:00 do Custom Image so we're going to pull 6:03 this Custom Image from a different web 6:05 page if there is no Custom Image
+then 6:08 default to this one down here now we do 6:11 have to and Facebook likes it that we do 6:14 put the URL first and then the image 6:17 second that's kind of the important
+part 6:20 to have so I typed in both the URL plus 6:24 the featured image Link at the very top 6:27 now if we save this nothing is going to 6:30 happen cuz we haven't actually
+attached 6:31 the SEO image into the index file so 6:35 let's now go into the index file and 6:37 bring this project in so what I'll do is 6:40 I'm going to say 6:42 import SEO
+actually it's Capital SEO 6:47 image from and we'll say in this case 6:50 mine's in my components folder so I'm 6:52 going to go out of my source folder into 6:55 my components and
+bring in the SEO image 6:59 now from here what's going to happen is 7:01 everything's going to link up and 7:03 hopefully work now if we refresh our 7:05 page let just do a quick
+refresh to make 7:07 sure it's working nothing's going to 7:09 happen yet but something kind of flashed 7:11 and we don't have any air messages and 7:14 if we pull up my little
+terminal does 7:15 say the SE image is defined but never 7:18 used in Gatsby we have to put in a 7:21 certain spot for it to work so what I'm 7:23 going to do is I'm going to say
+oh know 7:25 I forgot as well I went too fast it's 7:28 not going to work is I have to do one 7:31 more critical component over here my bad 7:33 everybody went too fast and
+nothing's 7:36 going to work I have to export this as 7:39 well so what I'm going to do is I'm 7:42 going to say 7:44 export 7:46 default and then say 7:49 featured image otherwise
+this is going 7:51 to fail and it's not going to work 7:53 forgot one little line on the page that 7:56 does happen on occasion now back back to 7:59 the image file here we go so
+in this 8:02 case we want to import the SEO image now 8:05 what I'm going to do is on the index 8:07 page I'm going to come down to the 8:08 bottom and I'm going to say 8:11 export
+8:12 const and then say head this is for 8:16 Gatsby where it wants a head const to 8:19 initiate the actual information inside 8:22 of the head tag at the very top of the 8:24
+page this case we'll say open and close 8:27 parns equals greater than symol and 8:30 we'll just add an open and close tag let 8:34 me just move it down and indent the page 8:38
+right here Dent it one more now I'm 8:40 going to say SEO image in this case and 8:44 I'm going to close it up now what's 8:47 going to happen is if I refresh this 8:49 page inside
+the head what we're going to 8:52 find is the meta name OG image now note 8:56 that it says URL of the website SL 9:00 static Lake default that's because in 9:03 our SEO image we
+did use URL the website 9:07 in this case my URL is Local Host so I'm 9:10 going to copy this just for this one 9:12 time right 9:13 here drop it in and now what you will 9:16 see
+is the content will say HTTP Local 9:20 Host 8,000 9:23 oops take out that slash and now we can 9:26 double check to make sure it's there we 9:28 then copy Cy and paste this 9:30
+URL drop it in there's our picture so so 9:34 far this part is working but I want to 9:37 bring in a custom image because I want 9:38 to bring in the other image if we go 9:42 down
+come back to our source folder we 9:45 have the lake default but I want to 9:47 bring in Lake specific so what I'm going 9:50 to do is on the index page up here in 9:54 this SEO
+image I'm going to write Custom 9:57 Image so I'm I'm going to say 10:00 Custom Image and equal sign now in this 10:05 case I did not include the HTTP up here 10:09 this is where
+if you do want to some 10:11 sites have different locations for 10:13 images and some sites don't so I created 10:16 a separate URL structure here again this 10:20 is how your site
+might be structured a 10:22 little bit differently so I'm going to 10:23 repeat the process and I'm going to say 10:25 single quotes and I'm going to put in 10:28 the ooh not
+everything I'm just going to 10:30 bring in the Local Host so we'll bring 10:33 in Local Host 8000 by saying 10:36 HTTP 10:38 colon local oh did I forget Chrome does 10:42 that
+there we go Local Host 8000 take 10:46 out the slash we don't need that one and 10:49 we'll say plus but what picture are we 10:52 bringing in we don't have a picture yet 10:54 so
+in this index just like we did before 10:58 I'm going to bring in 11:00 import Lake 11:02 2 11:04 from and again what we're going to do is 11:07 bring that lak specific file over
+and 11:10 say Lakes specific. jpeg so again we'll 11:14 go out of the in this case the source 11:17 folder will go into the images folder 11:20 and then we'll bring in Lake
+specific 11:22 the lake two will then be used down 11:25 below so we'll bring it right down here 11:28 and say Lake two if we save that what's 11:31 going to happen is this picture
+is still 11:33 going to stay where it is but if we come 11:35 back and just refresh the page to make 11:37 sure it's working inside the head 11:40 section now we have a new picture
+we 11:42 have Lake specific and the picture right 11:45 here from The Local Host 11:47 8000 and we can double check to make 11:49 sure it works there it is so that's 11:52 Parts
+working but what do we do when we 11:55 actually put this online so what I'm 11:57 going to do is inside of Gatsby I'm 11:59 going to build this project and run it 12:01 through
+like we did before with this 12:04 Facebook metapher developers ignore the 12:06 actual areas but what I want to do is 12:08 I'm going to run it through the debugger 12:10 to make
+sure it's working so inside of 12:13 Gatsby it does require a Gatsby build 12:16 and in this case I'm going to build it 12:18 twice because we have to do two things 12:21 in this
+case the Gatsby build's going to 12:23 run it and netlify is really awesome 12:26 where did I put that netlify let's see 12:29 pull it up different 12:32 screen and netlify allows
+me to drag and 12:34 drop files super cool and helpful which 12:37 I love about that thank you netlify 12:41 which makes everything easy by the way 12:43 if you haven't use netlify
+you can only 12:44 drag and drop your files drag and drop 12:46 it's online and we're done so I made a 12:50 Gatsby build and yes I do know that I 12:53 have Local Host 8000 that's
+okay we're 12:56 going to change that so what I'm going 12:58 to do 12:59 is if I come 13:01 over grab my folder structure and now it 13:05 does default to public with G piece so
+13:07 I'm going to do is I'm going to drag 13:08 that public 13:10 folder drop it 13:13 in and uploading there shouldn't be a 13:15 lot of uploading but it still works site 13:18
+overview all 13:20 right cool Hello World hello world now 13:23 again we haven't actually tested this 13:26 yet because it's still Local Host which 13:27 is totally fine 13:29 what
+I have to do is I have to get the 13:31 actual URL of this project so I'm going 13:34 to do is go down to domain management I 13:36 have some custom domains and I'm going 13:38 to
+say OG image in this case I have my 13:43 hayden. code domain name so we'll say 13:47 verify and I'm going to add a sub doain 13:49 to myop no no no not hayden. comom 13:53 shoot
+typing too fast it's hayden. co 13:58 someone did by hen.com so many years ago 14:00 so I took the hayden. co when it became 14:02 available so OG image. haad and.co you 14:06 have
+to either use this one or use nfi's 14:09 own domain name totally fine to do 14:12 doesn't matter they do have in this case 14:14 mine's dashing Sunshine that's a cool 14:16 name
+c87 309 ny. apppp that one totally 14:21 works I just used my own custom one 14:24 making sure I forced https to make sure 14:27 it's all under the HTT GPS banner and if 14:30 I
+double check this 14:32 one hey there it is OG image. 14:35 hayden. now what I have to do is replace 14:38 that URL in my project so I'll come down 14:42 here drop it into the OG
+image and the 14:46 SEO image is going to change as well now 14:49 of course I have to rebuild this one 14:51 more time to take into effect the actual 14:54 domain name so if we
+come back to our 14:57 terminal I'm going to gas be build it 15:00 and I've got a lot of Windows up here a 15:02 lot of things to move around perfect now 15:05 what I have is the
+connection of the 15:07 domain name and the Beautiful part is to 15:10 deploy this on netlify so cool I love 15:13 this part I just have to drag and drop 15:15 the site so I'm
+going to red drag and 15:17 drop that public folder right into this 15:21 project 15:23 uploading uploading perfect now what I 15:27 get hopefully 15:29 is hello world let's take a
+look at the 15:31 terminal I'm going to head back over to 15:33 Chrome for a second OG hayden. Co head 15:39 now what I have is the OG image with the 15:41 OG image. Hayden now
+it's kind of there 15:44 it is hayden. co kind of broken up but 15:48 if I copy and paste 15:50 this it's right there now also you'll 15:53 notice why it's a little bit of a 15:55
+different ratio that's because Facebook 15:58 does recommend that they do have a size 16:01 of roughly 1,200 pixels across by 630 16:06 pixels down and that's what I have a 16:09
+certain size ratio for these pictures it 16:11 does recommend a certain size now for 16:14 the ultimate test I'm going to close up 16:16 Safari what I can do is I can test this
+16:19 project out where is that hayden. Co 16:23 link there it is and in this I can then 16:26 test it with the open graft I'll share a 16:29 link inside this project I'm going to
+16:31 drop this in and debug it and since 16:33 we're kind of done with this project 16:36 over here just to get a little more 16:39 space in here um yep it says it has not 16:42
+been shared on Facebook before that's 16:44 cuz I just built it 30 seconds ago and 16:47 fetching new 16:49 information there it goes ignore the 16:51 warnings yes we Have No URL
+no type no 16:53 title that's totally fine ignore this 16:55 part I'm simply focused on the link L 16:58 preview check it out OG image. hayden. 17:02 and the picture showed up
+because I used 17:04 a custom picture and if we go back again 17:07 if we didn't use a custom image up top 17:11 what result is the picture defaulting to 17:13 this one down below
+so every page in 17:16 your website that you use this SEO image 17:19 will show up with some picture either a 17:21 custom picture or a default picture that 17:25 you can use for
+your Facebook open graph 17:28 and as a result when I share it what I 17:31 get is a link preview inside this 17:35 picture if we add more text we have that 17:38 and this is how
+you can add it inside of 17:40 react All Computer programming Intro 0:00 So, you've probably saved an image 0:01 before and noticed that drop down full 0:03 of formats. A long list
+that all looks 0:05 interchangeable until it suddenly isn't. 0:07 [music] At the core, there are two 0:09 different ways image formats work. Some 0:11 are built from pixels. Others
+are built 0:13 from instructions. You'll see why that 0:14 matters in a minute. If you look at 0:16 these formats in the order they 0:17 appeared, they tell a pretty clear 0:19
+story. Decades of trying to make images 0:21 smaller, cleaner, and easier to move 0:23 around the internet. And that story 0:24 starts in the mid80s with a three-way 0:27 battle
+for the desktop. [music] First, TGA 0:29 in 1984 came TGA. While most computers 0:32 back then could barely show 16 colors, 0:34 TGA was built for pros. Its biggest 0:37 strength
+was the alpha channel, a 0:38 [music] secret fourth layer of data that 0:40 handled transparency. It was so clean 0:42 that it became the industry standard for 0:44 3D textures.
+Even today, if you crack 0:46 open the files of legendary games like 0:48 Counterstrike or World of Warcraft, 0:51 you'll find thousands of TGA files still 0:53 living on the walls
+and characters. It's 0:55 the invisible backbone of gaming 0:57 history. A year later, PCX arrived. This PCX 1:00 was the star of the MS DOSS era because 1:02 it was the native
+format for PC 1:04 Paintbrush, the program that eventually 1:06 became MS Paint. [music] PCX was one of 1:08 the first to use RLE compression to save 1:10 space. Think of RLE like
+this. If an 1:13 image had 50 white pixels in a row, 1:15 instead of storing white, white, white 1:17 50 times, it would just [music] store 50 1:20 times white. That's it. Run
+length 1:23 encoding in a nutshell. Find a run of 1:25 identical values, note its length, store 1:27 [music] it once. So for basic graphics 1:29 with lots of solid colors, it
+shrank 1:31 files dramatically. It even supported 1:33 multi-page images like a crude8s PDF. If 1:36 you owned an IBM PC in 1985, PCX was 1:40 your digital photo album. Finally, in
+BMP 1:42 1986, Microsoft introduced BMP. This was 1:46 the rawest form of an image, [music] 1:48 just a giant, heavy grid where every 1:50 single pixel is mapped out. It's the 1:52
+simplest format on this list, but 1:54 because it doesn't try to be smart, it's 1:56 also the heaviest. A photo that's 2 1:58 megabytes as a JPEG could be 50 2:00 megabytes as a
+BMP. There's just no 2:02 reason to use it anymore unless you're 2:04 doing something very specific and 2:05 technical. If you see a BMP file in the 2:07 wild, someone probably
+saved it by 2:09 accident. But this is where we started, 2:11 just storing every single pixel with no 2:13 tricks, no compression, [music] nothing. 2:15 Obviously, that wasn't
+going to work GIF 2:17 long term. GIF appeared in 1987 created 2:20 by CompuServe during the early days of 2:21 the internet and at the time it was 2:24 genuinely impressive.
+[music] It 2:25 compressed images efficiently and more 2:27 importantly it supported animation which 2:30 mattered a lot when most people were 2:32 loading pages over dialup
+connections. 2:33 [music] The limitation was color. GIF 2:36 only supports 256 colors which is why it 2:39 struggles with gradients and photographs 2:40 and tends to look rough
+compared to 2:42 modern formats. That wasn't a problem 2:44 early on when most graphics were simple 2:46 logos, icons, or diagrams, but it's a 2:49 hard ceiling by today's
+standards. 2:51 What's surprising is how little that 2:53 matters. GIF never really went away. 2:56 Memes, reaction images, short looping 2:58 clips. Even though modern platforms
+3:00 often use small video files behind the 3:02 scenes because they're more efficient, 3:04 we all still call them GIFs. The 3:05 format's name became the universal word 3:07 for
+the thing itself. That's a level of 3:09 cultural victory most tech never 3:11 achieves. There's even an argument about 3:14 how to pronounce it. The creator, Steve 3:16 Wilhight,
+said it should be pronounced 3:17 GIF, like the peanut butter. Most people 3:19 still say GIF with a hard G. Either way 3:22 [music] works, and either way will 3:24 irritate
+someone. And that's kind of the 3:26 perfect summary of GIF itself. JPEG, JPEG 3:28 [music] 3:28 the game changer. JPEG came out in 1992, 3:32 and it completely changed everything.
+3:34 [music] This is probably what 90% of 3:36 your photos are saved as today. It 3:38 wasn't made by a company, but by a 3:39 committee of engineers and scientists 3:41 called the
+Joint Photographic Experts 3:43 [music] Group. They were trying to solve 3:45 one math problem. How much data can we 3:47 throw away before your eyes notice? 3:49 [music] JPEG uses
+lossy compression, 3:52 which means it throws away data to make 3:53 files smaller. Lossy is like vacuum 3:56 sealing your clothes for a flight. You 3:58 fit way more in the
+suitcase, but they 4:00 come out a bit wrinkled. [music] But 4:02 JPEG is smart about what it throws away. 4:04 It removes details your eye probably 4:06 won't notice anyway.
+That's why a 10 4:08 megabyte photo can become 2 megabytes 4:10 and still look basically identical. The 4:12 way JPEG compression works is it breaks 4:14 your image into 8 by8

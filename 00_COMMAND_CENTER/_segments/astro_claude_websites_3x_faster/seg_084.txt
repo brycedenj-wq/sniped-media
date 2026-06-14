@@ -1,0 +1,224 @@
+48:28 by generating a hypothetical document um that's the basic intuition and the idea 48:34 kind of shown here visually is that in principle for certain cases a hypothetical
+document is closer to a 48:41 desired document you actually want to retrieve in this you know High dimensional embedding space than the 48:47 sparse raw input question itself so
+again it's just kind of means of trans translating raw questions into these 48:54 hypothetical documents that are better suited for retrieval so let's actually do a Code 49:00
+walkthrough to see how this works and it's actually pretty easy to implement which is really nice so first we're just 49:06 starting with a prompt and we're using the same notebook
+that we've used for prior videos we have a blog post on 49:12 agents r index um so what we're going to do is Define a prompt to generate a 49:17 hypothetical documents in this case
+we'll say write a write a paper passage uh to answer a given question so let's 49:25 just run this and see what happens again we're taking our prompt piping it to to open Ai chck
+gpte and then using string 49:32 Opa parer and so here's a hypothetical document section related to our question 49:38 okay and this is derived of course lm's kind of embedded uh
+kind of World Knowledge which is you know a sane place 49:45 to generate hypothetical documents now let's now take that hypothetical 49:50 document and basically we're going to
+pipe that into a retriever so this means we're going to fetch documents from our 49:56 index related to this hypothetical document that's been embedded and you can see we get a few
+qu a few retrieved 50:04 uh chunks that are related to uh this hypothetical document that's all we've 50:11 done um and then let's take the final step where we take those retrieve
+50:17 documents here which we defined and our question we're going to pipe that into this rag prompt and then 50:25 we're going to run our kind of rag chain right here which you've
+seen before and we get our answer so that's really it we 50:32 can go to lsmith and we can actually look at what happened um so here for 50:37 example this was our final um rag
+prompt 50:43 answer the following question based on this context and here is the retrieve documents that we passed in so that 50:48 part's kind of straightforward we can also look
+at um okay this is our 50:55 retrieval okay now this is this is actually what we we generated a 51:01 hypothetical document here um okay so this is our hypothetical document so
+51:08 we've run chat open AI we generated this passage with our hypothetical document and then we've run 51:13 retrieval here so this is basically showing hypothetical document
+generation followed by retrieval um so again here 51:21 was our passage which we passed in and then here's our retrieve documents from the retriever which are related to the 51:27
+passage content so again in this particular index case it's possible that the input question was sufficient to 51:34 retrieve these documents in fact given prior examples uh I know
+that some of these same documents are indeed 51:39 retrieved just from the raw question but in other context it may not be the case so folks have reported nice performance 51:46
+using Hyde uh for certain domains and the Really convenient thing is that you 51:52 can take this this document generation prompt you can tune this arbitrarily for 51:57 your
+domain of Interest so it's absolutely worth experimenting with it's a it's a need approach uh that can 52:03 overcome some of the challenges with retrieval uh thanks very much hi
+this is Routing 52:08 Lance from Lang chain this is the 10th video in our rack from scratch series focused on 52:13 routing so we talk through query translation which is the
+process of taking a question and translating in 52:19 some way it could be decomposing it using stepback prompting or otherwise but the idea here was take our question 52:26 change
+it into a form that's better suited for retrieval now routing is the next step which is basically routing 52:32 that potentially decomposed question to the right source and in many
+cases that could be a different database so let's 52:38 say in this toy example we have a vector store a relational DB and a graph DB the 52:43 what we redo with routing is we
+simply route the question based upon the cont of the question to the relevant data 52:50 source so there's a few different ways to do that one is what we call logical routing in
+this case we basically give 52:56 an llm knowledge of the various data sources that we have at our disposal and 53:02 we let the llm kind of Reason about which one to apply the
+question to so 53:07 it's kind of like the the LM is applying some logic to determine you which which data sour for example to to use 53:13 alternatively you can use semantic
+routing which is where we take a question we embed it and for example we 53:19 embed prompts we then compute the similarity between our question and those prompts and then we
+choose a 53:27 prompt based upon the similarity so the general idea is in our diagram we talk about routing to for example a different 53:33 database but it can be very general can
+be routing to different prompt it can be you know really arbitrarily taking this 53:40 question and sending it at different places be at different prompts be at different Vector
+stores so let's walk through the code a 53:46 little bit so you can see just like before we've done a few pip installs we set up lsmith and let's talk through uh 53:54 logical
+routing first so so in this toy example let's say we had for example uh 54:00 three different docs like we had python docs we had JS docs we had goang docs 54:05 what we want to do
+is take a question route it to one of those three so what we're actually doing is we're setting up 54:11 a data model which is basically going to U be bound to our llm and allow
+the llm 54:19 to Output one of these three options as a structured object so you really think 54:26 about this as like classification classification plus function calling to
+produce a structured 54:31 output which is constrained to these three possibilities so the way we do that is 54:37 let's just zoom in here a little bit we can Define like a
+structured object that we want to get out from our llm like in 54:44 this case we want for example you know one of these three data sources to be output we can take this and we can
+54:52 actually convert it into open like open for example function schema and then we actually pass that in and 54:58 bind it to our llm so what happens is we ask a question our
+llm invokes this 55:04 function on the output to produce an output that adheres to the schema that we specify so in this case for example 55:12 um we output like you know in this
+toy example let's say we wanted like you know an output to be data source Vector 55:19 store or SQL database the output will contain a data source object and it'll be you know one
+of the options we 55:25 specify as a Json string we also instantiate a parser from this object to 55:32 parse that Json string to an output like a pantic object for example so
+that's 55:37 just one toy example and let's show one up here so in this case again we had our three doc sources um we bind that to our 55:46 llm so you can see we do with
+structured output basically under the hood that's 55:51 taking that object definition turning into function schema and binding that function schema to our llm and we call 55:58 our
+prompt you're an expert at routing a user question based on you know programming language um that user 56:05 referring to so let's define our router here now what we're going to do
+is we'll 56:10 ask a question that is python code so we'll call that and now it's done and 56:16 you see the object we get out is indeed it's a route query object so it's exactly
+it aderes to this data model 56:22 we've set up and in this case it's it's it's correct so it's calling this python 56:27 doc so you can we can extract that right here as a string
+now once we have this 56:33 you can really easily set up like a route so this could be like our full chain where we take this router we 56:39 should defined here and then this
+choose route function can basically take that 56:44 output and do something with it so for example if python docs this could then apply the question to like a retriever 56:51 full
+of python information uh or JS same thing so this is where you would hook 56:57 basically that question up to different chains that are like you know retriever chain one for python
+retriever chain two 57:04 for JS and so forth so this is kind of like the routing mechanism but this is really doing the heavy lifting of taking 57:10 an input question and turning
+into a structured object that restricts the output to one of a few output types that 57:18 we care about in our like routing problem so that's really kind of the way this all hooks
+57:23 together now semantic outing is actually maybe even a little bit more straightforward based on what we've seen 57:29 previously so in that case let's say we have two prompts
+we have a physics prompt we have a math 57:35 prompt we can embed those prompts no problem we do that here now let's say we 57:41 have an input question from a user like in this
+case what is a black hole we pass that through we then apply this 57:47 runnable Lambda function which is defined right here what we're doing here is we're embedding the question
+we're 57:53 Computing similarity between the question and the prompts uh we're taking the most similar and then we're 58:00 basically choosing the prompt based on that similarity
+and you can see let's run that and try it 58:05 out and we're using the physics prompt and there we go black holes region and space so that just shows you kind of how 58:11 you can
+use semantic routing uh to basically embed a question embed for 58:17 example various prompts pick the prompt based on sematic similarity so that really gives you just two ways to
+do 58:23 routing one is logical routing with function in uh can be used very generally in this case we applied it to 58:29 like different coding languages but imagine these could
+be swapped out for like you know my python uh my like 58:36 vector store versus My Graph DB versus my relational DB and you could just very 58:42 simply have some description of
+what each is and you know then not only will the llm do reasoning but it'll also 58:49 return an object uh that can be parsed very cleanly to produce like one of a 58:54 few very
+specific types which then you can reason over like we did here in your routing function so that kind of gives 59:01 you the general idea and these are really very useful tools and
+I encourage you to experiment with them 59:07 thanks hi this is Lance from Lang chain this is the 11th part of our rag from scratch video series focused on query Query Construction
+59:15 construction so we previously talked through uh query translation which is the process of taking a question and 59:21 converting it or translating it into a question that's
+better optimized for retrieval then we talked about routing 59:27 which is the process of going taking that question routing it to the right Source be it a given Vector store graph
+59:33 DB um or SQL DB for example now we're going to talk about the process of query construction which is basically taking 59:40 natural language and converting it into particular
+domain specific language uh for one of these sources now we're going 59:47 to talk specifically about the process of going from natural language to uh meditated filters for Vector
+59:54 Stores um the problem statement is basically this let's imagine we had an index of Lang Chain video transcripts um 1:00:01 you might want to ask a question give me you know
+or find find me videos on chat Lang chain published after 2024 for 1:00:09 example um the the process of query structuring basically converts this 1:00:15 natural language question
+into a structured query that can be applied to the metadata uh filters on your vector 1:00:22 store so most Vector stores will have some kind of meditative filters that can do kind
+of structur querying on top of 1:00:29 uh the chunks that are indexed um so for example this type of query will retrieve all chunks uh that talk about the topic 1:00:36 of chat
+Lang chain uh published after the date 2024 that's kind of the problem 1:00:41 statement and to do this we're going to use function calling um in this case you can use for example
+open AI or other 1:00:48 providers to do that and we're going to do is at a high level take the metadata 1:00:53 fields that are present in our Vector store and divide them to the
+model as kind of information and the model then 1:01:00 can take those and produce queries that adhere to the schema provided um and 1:01:06 then we can parse those out to a
+structured object like a identic object which again which can then be used in 1:01:12 search so that's kind of the problem statement and let's actually walk through code um so
+here's our notebook which 1:01:20 we've kind of gone through previously and I'll just show you as an example let's take a example YouTube video and 1:01:26 let's look at the
+metadata that you get with the transcript so you can see you get stuff like description uh URL um 1:01:34 yeah publish date length things like that now let's say we had an index
+that had um basically a that had a number of 1:01:42 different metadata fields and filters uh that allowed us to do range filtering on 1:01:47 like view count publication date the
+video length um or unstructured search on contents and title so those are kind 1:01:54 of like the imagine we had an index that had uh those kind of filters available 1:02:00 to us
+what we can do is capture that information about the available filters in an object so we're calling that this 1:02:06 tutorial search object kind of encapsulates that information
+about the available searches that we can do and so 1:02:12 we basically enumerate it here content search and title search or semantic searches that can be done over those 1:02:19
+fields um and then these filters then are various types of structure searches 1:02:24 we can do on like the length um The View count and so forth and so we can just 1:02:30 kind of
+build that object now we can set this up really easily with a basic simple prompt that says you know you're 1:02:36 an expert can bring natural language into database queries you
+have access to the database tutorial videos um given a 1:02:43 question return a database query optimize retrieval so that's kind of it now here's the key point though when you
+1:02:49 call this LM with structured output you're binding this pantic object which contains all the information about our 1:02:55 index to the llm which is exactly what we talked
+about previously it's really this process right here you're taking 1:03:02 this object you're converting it to a function schema for example open AI you're binding that to your
+model and 1:03:07 then you're going to be able to get um structured object out versus a Json 1:03:13 string from a natural language question which can then be parsed into a pantic
+1:03:18 object which you get out so that's really the flow and it's taking advantage of function calling as we said 1:03:23 so if we go back down we set up our query analyzer chain
+right here now let's try to run that just on a on a 1:03:30 purely semantic input so rag from scratch let's run that and you can see this just does like a Content search and
+1:03:36 a title search that's exactly what you would expect now if we pass a question that includes like a date filter let's 1:03:43 just see if that would work and there we go so
+you kind of still get 1:03:48 that semantic search um but you also get um search over for example publish date 1:03:54 earliest and latest publish date kind of as as you would
+expect let's try another one here so videos focus on the topic of 1:04:01 chat Lang chain they're published before 2024 this is just kind of a rewrite of this question in slightly
+different way 1:04:06 using a different date filter and then you can see we can get we get content search title search and then we can get 1:04:12 kind of a date search so this is
+a very general strategy that can be applied kind of broadly to um different kinds of 1:04:19 querying you want to do it's really the process of going from an unstructured input to
+a structured query object out 1:04:26 following an arbitrary schema that you provide and so as noted really this 1:04:32 whole thing we created here this tutorial search is based
+upon the specifics of our Vector store of 1:04:37 interest and if you want to learn more about this I link to some documentation here that talks a lot about different uh 1:04:44
+types of of Integrations we have with different Vector store providers to do exactly this so it's a very useful trick 1:04:50 um it allows you to do kind of query uh uh say
+metadata filter filtering on the 1:04:56 fly from a natural language question it's a very convenient trick uh that works with many different Vector DBS so 1:05:03 encourage you to
+play with it thanks this is Lance from Lang chain I'm Indexing (Multi Representation) 1:05:09 going to talk about indexing uh and mulation indexing in particular for the 1:05:14
+12th part of our rag from scratch series here so we previously talked about a few 1:05:20 different major areas we talk about query translation which takes a question and
+translates it in some way to 1:05:26 optimize for retrieval we talk about routing which is the process of taking a question routing it to the right data 1:05:32 source be it a
+vector store graph DB uh SQL DB we talked about queer 1:05:37 construction we dug into uh basically queer construction for Vector stores but of course there's also text SQL text to
+1:05:44 Cipher um so now we're going to talk about indexing a bit in particular we're going to talk about indexing indexing 1:05:50 techniques for Vector Stores um and I want to
+highlight one particular method today called multi-representation 1:05:57 indexing so the high LEL idea here is derived a bit from a paper called 1:06:03 proposition indexing which
+kind of makes a simple observation you can think about 1:06:10 decoupling raw documents and the unit you use for 1:06:15 retrieval so in the typical case you take a document you
+split it up in some 1:06:21 way to index it and then you embed the split directly 1:06:26 um this paper talks about actually taking a document splitting it in some 1:06:32 way but
+then using an llm to produce what they call a proposition which you can think of as like kind of a 1:06:38 distillation of that split so it's kind of like using an llm to modify
+that split in some way to distill it or make 1:06:45 it like a crisper uh like summary so to speak that's better optimized for 1:06:51 retrieval so that's kind of one highlight one
+piece of intuition so we actually taken that idea and we've kind 1:06:57 of built on it a bit in kind of a really nice way that I think is very well suited actually for long
+context llms so 1:07:04 the idea is pretty simple you take a document and you you actually distill it 1:07:10 or create a proposition like they show in the prior paper I kind of
+typically think of this as just produce a summary 1:07:16 of the document and you embed that summary so that summary is meant to be 1:07:21 optimized for retrieval so might contain
+a bunch of keywords from the document or like the big ideas such that when you embed the 1:07:29 summary you embed a question you do search you basically can find that document
+based upon this highly 1:07:35 optimized summary for retrieval so that's kind of represented here in your vector store but here's the catch you 1:07:42 independently store the raw
+document in a dock store and when you when you 1:07:47 basically retrieve the summary in the vector store you return the full document for the llm to perform 1:07:54 generation and
+this is a nice trick because at generation time now with long condex LMS for example the LM can handle 1:08:02 that entire document you don't need to worry about splitting it or
+anything you just simply use the summary to prod like 1:08:08 to create a really nice representation for fishing out that full dock use that full dock in generation there might be
+a 1:08:14 lot of reasons you want to do that you want to make sure the LM has the full context to actually answer the question so that's the big idea it's a nice trick 1:08:22 and
+let's walk through some code here we have a notebook all set up uh just like before we done some pip 1:08:28 installs um set to maybe I Keys here for lsmith um kind of here's a
+diagram now 1:08:35 let me show an example let's just load two different uh blog posts uh one is about agents one is about uh you know 1:08:41 human data quality um and what we're
+going to do is let's create a summary of 1:08:46 each of those so this is kind of the first step of that process where we're going from like the raw documents to summaries let's
+just have a look and 1:08:53 make sure those ran So Okay cool so the first DOC discusses you know building autonomous agents the second doc 1:09:00 contains the importance of high
+quality human data and training okay so that's pretty nice we have our summaries now 1:09:06 we're going to go through a process that's pretty simple first we Define a vector store
+that's going to index those 1:09:12 summaries now we're going to Define what we call like our our document storage is going to store the full documents okay 1:09:19 so this multiv
+Vector retriever kind of just pulls those two things together we basically add our Dock Store we had this 1:09:25 bite store is basically the the the full document store uh the
+vector store is our Vector store um and now this ID is 1:09:32 what we're going to use to reference between the chunks or the summaries and the full documents that's really it so
+1:09:40 now for every document we'll Define a new Doc ID um and then we're basically going to like take our summary documents 1:09:47 um and we're going to extract um for each of
+our summaries we're going to get 1:09:53 the associated doc ID so we go um so let's go ahead and do that so we have 1:10:01 our summary docs which we add to the vector store we
+have our full documents uh our doc IDs and the full raw 1:10:08 documents which are added to our doc store and then let's just do a query Vector store like a similarity search on
+1:10:14 our Vector store so memory and agents and we can see okay so we can extract you know from the summaries we can get 1:10:22 for example the summary that pertains to um a
+agents so that's a good thing now 1:10:27 let's go ahead and run a query get relevant documents on our retriever which basically combines the summaries 1:10:35 uh which we use for
+retrieval then the doc store which we use to get the full doc back so we're going to apply our 1:10:42 query we're going to basically run this and here's the key Point we've gotten
+1:10:48 back the entire article um and we can actually if you 1:10:53 want to look at the whole thing we we can just go ahead and do this here we go so this is the entire article
+that we 1:10:59 get back from that search so it's a pretty nice trick again we query with just memory and agents um and we can 1:11:07 kind of go back to our diagram here we quered
+for memory and agents it started our summaries it found the summary 1:11:13 related to memory and agents it uses that doc ID to reference between the vector store and the doc store
+it fishes 1:11:19 out the right full doc returns us the full document in this case the full web page that's really it simple idea nice 1:11:27 way to go from basically like nice
+simple proposition style or summary 1:11:32 style indexing to full document retrieval which is very useful especially with long contact LMS thank Indexing (RAPTOR) 1:11:40 you hi
+this is Lance from Lang chain this is the 13th part of our rag from scratch series focused on a technique 1:11:47 called Raptor so Raptor sits within kind of an array of different
+indexing techniques 1:11:54 that can be applied on Vector Stores um we just talked about multi-representation indexing um we I 1:12:01 priv a link to a video that's very good
+talking about the different means of chunking so I encourage you to look at 1:12:06 that and we're going to talk today about a technique called Raptor which you can kind of think
+of it as a technique for 1:12:12 hierarchical indexing so the highle intuition is 1:12:17 this some questions require very detailed information from a corpus to 1:12:23 answer like
+pertain to a single document or single chunk so like we can call those low-level 1:12:29 questions some questions require consolidation across kind broad swast of a document so
+across like many documents 1:12:37 or many chunks within a document and you can call those like higher level questions and so there's kind of this 1:12:44 challenge in retrieval
+and that typically we do like K nearest neighbors retrieval like we've been talking about 1:12:50 you're fishing out some number of chunks but what if you have a question that
+requires information across like five 1:12:57 six you know or a number of different chunks which may exceed you know the K 1:13:02 parameter in your retrieval so again when you
+typically do retrieval you might set a k parameter of three which 1:13:08 means you're retrieving three chunks from your vector store um and maybe you have a high very high level
+question 1:13:14 that could benefit from infation across more than three so this technique called raptor is basically a way to build a 1:13:21 hierarchical index of document
+summaries and the intuition is this you start with 1:13:27 a set of documents as your Leafs here on the left you cluster them and then you 1:13:33 Summarize each cluster so each
+cluster of similar documents um will consult 1:13:39 information from across your context which is you know your context could be a bunch of different splits or could 1:13:45 even
+be across a bunch of different documents you're basically capturing similar ones and you're consolidating 1:13:51 the information across them in a summary and here's the
+interesting thing you do that recursively until either you hit like a 1:13:57 limit or you end up with one single cluster that's a kind of very high level summary of all of your
+1:14:03 documents and what the paper shows is that if you basically just collapse all 1:14:08 these and index them together as a big pool you end up with a really nice array of
+chunks that span the abstraction 1:14:15 hierarchy like you have a bunch of chunks from Individual documents that are just like more detailed chunks 1:14:21 pertaining to that you
+know single document but you also have chunks from these summaries or I would say like you 1:14:27 know maybe not chunks but in this case the summary is like a distillation so you
+know raw chunks on the left that 1:14:33 represent your leavs are kind of like the rawest form of information either raw chunks or raw documents and then you 1:14:40 have these
+higher level summaries which are all indexed together so if you have higher level questions they should 1:14:46 basically be more similar uh in sematic search for example to these
+higher level summary chunks if you have lower level 1:14:53 questions then they'll retrieve these more lower level chunks and so you have better semantic coverage across like the
+1:14:59 abstraction hierarchy of question types that's the intuition they do a bunch of nice studies to show that this works 1:15:04 pretty well um I actually did a deep dive video
+just on this which I link 1:15:09 below um I did want to cover it briefly just at a very high level um so let's 1:15:15 actually just do kind of a code walkr and I've added it to
+this rack from scratch course notebook but I link over 1:15:21 to my deep dive video as well as the paper and the the full code notebook 1:15:27 which is already checked in is
+discussed at more length in the Deep dive the technique is a little bit detailed so I 1:15:33 only want to give you very high levels kind of overview here and you can look at the
+Deep dive video if you want to go 1:15:39 in more depth again we talked through this abstraction hierarchy um I applied this to a large 1:15:46 set of Lang chain documents um so
+this is me loading basically all of our Lang chain expression language docs so this 1:15:53 is on the order of 30 documents you can see I do a histogram here of the token counts
+per document some are pretty big 1:16:00 most are fairly small less than you know 4,000 tokens um and what I did is I 1:16:05 indexed all of them um individually so the all those
+raw documents you can kind 1:16:11 of Imagine are here on the left and then I do um I do embedding I do clustering 1:16:18 summarization and I do that recursively um until I end up
+with in this case I 1:16:24 believe I only set like three levels of recursion and then I save them all my Vector store so that's like the highle 1:16:31 idea I'm applying this
+Raptor technique to a whole bunch of Lang chain documents 1:16:36 um that have fairly large number of tokens um so I do that um and yeah I use 1:16:45 actually use both CLA as well
+as open AI here um this talks through the 1:16:50 clustering method which they that they use which is pretty interesting you can kind of dig into that on your own if if you're
+really um interested this is a 1:16:58 lot of their code um which I cite accordingly um this is basically implementing the clustering method that 1:17:03 they use um and this is
+just simply the document embedding stage um this is like 1:17:12 basically embedding uh and clustering that's really it uh some text formatting 1:17:19 um summarizing of the
+clusters right here um and then this is just running 1:17:24 that whole process recursively that's really it um this is tree building so 1:17:30 basically I have the RO the rod
+docs let's just go back and look at Doc texts so this should be all my raw documents 1:17:37 uh so that's right you can see it here doc text is basically just the text in all those
+Lang chain documents that I 1:17:43 pulled um and so I run this process on them 1:17:49 right here uh so this is that recursive embedding cluster basically runs and produces is
+that tree here's the results 1:17:57 um this is me just going through the results and basically adding the result text to this list of uh texts um oh okay 1:18:07 so here's what I
+do this Leaf text is all the raw documents and I'm appending to that all the summaries that's all 1:18:14 it's going on and then I'm indexing them all together that's the key Point
+rag chain and there you have it that's 1:18:21 really all you do um so anyway I encourage you to look at this in depth it's a pretty interesting technique it 1:18:26 works well
+long with long contexts so for example one of the arguments I made is that it's kind of a nice approach to 1:18:32 consult information across like a span of large documents like in
+this particular case 1:18:38 my individual documents were lch expression language docs uh each each being somewhere in the order of you know 1:18:44 in this case like you know most
+of them are less than 4,000 tokens some pretty big but I index them all I cluster them 1:18:51 without any splits uh embed them cluster them build this tree um and go from 1:18:56
+there and it all works because we now have llms that can go out to you know 100 or 200,000 up to million tokens and 1:19:03 Contex so you can actually just do this process for big
+swats of documents in place without any without any splitting 1:19:10 uh it's a pretty nice approach so I encourage you to think about it look at it watch the deep that video If
+you really want to go deeper on this um Indexing (ColBERT) 1:19:20 thanks hi this is Lance from Lang chain this is the 14th part of our rag from scratch series we're going to I'm
+going 1:19:26 to be talking about an approach called cold bear um so we've talked about a few 1:19:34 different approaches for indexing and just as kind of a refresher indexing
+Falls uh kind of right down here in our 1:19:41 flow we started initially with career translation taking a question translating it in some way to optimize 1:19:47 retrieval we
+talked about routing it to a particular database we then talked about query construction so going from 1:19:53 natural language to the DSL or domain specific language for E any of
+the 1:19:59 databases that you want to work with those are you know metadata filters for Vector stores or Cipher 1:20:05 for graph DB or SQL for relational DB so that's kind of the
+flow we talked about today we talked about some indexing 1:20:12 approaches like multi-representation indexing we gave a small shout out to greet camer in the series on chunking uh
+1:20:19 we talked about hierarchical indexing and I want to include one Advanced kind 1:20:24 embedding approach so we talked a lot about embeddings are obviously very Central to
+semantic similarity search um 1:20:31 and retrieval so one of the interesting points that's been brought up is that 1:20:38 embedding models of course take a document you can see
+here on the top and embed it basically compress it to a 1:20:45 vector so it's kind of a compression process you representing all the semantics of that document in a single 1:20:51
+Vector you're doing the same to your question you're doing similarity search between the question embedding and the 1:20:57 document embedding um in order to perform retrieval
+you're typically taking the you know K most similar um 1:21:05 document abetting is given a question and that's really how you're doing it now a lot of people said well hey the
+1:21:12 compressing a full document with all this Nuance to single Vector seems a little bit um overly restrictive right 1:21:18 and this is a fair question to ask um there's been
+some interesting approaches to try to address that and one is this 1:21:24 this this approach method called Co bear so the intuition is actually pretty 1:21:30 straightforward
+there's a bunch of good articles I link down here this is my little cartoon to explain it which I 1:21:35 think is hopefully kind of helpful but here's the main idea instead of
+just taking a document and compressing it 1:21:41 down to a single Vector basically single uh what we might call embedding Vector 1:21:46 we take the document we break it up into
+tokens so tokens are just like you know units of of content it depends on the 1:21:54 token areas you use we talked about this earlier so you basically tokenize it and you produce
+basically an embedding or 1:22:01 vector for every token and there's some kind of positional uh waiting that occurs when you do this process so you 1:22:08 obviously you look to
+look at the implementation understand the details but the intuition is that you're producing some kind of representation 1:22:14 for every token okay and you're doing the same
+thing for your question so 1:22:19 you're taking your question you're breaking into a tokens and you have some representation or vector per token 1:22:25 and then what you're doing
+is for every token in the question you're Computing the similarity across all the tokens in 1:22:33 the document and you're finding the max you're taking the max you're storing
+1:22:38 that and you're doing that process for all the tokens in the question so again 1:22:45 token two you compare it to every token in the in the document compute the 1:22:51
+Max and then the final score is in this case the sum of the max similarities uh 1:22:57 between every question token and any document token so it's an interesting 1:23:03 approach
+uh it reports very strong performance latency is definitely a 1:23:08 question um so kind of production Readiness is something you should look into but it's a it's an approach
+that's 1:23:14 worth mentioning here uh because it's pretty interesting um and let's walk through 1:23:20 the code so there's actually nice Library called 1:23:25 rouille which
+makes it very easy to play with Co bear um she's pip install it here I've already done that and we can 1:23:33 use one of their pre-train models to mediate this process so I'm
+basically following their documentation this is kind of what they recommended um so I'm 1:23:40 running this now hopefully this runs somewhat quickly I'm not sure I I previously
+have loaded 1:23:45 this model so hopefully it won't take too long and yeah you can see it's pretty quick uh I'm on a Mac M2 with 32 1:23:51 gigs um so just as like a context in
+terms of my my system um this is from their documentation we're just grabbing 1:23:57 a Wikipedia page this is getting a full document on Miyazaki so that's cool 1:24:03 we're
+going to grab that now this is just from their docs this is basically how we create an index so we provide the 1:24:09 you know some index name the collection um the max document
+length and yeah you should look at their documentation for 1:24:15 these flags these are just the defaults so I'm going to create my index um so I get some logging here so it it's
+working 1:24:21 under the hood um and by the way I actually have their documentation open so you can kind of follow along um 1:24:30 so um let's see yeah right about here so you
+can kind of follow this indexing 1:24:36 process to create an index you need to load a train uh a trained model this can be either your own pre-train model or 1:24:42 one of ours
+from The Hub um and this is kind of the process we're doing right now create index is just a few lines of 1:24:48 code and this is exactly what we're doing um so this is the you
+know my documents and this is the indexing step 1:24:54 that we just we just kind of walk through and it looks like it's done um so you get a bunch of logging here 1:25:00 that's
+fine um now let's actually see if this works so we're going to run drag search what an emotion Studio did Miaki 1:25:06 found set our K parameter and we get some results okay so
+it's running and 1:25:13 cool we get some documents out so you know it seems to work now what's nice is you can run this within lighting chain 1:25:18 as a liting chain retriever
+so that basically wraps this as a lighting chain Retriever and then you can use it freely 1:25:24 as a retriever within Lang chain it works with all the other different LMS and all
+the other components like rankers and so forth that we talk 1:25:30 through so you can use this directly as a retriever let's try this out and boom 1:25:35 nice and fast um and we
+get our documents again this is a super simple test example you should run this maybe 1:25:42 on more complex cases but it's pretty pretty easy spin up it's a really interesting
+alternative indexing 1:25:47 approach um using again like we talked through um a very different algorithm 1:25:53 for computing do similarity that may work better I think an
+interesting regime to consider this would be longer 1:25:59 documents so if you want like longer um yeah if if you basically want kind of 1:26:04 long context embedding I think you
+should look into for example the uh Max 1:26:09 token limits for this approach because it partitions the document into into each token um I would be curious to dig 1:26:16 into
+kind of what the overall context limits are for this approach of coar but it's really interesting to consider and 1:26:22 it reports very strong performance so again I encourage
+you to play with it and this is just kind of an intro to how to get set up and to start experimenting 1:26:29 with it really quickly thanks hi this is Lance from Lang chain CRAG
+1:26:35 I'm going to be talking about using langra to build a diverse and sophisticated rag 1:26:40 flows so just to set the stage the basic rag flow you can see here starts with a
+1:26:47 question retrieval of relevant documents from an index which are passed into the 1:26:52 context window of an llm for generation of an answer ground in your documents

@@ -1,0 +1,1028 @@
+Go to workspace [music] to start
+creating a new model. Then drag your
+main spider image into the left side.
+For this example, I used the top view
+first.
+Set model type to standard, then enable
+the multiple [music] view toggle. This
+feature is still beta, but from my
+testing, it works extremely well. Now,
+click the three upload slots and add the
+remaining spider views. Using multiple
+images [music] helps Meshi understand
+the shape much more accurately. Now,
+ Generate Texture and Remesh
+click generate. After a few seconds,
+Messi creates a full 3D spider model
+automatically. The result looks really
+good, but notice the triangle count is
+extremely high. Mine was around 270,000
+triangles. That is way too heavy for
+Roblox Studio because Roblox [music] has
+mesh limits. So before exporting, we
+need to optimize it. But first, click
+the texture button to generate textures.
+Once done, you can see the spider
+texture correctly applied to the model.
+Looks awesome already. Now, [music]
+click the polygon button to start
+remeshing. You can choose fixed or
+adaptive poly count. I personally
+recommend adaptive because fixed
+sometimes [music] creates weird geometry
+issues or holes in the mesh. Choose low
+under adaptive. This keeps the shape
+looking good [music] while massively
+reducing topology. And now the result is
+almost identical to the original model,
+but the triangle count is reduced to
+around 5,000. Perfect for Roblox.
+ Export FBX and Import into Blender
+Now download the model. I usually choose
+FBX [music] format, but you can use any
+format you prefer.
+Next, [music] let's move into Blender.
+Open a new Blender project. Delete the
+default cube by pressing X and confirm
+delete. Then drag your downloaded FBX
+[music] file directly into Blender.
+Switch to material preview mode so we
+can see the textures. Very nice. Now,
+ Setup Blender MCP with Claude
+before continuing, make sure Blender MCP
+add-on is installed. If you don't know
+how to install it, I already put a
+tutorial link in the description.
+ Auto Rig Spider Using Claude
+Now open Claude Desktop. You can use
+another AI agent if [music] you want,
+but I'm using Claude Opus 4.7 because it
+is currently [music] one of the
+strongest coding and MCP models
+available.
+Then go [music] to customize and open
+connectors.
+Search for Blender. If Blender MCP is
+not installed yet, click install and
+[music] restart Claude.
+Once Claude launches again, create a new
+project.
+I named mine spider procedural [music]
+animation move. Then add a description
+explaining what the project should do.
+My project description was something
+like this. The spider should follow a
+target in Roblox Studio using procedural
+animation. It can rotate left, [music]
+right, up, and down while following the
+target, and it should climb obstacles
+and slopes using [music] its four legs.
+The model is rigged in Blender and
+Claude will help create IK systems,
+poles, raycast [music] targets, and
+procedural movement scripts. Now start
+chatting inside the project. The very
+first thing you should always do is
+check Blender connection. Claude should
+analyze the Blender scene and recognize
+your spider model. Next, I typed add
+bones to it and autowe [music]
+and Claude automatically created the
+armature and weighted the spider mesh.
+One important tip here, always keep your
+spider at position zero and [music]
+rotation zero in Blender. That makes it
+much easier for Claude to calculate and
+build the rig correctly. Now, switch to
+pose mode and test the bones.
+As you can see, the legs deform
+correctly. Next, select both the spider
+ Export Rigged Spider to Roblox Studio
+mesh and the armature together. export
+them as FBX.
+These are my export settings. Enable
+selected objects. Set path mode to copy.
+Enable [music] embed textures and set
+scale to 0.01.
+Then export.
+Now let's move into Roblox Studio.
+Create a new base plate project. Go to
+the home tab and click 3D import. Select
+the spider FBX file and import it. For
+rig general option, choose custom rig.
+The spider imported successfully, but it
+is very small. [music] So, I scaled it
+up about five times.
+ Setup Roblox Studio MCP
+Now comes the really interesting part.
+We are going to use [music] a Roblox
+Studio MCP together with Claude to build
+the procedural animation system
+automatically.
+First, enable [music] MCP server inside
+Roblox Studio. Click the Galaxy icon and
+choose manage MCP servers. Here you can
+see I already connected Claude desktop
+and several other AI tools. Inside Cloud
+ Connect Claude to Roblox Studio
+settings under developer tab, Roblox
+Studio MCP should be enabled. If you
+don't have the config yet, click edit
+config.
+and paste the MCP configuration JSON.
+You can actually copy this directly from
+the Roblox Studio MCP setup
+instructions.
+After updating config, restart Claude
+again. Now we are ready. Open the spider
+project in Claude. And again, always
+test connection first. This is extremely
+important. Sometimes [music] Claude
+looks like it is working, but it is not
+actually connected to Roblox Studio.
+When that happens, it only generates
+text instead of directly editing your
+project. In my case, connection failed
+several times. I had to restart Claude
+completely before it finally connected
+successfully.
+ Add Project Goals and AI Planning
+After connection worked, I told Claude
+to review my project goals. At first,
+Claude still could not read the project
+description properly. So, I added a
+project goals [music] text file manually
+inside the project context.
+You can do this by [music] pressing the
+plus button inside files and adding text
+context.
+ Generate IK Legs and Foot Targets
+After that, Claude fully understood the
+project requirements. [music] Then it
+started building everything
+automatically. It asked me how the
+spider should follow targets. Then it
+implemented IK controls [music] for all
+four legs. It created foot targets and
+pole objects for procedural movement.
+Originally, I wanted realistic physics
+where the body reacts [music] physically
+to the legs and collisions. But Claude
+explained the complexity of that setup.
+So instead, we used a simpler system. We
+added an invisible body part as the
+primary part and welded the spider mesh
+to it. [music] After testing multiple
+times, we ran into some problems. First,
+ Fix Procedural Movement Issues
+the spider kept moving backward whenever
+the target changed position. After
+fixing that, another issue appeared.
+When climbing slopes, the spider body
+orientation [music] was not correctly
+facing the target. Eventually, Claude
+fixed everything and [music] now the
+spider moves correctly across terrain.
+ Spider Structure and IK Setup
+You can see four orange objects under
+the legs. Those are the foot targets.
+And the four [music] blue objects are
+pole targets used for IK orientation.
+Inside the spider hierarchy, [music] we
+now have the main mesh, the invisible
+body part, IK constraints,
+and rig folder. Inside the rig folder
+are foot targets, and [music] foot
+poles.
+The IK constraints connect the pole
+object,
+footbone, target [music] object, and
+upper leg chain route together.
+Also, if you see names like BL, BR,
+[music] FL, and FR, those stand for back
+left, back right, front left, and front
+right. This naming makes it much easier
+to identify the legs. The red sphere
+here is the spider target. The spider
+automatically chases any object with
+[music] that target name. And for this
+ SpiderController and LegController Scripts
+demo, Claude also created a local script
+so we can move the target [music] by
+clicking during runtime. All main
+procedural movement scripts are inside
+[music] server script service.
+SpiderRunner handles setup and
+communication. Spider controller is
+basically the brain of the spider. It
+controls body movement, raycasts,
+stepping logic, body tilt, and leg
+coordination. There is also a config
+module that stores all adjustable values
+like walk speed, turn speed, stop
+distance, raycast length, and leg pair
+configuration. Very clean setup and easy
+to customize later. And finally, [music]
+leg controller is responsible for the
+actual procedural stepping cycle. That
+module handles the procedural foot
+movement itself. And that's basically
+ Final Procedural Spider Demo
+the full workflow for creating a
+procedural spider animation system in
+Roblox Studio using MCP and Claude Opus
+4.7. This combination of AI tools with
+Blender and Roblox Studio is honestly
+gamechanging for indie developers. If
+you enjoyed this tutorial, make sure to
+subscribe and let me know what creature
+or AI system you want to build
+ Claude0:03
+[music]
+Heat. Heat.
+Heat. Heat.
+[music]
+[music]
+Heat. [music]
+[music]
+[music]
+Heat.
+[music]
+Heat. Heat.
+[music]
+[music]
+Heat.
+[music]
+Heat.
+[music]
+[music]
+[music]
+[music]
+Today I want to show you one of the
+craziest Roblox Studio experiments I've
+done recently. This entire procedural
+building system was created in basically
+one day using Roblox Studio MCP with
+Claude Opus 4.7. And honestly, this
+feels like a glimpse into the future of
+game development. And the crazy [music]
+part is most of this project was built
+entirely through Claude MCP connected
+directly to Roblox Studio. At the
+[music] beginning, I thought Claude
+Desktop was already connected to Roblox
+Studio automatically. But somehow I was
+still talking [music] to the normal
+Claude web environment even though I was
+using Claude Desktop. So at first Claude
+could only generate code and tell me
+what to paste manually. After several
+rounds of debugging and communication,
+finally I got Roblox Studio MCP
+connected correctly. And after that,
+Claude could directly inspect my studio
+project, edit scripts, patch bugs,
+[music] rewrite systems, and test logic
+directly on my PC. This is the final
+result. The project structure itself is
+actually pretty simple. There's a
+generator module responsible for
+creating procedural parts and
+structures. That's around 1,000 lines.
+Then another large manipulator module
+handling selection, editing, handles,
+movement, rotation, scaling, and curve
+controls. There's also a shape detector
+module that recognizes walls,
+rectangles, buildings, and circles from
+player drawings. A smoothing module is
+used for smoothing curved paths, and
+procedural [music] objects. And finally,
+one main local script that combines
+everything together with user input and
+runtime interactions. So overall, the
+architecture is actually very
+manageable. I exported the entire Roblox
+[music] module for this project. So if
+you want to experiment with it yourself,
+the download link is in the description.
+To install it, just drag the module into
+your Roblox project, move it into
+starter player scripts, then press play,
+and you can start drawing procedural
+structures immediately. Thanks for
+watching, and welcome to the future of
+Roblox development.
+ Claude MCP With Game Engines Configuration tutorials
+MrWonderHowPet Summon Game Demo
+Today I'm going to show you how I
+created this Roblox Studio pet summon
+game prototype using AI tools like chat
+GPT Claude MCD Meshy AI and Blender. In
+this game, players can open the pet
+shop, buy pets with a really clean
+summon style UI, and use those pets to
+fight enemies around the map. Right now,
+I have a dog pet, a parrot pet, and a
+dragon pet that is still locked and
+marked as coming soon. The dog is a
+melee pet that attacks a single target
+up close, while the parrot is a ranged
+pet that shoots projectiles with
+explosion area damage effects. There are
+also treasure chests randomly spawning
+around the map that give players gold
+when collected. And across the world,
+there are multiple zombie NPC enemies
+with different levels to make the
+gameplay more interesting.
+ Level Design with ChatGPT
+The first thing I worked [music] on was
+the level design. I used Chat GPT to
+help generate ideas for the world
+ Generating 3D World in Meshy AI
+layout. After I had the concept ready, I
+generated the 3D environment models
+using Meshy AI. The generated models
+ Cleaning Models in Blender with Claude MCP
+looked really good, but they still
+needed cleanup before importing into
+Roblox Studio. So, I brought everything
+[music] into Blender, and this is where
+Claude MCP became super useful. Claude
+MCP helped me clean the meshes, optimize
+geometry, fix materials, organize
+ Importing Environment into Roblox Studio
+objects, and speed up a lot of
+repetitive Blender tasks. Once the
+environment models were cleaned up, I
+imported everything into Roblox [music]
+Studio. Then, I added an ocean to give
+ Adding Ocean & World Setup
+the map a more immersive openw world
+feeling. Next, I started creating the
+ Creating My Dog Pet from Real Photos
+pets. For the dog pet, I actually used
+real life photos of my own dog. I
+uploaded the photos into chat GPT to
+help create the design concept. And then
+I generated the 3D model using Meshy AI.
+ Rigging Dog in Blender with Claude MCP
+After that, I used Blender together with
+Claude MCP to rig the dog model so it
+could move and animate properly inside
+Roblox Studio. Then I moved on to the
+parrot pet. I designed the parrot
+ Designing & Animating the Parrot Pet
+concept in chat GPT, generated the 3D
+model in Meshi AI, and used A IMCP tools
+to help create animations like idle,
+flying, attacking, and death animations.
+After the pets were animated, [music] I
+ Adding VFX for Pets
+added visual effects for attacks,
+explosions, and summon effects to make
+the gameplay feel more satisfying. Then
+ Building Gameplay Systems with Claude MCP project
+I created a dedicated Claude project
+specifically for this Roblox pet summon
+ Designing the Pet Shop UI
+game. I also used Chat GPT to help
+design the pet shop items and UI visuals
+ Final Prototype Showcase
+for the dog, parrot, and the locked
+dragon coming soon item. The result is
+this prototype where players can summon
+pets, explore the world, collect
+treasure, and battle zombies with
+different pet abilities. This is still
+just the beginning. In the next
+ Next Tutorial Coming Soon
+tutorial, I'll show the full detailed
+workflow step by step, including the
+Roblox Studio setup, Blender process, AI
+pipeline, pet combat systems,
+animations, VFX, and scripting logic.
+So, if you want to learn how to build AI
+assisted Roblox games like this, make
+sure to subscribe and stay tuned for the
+next video.
+No heat.
+ ClaudeDragon Skill Demo
+In today's video, I'm going to show you
+step by step how I made this anime
+dragon water skill inside Roblox Studio
+using FOD MCP and AI tools. In the
+previous video, I showed the full skill
+demo, but in this one, I'll break
+everything down from character setup,
+animation, dragon effects, VFX,
+scripting, and NPC combat system.
+ Character Setup
+So, first, this is the [music] starter
+character. I'm going to bring it into
+workspace so I can explain how
+everything is built. Basically, this is
+a tango character that I downloaded from
+the Roblox toolbox.
+ Downloading Tanjiro Model
+You can find it easily by searching for
+R15 Tango and selecting the first
+result.
+You can also see my Tango model has a
+different face. That's because I
+replaced the original face with my own
+custom face decal. To add custom face
+decals, open asset manager.
+ Creating Custom Face Decals
+Here you can see all the face textures I
+uploaded into the images folder.
+This one is the original face image
+generated from chat GPT and this one is
+the final transparent version after
+editing it inside
+ Editing Face in GIMP
+What I [music] did was remove all the
+skin parts and keep only the eyes, nose,
+and mouth. Your image should be square
+size. I usually use 512x 512 pixels.
+Also, make sure the face is scaled
+smaller and centered in the middle,
+otherwise it will stretch badly when
+applied to the character head. Now, let
+me [music] show you how to edit it in
+There are many ways to erase the
+background. One simple way is using the
+eraser tool. But if your image is JPG,
+when you erase something, you'll see a
+gray background instead of transparency.
+To fix that, rightclick the layer and
+add alpha channel. Now, when we erase,
+the background becomes transparent. For
+detailed cleanup, I usually use the
+lasso selection tool. Just click around
+the area you want to remove, then press
+backspace to delete it.
+For large areas with the same color, the
+magic wand tool works really well.
+Once you [music] finish editing, export
+the image as PNG format. This is very
+important because if you use JPG, Roblox
+Studio will show a black background
+instead of transparency. In you
+can simply rename the file withPNG
+before exporting. Now, let's import the
+face into Roblox Studio. Click the bulk
+ Importing Face into Roblox Studio
+import button and select your PNG face
+image. After importing, you'll see it
+appear inside the asset manager images
+folder. To apply it, simply drag the
+image directly onto the character face.
+One important thing to note is that this
+only works with classic heads. If your
+character uses dynamic head, this method
+won't work. I already made another
+tutorial explaining how to convert
+dynamic [music] heads into classic heads
+with custom faces. So, check the link in
+the description if you need that. Now,
+let's remove the old face decal and
+assign the new one.
+ Fixing Head Skin Color
+Nice. The custom face is now applied,
+but the skin tone looks too white. So,
+let's select the head and change the
+skin color. I'll use this yellow tone to
+make it match better. Now, for the
+sword, you can see my character is
+holding Tanganger's sword. I got this
+model from the Demon Slayer kit asset
+inside toolbox. Search for Demon Slayer
+ Adding Tanjiro Sword
+kit and select the first result. Inside
+the package, you'll find many assets I
+used for this entire skill demo,
+including the sword. To attach the
+sword, copy the sword model.
+Select your character, add a [music]
+tool object, then paste the sword into
+it.
+Inside the sword model, you'll see a
+handle part. Move that handle directly
+under the tool object. Then remove the
+empty model folder. Now the sword tool
+is ready. The sword attaches
+automatically. But the position is
+incorrect. [music] So we need to align
+it using grip editor. Go to the plugins
+ Using Grip Editor Plugin
+tab and enable grip editor tool.
+If you don't have it installed, don't
+worry. It's free in the toolbox. Just
+search for grip editor tool and install
+it. Now enable the plugin and select the
+sword tool.
+You'll see a virtual character preview.
+From here, rotate and move the sword
+until it aligns correctly with the hand.
+ Generating AI Combat Animation
+Next, we need the sword skill animation.
+This animation [music] was heavily
+assisted by AI tools. You don't need to
+animate everything from scratch anymore.
+You can ask Claude, Cursor, Codeex,
+Anti-gravity, or other AI desktop apps
+to generate the base animation for you
+first. Then you improve it manually
+later. To do this, first enable MCP
+server inside Roblox Studio. Click the
+Galaxy [music] icon and open MCP server
+settings. You can see I already enabled
+MCP configurations for several AI apps.
+I also made detailed tutorials about MCP
+setup. So check the links in the
+description if you want full
+installation guides. Once Claude opens,
+let's test the [music] connection with
+Roblox Studio. After connected
+ Claude MCP Animation Prompt
+successfully, we can ask Claude to
+generate a combat animation for us. Here
+is the exact example prompt I used.
+Create a Roblox R15 sword combo
+animation named Tanguro Flux Combo. The
+style should feel inspired by Demon
+Slayer combat, readable and smooth. The
+combo includes four slash chains,
+alternating directions from right to
+left and left to right. After the
+forward slash, the character jumps into
+a spinning airborne attack with two full
+body [music] rotations, then finally
+transitions into a falling vertical
+sword slam with a finisher hit animation
+[music] marker on impact. The AI will
+generate all the animation data
+automatically for Roblox R15. Once
+finished, the animation will appear like
+ Editing Animation Keyframes
+this. If you want the animation faster,
+simply select all key frames and drag
+them shorter in the timeline. Just
+remember to also move the animation
+events together with the key frames. You
+can also [music] rightclick to add
+animation events manually. For example,
+I added one marker when the slam begins
+and another one called finisher hit when
+the dragon touches the ground.
+ Building Dragon Head Rig
+Now, let's build the dragon effect.
+Inside the demon slayer kit, find
+constant flux dragon. It's the blue
+dragon [music] head model.
+Inside the model, there are many
+separate meshes, so we need to weld them
+together. Copy the dragon model and
+paste it into the character.
+Move it near the player.
+Now create a new mesh part and rename it
+to main head.
+This part will control the entire
+[music] dragon head rig. Inside main
+head, add weld constraints connecting
+all other dragon meshes. Set part zero
+to main head and part one to the other
+pieces.
+Then add a motor 6D into humanoid root
+Set part zero to humanoid root part
+[music] and part one to main head. This
+allows the dragon head to animate
+together with the character rig.
+Now open animation editor and animate
+the dragon head alongside the sword
+animation.
+Also set main head transparency to one
+and disable collision so the invisible
+controller part doesn't interfere with
+gameplay.
+ Adding Water Trails
+Next, let's add water trails. Inside
+main head, add an attachment. Inside
+that attachment, add a trail object.
+For the trail texture, I used this water
+trail asset. Copy the texture ID and
+paste it into the trail texture
+property.
+Then create another attachment [music]
+called attachment 2 and move it slightly
+to define the trail width.
+Assign
+attachment zero and attachment [music]
+one inside the trail settings. For my
+trail settings, I used lifetime 0.5, min
+length 0.1, and max length zero. You can
+also tweak the color and brightness to
+make the water glow stronger.
+If you increase the lifetime, the trail
+becomes longer.
+ Creating Slam VFX
+Now, let's look at the slam VFX. [music]
+Inside the character, I created a Slam
+VFX folder containing all visual effects
+used during the finisher attack. Most of
+these effects came directly from the
+Demon Slayer kit. For example, this
+smoke effect comes from Mist Upwards.
+This water aura effect comes from
+another asset.
+The thunderbeam effect was recolored
+blue to fit the water dragon theme.
+There are also additional thunder and
+mist effects taken from the same
+package. Next, Claude helped generate a
+ Dragon Animation Controller Script
+local script called dragon controller
+inside starter character scripts. This
+script handles almost everything. It
+plays the attack animation when left
+click is pressed. It shows and hides the
+dragon mesh and water trail during the
+animation. It also activates the slam
+VFX particles when the finisher hit
+marker triggers. This section welds all
+slam VFX parts to the humanoid rip part.
+This function hides the dragon mesh.
+This function enables the slam effects.
+It also plays dragon roar sounds. And
+this part listens [music] for animation
+marker signals from the animation
+editor. Whenever the finisher hit marker
+triggers, the script executes the slam
+BFX logic. And this function handles the
+full dragon attack sequence, including
+cooldown control. Now, for the enemy
+ NPC Enemy Setup
+NPC, I used a free man from toolbox.
+[music]
+Just search for man and select the R six
+version.
+Then I added hit VFX and finisher VFX
+onto the NPC. These effects are also
+from the Demon Slayer kit. This splash
+effect is a little small right now, so
+I'll probably scale it bigger later. For
+the finisher effect, I used this mist
+twirl asset. To make effects follow the
+NPC correctly, I welded them [music] to
+the humanoid route part using weld
+ NPC Combat Controller
+constraints. Claude also helped generate
+the NPC combat controller [music]
+script. This script handles attack
+damage, slam damage, knockback force,
+[music]
+execution timing, and respawn logic.
+These are the knockback and execution
+animation IDs that Claude generated
+earlier. If you don't want to animate
+those yourself, you can simply ask
+Claude or another AI MCP app to generate
+them for you, too.
+ Final Skill Showcase
+And that's basically how I created this
+anime dragon [music] water skill inside
+Roblox Studio using Claude MCP and AI
+assisted workflows. If this tutorial
+helped you, make sure to like and
+subscribe because I'll continue making
+more advanced Roblox AI workflow
+tutorials like this. And let me know in
+the comments what anime skill you want
+me to build next. Heat. Heat.
+ ClaudIntroduction
+Today I'm going to show you something
+absolutely insane. [music] We're going
+to turn a simple 2D game level image
+into a fully built 3D game environment
+using Blender official MCP [music] and
+Claude Opus 4.7.
+And the craziest part is Claude will
+build the level directly inside Blender
+Live.
+ Download Blender 5.1
+First, download Blender 5.1 from the
+official Blender website and install it
+normally. [music] Note that this
+official Blender MCP only working on
+Blender 5.1 or [music] Mure. Next, open
+ Download Blender MCP Add-on
+Google and search for Blender MCP
+add-on. Open the first MCP server link
+from Blender.
+Scroll down until you find the add-on
+section. You'll see a blue drag and drop
+download button. [music] Click it to
+download the add-on.
+ Install MCP Addon in Blender
+Now, this part is important. [music]
+Make sure the downloaded file stays as a
+zip file. Sometimes your computer may
+auto extract it. [music] If that
+happens, just compress the folder back
+into a zip again because Blender needs
+the zip version for installation.
+[music]
+Now open Blender and simply drag the zip
+file directly into Blender. A pop-up
+will appear. Click okay and the MCP
+add-on will install automatically. Next,
+ Enable MCP Server Add-on
+go to Blender [music] preferences, then
+open the add-ons tab. You should now see
+the MCP server add-on installed and
+enabled successfully. Now let's connect
+ Connect Blender to Claude
+Blender to Claude. Open Claude and go to
+the customize tab. Inside there, click
+on connect your apps. This opens the
+connectors window. Search for Blender
+and click install.
+That's it. Blender is now connected to
+ Verify Blender MCP Server
+Claude. You can also verify the MCP
+server connection by opening the
+developer section inside Claude and
+you'll see the Blender MCP server listed
+there. Now restart Claude [music] and
+we're ready to build. The first thing I
+ Testing Blender Connection
+always do is test the connection to
+Blender just to make sure everything is
+working correctly.
+ Import 2D Reference Image
+Now here comes the fun part. I have this
+2D game level design image and I'm going
+to drag it directly into Claude. Then I
+type this prompt. Use this image for
+reference. Please make this game level
+for me. And just look [music] at this.
+Claude immediately starts building the
+level live inside Blender. First, it
+ Claude Builds the 3D Level
+creates the base terrain, [music] the
+ground shape, the river, and the main
+structure layout. Then, it starts adding
+more details like the flowing S-curved
+river, trees, [music]
+bridges, lampposts, stairs, and
+environmental props. And honestly, this
+is where things start getting really
+crazy because the generated level
+becomes surprisingly close to the
+original reference image. After [music]
+ Refining Colors and Models
+the first pass, I asked Claude to refine
+the colors and adjust the models so they
+match the original design more
+accurately. It continued improving the
+environment automatically. [music] There
+ Fixing Environment Issues
+were still some messy structures on the
+upper part of the level. So, I asked
+Claude to clean them up and [music] fix
+the composition, and now the scene looks
+much cleaner and more polished. Finally,
+ Improving Roads and Rivers
+I wanted the level to feel more natural
+and cinematic. So, I asked Claude to
+improve the curved roads and the river
+flow even more. [music] And after the
+ Final Result Showcase
+final refinement, the result looks
+absolutely beautiful. What's amazing
+here is that we're no longer just
+generating ideas with AI. [music]
+We're actually building fully editable
+3D worlds directly inside Blender using
+natural language. [music] This workflow
+is honestly a huge glimpse into the
+future of game development and 3D
+ Final Thoughts
+environment creation. If you want to
+experiment with AI powered world
+building, definitely try Blender MCP
+with Claude Opus 4.7. And if you enjoyed
+this video, don't forget to like,
+subscribe, and comment what you want me
+to build next with AI.
+ Claude MCPConstant Flux Dragon Showcase
+What's up everyone? Welcome back. Today
+ Water Dragon Movement
+I'm showing you this insane Turo 10th
+form skill, constant flux dragon, made
+inside Roblox Studio. Check this out.
+The dragon effect circles around the
+player, builds up momentum, and then
+launches forward with that smooth water
+breathing energy. I really wanted to
+capture the anime feeling with the
+motion, particles, camera shake, and the
+overall impact. The best part is that
+ AI MCP Workflow
+this entire demo was created using AIM
+MCP tools together with scripting and
+Roblox Studio Workflow. I used Claude
+MCP, cursor, anti-gravity, codec, and a
+few other AI tools during development.
+Honestly, I had to switch between
+multiple tools because I kept asking so
+many tasks and questions while building
+this effect. Some tools helped with
+scripting, some helped with VFX [music]
+logic, some helped speed up debugging
+and animation flow. But if you already
+know exactly what you want to build, you
+might not even need that many tools.
+ Effects and Animation Sync
+This demo combines several systems
+together. Custom VFX, animation syncing,
+hit timing, water dragon movement, slash
+effects, and cinematic visuals. I also
+ Tweak Dragon movement animations
+spent time tweaking the movement path of
+the dragon, so it feels more alive and
+dynamic instead of just moving in a
+straight line. The goal here was to make
+the skill feel powerful while still
+keeping that clean anime [music] style
+look. And this is only the demo. In the
+ Next Tutorial Preview
+next tutorial, I'll show you exactly how
+to make this skill step by step inside
+Roblox Studio. We'll go through the
+effects, [music]
+scripting, animations, and how to
+structure everything properly. So, if
+ Outro
+you want to learn how to create anime
+skills like this for your own game, make
+sure you subscribe and stay tuned. Let
+me know in the comments what skill you
+want me to make [music] next. Thanks for
+watching and I'll see you in the next
+one.
+ Claude MCWhat we're building
+Hey game devs. In the next two minutes,
+I'm going to show you how to add a
+custom skill to the Claw desktop app and
+use it to turn a single pixel art
+character into a full animation sprite
+sheet. Let's go.
+ What is a Claude Skill?
+First, what's a Claude skill? It's
+[music] a permanent instruction set you
+teach Claude once and it remembers
+forever. Build it now. Use it on every
+character in your game. Open the Claude
+desktop app.
+ Adding the skill in the desktop app
+Go to customize,
+then skills.
+Hit the plus button. Choose create skill
+and just describe what you want in plain
+ Writing the skill description
+English.
+I'm typing this create a skill called
+pixel animation generator. The input is
+a 64x 64 pixel art character. The output
+[music] is a top- down sprite sheet with
+idle, walk, run, jump, attack,
+spellcast, and death animations. Claude
+writes the entire skill for me. I review
+it and it's saved.
+ Demo with goblin
+Now, the demo. I'm dropping in this
+little goblin. I type generate
+animations using my pixel animation
+generator skill. Claude reads the skill,
+analyzes the goblin, and builds out the
+full sprite sheet. Idle, walk, run,
+jump, attack, spellcast, death. [music]
+All four directions. Boom. One skill,
+infinite characters. That's it. If this
+ Wrap up
+saved you time, smash that like,
+subscribe for more gamedev tutorials,
+and tell me in the comments what
+character you're animating first. See
+you in the next one.
+ Claude MCP With Game Engines Configuration tutorials
+MrWonderHow
+9 /Introduction
+Today I'm going to show you something
+insanely cool. We're going to connect
+Blender with anti-gravity MCP and create
+a soft body jelly bear that reacts
+realistically when interacting with
+objects. And honestly, the final result
+completely surprised me.
+ Download and Install Antigravity
+First, go to Google and search for
+anti-gravity download.
+Open the first result related to Google
+Antiggravity and download the correct
+installer for your computer. Since I'm
+using a MacBook with Apple Silicon, I'm
+downloading the Mac Apple Silicon
+version. Once the download is complete,
+install and launch Antiggravity.
+ Initial Setup and Login
+During the first setup, it will ask for
+your preferred use case. For this
+tutorial, [music]
+I recommend choosing reviewdriven
+development for safety. But if you want
+maximum automation, you can also choose
+agent-driven development.
+Next, sign in with your Google account
+ Antigravity Interface Overview
+to start using anti-gravity. After
+launching the app for the first time,
+you'll notice the interface is very
+simple. On the left side, you can set up
+your working directory [music] and on
+the right side is the chat prompt area.
+You can also choose the AI model here.
+Right now, the newest and most powerful
+one is Gemini 3.1 Pro High. Now, let's
+set up MCP servers. Go to the top right
+ Setting Up MCP Servers
+corner and click the three dots button.
+Then, select manage MCP servers. Here,
+you can browse MCP servers from the
+store. But for this tutorial, we're
+going to use a custom Blender MCP
+server. Click on view raw config on the
+left side. This will open the MCP config
+JSON file where we can paste our custom
+MCP server configuration. Next, open
+ Download Blender MCP Add-on
+Google again and search for Blender
+GitHub MCP. Open the top GitHub result.
+Inside the repository, download the
+add-on. py file.
+ Install Blender MCP Add-on
+Now, open Blender. Go to preferences,
+then add-ons,
+click install, and select the downloaded
+add-on. py file.
+Once installed, you'll see the Blender
+MCP add-on enabled successfully. Now, go
+ Configure MCP Server JSON
+back to the GitHub page and scroll down
+to the MCP configuration section. Make
+sure you install Python and the UV
+package manager by following the
+instructions provided on the GitHub
+page. Then copy the MCP server
+configuration code. Even though the
+example says claude MCP, it works
+perfectly for antigravity as well. Now
+go back to antigravity and paste the
+configuration into the MCP config JSON
+file. Save everything and restart
+ Restart and Enable MCP Server
+Antiggravity completely. After
+reopening, go back to the MCP server
+list. And now you should see the Blender
+MCP server enabled successfully. Next,
+ Connect Blender to Antigravity
+open Blender and press the N key to
+expand the [music] sidebar. You can also
+click the small arrow icon on the right
+side if the sidebar [music] is hidden.
+Open the Blender MCP tab and click
+connect to MCP server. [music] Now go
+ Generate Jelly Bear Physics with AI
+back to anti-gravity and type check
+connection to Blender. If everything is
+configured correctly, anti-gravity will
+confirm that Blender is connected
+successfully. And now comes the fun
+ Test Soft Body Simulation
+part. I want to create a low poly bear
+model, but I want to simulate a soft
+body or jelly effect when interacting
+with other objects like a sphere. The
+bear model should use physics to
+simulate this interaction. I want the
+final result to be that I can drag a
+sphere to interact with the bear model
+and it should interact with it in a soft
+body manner. Now give it a few minutes
+and there it [music] is. Anti-gravity
+automatically creates a low poly bear
+with a sphere beside it including all
+the physics setup. It even provides

@@ -1,0 +1,225 @@
+and conversations. The library grows over time as you identify new tasks you want to systematize. The next step is to build your first skill from scratch — a sales playbook skill
+that will form the backbone of your Sales Brain's understanding of your company. ‍ Video transcript Okay, now that we have our project set up, we want to start teaching Claude all
+of these different things that we wanted to do, and we do that using a thing called skills, so skills for Claude. Now, you can, again, think of that the same way as if you will be
+onboarding an assistant or a sales rep, and they are new into your company, into your organization, and they need to learn all these skills. Now, those can be skills on how to use
+instantly, how to use HubSpot, but they can also be skills on how to research a company before you reach out to see whether or not they are a good fit, or how to write a cold email
+according to our guidelines. All of those are skills. They go in separate skill files, and then Cloud can just call them whenever it feels is relevant. Now I'm going to give you a
+little bit of theory, not too much, not not to overwhelm you, and then we'll dive into actually building skills, which is the fun part. Now, a skill is a text file, and I will show
+you plenty of examples in just a second. But basically, how Claude talks about them is that they are that's what's a skill. It can be a folder or just a text file, and I will talk
+a little bit more about why we are just using text files in a second. Whereas there's the scale dot md, which is an extension for the type of text that's in there. And then in that
+scale, at the top it says, this is what the scale does, and under it, it says, this is the exact scale. Right? So I will show you an example, and that will make more sense. If you
+want to find the skills that you have in Claude, you go to settings and then click capabilities. And then as you go and you scroll down, here it says skills, and then these are the
+skills. Now, as you can see, I have a lot of skills. I'm playing around with this all day long. But if you click under example skills, you will have skills as well. And what you
+wanna do is you wanna make sure that the skill creator is toggled on, and then we'll scroll back really quickly to my skills. So, for example, here is a called copywriting skill.
+And as I said, at the very top of this text, there is a description of what this skill does. And then under it here, it starts with the actual skill. And the reason why it's built
+up that way is whenever you say to your employee, Claude, hey, I would like to write an email, launch a sequence, do research. It will start reading all the different descriptions
+of all the skills that you have, and then determine which one is most relevant. So it starts kind of searching in his brain, in his memory, and it will look at all the different
+skills that you have and say, okay, the user said write an email. This skill is about writing emails. Okay? So that's how it determines that. It's important that we make it clear
+which skill it should be using. Right? Imagine that we have five different skills about writing emails. We have skill number one, which is about writing follow-up emails. Skill
+number two is about writing emails to your family about family updates. Skill number three is about financial updates. Skill number four is about writing cold emails, and skill
+number five is about customer support emails. It may get a little bit unclear to Claude, and all of that just depends on the the context that it has, but we're not gonna select the
+right one. It will take time. It's not efficient. So for that, we use explicit commands, and you can see that here. So we give each of our skills a very explicit command saying to
+write emails, to write cold emails, only do that using this command or only use this command. And then we can simply type the command saying, okay, cold copywriting, and Cloud will
+know, ah, they're looking to use this skill. Let's let's pull in that one. So that's a little bit about skills. I will show you now how we build a skill from scratch, how we
+install it, what it looks like. This is just some theory. I know I'm going a little bit fast, but we're going to actually go through this step by step right now where we're gonna
+create our first scale, install it, and then we have the very start of our sales break. ‍ Expand transcript Resources How to Get Emails Out of Promotions and Into Gmail Primary By
+Amanda Laine Feb 3, 2026 How to Create an AI Agent for Cold Email Outreach (Step-by-Step) By Chris Tweten Feb 4, 2026 AI For Sales Prospecting: Playbook For Scalable B2B Outreach
+By Amanda Laine Feb 5, 2026 Email Marketing for Small Business: From First Send to Steady Revenue By Amanda Laine Feb 6, 2026 Best AI Sales Agent Software: A Guide for Scaling
+Teams By Raul Kaevand Feb 9, 2026 View All Courses Building Your AI Sales Brain with Claude + Instantly 9 lessons by Hans Dekker Perform in-depth research using Perplexity's
+AI-powered search engine, within Instantly. 1 lessons by Hans Dekker Learn social listening best practices from the owner of Trigify. 3 lessons by Max Advanced cold email
+deliverability concepts that will help you avoid the spam folder and hit the inbox. 8 lessons by Hans Dekker Learn how to leverage Supersearch to find the perfect leads for your
+business. 5 lessons by Hans Dekker Set up your outbound infrastructure the right way from the start. 8 lessons by Hans Dekker Learn how to use webhooks and other more technical
+concepts to orchestrate multi-channel campaigns and integrate tools. 5 lessons by Hans Dekker Learn how to instruct co-pilot to be your ideal outbound assistant. 1 lessons by Hans
+Dekker Deploying AI agents for your cold email campaigns is easier than it sounds 2 lessons by Hans Dekker Learn how to set up outbound campaigns in Instantly, the right way. 1
+lessons by Hans Dekker View All Prompts Supersearch Personalized Outreach for Video Marketing Professionals by Vibhor Takkar Supersearch Personalized Cold Email Openers for Real
+Estate Agents by Mehdi Oulaoub Supersearch Extract First Name from Email Addresses Prompt by Andrew Wang Supersearch Personalized Cold Email Opener Generator for Sales Teams by
+Anonymous Supersearch Personalized Email Openers for Custom Fabrication Sales by Soni Frigo Supersearch Identify CEOs’ Pain Points for Investor Outreach by Neil Thompson
+Supersearch Cold Email Opener Generation for Sales Teams by Yousif Shamasha Supersearch Extract Measurable Customer Benefits For Sales Teams by Timothy Wenger Supersearch
+Categorize Contacts by Industry and Company Name by Eric Evans Supersearch Personalized Email Openers for Digital Nomad Outreach by Dmitrii Malakhov Supersearch Assume Hybrid
+Teams’ Onboarding and Security Challenges by Mike McDonald Supersearch Summarize Top Google Review for Sales Teams by Yahya Hisham Supersearch Suggest Training Topics for Sales
+Outreach Prospects by Robin Rudolph Supersearch Extract First Names from Email Addresses List by Mehdi Oulaoub Supersearch Personalized Cold Email Openings for Sales Teams by Soni
+Frigo Supersearch Identify Home Health Care Marketing Pain Points by Spencer Horne Supersearch Extract B2B Domains From Email Addresses by Henri-Georg Eiche Supersearch
+Personalized First Line Generator for Sales Teams by Mehdi Oulaoub Supersearch Predict Likely Gender from First Name by Timothy Wenger Supersearch Format Company Names for Sales
+Email Copy by Gabe Mitchell Supersearch create ai case study bullets for sales teams by Kaushal Parikh Supersearch Write Cold Email Openers From LinkedIn Profiles by Josip Šare
+Supersearch Clean Company Names for Sales Data Enrichment by Akash Joshi Supersearch Personalized Landmark Mention for Cold Emails by Ananay Goyal Supersearch Extract City Name
+From Mailing Address Prompt by Timothy Wenger Supersearch Identify Most Valuable Clients by Industry CEOs by Devang from MMM Supersearch Write Casual One-Sentence Compliments for
+Leads by Ben kane Supersearch Clean Company Names for Lead Enrichment by Jamie Holden Supersearch Personalized Email Intro for Sales Lead Generation by David Jovanovic Supersearch
+Identify HubSpot CMS Pain Points for Industry Leaders by Valeriya Stepanova Supersearch Lowercase Clean Job Titles for Sales Teams by Timothy Wenger Supersearch Spot Video
+Storytelling Gaps for Construction Marketers by Vibhor Takkar Supersearch Personalized Cold Email Openers for Sales Teams by Tomoya Mori Supersearch Find Companies Posting
+Marketing or Ad Job Listings by Amir Dawoud Supersearch Personalized Website First Lines for Sales Teams by Ankit Modi Supersearch Verify Law Firm Practice Area for Lead Routing by
+Romney Bales Supersearch Personalized Prospecting Sentences for Sales Emails by Valentin Vouriot Supersearch Personalize Cold Emails With Unique Company Insights by Conor Ryan
+Supersearch Craft Conversational Cold Email Openers from Company Data by Bruno Berardi Supersearch Personalized Cold Email Openers for B2B Outreach by Edward Zhang Supersearch B2B
+Programmatic Outreach Prompt for Cannabis Agencies by Christian Valdez Supersearch Summarize Company Offerings for Sales Researchers by Timothy Wenger Supersearch Generate Friendly
+Informal Greetings For Sales Outreach by Timothy Wenger Supersearch Define ICP for Sales Teams Using Data by Timothy Wenger Supersearch List Industry Pain Points for B2B Sales
+Teams by Timothy Wenger Supersearch Personalized First-Line Compliment for Sales Outreach by Timothy Wenger Supersearch Icebreaker Line Generator for Sales Prospecting by Timothy
+Wenger Supersearch Humorous Cold Email Opener Generation for Sales Teams by Timothy Wenger Supersearch Clean Company Names for B2B Outreach Emails by Xrfan . Supersearch Write Role
+and Industry-Specific B2B Hook by Timothy Wenger Supersearch Curiosity-Driven Cold Email Questions for Sales Teams by Timothy Wenger Supersearch Personalized Industry Joke
+Generator For Cold Outreach by Timothy Wenger Supersearch Personalized Email Openers for Sales Outreach by Dominik Kolber Supersearch Pain Point Sentence Generator for Sales
+Outreach by Timothy Wenger Supersearch Extract Core Company Keywords for Lead Research by Timothy Wenger Supersearch AI Follow-Up Prompt for B2B Sales Teams by Timothy Wenger
+Supersearch Identify Company Niche Market for Sales Teams by Timothy Wenger Supersearch Find Fitness Companies Selling Digital Fitness Products by Charles Biggins Supersearch
+Personalized Linkedin Appreciation Lines for Sales Emails by Vatsal Nigam Supersearch Generate One-Sentence B2B Product Description Prompt by Timothy Wenger Supersearch Humorous
+Follow-Up Question Prompt for Sales Teams by Timothy Wenger Supersearch Validate Tech Stack for Outbound Sales Teams by Timothy Wenger Supersearch CTO Tech Stack Analysis for
+Leadership Insights by Timothy Wenger Supersearch Peer-Led Cold Email Openers for Sales Teams by Timothy Wenger Supersearch Personalized Cold Email Openers for Sales Teams by
+Timothy Wenger Supersearch Personalized Cold Email Opener for Sales Teams by Timothy Wenger Supersearch Cold Email Openers for B2B Sales Teams by Timothy Wenger Supersearch Clean
+Normalize Job Titles For Outreach by Timothy Wenger Supersearch Intro Email Prompt for Construction Quantity Surveyors by Thea Flores Supersearch Personalized Email Openers for
+Manufacturing Decision Makers by Jakob Michaels Supersearch identify company product type for b2b researchers by Corentin Stephan Supersearch Personalized Email Openers for Sales
+Outreach by Avinash Raju Supersearch Personalized First Line Generator for Cold Email Outreach by Lincon Parrott Supersearch Classify Companies for AI B2B Outreach by Adam Ögren
+Supersearch Identify Company Collaboration Tools for Sales Outreach by Shrikanth K Supersearch Abbreviate Job Titles for B2B Sales Teams by Ilson Mendes Supersearch Summarize
+LinkedIn Posts for Dutch Outreach by Lucas Bakx Supersearch SDR Subject Line Personalization for Sales Teams by Arjun Varma Supersearch Find Top SEO Competitor Domains for Outreach
+by Ryder Meehan Supersearch Edit Restaurant Names for Conversational Email Use by Coby Skonord Supersearch Simplify Company Names for Sales Prospecting by Viktor Budanovic
+Supersearch Craft Cold Email Outreach for Web Designers by Cal Nettle Supersearch Personalized LinkedIn Icebreakers for Sales Outreach by Franz Weber Supersearch Generate Bill Burr
+Style Puns From Coaching Websites by Jahan Hadi Supersearch Find Similar Job Titles at Same Company by Oswaldo Canho Supersearch Write Cold Email Openers from LinkedIn Descriptions
+by Thomas Ottosen Supersearch Personalized IT Outreach Sentence for Sales Teams by Josh Champion Supersearch Generate Industry-Specific Cold Email Openers For Founders by Jay
+Feldman Supersearch Clean Company Names for Outreach Personalization by Salomon Wainberg Supersearch Simplify Company Names for Cold Email Campaigns by Divyang Ledwani Supersearch
+Personalized Email Openers for B2B Outreach Teams by Jonas Gaida Supersearch Shorten Industry Names for Cold Email Personalization by Aron Gunnarsson Supersearch Personalized
+Icebreaker Compliment Generator for Sales Teams by Alexander Ioncescu Supersearch Extract Company Products Achievements History For Cold Emails by Barzan Ahmed Supersearch
+Personalized Cold Email Subject Lines for Sales Teams by Thomas Ottosen Supersearch Clean Company Names for Outreach Sales Teams by Paolo Shamoon Supersearch Remove Location Words
+From Company Names by Eerik Haamer Supersearch Don Draper Style Cold Email Opener Prompt by Ezra Gonzalez Supersearch Classify Company Professions for Sales Teams by Zachary Brown
+Supersearch Clean Human-Readable Titles for Sales Outreach by Andrew Tannus View All Unlock the power of AI With Get started now to access exclusive templates and elevate your
+projects to the next level. Get Started See pricing Products Outreach CRM Verification Lead Database Website Visitors Inbox Placement Deliverability Email Accounts Instantly AI AI
+Sales Agent Automations Use Cases Agencies Freelancers Enterprise Founders Sales VIP Service Marketing Sales Development Resources Blog API Help Desk Instantly Accelerator Careers
+Affiliate Facebook Group Slack Community Experts Instantly Academy Instantly Creators Instantly vs Apollo Integration Program Meet Our Partners Refer a Friend Reviews Quick Links
+Pricing Company Terms AI Sales Agent Terms Privacy Don’t Sell My Info Privacy Center Cookie Declaration © 2026 Instantly. All rights reserved. Pricing Login Get Started See Demo
+Instantly Academy Write Cold Emails with Your Brain Write Cold Emails with Your Brain 10 video 4:11 minutes Next Lesson Search Introduction to the Sales Brain Setting Up Your
+Claude Project Understanding Claude Skills Create Your Sales Playbook Skill Generate Your Company Playbook Write Cold Emails with Your Brain Connect the Instantly MCP Automate
+Weekly Performance Reviews Your Sales Brain, Fully Built Your AI GTM Team Unlock The Power Of AI With Instantly Find warm leads, scale email campaigns, reach primary inboxes,
+engage smarter and win more with AI. Get started with Instantly Write Cold Emails Now With the sales playbook added to the project, the Sales Brain is ready to write cold emails.
+Before jumping straight into generation, it's worth adding a few standing instructions that define how emails should be structured — this keeps output consistent across campaigns
+without requiring you to specify constraints every time. In the project's instructions section, add a simple set of rules for cold email writing. These might include things like:
+always keep emails under 70-80 words, always use personalization placeholders like {{firstName}} and {{companyName}}, and always follow the email frameworks attached to the
+project. If you have specific frameworks you've developed based on campaigns that have worked well — particular structures, opening lines, or CTAs that perform — upload those as
+files and reference them here. The instructions don't need to be exhaustive at the start. The goal is to give Claude enough guardrails that the output reflects your writing style
+rather than generic AI defaults. You can expand these instructions over time as you identify more patterns in what works. Once instructions are in place, prompt Claude to write a
+cold email sequence. A simple prompt like "write a cold email sequence for me reaching out to B2B SaaS founders of companies with less than 100 employees" is enough to get started.
+Claude will automatically pull from the sales playbook in the project files, identify the relevant ICP and value propositions for that audience, and begin drafting. What you'll see
+in the output reflects the depth of context now available to the model. Rather than a generic email about email outreach software, Claude writes emails that reference specific
+outcomes — for example, mentioning that companies using the tool have been able to consolidate their entire outbound stack into one platform, or citing the specific metric from a
+case study. The personalization placeholders are inserted correctly, the length stays within the defined constraints, and the tone matches the instructions you've set. If the
+initial output doesn't match your voice exactly, use it as a starting point. You can provide examples of emails you've written or received that you liked, ask Claude to analyze
+their structure, and incorporate those patterns into the instructions or a new email writing skill. Over time, this feedback loop refines the Brain's output to closely mirror what
+you'd write yourself — just faster and at greater scale. This is where the Sales Brain starts to pay dividends. Every new campaign starts with a prompt rather than a blank page.
+The model already knows the product, the ICP, the proof points, and the constraints — so the output quality is consistently higher than what you'd get from a standalone AI tool
+with no context. Video transcript Okay. Now that we have our playbook here in our SalesBrain in the files, as you can see, it is time to add a few instructions. Now we can create a
+full cold email scale, but I have my framework right here, and I'm gonna add some instructions. And I challenge you to use Claude out of the box to write cold emails for you. And
+then over time, you could say, okay. These are emails that have been been performing really well for me, and you add those maybe under examples, or you say, here are emails that I
+really like, analyze them, turn them into a skill. That is something that is is pretty subjective. Right? So I wanna give a clear guidelines, in my case, a framework and some
+guidelines on the length of the email, etcetera. And then we can actually start writing emails. So I'm gonna go here under instructions. I'm going to say for writing called emails,
+always follow these instructions. Never more than seventy to eighty words. Always use placeholders like first name and company name. Follow the frameworks attached to this project.
+Now if you don't have any frameworks attached, don't worry because you can always add those based on your writing. Now what I'm going to say is write a cold email sequence for me
+reaching out to b to b SaaS founders of companies with less than a hundred employees. There we go. And as you can see, it jumped straight into the sales playbook that we have to
+understand what it is that we're selling, get case studies, proof points, and it's going to use all of that. And as you can see, it has to extract the PDF. So, going forward will
+be it's great to say, okay. There's a PDF. We can use that for ourselves. Let's also have a text version of that. But it is able to process it. It just takes, you know, maybe
+thirty seconds to a minute longer. So it looks at the playbook and says, ah, they want to reach out to b to b SaaS founders. Let me find it in the playbook. Let me find exactly
+what is that they do, and then turn that into call email sequences. And going forward, you can just simply always use it and say, hey. Now I'm building this campaign or that
+campaign. Or you can even go as far as saying, listen. I don't have a lot of inspiration today. I don't know. We need to launch new campaigns. I'm not sure who we should be
+reaching out to. Give me ideas, and it will do exactly that. And then we can and we will, in this course, build it out even further where we're going to say, okay. Now look at
+campaigns that were performing well, pull in analytics, and use that via the Instantly MCP. That's for the next video. Right now, we'll have it draft emails for us, and then we'll
+see what it comes up with. Here we go. So wrote the emails for us saying, hey. I was on the and this is great. It's using the placeholder. Right? The variables. I was on the
+company website. Figured your team might be juggling three to four separate tools to run outbound. We help Compass consolidate all of that into one tool instantly in this case.
+Specifically, I think we could help you scale outbound without adding headcount given your team size and a nice soft CTA, which I like. And then here, it actually references one of
+our experts. So it actually reference one of our case studies, which is phenomenal. As you can see, case study results, and I'm very, very happy with this. So now we have our
+SalesBrain. It has our playbook. It knows more about our company than I do maybe because it can remember all of our case studies. Right? I could never. And then it's able to write
+really so called emails regardless of who we want to be reaching out to. Now what we're going to do next is we're going to connect the instantly MCP. And then once we have that
+connected, we can actually tell it, okay. That's great. Now create the campaign, and then we're good to go, and we're good to start reaching out. ‍ Expand transcript Resources How
+to Get Emails Out of Promotions and Into Gmail Primary By Amanda Laine Feb 3, 2026 How to Create an AI Agent for Cold Email Outreach (Step-by-Step) By Chris Tweten Feb 4, 2026 AI
+For Sales Prospecting: Playbook For Scalable B2B Outreach By Amanda Laine Feb 5, 2026 Email Marketing for Small Business: From First Send to Steady Revenue By Amanda Laine Feb 6,
+2026 Best AI Sales Agent Software: A Guide for Scaling Teams By Raul Kaevand Feb 9, 2026 View All Courses Building Your AI Sales Brain with Claude + Instantly 9 lessons by Hans
+Dekker Perform in-depth research using Perplexity's AI-powered search engine, within Instantly. 1 lessons by Hans Dekker Learn social listening best practices from the owner of
+Trigify. 3 lessons by Max Advanced cold email deliverability concepts that will help you avoid the spam folder and hit the inbox. 8 lessons by Hans Dekker Learn how to leverage
+Supersearch to find the perfect leads for your business. 5 lessons by Hans Dekker Set up your outbound infrastructure the right way from the start. 8 lessons by Hans Dekker Learn
+how to use webhooks and other more technical concepts to orchestrate multi-channel campaigns and integrate tools. 5 lessons by Hans Dekker Learn how to instruct co-pilot to be your
+ideal outbound assistant. 1 lessons by Hans Dekker Deploying AI agents for your cold email campaigns is easier than it sounds 2 lessons by Hans Dekker Learn how to set up outbound
+campaigns in Instantly, the right way. 1 lessons by Hans Dekker View All Prompts Supersearch Personalized Outreach for Video Marketing Professionals by Vibhor Takkar Supersearch
+Personalized Cold Email Openers for Real Estate Agents by Mehdi Oulaoub Supersearch Extract First Name from Email Addresses Prompt by Andrew Wang Supersearch Personalized Cold
+Email Opener Generator for Sales Teams by Anonymous Supersearch Personalized Email Openers for Custom Fabrication Sales by Soni Frigo Supersearch Identify CEOs’ Pain Points for
+Investor Outreach by Neil Thompson Supersearch Cold Email Opener Generation for Sales Teams by Yousif Shamasha Supersearch Extract Measurable Customer Benefits For Sales Teams by
+Timothy Wenger Supersearch Categorize Contacts by Industry and Company Name by Eric Evans Supersearch Personalized Email Openers for Digital Nomad Outreach by Dmitrii Malakhov
+Supersearch Assume Hybrid Teams’ Onboarding and Security Challenges by Mike McDonald Supersearch Summarize Top Google Review for Sales Teams by Yahya Hisham Supersearch Suggest
+Training Topics for Sales Outreach Prospects by Robin Rudolph Supersearch Extract First Names from Email Addresses List by Mehdi Oulaoub Supersearch Personalized Cold Email
+Openings for Sales Teams by Soni Frigo Supersearch Identify Home Health Care Marketing Pain Points by Spencer Horne Supersearch Extract B2B Domains From Email Addresses by
+Henri-Georg Eiche Supersearch Personalized First Line Generator for Sales Teams by Mehdi Oulaoub Supersearch Predict Likely Gender from First Name by Timothy Wenger Supersearch
+Format Company Names for Sales Email Copy by Gabe Mitchell Supersearch create ai case study bullets for sales teams by Kaushal Parikh Supersearch Write Cold Email Openers From
+LinkedIn Profiles by Josip Šare Supersearch Clean Company Names for Sales Data Enrichment by Akash Joshi Supersearch Personalized Landmark Mention for Cold Emails by Ananay Goyal
+Supersearch Extract City Name From Mailing Address Prompt by Timothy Wenger Supersearch Identify Most Valuable Clients by Industry CEOs by Devang from MMM Supersearch Write Casual
+One-Sentence Compliments for Leads by Ben kane Supersearch Clean Company Names for Lead Enrichment by Jamie Holden Supersearch Personalized Email Intro for Sales Lead Generation by
+David Jovanovic Supersearch Identify HubSpot CMS Pain Points for Industry Leaders by Valeriya Stepanova Supersearch Lowercase Clean Job Titles for Sales Teams by Timothy Wenger
+Supersearch Spot Video Storytelling Gaps for Construction Marketers by Vibhor Takkar Supersearch Personalized Cold Email Openers for Sales Teams by Tomoya Mori Supersearch Find
+Companies Posting Marketing or Ad Job Listings by Amir Dawoud Supersearch Personalized Website First Lines for Sales Teams by Ankit Modi Supersearch Verify Law Firm Practice Area
+for Lead Routing by Romney Bales Supersearch Personalized Prospecting Sentences for Sales Emails by Valentin Vouriot Supersearch Personalize Cold Emails With Unique Company
+Insights by Conor Ryan Supersearch Craft Conversational Cold Email Openers from Company Data by Bruno Berardi Supersearch Personalized Cold Email Openers for B2B Outreach by Edward
+Zhang Supersearch B2B Programmatic Outreach Prompt for Cannabis Agencies by Christian Valdez Supersearch Summarize Company Offerings for Sales Researchers by Timothy Wenger
+Supersearch Generate Friendly Informal Greetings For Sales Outreach by Timothy Wenger Supersearch Define ICP for Sales Teams Using Data by Timothy Wenger Supersearch List Industry
+Pain Points for B2B Sales Teams by Timothy Wenger Supersearch Personalized First-Line Compliment for Sales Outreach by Timothy Wenger Supersearch Icebreaker Line Generator for
+Sales Prospecting by Timothy Wenger Supersearch Humorous Cold Email Opener Generation for Sales Teams by Timothy Wenger Supersearch Clean Company Names for B2B Outreach Emails by
+Xrfan . Supersearch Write Role and Industry-Specific B2B Hook by Timothy Wenger Supersearch Curiosity-Driven Cold Email Questions for Sales Teams by Timothy Wenger Supersearch
+Personalized Industry Joke Generator For Cold Outreach by Timothy Wenger Supersearch Personalized Email Openers for Sales Outreach by Dominik Kolber Supersearch Pain Point Sentence
+Generator for Sales Outreach by Timothy Wenger Supersearch Extract Core Company Keywords for Lead Research by Timothy Wenger Supersearch AI Follow-Up Prompt for B2B Sales Teams by
+Timothy Wenger Supersearch Identify Company Niche Market for Sales Teams by Timothy Wenger Supersearch Find Fitness Companies Selling Digital Fitness Products by Charles Biggins
+Supersearch Personalized Linkedin Appreciation Lines for Sales Emails by Vatsal Nigam Supersearch Generate One-Sentence B2B Product Description Prompt by Timothy Wenger Supersearch
+Humorous Follow-Up Question Prompt for Sales Teams by Timothy Wenger Supersearch Validate Tech Stack for Outbound Sales Teams by Timothy Wenger Supersearch CTO Tech Stack Analysis
+for Leadership Insights by Timothy Wenger Supersearch Peer-Led Cold Email Openers for Sales Teams by Timothy Wenger Supersearch Personalized Cold Email Openers for Sales Teams by
+Timothy Wenger Supersearch Personalized Cold Email Opener for Sales Teams by Timothy Wenger Supersearch Cold Email Openers for B2B Sales Teams by Timothy Wenger Supersearch Clean
+Normalize Job Titles For Outreach by Timothy Wenger Supersearch Intro Email Prompt for Construction Quantity Surveyors by Thea Flores Supersearch Personalized Email Openers for
+Manufacturing Decision Makers by Jakob Michaels Supersearch identify company product type for b2b researchers by Corentin Stephan Supersearch Personalized Email Openers for Sales
+Outreach by Avinash Raju Supersearch Personalized First Line Generator for Cold Email Outreach by Lincon Parrott Supersearch Classify Companies for AI B2B Outreach by Adam Ögren
+Supersearch Identify Company Collaboration Tools for Sales Outreach by Shrikanth K Supersearch Abbreviate Job Titles for B2B Sales Teams by Ilson Mendes Supersearch Summarize
+LinkedIn Posts for Dutch Outreach by Lucas Bakx Supersearch SDR Subject Line Personalization for Sales Teams by Arjun Varma Supersearch Find Top SEO Competitor Domains for Outreach
+by Ryder Meehan Supersearch Edit Restaurant Names for Conversational Email Use by Coby Skonord Supersearch Simplify Company Names for Sales Prospecting by Viktor Budanovic
+Supersearch Craft Cold Email Outreach for Web Designers by Cal Nettle Supersearch Personalized LinkedIn Icebreakers for Sales Outreach by Franz Weber Supersearch Generate Bill Burr
+Style Puns From Coaching Websites by Jahan Hadi Supersearch Find Similar Job Titles at Same Company by Oswaldo Canho Supersearch Write Cold Email Openers from LinkedIn Descriptions
+by Thomas Ottosen Supersearch Personalized IT Outreach Sentence for Sales Teams by Josh Champion Supersearch Generate Industry-Specific Cold Email Openers For Founders by Jay
+Feldman Supersearch Clean Company Names for Outreach Personalization by Salomon Wainberg Supersearch Simplify Company Names for Cold Email Campaigns by Divyang Ledwani Supersearch
+Personalized Email Openers for B2B Outreach Teams by Jonas Gaida Supersearch Shorten Industry Names for Cold Email Personalization by Aron Gunnarsson Supersearch Personalized
+Icebreaker Compliment Generator for Sales Teams by Alexander Ioncescu Supersearch Extract Company Products Achievements History For Cold Emails by Barzan Ahmed Supersearch
+Personalized Cold Email Subject Lines for Sales Teams by Thomas Ottosen Supersearch Clean Company Names for Outreach Sales Teams by Paolo Shamoon Supersearch Remove Location Words
+From Company Names by Eerik Haamer Supersearch Don Draper Style Cold Email Opener Prompt by Ezra Gonzalez Supersearch Classify Company Professions for Sales Teams by Zachary Brown
+Supersearch Clean Human-Readable Titles for Sales Outreach by Andrew Tannus View All Unlock the power of AI With Get started now to access exclusive templates and elevate your
+projects to the next level. Get Started See pricing Products Outreach CRM Verification Lead Database Website Visitors Inbox Placement Deliverability Email Accounts Instantly AI AI
+Sales Agent Automations Use Cases Agencies Freelancers Enterprise Founders Sales VIP Service Marketing Sales Development Resources Blog API Help Desk Instantly Accelerator Careers
+Affiliate Facebook Group Slack Community Experts Instantly Academy Instantly Creators Instantly vs Apollo Integration Program Meet Our Partners Refer a Friend Reviews Quick Links
+Pricing Company Terms AI Sales Agent Terms Privacy Don’t Sell My Info Privacy Center Cookie Declaration © 2026 Instantly. All rights reserved. Pricing Login Get Started See Demo
+Instantly Academy Generate Your Company Playbook Generate Your Company Playbook 10 video 2:31 minutes Next Lesson Search Introduction to the Sales Brain Setting Up Your Claude
+Project Understanding Claude Skills Create Your Sales Playbook Skill Generate Your Company Playbook Write Cold Emails with Your Brain Connect the Instantly MCP Automate Weekly
+Performance Reviews Your Sales Brain, Fully Built Your AI GTM Team Unlock The Power Of AI With Instantly Find warm leads, scale email campaigns, reach primary inboxes, engage
+smarter and win more with AI. Get started with Instantly Build Your Company Playbook Now that the sales playbook skill is installed, it's time to run it. This is the step where
+your Sales Brain goes from a blank project to a knowledgeable system that understands exactly what your company does, who it sells to, and why customers buy. Trigger the skill
+using the explicit command you defined — for example, [sales-playbook] followed by your company's URL. Claude will immediately recognize the command, match it to the right skill,
+and begin its research process. Because the skill is designed to use Claude's built-in web browsing capability, it navigates directly to the website and begins pulling information:
+the homepage, product pages, pricing, case studies, customer testimonials, blog posts, and any other relevant content it can find. There's no need to install external scrapers or
+set up data pipelines. Claude handles all of this natively, which significantly reduces the technical friction of building a knowledge base from scratch. The output arrives as a
+PDF document containing everything the skill was designed to capture. This typically includes a company overview, a breakdown of the product's core features and value propositions,
+a list of target verticals, ICP profiles with relevant job titles and company sizes, and a set of proof points drawn directly from published case studies or testimonials. For
+example, running this against an outbound sales platform might produce: a detailed overview of the product's email sending infrastructure, key differentiators like flat-fee pricing
+or proprietary warmup networks, verticals like B2B SaaS and lead generation agencies, personas like Founders and VP of Sales with their specific pain points, and case studies
+showing specific results — meetings booked, revenue generated, cost savings achieved. Once the playbook PDF is generated, add it directly to your Sales Brain project as a file.
+This is the critical step that makes it useful long-term. From this point forward, every time you work inside this project, Claude has access to the playbook and will reference it
+automatically without being prompted. This changes the quality of everything Claude produces within your Sales Brain. Instead of writing generic cold emails based on what AI knows
+about a product category, it now writes emails grounded in your specific value propositions, case studies, and customer stories. The personalization becomes real rather than
+surface-level. If you work with multiple clients or campaigns, this skill scales efficiently. Run it for each company, add each playbook to a dedicated project, and you have a
+separate, specialized Sales Brain for every client you manage. Video transcript Okay, now that we have our first scale, we can start using it and we can start filling our sales
+brain with useful stuff. Now we built the sales playbook scale, which means now we can start building a sales playbook. And we trigger it with this command right here, and we say
+sales playbook and then instantly dot ai. So this will create a sales playbook for our company, instantly dot ai, where Instantly dot ai, in your case, would be your company, of
+course, or maybe a client that you're that you're working for. So already found the right skill because we use that command. So because we just really high in description, we put,
+if you see this command sales playbook, this is the skill that you're looking for. I promise you it actually found it and it will start to research and Claude has this built in
+where it's searching the web, going to the website, all of that, which is super helpful. The best part is that you don't need to think about installing all these scrapers or
+difficult tools or what have you, and that's just a phenomenal use case from cloud. So we'll give it some time. It's thinking searching the web. We'll give it some time to build
+our sales playbook, and once that's ready, I'll show you what it looks like so that you know exactly what we've built. Okay, here we go. So it created the entire PDF report for us,
+which is very helpful. As I said, it's, you know, easier for AI to process text, so we can still transform this with text. But right here, it says let me see if I can blow this up
+a little bit. Company overview, instantly dot ai, what instantly does, the stages in company description, futures, unique selling points, social proven case studies, all of this,
+which is just phenomenally helpful. And what you can do then here when you have this is say, I'm going to add this to my project. And it really is that simple. Now, the file is
+added to the project. It is part of our sales brain, and now I work for instantly, you may work for a different company. All of that knowledge about your company just within a
+couple of minutes has been added to your sales brain, and now going forward, you can use that to say, okay, write emails, and it will know exactly what it is that you're selling.
+And that is actually what we are going to do in the next video. We're going to use this to write cold emails. Expand transcript Resources How to Get Emails Out of Promotions and
+Into Gmail Primary By Amanda Laine Feb 3, 2026 How to Create an AI Agent for Cold Email Outreach (Step-by-Step) By Chris Tweten Feb 4, 2026 AI For Sales Prospecting: Playbook For
+Scalable B2B Outreach By Amanda Laine Feb 5, 2026 Email Marketing for Small Business: From First Send to Steady Revenue By Amanda Laine Feb 6, 2026 Best AI Sales Agent Software: A
+Guide for Scaling Teams By Raul Kaevand Feb 9, 2026 View All Courses Building Your AI Sales Brain with Claude + Instantly 9 lessons by Hans Dekker Perform in-depth research using
+Perplexity's AI-powered search engine, within Instantly. 1 lessons by Hans Dekker Learn social listening best practices from the owner of Trigify. 3 lessons by Max Advanced cold
+email deliverability concepts that will help you avoid the spam folder and hit the inbox. 8 lessons by Hans Dekker Learn how to leverage Supersearch to find the perfect leads for
+your business. 5 lessons by Hans Dekker Set up your outbound infrastructure the right way from the start. 8 lessons by Hans Dekker Learn how to use webhooks and other more
+technical concepts to orchestrate multi-channel campaigns and integrate tools. 5 lessons by Hans Dekker Learn how to instruct co-pilot to be your ideal outbound assistant. 1
+lessons by Hans Dekker Deploying AI agents for your cold email campaigns is easier than it sounds 2 lessons by Hans Dekker Learn how to set up outbound campaigns in Instantly, the
+right way. 1 lessons by Hans Dekker View All Prompts Supersearch Personalized Outreach for Video Marketing Professionals by Vibhor Takkar Supersearch Personalized Cold Email
+Openers for Real Estate Agents by Mehdi Oulaoub Supersearch Extract First Name from Email Addresses Prompt by Andrew Wang Supersearch Personalized Cold Email Opener Generator for
+Sales Teams by Anonymous Supersearch Personalized Email Openers for Custom Fabrication Sales by Soni Frigo Supersearch Identify CEOs’ Pain Points for Investor Outreach by Neil
+Thompson Supersearch Cold Email Opener Generation for Sales Teams by Yousif Shamasha Supersearch Extract Measurable Customer Benefits For Sales Teams by Timothy Wenger Supersearch
+Categorize Contacts by Industry and Company Name by Eric Evans Supersearch Personalized Email Openers for Digital Nomad Outreach by Dmitrii Malakhov Supersearch Assume Hybrid

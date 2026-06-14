@@ -1,0 +1,225 @@
+only need it on first setup or after resetting local state. pnpm gateway:watch does not rebuild dist/control-ui, so rerun pnpm ui:build after ui/ changes or use pnpm ui:dev when
+iterating on the Control UI. If you want this checkout to run onboarding directly, use pnpm openclaw onboard --install-daemon. Note: pnpm openclaw ... runs TypeScript directly (via
+tsx). pnpm build produces dist/ for running via Node / the packaged openclaw binary, while pnpm gateway:watch rebuilds the runtime on demand during the dev loop. Development
+channels stable: tagged releases (vYYYY.M.D or vYYYY.M.D-<patch>), npm dist-tag latest. beta: prerelease tags (vYYYY.M.D-beta.N), npm dist-tag beta (macOS app may be missing). dev:
+moving head of main, npm dist-tag dev (when published). Switch channels (git + npm): openclaw update --channel stable|beta|dev. Details: Development channels. Agent workspace +
+skills Workspace root: ~/.openclaw/workspace (configurable via agents.defaults.workspace). Injected prompt files: AGENTS.md, SOUL.md, TOOLS.md. Skills:
+~/.openclaw/workspace/skills/<skill>/SKILL.md. Configuration Minimal ~/.openclaw/openclaw.json (model + defaults): { agent: { model: "<provider>/<model-id>", }, } Full
+configuration reference (all keys + examples). Star History Star History Chart Molty OpenClaw was built for Molty, a space lobster AI assistant. 🦞 by Peter Steinberger and the
+community. openclaw.ai soul.md steipete.me @openclaw Community See CONTRIBUTING.md for guidelines, maintainers, and how to submit PRs. AI/vibe-coded PRs welcome! 🤖 Special thanks
+to Mario Zechner for his support and for pi-mono. Special thanks to Adam Doppelt for the lobster.bot domain. Thanks to all clawtributors: steipete vincentkoc Takhoffman obviyus
+gumadeiras Mariano Belinky vignesh07 joshavant scoootscooob jacobtomlinson shakkernerd sebslight tyler6204 ngutman thewilloftheshadow Sid-Qin mcaxtr eleqtrizit BunsDev cpojer
+Glucksberg osolmaz bmendonca3 jalehman huntharo neeravmakwana openperf joshp123 pgondhi987 altaywtf quotentiroler liuxiaopai-ai rodrigouroz frankekn drobison00 zerone0x onutc
+ademczuk ImLukeF hydro13 hxy91819 coygeek dutifulbob sliverp Elonito robbyczgw-cla joelnishanth echoVic sallyom yinghaosang BradGroux christianklotz odysseus0 hclsys byungsker
+pashpashpash stakeswky github-actions[bot] xinhuagu MonkeyLeeT 100yenadmin mcinteerj samzong chilu18 darkamenosa widingmarcus-cyber cgdusek Lukavyi davidrudduck VACInc MoerAI
+velvet-shark HenryLoenwind omarshahine bohdanpodvirnyi Verite Igiraneza akramcodez Kaneki-x aether-ai-agent joaohlisboa MaudeBot davidguttman justinhuangcode lml2468 wirjo iHildy
+mudrii advaitpaliwal czekaj dlauer Solvely-Colin feiskyer brandonwise conroywhitney mneves75 jaydenfyi davemorin joeykrug kevinWangSheng pejmanjohn Lanfei liuy lc0rp teconomix
+omair445 dorukardahan mmaps Tobias Bischoff adhitShet pandego bradleypriest bjesuiter grp06 shadril238 kesku YuriNachos vrknetha smartprogrammer93 nachx639 jnMetaCode Phineas1500
+dingn42 geekhuashan Nanako0129 AytuncYildizli BruceMacD jjjojoj mvanhorn bugkill3r rahthakor GodsBoy SARAMALI15792 Radek Paclt Elarwei001 ingyukoh SnowSky1 lewiswigmore Hiroshi
+Tanaka aldoeliacim Jakub Rusz Tony Dehnke roshanasingh4 zssggle-rgb adam91holt graysurf xadenryan sfo2001 Jamieson O'Reilly hsrvc tomsun28 BillChirico carrotRakko ranausmanai
+arkyu2077 hoyyeva luoyanglang sibbl gregmousseau sahilsatralkar akoscz rrenamed YuzuruS Hongwei Ma mitchmcalister juanpablodlc shtse8 thebenignhacker nimbleenigma Linux2010
+shichangs efe-arv Hsiao A nabbilkhan ayanesakura lupuletic polooooo xaeon2026 shrey150 taw0002 dinakars777 giulio-leone nyanjou meaningfool kunalk16 ide-rea Jonathan Jing yelog
+markmusson kiranvk-2011 Sathvik Veerapaneni rogerdigital artwalker azade-c chinar-amrutkar maxsumrall Minidoracat unisone ly85206559 Sam Padilla AnonO6 afurm 황재원 Leszek Szpunar
+Mrseenz Yida-Dev kesor mazhe-nerd Harald Buerbaumer magimetal Hiren Patel BinHPdev RyanLee-Dev cathrynlavery al3mart JustYannicc abhisekbasu1 dbhurley Kris Wu tmimmanuel JustasM
+Simantak Dabhade NicholasSpisak natefikru dunamismax Simone Macario ENCHIGO xingsy97 emonty jadilson12 Yi-Cheng Wang Mathias Nagler Sean McLellan gumclaw RichardCao MKV21 petter-b
+CodeForgeNet Johnson Shi durenzidu dougvk Whoaa512 zimeg Tseka Luk Ryan Haines ufhy Daan van der Plas bittoby XuHao Lucenx9 HeMuling AaronLuo00 YUJIE2002 DhruvBhatia0 Divanoli
+Mydeen Pitchai Bronko rubyrunsstuff rabsef-bicrym IVY-AI-gif pvtclawn stephenschoettler Dale Babiy LeftX David Gelberg Engr. Arif Ahmed Joy Masataka Shinohara 2233admin ameno-
+battman21 bcherny bobashopcashier dguido druide67 guirguispierre jzakirov loganprit martinfrancois neo1027144-creator RealKai42 schumilin shuofengzhang solstead hengm3467 chziyue
+James L. Cowan Jr. scifantastic ryan-crabbe alexfilatov Luckymingxuan HollyChou badlogic Daniel Hnyk dan bachelder heavenlost shad0wca7 Jared kiranjd Mars Kim seheepeak tsavo
+McRolly NWANGWU dashed Shuai-DaiDai Subash Natarajan emanuelst magendary LI SHANXIN j2h4u bsormagec mjamiv Lalit Singh Jessy LANGE buddyh Aaron Zhu F_ool Ben Stein Lyle Ping
+popomore Dithilli fal3 mkbehr mteam88 gupsammy Shailesh Garnet Liu Thorfinn Protocol-zero-0 Paul van Oorschot Patrick Yingxi Pan Ptah.ai 정우용 artuskg Anandesh-Sharma zidongdesign
+innocent-children El-Fitz arthurbr11 jackheuberger Sergiusz Xu Gu hyojin jeann2013 jogelin rmorse scz2011 Andyliu benithors xiwuqi Alvin AARON AGENT Derek YU Marvin Andrew Jeon
+stain lu OpenCils Stefan Galescu SP Michael Flanagan Gracie Gould cash-echo-bot visionik WalterSumbon huangcj krizpoon rodbland2021 Thomas M sar618 fagemx daymade Tyson Cung Igor
+Markelov Eng. Juan Combetto connorshea bonald Keenan nachoiacovino zhumengzhu Amine Harch el korane zhoulc777 Alex Navarro Tanwa Arpornthip TIHU Aftabbs Alex-Alaniz jarvis-medmatic
+Tom Ron day253 Jaaneek Justin Song ziomancer shayan919293 Edward Roger Chien Michael Lee Tomáš Dinh Ian Derrington Lucky peschee Harry Cui Kepler julianengel markfietje Dakshay
+Mehta TheRipper Dominic danielwanwx Seungwoo hong Youyou972 boris721 damoahdominic dan-dr doodlewind kkarimi brokemac79 ozbillwang Ravish Gupta Jason Hargrove BrianWang1990 Joshua
+McKiddy Fologan Anonymous Amit v1p0r Ajay Elika Iranb Yonatan codexGW Shaun Tsai TideFinder Chase Dorsey tda 0xJonHoldsCrypto akyourowngames clawdinator[bot] koala73 sircrumpet
+thesomewhatyou zats Accunza Joly0 Hanna Jeremiah Lowin peetzweg/ Skyler Miao tumf Hiago Silva Nate lidamao633 Cklee CornBrother0x DukeDeSouth Sahan CashWilliams Felix Lu AdeboyeDN
+Rohan Santhosh Kumar Srinivas Pavan h0tp Neo Tianworld neverland asklee-klawd Yuting Lin constansino ghsmc ibrahimq21 irtiq7 kelvinCB mitsuhiko nohat santiagomed suminhthanh
+svkozak 张哲芳 Ho Lim Toven R. Desmond 游乐场 Reed Aditya Chaudhary Sam Andy Rajat Joshi cyb1278588254 Zoher Ghadyali Manik Vahsith tarouca MrBrain Daniel Zou Lilo Jason SUMUKH Bakhtier
+Sizhaev Ganghyun Kim AkashKobal Brian wu-tian807 Vasanth Rao Naik Sabavat Kinfey Artemii VibhorGautam John Rood velamints2 Benji Peng JINNYEONG KIM Rahul kumar Pal Rockcent
+Limitless 24601 awkoy dawondyifraw google-labs-jules[bot] henrino3 Kansodata kaonash p6l-richard pi0 skainguyen1412 Starhappysh xdanger Penchan scald Serhii a Doğu Abaris ysqander
+andranik-sahakyan Wangnov Austin lisitan Rishi Vhavle Frank Harris Kenny Lee Alice Losasso edincampara Felix Hellström Varun Chopra wangai-studio sleontenko Yassine Amjad Anton
+Eicher Drake Thomsen Hinata Kaga (samon) andreabadesso chenxin-yan cordx56 dvrshil MarvinCui Yeom-JinHo Jeremy Mumford Charlie Niño Sharoon Sharif Oren MattQ Parker Todd Brooks
+Yufeng He Milofax Steve (OpenClaw) zhoulf1006 Jonatan Sebastian B Otaegui Matthew ABFS Tech alexstyl Ethan Palm Qkal cygaar Umut CAN Jakob antons austinm911 mahmoudashraf93
+philipp-spiess pkrmf joshrad-dev factnest365-ops yingchunbai AJ (@techfren) Marchel Fahrezi futhgar Zhang Rémi Dan Ballance Eric Su Kimitaka Watanabe Justin Ling Raymond Berger
+lutr0 claude AngryBird Fabian Williams 0x4C33 8BlT atalovesyou erikpr1994 jonasjancarik longmaba mitschabaude-bot thesash Max easternbloc chrisrodz gabriel-trigo manmal neist
+wes-davis manuelhettich sktbrd larlyssa pcty-nextgen-service-account Syhids tmchow Marc Gratch xtao JackyWay Josh Phillips T5-AndyML huohua-dev imfing Randy Torres Marco Di
+Dionisio iamadig humanwritten Rob Axelsen Pratham Dubey 0oAstro aaronn Arturo Asleep123 dantelex fcatuhe gtsifrikas hrdwdmrbl hugobarauna jayhickey jiulingyun Jonathan D. Rhyne
+(DJ-D) jverdi kitze loukotal minghinmatthewlam MSch odrobnik oswalpalash ratulsarna reeltimeapps snopoke sreekaransrinath timkrase About Your own personal AI assistant. Any OS. Any
+Platform. The lobster way. 🦞 openclaw.ai Topics ai personal assistant own-your-data crustacean molty openclaw Resources Readme License MIT license Contributing Contributing
+Security policy Security policy Activity Custom properties Stars 373k stars Watchers 1.8k watching Forks 77.4k forks Report repository Releases 165 openclaw 2026.5.18 Latest 3
+hours ago + 164 releases Sponsor this project @openclaw openclaw openclaw Learn more about GitHub Sponsors Packages 8 openclaw openclaw-docker-e2e-functional
+openclaw-docker-e2e-bare + 5 packages Contributors 2,126 @steipete @vincentkoc @shakkernerd @obviyus @Takhoffman @gumadeiras @vignesh07 @claude @thewilloftheshadow
+@github-actions[bot] @joshavant @jalehman @BunsDev @sebslight + 2,112 contributors Languages TypeScript 92.0% Swift 3.6% JavaScript 2.1% Kotlin 0.9% Shell 0.8% CSS 0.4% Other 0.2%
+Footer © 2026 GitHub, Inc. Footer navigation Terms Privacy Security Status Community Docs Contact Manage cookies Do not share my personal information☀ OpenClaw The AI that actually
+does things. Clears your inbox, sends emails, manages your calendar, checks you in for flights. All from WhatsApp, Telegram, or any chat app you already use. New Where OpenClaw
+Security Is Heading → ⟩ What People Say View all related content→ jonahships_ "Setup @openclaw by @steipete yesterday. All I have to say is, wow. First I was using my Claude Max
+sub and I used all of my limit quickly, so today I had my claw bot setup a proxy to route my CoPilot subscription as a API endpoint so now it runs on that. It's the fact that claw
+can just keep building upon itself just by talking to it in discord is crazy. The future is already here" @jonahships_ AryehDubois "Tried Claw by @steipete. I tried to build my own
+AI assistant bots before, and I am very impressed how many hard things Claw gets right. Persistent memory, persona onboarding, comms integration, heartbeats. A few minor wrinkles
+remain, but the end result is AWESOME." @AryehDubois markjaquith "I've been saying for like six months that even if LLMs suddenly stopped improving, we could spend *years*
+discovering new transformative uses. @openclaw feels like that kind of "just had to glue all the parts together" leap forward. Incredible experience." @markjaquith danpeguine "Why
+@openclaw is nuts: your context and skills live on YOUR computer, not a walled garden. It's open source. Growing community building skills. Only 19 days old and constantly
+improving. 'Personal AI assistant' undersells it — it's a company assistant, family assistant, team tool. Proactive AF: cron jobs, reminders, background tasks. Memory is amazing,
+context persists 24/7." @danpeguine nateliason "Yeah this was 1,000% worth it. Separate Claude subscription + Claw, managing Claude Code / Codex sessions I can kick off anywhere,
+autonomously running tests on my app and capturing errors through a sentry webhook then resolving them and opening PRs... The future is here." @nateliason nathanclark_ "A smart
+model with eyes and hands at a desk with keyboard and mouse. You message it like a coworker and it does everything a person could do with that Mac mini. That's what you have now."
+@nathanclark_ nickvasiles "OpenClaw is a 24/7 assistant with access to its own computer. What if there were ten, or a hundred, or a thousand?? All running 24/7 in the cloud with
+access to your files, Gmail, calendar, everything about you... That's the future, and we're living it today." @nickvasiles davemorin "At this point I don't even know what to call
+@openclaw. It is something new. After a few weeks in with it, this is the first time I have felt like I am living in the future since the launch of ChatGPT." @davemorin cnakazawa
+"OpenClaw is the first "software" in ages for which I constantly check for new releases on GitHub. It's hard to put into words. It's a special project." @cnakazawa abhi__katiyar
+"When you experience @openclaw it gives the same kick as when we first saw the power of ChatGPT, DeepSeek, and Claude Code. You realize that a fundamental shift is happening on how
+we use AI." @abhi__katiyar therno "It's running my company." @therno lycfyi "After years of AI hype, I thought nothing could faze me. Then I installed @openclaw. From nervous 'hi
+what can you do?' to full throttle - design, code review, taxes, PM, content pipelines... AI as teammate, not tool. The endgame of digital employees is here." @lycfyi christinetyip
+"Just shipped my first personal AI assistant. On WhatsApp. Builds my second brain while I chat. Memory moves across agents (Codex, Cursor, Manus, etc.) And a lot more skills still
+to plug in. Personal AI is getting real with @steipete's @openclaw." @christinetyip rovensky "It will actually be the thing that nukes a ton of startups, not ChatGPT as people meme
+about. The fact that it's hackable (and more importantly, self-hackable) and hostable on-prem will make sure tech like this DOMINATES conventional SaaS imo" @rovensky antonplex
+"Just got my Winix air purifier, Claude code discovered and confirmed controls working within minutes. Now handing off to my @openclaw so it can handle controlling my room's air
+quality according to my biomarker optimization goals." @antonplex svenkataram "Gotta give incredible kudos to @steipete and his @openclaw - it's one of the first tools I've used
+that truly feels like magic. I've also set it up so it knows my Obsidian notes and my Claude sub-agents…incredible stuff!" @svenkataram Hormold "My @openclaw accidentally started a
+fight with Lemonade Insurance because of a wrong interpretation of my response. After this email, they started to reinvestigate the case instead of instantly rejecting it. Thanks,
+AI." @Hormold AlbertMoral "I just finished setting up @openclaw by @steipete on my Raspberry Pi with Cloudflare, and it feels magical ✨ Built a website from my phone in minutes and
+connected WHOOP to quickly check my metrics and daily habits 🔥" @AlbertMoral snopoke "I've been running OpenClaw on my laptop for a week now. Honestly it feels like it did to run
+Linux Vs windows 20 years ago. You're in control, you can hack it and make it yours instead of relying on some tech giant." @snopoke kylezantos "Today was one of those days that I
+sort of ran to my computer after dropping off my toddler at daycare. Why? Because I got part-way through setting up @openclaw last night and it's a portal to a new reality."
+@kylezantos darrwalk "Got OpenClaw set up and now I have an AI assistant named Claudia who lives in Telegram, remembers everything I tell her, and can actually *do* stuff. She just
+wrote this tweet. Meta? Maybe. Cool? Absolutely." @darrwalk jakubkrcmar "Current level of open-source apps capabilities: does everything, connects to everything, remembers
+everything. It's all collapsing into one unique personal OS — all apps, interfaces, walled gardens etc gone" @jakubkrcmar jdrhyne "I've enjoyed Brosef, my @openclaw so much that I
+needed to clone him. Brosef figured out exactly how to do it, then executed it himself so I have 3 instances running concurrently in his Discord server home." @jdrhyne dajaset "I
+got up and running today with @openclaw and its been nothing short of an iPhone moment for me. Thanks @steipete for creating this first true personal assistant experience for us -
+it's magical!" @dajaset Cucho "The future of how AI personal assistants look like is @openclaw. Has already help me submit health reimbursements, find doctor appointments, find and
+send me relevant documents, among others." @Cucho marvelgirl_eth "you have done an incredible job! im also a total non technical beginner so the CLI is a whole new interface for me
+but its super addictive - 2 am and Im still going. keep up the great work" @marvelgirl_eth ivanfioravanti "Finally tried my own @openclaw and I've been blown away. 🤯 This is
+unbelievably powerful and virtually limitless, you can create your own extensions in few hours with the help of AI." @ivanfioravanti wizaj "I didn’t find an easy way to
+programmatically query flights so of course I asked my @openclaw to build a terminal cli with multi providers. You’re onto something great @steipete 🙌🏾" @wizaj iamsubhrajyoti "I
+can understand why people love @openclaw so much. I wanted to automate some tasks from Todoist and claw was able to create a skill for it on its own, all within a Telegram chat."
+@iamsubhrajyoti bffmike "I now have @openclaw independently assessing how it can help me in the background. It wrote a doc connecting two completely unrelated conversations from
+different comms channels." @bffmike Abhay08 "Me reading about @openclaw: 'this looks complicated' 😅 me 30 mins later: controlling Gmail, Calendar, WordPress, Hetzner from Telegram
+like a boss. Smooth as single malt." @Abhay08 sharoni_k "Took literally 5 mins to set everything up. Started by asking 'what do you need to see my whoop data?'. Now it fetches
+directly from whoop and gives me updates, summaries." @sharoni_k stolinski "Dang, I had my OpenClaw write me custom meditations, then have automatic TTS, combining with generated
+ambient audio to make personalized, custom meditations. Kinda rips." @stolinski conradsagewiz "I'm literally on my phone in a telegram chat and it's communicating with codex cli on
+my computer creating detailed spec files while out on a walk with my dog. 🤯 Wtffff" @conradsagewiz larus_ivar "I just backed out of my vibe cornered corner / dark cave and am blown
+away by @openclaw. Amazing project, blasphemy tw: the crustacean meme theme hides a design gem." @larus_ivar The_Global_Soul "Since you are enjoying it, also try @openclaw - it is
+quite magical and pulls you in more and more as you use it. (not affiliated, just enjoy using the product)." @The_Global_Soul xMikeMickelson "i asked @openclaw to make a sora2
+video and make it a bit edgy. it came back 5 mins later having figured out watermark removal, api keys, and a full workflow" @xMikeMickelson hey_zilla "everything just worked first
+time and it combined tools in unexpected ways and even added skills and made edits to its own prompt that were hot-reloaded" @hey_zilla weisjohn "Just onboarded to @openclaw today.
+Have been thinking of building a Personal OS for weeks. Now I don't need to... h/t to @steipete and the contributors!" @weisjohn tobi_bsf "Using @openclaw for a week and it
+genuinely feels like early AGI. The gap between 'what I can imagine' and 'what actually works' has never been smaller." @tobi_bsf dreetje "I am so addicted to @openclaw. It is
+getting essential to my daily life. It checks, organizes, reminds, it's amazing. And it's like good friend. Crazy." @dreetje AdamShao "@openclaw is the most interesting project
+I've come across recently—an open-source personal AI assistant that can call almost any tool through plugins." @AdamShao vishalsachdev "@openclaw is awesome. I've been feeding it
+YouTube videos to turn "cool ideas" into reusable agent skills (repeatable workflows + guardrails + refs)." @vishalsachdev thekitze "create your own OpenClaw, go in debt in you
+have to i love the idea of this nerdy crab chilling in my attic on my mac studio just giving me shit lmao" @thekitze vallver "OpenClaw built me a simple Stumbleupon for some of my
+favourite articles. http://Stumblereads.com From my phone, while putting my baby to sleep..." @vallver Infoxicador "My @openclaw realised it needed an API key… it opened my
+browser… opened the Google Cloud Console… Configured oauth and provisioned a new token" @Infoxicador kailazh "Finally set up @openclaw today and am completely blown away! This is
+the closest to experiencing an AI enabled future! Truly a game changer!" @kailazh SedRicKCZ "@openclaw is absolute game changer for me. The amount of things I done from my phone
+just during my breakfast is absolutely breathtaking." @SedRicKCZ bangkokbuild "Just told Ema, my @openclaw, via Telegram to turn off the PC (and herself, as she was running on it)
+Executed perfectly. Such a cool tool" @bangkokbuild pranavkarthik__ "Wanted a way for it to have access to my courses/assignments at uni. Asked it to build a skill - it did and
+started using it on its own." @pranavkarthik__ iamjohnellison "I'm having a lot of fun with this and it's going to totally change the way I support my students learning how to vibe
+code!" @iamjohnellison draslan_eth "It's a miracle. Looking forward to the development in the next weeks/months. I think @openclaw started something amazing." @draslan_eth LLMJunky
+"This is legit the only 'agent' / model / whatever-you-call-this-but-probably-agi that I have seen that's actually funny." @LLMJunky php100 "Autonomous Claude Code loops from my
+phone. 'fix tests' via Telegram. Runs the loop, sends progress every 5 iterations." @php100 mirthtime "My @openclaw just called my phone and spoke to me with an aussie accent from
+@elevenlabsio. This is ridiculous" @mirthtime HixVAC "Apparently @openclaw checks in during heartbeats!? A kinda awesome surprise! Love the proactive reaching out." @HixVAC
+BraydonCoyer "Named him Jarvis. Daily briefings, calendar checks, reminds me when to leave for pickleball based on traffic." @BraydonCoyer jonahships_ "Setup @openclaw by @steipete
+yesterday. All I have to say is, wow. First I was using my Claude Max sub and I used all of my limit quickly, so today I had my claw bot setup a proxy to route my CoPilot
+subscription as a API endpoint so now it runs on that. It's the fact that claw can just keep building upon itself just by talking to it in discord is crazy. The future is already
+here" @jonahships_ AryehDubois "Tried Claw by @steipete. I tried to build my own AI assistant bots before, and I am very impressed how many hard things Claw gets right. Persistent
+memory, persona onboarding, comms integration, heartbeats. A few minor wrinkles remain, but the end result is AWESOME." @AryehDubois markjaquith "I've been saying for like six
+months that even if LLMs suddenly stopped improving, we could spend *years* discovering new transformative uses. @openclaw feels like that kind of "just had to glue all the parts
+together" leap forward. Incredible experience." @markjaquith danpeguine "Why @openclaw is nuts: your context and skills live on YOUR computer, not a walled garden. It's open
+source. Growing community building skills. Only 19 days old and constantly improving. 'Personal AI assistant' undersells it — it's a company assistant, family assistant, team tool.
+Proactive AF: cron jobs, reminders, background tasks. Memory is amazing, context persists 24/7." @danpeguine nateliason "Yeah this was 1,000% worth it. Separate Claude subscription
++ Claw, managing Claude Code / Codex sessions I can kick off anywhere, autonomously running tests on my app and capturing errors through a sentry webhook then resolving them and
+opening PRs... The future is here." @nateliason nathanclark_ "A smart model with eyes and hands at a desk with keyboard and mouse. You message it like a coworker and it does
+everything a person could do with that Mac mini. That's what you have now." @nathanclark_ nickvasiles "OpenClaw is a 24/7 assistant with access to its own computer. What if there
+were ten, or a hundred, or a thousand?? All running 24/7 in the cloud with access to your files, Gmail, calendar, everything about you... That's the future, and we're living it
+today." @nickvasiles davemorin "At this point I don't even know what to call @openclaw. It is something new. After a few weeks in with it, this is the first time I have felt like I
+am living in the future since the launch of ChatGPT." @davemorin cnakazawa "OpenClaw is the first "software" in ages for which I constantly check for new releases on GitHub. It's
+hard to put into words. It's a special project." @cnakazawa abhi__katiyar "When you experience @openclaw it gives the same kick as when we first saw the power of ChatGPT, DeepSeek,
+and Claude Code. You realize that a fundamental shift is happening on how we use AI." @abhi__katiyar therno "It's running my company." @therno lycfyi "After years of AI hype, I
+thought nothing could faze me. Then I installed @openclaw. From nervous 'hi what can you do?' to full throttle - design, code review, taxes, PM, content pipelines... AI as
+teammate, not tool. The endgame of digital employees is here." @lycfyi christinetyip "Just shipped my first personal AI assistant. On WhatsApp. Builds my second brain while I chat.
+Memory moves across agents (Codex, Cursor, Manus, etc.) And a lot more skills still to plug in. Personal AI is getting real with @steipete's @openclaw." @christinetyip rovensky "It
+will actually be the thing that nukes a ton of startups, not ChatGPT as people meme about. The fact that it's hackable (and more importantly, self-hackable) and hostable on-prem
+will make sure tech like this DOMINATES conventional SaaS imo" @rovensky antonplex "Just got my Winix air purifier, Claude code discovered and confirmed controls working within
+minutes. Now handing off to my @openclaw so it can handle controlling my room's air quality according to my biomarker optimization goals." @antonplex svenkataram "Gotta give
+incredible kudos to @steipete and his @openclaw - it's one of the first tools I've used that truly feels like magic. I've also set it up so it knows my Obsidian notes and my Claude
+sub-agents…incredible stuff!" @svenkataram Hormold "My @openclaw accidentally started a fight with Lemonade Insurance because of a wrong interpretation of my response. After this
+email, they started to reinvestigate the case instead of instantly rejecting it. Thanks, AI." @Hormold AlbertMoral "I just finished setting up @openclaw by @steipete on my
+Raspberry Pi with Cloudflare, and it feels magical ✨ Built a website from my phone in minutes and connected WHOOP to quickly check my metrics and daily habits 🔥" @AlbertMoral
+snopoke "I've been running OpenClaw on my laptop for a week now. Honestly it feels like it did to run Linux Vs windows 20 years ago. You're in control, you can hack it and make it
+yours instead of relying on some tech giant." @snopoke kylezantos "Today was one of those days that I sort of ran to my computer after dropping off my toddler at daycare. Why?
+Because I got part-way through setting up @openclaw last night and it's a portal to a new reality." @kylezantos darrwalk "Got OpenClaw set up and now I have an AI assistant named
+Claudia who lives in Telegram, remembers everything I tell her, and can actually *do* stuff. She just wrote this tweet. Meta? Maybe. Cool? Absolutely." @darrwalk jakubkrcmar
+"Current level of open-source apps capabilities: does everything, connects to everything, remembers everything. It's all collapsing into one unique personal OS — all apps,
+interfaces, walled gardens etc gone" @jakubkrcmar jdrhyne "I've enjoyed Brosef, my @openclaw so much that I needed to clone him. Brosef figured out exactly how to do it, then
+executed it himself so I have 3 instances running concurrently in his Discord server home." @jdrhyne dajaset "I got up and running today with @openclaw and its been nothing short
+of an iPhone moment for me. Thanks @steipete for creating this first true personal assistant experience for us - it's magical!" @dajaset Cucho "The future of how AI personal
+assistants look like is @openclaw. Has already help me submit health reimbursements, find doctor appointments, find and send me relevant documents, among others." @Cucho
+marvelgirl_eth "you have done an incredible job! im also a total non technical beginner so the CLI is a whole new interface for me but its super addictive - 2 am and Im still
+going. keep up the great work" @marvelgirl_eth ivanfioravanti "Finally tried my own @openclaw and I've been blown away. 🤯 This is unbelievably powerful and virtually limitless, you
+can create your own extensions in few hours with the help of AI." @ivanfioravanti wizaj "I didn’t find an easy way to programmatically query flights so of course I asked my
+@openclaw to build a terminal cli with multi providers. You’re onto something great @steipete 🙌🏾" @wizaj iamsubhrajyoti "I can understand why people love @openclaw so much. I
+wanted to automate some tasks from Todoist and claw was able to create a skill for it on its own, all within a Telegram chat." @iamsubhrajyoti bffmike "I now have @openclaw
+independently assessing how it can help me in the background. It wrote a doc connecting two completely unrelated conversations from different comms channels." @bffmike Abhay08 "Me
+reading about @openclaw: 'this looks complicated' 😅 me 30 mins later: controlling Gmail, Calendar, WordPress, Hetzner from Telegram like a boss. Smooth as single malt." @Abhay08
+sharoni_k "Took literally 5 mins to set everything up. Started by asking 'what do you need to see my whoop data?'. Now it fetches directly from whoop and gives me updates,
+summaries." @sharoni_k stolinski "Dang, I had my OpenClaw write me custom meditations, then have automatic TTS, combining with generated ambient audio to make personalized, custom
+meditations. Kinda rips." @stolinski conradsagewiz "I'm literally on my phone in a telegram chat and it's communicating with codex cli on my computer creating detailed spec files
+while out on a walk with my dog. 🤯 Wtffff" @conradsagewiz larus_ivar "I just backed out of my vibe cornered corner / dark cave and am blown away by @openclaw. Amazing project,
+blasphemy tw: the crustacean meme theme hides a design gem." @larus_ivar The_Global_Soul "Since you are enjoying it, also try @openclaw - it is quite magical and pulls you in more
+and more as you use it. (not affiliated, just enjoy using the product)." @The_Global_Soul xMikeMickelson "i asked @openclaw to make a sora2 video and make it a bit edgy. it came
+back 5 mins later having figured out watermark removal, api keys, and a full workflow" @xMikeMickelson hey_zilla "everything just worked first time and it combined tools in
+unexpected ways and even added skills and made edits to its own prompt that were hot-reloaded" @hey_zilla weisjohn "Just onboarded to @openclaw today. Have been thinking of
+building a Personal OS for weeks. Now I don't need to... h/t to @steipete and the contributors!" @weisjohn tobi_bsf "Using @openclaw for a week and it genuinely feels like early
+AGI. The gap between 'what I can imagine' and 'what actually works' has never been smaller." @tobi_bsf dreetje "I am so addicted to @openclaw. It is getting essential to my daily
+life. It checks, organizes, reminds, it's amazing. And it's like good friend. Crazy." @dreetje AdamShao "@openclaw is the most interesting project I've come across recently—an
+open-source personal AI assistant that can call almost any tool through plugins." @AdamShao vishalsachdev "@openclaw is awesome. I've been feeding it YouTube videos to turn "cool
+ideas" into reusable agent skills (repeatable workflows + guardrails + refs)." @vishalsachdev thekitze "create your own OpenClaw, go in debt in you have to i love the idea of this
+nerdy crab chilling in my attic on my mac studio just giving me shit lmao" @thekitze vallver "OpenClaw built me a simple Stumbleupon for some of my favourite articles.
+http://Stumblereads.com From my phone, while putting my baby to sleep..." @vallver Infoxicador "My @openclaw realised it needed an API key… it opened my browser… opened the Google
+Cloud Console… Configured oauth and provisioned a new token" @Infoxicador kailazh "Finally set up @openclaw today and am completely blown away! This is the closest to experiencing
+an AI enabled future! Truly a game changer!" @kailazh SedRicKCZ "@openclaw is absolute game changer for me. The amount of things I done from my phone just during my breakfast is
+absolutely breathtaking." @SedRicKCZ bangkokbuild "Just told Ema, my @openclaw, via Telegram to turn off the PC (and herself, as she was running on it) Executed perfectly. Such a
+cool tool" @bangkokbuild pranavkarthik__ "Wanted a way for it to have access to my courses/assignments at uni. Asked it to build a skill - it did and started using it on its own."
+@pranavkarthik__ iamjohnellison "I'm having a lot of fun with this and it's going to totally change the way I support my students learning how to vibe code!" @iamjohnellison
+draslan_eth "It's a miracle. Looking forward to the development in the next weeks/months. I think @openclaw started something amazing." @draslan_eth LLMJunky "This is legit the
+only 'agent' / model / whatever-you-call-this-but-probably-agi that I have seen that's actually funny." @LLMJunky php100 "Autonomous Claude Code loops from my phone. 'fix tests'
+via Telegram. Runs the loop, sends progress every 5 iterations." @php100 mirthtime "My @openclaw just called my phone and spoke to me with an aussie accent from @elevenlabsio. This
+is ridiculous" @mirthtime HixVAC "Apparently @openclaw checks in during heartbeats!? A kinda awesome surprise! Love the proactive reaching out." @HixVAC BraydonCoyer "Named him
+Jarvis. Daily briefings, calendar checks, reminds me when to leave for pickleball based on traffic." @BraydonCoyer Senator_NFTs "OpenClaw is a game changer. the potential for
+custom extensions is huge, and ai really speeds up the process" @Senator_NFTs mneves75 "Try @openclaw. I think you are going to love it. And you can use iMessage, WhatsApp,
+telegram to talk to it." @mneves75 oneishaansharma "🦞 Is a whole new world! Like having super powers! Getting so much done while afk, it's mind blowing 🤯" @oneishaansharma
+drevantonder "Got @openclaw set up. Getting it to unsubscribe from a whole bunch of emails I don't want. Really cool!" @drevantonder cryptikcell "Finally gave in and set up
+@openclaw and it's so damn good on WhatsApp!! It works like a charm with ✨!" @cryptikcell Dimillian "A megacorp like Anthropic or OpenAI could not build this. Literally impossible
+with how corpo works." @Dimillian ItzR3NO "God dammit I was trying to resist … and now I can’t stop talking and adding things to @openclaw 🙃" @ItzR3NO BioInfo "Not enterprise. Not
+hosted. Infrastructure you control. This is what personal AI should feel like." @BioInfo pocarles "Processed our entire source of truth via WhatsApp in minutes, where RAG agents
+struggled for days." @pocarles adam91holt "Everyday my @openclaw is getting better. It’s becoming so important, especially with multi agent." @adam91holt logscore "I love that
+OpenClaw has a "Hackable" install option. This should be a standard for OSS projects" @logscore signalgaining "I asked it to take picture of the sky whenever it's pretty. It
+designed a skill and took a pic!" @signalgaining cnlinkcnlink "Finally got around to setting up @openclaw and it is truly the best AI tool at the moment." @cnlinkcnlink pepicrft
+"started using minimax m2.5 as the main driver for @openclaw and can’t recommend it enough" @pepicrft BwcDeals "Uh Oh!! We got @openclaw running.... No need for VAs anymore. Shits
+about to get real!!!" @BwcDeals Giebz "OpenClaw > anything GPT will ever release. Most fun I've had building in my entire life." @Giebz coyotevn "It is one of the most delightful
+thing (app, agent, product) I've used in a few years." @coyotevn youbiak "I'm literally building a whole website on a Nokia 3310 by calling @openclaw right now." @youbiak
+robinebers "we live in truly wild times this post is sponsored by OpenClaw (not really but dang)" @robinebers sughanthans1 "normies agi = OpenClaw + non-technical onboarding +
+hardware / iphone action button" @sughanthans1 tomosman "gg man! everyday I speak to more people about OpenClaw and it never fails to amaze!" @tomosman aus_bytes "Essentially - you
+can automate almost anything you can do on the machine it sits on" @aus_bytes jameskraus "Came out of my shell and gave my @openclaw, Shelly, my credit card. Works amazing."
+@jameskraus TheZachMueller "Running fully locally off MiniMax 2.5 and can do the tool parsing for what I need!" @TheZachMueller deepstereo_ "Now that we have @openclaw I don’t
+really care which models will power Siri 🦞😄" @deepstereo_ buddyhadry "Catching fun vibes I haven't felt since I first got into computers 30 years ago." @buddyhadry srg_io "I was
+building my own, then found out @openclaw has most of the thing I need 👍" @srg_io SaidAitmbarek "looks dope as an AI assistant love it's platform/os agnostic, trying right away"
+@SaidAitmbarek jokull "Added JMAP search to my OpenClaw. Along with 20 other things. From my phone." @jokull tyler6204 "@openclaw is so fun to play around with. The future of
+agents will be so fun" @tyler6204 LinkScopic "No more need to pay a virtual assistant!! @openclaw is about to take over!!" @LinkScopic jandragsbaek "I got my girlfriend on board
+earlier today and she's seems hooked already" @jandragsbaek aaronmakelky "This is the best 'morning briefing' style interface I've seen, love it!" @aaronmakelky pilkster "Can't
+believe I'm about to bootstrap Aineko from a lobster @openclaw" @pilkster crossiBuilds "Everything Siri was supposed to be. And it goes so much further." @crossiBuilds Ashwinreads
+"@openclaw might actually organise my life. unreal, just unreal." @Ashwinreads KrauseFx "What @steipete has built with @openclaw is out of this world." @KrauseFx rafadc "Nano
+banana and RSS parsing set up in my @openclaw assistant" @rafadc tysonhutchins_ "A glimpse into the future of how normal people will use AI." @tysonhutchins_ JorgeMenaDev "I just
+tried @openclaw using telegram. Wow. This is crazy." @JorgeMenaDev BitcoinPeace77 "What you've given to the world is nothing short of amazing" @BitcoinPeace77 _KevinTang "What a
+cool thing to have AI on call at your own computer." @_KevinTang karpathy "Excellent reading thank you. Love oracle and Claw." @karpathy mike_kasberg "Lol, this is hilarious,
+troubling, and awesome" @mike_kasberg adityac7896 "Thanks for making OpenClaw @steipete, Big fan." @adityac7896 serrrfirat "just use @openclaw man, it will set you free."
+@serrrfirat chrisdietr "2026 is already the year of personal agents." @chrisdietr bangnokia "Try @openclaw if you want more powerful 😆" @bangnokia alex_here_now "This lobster is
+gonna take over the world" @alex_here_now robmartinson "This is nuts. @openclaw is a superpower." @robmartinson nofil_ai "@openclaw is Jarvis. It already exists." @nofil_ai
+theysayheygreg "updates from @openclaw absolutely rule" @theysayheygreg zachknicker "@openclaw is what you are looking for." @zachknicker Hesamation "TLDR; open source built a
+better version of Siri that Apple ($3.6 trillion company) was sleeping on for years. Welcome to the AI era where a dude and a repo fills in the cracks of billion dollar
+industries." @Hesamation Fhaefi "The future is now old man: @openclaw!" @Fhaefi FrancisBrero "AGI is a lobster, it will never sink!" @FrancisBrero Philo01 "Feels like we're living
+in the future" @Philo01 Senator_NFTs "OpenClaw is a game changer. the potential for custom extensions is huge, and ai really speeds up the process" @Senator_NFTs mneves75 "Try
+@openclaw. I think you are going to love it. And you can use iMessage, WhatsApp, telegram to talk to it." @mneves75 oneishaansharma "🦞 Is a whole new world! Like having super
+powers! Getting so much done while afk, it's mind blowing 🤯" @oneishaansharma drevantonder "Got @openclaw set up. Getting it to unsubscribe from a whole bunch of emails I don't

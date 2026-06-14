@@ -1,0 +1,224 @@
+all of the changes so 10:51 that it's understood that audit first 10:53 and then we'll go through some more 10:54 specific changes next. So, there we go. 10:56 It's just finished
+up. And now if we 10:58 scroll down here, what we'll be able to 11:00 see is what is done, what is fixed, what 11:02 is upgraded. As you can see here, we've 11:04 got the firewall
+of course being turned 11:06 on. So that's okay. In the background, 11:09 it's then got some more suggestions down 11:11 the bottom here, but we're going to run 11:13 through them
+step by step after this. It 11:15 does have the suggestions straight away 11:17 that we want to make sure that we've got 11:19 the scheduled audits running every 11:21 single day.
+So, we're going to go 11:23 through and say yes, please make sure to 11:25 have that security deep audit running 11:28 every single day as a chron job. And we 11:30 also want to
+make sure that we're always 11:32 on the latest version. So, make sure to 11:34 go through and check this once a day or 11:36 at least twice a day just to check that 11:38 we're on
+the latest version. Again, this 11:40 can be a chron job as well. And we'll 11:42 send that off. Again, what I'm 11:44 mentioning there, and if you're not sure 11:45 what a chron
+job is, is it's basically 11:48 enabling our agent, in this case Atlas, 11:51 being able to run specific processes at 11:54 specific points in the day. So, for 11:56 example, every
+morning at 6:00 a.m., it 11:59 will go through, run the security audit, 12:01 see if there's any issues. It will then 12:03 go through, check if we're on the latest 12:05 version.
+If we aren't, update us. If we 12:08 are, then we're all good to go. So, 12:09 there we go. We've now got both of those 12:11 cron jobs set up. Next up, we're going 12:13 to go
+through, and of course, because 12:14 we're using Telegram, but you can 12:16 connect in WhatsApp and many other 12:18 channels, we want to have an approved 12:20 versus
+disapproved list for who's 12:22 actually able to engage through those 12:24 channels. Next, we're going to come 12:26 through and say update the config file 12:28 so that we set a
+DM policy with 12:30 Telegram, but it's the same for WhatsApp 12:33 or any of the other messaging service it 12:35 uses so that we're only in pairing mode 12:38 and unknown senders
+can't send any 12:40 messages across, but also that we don't 12:43 really want to be putting it into any 12:44 groups. I really recommend just keeping 12:46 it in your own little
+bubble for now. 12:49 But if it is, it has to have a specific 12:51 at that bot mentioned before it 12:54 responds. So, we'll send this across. 12:56 There we go. So, now that's
+all updated. 12:58 So, only the approved users can actually 13:01 message our bot. Now, this next one is 13:03 in case we're going to have multiple 13:05 users coming through. So,
+what we're 13:06 going to do is make sure that we're not 13:08 sharing any of the context information 13:10 between the different users that we've 13:12 got. So, we'll send this
+off and it will 13:15 go through and make the change. Again, 13:16 that won't be applicable for everyone. I 13:18 really recommend that, of course, at the 13:19 start you're only
+using it yourself. 13:21 You're not giving anyone else access to 13:23 it. only you internally in your own 13:25 isolate instance really are testing out 13:27 before of course it
+goes wider. Next up 13:30 is the big one and it's all to do with 13:31 tools. We're going to say that we want 13:33 to make the tool policy as restrictive Restricting OpenClaw Tool
+Access & File System Permissions 13:36 as possible. I want you to set the tools 13:39 profile to message only. Deny these tool 13:41 groups automation runtime FS. Deny 13:44
+specific tools gateway chron session 13:47 spawn sessions send. We've then got set 13:49 file system to workspace only. We've got 13:52 set exec security to deny with ask mode
+13:55 set to always. And then last but not 13:58 least, disable elevated mode entirely. 14:01 And then we wanted to show us all of the 14:03 config file changes that is making. So
+14:06 we'll send this off. Again, we're just 14:08 going through this step by step. All of 14:09 this is using chat GBT. And I'll explain 14:11 why that's important later on, but
+we 14:14 can get OpenClaw to make all of these 14:16 changes for us. We don't need to know 14:18 all of the different commands. But if 14:20 you are interested in how you can 14:22
+actually run them in your terminal, 14:24 again, I really recommend coming across 14:25 to this security documentation because 14:28 it'll explain everything step by step 14:30
+nice and easily. There we go. It's now 14:32 all installed and make sure that we've 14:33 got a lot more control over the tools. 14:35 The next one we're going to need to come
+14:37 through and actually install Docker. 14:39 Now, Docker is entirely free to set up, 14:41 but what it's going to enable us to do 14:43 is set up something called containers,
+14:46 which is going to help us control what 14:48 OpenClaw is able to run, how much 14:50 control it's got over the machine, for 14:52 example, and basically put it in its own
+14:54 little bubble, its own little store room 14:56 whilst you're executing any tools, any 14:58 commands, just so it's not directly 15:01 impacting your machine. And if you want
+OpenClaw Docker Sandboxing Setup (Step-by-Step) 15:03 to download it, again, it's totally 15:04 free. The link will be in the 15:05 description. Make sure to get it set up. 15:07
+All you need to do is come down to 15:08 download Docker Desktop and it will go 15:11 through and set it up for your specific 15:12 machine. Once you've downloaded it, you 15:14
+should have something that looks like 15:16 this. You don't need to set up an 15:17 account. Again, this is entirely free to 15:19 use. You just need to make sure that 15:21 it's
+sat in the background, the engine 15:24 is running, and of course, if you come 15:25 up the top, you've got the little icons 15:27 up the top here just to see everything 15:29 is
+running as it should be. And the 15:31 reason that we're doing this is because 15:33 of something called sandboxing within 15:36 open claw. What this means is it's only 15:39 going
+to actually run any of the tools 15:41 inside docker containers to reduce the 15:44 blast radius as they like to say. It 15:46 gives us more control over what it's 15:48 doing and
+of course isolating any 15:50 outputs any elements that may be 15:52 produced. Again, as they mentioned 15:54 there, it's not a security boundary, but 15:56 it does materially
+limit the file system 15:59 and process access when the model is 16:02 trying to do something dumb or we've had 16:04 in those attempted issues with perhaps 16:06 prompt injection.
+Again, I'll include 16:08 this link down below. Make sure to come 16:10 through and check it out. We're going to 16:12 be explaining exactly the prompt to use 16:14 in a second. So
+we're going to come 16:15 through and say enable docker sandboxing 16:17 for all agents. Set sandbox mode to all, 16:21 scope to agent and workspace access to 16:23 none. Then
+verify docker is working and 16:26 the sandbox is active. Again trying to 16:29 contain and isolate what our open claw 16:31 has got access to initially and what is 16:33 able to
+run on our machine with those 16:35 terminal commands from day one. So there 16:38 we go. It's gone through, it's applied 16:40 the sandbox configuration, and it's made 16:42 sure
+that we've got Docker installed. 16:44 It's checked that we're running the 16:45 latest version, so 29.2.1. 16:49 And it's got this sandbox policy 16:51 activated and ready to go.
+Next up, we 16:54 need to do one of the most important but 16:55 easiest changes to make, which is 16:57 actually the default port code. The 17:00 reason for this is because, of
+course, 17:02 every Open Claw in the world is 17:03 automatically defaulted to 18789. 17:07 So, we need to make sure that we're not 17:08 sitting on that instance. We want our
+Change OpenClaw Default Port + Tailscale Private Network 17:11 very own unique port that's basically 17:13 randomized so that we're not actually 17:15 known to hackers like we
+would be with 17:17 the default one. So, now we're going to 17:19 go through and say change the gateway 17:20 port from the default 18789 to a random 17:24 port of your choice.
+Also, set up 17:26 gateway or using a token generate a 17:29 strong one and make sure that we're 17:31 having a loop back so it's exposed only 17:33 on our internal network and not
+17:35 external. We now send this off. It 17:37 should go through and actually restart 17:39 our open claw instance as well. So don't 17:42 worry if you see that it disconnects the
+17:44 gateway and it reconnects it. That's 17:46 absolutely fine because it's part of the 17:48 process when it changes the ports. And 17:50 if you see in your TUI that it's 17:52
+actually gone through and disconnected 17:54 as we see here, that's absolutely fine. 17:56 It's part of the process. Of course, we 17:58 just need it to be restarted. If it 18:00
+doesn't do it automatically, we can go 18:02 through and do it ourselves. This is 18:04 just part of making sure that we got 18:06 that different port activated versus the 18:08
+default one. Now, if it doesn't come 18:10 back to us straight away, we're just 18:11 going to do open claw and then gateway 18:14 stop just to make sure that if it's 18:16 running
+in the background, we stop it 18:18 quickly. Then we'll do open and then 18:20 claw and then gateway. And now we should 18:23 make sure that it's all set up. Of 18:25 course,
+running on that totally 18:26 different port, which you should be able 18:28 to see in that URL at the top. Of 18:31 course, I'm not going to be showing you 18:32 this. We need to
+keep it secure, tucked 18:34 away because it's our unique port that 18:36 we're now running it on on our local 18:38 machines. So now it's restarted. I'm 18:41 just going to come
+back across. Hey, are 18:43 we all sorted and ready to go? We'll 18:44 send that off. Just see if it went 18:46 through and of course made all of the 18:47 changes. So it's not
+quite sure if it's 18:50 made all the changes. So we're just 18:51 going to say, please can you confirm 18:52 that you've made all of the changes for 18:54 the following request?
+Again, we'll send 18:56 that off. Yes, it does have the memory. 18:57 So it would have remembered that 18:58 previous conversation. I just like to 19:00 reiterate some of the
+points as we go 19:02 through to actually make sure it's set 19:04 up. So, we're going to come through and 19:06 say the port has automatically been 19:08 changed. I know this has
+been completed. 19:10 We just need to go through and complete 19:11 the rest of the tickets after this. So, 19:14 we'll send that off. Now, it should go 19:15 through and set it
+all up for us for 19:17 that loop back bind value and of course 19:19 the or enabled m token fingerprint and 19:23 the post changes status back. So, as you 19:25 can see here, it
+still didn't complete 19:26 the task. So this is just part of the 19:28 way of working with openclaw. We'll say 19:30 great please go through and do the 19:32 following and then
+we'll just paste them 19:33 in the bottom there and now it's going 19:34 to go off and hopefully make those 19:36 changes for us so that we can get on to 19:38 that next step which
+will be number 19:40 seven. So it looks like it's given us a 19:42 bunch of text to run. So what we're 19:44 going to do is just copy this. So we'll 19:46 go through and run the
+commands again. 19:47 If you're ever not sure what they are, 19:49 do a quick Google search. Go through and 19:51 use claw chatgbt Gemini to ask what they 19:53 are. We're going to
+go through and run 19:55 the first one there. And there we go. It 19:56 looks like it sorted everything of 19:58 course for how fast open close clause 20:00 updating. It looks like
+the command for 20:02 gateway orth is actually changing 20:04 slightly but it's gone through and 20:05 realized what it need to do. Made all of 20:07 the changes. This will all be
+blurred 20:09 but again that's why you need to type in 20:11 the prompt. Just see what it comes up 20:12 for you. Walk through it step by step. 20:14 Ask it any questions or
+queries you have 20:16 just to get through to that comfort 20:17 level where we're all sorted. We're just 20:19 going to say all sorted. I think please 20:21 check and it should go
+through and sort 20:23 it out. Again, it doesn't have access to 20:25 the CLI, but it looks like we're all 20:27 good and ready to go. Now, we're going 20:29 to go through and say
+if it ever wants 20:30 to connect to a browser and go off and 20:32 complete some activities, it's using a 20:34 dedicated profile, like an open claw 20:36 profile versus using our
+personal one. 20:39 So, now we'll go through and set this 20:41 up. And the second part is just making 20:43 sure that we're not sharing any of the 20:44 details over our local
+network as well. 20:47 So, there we go. We've got a few more 20:48 commands to run. So, we'll come back 20:50 across to our terminal. So, we just run 20:52 through, run all those
+commands, and now 20:54 we're going to go through and lock down 20:55 the file permissions as you can see here 20:57 to make sure they're all correct. So, 20:59 we're going to come
+through and of 21:00 course set up a new terminal. We're then 21:02 going to run the command. So, we'll do 21:04 the first one. So, we'll come back 21:05 across. We'll paste the
+output in there. 21:07 This should just confirm to us that it's 21:09 all set up correctly. So, next is all 21:11 going to be about how we're actually 21:13 able to access our
+instance. Now, I've 21:15 already got a Surf SharkVPN set up. 21:17 Again, that's not sponsored, not 21:18 affiliated. I've just used them for many 21:20 years. I also really
+wanted to use it 21:22 mainly because it's got the antivirus 21:24 protection that we can turn on just to 21:26 make sure that it's constantly running 21:28 in the background. And
+of course, we can 21:30 schedule it to scan runs every single 21:32 day just to see if there's any issues 21:34 going through. We can also of course use 21:36 the VPN to help kind
+of protect us in 21:38 the background as well. Of course, this 21:40 is just the start. The actual element 21:42 that I want to use is something called 21:44 tail scale. So, we're
+going to come 21:46 across to tail scale. in completely free 21:48 to start off with. We do have some other 21:50 paid options if you want to, but of 21:52 course we only need that
+basic one to 21:54 start off with. So, we're going to come 21:56 across to download. We're then going to 21:58 choose MacOSS and download for our 22:00 model. Now, once it's all
+downloaded and 22:02 installed, you should see a screen that 22:04 looks like this. We're going to do get 22:06 started. We're going to say install. 22:08 We're going to say open
+settings. Again, 22:10 we'll just go through the setup 22:12 procedure. Make sure to do it on your 22:14 own for your specific machine. So, I'll 22:16 see you at the end once it's
+done. Now, 22:17 to be able to log into your account, 22:19 whether you're using the API key or the 22:21 normal one, you're going to need to make 22:22 sure you're on your admin
+account, the 22:24 separate account, versus being an open 22:27 claw because, of course, now we've 22:28 restricted it permissions for what it's 22:30 able to do. So, there we go.
+We can now 22:32 see that we're all connected on our 22:33 device. And we'll make sure that, of 22:35 course, we reactivate it every 90 days 22:37 just to make sure that we're all
+secure 22:39 within Tail Scale. What you may see is 22:41 that they put you on that premium trial 22:43 when you go through, but they do have a 22:45 free version. You just need to
+make sure 22:46 that you come down to the personal plan 22:48 to use that. Otherwise, it starts off 22:50 about $5 per month for the personal 22:53 plus, but really recommend
+coming down 22:55 to the personal and just starting off 22:56 with that. So, there we go. We just come 22:58 through and say, please can you check 22:59 the tail scale is up and
+running and 23:01 sorted in the background and we should 23:03 be able to send this off. So, I just OpenClaw SSH Hardening & System Prompt Security Rules 23:04 went through and run
+those commands. So, 23:06 we're just going to paste it in there 23:07 and then it will know that it's got 23:08 access to all of that information and it 23:10 should be up and
+running and know of 23:12 course how it's working. Next up, we're 23:14 going to do something called SSH 23:16 hardening. So, now we're going to go 23:18 through and say check if
+remote login/ 23:21 SSH is enabled on the machine. If it is, 23:24 set it up to use keybased or only and 23:28 disabled password authentication. If I 23:31 don't need SSH, then
+disable it 23:33 entirely. show me what you found and 23:35 what you recommend. So there we go. We 23:37 got it feedback. We're going to say 23:38 great. Please can you go through
+and 23:39 enact the changes that you recommend so 23:41 that we're set up and ready to go and 23:43 we'll send that off. So we're just going 23:45 to go through and run these
+commands. 23:47 Great. So now it's gone through made all 23:48 those changes. Then we're going to go 23:49 through and make sure that it's got a 23:51 new security basically system
+prompt to 23:54 make sure that it's trusting of course 23:55 none of the links, none of the 23:57 attachments coming through. Never 23:59 revealing API keys, credentials, 24:01
+infrastructure details, all of these 24:03 different elements. So there we go. We 24:04 ran the same command. Now it's gone 24:06 through and of course make sure that 24:08 it's
+correctly locked. We can do that as 24:10 an enhanced feature as the admin in the 24:12 future if we want to. Now last but not 24:14 least, we're just going to come through. 24:16
+Please can you go through and just check 24:17 what the security audit status is, run 24:20 the deep audit just to check if we've 24:22 got any further suggestions for what we
+24:24 should do and we'll send that else last 24:26 but not least. So then we'll be able to 24:27 see if there's any further security 24:29 enhancement suggestions. But as you can
+24:31 see that that may have been slightly 24:32 over the top for all the security we 24:34 want to put in place, but I'd rather be 24:36 safe than sorry. So that of course we
+24:38 can then go through and make the changes 24:40 in the future. So for example, it's not 24:42 able to run these commands. So if you 24:44 wanted to give it that access back,
+you 24:46 just need to explain it and it'll be 24:48 able to do it. Otherwise, what we'll be 24:49 able to do is copy this, come back 24:51 across to our terminal, paste the 24:53
+command in there, and now it will be 24:55 able to go off and complete the action. 24:56 So again, it's up to you for what you 24:58 want it to have access to, what you 25:00 don't
+want it to have access to, being 25:02 able to run commands, not being able to 25:04 run commands, and so so much more. When 25:06 it comes to of course the security with Is
+OpenClaw Secure Enough to Use in 2026? 25:08 open claw, one thing that's worth noting 25:10 as well is of course the model that you 25:12 choose plays a really important part.
+25:14 Many of the open- source models simply 25:16 aren't smart enough to identify real 25:18 vulnerabilities that are coming through, 25:20 especially the lower, cheaper, easier
+25:22 models to use versus some of the more 25:24 complicated and complex models like 25:25 Kimmy K 2.5. So, as you can see there, 25:28 as we run through with chat GPC5, we're
+25:31 able to use our oorthth connector. So 25:33 that didn't cost us anything at all to 25:34 run through and we were able to get 25:36 everything set up with security. Again,
+25:38 I'll go through and change some of the 25:40 config files. I just wanted to show you 25:42 everything that you can possibly add on. 25:44 If you got any other comments or
+25:45 suggestions, definitely add them down 25:47 below. And of course, come across to the 25:49 community if you want to learn more 25:50 about AI and automation. And that's all
+25:52 for this video. Have a great day. All From the seriesWhat is Claude Cowork? 0:00 Claude Cowwork just dropped and is going 0:02 to completely change the way that people 0:04
+get work done. This is the same tech 0:06 that sits behind Claude Code and was 0:08 actually developed by Claude Code itself 0:11 within a week. What it enables us to do 0:13 is
+have Claude continually working on 0:16 all the different tasks we set it both 0:18 in parallel and on its own. And we're 0:21 able to go through and teach it new 0:23 skills and
+new processes we want it to 0:26 complete. This way you can either get Claude Cowork 2 months work in 2 hours 0:28 work done whilst you're asleep or you 0:30 can start to complete
+other tasks that 0:32 really need your attention. And this is 0:33 an example of what's possible. There's 0:36 this use case which this individual put 0:38 out and what they said
+is they installed 0:40 Claude's co-work. It was able to write 0:42 14 descriptions. They had an entire 0:45 strategy document developed for their 0:47 marketing, 47 partner emails,
+three 0:50 announcements. They've got a team guide 0:52 and brand voice from 6 months ago. 23 0:55 LinkedIn DMs that have been left unread. 0:58 And he thinks that this was about 2
+0:59 months of work that was done in 2 hours. 1:02 So, we're able to bring to life all of 1:04 those real world tasks that you would 1:06 have to do every single day so that it
+1:08 can start taking the action on your 1:10 behalf, but of course still have you in 1:12 the loop for those outputs as well. In 1:14 this video, I'm going to show you four 1:16
+great use cases for how we can use 1:18 Claude code to speed up the work that we 1:20 would do every single day, week, or 1:22 month so that we don't have to do that 1:24
+ourselves. So, first of all, how do we 1:26 get Claude Codework actually set up? 1:29 Well, you want to come across to the 1:30 Claude desktop app that you've got set How to set up
+Claude Cowork 1:33 up. We're able to see in the top left, 1:35 we've now got chat, co-work, or clawed 1:38 code. You just want to press co-work and 1:40 it's going to bring it up
+for you to 1:42 start processing. It may ask to just 1:44 install a couple of things. That's 1:45 absolutely fine. It's just enabling us 1:47 to have that direct connection with
+our 1:50 local machine. As you can see here, 1:52 they've already got some examples set up 1:54 for us to be able to use. We're gonna 1:56 have creating files, analyzing data, 1:59
+making prototypes, and so so much more 2:02 now that we've got the power of 2:03 basically clawed code and the normal 2:06 chat model of Opus 4.5 and all the ones 2:09 out there to
+really take our 2:11 productivity to the next level to show 2:13 you where everything's going to be 2:14 housed. In the top right, you're going 2:16 to see the different steps and
+the 2:19 progress it is, which you'll see in 2:21 examples in a second. Next, we're going 2:23 to see any of the folders that we're 2:25 working with. Then, we're going to have
+2:27 the context here as well, which is all 2:30 of the files it's going to be using. And 2:31 between the two here, you'll see the 2:33 ones that it generates as well. We can 2:36
+also connect in tons and tons of 2:38 different apps for us to be able to use 2:40 our co-work with it. It can 2:42 automatically analyze your email, your 2:44 GitHub, Google
+Calendar, and so so many 2:47 more. Let me know in the comments down 2:48 below if there's anything you'd love us 2:50 to showcase with Co-work. But we're 2:52 going to come
+straight back to co-work 2:54 and dive into a few examples. So first 2:56 things first, we're going to come down 2:58 and we say we want to organize our Organise files
+automatically with AI 3:00 files. What we can do is down the bottom 3:02 is we can say work in a specific folder. 3:05 When you click on this, it's going to 3:07 open up all of
+your desktop and 3:09 different elements. So currently my 3:11 desktop looks like this with loads and 3:12 loads of different documents that we 3:14 need to go through and really
+optimize 3:16 so that we have a nice neat folder 3:18 structure. So, what we're going to do is 3:21 actually just select my desktop, which 3:23 has got everything in here, like you
+can 3:25 see, and we're going to press open. But 3:28 if we wanted to go through and give it 3:30 specific folders, maybe you've got a 3:31 finance or accounting folder, you' be
+3:34 able to do only that one specific folder 3:36 as well. We're going to say always allow 3:38 just so that it can make the 3:39 improvements in the future. We're going 3:41 to
+say tidy up my desktop and ask any 3:44 clarifying questions before you go 3:46 through. Of course, very simple prompt 3:48 just to show you what we're able to do. 3:50 We're going
+to allow it access to our 3:52 desktop. And now it's going to start 3:54 going through generating the actual task 3:57 steps that it's going to complete, any 4:00 folders that it's
+working with. So, for 4:01 example, starting off with YouTube 4:03 videos, any context, and much much more. 4:05 One thing I love about it, and this was 4:07 really really great in
+code, it's now 4:09 going to ask us questions to basically 4:12 resolve what we want to achieve. We're 4:14 going to say number one, which is where 4:16 our desktop folder is.
+We're going to 4:18 say that we want to do by maybe file 4:21 type for how we store it. And we want to 4:23 flag any duplicates as well. So now 4:26 we're having that power of
+clawed code, 4:28 which is really, really good at sense 4:29 checking, planning before we go through 4:31 and build anything. And now it's going 4:33 to go off and complete that
+task. We're 4:35 going to say choose a folder, just 4:37 making sure it's all working correctly. 4:39 We'll do open. And now it should be able 4:41 to access both YouTube videos
+and our 4:44 desktop to go through and complete the 4:46 request. If we see it's now identified 4:48 we've got 78 items on the desktop. In 4:51 the top right it's now created a
+to-do 4:53 list. So we can see that it's checking 4:55 the files that exist. It's now going to 4:57 create new folders, sort the documents, 5:00 sort images, sort spreadsheets,
+files, 5:04 everything else to get it resolved. 5:05 We've now got 16 word documents, four 24 5:09 images, 27 text files, five 5:12 spreadsheets, two folders, and one code. 5:14 If
+we come down here, it's going to say 5:16 it's got several issues, everything like 5:18 this. We're just in this case going to 5:20 say yes, please organize. Now, it's 5:22 going
+to go off and sort it all for us 5:24 on autopilot. So, there we go. It's now 5:26 running in the background. You can see 5:28 some of the files starting to be moved. 5:30 It's
+generated the I think it's about 5:32 seven folders, eight folders where it's 5:35 going to be storing all of these 5:36 different documents. So, it's working 5:38 through in the
+background now to 5:39 complete that task. So, there we go. 5:41 It's now all done. And as we can see 5:43 down here, it looks like it's completed 5:45 everything and generated the
+folder 5:47 structure for us. So, if we come across, 5:49 as we can see here, we've now got it all 5:52 ready to go. So, if I just open up this 5:54 repository or these folders,
+sorry. As 5:56 you can see here, what would have taken 5:58 maybe 15 minutes just to go through and 6:00 organize everything has now been done on 6:03 autopilot. But of course,
+this is just 6:05 the start. We can go through and claude 6:07 co-work is much more powerful than just 6:10 tidying up a few files and folders. To 6:12 bring it to life, we're
+going to come 6:14 through and create a new task. We're 6:16 going to give it a new folder, which is 6:18 going to be the spreadsheets one that 6:19 it's just generated. And we can
+even 6:22 upload direct documents in here if we 6:24 want to. We're going to say in here, Analyse bank statements with Claude 6:26 I've downloaded an example bank 6:28 statement,
+just a CSV file. Please go 6:31 through and analyze all the 6:32 subscriptions, what we're spending it 6:33 on, total yearly spend, and asking it to 6:36 give us lots and lots of
+different 6:37 details. Now, this is an example for 6:40 personal finance. But if you had 6:42 business data in here as well, it's 6:44 going to be able to go through analyze 6:46
+lots of it, do some market research 6:48 because it's also got the skills to be 6:50 able to go off search the internet, 6:52 which we're going to show you in the 6:54 next one for
+sure. So, as we can see 6:56 here, it's now pulling in all of the 6:57 different progress. So, we've only got 6:59 four tasks this time. We've also got the 7:02 correct
+spreadsheet, as we can see here, 7:05 being pulled through with just some 7:07 example data that we've got in there. 7:09 It's now going through researching 7:11 everything. And as
+we can see, it's also 7:13 using the web search as well, which of 7:16 course gives us the ability to search 7:18 the internet in real time versus 7:20 something like clause code
+where you 7:21 need plugins and all this extra stuff to 7:24 be able to do that. As we can see here, 7:26 pulling in lots and lots of information 7:27 for us to be able to
+reference. And as 7:29 we can see here, it's come back. If we 7:32 open it up, it should have all of them 7:34 categorized as we asked for. It's got 7:36 the different reasons, how
+to cancel, 7:39 and we're able to see, of course, what 7:41 our item spend would be if we had it 7:43 monthly versus yearly, how much we could 7:45 save, what we should cancel,
+what may 7:48 keep services, and much much more. And 7:51 that's again just a personalized 7:53 example. But because this is running 7:55 locally on your computer, you're not 7:57
+sharing of course documents off into the 7:59 cloud, which could be a bit more 8:01 restrictive depending on your use case. 8:03 But you've also got to be careful cuz of 8:05
+course you don't want it to corrupt any 8:07 of the local files which is where you've 8:09 got that work around when you do upload 8:12 it into the workflow here. So that's 8:14
+just the starter. Now let's come through 8:16 and give it a properly agentic task. 8:19 We're going to say I need it to 8:20 understand the competitive AI landscape 8:23 for AI
+writing tools. We want to 8:26 research maybe our top four competitors 8:28 cuz we're going to be vibe coding a 8:30 platform something like that to life. 8:32 Once it's gone
+through and analyzed 8:34 everything, then we want it to go 8:36 through and create a presentation with 8:39 the title, slide, market overview, and 8:42 everything like this. So,
+what could 8:44 have taken us multiple hours to go 8:46 through, do super in-depth research for 8:48 these different platforms, and create a 8:51 presentation, we're now going to
+get 8:52 this to go through on autopilot. And one 8:55 thing to mention with this as well is 8:57 whilst it's working its way in the 8:59 background, if you've generated your 9:01
+very own custom skills, maybe there's a 9:04 way that you love to have your 9:05 PowerPoint designed, you can add that in 9:08 here. If you've got a specific way that 9:09 you do
+your research and citations, we 9:12 can add it in here as context. There's 9:14 so so many different ways we can use it. 9:16 If we look on the claude for Chrome, as 9:18 you can
+see here, it's now opening up 9:20 tabs and able to go through and complete 9:23 different tasks for us using the MCP. 9:27 You've also got the Claude extension as 9:29 well if you
+wanted to go through and use 9:31 that instead. So now, as we can see 9:33 here, it's asking us to allow access to 9:36 all of these different sites. We're just 9:37 going to let
+it do that, and it's going 9:39 to go through and start analyzing all of 9:41 them for us. As you can see in the 9:43 background, we've got that slight orange 9:45 bar that's going
+around. So, it's taking 9:47 control of the screen, starting to flick AI competitive analysis + auto PowerPoint 9:50 through, do that analysis for us, 9:52 pulling out the key
+information. It's 9:54 now opened up a new tab. It's looking at 9:56 the pricing for copy AI. It's opened up 9:59 a new tab for Jasper AI. Again, this 10:02 isn't a brand new
+feature, being able to 10:04 access Clawude within Chrome, but it's 10:07 enabling us to have that automated 10:09 workflow, which we wouldn't do with a 10:10 normal version of
+Claude, but isn't so 10:13 technical for the way that we would do 10:14 it with our Clawude Code version 10:17 instead. And as we see in the background 10:19 here, it's going
+through analyzing the 10:21 different pricing across the different 10:23 tabs as well, so that we can really see 10:26 how much it actually costs, where the 10:28 opportunity is,
+and everything else that 10:30 we would need to produce our insight. 10:32 So, as we can see in the background, 10:34 it's gone through and it's done lots and 10:36 lots of
+research for us. It's now going 10:38 to come through and start generating 10:40 that PowerPoint for us using the generic 10:43 PowerPoint skills that we've got access 10:45 to.
+We're currently on to slide three. 10:47 So, let's check it out once it's done. 10:49 And there we go. It's just gone through 10:50 and completed our request. Now, I don't 10:53
+have the connector for this account into 10:56 the actual Google Drive, but as we can 10:59 see here, it's gone through and created 11:00 a PowerPoint for us. So, what I'm going
+11:02 to do is just download this and add it 11:05 across into our Google Slides. And as 11:07 you can see here, the background, just a 11:09 quick preview of what it's been able
+to 11:11 do. So, there we go. We're now into our 11:13 Google Slides. So we can make the 11:14 changes as much as we want. Again, with 11:16 all of this stuff at the moment, it's
+11:17 not 100% on the output. For example, 11:20 here it looks like it's not quite done 11:22 that formatting correctly. So we' be 11:24 able to go through and make a few 11:25
+changes like this. But again, this is 11:27 the state of AI tools at the moment. 11:29 There's some out there that are really 11:30 niche and specific that have got lots of 11:33
+skills that can get you 100% of the way 11:35 there, but what we see from outputs like 11:38 Claude Co-work and a few others is 11:40 they're going to get you 80 90% of the 11:42
+way there. You still need to use, of 11:44 course, your brain and critical thinking 11:46 for the different steps, assessing 11:47 everything, double-checking everything, 11:50
+especially if you're going to be 11:51 presenting it. Again, I can think of 11:53 many, many better ways to format some of 11:55 these slides, but it's really, really 11:57
+impressive to see how far we've come 11:59 with just some of these tools alone. And 12:01 if we come back across, one of the other 12:03 features I absolutely love about this,
+12:05 and what we're able to do as well is run 12:07 multiple different requests or tasks in 12:09 parallel. So for example, you could say 12:11 draft a message. We could have one
+about 12:13 the latest news in AI. We could send 12:15 that off. It's going to start doing this 12:17 task in the background. We can do Run multiple AI agents in parallel 12:19
+another one. We can say create a file. A 12:22 file needs to be about a presentation 12:25 which is going to be about a pitch deck 12:28 for example topic for AI impacting the
+12:33 app building market. And again we're 12:36 able to send this off. It's going to 12:37 start going through. If we come back 12:39 across to the other one, as we can see 12:40
+here, we're now able to do, for example, 12:43 we want it to be a email that's going to 12:45 be going across, it's going to be 12:47 clients and stakeholders. We want it to 12:48
+be more conversational. We want latest 12:51 news, industry reports. We could do 12:53 general overview. We can submit that. 12:56 And again, it's running in the 12:58 background.
+We got an update from our 13:00 other agent. And this is very similar. 13:02 If you've been using clawed code, you'll 13:04 know about the different sub aents 13:05 they've got or
+for example from Google 13:07 anti-gravity. We're able to create 13:10 custom agents to complete tasks. Again, 13:12 we're able to go through say that we're 13:14 just going to put
+all of these different 13:16 points through. It's going to go through 13:17 and work on all of these in the 13:19 background. So, I've given you a few 13:21 examples there. Imagine
+you get your 13:23 to-do list for today, for the week, and 13:25 you start figuring out what actually 13:27 could we get the AI system to help with. 13:29 And this is where we're
+starting to get 13:31 close to what I think many people 13:34 actually thought AI would be like, which 13:36 is where we can give it a task and it's 13:38 going to get us 80 90% of
+the way there 13:40 without you having to constantly change 13:42 and update and adjust all of these 13:44 different points throughout the process. 13:46 As we're going to say yes,
+please crack 13:49 on. And it's going to go through start 13:51 working on that. We'll come back across 13:52 to our other one. It's going through. 13:54 We'll say yes, please
+continue. Again, 13:57 we're just getting it to run through in 13:59 the background. and complete all of 14:00 these different tasks. These are just 14:02 some of the ideas, but
+there's tons and 14:03 tons of different use cases out there 14:05 for how we can now use clawed code to 14:08 action different tasks within our 14:10 business. So, there we go.
+It's just 14:12 finished generating our draft email. So, 14:14 we can open this up. As we can see here, 14:16 we've got some of the news points. We've 14:18 got all of the
+different parts to watch. 14:21 Again, think of this. It would have 14:23 taken us, you know, at least half an 14:24 hour to go through, identify all of the 14:27 different latest
+news topics, generate 14:29 an email draft, everything like this. 14:31 And it was able to just do it in the 14:32 background for us. If we come across to 14:34 our pitch deck,
+still going up and 14:37 finishing. So, we'll just wait for this 14:38 to come through. So, there we go. It's 14:39 now gone through, completed all of the 14:41 different actions
+for us. And if we just 14:44 open this up, we should be able to see 14:45 that example deck. Again, this is just 14:47 an example PowerPoint, but it can do 14:50 PDFs, it can do
+Excel's, CSVs, all of 14:52 these different ones that we want. And 14:54 just to show you how different it is, 14:55 that's why the skills are really 14:57 important. We're able to
+go through 14:59 adding lots and lots of different 15:00 details in here. What we would do just 15:03 some example demi data. And I think this 15:05 looks absolutely fantastic.
+Again, to 15:07 think what 12 months ago, it wasn't even 15:09 really able to generate good PowerPoints 15:12 or even outputs. And now we've got all 15:14 the way to this level.
+Now, it's worth 15:16 noting this is still going through and 15:18 being tested. They are rolling it out 15:20 slowly to all of the users. Initially, 15:22 it's available only on
+Mac and for the 15:26 Opus or the higher plan Max users, but 15:28 they are starting to increase it for 15:30 many, many more people out there. So, Claude Cowork honest review
+15:32 you will run into issues every now and 15:34 again, but for the most part, I've had 15:36 it work quite seamlessly. And I want to 15:38 be honest that some of the other

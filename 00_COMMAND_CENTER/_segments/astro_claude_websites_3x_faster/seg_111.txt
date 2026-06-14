@@ -1,0 +1,226 @@
+Description will be resolved by LLM while const value will be applied directly to the function. 7 Define parameters Define the parameters for the custom function using JSON schema
+format or JSON form. Only available for POST, PATCH and PUT requests. For guidance, refer to: OpenAI’s Function Calling Guide Function Calling Tutorial Payload: args only When
+Payload: args only is enabled, the JSON body is only the function’s arguments: those fields appear at the top level of the request, not nested under args. When it is off, the body
+follows Request & response spec below (name, call, and args). Turn this on when your endpoint expects a flat JSON body that matches your parameter object exactly, with no outer
+wrapper. Example parameter schema: { "type": "object", "required": [ "order_id" ], "properties": { "name": { "type": "object", "description": "", "properties": { "first_name": {
+"type": "string", "description": "User first name" }, "last_name": { "type": "string", "const": "{{last_name}}" } } }, "order_id": { "type": "number", "const": 1234 } } } Example
+JSON form: 8 Set response variables (optional) Extract values from the API response and save them as dynamic variables for use later in the conversation. For example, you can
+extract a user’s name from the response and reference it later using {{user_name}}. Example response body { "properties": { "user": { "name": "John Doe", "age": 26 } } } 9
+Configure speech behavior Set up how the agent should handle speech during and after function execution. These two options are controling agent’s behavior when user is not talking
+during the function call period. If user interrupts or talks, the agent would respond normally regardless of these settings. Note: both Speak During Execution and Speak After
+Execution are Prompt based. LLM will generate the message based on the config and the conversation. Speak during execution: Whether the agent would speak the moment the function is
+called. Note that currently agent would speak just for one time during the beginning of the function call. Enable for user-facing actions (e.g., getting weather information)
+Disable for background tasks (e.g., attaching notes to call) Speak after execution: Whether the agent would keep talking / do other actions (maybe call another function) after the
+function call is completed. You can use this to let agent tell user the result of the function call, continue the conversation, execute another task, etc after the function call is
+completed, without the need to wait for user to say anything to trigger a response. Probably should enable for almost all cases, except for ones that are like press a digit kind of
+task where you don’t expect the agent to keep talking. 10 Update prompt for function It’s best to include in the prompt explicitly when is the best time to invoke the custom
+function. For example: When user provided the city name, please get the weather for that city by calling the `get_weather` function. ​ Troubleshooting If you failed to save the
+custom function, it is likely because the parameters are not valid. One common mistake is not adding "type": "object", to the top level of the JSON schema. We recommend clicking
+one of the examples and update accordingly. ​ Request & response spec Retell will send the request to your endpoint with the following request spec. Request header
+X-Retell-Signature: encrypted request body using your secret key, used to verify the request is from Retell. Read more below. Content-Type: application/json. This indicates the
+payload is in JSON format. body (in JSON format, for POST, PUT and PATCH request) name: the name of the custom function. call: the call object for you to get more context about the
+call, it also contains real time transcript up to the time the request is sent. Check out Get Call API for more details about the call object. args: the arguments for the custom
+function, as a JSON object. If Payload: args only is enabled for a function, the body is only the argument object (no name, call, or args wrapper). Parse parameters from the top
+level of the JSON, and run signature verification on that same body string. The request will timeout in your specified timeout period, or 2 minutes if not specified. When request
+fails, it will be retried up to 2 times. Response Response should have a status code between 200-299 to indicate success of HTTP request. Response to the request can be in various
+format: string buffer JSON object blob All these formats will be converted to string before sending to LLM for further processing. The function result is capped at 15000 characters
+to prevent overloading LLM context window. ​ Verifying Request is from Retell To verify that the request is coming from Retell, you can check the X-Retell-Signature header. The
+value is a encrypted request body using your secret key. For GET and DELETE requests, the request body is empty. You can use empty string in the verify function. import { Retell }
+from "retell-sdk"; import express from "express"; const app = express(); // Use raw body for signature verification, not JSON.stringify(req.body). app.use(express.raw({ type:
+"application/json" })); app.post("/check-weather", async (req, res) => { const rawBody = req.body.toString("utf-8"); if ( !Retell.verify( rawBody, process.env.RETELL_API_KEY,
+req.headers["x-retell-signature"], ) ) { console.error("Invalid signature"); return; } const content = JSON.parse(rawBody); if (content.args.city === "New York") { return
+res.json("25f and sunny"); } else { return res.json("20f and cloudy"); } }); from fastapi import FastAPI, Request from fastapi.responses import JSONResponse from retell import
+Retell retell = Retell(api_key=os.environ["RETELL_API_KEY"]) @app.post("/check-weather") async def check-weather(request: Request): try: raw_body = (await
+request.body()).decode("utf-8") valid_signature = retell.verify( raw_body, api_key=str(os.environ["RETELL_API_KEY"]), signature=str(request.headers.get("X-Retell-Signature")), ) if
+not valid_signature: print("Received Unauthorized") return JSONResponse(status_code=401, content={"message": "Unauthorized"}) post_data = json.loads(raw_body) args =
+post_data["args"] if args["city"] == "New York": return JSONResponse(status_code=200, content={"result": "25f and sunny"}) else: return JSONResponse(status_code=200,
+content={"result": "20f and cloudy"}) except Exception as err: print(f"Error in webhook: {err}") return JSONResponse( status_code=500, content={"message": "Internal Server Error"}
+) You can also secure your server from public network by only allowlisting Retell IP addresses: 100.20.5.228 Was this page helpful? Yes No Press digit (IVR navigation) Code Tool
+Ask a question... x linkedin github Powered by This documentation is built and hosted on Mintlify, a developer documentation platform Integrate any system with custom function -
+Retell AISkip to main content Search... ⌘K Ask AI Homepage Support Compliance Dashboard Documentation API Reference Deprecation Notice Community Changelog Status Pricing Enterprise
+Plan Introduction Get Started Build your first phone agent in 5 minutes SDKs MCP Server Build Setup single / multi prompt agent Step 1: Write the prompt Single/Multi Prompt Agent
+Overview Write a single prompt Build a multi-prompt agent Step 2: Configure the basic settings Step 3: Add function calling Function Calling Overview End call Transfer call Send
+SMS Check Calendar Availability Book Calendar Press digit (IVR navigation) Integrate any system with custom function Code Tool Extract Dynamic Variables Agent Transfer MCP Setup
+conversation flow agent Conversation Flow Overview Step 1: Configure global settings Step 2: Add nodes Node Overview Conversation Node Subagent Node Function Node Function Node
+Overview Custom Function Check Calendar Availability Book Calendar Code Node Call Transfer Node Press Digit Node End Node Logic Split Node SMS Node Extract Dynamic Variable Node
+Agent Transfer Node MCP Node Step 3: Add transition conditions Components Flex Mode Advanced features Debug guide Create chat agent Set language for your agent Configure a
+multilingual agent Understand user speech better Generate better responses from LLM Customize the synthesized speech Integrate telephony features Provide context to the agent
+Guardrails Test Testing Overview LLM Playground LLM Simulation Testing Audio Testing Deploy Purchase phone number A/B Testing Connect to custom telephony providers via SIP Make &
+receive phone calls International Calling and Fees Create Chat Completion Retell Website Widget Send & receive SMS Setup versioning for agents Compare agent versions Create Batch
+calls Increase call pickup rate Connect to web call Understand concurrency & limits Monitor Monitor sessions via dashboard Get analytics insight Alerting Register & handle webhooks
+Post Call Analysis Reliability & Debugging Reliability Overview Latency Fix agent behaviors Debug phone call issues Prevent abuse Fraud Protection Accounts and Workspace Workspace
+Account Access Control KYC Verification Billing Keys Privacy Other Topics Custom LLM Audio Basics Integrations HubSpot Integration AI Quality Assurance AI Quality Assurance Create
+QA View QA Results AI QA Metrics Address Metric Issues On this page Create a Code Tool JavaScript Environment dv — Dynamic Variables metadata — Call Metadata fetch(url) — HTTP
+Requests console.log() — Debugging Examples Format data from dynamic variables Fetch data from a public API Conditional logic with API call Security and Architecture Guidance
+Response Variables Configuration FAQ Step 3: Add function calling Code Tool Copy page Run JavaScript code directly in your agent without an external server Documentation Index
+Fetch the complete documentation index at: https://docs.retellai.com/llms.txt Use this file to discover all available pages before exploring further. Code Tool lets your agent
+execute JavaScript code as a function call — no external server needed. Unlike custom functions that send HTTP requests to your endpoint, code tools run directly in Retell’s
+sandbox. The LLM decides when to call the code tool based on the function name, description, and conversation context. Code Tool is designed for lightweight logic like formatting,
+calculations, and simple read-only lookups. Do not use it to access internal systems, write to production databases, or handle sensitive credentials. Both dv and metadata values
+are stored in plaintext with every call record. For integrations that require authentication, secrets management, or write access, use a Custom Function hosted on your own backend.
+See Security and Architecture Guidance for details. ​ Create a Code Tool 1 Add a Code Tool In the agent’s Functions section, click + Add and select Code. Function type dropdown
+showing the Code option 2 Set name and description Name: A unique identifier (alphanumeric, dashes, underscores). Example: calculate_shipping_cost Description: Explain what the
+tool does and when to call it. The LLM uses this to decide when the function is appropriate. Example: “Calculate shipping cost based on the customer’s zip code and order weight.” 3
+Write JavaScript Write your JavaScript code in the editor. You have access to dynamic variables, call metadata, and the fetch function for HTTP requests. See JavaScript Environment
+below for details. Code Tool editor with name, description, code, and configuration options // Example: calculate shipping based on dynamic variables const weight =
+parseFloat(dv.order_weight); const zone = dv.shipping_zone; let cost; if (zone === "local") { cost = weight * 0.5; } else if (zone === "domestic") { cost = weight * 1.2; } else {
+cost = weight * 3.0; } return { shipping_cost: "$" + cost.toFixed(2), zone: zone }; 4 Set response variables (optional) Use Store Fields as Variables to extract values from your
+code’s return value and save them as dynamic variables. Specify a variable name and the JSON path to the value. For example, if your code returns { "shipping_cost": "$6.00",
+"zone": "domestic" }: Variable NameJSON PathExtracted Value shipping_costshipping_cost"$6.00" shipping_zonezone"domestic" 5 Configure speech settings Speak During Execution: When
+enabled, the agent says something while the code runs (e.g., “Let me calculate that for you.”). Choose Prompt or Static Text. Speak After Execution: When enabled (default), the LLM
+speaks about the result. Turn off if you want the tool to run silently. 6 Update your prompt Guide the LLM on when to use the code tool in your agent’s prompt. For example: When
+the customer asks about shipping costs, use the calculate_shipping_cost tool to compute the cost based on their order details. 7 Test your code Click Run Code at the bottom of the
+editor to test. Use the Dynamic Variables dropdown in the editor to set test values for your variables (e.g., give order_weight a value of “5”) — these values are only used during
+testing and won’t affect your live agent. The output panel will show the result and any console.log() output. Code Tool editor showing test output after clicking Run Code ​
+JavaScript Environment Your code runs in a JavaScript sandbox with the following globals available. The code editor provides autocomplete — as you type, it will suggest available
+globals, dynamic variable names, and built-in functions. ​ dv — Dynamic Variables Access your agent’s dynamic variables as properties on the dv object. All values are strings.
+const name = dv.customer_name; // "John Doe" const orderId = dv.order_id; // "78542" const total = parseFloat(dv.amount); // Convert to number if needed ​ metadata — Call Metadata
+Access metadata passed when the call was created via the API. This is the same object you pass in the metadata field of the Create Call API. const customerId =
+metadata.customer_id; const priority = metadata.priority_level; Both dv and metadata values are stored in plaintext with every call record and are visible in call logs and API
+responses. Do not use them to pass API keys, database credentials, or other sensitive secrets. See Security and Architecture Guidance for more details. ​ fetch(url) — HTTP Requests
+Make HTTP requests to external APIs. Works like the standard Fetch API. // GET request const response = await fetch("https://api.example.com/data"); const data = await
+response.json(); // POST request const response = await fetch("https://api.example.com/submit", { method: "POST", headers: { "Content-Type": "application/json" }, body:
+JSON.stringify({ name: dv.customer_name }) }); ​ console.log() — Debugging Log output for debugging. Logs appear in the test output panel when using Run Code.
+console.log("Customer:", dv.customer_name); console.log("API response:", JSON.stringify(data)); Your code can return any value (object, string, number) or return nothing at all.
+Standard JavaScript built-ins are available: Math, JSON, Date, Array, Object, String methods, etc. External packages (require, import) are not available. Use fetch() for external
+integrations. Code is limited to 5,000 characters. ​ Examples ​ Format data from dynamic variables // Combine and format customer info const fullName = dv.first_name + " " +
+dv.last_name; const summary = `Customer ${fullName} (ID: ${dv.customer_id}) requested a callback.`; return { full_name: fullName, summary: summary }; ​ Fetch data from a public API
+// Look up current weather for the customer's city const response = await fetch("https://api.weatherapi.com/v1/current.json?q=" + encodeURIComponent(dv.city)); const weather =
+await response.json(); return { location: weather.location.name, temperature: weather.current.temp_f + "°F", condition: weather.current.condition.text }; ​ Conditional logic with
+API call // Route based on customer tier const response = await fetch("https://api.example.com/customers/" + dv.customer_id); const customer = await response.json(); if
+(customer.tier === "premium") { return { action: "priority_support", wait_time: "0 minutes" }; } else if (customer.tier === "standard") { return { action: "standard_queue",
+wait_time: "5 minutes" }; } else { return { action: "general_queue", wait_time: "10 minutes" }; } ​ Security and Architecture Guidance Code Tool is best for lightweight, low-risk
+logic that runs entirely within Retell’s sandbox. As your integration needs grow, use a Custom Function hosted on your own backend where you control the security boundary. Use
+caseRecommended Formatting, calculations, string cleanupCode Tool Simple read-only lookups to low-risk public APIsCode Tool, with caution Accessing internal systems or private
+APIsCustom Function Writing to CRM, EHR, booking, payment, or ticketing systemsCustom Function Workflows requiring secrets, audit logs, retries, idempotency, or policy
+enforcementCustom Function Do not treat dynamic variables or metadata as a secret vault. Avoid placing long-lived API keys, database credentials, or other sensitive secrets in
+dynamic variables or call metadata for use in Code Tool. Both dv and metadata values are stored in plaintext with every call record — anything you pass in will be visible in call
+logs and API responses. They are not designed for secret management. Prefer short-lived tokens where possible, and use a Custom Function for integrations that require sensitive
+credentials or customer-controlled secret handling. Use fetch() with caution. Enabling outbound HTTP requests from an LLM-invoked tool increases security and operational risk.
+Treat any use of fetch() as an external integration surface. Prefer read-only requests to low-risk, public endpoints. Avoid direct state-changing actions (writes, payments,
+deletions) unless you fully understand the risks and have appropriate controls in place. Keep production logic in your own backend. For anything involving sensitive credentials,
+direct writes to production systems, payment actions, regulated data workflows, or business-critical operations that require strict authentication, validation, audit logging,
+idempotency, or approval controls — use a Custom Function hosted on your own backend. Code Tool should be reserved for data transformation, calculations, and simple read-only
+lookups. ​ Response Variables Response variables let you extract specific values from your code’s return value and store them as dynamic variables. Specify each variable as a name
+and a JSON path using dot notation: Path SyntaxExampleExtracts Top-level fieldstatusresult.status Nested fielddata.order.idresult.data.order.id Array elementitems[0].nameFirst
+item’s name If a path doesn’t exist in the return value, the variable is skipped (no error). ​ Configuration Timeout: How long the code can run before timing out. Range: 5–60
+seconds. Default: 30 seconds. Speak During Execution: When enabled, the agent says something while the code runs. Choose between Prompt (LLM generates the message) or Static Text
+(exact text you provide). Recommended when your code takes more than 1 second. Speak After Execution: When enabled (default), the LLM speaks about the result after execution. Turn
+off to run the tool silently (e.g., for background logging). The code result is capped at 15,000 characters to prevent overloading the LLM context. ​ FAQ Can I use npm packages or
+external libraries? What happens if my code times out or throws an error? Can I use async/await? When should I use Code Tool vs Custom Function? Was this page helpful? Yes No
+Integrate any system with custom function Extract Dynamic Variables Ask a question... x linkedin github Powered by This documentation is built and hosted on Mintlify, a developer
+documentation platform Code Tool - Retell AISkip to main content Search... ⌘K Ask AI Homepage Support Compliance Dashboard Documentation API Reference Deprecation Notice Community
+Changelog Status Pricing Enterprise Plan Introduction Get Started Build your first phone agent in 5 minutes SDKs MCP Server Build Setup single / multi prompt agent Step 1: Write
+the prompt Single/Multi Prompt Agent Overview Write a single prompt Build a multi-prompt agent Step 2: Configure the basic settings Step 3: Add function calling Function Calling
+Overview End call Transfer call Send SMS Check Calendar Availability Book Calendar Press digit (IVR navigation) Integrate any system with custom function Code Tool Extract Dynamic
+Variables Agent Transfer MCP Setup conversation flow agent Conversation Flow Overview Step 1: Configure global settings Step 2: Add nodes Node Overview Conversation Node Subagent
+Node Function Node Function Node Overview Custom Function Check Calendar Availability Book Calendar Code Node Call Transfer Node Press Digit Node End Node Logic Split Node SMS Node
+Extract Dynamic Variable Node Agent Transfer Node MCP Node Step 3: Add transition conditions Components Flex Mode Advanced features Debug guide Create chat agent Set language for
+your agent Configure a multilingual agent Understand user speech better Generate better responses from LLM Customize the synthesized speech Integrate telephony features Provide
+context to the agent Guardrails Test Testing Overview LLM Playground LLM Simulation Testing Audio Testing Deploy Purchase phone number A/B Testing Connect to custom telephony
+providers via SIP Make & receive phone calls International Calling and Fees Create Chat Completion Retell Website Widget Send & receive SMS Setup versioning for agents Compare
+agent versions Create Batch calls Increase call pickup rate Connect to web call Understand concurrency & limits Monitor Monitor sessions via dashboard Get analytics insight
+Alerting Register & handle webhooks Post Call Analysis Reliability & Debugging Reliability Overview Latency Fix agent behaviors Debug phone call issues Prevent abuse Fraud
+Protection Accounts and Workspace Workspace Account Access Control KYC Verification Billing Keys Privacy Other Topics Custom LLM Audio Basics Integrations HubSpot Integration AI
+Quality Assurance AI Quality Assurance Create QA View QA Results AI QA Metrics Address Metric Issues On this page Steps Variable Types Step 3: Add function calling Extract Dynamic
+Variables Copy page Documentation Index Fetch the complete documentation index at: https://docs.retellai.com/llms.txt Use this file to discover all available pages before exploring
+further. This tool lets you extract values from a user’s response and save them as dynamic variables. ​ Steps 1 Add a Extract Dynamic Variable Tool This would give your agent the
+ability to extract variable. The description is optional here. 2 Add Variables Click “+Add” at the bottom and fill in the following details: Variable Name – A short name to
+reference this variable. Description – A brief explanation of what this value should be. Variable Type – Choose from Text, Number, Enum, or Boolean. Enum Options - Options to
+choose from. Only when type is enum ​ Variable Types You can create variables of the following types: Text - Any word or sentence. Examples: "headache", "John Smith" Number - A
+numeric value. Examples: 42, 98.6 Enum - A value from a predefined list. Examples: "Yes", "No", "Maybe" Boolean - True or false. Click Save to add variable. Add more variables as
+per requirement 3 Save the Extract Dynamic Variable Tool Click the save button 4 Update prompt for function It’s best to include in the prompt explicitly when is the best time to
+invoke the extract variable function. For example: When user states his name and phone number, please extract the information by calling the `extract_user_details` function. Was
+this page helpful? Yes No Code Tool Agent Transfer Ask a question... x linkedin github Powered by This documentation is built and hosted on Mintlify, a developer documentation
+platform Extract Dynamic Variables - Retell AISkip to main content Search... ⌘K Ask AI Homepage Support Compliance Dashboard Documentation API Reference Deprecation Notice
+Community Changelog Status Pricing Enterprise Plan Introduction Get Started Build your first phone agent in 5 minutes SDKs MCP Server Build Setup single / multi prompt agent Step
+1: Write the prompt Single/Multi Prompt Agent Overview Write a single prompt Build a multi-prompt agent Step 2: Configure the basic settings Step 3: Add function calling Function
+Calling Overview End call Transfer call Send SMS Check Calendar Availability Book Calendar Press digit (IVR navigation) Integrate any system with custom function Code Tool Extract
+Dynamic Variables Agent Transfer MCP Setup conversation flow agent Conversation Flow Overview Step 1: Configure global settings Step 2: Add nodes Node Overview Conversation Node
+Subagent Node Function Node Function Node Overview Custom Function Check Calendar Availability Book Calendar Code Node Call Transfer Node Press Digit Node End Node Logic Split Node
+SMS Node Extract Dynamic Variable Node Agent Transfer Node MCP Node Step 3: Add transition conditions Components Flex Mode Advanced features Debug guide Create chat agent Set
+language for your agent Configure a multilingual agent Understand user speech better Generate better responses from LLM Customize the synthesized speech Integrate telephony
+features Provide context to the agent Guardrails Test Testing Overview LLM Playground LLM Simulation Testing Audio Testing Deploy Purchase phone number A/B Testing Connect to
+custom telephony providers via SIP Make & receive phone calls International Calling and Fees Create Chat Completion Retell Website Widget Send & receive SMS Setup versioning for
+agents Compare agent versions Create Batch calls Increase call pickup rate Connect to web call Understand concurrency & limits Monitor Monitor sessions via dashboard Get analytics
+insight Alerting Register & handle webhooks Post Call Analysis Reliability & Debugging Reliability Overview Latency Fix agent behaviors Debug phone call issues Prevent abuse Fraud
+Protection Accounts and Workspace Workspace Account Access Control KYC Verification Billing Keys Privacy Other Topics Custom LLM Audio Basics Integrations HubSpot Integration AI
+Quality Assurance AI Quality Assurance Create QA View QA Results AI QA Metrics Address Metric Issues On this page Why Use Agent Transfer Instead of Call Transfer? Transfer Settings
+Behavior Steps Step 3: Add function calling Agent Transfer Copy page Documentation Index Fetch the complete documentation index at: https://docs.retellai.com/llms.txt Use this file
+to discover all available pages before exploring further. In advanced call flows, it’s common to switch the handling agent, transferring the conversation from one AI agent to
+another. Agent Transfer (also known as Agent Swap) enables you to modularize tasks and re-use specialized agents without relying on traditional phone-based transfers. Examples
+include: Transferring from a front-desk agent to an appointment-booking agent based on task. Transferring from an agent speaking one language to another agent handling a different
+language, based on user preference. ​ Why Use Agent Transfer Instead of Call Transfer? Compared to transferring to another agent using transfer call, Agent Transfer offers
+significant advantages: Lower Latency: The transition between agents is near-instant, much lower than transfer call. Better Reliability: No need to create a new phone call,
+avoiding potential telephony failures. No Handoff Message Needed: The destination agent has access to the full conversation history, eliminating the need for adding hand-off
+messages or repeated customer questions. No Separate Numbers for Agents: Agents receiving transfers don’t need their own phone numbers — one number is all you need, no matter how
+many agents you transfer to. ​ Transfer Settings Behavior The following settings of the first agent will be used throughout the call: optInSignedUrl optOutSensitiveDataStorage
+webHookUrl All other settings — such as language, voice, and voiceModel — will reflect the currently active agent. ​ Steps 1 Add Agent Transfer Tool Click Add in the tools section
+and select “Agent Transfer” from the dropdown menu. 2 Configure Details You can configure the following main settings: Transfer agent: the ID and version of a specific agent to
+transfer to. You can select the latest version as well. Speak during execution and messages: if the agent should speak something while performing the transfer. Post call analysis
+setting: for post-call analysis, only extract dynamic variables for the transferred agent, or both agents. 3 Update the Prompt to Enable Agent Transfer Ensure the AI agent knows
+when and why to trigger the agent transfer. Add clear instructions in the prompt such as: "If the user asks to book an appointment, use the agent_transfer tool to transfer to the
+Appointment Agent." 4 Test and Debug You can test agent transfer both in web call and playground. Was this page helpful? Yes No Extract Dynamic Variables MCP Ask a question... x
+linkedin github Powered by This documentation is built and hosted on Mintlify, a developer documentation platform Agent Transfer - Retell AISkip to main content Search... ⌘K Ask AI
+Homepage Support Compliance Dashboard Documentation API Reference Deprecation Notice Community Changelog Status Pricing Enterprise Plan Introduction Get Started Build your first
+phone agent in 5 minutes SDKs MCP Server Build Setup single / multi prompt agent Step 1: Write the prompt Single/Multi Prompt Agent Overview Write a single prompt Build a
+multi-prompt agent Step 2: Configure the basic settings Step 3: Add function calling Function Calling Overview End call Transfer call Send SMS Check Calendar Availability Book
+Calendar Press digit (IVR navigation) Integrate any system with custom function Code Tool Extract Dynamic Variables Agent Transfer MCP Setup conversation flow agent Conversation
+Flow Overview Step 1: Configure global settings Step 2: Add nodes Node Overview Conversation Node Subagent Node Function Node Function Node Overview Custom Function Check Calendar
+Availability Book Calendar Code Node Call Transfer Node Press Digit Node End Node Logic Split Node SMS Node Extract Dynamic Variable Node Agent Transfer Node MCP Node Step 3: Add
+transition conditions Components Flex Mode Advanced features Debug guide Create chat agent Set language for your agent Configure a multilingual agent Understand user speech better
+Generate better responses from LLM Customize the synthesized speech Integrate telephony features Provide context to the agent Guardrails Test Testing Overview LLM Playground LLM
+Simulation Testing Audio Testing Deploy Purchase phone number A/B Testing Connect to custom telephony providers via SIP Make & receive phone calls International Calling and Fees
+Create Chat Completion Retell Website Widget Send & receive SMS Setup versioning for agents Compare agent versions Create Batch calls Increase call pickup rate Connect to web call
+Understand concurrency & limits Monitor Monitor sessions via dashboard Get analytics insight Alerting Register & handle webhooks Post Call Analysis Reliability & Debugging
+Reliability Overview Latency Fix agent behaviors Debug phone call issues Prevent abuse Fraud Protection Accounts and Workspace Workspace Account Access Control KYC Verification
+Billing Keys Privacy Other Topics Custom LLM Audio Basics Integrations HubSpot Integration AI Quality Assurance AI Quality Assurance Create QA View QA Results AI QA Metrics Address
+Metric Issues On this page Steps Step 3: Add function calling MCP Copy page Documentation Index Fetch the complete documentation index at: https://docs.retellai.com/llms.txt Use
+this file to discover all available pages before exploring further. MCP allow you to extend your agent’s capabilities by integrating external MCPs and utilize MCP tools. ​ Steps 1
+Add MCP To use MCP tools, you first need to connect your agent to the MCP server. This step will allow you to authenticate and set up the connection. Click on + Add MCP Add MCP
+Configuration 2 Set request headers (optional) You can define custom headers to include with the request Retell sends to your MCP Server. 3 Set query parameters (optional) You can
+define query parameters to include in the request URL that Retell appends to your MCP Server Endpoint. 4 Select Tool Select the MCP tool from the list of tools available 5 Set
+response variables (optional) Extract values from the MCP tool response and save them as dynamic variables for use later in the conversation. For example, you can extract a user’s
+name from the response and reference it later using {{user_name}}. Example response body { "properties": { "user": { "name": "John Doe", "age": 26 } } } 6 Save the MCP Tool Click
+the save button 7 Update prompt for function It’s best to include in the prompt explicitly when is the best time to invoke the mcp tool. For example: When user states his name and
+phone number, please call tool `verify_user` function. Was this page helpful? Yes No Agent Transfer Conversation Flow Overview Ask a question... x linkedin github Powered by This
+documentation is built and hosted on Mintlify, a developer documentation platform MCP - Retell AI> ## Documentation Index > Fetch the complete documentation index at:
+https://docs.retellai.com/llms.txt > Use this file to discover all available pages before exploring further. # Testing Overview > Comprehensive testing methods to validate your AI
+agent's performance before production deployment ## Introduction Thorough testing is crucial for building reliable AI phone agents. Retell provides multiple testing methods, each
+designed to validate different aspects of your agent's behavior and performance. ## Available Testing Methods ### 1. LLM Playground **Purpose**: Interactive text-based testing for
+rapid iteration and debugging **Key Features**: * Real-time conversation testing * Function call visualization * Variable inspection * Prompt debugging <Frame> <img style={{height:
+"600px"}} src="https://mintcdn.com/retellai/pRGcctz_zOqy0mSt/images/test-llm/playground.png?fit=max&auto=format&n=pRGcctz_zOqy0mSt&q=85&s=35f434b6b2a91a71d21e8c9f58f7e38e" alt="LLM
+Playground interface showing conversation testing and function calls" width="888" height="1808" data-path="images/test-llm/playground.png" /> </Frame> **Best For**: Initial
+development, prompt refinement, debugging specific conversation paths ### 2. LLM Simulation Testing **Purpose**: Automated testing with predefined scenarios for consistent quality
+assurance **Key Features**: * Batch testing capabilities * Success metrics and scoring * Scenario templates * Regression testing <Frame> <img style={{height: "600px"}}
+src="https://mintcdn.com/retellai/pRGcctz_zOqy0mSt/images/simulation.png?fit=max&auto=format&n=pRGcctz_zOqy0mSt&q=85&s=6c68c193e76043fb3433b8332c2ad4ee" alt="Simulation testing
+dashboard showing test scenarios and success metrics" width="870" height="1760" data-path="images/simulation.png" /> </Frame> **Best For**: Quality assurance, regression testing,
+validating changes before deployment ### 3. Web Call/Phone Call Testing **Purpose**: Real-world testing with actual voice interactions to validate audio performance **Key
+Features**: * Test voice quality and latency * Validate interruption handling * Check background noise processing * Verify DTMF and telephony features <Frame> <img style={{height:
+"600px"}} src="https://mintcdn.com/retellai/pRGcctz_zOqy0mSt/images/test-llm/test-web-call.png?fit=max&auto=format&n=pRGcctz_zOqy0mSt&q=85&s=d02e4acd0ad95c63137fc0ce9e60f754"
+alt="Web call testing interface for making test calls to your agent" width="894" height="1800" data-path="images/test-llm/test-web-call.png" /> </Frame> **Best For**: Final
+validation, voice quality testing, production readiness checks ## Testing Method Comparison | Feature | LLM Playground | LLM Simulation | Web/Phone Call | Audio Simulation | |
+--------------------- | :---------------: | :---------------: | :------------: | :--------------: | | **Availability** | All agents | All agents | All agents | Coming soon | |
+**Setup effort** | Medium | Low | High | Low | | **Test speed** | Fast | Very fast | Real-time | Fast | | **Response accuracy** | ✅ | ✅ | ✅ | ✅ | | **Function calls** | ✅ | ✅ | ✅ |
+✅ | | **Background noise** | ❌ | ❌ | ✅ | ✅ | | **Interruptions** | ❌ | ❌ | ✅ | ✅ | | **Batch testing** | ❌ | ✅ | ❌ | ✅ | | **Cost** | Price per message | Price per message | Call
+charges | Free | ## Recommended Testing Workflow ### Phase 1: Development Testing **Tool**: LLM Playground * Iterate on prompts and conversation flows * Debug function calling
+logic * Test edge cases interactively * Validate dynamic variables ### Phase 2: Quality Assurance **Tool**: LLM Simulation Testing * Create comprehensive test scenarios * Run
+regression tests after changes * Validate success metrics * Ensure consistent performance ### Phase 3: Production Validation **Tool**: Web/Phone Call Testing * Test actual voice
+interactions * Verify audio quality and latency * Check telephony features * Validate real-world performance ### Phase 4: Continuous Testing **Tool**: Batch Testing (Simulation) *
+Set up automated test suites * Monitor agent performance over time * Catch regressions early * Maintain quality standards <Tip> **Pro tip**: Create a test checklist covering all
+critical paths before each deployment. Include both happy paths and edge cases. </Tip>Skip to main content Search... ⌘K Ask AI Homepage Support Compliance Dashboard Documentation
+API Reference Deprecation Notice Community Changelog Status Pricing Enterprise Plan Call POST Create Phone Call POST Create Web Call GET Get Call POST List Calls PATCH Update Call
+POST Stop Call DEL Delete Call Chat POST Create Chat POST Create Outbound SMS GET Get Chat POST Create Chat Completion POST List Chats PATCH Update Chat PATCH End Chat DEL Delete
+Chat Playground POST Agent Playground Completion Phone Number POST Create Phone Number GET Get Phone Number GET List Phone Numbers PATCH Update Phone Number DEL Delete Phone Number
+Voice Agent POST Create Voice Agent GET Get Voice Agent GET List Voice Agents PATCH Update Voice Agent DEL Delete Agent POST Publish Agent GET Get Agent Versions Chat Agent POST
+Create Chat Agent GET Get Chat Agent GET List Chat Agents PATCH Update Chat Agent DEL Delete Chat Agent POST Publish Chat Agent GET Get Chat Agent Versions Retell LLM Response
+Engine (for single / multi prompt agent) POST Create Retell LLM GET Get Retell LLM GET List Retell LLMs PATCH Update Retell LLM DEL Delete Retell LLM Conversation Flow Response
+Engine (for conversation flow agent) POST Create Conversation Flow GET Get Conversation Flow GET List Conversation Flows PATCH Update Conversation Flow DEL Delete Conversation Flow
+Conversation Flow Components POST Create Conversation Flow Component GET Get Conversation Flow Component GET List Conversation Flow Components PATCH Update Conversation Flow
+Component DEL Delete Conversation Flow Component MCP Tool GET Get MCP Tools Knowledge Base POST Create Knowledge Base GET Get Knowledge Base GET List Knowledge Bases DEL Delete
+Knowledge Base POST Add Knowledge Base Sources DEL Delete Knowledge Base Source Voice POST Add Voice POST Clone Voice POST Search Voice GET Get Voice GET List Voices Batch call
+POST Create Batch Call Test Case Definitions POST Create Test Case Definition GET Get Test Case Definition GET List Test Case Definitions PUT Update Test Case Definition DEL Delete
+Test Case Definition Batch Tests POST Create Batch Test GET Get Batch Test GET List Batch Tests Test Runs GET Get Test Run GET List Test Runs Account GET Get Concurrency GET List
+Export Requests Custom Telephony POST Import Phone Number POST Register Phone Call Custom LLM LLM WebSocket JavaScript import Retell from 'retell-sdk'; const client = new Retell({
+apiKey: process.env['RETELL_API_KEY'], // This is the default and can be omitted }); const phoneCallResponse = await client.call.createPhoneCall({ from_number: '+14157774444',
+to_number: '+12137774445', }); console.log(phoneCallResponse.agent_id); 201 400 401 402 422 429 500 { "call_type": "phone_call", "from_number": "+12137771234", "to_number":

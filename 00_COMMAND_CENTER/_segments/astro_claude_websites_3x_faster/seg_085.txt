@@ -1,0 +1,224 @@
+that's kind of the basic 1:26:59 outline and we can see it's like a very linear path um in practice though you often 1:27:06 encounter a few different types of questions like when
+do we actually want to retrieve based upon the context of the 1:27:13 question um are the retrieve documents actually good or not and if they're not good should we discard them and
+then how 1:27:21 do we loot back and retry retrieval with for example and improved question so these types of questions 1:27:29 motivate an idea of active rag which is a process
+where an llm actually decides 1:27:34 when and where to retrieve based upon like existing retrievals or existing 1:27:40 Generations now when you think about this there's a few
+different levels of control that you have over an llm in a 1:27:48 rag application the base case like we saw with our chain is just use an llm to 1:27:55 choose a single steps
+output so for example in traditional rag you feed it 1:28:00 documents and it decides to generation so it's just kind of one step now a lot 1:28:07 of rag workflows will use the
+idea of routing so like given a question should I route it to a vector store or a graph 1:28:16 DB um and we have seen this quite a bit now this newer idea that I want to 1:28:23
+introduce is how do we build more sophisticated logical 1:28:29 flows um in a rag pipeline um that you let the llm choose 1:28:36 between different steps but specify all the
+transitions that are 1:28:43 available and this is known as we call a state machine now there's a few different 1:28:50 architectures that have emerged uh to build different types
+of rag chains and of course chains are 1:28:58 traditionally used just for like very basic rag but this notion of State machine is a bit newer and Lang graph 1:29:06 which we
+recently released provides a really nice way to build State machines for Rag and for other 1:29:13 things and the general idea here is that you can lay out more diverse and 1:29:18
+complicated rag flows and then Implement them as graphs 1:29:24 and it kind of motivates this more broad idea of of like flow engineering and thinking through the actual like
+1:29:30 workflow that you want and then implementing it um and we're gonna actually do that right now so I'm GNA Pi 1:29:39 a recent paper called CAG corrective rag which is really
+a nice method um for 1:29:46 active rag that incorporates a few different ideas um so first you retrieve documents 1:29:54 and then you grade them now if at least one document
+1:29:59 exceeds the threshold for relevance you go to generation you 1:30:04 generate your answer um and it does this knowledge 1:30:10 refinement stage after that but let's not
+worry about that for right now it's 1:30:15 kind of not essential for understanding the basic flow here so again you do a 1:30:20 grade for relevance for every document if any is
+relevant you 1:30:25 generate now if they're all ambiguous or incorrect based upon your 1:30:31 grader you retrieve from an external Source they use web 1:30:36 search and then
+they pass that as their context for answer 1:30:42 generation so it's a really neat workflow where you're doing retrieval just like with basic rag but then you're 1:30:48 reasoning
+about the documents if they're relevant go ahead and at least one is relevant go ahead and generate if 1:30:54 they're not retrieve from alternative source and then pack that into
+the context and generate your 1:31:02 answer so let's see how we would implement this as a estate machine using 1:31:09 Lang graph um we'll make a few simplifications 1:31:15 um
+we're going to first decide if any documents are relevant we'll go ahead 1:31:22 and do the the web search um to supplement the output so that's 1:31:28 just like kind of one minor
+modification um we'll use tab search for web search um we use Query writing to 1:31:35 optimize the search for uh to optimize the web search but it follows a lot of the the
+intuitions of the main paper uh 1:31:44 small note here we set the Tav API key and another small mode I've already set 1:31:50 my lsmith API key um with which we'll see is useful a
+bit later for observing 1:31:57 the resulting traces now I'm going to index three blog 1:32:02 posts that I like um I'm going to use chroma DB I'm G use open ey embeddings I'm
+going to run 1:32:09 this right now this will create a vector store for me from these three blog 1:32:15 posts and then what I'm going to do is Define 1:32:20 State now this is
+kind of the core object that going to be passed around my graph that I'm going to 1:32:27 modify and right here is where I Define it and the key point to note right now is it's
+just a dictionary and it can 1:32:35 contain things that are relevant for rag like question documents generation and 1:32:40 we'll see how we update that in in in a little bit but
+the first thing to note is we Define our state and this is 1:32:47 what's going to be modified in every Noe of our graph now here's really the Crux of it 1:32:53 and this is the
+thing I want to zoom in on a little bit um 1:32:58 so when you kind of move from just thinking about promps to thinking about overall flows it it's like kind of a fun 1:33:05 and
+interesting exercise I kind of think about this as it's been mentioned on Twitter a little bit more like flow 1:33:12 engineering so let's think through what was actually done in
+the paper and what 1:33:19 modifications to our state are going to happen in each stage so we start with a 1:33:24 question you can see that on the far left and this kind of state
+is represent as a dictionary like we have we start 1:33:29 with a question we perform retrieval from our Vector store which we just created that's going to give us 1:33:35
+documents so that's one node we made an an adjustment to our state by adding 1:33:41 documents that's step one now we have a second node where we're going to grade the documents
+and 1:33:48 in this node we might filter some out so we are making a modification to state which is why it's a node so we're going 1:33:54 to have a greater then we're going to
+have what we're going to call a conditional Edge 1:34:00 so we saw we went from question to retrieval retrieval always goes to grading and now we have a 1:34:07 decision if any
+document is irrelevant we're going to go ahead and 1:34:14 do web search to supplement and if they're all relevant will go to generation it's a minor kind 1:34:20 of a minor kind
+of logical uh decision ision that we're going to 1:34:25 make um if any are not relevant we'll transform the query and we'll do web 1:34:31 search and we'll use that for Generation
+so that's really it and that's how we can kind of think about our flow and how 1:34:37 our States can be modified throughout this flow now all we then need to do and I I 1:34:44
+kind of found spending 10 minutes thinking carefully through your flow 1:34:50 engineering is really valuable because from here it's really implementation 1:34:55 details um and
+it's pretty easy as you'll see so basically I'm going to run 1:35:02 this code block but then we can like walk through some of it I won't show you everything so it'll get a little
+bit boring but really all we're doing is 1:35:09 we're finding functions for every node that take in the state and modify in 1:35:15 some way that's all it's going on so think
+about retrieval we run retrieval we take in state remember it's a dict we 1:35:22 get our state dick like this we extract one keyy question from our dick we pass that to a
+retriever we get 1:35:29 documents and we write back out State now with documents key added that's 1:35:36 all generate going to be similar we take in state now we have our
+question and 1:35:41 documents we pull in a prompt we Define an llm we do minor post processing on 1:35:47 documents we set up a chain for retrieval uh or sorry for Generation
+which is just going to be take our 1:35:52 prompt pump Plum that to an llm partially output a string and we run it 1:35:57 right here invoking our documents in our question to get
+our answer we write that 1:36:04 back to State that's it and you can kind of follow here for every node we just Define a function 1:36:12 that performs the state modification that
+we want to do on that node grading documents is going to be 1:36:17 the same um in this case I do a little thing extra here because I actually 1:36:23 Define a identic data model
+for my grader so that the output of that 1:36:28 particular grading chain is a binary yes or no you can look at the code make sure 1:36:33 it's all shared um and that just makes
+sure that our output is is very deterministic so that we then can down 1:36:41 here perform logical filtering so what you can see here is um we Define this 1:36:49 search value no
+and we iterate through our documents we grade them if any 1:36:56 document uh is graded as not relevant we flag this search thing to yes that means 1:37:04 we're going to perform
+web search we then add that to our state dict at the end so run web search now that value is 1:37:10 true that's it and you can kind of see we go through some other nodes here
+there's web search 1:37:16 node um now here is where our one conditional Edge we Define right here 1:37:23 this is where where we decide to generate or not based on that search key
+so we again get our state let's extract 1:37:30 the various values so we have this search value now if search is yes we 1:37:37 return the next no that we want to go to so in this
+case it'll be transform query 1:37:42 which will then go to web search else we go to generate so what we can see is we laid 1:37:51 out our graph which you can kind of see up here
+and now we Define functions for all 1:37:57 those nodes as well as the conditional Edge and now we scroll down all we have 1:38:05 to do is just lay that out here again as our flow
+and this is kind of what you might think of as like kind of flow 1:38:11 engineering where you're just laying out the graph as you drew it where we have 1:38:17 set our entry point
+as retrieve we're adding an edge between retrieve and grade documents so we went retrieval 1:38:23 grade documents we add our conditional Edge depending on the grade either
+transform the query go to web search or 1:38:31 just go to generate we create an edge between transform the query and web search then web search to generate and 1:38:38 then we
+also have an edge generate to end and that's our whole graph that's it so we can just run 1:38:44 this and now I'm going to ask a question so let's just say um how does agent
+1:38:51 memory work for example let's just try that and what this is going to do is going to print out what's going on as we 1:38:58 run through this graph so um first we going to
+see output from retrieve this is going to be all of our 1:39:05 documents that we retrieved so that's that's fine this just from our our retriever then you can see that we're
+1:39:11 doing a relevance check across our documents and this is kind of interesting right you can see we grading 1:39:17 them here one is grade as not relevant um and okay you can
+see the 1:39:23 documents are now filtered because we removed the one that's not relevant and because one is not relevant we decide 1:39:29 okay we're going to just transform the
+query and run web search and um you can see after query 1:39:37 transformation we rewrite the question slightly we then run web search um and you can see from web 1:39:44 search it
+searched from some additional sources um which you can actually see 1:39:50 here it's appended as a so here it is so here it's a new document appended from web search 1:39:57 which
+is from memory knowledge requirements so it it basically looked up some AI architecture related to 1:40:03 memory uh web results so that's fine that's exactly what we want to do
+and then um we generate a 1:40:11 response so that's great and this is just showing you everything in kind of gory detail but I'm going to show you 1:40:18 one other thing that's
+that's really nice about this if I go to lsmith 1:40:24 I have my AP I ke set so all my Generations are just logged to to lsmith 1:40:29 and I can see my Lang graph run here now
+what's really cool is this shows me all 1:40:36 of my nodes so remember we had retrieve 1:40:42 grade we evaluated the grade because one was irrelevant we then went ahead and
+1:40:47 transformed the query we did a web search we pended that to our context you can see all those steps are laid out 1:40:54 here in fact you can even look at every single uh
+grader and its output I will 1:40:59 move this up slightly um so you can see the the different scores for grades okay so this 1:41:06 particular retrieval was graded as as not
+relevant so that's fine that that can happen in some cases and because of 1:41:15 that um we did a query transformation so we modified the question slightly how 1:41:21 does memory
+how does the memory system an artificial agents function so it's just a minor rephrasing of the question 1:41:27 we did this Tav web search this is where it queried from this
+particular blog 1:41:33 post from medium so it's like a sing web query we can like sanity check it and then what's need is we can go to our 1:41:39 generate step look at open Ai
+and here's our full prompt how does the memory system in our official agents function 1:41:46 and then here's all of our documents so this is the this is the web search as well as
+we still have the Rel chunks 1:41:54 that were retrieved from our blog posts um and then here's our answer so that's 1:42:01 really it you can see how um really moving from the
+notion of just like I'll 1:42:09 actually go back to the original um moving 1:42:14 from uh I will try to open this up a little bit um 1:42:24 yeah I can see my face still um the
+transition from laying out 1:42:33 simple chains to flows is a really interesting and 1:42:40 helpful way of thinking about why graphs are really interesting because you can encode
+more sophisticated logical 1:42:48 reasoning workflows but in a very like clean and well-engineered way 1:42:56 where you can specify all the transitions that you actually want to
+have executed um and I actually find this way 1:43:05 of thinking and building kind of logical uh like workflows really 1:43:10 intuitive um we have a blog post coming out uh
+tomorrow that discusses both 1:43:17 implementing self rag as well as C rag for two different active rag approaches using using uh this idea of of State 1:43:25 machines and Lang
+graph um so I encourage you to play with it uh I found 1:43:31 it really uh intuitive to work with um I also found uh inspection of traces to be 1:43:38 quite intuitive using Lang
+graph because every node is enumerated pretty clearly 1:43:46 for you which is not always the case when you're using other types of of more complex reasoning approaches for example
+1:43:52 like agents so in any case um I hope this was helpful and I definitely 1:43:58 encourage you to check out um kind of this notion of like flow engineering using Lang graph
+and in the context of 1:44:04 rag it can be really powerful hopefully as you've seen here thank Adaptive RAG 1:44:09 you hey this is Lance from Lang chain I want to talk to a
+recent paper that I saw called adaptive rag which brings 1:44:16 together some interesting ideas that have kind of been covered in other videos but this actually ties them all
+together in kind of a fun way so the the 1:44:23 two big ideas to talk about here are one of query analysis so we've actually done 1:44:30 kind of a whole rag from scratch series
+that walks through each of these things in detail but this is a very nice 1:44:35 example of how this comes together um with some other ideas we've been talking about so query
+analysis is typically the 1:44:41 process of taking an input question and modifying in some way uh to better 1:44:46 optimize retrieval there's a bunch of different methods for
+this it could be decomposing it into sub questions it 1:44:52 could be using some clever techniques like stepb back prompting um but that's 1:44:57 kind of like the first stage of
+query analysis then typically you can do routing so you route a question to one 1:45:03 of multiple potential sources it could be one or two different Vector stores it could be
+relational DB versus Vector 1:45:10 store it could be web search it could just be like an llm fallback right so 1:45:15 this is like one kind of big idea query analysis right it's
+kind of like the front end of your rag pipeline it's 1:45:20 taking your question it's modifying it in some way it's sending it to the right place be it a web search be it a vector
+1:45:26 store be it a relational DB so that's kind of topic one now topic two is 1:45:32 something that's been brought up in a few other videos um of what I kind of call Flow
+engineering or adaptive rag 1:45:40 which is the idea of doing tests in your rag pipeline or in your rag inference flow uh to do things like check 1:45:47 relevance documents um
+check whether or not the answer contains hallucinations 1:45:53 so this recent blog post from Hamil Hussein actually covers evaluation in in some really nice detail and one of the
+1:46:00 things he highlighted explicitly is actually this topic so he talks about unit tests and in particular 1:46:06 he says something really interesting here he says you know
+unlike typical unit tests you want to organize these assertions in places Beyond typical unit 1:46:14 testing such as data cleaning and here's the key Point automatic retries
+during 1:46:19 model inference that's the key thing I want to like draw your attention to to it's a really nice approach we've talked 1:46:25 about some other papers that do that
+like corrective rag self rag but it's also cool to see it here and kind of 1:46:30 encapsulated in this way the main idea is that you're using kind of unit tests in your flow to
+make Corrections like if 1:46:38 your retrieval is bad you can correct from that if your generation has hallucinations you can correct from that 1:46:43 so I'm going to kind of
+draw out like a cartoon diagram of what we're going to do here and you can kind of see it here 1:46:50 we're starting with a question we talked about query analysis we're going to
+take our question and we're going to decide 1:46:55 where it needs to go and for this particular toy example I'm going to say either send it to a vector store send it 1:47:01 to
+web search or just have the llm answer it right so that's like kind of my fallback Behavior then we're going to bring in 1:47:08 that idea of kind of online flow engineering or
+unit testing where I'm 1:47:13 going to have my retrieval either from the VOR store or web search I'm then going to ask is this actually relevant 1:47:19 to the question if it
+isn't I'm actually going to kick back to web sech so this is a little bit more relevant in the 1:47:24 case if I've routed to to the vector store done retrieval documents aren't
+relevant I'll have a fallback 1:47:32 mechanism um then I'm going to generate I check for hallucinations in my generation and then I check for um for 1:47:39 whether or not the the
+generation actually answers the question then I return my answer so again we're tying together two ideas one is query analysis 1:47:47 like basically taking a question routing it
+to the right place modifying it as needed and then kind of online unit 1:47:54 testing and iterative flow feedback so to do this I've actually 1:48:00 heard a lot of people talk
+online about command r a new model release from gooh here it has some pretty nice properties 1:48:07 that I was kind of reading about recently so one it has nice support for Tool
+use and it does support query 1:48:14 writing in the context of tool use uh so this all rolls up in really nice 1:48:20 capabilities for routing it's kind of one now two it's small
+it's 35 billion 1:48:26 parameter uh it's actually open weight so you can actually run this locally and I've tried that we can we can talk about 1:48:31 that later uh so and it's
+also fast served via the API so it's kind of a small model and it's well tuned for rag 1:48:39 so I heard a lot of people talking about using coher for Rag and it has a large
+context 120,000 tokens so this like a 1:48:45 nice combination of properties it supports to and routing it's small and fast so it's like quick for grading and 1:48:51 it's well
+tuned for rag so it's actually a really nice fit for this particular workflow where I want to do query 1:48:57 analysis and routing and I want to do kind of online checking uh and
+rag so 1:49:02 kind of there you go now let's just get to the coding bit so I have a notebook kind of like usual I've done a few pip 1:49:09 installs you can see it's nothing
+exotic I'm bringing Lang chain coh here I set my coher API key now I'm just going to 1:49:16 set this Lang chain project within lsmith so all my traces for this go to that project
+and I have enabled tracing 1:49:23 so I'm using Langs Smith here so we're going to walk through this flow and let's do the first thing let's just 1:49:28 build a vector store so
+I'm going to build a vector store using coherent beddings with chroma open source Vector 1:49:34 DB runs locally from three different web pages on blog post that I like so it
+pertains to agents prompt engineering 1:49:41 and adversarial attacks so now I have a retriever I can run retriever invoke and 1:49:46 I can ask a question about you know agent
+memory agent 1:49:53 memory and there we go so we get documents back so there we go we have a retriever now now here's where I'm going 1:50:01 to bring in coh here I also want a
+router so you look at our flow the first step is this routing stage right so what 1:50:08 I'm going to do is I'm guess we going to find two tools a web search tool and a 1:50:14
+vector store tool okay in my Preamble is just going to say you're an expert routing user questions to Vector store 1:50:20 web search now here's the key I tell it what the vector
+store has so again my 1:50:25 index my Vector store has agents prompt engineering adial tax I just repeat that here agents prompt adversarial tax so it 1:50:32 knows what's in the
+vector store um so use it for questions on these topics otherwise use web search so that's it I 1:50:40 use command R here now I'm going to bind these tools to the model and attach
+the Preamble and I have a structured LM 1:50:47 router so let's give it a let's give this a few tests just to like kind of sandbox this a little bit 1:50:53 so I can inval here's
+my chain I have a router prompt I pass that to the structured LM router which I defined 1:50:58 right here and um let's ask a few different questions like who will the Bears draft
+in the NFL draft with types 1:51:05 of agent memory and Hi how are you so I'm going to kick that off and you can 1:51:10 see you know it does web search it does it goes to Vector
+store and then actually returns this false so that's 1:51:16 kind of interesting um this is actually just saying if it does not use either tool so 1:51:23 for that particular query
+web search or the vector store was inappropriate it'll just say hey I didn't call one of those 1:51:30 tools so that's interesting we'll use that later so that's my router tool now
+1:51:35 the second thing is my grader and here's where I want to show you something really nice that is generally useful uh 1:51:43 for many different problems you might encounter
+so here's what I'm doing I'm defining a data model uh for My Grade so 1:51:51 basically grade documents it's going to have this is a pantic object it is just 1:51:57 basically a
+binary score here um field specified here uh documents are relevant 1:52:03 to the question yes no I have a preamble your grer assessing relevance of retrieve documents to a user
+question um 1:52:09 blah blah blah so you know and then basically give it a b score yes no I'm using command R but here's the catch I'm 1:52:16 using this wi structured outputs
+thing and I'm passing my grade documents uh data model to that that so this is the 1:52:23 key thing we can test this right now as well it's going to return an object 1:52:29 based
+on the schema I give it which is extremely useful for all sorts of use cases and let's actually Zoom back up so 1:52:36 we're actually right here so this greater stage right I want
+to constrain 1:52:41 the output to yes no I don't want any preambles I want anything because the logic I'm going to build in this graph 1:52:48 is going to require a yes no binary
+response from this particular Edge in our graph 1:52:53 so that's why this greater tool is really useful and I'm asking like a mock 1:52:59 question types of agent memory I do a
+retriever I do a retrieval from our Vector store I get the tuck and I test 1:53:05 it um I invoke our greater retrieval grater chain with the question the doc 1:53:11 text and it's
+relevant as we would expect so that's good but again let's 1:53:16 just kind of look at that a little bit more closely what's actually happening under the hood here here's the
+pantic object we passed 1:53:23 here's the document in question I'm providing basically it's converting this object into coher function schema it's 1:53:29 binding that to the llm
+we pass in the document question it returns an object basic a Json string 1:53:37 per our pantic schema that's it and then it's just going to like parse that into 1:53:42 a pantic
+object which we get at the end of the day so that's what's happening under the hood with this with structured output thing but it's extremely useful 1:53:49 and you'll see we're
+going to use that a few different places um um because we want to ensure that in our in our flow 1:53:57 here we have three different grading steps and each time we want to
+constrain the output to yes no we're going to use 1:54:02 that structured output more than once um this is just my generation so this is good Old Rag let's just make 1:54:09 sure
+that works um I'm using rag chain typical rag prompt again I'm using 1:54:15 cohere for rag pretty easy and yeah so the rag piece works that's totally fine 1:54:21 nothing to it
+crazy there um I'm going to find this llm fallback so this is 1:54:27 basically if you saw a router chain if it doesn't use a tool I want to fall 1:54:33 back and just fall back to
+the llm so I'm going to kind of build that as a little chain here so okay this is just a 1:54:39 fallback I have my Preamble just you're you're an assistant answer the question
+based upon your internal knowledge so 1:54:46 again that fallback behavior is what we have here so what we've done already is 1:54:51 we defined our router piece we've defined our
+our basic retrieval our Vector store we already have here um 1:54:58 we've defined our first logic or like grade check and we defined our fallback 1:55:04 and we're just kind of
+roll through the parts of our graph and Define each piece um so I'm going to have two other 1:55:10 graders and they're going to use the same thing we just talked about slightly
+different data model I mean same output 1:55:16 but actually just slightly different uh prompt um and you know descript destion 1:55:22 this in this case is the aners grounded the
+facts yes no this is my hallucination grater uh and then I have an answer 1:55:28 grader as well and I've also run a test on each one and you can see I'm getting binary this this
+these objects out have 1:55:35 a binary score so this a pantic object with a binary score uh and that's exactly what we want cool 1:55:43 and I have a Search tool so that's really
+nice we've actually gone through and we've kind of laid out I have like a 1:55:50 router I've tested it we have a vector story tested we've tested each of our graders here we've
+also tested 1:55:55 generation of just doing rag so we have a bunch of pieces built here we have a fallback piece we have web search now 1:56:02 the question is how do I Stitch
+these together into this kind of flow and for that I I like to use Lang graph we'll 1:56:09 talk a little about Lang graph versus agents a bit later but I want to show you why this
+is really easy to do using 1:56:14 Lang graph so what's kind of nice is I've kind of laid out all my logic here we've tested individually and now all 1:56:21 I'm going to do is I'm
+going to first lay out uh the parts of my graph so what you're going 1:56:27 to notice here is first there's a graph state so this state represents kind of the key parts of the
+graph or the key 1:56:35 kind of objects within the graph that we're going to be modifying so this is basically a graph centered around rag 1:56:40 we're going to have question
+generation and documents that's really kind of the main things we're going to be working with in our 1:56:46 graph so then you're going to see something that's pretty intuitive I
+think what you're going to see is we're 1:56:53 going to basically walk through this flow and for each of these little circles we're just going to find a function and these uh
+little squares or 1:57:02 these these you can think about every Circle as a node and every kind of diamond here as as an edge or 1:57:08 conditional Edge so that's actually what
+we're going to do right now we're going to lay out all of our nodes and edges 1:57:14 and each one of them are just going to be a function and you're going to see how we do that
+right now so I'm going to 1:57:20 go down here I def find my graph state so this is what's going to be kind of modified and propagated throughout my graph now all I'm going to do
+is I'm 1:57:27 just going to find a function uh for each of those nodes so let me kind of go side by side and show you the diagram 1:57:33 and then like kind of show the nodes next
+to it so here's the diagram so we have uh a retrieve node so 1:57:42 that kind of represents our Vector store we have a fallback node that's this piece we have a generate node so
+that's 1:57:49 basically going to do our rag you can see there we have a grade documents node 1:57:54 kind of right here um and we have a web search node so that's right here cool
+now here's where 1:58:02 we're actually to find the edges so you can see our edges are the pieces of the graph that are kind of making different decisions so this route question
+Edge 1:58:09 basic conditional Edge is basically going to take an input question and decide where it needs to go and that's 1:58:15 all we're doing down here it kind of follows
+what we did up at the top where we tested this individually so recall we 1:58:23 basically just invoke that question router returns our source now remember if tool calls were not
+in the source we 1:58:30 do our fall back so we show actually showed that all the way up here remember this if tool calls is not in the 1:58:36 response this thing will just be
+false so that means we didn't either we didn't call web search and we didn't call uh 1:58:43 our retriever tool so then we're just going to fall back 1:58:48 um yep right here and
+this is just like uh you know a catch just in case a tool 1:58:54 could make a decision but most interestingly here's where we choose a data source basically so um this is the
+1:59:02 output of our tool call we're just going to fish out the name of the tool so 1:59:08 that's data source and then here we go if the data source is web search I'm returning
+web search as basically the 1:59:14 next node to go to um otherwise if it's Vector store we return Vector store as the next node to go to so what's this 1:59:22 search thing well
+remember we right up here Define this node web search that's 1:59:27 it we're just going to go to that node um what's this Vector store um you'll 1:59:32 see below how we can kind
+of tie these strings that we returned from the conditional Edge to the node we want to 1:59:38 go to that's really it um same kind of thing here decide to generate that's 1:59:44
+going to roll in these two conditional edges into one um and basically it's going to do if there's no documents so 1:59:51 basic basically if we filtered out all of our documents
+from this first test here um then what we're going to do is 2:00:01 we've decided all documents are not relevant to the question and we're going to kick back to web search exactly
+as we 2:00:06 show here so that's this piece um otherwise we're going to go to generate 2:00:11 so that's this piece so again in these conditional edges you're basically
+implementing the logic that you see in 2:00:17 our diagram right here that's all that's going on um and again this is just 2:00:23 implementing the final two checks uh for
+hallucinations and and answer relevance um 2:00:30 and um yep so here's our hallucination grader we then extract the grade if the 2:00:38 if basically there are hallucinations um
+oh sorry in this case the grade actually yes means that the 2:00:45 answer is grounded so we say answer is actually grounded and then we go to the next step we go to the next test
+that's 2:00:52 all this is doing it's just basically wrapping this logic that we're implementing here in our graph so that's 2:00:57 all that's going on and let's go ahead and
+Define all those things so nice we have all that um now we can actually go 2:01:05 down a little bit and we can pull um this is actually where we stitch 2:01:12 together everything
+so all it's happening here is you see we defined all these functions up here we just add them 2:01:18 as nodes in our graph here and then we build our graph here basically by by
+2:01:24 basically laying out the flow or the connectivity between our nodes and edges so you know you can look at this 2:01:30 notebook to kind of study in a bit of detail what's
+going on but frankly what I like to do here typically just draw 2:01:36 out a graph kind of like we did up here and then Implement uh the Lo 2:01:42 logical flow here in your graph
+as nodes and edges just like we're doing here 2:01:47 that's all that's happening uh so again we have like our entry point is the router 2:01:52 um this is like the output is this
+is basically directing like here's what the router is outputting and here's the next 2:02:00 node to go to so that's it um and then for each node we're kind of applying 2:02:05
+like we're saying like what's what's the flow so web search goes to generate after um and retrieve goes to grade 2:02:12 documents grade documents um kind of is is like is a
+conditional Edge um 2:02:18 depending on the results we either do web search or generate and then our second one we go from generate to uh 2:02:25 basically this grade uh
+generation versus documents in question based on the output of that we either have 2:02:31 hallucinations we regenerate uh we found that the answer is not useful we kick back to
+web search or we end um finally 2:02:39 we have that llm fallback and that's also if we go to the fallback we end so what you're seeing here is actually the 2:02:46 the logic flow
+we're laying out in this graph matches the diagram 2:02:52 that we laid out up top I'm just going to copy these over and I'll actually go then back to the diagram and and kind of
+2:02:57 underscore that a little bit more so here is the flow we've laid out again 2:03:03 here is our diagram and you can kind of look at them side by side and see how they
+basically match up so here's kind 2:03:10 of our flow diagram going from basically query analysis that's this thing this 2:03:15 route question and you can see web search Vector
+store LM fallback LM 2:03:20 fallback web search vector store so those are like the three options that can come out of this conditional Edge 2:03:26 and then here's where we
+connect so if we go to web search then basically we next go to 2:03:31 generate so that's kind of this whole flow um now if we go to 2:03:38 retrieve um then we're going to grade
+so that's it um and you know it follows kind of as 2:03:46 you can see here that's really it uh so it's just nice to draw the these 2:03:51 diagrams out first and then it's pretty
+quick to implement each node and each Edge just as a function and then stitch 2:03:59 them together in a graph just like I show here and of course we'll make sure this code's publ
+so you can use it as a reference um so there we go now let's 2:04:07 try a few a few different test questions so like what player the Bears to draft 2:04:12 and NFL draft right
+let's have a look at that and they should print everything it's doing as we go so okay this is 2:04:19 important route question it just decides to route to web search that's good
+it doesn't go to our Vector store this is a 2:04:24 current event not related to our Vector store at all it goes to web search um and then it goes to generate so that's 2:04:30
+what we'd expect so basically web search goes through to generate um and we check hallucinations 2:04:38 Generations ground the documents we check generation versus question the
+generation addresses the question the 2:04:43 Chicago Bears expected to draft Caleb Williams that's right that's that's the consensus so cool that works now let's 2:04:50 ask a
+question related to our Vector store what are the types of agent memory we'll kick this off so we're routing 2:04:56 okay we're routing to rag now look how fast this is that's
+really fast so we basically whip through that document 2:05:03 grading determine they're all relevant uh we go to decision to generate um we check hallucinations we 2:05:10 check
+answer versus question and there are several types of memory stored in the human brain memory can also be 2:05:16 stored in G of Agents you have LM agents memory stream retrieval
+model and and reflection mechanism so it's 2:05:22 representing what's captured on the blog post pretty reasonably now let me show you something else is kind of nice I can go to
+Langs Smith and I can go to my 2:05:29 projects we create this new project coher adaptive rag at the start and everything is actually logged there 2:05:35 everything we just did so
+I can open this up and I can actually just kind of look through all the stages of my Lang 2:05:42 graph to here's my retrieval stage um here's my grade document stage and we
+2:05:47 can kind of audit the grading itself we kind of looked at this one by one previously but it's actually pretty nice 2:05:53 we can actually audit every single individual
+document grade to see what's happening um we can basically go through 2:06:00 um to this is going to be one of the other graders here 2:06:05 um yep so this is actually going to be
+the hallucination grading right here uh 2:06:12 and then this is going to be the answer grading right here so that's really it you can kind of walk through the entire graph you can
+you can kind of study 2:06:18 what's going on um which is actually very useful so it looks like this worked pretty well um and finally let's just 2:06:25 ask a question that should
+go to that fallback uh path down at the bottom like not related at all to our Vector store 2:06:32 current events and yeah hello I'm doing well so it's pretty neat we've seen in
+maybe 15 minutes we've from scratch 2:06:38 built basically a semi- sophisticated rag system that has agentic properties we've done in Lang graph we've done with 2:06:44 coher uh
+command R you can see it's pretty darn fast in fact we can go to Langs Smith and look at so this whole 2:06:50 thing took 7 seconds uh that is not bad let's look at the most recent
+one so 2:06:56 this takes one second so the fallback mechanism to the LM is like 1 second um 2:07:01 the let's just look here so 6 seconds for the initial uh land graph so this is
+2:07:08 not bad at all it's quite fast it done it does quite a few different checks we do routing uh and then we have kind of a 2:07:15 bunch of nice fallback behavior and inline
+checking uh for both relevance hallucinations and and answer uh kind of 2:07:23 groundedness or answer usefulness so you know this is pretty nice I definitely 2:07:28 encourage you
+to play with a notebook command R is a really nice option for this due to the fact that is tool use routing uh small and quite fast and it's 2:07:36 really good for Rags it's a

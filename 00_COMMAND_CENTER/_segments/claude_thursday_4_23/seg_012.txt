@@ -1,0 +1,224 @@
+29 minutes, 29 secondsif I'm being frank, I just thought it was kind of cool. 2:29:312 hours, 29 minutes, 31 secondsSo just another reason why doing all of this in the terminal
+gives you significantly more latitude. 2:29:362 hours, 29 minutes, 36 secondsYou can't really just like add a status line to the GUI version, at least not now, but this one's very
+hackable. 2:29:402 hours, 29 minutes, 40 secondsAnother thing you can do is you can add custom compaction instructions. 2:29:442 hours, 29 minutes, 44 secondsSo you can actually
+say slash compact and then give it a prompt telling it what to prioritize. You could do this every now and then, which is obviously quite valuable. 2:29:522 hours, 29 minutes, 52
+secondsYou can use slash clear to start fresh when switching to something that is unrelated. 2:29:562 hours, 29 minutes, 56 secondsSo what I mean by this is if I just delete this
+little terminal instance down here, just go back slash clear, 2:30:012 hours, 30 minutes, 1 secondwhat it'll do is it'll clear the entire conversation so you have no context
+anymore. So now there's no previous context. If I go back to slash context, you can see that scrolling up to messages, 2:30:102 hours, 30 minutes, 10 secondswe have 152 tokens,
+which is basically everything that we've done here so far. 2:30:132 hours, 30 minutes, 13 secondsAside from that, you can use instructions inside of the Clawed-down MD to basically
+try and minimize the total number of tokens generated, as I mentioned. So you could say something like, 2:30:212 hours, 30 minutes, 21 secondshey, write as succinctly as possible.
+2:30:232 hours, 30 minutes, 23 secondsYou can reason all that you want because that isn't added to the context, but when you actually give me something, just give me the bare bones
+information. If I need more, I'll actually ask you. 2:30:302 hours, 30 minutes, 30 secondsChoosing the right model is really big. So if you're using a really simple sub agent or
+something, we'll talk about how to develop those later on. I recommend using smaller models like Sonnet. 2:30:392 hours, 30 minutes, 39 secondsThese smaller models are typically
+less intelligent, 2:30:412 hours, 30 minutes, 41 secondsbut they have much larger context windows and then you'll build less. 2:30:432 hours, 30 minutes, 43 secondsSo that allows
+you to like do all the heavy lifting inside of the sub agent that's cheaper, and then they just return you those results, which is great. 2:30:492 hours, 30 minutes, 49 secondsAs
+you see here, the Anthropic team specifies to reduce the MCP server overhead. And that's because, as I mentioned to you guys, some MCP servers just suck. 2:30:572 hours, 30
+minutes, 57 secondsThey just have a bajillion tools. 2:30:582 hours, 30 minutes, 58 secondsYou'll download one and 20% of your token usage will be gone immediately. That's
+obviously quite costly, and then it makes Claude much dumber. So, you know, there are ways to reduce MCP server overhead. 2:31:072 hours, 31 minutes, 7 secondsThey have what's
+called advanced and automatic tool search now. When MCP tool descriptions exceed 10% of your context window, they won't actually load all of them. They'll just try and search for
+them before. 2:31:162 hours, 31 minutes, 16 secondsSo meaning you'll say, hey, you know, can you open up a new page in Chrome DevTools or something? It won't actually have access
+to all that immediately. 2:31:232 hours, 31 minutes, 23 secondsWhat it'll do is it'll search first a list of tools using Gratper or something like that, which is its own built-in
+search tool. 2:31:292 hours, 31 minutes, 29 secondsAnd then it'll find one that says open the Chrome DevTools and then it'll load it. 2:31:322 hours, 31 minutes, 32 secondsThat
+helps you avoid massive MCP server overheads and then obviously wasting a lot of tokens. 2:31:372 hours, 31 minutes, 37 secondsSome other tips are to move instructions from Claude
+MD to skills. 2:31:402 hours, 31 minutes, 40 secondsSo remember how earlier I said your Claude MD should be like 200 to like four or 500 tokens, lines maximum. Some people make it
+even longer, but you shouldn't. 2:31:492 hours, 31 minutes, 49 secondsInstead, what you can do is you can break those down into specific rules. And then any rules that are more
+tasks than rules, you can actually just turn into skills. So skills will load on demand, 2:31:572 hours, 31 minutes, 57 secondsmeaning that only when you specifically invoke them
+will they be added to your context, which is quite helpful. You can also adjust extended thinking. We haven't chatted too much about extended thinking, 2:32:062 hours, 32 minutes,
+6 secondsbut if you go back to Claude here, if you go to slash model, you have the ability to switch which model you're using. And then additionally, if you go over here, 2:32:142
+hours, 32 minutes, 14 secondsthere's also a thinking tab, 2:32:162 hours, 32 minutes, 16 secondswhich allows you to turn on and off that little reasoning or thinking window.
+2:32:202 hours, 32 minutes, 20 secondsAs I mentioned, thinking is pretty valuable because it avoids you wasting tons of tokens in the conversation chain itself. It offloads it to a
+little thinking tab. 2:32:272 hours, 32 minutes, 27 secondsAnd what you can do is you can actually modify the effort level using slash model. You can disable thinking completely,
+2:32:332 hours, 32 minutes, 33 secondsor you can turn the number of tokens that you give it to like maximum think from, I don't know, 8,000 to like 32,000 or more. 2:32:412 hours,
+32 minutes, 41 secondsNow agent teams is another feature of Claude code, which I'm looking forward to covering with you guys, but currently it costs a lot, about seven times more
+tokens than standard sessions, 2:32:482 hours, 32 minutes, 48 secondsespecially when teammates run in plan mode, because every teammate maintains its own context window. 2:32:522
+hours, 32 minutes, 52 secondsSo they actually kind of recommend against it if minimizing token usage is the number one thing that you wanna do. 2:32:572 hours, 32 minutes, 57
+secondsAnd then finally, writing specific prompts is probably the highest ROI tip that I could give you here. Instead of improve this code base, 2:33:052 hours, 33 minutes, 5
+secondsyou saying something specific, 2:33:062 hours, 33 minutes, 6 secondshey, fix this one feature that I found in this file is a lot more precise. And as a result, despite the
+fact that it'll, it takes a little bit more thinking on your end, 2:33:142 hours, 33 minutes, 14 secondsa little bit more of your extended thinking, Claude's token usage ends up
+being significantly decreased. 2:33:192 hours, 33 minutes, 19 secondsFinally, even Anthropic says that planning for complex tasks is the way to go because this significantly
+reduces the total number of tokens you use when you're actually building solutions. 2:33:282 hours, 33 minutes, 28 secondsUsually API calls and calling servers and requesting web
+pages and stuff, these load a ton of tokens in the context. So avoiding doing research entirely is pretty valuable. 2:33:372 hours, 33 minutes, 37 secondsOnce you're at the
+building stage, 2:33:392 hours, 33 minutes, 39 secondsjust front load the research with plan and worry about it later. Now it's time to chat skills, 2:33:422 hours, 33 minutes, 42
+secondswhich in my opinion is probably one of the most economically valuable ways that you can use Claude code. This is a Claude code in aggregate tutorial, obviously. 2:33:512
+hours, 33 minutes, 51 secondsSo I don't just wanna talk about skills. 2:33:522 hours, 33 minutes, 52 secondsIf you guys wanna know more about how I personally use skills and things
+like skills, 2:33:562 hours, 33 minutes, 56 secondsI do also have another course that talks all about what I call agentic workflows, which are analogous to skills. But for now,
+anybody that's not acquainted with this, 2:34:042 hours, 34 minutes, 4 secondsI just wanna run a quick demo. 2:34:052 hours, 34 minutes, 5 secondsSo if we open up this .Claude
+folder in the top left-hand side, you can see that we also have a nested skills folder. And I have a bunch of different skills here. 2:34:132 hours, 34 minutes, 13 secondsI have
+skills that allow me to classify leads, create proposals automatically, 2:34:182 hours, 34 minutes, 18 secondsnot dissimilar to the proposal generator app that we did before. I
+find outliers in my niche, update and auto-reply to emails, 2:34:262 hours, 34 minutes, 26 secondsedit my YouTube videos for me, onboard new clients to my agency, apply to Upwork
+jobs and so on and so forth, monitor and then classify my school posts. 2:34:362 hours, 34 minutes, 36 secondsI mean, if you think about it, 2:34:372 hours, 34 minutes, 37
+secondswhat this is, is this is a collection of all the things that I usually do in a daily basis, like for my own intellectually valuable knowledge work, the stuff that I
+basically get paid for. 2:34:452 hours, 34 minutes, 45 secondsAnd then what I've done is I've just turned them into checklists, and then I've just given these checklists over to
+Claude. So let's pretend that I wanna do one of these tasks today. 2:34:542 hours, 34 minutes, 54 secondsIn my case, I want to scrape some leads. 2:34:572 hours, 34 minutes, 57
+secondsSo what I've done is I've created a skill up here called scrape leads that scrapes and verifies business leads using a service. Then it classifies with a large language
+model, 2:35:042 hours, 35 minutes, 4 secondsenriches the emails and saves it to a Google Sheet. Use when the user asks to find leads, scrape businesses, generate prospect lists, or
+build lead databases for any industry or location. 2:35:122 hours, 35 minutes, 12 secondsI then have a goal up top, which is to scrape leads using a particular source. I have a
+bunch of inputs. I even have some scripts that I could use to run these. And then I have a process, and this is my checklist. 2:35:212 hours, 35 minutes, 21 secondsStart with a
+test scrape, then do verification, then do a full scrape, then do LLM classification, upload to a Google Sheet, enrich missing emails, and so on and so on and so forth. Chapter 22:
+Creating Skills for Efficiency 2:35:302 hours, 35 minutes, 30 secondsOkay, so as you see here, big, big deal. 2:35:322 hours, 35 minutes, 32 secondsThis is a fair amount of time
+and energy that I used to take to do these lead scraping things. 2:35:362 hours, 35 minutes, 36 secondsAs part of my work is both for my dental company and then for LeftClick, on
+behalf of my clients, 2:35:432 hours, 35 minutes, 43 secondslead scraping is like a major chunk of what makes a successful cold email campaign. And I just had to do it myself every
+time. It took like an hour or two. 2:35:502 hours, 35 minutes, 50 secondsWell, what I can do now is I can just turn all of my own knowledge into a skill. Okay, I can define it in
+Markdown format here, and I can write it with Claude, 2:35:572 hours, 35 minutes, 57 secondsand then I can just say, scrape me 1K dentists, or 1,000 dentists across the United
+States. 2:36:062 hours, 36 minutes, 6 secondsNow, when I press this button, what's happening now is it's successfully loading the skill. 2:36:112 hours, 36 minutes, 11 secondsIt's
+starting with a test scrape of 25 dentists to verify my quality. 2:36:152 hours, 36 minutes, 15 secondsIt already automatically finds the different filters I wanna use and so on
+and so forth. And then it's gonna dump these into a little folder for me. 2:36:222 hours, 36 minutes, 22 secondsWhat it'll do after, according to my skill spec, is it's going to
+read through each of these 25 leads, sometimes do a little bit of background research to say, 2:36:302 hours, 36 minutes, 30 secondshey, are these the sorts of leads that I'm
+actually, Nick is probably actually interested in? 2:36:342 hours, 36 minutes, 34 secondsAnd then if so, then it proceeds with a full parallel scrape of 1,000 simultaneously, and
+that occurs quite quickly. 2:36:412 hours, 36 minutes, 41 secondsSo in this case, it started four of these scrapers and it's just parallelizing these, so I'm gonna get 250 from
+each. 2:36:462 hours, 36 minutes, 46 secondsTo be clear, previously, this probably would have taken me 15 or 20 minutes to set up the filters, to set everything, kind of configure
+that initial search, right? 2:36:542 hours, 36 minutes, 54 secondsAnd then if I wanted to do that search at 25, I would have had to manually verify them myself, which took me
+another 10 or 15 minutes. After that, I would have started the actual scraper, 2:37:022 hours, 37 minutes, 2 secondsthen I would have had to upload them into a Google Sheet,
+2:37:052 hours, 37 minutes, 5 secondsI would have had to cross-reference the leads to make sure they're good, I would have had to run some additional AI-based flows, 2:37:102
+hours, 37 minutes, 10 secondsand it just would have been a big pain in my ass to make a long story short. 2:37:132 hours, 37 minutes, 13 secondsNow, A is capable of doing this for
+me in just a couple of minutes. 2:37:162 hours, 37 minutes, 16 secondsAnd I'm running this in terminal because I have access to what's called fast mode right now. 2:37:202 hours,
+37 minutes, 20 secondsEssentially, Anthropec's new Opus 4.6 model has launched with the ability to run two and a half times faster for approximately three times the price, 2:37:262
+hours, 37 minutes, 26 secondsso I'm happy to pay a little bit more money if it means that I can do all of the knowledge work that I need to do a little bit faster. As you see here
+on the right-hand side, it's now finding a bunch of my leads for me, 2:37:352 hours, 37 minutes, 35 secondsit's compiling them into a list, 250 leads done from that search, 250
+leads done from that search, 250 leads done from that search, and we just have one more to go. 2:37:422 hours, 37 minutes, 42 secondsNow, what's really cool about skills is it
+doesn't need to be right every single time, it's not like a program, 2:37:472 hours, 37 minutes, 47 secondsit's not like I put something together and then the second that it makes
+a mistake, it's done. 2:37:502 hours, 37 minutes, 50 secondsAs you see here, it scraped about 1,000 leads in 87 seconds and now it's uploading to Google Sheets. And somewhere along
+the line, there was an issue. 2:37:572 hours, 37 minutes, 57 secondsAnd the issue was, it turns out I can't use spaces and stuff like that in the file. So what it did is it
+realized that it made a problem, 2:38:042 hours, 38 minutes, 4 secondsand then it uploaded it to Google Sheets with the proposed solution, it went through and it read through a
+little bit of the API documentation and stuff like that to do that. 2:38:112 hours, 38 minutes, 11 secondsThis is stuff that I previously would have had to do and that try and
+retry loop just takes forever. 2:38:152 hours, 38 minutes, 15 secondsOn top of that, what it does is it goes and enriches the emails for me. 2:38:182 hours, 38 minutes, 18
+secondsAnd then what I end up with is I end up with a list that looks something like this. So I just bold this and then I make this a little bit bigger. 2:38:232 hours, 38 minutes,
+23 secondsI've since hidden the email columns here just because I don't wanna show too much information. We have clinic phone numbers and stuff like that, company phone numbers and
+addresses. 2:38:312 hours, 38 minutes, 31 secondsBut as you can see here, we have tons of information about dentists that are across the United States. Looks like a big chunk of
+them are in Philadelphia, 2:38:382 hours, 38 minutes, 38 secondsNew York, Moorstown, Boston, we have cities, we have everything that we need. And so what I'd do with this now is I
+would take this, then I would send it into a tool like Instantly, 2:38:462 hours, 38 minutes, 46 secondswhich is my cold email platform and then I would immediately start sending.
+2:38:492 hours, 38 minutes, 49 secondsAnd as I mentioned, this takes a pre-existing process that would have taken me at least half an hour, 2:38:522 hours, 38 minutes, 52
+secondsprobably more, and it turns into one that I literally did in 87 seconds. So as you can see, skills can be extremely economically valuable. 2:38:582 hours, 38 minutes, 58
+secondsThe question is, how do you actually go about creating them and creating them in a way that I think is reproducible and efficient and so on and so forth. 2:39:052 hours, 39
+minutes, 5 secondsWell, the first thing is you need to know how script or rather skill structure works. If I just zoom in on this to make it a lot easier, 2:39:122 hours, 39
+minutes, 12 secondsyou could see that our scrape leads skill is broken up into a few components. First, we have the folder itself, scrape-leads. 2:39:202 hours, 39 minutes, 20
+secondsThen we have another folder inside called scripts. This runs the program aspect of the skill. And then finally, we have the actual skill.md in Markdown. 2:39:292 hours, 39
+minutes, 29 secondsSo I want you to treat what we're seeing here in the skill.md as basically like the orchestrator of this whole affair. 2:39:392 hours, 39 minutes, 39 secondsSo
+the skill.md is like the checklist or orchestrator. 2:39:492 hours, 39 minutes, 49 secondsYou know, in an orchestra, the orchestrator is the person with the little, I don't know,
+those sticks. My sister does some of that actually, which is funny, I don't even know what the hell they're called. 2:39:572 hours, 39 minutes, 57 secondsBut you know, it's where
+you kind of wave them around and do all that stuff. And then what happens is, you know, the orchestrator is not the person making, you know, the conductor, I should say, 2:40:042
+hours, 40 minutes, 4 secondsis not the person that's making the music. 2:40:062 hours, 40 minutes, 6 secondsWhat they're doing is they are orchestrating the production of music
+from a variety of other sources. Inside of scripts, we have, you know, 2:40:162 hours, 40 minutes, 16 secondsthe actual musicians themselves, violinists, you know, the cellists, we
+have the pianists, 2:40:232 hours, 40 minutes, 23 secondsand so on and so on and so forth. 2:40:252 hours, 40 minutes, 25 secondsAnd so basically what occurs is we give it a big
+checklist of tasks in the skill.md. 2:40:312 hours, 40 minutes, 31 secondsWe give it a bunch of reference information and everything that it needs. And we treat it just like we
+treat a junior employee. We say, okay, here's the checklist, go out and do it. 2:40:382 hours, 40 minutes, 38 secondsAnd then where the orchestration kind of comes in is if there's
+an issue with the step-by-step execution of different subtasks, some of which are going to be scripts and stuff like that, 2:40:472 hours, 40 minutes, 47 secondsthen Claude gets to
+use its own native intelligence to fix it in real time. 2:40:512 hours, 40 minutes, 51 secondsNot only do they fix it, but then it also goes in and it updates the skill so that if
+there's another issue in the future, or if another instance of Claude tries running this, it doesn't run into the same problem. 2:41:002 hours, 41 minutesSo as you can see, they're
+very, very valuable. 2:41:022 hours, 41 minutes, 2 secondsThey're more or less exactly the same way that like a person would go and do a task. Now inside of my scripts folder here,
+2:41:072 hours, 41 minutes, 7 secondsI have, as you can see, a bunch of different actual Python scripts that have been developed for this purpose. Do I know anything that goes on
+in here? Chapter 23: The Structure of Skills 2:41:152 hours, 41 minutes, 15 secondsNo, I haven't even looked at this code. 2:41:162 hours, 41 minutes, 16 secondsIt's probably the
+first time that I'm ever opening up this file. 2:41:182 hours, 41 minutes, 18 secondsWhat I did is I told Claude that I wanted it to go and do things in my checklist and then go
+create scripts that would do them all for me. 2:41:252 hours, 41 minutes, 25 secondsIt's much better to do this than just tell Claude to do it from fresh and from scratch every
+time. 2:41:302 hours, 41 minutes, 30 secondsBecause obviously if it's the same thing that you need to do every time, you should turn it into like a defined program, right? Because
+then it's always gonna execute similarly. 2:41:372 hours, 41 minutes, 37 secondsThat way Claude is not actually doing the executions himself. What it's doing is it's just using the
+scripts here, just like it uses tools. 2:41:442 hours, 41 minutes, 44 secondsYou know how it has access to bash and web search and stuff like that? This is the same idea. It's just
+we're doing it encapsulated in a skill. Okay, so it takes this information. 2:41:522 hours, 41 minutes, 52 secondsIt goes through the skill. It says, okay, step one is test scrape.
+So I need to run the scrape appify with this query, max items 25, whatever the heck that means. 2:42:002 hours, 42 minutesThen it goes, it executes this. Once it's done, it checks
+the result. 2:42:042 hours, 42 minutes, 4 secondsIf that's the case, then it goes back and then it runs the same scraper except with different parameters. Assuming that that's
+good, 2:42:102 hours, 42 minutes, 10 secondsthen it uses this classify leads LLM script afterwards to tabulate that information. Assuming that that's good, 2:42:172 hours, 42
+minutes, 17 secondsit goes into what looks like update sheet to like create a Google sheet and then send it. Assuming that that's good, 2:42:232 hours, 42 minutes, 23 secondsit
+then goes enriches the missing emails and so on and so forth. 2:42:262 hours, 42 minutes, 26 secondsAnd there's different paths here based off of how many people we wanna scrape. I
+have a few other skills that I use pretty often as well. This one's called literature research. 2:42:352 hours, 42 minutes, 35 secondsAnd so, if I'm trying to perform research on a
+task, 2:42:372 hours, 42 minutes, 37 secondsI will actually say, go perform a lit review on the recommended daily dose of, let's say vitamin D and IUD for males in their early
+thirties. 2:42:512 hours, 42 minutes, 51 secondsWhat this will do, okay, 2:42:522 hours, 42 minutes, 52 secondsin addition to reading the CLAW.MD to get context about this whole
+thing, 2:42:562 hours, 42 minutes, 56 secondsis it'll go through and it'll read this literature research skill. If I open this up so that we can all see, 2:43:012 hours, 43
+minutes, 1 secondthe first thing it's gonna do is it's gonna query like this database, which I'm suggesting that it queries. So this database, I think, was called PubMed. 2:43:092
+hours, 43 minutes, 9 secondsAfter that, it's going to analyze using this little deep review script. And you'll notice that if I make this big again, I made some mistakes here,
+right? 2:43:172 hours, 43 minutes, 17 secondsFor whatever reason, the first query did not actually work fine, 2:43:202 hours, 43 minutes, 20 secondsbut it ended up redoing it over
+and over and over again until it figured it out. And so this is the orchestration aspect that I'm talking about. You can give it a checklist, but obviously not everything goes
+right perfectly. 2:43:292 hours, 43 minutes, 29 secondsBecause not everything goes right perfectly, 2:43:302 hours, 43 minutes, 30 secondsyou need to give it some flexibility in
+order to do your tasks. And that's what it's doing right now, right? 2:43:352 hours, 43 minutes, 35 secondsIt's gone through and it's gone and created a bunch of literature
+review-based information for me. Why would I use this versus, let's just say, telling CLAW to go find that information? 2:43:442 hours, 43 minutes, 44 secondsBecause I've already
+just put in the infrastructure to query specific databases that I really like. 2:43:502 hours, 43 minutes, 50 secondsI've taught it how to run parallel queries so I can do this
+research in 10th of the time. 2:43:542 hours, 43 minutes, 54 secondsI've taught it to use models that might be a little bit less capable, 2:43:572 hours, 43 minutes, 57 secondsbut
+might have much longer context windows and so on and so forth. 2:44:002 hours, 44 minutesAnd so this enables you to find a workflow that works really, really well, 2:44:032 hours,
+44 minutes, 3 secondsand then just consolidate it and then do it the same every time. This is why I no longer hire. 2:44:072 hours, 44 minutes, 7 secondsI mean, my businesses
+collectively still make over $300-something thousand per month right now in profit. That's a lot of money. 2:44:142 hours, 44 minutes, 14 secondsI don't have staff members to do
+these things for me anymore. Anytime I want anything done, I'll just tell CLAW to do it with one of these skills. 2:44:222 hours, 44 minutes, 22 secondsBecause to be honest, it's
+the exact same thing anyway. 2:44:242 hours, 44 minutes, 24 secondsI would have just hired a contractor to do this sort of literature research. I would have hired a contractor to
+do my lead scraping. 2:44:302 hours, 44 minutes, 30 secondsWhy do I have to wait around a whole day or two for them now if I could just execute a skill to go do the thing, retrieve
+me the results, and then, I don't know, 2:44:362 hours, 44 minutes, 36 secondsmaybe feed it into another skill in 100th of the time for like 100th of the cost. Chapter 24: Building
+a New Skill 2:44:392 hours, 44 minutes, 39 secondsOkay, so while all of this is occurring in this tab and I'm doing that research, 2:44:432 hours, 44 minutes, 43 secondswhy don't I
+show you guys how to actually create a skill in practice. To make a skill, it's really straightforward. 2:44:482 hours, 44 minutes, 48 secondsYou basically just give it like a
+bullet point list of things that you want it to do. 2:44:512 hours, 44 minutes, 51 secondsSo I'm going to say today we're creating a skill and why don't I just use my voice
+transcript tool? That's way easier. 2:44:572 hours, 44 minutes, 57 secondsThis skill will design websites in a format that I really like using a template that I really like.
+2:45:022 hours, 45 minutes, 2 secondsI want the websites designed very similarly every time because I'm going to use them to pitch people. 2:45:062 hours, 45 minutes, 6 secondsIn
+short, what I'm going to give you is I'm going to give you a bunch of information about a prospect and then I want you to design a website using a specific template. The template
+I'm going to supply you is this one. 2:45:162 hours, 45 minutes, 16 secondsAnd then what I'm going to do is, 2:45:172 hours, 45 minutes, 17 secondsyou know how earlier we went
+through godly.website and then we found a template that we really liked? 2:45:222 hours, 45 minutes, 22 secondsWell, I'm just going to scroll through and I'm going to find a
+template that I really like. So scrolling through, I don't know, 2:45:282 hours, 45 minutes, 28 secondsI just want this to be a simple website that I could use for, let's just do
+like, I don't know, dentists hypothetically right now. 2:45:342 hours, 45 minutes, 34 secondsSo I'm going to go over here and then I like this build an Amsterdam one. Okay, and
+then what I'm going to do is I'm just going to, 2:45:422 hours, 45 minutes, 42 secondsI think that's it honestly, 2:45:432 hours, 45 minutes, 43 secondsI think I'm just going to
+screenshot this and they'll just make one pager for Claude. Just going to screenshot it. 2:45:482 hours, 45 minutes, 48 secondsOkay, and then I'm going to go back to my
+anti-gravity and then paste it. 2:45:512 hours, 45 minutes, 51 secondsI want you to use screenshot functionality to mirror the style of the website. 2:45:562 hours, 45 minutes, 56
+secondsI'm also going to paste in some of the HTML so you can use that to create a style guide, et cetera. 2:46:002 hours, 46 minutesYou'll receive as input, like a Google sheet
+with information about a prospect and then you just create a website that matches. 2:46:082 hours, 46 minutes, 8 secondsFind web images using publicly available sources, 2:46:122
+hours, 46 minutes, 12 secondsmake sure it's really pretty and yeah, follow the template as closely as possible. Then I'm going to go on the website. 2:46:172 hours, 46 minutes, 17
+secondsI'm going to, let's just make it really wide because sometimes websites are different. 2:46:222 hours, 46 minutes, 22 secondsAnd then what I'm going to do is I think I'm
+just going to copy all of this. It's really, really long, right? I'm just going to paste it in. So that's going to be huge. 2:46:302 hours, 46 minutes, 30 secondsIt's going to be a
+lot of stuff to paste, 474 lines. And then, hmm, anything else that we need to do? I don't think so. 2:46:362 hours, 46 minutes, 36 secondsI guess I just need to give it an example
+of some of the input. 2:46:382 hours, 46 minutes, 38 secondsSo I'm going to go and then find that Google sheet that we just had with a bunch of dentists. 2:46:422 hours, 46
+minutes, 42 secondsThen I'm just going to copy all of this information and I'll say example of the data and then I'll paste that in. 2:46:482 hours, 46 minutes, 48 secondsOkay, so
+I mean, I just fed in a tremendous amount of information here, right? Like this is really, really big. But with our little fast mode, 2:46:562 hours, 46 minutes, 56 secondsplus
+some pretty precise instructions, 2:46:592 hours, 46 minutes, 59 secondsI think we can probably generate a cool skill in just a couple of minutes that does this sort of thing
+automatically. 2:47:032 hours, 47 minutes, 3 secondsAnd after this, I'll have a system where I can basically just feed into Google Sheet and then I can generate a beautiful,
+customized website for a prospect in like two seconds, 2:47:102 hours, 47 minutes, 10 secondswhich has information about them that clearly is customized and so on and so forth.
+2:47:142 hours, 47 minutes, 14 secondsAnd then I can just give it to them as sort of a lead magnet or something. That sounds pretty fun. And it's already gone through and it's done
+some stuff. Now I'm not using plan mode for this, but you absolutely can. 2:47:212 hours, 47 minutes, 21 secondsI just wanted to one shot a skill with this fast mode just so that I
+could do something while I was waiting for the literature review to finish. 2:47:272 hours, 47 minutes, 27 secondsAs you can see, it's loaded in the skill pattern and structure
+from the other skills as well as the Claude.md. And now it's just gonna ask me some information. 2:47:352 hours, 47 minutes, 35 secondsSo where should the output of the skill be? A
+local HTML file? Yeah, let's just use local HTML for now. How will you provide prospect data? We'll just do Google Sheet URL. 2:47:432 hours, 47 minutes, 43 secondsFor images,
+which approach do you recommend? Yeah, sure, let's do the unsplash API. 2:47:462 hours, 47 minutes, 46 secondsShould the website be a mockup of what their business site could like
+or a pitch page about your services? Mockup of their site. Cool, that looks great. So that's sort of its plan mode analogy. 2:47:562 hours, 47 minutes, 56 secondsAnd this actually
+initiated plan mode without me even having to ask basically. 2:47:592 hours, 47 minutes, 59 secondsI just make this a little bigger so you could see the entire chat. 2:48:022
+hours, 48 minutes, 2 secondsThis went through and then turned on plan mode like on its own. I didn't even have to ask it to. 2:48:062 hours, 48 minutes, 6 secondsAnd that's what
+occurs sometimes when you do bypass permissions. 2:48:082 hours, 48 minutes, 8 secondsIt'll just choose to create a plan for a more complicated software build. 2:48:122 hours, 48
+minutes, 12 secondsCool, and now I'm going to bypass permissions and we're gonna go. While that's occurring, just scrolling through this literature review. Looks pretty cool. It
+gives me a bunch of information. Apparently one to 2000. 2:48:202 hours, 48 minutes, 20 secondsSo that looks pretty fun. 2:48:212 hours, 48 minutes, 21 secondsOkay, and then this
+looks like the little demo that we put together. This is a pretty basic demo. Not that big of a fan to be honest. So I think we're gonna have to go do some back and forth. 2:48:292
+hours, 48 minutes, 29 secondsSo we did build a website in just a few seconds for them, which is kind of neat. Okay, it's now gonna take a screenshot of this page for us. And as you
+can see, it's now accumulated like 19 or 20,000 tokens, 2:48:382 hours, 48 minutes, 38 secondswhich is kind of cool. Here's what we got. Full viewport hero. Okay, so I'm just gonna
+say, not a very big fan of the website design. 2:48:452 hours, 48 minutes, 45 secondsI don't think this matches the website. 2:48:472 hours, 48 minutes, 47 secondsI'd like you to
+get pixel perfect accuracy by screenshotting the comparison back and forth. Go find some library that allows you to do this as necessary. 2:48:572 hours, 48 minutes, 57 secondsIn
+terms of Unsplash, how are you currently getting your images? Let's just do that. That's fine. I don't really want it to go, you know, force me to get an API key or something like
+that. I'm just gonna have it run. 2:49:062 hours, 49 minutes, 6 secondsOkay, that's looking a lot better than what we had before. I like this. 2:49:092 hours, 49 minutes, 9
+secondsIt looks like it took some photos of areas that were similar to where this place is located. And as we scroll through, 2:49:152 hours, 49 minutes, 15 secondswe obviously
+have the information and the template and stuff. I don't like how a lot of these images are the same. So I'm just gonna say, nice job. I don't like how all these images are the
+same though. 2:49:232 hours, 49 minutes, 23 secondsGet different images. Looks really clean. We even have like their phone numbers and stuff like that. 2:49:272 hours, 49 minutes,
+27 secondsSo we're now capable of basically like one-shotting a website for somebody. And as you can see, we can generate these super, super easily and very quickly. 2:49:352
+hours, 49 minutes, 35 secondsWhat I'll do now that we have this is realistically, 2:49:372 hours, 49 minutes, 37 secondsI'm gonna try it with one row and then just see how quickly
+it can put together the site for me. Cool. 2:49:412 hours, 49 minutes, 41 secondsNow I'm going to test it with some new information and let's see how quickly it can put that
+together. 2:49:462 hours, 49 minutes, 46 secondsCool. We've now done the same thing with Bennington Dental Center. So that's neat. We have some images generated and stuff like
+that. 2:49:522 hours, 49 minutes, 52 secondsIt is telling me that the reason why we have images of dogs and stuff is because I don't want to supply my Unsplash API key. You know,
+if we do, then obviously there'll be much more dentally oriented. 2:50:012 hours, 50 minutes, 1 secondI think that's fine. Hopefully you guys get the idea. You could build stuff
+like this really quickly. In this case, it took 30 seconds. 2:50:072 hours, 50 minutes, 7 secondsSo I mean, like what we could do if we wanted to like build this out as a service
+and like actually just like generate custom websites for people, send them out and so on and so forth. 2:50:142 hours, 50 minutes, 14 secondsWe could turn the skill into a sub
+agent to show you guys how to do later where basically we can spin up 10 of these simultaneously and basically in parallel, just generate 10 every 30 seconds. 2:50:232 hours, 50
+minutes, 23 secondsThat's a per website generation time of about three seconds. 2:50:262 hours, 50 minutes, 26 secondsAnd so now that we're generating them every three seconds with
+customized information, matching widths and heights and stuff like that, making it really custom and sexy, 2:50:322 hours, 50 minutes, 32 secondsyou know, you could do 10,000 leads
+in approximately 30,000 seconds. I don't know how long that would actually take. Let's see. 30,000 divided by 60 is 500. 2:50:412 hours, 50 minutes, 41 secondsSo it might take 500
+minutes or I don't know, eight hours for a full 10,000 list. But yeah, combine that with the scraper, 2:50:482 hours, 50 minutes, 48 secondscombine that with you sending people
+customized websites and combine that with some other skills that I've set up to like automate the process of whipping up instantly campaigns and stuff. 2:50:542 hours, 50 minutes,
+54 secondsAnd hopefully you guys can see we get a pretty solid system in our hands. And that took me just a few minutes to put together. Now that we know all about skills, let's
+talk a little bit about the next logical thing, Chapter 25: Introduction to Model Context Protocol 2:51:022 hours, 51 minutes, 2 secondswhich is model context protocol. So now that
+you guys understand sort of how skills work, 2:51:062 hours, 51 minutes, 6 secondswhich to be clear is that skills are basically like backend functions that you can run scripts
+almost 2:51:132 hours, 51 minutes, 13 secondsthat use the flexible intelligence of AI and the procedural rigor of Python scripts and other programming tools to do the same thing
+every time, 2:51:232 hours, 51 minutes, 23 secondsbut also allow you the flexibility to air handle. It's not that we understand that. Let's talk about model context protocol.
+2:51:302 hours, 51 minutes, 30 secondsAnd so the way that I see it is these are just skills except other people make the skills for you. I want to say other people, for the most
+part, it's like developer teams and stuff like that. 2:51:382 hours, 51 minutes, 38 secondsVery similar idea. 2:51:402 hours, 51 minutes, 40 secondsYou're basically just giving
+your agent access to a piece of software. 2:51:442 hours, 51 minutes, 44 secondsAnd then just like it calls its own tools like web search and bash and the Chrome dev tools, MCP and
+the screenshot, all the stuff that we've already looked at. 2:51:512 hours, 51 minutes, 51 secondsWhat we're doing here is we're just calling them, but somebody else is responsible
+for putting them together. Now that obviously begs the question, 2:51:592 hours, 51 minutes, 59 secondswhere do I get MCPs? Well, you can just go on websites like MCP servers.org,
+2:52:062 hours, 52 minutes, 6 secondsmodel context protocol slash servers, and then MCP market. 2:52:112 hours, 52 minutes, 11 secondsI want you guys to know that not all of these
+are going to be 100% safe or secure. 2:52:152 hours, 52 minutes, 15 secondsThese are third party libraries that people are putting together basically that try and tabulate the
+number one MCP skills and so on, MCP tools and so on and so forth. 2:52:252 hours, 52 minutes, 25 secondsBut a lot of these are pretty well vetted at this point. 2:52:272 hours, 52
+minutes, 27 secondsAnd I'm going to show you at least a couple that I really like. The biggest one is probably the Chrome dev tools MCP. This is one that I use constantly,
+basically every day, many, many times, 2:52:362 hours, 52 minutes, 36 secondsbecause it allows your coding agent to control and then inspect a live Chrome browser. 2:52:412 hours,
+52 minutes, 41 secondsIn my opinion, it is significantly higher quality than any of the current browser tools that, Clawed or other platforms have given us. 2:52:492 hours, 52
+minutes, 49 secondsSo I mean, I have this little Chrome extension here that I can actually use to control this instance of Chrome through this Clawed tool. 2:52:562 hours, 52
+minutes, 56 secondsIt's developed specifically by the Clawed team. And I could say, hey, summarize this page. 2:53:012 hours, 53 minutes, 1 secondAnd then what it can do is it can
+copy all the text on this page, so it can extract the page text. And then it can take a screenshot of it. 2:53:092 hours, 53 minutes, 9 secondsAnd then it can tell me about it and
+so on and so forth. I can also have it do things like click. 2:53:142 hours, 53 minutes, 14 secondsI could say, okay, star this on GitHub or something like that. 2:53:212 hours, 53
+minutes, 21 secondsAnd then I can give it some additional instructions and then it can go through, look for the GitHub link. I don't know, maybe click it. And then now that we have
+this thing open, 2:53:302 hours, 53 minutes, 30 secondsit's gonna go and it's gonna try and star this puppy. So that's pretty cool. But you'll find that it also takes a fair amount

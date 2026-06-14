@@ -1,0 +1,224 @@
+install 7:19 on your computer to go in. 7:20 And now you can just go hit the official GitHub site, 7:24 like I think it's mcp.github.com, 7:26 you can put that into your Claude
+Code or Claude.ai 7:29 and then extend Claude 7:31 with the ability to interact with GitHub. 7:33 So it's really maturing in a way that's really cool. 7:35 - That's pretty cool.
+7:36 And I've been using the GitHub MCP 7:37 for things in Claude Code as well, 7:39 and it's nice to just have that one your all endpoint Favorite MCPs: Context7 & Playwright 7:42
+that just plug in. 7:43 Is there any kind of fun, unique MCPs right now 7:46 in the registry or outside of the registry 7:48 that you guys have seen? 7:50 - I think one that I
+think 7:52 has been really, really interesting to watch, 7:55 it's called Context 7. 7:57 So one of the biggest limitations 7:58 of large language models 8:00 is that they have a
+knowledge cutoff 8:01 that's usually, you know, delayed by a couple of months, 8:05 which means that working with 8:06 the latest and greatest packages as a software developer,
+8:09 sometimes difficult with LLMs, 8:10 because they will just give you outdated information. 8:13 And what Context 7 does is it takes care of 8:16 pulling documentation from
+these websites 8:19 like Next.js's website 8:21 or even our own API's website and keeping those up-to-date. 8:24 And all you have to do 8:25 is configure your MCP connection once,
+8:27 and Claude will have the access to 8:29 the latest information out there 8:31 on whatever it is that you're developing against. 8:33 - Mm, okay. 8:35 Yeah, I think I had heard
+of that. 8:36 So we're basically pulling in the latest docs, everything, 8:39 and I know right now we're also in the mid-transition 8:42 of a lot of folks making their docs
+completely just raw text 8:45 and accessible to LLMs. 8:46 So I'm assuming that's pulling from that 8:49 same sort of information. 8:50 - Yeah, so this is like the llms.txt format,
+8:54 which I've seen a lot of adoption of 8:57 throughout the entire tech industry, 8:58 which has been very exciting to see. 8:59 - That's cool. 9:00 Any from you, John? 9:01 -
+From from my end, 9:04 I found it useful, 9:06 from my work as a software developer, 9:10 I really like Playwright as an MCP server, 9:14 which allows Claude to go and interact
+with browsers 9:18 as though it was a user clicking around. 9:19 So if you're working on a website, 9:23 Claude can read all your CSS and read your HTML, 9:25 but it can't actually
+look at your webpage. 9:26 But if you go and install the Playwright MCP server, 9:29 then you can have Claude go look at your webpage 9:32 and give you advice on how to make it
+more beautiful 9:36 or fix alignment issues. 9:38 - So it's like actually screenshots. 9:39 - Yeah, it's actually loading it up in a browser, 9:42 browsing around using Playwright.
+9:44 It's a Microsoft project that allows 9:49 remote browser driving. 9:50 - What happens when you put that in a loop 9:52 with something like Claude code? 9:53 - Oh, you can
+just, you can get some self-improvement loops. 9:56 If I tell Claude Code to go 9:58 and fix an alignment problem in a header, 10:01 it can go make some changes to my HTML, 10:04
+make some changes to my CSS, 10:06 reload the page if necessary, then go look at it again 10:08 and be like, oh, everything looks better, 10:10 or that didn't fix it, 10:12 and it
+has the context of seeing both its changes 10:14 and then actually being able to 10:16 take a screenshot of the website 10:18 and say, oh, this set of CSS changes 10:20 actually
+led to this effect that I didn't intend. 10:23 Let me roll that back and try a different way. 10:25 - Mm, it's a different type of alignment problem. 10:27 - Yeah, the CSS
+alignment problem, 10:30 maybe it even need even a harder problem. 10:34 Switching gears a little bit, 10:38 if I'm a developer and I wanna use the the Claude API, Using the Claude
+API MCP connector 10:40 how can I use MCPs with our API and with Claude models? 10:44 - So that's excellent question. 10:46 The canonical standard way of doing this 10:48 is to
+install the MCP SDK, set up your own loop, 10:53 like you mentioned with Claude Code 10:55 and handle connecting to any MCP server 10:57 that you need to get connected to. 10:59
+But it's essentially your responsibility 11:01 as a software developer to put together all the glue work, 11:04 which is great and it works. 11:06 But what we recently released
+directly into the API 11:09 as a native feature is the MCP connector feature, 11:12 which allows you to just specify 11:14 where your remote MCPs live, like mcp.github.com, 11:18
+and provide us with whatever authorization information 11:21 and we can take care of that calling loop 11:24 of executing the tools 11:26 and getting the results fed back to the
+model for you. 11:28 So all you really have to do is send a single API call 11:31 that says like, give me my latest pull requests. 11:33 and it will go ahead and take care of that
+for you. 11:36 - That's awesome, yeah, 11:36 I've been hearing from a lot of developers 11:38 that they've just been able to delete tons of code, 11:40 because they just have that
+so they don't have to handle 11:43 all that back and forth themselves now, 11:45 just like passing the URL and to the end point 11:47 and then you're kind of good to go. Prompt
+engineering with MCP 11:51 What are some other tips for developers using MCP? 11:54 - I think that the main one that I try to give developers 11:58 when I talk is that MCP servers
+and tools 12:03 are really at its core prompts. 12:05 And so we've kind of learned 12:07 that if you're writing AI-powered applications, 12:10 it's really important to be careful
+and precise 12:12 about the language that you use 12:13 when you're prompting the model. 12:15 This extends to everything about defining your MCP server, 12:20 like defining your
+tool names appropriately, 12:23 giving them descriptions. 12:25 Maybe your description has a few short examples 12:28 in the description of how to use it, 12:30 giving appropriate
+parameter names. 12:32 This is all stuff that's gonna affect your model's behavior 12:36 when it interacts with the MCP server. 12:38 An example though that I had was 12:40 I was
+making an image generation server 12:41 and I had a tool called Generate Image, 12:43 and then it had a field called Description, and that's it. 12:47 And then, you tell Claude
+like, 12:48 "Hey, generate me an image of a cute puppy," 12:50 and it'll go along, call the tool, 12:52 be like, "Description, cute puppy." 12:55 Great. 12:56 If you go and change
+that, 12:57 and you say like, 12:59 "This tool calls the XXX diffusion model, version Y 13:04 and should be prompted in this style for best results," 13:10 use this kind of
+descriptive language, 13:12 do all of this. 13:13 Claude has information about 13:14 how to interact with these systems 13:16 and it just needs to be told, 13:18 oh great, I know
+that I'm talking to a diffusion model now, 13:20 I'm gonna change my language, 13:21 what I'm gonna use in this prompt, 13:22 and it's gonna go and instead of asking for a cute
+puppy, 13:25 it's just gonna give you a much more detailed 13:28 diffusion model prompt that'll give you much better results. 13:31 You get much better results from your MCP server
+13:34 just by changing a few words in your description 13:37 or your prompt name. 13:39 Just the same as you get better results 13:41 writing pull requests 13:42 or doing any sort
+of knowledge work with Claude 13:44 that you would by tweaking those. 13:47 - I mean I myself forget this all the time, 13:49 that when you're dealing with a tool 13:52 or some
+sort of description in isolation 13:54 as you're working on a new feature 13:56 for some, you know, AI app, 13:59 it all gets pulled back into the same prompt, right? 14:02 And
+it's all just like one text string at the end of the day 14:05 that's getting fed into the model in each request. 14:07 And yeah, that's good advice that like, 14:09 hey, that's
+part of the prompt too. 14:11 The description that you're writing in some JSON 14:13 somewhere in your code is still gonna be 14:15 pulled into that same prompt that gets sent to
+Claude 14:18 on the request. Best practices for managing context and tools with MCP 14:20 Let's talk a little bit about context management as well 14:23 and dealing with lots of
+tools and lots of results. 14:25 I mean, this is a huge problem for LLMs right now 14:28 in terms of polluting the context. 14:30 Curious if you have any thoughts there 14:31 on
+how developers should think about that with MCP? 14:35 - Yeah, so I think a big anti-pattern 14:37 that we've seen a lot of developers make 14:39 is just stuffing their MCP servers
+or their API requests 14:43 with MCP servers with just tons of tools 14:46 or tons of MCP servers, 14:48 which not only gets expensive, 14:49 because you're just generating tokens
+14:51 for every single one that you're adding, 14:53 but also has a tendency of confusing the model. 14:55 An example is if you connect both your linear 14:59 and your Asana task
+management MCP servers 15:02 in the same request, 15:03 both of those might have a get project status MCP tool 15:08 and the model will not have an implicit information 15:11 about
+which one of them to use in which context. 15:13 But beyond that, you're just, 15:15 yeah, you're essentially confusing the model 15:17 by giving it potentially conflicting
+information. 15:19 So just being very, very careful and deterministic 15:23 about which tools you add, 15:25 making sure that they ergonomics around them 15:27 also makes sense
+15:28 and that using those tools feels natural to you 15:30 if you are getting to use them yourself. 15:33 But beyond that, making sure that you, 15:36 yeah, just don't include any
+information 15:38 that might not necessarily help with the current turn 15:41 of user prompts. 15:42 So sometimes older parts of the conversation 15:45 that might involve very
+introductory information, 15:47 like, you know, what's the weather today? 15:50 Might not be as relevant much, much later on 15:52 in the conversation 15:53 when you are moving on
+to the latest news 15:56 or some other information that you need from the model. 15:58 - Hm, I often get asked, 16:00 how many tools can pass into Claude? 16:02 Or how many MCP
+servers can I hook up at one time? 16:05 And it seems like it's not so much a number question, 16:09 rather, it's like a, how distinct are the tools 16:12 from each other and how
+well-defined and scoped out. 16:14 Is that correct 16:15 or is there also kind of like a absolute number of MCPs? 16:19 - I think you also end up with an absolute number. 16:23 If
+your context window is X tokens, 16:25 each server is gonna pull in a number 16:28 of function definitions. 16:29 Each of those is gonna eat it up. 16:30 So you're gonna just
+start. 16:34 As you give LLMs more information, 16:36 it makes it harder for them to make good decisions. 16:38 And so even though it will probably work if you hook up 16:42 to a
+bunch of servers, 16:44 it'll probably work better if you can give Claude a subset 16:47 that's relevant to the task that it's looking at. 16:49 One other point coming out here
+from what Michael was saying 16:51 is if you're designing an MCP server, 16:56 generally if you can have one or two tools in your server 17:00 versus having 15 or 20 tools, 17:04
+it'll help the model a lot. 17:06 And so it's sometimes 17:11 MCP interface development 17:14 is a bit different than API development 17:17 where we're feeding these into LLMs.
+17:18 And if you give a tool a description 17:22 that maybe takes some natural language 17:24 or has as part of filling out the parameters, 17:26 the model's gonna make some
+decisions 17:27 and generates some text, you can maybe get away with 17:31 instead of an API where you'd be like, 17:33 get projects, get posts, get users. 17:36 You might just
+have a get info tool, 17:41 because you're calling LLM will be able to 17:43 look at your description 17:45 and fill out whatever information it needs. 17:47 And that way you can
+provide a much smaller set of tools, 17:51 you will both play nicer with other MCP servers 17:53 and you'll ensure that your server gets called 17:56 more efficiently
+appropriately. 17:57 - Right, so it's not always a one-to-one translation. 18:00 There's different levels of abstraction that you can apply 18:03 and perhaps the API spec is not
+the best-defined thing 18:08 for the model to take in either, yeah. 18:12 So you guys live and breathe MCP 18:14 all day every day, basically. 18:16 How are you guys using it,
+whether it's at work 18:18 or whether it's at home or side project or anything else? How John and Michael use MCP servers for project management, home automation, and more 18:23 I
+know the example of Playwright, 18:24 but is there other ways 18:25 that you guys are experimenting with MCP on the side? 18:27 - One of the biggest use cases that I've found
+personally 18:29 is Anthropic is often an information highway. 18:32 There's just so much information all over the place 18:35 between our Slack and our docs and our code base
+18:38 and getting the latest status on how the project 18:41 that I'm currently on is going is not often very, very easy 18:44 to understand from just a single source. 18:47 So
+what I've gotten in the habit of doing 18:49 is I will either on Claude AR or on Claude code 18:52 set up my MCP servers to connect 18:54 to all these various locations 18:55 and
+I'll just ask it, 18:57 "Hey, here's a couple of examples of past project updates 19:00 that I've written myself. 19:01 Can you go find information from the last week 19:04 and
+generate a status update using the same exact format?" 19:08 And I would say that the success rate on that 19:11 is much, much higher than I originally thought. 19:13 - Am I
+reading your status updates then in your Slack 19:16 and those are all Claude-generated? 19:17 - Yeah, I'm never actually writing anything anymore. 19:20 It's just all Claude. - It
+was just you reading 19:21 Claude the whole time. 19:22 Okay, good to know. 19:24 How about you John? 19:25 - I found a couple of angles from hacking around 19:30 my home hardware.
+19:31 I have some MCP servers running on my home network 19:35 that can control things around my house. 19:38 And so I can go and in a conversation with Claude, 19:40 be like,
+"Hey, did I leave my door unlocked this morning?" 19:45 And Claude can say, "Yeah, your door is currently unlocked, 19:48 would you like me to lock it for you?" 19:49 And come back
+and be like, "Yeah, that'd be great." 19:53 That sort of thing's really useful, 19:55 kind of fun to play with it. 19:56 It kind of feels like a sneak peek 19:58 into what the
+future world might look like. Understanding the “emergent” behaviors when Claude and MCP servers work together 20:03 There's kind of a magical feeling with MCP servers, 20:07
+because you get these sort of 20:10 emergent properties from adding them 20:12 that you might not expect. 20:18 An example of this is 20:21 when we were very first time we started
+playing 20:23 with MCP servers, I built a knowledge graph server 20:28 with some of my colleagues here at Anthropic. 20:31 - A knowledge graph in this case is? 20:32 - A knowledge
+graph, meaning 20:35 we wanted to give Claude the ability to take memories 20:38 and form connections between memories. 20:40 And so it's an MCP server that had two tools. 20:43
+It's a create memory tool 20:44 and a connect memory to other memory tool 20:47 and the simplest possible interface. 20:49 And we hooked this up to Claude, 20:51 and suddenly you'd
+have conversations with Claude 20:54 and it would enter investigative journalist mode 20:56 where I'd say like, "I play piano." 20:59 And Claude would be like, 21:00 "That's
+amazing, what do you like to play?" 21:02 And it's, I'm like, "I like to play Rachmaninoff." 21:04 And it's like, "Is there anything 21:06 that's your favorite there?" 21:07 And
+I'd look at the knowledge graph 21:09 and Claude is going and scribbling down and be like, 21:11 "User has sophisticated classical music taste," 21:13 and it's trying to find, it's
+skilled in instruments 21:17 and that's just from such a small change that you provided. 21:22 And one of the really cool things 21:24 with having MCP as a protocol 21:26 is if you
+hook in your Gmail server 21:30 with your home automation server, 21:33 then maybe you can go and Claude can figure out 21:37 some way to solve a problem that you ask it, 21:39 by
+connecting those two together 21:40 you might never have thought of. 21:41 - Right, yeah, there's kind of that fuzzy in between 21:44 when these things all get hooked together
+21:46 where pair that with Claude's kinda general intelligence 21:49 and interesting things can happen. 21:52 - And it's like one of the core differences between MCP 21:54 and
+traditional-structured APIs 21:58 where because everything is so fuzzy 22:01 and because the LLMs are smart enough 22:03 to just kind of smush it together, 22:05 you care a lot
+less about contracts. 22:07 There's this interesting property 22:09 where if I have an MCP server for interacting with Gmail 22:13 and then I go and I do some evals 22:17 and I
+find a better set of tools and descriptions 22:19 to interact with Gmail 22:21 and it changes it from 15 tools with a set of descriptions 22:23 to two tools with the other one,
+22:25 I don't have to go and roll out a new version 22:27 of my API for that. 22:28 If you're changing your API in a massive way like that- 22:30 - You have to deal with breaking
+changes. 22:32 - Breaking changes, talking to users, doing all of that, 22:35 MCP, I can just roll that out 22:36 and because the intent of the MCP 22:38 is to allow Claude to
+interact with Gmail, 22:40 it's not like I'm gonna provide a read emails tool 22:44 and a write email tool. 22:45 So it's really cool. 22:46 - Yeah, it's about more like the higher
+level intent The future of MCP: growth of the protocol and ecosystem 22:50 and actions than the specific technical detail 22:53 of how we get there. - Yeah, yeah. 22:55 - That's
+really cool. 22:58 So where's this all headed? 22:59 Where's MCP gonna be in, you know, 23:01 6 months, 12 months, a year-plus? 23:04 - That's an interesting question, 23:05
+because I've always viewed, 23:06 you know, like John said, MCP is a protocol, 23:09 so it's very interesting to see popularity for a protocol 23:13 considering that it, you know,
+23:15 if MCP is successful and us and everybody 23:19 that integrates with it did their job right, 23:21 we should never know that MCP is happening under the hood. 23:24 It should
+just be you using whatever program 23:27 or app that you're using 23:29 and MCP is happening under the hood 23:30 just making everything glued together 23:32 and LLMs kind of
+configure everything, 23:34 so you're just giving it the arms and the legs 23:36 that it needs. 23:36 But yeah, it's always been interesting to me 23:39 to see the hype around MCP.
+23:41 - Right, do you think that's gonna continue? 23:44 Is there like a plateau here 23:46 or what does that actually look like in terms of protocol? 23:49 Is there any sort of
+precedent we can look at 23:52 to judge MCP against? 23:54 - I think it's hard applying a precedent 23:56 to anything in the world of AI that we're in, 23:59 but I definitely see a
+lot of this stuff 24:03 that John and his colleagues over on the MCP team 24:05 have been doing, is very exciting. 24:06 And it's very, it to me, it's been amazing seeing 24:10
+companies big and small come to the table 24:12 and come talk about how we can proliferate it 24:14 and make it a, this ubiquitous thing 24:16 that is just everywhere the same way
+that, I don't know, 24:19 our internet is. 24:21 - One thing that's really exciting for me going forward. 24:25 I think we're at a point now 24:26 where a lot of people have
+realized the value of MCP 24:29 and they've started writing these servers, 24:31 but in terms of the MCP servers as prompts analogy, 24:35 we're in very early days. 24:37 And so I
+am really excited for people 24:40 now that they've started building out these servers 24:42 to start evaluating how they work and making them better. 24:47 And I'm excited for it
+to start to become a metric 24:51 by which you might evaluate a vendor for your work. 24:55 If I'm paying someone 24:58 to do log analytics, for example, 25:01 it would be really
+cool, it's really valuable to me 25:04 if I could just hook in your log analytics MCP server 25:07 into my Claude and say, "Hey, my site is down, 25:10 what's going on?" 25:11 And
+if they've gone and designed 25:13 and developed a really wonderful MCP server 25:16 that gives Claude the tools it needs 25:18 to interact with their services 25:20 and find those
+answers, 25:22 then that's a huge selling point for me as an engineer, 25:25 'cause then I can rely on this functionality. 25:27 I don't have to build it. 25:28 And I'm excited for
+this to start becoming more mature 25:31 and have it be less of. 25:33 It's exciting that we've shipped an MCP server 25:36 and starting to see people compete on, 25:38 "We have
+the best MCP server. 25:39 This is gonna make your life so much easier, 25:42 you should use us, 25:43 because we interact with Claude in this way." 25:46 - Well, I'm excited for
+that future as well. 25:49 Thank you guys for coming on. 25:50 This has been great. 25:51 - Thank you. - Thank you so much. All From Anthropic0:00 let me explain as simple as
+possible 0:02 what the heck an mCP server is and if we 0:04 should even care welcome back y'all in 0:06 today's video I'm going to go over what 0:07 an mCP server is I'm going to
+draw it on 0:09 the Whiteboard and make it as simple as 0:11 possible as I've seen a lot of videos on 0:12 this topic and they're just using a 0:14 bunch of developer jargon that's
+just 0:16 not necessary so I'm going to explain 0:18 this in just like regular English so we 0:20 can understand the use case of mCP 0:22 server but I'm going to be quite honest
+0:24 with yall I'm not sure why there is so 0:27 much hype around this after explaining 0:28 this to y'all some of yall are going be 0:29 like what are you talking about like I
+0:30 love this this deserves the hype but I 0:33 think like 90 to 80% of y'all are going 0:34 to be like okay this is what I thought 0:36 it was why the heck is every influencer
+0:40 LinkedIn YouTube why is everyone just 0:41 going crazy over this I don't get it let 0:43 me explain it also new hat new hat alert 0:46 here's a situation all I want you to
+0:48 think about when it comes to an mCP 0:50 server is this is a 0:51 layer and what this layer allows us to 0:54 do is access either data in a database 0:58 or alternatively AP I
+that are provided 1:01 by external applications I'll make it 1:03 sound simpler idea being this so we have 1:06 our llm let's just call it Chad gbt or 1:10 Claude for example what
+you've probably 1:12 seen in your feed you can do with Claude 1:14 desktop but the idea is that using 1:16 something like CLA desktop let's just 1:18 call it AI we can now access
+an mCP 1:22 server hosted by a specific software 1:25 application what's an example of this I 1:27 think probably the best example that is 1:29 probably hitting everyone's feed
+right 1:30 now is zapier right the idea is that you 1:33 can set up a mCP server of zapier and 1:35 what this allows us to do is access all 1:37 these different applications in our
+llm 1:40 so such as Google Sheets Gmail the idea 1:43 being this right we have our llm claw 1:45 desktop zapier mCP server and then from 1:48 here we can be like okay since we're
+1:51 accessing our mCP server which is zapier 1:53 in this context we can access Gmail and 1:56 with Gmail that's really small with 1:59 Gmail which is like that block right 2:01
+there we can then not go through all the 2:04 difficultness of setting up API custom 2:06 en code like we don't care I don't want 2:07 to do that we can now conversate talk to 2:10
+Chad gbt desktop over here ask it to do 2:13 a specific action of sending an email 2:16 and then the mCP server is that layer in 2:18 the middle that allows it to actually do 2:20
+that action I'm talking to Claude send 2:22 an email about pineapples and then with 2:24 that information Claude right here is 2:26 going to be able to communicate with 2:28 this
+mCP server which is zapier which 2:30 then will send out that email here we 2:32 can also use this and leverage this in a 2:35 way of essentially instead of maybe 2:36 doing an
+action like a send an email we 2:39 can access a external database as well 2:40 so instead of the process and pipeline 2:42 ending at the email being sent here we 2:44 can maybe
+you know go to a database grab 2:48 information from said database through 2:51 this little mCP layer here and retrieve 2:54 it back to our llm this is Bare Bones 2:56 this is me
+explaining it in just regular 2:58 English rather than going crazy crazy on 3:00 you cuz honestly what you just saw right 3:02 there probably answered half your 3:04 questions of
+just like okay what's the 3:06 big deal then we've been able to do this 3:08 cuz we have been able to do this now I 3:10 have tutorial videos showing you how to 3:11 set this up
+with zapier and also another 3:14 coming out showing you how to set this 3:15 up with data button which is like your 3:17 own custom API so rather it being from 3:19 like a you
+know Standalone we know Gmail 3:21 everyone loves Gmail maybe you built 3:23 your own soft where you can access your 3:24 own API internally in a chat like 3:27 conversation claw
+desktop what's kind of 3:30 weird here and I'm assuming other people 3:32 talked about it maybe they haven't but 3:34 we've been able to do this for quite a 3:35 while now this
+just shows you the power 3:36 of marketing now what I'm about to show 3:38 you we've been able to do for the 3:40 probably the last year maybe two years 3:42 honestly at this point
+if you're not 3:43 familiar with gbts uh they're 3:44 essentially lasered in versions of Chad 3:46 gbt we can do a bunch of cool stuff here 3:48 we could always do the ability of
+custom 3:51 actions that right there we've been able 3:53 to do for the last one to two years now 3:55 there's a very specific action I'm 3:57 referring to that would have allowed
+us 3:58 to create this kind of mCP server like 4:02 context which was zap your AI actions 4:05 gbts accessing zap your server to do a 4:09 specific action to then retrieve data
+4:11 from rgbt this we could always do this 4:13 now obviously with an mCP server there's 4:15 a little bit more depth involved here 4:17 when it comes to how complex you can get
+4:20 but the Baseline of our ability to 4:22 access external data sources API 4:25 databases we've always been able to do 4:27 for the last two years for some reason 4:30 mCP
+server is something new not really 4:33 I'm not making this to bash on mCP 4:35 servers I'm making this because I'm 4:37 trying to give yall Clarity because man 4:39 I've been
+seeing my feet people just 4:40 wilding out people just saying that this 4:42 is brand new oh my gosh like look what 4:45 you can do in AI now we could always 4:47 have done that
+now some of y'all are 4:49 going to try to get really technical in 4:50 the comments well Corbin this this this 4:51 and this end of the day one of the major 4:54 value points
+that's being shown here is 4:56 our ability to access external apis in 4:58 an llm whether that cursor claw desktop 5:01 wind surf whatever it may be that Value 5:04 Point and that
+capability was already 5:06 possible it's been possible beyond that 5:08 I see mCP servers it probably has its 5:11 value in a very very specific 5:14 circumstance and Niche I
+think for most 5:16 of us this is kind of just like let's 5:18 just have some fun this is kind of cool 5:20 let's proceed so without further Ado 5:21 I'll see you in the next video
+and c p a 5:25 b c a b c d e f to videos that's one 5:30 face I'll see you in the next video All From corbin APIsIntro 0:00 I learned MCP for you. In the past 68 0:02 months,
+you've probably heard a lot of 0:04 people talk about MCP. MCP is so 0:06 amazing. MCP is such a game changer. 0:09 Well, I must tell you, they are correct. 0:11 I have taken a
+bunch of courses, build 0:14 MCP servers and clients for our team and 0:16 a couple B2B clients that we work with 0:18 as well. We've also included a section 0:20 on MCP in our AI
+agents boot camp. So, 0:22 in this video, I'm going to explain to 0:24 you the fundamentals of MCP, show you 0:26 how to use MCP servers and how to build 0:28 your own MCP servers
+as well, both with 0:30 code and no code. Throughout this video, 0:32 there will be little assessments, which 0:33 if you can answer these questions, then 0:35 congratulations,
+you'll be educated on 0:37 MCP. Now, without further ado, let's go. 0:39 A portion of this video is sponsored by 0:41 Balt. Okay, a quick overview of the 0:43 structure of today's
+video. First, we're Video Overview 0:44 going to define MCP, talk about why it's 0:46 important, and how it is that we use 0:48 them. Then we'll be diving under the 0:50 hood in
+which I'll cover the 0:51 fundamentals of MCP, the concepts and 0:53 frameworks that govern it. Basically, 0:55 everything you need to know to be able 0:56 to use and build your
+own servers. But 0:58 it is not enough just to know all these 0:59 concepts. So I'll actually show you how 1:01 to build one as well, both with code and 1:03 no code. Let us now
+define MCP. MCP, MCP Definition 1:06 which is the abbreviation of model 1:08 context protocol, is defined by 1:10 Enthropic, the people who made it, as an 1:12 open protocol that
+standardizes how your 1:13 LM applications connect to and work with 1:15 your tools and data sources. Okay. What? 1:18 So first time I read that definition I 1:20 was like sounds
+important. So let me 1:23 actually explain it to you the way that 1:24 I understood it using an analogy. MCP is 1:27 like this USB plug here. It allows any 1:30 device to be able
+to connect to any 1:32 other devices to be able to work 1:33 together. Prior to this universal 1:35 standard of the USB port, if you wanted 1:38 to connect things to each other,
+like 1:39 say your computer to your microphone, to 1:41 your webcam, you would be having a very 1:43 bad time because all of the ports to 1:45 connect with each other would be 1:47
+different, which means you would have to 1:48 get a bunch of different special cords 1:50 and different adapters to manage to get 1:51 them to work together. And then you 1:52
+would have to write the software to 1:54 cater towards like those specific port 1:55 thingies, etc. Very complex, very messy. 1:58 But with this USB port, we're able to 2:00 now
+just connect all these devices to 2:02 each other and they just work. Amazing. 2:04 Wow. Do not be fooled. It sounds like 2:06 such a simple little thing, right? Just 2:07 like
+standardizing the port connectors, 2:10 but it amounted to massive amounts of 2:11 innovation with this ease of use. Now 2:13 before MCP existed, if you have your 2:16 agent and
+you wanted to give it access 2:17 to different tools and different context 2:19 or different types of data, you would 2:20 have actually faced a very similar 2:21 problem to the
+pre- USB port days 2:24 because each external system and tool 2:25 that you're trying to connect to has 2:26 their own specific definition of how it 2:28 is that you interact with
+it, which is 2:30 their special API. For example, if 2:32 you're trying to make a scheduling 2:33 agent, you would need to give it access 2:34 to like your calendar, your email, a
+2:37 note-taking app, Zoom, Calendarly, and 2:39 you would need to custom write the code 2:41 for each specific tool that you want to 2:43 give your agent, which is a pain in the
+2:45 ass. So that's why when Enthropic 2:46 proposed the model context protocol, the 2:48 MCP, which would standardize the ways 2:50 that we interact with all of these 2:52
+external softwares, everybody was like, 2:54 amazing. Wow, so good. Now your agent is 2:57 able to have access to all of these 2:59 different external softwares and tools 3:01
+using the same protocol. Within just 3:03 months that the number of tools that you 3:04 can give your AI agents now, which are 3:06 called MCP servers massively exploded to 3:08
+thousands. Now there's over 20,000 3:10 pre-built MCP servers that you can just 3:12 grab and give your AI agent. Here is 3:14 just a small sample. Now, anybody can 3:16 easily
+write them, publish them, and use 3:18 them. Let me actually show you exactly 3:20 how easy it is to use an MCP server. 3:22 Like say for example, I'm looking at 3:23 these MCP
+servers here. You can pick any 3:25 of them, but let's just pick like Alpha 3:27 Vantage for example. It is a MCP server 3:29 that enables LLMs and aentic workflows 3:31 to
+seamlessly interact with realtime and 3:33 historical stock market data through the 3:35 model context protocol. Okay, great. So, 3:37 you can get access to stock market data. 3:41
+You copy this stuff which allows your LM 3:43 application to have access to the MCP 3:45 server. copy it into your LM application 3:47 like for example cloud code if you want 3:49
+to give the tool to cloud code and voila 3:51 you'll be able to have access to the MCP 3:54 server and all the different tools that 3:55 are defined on the server then you can 3:57
+do something like plot the coffee stock 4:01 market prices for the past 10 years then 4:05 Claude will say Claude wants to use the 4:07 coffee function from Alpha Vantage are 4:09
+we going to allow this and we'll be like 4:10 okay allow once using that tool was able 4:13 to get the coffee price data and now 4:14 it's going to created interactive 4:16
+visualization and there you go, coffee 4:17 global prices with all of this 4:19 information. Oh my god, coffee is so 4:21 expensive these days. So yes, this is 4:23 pretty much how
+easy it is to use any 4:25 MCP server now. And I can also very 4:27 easily switch what is called the host 4:29 which is cloud code in this case to 4:30 something else like NA10 for
+example or 4:32 my own custom AI app. So let's now 4:34 actually dive into the foundations of 4:36 MCP so you will exactly understand what Fundamentals of MCP 4:38 just happened
+here and how to build your 4:40 own MCP servers as well. And by the way, 4:42 MCP servers are actually even more 4:43 powerful than just giving your agents 4:45 tools. There's a
+lot more that you can 4:47 actually do, which is why people are 4:48 able to actually build these MCP servers 4:50 and then sell them. 4:53 The best course that I found which 4:54
+covers the foundations of MCP is 4:56 Anthropic's own course in collaboration 4:58 with deep learning.AI called MCP, build 5:01 rich context AI apps with anthropic. The 5:03 course
+starts with explaining basically 5:05 why is MCP important. So I already 5:07 covered most of that. Um but I do like 5:09 the diagrams that they gave which shows 5:10 that see
+before MCP there was fragmented 5:13 AI development with each AI app you 5:16 would need to have a custom 5:17 implementation custom prompt logic 5:19 custom tool calls and custom
+data 5:21 access. And you got to do that for all 5:22 of them versus with MCP which is a 5:24 standardized AI development for each MCP 5:27 compatible application you're able to
+5:29 have access to a lot of different types 5:31 of MCP servers. For example, you can 5:33 have access to a data store MCP server 5:35 so that you can have access to data 5:36
+stores. You can have a CRM MCP server so 5:38 that you can have access to CRM systems 5:41 and a version control MCP server so you 5:42 can have version control software. All 5:44
+plug-andplay and the other way around as 5:46 well. Every time you build an MCP 5:47 server, it would be reusable by various 5:49 AI applications like a Google Drive MCP 5:52
+server that has access to Google Drive 5:53 functions that can be used by MCP 5:56 compatible AI assistant, MCP compatible 5:58 AI agent, and an MCP compatible desktop 6:00 app or
+IDE too. All right. Next 6:02 important concept to understand is the 6:03 client server architecture. Within the 6:06 components that make up MCP, there are 6:09 three different
+components. The host, 6:11 client, and server, HCS for short. And 6:14 the way that they relate to each other 6:15 is the host houses the MCP client, which 6:18 goes through the
+MCP protocol in order 6:20 to have access to the MCP server. Hosts 6:23 are LM applications that want access to 6:25 certain data or tools through MCP. As I 6:28 showed earlier,
+the cloud desktop is an 6:29 example of a host. NA10 is also an 6:31 example of a host. You can also have 6:33 IDs, AI agents. Really any large 6:35 language model application can
+be a 6:36 host. Now the host wants to use the MCP 6:39 servers which are the lightweight 6:40 programs that expose different 6:41 capabilities like the servers here like 6:43 alpha
+advantage we talked about earlier 6:45 that's able to get real-time historical 6:47 stock data. Uh there's also time 6:49 provides time and time zone conversion 6:51 capabilities.
+Cherry studio that's used 6:54 for LM provider support like AI 6:56 assistance and conversions, documented 6:57 data processing. Postgress SQL to 6:59 provide readonly access to
+Postgress SQL 7:01 databases allowing schema inspection and 7:03 execution of readonly queries, GitLab, 7:05 Reddist, etc., etc. There is a lot. Now, 7:08 in order for the host to
+actually have 7:11 access to these MCP servers, they need 7:13 to maintain what is called an MCP 7:15 client, which lives inside a host and 7:17 evokes the MCP protocol to maintain
+that 7:20 one-on-one connection with the server. 7:22 Got it? MCP client lives in MCP host to 7:25 invoke the MCP protocol in order to have 7:28 access to the MCP servers which the
+7:30 players being HCS host client and 7:33 server. All right, time for a little Quiz 1 7:34 quiz for the example that I showed 7:36 earlier which allowed cloud desktop able 7:38
+to access historical stock data alpha 7:41 vantage and cloud code. Which is the 7:43 host and which is the server? Put your 7:45 answer into the comments. Okay, let's 7:48 now talk
+about what are the things that 7:49 are actually contained within an MCP 7:51 server. Well, there are three major Tools, Resources, Prompt Templates 7:54 things. These are tools,
+resources, and 7:56 prompt templates. TRP tools, which are 7:59 the things that we've kind of seen the 8:02 most of are functions and tools that can 8:04 be invoked by the client.
+So, these are 8:06 these things over here like time series, 8:09 intraday, time series, daily, blah blah 8:11 blah, symbol search, global quote. Also, 8:13 stuff like sending a
+message in Gmail, 8:15 calculator, retrieval and search, 8:17 sending a message, updating database 8:18 records. All of these are tools. But 8:21 that is actually not all. You can
+also 8:23 have what are called resources which are 8:25 readonly data that is exposed by the 8:27 server. So this is the data that the 8:29 client is able to query but cannot 8:31
+change. For example, there are certain 8:32 files like markdown notes that's 8:34 contained within the server that you 8:36 might want to read. Maybe it's tracking 8:38 logs. Say
+for example, every time you're 8:39 calling a weather app tool and you're 8:41 getting that data, you might want to 8:43 actually save a record of all the 8:45 different weathers
+that you've 8:46 collected. So at some point you might 8:47 want to compile that together and make 8:49 like a visualization or something, 8:50 right? It would not be very
+efficient if 8:51 every single time you had to go collect 8:53 a weather data point. You would have to 8:55 like use the tool and spam the tool over 8:57 and over and over again.

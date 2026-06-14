@@ -1,0 +1,224 @@
+can bring this up all the way to one so there's a lot of darkening around the size of the camera or we can 33:5233 minutes, 52 secondscompletely turn off vignettes by bringing it
+down to zero so by default unreal does have a little bit of V yet with it being at 0.4 we can also go down 34:0134 minutes, 1 secondhere and change some of the color grading so
+maybe if I select saturation I can move the wheel around we see just 34:1034 minutes, 10 secondsa little bit of changes I can even boost the saturation down here so instead of one
+drag this up and now we have a 34:1734 minutes, 17 secondsreally vibrant and saturated scene and of course I can uncheck this to get rid of that change so if you want there are
+34:2434 minutes, 24 secondsa ton of different settings you can go through and see what all them R but you might be wondering how do I create a post-process volume if I don't have
+it 34:3234 minutes, 32 secondsinside of our world so to begin I'm going to press G key to bring back all of our editor widgets select the postprocess volume and let's delete it
+34:4134 minutes, 41 secondsso we can go over how to create a post-process volume from scratch of course we're going to select the add button it's going to be under 34:4934 minutes,
+49 secondsvolumes down here we have post-process volume so simply drag this into our world and we see that we have a little 34:5534 minutes, 55 secondssquare so let's make a very
+quick change so the change I want to make is down here within globals and saturation 35:0435 minutes, 4 secondsinstead of one I'm going to change this to zero but we notice that
+there are no changes to our camera right now that's because the post-process volume by 35:1335 minutes, 13 secondsdefault only affects whatever is inside the postprocess volume so
+if we move into the cube we can see those changes 35:2135 minutes, 21 secondstaking into effect and right now by changing Global saturation bringing it down all the way to zero it
+gives us a 35:2835 minutes, 28 secondsblack and white world now what if I want this post-process volume to affect our entire world well scroll all the way 35:3635 minutes, 36
+secondsdown here and under infinite extent Unbound make sure that's turned on so that's how we don't have to be within 35:4335 minutes, 43 secondsthe postprocess volume for that
+post-process volume to take effect now it's time to go over materials but do keep in mind that materials can be a Chapter 8: Intro to Materials 35:5135 minutes, 51 secondslittle
+bit complicated especially if you're brand new to 3D Arts so if you do find yourself a little bit lost throughout this course do keep in mind 35:5935 minutes, 59 secondsthat you
+can always go back in a section and rewatch it to demonstrate materials I want to create a brand new map so to 36:0636 minutes, 6 secondsdo so let's create a folder where we're
+going to store all the assets we create so I want this folder to be under content right next to the starter 36:1336 minutes, 13 secondscontent folder right click and select new
+folder I'm going to call this folder my stuff and double click to go inside 36:2136 minutes, 21 secondsof it now to create a level I could rightclick and under create basic assets
+select level but I want to use a level template since this will just create a 36:2936 minutes, 29 secondscompletely blank level so to use level templates you want to come up to
+file new level and you can select open world 36:3636 minutes, 36 secondsor basic I'm going to select basic and now we have a pretty basic level is just the floor right here and the
+sky now in 36:4536 minutes, 45 secondsorder to save this level in a specific location in our content browser you need press contrl and S and it's going to ask us where we want to
+save this level 36:5336 minutes, 53 secondsselect my stuff and let's call this one material example level and then select save now pressing control and space to 37:0137 minutes, 1
+secondbring to my content drawer we can see that under my stuff our level is saved so if we ever want to go back into this level I just have to double click and we 37:0937 minutes,
+9 secondswill open up that level now I do want to make some adjustments if we zoom in on the floor we can see that our grid is showing through and it's right on top of 37:1637
+minutes, 16 secondsthe floor now this grid will be distracting when we're showing off materials so I'm going to come up to show and uncheck the grid to hide it 37:2437 minutes, 24
+secondsthat's how all we see is the floor material also I think this floor is a little bit too big for our purposes so I could use R and hover in between the y 37:3337 minutes, 33
+secondsand x axis to then scale it down like this or alternatively within the details panel of this floor I can set it to one 37:4237 minutes, 42 secondsin the x-axis one in the Y
+AIS and one in the z-axis just to give us a smaller floor I 37:4937 minutes, 49 secondsalso want to add in an object to place our materials on top of and we can do so by pressing
+control and space and unreal 37:5637 minutes, 56 secondsactually comes with a bunch of assets and objects by default so this is content that's not located in starter content
+instead it's located in the 38:0438 minutes, 4 secondsengine folder and if you don't see your engine folder right here that's because you need to come to settings and make sure
+show engine content is enabled now 38:1238 minutes, 12 secondswe get access to all of unreal's default content that is contained in every single project so let's go into content
+38:2038 minutes, 20 secondsand I believe it is under engine meshes and it's specifically smore map preview mesh now we can also select select 38:2838 minutes, 28 secondsengine and
+type in smore mat to bring up that asset so I'm going to drag it into 38:3438 minutes, 34 secondsour world and let's rotate it 90° and we can rotate it 90° exactly by making sure
+38:4138 minutes, 41 secondssnapping is enabled up here now I also want to control the exposure since if we zoom in on the shadows and zoom out we 38:5138 minutes, 51 secondscan see
+that auto exposure is enabled right now so let's create a postprocess volume by going to volumes post process 38:5838 minutes, 58 secondssimply dragging it out I want this to
+affect the entire world not just whatever is inside this box so scroll 39:0539 minutes, 5 secondsdown and make sure infinite extend bound is turned on now if we go up here under
+39:1239 minutes, 12 secondsexposure make sure metering mode is set to manual instead of Auto and exposure compensation we can bring this up I 39:2039 minutes, 20 secondsfound a
+value of 11 to be pretty good now as a reminder if your exposure isn't changing from your postprocess volume 39:2739 minutes, 27 secondsyou you need to make sure that in lit game
+setting is turned on cuz otherwise it's going to default to ev00 setting right here as the exposure amount so 39:3639 minutes, 36 secondsmake sure game views turned on that's how
+we're using postprocess volume and since I do like my scene right now you want to make sure to save everything 39:4339 minutes, 43 secondswith contrl and S and actually I think I'm
+going to bring down my exposure to let's leave it at 10.5 so now it's 39:5139 minutes, 51 secondsfinally time to go over materials and adding a material to your world is actually
+pretty simple so press control space and luckily starter content comes 40:0040 minuteswith a bunch of materials by default under the materials folder so let's double click into
+materials and we see we have a bunch of materials that we can 40:0940 minutes, 9 secondsuse so to add a material to our world you want to Simply hold down the left Mouse button and
+drag it until you're hovering over whatever object you want 40:1640 minutes, 16 secondsthis material to be placed on and let go it is that simple so now we have a brick floor or
+for example to make this object 40:2440 minutes, 24 secondssteel I can drag a steel material onto the object and let go we can even add a grass right there like this and we can see
+the reflections 40:3340 minutes, 33 secondsupdates on the metal right there whenever we are switching our different materials which is pretty cool so let's 40:4240 minutes, 42
+secondsselect the grass and I do actually want to make this just a little bit bigger so let's scale it in X and Y AIS like this 40:5140 minutes, 51 secondsand I think the screen is
+too bright so I'm going to bring its exposure compensation down to 10.25 so that's the basics of adding a 40:5940 minutes, 59 secondsmaterial to our world what if we want to create
+or edit a material well to create a material is also pretty simple it's just like creating a level press control 41:0641 minutes, 6 secondsand space and come into my stuff where
+we're going to create our material right click and under create basic assets select material and let's call this 41:1441 minutes, 14 secondsfirst material and press enter and
+double click on it to open up the material editor first off before we go over any 41:2341 minutes, 23 secondsof these settings you'll notice that my window is right now floating so
+something I like to do with all my editor Windows is to hold down the left 41:3041 minutes, 30 secondsMouse button on the tab and then dock it up here just like this that's how
+really quickly I could switch in between my 41:3741 minutes, 37 secondsmain level View and any of my editor views so in the middle we have the material graph essentially what the
+41:4541 minutes, 45 secondsmaterial graph does is basically we have a bunch of nodes that connect to each other and their end goal is to eventually be outputed into one of these
+41:5341 minutes, 53 secondsoutputs right here which will create the actual material now the controls are pretty similar to the controls of our 42:0042 minutesviewport when in
+orthographic View mode so hold down the right Mouse button to pan and then use a scroll wheel to zoom 42:0742 minutes, 7 secondsin and out so right Mouse button pan scroll wheel
+zoom in and out you can select nodes by just clicking on them or holding down the left Mouse button to 42:1642 minutes, 16 secondsMarquee select now to the left right here is the
+viewport if you hold down the left Mouse button you can pan around this preview mesh right here which helps 42:2442 minutes, 24 secondsus see our material when we're editing it now
+we can change the preview mesh down here so maybe you want to use a cylinder or a flat plane a square but 42:3442 minutes, 34 secondsfor now I'm just going to keep it at a sphere
+and right below that is the details panel so if we select a node we're able to edit that node's 42:4142 minutes, 41 secondsproperties right here in the details panel so how do we
+create a node well we come all the way over here to the pallet click on it and now we have a selection 42:4942 minutes, 49 secondsof all the different nodes we can use to create a
+material we can also rightclick anywhere to get that same pallet so 42:5742 minutes, 57 secondsunder pallets I want a constant 3 Vector under constants the reason why is because a
+constant 3 Vector is 43:0443 minutes, 4 secondsessentially unreal's version of color it's r g and B for red green and blue right now this node is set to Black I 43:1243 minutes, 12
+secondscould edit it by coming to the details panel and double clicking on the color to get a Color Picker or I can double click on the Note itself to get that 43:1943 minutes, 19
+secondscolor wheel so notice how when I do change the color right here there are no changes that's because its value is set to zero I can bring up up its value by 43:2843 minutes,
+28 secondsclicking on this rectangle right here so now when I change this color we notice that color changing and when I do like a 43:3643 minutes, 36 secondscolor I want to
+confirm that this node is going to stay that color by clicking okay so now we have our first node with 43:4443 minutes, 44 secondsa new color essentially if I hover over this pin
+right here and hold down the left Mouse button I'm able to drag out a wire and I can choose where I want to 43:5343 minutes, 53 secondsplace those wires in any of the inputs right
+here now of course because this is a color it should probably go into base color so with my left Mouse button still 44:0244 minutes, 2 secondsheld down I'm going to hover over the
+base color pin and let go to connect it now we can see that our color is 44:1144 minutes, 11 secondsaffecting our material so let's see what this looks like in our level so press
+control and space and let's drag first 44:1844 minutes, 18 secondsmaterial onto the sphere and notice that there are no changes right now this looks like the default material and
+that's because we first need to compile 44:2744 minutes, 27 secondsour material after we make any changes to see that change in our level so go to First material and to compile a
+material 44:3444 minutes, 34 secondsyou want to click on the apply button and also while we're at it let's save it so if unreal crashes we don't lose our progress now if we come
+back to our 44:4244 minutes, 42 secondslevel we can see that change took effect now jumping back into first material if we let's say change the color to a light 44:4944 minutes, 49
+secondsblue jump back into our level we see that there were no changes because we need to make sure after we edit a material that we compile it with the the 44:5744 minutes, 57
+secondsapply button and now we see that light blue that's how you add color now what if you want to edit how shiny or reflective the material is well on our 45:0645 minutes, 6
+secondsfirst material instead of editing the base color we're now going to edit the roughness channel right here and roughness doesn't take a color value of 45:1445 minutes, 14
+secondscourse instead it takes a scalar value in between 0er and one so zero means it's really smooth and one means it's 45:2145 minutes, 21 secondsreally rough to get a scalar
+value you want to come up to pallet and under constant select the constant one value 45:2945 minutes, 29 secondsleft Mouse button hold and drag it out and now we get a node that is
+simply a number so zero will be smooth one will 45:3745 minutes, 37 secondsbe rough let's make this really smooth by giving it a value of 0.1 and simply left Mouse button hold
+45:4345 minutes, 43 secondsand drag it into roughness if for some reason you ever want to break a wire all you have to do is hold down alt and hover over any of these pins and left
+45:5345 minutes, 53 secondsclick so alt and left click to break any pins and we will not see this change in our level unless we press apply so 46:0146 minutes, 1 secondjumping back
+into materials I'm going to press F and hold down alt and left Mouse button to then pivot around my material 46:0946 minutes, 9 secondswhile it's nice reflective values notice how
+we can see all the different clouds in the sky being reflected off the 46:1646 minutes, 16 secondsmaterial now so that's roughness but what if we want to make our material metallic
+well go back into first material and this is where the metallic 46:2446 minutes, 24 secondsinput comes in really handy so we need another constant vector and we could get it by
+selecting that node and pressing 46:3146 minutes, 31 secondscontrl and D to duplicate it or I can get it from the pallet and of course I can rightclick and simply type in 46:4046
+minutes, 40 secondsconstant so normally when I am getting nodes in I just right click and type in the name of the node and press enter to bring it in so I'm going to give this a
+46:4946 minutes, 49 secondsvalue right now of one since by default there is no metallic value it's set to zero so send it to one 46:5746 minutes, 57 secondsand plugging it into
+metallic will make this blue pretty metallic and in fact let's go change the color to something 47:0347 minutes, 3 secondsorangey press apply and now we made a gold material it's
+very important to point out that unroll engines material Chapter 9: PBR Explained 47:1247 minutes, 12 secondssystem is based off of physically based rendering or PBR for short for
+example right now I have a project open up to 47:1947 minutes, 19 secondsdemonstrate PBR values and the two main ones to know about are metallic and roughness we've already played
+with them and essentially for them are on a scale 47:2847 minutes, 28 secondsfrom 0 to 1 Now by default metallic is set to zero so there is no metallic on the material and our
+roughness is set to 47:3647 minutes, 36 seconds0.5 now as I bring down the roughness we see our material get shinier and shinier and then if I bring it up our material 47:4447
+minutes, 44 secondsgets rougher and rougher so if I bring it all the way down to zero and play with the metallic value which is right now as default value of zero so it's not
+47:5147 minutes, 51 secondsmetallic but slowly we can see it goes from a plastic material all the way to a very shiny gold material and if we play 47:5947 minutes, 59 secondswith a
+roughness value we can really see those changes taking effect now both these values are clamped from 0 to 1 so 48:0648 minutes, 6 secondslet's say if we input a roughness value of
+negative 1 then it'll be clamped to zero or if we go above one then it's going to clamp it down to just one so 48:1548 minutes, 15 secondskeep that in mind that if you do try to
+input a value that's outside the 0 to1 range you won't see any changes and it's 48:2348 minutes, 23 secondsimportant to point out that generally for metallic values we never go in
+between 0 and 1 you won't really see a 48:3048 minutes, 30 secondsmaterial that's 0.5 metallic instead materials are either all the way zero or all the way one here I am back in
+our original project and you notice that we 48:3948 minutes, 39 secondsno longer have our material opened up here well that's fine you can always open up the material on any object
+by clicking on that object and then in the 48:4748 minutes, 47 secondsdetails panel we see all the materials that are currently on top of that object so just double click to open
+up our original material we created 48:5548 minutes, 55 secondsalternatively you'll a little magnifying icon right there if I select that then it's automatically going to jump to
+that materials location in our content drawer 49:0449 minutes, 4 secondsand we can double click to open it up right there like that so the PBR sliders we were just playing with are
+the metallic and roughness values right here 49:1249 minutes, 12 secondsso those sliders correspond with these values so hopefully you understand exactly what they do now now I'm
+going to make a slight edit so for metallic 49:2149 minutes, 21 secondslet's brein it from one to its default value of zero so that's how it's kind of like a plastic material right
+now and 49:2849 minutes, 28 secondsalso I think it's a little bit too bright so double clicking on the color I'm able to decrease the brightness by playing with its value so bring
+it down 49:3749 minutes, 37 secondsa little bit press okay press apply and now I do think we have a nice material but normally when you have plastic outside it wouldn't be this
+uniformly 49:4649 minutes, 46 secondsshiny you would expect dirt to pile on this material and make some areas of the material rougher than others so let's 49:5249 minutes, 52
+secondsjump into first material and to add a texture press contr and space let's go into starter content since starter 50:0050 minutescontent comes with a bunch of textures under
+the textures folder and the texture I want to use is specifically 50:0750 minutes, 7 secondstore pein noise so to get a texture into your material simply left Mouse button hold
+drag it in and let go like that 50:1550 minutes, 15 secondsalternatively you can rightclick type in texture sample select that and then within the details panel in the drop 50:2450
+minutes, 24 secondsdown of texture go ahead and find whatever texture you want to use and select it so that's alternative way to 50:3150 minutes, 31 secondsadd in a texture and now
+that we have tore pein noise if we open it up we can see that it's just black and white all 50:3850 minutes, 38 secondsthe pixels of the texture represent a value in between 0 and
+one so they are perfect to plug into either metallic or 50:4550 minutes, 45 secondsroughness plug our texture into roughness since I wanted to drive the roughness value of our
+material and delete the old node Since I no longer 50:5350 minutes, 53 secondsneed it press apply chop back and turn material example and now if I angle it with the sun and here's
+a nice tip if I 51:0151 minutes, 1 secondhold down control and L at the same time I'm able to rotate that Sun so I'm able to bring it down like move it around and 51:1051 minutes,
+10 secondssee what our material looks like in different lighting scenarios and right now our material is looking a lot more realistic we can see 51:1951 minutes, 19 secondsthat
+because of our material all the black spots represent shiny areas and all the white spots represent rough areas 51:2751 minutes, 27 secondswhich gives our material a nice smudgy
+look to it to just break up that uniform shininess at this point let's switch up 51:3551 minutes, 35 secondsthe colors since if I go into color mode by going alt three for unlit we
+can see that's still all one uniform color pressing alt four to go back into lip 51:4451 minutes, 44 secondsmode I want it where all the smudges are a different color that's a
+little bit more Brown than orange to represent dirt 51:5251 minutes, 52 secondsso let's go back into first material and we can duplicate this by pressing control and D or we can
+right click and 52:0052 minutestype in constant 3 vector and select that so double click on this I'm going 52:0652 minutes, 6 secondsto give it a brownish color maybe like right
+here press okay and now I want to lurp in between the orange color and the 52:1652 minutes, 16 secondsbrown color depending on our Alpha texture so wherever there's white I wanted
+to pick Brown and whenever 52:2352 minutes, 23 secondsthere's black I wanted to pick orange and we can do do this through a linear interpolate node so right click type in 52:3052
+minutes, 30 secondslinear and then interpolate select that or a shortcut is to hold down the L key and left click so L left click brings in 52:3952 minutes, 39 secondsthe lurp node
+since we are going to be using that Noe a lot and on the subc of hot keys if I hold down three and left click that gives us a constant three 52:4652 minutes, 46 secondsVector for
+color or if I hold down one and left click that gives us a basic scalar value like for metallic and 52:5452 minutes, 54 secondsroughness so one and left click for scalar value
+three and left click for color so let's plug this up to a plug 53:0253 minutes, 2 secondsthe brown one to B and for Alpha texture I want it to lurp depending on our original mask
+that's right now driving 53:0953 minutes, 9 secondsour roughness so drag RGB into Alpha and drag that all into base color and now we 53:1653 minutes, 16 secondscan see that where
+our object is in shiny the color changes to a dirty Brown 53:2353 minutes, 23 secondspressing apply jumping back in here we notice that our material is definitely a lot more
+realistic you can imagine that 53:3253 minutes, 32 secondsthis was once plastic or really shiny paints and over time Dirt has slowly started to build up on the material 53:3953
+minutes, 39 secondsmaking it pretty dirty now we can make this even better by instead of luring in between two colors we're luring in 53:4653 minutes, 46 secondsbetween a color and
+another texture so there's a very good texture under starter content textures and it is right 53:5353 minutes, 53 secondshere so it's tore metal rust open this up we can see what
+it is but right now we don't notice anything that's because the alpha channel is turned on and the 54:0254 minutes, 2 secondsalpha Channel handles opacity so if you ever open up a
+texture and you don't see anything make sure you come up to a and 54:0854 minutes, 8 secondsuncheck that so now we can see it and while this is rust I do think it functions well as
+dirt especially for 54:1554 minutes, 15 secondsvery small detail like on this material it's going to be hard to tell that this is rust instead of dirts so let's drag 54:2254
+minutes, 22 secondsthis onto our material graph and plug it up right there in instead of the original dirt and press apply so 54:2954 minutes, 29 secondscongratulations you just
+made your first material in Unreal Engine 5 while it's not the best it definitely is a good introduction to the power of the 54:3654 minutes, 36 secondsmaterial graph before we
+continue we first have to download some free assets I created for this tutorial to help us Chapter 10: Textures 54:4354 minutes, 43 secondslearn on real engine you can find a link
+to download the free Assets in the description of this video the reason why is because in this section we're going 54:5154 minutes, 51 secondsto go over how we can take a texture
+and import that texture into un real engine and use it in one of our materials so to 54:5954 minutes, 59 secondsbegin I've already downloaded the assets for this tutorial right
+here in unreal 5. zip double click to go inside of it 55:0755 minutes, 7 secondsand double click to go into intro unreal 5 so I want to make sure that I do unzip some of these
+assets specifically the beginner assets folder to unzip it 55:1555 minutes, 15 secondssimply drag it onto our desktop we are going to go over Castle assets and intro on real
+project in just a bit but for now we don't need these so I'm going to 55:2355 minutes, 23 secondsexit out my zip folder and now we have a brand new folder with a bunch of assets
+we're going to import into on real Engine 5 so to begin we're going to 55:3255 minutes, 32 secondscreate a very simple material using these three textures right here you can
+probably guess that Spanish payment color handles the color of the texture 55:4055 minutes, 40 secondsSpanish payment roughness handles how rough the texture is and the normal map
+which is this purple texture while it does look pretty weird don't worry we 55:4855 minutes, 48 secondsare going to go over what a normal map is in just a second but for now let's
+go import all three of these into unreal 5 55:5755 minutes, 57 secondsso let's open up content drawer and go into my stuff because you remember we created a folder called my stuff
+to hold all our assets and I'm going to hold 56:0456 minutes, 4 secondsdown my left Mouse button and drag all these assets into my content drawer so you want to make sure that your
+content drawer is open so you are able to drag 56:1356 minutes, 13 secondsit in let go and automatically these three textures have imported so we'll notice that all three of these
+textures 56:2156 minutes, 21 secondshave little asteris right there that tells us that these textures need to be saved so select all them and press c contrl s or we could have
+clicked on 56:2856 minutes, 28 secondssave all so if I double click on Spanish base color we can see that the texture has successfully been imported into Unreal Engine 5 and srgb
+is turned on 56:3756 minutes, 37 secondsfor color textures we want to make sure srgb is turned on for everything else such as masks and normal Maps we want srgb turned off for
+Spanish payment 56:4656 minutes, 46 secondsroughness we see that's turned on I'm going to check this to false and save it now for our normal map if I double click 56:5456 minutes,
+54 secondson the normal map unreal is smart enough to know that this is a normal map so it already automatically sets some of the parameters srgb is turned off which is 57:0257
+minutes, 2 secondswhat we want and compression setting is set to normal map now if you do import a normal map and unreal doesn't know it's a normal map then you want to make sure
+57:1057 minutes, 10 secondsthat you set pressure settings to normal map and srgb turned off so let's go create our material by right clicking go to materials call one 57:1857
+minutes, 18 secondsmcore Spanish payment now you do not have to add the mcore in front of our name but just for convention like to add 57:2657 minutes, 26 secondsM underscore over
+all of my materials to tell me just by quickly reading the name of the asset that this is a material so 57:3457 minutes, 34 secondsdouble click to go into mcor span payment and
+let's dock it up here so we can switch in between our level and our material graph now I'm going to press 57:4357 minutes, 43 secondscontrol and space and I could drag in each
+texture individually or I can hold down shift and select all of them and 57:5157 minutes, 51 secondsdrag in all of them at once so I'm going to leave my normal map off to the side
+since we are going to go over this in a 57:5857 minutes, 58 secondsbit but let's just handle our roughness and our base color so base color we go into of course base color and
+roughness 58:0658 minutes, 6 secondswill go into roughness now we don't have to play with a metallic value because metallic by default is set to zero 58:1358 minutes, 13
+secondsbecause our material is a metallic we can leave the metallic input empty since it will just default to 58:2058 minutes, 20 secondszero and within material example level
+let's apply this brand new material to our FL floor right away I notice that 58:2858 minutes, 28 secondsthere are two issues with a material number one our material is tiling way
+too much it's too small and number two there is no depth there is no Shadows 58:3658 minutes, 36 secondsgiven by the crevices of our Spanish pavment it's almost as if someone got
+wallpaper and plastered it onto the 58:4458 minutes, 44 secondsfloor trying to pretend like it's real flooring so to fix this we use normal Maps so essentially what normal Maps do
+is that they fake bumps so they fake 58:5358 minutes, 53 secondsdepth and they make it look like our texture actually has height when in reality it doesn't it's just a material so
+to add a normal map it's pretty 59:0159 minutes, 1 secondsimple as you can probably guess we grab the normal map and simply drag it into normal so let's press apply and 59:0959
+minutes, 9 secondsimmediately we'll see that our texture looks a lot better there's actual depth and if we come to the shadow right here 59:1759 minutes, 17 secondsand add in a
+basic light we can see that as I move this light around the material itself is casting Shadow so since the 59:2559 minutes, 25 secondslight is right here now the crevices have a
+little bit of a shadow so normal Maps really go a long way to make our 59:3359 minutes, 33 secondsmaterial look really realistic now let's fix our tiling because in my opinion I
+think it's tiling way too much right now 59:4059 minutes, 40 secondsand to fix tiling let's go into M Spanish payment and we're going to use a brand new node so right click type in
+59:4859 minutes, 48 secondstexture coordinates so let's grab that essentially texture coordinates will allow us to change the scale of our textures so if we just drag it into UVS
+59:5859 minutes, 58 secondsnothing will happen that's because we need to hold down M and left click to add in a multiply nodee or we can right 1:00:051 hour, 5 secondsclick and
+type in multiply since we are going to be multiplying the value that comes out of texture coordinates and on a side note if you ever want to break 1:00:131 hour, 13 secondswires
+hold down alt and left Mouse button to break it so let's move multiply up here like this hold down the 1:00:211 hour, 21 secondsleft Mouse button and drag it into a and then drag
+this out into the UVS just like this we can multiply this 1:00:301 hour, 30 secondsby a number which is a constant scalar so as you can guess we're going to type in constant and
+grab one constant so 1:00:391 hour, 39 secondsplug this into B and let's give this a value of instead of one something smaller like 1:00:471 hour, 47 seconds0.5 and this will
+increase the size of our texture to make our Spanish payment bigger and we can see immediately that 1:00:541 hour, 54 secondsit did make the texture bigger we can maybe even make
+this a little bit bigger let's try 0.35 and press apply and now I do like the scale of our 1:01:021 hour, 1 minute, 2 secondspayment we can also add in a little bit of
+customization so maybe I don't like the tint of this I want to make our payment a little bit more red or a 1:01:101 hour, 1 minute, 10 secondslittle bit more green well I can
+Marquee select by holding down the left Mouse button anywhere My Graph select all my 1:01:171 hour, 1 minute, 17 secondsnodes move it back a bit since we're going to be adding some
+nodes right here so I'm G to hold down M and left click again to add in the multiply node and 1:01:261 hour, 1 minute, 26 secondsdrag RGB into it like this and then drag it out
+into base color I actually want this RGB to go into B not a so I could 1:01:351 hour, 1 minute, 35 secondshold down control and hold down my left Mouse button to then grab this
+wire and place it into B to just switch it from A to B now I'm going to hold down three 1:01:441 hour, 1 minute, 44 secondsand left click to add in a constant three vector and I'm
+going to say default value to White and plug this 1:01:511 hour, 1 minute, 51 secondsinto a so since RG and B are all 111 there's going to be no changes right now with a Spanish
+payment but if I want to make a Spanish payment a little bit more 1:02:001 hour, 2 minutesred instead of it being white I'm going to move it into the red Direction and press apply
+we can already see a change right there and now our Spanish pavement 1:02:091 hour, 2 minutes, 9 secondsis really red so generally you don't want the tint to be that intense so
+just a little bit red kind of like an off 1:02:161 hour, 2 minutes, 16 secondswhite and then press apply now we do have a more reddish payment or we can even add some greenish
+1:02:241 hour, 2 minutes, 24 secondsblue and we subtract a lot of red from our Spanish pavement and maybe you do like the look of this better right now our Chapter 11: Material
+Parameters and Instances 1:02:321 hour, 2 minutes, 32 secondsmaterial looks nice but there is one big issue and that is it is not real time so whenever we make a slight adjustment
+we 1:02:391 hour, 2 minutes, 39 secondshave to press apply and wait for it to compile in order to see changes in our world and as you can imagine if we have a really complex
+material and we make a 1:02:471 hour, 2 minutes, 47 secondsslight change the Gile time can take a while so we're able to get around this with parameters so parameters allow us
+1:02:551 hour, 2 minutes, 55 secondsto make real real time adjustments without any compile time whatsoever so let's jump into it to show how to use them before we create a
+parameter we 1:03:041 hour, 3 minutes, 4 secondsfirst need to create a material instance and this material instance will hold all of our parameters so to create a material instance
+is pretty easy first 1:03:121 hour, 3 minutes, 12 secondsyou want to find the material you want to create an instance of in our case it's a Spanish payment we already have the
+location open up within our content drawer but just as a reminder if you 1:03:211 hour, 3 minutes, 21 secondswant to find exactly where this material is Select object with the
+material on it and within the details panel select the little magnifying glass to jump to that 1:03:291 hour, 3 minutes, 29 secondslocation in your content drawer so here we have M
+Spanish payment and to create a material instance simply right click on your material and go create material 1:03:381 hour, 3 minutes, 38 secondsinstance now instead of calling it
+m Spanish payments I'm going to call it miore Spanish payments so I like to use 1:03:461 hour, 3 minutes, 46 secondsan m to tell me that this asset is a material and I like to use
+Mi to tell me that this asset is a material instance so let's double click to go into the 1:03:541 hour, 3 minutes, 54 secondsmaterial instance and we'll see that we don't have any
+parameters right now a parameter is essentially a setting that allows us to change our material and 1:04:031 hour, 4 minutes, 3 secondsthat's because I need to tell unreal exactly
+what settings within our material I want to make a parameter what variables I want to expose to the 1:04:111 hour, 4 minutes, 11 secondsmaterial instance so for example if I want
+to make this value right here a parameter right click and go to convert 1:04:201 hour, 4 minutes, 20 secondsto parameter it's that easy now it's going to ask for a name let's call
+this one size and now within our our material instance we noticed that there was no 1:04:271 hour, 4 minutes, 27 secondschange because I have to press apply and now we get a brand
+new parameter within our material instance called size now 1:04:351 hour, 4 minutes, 35 secondsbefore we can play with this let's go add our material instance to our world since
+the Spanish payment is not our material instance instead it's mcore 1:04:431 hour, 4 minutes, 43 secondsSpanish payments so let's go grab our material instance and drag it on there
+to make it the instance and not the main material now with our material instance 1:04:511 hour, 4 minutes, 51 secondsopened I'm going to check size and let's go play with this
+value so I can see that as I increase it it's all updating 1:05:001 hour, 5 minutesin real time and as I decrease it I'm able to see exactly the size that I want 1:05:071 hour, 5
+minutes, 7 secondsso trying to pick a size this way instead of having to jump into our material manually edit something and 1:05:141 hour, 5 minutes, 14 secondsthen click apply and
+jump back by just exposing it as a parameter for our material instance it makes creating materials a lot easier and in my opinion 1:05:221 hour, 5 minutes, 22 secondsa lot more fun
+now we're not just limited to creating parameters for scalar values we can even go into M Spanish payment and let's turn this 1:05:301 hour, 5 minutes, 30 secondscolor into a
+parameter so call this one color tint and let's go back into material example and we do not have 1:05:381 hour, 5 minutes, 38 secondsanything because I forgot to press apply and
+this color tint is available to us so maybe I don't want it to be 1:05:461 hour, 5 minutes, 46 secondsthis kind of greenish I just want to bring it over to let's do actually let's
+make it even more green like this I can even bring down 1:05:541 hour, 5 minutes, 54 secondsthe value to make it pretty much no color just pure black so we can even give ourselves
+more control for example 1:06:021 hour, 6 minutes, 2 secondsright now our normal map is doing a pretty good job but what if we want to decrease the effect of the normal map or we
+want to make this normal map even more intense so that the Shadows are 1:06:101 hour, 6 minutes, 10 secondsmore pronounced well if we jump into mcore Spanish payment we can control
+the intensity of a normal map with the flatten normal node so let's go hook up 1:06:201 hour, 6 minutes, 20 secondsthe normal map to normal right there and the result to normal now
+it's asking for a flatness value if i h my mouse over it it says the default value is zero so I'm 1:06:281 hour, 6 minutes, 28 secondsgoing to hold down one and left click to
+create a constant scalar value and hook it up right there now I'm going to right 1:06:351 hour, 6 minutes, 35 secondsclick and go convert to parameter and let's call this one
+normal flatness just 1:06:421 hour, 6 minutes, 42 secondslike that so zero won't do anything press apply jump back into our 1:06:481 hour, 6 minutes, 48 secondsworld and check
+normal flatness zero is its default there are no changes but if I increase normal flatness our normal 1:06:571 hour, 6 minutes, 57 secondsstrength decreases because it's getting
+more and more flat but if I make this value go below zero so into the negative 1:07:061 hour, 7 minutes, 6 secondsranges like negative 1 then we have some really intense normal

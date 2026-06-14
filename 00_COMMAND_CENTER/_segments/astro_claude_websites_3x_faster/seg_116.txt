@@ -1,0 +1,227 @@
+values. DynamicVariableAssignment gained a preserve_native_type field to keep typed values rather than coercing to strings. Audio Isolation History endpoints: Two new endpoints
+expose your audio isolation history. List audio isolation history (GET /v1/audio-isolation/history) returns a paginated list of all your audio isolation generations. Supports
+page_size, page, and search query parameters. Delete audio isolation history item (DELETE /v1/audio-isolation/history/{history_item_id}) deletes a specific item and its associated
+media files. Speech to Text Realtime keyterms and verbatim mode: The Scribe realtime WebSocket now accepts a keyterms parameter (array of strings, max 50 entries of up to 20
+characters each) to bias the model toward specific terms, and a no_verbatim boolean to remove filler words, false starts, and disfluencies from transcripts. Both parameters are
+echoed back in the session_started event. Available across the JavaScript SDK, Python SDK, and the @elevenlabs/client browser/Node client SDK. SDK Releases Python SDK v2.45.0 -
+Fern regeneration for the April 27, 2026 API schema, including audio isolation history endpoints, tool executions, MCP pre_tool_speech and response_timeout_secs, and the
+agent_response_complete client event. Also includes a fix to the notebook install hint in the README. v2.44.0 - Fern regeneration for the April 21, 2026 API schema, picking up the
+trust_context field, pre_tool_speech mode, asset transcription support, and MCP response timeout configuration. JavaScript SDK v2.45.0 - Added keyterms (string array, max 50
+keyterms of up to 20 chars each) and noVerbatim (boolean) options on the Scribe realtime client. keyterms are sent as repeated query parameters on the WebSocket URL to bias
+transcription, and noVerbatim removes filler words and disfluencies. Both fields are also added to the typed Config interface for the session_started echo. Also includes the April
+27, 2026 Fern regeneration (#376). v2.44.0 - Fern regeneration for the April 21, 2026 API schema, picking up the trust_context field, pre_tool_speech mode, and MCP response timeout
+configuration. Swift SDK v3.1.4 - Fixed an issue where the local microphone kept publishing after an agent disconnected (silence timeout or end_call tool). onAgentDisconnected now
+disconnects the LiveKit room and tears down conversation state, with onDisconnect firing an .agent reason. ConnectionManaging.onAgentDisconnected is now async. Removed the unused
+ConversationConnectionManager wrapper. Packages @elevenlabs/client@1.3.1 - Fixed the agent tool-call sound being interpreted as user speech and interrupting the agent during tool
+execution. @elevenlabs/client@1.3.0 - Added support for the upload conversation file endpoint, letting clients attach files to an in-progress conversation directly from the client
+SDK. @elevenlabs/react@1.2.1, @elevenlabs/react@1.2.0 - Updated to @elevenlabs/client@1.3.1 / @elevenlabs/client@1.3.0, picking up the tool-call sound fix and conversation file
+upload support. @elevenlabs/react-native@1.1.3, @elevenlabs/react-native@1.1.2 - Updated to the latest @elevenlabs/client for the same fixes. @elevenlabs/convai-widget-core@0.11.6,
+@elevenlabs/convai-widget-embed@0.11.6 - Updated to @elevenlabs/client@1.3.1 for the tool-call sound fix. @elevenlabs/convai-widget-core@0.11.5,
+@elevenlabs/convai-widget-embed@0.11.5 - Updated to @elevenlabs/client@1.3.0 for conversation file upload support. API View API changes April 20, 2026 Developer Resources
+ElevenLabs Devs YouTube channel: A new developer-focused YouTube channel is now live, featuring tutorials, API walkthroughs, and technical deep dives to help you get the most out
+of the ElevenLabs platform. ElevenAgents Workflow starting node override: Conversations can now be started at a specific workflow node by passing starting_workflow_node_id in the
+conversation initiation client data. This is gated by an opt-in enable_starting_workflow_node_id_from_client field in the agent’s platform override settings. When enabled, clients
+can specify which node to begin a conversation at, which is useful for agent memory and longer-term WebSocket use cases. If the specified node does not exist, the conversation
+falls back to the default entry point. Post-call analysis LLM configuration: Agent platform settings now include an analysis_llm field (default: gemini-2.5-flash) that sets the
+default LLM for post-call analysis, including evaluation criteria and data collection. Individual data collection properties can override this default with a per-item llm field via
+the new AnalysisProperty schema, giving fine-grained control over which model processes each analysis item. New LLM options: Added gpt-5.4 to the list of available LLM providers
+for agent configuration. Added xhigh to the LLMReasoningEffort enum for extended reasoning on supported models. Null literal in workflow expressions: Workflow conditional
+expressions now support null comparisons via the new ASTNullNode type, enabling branches like “if variable is null” in workflow logic. Get secret by ID: A new get secret endpoint
+(GET /v1/convai/secrets/{secret_id}) retrieves a single workspace secret by its ID. The list secrets endpoint also now accepts a search query parameter to filter secrets by name
+prefix. Searchable phone numbers in batch calling: The batch calling form in the dashboard now includes a searchable phone number selector, making it easier to find the right
+outbound number when configuring batch calls. Speech to Text Speaker role detection: The convert speech to text endpoint now accepts a detect_speaker_roles parameter (boolean,
+default false). When enabled alongside diarize=true, speaker labels are returned as agent and customer instead of speaker_0, speaker_1. This cannot be used with
+use_multi_channel=true. Usage incurs an additional 10% surcharge on the base transcription cost. Text to Dialogue Input character limit guidance: The text to dialogue endpoints now
+document a recommended limit of 2,000 characters across all inputs[].text values per request. Longer requests may terminate early in streaming responses or return a validation
+error. Workspaces Usage analytics endpoint: A new usage by product over time endpoint (POST /v1/workspace/analytics/query/usage-by-product-over-time) returns credit usage broken
+down by product type over time. Results are returned in a tabular structure with configurable interval_seconds, group_by dimensions, and filters. The previous GET
+/v1/usage/character-stats endpoint has been deprecated in favor of this new endpoint. SDK Releases Packages @elevenlabs/client@1.2.1 - Fixed conversation startup readiness so
+onConnect runs after the session is marked connected and React has synchronized conversationRef. Also exposed and forwarded onConversationCreated for consumers that need the
+created Conversation instance before onConnect. @elevenlabs/react@1.1.1 - Fixed conversation startup readiness and exposed onConversationCreated callback, matching the
+@elevenlabs/client@1.2.1 changes. @elevenlabs/react-native@1.1.1, @elevenlabs/convai-widget-core@0.11.4, @elevenlabs/convai-widget-embed@0.11.4 - Updated to
+@elevenlabs/client@1.2.1 with conversation startup fixes. API View API changes April 13, 2026 ElevenAgents Conversation topic discovery: A new conversation topics endpoint (GET
+/v1/convai/agents/{agent_id}/topics) returns the latest topic discovery results for a given agent, surfacing recurring themes across conversations. The list conversations endpoint
+now accepts a topic_ids query parameter to filter conversations by discovered topic. Knowledge base content search: A new search knowledge base endpoint (GET
+/v1/convai/knowledge-base/search) provides fuzzy text search over knowledge base document content. Results include highlighted snippets with SearchHighlightSegment objects and
+support cursor-based pagination with configurable page sizes (up to 100, default 30). Filter by document type with the optional types parameter. Flexible branch merging: The merge
+branch endpoint no longer restricts merges to the main branch — any branch can now be used as a merge target. A new optional force boolean parameter overrides timestamp-based
+conflict resolution when set to true. Branch metadata responses now include parent_branch_id and merged_from_version_id for better lineage tracking. Secret dependency management: A
+new get secret dependencies endpoint (GET /v1/convai/secrets/{secret_id}/dependencies/{resource_type}) returns paginated dependency lookups filtered by resource type (tools,
+agents, or phone_numbers). The list secrets endpoint now accepts a dependency_limit query parameter to control how many dependencies are previewed per secret, with agents_has_more,
+tools_has_more, and phone_numbers_has_more flags indicating when additional dependents exist beyond the preview. New LLM options: Added gemini-3.1-pro-preview to the list of
+available LLM providers for agent configuration. Voices Non-community voice filter: The voice_type query parameter on the list voices endpoint now accepts non-community, which
+returns personal and workspace voices combined while excluding library copies. This provides a convenient filter for teams that want to see only their own voices without
+community-shared ones. SDK Releases Python SDK v2.43.0 - Fern regeneration for the April 13, 2026 API schema, including knowledge base content search, conversation topics, flexible
+branch merging, and Gemini 3.1 Pro Preview LLM. JavaScript SDK v2.43.0 - Fern regeneration for the April 13, 2026 API schema, including knowledge base content search, conversation
+topics, flexible branch merging, and Gemini 3.1 Pro Preview LLM. Swift SDK v3.1.3 - Reduced background noise detection in software muted VAD, preventing false voice activity
+triggers when the microphone is muted. Packages @elevenlabs/client@1.2.0 - Fixed getInputVolume() and getOutputVolume() returning 0 in React Native by adding native volume
+providers using LiveKit’s RMS and multiband FFT processors. getInputByteFrequencyData() and getOutputByteFrequencyData() now return data focused on the human voice range (100-8000
+Hz), which is more useful for voice visualization, and on web getInputVolume() and getOutputVolume() are also computed from this range. @elevenlabs/react@1.1.0 - Fixed startSession
+errors being swallowed instead of surfaced via onError in ConversationProvider. Previously, when Conversation.startSession() rejected (e.g., “agent not found”), the UI would get
+stuck in “connecting” with no error feedback. @elevenlabs/react-native@1.1.0 - Updated to @elevenlabs/client@1.2.0 and @elevenlabs/react@1.1.0 with native volume provider fixes.
+@elevenlabs/convai-widget-core@0.11.3 - Fixed transcript message ordering in voice mode where agent responses could appear before user messages. API View API changes April 7, 2026
+ElevenAgents Scoped conversation analysis: Evaluation criteria and data collection items can now be scoped to conversation (full transcript) or agent (only the portion where a
+specific agent was active). Added scope field to PromptEvaluationCriteria, data_collection_scopes to agent platform settings, and a new scoped array of ScopedAnalysisResult on the
+conversation analysis response. This is particularly useful for multi-agent workflows where each agent should be evaluated independently. Agent test folder management: Tests can
+now be organized into folders. New endpoints for creating, retrieving, updating, and deleting test folders, plus bulk moving tests between folders. Tool and knowledge base
+overrides in workflows: Agent workflow node overrides now support tool_ids and knowledge_base fields in PromptAgentAPIModelOverrideConfig, allowing workflow nodes to control which
+tools and knowledge base documents each sub-agent can access. Response filter hide_all mode: Added hide_all option to ResponseFilterMode, forcing the system to hide all fields of a
+tool response from the agent. Visited agents in conversation history: The get conversation response now includes a visited_agents array of VisitedAgentRef objects (with agent_id
+and branch_id), tracking which agents participated in a multi-agent conversation. Multimodal message support in hooks: The useConversationControls hook now exposes
+sendMultimodalMessage, and the MultimodalMessageInput type is exported from @elevenlabs/client, making it easier to send images and other multimodal content during conversations.
+Speech to Text Audio duration in responses: The convert speech to text response now includes an audio_duration_secs field, providing the total duration of the transcribed audio
+without requiring client-side calculation. Voices Recording quality and review status: The get voice response now includes recording_quality (enum: studio, good, ok, poor, bad) and
+labelling_status (enum: in_review, review_complete) fields, providing visibility into voice quality assessment. SDK Releases JavaScript SDK v2.42.0 - Fern regeneration for the
+April 7, 2026 API schema, including scoped analysis, test folders, and DTMF input support. Python SDK v2.42.0 - Fern regeneration for the April 7, 2026 API schema, including scoped
+analysis, test folders, and DTMF input support. Swift SDK v3.1.2 - Fixed ObjC category dispatch for LiveKit delegate methods, resolving potential crashes in Swift-based voice agent
+integrations. Packages @elevenlabs/client@1.1.1 - Exposed sendMultimodalMessage in the client API and exported the MultimodalMessageInput type for sending images and other
+multimodal content during conversations. @elevenlabs/client@1.1.2, @elevenlabs/react@1.0.3, @elevenlabs/react-native@1.0.3, @elevenlabs/types@0.9.1 - Fixed Node.js ESM
+compatibility by adding explicit .js extensions to all relative imports and setting "type": "module" on @elevenlabs/types. @elevenlabs/convai-widget-core@0.11.0 - Added automatic
+language selection from localStorage history and browser language preferences for the embeddable widget. API View API changes April 1, 2026 ElevenAgents MCP tool scoping in agent
+workflows: Agent workflow nodes can now restrict which MCP tools a sub-agent is permitted to call. When tool inheritance is disabled on a node, only the explicitly selected MCP
+tools are loaded for that sub-agent, giving teams precise control over tool access per workflow step. Conversation file uploads: The create agent and update agent endpoints now
+support a file_input field on ConversationConfig. When enabled, end users can attach images or PDFs in chat (requires an LLM with multimodal input support). Configurable with
+enabled (boolean) and max_files_per_conversation (integer). Re-run conversation analysis: New run conversation analysis endpoint (POST
+/v1/convai/conversations/{conversation_id}/analysis/run) re-evaluates a completed conversation using the agent’s current evaluation criteria and data collection settings, without
+needing a new call. Tool response mocking for tests: Agent simulation tests and test suite invocations now support a tool_mock_config field to control how tool calls are handled
+during testing. Use MockingStrategy (all, selected, none) to choose which tools are mocked and MockNoMatchBehavior (call_real_tool, raise_error) to set the fallback when no mock
+matches. Text search sort order: The text search conversations endpoint now accepts a sort_by query parameter with values search_score (default) or created_at, allowing you to
+control whether results are ordered by relevance or recency. mTLS auth connections: Agent auth connections now support mutual TLS (mtls) as an auth_type, in addition to the
+existing options. New CreateMTLSAuthRequest and MTLSAuthResponse schemas are available for creating and retrieving mTLS-authenticated connections. Max duration message: Added
+max_conversation_duration_message field to agent configuration. When set to a non-empty string, the agent will send this message to the user when the maximum conversation duration
+is reached. Branch and environment in conversation initiation: Added branch_id and environment optional fields to the conversation initiation client data
+(ConversationInitiationClientDataRequest) and submit batch call request body, enabling routing to specific agent branches and environments. Music Video to music: New POST
+/v1/music/video-to-music endpoint generates background music from one or more video files. Videos are combined in sequence. Accepts optional description (up to 1,000 characters)
+and tags (up to 10 style tags such as upbeat or cinematic) to influence the generated track. Speech to Text Transcribe from URL: The convert speech to text endpoint now accepts a
+source_url parameter (string, optional) for transcribing audio or video from a hosted URL, including YouTube videos, TikTok videos, and other video hosting services. This can be
+used as an alternative to uploading a file directly. Voices Total count in shared voices list: The list shared voices response now includes a total_count field, making it easier to
+implement pagination and display result counts. SDK Releases JavaScript SDK v2.41.0 - Added support for the multimodal_message WebSocket event type in ElevenAgents real-time
+conversations. Includes Fern regeneration for the latest API schema updates. v2.41.1 - Fern regeneration to match the April 1, 2026 API schema. Python SDK v2.41.0 - Fixed
+audio_interface to be optional in text-only conversation mode, resolving a runtime error when starting a session without audio. Includes Fern regeneration for the latest API
+schema. Packages This release includes the new v1.0.0 of the client side Agent SDKs. It features major breaking changes to @elevenlabs/client, @elevenlabs/react, and
+@elevenlabs/react-native. Review the migration guidance below before upgrading. To help upgrade, we released a Skill to help your agents upgrade for you. Install it with npx skills
+add elevenlabs/packages You can read more about the v1 release and its improvements on our developer blog. @elevenlabs/client@1.0.0 — Breaking changes: Input and Output classes are
+no longer exported. Use the InputController and OutputController interfaces from @elevenlabs/client instead. Conversation is no longer a class — it is now a namespace object and a
+type alias for TextConversation | VoiceConversation. Remove any instanceof Conversation checks and subclasses. The default connectionType is now inferred from the conversation
+mode: voice conversations use "webrtc" by default, and text-only conversations use "websocket". To keep the previous behavior for voice, pass connectionType: "websocket"
+explicitly. VoiceConversation.wakeLock is now private. Pass useWakeLock: false in session options to suppress wake lock management. changeInputDevice() and changeOutputDevice() now
+return Promise<void> instead of Promise<Input> or Promise<Output>. Replace conversation.input.analyser.getByteFrequencyData(data) with conversation.getInputByteFrequencyData().
+Replace conversation.input.setMuted(v) with conversation.setMicMuted(v). Replace conversation.output.gain.gain.value = v with conversation.setVolume({ volume: v }).
+getInputVolume(), getOutputVolume(), getInputByteFrequencyData(), and getOutputByteFrequencyData() now return 0 or an empty Uint8Array instead of throwing when no conversation is
+active. @elevenlabs/react@1.0.0 — Breaking changes: useConversation now requires a ConversationProvider ancestor. Wrap your component tree in <ConversationProvider> and move
+options to the provider or to the hook. DeviceFormatConfig and DeviceInputConfig exports are removed. Use FormatConfig and InputDeviceConfig from @elevenlabs/client instead. New
+granular hooks replace the monolithic useConversation for better render performance: useConversationControls(), useConversationStatus(), useConversationInput(),
+useConversationMode(), useConversationFeedback(), and useRawConversation(). Each hook subscribes only to the state it needs, preventing unnecessary re-renders. New
+useConversationClientTool(name, handler) hook for registering client tools that agents can invoke, with automatic cleanup on unmount. Added controlled mute support via isMuted and
+onMutedChange props on ConversationProvider. @elevenlabs/react-native@1.0.0 — Breaking changes: The previous ElevenLabsProvider and useConversation API have been removed and
+replaced with re-exports from @elevenlabs/react. Replace ElevenLabsProvider with ConversationProvider and useConversation with the granular hooks (useConversationControls,
+useConversationStatus, etc.). On React Native, the package now polyfills WebRTC globals, configures the native AudioSession, and registers a platform-specific voice session
+strategy on import. @elevenlabs/types@0.8.0 - Exports the CALLBACK_KEYS runtime array containing all keys from the Callbacks interface, used internally by the React SDK for
+callback composition. @elevenlabs/client@0.16.0 - Added the guardrail_triggered server-to-client WebSocket event and the onGuardrailTriggered callback, which fires when the server
+detects a guardrail violation during a conversation. Also added type discriminants to TextConversation and VoiceConversation to enable discriminated union narrowing, and added
+startSession overloads that narrow the return type based on the textOnly option. @elevenlabs/react-native@0.6.0 - Added the guardrail_triggered WebSocket event and
+onGuardrailTriggered callback, consistent with @elevenlabs/client@0.16.0. @elevenlabs/client@1.1.0 - Added client-side support for mocking tool responses in agent conversations,
+enabling test scenarios that simulate tool call outcomes without invoking real tools. @elevenlabs/types@0.9.0 - Added type definitions for tool response mocking in agent
+conversations. @elevenlabs/react@1.0.1 - Updated to depend on @elevenlabs/client@1.1.0. @elevenlabs/react-native@1.0.1 - Updated to depend on @elevenlabs/client@1.1.0 and
+@elevenlabs/react@1.0.1. API View API changes March 25, 2026 Workspace Basic and Full Seats: Workspaces now support two seat types - Full Seats with unrestricted access to all
+products, and Basic Seats with full access to ElevenAgents and ElevenAPI and limited ElevenCreative usage. All paid plans include 20 Basic Seats. Enterprise admins can purchase
+additional Full Seats directly from workspace settings. Learn more. March 23, 2026 ElevenAgents Environment Variables API: New environment variables endpoints for managing
+workspace-level configuration that agents can reference at runtime via {{system_env__<label>}} templating. Supports string, secret, and auth-connection variable types with
+per-environment value overrides. Endpoints include create, list, get, and update. Auth Connections management: New workspace-level auth connections API for managing authentication
+credentials used by agent tools and integrations. Supports multiple auth methods including OAuth2 client credentials, JWT, basic auth, bearer tokens, custom headers, and
+integration-managed OAuth2 authorization code flows. Endpoints include create, list, and delete operations. Knowledge Base URL refresh: New refresh endpoint (POST
+/v1/convai/knowledge-base/{documentation_id}/refresh) to re-fetch and update content for URL-sourced knowledge base documents. Knowledge base documents also now support auto-sync
+configuration with enable_auto_sync, auto_remove, and auto_sync_info fields. Guardrail retry with feedback: Custom and content guardrails now support configurable trigger actions
+with EndCallTriggerAction and RetryTriggerAction options. When set to retry, the agent re-generates its response with injected system feedback up to 3 attempts. Available
+placeholders include {{trigger_reason}} and {{agent_message}} for contextual retry guidance. Conversation History system variable: Added a new system__conversation_history dynamic
+variable that provides a lazily-evaluated, JSON-serialized conversation history at runtime. This is useful for passing full conversation context to tools, webhooks, or sub-agent
+handoffs. Webhook tool content type: Server tools now support a configurable content type for webhook body parameters, allowing you to choose between application/json and
+application/x-www-form-urlencoded formats. The URL-encoded format is useful for integrating with legacy systems, OAuth token endpoints, and payment processors. WhatsApp outbound
+messages: Updated the WhatsApp integration with a new outbound message dialog in the dashboard, enabling agents to send outbound messages in addition to calls through the WhatsApp
+channel. Agent and resource listing filters: The list agents, list knowledge base documents, and list tools endpoints now support a created_by_user_id query parameter (use @me for
+the current user). The previous show_only_owned_agents and show_only_owned_documents parameters are deprecated. Workflow conditional expressions: Added a new conditional_operator
+AST node to the workflow expression schema, enabling branching logic within agent workflow definitions. Music Music Marketplace: New Music Marketplace documentation covering the
+marketplace for licensing AI-generated music, including usage types, creator payouts, and licensing details. SDK Releases Python SDK v2.40.0 - Added environment parameter support
+for ElevenAgents conversations, enabling environment-specific agent connections. Fern regeneration to match the latest API schema including environment variables, auth connections,
+knowledge base refresh, and guardrail trigger actions. JavaScript SDK v2.40.0 - Added multimodal_message WebSocket event type for ElevenAgents real-time conversations. Fern
+regeneration to match the latest API schema including environment variables, auth connections, knowledge base refresh, and guardrail trigger actions. iOS SDK v3.1.1 - Added
+environment parameter support for environment-specific agent connections. Fixed a visionOS build error by bumping the platform requirement to v2. Packages @elevenlabs/types@0.6.1 -
+Added multimodal_message WebSocket event type for ElevenAgents real-time conversations. @elevenlabs/client@0.15.2 - Added multimodal_message WebSocket event support.
+@elevenlabs/react@0.14.3 - Added multimodal_message WebSocket event support. @elevenlabs/convai-widget-core@0.10.4, @elevenlabs/convai-widget-core@0.10.5 - Updated to
+@elevenlabs/client@0.15.2. @elevenlabs/convai-widget-embed@0.10.4, @elevenlabs/convai-widget-embed@0.10.5 - Updated to @elevenlabs/client@0.15.2. Packages v1.0.0 Release Candidate
+The first release candidate for v1.0.0 of the ElevenAgents client SDKs is now available. This is a major release with breaking changes that improve the API surface, add granular
+React hooks for better render performance, and unify the React Native SDK with the React SDK. To try out the release candidate: npm install @elevenlabs/client@next
+@elevenlabs/react@next @elevenlabs/react-native@next An elevenlabs:sdk-migration skill is available to help AI coding assistants automatically migrate your codebase to the new
+APIs. Add it to your Claude Code, Cursor, or Windsurf project to get guided migration support. Key changes in v1.0.0: @elevenlabs/client: Conversation is now a namespace object and
+type alias for TextConversation | VoiceConversation instead of a class. The Input and Output classes are replaced by InputController and OutputController interfaces, with new
+convenience methods on the conversation instance (setMicMuted(), setVolume(), getInputByteFrequencyData(), getOutputByteFrequencyData()). changeInputDevice() and
+changeOutputDevice() now return void. @elevenlabs/react: useConversation now requires a ConversationProvider ancestor. New granular hooks for fine-grained re-rendering:
+useConversationControls(), useConversationStatus(), useConversationInput(), useConversationMode(), useConversationFeedback(). New useConversationClientTool() hook for dynamically
+registering client tools from React components with full type safety. @elevenlabs/react-native: Complete API rewrite replacing ElevenLabsProvider and useConversation with
+ConversationProvider and the same granular hooks from @elevenlabs/react. WebRTC polyfills and native AudioSession configuration are applied automatically on import. See the full
+release notes and migration guides: @elevenlabs/client@1.0.0-rc.1 @elevenlabs/react@1.0.0-rc.1 @elevenlabs/react-native@1.0.0-rc.1 @elevenlabs/types@0.7.0-rc.0 API View API changes
+March 16, 2026 ElevenAgents Users page is now generally available: The list users page, which groups conversations by a user identifier, is now available to all workspaces. This
+allows you to view all users who have interacted with your agents, their conversation history, and contact details in a unified view. SIP inbound headers as dynamic variables:
+Custom SIP X- headers from inbound SIP trunking calls are now automatically exposed as dynamic variables in ElevenAgents conversations. Any custom SIP header (e.g., X-Contact-ID,
+X-Campaign-ID) passed by the caller is available in the agent prompt using {{sip_contact_id}}, {{sip_campaign_id}}, etc. These variables are also visible in the conversation
+history under the Phone Call tab. Reserved headers such as X-Call-ID and X-Caller-ID continue to map to system__call_sid and system__caller_id and are not overridden. Conversation
+filtering by tool outcome: The list conversations and text search conversations endpoints now accept tool_names_successful and tool_names_errored query parameters (array of
+strings) to filter conversations by which tools succeeded or returned errors during the call. User listing improvements: The list users endpoint now supports a sort_by query
+parameter accepting last_contact_unix_secs (default) or conversation_count, and a branch_id query parameter to filter users by agent branch. Force delete tools: The delete tool
+endpoint now accepts a force query parameter (boolean, default false). When set to true, the tool is deleted even if it is used by agents, and it is automatically removed from all
+dependent agents and branches. Conversation embedding retention: The ElevenAgents settings response now includes conversation_embedding_retention_days, which controls how long
+conversation embeddings are retained (maximum 365 days). A null value uses the system default of 30 days. Content threshold guardrail: Added the ContentThresholdGuardrail schema,
+which provides a configurable threshold-based guardrail with an is_enabled flag and a threshold value for content moderation. Workspaces Get all workspace groups: New GET
+/v1/workspace/groups endpoint returns all groups in the workspace, including each group’s name, ID, members, permissions, usage limit, and character count. Seat type in bulk
+workspace invites: The invite multiple users endpoint now accepts an optional seat_type field to specify the seat type (e.g., workspace_member, workspace_admin) for all invited
+users in a bulk operation. Mobile SSO reliability improvements: Fixed a regression where SSO login on mobile would get stuck on “Authenticating…” after a user logged out and
+attempted to sign in again. Also fixed workspace switching for mobile SSO users who sign in via SAML or OIDC providers. Music Section duration control: The generate music detailed
+endpoint now supports respect_sections_durations (boolean), which controls whether the model adheres to the duration specified for each section in the composition plan.
+ElevenCreative Studio Chapter visual content indicator: Chapter response models now include a has_visual_content boolean field indicating whether the chapter contains visual
+content. Text shadow and outline styles: ElevenCreative Studio text styling now supports text_shadow and text_outline options via the new StudioTextStyleShadowModel and
+StudioTextStyleOutlineModel schemas, enabling richer visual text customization within ElevenCreative Studio projects. Media generation clip task type: The PendingClipTask.type enum
+now includes the media_generation value, expanding clip task categorization to cover media generation workflows. SDK Releases Python SDK v2.39.0 - Added support for the
+multimodal_message WebSocket event type in ElevenAgents real-time conversations. v2.39.1 - Fern regeneration to match the latest API schema. JavaScript SDK v2.39.0 - Fern
+regeneration to match the latest API schema. iOS SDK v3.1.0 - Several improvements to the ElevenAgents Swift SDK: Server errors are now surfaced through the onError callback,
+making error handling more consistent. Added event-based agent state management for cleaner state observation. Software muting is now supported alongside speech detection, enabling
+more granular audio control. Improved codebase to use Swift Concurrency throughout. Fixed a crash that occurred during startup on iOS release builds. Updated branding to reflect
+the ElevenAgents rebrand. Packages @elevenlabs/client@0.15.1 - Added audio resampling for output audio when the required sample rate cannot be acquired from the system, improving
+compatibility across devices. @elevenlabs/react@0.14.2 - Updated to depend on @elevenlabs/client@0.15.1. @elevenlabs/convai-widget-core@0.10.3 - Updated to depend on
+@elevenlabs/client@0.15.1. API View API changes Older posts Next Built with Changelog | ElevenLabs Documentation Need help? Powered by ElevenAgentsWeb API API referenceGuides
+Search API reference... Press shift + S to search API reference. Introduction Authentication Scopes OAuth reference Errors Rate limits Billing plans Changelog Get user info List
+records Get record Update multiple records Update record Create records Delete multiple records Delete record Sync CSV data Upload attachment Org management glossary Guide API
+Reference This is the reference for the Airtable API. Use the sidebar to explore the API and learn about important concepts. The Airtable API can be used to integrate your data in
+Airtable with any external system. The API closely follows REST semantics, uses JSON to encode objects, and relies on standard HTTP codes to signal operation outcomes. Official API
+client: JavaScript: airtable.js (Node.js + browser) Community-built API clients: Ruby: airrecord .NET: airtable.net Python 3: pyairtable Python 2/3: airtable.py To see personalized
+documentation generated for your bases, log in to Airtable. © AirtableTermsPrivacy This website uses cookies and other tracking technologies to collect, store, and monitor your
+information, which we may share with our third-party partners, as further described in ourCookie Policy. By continuing to use this site, you agree to our use of these tracking
+technologies in accordance with ourPrivacy Policy andCookie Policy, and accept ourTerms of Service. Cookie PreferencesWeb API API referenceGuides Search API reference... Press
+shift + S to search API reference. Introduction Personal access tokens OAuth integrations Webhooks API Guide Personal access tokens Personal access tokens are used to authenticate
+requests to Airtable's API when developing an integration for yourself, your client, or for your company. Personal access tokens act as your user account, and should be kept secret
+and not shared with any third-party services or integrations. If you are building an integration that allow other users to grant your integration access to Airtable, you should
+instead create an OAuth integration. The personal access tokens panel can be accessed at /create/tokens. Here, you can create new tokens and manage your existing tokens. Creating a
+token From /create/tokens, click the “Create new token” button to create a new personal access token. Give your token a unique name. This name will be visible in record revision
+history. Choose the scopes to grant to your token. This controls what API endpoints the token will be able to use. Click ‘add a base’ to grant the token access to a base or
+workspace. You can grant access to any combination and number of bases and workspaces. You can also grant access to all workspaces and bases under your account. Keep in mind that
+the token will only be able to read and write data within the bases and workspaces that have been assigned to it. Once your token is created, we will only show it to you once, so
+we encourage you to copy it to your clipboard and store it somewhere safe. While you will be able to manage it in /create/tokens, the sensitive token itself is not stored for
+security purposes. If you are an enterprise admin, you can also create a personal access token for a service account from the Admin Panel—refer to this support article for details.
+Using personal access tokens Personal access tokens should be passed with your API requests as a Authorization: Bearer header. Refer to the authentication reference page for more
+details. Personal access tokens can be used to make requests to all public Airtable API endpoints, including endpoints that were previously limited in availability such as the
+Metadata API endpoints. Tokens act as the account of the user who created it, with additional limitations according to the scopes and bases and workspaces that were granted to it.
+It can only make API requests that correspond to the scopes it was granted, and can only access the granted bases and workspaces. Note: While personal access tokens are prefixed
+with their ID, they should be otherwise treated as opaque, variable-length strings. In particular, do not rely on tokens having a particular length or format. Changes to the token
+format (for newly created tokens) are not considered to be breaking changes. Managing existing tokens Updating permissions You can update the scopes, bases, and workspaces granted
+to your token by selecting the token's detail page from /create/tokens. Regenerating tokens You can regenerate tokens from the personal access tokens panel or from the detail page
+for a token. After the token has been regenerated, any API requests that attempt to use the previous token will be rejected. The name and permissions of the token are unchanged
+from before. Deleting tokens You can delete tokens from the personal access tokens panel or from the detail page for a token. You will be prompted before fully deleting the token.
+After the token has been deleted, any API requests that attempt to use the token will be rejected. You can also bulk delete tokens using the checkboxes on /create/tokens. ©
+AirtableTermsPrivacyWeb API API referenceGuides Search API reference... Press shift + S to search API reference. Introduction Personal access tokens OAuth integrations Webhooks API
+Guide OAuth integrations OAuth integrations allow you to register with Airtable so that users may grant you the ability to access Airtable's API on their behalf via the OAuth grant
+flow. If you are building an Airtable integration for your product or for many different users that needs to use the Airtable API on behalf of those users, you will need to create
+an OAuth integration. This guide will walk you through how to create your OAuth integration. For full reference on how to authorize via OAuth, please see our OAuth reference.
+Registering a new integration You can access the OAuth integrations panel at /create/oauth. From here you can register new integrations, and see a summary of previously created
+integrations and their possible scopes. Click the ‘Register new OAuth integration’ button to create a new OAuth integration. Give your integration a unique name and register a
+valid redirect URL and click ‘Register integration’. You will be able to change these later. For more details on how we validate the redirect URL, see its section in the OAuth
+reference. OAuth integration properties After navigating to an existing OAuth integration’s management page, you can edit the various properties of your integration. When you are
+satisfied with your changes, you can click the “Save changes” button at the bottom of the page. Most properties are optional, but note that the Privacy policy URL and Terms of

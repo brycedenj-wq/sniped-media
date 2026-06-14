@@ -1,0 +1,224 @@
+10:23 has remembered my name as AI bytes. 10:25 Let's see what it does. So if I just 10:27 print the response, we can see that the 10:29 name is AI bytes. So that's how we can
+10:31 introduce context to it. And then we can 10:34 also build rack pipelines. I'm just 10:37 going to build a simple rack pipeline. 10:38 For running a simple rack pipeline, what
+10:40 we're going to do is we're going to 10:42 create a directory called data. And 10:44 inside that we're going to download 10:45 polar essays which are quite famous 10:48 ones.
+And we can see that inside data 10:51 now we have the polar essays. Now we can 10:54 quickly do some rag on the data. So to 10:57 do rag first we need to create object 10:59
+documents. So documents is simple 11:02 directory reader of the data the folder 11:05 that we just created and then say load 11:07 data to index we're going to say vector 11:10
+vector still index dot from documents 11:14 and we're going to pass the documents 11:16 that we just loaded and then the query 11:18 engine is of course going to be the 11:22 index
+do as query engine. So those are 11:25 the three main lines. So we're loading 11:27 the document. We are creating the index 11:29 using vector store index from the 11:31 document
+and we're saying the index is 11:33 now as a query engine. So if I just run 11:36 that, it's going to take a while because 11:37 it's doing all those stuff. So that ran 11:40 fine.
+We can now interact with this 11:41 document. But first we need to create 11:43 our agent. So in agent is function agent 11:46 and the tools is obviously search 11:50 documents. We
+haven't created this tool. 11:52 So let's create this tool by saying 11:54 define search documents as which what 11:57 takes it takes a query uh which is a 11:59 string and it
+returns a string as well 12:02 and inside that we will say response is 12:05 avoid query engine dot async query of 12:08 the query and return the response as a 12:12 string. So
+this is the function 12:14 obviously because we are using async 12:16 query uh we are going to also say async 12:19 define search documents. So that tool is 12:22 now defined and
+we are going to be using 12:24 the open AAI model for this which is 12:27 going to be GPD4 12:29 mini and the system prompt is you are a 12:33 helpful assistant that can search
+12:37 through documents to answer questions. 12:40 So that should do for the system prompt. 12:42 We have created the agent. Let's run 12:45 that. Yeah, that agent is created. Now
+12:47 if we want to work with it, we can just 12:49 say response is avoid agent.r run and 12:53 we'll give the query that we need to 12:55 pass which is what did the author do in
+12:59 college. Let's print the response and 13:01 see what the answer we get. In college 13:03 the author applied to art school, 13:05 attended classes in fundamental subjects
+13:07 like drawing, color and design and 13:10 participated in the painting department 13:12 at the academia. Also wrote essays on 13:14 various topics. Worked on spam filters.
+13:16 did some painting, hosted dinner for 13:18 friends and eventually started his own 13:20 investment firm with collaborators. So 13:22 that's definitely Paul Graham. So it has
+13:24 pulled data from the document that we 13:26 just added to the data folder. So that's 13:28 a simple rack pipeline we have created. 13:30 One thing to note is that everything
+is 13:32 agent based. Now to begin with even to 13:34 build a simple pipeline, we first 13:36 creating an agent and then that agent is 13:38 responding to your query even for a
+13:40 simple rack pipeline. So that's the 13:42 basic getting started hands-on. And 13:45 there's one more thing that I wanted to 13:46 show you which is the llama hub. This is
+LlamaHub 13:48 where all the integrations from a 13:51 contributor or a collaborator is listed. 13:53 For example, if you want to work with 13:56 say multimodel model and your
+multimodel 13:58 model is there in hugging face, then you 14:01 can use this. Basically, you can do pip 14:04 install llama index multimodel llm's 14:07 hugging face and you can
+set your 14:09 hugging face API key. You can straight 14:12 away import the hugging face multimodel 14:14 class from llama index and you can 14:16 create hugging face multimodel.
+model 14:19 name and you can pass your own model and 14:22 you can use that because the model is 14:24 multimodel you can you can pass an image 14:26 to as a input and say image
+document and 14:29 you can describe the image in detail and 14:32 you get the response about the image. So 14:35 that's super cool and we have several 14:37 contributions here. If
+I select all 14:39 integrations, you can see the different 14:42 integrations that are available. So you 14:44 can even build your own integration for 14:46 your own system and you
+can contribute 14:48 because llama index is open source. So 14:51 just to summarize what we saw, we 14:53 started with looking into llama pass 14:55 which is for document passing
+and then 14:57 we quickly looked into llama extract 15:00 which is for extracting the data by 15:02 defining a schema. And then we also saw 15:05 about Llama cloud. It's for people
+who 15:07 are less technical and who want to 15:09 manage their data in the cloud in 15:11 Llama's own native cloud. And we also 15:14 saw about agent framework. Particularly 15:17
+we saw how we can build your own 15:19 workflow. We quickly saw how we can 15:20 build a rack pipeline. Not to forget we 15:23 also have llama hub. If you want to do 15:26 some
+contribution to llama index and 15:29 build your own integration into llama 15:31 index then llama hub is the place where 15:34 you want to contribute. So, I hope it's 15:36 useful
+for you to get started quickly 15:38 with Llama Index and I will see you in 15:41 my next video. All Intro 0:00 good morning everyone how's it going today welcome back to the
+channel coming to you from France today sunny France 0:06 we're at 40° today we're melting that is in Celsius I'm not sure how much that is in Fahrenheit but it's very very high uh
+0:15 today we're going to be covering Lama index and uh the reason for that is that I was recently researching about this 0:21 framework and I figured that most of the content
+online about L index is kind of 0:27 out of date so right now it's probably a very good time to create a longer series 0:34 about all of llama index's capabilities and features
+that you can um use in your 0:40 projects and in your company because now the company is at a much more stable and 0:46 mature phase so I figured that this uh series of tutorials
+is going to remain 0:51 Evergreen for a longer time so yeah in this first video of the series we're 0:57 going to be covering pretty much what is L index uh its particular take on
+1:02 context augmentation and drag we're going to be covering that with a very cute diagram that we have right here and 1:08 then we're going to be going to the code so that you
+can just get your foot wet 1:13 on the water so that uh you can start using this framework which is uh pretty pretty useful um so there you go that's 1:21 that's what we're going
+to do right now so let's actually start talking about what is Lama index 1:27 [Music] 1:37 [Music] all right so first of all let's talk a little bit about what is Lama index now
+What is LlamaIndex 1:44 if you're here I suppose that you already have a bit of an Intuition or an idea of what is Lama index but in case 1:50 you don't and for the new Commerce as
+well I'm going to explain that really quick for you a good way to think about 1:56 this if you have already a little bit of um background in this is that there is a 2:01 lot of
+overlap between Lama index and Lang chain they both allow you to create 2:06 llm applications however there are a some some differences that we will be 2:11 covering during this
+series as well uh L index essentially is a 2:16 framework or an ecosystem that allows you to create llm applications such as chatbots AI assistance translation 2:24 machines or any
+other kind of applications that would require a language model in their services and 2:31 something that is very useful about them is that they also provide a lot of data loaders
+that allow you to enrich the 2:38 knowledge of your language model with your own data for example your language 2:43 model might not know anything about the contents of your email
+inbox or your 2:48 company's database or your noes in notion well the idea is that a framework 2:56 like L index can allow you to access to enrich your the knowledge of your 3:02
+language model with that information so that it can answer questions about your 3:08 your personal data or your company's data all right and they also allow you to create much more
+sophisticated 3:13 programs such as AI agents multi-agents Etc okay now other than that they also 3:22 have some Enterprise Solutions such as lamama cloud and lamma pars which are
+essentially the same thing that you 3:29 would be able to code yourself but taken care of by their own teams in in San 3:38 Francisco in other words in other words what lamac cloud
+3:44 can allow you to do is to ingest to help you ingest all of your personal data or 3:50 all of the data of your company put it in an index and use it with their own 3:56 with
+their with the language models that they have available so that you can use create these kind of applications 4:01 already within your company so it's kind of a hosted version of
+the thing that you would be able to code yourself if 4:08 you had a team of machine learning scientists and software engineers and 4:13 other than that they also have this service
+called Lama pars which allows you to parse pretty much any kind of 4:20 document and output a structured um document from it so for example if you 4:29 if you you send a PowerPoint
+presentation to their API at lamap pars 4:34 they will return to you a structured document with all of the the contents of 4:40 your PowerPoint presentation with a very easy to use
+API so that is very very useful I also have a video about this if 4:47 you're interested you can check that out and there you go so that is essentially the introduction of Lama
+index what 4:54 their open-source um libraries uh do for you and what their enter Solutions can 5:00 do for you as well so let's actually start by looking at what they and how 5:07
+they do this that I uh explain to you real quick right now and we're going to do that explaining this with a very nice 5:16 diagram so here we have the diagram and the idea right
+here is that I want to introduce you to what L index does and 5:23 how they deal with context documentation now if you have any experience with rag 5:30 or retrieval augmented
+generation you may already understand a lot just by looking at this diagram but the idea 5:36 behind this introduction to Lama index is that I wanted to go through the entire
+diagram again highlighting the 5:42 differences in how Lama index deals with this and also highlighting the main 5:49 components of the Lama index ecosystem okay that's why some of
+this items are 5:55 in color in different colors okay so let's actually start by taking a look at 6:00 the components and the high level components of the L index Data Connectors
+6:06 ecosystem all right so let's start off by talking about the first component of the Lama index ecosystem and that is 6:13 data connectors okay now remember that I told you that
+Lama index is a an 6:21 ecosystem or a library that allows you to ingest your data in order to use it 6:27 in your application now that data is usually stored in unstructured or or
+6:34 structured sources what does this mean that you may have your data in PDF files 6:39 in HTML files if they are websites in csb files in Excel files in Word 6:44 documents Etc
+and if you want to use them within your large language model application you will need to take all of 6:52 that data from all of these different formats and put them together in an
+uniform way and that is essentially what 6:59 the data connectors do um now data connectors are probably one of the most 7:05 um popular parts of the L index ecosystem because
+lately they have been putting a lot of effort into creating 7:14 very sophisticated data connectors that allow you to ingest pretty much any kind of document you want in a much
+more 7:21 Smart Way um that is actually what they do with lamah Hub they lamah Hub is 7:28 essentially um an API with a data connector that allows 7:34 that takes pretty much any
+kind of format to it and then gives out structured documents so that you can 7:41 organize your data and you can use it with your language model applications okay and they also
+have lamah Hub which 7:48 is an open- Source Community where you can also contribute if you want and 7:53 essentially this community allows you to create any kind of the components
+in the 7:58 Lama IND ecosystem and make them available to the community but I feel 8:04 that the most popular uh use of lamah Hub is also their data connector so 8:09 someone may
+develop an independent data connector for say notion so now you can 8:16 uh you can use a the notion data connector to ingest your 8:21 data from your notion databases and use it
+in your Lama index 8:27 application uh so that is data connectors and so essentially they just allow you to take all of your 8:34 unstructured or structured documents and put them
+together into a more organized 8:39 way that you can use in your llm application now the next thing to consider is the output of your data 8:46 connector and that is the documents
+so what is the document that Documents 8:52 we see right here now as I told you before you have these data connectors 8:57 that will take all of your structured and on structure
+files and will output documents from this data that you have 9:05 right here now you may be tempted to think that these documents are U PDF 9:11 documents or Word documents or
+things like that but actually not at all these 9:17 documents actually are just programming objects with different properties okay 9:23 now this document for example may come
+directly from your PDF so your PDF after 9:29 being passed through your data connector it will output this document right here 9:34 and this document is essentially just a
+programming object with one property titled text or it may be titled content 9:43 depending on the framework and that property will contain all of the text inside of this file so
+it's essentially 9:51 just a distillation of the contents of this of this data source and then in 9:56 another property under the same object you will find a 10:02 metadata and
+this metadata will include the name of this source file so that 10:08 when you use this document in your application you will know exactly from which file it came from it may also
+10:14 contain the page range from where the information comes from in your original 10:20 file it may also contain the date at which your file was ingested in the data 10:26
+connector Etc so essentially that is what a document is it's just a 10:31 structured representation of all of your data source and this makes it much more 10:38 easy to handle your
+data in this pipeline okay now the next thing that we 10:44 have to consider is how these documents are then turned into Nodes 10:51 nodes so now let's talk about this concept
+right here of the node and this 10:57 is a very particular concept conceptt and very special one because it is um very ingrained in how Lama index works 11:06 and it does not do
+this by default when you try to do the same thing with Lang 11:11 chain for example so as you can see I mean remember that the whole idea of this presentation of this diagram right
+11:18 here is that we're trying to uh we're explaining how we would create a data 11:23 processing pipeline that will take our unstructured and and structured data 11:28 sources
+and turn them into an index that you then will be able to query using a language model so this index will will 11:36 contain your personal information and then you will be able to
+use a language 11:42 model to ask about to ask um questions about your personal information that 11:48 your model was not initially trained on so what we are what we have done so
+far 11:53 is we have taken these unstructured data sources passed them through a data connector and put them into 11:59 documents what is happening after that is that the documents
+are split into 12:05 different nodes now what is one of these nodes a no is essentially in the at the 12:12 highest level just um a chunk of your document okay so depending on the
+length 12:19 of your document it may be split into one or more or several notes and the 12:24 idea is that the Noe retains the metadata from the document so if this document
+contains the metadata that it 12:31 came from this PDF this node will also contain that metadata uh but it is kind of a more 12:38 granular piece of information whereas the
+document contains a larger amount of information from the PDF now there is 12:46 one uh very important distinction between the node and the document and is 12:51 that not only is
+the node more granular it is also interconnected with other nodes creating sort of a network of 12:58 knowledge okay so the idea right here is that your document may be split into
+several nodes each note containing more 13:05 granular information and these nodes will be interconnected among themselves 13:11 and that the same thing between all of your
+documents from all of your data 13:17 sources that were um that were uh ingested so that is essentially this 13:22 step right here of creating the nodes and that is a a different
+step from the 13:28 more simple implementation of this that we could have seen for for example in 13:34 the Lang Chain video that we did before and L index does this by default so
+by default L index is going to be working 13:40 with with nodes and it makes it more explicit that you're going to be manipulating them during your data 13:46 ingestion process
+okay so once that you have this network of knowledge in the 13:52 nodes um we're going to go to the embeddings and then finally in this data Embeddings 13:59 processing pipeline
+you have the embeddings of each one of your nodes so each part of your network right here 14:06 will going to be converted using an embeddings model into a numerical 14:11
+representation of itself okay so here there are several embeddings models to choose from I mean you can use uh open 14:18 AIS you can use many open source models as well and the
+idea is that you're going to be embedding the contents from 14:25 your your node creating a numerical representation of this this numerical representation will also contain in some
+14:35 way will capture the meaning behind the contents of the information inside of 14:40 the node and then all of these numerical representations of all of the material 14:45 that
+you had in your PDFs HTML and all of your files will will be added 14:50 together inside the index and that is how we get to the Index 14:57 index right here which is another core
+component of LMA index and the idea is 15:03 that the index is essentially just your vector database which essentially is 15:08 just a database that is going to contain all of your
+numerical representations of 15:13 all of your nodes and all of your I mean and thus of all of your data and this index is what you're going to be able to 15:20 query in order to
+get the relevant information to any information that 15:25 you're looking for which in this case is going to be queried by via your router and your retrievers but let's let's take
+15:32 a look at what these are right now but for now just keep in mind that the index 15:38 is a concept that you will be referred to several times during these minseries 15:45 and
+also inside of the LMA index documentation so that is what that is 15:50 what they mean when they say index now let's take a look at um the retrieval Router and Retrievers 15:57
+process and now we get to the part of the retrieval and the retrieval is 16:02 essentially when the client sends a query to your API or to your application 16:08 and you want to
+find the relevant documents that are relevant to this query now the idea is that you have this 16:14 thing that they call router right here which is um another core component of
+16:20 Lama index and the idea of this router is that it is going to decide which retriever it is going to use to get 16:27 information from your index okay okay now each each one
+of these retrievers is of course another component of Lama 16:34 index and the idea is that each one of these retrievers May um may use a 16:41 different strategy to query your
+index okay so the router will analyze your 16:49 query will then route it to the most appropriate retriever that will find the 16:54 most relevant information and then these
+retrievers are going to get back the 17:00 relevant information from your index which is the information from your data 17:05 from your custom data and that is kind of the job of
+the router and the 17:11 retrievals and so we have our response synthetizer right here which is another component from Lama index which will Response Synthesizer 17:19 essentially
+just put together the documents that you got from your retrieval and then put them together 17:26 with another prompt send them to your language model and then get a response with
+your enriched information 17:35 okay so that is essentially how Lama index deals with a very simple and very 17:41 regular rag Pipeline and as you can see it is very similar to
+what you would do 17:47 in for example Lang chain but I wanted to go over this all over again but 17:53 highlighting the specificities of how Lama index does it so now you know
+what 17:58 what what they are actually talking about when you see response synthesizer 18:05 or router or index or data connector in the L index documentation or even in 18:10 some
+other videos in this miniseries okay okay so now we have successfully RAG in 5 lines 18:16 understood what are the components of L index and why what they actually do uh 18:22
+we're actually going to start implementing them using a little bit of code right here and you will see that it 18:28 is actually very very simple so the first thing that you want
+to do is of course to install Lama index and to do 18:34 that you have to run pip install Lama index - uq means upgrade and quiet so 18:40 that as you can see I don't have any
+output right here and after that we're going to initialize my API key from 18:49 openai now um L index actually uses by default the language models from openai 18:56 and to be more
+specific it uses GPT 3. 5 turbo which is a very inexpensive model 19:02 so you should be okay uh but in case you don't want to use open aai in I one of 19:09 the future videos in
+this miniseries I'm going to be adding how to use this with local models too so there you go now we 19:17 have our openai API key set up correctly now it is time to actually 19:22
+start implementing this pipeline that we saw right here and llama index actually has this very very famous and um one of 19:32 which they're very proud of this feliner which in
+five lines of code essentially just implements the entire pipeline that 19:38 you have right here uh so let's take a look at that uh so the first thing that we're going to want to
+do is we're going 19:44 to create a new folder called Data where we're going to store all of the 19:49 documents that we're going to be uh ingesting this documents that were right
+here and in order to do that actually 19:56 I'm going to be importing the constitution of the USA and that's 20:02 all that I'm going to be adding right here so I have the
+constitution. PDF um 20:07 just a quick reference to an old video that that I did about a year ago about rag as well so there you go um all of I 20:15 mean I am only going to be
+adding one single document right here but just to be clear you can add as many as you want 20:21 inside of the data folder right here and they're all going to be ingested as part
+of your pipeline so there you go so now 20:29 the this very famous feliner so from Lama index. core import 20:37 Vector score vector vector store index and Sample directory reader
+so these are the two classes that we're going to be 20:44 using Vector store index is essentially the index that you saw right here so in 20:51 other words your vector database and
+we have SIMPLE directory reader which is 20:58 itself a the ingestion 21:04 uh object I mean yeah the the ingestion class that is going to allow you to ingest all of the data
+inside of your 21:10 data folder right here um so there we go the first line right here is going to be 21:18 initializing all of our documents so with this very simple line what is
+what 21:24 we're doing is we're generating the documents from our PDFs and we using uh 21:29 as data connector this simple directory reader and now the simple directory 21:35
+reader takes as input I mean takes as parameter the folder where all of your 21:42 documents are and if you want to see I mean in case you're using um 21:47 cab if you want to see
+where you are and what uh what documents you have access 21:56 to right now you can run LS like this and then you can see that you're already 22:01 in the working directory where
+your data folder is so you can do 22:08 CD data and then see what's inside of data 22:13 and then you can see that um well apparently that's not how you 22:20 concatenate commands
+here but that's okay CD data 22:29 and LS let's see does that work better yeah so there you have it so we're inside content data and then we have 22:36 that constitution. PDF is
+inside of here so just by passing data like this or you 22:42 could also do this like this your going to be passing it the data the data folder and then we just run the load 22:50
+data um method right there then the second line of this feliner is creating 22:56 your index so you're going to be generating your index from documents so you're going to be
+creating this Vector 23:03 store index from the documents this part is actually very similar to what you would find in another Library like uh L 23:10 chain and then you will be
+able to query this index by converting it into a query 23:17 engine and this thing right here is essentially just uh initializing the 23:23 retrievers uh in this case we're only
+going to have one retriever so we're not going to be using a a router as we 23:30 specified right here but essentially that is what we're doing right now and 23:35 this query
+engine is already one that you can ask questions to so let's query it using 23:43 this line right here so the response is going to be equal to query engine do query and then 23:50
+you pass in your query and then we can just print our response and let's see 23:57 what that is so we're we going to be asking about the first article of the Constitution of the
+24:02 USA so we're importing from my my index all of this and apparently there was a 24:08 problem locating our data um directory data does not exist 24:14 apparently it does not
+exist what do you mean or maybe we're still in data 24:22 so yeah there we go so we're back okay so this actually persists uh in the 24:27 terminal so when I moved myself inside of
+data I was running all of this inside of data so now if we do this again it 24:36 should be okay it it ingested all the documents inside of data and there we go the first 24:42
+article is about the establishment of the legislative powers Etc so there you 24:47 go I mean that's the F the famous feliner from Lama index and now you have this very quick
+introduction of how to 24:53 do this uh just a quick note that inside of data you can add pretty much any any kind of um any kind of uh file uh let me 25:03 grab you a link right
+uh list right here so here is the list of all of the files that you can add inside of your data 25:10 folder so it can be a CSV do uh Word file UB Etc I mean it is able to ingest
+25:18 all of these formats as you may notice Lama index is becoming a very very good 25:27 add un struct structure data ingestion so they I mean they even created this 25:32
+fabulous Lama pars API for that so yeah I mean they're very strong at this and 25:38 this is all done automatically you don't have to load CSV loaders by the by hand 25:43 um
+Jupiter notebook loader by hand and everything right here is going to be dealt dealt with automatically and you 25:50 can of course get um get more detailed information about 25:55
+this if you go to the L indexc documentation let me 26:02 just um do this like this going to paste 26:08 this yeah the index documentation s sample directory reader and here you
+26:14 have all of the supported file types and they also have a specific Json loader 26:19 and of course they come from the labah hob lamah hob as we mentioned right here 26:25
+okay so that was the famous feliner let me just just show you how to make the data persistent as 26:31 well so if you want to make your data persistent this index that you see
+right Persistent Storage 26:36 here is the one that you're going to be querying every single time that you're going to be asking your questions to 26:42 your language model and if
+we run this again we're going to be redefining our 26:48 index so every single time we're going to be ingesting all of the documents inside of data inside of the data 26:55
+directory and that's okay if you only have one document like this but if you have several documents you probably 27:02 don't want to ingest them and to do all of this every single
+time you run your 27:09 your pipeline so the idea right right here is just instead of storing this in 27:14 memory you're going to make it persistent and in order to do that they
+have this very 27:20 quick very quick um show you this very quick script to show you how 27:27 they do it I mean this is this comes of course directly from their documentation so
+as you can see they're 27:33 importing os. paath essentially just to deal with the paths in your file system 27:39 then from Lama index core they're importing again Vector store
+index simple directory index but this time 27:46 they're going to be importing storage context as well as well and load index from Storage as well in case you already 27:54 have
+created your storage context and essentially this just makes your vector database persistent in your local 28:01 machine uh here they're initializing the directory where they local
+storage is 28:07 going to be stored so here as you might remember we have the data directory right here so this is going to be a 28:14 directory added right underneath right here
+and so here we essentially just 28:22 test if the path exists for this one and if it doesn't exist we're going to be creating that 28:28 persistent storage so if storage does not
+exist essentially means that we have 28:34 not yet created our index so we do that so we do documents we ingest the 28:40 documents we create our index with exactly the same line
+that we created it 28:45 up here and then we just store it for later in the persistent directory and 28:51 this is the function that you use in order to do that so if you were
+doing this in for example your own application 28:59 or your server this is essentially the function that you would use to store this in your locals I mean in your 29:05 server
+okay so index which is this one storage 29:10 context persist and then you pass in the persist directory which in this case is going to be storage and then if the path 29:18
+already exists which means that this one right here this is going to be triggered 29:23 the else statement and if the path already exists 29:28 it means that we have already
+ingested the documents and they have already been stored in our local storage so what we 29:35 do is essentially we just index them from Storage so we say storage context 29:41
+from defaults we pass in the persistent directory then the index and then either 29:47 way we can now query the index just like we did before okay so that's very very 29:52 quick
+um explanation of what's actually going on and how to store for this let's 29:59 ask about the third article right now real quick here you can see I mean it saw 30:06 that we have
+not yet a storage directory and then the third article is about the terms of the president by President Etc 30:14 and if we go right here you can see that the storage uh directory
+has been created 30:20 and inside of it is of course all of the necessary information for Lama index to 30:28 retrieve um information from our personal data store which is right
+30:34 here before we leave actually I wanted to show you something a little bit about Example of a Document 30:40 the documents that we got ingested from here and the idea is that
+we talked a 30:47 lot about what the documents are in the pipeline right here and I told you that they are programming object Etc but I 30:53 didn't actually show you what they
+look like so here we're going to be tapping into the documents that we ingested 30:59 right here from the simple directory reader which essentially uh converted our PDF into
+several 31:06 documents and we're going to tap into it first but first of all let's take a look at its 31:14 length so the length of the documents is 19 so we got 19 documents for
+our PDF 31:20 file and let's take a look at one of them to see how it is composed so let's 31:27 look at the the fourth one and as you can see it's a document object it has a
+property of ID embeddings which is a 31:35 Boolean and that has the metadata right here and this this property is very important because it tells you the file 31:43 the original
+file where it came from so you have the page lab label where this uh the contents of this document comes 31:49 from you have the file name to say that it actually came from the
+constitution. PDF file and you even have the complete 31:57 file path to the file in your server or whatever you're persisting this this 32:02 files then you have the file type the
+file size the creation date of your file 32:07 the last modified date of your file um so yeah I mean that this is of course you can see why this would be very 32:13 important if
+you were implementing this functionality in your application and 32:18 then right here you have the property of text which essentially contains all of 32:25 the raw text of your
+file okay now in this case um it's not super pretty it 32:33 has a lot of uh line jumps like this but it is good enough for a language model 32:39 to interpret it and there you go
+so that is what the document is and what it looks like so let me show you what the 32:45 text itself looks like so text just going to print 32:51 it and there you go so here's all
+of the text so as you can see we have the the 32:57 title the section seven and here you have all of the text from the section seven okay all right now something else LlamaParse
+33:05 that I wanted to show you is how to do pretty much the same thing but using 33:10 their API on Lama pars okay so essentially remember that right here we 33:15 ingested the
+constitution. PDF file and we converted it essentially to Raw text 33:21 okay that was pretty convenient but the constitution. PDF file that I am using right here is actually a
+very simple 33:28 file it contains only text uh in case you have a more complicated file let's say that you have tables and images Etc 33:36 this regular simple directory reader is
+not going to do a great job with that so 33:42 what you can do instead of using this simple directory reader is using the Lama pars service that Lama index uh 33:50 introduced a
+few months ago and the idea is that you go to L index.com you click here on sign up so that you get ACC to 33:58 their lamac Cloud platform and you're going to be prompted to
+create an account if you don't already have one 34:04 and once you're in here what you're going to want to do is you're going to want to First create an API key of 34:10 course and
+once you have that you're going to be able to ingest any number I mean to ingest up to a thousand pages 34:18 per day of complex documents so the idea is that instead of using this
+simple 34:23 directory reader you're going to be sending your documents to their API and they're going to be returning you the 34:29 organized or even structured text that came
+from your unstructured file um so 34:36 let me show you real quick how this works I actually made a video about Lama Pars in the past um but it works pretty 34:42 well for
+ingesting complicated formats um so I'm just going to copy the API key 34:48 and going to implement this right here with essentially the same feliner that I had right here 34:58 so
+what we're going to do is replace this line that takes all the documents and we're going to replace it with this 35:06 other line right here which essentially just does the same
+thing but instead of using the simple directory reader we're 35:15 going to be using Lama pars and in order to do that you're going to have to do 35:22 from llama pars we're going
+to input Lama pars and 35:29 there you go but actually in order to use this you're going to have to add the API key that I showed you how to get 35:36 just a moment ago and in
+order to get the API key you 35:41 can just use this you can just set your lamac Cloud API key environment variable 35:48 actually here is just a quick mistake just going to get
+the password right here I'm going to copy and paste it from 35:56 what I created ated up here at lamac Cloud now I have my API key set to the 36:02 lam Cloud API key variable and
+now actually something else that I should probably do now that I am working in a 36:10 Jupiter notebook since lamac cloud and Lama Pars in particular is an async 36:16 first API
+going to have to run this NE Nest async IO um just to emulate an 36:24 async API and there we go so now now that we have set our API key and our 36:31 nest in Kyo we should be able
+to call Lama pars and as you can see we just 36:37 specify the type of um of data that we want in return in this case we just want 36:43 the text from our file and then we load the
+data and in order to load it we're 36:48 going to pass in the path to our file so in this case it was St inside of data 36:55 and if I remember correctly it's called constittution
+.pdf so 37:02 Constitution constit 37:07 dopdf there you go and now this should be able to work now and as you can see 37:13 it is Ines in the documents indexing and then again we
+have the response from what is the first article about the 37:19 first article this cusses the principles Etc and as you may be able to see right 37:24 here my thousand pages per
+day us it should be updated um let's see well it's not 37:32 updated automatically apparently but yeah I mean I just used uh I don't know probably 19 pages off of my thousand 37:40
+pages per day and there you go let me show you what the documents from these 37:46 ones uh from this API looks like as you can see it's pretty much the same thing 37:51 but also as
+you can see the the text is a little bit cleaner 37:57 so let's see the 38:03 text um let me just use print to make it look 38:08 better there we go so yeah here we have it that
+it's I mean the the fourth 38:14 document in this case starts at this paragraph right here with the section seven and as you can see it's a little 38:21 bit cleaner I mean it
+doesn't really make a difference for this file in particular because this is a very easy 38:27 file the constitution. PDF but yeah I mean you can use this for more 38:33
+complicated files as well so there you go that is just um I felt like I needed to include a quick introduction to Lama 38:40 Pars in this lama lama index introduction video so
+that's essentially how L index Conclusion 38:47 works it is um I mean this is a much more simple uh 38:54 implementation um of what you would do probably in production but of

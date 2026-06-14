@@ -1,0 +1,224 @@
+here so I get a better look of my 2:44:352 hours, 44 minutes, 35 secondsstatic mesh if I press alt and two to go into wireframe View mode zoom in we see that this is the asset's
+highest poly 2:44:432 hours, 44 minutes, 43 secondsversion and as the camera zooms away it slowly starts to transition into to lower and lower lods and we can see each 2:44:522
+hours, 44 minutes, 52 secondsof these individual lods up here so lod0 is the highest one one is lower two is 2:45:002 hours, 45 minuteseven lower and finally three is the lowest so
+this is how we used to make our assets more performant back before 2:45:082 hours, 45 minutes, 8 secondsnanite but since nanite does exist there really is no reason why I can
+select all three of my static meshes press contrl 2:45:162 hours, 45 minutes, 16 secondsand B to select all of them in the cont your right click and enable nanites so save 2:45:232
+hours, 45 minutes, 23 secondseverything and pressing alt and two you see that we no longer get level of detail but what we do have is automatic 2:45:312 hours, 45 minutes, 31
+secondslevel of detail that's being generated from nanites so even when you have very low poly meshes it's still recommended 2:45:392 hours, 45 minutes, 39 secondsthat you enable
+nanites now it's time to start programming u5 and in case you forgot unru engine is a video game engine so of course programming is going Chapter 24: Create a Game with Blueprints
+2:45:472 hours, 45 minutes, 47 secondsto be a pretty big part of but Unreal Engine handles programming a little bit differently compared to other video game engines instead of
+having 2:45:552 hours, 45 minutes, 55 secondslines of code we write to tell the engine what to do we instead have blocks of nodes and we connect these nodes to each other to create
+logic these nodes 2:46:042 hours, 46 minutes, 4 secondsin Unreal Engine are called Blueprints and blueprints is unreal's visual scripting language now in my opinion 2:46:122 hours,
+46 minutes, 12 secondsblueprints are a lot easier and a lot faster than traditional ways of coding like an Unreal Engine where we would have to type everything out using C++
+2:46:212 hours, 46 minutes, 21 secondseven if you don't plan on programming anything I still highly recommend that you learn blueprints because blueprints is literally everywhere
+inside the 2:46:292 hours, 46 minutes, 29 secondsengine it's what we use to connect the different parts of the engine to each other so it's an essential skill to know if you do
+want to learn on real engine 2:46:372 hours, 46 minutes, 37 secondsand with all that being said let's learn blueprints by creating our first video game in ue5 to begin before we do
+anything let's duplicate the current 2:46:462 hours, 46 minutes, 46 secondslevel we have open and create our game Within our new duplicat level so if we come up to top leftand
+Corner we can see 2:46:532 hours, 46 minutes, 53 secondsthe name of our level which is called landscape example if you remember we created it within my stuff and Maps so 2:47:012
+hours, 47 minutes, 1 secondsince landscape example and Landscape example up there have the same exact name that means that this level is the level we currently have opened so I'm
+2:47:102 hours, 47 minutes, 10 secondsgoing to select that level and press contrl and D at the same time to duplicate now it's going to ask for a new name I'm going to call this
+one game 2:47:182 hours, 47 minutes, 18 secondsmap now we can rename any assets within the content drawer by right clicking and going to rename also the shortcut is fn2 2:47:272
+hours, 47 minutes, 27 secondsbut I like the current name so I'm not going to do that now I'm going to double click and save selected to open up our new level and here we have the
+map we 2:47:362 hours, 47 minutes, 36 secondswill be editing to create our very first game so to play a game in Unreal Engine click the play button up here in the 2:47:432 hours,
+47 minutes, 43 secondstoolbar so pressing it we'll start playing our game but we can't control our game right now since I need to click into the the viewport and now I get full
+2:47:502 hours, 47 minutes, 50 secondscontrol over the game so I can press the Escape key to stop playing my game so to play a game click the play icon and to 2:47:572 hours, 47
+minutes, 57 secondscontrol the game click into the viewport we don't have our Mouse anymore and that's because to stop playing you need to click on the Escape key so you 2:48:062
+hours, 48 minutes, 6 secondsprobably notice that our controls for our game were pretty basic since it's just a w ASD Keys just like the viewport controls and that's because we
+don't 2:48:152 hours, 48 minutes, 15 secondshave any characters or gameplay elements set up yet so in order to set up a gameplay element we first need access to the world settings
+right now we don't 2:48:242 hours, 48 minutes, 24 secondshave any world settings tab as a reminder to get the world settings window come up to Windows and select World settings and
+now we're going to get a brand new window right here which 2:48:322 hours, 48 minutes, 32 secondswe can switch in between details and World settings so right here we have game mode
+override this is where we set exactly what game we want to play and at 2:48:422 hours, 48 minutes, 42 secondsthe drop down we should have bpor thir person game mode now if you
+don't have bpor thir person game mode that's because you didn't add the third person 2:48:502 hours, 48 minutes, 50 secondscontent yet which is the content that includes this
+character right here so if you want to get our character and our 2:48:572 hours, 48 minutes, 57 secondsgame mode press control space go to add and add feature or content pack and
+select third person then click on add to 2:49:052 hours, 49 minutes, 5 secondsproject now I've already done that which is why I get bpor thir person game mode which is located
+under one of the files 2:49:132 hours, 49 minutes, 13 secondsthat were created when I added in the third person content under third person and blueprints so it's this one right
+here alternatively instead of selecting 2:49:222 hours, 49 minutes, 22 secondsit from the drop down I can also hold down the left Mouse button and drag it onto it and let go so now
+if I press play we see that we get a third person 2:49:312 hours, 49 minutes, 31 secondscharacter I can use the W ASD keys to move around space to jump and the mouse to rotate my
+camera around my character 2:49:392 hours, 49 minutes, 39 secondsand as a reminder I can press the Escape key to get out alternatively as a shortcut instead of coming up to my
+toolbar and pressing the play button I 2:49:472 hours, 49 minutes, 47 secondscan press Alt and P to automatically play my game so that's alt and P to start playing my game without
+having to come up to the toolbar and also notice 2:49:562 hours, 49 minutes, 56 secondshow when I do click into my viewport I no longer get access to the mouse cursor if I ever
+want to get back the mouse cursor while playing my game I could 2:50:052 hours, 50 minutes, 5 secondspress shift and F1 at the same time so that's shift F1 to bring back my mouse
+cursor and instead of pressing the Escape key I could come up to the stop 2:50:142 hours, 50 minutes, 14 secondsbutton and press that right there to escape my game so let's open up
+our first blueprint and specifically the blueprint we're going to open up is the 2:50:232 hours, 50 minutes, 23 secondscharacter blueprint we're right now controlling so you can
+find the character blueprints by coming into third person and selecting blueprints so 2:50:332 hours, 50 minutes, 33 secondsit's right next to bpor thir person game mode it's bpor
+thir person character so double click on it to open up our first 2:50:402 hours, 50 minutes, 40 secondsblueprint now we're currently on the event graph don't worry we're going to
+go over what the event graph does in just a bit but to see all the objects 2:50:482 hours, 50 minutes, 48 secondsthat make up our blueprint select the viewport now the objects that
+make up a blueprint are called components and I 2:50:552 hours, 50 minutes, 55 secondscan select a component just like on the level editor also just like the level editor we have
+the same exact controls 2:51:022 hours, 51 minutes, 2 secondsso I hold down the right Mouse button to look around and move and I can select any of the objects press the F key to
+focus on it hold down the alt and left 2:51:112 hours, 51 minutes, 11 secondsMouse button to rotate and ALT and right Mouse button to zoom in and out so this is basically just like
+our level editor 2:51:192 hours, 51 minutes, 19 secondsbut for our blueprints also we have the equivalent of a world outliner so on the top left hand corner is the components
+2:51:272 hours, 51 minutes, 27 secondstab which contains all the components inside of our blueprint just like an object in our world I can select a component and change its
+properties in 2:51:362 hours, 51 minutes, 36 secondsthe details panel for example right now we're using skm Quinn as our skeletal mesh which is the femo mesh if I want to 2:51:442
+hours, 51 minutes, 44 secondschange it I can select skam mcore Quinn and then select SK M _ Manny to change it to the male one so now if I play my 2:51:522 hours, 51 minutes, 52
+secondsgame we can see that we have a different body so now let's jump into the event graph so the event graph contains all 2:52:002 hours, 52 minutesthe nodes and blueprints which
+makes up the programming or logic behind our third person character now if you don't see an event graph for example if it's 2:52:092 hours, 52 minutes, 9 secondsclosed then you can
+come into my Blueprints and double click on event graph to bring it back also we can move any of the windows just like in the 2:52:182 hours, 52 minutes, 18 secondslevel editor and
+change things to our liking now if you mess up the user interface to the point of no return then come up to window load layout and 2:52:272 hours, 52 minutes, 27 secondsdefault
+editor layout to reset the windows to what unreal has by default we get an extra window under our event graph call compiler results I don't need 2:52:362 hours, 52 minutes, 36
+secondsthis so I could click on the X icon or as a shortcut hover over the tab and press the middle Mouse button to close it so let's go over exactly what some of 2:52:452 hours,
+52 minutes, 45 secondsthese blueprints do right here so if I zoom in for example on the jump input we can see exactly the logic that's behind 2:52:542 hours, 52 minutes, 54
+secondsjumping so the logic is pretty simple we have an event which is essentially at least in this case functions as a 2:53:012 hours, 53 minutes, 1 secondkeyboard press so input
+action is jump right now it's set to the space bar so when I press a space bar our character 2:53:082 hours, 53 minutes, 8 secondsjumps and when I release the space bar our
+character stops jumping and we can see this in action by clicking on the 2:53:152 hours, 53 minutes, 15 secondsplay button and pressing space now notice that I did spawn all the
+way over here 2:53:242 hours, 53 minutes, 24 secondsand that's because we don't have a player start within our world so to add a player start come up to the add button go down to
+Basics and drag in a player 2:53:332 hours, 53 minutes, 33 secondsstart so here we have a new object in our world if I press play our player starts from this location and also
+2:53:412 hours, 53 minutes, 41 secondspoints in the direction of the arrow so if I rotate this for example it's facing the rocks and press play now our player 2:53:492 hours, 53
+minutes, 49 secondsstarts and spawns right there pointing at these rocks so if I jump back into bpor thir person character and player 2:53:562 hours, 53 minutes, 56 secondsgame we
+start from this location now I'm going to press shift and F1 at the exact same time to get back my mouse cursor 2:54:042 hours, 54 minutes, 4 secondsand I'm going to move the
+window to the top right hand corner so we can see exactly what is happening so if I press space we don't see visually what is 2:54:132 hours, 54 minutes, 13 secondshappening within
+our vent graph so to see the blueprints running in real time I can come up to no debug object selected and then select bpor thirr 2:54:222 hours, 54 minutes, 22 secondsperson
+character spawned now if I zoom out on my event graph notice how some of the wires turned from white to Orange 2:54:302 hours, 54 minutes, 30 secondsthese orange wires tell us that
+these nodes are currently being activated if I zoom back into input action jump and 2:54:382 hours, 54 minutes, 38 secondslet's get back our character if I press the space bar we
+can see that I jump and then when I let go we stop jumping so jump and stop jumping so this is a great 2:54:472 hours, 54 minutes, 47 secondsway to debug and watch our logic
+running in real time which is amazing and it really speeds up the process of programming in unreal so 2:54:562 hours, 54 minutes, 56 secondslet's create our first sequence of nodes
+we're going to add in new functionality specifically I want to add in the 2:55:032 hours, 55 minutes, 3 secondsability where when I press the F key our character drops and it ragd
+dolls so we no longer have control over our mesh 2:55:112 hours, 55 minutes, 11 secondsinstead we let the physics take control and watch his body fall over similar to GTA or other
+games so to do so we first 2:55:192 hours, 55 minutes, 19 secondsneed to add in an event specifically to add in any node to our graph right click and we're able to type in the name
+of 2:55:262 hours, 55 minutes, 26 secondsthe node or manually scroll to that nodes location right here but obviously there are a lot of nodes since we're able to program an entire
+game through 2:55:342 hours, 55 minutes, 34 secondsblueprints so something I like to do is type in the name I'm going to type in keyboard because it's under keyboard 2:55:412
+hours, 55 minutes, 41 secondsevents and F since it's the F key and select it so now we get a new event that will be fired whenever I press the F key 2:55:502 hours, 55 minutes, 50
+secondsto double check that this event is working I'm going to add in another node by right clicking and typing in print streen so to hook up two nodes and 2:55:592 hours, 55
+minutes, 59 secondsconnect them to each other hover over the output hold down the left Mouse button drag into the input and let go to 2:56:072 hours, 56 minutes, 7 secondsconnect
+them up to break hold down the ALT key and left Mouse button in either the output or the input so the controls 2:56:162 hours, 56 minutes, 16 secondsare very similar to our
+material graph and now within print streen we see that the streen is going to be hello instead 2:56:232 hours, 56 minutes, 23 secondsI want to say Advent was fired exclamation
+points and we can get more options for this node by clicking on the 2:56:312 hours, 56 minutes, 31 secondsdrop down at the bottom of the node and for text color instead of blue
+make this orange so now if I press the play button 2:56:402 hours, 56 minutes, 40 secondsclick into my window to start playing my game when I press the F key the event is fired and
+print stren is activated so 2:56:482 hours, 56 minutes, 48 secondswhen I press F then we get text onto my screen that says event was fired which is what we just programmed so I'm
+going 2:56:552 hours, 56 minutes, 55 secondsto escape my game and delete print streen since that was just an example that I want to show which proves that my 2:57:032 hours, 57
+minutes, 3 secondsevent right now is working so whenever I press the vent key all the nodes that are connected to press will be activated 2:57:102 hours, 57 minutes, 10 secondsso
+specifically I want a new node now I could right click and type in the name of the node which is set Collision 2:57:172 hours, 57 minutes, 17 secondsenabled mesh and then hook it
+up like that or as a shortcut I'm going to delete those and 2:57:252 hours, 57 minutes, 25 secondsdrag from pressed let go and it will automatically Breen up my notes now I can
+type in set Collision enabled select 2:57:342 hours, 57 minutes, 34 secondsmesh and they will automatically be connected that's another way to breed in nodes and notice how this is
+two noes we 2:57:422 hours, 57 minutes, 42 secondshave set Collision enabled and for Target we have mesh mesh is a reference to the mesh component of our blueprints 2:57:502 hours,
+57 minutes, 50 secondsso it's specifically referencing our character right there jump back into event graph and if it's for some reason 2:57:572 hours, 57 minutes, 57 secondsnot
+hooked up by default then I can drag mesh from the component's window into my vent graph let go and plug it up like 2:58:052 hours, 58 minutes, 5 secondsthat but I'm real smart
+enough to know that if we do want to set Collision enabled we probably want to do it to the skeletal mesh right here now for new 2:58:142 hours, 58 minutes, 14 secondstype instead
+of no Collision select Collision enabled query and physic don't worry exactly what this node does I'm going to show what it does in just a 2:58:232 hours, 58 minutes, 23
+secondsmoment now I want to connect another node from set Collision enabled which is sets simulates physics and specifically 2:58:312 hours, 58 minutes, 31 secondschoose mesh which
+will automatically connect our mesh to this new node make sure set simul physics is turned on drag 2:58:402 hours, 58 minutes, 40 secondsfrom here again and go set physics blend
+weight and then select mesh and for the 2:58:482 hours, 58 minutes, 48 secondsblend weight change it from 0 to 1 so as you can probably guess these 2:58:552 hours, 58 minutes, 55
+secondsthree nodes will essentially ragd dooll our character pressing play again I can run around my world and then as soon as 2:59:032 hours, 59 minutes, 3 secondsI press the F
+key our character ragd dolls and the physics take control so let's do that again I can run around 2:59:122 hours, 59 minutes, 12 secondsjump and press the F key to ragd doll we can
+better organize our Gra because notice that the target for all 2:59:202 hours, 59 minutes, 20 secondsthree of my nodes is mesh so we don't have to drag from an individual reference
+to mesh we only need one reference to mesh so I'm going to select 2:59:292 hours, 59 minutes, 29 secondsthese two delete them and drag out mesh into set Sim like physics and drag
+from the same one to set physics blend weight 2:59:392 hours, 59 minutes, 39 secondsI can also better organize my graph by hovering over any wires and double clicking to add in a
+reroute node so 2:59:472 hours, 59 minutes, 47 secondssimply hover over a wire double click to bring in a reroute node which doesn't change any of the logic it just helps 2:59:532
+hours, 59 minutes, 53 secondsbetter organize our graph and pull down alt so I'm going to break this connection and then drag from the 3:00:013 hours, 1 secondreroute node into set
+physics blend weight hover over the wire double click and bring that down like that to just 3:00:103 hours, 10 secondsbetter organize my graph now I can watch all three of them be
+enabled by clicking the play button and let me go make my 3:00:193 hours, 19 secondswindow just a little bit smaller make sure that bpor thir person character is selected as the
+debug option and when I 3:00:263 hours, 26 secondspress F we can see all three of those nodes are activated and it gives us this ragd doll effect okay so let's create a little
+obstacle course for our character 3:00:353 hours, 35 secondsjump back into game map and I want to create an elevated area where the obstacle course will be so press shift and two
+to go to landscape mode have 3:00:433 hours, 43 secondssculpt selected and it's not that intense so bring tool strength up to one and I'm going to keep sculpting 3:00:523 hours, 52
+secondsuntil I find a height that I like for example right here is pretty good go into the flatten brush then hover over 3:01:003 hours, 1 minutethe exact height that you want hold
+down the left Mouse button to flatten that so now I can create a little obstacle 3:01:093 hours, 1 minute, 9 secondscourse area right here like that 3:01:163 hours, 1 minute, 16
+secondsand I think the edges are too sharp so I can also go into smooth bring down the tool strength and 3:01:253 hours, 1 minute, 25 secondsslightly smooth out the area so maybe
+even a little bit less strong just so that we don't get any 3:01:333 hours, 1 minute, 33 secondsartifacts from those sharp angles and I 3:01:433 hours, 1 minute, 43 secondscould
+select my player start and drag it all the way up here here or I can delete 3:01:503 hours, 1 minute, 50 secondsit and let's add in a brand new one come up to add Basics player
+start drag it in and make sure it's pointing in the X 3:01:583 hours, 1 minute, 58 secondsDirection so now if I press play our player starts right here and they're going to have to
+navigate some obstacles 3:02:063 hours, 2 minutes, 6 secondsuntil they get to the very end and they win the game so this is going to be the quickest and worst game made in history
+3:02:133 hours, 2 minutes, 13 secondsso let's create our obstacle and this obstacle is specifically going to be a blueprint so press control space and let's create the blueprint
+under third 3:02:223 hours, 2 minutes, 22 secondsperson blueprints right click and under create basic asset select blueprint and I want it to be an actor so this name is 3:02:303
+hours, 2 minutes, 30 secondsgoing to be bpor obstacle and you might be wondering why do I use BP uncore well BP stands for 3:02:383 hours, 2 minutes, 38 secondsblueprint and it's
+just naming convention you could name this obstacle without the BP but I like to include it so double click to go inside of our 3:02:463 hours, 2 minutes, 46 secondsblueprint and
+and this is what a completely empty blueprint looks like so let's actually add in a new component which will be our obstacle so come to 3:02:553 hours, 2 minutes, 55 secondsadd and
+down to here select cylinder I want to decrease its width just a little 3:03:023 hours, 3 minutes, 2 secondsbit and also increase it a lot in the z-axis so I'm going to move this
+up so that the bottom is touching the grid 3:03:093 hours, 3 minutes, 9 secondsfloor and come back into game map let's go find where the obstacle is and drag it into our world also
+it's recommended 3:03:163 hours, 3 minutes, 16 secondsthat you do press compile which will set all the changes we made in the blueprint but all blueprints will automatically be
+compiled when we press play so come back 3:03:253 hours, 3 minutes, 25 secondsinto game map press play and here we have our first obstacle and I want it where when the player
+touches it he rack 3:03:343 hours, 3 minutes, 34 secondsdolls and we essentially die so let's come back into our obstacle and I need to add in a collision volume so type in
+3:03:423 hours, 3 minutes, 42 secondscollision and it's going to be a capsule Collision so select that right there and and I'm going to scale up this Collision 3:03:503 hours, 3
+minutes, 50 secondsso let's scale it up and make sure that the Collision is larger than the cylinder because otherwise if the 3:03:583 hours, 3 minutes, 58 secondsCollision is too
+small for example if it's smaller than the cylinder then our character will collide with the cylinder first and never collide with the actual 3:04:063 hours, 4 minutes, 6
+secondsCollision volume so make sure that is a little bit larger than it is and then in the details panel with Collision 3:04:153 hours, 4 minutes, 15 secondsselected you want to
+select on on component begin overlap so this will be called whenever our Collision comes into 3:04:233 hours, 4 minutes, 23 secondscontact with an object but right now this event
+will be fired whenever it comes into contact with anything so if 3:04:303 hours, 4 minutes, 30 secondsit touches a plant or maybe if we have birds in a game it touches a bird then
+this event will be fired which is something that we don't want to happen 3:04:383 hours, 4 minutes, 38 secondsso we can get around that by dragging from overlap other actor and
+doing cast to bpor third person character and 3:04:483 hours, 4 minutes, 48 secondsselect that so essentially what this casting is doing is that it's going to check if the
+overlapped object is the third person character and then if it is 3:04:563 hours, 4 minutes, 56 secondslet's print string to double check that this is working and for the string
+say 3:05:033 hours, 5 minutes, 3 secondscided with character so let's jump back into the game map press play and now if I come up 3:05:113 hours, 5 minutes, 11 secondsto it we see
+top leftand corner right here that we are colliding with the character which is something we want now 3:05:203 hours, 5 minutes, 20 secondsI want it where when we do Collide our
+player ragd dolls and dies so jump back in a bpor obstacle let's delete that and 3:05:293 hours, 5 minutes, 29 secondscasting also has the benefit that we get access to a lot of
+the properties that are within bpor thir person character so 3:05:363 hours, 5 minutes, 36 secondsif we jump back into our character I want to create a custom event right here so
+this custom events will allow us to 3:05:433 hours, 5 minutes, 43 secondscall all the nodes that we've already set up so right click type in custom event and call this one death
+just like 3:05:523 hours, 5 minutes, 52 secondsthat and drag it into the start so make sure you compile because otherwise you will not see it but if we jump into bpor 3:06:003
+hours, 6 minutesobstacle and drag from our third person character we now get access to the death event so select it we can now control 3:06:083 hours, 6 minutes, 8 secondswhen our
+player dies from another blueprint which isn't our third person character F was just being used as a debug event I'm going to delete it 3:06:173 hours, 6 minutes, 17 secondsbecause
+all we need is the death function so if I press play now if the player now collides with the obstacle we 3:06:253 hours, 6 minutes, 25 secondssee that as soon as they touch it our
+player dies so let's go do that again come to the obstacle touch it and he dies so what's happening right now is 3:06:333 hours, 6 minutes, 33 secondsthat M bpor obstacle as soon
+as the object touches the capsule Collision it's going to check if that object is a third person character if it is a third 3:06:423 hours, 6 minutes, 42 secondsperson character
+then we're going to call the custom event called Death double click on the event to jump to where being created which is in our third person character and all these 3:06:503 hours,
+6 minutes, 50 secondsnodes raged all our character right now our obstacle isn't much of an obstacle by press play it's very easy to avoid 3:06:583 hours, 6 minutes, 58 secondsthis
+pillar since this pillar isn't moving now we can make this a little bit harder by adding rotation to the pillar 3:07:043 hours, 7 minutes, 4 secondsso let's jump back into bpor
+obstacle and I'm going to specifically use the event tick Now by default every new 3:07:123 hours, 7 minutes, 12 secondsblueprint does include an event tick right here but in case
+you deleted the default events you can always get back the event tick by right clicking and 3:07:203 hours, 7 minutes, 20 secondstyping in event tick and selecting it so the event
+tick is pretty unique compared to other events in that it runs every 3:07:283 hours, 7 minutes, 28 secondssingle frame so we can see this running in action by adding in a print
+stren and for the streen call this one activated 3:07:363 hours, 7 minutes, 36 secondsso now if I press play we can see that every single frame activated is being called so let's
+go delete 3:07:443 hours, 7 minutes, 44 secondsthat and I want to use the node called add actor local rotation and select it right 3:07:513 hours, 7 minutes, 51 secondsthere so
+plug it up like this and we're not going to notice anything happening since we need to add a new local rotation and I specifically want to 3:08:003 hours, 8 minutesincrease let's
+go to the x-axis 5° so now if I press play we see that every single frame my obstacle is rotating 3:08:093 hours, 8 minutes, 9 seconds5° and while this is great there's one issue
+and that is it's frame dependent so right now we're running at probably a 3:08:173 hours, 8 minutes, 17 secondssmooth 120 frames per second but what if this game was running on a
+computer that's not as powerful and it's running 3:08:243 hours, 8 minutes, 24 secondsevery 30 frames per second well we can see what it's like to simulate that by pressing the
+backtick key to bring up 3:08:313 hours, 8 minutes, 31 secondsthe command line and type in t. Max FPS and type in 30 to lock it to 30 frames 3:08:373 hours, 8 minutes, 37
+secondsper second it's still rotating 5° every frame but we have less frames so it's going to be rotating slower so we need 3:08:463 hours, 8 minutes, 46 secondsto make this Frame
+frame independent I can bring back my original frame rate by clicking on the back tick key again 3:08:533 hours, 8 minutes, 53 secondstyping in t. maxfps and put in zero to uncap
+the frame rate and to do so we need to use the Delta seconds so I'm 3:09:023 hours, 9 minutes, 2 secondsgoing to drag from Delta rotation and type in make Rotator down here so
+select 3:09:103 hours, 9 minutes, 10 secondsthat and essentially the make Rotator will break our rotation so we get access to X Y and Z independent as inputs so 3:09:193 hours, 9
+minutes, 19 secondsI'm going to drag from Delta seconds and type in multiply like that and select it 3:09:263 hours, 9 minutes, 26 secondsso now the output will go into the X and
+for rotation we're going to set it back to five so if I press play again 3:09:353 hours, 9 minutes, 35 secondsand now we're going pretty slow so I'm going to increase this from 5
+to 100 press play again and our obstacle is rotating I can 3:09:453 hours, 9 minutes, 45 secondslock this frame rate by clicking on the back tick key and type in t. maxfps let's
+lock it to 30 and notice that despite it being 30 3:09:533 hours, 9 minutes, 53 secondsseconds we are still rotating at the same exact speed as beforehand I can even try t. maxfps
+120 frames per second 3:10:023 hours, 10 minutes, 2 secondsand we have the same speed so our game play is no longer tied to our frame rate which is exactly what we want right now
+all we have is one 3:10:113 hours, 10 minutes, 11 secondsobstacle blueprint in our world if I want multiple of them I can select this blueprint and hold on all to duplicate
+3:10:173 hours, 10 minutes, 17 secondsit or I can drag it out from our content drawer now if I press play we do have the issue and that is they're rotating 3:10:253 hours, 10
+minutes, 25 secondsin the exact same direction I can rotate each of these blueprints in a random Direction on the 3:10:323 hours, 10 minutes, 32 secondsz-axis to give our rotations
+a little bit of variety now if I press play We're rotating in different directions but 3:10:413 hours, 10 minutes, 41 secondsit's pretty hard to tell exactly what direction it's
+going to be rotating on when editing our game in viewports to help us know the direction that we're 3:10:493 hours, 10 minutes, 49 secondsrotating jump back into bpor obstacle
+let's go to viewport and click on ADD and we're going to add in an arrow 3:10:563 hours, 10 minutes, 56 secondscomponent so this Arrow component and I can zoom in to see exactly
+what it is it will not be visible when we're playing our game which is exactly what we want 3:11:053 hours, 11 minutes, 5 secondsso for Arrow color I'm going to set this to Blue
+and also rotate this let's go 3:11:123 hours, 11 minutes, 12 seconds90° in the z-axis and lift this up so but now if I compile jump back into game 3:11:193 hours, 11 minutes, 19
+secondsmap we can see that I have a blue arrow that's poed in the direction that my obstacle will rotate so pressing play 3:11:273 hours, 11 minutes, 27 secondsI'm able to tell
+exactly where this object will rotate to now that I do have some obstacles there's just one issue 3:11:353 hours, 11 minutes, 35 secondsand that is they're all going the same exact
+speed I want some obstacles to be slower than others so I want to be able to edit that property in the details 3:11:443 hours, 11 minutes, 44 secondspanel of the blueprints so to
+do so I need a to make a variable and variables are pretty similar to a material's 3:11:513 hours, 11 minutes, 51 secondsparameters so let's jump back into event graph and under
+variables I can create a new one by clicking on the plus icon so 3:12:003 hours, 12 minutescall this one rotation speed and instead of Boolean I can change it up here to a float so
+a 3:12:093 hours, 12 minutes, 9 secondsfloat is a number with decimal points now I got to hold down the left Mouse button and drag out rotation speed let go inside of my vent graph
+and it's 3:12:183 hours, 12 minutes, 18 secondsgoing to ask me whether I want to get it or set it I want to get the rotation speed and plug it up right there so 3:12:253 hours, 12
+minutes, 25 secondsinstead of 100 we're going to be using whatever value is stored within rotation speed so you can essentially think of 3:12:323 hours, 12 minutes, 32
+secondsvariables as containers of data now when we do have rotation speed selected we're unable to change that value because our 3:12:393 hours, 12 minutes, 39 secondsblueprint
+needs to be compiled so as soon as I press compile I now get access to that value it's set at zero so if I 3:12:473 hours, 12 minutes, 47 secondsdo play my game we aren't rotating
+now I can bring this back to 100 and if I play my game we have the 3:12:553 hours, 12 minutes, 55 secondssame exact speed but that's not the point of variables variables are great
+because they allow us to change the default value so I want to expose this 3:13:043 hours, 13 minutes, 4 secondsvariable that's how I'm able to edit it within the details panel of
+my object make sure that you have rotation selected and in the details panel check 3:13:133 hours, 13 minutes, 13 secondsinstance edible and expose on spawn now now if I press
+compile jump back into game map we can see that when I do have 3:13:213 hours, 13 minutes, 21 secondsan obstacle blueprint selected rotation speed is made available so I can make
+this obstacle right here have a speed of 3:13:283 hours, 13 minutes, 28 seconds50 this one a speed of 200 and right there let's go 300 now if I press play 3:13:363 hours, 13
+minutes, 36 secondsthey all have different speeds so it makes it a lot harder to try and navigate this obstacle course we are 3:13:453 hours, 13 minutes, 45 secondsright now
+missing a very crucial element to game and that is an end goal so the goal that I want the player to try to 3:13:523 hours, 13 minutes, 52 secondsreach is specifically under
+starter content props smore statue so the player 3:13:593 hours, 13 minutes, 59 secondsis trying to make it to the Statue and I'm going to change the material from glass to Gold so
+starter content 3:14:063 hours, 14 minutes, 6 secondsmaterials and drag metal gold onto the glass like that now when the player and I'm aware 3:14:153 hours, 14 minutes, 15
+secondsthat you can just walk around the obstacle of course I want to add in the feature where when the player is by the statue we get a wind screen telling us 3:14:223 hours, 14
+minutes, 22 secondsthat we did beat the game to begin let's add in a trigger volume which will trigger whenever the player is near the statue so to do so come up to add and
+3:14:313 hours, 14 minutes, 31 secondsunder volumes select the trigger volume so I'm going to drag it out and place it so that it's around the statue we want 3:14:393 hours, 14
+minutes, 39 secondsto program it where whenever the player collides with this trigger volume then a wind screen will pop up we're going to program this logic through the level
+3:14:463 hours, 14 minutes, 46 secondsblueprints so every level in a real engine has its very own blueprint where we're able to script logic that is very 3:14:533 hours, 14
+minutes, 53 secondsspecific to the level so to open up your level blueprint come up to the blueprint icon right here select that and then 3:15:003 hours, 15 minutesselect open
+level blueprints now this is the event graph that is specific for game map we can even see that the name of this blueprint is game map which is 3:15:093 hours, 15 minutes, 9
+secondsdifferent from BP uncore obstacle or our third person character since it's not an individual object instead it's the level 3:15:173 hours, 15 minutes, 17 secondsas a whole
+now I'm going to delete our default custom events and I want to make sure that in my level editor I have the 3:15:253 hours, 15 minutes, 25 secondstrigger volume selected so with
+it selected I'm able to get a bunch of different properties and events that are 3:15:323 hours, 15 minutes, 32 secondsrelated to the trigger volume for example if I right click we
+can see that add event for trigger volume 3 and under Collision we get the event that I want 3:15:413 hours, 15 minutes, 41 secondswhich is add on actor begin overlap if you do not
+see any of these options then you want to make sure that you do have 3:15:483 hours, 15 minutes, 48 secondsyour trigger volume selected in the map so right click add event for
+trigger volume collisions and add on actor begin 3:15:563 hours, 15 minutes, 56 secondsoverlap which is essentially a very similar event to our on component begin overlap so we
+want to do the exact same 3:16:043 hours, 16 minutes, 4 secondsthing we did right here and that is make sure that we are overlapping with the third person character so drag from
+3:16:113 hours, 16 minutes, 11 secondsother actor and cast to third person character and select it right there now I want to make sure that this event is 3:16:203 hours, 16
+minutes, 20 secondsworking by dragging from this node and printing string so the sentence that I want to come up is you won the game 3:16:303 hours, 16 minutes, 30
+secondsexclamation point so ideally pressing play I'm going to walk around my obstacle course we will fix that in a 3:16:393 hours, 16 minutes, 39 secondsbit and as soon as I come
+into contact with the trigger volume we see in top left hand corner we get the stream you won the game now let's create a wind 3:16:473 hours, 16 minutes, 47 secondsscreen so to
+create a user interface let's press control and space and I'm going to create it under third person 3:16:543 hours, 16 minutes, 54 secondsblueprints right click under user
+interface select widget so user interfaces in a real are called widgets 3:17:023 hours, 17 minutes, 2 secondsand I'm going to select user widget under common now it's going to ask
+me to name this widget I'm going to call this one win screen 3:17:113 hours, 17 minutes, 11 secondswidget and then double click to go inside of it so this will be very brief it's
+not a proper introduction to the widget editor since all I want is a 3:17:203 hours, 17 minutes, 20 secondslittle bit of text that will come up once we do beat the game so to begin
+in the pallet I'm going to type in canvas 3:17:273 hours, 17 minutes, 27 secondsand drag in canvas into my graph let go the green outline is essentially our window now I'm going to
+type in text and 3:17:363 hours, 17 minutes, 36 secondsdrag in text into my graph so I want to Center my text that's out it's in the middle of my screen and then in the 3:17:433
+hours, 17 minutes, 43 secondsdetails panel let's go change the text to you won the game exclamation point 3:17:503 hours, 17 minutes, 50 secondsalso under appearance click on the
+font drop down and increase the size so the text is very noticeable I'm actually 3:17:583 hours, 17 minutes, 58 secondsgoing to decrease it just a little bit more and I want to
+move this flower icon into the middle of the screen that's how 3:18:073 hours, 18 minutes, 7 secondsmy text is anchored so my text will always be in the middle of the screen no

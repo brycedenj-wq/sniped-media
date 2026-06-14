@@ -1,0 +1,224 @@
+An Introduction 0:00 Today we're breaking down the full AI design workflow from start to finish. We'll look at the current state of AI tools in Figma, how to set everything 0:06
+up, when to use Claude, Codeex, Claude Design, Figma, and more, and how to combine them without wasting time or 0:11 burning through tokens. We'll also cover how to train AI in
+your design system, generate original screens, improve the 0:17 quality of AI outputs, and build a workflow that actually feels usable for real product design work. Before we 0:22
+begin, a couple quick things. If you're a big fan of myself, what we're doing, consider checking out UI Collective Academy. Again, this is all just on our 0:27 website link in the
+description where you get access to a bunch of great courses on AI design systems and more. Private Slack channel access me and the 0:33 team and always releasing new content on
+this as well. Or if you don't want to support the academy, it's totally free to join the community. You can come ask 0:39 any question for free on our forum. Also get access to
+some great savings and resources too. So whether you want to join the community or support the 0:45 academy, all this is just on our website. Thanks for being here. Also, come
+follow me on X. Link to my X along with our website, both in the 0:51 description. Right off the bat, for designers, AI is not a tool. AI is a AI is Not a Tool, AI is a Workflow
+0:57 workflow. Two to three years ago when Figma was all we were using, that's when 1:02 design relied on one tool. That's it. All we were using was Figma. We weren't using
+anything else. But now with the 1:09 introduction of AI, the ability to spin up rapid iterations, spin up handoff documentation, do a lot of the manual 1:16 work that we were doing
+before, using AI is not just about knowing how to use one 1:21 tool. It's about knowing how to use multiple tools, how to collaborate between those tools, and how to adjust 1:27
+your approach depending on what it is that you're actually working on. So, as designers, we're always looking for one 1:34 tool to do everything that we were using Figma for
+before, but now it's about how 1:39 we're using multiple tools to make ourselves a little bit more efficient. Let's take a look at what that looks 1:44 like. And naturally, because
+Figma was our home for so long, we're looking for a tool that does everything. And I 1:50 actually got an email from someone recently whose boss was like really putting pressure on
+them to find a tool 1:55 that does exactly what I'm about to talk about here, but doesn't exist. Um, so what designers really looking for in one 2:01 tool is the ability to upload
+a design system flawlessly where the AI automatically knows every variable, 2:07 every style, every component, when to use those components, variables, and styles. It is just an
+expert on 2:14 everything right out of the gate. the ability to prompt our way to desired designs on a canvas UI very similar to 2:22 Figma where we can select certain elements,
+move things around, manually adjust things if we need to. An option 2:29 to have Figma like functionality for finer adjustments like the ability to, you know, control the variables
+2:34 globally, the ability to tweak spacing just between a couple items. uh one click to generate all handoff 2:41 documentation for both designers, for developers, when to use
+components, accessibility guidelines, when to use 2:47 specific pages, and then a one-click build to make developers lives easy where you just click build and it 2:54 generates,
+you know, perfect code for the developers to go and implement. But it doesn't work like this. This is our 3:01 dream and maybe in three years we're going to get there in the
+future, but this does not exist in current state 3:06 right now. Instead, what it looks like is we need to train AI on our design system. We can't just upload it and 3:12 expect AI
+to do everything. Is we need to go through a series of prompts to make sure AI understands our current 3:18 brand, our styles, our variables, our components, and then store that
+knowledge somewhere so you don't need to 3:24 keep telling it every time. We need to generate multiple iterations across tools because the output that you might 3:31 get from
+something like claude is going to be different than the output that you might get from something like codec codeex which is going to be different 3:36 than something that you might
+get from Google stitch. So it's important to generate multiple iterations across some 3:42 of these tools and then when it comes to the Figma integration or how Figma loops 3:48
+into this is you can push and pull from Figma to different AI tools for 3:53 iteration. So something might come out in cloud code. I can push that to Figma, make some tweaks in
+Figma, make the 3:59 styling, the layout tweaks that I want, and then bring that back into whatever AI tool that I was working with before. 4:05 So there's a little bit of give and
+take there. And then build out with AI with the help of a developer. So it's not as 4:11 easy as just one click builds everything perfectly. A perfect code, you have everything
+that you want. You need 4:17 developers are there for a reason. we can support them on some of these items, but it's not as easy as just going from 4:24 prototype to production
+level code right away. And then we need to work with AI 4:29 to generate a lot of the documentation if whether we're building design system components, you know, designs, you know,
+4:34 different modules. AI doesn't automatically know the usability guidelines, the accessibility guidelines 4:41 for everything that we're spinning up. We still need to dialogue
+with the AI in order to get the specific outputs that 4:47 we're looking for. And with this, this is not just one tool, but this is a suite of different tools in the AI space 4:55
+that we need to know how to maneuver through. How to generate with Claude, how to 5:01 generate with codeex, how to generate with Google Stitch. Where does Figma come into play?
+How do we get the better results with each of these tools? 5:08 Because as the AI landscape evolves, we can't just get away with just knowing one tool. If we just get away with
+5:14 knowing Google Stitch, then we go into an interview or all of a sudden we need to work with Claude or Codeex, then 5:19 we're behind other designers. So, you need to be able
+to work with all of 5:25 them. It's not like you can just know Claude, just know Codeex. They're all going to make their own leaps and 5:31 innovation, especially in the design
+space eventually. And you just saw that with Claude Design. Codeex might come 5:36 out with something similar in the future that might be better than what Figma offers and be
+better than what Claude 5:43 offers. So, it's important to have a full understanding of the entire 5:49 endto-end workflow. For the topic of Figma is there's a lot of clickbait
+that's out there where people like, "Oh, 5:55 Figma's finished. Figma is going to go bankrupt. Figma doesn't stand a chance." despite the fact that their stock price 6:01 is down
+like 85 plus percent of all time, it's not finished. It's still 6:06 going to be around, but they've fallen behind in the AI space. You know, Figma's AI is incredibly
+underwhelming. 6:14 Um, Figma's design system sync does not work very well. You can sync your design 6:19 system with Figma make and all of a sudden it's applying like your error
+states to absolutely everything which is 6:25 weird because you would think that Figma's make would be able to recognize that it's an error state because the 6:31 variant is named
+error but it doesn't it doesn't work very well and their general AI just produces really generic results. 6:36 You can get way better results in codeex and claude code and claude
+design and Google stitch as well. So they've got 6:42 some work to do there but for today these are the tools that we're going to go over. We're going to go over cloud. The AI
+Design Stack 6:47 We're gonna go over codecs. We're going to go over where Figma comes into play. We're going to go over Google Stitch as well. A lot of these concepts I might 6:54
+have covered in other videos as well, but hoping this is sort of the one-stop shop uh for everyone. Everything else 6:59 besides these tools here, as of right now, it's just noise.
+There's a lot of startups trying to enter the AI design 7:06 space, but nothing that really comes close to what's here or where I've found value like baking it into my workflow.
+7:12 So just something that you should be aware of to make the most of this course this video is download codeex 7:21 download or have an account with claude preferably you have
+the desktop app and also make sure you have a Google account 7:26 so you can follow along with us with Google stitch as well and try out all these tools and I'll put links to these
+in the description. You're going to see Claude vs Codex 7:33 that claude and codeex very similar. Codeex is essentially OpenAI's answer to 7:38 cloud code, but both can produce
+really good designs. There's some key fundamental differences that you need to be aware of. First off, cloud is the 7:44 better code. If you're working with developers, they're
+going to want to use cloud code. They're not going to want to use codec. I've chatted with one 7:49 developer, it was the designer was using codeex and then when the designer gave
+them the designs, they had to redo a lot 7:56 of it inside of cloud code. So, it's not like a onetoone both produce the exact same code. However, Codex uses about 8:03 three to
+four times fewer tokens for the same work as Claude. What this means is that if we're designing with AI and 8:11 iterating, Codeex might be the better option because it allows us
+to go a little bit farther with the tokens that 8:18 we have available. If you're on a clawed paid plan, especially that base pro plan, you're going to realize that even 8:25
+though you're paying for it, you're often going to run out of tokens, especially as you're working with larger, more complex designs. Something 8:32 you should know about. Claude
+is, however, is more accurate with using Figma attributes when pushed to Figma. 8:39 Sorry, the wording here is a little bit off, but what I mean by that is if I'm working with a
+design inside of Claude 8:46 and I have my Figma skills, Figma MCP connected, which we're going to get to a little bit later, and I push it to 8:51 Figma, it's generally a little
+bit better about using auto layout, using the responsiveness properties like fill, 8:58 hug, than codeex. Others might experience it a little bit differently, 9:03 but it's just
+something that I've noticed. Then lastly, Claude is getting more expensive. I heard rumblings online 9:08 of them thinking about removing or planning on removing their $20 a month
+plan and making it minimum a little bit 9:14 more expensive. So, just something that you should keep an eye on. Before we design, I want to do some setup. Now, AI Design Setup
+(Figma Skills & Figma MCP) 9:19 this is more foundational. I've covered it a lot in other videos, so you've if you've already done this, you can skip it, which is connecting Figma
+MCP and 9:26 Figma skills. Now, they are not the same thing in theory. is Figma MCP is about 9:32 giving AI access to your actual design files, the ability to read the design 9:37
+files, understand what's going on. If Figma MCP isn't connected, the AI can't 9:43 read anything about your Figma files. But Figma skills are more on teaching the AI how to use
+Figma. If you use 9:50 Figma MCP, you can still do a lot of the things that you want to do inside Figma. 9:57 um build designs, but the Figma skills teach the AI how to 10:04 apply
+variables, how to use components, how to better use the Figma canvas. Now, 10:12 luckily for us, we're going to walk through how to install Figma MCP and Figma skills on both
+Codeex and also in 10:19 Claude. Here we are on the Figma community skills site. I'll put a link for this in the video description. So 10:24 these are all the skills that Figma
+promotes. Now we can create our own skills for specific purposes unique to 10:30 us inside of Claude or Codeex. We'll look at that a little bit later, but there's certain skills
+that we're going 10:35 to want to install just for us designers. And it's important to note as well that some of these skills, they're more focused on developers. So they 10:43
+don't necessarily apply to us. But we're going to focus on the ones that apply most to us today. Right away, we need 10:48 this required skill, this Figma use skill. If we don't
+have this installed, the other skills won't work as well. So, 10:56 what we want to do is we want to download this from GitHub. And if we hit this MCP server guide, we want to
+11:02 download the zip entirely. The reason being is, sorry, if I just go back here, oops, why did I click that? Sorry. Um, 11:09 is on the left hand side, we have all these skills
+that go into this larger skill. So, we want to install them in 11:16 bulk. That said though, there's other skills that we're interested in that aren't bundled in this Figma U skill
+11:21 because these skills are already bundled inside of this. Now, the other ones that we're going to want to apply that I find 11:28 a lot of value in are this apply design
+system skill. So, say we have existing Figma designs. 11:34 What we can do is we can call this skill and connect those designs to our existing design system. I don't use it a 11:41
+ton, but I know a lot of designers who have found value in this one right here. So, we're going to go ahead and install 11:46 this. Now, for this, what we just want here is we just
+want the skill.md. So, we can come in here and just choose to 11:52 download that. And probably my favorite skill out of all of these is this audit design system skill. The output
+that I 11:58 get from running this is great because what it does is it audits designs that I already have and checks to see where 12:05 that design system is not applied, where
+it's applying the wrong component, the wrong variable, the wrong style, where 12:10 those variable styles or components aren't being used at all. and then it will fix it based on
+that. It's my 12:16 favorite skill that they offer. So again, it's just the skill.md that we're really interested in here. Let's go ahead and download that and let's open 12:22 up
+Claude. Here we are in Claude. And in Claude on the lefth hand side, you're going to see like a customize button. Uh 12:28 so just hit customize. You're going to navigate to a page
+like this. So the way in which we install things is different 12:35 on cloud than it is codecs. Let's start off by installing our Figma 12:41 U skills. So I want to show you
+something here. It's where a lot of designers tend to get tripped up is we 12:46 want to bulk upload that zip file because it contains all of those subsklls. So let's choose to uh
+go ahead 12:54 and upload a plugin and let's just drag in that first zip file that we had downloaded. So the MCP server guide zip 13:01 file. So let's go ahead upload that. So I
+can see the plugin is installed and ready to use. So, if we click in here, 13:08 you can see that the plugin that includes the Figma MCP server and skills for common workflows.
+13:15 This is where it's not super clear because we have all of those skills, 13:22 but under connectors, we're technically not connected to Figma yet. So, despite the fact that it
+says 13:28 includes the Figma MCP servers, we still need to initiate that connection. So under connectors, let's just choose to 13:35 install and then just choose to connect. And
+what that's going to do is going to open up Figma in the browser. So just 13:44 sign into Figma there uh and go ahead and connect. Sorry, I'm trying to do it offline here, but it's
+being a little 13:49 bit slow. So I'm just going to pause the video here. It finally loaded inside of my browser. So I just hit agree and allow access. And I can see now now that
+13:57 Figma MCP is installed. So, what's important to note here just by uploading 14:02 uh that zip file, even though it says includes the Figma MCP servers, you still need to
+connect it. The 14:09 alternative way that you can do it is if you don't want the Figma skills is just under connectors, you can choose to browse connectors and then just search
+14:15 Figma. And again, it's this one right here uh that we're interested in and we have already installed it. So, all is 14:21 well. Beautiful. Now, those are installed. Here we
+are inside of codeex. 14:28 This is where things can kind of get a little bit weird because people experience things differently and I 14:34 don't know why. Like as of yesterday, I
+was able to have this Figma plugin 14:42 installed which consists of all these different skills. I just chatted with someone who was on a personal plan just 14:49 like me and
+they're able to install the Figma plugin. So you might there's 14:56 there's I don't know what's going on. put it that way. But the Figma plugin here actually has all of the skills
+that 15:04 we had installed in that Figma use skill. So, we didn't need to download 15:09 the item from GitHub, upload it. It's all wrapped inside of this one skill. 15:15 I'm
+hearing mumblings where this is only going to be available to workspace users. Maybe that's just slowly getting rolled out. I don't know. But there's a 15:22 workaround here where
+under skills again just at the top here. And if you search Figma, you just go ahead and install all 15:30 of those same skills. So starting off with that Figma MCP uh that Figma
+code 15:36 connect Figma create design systems rules. So all of those subs skills that were in that zip file that we had 15:42 installed a little bit earlier. They're now installed
+for us and ready to rock. 15:48 So a little bit of a different workflow. You know, I'm seeing different thing people different people experiencing 15:54 different things. Some
+skills are available, some skills are not available. Sometimes that plugin is available, sometimes that plugin is not 16:00 available for users who are just on a personal plan like
+myself. Just something to be aware of sometimes. Um, 16:08 yeah, I know it can be confusing. One thing real quick, Codex finally got his act together and allowed me to install this
+Figma plugin. So, I had installed 16:15 it. In terms of basic setup, that's kind of it. We have those, you know, Claude, Codeex, whatever installed. We're using 16:21 it. We're
+signed up. We have Figma MCP connected. We have those Figma Figma skills also installed. Let's go through 16:27 the tools now, how they work, how to make the most of them. I want
+to start off with Google Stitch for a couple Google Stitch 16:34 reasons. One, because Google Stitch, we can't train it on our on our design 16:40 system the way that we would
+expect. We can't paste in a Figma file here and 16:45 build skills around our design system. That's a big limitation to Stitch as of 16:50 right now. I'm sure they're going to
+change it in the future, but as of right now, that is not existing functionality. 16:56 The other reason why I want to start with Google Stitch is because it's most different. It's
+way different than claw 17:03 design. It's way different than generating designs with clawed code or codecs. 17:09 I want to show you what I mean. One thing I want to do here is
+we're just going to start off with thinking with 17:14 3.1 Pro because it's not going to be as quick, but it's get better quality with it. So, we're going to start with 17:21
+thinking with 3.1 Pro and let's build a financial app because my background is 17:27 in financial technology. So, what desktop web experience should we start with? And one thing I
+want to call out 17:33 here is Google Stitch's web designs are never really that good. The app designs 17:40 usually way better. What I want to do is let's just say run it again.
+My background is a financial 17:46 technology. So, uh, build a financial, 17:52 uh, management app for financial advisors. Let's just run that. This 17:59 here, great result. And
+this took about 30 seconds to generate. 18:05 So, pretty quick. Now, there's still issues with it. It's not like something I can take right away and be like, 18:11 "Yeah, sending
+this to developer, done." But this is really good for iteration. 18:18 I need to get some layout inspiration fast based on an app that I'm trying to build. Of course, beef up the
+prompt a 18:24 little bit, but this allows me to sort of get an idea of the structure down, the types of data that I should display, 18:31 how I should structure my bottom nav. And
+again, some of this stuff looks AI 18:36 generated. This is clearly an AI generated widget, but that's okay. It's going to get better. I can see. So we 18:44 have our client list,
+our client profile, advisor dashboard, rebalancing tool. 18:49 This gives me enough to get started with and start having meaningful conversations with others on my team 18:54
+around what it is we're going going to want to display on each page. I want to show you something here is I ran the 19:00 exact same prompt but chose for a desktop and this is what
+it gave me. The result is way worse. Way worse. So 19:09 whenever it comes to working with Google Stitch, you are going to get way better results working with mobile designs than
+19:16 you are on desktop. Like this here, Super Junior feels super AI generated. 19:22 Not great. But that's not to say that Stitch can't give you good results. A lot of times the
+base prompts that it 19:28 might give you as examples will give you really good results. And sometimes even the prompts that you run give you 19:34 results that look like this
+where it's clean. It looks good. It has polish to 19:42 it. So stitches because it's still in beta. 19:48 You never get a accurate result all the time. Sometimes it's hit 19:55 or
+miss. Sometimes the result is not good at all. Going back to the mobile version though, is Stitch is really good 20:02 for just basic iteration like this market overview page. this
+advisor 20:08 dashboard. Maybe I want additional variations. I can come in here under generate, select variations, select the 20:14 number of variations I want, specify a creative
+range like more refining, exploring, or reimagining completely. 20:20 So, let's just explore some different versions here. Choose what it is we want to vary. So, maybe just
+layouts. And now 20:27 we can choose to generate different variations based on specific screens, specific elements. We're off to the 20:33 right here. What it's going to do, it's
+going to generate those variations. There we go. You can see that they're they're generating here. 20:40 Stitch glitched out while it was generating those two designs. So, I just
+had to generate it again this time of three. And this is what it came back 20:45 with. So, just some different layouts here where this one's got that bar graph again. Sure, some of
+the bars are hard 20:51 to see here. You know, active client pulse, priority alerts, whereas this version is a little bit different where 20:56 you have those big metric cards
+right at the top. Then you move into an itinerary, what they need to focus on today. And this one is even a little bit 21:02 more different where you have that AUM like their
+assets under management like a big and bold at the top with other 21:08 metrics. Then you get into your growth. But as you can see like these aren't 21:14 production level designs.
+I wouldn't take these and show it to a client. I 21:20 wouldn't take these and say developer build this out for me. But where is it 21:25 I'm using Google Stitch right now? Where
+is it? I'm using Stitch for fast generation for very very early stage Where I Use Stitch In My Workflow 21:32 concepts without burning tokens. I'm not looking for polished designs.
+I'm looking for types of widgets, types of 21:38 data that we might want to display to sort of have some of these more early conversations on what's important with 21:45 internal
+stakeholders. I'm only going to bring Claude and Codeex and Claw Design into the equation once I know absolutely 21:52 for sure. So, I got a couple options here. Either I can burn
+a ton of tokens in a ton of time generating these 21:59 polished first drafts inside of Claude and Codeex or I can use 22:06 Stitch because it's basically free to spin up a bunch
+of different variations 22:11 of things of ways data can be displayed and data points we want to show and types of widgets to chat with again just 22:19 internal stakeholders. I
+wouldn't show this to a client or anyone external 22:24 on what really speaks to them, the types of data that they like, how they like data to be displayed because it's going 22:30
+to better inform what I'm either able to one then reproduce in Figma or two build 22:37 out in clawed code and codeex without having to go through the level 22:44 of variation we
+did in Stitch, which is going to burn a million and two tokens inside of the other tools. And hopefully 22:51 you can see that Stitch is designer friendly. You know, we can move
+things around. We can preview things. We can 22:57 choose to mod modify things. We can, you know, generate those variations and regenerate designs. We can generate a 23:03 desktop
+web version based on that. And we can even tweak like the design system uh here too. We can adjust the color 23:10 palette. But again, it doesn't produce those production level
+designs that I had just 23:15 talked about. But what's the other key tool in the AI space that's really 23:21 tailored to designers? That's claude design. It's going to be a nice
+segue 23:26 into sort of the claude codec space. Here we are in claw design. And I want Claude Design 23:32 to because claude design stitch, they're the design focused 23:38 AI
+tools, the real popular ones that are out there. And I want to showcase the 23:43 different quality that you get on claw design versus what you get on stitch. So 23:50 here we are
+in claw design. I'll put a link for this the video description. Let's just create a new project and not select any particular design system. 23:56 Just call it high fidelity. Just
+make it a high fidelity, not a wireframe. Sorry. Um so let's just call it uh AI demo. 24:05 Let's create this and let's go ahead and build a prompt. Now, let's run the exact 24:11
+same prompt as we did in Google Stitch. Build me oh, forgot my please. Please build me 24:18 a financial management app for financial advisors. Oh, yeah. Not the best prompt 24:25
+in the world. Uh, not a really good prompt at all, but still the same. Let's run. And we get some questions. And this 24:31 is nice because with Google Stitch just like basically
+just went ahead and did things, but Claw Design wants to know a 24:38 little bit more detail. And it's going to help us produce a more polished version the very first time. So
+who's 24:46 the primary user? Let's go uh financial planner. Uh which workflows matter most? 24:54 So I can select let's go performance reporting. Uh select a couple of these 24:59
+and portfolio dashboard. Which screen should be the hero? Uh advisor home 25:05 platform. Let's just go desktop. Let's go aesthetic direction. Have it 25:11 decide for me.
+Information density again. Decide for me. All these other ones, let's just select decide for me. 25:17 But you can see the level of detail that it's asking us to try to get the
+best result the very first time. So decide 25:24 for me and then decide for me. Let's run this. You can see that it came up with a 25:30 list of todos, but I'm already on minute
+six. It doesn't look like any of these are actually built yet. So you can see 25:37 how already how with stitch the results came back after like 15 seconds not even sometimes. But
+with claw design there's 25:44 a lot of waiting involved which if we're looking for fast variations and iterations just exploring certain 25:51 concepts what data could go where
+what data might resonate with an internal 25:57 stakeholder. Cloud design really slows down a lot of that fast iteration we want to do in 26:04 those early stages. I know what
+you're thinking. But Kirk, I have all the time in the world. So if claw design gives me 26:10 a better result first try to share with stakeholders, I'm only going to use claw
+design. Let's pause for a sec because 26:18 the usage of claw design is limited in this early stage and it is going to get 26:23 expensive. Claude code is an expensive tool. I
+believe I've said it before, I'll say it again. I believe it was 26:29 Uber. they ran out of their AI development budget in like 3 to four months that they had set for the year.
+26:36 Now unless you're working at a company like Apple or Google where your budget I don't want to say is infinite then 26:43 chances are the way in which you can leverage a tool
+like claw design once they pile on the features pile on like 26:49 included in all the plans and everything like that and start charging for it a lot more than they are now the
+cost is 26:55 going to add up. So, you need to be really strategic around where you're going to be using your tokens. And the Claude Design Output 27:02 result here is way better.
+Look at this. This is like 27:08 senior level design. It looks clean. The font is nice. The different font 27:14 treatments here. How this is like normal font, not indented. This
+is slightly different color. It's indented and or 27:21 not indented, sorry, italicized. Um, we have this interactive graph. We have this allocation. We have this book of 27:29
+business. We have today's agenda. It's all interactive or at least some of it is. This is great. You know, like you 27:36 can show this to a client and be like, we spun this up and
+they wouldn't bat an eye. Whereas 27:43 with the Stitch example, they would bat an eye. Despite the fact how good this looks, there's an issue is it only built 27:50 the dashboard.
+It didn't build any of the other pages. Now, you might be 27:56 thinking, let's just have it build those pages now. But today is currently Wednesday. You can see that my usage
+28:02 resets in Claw Design on Tuesday. I did not use Claw Design yesterday. So, that one dashboard took me 8% through my 28:09 usage. So, you can see how easy it is to use up
+28:16 what you're available to use in claw design. So if we're inefficient in the 28:21 way in which we start just start with claw design for a lot of that iteration by the time we
+get 28:28 feedback from our stakeholders all of a sudden we have to wait in order to reprompt inside claw design. So what When to Use Google Stitch With Claude Design 28:35 you're
+doing is you're using stitch to inform your prompt for claw design 28:41 because with Google stitch what's your objective midfi wireframing as we saw it's not hi-fi it's not lowfi
+with just 28:46 basic shapes it's somewhere in between to align on metrics align on potential formats align on charts and then when 28:53 you move into claw design which is more of
+that super hi-fi wireframing it's hey claude here's the specific data that we 29:00 want on the dashboard here's the format that this should be in where we want our metrics along
+the top in four cards. 29:06 These are the specific metrics because I aligned on these with my stakeholder after reviewing what Google Stitch gave us. Below that, we are going to
+have a 29:13 performance chart and it's going to be a line chart, not a bar chart. And here is why. Ultimately, your goal is just to 29:19 reduce the number of edits you need in
+cloud design. The closer you can get to 29:24 it first try in claw design, the better. But you can't do it if you haven't had 29:29 those good convos with internal stakeholders
+around what they like the data, what data should be displayed 29:34 where. And that's where Google Stitch comes in. Having better early stage 29:40 convos at a much faster rate.
+Another thing that's not great about claw 29:46 design, despite the fact it's not very efficient, I guess, is it doesn't feel 29:51 like a design tool. So, I'm going to have it
+actually build another variation. Build 29:58 me another variation. Or actually, let's say uh 30:04 build the book page in uh instead. Build the book page instead. Uh then lay out
+30:11 the designs side by side so I can view them. So, build the book 30:19 page instead. So referring to this page right here because we only really have our dashboard. Uh then
+lay out the 30:25 designs side by side so I can view them. Let's run. And now this is what it came back with. So now we have that book of 30:30 business. So we have that book page
+and again looks pretty good. We have our filters here on the side. We have these 30:36 this great metrics treatment at the top. We have a list of everyone who's in like our
+financial advisor book. I think it 30:42 looks pretty good. And now what's nice is because I told it I want to view things side by side. We can kind of view it like a canvas. But
+what's the issue 30:49 here? I can't really like, you know, I can move things around, but 30:55 I can't modify. Oh, look, these are these are interactive, too. That's nice. Built
+those out right away, but I can't 31:02 move things side to side. Like, I can like that scroll effect works. We got to 31:08 ah, what's going on there? Let me delete that. Um, but
+I can't rearrange things 31:13 like I would on Figma. It's very, very static. And sorry, it's still at running and changing things as I go. And if I 31:19 wanted to make tweaks
+here, what I would need to do is I can just choose to select items and edit it or I would have 31:25 to leave comments about change this, change this, just leave that as a comment,
+you know, um different 31:31 treatment, different treatments, and things like that. It's all very Claude 31:36 has to do it manually. It's not something that we can just move
+around or make those tweaks on the fly, 31:42 especially for those larger layout changes. And now after that second prompt, we're now at 15% used of our Claude Design Limitation
+31:51 claw design usage, which resets next week. So you can imagine how frustrating 31:56 it would be if you ran out of claw design tokens when you're in the middle 32:02 of like a
+design sprint. Not fun. One thing I did forget to call out here is 32:07 there is the ability to hand this off to Claude Code. We're going to get to Claude Code in just a second.
+We're not 32:13 going to use the designs here. We move to claw code. But something I did just want to call out that I forgot to highlight here. Everything else within 32:20 claw
+design. Relatively straightforward stuff. There's nothing out of the ordinary that would stop you from using 32:26 this effectively. In order to hand off to claude code, just hit
+hand off to claude code. Copy this command and then 32:31 go inside to claude code and just paste that in a new chat. We're now familiar with stitch and claw design limitations
+Claude and Codex Comparison Experiment 32:38 and where they're used generally used. I want to show you the different outputs with claude code and codeex then. So 32:45 remove claw
+design and like the design more design focused tools and just 32:50 inside claude code and codec. Let's run the exact same prompt we've been working with. It's not just about
+comparing outputs but your AI workflow might 32:57 change as part of it once we look at tokens and how long things take when 33:02 compared against both of them. So we're going to
+go through a little experiment as well. All right. Now, it's funny because everything we're just about to 33:09 go through, I actually am refilming it after I filmed it because I
+realized that I ran Claude on extra high, but I 33:16 ran codeex just on high. So, there might have been a little bit of a discrepancy there. Um, just because after a bunch of
+33:23 research two days ago, extra high and extra high on Claude and Codeex, the exact same things, even though Claude 33:28 has a max plant. All right, so anyways, this is besides
+the point. What we're going to do is we're going to reuse that 33:34 same prompt that we've been running with and I want to build a financial management app because I want to
+showcase sort of the outputs on codeex 33:41 and also claude and to compare how long things take and also how many tokens are 33:46 used. So let's go ahead and just run this. This
+is what we got back. Pretty halfdeent looking uh dashboard all 33:53 things considered. Um so what I want to do now is I'm going to choose to push 33:59 this to Figma. What I chose
+to do here is I just chose to push it to Figma. Now, one thing that's important to note is you don't need to push everything to 34:05 Figma in order to bring it into codeex. And
+especially for those more technical, I know there's other ways to do things, 34:12 you know, get repo, bring it into codeex. But this is the flow that 34:17 designers are generally
+most comfortable with. So that's what I'm going with for now because even with clawed code, we 34:23 might want to push it to Figma, make changes in Figma, and then bring it into
+codeex. That's another big part of a 34:29 designer's workflow. It's not about always going right from cloud code right into codeex and then right back into 34:35 cloud code. We
+generally have that Figma step in between, make tweaks, move things around on our own, and then when 34:40 we're ready, we might pull it either way. While that's being pushed to
+Figma inside Cloud, I'm I'm going to hop into 34:46 Codeex here and run the exact same prompt we ran before. Uh, so let's go ahead and let's run this. This is what 34:52 Codex came
+back with. I know what you're thinking. This is horrible. You're not wrong. is not great is because for 34:59 designs out of the box, codeex is not your best option. Claude is you
+could see the design that Claude produced 35:06 compared to this night and day difference. But that doesn't mean that we shouldn't use codeex as part of our 35:12 AI workflow. I'm
+going to elaborate on this, but what I want to do now is with 35:18 the design that Claude had pushed to Figma, I'm going to bring that into codeex. And 35:24 you're going to see
+why. And this is here is what Claude gave us inside Figma. It looks pretty good. There's there were some small responsiveness 35:30 things that I noticed, but that's totally fine.
+What I'm going to do, I'm going to copy a link to this section. 35:36 And then let's go and go back to codeex inside codeex. I'm going to paste a link to that Figma file. Please
+build this uh 35:44 locally. And we're going to have codeex build what Claude had. So, let's run. 35:49 All right. This is what Codex came back with. What I want to do now is I
+want to 35:55 make the same changes on codeex and on claude and compare how long those 36:01 changes take and also how many tokens that those changes burn. 36:07 So what are some
+larger and smaller changes? One, maybe we can swap this from dark mode to light mode. Maybe we 36:14 want to make top households have a search bar and make it full width. So 36:21
+some larger changes that come into play. What we're going to do, we're going to, 36:26 as I mentioned, we're go to codeex, run that, and then go to claude and run those same
+instructions inside codeex. 36:32 Then running this prompt, make the following changes. Change it to light mode. Add a search bar to top 36:37 households. Make top households full
+width and swap positions of AUM and households. So I decided to just swap 36:42 these two cards along the top. Another smaller change. So let's copy this and 36:47 then let's So
+first off, let's run this. There we go. Now let's copy this and 36:53 let's do the same in cla back inside claude. Then let's run the exact same thing. So we can see that it did
+its job 36:58 versus the old version versus the new version where it swapped households and aum. Here this version we have this full 37:04 width we have the search bar whereas on

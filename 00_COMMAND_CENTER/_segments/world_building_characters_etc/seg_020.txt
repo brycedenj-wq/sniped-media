@@ -1,0 +1,224 @@
+the effects world right there so here the Skylight is being used and here the 1:38:521 hour, 38 minutes, 52 secondsSkylight is isn't so this is without Skylight and this is with
+skylight and something that's pretty cool about the 1:39:001 hour, 39 minutesSkylight is that if I add in a cube so let's come up to shapes Cube drag that 1:39:051 hour, 39
+minutes, 5 secondsin scale that up we can make a makeshift door and now notice how as I move my 1:39:151 hour, 39 minutes, 15 secondsCube the Skylight slowly starts to illuminate
+our room so that's why the 1:39:211 hour, 39 minutes, 21 secondsSkylight is a pretty big deal since it allows us to capture our sky and project it onto a world as Lumin lighting
+and 1:39:301 hour, 39 minutes, 30 secondsfinally it's time to go over Lumen settings so these are settings that affect all of our Lumin lighting before we move on to lighting and
+environment 1:39:371 hour, 39 minutes, 37 secondscompletely from scratch so I'm going to delete everything and I'm just going to add in a simple Point light once again because
+1:39:461 hour, 39 minutes, 46 secondsI want to show and also decrease the intensity to four and this is probably something you've noticed is that there 1:39:531 hour, 39 minutes,
+53 secondsis a lot of noise especially in the shadows now I don't know if it shows up due to the YouTube compression but if 1:40:011 hour, 40 minutes, 1 secondyou are following
+along with the tutorial you can see a lot of that noise and to get rid of that noise we need to play with the Lumen settings which are 1:40:081 hour, 40 minutes, 8 secondslocated
+in our postprocess volume so find out where your post-process volume is as a reminder you can create a postprocess volume by coming up to add 1:40:171 hour, 40 minutes, 17
+secondsvolumes and postprocess volume and make sure in your postprocess volume that infinite extent Unbound is turned 1:40:261 hour, 40 minutes, 26 secondson because otherwise our
+post-process volume will not be affecting our entire world so you want to come down all the way inside the postprocess volume to 1:40:341 hour, 40 minutes, 34 secondsGlobal
+illumination and by default Lumin is turned on and we get a bunch of lumen settings under luming Global illumination so first off to get rid of 1:40:431 hour, 40 minutes, 43
+secondsthat noise check Final gather quality and increase it from 1 to 4 now we can see that noise slowly start to disappear 1:40:531 hour, 40 minutes, 53 secondsand there is a lot
+less noise we can even increase this to 10 and now our scene definitely looks a lot better so 1:41:001 hour, 41 minutesif we hover over any of these settings it gives us a very
+quick description while final gather quality does get rived the noise it also comes at the 1:41:071 hour, 41 minutes, 7 secondscost of GPU so just keep that in mind that if you do
+increase final gather quality you might lose on some performance there are also some other 1:41:161 hour, 41 minutes, 16 secondssettings which I'm going to go over in the next
+chapter that's the basics of lighting in u5 now we're going to take the knowledge that we just learned and Chapter 17: Archviz Lighting Lumen 1:41:241 hour, 41 minutes, 24
+secondsapply to lighting an architectural visualization scene first we're going to light the environment by using Lumin and movable lights then we're going to light 1:41:321 hour,
+41 minutes, 32 secondsthe same exact environment but with static and baked lighting so we're going to compare the two methods of getting Global illuminations and see their pros
+1:41:411 hour, 41 minutes, 41 secondsand cons the specific architectural environment is already included within our lighting examples that we migrated into our first project we can
+see under 1:41:491 hour, 41 minutes, 49 secondslighting examples Maps it's the map that's right next to the map that we've been editing which is light bounce so let's double click
+on Arc VI room and we 1:41:581 hour, 41 minutes, 58 secondswon't see anything because there are no lights if I press alt and three or if I click on unlit from The View mode that
+1:42:051 hour, 42 minutes, 5 secondsthis environment is just a simple room with some furniture and a window from which all our light is going to come from so very simple room which
+will help 1:42:131 hour, 42 minutes, 13 secondsus learn and get the gist of how to light is seen in Unreal Engine I'm going to press alt and four as a shortcut to go back into our
+default view mode now 1:42:221 hour, 42 minutes, 22 secondsthe first light I'm going to add in is the main light which is the Sun so let's add in a directional light and I'm going
+1:42:291 hour, 42 minutes, 29 secondsto rotate it so that the sun is coming through the window and already especially right here we can see global 1:42:371 hour, 42 minutes, 37
+secondsillumination and Lumin at work so I want to find a nice angle I think right there is pretty good 1:42:441 hour, 42 minutes, 44 secondsbut if we look outside there is no Sky
+it kind of looks scary just seeing an endless black void so let's add in a sky 1:42:521 hour, 42 minutes, 52 secondsby coming back up here here to visual effects and the sky and
+atmosphere so drag that in but half of our world the 1:42:591 hour, 42 minutes, 59 secondsbottom half is still a black void we can hide that black void with fog so come back up to
+add visual effects and below 1:43:071 hour, 43 minutes, 7 secondssky and atmosphere we have exponential hey fog simply drag that in and now if we look outside the window all we see
+is 1:43:141 hour, 43 minutes, 14 secondsSky which is what I want but there is a little bit of an issue and that is if we hide and unhide the exponential height 1:43:211 hour, 43
+minutes, 21 secondsfog we can see that there is a little bit of fog inside of our room and we don't want that so within the exponential height fog one of the 1:43:301 hour, 43
+minutes, 30 secondssettings we're going to change is right here start distance I'm going to drag this all the way up to its Max of 5,000 so essentially start distance is saying
+1:43:391 hour, 43 minutes, 39 secondsdo not use fog until we're 5,000 CM away from our camera so now if I hide and unhide it we don't have any fog inside 1:43:461 hour, 43 minutes,
+46 secondsour room there is one more light that I want to add to our room and that is the skylight so let's come with lights 1:43:541 hour, 43 minutes, 54 secondsSkylight and drag
+it in so we can already see that our room got a little bit of a bluish tint from our Sky I can hide and unhide it right here so effects 1:44:021 hour, 44 minutes, 2 secondsworld
+turn it off and turn it back on so we can see that it does make a little bit of a difference so I'm going to set 1:44:091 hour, 44 minutes, 9 secondsthe Skylight to movable and
+also set the sun to movable since both of these lights are being used with Lumen we 1:44:161 hour, 44 minutes, 16 secondsaren't baking any lights and another thing I'm going to do
+is add in a post-process volume since if we come over here and I don't know if it's 1:44:241 hour, 44 minutes, 24 secondsnoticeable in the YouTube video but there is a little bit
+of noise so we can get rid of that by adding in the postprocess volume simply drag it in and 1:44:331 hour, 44 minutes, 33 secondsmake sure you scroll down and infinite extent
+Unbound is turned on so we don't have to be in the post process volume 1:44:401 hour, 44 minutes, 40 secondsfor it to take effect now let's Zoom all the way up to looming Global
+illumination and right here for final 1:44:481 hour, 44 minutes, 48 secondsgather quality instead of one I'm going to set that to 10 and allow that that noise just disappeared also
+I want to 1:44:551 hour, 44 minutes, 55 secondsadd some soft Shadows to the really small objects since right now there is no soft Shadow that's being given off 1:45:021 hour, 45
+minutes, 2 secondsfrom the phone the clock or the coffee mug so the reason why is because I have to increase the Lumin scene detail right 1:45:111 hour, 45 minutes, 11 secondshere
+from 1 to 4 so this was beforehand at one and now this is four so by 1:45:181 hour, 45 minutes, 18 secondsdefault to save on processing power Lumen excludes a lot of small objects
+from its calculations so you need to tell in real that you want them within 1:45:271 hour, 45 minutes, 27 secondsthe Lumin calculation by increasing it from 1 to 4 or even higher
+if you do have smaller 1:45:331 hour, 45 minutes, 33 secondsobjects and one last edit I'm going to make to postprocess volume is setting it for a manual exposure so under exposure
+1:45:421 hour, 45 minutes, 42 secondsmetering mode set to manual bring up the exposure compensation 1:45:471 hour, 45 minutes, 47 seconds[Music] 1:45:491 hour, 45 minutes, 49
+secondsto 13.25 it's pretty good and also this is an artistic choice we increase it we can 1:45:571 hour, 45 minutes, 57 secondssee that we get more bloom in our world so maybe a
+value of two so this is without Bloom and with Bloom I do think 1:46:061 hour, 46 minutes, 6 secondsit makes the scene look a little bit nicer and that is the basics of lighting an
+environment in Unreal Engine 5 1:46:131 hour, 46 minutes, 13 secondsspecifically for architectural visualization and since we're using Lumin that gives us the ability with control
+and L as a shortcut to rotate 1:46:211 hour, 46 minutes, 21 secondsour sun watch our world be updated in real time based off of our Sun's lighting which is 1:46:291 hour, 46
+minutes, 29 secondspretty insane now while Lumen is amazing we do get some trade-offs and quality just because we are able to use Chapter 18: Archviz Lighting Baked 1:46:361 hour,
+46 minutes, 36 secondsreal-time Global illumination doesn't mean that it's the best case for certain scenarios specifically a scenario like this where there isn't going to be any
+1:46:441 hour, 46 minutes, 44 secondsmoving Parts since it's just an architectural visualization scene we might as well bake our lighting because number one bake lighting is always
+more 1:46:521 hour, 46 minutes, 52 secondsperformance friendly then using Lumen because Lumen does do a lot of GPU calculations behind the scenes while big lighting is just
+1:46:591 hour, 46 minutes, 59 secondsoverlaying a texture and number two if you properly bake your lights into a good light map then the quality will be 1:47:061 hour, 47 minutes,
+6 secondsbetter than Lumen so let's convert our Lumin environment into a baked lighting environment so I want to make a copy of 1:47:131 hour, 47 minutes, 13 secondsour current
+level which're is arcv room by selecting it in our content drawer and pressing controll and D to duplicate 1:47:191 hour, 47 minutes, 19 secondsit so let's call this one arcv room
+baked and double click to go inside of it make sure we save 1:47:271 hour, 47 minutes, 27 secondsselected all right great so first thing I'm going to do is select all my lights and
+set my directional light to static 1:47:351 hour, 47 minutes, 35 secondsand set my Skylight also to static now I'm going to go into my postprocess volume and disable Lumen for
+1:47:421 hour, 47 minutes, 42 secondsReflections and Global illumination so set this to none and under Reflections also set this to none so we can see 1:47:511 hour, 47 minutes, 51
+secondsimmediately we aren't getting any global illumination that's because I should come up to build and build all levels to start Ray tracing in the background all 1:48:001 hour,
+48 minutesright great so here we have our baked lighting this is really bad since we need to increase the quality of our 1:48:071 hour, 48 minutes, 7 secondslight bakes by going
+into the world settings and if I scroll up we can see that under light MK we have light mass 1:48:151 hour, 48 minutes, 15 secondssettings and in the drop down we have a bunch of
+settings that will change the quality of our light baking so first thing I want to increase the number of 1:48:241 hour, 48 minutes, 24 secondsbounces which will just illuminate
+our scene a little bit more so the number of indirect lighting bounces is right now set to three let's set that to 10 and 1:48:321 hour, 48 minutes, 32 secondsalso for skylighting
+bounces set this from 1 to 10 number two for static lighting level scale if we bring this 1:48:401 hour, 48 minutes, 40 secondsbelow one for example 0.5 then we're going to get a
+lot more quality out of our baks so I'm going to set this 1:48:461 hour, 48 minutes, 46 secondsinstead of 0.5 let's set this to 0.1 and to compensate for the static lighting level
+scale you want to 1:48:531 hour, 48 minutes, 53 secondsincrease the indirect lighting quality to 10 so specifically I want to increase the indirect lighting quality to 10 1:49:011
+hour, 49 minutes, 1 secondbecause the static lighting level scale right now is set to 0.1 and generally you want your static lighting level scale times your indirect lighting
+1:49:091 hour, 49 minutes, 9 secondsquality to equal one so for example if instead of static lighting level scale being 0.1 I change it to 0.5 then the 1:49:181 hour, 49 minutes,
+18 secondsindirect lighting quality should be set to two since 0.5 * 2 equal 1 but I'm going to leave it at 0.1 since that does 1:49:261 hour, 49 minutes, 26 secondsgive us a
+better value at the cost of waiting a little bit more for the rate Trace calculations to happen and now that I like my settings 1:49:361 hour, 49 minutes, 36 secondscome to build
+and click on build all levels so this build will take longer than beforehand because we increase the 1:49:431 hour, 49 minutes, 43 secondsquality of our light bakes so now this is
+our scene and we didn't really notice that much of a difference since I also 1:49:501 hour, 49 minutes, 50 secondswant to come up to build and under lighting quality make sure that
+it's not set to preview instead it's set to either medium higher production I'm just 1:49:581 hour, 49 minutes, 58 secondsgoing to set to medium and also while I'm at it I'm going
+to select my postprocess volume and let's bring down 1:50:061 hour, 50 minutes, 6 secondsthe bloom since I think the bloom is to intense to one and for exposure compensation I'm
+going to leave it at 1:50:151 hour, 50 minutes, 15 secondslet's go 12.7 and now if I press build build all levels keep in mind that if you are following exactly with this tutorial
+you 1:50:241 hour, 50 minutes, 24 secondsdo not have to press build whenever I press build since I'm building my lights a lot more frequently than I would to just demonstrate what
+some of these 1:50:321 hour, 50 minutes, 32 secondssettings do so if you want to save time and not have to wait for each build then I would wait for the very end and copy those
+settings we can see that the 1:50:391 hour, 50 minutes, 39 secondsquality is still not the best because if you remember light maps are being baked into a texture and if that
+texture has a low resolution then we're going to get 1:50:481 hour, 50 minutes, 48 secondslow resolution shadows and lighting so we need to raise resolution on each of our static
+meshes and to see the resolution of our static mesh visually 1:50:571 hour, 50 minutes, 57 secondsyou can come up to LIT down to optimization view modes and select light map
+density with the shortcuts alt and 1:51:051 hour, 51 minutes, 5 secondszero so right now our entire room is pretty much blue this is not what we want we want our scene to be in the
+1:51:131 hour, 51 minutes, 13 secondsgreenish to reddish range so to increase the light map resolution of a static mesh you want to select the object and 1:51:211 hour, 51 minutes,
+21 secondswithin the details panels roll down until you see lighting and overridden light map resolution is at 64 turn that 1:51:291 hour, 51 minutes, 29 secondson and increase
+that to let's try 128 or 256 and okay that looks a little bit 1:51:361 hour, 51 minutes, 36 secondsbetter but since this is the floor and it will have some of the Shadow I want to
+increase that to 512 so make the floor pretty dense I 1:51:461 hour, 51 minutes, 46 secondsthink the walls around it should also be let's go 512 and the roof and also be 1:51:531
+hour, 51 minutes, 53 seconds512 so for the baseboard I'm going to select that and make this let's try 1:52:011 hour, 52 minutes, 1 second256 the door needs to increase it from 64
+to 128 the chair is a pretty big deal since it's our focal element so let's go 1:52:111 hour, 52 minutes, 11 seconds256 right there and for the wall is that 256 I'm going to try
+512 the table is at 1:52:191 hour, 52 minutes, 19 seconds128 actually let's make this 512 the wall right here 512 and the floor actually I'm 1:52:271 hour, 52 minutes, 27
+secondsgoing to increase this to 124 so I think this looks good now if we bake our lights let's see what this 1:52:351 hour, 52 minutes, 35 secondsgives us so at this point it is
+going to take a little while for it lights to bake since there's a lot more detail it needs to 1:52:431 hour, 52 minutes, 43 secondscalculate and probably by now you understand why
+Loom it is a pretty big deal since it gets rid of this repetitive process of having to wait for 1:52:511 hour, 52 minutes, 51 secondsa lighting to bake and then if we don't like
+the bake we have to change something and change some settings and then bake our lighting again and then if we don't like that we have to go back 1:52:591 hour, 52 minutes, 59
+secondsand it's an entire process while Lumen just works immediately but in this case it is worth it since the quality is going to be better than Lumen okay now 1:53:081 hour, 53
+minutes, 8 secondsthat we're done baking let's see what our world looks like and okay that's a lot better but 1:53:151 hour, 53 minutes, 15 secondsthe Shadows especially in between
+objects are a little bit too intense since by default unreal is calculating ambient inclusion I want to disable 1:53:241 hour, 53 minutes, 24 secondsambient inclusion since I'm
+just relying on our baked light map to simulate all of our shadows and lighting So within our 1:53:311 hour, 53 minutes, 31 secondspostprocess volume let's go find where ambient
+occlusion is which is right here under rendering features under ambient occlusion intensity let's turn that to 1:53:411 hour, 53 minutes, 41 secondszero to turn it all off and
+increase our exposure compensation to 13 1:53:511 hour, 53 minutes, 51 secondsokay now our scene is baked but we we are missing one last thing and that is we don't have any
+Reflections whatsoever 1:53:581 hour, 53 minutes, 58 secondsour world looks pretty bad since we don't have those Reflections and the reason why is because alumin calculates
+Reflections automatically when we bake 1:54:061 hour, 54 minutes, 6 secondsour lighting we have to specify where we want our Reflections to be and we do that through a sphere
+reflection capture so to add a sphere reflection capture 1:54:141 hour, 54 minutes, 14 secondscome up to the add button down to visual effects and drag in a sphere reflection
+capture essentially what the sphere reflection capture does 1:54:221 hour, 54 minutes, 22 secondsis that it takes a 360° Snapshot from the sphere of our world and then it uses that
+as the projection of our 1:54:301 hour, 54 minutes, 30 secondsReflections and to get a better snapshot of our world come up to build and select build reflection captures so right
+now 1:54:381 hour, 54 minutes, 38 secondswe have one reflection capture but we can have multiple reflection captures since obviously it doesn't make sense for all Reflections to
+grab from the 1:54:451 hour, 54 minutes, 45 secondssame location so if I duplicate this with alt and then if I decrease the influence radius within the details p panel to let's go
+1:54:531 hour, 54 minutes, 53 seconds500 and place it on top of my small objects right here and once again come up to build and 1:55:031 hour, 55 minutes, 3 secondsbuild reflection
+captures we can see that these objects instead of grabing from this sphere reflection capture they're grabbing from the smaller one 1:55:111 hour, 55 minutes, 11 secondswhich is
+overriding the larger one since the reflection capture on the table is smaller un real knows to pick this sphere reflection capture for all the 1:55:201 hour, 55 minutes, 20
+secondsobjects within its radius of 5 500 cm so this is essentially how you bake Lighting in Unreal Engine now I know 1:55:281 hour, 55 minutes, 28 secondsthat the setup took a lot
+longer than using Lumen also we have to wait a while for each light baking to happen and for all the light maps to be created and the 1:55:361 hour, 55 minutes, 36 secondsraay
+tracing to happen but in the end in my opinion the quality especially right here if I select the chair and hide 1:55:461 hour, 55 minutes, 46 secondsit we can see how detailed
+those soft Shadows are and if I unhide it take a good look at this baked lighting scene 1:55:541 hour, 55 minutes, 54 secondsjump back into our arcv Vis room which is using Lumen
+obviously the baked lighting looks a lot better so hopefully you understand 1:56:021 hour, 56 minutes, 2 secondsthe difference between baked lighting and Lumen their pros and cons
+and why you would use baked lighting over Lumin even though Lumen is real time that is Chapter 19: Landscape Tool 1:56:111 hour, 56 minutes, 11 secondsthe very basics of lighting
+an Unreal Engine of course you can get even more complicated because a lighting is an entire art form by itself but hopefully 1:56:191 hour, 56 minutes, 19 secondsyou do have a
+good foundation to learn more now we're we're going to go over Landscapes so landscapes in unreal are pretty important because odds are you 1:56:261 hour, 56 minutes, 26
+secondswill always be seeing a landscape or your character is on top of a landscape so in this section we're going to go over how we can create a landscape 1:56:331 hour, 56
+minutes, 33 secondssculpt it and finally at the end go over how to add foliage to demonstrate how to make Landscapes let's create an entirely 1:56:411 hour, 56 minutes, 41
+secondsnew map so press control space and let's go into my stuff and right here let's create a brand new folder called Maps 1:56:481 hour, 56 minutes, 48 secondswhich will hold all
+of our Maps so I'm going to select both my map and my build data and drag it into Maps let go and 1:56:561 hour, 56 minutes, 56 secondsmove here so let's jump into there and right
+click create a brand new level so by right clicking and creating a level 1:57:031 hour, 57 minutes, 3 secondsinstead of coming up to file and new we don't get access to the
+templates which is fine I do want to create a brand new 1:57:101 hour, 57 minutes, 10 secondslevel completely from scratch so let's call this one landscape example and jump in so
+let's save everything the reason 1:57:171 hour, 57 minutes, 17 secondswhy we're starting from a blink level is because I want to show how to light an outdoor en from scratch okay
+to begin let's create a landscape create a 1:57:261 hour, 57 minutes, 26 secondslandscape you need to go into landscape editing mode to do so come up to select mode and then select
+landscape finally we're going to go over what some of 1:57:331 hour, 57 minutes, 33 secondsthese modes do so you can press landscape or the shortcut is shift and two so throughout
+this tutorial so far 1:57:411 hour, 57 minutes, 41 secondswe've been in select with a shortcut shift and one now we're going to go into shift and two to edit our landscape we don't
+have a landscape so unreal is 1:57:491 hour, 57 minutes, 49 secondsgoing to ask us if we want to create a landscape we see that we get a bunch of different settings that we can
+pick from generally I don't play with these settings I just leave it as default but 1:57:581 hour, 57 minutes, 58 secondsif you are going to play with those settings I recommend
+you use the templates provided to you from the unreal documentation type in unreal docs 1:58:071 hour, 58 minutes, 7 secondsand then type in landscape technical guide so if you are
+going to change any of these settings I recommend you use the presets for now I'm going to use the 1:58:141 hour, 58 minutes, 14 secondsdefault settings and press create okay great
+now we have a landscape but before we start editing our landscape it's best to lighter scene so we know exactly what 1:58:221 hour, 58 minutes, 22 secondsis happening first off
+let's add in a directional light so add light directional light simply drag that in we 1:58:291 hour, 58 minutes, 29 secondscan leave all the sayings at default except I'm going to
+set to movable since I want to use completely Dynamic lighting to help us know the direction 1:58:381 hour, 58 minutes, 38 secondsof the light and how the shadows will look like
+I'm going to add in a cube temporarily to help us when we're 1:58:451 hour, 58 minutes, 45 secondslighting our scene just like that now obviously we don't want an endless black
+void we want a sky so come up to R 1:58:531 hour, 58 minutes, 53 secondsvisual effects and select the sky and atmosphere to drag it in and automatically it's working if I hold on
+control and L as a shortcut to rotate my 1:59:011 hour, 59 minutes, 1 secondsun notice that the sky updates in real time so as I lower my sun the sky changes colors to represent
+1:59:091 hour, 59 minutes, 9 secondsa morning time or a dust time and I can raise it up to get a more bluish Sky which is pretty amazing that unreal 1:59:161 hour, 59 minutes, 16
+secondsautomatically updates your Sky depending on your Sun's Angle now there are two issues we still have a black void in the 1:59:231 hour, 59 minutes, 23 secondslower half of
+our world and zooming in on the shadow it's pretty dark we're getting a little bit of global 1:59:301 hour, 59 minutes, 30 secondsillumination and bounce lighting from our sun but
+we need lighting from our sky as a whole so to fix that come up to 1:59:371 hour, 59 minutes, 37 secondsadd lights and drag in a skylight now it's recommended for skylights that
+under realtime capture make sure it's 1:59:441 hour, 59 minutes, 44 secondsturned on if you are going to use a skylight with the sky and atmosphere and also while we're at it set
+it to movable since we're only us using Lumen lighting 1:59:531 hour, 59 minutes, 53 secondsAlso let's go fix our black void by adding in some fog to cover that so come a visual
+fix and exponential height fog 2:00:022 hours, 2 secondssimply drag it out like this and we can control where the exponential height fog starts by moving the widget so if I move
+2:00:102 hours, 10 secondsit up we get more fog and if I move it down we get less fog so hopefully you can see what's happening for now I'm going to leave it in the middle right
+2:00:182 hours, 18 secondshere and with that a directional light sky and atmosphere Skylight and fog is 2:00:272 hours, 27 secondspretty much how you light 90% of open World scenes
+in Unreal Engine 5 it is literally that easy and what's amazing 2:00:342 hours, 34 secondsis that all these objects interact with each other successfully so I can move my sun
+around lower it create a really dark 2:00:432 hours, 43 secondsarea lower it to the point where it's night and then raise it slowly the Sun comes above the fog and starts to
+2:00:512 hours, 51 secondsilluminate our world so it's completely real time time of day lighting now that we set the lighting we're able to see 2:00:592 hours, 59 secondsany edits
+we make to our landscape so let's finally go over the landscape editing mode and to do so I need to come up to my mode selector and select 2:01:072 hours, 1 minute, 7
+secondslandscape from select or I can press shift and two as the shortcut so by default it's going to give us this brush 2:01:152 hours, 1 minute, 15 secondsright here and as you
+could probably guess hold down the left Mouse button I'm able to sculpt and raise the terrain 2:01:222 hours, 1 minute, 22 secondsso left Mouse button is to raise a train if I hold
+down shift and left Mouse button then I lower the train and by default we are using the basic sculp 2:01:302 hours, 1 minute, 30 secondsbrush I can even increase the tool strength
+so right now it's at 0.3 of course if I bring it up to one then our sculps will be a lot more tense even 2:01:402 hours, 1 minute, 40 secondsholding down shift I can really lower
+the landscape's terrain if I want to I can control the fall off of this brush 2:01:482 hours, 1 minute, 48 secondswith the brush fall off so bring it to zero will mean there is no
+falloff so I get some insanely harsh sculpts 2:01:562 hours, 1 minute, 56 secondshappening or I can bring it all the way up to one which makes the fall off non existent giving us
+the smoothest brush 2:02:022 hours, 2 minutes, 2 secondsas possible for really faint changes to our landscape now a shortcut to increasing the brush size is to use the 2:02:112
+hours, 2 minutes, 11 secondsright bracket key on my keyboard so right bracket key will increase my brush size and left bracket key will decrease 2:02:182 hours, 2 minutes, 18
+secondsit very similar to photoshop shortcuts so that's the basics of the scull brush as a reminder if you ever want to get back the default values of any property 2:02:272 hours,
+2 minutes, 27 secondsin unre engine go to that property and select the arrow right next to it to reset it back to its default value now 2:02:352 hours, 2 minutes, 35 secondslet's
+go over the smoothing brush and as you can guess if you have some really harsh Landscapes and you want to be 2:02:422 hours, 2 minutes, 42 secondssmoother like right here it was
+really harsh since our falloff was not existent using the smooth brush I can smooth away 2:02:522 hours, 2 minutes, 52 secondsthose bumps in the landscape so pretty great and the
+next brush after that is the flatten brush so 2:03:012 hours, 3 minutes, 1 secondflatten brush is great for tering or maybe you're creating a game for example and let's say right
+here you need a flat 2:03:092 hours, 3 minutes, 9 secondsarea for your gameplay well to get a flat area of course we need to use the flatten brush which will just flatten our
+2:03:162 hours, 3 minutes, 16 secondslandcape it's also great we're creating Terraces so if I start my flat brush off right here notice how we have a higher 2:03:252 hours, 3
+minutes, 25 secondsTerrace and a lower one and right below that another one so we're very quickly able to create 2:03:332 hours, 3 minutes, 33 secondssome complicated Landscapes
+with just these three brushes and these three brushes are the main brushes generally I 2:03:412 hours, 3 minutes, 41 secondsdon't really touch any of the other brushes except for
+very specific circumstances which we aren't going to be going over in this video now that's Chapter 20: Landscape Material 2:03:482 hours, 3 minutes, 48 secondshow you sculpt a
+landscape but how do I paint a landscape since right now we're using unreal's default material of course landscapes in real life are not 2:03:572 hours, 3 minutes, 57 secondsmade
+out of squares instead they're made up of grass dirt sand rocks and pretty much anything you would expect outside 2:04:052 hours, 4 minutes, 5 secondsnow I'm going to briefly go
+over how to create a very basic landscape material wrate the material under my stuff and call this one 2:04:142 hours, 4 minutes, 14 secondsmcore landscape double click to open it
+up and I'm going to dock it up here so I can switch in between my level and and 2:04:222 hours, 4 minutes, 22 secondsLandscape now the difference between a normal material and a
+landscape material is one node and that is landscape layer 2:04:302 hours, 4 minutes, 30 secondsblend so select it and here we have the layer blend notice how we don't have any
+inputs that's because we need specify 2:04:382 hours, 4 minutes, 38 secondsinputs in the details panel right here so the inputs are essentially going to be layers so you can have a
+grass layer a dirt layer a sand layer and then 2:04:472 hours, 4 minutes, 47 secondswithin your landscape editing mode we'll be able to paint on those individual layers on
+landscape so to add in a layer 2:04:542 hours, 4 minutes, 54 secondsselect your layer blend and under layers click on the add button and make sure you click on the triangles to see
+the 2:05:022 hours, 5 minutes, 2 secondsdrop down now for the first layer col us want grass and the second layer call 2:05:092 hours, 5 minutes, 9 secondsthis one dirt now this is
+just for demonstration so it's not going to look very good but to get the point across let's go find a grass texture and a dirt 2:05:182 hours, 5 minutes, 18 secondstexture under
+starter content textures and I'm going to use tore 2:05:272 hours, 5 minutes, 27 secondsground also for dirt looks like we don't have a dirt so I'm just going to use the metal rust
+2:05:352 hours, 5 minutes, 35 secondstexture because that does look like dirt and it will get the point across so drag in metal rust as our dirt Now hook up 2:05:452 hours, 5
+minutes, 45 secondsgrass right there and dirt and I'll put these into base color and let's press apply 2:05:522 hours, 5 minutes, 52 secondssave everything jump back into landscape
+examples and now to apply the landscape material to our landscape we can't just drag our material onto the landscape 2:06:012 hours, 6 minutes, 1 secondlike that instead in the
+details panel scroll down and get landscape material and drag on the landscape material to 2:06:092 hours, 6 minutes, 9 secondsthe slot right there and let go but we get a really
+weird black texture since we need to specify where these layers 2:06:172 hours, 6 minutes, 17 secondsare right now unreal isn't picking any layers so it's just defaulting to Black
+hop back into your landscape mode by 2:06:252 hours, 6 minutes, 25 secondspressing shift and two and within paint we have our layer so we need to create our layers and store them
+somewhere within our content drawer so to create a 2:06:342 hours, 6 minutes, 34 secondslayer click on the add button and you want to select weight Blended layer normal so select
+that it's going to ask us to create a new landscape layer info 2:06:422 hours, 6 minutes, 42 secondsand it's going to automatically create a new folder for us where our map is
+located called our map name and shared Assets Now we could also create a new 2:06:512 hours, 6 minutes, 51 secondsfolder by right clicking and going new folder or we can pretty
+much save this anywhere else in our project but I'm just going to leave it as default value 2:06:582 hours, 6 minutes, 58 secondsand also leave it at the default name it's
+generating which is grassor layer info click save now we have our layer right there and we can see our grass has 2:07:062 hours, 7 minutes, 6 secondsbeen applied to our landscape
+let's do the same thing for dirt by clicking on the plus button and going wait Blended layer normal select that and for 2:07:152 hours, 7 minutes, 15 secondsdirtcore layer also
+click on Save at the same location so now we have two layers layers in a folder that's right next to 2:07:232 hours, 7 minutes, 23 secondsour maps and go to save all now obviously
+this landscape is too shiny so jump back in mcore landscape hold down 2:07:312 hours, 7 minutes, 31 secondsone and left click to bring a constant scal or parameter and give it a
+value of one so we have complete roughness to get rid of that shine press 2:07:392 hours, 7 minutes, 39 secondsapply and our landscape is looking better but I also think we should
+add in normal maps to give the texture a little 2:07:472 hours, 7 minutes, 47 secondsbit of bump to it so come back into our landscape material and press control and space under
+2:07:542 hours, 7 minutes, 54 secondstextures so starter content textures let's find where the grass is which is right here drag out a normal map and 2:08:022 hours, 8 minutes, 2
+secondslet's find where the normal map is for rust and that is right there and drag that out so I want to blend between our 2:08:102 hours, 8 minutes, 10 secondsnormal Maps just
+like how we're blending between the base colors and I can do that by copying and pasting my layer blend which I can do with control and D 2:08:172 hours, 8 minutes, 17 secondsto
+duplicate and plug up the normal map right there and plug up the rust normal 2:08:252 hours, 8 minutes, 25 secondsmap right there and put those both in a normal so now we have two
+layer Blends which are sampling from the same exact layers that we just created in our 2:08:332 hours, 8 minutes, 33 secondslandscape editing mode and press apply now let's jump
+into 2:08:412 hours, 8 minutes, 41 secondsdirt and lower the brush Sid just a little bit see the tool strength is at 0.3 holding that left Mouse button I'm 2:08:492 hours, 8
+minutes, 49 secondsnow able to blend in between dirt and grass one thing I like to do whenever I'm creating my landscape is to 2:08:562 hours, 8 minutes, 56 secondsget a human
+reference that's why I'm able to compare the size of my landscape next to human and this is especially helpful since one thing I want to do 2:09:042 hours, 9 minutes, 4 secondswith
+M Landscape is add in texture tiling but it's hard to know how much I should tile this texture when there isn't a human reference so to get a 2:09:132 hours, 9 minutes, 13
+secondshuman reference you want to come up to add and add feature or content pack and select the third person we can see that 2:09:212 hours, 9 minutes, 21 secondsthere's a
+mannequin right here which we're going to be using as our reference and select add to project so this will 2:09:292 hours, 9 minutes, 29 secondsadd a bunch of new assets to our
+project and specifically I want to use the Assets in character 2:09:372 hours, 9 minutes, 37 secondsmannequins meshes and we can do skm unor Manny so drag that out to get a human
+size 2:09:462 hours, 9 minutes, 46 secondsreference to compare our landscape textures to and we can place him right 2:09:522 hours, 9 minutes, 52 secondsthere so this human if I
+zoom in on the grass we can see that probably the grass 2:10:002 hours, 10 minutesis a little bit too small so let's fix that jump back into our landscape material and the way we
+change the tiling of any textures is the exact same 2:10:092 hours, 10 minutes, 9 secondsway we did with mcore Master material so we grabbed the texture coordinates and we
+multiplied it by a parameter value so 2:10:172 hours, 10 minutes, 17 secondswe were able to edit it in the instance of this material now I could recreate this from scratch for
+mcore landscape or 2:10:242 hours, 10 minutes, 24 secondsI can highlight all of that press contrl and C go back into mcore landscape and control and V it now I can plug this up
+2:10:332 hours, 10 minutes, 33 secondsto grass and also I want to plug this up to the normal map of grass which is right here so if you remember both this 2:10:412 hours, 10
+minutes, 41 secondstexture and this texture handle grass since they're both being fed into the grass layers of the layer blend node so 2:10:492 hours, 10 minutes, 49 secondspress
+apply and we won't notice any changes since we have to create a material instance of our landscape and apply to the landscape so right click go 2:10:582 hours, 10 minutes, 58
+secondscreate material instance and drag this material instance onto our Landscapes with the landscape selected so just do 2:11:062 hours, 11 minutes, 6 secondsthat and then double
+click on our instance let's undock it and bring it into the maps right 2:11:132 hours, 11 minutes, 13 secondsthere click on size and I want to increase the size of 2:11:202 hours,
+11 minutes, 20 secondsmy texture by decreasing the thaan so instead of one let's try 2:11:262 hours, 11 minutes, 26 seconds0.5 okay that looks better maybe even 0.3 okay I really
+like 2:11:332 hours, 11 minutes, 33 seconds0.3 so this was beforehand at one and now this is the tiling at 0.3 which makes the landscape look 2:11:412 hours, 11 minutes, 41
+secondsbetter now I also want to add in tiling features for our dirt so I can highlight 2:11:492 hours, 11 minutes, 49 secondsthis press contrl c contrl v V and paste it right

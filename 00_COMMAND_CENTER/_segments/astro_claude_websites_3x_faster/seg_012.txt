@@ -1,0 +1,224 @@
+and what they do because Claude 1:33 Code is designed so it knows what tool 1:35 to use and when automatically, but it is 1:38 good to know the kinds of things that 1:39 you can do
+out of the box. So, I will 1:41 leave this link down below the video. 1:43 All right, then. So, let's try doing 1:45 something that requires permission, like 1:47 editing a file.
+I'm going to ask Claude 1:49 code to add another theme variable to 1:51 the CSS file called highlight, which 1:53 needs to be a pastel yellow color. I've 1:55 also referenced the
+global CSS file 1:57 right here as well for context. And when 2:00 we send this off, as soon as Claude Code 2:02 figures out that it needs to edit a 2:03 file, it's going to ask
+our permission 2:05 to do it. Okay, so now it's edited the 2:07 file, or rather it wants to edit the 2:08 file, it's asking us right here, do you 2:10 want to make this edit to
+global.css? 2:13 So, we have three options. We can select 2:14 yes at the top, no at the bottom, and 2:17 you can give further instruction if you 2:19 want to, or this middle
+option, yes, and 2:21 don't ask me again this session. So, 2:22 we'll go through that in a second, but 2:24 for now, I'm just going to select yes to 2:26 give it permission to make
+this edit. 2:30 And because it's making multiple edits 2:31 to the file, it's asking me to make 2:33 further changes. So, it changed one 2:35 line, then it's going to somewhere
+else 2:37 in the file, and it's making another 2:39 edit. So, again, I'm going to press yes. 2:42 And it looks like it wants to update a 2:44 third time. So again, we're going to
+uh 2:46 press yes. And now it's all done. So for 2:49 a simple set of edits there to just a 2:51 single file, we had to grant permission 2:53 three times. Right now, let's try
+doing 2:56 a commit using the bash tool. So I'm 2:58 going to ask clause code this time. Can 3:00 you make a commit? Like so. And this is 3:04 going to do a few things. It's going
+to 3:05 add the files to the staging area, then 3:08 make the commit with a commit message. 3:10 So you can see right here it wants to 3:12 use bash. It's looking for any changes
+3:18 and then eventually it wants to use this 3:20 command get add. Now this time when 3:23 claude code asks for permission I'm 3:25 going to choose this second option which 3:26
+is yes and don't ask me again for git 3:28 add commands. Now if I choose this 3:30 option then it's going to carry on and 3:32 do this git command and it's also going 3:34 to
+create a new file called 3:35 settings.local.json 3:37 inside a do.claude claude folder in the 3:39 project. And inside that file, there's 3:41 going to be a permissions object
+with a 3:43 property inside it called allow. And 3:46 that allow property should be an array 3:48 of allowed commands for the project. 3:49 Meaning, if Claude Code tried to run
+3:52 this bash command again in the project, 3:54 it wouldn't need to ask for permission 3:56 because we've allowed it here. So, as 3:58 Claude Code asks you for permission to 4:00
+do different things, you can select that 4:02 second option to add the command to the 4:04 allowed list inside the settings file. 4:07 You can also manually add commands in 4:09
+there yourself as well. And this would 4:11 just be for your workflow, by the way. 4:13 You wouldn't commit this file and push 4:14 it up. Something else you can do is 4:17 press
+Alt and M on Windows. It might be 4:19 control and M on a Mac. And that's going 4:21 to turn on this accept edits feature. 4:24 And now when you ask Claude Code to make 4:26
+changes, it's not going to ask for 4:28 permission to do that, to edit your 4:30 files for this chat session. If you 4:33 start a new session, it will ask you 4:35 again until you
+turn this feature on. 4:37 You can turn it off again by hitting Alt 4:39 + M twice. So then that's a quick 4:42 breakdown of tools, permissions for 4:44 those tools, and how we can
+edit those 4:46 permissions for the project inside the 4:48 settings file. Next up, we're going to 4:49 look at how Claude Code can plan and 4:52 think for more complex tasks.
+Claude Code0:01 Okay, so in this lesson we're going to 0:03 talk about two things that Claude Code 0:04 can do. Planning and thinking, which are 0:06 both two very different
+things. Thinking 0:08 is when you ask Claude code to think 0:10 about a solution before writing any 0:11 code. And planning is when Claude puts 0:13 together its own plan of action
+on how 0:15 it intends to implement some features 0:17 and asks you to approve it. So let's 0:20 start with planning. And you might have 0:22 caught a glimpse of this at the end of
+0:23 the last lesson where we used Alt plus M 0:26 to cycle through the autoedit option 0:28 down here. So, if I press AltM once, I 0:31 turn on the accept edits feature. But if
+0:33 I press it twice, we go into the 0:35 planning mode instead. Now, planning 0:37 mode is good for when you're giving 0:38 Claude code a task which has a wide 0:40 breadth of
+changes over several 0:42 different files. But where individually 0:44 each of those changes might not 0:46 necessarily be complex. They could be, 0:48 but maybe not. Still, the
+scope of those 0:50 changes might be quite wide. And with a 0:52 plan, it makes easier for Claude Code to 0:55 stay on track and complete each task in 0:57 order. So then let's
+keep planning mode 0:59 on and we're going to ask it to do the 1:01 following. Can you make a custom 1:04 component for an avatar? No pick only 1:06 initial and find any places in
+the 1:08 project where it can replace avatar like 1:11 templates. So I'm going to press enter 1:13 now and see what it comes up with. 1:16 So first of all, it's analyzing the 1:17
+codebase to understand where an avatar 1:19 component could be useful. So it's 1:21 searching things. It's reading different 1:23 files. 1:27 All right. And now it's come up with a
+1:29 plan right here. So if we scroll to the 1:31 top, you can see it's discovered avatar 1:34 like implementations in the blog system 1:36 in a few different places in the blog
+1:38 post cards and also in recent activity 1:40 in the sidebar. So it's detected those 1:43 and then it's proposing this avatar 1:45 component. So it's in the correct place 1:47
+inside the UI folder, then an avatar 1:50 folder, then avatar.tsx. 1:52 So, it's going to have the initial based 1:54 avatar, which is going to be the first 1:56 letter from their
+name. Multiple sizes, 1:59 color variants, consistent styling. So, 2:01 it's kind of following the same pattern 2:02 as the button component, which is nice. 2:06 So, for the
+implementation plan, it's 2:08 going to first of all create the avatar 2:09 component, then replace the existing 2:12 avatar code in the blog post cards, and 2:15 it even specifies
+exactly where it's 2:17 going to do that for us. Then it says 2:19 it's going to work on the blog sidebar 2:21 and it's going to add the avatar to 2:23 individual blog posts as
+well inside the 2:26 blog post details page. Then it's going 2:29 to create a test file to follow the 2:31 existing button test patterns so it can 2:33 be tested on the avatar
+component as 2:35 well. And then we're going to add a link 2:37 to the avatar preview in the header 2:40 navigation. So you can go ahead and 2:43 accept this plan or you can accept
+the 2:46 plan but then keep manually approving 2:48 any edits or you can say no and keep 2:51 planning and provide feedback for the 2:52 plan so it adjusts the plan. So I'm 2:55
+going to select the first option up here 2:57 which is yes and auto accept edits. 3:11 Okay. So down here it is saying it wants 3:13 to run this bash command npm run test 3:16 and
+I want to select the second option 3:18 which is yes and don't ask me again for 3:20 npm run test commands. And when I do 3:22 that, it should automatically go into 3:25 the
+settings.local file right here, 3:27 which we can see it does. Awesome. 3:39 All right. So, this time it's trying to 3:40 link the file. And again, I'm going to 3:42 choose the
+second option down here. 3:52 Okay. And then finally, it looks like 3:54 it's done. So, it's checked off 3:55 everything from the plan it created. All 3:58 the tests are passing.
+And if we close 4:01 this off and take a look over here, we 4:03 should be able to see that new avatar 4:05 folder. And okay, so it's actually 4:08 created a full page for the
+avatar. Now, 4:11 maybe that was in the plan and I didn't 4:13 fully understand it. I thought it was 4:14 just going to add it to the preview 4:16 page. But you see, this is where
+4:17 sometimes AI can go wrong. Claude Code, 4:20 Copilot, whatever you're using. So, it's 4:22 important to keep it on track. Either 4:24 way, it doesn't so much matter for this
+4:26 particular task. Um, it's just to 4:28 preview it after all. And I can delete 4:30 this page afterwards. But you can see 4:32 we've got this component folder down 4:33 here,
+avatar. We've got the test file 4:35 and the avatar component itself. So, 4:38 we've got the default size right here 4:40 set to medium. The variant is gradient. 4:42 But we have
+these different variant 4:44 options up here in different sizes as 4:45 well for the props. Um we have the size 4:48 classes, the variant classes, and then 4:51 down here we have
+the avatar itself. 4:54 Okay. So let's see if this works in the 4:56 browser. All right. So you can see added 4:58 the avatar page and the link to the 5:00 header. So it did get a
+little bit 5:02 trigger happy. And now if we take a look 5:04 down here, we can see all the different 5:06 variants that we have, the different 5:07 sizes, even use cases down
+here. So I 5:10 think this is all really really nice. 5:13 It's created that component and shown us 5:15 different ways we can use it. Now if I 5:18 go to the actual blog part of
+the 5:20 website, you can see it's now using that 5:21 avatar here. It's using it down here as 5:24 well inside recent activity. And if I 5:27 was to select an individual blog like
+5:30 this one right here, you can see we have 5:31 the avatar on the blog details as well. 5:34 So, the only thing it did really that I 5:36 didn't want it to do was place the 5:38
+avatar link up here and create a full 5:40 page for the avatars when I specified in 5:43 a claw.md file that they should go 5:45 inside the preview uh file. So, maybe I 5:48 wasn't
+specific enough. Maybe I looked 5:50 over the plan too quickly. I don't know. 5:53 But this is easy to rectify. I can just 5:55 delete these pages, no problem. So I 5:57 just told
+claw code to remove the avatar 6:00 page and instead put all of the samples 6:02 inside the preview page and it's gone 6:04 ahead and done that which is good. I've 6:06 also
+updated the claw MD file with this 6:09 more specific instruction at the bottom 6:12 which says now when making new page 6:13 components always had a link to that 6:15 page in the
+header. So it did this for 6:17 our UI component. So I added this bit on 6:19 only do this for page components not UI 6:22 or other dropin components. So, I guess 6:24 this is a
+lesson in instructions and 6:27 also in how you have to be specific in 6:30 what you want Claude Code to do. Okay, 6:32 so that all work pretty well and I think 6:34 having plan
+mode turned on probably 6:36 helped Claude Code complete the task 6:38 correctly. Now, it may still have done 6:40 so without planning mode on, but when it 6:42 is turned on, I
+find it's worked to stay 6:44 on track more for tasks with a wider 6:47 scope. And arguably the scope wasn't 6:49 huge for this task, but it still 6:51 involved making a component,
+testing the 6:53 component, looking for places it can be 6:55 used, editing those files, etc. Anyway, 6:59 now let's look at thinking mode. Now, 7:01 thinking mode is good when you
+want 7:03 claude code to work on something that 7:04 includes more complex logic. So, not 7:07 necessarily a wide scope like planning 7:09 mode is for. It could be quite a narrow
+7:12 scope, but one where the logic is more 7:14 complex. For example, I might want to 7:16 implement a comment system for the blog 7:18 where users can comment on the blogs. 7:21
+And that would include perhaps some 7:22 thought about exactly how it should be 7:24 done, what services, if any, should be 7:27 used, what React components need to be 7:29 made,
+what additional pages might need 7:31 to be made, what about live updates and 7:33 how does this get structured and fit 7:34 well together in this application. So 7:37 for
+something like this, you would turn 7:39 on extended thinking mode, which does 7:41 consume more tokens, but it allows the 7:43 model to reason and think more about how 7:46 to
+complete something in a way that 7:47 actually works. Now, to be honest, we're 7:49 entering into the realms of vibe coding 7:51 when we ask the AI to implement a whole 7:54 system
+like this. And I would personally 7:56 break this down into smaller chunks or 7:58 tasks and work on each one one at a time 8:01 with Claude code so I could more easily 8:04 guide
+the AI to do what I want it to do. 8:07 But for the sake of this lesson and to 8:09 demonstrate thinking mode, we'll run 8:11 with this example. So let me paste in 8:13 this prompt
+right here first of all 8:15 which says implement a comment system 8:17 into the application where users can 8:20 authenticate and then comment on blog 8:22 posts. think hard about
+this 8:24 implementation, including the database, 8:26 schema, authentication services, 8:28 moderation, and real-time updates. I'm 8:31 also going to keep planning mode on so I
+8:33 can see the plan that Claude code makes 8:35 as well. Now, I'm triggering think mode 8:38 in this prompt by using the word think 8:41 right here. And whenever Claude code 8:43
+sees that in your prompt, that word, 8:45 it's going to use extended thinking 8:47 mode. So then, let me press enter now 8:49 and we'll see what Claude code does. 8:54 All right.
+So already in this kind of 8:57 gray color, you can see it's thinking 8:59 and this is the thinking process that it 9:01 has kind of behind the scenes. So by 9:03 using that think
+keyword in our prompt, 9:05 we've enabled this thinking mode. 9:12 All right. And now it's come up with the 9:14 plan. So that took a little bit longer, 9:16 but it's because
+Claude Code was 9:18 thinking. So, this is the plan and it's 9:20 quite extensive. There's a lot of steps 9:22 involved. All right. And anything in a 9:25 kind of faded gray up
+here. And this is 9:28 all of Claude's thinking. And it also 9:31 prefixes that if you like with this 9:33 little thinking uh text right here. So, 9:35 every time it's thinking
+about 9:36 something, you'll see that. All right. 9:38 Thinking. Thinking. So, it thinks quite 9:41 a lot. So, then I'm not going to go 9:43 ahead with these changes because that
+9:44 would drastically change my project 9:46 right now. And I'd also have to set up 9:48 some external services as well. And 9:51 again, because I wouldn't normally let 9:52 AI
+completely loose on tasks like this, 9:55 I don't know which direction it's going 9:56 to go off in. Instead, I would break it 9:58 down into logical steps. Maybe taking 10:00 each
+of these checkpoints in the plan 10:02 and working on them individually. That 10:04 way, I can stay in a loop, check the 10:06 code in small steps manually, and make 10:08 changes
+myself where I need to along the 10:11 way. Doing everything at once sometimes 10:13 makes things harder in the long run. And 10:15 I find that pretty soon you're out of 10:16 the
+loop and you get sucked into this 10:18 kind of full-on vibe coding experience 10:20 where you're just asking Claw to fix 10:22 everything and ignoring the code 10:24 completely.
+So, I'm going to choose not 10:26 to do this now. But just very quickly 10:28 before we finish this video, I want to 10:30 mention that Claude Code does have 10:32 different levels
+of thinking that you 10:33 can activate. In the example I just 10:36 used, I said, "Think hard." But you can 10:38 also just say, "Think," and that's going 10:40 to trigger a
+smaller amount of thinking 10:42 and reasoning. Likewise, you can go the 10:45 other way by saying, "Think harder," and 10:47 that's going to crank the thinking up 10:49 even more.
+And if you want to go all in, 10:51 then you can ask Claude to ultra think, 10:53 which activates the hardest thinking 10:54 mode it has. But again, remember that 10:57 thinking
+consumes more tokens, and the 10:59 harder you ask Claw Code to think, the 11:02 more tokens it's going to use up. All 11:04 right then. So now we know a little bit 11:06 about
+planning and thinking. Next up 11:08 we'll talk about commands. Claude Code Tutor0:01 Okay, then my friends, in this lesson, 0:02 we're going to talk about something 0:03 called
+slash commands, which I'm just 0:05 going to call commands from here on out 0:07 because it's much shorter. And we're 0:08 also going to make a custom command as 0:10 well. So
+then, we've already seen and 0:13 used several built-in commands that 0:15 Claude Code gives to us out of the box. 0:17 And we've done that by typing a slash, 0:19 then whatever
+the command name was, for 0:20 example, clear to clear the context, or 0:23 initialize 0:24 a claw.md file. Now if you just type 0:27 slash on its own then you're going to 0:29 see
+a list of all the available commands 0:31 that come with claude code and you can 0:33 key up and down to go through these. So 0:35 we've got add dur to give claude access 0:37 to
+another working directory which in 0:39 essence it allows multiple repository 0:42 development then from one location which 0:44 could be useful if you have related 0:46 projects
+like a backend and a front end. 0:49 We've got forward/ aents for managing 0:51 sub aents which we will see later on in 0:53 the course. There's clear and compact 0:55 down here
+which we've used already. 0:57 There's a model one which if we use 0:59 allows us to choose which model we want 1:01 to use. I've got Sonic 4 selected at the 1:03 moment. And also
+you can escape these 1:06 screens by just hitting the escape key. 1:09 There's also a permissions one somewhere 1:12 which we can use to add permissions for 1:13 different tools in
+Claude Code for this 1:15 project. And that adds those permissions 1:17 to the local settings file for you when 1:19 you set them up this way. I normally 1:21 just manually add
+them myself. But 1:23 anyway, I'm not going to read all these 1:24 different commands now because there's 1:26 way too many and we will be using some 1:27 of them in future
+lessons. But 1:29 definitely take a look through and have 1:30 a little play around with them. The 1:32 thing I'd like to focus on in this 1:34 lesson is making a custom command
+which 1:36 we can add to this list. And we would 1:38 make a custom command for common tasks 1:40 we might perform in the project. For 1:42 example, in this project, I might be
+1:44 making a lot of UI components. So I 1:47 could make a command for generating 1:50 those components which includes a 1:52 detailed prompt. Any context needed and 1:54 any other
+specific details I can pass to 1:56 the AI model. Then whenever I need to 1:59 make a new UI component, I can just use 2:02 that custom component command to do it. 2:04 So let's
+give this a shot. The first 2:06 thing we need to do is make a commands 2:08 folder inside this.claw folder. And if 2:10 you don't see that claw folder already, 2:12 you can go
+ahead and make that too. Then 2:14 inside the commands folder, we can make 2:16 a new markdown file called whatever we 2:18 want the command to be named. For 2:20 example, I'm
+going to call it UI- 2:22 component.mmd. 2:25 All right. So now inside this file, we 2:27 can give Claude code whatever 2:29 instructions that we want to make a new 2:31 UI
+component. So I could tell Claude 2:33 where the file should go, the naming 2:36 convention, any component variants I 2:38 want, how to test the component, etc. 2:40 For now, I'm
+just going to paste in a 2:42 simple set of instructions which tells 2:44 it to make a new single UI component in 2:47 the components folder and then in the UI 2:50 folder. And I
+say that the component 2:52 should be a functional component with 2:54 the name in Pascal case. I'm also 2:56 telling it to add the following variants 2:59 and sizes for the
+component using the 3:01 colors from the theme variables in the 3:03 CSS file. And notice how I'm using the 3:05 at sign to load in another file as 3:07 context here. You can do
+that in these 3:09 custom uh custom commands. Then I tell 3:13 Claude to make a test file for the 3:15 component as well. And I want it to run 3:17 the test until they all pass.
+Finally, I 3:20 ask it to add the component to the 3:22 preview page so that we can preview it 3:24 in the browser when we're done and not 3:26 to add it anywhere else in the
+project 3:28 because sometimes Claude can get giddy 3:30 and it wants to use this new stuff 3:31 everywhere else, too. So, by adding 3:34 this, it's just going to get added to 3:35
+the preview page. And all this, by the 3:37 way, is just like a really big prompt. 3:40 When we use a custom command, claude 3:42 code essentially pulls in this markdown 3:44 file
+and it uses it as a prompt. All 3:46 right, so let me close this file. And we 3:49 also need to restart a new Claude 3:51 session for it to pick up on this new 3:53 tool that we've
+just created or this new 3:54 command rather we've just created. So 3:56 exit out of the current session, then 3:58 start cla back up again. All right. So 4:01 now if we do forward
+slash, we should 4:03 see the new command that we just 4:05 created. this one right here, UI 4:07 component. So, I'm going to tap on that 4:09 and then I'm just going to press
+enter 4:11 to run this command. And notice though, 4:14 nowhere in the command did we say what 4:17 kind of UI component to make. So, it's 4:20 basically just handing the reins
+over to 4:22 the AI to make whatever component it 4:24 sees fit. 4:28 All right, so we can see that it's 4:30 decided to create a card component. So, 4:33 let's go ahead and let it
+do this. If 4:34 you wanted it to do something different, 4:36 you could say no and tell clog what to 4:38 do differently. We're just going to 4:40 press yes and don't ask again
+for make 4:42 the commands in this project. 4:47 Okay. And we're going to allow it to 4:48 make these changes. 4:53 And now it wants to run this bash 4:55 command to test out the
+component. 5:02 Okay, so it looks like it's all done. 5:03 It's created the card component, the 5:05 test file. It's got five variants, three 5:07 sizes, and all the tests have
+passed. 5:11 It's added the preview to the preview 5:12 page as well. Let's just check over here 5:14 that everything is added before we 5:16 preview this in the browser ourselves.
+5:17 So, if we go to UI, we can see the card 5:20 folder and the card file over here. So, 5:22 this is the component. And again, I 5:24 would normally just go through this 5:26
+thoroughly, make sure it is coded how I 5:28 would want it. Same for this file. any 5:30 content that Claude generates, I would 5:32 just have a look through. Then if we go 5:34 to
+app and then go to preview, we can 5:37 see we've got changes in the page file. 5:40 So somewhere in here, there should be a 5:43 new card component probably right at the 5:45
+bottom. So let's scroll all the way 5:47 down. 5:49 It's a big file now, but there we go. We 5:51 can see the different variants of the 5:53 card component. So now let's see what
+it 5:55 looks like in a browser. All right. 5:57 Right. So, I'm just on the preview page 5:59 and if we scroll right down, we should 6:01 hopefully see these cards. Yeah, we do.
+6:03 So, we can see these different 6:04 variations as well. They look pretty 6:06 nice to be honest. So, we've got 6:07 primary, secondary, success, warning 6:10 card, danger, and
+they've all got a 6:11 little hover effect as well, which I 6:12 quite like. We've got different sizes, 6:15 interactive cards. Wow, that's quite 6:17 nice. Uh, disabled card, uh,
+feature 6:20 cards with little icons on them. So, 6:23 it's done a pretty extensive job here 6:25 and I could easily see myself using 6:27 these kind of cards in this project. 6:29
+Let's just check what they look like in 6:31 dark mode. So, let's click on this. And 6:33 if we scroll right down, yeah, we've got 6:35 dark mode variations as well. Awesome. 6:39
+All right. So, that worked and it looked 6:41 okay. But currently, whenever we use 6:43 this command, we're getting a mystery 6:45 component. We don't know what it's going 6:47 to
+be and we're passing that decision to 6:49 cla code. Instead, when I use this 6:51 command, I'd like to specify exactly 6:53 what UI component that I want. So, for 6:55 example, I
+would say forward/ UI 6:57 component and then something like card 6:59 with maybe a brief description as well. 7:01 And we can do that using command 7:03 arguments. So, if we open
+up the command 7:06 file, I'm going to add this little 7:08 section at the top of the file. And 7:10 there's a few things we need to go over. 7:11 First of all, we've got this
+front 7:12 matter at the top of the file, which is 7:14 a markdown feature that lets us supply a 7:17 kind of metadata for the file. In this 7:19 case, we've got two properties
+inside 7:20 the front matter. Description, which is 7:22 what the command does, right? And an 7:24 argument hint to tell us what kind of 7:26 arguments are expected when we run
+this 7:29 command. Now, both of these are going to 7:31 show up in the chat interface when we 7:33 use the tool to remind us of what this 7:35 command does and what it needs. Next
+up, 7:37 I've added this new context section 7:39 where we instruct Claude code to pass 7:41 this dollar sign arguments variable to 7:43 get some values. Now, this arguments 7:46
+thing is how Claude code captures 7:47 whatever arguments we pass into the 7:49 command when we call it. And it doesn't 7:51 matter whether we pass one, two, or five 7:54
+arguments. They're all caught within 7:55 this single dollar sign arguments value. 7:58 In our case, I want to be able to pass 8:00 two arguments, a name and a summary of 8:03 the
+component we're making. So, we 8:05 somehow need to pass those two arguments 8:07 from the arguments value. Now, I've not 8:10 seen any official guidance on how to 8:12 pass
+multiple values from this on the 8:14 docs or anywhere else, but I found the 8:15 following method works really well. I 8:18 use square brackets to essentially 8:20 create
+variables with values where the 8:22 name of the variable is the thing in the 8:23 square brackets and the text on the 8:25 right is telling Claude code what to 8:26 store for
+this. This is actually how we 8:29 make reference links in markdown, but I 8:31 also find it works well for this kind of 8:33 thing. So, we're telling Claude code to 8:35 try and
+pass the arguments to find and 8:37 store these values, which means we can 8:39 then use them down here in the 8:40 instructions. 8:42 So, I'm now just going to highlight all 8:44
+of this task part, delete it, and 8:46 replace it with a new instruction 8:47 incorporating those argument values. And 8:50 I still tell it to make a UI component, 8:52 but this
+time I tell it to use the name 8:54 and summary values. first for the folder 8:57 and file names, second for the component 8:59 name, and lastly I tell it to reference 9:01 the
+summary when making the component 9:03 itself. So now when we call this command 9:05 from claude code, we can pass in the 9:07 arguments which then get passed and then 9:09 used by
+the AI to come up with the 9:11 component using those values. Before we 9:13 do that though, we need to exit Claude 9:16 and restart it again because we made a 9:18 change to the
+command file. So exit out 9:20 and then fire it back up. 9:23 Okay, then. So now if I press forward 9:26 slash we can see UI component and it 9:28 tells us create a UI component in
+this 9:30 directory. I'm going to press tab on 9:32 this and you can see it's given us a 9:34 hint for the arguments it expects now. 9:37 So let's make maybe an icon component.
+9:40 So it should be called icon. Then I'm 9:42 going to do a pipe to do the second 9:43 argument. And I'll just say an icon 9:47 component for showing icons with a 9:53 circular
+background. Let's see what it 9:56 does for that. And let's press enter. 10:02 All right, then. So, it's asking to make 10:04 edits. So, I'm going to select the 10:05 second option
+and press enter. 10:17 Okay, so it looks like it's done 10:18 everything. So let's close this and also 10:21 this and see what files it's created and 10:24 changed. If we take a
+look inside the UI 10:27 folder, we can see now we've got an icon 10:28 folder. We've got the test file and the 10:30 component itself. So we have the 10:34 variants that we can
+pass in the size. 10:37 We have the on click. We also have a 10:39 class name as well. They're the icon 10:40 props. Okay, let's have a look around 10:43 here. So, the child I
+think will be a 10:46 icon itself, I think. Let's have a look 10:48 what it's done inside the preview page. 10:52 Let's scroll right to the bottom where 10:53 the icons are. Yeah,
+it's added them. 10:55 Okay, so we have these little emojis 10:57 embedded into the icon. So, I guess 10:59 whatever icon we want, we would output 11:01 it here, whether it's an
+emoji or some 11:03 icon from a package that you might use. 11:07 All right. So, I'm just on the preview 11:08 page again and I'm going to scroll right 11:11 the way down. All
+right. So, we can see 11:13 these icons right here and they look 11:15 okay. I think instead of using emojis, I 11:19 would probably have used some icon 11:21 package. I would have
+preferred that. 11:23 And to be honest, that's something I 11:24 would have just gone back and told 11:25 Claude and it could have edited those 11:27 files again and it would have
+updated it 11:30 to make it work correctly as I see fit. 11:32 And that's the importance of staying in 11:33 the loop, looking what it's doing, and 11:35 not just accepting
+everything it does by 11:37 default. 11:40 And in fact, I couldn't help myself. 11:41 I've just been back to the code. I've 11:43 asked Cloud Code to change it and use an 11:45
+icon library instead. And if we take a 11:47 look at these now, I'm hopeful that 11:48 they're going to look a little bit 11:50 better. If we go right down. Okay, there 11:53 we
+go. Yeah, that looks loads better. 11:54 We've got all these different variants. 11:56 We've got different sizes, interactive 11:58 icons. We've got action bars, different 12:00
+ways we can use them. Yeah, they all 12:02 look loads better. Anyway, I think 12:03 that's enough on commands and custom 12:05 commands. And in the next lesson, we're 12:07 going
+to look at MCP servers. 0:00 All 0:01 right then, gang. In this lesson, I want 0:03 to talk about something called MCP and 0:06 MCP servers, which can give Claude code 0:08 the
+ability to connect and communicate 0:10 with external data sources, services, 0:13 and APIs. For example, when I'm working 0:15 with Claude in this project right now, 0:17 it knows
+about my project, and it can 0:19 use all its built-in tools to make 0:21 changes and run bash commands and 0:23 whatnot. But those tools only extend to 0:25 the scope of this
+codebase, right? And 0:27 there's no tools for claude code to 0:28 interact with external data sources, 0:31 third party services or APIs. I can't 0:33 tell it for example to reach
+out to a 0:35 database to analyze my tables or even 0:37 create a new one for me because it 0:40 doesn't have the tools to do that. But 0:41 that's where MCP servers come into
+play. 0:44 So just very briefly, MCP stands for 0:46 model context protocol. It was designed 0:49 by Anthropic who made claude code and it 0:51 defines a way that AI models can
+0:53 interact with external sources. And we 0:55 do this by providing them with 0:57 additional tools and context through MCP 0:59 servers. And different MCP servers come 1:02 with
+different tools to do different 1:03 things and interact with different 1:05 sources. So you can think of an MCP 1:08 server as something you can essentially 1:10 plug into Claude
+code or whatever client 1:12 you're using and then Claude directed by 1:15 the AI model can use whatever tools the 1:17 server provides to interact with some 1:20 external data
+source. For example, the 1:22 Superbase MCP server contains tools to 1:25 do things like list tables, deploy edge 1:28 functions, and even execute SQL 1:30 commands. So, if I
+installed the 1:32 Superbase MCP server, Claude would have 1:34 access to all those tools. And I could 1:36 say to Claude code, read the blogs table 1:39 in Superbase, make an
+interface to model 1:41 the records. And in response, Claude 1:43 would check for any tools it can use to 1:45 do this. And it would find one in this 1:47 Superbase MCP server. It
+would then use 1:49 that tool which is just a function 1:51 defined within the server to reach out 1:53 to the database and find the blogs 1:55 table. It would read it and then
+return 1:57 the format of that table to claude code 1:59 and then using that data claude code 2:01 could decide how to make the interface. 2:03 So when we use MCP servers, it's not
+the 2:06 AI itself or the client like Claude code 2:08 that reaches out directly to these 2:10 external sources. It's the MCP server 2:12 that does that and then it provides 2:14
+claude code or whatever client you might 2:16 be using with the ability to call and 2:18 use those tools. Another MCP server 2:21 called Playright provides AI models with 2:23 the
+tools to open a browser, navigate 2:25 through web pages, inspect elements, 2:27 take screenshots. The context 7 MCP 2:30 server provides tools to get up-to-date 2:32 documentation
+from a lot of frameworks 2:35 and libraries which you can then ask 2:36 Claude code to use when implementing new 2:38 features using those frameworks or 2:39 libraries. And there's
+loads more too 2:41 which you can find on websites like this 2:43 one, pulsemcp.com. 2:45 So definitely check that out. We're 2:47 going to install these two servers right 2:48
+here, context 7 and playright. And over 2:51 the next couple of lessons, we're going 2:52 to put them to use in our workflow. 2:54 First though, how do we actually add the 2:56
+servers? Well, if we take a look at the 2:58 claude code docs on the MCP installation 3:02 section, you can see that we can add 3:03 them locally on our computer or by 3:05
+connecting to them remotely. Now we'll 3:08 be adding the servers locally. So we'll 3:09 be using this option at the top. And the 3:12 way we do this is by using the command 3:14
+claude mcp add and then whatever the 3:16 server name is then the command and any 3:18 arguments. Also if you're on Windows 3:20 then you're currently you'll need to add 3:22 one
+more thing which if we scroll down 3:24 here you're going to see in a big yellow 3:26 warning box and that is to add cmd and 3:29 then forward slash c. So the cmd part 3:31 opens
+the windows command line to run 3:33 the command. The forward/ C part makes 3:36 sure the shell gets closed after it's 3:38 been run. Now, normally when we use an 3:40 MCP server,
+the server docs gives us the 3:44 whole string to copy and paste in a 3:45 terminal, which is then going to add the 3:47 server. But just be aware that you might 3:49 need to add
+the cmd/ cart if you're on 3:52 Windows for servers that use npx. 3:55 Otherwise, it might not work correctly. 3:57 Anyway, let's head back to the context 7 4:00 MCP page and we're
+going to see what it 4:02 says there about the installation. So, 4:05 if we click on this MCP link up at the 4:07 top, it should take us to the GitHub 4:09 page for the server,
+which it does. And 4:11 then, if you scroll right down, we 4:13 should eventually see a bunch of options 4:15 for adding the server to different 4:17 clients. One of those options
+should be 4:19 Clawed Code. So, click on that to expand 4:21 it. And we're going to get a few 4:22 different options. The first two are for 4:25 remote server connections. The one
+at 4:27 the bottom is for a local connection. So 4:29 we say claude mcp add. Then the server 4:32 name which is context 7. Then we have 4:33 this double dash. Then the npx command.
+4:36 So we're going to copy this now and 4:38 paste it into the terminal. And then 4:39 we're also going to make a few edits. So 4:41 then I've pasted this into my terminal 4:43
+already and I'm just going to add 4:44 another few things in. The first thing 4:46 we'll do is we're going to add another 4:48 flag to this just before the double dash 4:50 and
+that is the scope flag. So when we 4:53 add MCP servers with claude code, we can 4:55 add them to three different scopes. 4:57 Project scope where the MCP setup gets 5:00 pushed to
+remotes and everyone working 5:01 on the project can use the MCPs added to 5:03 the project. Local scope which is where 5:06 only you can use the MCP server on this 5:08 particular
+project and global scope 5:10 which is when the MCP is added globally 5:12 to claude code and you can use it for 5:14 any project on your computer. Now the 5:16 default scope is
+local but I want to 5:18 make it a project scope so that we can 5:19 see the MCP configuration here in the 5:21 project directory and mostly I use 5:24 either project or global
+scope. I very 5:26 rarely use local scope. Anyway to add 5:29 this scope we use the scope flag 5:32 followed by project to specify project 5:35 scope. And again this could also be
+5:37 local or global. Now before we go any 5:39 further I will say this. If you're 5:41 running Claude Code natively on Windows, 5:43 it can be a little bit buggy when you're 5:45
+adding MCP servers, at least at the time 5:47 of recording this video. If you're on a 5:49 Mac, then you probably won't have to 5:50 jump through any hoops or workarounds, 5:52 and
+you can just hit enter right now, 5:54 and this would work. If you're on 5:55 Windows, though, you have to do a few 5:57 more things for it to work properly. 5:59 First, we have to
+add the cmd and then 6:02 forward/ C bit just before the rest of 6:04 this npx command like we talked about 6:07 earlier. Secondly, if we run this right 6:09 now, we're going to
+get an error, which 6:10 I'll show you by hitting enter. And that 6:13 error says there's an unknown option Y, 6:16 which comes right after the npx bit. 6:18 Now, the Y flag is for
+auto accepting 6:20 defaults to prompts when some package is 6:23 installed, and it needs to be there in 6:24 this case. So, how do we get around 6:27 this? Well, one solution is
+to run the 6:29 whole thing without the Y flag first, 6:31 which we'll do now. And when we do that, 6:34 it's going to work. and claude code 6:36 makes this MCP.json file in the
+root of 6:40 the project. Now if we take a look at 6:42 that, we'll see this JSON object with an 6:44 MCP servers property inside. And it's 6:46 within this property that all
+project 6:48 level servers get added. So we can see 6:50 this context 7 one right here that we 6:53 just added. And inside that the servers 6:55 configured with these different
+6:56 properties. The type is standard in out 6:58 since this is a local MCP connection 7:00 that we added. The command is cmd and 7:03 that's because on Windows we added that 7:05
+extra cmd part. Then we have some 7:07 arguments including the forward sl bit 7:10 which we also added because we're on 7:12 Windows. Now again if you're on a Mac 7:14 this will
+probably look a little bit 7:15 different and you won't need to make any 7:17 changes. But on Windows because we 7:19 removed that hyphen y flag we should now 7:22 manually add
+this in to the arguments 7:24 array after the npx one. So let's do 7:26 that now and then save the file. Right 7:30 then. So hopefully now that's all going 7:31 to work when we

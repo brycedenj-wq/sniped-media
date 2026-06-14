@@ -1,0 +1,224 @@
+URL, which like I said was this 16:03 endpoint right here. We have our bearer 16:06 off. So when you see API documentation 16:09 where it says that the authentication is 16:12
+authorization and then bearer space 16:13 token, you can actually go in here and 16:15 you can do authentication generic, you 16:17 can do generic type bearer. And then 16:19 when
+you make that API key, all you have 16:21 to do is paste in your API key. You 16:22 don't have to mess with anything else. 16:24 You just paste in your API key and then 16:25 call
+it Vappy. So you know that this is 16:27 Vappy's. And all that you have to do to 16:29 actually get that is you're going to go 16:30 into Vappy and there'll be a section, 16:32 let
+me just open this up, right here, 16:34 called API keys. and you'll just copy 16:36 your private key and then you'll go back 16:38 and end it in and you'll paste it right 16:39 in
+there where I just showed. So now 16:41 that we have all that configured, the 16:42 last thing to do is just send over a 16:44 body. So let me open this up full screen 16:45 so I
+can talk about what this is 16:47 actually doing. So the first thing that 16:48 we need is an assistant ID to say, hey, 16:50 which assistant do you want to make this 16:52 call?
+So if I go back into my Vappy 16:54 dashboard and we go into our lead 16:55 qualifier agent, you can see up top that 16:57 there's a string of letters, numbers, 17:00 dashes,
+whatever. And I can click right 17:01 here that says copy assistant ID. And so 17:04 I copied this and I pasted it right in 17:07 there. Now the next thing that I'm going 17:08 to
+do is I'm going to go to my phone 17:09 number ID and actually say this is the 17:12 phone number that I want that assistant 17:13 to call from. So I'm going to go back 17:15 into
+Vappy. I'm going to go right here 17:16 to my phone numbers and I'm going to 17:18 choose which number I want to use. In 17:20 this case, I'm using the Twilio number. 17:22 Vapy
+will actually give you 10 free US 17:24 phone numbers per account, but you have 17:26 a limit on the amount of outbound calls 17:28 that you can make in your Vappy account. 17:30
+So, if I actually go to my call logs, 17:32 which I forget exactly where that is. 17:34 Here it is. You can see that earlier 17:35 when I was making some calls, I was 17:37 getting
+this error because I was using 17:38 my Vappy number and it said numbers 17:40 bought on Vappy have a daily outbound 17:41 call limit. Import your own Twilio 17:43 numbers to scale
+without limits. And so 17:45 then that's why I had to switch over to 17:46 my Twilio number. But either way, this 17:48 is my Twilio number. All I have to do is 17:50 copy this
+phone number ID. You don't 17:53 actually have to go down here and 17:54 configure an outbound agent in this 17:56 case. So you just copy your phone number 17:58 ID and then you're
+going to come in here 18:00 and paste that right there. Now the next 18:02 thing is which phone number are we 18:03 actually calling? And so we're going to 18:04 go ahead and grab
+that from the form 18:06 submission. So I grabbed that from the 18:07 previous node where we have the phone 18:08 number right here. And what I'm doing in 18:10 this example is
+we're assuming all of 18:12 these numbers are coming from the US. So 18:14 we're manually adding plus one in front 18:16 of the number and then we're throwing in 18:17 that
+variable. So it comes through like 18:19 this on the result panel. So, if you 18:21 were global, you would either not 18:22 hardcode this in or you would have them 18:24 submit
+their country code on the form or 18:26 whatever it is. You would just have to 18:27 tweak that a little bit. And finally, 18:29 here's where the magic really happens. 18:30 The
+assistant overrides section. So, 18:33 this is the variable values that we're 18:34 going to send over to Vappy and it's 18:36 going to replace them. So, you can see 18:37 we have
+lead_ame, lead company_ame, and 18:40 leaders request. And if you remember in 18:43 the system prompt of our lead 18:44 qualification agent, we have those 18:46 variables right
+here. And so it 18:48 basically just fills them in in the 18:49 system prompt when we actually trigger 18:51 that call. So we're sending over the 18:53 name, the company name, and
+the request 18:55 from that form submission. And that's 18:56 how the agent that calls this prospect 18:59 actually knows what their name is and 19:01 that type of information.
+Now, one thing 19:02 I did want to say that I think is a 19:03 pretty important with outbound agents is 19:05 that I did tell Elliot to introduce 19:08 himself as an AI agent. You
+know, hey, 19:10 this is Elliot, an AI agent calling from 19:12 Upit. I think that it's just best 19:14 practice when it comes to AI voice 19:16 ethics. And you could always
+explore a 19:18 situation where if the agent basically 19:20 recognizes that the person's really 19:22 upset or they've requested to speak to a 19:23 human, you could have a
+fallback that 19:25 transfers the call to a human. Okay, so 19:27 what happens now is once we submit that 19:29 request, it calls the number, but the 19:32 output basically just
+says, hey, the 19:34 call has been initiated. It doesn't tell 19:35 us if it's still in progress. It doesn't 19:37 tell us if it's been ended. It doesn't 19:38 give us the
+transcript. That's why we 19:40 have to do this whole flow where we wait 19:42 a little bit and then we check in. And 19:44 then if it's still not done, we pull and 19:46 we pull
+until it's done. So, let me 19:48 break down how this section is working. 19:49 So, the first thing I'm doing is I'm 19:50 waiting. And I just decided to wait for 19:52 like 60
+seconds because typically if 19:54 there's no answer, it'll take about 60 19:56 seconds. And conversations typically 19:58 last at least 60 seconds. But you can 20:00 play with
+that number, of course. Then 20:02 what we're doing is we're checking in on 20:04 the call status. So, I'll open up this 20:06 node and I'm going to break it down 20:07 super
+simply because this one's really 20:08 easy. But first, before I do that, we 20:10 have to go back to the API 20:11 documentation. So this time instead of 20:13 creating a call,
+we're going to be 20:15 getting a call. So this one's even 20:16 easier. So all we have to do is change 20:18 our method to get. We're going to put in 20:19 this new endpoint and
+then put in our 20:21 bearer token, which is really easy 20:22 because we've already done all that. So 20:24 our bearer token is already saved and it 20:26 will be saved forever.
+We change the 20:28 method to get, we put in our URL, but 20:30 then what you'll notice is at the end 20:31 instead of doing colon ID, we have to 20:33 actually drag in the ID of
+the call that 20:35 we just made. So we can just go ahead 20:37 and get that from right over here. And I 20:38 just drag that into the end of my 20:40 endpoint. And then what
+happens is it 20:42 gives us back some information. And you 20:44 can see here that this node ran 10 20:45 times. So if I go to run number one, 20:48 what you can see is that
+basically it 20:50 comes through and it says that the 20:51 status is in progress. But when I go to 20:53 the final run, which was the last one 20:55 that actually ended this
+process, it 20:57 says status equals ended. So that's what 20:59 we're checking for because we're only 21:01 going to move on if status equals ended. 21:03 And so what happens here
+is we have a 21:05 limit basically just because I was 21:06 getting this bug with Vappy where it was 21:08 outputting a ton of information. As you 21:09 can see here, each time it
+was 21:11 outputting like 26 items and I think 21:12 that's just a bug. But what we want to 21:14 do is just keep the first one because 21:15 that's really the source of truth. So
+21:17 I'm limiting to just the first item and 21:19 then we're moving into this if where I'm 21:20 saying, okay, does the status, which 21:22 should be right over here, equal
+ended. 21:26 And if it does, it'll go up the true 21:27 branch. And the true branch continues 21:29 the process. If status doesn't equal 21:31 ended, it goes down the false branch,
+21:33 which will wait for like 10 seconds and 21:35 then check again. And this is where we 21:37 get that infinite polling loop until 21:39 status equals ended. Finally, we have
+Voicemail Check 21:41 one more if check which is basically 21:43 just to say did the agent actually get 21:45 through to the human or did the agent 21:47 get put through to
+voicemail. And what 21:49 happens here is we're doing another sort 21:50 of check which is the ended reason. So 21:53 here you can see that the ended reason 21:55 was the assistant
+ended the call. So 21:57 that's fine. It goes down the false 21:58 branch and we log that row. However, if 22:02 the ended reason equals voicemail, then 22:04 we're going to send
+it up this true path 22:06 and we're going to log it and basically 22:07 just say we need to call this person 22:09 back because we got sent to their 22:11 voicemail. And so, what
+I wanted to show 22:12 you guys real quick is an example I did 22:14 earlier where I let it go to voicemail 22:16 and show you what that looks like in 22:17 this if, we can see
+that if I go on this 22:20 left-hand side right here, status equals 22:22 ended, ended reason equals voicemail. 22:24 And that's why I got sent up the true 22:26 branch and went
+this way instead of this 22:28 way. Now the other thing that I didn't Vapi Structured Outputs 22:30 yet cover which I owe you guys an 22:32 explanation about is the structured
+22:34 output because what you can see is in 22:36 the form submission these you know 22:38 columns I through N these are all of the 22:41 structured output things that we put 22:43
+into the actual VPY consistent because 22:47 what you can see here is columns I 22:49 through N and actually O is also a 22:52 status in some cases but these main 22:54 columns are
+what the Vappy Assistant 22:56 picked out for the structured output. So 22:58 for service interest, for motivation, so 23:00 as you can see in that call we just did 23:01 in the
+demo, Richard's current interest 23:03 was triggered by a slowdown in business 23:05 over the holidays. He noticed that when 23:07 he stopped doing outreach, the flow of 23:08
+leads decreased significantly. This made 23:10 him realize that he needed a system for 23:12 consistent flow of leads. So it picked 23:14 out that it picked out urgency. It 23:16
+picked out past experiences, that type 23:18 of stuff as you can see. So we get all 23:19 this information served up to us on a 23:21 silver platter. And it's really weird in 23:22
+Vappy because it makes it really hard to 23:24 find for some reason. But let me just 23:26 show you guys what that looks like. So 23:28 let's actually just go into Okay, we'll
+23:30 go into the get call details node 23:31 because that's where it's actually 23:32 originally coming from. Okay, so on the 23:34 right hand side we have the output and I 23:36
+just have to basically drill down to an 23:38 object called artifacts and it's really 23:40 hard to find which makes it really 23:41 annoying. So I'm just going to drill all 23:43
+the way down. We're going to get rid of 23:44 analysis. We're going to get rid of 23:45 here's artifact. Close out of recording. 23:47 Close out of messages. Close out of all 23:49
+this. Here's why you guys can see I said 23:51 it's like really hard to find, but here 23:53 it is. Structured outputs. So we have 23:55 paid intent. It marked it as true. We 23:58
+have past experience. It marked it as 23:59 the prospect Richard stated that they 24:01 have not had any past experience with 24:03 automation or AI solutions. He said, 24:05 "No,
+no, we haven't played around with 24:07 AI yet." And this is where we're seeing 24:09 all of these different structured output 24:10 things that we basically told Elliot, 24:13 our
+Vappy AI assistant, to pull out and 24:15 make sure to give us in structured, you 24:18 know, objects in their own fields. And 24:20 then it's really simple because all we 24:22
+have to do later on in the flow, whether 24:24 it's here or here. Actually, if it's 24:25 here, there would be no structured 24:27 output. But if it's here, all we have to 24:29 do
+is we reference the previous node 24:31 where we're getting all of that data. 24:32 And so that's how it's able to send it 24:34 over to this Google sheet, which I will 24:35 give
+you guys a link to copy this exact 24:38 template so that you can basically plug 24:39 in the exact same logic that I have here 24:41 and set up your Vappy agent the same way 24:43
+that I have here as well. But that's Incorrect Phone Number 24:45 pretty much the flow. I think the last 24:46 thing I wanted to do was just prove to 24:48 you guys that this code
+node actually 24:49 works. So, what we're going to do real 24:51 quick is I am going to 24:54 delete that path because I don't want to 24:56 make more calls. And let me just show
+24:57 you that the code node works. So, I 24:59 basically just pin this data because I 25:00 don't want to submit a whole form every 25:01 time. I just want to be able to change
+25:02 the actual number. So if I come in here 25:05 and I just basically take away one of 25:07 these letters or letters numbers so that 25:10 we have nine instead of 10 and I run
+25:13 this what it's going to do is we'll see 25:15 that when it comes through here it 25:17 actually says incorrect phone. So the 25:19 code node realize that it wasn't right
+25:21 and it outputs incorrect format and then 25:23 it sends it up this path and then we 25:25 would basically come in here and we'd 25:27 log it in the Google sheet and we would
+25:28 mark all of these as you know incorrect 25:31 phone status. So let me actually just 25:33 execute this real quick. So you can see 25:34 this is what would come through in the
+25:36 Google sheet if someone submitted a form 25:38 but they had the incorrect phone number. 25:40 So we would clearly see that none of 25:41 this actually went through. So there
+is 25:43 the outbound lead qualification Vappy 25:46 and Nad&N system. Um wanted to just real Get the Resources FREE 25:49 quick go over how can you actually 25:51 access all of
+these resources for free. 25:53 Well you can get it all in my free 25:54 school community. The link for that is 25:56 down in the description. We've got over 25:57 225,000 members
+who are building with 25:59 NINDN and building businesses with 26:00 Naden. And all of my templates that 26:02 you've seen on YouTube are all here for 26:04 free, including system
+prompts and 26:06 everything like that. So, I'll drop in 26:07 the system prompts for um this Vappy 26:10 Assistant as well and the workflow and 26:12 the Google sheet template.
+So, all of 26:14 the stuff you'll be able to find in the 26:16 free school. You would basically just 26:17 search for the title of the video or you 26:19 go to the classroom and
+find the NIDAN 26:21 templates and you'll find a post 26:22 associated with this video. So, like 26:24 let's say it was this one. And in this 26:27 post, you'll find the resources
+attached 26:29 right there, which you'll be able to 26:30 download and import. So, that's going to 26:32 do it for today. If you guys enjoyed the 26:33 video or you learned
+something new, 26:34 please give it a like. It definitely 26:35 helps me out a ton. And as always, I 26:37 appreciate you guys making it to the end 26:38 of the video. I'll see you
+on the next 26:40 one. Thanks everyone. All From the seriesIntroduction to VAPI (free pricing structure & benefits) 0:00 If you're looking to build your own AI 0:01 voice agent,
+this will be the easiest 0:03 video you'll find on the entire 0:05 internet. Today, I'm going to show you 0:06 how to build one in less than 10 minutes 0:09 using Vappy, which is
+the cheapest and 0:11 one of the highest quality sounding ones 0:13 in the market right now. So, I don't 0:15 need to make this intro longer than it 0:16 needs to be. Just stick
+with me for 0:18 literally 10 minutes and you'll have a 0:20 skill up your sleeve of building AI 0:22 voice agents which you can sell for 0:23 thousands of dollars. Let's jump 0:25
+straight into it. Without further ado, 0:27 let's dive into it. We are going to be 0:29 using Vappy. If you've never heard of 0:31 Vapy, it is just a voice AI for 0:33 developers.
+As you can see, it lets you 0:35 build agents, test, and deploy them in 0:38 minutes. Like, it's very, very easy. Um, 0:40 however, I'm going to be showing you how 0:41 to
+integrate it into make.com and go 0:43 level. Um, so it would automatically 0:46 call leads 24/7 whenever you want. Um, 0:49 and move them through the pipeline. So, 0:51 the first
+thing you're going to do is 0:52 head over to vap.ai and you're going to 0:55 sign up for free. And that is the best 0:57 part about this. You literally get all 0:59 of um yeah,
+all of this for free. You 1:02 only pay per minute you use. Um and even 1:05 then it's the cheapest in the market 1:07 right now, I think. So um once you log 1:09 in, you will see
+um four things at the Understanding the platform quickly 1:11 top. You'll have an overview, you'll 1:13 have platform, voice, logs, and then 1:16 down here. If you click on your
+name, 1:18 you'll find settings, your API keys, and 1:20 things like that. So I'm just showing 1:22 you the uh the UI and how how it looks. 1:25 Now, I'm aware that new softwares
+when 1:28 you use them, they always look way more 1:30 confusing than they actually are. Like 1:31 when you first log into High Level, it 1:33 looks confusing, but once you get to
+1:34 know the platform, it's actually really 1:36 easy. Same with make.com and any other 1:38 softwares that you use. So, just to show 1:40 you what you can do. Um, if you click on
+1:43 platform, you'll see that you have 1:44 assistance, phone numbers, files, tools, Buying a phone number easily 1:47 blocks, squads. You don't really need to 1:49 use all of
+these. You can then head over 1:51 to phone numbers and you can either buy 1:53 a phone number or you can import a phone 1:55 number. So, as you can see, I've already 1:56 got one
+right here with a Florida 1:59 country code um being 561, I believe. 2:02 And it's very easy. So, if you don't 2:04 have a phone number in Twilio, you can 2:06 just buy one right
+here. And the best 2:08 part about this is you don't actually 2:09 need to get it verified. It 2:11 automatically does it, I think. So, it's 2:13 super sick because if you're
+familiar 2:15 with God level or any other Yeah. form 2:17 of buying phone numbers online, you'll 2:19 know that it usually takes days if not 2:21 weeks to verify phone number.
+Whereas 2:23 this is instant like I bought one 2:25 yesterday and it's working. So um for 2:27 the area code, obviously you can choose 2:29 whatever state you want. Um I just chose
+2:31 Florida. I didn't even know the area 2:33 code. I just went on to Google and 2:35 searched for Florida area code and it g 2:37 it gave me it. So that's how you can get 2:39
+your area code and then you just click 2:41 buy. It's as simple as that. Um I 2:43 believe right now it can do US and 2:44 Canada. Um, but you can call leads from 2:47 anywhere in
+the world, which I'll show 2:48 you in a second. Um, so that's the first 2:51 way, which is the easiest way. Just buy 2:52 a phone number. If you already have a 2:54 phone number
+verified in Twilio, then 2:56 what you can do is click on import, and 2:59 you can very easily just import it by 3:01 putting in your Twilio phone number, 3:02 your account SID,
+your Twilio off token, 3:05 and then label, and then just import, 3:07 and it'll do it automatically. So, those 3:09 are the two ways you get phone numbers. 3:11 I recommend just
+buying one if you 3:12 haven't used Twilio before. It's super 3:14 simple. Um, and it can be done in 30 3:16 seconds. Create a new assistant. You can 3:19 see that I've already got
+one right here Creating your first AI assistant inside VAPI 3:20 with all the prompts. And I'll give you 3:22 the prompts and a good knowledge base in 3:24 a second. But to create
+a new assistant, 3:27 this is what it'd be like for you. You 3:29 would click on it. You would call the 3:31 assistant whatever you want. So, you 3:32 could just call it like, I
+don't know, 3:33 real estate outbound caller or something 3:36 like that. Doesn't really matter. Yeah, 3:37 it can be adjusted after you create it 3:39 anyway. and then just click
+create 3:41 assistant. And once you click on that, 3:44 you can see that it will look something 3:45 like this. And as you can see, just in 3:48 terms of the features, we've got
+the 3:49 model. So this is kind of like the 3:52 details that you want the AI agent to 3:54 have. So it's as simple as I can explain 3:57 it as I just did. Um, so it's got your
+3:59 prompt, it's got um the first message 4:01 you want it to say when it calls the 4:03 leads. Um, you've got the transcriber, 4:06 you've got the voice. So, I'm actually 4:08
+going to show you how you can import 4:10 your own voice into here. So, it's going 4:11 to be super awesome. Um, you've got 4:14 functions, which are the tools. You can 4:16 see
+that I've already created some, but 4:18 you don't need this as of now. Um, 4:20 advanced. I think you've got the URL 4:23 down here. So, server URL, but once 4:25 again, you don't
+need to focus at this 4:27 right now because we're just going to be 4:28 building the the model. So if we go back 4:30 to model which is here this is the first 4:33 message you
+want to give the AI calling 4:36 assistant to say right and just before 4:38 we get into that let's put the model as 4:41 mini cluster so for mini cluster that's 4:44 going to save
+you a bit you can see it's 4:46 gone to 9 cents per minute which is 4:48 awesome um for the knowledge base I 4:51 recommend uploading some information 4:53 about your business you
+can very easily Scripting & prompting it with this framework 4:55 just put it onto a Google document and 4:56 then download that as a PDF upload it to 4:59 um here and it will do
+it basically. So 5:02 that's really amazing. Um another thing 5:04 you can do is you can actually just 5:06 search for like if you search for like 5:08 commi um sales calling
+script you can 5:12 see that you could very easily just 5:13 download his entire like script and then 5:17 upload that as a knowledge base right 5:19 here just by selecting a file.
+You can 5:21 see that I've actually got it right 5:22 here. Um or any other script you want it 5:25 to follow. So, you can even go into the 5:27 classroom in school and you can
+look at 5:30 the cold calling script we have in there 5:32 and the sales script and you can build 5:34 your own. I recommend following Jeremy 5:36 Miner's NEPQ. Um, it's just a way
+of 5:39 selling basically where you get the 5:41 prospect to answer a few questions 5:43 first, build up a motion, and then book 5:45 them in for an appointment. Um, but 5:46
+nonetheless, you can very easily just 5:48 put your script that you want on a 5:50 Google document and then upload it as a 5:52 knowledge base. And that's one way to do 5:54 it.
+And you can also I recommend doing 5:56 your um your own knowledge base of your 5:59 own company or offer, right? Because you 6:01 need the AI to know what you're selling. 6:04 So
+obviously the more input you give it, 6:05 the better. For this system prompt, let 6:07 me just show you what um my one looks 6:10 like up here. You can see that um I say 6:14
+something like, "Hello, this is Charlie 6:16 from agency start. How can I assist you 6:18 today?" Um and then for the system 6:20 prompt, you'd want something like this. 6:22 You
+are a voice assistant for Charlie. 6:24 You're going to be doing cold call to 6:25 sell the program. Remember to use their 6:27 name which is contact ID. This will make 6:29 sense
+in a second. Um you are asked you 6:32 so you are tasked with answering 6:33 questions about the business, booking 6:35 appointments. Um if they wish to book an 6:36 appointment,
+your goal is to gather 6:38 necessary information from callers in a 6:40 friendly and efficient manner. So ask 6:41 for their name, ask for the purpose of 6:43 their appointment.
+Um request their 6:46 preferred date. Um so you know we're 6:48 just telling it things that we want. So 6:50 we want it to act normal. We want it to 6:52 say things like um and
+well to otherwise 6:54 it's going to be too robotic, right? So 6:56 you want to actually include this. Um so 6:58 this is a good prompt. I've already put 6:59 this below um the
+video so you can copy 7:02 and paste this if you want. Um but yeah, 7:04 very simple. Um hopefully that makes 7:06 sense. But obviously you can change this 7:08 for whatever you
+want it to say first 7:09 and foremost. So you can say um hey is 7:12 this the owner of company name? And you 7:14 can actually have that as a variable. So 7:15 it will say the
+company name that you 7:17 do. Um, so that's really cool. For 7:20 temperature, I recommend just keeping it 7:22 at one. Max tokens 250 is fine. You can 7:24 leave this the same.
+Just make sure you 7:26 change the model to GPT40 mini cluster 7:29 and you should be good to go. So 7:31 hopefully this is making sense. This is 7:32 just the script and where you
+change it. 7:34 It's as simple as that. Um, for the 7:36 voice, um, let me quickly show you how 7:39 you can import your own voice. But to do 7:42 this, all you're going to do, I
+believe, 7:44 is connect your um 11 Labs account. So, 7:49 this is optional. You can obviously have 7:50 a voice like um Jesse or um if you were 7:54 to choose like the ones inside
+um Vappy, 7:57 that's totally fine. This is just if you 7:59 want to clone your client's voice or 8:01 your own voice, you would do this as I'm 8:03 about to show you. So, I
+believe you go 8:04 to here, go to settings. It was just in 8:08 provider settings. So you would click on Connecting your own voice through elevenlabs API key 8:10 here and you go
+to provider credentials 8:13 and then you basically just put in your 8:15 11 Labs API. So that's as simple as I 8:18 can explain it. And to get your 11 Labs 8:20 um API, you would
+just simply go to 11 8:24 Labs. And this is completely optional. 8:26 This is just if you want your own voice 8:28 as mentioned before. Um so yeah, you 8:30 would click on my
+workspace, click on 8:32 API keys, and you'll basically find it. 8:36 And then you just put it in right here 8:37 and then click save. And then once 8:39 you've done that, um you
+can then go 8:41 back to assistance, go to voice, and you 8:43 should be able to select your own voice. 8:46 Obviously, you'd need to get your voice 8:49 in the actual um thing.
+So, I believe 8:51 you go to voiceover studio and you yeah, 8:55 create your own voice basically, but you 8:57 can search on YouTube how to create your 8:58 own voice on 11 Labs.
+Once you've done 9:00 that though, you would just follow what 9:01 I showed you. Um and then you can select 9:03 your own voice here. The in voice 9:05 library, you can actually
+see. So if we 9:07 let this play, in the middle of every 9:09 difficulty lies opportunity. So you can 9:11 see that actually sounds like me. Um, so 9:14 that is how you build an
+assistant and 9:16 how you connect 11 Labs with your own 9:18 voice to it. We're going to be talking 9:20 with the assistant that we've built, eg 9:22 myself because it's my own
+voice we're 9:24 going to be talking to. Um, but then I'm 9:26 going to show you how to actually do 9:28 calls inside Vappy in case you wanted 9:30 the easiest way just to start
+calling 9:32 leads yourself. Um, and then in the next 9:34 following videos, I'm going to show you 9:35 how to integrate it into goal level 9:38 throughmake.com. And that's also
+going 9:40 to be really simple, but we're just 9:42 gradually increasing the level of 9:43 difficulty as we go. So, if we click on 9:46 talk of assistance, it it's as easy as 9:48
+that. You can literally click on it and 9:50 let's turn this up so you can hear. It's 9:52 going to call. Hello, this is Charlie 9:55 from Agency Start. How can I assist you 9:56
+today? Yeah, great. I was wondering what 9:59 about what you do? 10:02 Well, we're all about helping businesses 10:04 grow and crush their goals. We offer 10:06 awesome resources
+and support to get you 10:08 where you want to be. So, what's cooking 10:10 in your world? What challenges are you 10:11 facing? Um, I'm struggling getting 10:15 appointments.
+10:17 Um, I totally get that setting 10:19 appointments can feel like hurting cats 10:21 sometimes. Our program actually helps 10:22 turn those lukewarm leads into actual 10:24
+appointments like magic. Want to chat 10:26 about how we can tackle that? Yeah, 10:28 absolutely. 10:32 Awesome. So, let's turn that around, 10:33 shall we? I mean, we've got this
+killer 10:35 organic strategy to help you get 10:36 appointments from those lukewarm leads 10:38 without breaking a sweat. Can I grab 10:39 your name to dive a little deeper? 10:42
+Charlie. 10:44 Hey there. So, I just need your full 10:46 name to kick things off. What's your 10:47 name? Charlie Barber. 10:50 Hey, Charlie Barber. So, what motivated 10:52 you
+to reach out today? Are you looking 10:54 to tackle getting more? Okay, we'll end 10:56 it there because I don't want to talk 10:58 all day on it, but you can see that it's 10:59
+it's pretty solid and obviously you can 11:01 change the tonality. Um, yeah, you can 11:03 change the actual voice, the visibility, 11:06 the clarity, all of this stuff. So, you
+11:08 can play around with it. And if you go 11:10 into cool logs, I believe you can do 11:12 that in um God, I got to remember where 11:15 everything is. Yeah, in logs and then
+11:16 call. Yeah, I recommend talking with it, 11:18 changing the prompt, making your script 11:20 different, things like that. Um, and in 11:22 terms of if you just want to start
+11:24 calling leads like straight away inside 11:26 Vappy, um, all you need to do is click 11:28 on phone numbers to here and you can 11:31 basically, yeah, just put in whoever you
+11:34 want to call. So, let's say you wanted 11:36 to call someone in the United States. 11:38 You would just put their phone number as 11:40 like the prospect, select the
+assistant 11:42 you want. So, you can see here that 11:43 we've got my caller. Um, this was the Testing the AI assistant inside VAPI locally 11:45 one that we tried building, but I
+didn't 11:47 want to have to build the entire prompt, 11:49 but you get you guys get the point. So, 11:51 you select the assistant. Simple as 11:53 that. Um, so once you do that,
+like if I 11:55 just put in my number quickly, just give 11:58 it a 11:59 second. You can see that I am actually 12:02 getting a call right now. You can see 12:04 here that I'm
+getting a call. If I pick 12:07 up, 12:09 hello, this is Charlie from Agency Star. 12:11 How can I assist you today, Ben? Yeah, 12:13 great. How are you? 12:17 I'm doing great. No
+complaints over 12:18 here. So, I'm just calling to chat about 12:20 your company and see how we might be 12:22 able to help with Okay. So, I ended it, 12:23 but that's how you
+would call these. 12:25 Right. Very simple. Um, and that was 12:27 from my Florida phone number all the way 12:28 to UK, right? Very simple. You can put Building Make.com
+automation to link to CRM/pipeline to track 12:30 whoever you want to call right here and 12:32 you can call using AI, right? Okay. So, 12:34 we're inside make.com and we're about
+to 12:36 take it up a level. So, obviously I will 12:38 provide you guys in the community with 12:41 this blueprint. So, you don't have to 12:43 build this. You can just copy and
+paste 12:45 it into your own freemake.com account 12:47 really easily with one click of a 12:48 button. And you would go down to these 12:50 three dots right here, and you would
+12:52 click import. Now, once you click 12:54 import, you would choose the file you 12:56 just downloaded, which will be below 12:57 this post. And you'll basically just 13:00
+click it, click save, and it will 13:02 populate just like this. And once you 13:04 see it inside your make.com account like 13:06 this, um, all you need to do is just 13:09 change
+a few things. So obviously this 13:11 will be blank um and you won't have it 13:14 connected. So all you'll need to do is 13:16 just click add. You don't need IP 13:18
+restrictions. Just click save. And 13:20 you'll notice how you'll get a URL like 13:23 this. Right. And this is your yeah web 13:26 hook URL. And this will become really 13:28
+important in a second. So I need you to 13:30 focus. So that's the first thing we're 13:32 going to do is just yeah click save. And 13:34 you can call it whatever you want. So,
+13:36 we could call this 13:38 um web 13:40 hook for GHL or something. Doesn't 13:44 really matter to be honest. And you can 13:45 see that you get a URL basically. So, do 13:47
+that. Click save because you constantly 13:49 want to be saving this. And then you'd 13:51 go to this variable section right here. 13:53 And once again, this won't be like this.
+13:56 You'll see it and it'll be blank 13:58 probably. So, just click add. You can 14:00 keep this blank. Click save. Um, but I 14:04 believe it should be, yeah, if you go, 14:05
+it should be how I've got it here. Um, 14:08 and then for contact ID. But once you 14:10 click on it, you'll get options like 14:12 this. Um, which will all make sense in a 14:14
+second. Um, and this won't actually show 14:18 the gray numbers here. Um, but it will 14:21 in a second after we So, this is just 14:23 all the information from the goal level,
+14:25 which is how we're going to get it to 14:26 call 14:27 automatically. So, click okay. Save it. 14:31 constantly be saving us. Um, and then 14:33 for this Vappy call, this is
+um, just a 14:37 thing you need to really pay attention 14:38 to. So, you've got the URL, you've got 14:40 method, which is post. So, this will be 14:41 how it is in your one. You
+want to get 14:43 your your key. Um, either private or 14:46 public, I think, should work, but you 14:47 can always test both. Um, so once you've 14:51 done that, let's scroll
+down. And you'll 14:53 see that it will look something like 14:55 this. And all you need to do is I think 15:00 this should be the same. Um and then 15:03 this should be your phone
+number. This 15:05 is giving Vappy information to be able 15:08 to call your go high level phone 15:09 numbers. So save that and yeah that's 15:12 perfect. So um in the next video
+we're 15:15 going to be going into high level and 15:17 just building a really quick automation 15:19 and then that's all that you need to do. 15:20 So after the next video, we're
+going to 15:23 be um testing it and just like that, 15:26 it's as simple as that. Like there's a 15:28 lot of confusing videos out there. I 15:29 want to make this really easy. So
+yeah, 15:31 make sure to watch the next video where 15:32 you're going to be building it in high 15:34 level. And yeah, take it easy and have 15:36 an amazing day. Okay, perfect.
+So now we Building GHL automation 15:39 are inside go level. Um just in case you 15:41 don't know how to get into an 15:43 automation, you would just go um yeah to 15:46
+automations in your sub account and you 15:48 would create a new workflow. start from 15:50 scratch. And that is how you would start 15:53 this. Um, so now let me walk you through
+15:55 how you would actually build this very 15:57 easily. You're just going to follow me 15:59 step by step. The first thing we're 16:01 going to add is a drip. So this will 16:03
+make sense in a second. Um, and we're 16:05 going to put the drip as 1 second and 16:08 it's going to do this every minute. So 16:10 the reason we want this is because you 16:12
+can do like multiple calls using the 16:14 Vappy um agent inside Vappy. Um, but to 16:18 be honest, we want to keep it as like 16:20 safe as possible. So, it's just going to 16:22
+do one call every minute. Um, and that's 16:24 what we want to do personally. So, 16:26 that's why we have a drip mode instead 16:27 of just like if you were to upload a 16:30
+bunch of leads in here. Um, then you can 16:33 see how it would start to be a problem. 16:34 So, um, yeah, that's the first thing. 16:37 Second thing is going to be a web hook.
+16:40 Um, so if we actually go back to the 16:42 other one, let's not save that. Uh, let 16:44 me show you what it looks like inside my 16:47 one. So you can you can name it
+whatever 16:49 you want by the way, but you can see 16:51 that we have the same thing here of drip 16:54 mode. We've got batch size one. So it's 16:56 the same thing. We've got the
+web hook 16:58 method is going to be post and then URL 17:01 is going to be the URL that you got from 17:03 here. So just copy that address into 17:06 make.com and you can see that
+it should 17:08 just be the same one. So yeah, you can 17:11 see that you get it right here. Um, and 17:12 then that's all that's needed to do. So 17:14 save that. Then you need to
+this this is 17:18 optional. Um, but this makes sense for 17:20 if you want to have a pipeline. So I 17:22 would highly recommend doing that. And 17:24 you upload a file and you
+actually 17:26 upload a file. Um, you can add a tag and 17:30 a tag keeps the contacts organized. So 17:34 if you upload leads who are like cold 17:36 leads, you want a tag saying
+like cold 17:38 leads, right? You want to keep them 17:40 organized compared to if you were to 17:41 upload warm leads. You wouldn't know 17:42 who's who. So always use tags.
+That's 17:45 super important. And then the trigger to 17:48 start this workflow to start calling 17:50 leads every minute on autopilot would be 17:54 contact tag added. So, just
+like what I 17:57 said, you would upload leads into your 17:59 contacts. And you do this after you've 18:02 built this and published it obviously 18:03 because it needs to be
+published for it 18:04 to work. But you would upload leads, you 18:06 would add them as a tag, which could be 18:08 whatever you want. And then that this 18:10 would be the
+trigger. So tag added and 18:13 it would be like um cold leads, right? 18:16 As an example. Um so that's how you 18:19 would start this automation, but you 18:20 could also start
+it from a form being 18:22 submitted. So if your clients or you run 18:25 like Facebook ads and you're getting 18:27 leads opt in that could be the trigger 18:30 where it could
+even like wait. So if we 18:32 go here it could I mean the trigger 18:35 could be form submitted. It could 18:37 literally be anything. You can see how 18:39 many different things
+you could do but 18:41 form is and then you just select the 18:43 form that they submit. So if someone 18:44 signs up to like a webinar you could 18:46 call them and or someone
+books an 18:48 appointment you could call them increase 18:50 your shut rate so forth. Um, 18:53 and yeah, that could be the trigger. And 18:55 then you could even wait like, I
+don't 18:57 know, five minutes or four minutes to 18:59 make it a bit more human. Um, I don't 19:01 recommend doing more than five because 19:02 you want to call leads as soon as
+19:04 possible. Um, but then it's obviously 19:06 going to do one. It's going to yeah, 19:07 it's got the web hook. So, this 19:09 basically tells um high level 19:11 aboutmake.com
+and vice versa. And then 19:14 it's going to remove them from the tag 19:16 being not called yet. So that's just in 19:17 case you added them into your CRM with 19:20 the tag like
+cold leads not called yet 19:23 and then it's going to add them as a tag 19:25 being called once. So you can experiment 19:27 with tags but the most important thing 19:29 are these
+two things right here. So yeah 19:32 and then obviously having a trigger for 19:33 how you want the automation to start 19:35 which can be outbound directly it can be 19:37 inbound

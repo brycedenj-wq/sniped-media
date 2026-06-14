@@ -1,0 +1,224 @@
+have to go find an MCP server on GitHub. It's all 3:103 minutes, 10 secondsthrough the app now. And so it's super easy to connect Blender. So let's start building a scene. Let's
+build a super simple scene to see how this works. I'm Chapter 5: Switching Into Claude Code 3:173 minutes, 17 secondsgoing to go into Claude Code, which is right here in this left
+directory right here. And then I'm going to create a new session over here in a new folder. I'm 3:273 minutes, 27 secondsjust going to call this I'm going to throw it into my
+YouTube projects folder here. And I'm going to call this uh Blender setup. So in Blender setup, we 3:363 minutes, 36 secondscan tell that we have the Blender setup project open.
+We're running locally. And then we are on cloud opus 4.7 extra high. So before we actually start 3:453 minutes, 45 secondsconnecting Blender to Claude code, there are a few
+prerequisites. So obviously you're going to need Blender. Claude is stating that you need version 4.2 or Chapter 6: The Blender 5.1 Fix The Docs Got Wrong 3:523 minutes, 52
+secondslater. That is wrong. You need version 5.1 or later. If you look at the Blender MCP server page, the requirements is the 4:004 minutesBlender 5.1 or newer. So just make sure
+that you're downloading Blender 5.1 or newer um so you can actually have this work. So I'm going to redownload 4:094 minutes, 9 secondsBlender. make sure that I'm getting the 5.1
+plus. Um, download that now and then I will jump back and keep walking through this tutorial. So, I'm going to 4:174 minutes, 17 secondsdrop Blender 5.1 into my applications. I
+will replace my old version. I believe I had 5.0. We can now open up from our 4:254 minutes, 25 secondsapplications and we can see that we have Blender 5.1.1. Perfect. So, we are
+set with Blender. 4:314 minutes, 31 secondsMake sure that you keep Blender open throughout this entire project. You can only work in Blender with the Claude Code plugin if they're
+separate. You 4:394 minutes, 39 secondscan't work directly inside of Claude Code and like a preview of Blender. Okay, we now have Blender installed. Chapter 7: Installing The
+Official MCP Add-On 4:454 minutes, 45 secondsNow, the next step is actually setting up Claude with Blender via the MCP. And this part can get a little confusing, but just a
+reminder, I have dropped all 4:534 minutes, 53 secondsof these documents in the description below. So, if you do get lost, there are tutorials out there by Claude and Blender on
+how to set this up. You can pause this at any time, but here we go. 5:035 minutes, 3 secondsSo in this using the blender connector in claude you will find a link to the blender mcp
+server page and if we open that we can see that it gives us some 5:115 minutes, 11 secondsrequirements blender 5.1 or newer add-on lm client and mcp server. Now the installation
+part is obviously the most important and that's what we want to get 5:195 minutes, 19 secondsdone in this tutorial and we have this option. We can either download it or drag and
+drop into blender. So I recommend having Blender pulled up on the left and then the actual Blender or 5:285 minutes, 28 secondsLab page pulled up on the right. What we're going to
+do is we're going to take this blue box. We're going to drag it in the first time. It's going to check for 5:355 minutes, 35 secondsthese updates. And yes, we want to install this
+extension. So, we're going to click okay. Now, it's installed. 5:415 minutes, 41 secondsDon't navigate away yet because we need to drag this in a second time to install the actual
+add-on. Python file, which is 5:485 minutes, 48 secondsthe actual MCP server that we're going to be using. So, we can close out of this now and just stay inside of Blender. If we
+go into edit, then 5:565 minutes, 56 secondspreferences, and then add-ons, you should see an MCP pop up here. If you don't see it, just type in MCP and that will be the first thing
+that pops up. 6:046 minutes, 4 secondsSo, in this MCP section, what I'm going to do is I'm going to stop the MCP server. And then I'm going to start the MCP again. This just resets
+it so Claude can gain access to Blender via the MCP. 6:156 minutes, 15 secondsHeading back inside of Claude, inside of our project folder that's completely empty right now, we're
+going to ask, are you connected to Blender? And hopefully Chapter 8: Building The Cathedral From One Prompt 6:246 minutes, 24 secondsClaude does a great job finding that local port
+that it's going to connect to. Yes, we are connected to Blender. 6:296 minutes, 29 secondsThe current session has an unsaved empty blend file. There's no file path set. 6:346
+minutes, 34 secondsSo, I'm just going to prompt it and say let's start building. So, now we are connected to Blender. And in this pro and so you always want to have Blender open
+while you are working in Claude. 6:446 minutes, 44 secondsYou cannot open Blender via like a preview like an HTML or preview inside of Claude Code. You have to have Blender 6:516
+minutes, 51 secondsopen at all times. So, this is just asking me what's the subject, the style, the end goal. I'm going to drop in some prompts to show you how easy it is now to
+build inside of Blender and start 7:007 minutesiterating on your projects. If you have previous projects, you can open those and connect it via the MCP and start iterating on top
+of those. So, if you 7:077 minutes, 7 secondsneed to add lighting or materials or you have a really unique scene that you want to create, you can start using Claude as a tool to
+help you speed up your 7:157 minutes, 15 secondscreative workflows, not replace you, but speed up those creative workflows that usually take a really long time. So, I'm going to
+drop in this master prompt to 7:237 minutes, 23 secondsClaude Code. And this is a super long prompt. You guys do not have to go this in depth, but I want to show you why this is
+important. So, this prompt 7:307 minutes, 30 secondsincludes geometry nodes, particle systems, volutrics, custom shader nodes, and cloth simulation. So, it's 7:377 minutes, 37
+secondsdefinitely a heavy prompt for Claude, but I want to see how well this performs using the actual Blender MCP, not something from GitHub when it comes to 7:447 minutes, 44
+secondsbuilding these intense scenes. So, just really quick, I'm not going to read through this whole thing, but the environment, this scene is going to be a Gothic cathedral
+interior. I have 7:527 minutes, 52 secondsarchitectural detail that I want Claude to build out for me. So, stone material, all architectural elements built with proper bevels and
+edges, not default 8:008 minutescubes. Some library elements, so a spiral wooden shelling that wraps inside the walls. But yeah, this is a huge prompt. And if you guys do want it,
+feel 8:078 minutes, 7 secondsfree to ask in the comments. I will send it to you. But I'm going to shoot this off and I'm going to see how well this builds with the official Blender
+MCP. 8:148 minutes, 14 secondsSo, it's saying this is obviously a massive scene. This is insanely large prompt for just a Blender artist in general, but it's going to build out a
+plan for us. So, it's going to build the 8:228 minutes, 22 secondsshell, the architectural detail, all the materials, geometry node systems, particle and sim systems, lighting,
+hero figure, and camera, and then the final 8:308 minutes, 30 secondsatmospherics, so fog and dust, and all that fun stuff. So, let's see how this thinks, how it builds out, and
+then we're going to watch it build live inside of Blender. I can already see 8:388 minutes, 38 secondsthat it deleted default cube, camera, and light. So, that's a good sign that
+it's actually being controlled by Claude. And I really like what Claude does in its plan mode. It breaks complex 8:478 minutes, 47 secondsthings into smaller sections and then
+iterates on top of those. So, if it's noticing that it's having a problem with a certain tool or writing a piece of 8:558 minutes, 55 secondscode or building a certain graphic or
+3D element in Blender, it will iterate on top of that and essentially teach itself. It'll say that didn't work this 9:029 minutes, 2 secondstime, but I'm going to try a new
+approach and if it does work, I'll save it in my memory and I will use that memory for future iterations and projects. So, that's the really cool 9:109 minutes, 10 secondsthing
+about Claude. It's like a self-healing agentic model that can build these cool scenes for you inside of 3D softwares like Blender. So we can 9:189 minutes, 18 secondssee that the
+phase one is built. So the shell has been built and so we can already see that it's building up these columns for us. It's creating the actual environment for us. Um so I'm going
+to 9:279 minutes, 27 secondskeep letting this build and see how good it can get based off that master prompt. Chapter 9: The Reveal And Final Render 9:329 minutes, 32 secondsOkay,
+so it just finished up. This is the scene right now. This is what it looks like. And before we go into cycles and render this out, I want to show everything it created. It created
+vines. 9:419 minutes, 41 secondsIt created vines for us that hang from the ceiling. The pillars it created. It created windows. If we go outside, we 9:489 minutes, 48 secondscan
+see that it added lights to the windows. It created the sun for us. It angled it down so it creates like a 9:569 minutes, 56 secondsdownward facing angle light into the cathedral.
+It added the roof for us. I will note the roof is not like centered. 10:0310 minutes, 3 secondsUm, it's not on the actual axises of the top of the building. That's okay because the
+scene is actually just inside. Uh, 10:1010 minutes, 10 secondsbut this is insane. I mean, added these like floating lanterns as you can see. 10:1410 minutes, 14 secondslike there's
+these like lanterns floating around uh with lights in them. All of this generated with cloud code. 10:2010 minutes, 20 secondsUh but if I go into EV or if I go into cycles GPU
+compute, go into the viewport render and then render this out, you can 10:2810 minutes, 28 secondssee that it's not perfect, but it is a huge step forward compared to running
+10:3410 minutes, 34 secondssomething like a GitHub MCP server. You cannot achieve this with a GitHub MCP server. And honestly, the output is 10:4210 minutes, 42 secondsamazing. You
+can create awesome scenes out of this just with a single prompt. Now, that master prompt was really long. 10:4810 minutes, 48 secondsIt was really in-depth. Now comes the actual
+iteration process. And I plan to do a full deep dive of actually going into iterating and using Cloud Code as a 10:5710 minutes, 57 secondsnative tool in your workflows every
+single time. But the purpose of this video is to show you how to set up the actual Blender MCP from Blender 11:0411 minutes, 4 secondsthemselves. It's now so easy to get into the
+3D world when it comes to building simple scenes like this. So again, I highly recommend that you play around 11:1211 minutes, 12 secondswith this. If you've never played around
+with 3D tools, it's now easier than ever to actually get in to the world of 3D. 11:1811 minutes, 18 secondsAnd again, this is not to replace 3D artists. This is just a tool to help
+speed up the productivity of creative people to make more creative things. 11:2711 minutes, 27 secondsPlay around with this. I'm going to be doing a lot of deep dives into this new
+tool because it is really cool. I really do enjoy playing around with this tool and I'm gonna show you how you can 11:3511 minutes, 35 secondsactually iterate and build these
+intensive scenes with Blender and Claude Code. The future of 3D is really interesting because now we have these 11:4311 minutes, 43 secondscreative models that can build these
+crazy scenes for us. Um, so it's really cool. But if you like AI content like this, feel free to subscribe. It means a ton to me. And drop some suggestions in 11:5211 minutes, 52
+secondsthe comments below. I'd love to help you guys out in your creative 3D journey. So just let me know in the comments below. 11:5811 minutes, 58 secondsAnd as always, I will
+see you guys in the nextIntro 0:00 You can now use Claude, one of the most 0:02 powerful AI models in the entire world 0:04 in Blender. Recently, Claude infested in 0:06 Blender as
+a corporate patronon. And 0:08 what happened is that we now also have a 0:10 direct MCP from Claw to Blender. And 0:13 what does that mean? That means that you 0:14 can prompt the
+AI to make things for you 0:17 in Blender. And in this video, I'm going 0:18 to show you exactly what this AI can do. 0:21 We're going to dive into asset 0:22 generation, texture
+generation, creating 0:24 animations, making file organization 0:27 easier, making geometry node setups, 0:29 creating our own add-ons on the spot, 0:31 testing out whether cloth
+can follow 0:33 YouTube tutorials, and more. So stick 0:35 around if you want to know everything 0:36 about this newly released feature. But 0:38 before we get started, I'm going
+to show 0:40 you how you can use it too completely 0:42 for free in less than 5 minutes. So 0:44 let's dive right into it. If you want to How To Install Claude for Blender 0:45
+install cloth right now, you either need 0:48 the desktop version or cloud code. Both 0:50 of these are fine. I think the desktop 0:52 version is a bit more friendly for most 0:54
+people to use. So, get started with the 0:56 desktop app. If you click on this, you 0:59 can download it for Windows. This will 1:00 get you a cloud setup.exe. And if you 1:03
+double click on this, you will get Cloud 1:05 Code. Once you open Cloud Code, you will 1:07 be presented with a window that looks 1:09 like this. So, let me make that full 1:11
+screen. Now, there are two options. You 1:13 can either follow this tutorial or you 1:15 can ask Claude itself how to do it. But 1:18 first things first, in order for this to 1:20
+run, you need Blender 5.1. It is only 1:24 compatible with Blender 5.1 and higher. 1:26 What you also need is the Blender MCP 1:29 add-on. It is on this link. Now, all the 1:32
+links can be found in the description, 1:34 including a piece of code that I'm going 1:36 to give you right now. What you can do 1:37 is go to the installation, open up 1:39
+Blender, and what you can do is drag and 1:42 drop this into Blender. So, if I take 1:44 this, drag and drop it in here, then it 1:47 will check for the extension. I already 1:49
+have it installed. Now, if this is the 1:51 first time that you do this, what you 1:53 need to do once it's done installing the 1:55 labs extension is drag and drop it into 1:57
+Blender again. And once you do that, you 2:00 will have the MCP installed. You can 2:02 double check that by going to edit, 2:04 preferences, going to add-ons, typing 2:06 MCP, and
+here you will find MCP, which 2:10 stands for model context protocol, by 2:12 the way. And if you go over here, you 2:14 will see a localhost 9876 2:17 and everything is turned on.
+And 2:19 otherwise, you need to click here on 2:21 start MCP server. I have it on auto 2:23 start. Now, before cloth can actually 2:25 use this, we need to go into cloud 2:27
+itself and make sure that it's turned 2:29 on. So, click right here on your profile 2:31 name. Go to settings and then go to 2:34 connectors. Under connectors, you want 2:36 to
+browse for connectors or add a custom 2:38 connector. I'm simply going to browse 2:40 for it. If you browse to Blender, then 2:42 you will see it right here. And you will 2:44
+click on plus. It will tell you to 2:46 install. And it might seem like you're 2:49 installing Blender. That's not the case. 2:51 Just click install. And that will enable 2:53 the
+MCP. I believe it should work right 2:55 now. If it doesn't, I have a piece of 2:57 code that will help you out. In order to 2:59 get that done, you need to click right 3:01 here,
+go to settings, go to developer 3:04 right here, and edit config. Right now, 3:06 I already have it running, but you might 3:08 need to add a piece of code. If you do 3:10 not see
+this edit config, it will open 3:12 up a folder structure right here and a 3:15 JSON file. Right mouse click, edit in 3:17 notepad. Right here, you will have a 3:19 notepad that
+looks like this. You can 3:21 then controlV this entire command in 3:24 there which has the argument for the 3:26 Blender MCP file save. And then it will 3:29 be done. You might
+need this, you might 3:30 not need this. In any case, it is right 3:32 here if you do. And then it is very 3:34 simple. We can now start prompting 3:35 Claude. And I'm going to
+prompt him, 3:37 delete the default cube. Let's see. 3:42 There you go. The default cube has been 3:43 deleted. And now we know it works. So, 3:46 let's continue. And I'll show you
+3:47 exactly what you can do with this. Cozy Livingroom 3:49 First, I generated a cozy living room 3:51 scene. It took around 2 minutes and 3:53 Claude built everything. I think
+it's 3:55 pretty cool what this is able to do just 3:57 as a first test. However, I would really 3:59 like to explore some more extreme things 4:01 we've never seen before. So,
+right now, 4:03 I am in a different scene with an Claude Does Animation 4:04 iPhone. There are no key frames here. 4:06 And if I play this, nothing happens. And 4:08 I want to give
+an animation to this 4:10 iPhone. So I'm going to undo all the 4:12 rotations and X and all of that stuff. 4:15 And I'm going into Glad and I'm going to 4:16 ask him make a premium
+animation for the 4:20 iPhone using the empty called main 4:25 iPhone controller and make a camera 4:28 animation 4:30 that's tracking the iPhone. Make it look 4:34 premium. So,
+let's see how Claude is 4:35 able to perform with this task. I'm just 4:37 going to wait for Claude. This doesn't 4:39 take a lot of time, by the way. So, 4:40 right now, I think
+we're in it for 4:42 approximately a minute. It has placed 4:44 more key frames than I can do in a 4:46 minute. So, it is now giving me a 4:48 debriefing of what it created. Let's
+go 4:50 to the very first frame. 5:00 All right. So, it's not the most 5:02 beautiful animation, right? 5:04 But I can definitely see like until over 5:07 here is kind of all
+right. 5:12 There you go. 5:14 And then from here it starts to get a 5:16 bit wacky doing these flips like this. 5:19 But you can definitely see that it is 5:21 starting to animate
+and it's starting to 5:23 work. So that's quite interesting. Uh 5:26 maybe right here we can also have a look 5:28 at what it does with the camera. It is 5:31 indeed changing the
+focal range a little 5:34 bit. If I look over here, you can see 5:35 key frames on the focal length and on 5:37 the f-stop. If you want to know how to 5:38 create this iPhone or
+get it for free, 5:40 the links in the description. I think it 5:41 did a pretty cool job animating this. Of 5:43 course, it's not completely finished. 5:44 And I also didn't
+specify things in the 5:46 prompt. I can also be a bit more 5:48 specific with my prompt like do a 360° 5:51 rotation, use the basier curve, and make 5:54 sure that it is fast in
+the beginning, 5:56 slow in the middle, fast in the end. So 5:58 you can also be way more specific with 6:00 these prompts. Now the next thing I'll 6:01 show you is very powerful.
+It is 6:03 actually integrating Python scripts in 6:05 Blender and these can be very useful in 6:07 specific projects and I'm going to show 6:08 you exactly what I mean. So
+recently I Creating Addons 6:11 created this Rolex animation. It has a 6:13 photo scan. It has an entire Rolex with 6:16 all of these internal parts like so. And 6:19 all of these
+parts obviously have a 6:22 subdivision modifier on it. This makes 6:24 the viewport very slow. You will see 6:26 that as soon as I start to play this, we 6:28 get a 7fps 6:31 uh
+in this viewport. Now, these consist 6:33 of a lot of parts and it would be quite 6:35 annoying to go into the outliner or 6:37 select all of these like uh like soap 6:40 for
+example. Make sure not to select 6:41 some other stuff such as the empty and 6:43 then go in there and do the modifier 6:46 changing so that we can actually get 6:48 some smooth
+playback. Now what I want to 6:50 do is go into clot and I can ask it to 6:53 either turn everything off for me, turn 6:55 all the modifiers off in the viewport so 6:58 that I have
+smoother playback or I can 7:00 ask it to make an add-on for me that 7:02 does this forever and ever. So I'm going 7:04 to do the second option, create a quick 7:08 add-on for me
+with a single button that 7:12 turns off all the modifiers in the view 7:16 port. 7:17 So I can have smoother 7:20 playback. 7:22 Don't turn it off 7:25 in the render. 7:28 All
+right. So I'm just going to prompt 7:30 it for this. Now it's going to do some 7:32 Python magic. And this is all for free, 7:34 by the way. Of course, you're going to 7:35 hit
+your limits rather soon if you start 7:37 prompting with this some more. All 7:38 right. So it has created a button for 7:40 me. Now I'm not entirely sure if I want 7:42 it to be
+over here. I think it's messing 7:44 up the rest of my UI a little bit. I 7:46 would rather have it be somewhere over 7:48 here. Right. So, with the modifiers on, 7:50 we can see
+that this one has a 7:52 subdivision in the viewport has a level 7:54 of three. And I'm going to click on 7:57 modifiers off. And there you go. It has 7:59 turned invisible for the
+view port. Now, 8:01 let's see what it did for our playback 8:04 speed. 24 fps. 8:06 So, this is a life hack, guys. If you 8:08 have those problems with 7FPS in your 8:11 viewport
+when trying to do your 8:13 animations, that can be very 8:15 frustrating. However, I just fcoded a 8:18 very simple button and now I have 8:20 perfect playback on my computer with
+24 8:23 fps for this animation. And now I can 8:25 actually see what it looks like. So 8:27 that's another very cool use case that 8:29 you can use cloth for directly in 8:31
+Blender. Now I'm going to show you 8:32 something else that I think is pretty Photorealistic Textures 8:34 insane. So I got Dart Fader right here. 8:36 It is a Lego version, but I
+want to add 8:39 some more photo realalism to this model. 8:42 And I'm just simply going to ask Claude 8:43 and see if it's able to detect this and 8:45 add some photorealistic
+scratches. So, 8:48 let's prompt Claude in order to do that 8:49 for us. Going to try and make sense of 8:51 the scene. I didn't name anything. Once 8:53 again, it's also going to
+take 8:54 screenshots of the window so it can use 8:57 some sort of clip vision in order to see 8:59 what is going on. It has a clear 9:01 picture. I can see the Lego dart fader
+9:03 with his chest texture, lightsaber, 9:05 white Lego bricks. So, it's even seeing 9:07 the chest texture, right? Okay, so it's 9:09 finished. And I do indeed see some 9:11
+changes here. So, let's click on that. 9:13 We see a more pronounced bump. There's 9:15 some more dense and uh maybe some 9:18 scratch type things there. I'm not 9:20 entirely
+sure. Shader editor. Let's see. 9:23 It did indeed add this entire note 9:25 block. Noise textures, bump, and 9:28 roughness and all of that good stuff. I 9:30 think it did indeed
+improve, but I want 9:33 to see a more extreme example. All 9:35 right, so here I have some headphones 9:37 and uh let's ask Claude to change it 9:40 completely. I've reached 90%
+of my 9:41 session limit, so I might just have to 9:43 upgrade in a while. But do remember, we 9:45 created a cozy living room, made a 9:47 complete iPhone animation with camera
+9:48 and all. We made our own add-on in order 9:50 to speed up our playback in the 9:52 viewport, made a completely procedural 9:54 texturing setup, and now we're going to 9:55 see
+what it will do for the last 10%. 9:58 All right, so now it hit me with the uh 10:00 session limits. All right, so I now have 10:02 the pro plan right here and we can 10:04
+continue back to our chat. And if you're 10:06 like, "Oh no, I cannot afford Claw Pro. 10:08 I do not have the money for that." Then 10:10 you might want to check out my course
+10:11 that teaches you how to make money with 10:13 Blender and AI. After following this 10:15 course, you will be a multi-skilled 10:16 creator with video editing skills, 10:18
+Blender skills, and AI skills that you 10:20 can use in order to make money. There's 10:22 also a complete dedicated section 10:24 showing you how to get your first paying 10:25
+customer. It also has a step-by-step 10:27 case study showing how I closed a client 10:30 that still ras me in €4,000 per month. 10:33 So, if you're interested in leveling up,
+10:34 click the link in the description. So, 10:36 it's working again. Now, we're going to 10:38 wait for this and see how it is going to 10:40 do its job. All right, so it is done
+10:42 creating all of this. Let's see. Uh, it 10:45 didn't do everything as we can see right 10:47 here. Turn those into black. Or maybe 10:48 that was the intention. Doesn't look
+bad 10:51 necessarily. Uh, we also got some black 10:53 buttons right here. And we've got the 10:55 brown texture on this part. It turned 10:58 this into some type of green, I
+believe. 11:01 And uh yeah, it's all right. It's all 11:03 right. It's It's not stunning. If you 11:05 have a model, you can simply prompt it, 11:07 hey, texture this for me, and
+then it 11:08 will make the entire texture set up. 11:10 Now, let's try something completely new. 11:12 I want you to make a fully procedural Lemon Generation 11:17 lemon. All
+right, so it has finished 11:19 creating our lemon. Let's have a look. 11:21 It seems like we got a pretty 11:22 interesting looking material right 11:24 there. It's not the best
+lemon you can 11:27 create. It did create some foroid 11:30 textures, some noise textures. It's not 11:32 completely what I expected it to be, but 11:34 it didn't add in some of
+those green 11:36 textures right there. We have these 11:38 weird little blobs right here. If I go 11:39 into the texture and see what it did, 11:42 it's actually just a UV sphere,
+and it 11:44 applied all of those textures to it. And 11:46 you might be wondering, okay, but this 11:48 is not exactly what I wanted. So, I'm 11:51 going to give you a little hack
+here 11:52 that is going to shoot me in the foot 11:54 because what I think I can do, and I'm 11:57 not entirely sure, but I'm going to test 11:58 it out right now, is I will go to
+Claude Follows Youtube Tutorials 12:00 YouTube and on my account here, I have a 12:03 strawberry tutorial. Okay, so this is 12:06 going to show you exactly how to create 12:07 this
+beautiful looking strawberry. Not 12:10 entirely sure if it is going to be able 12:11 to do this, but I'm going to test it 12:13 right now. So, I'm going into Glad. I 12:15 want
+you to create a strawberry. Follow 12:17 this tutorial. So, I just pasted my 12:19 YouTube link in there. I hope it is able 12:21 to take a transcription out of that and 12:23
+using that transcription, it's going to 12:25 try and rebuild that strawberry. So, I 12:27 hope this will work. And that kind of 12:28 shoots me in the foot because, well, I 12:30
+made the tutorial now. You're not going 12:32 to watch the tutorial. You're just going 12:33 to ask Claude and that's completely 12:35 fine. I'm wondering if it's able to do 12:36
+this because I'm not quite happy with 12:38 the lemon it produced. Now, if this does 12:40 work, then all of a sudden you have a 12:42 library full of tutorials, including my 12:44
+tutorials that you can simply put into 12:46 cloth, and it will recreate it for you. 12:48 All right, so it has finished creating 12:50 our strawberry. And let's see what it 12:52
+looks like. It's definitely not perfect, 12:54 and this is probably due to cloth not 12:55 having access to all the modeling tools. 12:57 Like I used proportional editing in the
+13:00 original to adjust the shape of the 13:02 strawberry. Didn't follow the tutorial 13:04 exactly. And we also have some 13:06 unconnected outputs here. So there's a 13:08 map
+range that is not connected. Not 13:10 sure why that is, but it did manage to 13:12 create a strawberry. So this is 13:15 definitely not perfect yet. We can also 13:17 see that. So
+for the lemon and a 13:18 strawberry, it kind of failed there in 13:20 my opinion. So it seems for now that 13:21 following the tutorial is still a better 13:23 method to create
+these models. Now I'm 13:26 going to show you two more things. One 13:27 of these is going to be organization and 13:29 the last one will be geometry nodes. So 13:31 let's see what
+it is able to do. So Helicopter 13:33 right here I have a helicopter and I 13:35 want Claude to create a full 13:38 organization for this. So as you can see 13:40 this doesn't have
+a name. All of these 13:42 parts over here also don't have names. 13:44 They are just planes and stuff like that 13:46 which I modeled to make it look like a 13:48 helicopter. So
+let's go over to cloth. I 13:51 have a helicopter in my scene. I want 13:54 you to organize file names. All right. 13:56 So it has finished. It also turned on my 13:59 backup
+collection which I have right 14:00 here. I'm going to turn those off. We've 14:02 got the helicopter collection right 14:04 here. And under helicopter, we have the 14:06 rotor
+body, tail rotor, and landing 14:08 gear. Quite interesting. So, I'm just 14:09 going to open up the body first. If I 14:11 select all of these, then indeed, we do 14:14 have
+everything that belongs to the 14:16 body. So, it seems So, the only problem 14:18 I found is that with the tail rotor, it 14:22 only selected these two parts, and it 14:24
+actually added a lot of those to landing 14:26 gear. So, I would have to change those 14:29 manually. But it did name everything 14:31 correctly. Or at least that's what I 14:33
+think. I don't know a lot about 14:34 helicopters. And basically our entire 14:37 helicopter instead of being one big mess 14:39 is now a neatly organized collection 14:42 which I
+didn't want to do by hand 14:44 anyways. And now we have something that 14:46 is well organized for this helicopter. 14:49 But for organization, which is some of 14:50 the most
+boring things that you can do, 14:52 we have now fully automated this and it 14:54 is no longer necessary to do something 14:56 like that. So let's start in a new blend Geometry
+Nodes 14:58 file and do some geometry nodes. Let's 14:59 go to Claude. I want you to create a 15:02 geometry nodes setup. So, let's ask him 15:06 to do this now. Basically, the
+idea is 15:07 that if a ball rolls over a cube, then 15:10 the next cube will be in time for the 15:12 ball to roll over. All right. So, it 15:15 seems to be finished. Has created
+an 15:17 animation. I think this one 15:23 it's almost there. It's almost there. 15:27 It's not completely there. All right. 15:29 So, we do have a pretty cool it is kind 15:31 of
+tapping it sometimes and sometimes 15:34 it's a bit too slow or too late. Let's 15:37 have a look at this geometry node setup. 15:38 So, it's not actually based on the 15:40
+proximity of the object. It is actually 15:42 based on math. Pretty interesting. I 15:44 wonder what would happen if I were to 15:46 feed it my own setup of a proximity 15:48 nodes
+and ask it to improve the 15:51 animation or improve certain elements 15:53 about it or maybe add some elements to 15:55 it such as growing curves from the cubes 15:57 or
+something. For this video, I simply 15:58 wanted to test everything in the first 16:00 shot. Can claude oneshot it and I think 16:02 it failed in a lot of aspects, but it 16:04
+also was very successful in some of 16:06 them. So, I think for texturing, it 16:08 worked out very well. I think for 16:10 creating models was a little bit basic. 16:12 Creating
+add-ons, very powerful. So, we 16:15 got the modifiers on and off button 16:17 right here. File organization, super 16:19 powerful. Actually worked great. For 16:21 following
+tutorials, it's not entirely 16:22 there yet. I will try to find a method 16:24 in order to improve this and maybe I can 16:26 take the transcript of the video myself 16:29 and
+then paste it into cloth so it knows 16:31 the exact steps. I'm not entirely sure 16:33 yet but I will figure that out. So Closing 16:34 that's it. We have explored a lot of 16:36
+things that you can do with cloth in 16:38 Blender. Now I will use this some more 16:40 and explore different use cases. So if 16:42 you're interested in seeing that I will 16:44
+upload another video in about 2 or 3 16:46 weeks where I'm going to dive into some 16:47 more advanced concepts. Click on 16:49 subscribe so you don't miss it. And if 16:51 you
+want to become an undeniable force 16:52 in the 3D space, then I highly recommend 16:55 watching this video next. Get a demo of Scribe today Sponsored"Claude Killed Every Creative
+Job" (the hot takes) 0:00 So, Anthropic have recently released a 0:02 slew of connectors allowing you to well 0:04 connect Claude to some major creative 0:07 apps. And of course,
+this led to a bunch 0:09 of hot takes on how Claude just killed 0:12 every creative job from 3D artists to 0:14 video and photo editors. So, today I 0:17 thought this would be a
+good spot for a 0:18 reality check. Because while look, these 0:21 tools are incredibly powerful and 0:23 useful, they're also like, as I often 0:25 say, super brilliant but drunk
+interns. 0:28 Plus, on the video side of things, I've 0:30 got a bit on like the agentic workflows 0:32 that are popping up everywhere. This is 0:34 like a slop, but not. Yeah,
+I've got 0:36 notes. Anthropic's new Claude connectors, briefly 0:38 Kicking off again. As many of you have 0:40 heard or maybe even already installed, 0:42 Anthropic has recently
+made a pretty big 0:44 splash, releasing a number of connectors 0:46 to Claude uh for some pretty major apps. 0:49 Obviously, Canvas is in here, Spotify as 0:51 well. I think that
+was in there before. 0:53 Um, and even down to things like Uber 0:55 Eats. Uber Eats really so that Claude 0:57 can judge me for ordering Taco Bell at 0:59 two in the morning.
+Well, I mean, as it The big three: Blender, Adobe & SketchUp 1:01 should. The eye-catching ones of course 1:03 to our side of the fence would be for 1:04 things like Blender. Uh
+the Adobe 1:06 connectors and actually I mean to degree 1:08 SketchUp. I I like SketchUp. It goes It 1:10 goes well with fries that I order at 2 1:12 in the morning from Taco Bell.
+I'll 1:13 stop. I promise. So, I figured we could 1:15 take a run through these. And off the 1:16 bat, as I have often said on the 1:18 channel, I am terrible with 3D, which 1:20
+actually kind of makes me ideal for this 1:22 because that's sort of the implied 1:24 promise here, right? the ability to 1:26 expand your skill set with AI tools or 1:29 if you're
+on the management side, fire 1:31 that lazy production team because you 1:32 know Claude can do the job for you. But 1:34 also, as we're going to see, no, first Setup: Desktop
+Claude, MCP & computer use 1:37 off, if you want to give this a shot, 1:39 you do need the desktop version of 1:41 Claude and the uh control your computer 1:44 skill turned on uh
+as well as obviously 1:46 the Blender MCP uh installed. That's 1:49 just under connectors and yeah, you just 1:51 hit the install button and off you go. I What MCP actually is (and
+why this isn't new) 1:52 should also note this is not exactly 1:54 new. There's actually been an unofficial 1:56 version of this running around for over 1:58 a year now. Uh namely
+since all of this 2:00 runs uh via an MCP or model context 2:03 protocol. And I'm not going to get too 2:05 lost in the woods here, but if you're 2:07 not familiar, an MCP allows
+an LLM to 2:10 issue commands natively to an 2:12 application. So it's not taking over 2:14 your machine. You're not going to see 2:14 your mouse like rolling around the 2:16
+application. Uh this is more like a 2:18 backend thing with like computer talking 2:20 to computer. Now, probably the most The mission: Recreate Blender Guru's Donut 2:22 famous
+tutorial on getting started with 2:24 Blender is Blender Guru's donut 2:26 tutorial. Uh, in total, it's like four 2:28 hours long. And to be honest, I've never 2:29 made my way all
+the way through it. So, 2:31 well, well, let's see if Claude can bang 2:33 it out. So, this is the final version of 2:37 Blender Guru's doughnut tutorial in the 2:40 latest 2026
+tutorial. And this is what Attempt #1: "Make me a donut in Blender" 2:43 Claude came up with when I just said, 2:44 "Make me a donut in Blender." Look, on 2:47 the one hand, it's
+amazing that it can 2:49 do this, but you know, on the other, 2:50 well, it doesn't look very appetizing, 2:52 does it? So, at that point, I decided to 2:54 switch tactics and gave
+uh Claude a 2:56 screenshot of the final uh Blender 2:59 tutorial image and said, "Can you make 3:01 it look more like this?" At first, 3:02 Claude was like, "Uh, hey, is that my
+3:04 render? That looks really good." I I 3:06 didn't bother to correct it. And at 3:08 first, I do have to admit, it's it 3:09 started off looking pretty promising, at 3:11 least
+to me. We did get the donut in 3:13 there and then it added the coffee cup 3:14 in as well. To its credit, around this 3:17 time, Claude did figure out that uh that 3:19 that
+screenshot that I provided was not 3:21 its render, but rather uh well, it it 3:23 attributed it to me. Again, I didn't 3:25 bother correcting it. From there, Claude The Mad Max
+donut 3:27 decided to push on and then we ended up 3:29 with this very aggressive looking donut. 3:31 Uh like if if there were a donut on Fury 3:33 Road, this would probably be it.
+Uh 3:35 Claude did very quickly realize its 3:37 error and had all of the sprinkles 3:39 laying down on the next pass. Um, you 3:41 know, although interestingly, it changed 3:43
+the texture on the uh coffee cup and uh, 3:46 you know, as I didn't mention the first 3:48 image, but obviously we do have some 3:49 issues with uh, these uh, laying 3:52
+sprinkles, which are really large uh, 3:54 sort of like clipping through the plate. 3:56 On the next pass, Claude for some reason 3:58 decided that it wanted to change the 4:01
+handle on the coffee mug despite that 4:03 not being shown in, you know, our last 4:05 versions of it. uh and kind of gave it 4:08 uh sort of like this weird like Bavarian 4:10
+pretzel kind of look to it. I was just 4:11 like, "Go ahead, Claude. That's that's 4:12 artistic intent. You do your thing." So, Macro photography & the thimble coffee cup 4:14
+it's first final render. Uh Claude 4:16 decided to go full macro photography for 4:19 some reason here. It's like, "Betty, why 4:20 don't why don't we pull the camera back 4:21 a
+little bit." To its credit, it did 4:23 manage to pull back, although obviously 4:25 we are pretty overexposed here right 4:27 now. So, uh and then actually now our 4:29 coffee cup
+is actually clipping into the 4:31 donut. It's also a very very It's like a 4:33 thimble-sized coffee cup or a giant 4:35 donut. one of the two. Um, so in the PBR textures finally
+arrive 4:37 meantime, I was like, well, listen, I'm 4:39 going to go pick up some texture files 4:41 for you, uh, PBR files, basically from 4:43 the original Blender Guru tutorial.
+Uh, 4:46 in the meantime, why don't you take down 4:47 the exposure? So, as I was downloading 4:49 the texture files, Claude came back with 4:51 like, gotcha on that exposure,
+boss. I'm 4:53 not exactly sure what it was thinking 4:55 here, but, uh, yeah, just decided to put 4:57 our giant donut and thimble coffee, uh, 5:00 into the middle of a desert, I
+guess. At 5:02 this point, Claude basically told me 5:04 that we were having exposure problems 5:05 because the texture files weren't 5:07 loaded. So, I was like, "All right, go
+5:08 ahead and load them up." Uh, and then it 5:09 returned with this, which obviously did 5:12 not solve the exposure problem. But, to 5:13 be fair, actually, uh, you know, the

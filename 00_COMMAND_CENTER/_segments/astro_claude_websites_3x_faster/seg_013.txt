@@ -1,0 +1,224 @@
+start up Claude Code. 7:33 But I do think this whole workound when 7:35 using Windows is a little bit clunky and 7:38 I'm hoping that it's something that can 7:39 be made simpler
+in the future and maybe 7:41 when you're watching this video it will 7:42 be. Anyway, now let's try using this. 7:45 Now when I've just tried using this MCP 7:47 server, I got some
+kind of connection 7:49 error. It failed. It didn't work for 7:51 whatever reason. So I'm actually going 7:53 to use the remote server from Context 7. 7:56 It's strange because
+when I tried this 7:58 out before recording, it did work. 7:59 everything was fine. Uh, but this is the 8:01 problem sometimes because Claude Code is 8:03 new, MCP servers are new,
+they're 8:05 changing a lot. Sometimes things can 8:07 just not work and it might take a little 8:09 while for things to level out. So, what 8:12 I'm going to do now is go back to
+the 8:13 docs and look for the other command I 8:15 need to run for a remote server. So, 8:17 we're going to go ahead with this one 8:19 right here, which uses HTTP as the 8:21
+transport system. So, let's copy this. 8:24 All right. All right. So, I've pasted 8:24 that into my terminal. But I'm going to 8:26 add one more thing and that is the scope 8:28
+flag after the server name. So, after 8:30 context 7, do double dash then scope and 8:32 then project to add this at a project 8:35 level. Press enter. Hopefully, now it's 8:37
+going to add that server for us. And if 8:39 we close this terminal and take a look 8:41 over here, we should see the mcp.json 8:43 file. And yeah, we see that context 7 8:45
+property inside. This time the type is 8:47 HTTP because we're using a remote 8:49 connection. And this is the URL for the 8:52 server as well. Cool. So now we need to 8:55 start
+Claude backup, which I'm going to 8:56 do over here by typing claude and then 8:58 press enter. Let's get rid of the file 9:01 tree. And then inside here, I'm going to 9:03 say
+forward/mcp. 9:05 And this time hopefully we will see the 9:07 concept 7. Okay, it failed to connect. 9:10 What I'm going to do is press enter and 9:12 then I'm going to reconnect
+to this to 9:14 see if it does connect this time. Okay, 9:16 looks like it's worked. So forward/mcp. 9:19 Now we can see a green tick next to 9:20 that. We're connected to context
+7 and 9:23 we can start using it. So let me escape 9:25 out of that. Okay. So now I'm going to 9:28 get Claude code to use context 7 by 9:30 typing in this prompt and it says, can
+9:31 you check the latest Tailwind docs to 9:33 see if the theme variables are correctly 9:35 configured in the global CSS file. Use 9:38 context 7. I'm also going to reference
+9:40 that CSS file so it knows where to look. 9:42 So that's source app and then 9:44 globals.css. 9:46 And then I'm going to press enter. But 9:48 before I do that, notice I said
+use 9:49 context 7. That's so it explicitly knows 9:52 to use the MCP server to get the 9:54 up-to-ate information. So let me press 9:56 enter to do this. And now it wants to 9:59
+use this resolve library ID tool from 10:02 context 7. And then it wants to use an 10:06 additional tool and it wants my 10:07 permission to do this. So I'm going to 10:08 press
+yes right here. And now you can 10:11 see right here it says looking at your 10:12 Tailwind CSS configuration. your theme 10:14 variables are correctly configured blahy 10:17 blahy
+blah it's properly structured okay 10:19 so everything is as it should be awesome 10:22 so one thing I like to do with context 7 10:24 is tell claude code to use it whenever 10:26
+it needs to implement some feature using 10:29 a third party framework or library 10:31 because a lot of the time it can use 10:33 legacy code so I want to make sure that 10:35 it
+uses the up-to-date documentation 10:37 every time that it creates some code 10:40 using those frameworks and that's not 10:41 just clawed code by the way that's any 10:43 AI tool
+tool or model, they can all use 10:45 legacy code because they're trained on 10:47 that legacy code. So, what I'm going to 10:49 do is add a memory using the hash over 10:51 here.
+So, if I press hash, we're going 10:53 to add a memory and then I'm going to 10:55 paste in this memory that says use 10:56 context 7 to check up toate docs when 10:58 needed for
+implementing new libraries or 11:00 frameworks or adding features using 11:02 them. So, if I press enter, we're going 11:04 to add that to the project memory. And 11:06 if we then
+open this file up, we should 11:10 see that at the bottom now. Yep, there 11:12 it is. Awesome. 11:14 Okay then. So now we're going to add 11:15 another server called Playright
+which 11:17 provides Claude Code with the tools to 11:19 do things like open a browser, click on 11:21 links, take screenshots, etc. So I'm on 11:24 the Playright MCP page right
+here. And 11:26 for Claude Code, it says run this 11:28 command, which because we're on Windows, 11:30 we're going to have to tweak again. I 11:32 also want to make sure we're
+using 11:34 project scope when we add it. So copy 11:36 this command, then head back to your 11:37 terminal. So then I've already added 11:39 this command in as well as two other
+11:41 things. the scope flag first of all over 11:44 here to say we want to add this at 11:46 project level and then also the cmd 11:49 slash cart because we're running this on
+11:51 Windows this time we don't need to add 11:53 the y flag for this particular server 11:56 all right so now let's hit enter 11:58 hopefully that's going to add the 11:59
+playright server to the mcpjson file so 12:03 let's take a look at that over here and 12:05 yeah we can see we've got the context 7 12:07 one now and also the playright one and
+12:09 this time the type is standard in out 12:11 the command cmd then the arguments down 12:14 here. Awesome. So then now we need to 12:17 start cla back up again so that we can
+12:19 try using this. Okay, so I've started 12:22 clawed up and the first thing I'm going 12:23 to do is use the MCP tool to make sure 12:25 that they're connected correctly. Yep.
+12:27 Okay, cool. And now I'm going to escape 12:31 and I'm just going to ask Claude Code to 12:33 maybe open a browser and navigate to 12:38 netinja.dev 12:40 dev and give me a
+summary of the site. 12:45 So this is just to show you that it can 12:47 navigate to a site using playright or 12:49 playright can on its behalf and provide 12:51 feedback that we
+need. So it's going to 12:54 ask for permission first of all. So 12:56 we'll say yes. And then on my other 12:58 screen it's opened up netinja.dev which 13:01 we can see right
+here. So it's just 13:03 going to do its browsing. I'm going to 13:05 take that back off screen. All right. So 13:08 now it's come back with a little bit of 13:10 information. It
+says, "Net Ninja is a 13:12 comprehensive coding education platform 13:14 created by Sha focused on web 13:17 development training. The site positions 13:18 itself as a coding dojo
+where aspiring 13:21 developers become coding ninjas. So I'm 13:24 quite pleased with that. It gives us 13:25 this other information about it as well 13:27 which is quite extensive
+to be honest. 13:29 But Playright can do more than just 13:31 this. And what I'd like to do is use 13:33 Playright to give us feedback on the UX 13:36 of components that we make
+when it views 13:38 them in the browser. So, in the next 13:41 lesson, what we're going to be doing is 13:42 making our own sub agent with claw code, 13:45 and we're going to be
+using the 13:47 playright MCP from within that sub agent 13:49 to do just Claude Code Tutorial0:00 Okay then gang, in this lesson I want to 0:02 talk about something called sub
+aents 0:04 which are really cool and they allow you 0:05 to basically create a whole team working 0:07 on your project where each sub agent can 0:09 have a different area of
+expertise that 0:11 can be isolated and configured to work 0:13 on certain tasks. For example, we could 0:16 make a unit test agent whose expertise 0:18 and function would be to
+really hone in 0:20 on writing and running tests. Or we 0:22 could make a sub agent who specializes 0:24 in security audits. We could make a UX 0:27 reviewer who specializes in
+providing 0:29 feedback for new components by viewing 0:31 them in a browser, etc. Now, each of 0:33 these sub aents all run independently 0:35 from each other. They have their own
+0:36 system prompts, tools they're allowed to 0:38 run, and their own context window. So, 0:40 they're a really good way of isolating 0:42 certain workflows and tasks. And what's
+0:44 really cool is that Claude Code can 0:46 delegate tasks to them when it needs to. 0:48 So you can kind of think of claude code 0:50 as being maybe a senior developer 0:52
+working on tasks who then instructs 0:54 these sub aents to carry out certain 0:56 work. And one of the main benefits of 0:58 working this way is that each sub aent 1:00 has a
+specialized expertise which we can 1:03 fine-tune to excel in a particular area 1:05 through detail system prompts. Also 1:08 because each sub aent has their own 1:10 isolated
+context window. It keeps their 1:13 context clean and focused leading to I 1:15 think better results a lot of the time. 1:18 And it also means the main thread stays 1:20 cleaner
+and trimmer if we do this 1:21 correctly because we're delegating tasks 1:23 to those sub aents. So it reduces the 1:26 context overload in your main session. 1:28 So then in this
+lesson we're going to 1:30 make a sub agent who can use the 1:32 playright MCP server to preview and 1:34 review the UI UX of new components once 1:37 they've been made. And the
+workflow is 1:39 going to look something like this. We're 1:41 going to use the custom slash command to 1:43 tell Claude Code to make a new UI 1:45 component for us. Inside that
+command, 1:47 we're going to add an instruction 1:48 telling it to invoke the UX reviewer sub 1:51 aent to review its work after it's made 1:54 code edits. That sub aents going to
+use 1:56 playright to open a browser and look at 1:58 the component from a UX perspective. 2:00 Then it's going to provide feedback to 2:02 the main thread on clawed code which
+2:03 will make edits to the component based 2:05 on that feedback. If needed, it can ask 2:07 the UX reviewer again to review the code 2:10 or review the uh component in a browser
+2:13 and provide more feedback until 2:14 eventually everyone's happy and the 2:16 component is finished. So let's give 2:19 this a whirl. So then let's start by 2:21 making a new
+sub agent which we can do 2:24 by coming into the claude code chat 2:25 session and using a command which is 2:28 forward/ agents. Now when we do that 2:30 we're going to see a
+list of agents 2:32 you've already created. Now, we've not 2:33 created any. So, we can make one by 2:35 selecting this create new agent option. 2:38 Once we've done that, we can
+choose a 2:40 scope for this new agent, either project 2:41 or personal. I'm going to select the 2:44 project scope so that anyone working on 2:45 this project can use the sub
+agent. 2:48 Then, we're going to get two options. 2:50 You can get Claude to generate one for 2:52 you, or you can manually make one from 2:54 scratch. Now, what I'd like to do is
+2:55 have Claude make one for me, then just 2:57 change it where I see fit. So, let's 3:00 select that first option. And then we're 3:02 asked to describe what this agent should
+3:04 do and when it should be used. And I'm 3:08 just going to paste in a summary of this 3:09 agent now which says expert UI and UX 3:12 engineer who reviews the UI and UX of 3:14
+React components in a browser using 3:16 Playright, takes screenshots, then 3:18 offers feedback on how to improve the 3:20 component in terms of visual design, 3:22 user
+experience, and accessibility. So 3:25 then I'm going to hit enter and Claude 3:27 Code's going to go ahead and make this 3:28 new agent for us. 3:33 Now, at some point, it's going
+to ask 3:34 you what tools you want to provide your 3:36 agent with. And the default option is to 3:39 allow all tools, but I'm going to 3:41 unselect the edit tools because I
+don't 3:44 want to give the agent the power to edit 3:46 files. I only want it to review the 3:49 components and offer feedback. It's also 3:52 going to ask you which AI mode you
+want 3:53 to use for the sub agent, and I'm going 3:55 to select the Sonic 4 model. Then it's 3:58 going to ask you what color you want the 4:00 sub agent to use when it's
+providing 4:02 updates in the terminal. I'm going to go 4:03 for the purple color. You choose 4:04 whatever you want. And then finally, 4:07 it's going to give you a summary of the
+4:09 agent it's making, which you can confirm 4:12 by pressing enter. Okay. So, we can see 4:14 that now we have this project agent 4:17 called UI UX- reviewer that uses the 4:20
+Sonic model. Let's close this off. And 4:22 if we open up this file tree, we should 4:24 see inside the claude folder, an agents 4:26 folder with this markdown file for the 4:29
+agent. So we've got some front matter at 4:31 the top, which is the name of the agent 4:33 a description. And then down here, the 4:36 tools that it's allowed to use. Now, 4:39
+it's added the playright one right here, 4:41 or a few of the playright tools rather, 4:43 because we specifically said in the 4:46 summary, we wanted to use playright, the 4:48
+model, and the color. Then a bit of a 4:51 description down here. Then we've got 4:53 the actual workflow. So the setup, the 4:56 visual documentation, how to analyze, uh 5:00 some
+testing methodology. We're not 5:01 going to read all this, but essentially 5:04 it's created this for us. And the job of 5:06 this agent now is to review components 5:09 using the
+Playright MCP in a browser. 5:12 And you can edit this, by the way, if 5:14 you want to. It's basically like a 5:16 gigantic prompt for the sub agent which 5:19 gets used when the
+sub aent gets 5:21 invoked. So by all means go through this 5:23 and just edit anything that you don't 5:25 agree with or any additional information 5:27 that you want to add, just
+add it. Okay, 5:29 so now we've got this sub aent created. 5:31 We can go back to the custom UI 5:32 component command we created earlier in 5:34 the course. And remember this
+command 5:36 instructs claw code to make a new UI 5:38 component based on certain criteria. And 5:41 now at the end I'm going to paste in one 5:43 final instruction which tells
+Claude to 5:45 invoke the new sub agent we just created 5:48 and ask it for feedback. Once it has 5:50 that feedback it should implement it by 5:52 updating the component. And then
+finally 5:55 if it needs to it can ask for another 5:57 review and more feedback. So then now 6:00 everything is kind of set up and ready 6:02 to go. So let's give this a shot. And
+6:04 remember, we need to exit out of claude 6:05 code first of all because we just made a 6:08 change to this command. And then we're 6:09 going to start the session back up 6:11
+again. 6:13 All right, then. So, let's use the UI 6:16 component 6:17 tool if I can spell it. Components like 6:20 so. And then the component name is going 6:23 to be modal. And
+I'm going to say make a 6:27 clean modern looking modal which also 6:34 has a semi transparent 6:39 backdrop. 6:42 All right. So, press enter. 6:48 All right. And we can see
+already that 6:49 it has a little to-do list that it's 6:51 going to work on. And right at the 6:53 bottom down here, it's going to say 6:55 review the component with the UI SL uh
+6:58 hyphen UX - reviewer agent. So that's 7:01 the final step. Okay, so it wants to do 7:03 something. Yep, we'll allow that. And 7:06 I'm going to allow for the rest of the 7:08
+session. 7:12 Okay, so now you can see it's invoked 7:14 this UIUX reviewer and that reviewer 7:17 wants to open up a browser. Now, in 7:19 order to do that, it wants to start the
+7:21 dev server. So, I'm going to let it do 7:22 that. 7:25 And now it wants to navigate to the 7:27 preview page, which is where Claude Code 7:29 added that component to when it
+created 7:31 it. So, let's allow it to do this. 7:35 And now on my other screen, I can see 7:36 it's opened up the browser. It's over 7:38 here. You can see. All right. 7:41 And
+it's asking me for permission to 7:44 take a screenshot. Yes, I'm going to 7:45 allow it to do that. 7:50 So something else you can do through 7:51 playright is click elements on a
+page. 7:53 And now it's asking for permission to do 7:55 that. So we'll say yes. 8:00 And this is taking a long time by the 8:01 way because there's so many different 8:03 variants
+that Claude Code created for 8:04 this modal. There's about seven or eight 8:06 different things it needs to do on the 8:08 web page to test everything. 8:13 All right. And now it
+wants to resize 8:15 the browser width. So, it's even testing 8:17 for smaller device screens, which is 8:19 really nice. So, I'm going to allow it 8:20 to do that. 8:25 All right.
+So, eventually it finished 8:27 its review process and you can see now 8:30 it's made some additional edits and 8:33 these are all the features it's 8:35 implemented. So, we've got
+the color 8:37 variants. We've got the different sizes. 8:40 We've made sure it's good for 8:41 accessibility. Uh we've got these 8:44 different interactions so we can close 8:45
+via the cross button, escape key, or the 8:47 backdrop click. Um these are the files 8:50 created for the model and the test. And 8:53 then it's updated the page, the preview 8:55
+page right here to have interactive 8:57 demos. So, it says right here, the UI UX 9:01 reviewer gave it a five out of five 9:03 stars and marked it production ready. 9:06 Well,
+that is really good. So, it 9:07 obviously did a good job of making these 9:08 components. So, now let's view these in 9:11 a browser. All right. So, I'm just on 9:13 the preview
+page and I've scrolled all 9:15 the way down to the modal components. 9:17 So, we've got buttons here to open the 9:19 modules. So, I could click on primary 9:21 and yeah, that
+looks pretty good. So, we 9:23 can close it via the cross or clicking 9:25 over here. I'm going to try the 9:27 secondary one and then press escape. 9:28 Yeah, that closes it.
+Confirm. All 9:31 right. And then we'll click on cancel. 9:34 And then finally, we'll click on the 9:35 cross. So, we've got these different 9:36 variants, which is really nice.
+9:38 Different sizes. So, that's small. Uh, 9:40 medium. I think that's a little bigger. 9:42 Large. Yeah, a little bit bigger again. 9:45 All right. So, these are the features
+9:46 it's implemented. So, that's nice. It's 9:48 kind of documented it for me as well. 9:50 So, these are actually using I think the 9:52 card component because the card 9:53
+components are up here. So, you know, 9:55 like I said earlier on in the series 9:57 that Claude Code does get a little bit 9:59 giddy sometimes. It likes to use the 10:02 work
+it's done elsewhere in the 10:04 application. So I think this is just an 10:05 example of that. It's reusing the card 10:07 component to tell me about this modal 10:10 component it
+just created. So kudos. 10:13 That's very nice. Anyway, all looks 10:15 pretty good. Maybe I would make some 10:17 tweaks here and there, but I think it's 10:19 done a good job of
+creating and also 10:21 testing this component in the browser. 10:23 And one more thing really quickly. Just 10:25 because we've made a sub agent to 10:26 automate the review
+process, it doesn't 10:28 mean you shouldn't review the work 10:29 yourself. both in the browser and in the 10:31 code. This is something I think is 10:33 really important and
+something I always 10:35 do to stay in the loop because even 10:37 though everything looks okay in the 10:38 browser, it doesn't mean it's coded 10:40 correctly and you might find
+something 10:42 you don't like. Also, if you're not 10:44 looking over the code that Claude 10:45 produces, you're going to find yourself 10:47 out of the loop very quickly and
+find it 10:49 harder to navigate the codebase in the 10:51 future when you do need to dig into the 10:53 weeds. Claude Code Tutorial0:01 All right then gang. So I want to move 0:03
+away from prompting context commands and 0:05 sub aents now and move on to another 0:07 nice feature in Claude Code which is the 0:09 Claude Code GitHub app. And this is 0:11
+something we can set up easily from 0:13 within the Claude Code chat session. And 0:15 I'm going to show you how to do that in 0:16 a moment. But basically when we install 0:18 it,
+it creates two GitHub actions for us 0:21 automatically which are both really 0:22 useful. The first one is that it can 0:24 autoreview pull requests and provide 0:27 feedback on
+those pull requests. The 0:29 second one allows Claude code to 0:30 automatically work on issues on a new 0:33 feature branch when you mention at 0:34 Claude inside it. Now before
+I show you 0:37 how to set up this feature, I will say 0:39 that you need to have the GitHub CLI 0:41 already installed on your computer, 0:43 which you can do by following these
+0:44 installation instructions. So I'm going 0:47 to leave a link to this repo down below 0:49 the video, but essentially you can just 0:51 install it via something like Homebrew
+0:53 on a Mac or Winger on Windows. It's all 0:55 really simple to do and it outlines the 0:57 steps in this readme file. Once you've 1:00 installed the GitHub CLI, you'll also
+1:02 need to login by running this command in 1:04 your terminal. ghorth orth login. Once 1:07 you've done that, you're ready to set up 1:09 the claude code GitHub app. All right,
+1:11 so inside claude code, we can use a 1:13 built-in slash command, which is 1:15 slashinstall 1:16 github app. And I'm going to press enter 1:19 here. And what that does is set
+up the 1:20 GitHub actions for the repository that 1:23 we want to give it access to. So, I'm 1:24 going to press enter. And then it's 1:27 going to ask us which repository we want
+1:28 to use. We can enter a different one if 1:30 we want, but I'm going to use the one 1:32 linked up to this local repo right here 1:34 that I'm in. So, I'm going to press 1:35
+enter on this option. Then, it's going 1:37 to open a browser and it's going to ask 1:39 us to install Claude Code on GitHub. So, 1:42 let's click the install button over 1:44
+here. We need to authorize it. Now, you 1:47 can choose to allow it access to all 1:49 repositories or only select 1:50 repositories. I'm just going to select 1:52 this one to give
+it access to the Claude 1:54 code tutorial one, which is this down 1:56 here. And then I'm going to install and 1:59 authorize this. And then once you've 2:01 authenticated it and
+installed it on 2:03 your GitHub account, you can just come 2:05 back to the terminal and press enter to 2:07 complete this. And it says select GitHub 2:10 workflows to install.
+We're going to 2:11 install both of them. I'm just going to 2:12 press enter. And then we're just going 2:15 to choose the first option here. Create 2:17 a long live token with
+your Claw 2:19 subscription. It's going to ask you to 2:21 authorize with your Claude Code account. 2:23 So, I'm going to do that. Once you've 2:25 authenticated with Anthropic,
+it's going 2:27 to ask you to create this pull request. 2:30 And this is basically two actions that 2:32 it's created. It explains everything 2:33 down here. We can just create
+this pull 2:36 request. 2:38 And then one of the actions is to 2:40 automatically review pull requests. And 2:43 down here, we're just waiting for some 2:45 checks to be completed.
+Once they've 2:47 completed, you can merge that request. 2:49 And now up here, if we go to actions, we 2:52 should be able to see we've got these 2:54 two actions right here,
+Claude Code and 2:56 Claude Code review. Okay, so now we're 2:59 ready to put Cloud Code to use in the 3:01 GitHub repository. And I'm going to 3:03 create an issue in a second.
+And the 3:04 issue is going to be that this title up 3:06 here doesn't link to anywhere. And 3:08 ideally, it should link to this page, 3:10 the homepage. So let's create an issue
+3:12 and tell Claude Code to handle this. All 3:15 right, then. So let's head to issues. 3:17 And we're going to create a new issue. 3:20 We'll just say link from title missing.
+3:24 And then I'll say there is no link from 3:29 the title in navbar 3:33 to the homepage. 3:36 All right. So I'm going to create this 3:37 issue. Now nothing happens 3:40
+automatically. But if I come down here 3:43 and mention Claude, I can just say at 3:45 Claude and I'll say, "Can you fix this? 3:50 I'm going to comment over here." And 3:51
+hopefully just after a minute or so, 3:53 Claude is going to start work on this 3:55 task. 3:58 And you can see now Claude has picked it 3:59 up and it's starting to work on this
+4:01 issue. 4:03 All right. So, it's created this little 4:04 to-do list much like it does in Claude 4:06 code within the terminal and it's 4:08 looking at the different things it
+needs 4:10 to do. examining the current navbar, 4:12 adding the link for the title. It's 4:14 going to test it. Then it's going to 4:16 commit and push the changes. Then it's 4:18
+also going to provide a PR creation link 4:20 which we can go and take a look at. All 4:22 right. So, it's finished its little 4:24 to-do list now. And there's a summary 4:25 down
+here to say that it's fixed it and 4:27 any changes that have been made. It's 4:29 also created the PR or rather it gives 4:32 us a link to create the PR based on this 4:34 edit.
+So if we go there, it's 4:37 prepopulated this description and also 4:39 the title for the PR. I'm going to 4:41 create this pull request. And when we 4:44 create a pull request,
+Claude Code 4:46 automatically picks up on the pull 4:48 request and provides us with a code 4:50 review. And you can see now down here, 4:52 the Claude Code review is going in the
+4:55 background. Okay, so now it's finished 4:57 its review and we can see the feedback 4:58 down here. We get a big green tick, 5:00 which means it's pretty good overall. 5:02 So,
+we get a tick for code quality, a 5:04 tick for bugs, a tick for performance 5:06 and security. Overall, it says approve. 5:10 Yep. All right. So, let's go down here. 5:11 We can
+merge the pull request now and 5:14 confirm the merge. 5:16 Okay. So, I just pulled down those 5:18 changes so we could preview this in a 5:20 browser. And now, if we hover over
+this 5:21 title, you can see it goes purple. We 5:23 get the little pointer icon. And if we 5:25 click on it, it goes to the homepage. 5:27 Awesome. So, that's now working. So then
+5:29 that's how claude code can work directly 5:31 in your central GitHub repository and I 5:34 think it's quite a nice addition to the 5:35 product. You can also make additional
+5:37 actions by the way to include claude 5:39 code in different ways and different 5:40 workflows. So it's definitely worth 5:42 looking through the action files and 5:44 playing
+around with them. 0:00The Cloud Code team have just fixed the biggest issue with MCP by adding tool search, a way to reduce context by up to 0:077 seconds95% simply by searching
+for a tool name before using it instead of preloading all available tools into context, which 0:1414 secondscould be tens of thousands of tokens used up even before writing your
+first prompt. But why wasn't this the way it worked before? And did they steal this 0:2222 secondstechnique from Cloudflare? Hit subscribe and let's get into it. MCP servers are
+absolutely everywhere. 0:2929 secondsThere's one for GitHub, Docker, Notion. 0:3232 secondsThere's even a better stack one which I've heard is really good. And with people using
+clawed code and LLMs for everything other than code, it seems 0:4040 secondslike MCP isn't going anywhere anytime soon. But it has its problems. Naming collisions, command
+injections, and the biggest of all, token inefficiency. 0:4949 secondsBecause all the tools from a connected server typically gets preloaded into the model's context window to give
+a model complete visibility. So tool names, tool 0:5858 secondsdescriptions, the full JSON schema documentation that contains optional and required parameters, their types, any
+constraints, basically a lot of data. 1:071 minute, 7 secondsThe Reddit team used 167 tools from four different servers, which took up over 60,000 tokens even before writing a
+1:151 minute, 15 secondsprompt. Almost half of Opus' 200K context window. And this is even outside of skills and plugins. So if you have a 1:221 minute, 22 secondslot of servers
+that could take up a substantial amount of tokens. Yes, I know there are models out there like Gemini that have a 1 million token 1:301 minute, 30 secondswindow. But models tend to
+perform worse the more things you add to their context. So what's the best way to fix this? Well, I've seen two popular paths 1:381 minute, 38 secondsonline. The programmatic
+approach, which is what Cloudflare have done, and the search approach, which is what the Claude Code team have done. I'll talk 1:471 minute, 47 secondsabout the programmatic
+approach a bit later, but first let's talk about the search process which works like this. 1:531 minute, 53 secondsFirst, Claude checks if preloaded MCP tools are more than 10% of
+the context. 1:591 minute, 59 seconds[music] So that's 20K tokens if the context window is 200k tokens. If not, then no change happens and the model 2:082 minutes, 8 secondsuses
+the MCP tools as normal. But if yes, then Claude dynamically discovers the correct tools to use using natural 2:162 minutes, 16 secondslanguage and loads in three to five of the
+most relevant tools based on the prompt. It will fully load just these 2:242 minutes, 24 secondstools into context for the model to use as normal. This was actually their most
+requested feature on GitHub. And it works similar to agent skills, which 2:322 minutes, 32 secondsonly loads skill names and descriptions 2:342 minutes, 34 seconds[music] 2:352
+minutes, 35 secondsinto context. And when it finds a skill it thinks is relevant or a skill that was mentioned in the prompt, then it goes ahead and loads all of that specific
+skill into the context window. 2:452 minutes, 45 secondsProgressive disclosure in a nutshell. 2:472 minutes, 47 secondsBoth anthropic and cursor have seen great benefits when it
+comes to using this approach for MCP tools. But what about the programmatic approach? This 2:562 minutes, 56 secondsworks by models orchestrating tools through code instead of
+making API calls. So for these three tools that need to work one after the other based 3:043 minutes, 4 secondson the previous response instead of [music] making individual API
+tool calls, Claude in particular can write a Python script to do all of this 3:123 minutes, 12 secondsorchestration, then execute the code and present [music] the result back to
+the model. Cloudflare have taken this one step further by getting the model to 3:203 minutes, 20 secondswrite TypeScript definitions for all the available tools and then running
+the code in a sandbox which is usually a worker. The Claude code team actually 3:283 minutes, 28 secondstried the programmatic approach but found search to work better which I find
+really hard to believe considering Claude is very good at writing code and 3:383 minutes, 38 secondsalso the agent browser CLI headless chromium thing that Vel have released works
+very well in claude code and I'm 3:463 minutes, 46 secondssure if you could convert all MCP tools into CLI commands using something like MC Porter it would be much easier and 3:533
+minutes, 53 secondscontext efficient for models to run a specific CLI command for [music] a tool instead of loading things into context. But hey, that's just my opinion. 4:014
+minutes, 1 secondOverall, I'm glad the issues with MCP servers are being looked into, and maybe it might just convince me to have more than one server installed. Sync to video time
+All From the series From Better StackIntroductions 0:00 - Am I reading your status updates then in your Slack 0:02 and those are all Claude-generated? 0:04 - Yeah, I'm never
+actually writing anything anymore. 0:07 It's just all Claude. - It was just you reading 0:08 Claude the whole time. 0:09 Okay, good to know. 0:14 - Mark. 0:15 - Hey, I'm Alex. 0:16
+I lead Claude Relations here at Anthropic. 0:18 Today we're talking about MCP and the Claude API, 0:22 and I'm joined by my colleagues. 0:23 - Hey, I'm Michael. 0:24 I'm an
+engineer on the API team here at Anthropic. 0:27 - I'm John and I work on the Model Context Protocol team 0:29 here at Anthropic. What is MCP? 0:30 - To kick us off here today,
+0:32 I really wanna give a high level overview 0:34 of just what is MCP. 0:36 - MCP is the Model Context Protocol, 0:39 and it's a way of providing external context to models. 0:44
+And so if you have a chat bot 0:45 and you're in a conversation, 0:47 the history of your conversation is your context. 0:48 And the model only has the ability to see everything
+0:51 that you've typed in, which is really useful 0:53 for some kinds of tasks, like, 0:55 help me solve this problem or write this thing. 0:57 But sometimes Claude needs access to
+things 1:01 outside of its box, 1:02 like it needs to be able to talk to the internet, 1:04 or it needs to be able to reach out 1:06 to a travel agency to book your flight. 1:08
+And so that's kind of where MCP comes in. 1:10 It provides these external context to Claude, 1:12 so that it can take actions for you on your behalf 1:14 in the outer world. 1:16 -
+Right, yeah, I've heard a good analogy in the past 1:18 of MCP being like the universal connector 1:22 between applications and the model. 1:24 So a way for us to tie Claude into
+everything else 1:27 that it might need access 1:28 to all the other data sources, tools, everything. The origins of MCP 1:31 - Yeah, definitely. 1:32 - Out there on the internet,
+basically. 1:34 Why did we build this? 1:35 What was kind of the intention? 1:36 I mean, it seems useful to have these connections, 1:39 but why did we take that on specifically
+1:42 and why make it a universal standard protocol? 1:44 - So I think as we were starting 1:47 to get further and further along in tool use 1:49 and as Claude's capability, 1:52 we
+were starting to notice 1:53 that we were re-implementing a lot of the same capabilities 1:55 in various different contexts. 1:57 So my assistant that I had in my coding editor
+2:01 had to get a web search tool associated with it, 2:04 but so did claude.ai 2:05 and so did all these other services 2:07 where we want Claude to be able to interact 2:09 with
+the outside world. 2:10 And we figured it would be good 2:12 to have a single unified protocol 2:15 that we can implement a set of functionalities once 2:20 and take that
+everywhere. 2:22 So build it once and configure everywhere. 2:24 So the same web search functionality 2:26 that I might get on Claude Code 2:29 will be the same web search
+functionality 2:30 that I would get on Claude.ai. 2:32 - Okay, that makes sense. 2:34 Creating that universal compatibility basically 2:37 when we have tons of applications 2:39
+that might need these same connections. 2:42 Now, our approach to MCP specifically with open sourcing, 2:47 it was pretty different, I think, 2:48 than a lot of other integration
+paths Open sourcing MCP 2:50 that other companies were going down at the time. 2:53 Why did we think to open source it? 2:54 What was kind of the driving factor behind that? 2:57 -
+I think there's a lot of value in open standards 3:00 to allow a wide network 3:03 of engineers, companies, individuals 3:07 to go and build an ecosystem around something. 3:12 And
+we could have gone and built the Claude app connector 3:16 that allows you to tie things into Claude, 3:18 but then you end up with a really kind of 3:20 bad user experience for if
+you're using multiple models. 3:26 If I'm a company like Asana 3:28 and I want to go connect, 3:30 do I have to go implement my Claude connector 3:33 and my open AI connector and
+my Grok connector 3:34 and my Gemini connector, 3:35 and that ends up being kind of a nightmare. 3:37 And one of the things that we had noticed is 3:40 that models having access to
+external context 3:42 is kind of good for everyone. 3:45 It's like a rising tide floats all boats type of situation. 3:47 And we had this internal protocol that was really valuable
+3:53 for us standardizing our model interactions. 3:55 And so we went and open sourced it as a way of being like, 4:00 hey, we found this useful, 4:02 maybe the world would find
+this useful also. 4:04 And it got incredibly popular, incredibly fast, 4:07 it turns out a lot of people had the same kind of need 4:10 and jumped on it and started just hacking
+together. 4:13 Even with the minimum support, 4:15 people started hacking together 4:16 really incredible dev environments. 4:18 And it kind of like boosted. 4:20 I think it was
+the fastest-growing 4:22 open source protocol, in history. 4:26 - Wow. - It's been truly kind of 4:27 stratospheric growth in there 4:29 and there's a massive need for it. 4:31
+Yeah, so we went and open sourced that, 4:32 and since this has taken off, 4:35 it's truly succeeded our wildest dreams 4:38 when we're releasing this little specification. 4:41
+And so we've done a lot of work as this is starting to move 4:44 between a neat way for Anthropic, 4:47 a project for Anthropic 4:48 to go and get context to its models 4:50 into
+an industry-defining standard-like ecosystem. 4:54 We've done a lot of work to go 4:55 and move that into a proper open source foundation 4:59 and work with all the other providers
+Remote MCP support 5:01 and make MCP something that's durable 5:04 and is here for the long-term. 5:06 - What is the lay of the land actually on MCP right now, 5:08 both in terms
+of the open source community, 5:10 but also the technical spec itself? 5:13 It's been I guess almost a year, 5:16 a little under a year since we first announced it. 5:18 And I feel
+like a lot of folks still have kind of intuitions 5:21 that were based in how it was, you know, earlier this year 5:25 and early 2025 or something around that. 5:26 But the
+protocols moving so fast and things are changing. 5:29 What's the current state in your guys' mind of MCP? 5:33 - I feel like a big aha moment for me at least, 5:36 was when we
+released remote MCP support. 5:39 Some of the initial quirks of the protocol 5:41 were that you had to run everything effectively by yourself, 5:45 which prevented providers of MCP
+servers like Asana 5:49 from being able to host their own servers 5:52 that you could just access very, very quickly. 5:54 And it made the setup process very, very yeah, clunky.
+5:58 And I think that, yeah, a very big step change 6:01 in my opinion, 6:02 was when we kind of provided first-class support 6:04 for remote hosted MCP servers, 6:06 that
+drastically reduced the set of process, 6:09 so that end users can just get started fairly quickly. 6:12 - And now we have a registry of these servers, 6:14 so people can actually
+upload these to the registry 6:17 and then we authorize them or we approve them and- 6:21 - Yeah, totally. 6:21 So the open source project 6:27 has a, we've just released 6:28 a
+central registry of MCP servers. 6:32 In kind of keeping with the open source ethos, 6:34 we have both a registry 6:36 that's hosted at 6:37 the model contact protocol organization
+site, 6:40 and also a standard that allows other organizations 6:43 to extend the registry, pull that information in. 6:48 And so we've seen massive growth of MCP, 6:52 GitHub MCP,
+Asana MCP, 6:56 a lot of companies 6:57 are building and deploying these endpoints. 7:00 And so it's becoming easier to pull this in from a, 7:05 in the past you would have to go
+7:08 and if you wanted to interact with GitHub, 7:10 you'd have to go find some random developer 7:13 who would hack together a GitHub connector 7:15 and then trust their Node.js

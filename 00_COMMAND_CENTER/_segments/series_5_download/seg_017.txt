@@ -1,0 +1,224 @@
+spreadsheet breaking. 5:54 Uh, and I think we haven't learned that 5:56 about building with AI yet. Uh, and so 5:58 PE things break and people come to me 6:00 and they're like,
+"Oh, Matt, why is this 6:01 thing broken?" It's like, "Well, AI 6:03 breaks sometimes." And agents are really 6:05 good at fixing stuff as we'll see. But 6:08 that hasn't that
+doesn't mean that it's 6:10 going to build a perfect application 6:11 every time. And it often means that we 6:13 need to do some debugging. So, while 6:15 this is working, we can
+get started with 6:17 our app setup. Um, what you'll need to 6:20 do is go to uh notion.so/profile. So, 6:23 SLProfile integrations. I'll throw that 6:25 up on the screen. We're
+going to create 6:27 a new integration. I'm going to call it 6:28 like Matt's 6:30 tutorial 6:32 integration and add our workspace. So, 6:35 uh this is going to be an internal app.
+6:37 I'll click save and then we're going to 6:38 configure our integration settings. I 6:40 got my configuration uh secret, which 6:43 I'm not going to show you on camera, 6:44
+which is why you're going to cut to my 6:45 face. I'm going to click show, copy, and 6:48 then we're going to cut back to the 6:49 screen. Excellent video editing. Uh, and 6:52
+then we're going to make sure the 6:53 capabilities are what we want here. So, 6:55 we have our secret. Um, and then since 6:58 this is created, the only other thing we 7:00 need
+to do is go to our page. What we 7:03 want to do is actually share the page. 7:06 So, go to 7:07 connections and you'll type in your new 7:11 integration and confirm. So, now what
+7:13 we've done is we created an integration. 7:16 We shared this page with that 7:17 integration. We have an API key and 7:18 we're going to add that API key to 7:20 agent. This
+is important. I recommend um 7:23 creating an API key or integration per 7:26 replet project. That just makes it 7:29 easier to understand what those projects 7:31 have access to
+and to cut off that 7:33 access if something goes wrong. Best 7:35 practice, that's what we're doing. So 7:37 now I'm back in replet and you can see 7:39 it's asking for some
+details. Agent 7:41 said, "Hey, you know, we need to set 7:43 these things up." And it actually kind 7:44 of gave me the instructions to do what I 7:46 just did as well. So, agent
+should give 7:49 you these instructions. And you can see 7:50 we're not loading anything yet. What is 7:53 my integration secret? Well, I already 7:54 copied that, so we're good
+there. Now, 7:56 we need a database ID and a page URL. 7:59 Page URL is pretty straightforward. Um, 8:02 it's just the page URL. Boom. Database 8:05 ID is actually like a little
+bit more 8:07 complicated. Um, so I'm going to go back 8:09 over uh here, copy this. Um actually we 8:14 can actually just Google uh notion uh 8:17 page or database ID. I think the
+this is 8:21 a good um this is a really good 8:24 explanation. The database ID is just 8:27 this uh string after the page. So if 8:31 asks you for that um I'll link this page 8:34
+in the description. This just shows you 8:35 how to get the database ID. You can't 8:37 see my URL. So you're just going to have 8:38 to kind of uh trust me that I'm copying 8:40
+my database ID. and I'm going to paste 8:42 it in here. So now we have those three 8:45 secrets. Agent's going to probably 8:47 restart our app here and it's going to 8:49 start
+pulling those in and building on 8:51 top of that. Um now like I said my 8:54 experience because what we're doing 8:56 effectively what agent's doing is 8:58 writing custom code to
+build a 9:00 completely unique app for our database 9:03 and then it's integrating those columns. 9:05 And there's like a hundred variables 9:07 that could go wrong here. So, it's
+9:09 probably likely that something's going 9:10 to go wrong, and that's okay. And that's 9:12 what we're going to do now. We're going 9:13 to start debugging that stuff. Usually,
+9:15 when I'm debugging, I like to open the 9:16 console cuz I can see like logs as they 9:18 come in. The console is just kind of 9:19 like what the back end of our 9:21
+application returns as it's building. 9:23 Um, and you can see like we're getting 9:26 some errors, but uh agent's going to 9:28 refresh the page and we get a failed to 9:30 load
+post. So, what's going on in the 9:31 console? Lots of stuff. Don't get 9:34 freaked out. um could not find sort 9:36 property with name or ID created time. 9:39 So what it looks
+like is it looks like 9:40 it's trying to load our posts uh and it 9:43 can't find this property. Um which is 9:47 interesting. So agent's asking me what's 9:50 going on. Uh well I
+can't see the posts. 9:53 I'm going to say 9:55 there's an error fetching the 10:00 posts. Agent's going to start debugging 10:03 it. We also note dev tools has an 10:07 error. So
+there might be some uh react 10:10 errors as well. And this is kind of my 10:12 flow, right? Like I prompt the MVP, we 10:14 match the blueprint or match the uh code 10:16 that
+we're using for agent. It all looks 10:18 good. And now we get a couple bugs. 10:20 Again, this stuff happens. So what I'm 10:22 doing here is working through the bugs. 10:24 I'm
+starting high level. I notice 10:26 there's an error. And I'm going to see 10:27 if agent can fix this based 10:30 on that error alone. 10:33 Um, and then what I'll do is I'll
+start 10:36 drilling down lower level, high level to 10:38 low level to see if I can identify 10:41 what's going wrong with agent. So it 10:44 already looks like it fixed this kind
+of 10:45 React thing uh whatever that was. Um, 10:48 now it's working on uh some issues in 10:51 the post 10:54 page. So you can already see some of 10:56 these are going away. If
+I re reload 10:58 this, it's still failing to load. 11:02 Um, and I think that that's a good 11:04 pattern when you're building with AI, 11:06 right? Like, let's see if we can give
+it 11:08 a high level sort of description of the 11:11 error to solve the problem. And then if 11:13 that doesn't work, we're going to have 11:14 to start stepping down uh and
+doing 11:16 debugging ourself, right? To help out 11:18 our sort of AI co-pilot. And I do like 11:21 to think about it that way, right? Like 11:22 agent is like an AI co-pilot that
+we're 11:24 building with. Sometimes it takes 15 11:26 minutes, sometimes it takes 30 minutes. 11:27 The point is that it's like faster than 11:29 building the stuff ourselves. Um,
+and 11:31 that's really what I like to emphasize 11:32 when we're talking about building with 11:34 AI. So, um, if at any time I get like 11:37 bored or I want to learn stuff, what
+11:39 I'll do is I'll start poking through the 11:40 code to see what agents doing. So, it 11:43 builds us an app that has a client front 11:45 end and a server back end. Uh, and
+11:47 there's this thing called notion. I'm 11:49 going to guess that this is like all 11:51 this code that like pulls from notion. 11:54 And the error we're getting at it looks
+11:55 like is because there wasn't a created 11:56 at um column or an updated at column I 12:00 would assume because I don't have those 12:02 columns in my database. Right? I do
+have 12:04 a body. I do have a reading time. Uh and 12:07 I would expect that the error we're 12:09 going through uh kind of has to do with 12:11 those things. So now agent says
+fix the 12:14 error. Still seeing the same thing. 12:17 Could not find uh sort property with the 12:20 name or ID created at. I wonder if maybe 12:23 just a quick 12:25 uh a quick
+fix could be just to add a 12:28 publish date on this thing or add a 12:32 created time. Boom. Let's try 12:36 that. Delete this 12:38 guy. Could we do an edited? Is that a 12:42
+column? Edited time. Last edited time. 12:44 We'll add both of those. See if that 12:46 fixes 12:48 it. And then I'll stop and I'll rerun 12:52 this. Serving 12:58 refresh.
+Interesting. So, this one was a 13:01 little counterintuitive. I kind of 13:03 assumed that the error was coming from 13:06 uh our app not handling those times 13:08 correctly. I
+validated that with this 13:10 idea. Now, if I wanted to remove that 13:12 column from my database, now I know I 13:14 could prompt, hey, the issue with our 13:16 app is that it
+was looking for this 13:17 created at time to sort posts, we didn't 13:20 have that. Please remove created at from 13:22 our routes. And that would be how to 13:24 work around
+that. But this is very much 13:25 kind of a programmatic thinking uh that 13:28 we're doing here. Now, what happens when 13:29 I click to load a 13:30 post? Actually loads, which
+is kind of 13:33 cool. You can see here like there's some 13:35 like maybe something going on with the 13:37 markdown rendering. 13:40 Yeah, there's definitely some markdown 13:41
+stuff going on here that we'll want to 13:42 address. Um, but we're loading posts 13:44 from the 13:46 database. On the homepage, the reading 13:49 time is wrong. Got some nice
+hover 13:50 effects here. I like that. But it's 13:52 correct in post page time. So, what 13:55 we're going to say is exactly that. On 13:57 the homepage, the reading time is 14:01
+incorrect, but it is correct on the 14:05 posts page. 14:08 Um, what else? I'd also really like the 14:10 date on the 14:11 homepage. 14:13 I'd also like the date on the 14:18
+homepage. 14:21 Um, there's another error in the dev 14:24 tools console, but we'll address that. I 14:25 think agent will probably pick that one 14:27 up and fix it on its own.
+So, again, we 14:29 started high level. We're drilling down. 14:31 We're doing a little bit of logical 14:33 thinking. I poked around in code, but 14:35 like I don't really even
+know 14:37 TypeScript. I just kind you kind of 14:40 start to learn it by like association by 14:42 looking through it and learning uh like 14:44 logic and what the structures look
+like. 14:46 Um but again, I'm not doing this with 14:47 code. I'm doing it just purely with 14:49 logic. And I think the analogy with 14:51 Google Sheets is really spot-on. What
+14:52 we're doing here is we're um kind of 14:55 digging digging in and understanding 14:57 these formulas. It's not as linear as 14:59 Google Sheets. like every app is going 15:00
+to be a bit different but we're 15:02 understanding the inputs and the outputs 15:03 so that we can tweak this thing to 15:04 create something uh that's completely 15:07 new and
+you know along the way kind of 15:11 narrating this I really do like to 15:13 follow along with agent and try and 15:15 learn. Now if I don't have time to learn 15:16 I'll like
+take a walk when it's fixing 15:19 stuff and I'll come back and I'll see if 15:20 uh I'll see if it's fixed. Um, but in 15:24 the meantime, you know, if I'm I'm just 15:25 like
+recording a video and I'm with you 15:27 all, we're we're learning about how 15:28 stuff works. Uh, so it looks like it's 15:31 kind of curious to me cuz the formatting 15:34 here
+reloaded formatting here is like 15:37 mostly right, but then I'm noticing that 15:38 there's a space, right? There's like a 15:41 space right there. And I think so I 15:43 think
+there's something going on with 15:44 the body of our post. And on this 15:48 one, the bold works here, the heading 15:52 works here, but then there's there two 15:55 asterisks.
+What the heck? What's going 15:57 on? Let's take a look at Notion. So, I 15:59 generated this body, 16:05 right? I'm kind of curious. I think that 16:08 there was some duplicate
+data. Let's 16:09 take a 16:12 look. Which one was that? It was It was 16:14 one of these. Okay. The art of reversal. 16:17 So, this is it's got 16:21 a it's got a like a a header
+tag on 16:26 it and we're throwing some asterisk at 16:30 the start. Maybe that's like a 16:31 formatting thing that agent thinks like 16:33 I want to do. 16:36 Um, that's
+interesting to me that that's 16:39 happening. 16:41 Uh, actually notice this. Boom. 16:45 So, maybe there's like extra bold tags 16:47 going in 16:54 somewhere. Let's take a look
+at this 16:55 page because I did paste this in the 16:57 body, I think, as well. So, I wonder if 17:00 it actually pulled in the body of that 17:02 post. Let's Let's delete that
+and see 17:04 what's going 17:05 on. Yep. Okay. So, this isn't actually 17:09 pulling from this body column. We'll 17:11 delete that because that's confusing. 17:14 It's pulling
+17:17 from 17:19 Whoops. It's pulling from this body. So, 17:22 now we know what's going on there. We 17:24 can come over 17:26 here. So, there's something going on 17:29 with the
+with like notion 17:34 um formatting and us 17:38 not not quite matching that. So, um I 17:42 would let's what I do here is I I like 17:44 to break these down. So, what's going
+17:46 on? Well, we have these posts. We're 17:48 pulling in markdown. Um the markdown is 17:51 getting rendered in most cases. 17:55 Um however, it looks like sometimes 17:59
+there's an extra 18:00 space for double asterisks and that's 18:03 not being rendered properly as markdown. 18:06 So what I would say is, hey, in some of 18:09 the 18:11 posts
+there are extra spaces. For 18:16 example, oop, that was uh my database 18:20 ID. Copy this guy. At least it wasn't my 18:24 API key. The trailing space is 18:29 causing the 18:32
+um bold the 18:35 markdown rendering to 18:39 fail. Can you handle this edge 18:43 case? Again, I'm being very descriptive 18:46 about what I'm seeing. Notice how I was 18:48 like
+poking around. We're testing 18:49 inputs. We're testing outputs um to see 18:53 exactly what happens. I'm actually going 18:55 to do the same thing. We're going to go 18:56 back
+to notion. What I'm going to do 18:57 here is like I really want to generate 18:59 some more markdown. Uh 19:01 create So I'm actually just going to 19:03 open up um chat GBT.
+We'll say like 19:07 create uh a sample blog post in markdown 19:12 formatting 19:14 uh from the 19:16 following description. Notice how before 19:19 I use Notion AI, I think I'm
+actually 19:21 out of Notion AI API credits or 19:23 whatever. So, we're just going to do 19:25 this one in um catch evvt. This is going 19:28 to give us a nice sample data. Copy
+19:31 that. Well, I'll wait for it 19:33 to copy. Boom. We'll come in here. Paste 19:37 that in. Now, we have some like sample 19:39 data. Go back over. 19:45 Oops. We can check
+this guy. Okay. So, 19:49 we're actually rendering this all really 19:52 well. I'm not entirely 19:54 sure what's going on here. Let's uh 19:56 let's head back 19:59 over. Open
+this up. I'm going to delete 20:03 this. The journey. This is 20:08 actually just typing that sentence out. 20:11 Uh really made me stop and reflect on on 20:13 what I'm doing with
+my life. Um but it's 20:16 all good, you know. Uh I 20:18 don't we're having fun. Um let's refresh 20:21 this. See what 20:29 happens. Interesting. So, I'm getting 20:31 some
+interesting artifacts with this 20:32 bolding, but it worked in this other 20:37 post. So, I think I'd have to take some 20:39 time and dig into that more. But that's 20:41 really
+like markdown rendering stuff. 20:42 So, I don't want to slow down this 20:43 tutorial too much. What we 20:46 have is a blog post that's pulling data 20:49 from Notion. 20:50 Um,
+we can use it as a CMS. We 20:53 configured that uh, you know, 20:55 integration. We debugged it a little 20:56 bit. Um, what are some other things I 21:00 would do for this site?
+Well, if you 21:01 notice, right, like every time I click 21:03 one of these, it takes a second when it 21:04 like loads the stuff from notion. So I 21:06 say to agent something
+like implement uh 21:09 post 21:10 caching and 21:12 prefetching from 21:14 notion so that my site is super fast for 21:20 all 21:21 users. We'll send that just to you know 21:23
+see what happens. I would implement 21:24 stuff like caching right think about um 21:27 uh preloading the data to make it fast 21:29 for people. I would think about things 21:30
+like automatically polling to refresh 21:32 the data because uh in this instance 21:34 when I click if we're caching you know 21:36 when I click this it loads posts but how 21:37
+often does it refresh all the latest 21:38 posts maybe I want to make sure that 21:40 that updates actually I think it would 21:42 refresh when I just refresh the the page 21:43 or
+people load it. So I think we should 21:45 be good there. Um also it looks like the 21:47 breed time here uh wasn't quite fixed. 21:50 That's another avenue that I would start
+21:52 um drilling into. I could spend you know 21:54 all morning building with this but 21:56 ultimately I'm really happy with how 21:58 this is looking. So, um, if you're 22:00
+following along, if you got to this 22:01 point, I would go to the deploy button. 22:03 Now, I would approve these settings. Um, 22:06 notion blogger Matt, that's me. Uh, and 22:09
+I would click deploy. And this site is 22:11 going to be built, bundled up, and 22:12 deployed to that URL. We can even just 22:14 do that while agent is kind of debugging 22:16
+our app, and we're going to have 22:17 something that works. So what we did, 22:19 set up our notion uh integration, our 22:21 connection, set up our notion database, 22:23
+connected it to agent, connected it with 22:25 replet, did a little bit of debugging. 22:27 You know, some stuff wasn't quite 22:29 working. Some stuff still isn't working, 22:31
+but at the end of the day, we're 22:32 building a completely custom solution 22:34 that's tied into our notation database 22:36 that's going to allow us to do really 22:37 whatever
+we want. And because this is 22:39 all code, the possibilities are endless. 22:41 That's the point I like to drive home to 22:43 folks that are building with Replet. 22:44 This is
+completely different from other 22:46 tools or other sort of integrations 22:48 because you can do pretty much anything 22:49 with code. It's completely custom. I 22:52 created a
+site that doesn't look like 22:53 any other site on the 22:55 internet. That's the power of the tools 22:57 like this. So, um, again, I'm Matt with 22:59 Replet. Today, we went
+from idea to app 23:01 with Replet and Notion. I hope this 23:03 inspires you to build some cool stuff. I 23:05 hope you learned something. Please let 23:06 me know if this was
+helpful to you. For 23:08 next steps, I'd recommend checking out 23:09 our documentation. I'd recommend just 23:11 really experimenting in the product. you 23:13 have the basics
+and you know everything 23:15 you need to to get started building. I 23:17 really can't wait to see what you build. 23:19 Tag me on socials, tag me online. I want 23:21 to see it
+all. Uh but until next time, 23:24 peace. All From Matt Palmer 0:00 hey there I'm CIA today we're going to 0:03 build a Blog that's made with notion as 0:05 a CMS just like the one
+you're seeing 0:07 right now this is actually a Blog I made 0:10 for my own website gen PPT which is an 0:13 AI that generates PowerPoints 0:15 automatically for you you just
+choose a 0:18 theme and it's going to automatically 0:20 generate the entire presentation with 0:22 all the content for 0:24 you as you can see we have a Blog here 0:28 that's
+completely powered with notion 0:29 you can click on any any element and 0:32 it's going to give you the entire blog 0:35 with everything formatted just like we 0:36 have a notion
+to demonstrate that I'm 0:39 going to open it up and as you can see 0:41 we have two elements right now in my 0:43 notion which is the database that we're 0:45 going to be using
+it's completely free 0:48 no cost at all 0:50 so as you can see we have two elements 0:54 right here I can click on one open it up 0:57 and you will see we have different tags 1:00
+descriptions slugs and all that we're 1:03 not going to be going into all the 1:04 details but you can extend it as much as 1:06 you want on your own as you can see we 1:09 have
+the different formatting with H1 H2 1:12 elements and it's going to automatically 1:15 take that over to our blog as well so we 1:19 can just focus on editing the content in 1:21
+notion and have our blog ready it's all 1:25 live updated with caching everything 1:27 already implemented so as you can see 1:30 it's completely identical to our blog 1:32 right
+here so let's get started how do 1:35 we actually build this thing well the 1:38 first thing we want to do is create a 1:40 new notion database so for that we can 1:44 go here in
+our notion and add a new page 1:47 let's call it notion database CMS 1:52 tutorial okay so now we already have 1:56 that going the next thing we can do is 1:59 add some like let's
+say a gallery which 2:03 is what I like to do because it's really 2:05 really nice and then right here you see 2:08 this button new Gallery which says start 2:10 a blank database
+we're going to click 2:12 that and now we have created a new 2:15 database this database is available 24/7 2:19 it's completely free powered by notion 2:21 and we're going to use
+that in our blog 2:24 so we have absolutely no cost for 2:26 hosting this entire thing well the first 2:30 thing we want to do is actually go in 2:32 and edit the notion database
+to have 2:35 what we want with the properties and all 2:39 that already set in place so we can get 2:41 started using it so for that we're going 2:43 to click on these three dots
+right here 2:46 and you're going to see this menu pop up 2:49 in this menu we're going to click on 2:50 properties and in here we're already 2:53 going to have two properties set
+so if I 2:56 open a page for example you're going to 2:58 see we have these two properties that we 3:00 just saw already set in place these are 3:04 actually going to be useful so
+if we go 3:07 back 3:08 here the created one is already very 3:11 useful we can change the name to let's 3:15 say 3:17 title and then instead of hidden in 3:20 gallery we can
+actually push that up so 3:23 it get shown so we can actually see when 3:27 it was created we're actually going to 3:29 leave that as it is because it's already 3:31 useful the
+title as well um those are 3:34 very clear options and then the next one 3:37 we're going to add or maybe actually we 3:40 can we can rename that to date you can 3:43 name it
+whatever you want just keep in 3:45 mind you're going to have to rename the 3:47 variables depending on that later so the 3:50 next property we're going to add is 3:53 status right
+here and this status we can 3:58 just leave it as status and not started 4:01 uh let's put that to 4:04 create the blue one to 4:08 draft and done we can change that maybe 4:11 to
+live okay awesome so now we have that 4:16 created 4:19 so this should actually be it we can now 4:23 go to the next step for that we're going 4:25 to have to open our browser and
+not just 4:28 the browser but uh the exact same thing 4:31 so again 4:33 notion go over to the database we just 4:36 created and now we have a link here and 4:40 in this link
+you're going to see this 4:41 portion right here so before the 4:45 question mark But after the slash we 4:48 want to copy this portion and add 4:50 something new and we're going
+to call it 4:53 um notion 4:57 information so right here is where we're 5:01 going to paste it in and this is going 5:03 to be our notion database ID this is 5:06 going to be
+useful for later so right 5:10 now we have this created so we can go to 5:12 the next step for that we're going to go 5:15 over to the developer portal for notion 5:18 for the my
+Integrations part so the link 5:21 for that would just be notion.so my 5:24 Integrations in here we're in a 5:27 developer portal so you might have to 5:29 log in for first to
+access it but after 5:31 that you can create a new integration 5:33 right here we're going to create the 5:36 integration choose our Associated 5:38 workspace and the name let's
+just call 5:41 it 5:42 tutorial blog you can upload a logo I'm 5:46 going to skip that for now and it's 5:48 going to show us our internal 5:51 integration secret it's very
+important 5:54 that you copy this somewhere safe so 5:56 that it doesn't get stolen or anything 5:58 because otherwise someone else might be 6:00 able to access everything so 6:04
+internal 6:05 integration 6:07 secret boom paste that here and now we 6:11 have already all the information that we 6:13 are going to need what you want to do as 6:16 well is 6:17
+maybe take off the update and insert 6:21 because we're not going to be needing 6:22 that and our API is not going to need 6:24 that we're only going to be reading 6:26 stuff so we
+want to took that off so in 6:29 case something goes wrong and someone 6:31 gets our secrets they're not going to be 6:33 able to change anything they're only 6:35 going to be able
+to read stuff and with 6:38 that we're already going to be in the 6:40 next step so step number three which is 6:44 setting up the project I already did 6:47 that but you can do
+the exact same thing 6:50 it's just a normal nextg project nothing 6:52 special nothing new so just do that and 6:55 then come back to this video so the next 6:59 step which we are
+going to do after you 7:01 set up your project is we're going to 7:03 create a env. local and in here we're 7:07 going to be pasting our notion 7:10 information so we can call it
+7:13 notion uncore 7:17 database _ ID have our ID right here and 7:21 then the notion underscore 7:24 token and copy your 7:27 token boom so so we have the two 7:30 variables that
+we need now now we can go 7:33 over to the next step which is actually 7:35 creating the notion Library file which 7:38 is going to help us with fetching all 7:39 the files and all
+that so we don't have 7:42 to do that each time so now that we've 7:44 created our local EnV file we can go 7:46 over and download all the mpm packages 7:49 that we're going to
+need I have a 7:50 command Down Below in the rep so just go 7:53 check that out copy it and download all 7:55 the MP packages that we're going to need 7:58 so just waiting for that
+to finish we 8:01 can already go to the next step which is 8:03 creating our lip folder so in your 8:06 Source just create a lip folder and in 8:09 this lip create a notion. TS
+file in 8:13 this notion. TS the first thing we want 8:15 to do is import server only this is 8:18 going to make sure our notion actually 8:21 only gets used in server components
+the 8:24 next thing is initializing notion so 8:27 export cons notion equals 8:31 client and make sure to import from 8:34 notion hq/ client 8:36 boom and in here we're going to
+say 8:42 off process. env. notion uncore 8:47 token make sure to also put the new in 8:50 front of it because otherwise it's going 8:52 to throw an error just as you saw and 8:55
+the next step is creating the first 8:59 function which is 9:01 export uh const fetch 9:06 pages and that's going to be a react. 9:10 cach 9:12 function and inside we're going to
+9:14 create a new function and the reason we 9:16 choose react. cach is just to further 9:19 cach it down versel already has caching 9:21 and depending on how you want it you 9:23
+might have to disable some stuff like I 9:26 did on genpt.com because I didn't want 9:29 caching to happen all the time cuz 9:32 versel has very long caching sometimes 9:35 it will
+interfere with the live updates 9:37 but for now we're going to keep the 9:38 react. cach so it gets saved both 9:41 locally and on 9:42 versel 9:44 so first thing is just
+returning 9:48 directly 9:49 notion. 9:51 databases. 9:53 query and in here we're going to say 9:56 database ID 10:00 boom I think this is what we called it 10:03 yeah the notion
+database 10:05 ID and then in here we're going to say 10:10 filter also make sure to put an 10:12 exclamation mark in there because 10:14 otherwise it's going to give out 10:16
+undefined so in the filter we want to 10:18 say 10:20 property 10:23 status and then select equals 10:27 published but in instead we're going to 10:30 say 10:31 live Okay the
+reason we're doing that is 10:34 to filter out all the ones that are not 10:36 live as you saw we created three 10:39 different statuses which is created 10:42 draft and live and
+the only ones we want 10:44 to fetch when we actually put them on 10:46 our website is the Live status so with 10:50 that being said that's everything we 10:51 need to do as you
+can see super easy and 10:54 simple so let's go over to the next 10:56 function the next function we're going 10:57 to need is export const fetch by 11:02 Slug and same thing here
+boom can just 11:06 autocomplete react. cach slug string 11:09 actually let's just let's just autofill 11:12 that uh react notion database query yeah 11:15 that's correct uh
+database ID all 11:18 correct and then filter by slug with 11:22 instead of text we're going to say Rich 11:24 text and equals to slug which we're 11:27 going to pass as a 11:30
+parameter and then right here before it 11:32 ends we can say dot 11:34 then and in here say 11:37 res res. 11:40 results boom zero as page object 11:47 response or it's going to
+be undefined 11:50 boom just like that so that should be 11:53 the entire function that we have right 11:56 here and don't forget to 12:00 close this off right there this is going
+12:02 to be our fetch by slug function which 12:06 is going to allow us to just parse in a 12:09 slug and fetch a page based on that for 12:12 that we also create a new property
+right 12:15 here so go back into your notion go into 12:20 properties create a new 12:23 property and just call it 12:25 Slug it can be just a normal text and 12:30 that should be
+it so now if we go let's 12:32 say into page one uh we're going to see 12:35 Slug and we can just parse in a slug 12:39 right now for example 12:41 water 12:43 bottles and just
+call this 12:45 water bottle uh use case I don't 12:50 know and for the tags let's just put 12:53 water 12:55 boom and delete all that and maybe put 12:58 in H1 13:01 saying why is
+water so 13:05 cool and some text 13:09 boom so now we have our first blog post 13:12 right here going to set that to live go 13:15 back and now also make sure to have the 13:18
+same uh lowercase uppercase letters so 13:22 the casing is very important if you're 13:24 going to have slug written in lowercase 13:27 letters make sure it's already set like
+13:29 that and then we're going to go over to 13:31 the next 13:32 function and the next function is going 13:35 to be the uh fetch page blocks so we can 13:38 actually get the
+page blocks that we're 13:40 going to need so fetch page blocks 13:45 equals react. cach um ID we're going to 13:49 change that to page ID just to make it a 13:52 bit clear what
+we're actually given out 13:55 and close it off right here okay and 13:58 we're going return um notion yeah notion 14:02 blocks to 14:04 Children uh yeah 14:06 list and in 14:09
+here we're going to say or 14:12 actually yes we're going to say blog 14:16 ID uh page 14:20 ID and do 10 again to just uh yeah 14:27 return the results and this time res 14:30
+results as block object 14:34 response and this is going to be an 14:37 array so make sure to put that there and 14:42 this is actually it this is the entire 14:44 thing to create
+a blog with notion this 14:47 is absolutely everything you need so now 14:49 we can actually go over to creating our 14:51 page so this is going to be our page we 14:54 can delete
+all the content that we have 14:56 right here from the startup page 14:59 and it's actually whoa that's a lot um 15:03 we can delete all of that and just in 15:06 here 15:07 say
+create a new const call it post and 15:11 we're going to say 15:12 await make that async as well so we're 15:16 going to use server components just like 15:18 we said and await
+fetch Pages 15:25 boom uh call this posts f pages and now 15:30 we're going to create a new page so new 15:32 folder and let's just call this uh 15:36 blog and in the blog we're
+going to say 15:39 create a dynamic page with 15:43 Slug and in the slug we're going to 15:45 create page. TSX so this is going to be 15:48 actually our Blog Page the actual page
+15:51 where the content is going to be 15:52 displayed so in here again say export 15:56 default con Asing 16:02 function uh page or page like 16:08 that and in the parameters
+we're going 16:10 to need to add 16:14 params with type param slug string just 16:18 like Auto completer right 16:20 here 16:24 boom so now we have our slug we have the 16:27 page
+where the content is going to be 16:29 displayed and we can use our function so 16:31 this is where we are going to say cons 16:33 post fetch fetch by slugs uh import from 16:37 Li
+16:38 notion and 16:40 if there is no post we can just return a 16:43 div post not found or maybe a 404 page 16:47 or whatever you want to put there and 16:49 then we're going to
+say con content 16:52 equals await fetch page blocks and get 16:56 the post. ID which we declared here 16:59 and we're just going to return nothing 17:02 for 17:03 now so we have
+that behind us then uh 17:07 The Next Step as we can see we have 17:10 everything set we have the content and 17:13 we're going to need tailb CSS for this 17:15 to actually format
+the entire thing so 17:17 if you don't have Tailwind CSS in your 17:19 nextjs make sure you have it because 17:21 it's going to make so many things easier 17:24 with their 17:25
+typography uh just download it and 17:27 you're good to go 17:29 so let's rename this actually to blocks 17:32 to make it a bit simpler because it's 17:33 not going to be the
+actual content 17:35 that's going to be displayed in the end 17:38 and we can say const 17:40 renderer equals a 17:43 new notion 17:45 renderer this just going to help us 17:47
+render the entire thing with the client 17:50 set as 17:52 notion boom don't forget to update 17:55 notion from lib notion 17:59 and then we can say render 18:02 do use and we're
+just going to put in 18:05 some plugin so hjs plug-in and in here 18:10 make sure to just give it something it 18:15 can also be empty so next one is render 18:19 do 18:21 use and
+we're going to say bookmark 18:25 plug-in and in here we can just say 18:28 under fine just give it nothing at all I 18:32 don't know why but it's fine with that 18:34 as well so
+why not um now we have those 18:38 two plugins inserted we can go over to 18:40 next which is going to be con HTML 18:43 equals await render do render blocks but 18:46 we're going
+to change that to dot dot 18:48 dot blocks like that that way it doesn't 18:52 give us an error and we can actually use 18:55 it in our app and then we can return uh 18:59 div boom
+just like that and in here 19:03 dangerously set inner HTML and use the 19:08 HTML um oh actually made a mistake boom 19:12 HTML like 19:14 this okay that's going to display our
+19:17 entire content on the page that we 19:20 have so now if we run this npm 19:25 runev and we go over to our browser 19:31 open up Local Host 19:34 3000 and wait for the page to
+render 19:38 we're actually going to get an error 19:39 because I forgot to add one thing if we 19:42 go to our notion page and to our 19:44 database we need to click on the fre
+19:47 dots up here and connect to and we need 19:51 to actually connect it to the 19:52 integration that we just created so for 19:56 that we're going to search for it uh and 19:58
+when we find it right here tutorial blog 20:01 we're going to connect to it and click 20:03 confirm so now it's connected so now if 20:07 we go back we should be able to just 20:09
+reload it and it works it works 20:13 perfectly so as you can see why is water 20:15 so cool and some text just like we did 20:19 earlier this is so cool because we can 20:22 now
+edit everything and it's just going 20:24 to update live so let's try that some 20:27 text and after that let's try adding a 20:29 bullet list so slash bulleted list and 20:35 item
+one item two item three boom save 20:41 that and now if we reload you can see 20:44 that we have all the items here you 20:46 might have to reload a couple of times 20:48 because
+it's cached so just like I said 20:52 earlier everything gets cashed locally 20:54 so you might have to reload a couple of 20:56 times but after that it should work 20:59 and now
+we have all these things but we 21:02 want to add typography to it we want it 21:04 to be automatically formatted so first 21:07 of all Let me give a quick jump cut so 21:10 we can
+actually get a white background 21:12 okay so I'm back here we have everything 21:14 in white and we're going to go over to 21:16 adding typography so it automatically 21:19 gets
+styled this actually a really easy 21:21 process the only thing we're going to do 21:23 is open our command line right here and 21:25 just say npm install minus 21:29 and at
+Tailwind CSS 21:37 typography and now we have typography 21:40 installed now what we can do is go over 21:43 to our Tailwind config and right here in 21:46 plugins we're going to
+say 21:48 require Tailwind CSS 21:51 typography so now we have typography 21:55 added to our app if we reload you're 21:58 going to see nothing happens and that is 22:01 because we
+haven't added it yet to the 22:03 component so just go there class name 22:06 and then say 22:09 Pros so 22:12 now if we reload you see everything is 22:16 formatted it's perfect
+so now we 22:19 actually want to go back to here and 22:22 remember when we had all the posts we 22:24 want to display them so we're not going 22:27 to style it that much but we're
+just 22:29 going to say posts. results. map and in 22:34 here we're going to say post boom 22:38 boom and for each we're going to say 22:44 return and we can return yeah we can
+22:46 just paste that in here uh no image we 22:49 don't want an image and we can just 22:53 say post. properties uh actually if you 22:57 have this right here here uh they 22:59
+currently have a bug so if you encounter 23:02 this at all it's important that you 23:03 remember this they currently have a bug 23:05 where the types don't really get used 23:09
+that well when you fetch all the pages 23:11 so you can just say as any which kind of 23:14 defeats the purpose of typescript but it 23:17 is what it is I guess so not as any just
+23:23 this and now if we go back 23:29 boom we can go back to our main page oh 23:33 and also um don't forget like we just 23:36 had an error because of that uh the 23:40 select
+right here you have to make sure 23:41 it's the correct type so right here we 23:44 have a status object not a select object 23:46 so we can put that away just select 23:50 status
+and it should equal to life so 23:52 now if we reload the page you see we get 23:55 a different error still not good but 23:58 it's better than before so let's go back 24:01 and
+inspect why the reason is simple we 24:04 have name instead of title so now you 24:08 can see water bottle use case water 24:10 bottle use case so this is awesome we 24:13 now have
+our own blog where we can go in 24:16 and let's say add a link instead of a H2 24:21 boom like this and 24:25 hre and now we can say just put the side 24:28 name name in or you can
+just say slash 24:32 blog 24:33 slash then in here can say post. 24:38 properties do slug 24:41 doore 24:43 text and 24:45 zero. plore text it's kind of 24:48 complicated to use
+all of this but it 24:51 works so why not use it and now if you 24:53 see we can click on this and already in 24:56 the bottom uh left corner you can see 24:58 where it's going to
+take us and it's 25:00 going to take us right to our blog so 25:02 thank you very much for watching this 25:04 entire thing uh I hope it wasn't too 25:06 long it's the first time
+that I'm making 25:08 a tutorial like this uh people requested 25:10 this so I hope you like it hope it 25:12 helped you and if it did please interact 25:16 so the algorithm gets
+boost and consider 25:18 following me because I'm definitely 25:20 going to be doing more of this in the 25:22 future it was really fun have a great 25:24 day bye All Node.js 0:00
+I use markdown to store the static 0:01 content for my nexts websites there are 0:04 many reasons why it's free it's open 0:07 it's portable it's editable and there's 0:09 no

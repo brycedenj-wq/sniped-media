@@ -1,0 +1,223 @@
+in natural sound. So you will hear it more in one 36:14 headphone than another one. And then for the inner radius put this like 200 and 36:19 this like three uh 3500. Perfect. So
+now we have set up the 3D 36:26 attenuation. So we can go here and add it. Perfect. And now this will actually 36:31 play in 3D. So let's go here and open this up. There we go. It
+works. Now, 36:38 obviously, it's a very simple sound and it's not really like a wood sound. I 36:43 don't honestly think there's wood yet. So, if you have any other sounds that
+you want to import, go ahead. But I'm 36:50 just going to be using this default ones from Unreal Engine. Now, also, you might notice that we still showing up the 36:58 interact uh
+trays, and it's kind of ugly at this point. We don't need it anymore. 37:04 So, to remove it is very easy. As you might remember, we just need to go to our blueprints folder custom
+and open up 37:11 our BPC interact. This is the actor component that does the trace when we 37:18 press the E key as you might remember. And this component is then added into our
+player character. Anyway, so if we 37:24 go to the sphere trace by channel, you can see a draw debug type. A draw debug type is what draws that invisible line. 37:32 Just click
+here and do none. And now we will not see it. But obviously the trace 37:37 is still being executed as you can see. Perfect. Is essentially working. Cool. 37:44 So now we have
+successfully went ahead and created a really cool chest that we can go ahead and interact with. But this 37:51 chest is only the start of our interactables. Now what we want to do,
+and it's going 37:57 to be insane for an adventure game like Uncharted, is to create a lever that we 38:02 can interact with. And this lever will be universal for anything. We can
+plug it into anything that we want to 38:10 interact with. Um in this case, for this um example over here, we're going to be 38:15 creating a lever that we can interact with. And
+this lever will open up a bridge. It will kind of elevate it so 38:21 then we can cross. Okay. Um but like I said, we're going to make a universal system with our interaction
+system. So 38:28 you can use this lever to activate anything that you want in the future, 38:33 which is really cool. All right, so first things first, let's go inside of our
+blueprints folder, custom, and right 38:40 over here, let's right click and create a new blueprint class. It's going to be an actor, as you might remember, because 38:46 we can
+place it in the world. And that's it. We don't need a character, a play controller, or anything like that. It's 38:51 just actor bp lever. Open this up and there we go. Now 39:00
+before adding in the actual lever 3D model and animation, let's quickly just 39:06 go to class settings and in the interfaces just add the one that we created which is BPI interact
+as you 39:13 might remember and then just double click on interact and then here it is. 39:19 Uh we will be able to put everything here. We can put temporarily so we don't forget a
+print like lever activation 39:30 on or something like that. Okay, perfect. Um, so now it is actually time to go ahead and import a lever 3D model 39:39 so we can actually have
+some cool things going on. Okay, so let's go ahead and import our lever animation in 3D model. 39:46 Once again, I will go ahead and include this in my free package that you can
+download in the description. So, you 39:52 drag the lever into the content browser and it will open this up. But over here, search for um the scale and you can see 40:01 that we
+have a offset uniform scale. So, just go ahead and put this to like uh 40:08 100 and import. And now, as you can see, we have this 40:14 lever. Um, and the reason that we put it to
+100 is because it was too small at first. Now, honestly, maybe um 100 is a 40:23 bit too big, but uh it's okay. We can just resize it and it will be good to go. Perfect. So, now we
+can go back into 40:31 our lever 3D model and just add a skeleton mesh. Remember, we're adding a skeleton mesh because we have an 40:38 animation to play. So now we can just type
+lever and then over here select 40:44 lever and then uh we can maybe make it a bit 40:49 smaller uh maybe 08 and then put a bit more centered in the ground. 40:57 Perfect. And then
+what we want to do is just go back to event graph and where we 41:02 have the event interact is just delete this because it wasn't temporary. drag this and do a play animation
+exactly the 41:10 same as we did with our test. But now what we want to do is go ahead and do 41:16 the lever an which is right here. And we can actually test this. But 41:22
+remember we want to go ahead and make sure that we have the collision. So scroll down collision presets custom all 41:30 to ignore except visibility and then w static dynamic and
+pawn. So we can also 41:36 collide with the player but it will detect the trace and then on collision enabled just put this in query only. 41:44 And now we press play. Obviously we
+don't have it in our level. So make sure that you deleted the 3D 41:50 model and you go and drag the actual lever blueprint. A common mistake that a 41:56 lot of people do when
+starting Unreal and they forget stuff is that um you go 42:01 to the models and you drag the model 42:06 itself but not the blueprint. This blueprint contains the code. This is
+just 3D model. Remember that when doing 42:13 Unreal. Okay. So now we can go here interact and it works. Perfect. It's so 42:20 so cool. Okay. So now let's go ahead and continue
+with our logic. So, first things first, we only want to interact 42:26 with this thing one time. Uh, so just go ahead and do this a 42:33 once. Now, obviously, if you want to
+interact with the lever multiple times, 42:38 you would just delete this over here, right? Then, what we want to do is go ahead and play like a little sound. Uh, 42:44 this can be
+the same as we did the other time. So, play sound at location. In 42:50 this case, what sound we can put? Honestly, I don't know. But the talkable sounds I like them. So we could
+put like 42:57 like pickup for example use a random one. Then for the location it will be 43:02 get actor location and then we can expand this remember and put our 3D attenuation.
+So it will 43:09 actually play in 3D. Okay. So I mean this works. We can go here and 43:16 play a little sound. Uh and we can only interact with it one time. But now comes 43:21
+the very important thing which is to go ahead and interact with other items. Um 43:28 so in the future we'll have like a little bridge that will elevate up so that we can cross you
+know. So how can 43:34 we communicate with this or even the chest we could make that when we press the lever the chest will open. It's 43:40 universal if that makes sense. So to do
+this you just go over here and in the variables you just create a new variable 43:47 and this will be something as the actor to activate. 43:54 This actor to activate will not be a
+boolean and instead it will be an actor. 43:59 So search for actor is the first one over here object reference. Okay. And then what we want to do is click this I 44:06 icon over
+here. So it will appear on the details panel. So when I click here this 44:12 lever in the details panel we have here actor to activate and we can select any actor from our level.
+We can also click 44:19 this pipet over here and select the chest for example. And now the actor that this lever will activate is the 44:26 chest. Um so then what we can do is just
+get the actor to activate. Drag it over 44:31 here. And remember our interface can just do interact interact message 44:39 and that's it. And this will literally work. It will
+activate whatever actor is 44:45 over there. And to show you that I can go here, press the lever and the lever 44:51 and the chest will activate. And if you don't trust me, we can
+even put this uh lever more far away. And we can do this. 44:59 And you will see we activate both because we are obviously going ahead and 45:06 having our chest as the actor to
+activate. And like I said, this doesn't only work for the chest. It can work for 45:12 any other actor that has the interface to interact. So that will be in the 45:17 future our
+bridge. Now what I want to do also is add a little delay so it feels 45:23 more like the lever takes a bit of time to activate. So, let me put like one uh 45:29 0.15, you know. So,
+it's more like Okay, I press the lever 45:35 and it activates. It's It's like actually more real, you know. Perfect. 45:40 So, we also have now the lever going ahead and working.
+Perfect. So, now it is finally time to actually create that 45:46 bridge that we can use in our adventure game to go ahead and pass through a temple or whatever that we want,
+right? 45:53 in like an Uncharted or Tom Raider way. So once again, let's go into the 46:00 blueprints folder, go to custom, right click, and create a new blueprint class. This
+will be an actor because this 46:06 bridge will be placed in the world bp and then let's put like bridge and open 46:13 this up. Obviously, you can call everything what you want,
+but I recommend this names, you know. So now 46:19 here, let's add a new component. Now, obviously, this bridge would have an actual 3D model, but we would, you know, 46:26 go
+ahead and add this uh 3D model once we have the environment as a pack 46:32 imported. We don't have that yet. So, going to simply use a cube. And this 46:37 will be like temporary
+obviously. So, then we're going to go here into the scale and just unlock it. And then let's 46:45 put this um first axis at five. The second one as three and this uh final 46:52
+one as 165. And now we just created a simple kind of bridge pad that we will use 46:59 temporarily. Okay, perfect. Just compile and save. So now what we can do is 47:05 create a
+mini zone that we can use for our game play. So, what I want to do is 47:13 get this edge over here. Hold alt and move this over here so I can duplicate 47:18 it. And let's create
+like a little path that we can use. So, I'm going to put this here. 47:26 And then I'm going to add the bridge into the level. Okay. This will be the 47:32 bridge that we interact
+with. Okay. And I'm just creating a little 47:40 test level that we can use this for, you know. So, let's just put this like here. 47:46 Uh, let's expand the bridge this the thing
+a bit. 47:54 There we go. Perfect. And then we also want to maybe 47:59 get the lever and put it over here. 48:05 So we actually go ahead and interact with it. Let me put this
+here. 48:12 And then another thing that we also want to do is obviously create the other end 48:17 so we can actually cross it. So once again you select this hold alt and 48:24
+duplicate this. And then we can maybe put the chest on this other side you 48:29 know as maybe like the actual exit. 48:35 Perfect. Now this is just temporarily. This is not an
+actual level. This just a 48:40 test. Okay. So there we go. This is going ahead and actually working. First of all, let's go ahead and click this 48:46 lever in our level. Click
+the pipet and make sure that we select the bridge as our new actor to interact. But obviously 48:53 nothing happens uh when we press the lever now because first of all the bridge
+doesn't have the interact 49:00 interface yet. And then obviously it doesn't have any code to do anything when we interact. So now what we want to 49:07 do is go to the bridge and
+close the lever and start to add the actual mechanics. So first things first, we 49:14 want to add a component. And this component is very handy because it allows us to move the
+actor and this is 49:22 the interovement component. Okay. 49:27 So now with this um over here what we want to do is go to the control points 49:33 and add a new control point and
+this control point will be just by default 00 0 and relative. Okay. So this is the 49:40 starting point where the bridge will start just where it is right now. Okay. 49:46 Now then
+what we want to do is make sure that we have the behavior type on one shoot and yeah everything is by default 49:54 honestly. Oh okay. We also want to go ahead and disable auto
+activivate. Very important. Okay, 50:00 perfect. Um, and also another thing is that we want to uh disable sweep uh 50:06 because otherwise if it's there's something in between it
+will stop and we don't want that. We want to just do it. 50:12 Perfect. So now what we want to do is just go to the uh class settings and add as you might remember our BPI interact
+50:20 and double click on interfaces. And here we go. And then what we want to do is just get the inter movement. Drag this 50:26 and do an activate. And then we will actually
+activate the bridge over here. 50:32 Um and then we also want to add one thing and it's the second control point 50:38 because right now in our component we only have one position
+but we need the second one so it will go to this second 50:45 position. Okay. But this second position must be done by code. So we can do it in 50:51 a very cool way. So first
+things first, just drag this over here and do a add 50:57 control point position. Just plug this over here. And then for 51:03 the pause, just right click and promote this into a
+variable and put this something as the destination 51:10 location. This is where the bridge will go to, right? when we activate it in this case 51:16 how high it will be. Now make
+sure that you have also position is relative. So 51:22 now for this um variable just click this I icon over here. So it will be public exposed in the details panel and then 51:29
+also click on show 3D widget. And this is a new thing that you guys might not know. But now with the show 3D widget 51:37 what we can do is put the initial uh location of the whole
+bridge to be like down here. But then click on this 3D 51:45 icon that we have and put this destination on here. And yes, this is 51:51 how we can go ahead and create a destination
+point in 3D. And this will 51:57 go upwards because now when we interact, we activate this component and we add the second control point. So we can 52:05 actually test this. Um,
+but we also want to go ahead and move the player spawn to 52:10 be on top. There we go. So, we actually spawn 52:18 here. Perfect. Press play. And then we press 52:23 the lever and
+it goes up. As simple as that, right? It's super 52:28 super easy. Um, so another thing that we might uh want 52:34 to do is change like the duration. So, this is done here. Um so
+what we can do 52:42 is simply set duration 52:49 and we can create another variable for this and just leave it as duration 52:55 and then we can click this I icon. So when we go
+and select the bridge here we 53:01 see it. Uh now make sure that the duration by default is like one. So it 53:06 has a default value. But then if we go here we can customize it
+to like two and this means then I will be 53:13 slower. Well actually we have to do this um before anything. So Ctrl X and move 53:20 this before deactivate because otherwise it
+will basically not 53:27 do anything. Okay. 53:34 Perfect. So there we go. Now it works. Um, and we can actually activate the lever and the bridge will go up, which 53:40 is really
+cool. Now, obviously, it's just a cube. This in the future will be like an actual bridge when we import the 53:47 asset pack, which is um quite important. So, there we go. We have
+the bridge created. 53:53 Perfect. So, now with all that done, it is finally time to create the quest system. So, let's go over here, close 54:00 our bridge, go to the blueprints
+folder, custom, and let's get started. Okay, so 54:06 this quest system is going to be very simple, but very effective, and you can use this not only obviously for this 54:12
+adventure game, but for anything that you want with Unreal. So, just right click over here and create a new 54:18 blueprint class. And this is going to be another actor component.
+I love actor 54:24 components because we just keep everything more organized. In this case, we had a nicer component for interact 54:30 which is BPC interact. Now we're going to
+have a BPC quest which will 54:35 essentially handle all the quest data for the player. So actor component BPC 54:43 quest. Open this up. So right over here going to delete this to
+custom events 54:49 and right click and create a new custom event. And this will be start quest. 54:55 Okay. So when we call this start quest from any point in our game, we will
+just 55:02 activate the quest. So what we want to do now is go ahead and set up a 55:10 structure of a quest. What did that mean? What is a structure of a quest? 55:16 Well, that
+is essentially a data file that we will have which will contain all 55:23 the information for our quest. So to do this just go here in our custom folder 55:29 just right click and
+then go to blueprint the blueprint section okay and create a structure. This will be s 55:37 quest. Now this uh structure will contain all 55:42 of the information of our current
+quest that we would like to have or not only 55:48 current but anything. So first we want the quest of the name. So uh the quest 55:53 the name of the quest. So let me put a quest
+name and the type will obviously be a name. Then I want to add another 56:00 variable and this will be the actual like description of the quest. Uh let me also add quest 56:09 on
+the start and we're going to leave this as name. Okay, perfect. Um because name is just 56:16 text. It's the same as if I was to put string. Okay. Anyway, so now we have 56:22 this
+uh structure quitted which will include everything of our quest. Um so 56:27 this means that right over here what we can do is add an input. So whenever we 56:33 start a quest we
+can send over an actual quest which it will be of type s quest 56:40 which is the structure that we created. So then just right click and create this as a variable and this will be
+the 56:47 current quest. Okay, so whenever we start a quest, we will receive the actual quest 56:53 that we want to start and we will save it in a variable. As simple as that.
+Okay, then we want to go ahead and make 56:58 sure and check if you already have, you know, started a quest. Is this active? 57:05 So just create a variable over here and this will
+be like active quest 57:12 and it will be a boolean because it will be true or false. Drag this and do a not boolean. So it will be the opposite. 57:19 Okay, it will be like if
+it's not active already, we can start it. But if it's 57:25 active, we don't want to do anything obviously, right? Um, so also go ahead 57:30 and uh compile and make sure that by
+default it is disabled. Okay, do not 57:36 enable this. Perfect. Right after what we want to do is like uh print you know 57:42 saying like hey quest 57:48 active right and we will
+actually go ahead and uh start the quest but 57:55 obviously we don't want to just see a print on the string we want to see a 58:00 widget appear in our UI right and we will have
+here like current quest and in 58:08 the description. So to do this, let's create a new widget. So go to content, 58:13 scroll down, and you will see there's already a widgets
+folder. Right click, create a new folder. This will be custom 58:20 once again. And right over here, just right click and scroll down to user 58:25 interface and create a widget
+blueprint. Click on user widget and name this WB_. 58:32 And we can put something as quest. And yeah, that's it. Okay, perfect. So, 58:39 in here, I'm going to make it very simple
+for now. Just add a canvas panel. And that's it. Okay, I'm going to 58:47 customize the UI a bit later. Let's just leave it already. And by the way, the canvas panel is just
+basically the 58:53 screen. So now we will be able to add things as if this was the screen. Perfect. Going back into our BPC quest, 59:00 let's actually before doing the print,
+let's do a little um create widget. 59:09 And this new widget will be the quest one that we just created. And obviously, 59:17 we also want to get this and do an add to viewport.
+So we will add this widget 59:24 into the player screen because otherwise we are creating it but it's not on the screen. So it isn't really doing 59:30 anything. Okay, perfect. And
+that's pretty much it. But now obviously it is 59:36 time to create the actual UI of this um quest over here. Right. So it's going to 59:43 be very simple. Trust me. So go to WV
+quest and what we want to do is just 59:50 drag a text over here. Now this text over here will be like the active 59:57 quest name. Okay. And click on is variable because 1:00:03
+if we do it as a variable we will be able to access it from our BPC quest and then edit it which is very important. 1:00:09 Make sure that the anchor is by default here on the top
+left. Obviously if you want to change it up you could but I'm 1:00:15 going to leave it there. And then basically just make the block a bit bigger. put maybe the font also to be a
+1:00:23 bit bigger. Maybe like 28 and put this like here maybe you know 1:00:29 this is pretty much up to you and we can put a default value of like attic quest. 1:00:35 Uh
+perfect. Um then we can just go ahead and Ctrl Ctrl + V and put this here. 1:00:43 this uh new one which has the same name can just be the description 1:00:51 and also make sure
+they have is variable. Now for this one we're going to change it to be just regular instead 1:00:58 of bold. Going to change the size to be maybe like 1:01:04 even smaller maybe
+like 18 or something. Make sure they have space for the 1:01:09 description. And then on top of this, just as nice user interface rules, I'm 1:01:16 going to make it a bit darker,
+so it has less emphasis as the name. And there we 1:01:23 go. We have a simple active quest. And then like, you know, 1:01:29 do this because it's basically the description of the
+quest. Perfect. Again, make sure they have the names and 1:01:36 it's variable. So now coming back into our BPC quest, what we can simply do is 1:01:43 make sure that we update
+this variables. So let me actually just delete the print string. We don't need this. Okay, let me 1:01:49 just go ahead and get the active quest and let's set this to true before
+we do 1:01:55 anything else. So we don't break this uh branch over here. And then back here, 1:02:00 what we want to do is get our widget and do the changes. But we don't have a
+1:02:07 reference of our widget. So just uh break this over here. Right click, promote variable. Quest widget. 1:02:15 Connect this here. Boom. Boom. And then get the quest widget
+variable. And 1:02:23 simply go ahead and access the um name. And then here it is. Get active quest 1:02:30 name is at the bottom. So now what we can do is a simple set text and
+it's 1:02:36 going to be this one over here. We don't want to use this uh pink one. We want to use the function at the bottom. Set 1:02:43 text. Okay, very important. This is
+actually the function that changes the text. So where are we going to get this 1:02:49 information and this um text? Well, very simple. What we want to do is 1:02:55 just get the
+current quest that is a variable. And then go ahead and just do rightclick and split. So now we access 1:03:03 the name and the description. And then what we want to do is get the
+name and 1:03:09 drag it in. And it will add already this two text name. And there we go. It will 1:03:14 simply work. Now we also want to get this um sorry 1:03:19 copy this uh
+the quest widget and want to get now the name instead of the 1:03:25 description. Um you can additionally just get it from here and do get you know uh description 1:03:34 but I
+personally like to do just get uh description as a new you know pin so 1:03:41 it's basically a bit more organized then exactly the same set text this function 1:03:46 at the
+bottom and then what we can do is get the description and just plug it 1:03:52 here and that's it. Okay. Double click here to make a weer route node. If I 1:03:59 There we go. And
+it's nice and organized. 1:04:05 Perfect. So, we actually got this ready. Um, whenever we call the start quest, we 1:04:11 will receive a quest, save it as a variable, and then go
+ahead and do all this stuff. Um, we Okay, we actually 1:04:19 also want to do the branch before we update it. So I use Ctrl X, Ctrl V, and 1:04:26 paste this here. And then
+reconnect this. Uh, very important. We only want 1:04:32 to do everything if we don't have already an active quest. And perfect. 1:04:38 This would go ahead and uh work. So just to
+test, I could technically go and add 1:04:44 a begin play. Okay. And then do the start 1:04:50 quest uh event. And then I could create a new quest by just doing a make s 1:04:56
+quest. And then I could go here and put in like, you know, um, honestly I have 1:05:02 no idea what name could we put. Um, 1:05:08 bro, I'm actually I don't know what to put. Um,
+start. 1:05:14 Okay, let's put like tutorial. There we go. and then like um 1:05:19 you know open the chest. Perfect. 1:05:26 Okay. So obviously this is just an example, right? Um
+so now with that when I press play um nothing happens. Why? 1:05:34 Because we still haven't added this blueprint actor sorry actor component into the character because it's
+separate 1:05:42 remember. So we want to do and open up the adventure character. Remember to always open up the adventure character, 1:05:48 not the uh parent, unless you want to
+do everything on the parent, you know. And then just go to components, add BPC, and 1:05:56 then quest this time. Just enter, compile, save. And now when we press play, you can see
+tutorial, open the 1:06:03 chest. It is actually going ahead and working perfectly. Now, obviously, we 1:06:08 only want to do this from outside. This is just an example, but to
+show you guys 1:06:13 that it's working, well, we just did it. So, now it is time to make the end 1:06:19 quest, right? Or the complete quest. So, we can uh complete the quest
+essentially. Okay, perfect. So, once 1:06:26 again in our uh BPC quest, which is where we have the start quest, go under our event and create another custom 1:06:33 event, and this
+will be complete quest. Perfect. So over here we don't need any 1:06:39 input over there because we will simply go ahead and remove the current quest that we have. But obviously
+let's double 1:06:45 check if we have an active quest. So we only do this if we actually have a quest 1:06:51 going on. Then what we want to do is instantly just set active quest
+to 1:06:56 disabled because now we don't have anything. And then we want to get the quest widget and do a remove from 1:07:03 parent. This is basically deleting the widget from the
+screen. Don't tell me why it's called from parent, but yes, it 1:07:10 is like that. Um, that's because we can have child widgets and all that stuff. And then finally, what we want
+to do is 1:07:17 just get the um quest widget and set it to be false. And that's it. We honestly 1:07:25 don't need to do anything else. Um, so if I was to add a delay here of
+like, 1:07:34 you know, 3 seconds and then I called complete quest, 1:07:40 it would simply go ahead and work. Um, we could go here and after 3 seconds, 1:07:46 boom. As you can
+see, it disappeared. Now on top of that, what we can do to 1:07:51 make things a bit cooler is obviously add here a little sound, you know, and 1:07:57 can be like a 2D sound this
+time because it's like a UI sound. And 1:08:03 I don't know. Let's see what we could put. There's so many things that we could 1:08:09 possibly select, right? Okay, we could do
+this one. Possess 1:08:14 player. This is a cool one. like you know we completed the quest. Look at this. 1:08:22 Perfect. But before completely deleting the widget of our quest,
+let's do a very 1:08:29 cool thing which is a little popup in the screen that will say quest completed 1:08:35 like in the Assassin's Creed style. So simply go ahead and just maybe
+control C 1:08:41 and control V this uh variable here. Call this the quest completed. 1:08:48 Now disable is variable because we don't need this anymore. 1:08:54 And then just Oh
+my god. Okay. Try to move it. There we go. Put this under. 1:09:00 And now we can get the anchor and put it on the top center. And then simply put 1:09:06 position X and Y to zero.
+Put the alignment to 0.5 and 0.5. And then also 1:09:13 go to the font justification and put this on the center. And now simply get the size and I don't know put this to 1:09:21
+like 50. It's like big. And then get the position Y and increase it. And we can 1:09:29 put it like around here maybe. And then also uh the size. Let's increase it 1:09:35 using
+the details panel. So it's still uh aligned. And there we go. And we can put like 1:09:42 quest com uh completed. Yes. 1:09:49 Uh you see increase this over here. Okay, perfect.
+Obviously you can put 1:09:55 anything that you want. You could even change this to be the quest name, you know, things like that. Uh maybe this is a bit big. Let's put 45. 1:10:03
+Um okay. Yes. Perfect. So we have this done. 48 maybe. Um, so now we just need 1:10:08 like a little animation going on. So window, you search for the animations, 1:10:14 click
+this, and now click on your quest completed and add a new animation. And this will be like quest completed. We're 1:10:23 going to have any spaces and then just put uh
+notification. 1:10:31 Great. Now just click on this new uh animation and we can start to animate it. It will be very simple. Okay. Uh the 1:10:38 first thing that I want to do is
+just go to the font which is uh where is it 1:10:45 here? Color and opacity. And the starting point for the alpha will be zero. So put a zero and add a key frame. 1:10:51 Now just
+go forward and then like here and put the alpha to one and add a key 1:10:59 frame. So now as you can see it will transition quite completed. Then over here we can maybe put like
+another key 1:11:06 frame to one. And then here we can put this to zero and put another key frame. 1:11:12 So we'll go from zero to one to one to zero. Literally that's it. You can
+put 1:11:19 zooms in. You can put crazy shakes, but I'm going to do it like this to keep it simple. Okay, but you get it. Perfect. 1:11:26 So now that's it. um make sure that the
+default value of the um quest is zero. 1:11:32 So just click away from the notifications. Click on this box and make sure that this is zero. So it will 1:11:39 not appear on the
+screen. And then also um that's it. We we are good to go. So 1:11:47 uh basically just go to the BPC quest and before doing a remove from parent and all this stuff 1:11:54 just get
+the quest widget and then get the notification 1:12:00 animation which is here and do a play animation 1:12:09 and plug this here. Just need to uh 1:12:16 make this a bit more
+organized. Uh give me a second. 1:12:24 Perfect. Perfect. 1:12:31 Yeah. Okay, that's good. Um perfect. 1:12:38 Perfect. And then just try to put this here. Perfect. 1:12:43 Okay.
+So now we just, you know, play the animation and then what we can do is add 1:12:49 a delay of whatever the duration of the animation is and then actually delete it. Um, so let's
+just check this out. In 1:12:57 this case, the animation has a duration of two seconds. As you can see, it finishes on two seconds. So let me put 1:13:05 this on two seconds. Now,
+obviously, we want to play the sound before. So it's contr x this and put it right where 1:13:14 the animation is before the delay and uh okay so we're having an error because we
+1:13:19 also have to plug in the quest widget to the target because it doesn't have a target it will not work. Okay so wait 3 1:13:26 seconds and quest completed. Oh okay another
+thing that we might want 1:13:32 to do is disable these two things when we put quest completed. So on the 1:13:38 animation, what we can do is just uh add our other uh texts.
+1:13:45 So quest name and I'm going to just get it from one 1:13:52 to zero. Okay, real quick. It will take less. And then I want to go to zero. Click the 1:13:59 description and
+also add it description. The starting point is one, but here it 1:14:06 will be zero. add a second uh key frame. And that's it. As you can see, 1:14:14 it literally goes ahead and
+works. That's it. Now, make sure that um for 1:14:20 both of these, the alpha is one. Okay, perfect. So, now we're good. We just 1:14:26 have everything. Um if I press play, two
+seconds and quest completed, everything 1:14:33 disappears and boom, we're good to go. Okay. Also, let's put quest um 1:14:40 you know to be disabled at the end when we do anything
+just in case we activate 1:14:46 a new quest while the animation is happening because it will break stuff. So just move this with control X to the 1:14:52 end. And that's it. We
+have also the quest completed done. But now we need one of the most important things which 1:14:58 is obviously the quest trigger to be able to activate a new quest. So, first
+1:15:04 of all, for our quest uh BPC, just get the whole begin play and delete it 1:15:09 because it was just to test this. Okay. And now just close everything. 1:15:15 And then go
+to the blueprints folder, custom, right click over here, and create a new blueprint class. And it 1:15:22 will be an actor because this trigger will be placed in the world. Just
+put this like bp 1:15:28 quest trigger and open this up. So now over here it's 1:15:34 going to be very simple. Just add a new component and search for collision. And obviously it
+can be any shape that you 1:15:40 want. In this case I'm going to do box collision because I think it's usually the most appropriate. And then just name 1:15:46 this like trigger.
+And that's it. Then we can put the thickness to be a bit bigger like three maybe or two. and it 1:15:54 will be like a bit more easy to handle. And then also search for hidden
+in-game and disable this just for now. Okay, 1:16:00 obviously the trigger will be disabled during the game play, but just test. Let's disable it so we can see it on the 1:16:06
+level. Perfect. Now, leave everything by default including the size and everything because you will change the 1:16:12 size once you're on the level, right? But um you scroll down
+and you can see the on component begin overlap. Click on 1:16:20 this icon over here to add the event. So that way when something enters into this 1:16:25 trigger, we can execute
+the quest. So what do we want to check here? Or we 1:16:32 want to check for the player. So let's do a very quick and easy thing. Just go to the sandbox character. Okay, don't
+1:16:39 enter into our child adventure character. Enter into the parent sandbox character. I know that I always tell you 1:16:44 to go to the adventure, but in this case, we want
+to do it for any player that we do. So go to the parent, which 1:16:50 is sandbox. Then go to class defaults and search for tag and you can see actor 1:16:56 tags. Okay, ignore the
+other text for the uh capsule component and all that 1:17:02 stuff. Go to actor advanced text, add a new tag and then put this as player. So 1:17:08 now the player has a player
+tag. Now make sure that you spell this exactly the same without any spaces or whatever. 1:17:15 go here and now on the other actor that has just entered the trigger, we can do
+hashtag 1:17:21 and then paste this in. Now make sure that you spell this exactly the same because otherwise it will not work. And 1:17:27 now we can just add a branch and that's
+it. If this is true, that means that the player was the one that entered through 1:17:34 the trigger. And we need this check just in case something else collides. Imagine that in
+the future you have enemies. If 1:17:40 they enter the trigger, it would trigger, but we don't want that. Okay. And with that said, we simply want to go 1:17:47 ahead and do a
+little thing and is to access the adventure character. So we 1:17:54 can do by cast to adventure character. And the casting allows us to go ahead 1:18:00 and you know detect the
+specific 1:18:06 actor that it is and access the properties in the class. Um, but we only 1:18:11 can do it with a certain class with the interface, which is what we did for our
+interaction system. It was universal. It 1:18:17 didn't matter if it was an inventory character or anything else. Okay, perfect. So now we can just do get BPC 1:18:23 quest, which
+is the component for our quest. And guess what? We can do start 1:18:30 quest. And start quest will already check if we have already a active quest 1:18:35 or not. So it's perfect.
+Okay, go back to the quest trigger. Now, what quest 1:18:41 this will be? Well, we want to right click and create a new quest. And what we want to do very importantly is click
+1:18:47 this eye icon over here. So, it will be exposed. Perfect. With that done, we are 1:18:53 literally good to go for now. Uh, we might need to add a little sound, but
+honestly, the sound I think it can be 1:19:01 done on the PPC quest. So at the end we can do play sound 2D and then we can uh 1:19:08 I don't know find a sound. Honestly I don't
+know what we could do. 1:19:14 Um star simulate is cool. Perfect. So now we can simply uh find our 1:19:23 quest trigger which is this one over here. And we can maybe like you know
+put 1:19:30 it right here. And then we can expand this. 1:19:35 So if a player goes through this trigger, we can start the quest. What quest? 1:19:41 Well, if we select the trigger
+because we expose with the eye icon the quest, we can put it here. So the name will be 1:19:48 like, you know, um enter 1:19:53 the uh temple 1:19:58 and then like open the chest.
+Well, more than that, it will be like 1:20:06 Gorka Gorka's Temple, 1:20:11 right? That's the name of the quest. But then the instruction, which is the description, I open the
+chest. 1:20:18 Perfect. So now, if I do this, as you can see, I don't have a quest. I cross the trigger. I have a quest with a sound 1:20:24 and everything. Gorkas temple, open the
+chest. And yeah, but now obviously I go 1:20:29 here and open the chest. Nothing happens. So this is the next thing to do to open the chest and complete the 1:20:35 quest. So let's
+go ahead and do this. Okay. So let's go ahead and open up our 1:20:43 uh BBC quest, sorry, our quest trigger. And we have here this start and everything. So now what we want to do
+is 1:20:50 have a reference of the actor that we want to go ahead and you know open up or 1:20:57 something. In this case the chest. So, this chest, okay, will be the chest 1:21:03
+blueprint. And when I go ahead 1:21:08 and bind this into an event. Okay, now we want to create this new event. So, 1:21:15 open up the chest and there's a little trick. You select
+it on the level and do Ctrl E. It opens up. And then on the 1:21:23 event dispatchers, we want to create a new event. And this is like opened. 1:21:29 And that way we can just go
+to the uh quest trigger. And what we can do is do 1:21:35 a bind event to open. 1:21:40 So whenever we go ahead and call this event of open something will execute 1:21:46 here. So
+let's create a new custom event. This is complete quest. And guess what? going to simply 1:21:54 get the complete uh quest component and do complete quest and that's it. But
+1:22:01 obviously we want to call this event on the chest when we open it. So go to the chest, find here when we open it, go to 1:22:08 the end, get the event dispatcher and do
+call and that's it. Perfect. So now whenever 1:22:17 we go ahead and interact and open up the chest 1:22:22 in the quest trigger we execute this because we are always trying to see
+when will the event dispatcher be called and 1:22:31 that's it we are good to go. So this will work. Uh but we also need a 1:22:38 reference to the chest obviously. So on the quest
+trigger, uh, go here and click on the eye icon. 1:22:46 So now it's here. Click the pipet, select the chest, and that's it. So we 1:22:51 cross it. Gorkas temple, cross the bridge,

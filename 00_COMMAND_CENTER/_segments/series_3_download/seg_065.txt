@@ -1,0 +1,224 @@
+to go into our workflow into the web hook node and change this HTTP method to post so that this web hook will watch 29:42 for post requests to this URL instead of get requests or
+anything else. Okay. And 29:47 then save the workflow. And I think we're ready to give everything a test run. But first, our video is probably 29:52 done generating now. Uh it
+didn't update our Google sheet because the web hook wasn't already it wasn't hooked up 29:58 initially. So, we're going to have to update this manually by marking this to success
+and then going in the Kai API 30:04 and just copying this result URL, pasting it here. And there we go. It's structured weird. Okay, there's our Demos & Execution Breakdowns 30:11
+link. Let's take a look. 30:28 That's pretty cool. It did all of our scenes. Started off in the planes with the T-Rex noticing the bird and then it 30:35 started running and now
+it's in the jungle for the final scene. It looks realistic. It's got the sound effects 30:40 with the pterodactyl screeching. Pretty cool. I've decided to do three different 30:46
+videos for the demo today. So, I'm going to chat with the agent and get those going. If you do the math, that's about 30:52 $2 worth of videos right there. And I'm super excited
+because I got some pretty good video ideas. So, I think I'm going 30:57 to record the entire first one when I'm chatting with the agent. Then I'll put the the last two on like a
+speedrun kind 31:03 of thing. And then I'll show you each one of these steps executing. Okay. So, for this first one, I want to do like a 31:09 stormy night with waves crashing
+against the cliffs and then there's a lighthouse shining out and you see a mysterious 31:15 object in the ocean. Let's uh just copy and paste that. 31:21 Okay. Great start for a
+15-second video. It's a fantastic moody setup. It asks me, what kind of story or emotion do you 31:28 want to convey? Suspense, hope, mystery. So, I'll say mystery. 31:33 And then
+two, who or what is the mystery or mysterious shape, a ship, a creature, a person? Let's go with a creature. 31:41 And three, any particular style you want? Realistic, stylized,
+animated, or something else? Realistic. Four, are 31:49 there any key visual details or colors you'd like to emphasize in the storm? Uh, no. Then five, would you prefer a 31:57
+single continuous shot or a few quick cuts between scenes? Probably 32:03 three scenes with different angles. Try that out. 32:09 Wanted to mention real quick when we did number
+two, uh, who or what is the mysterious shape, it gave me some 32:14 options here. And I just love how it does that because it really sparks my creativity and makes it so these
+stories 32:20 turn out a lot better cuz when I was first thinking about this story, I was thinking there could only be a ship. Uh, 32:25 I didn't even think about a creature, but
+that makes a lot of sense. So, we're going to go with that. Let's send that off. Probably going to ask a couple more 32:31 questions here or give us the the scenes. All right.
+Yeah, that's good. It gives us all the scenes. Wide shot 32:38 capturing the stormy ocean, crashing waves, and the lighthouse beam cutting through the fog, setting the eerie
+atmosphere 32:45 as far as shadowy in the distance. Okay, let's just say yes. You guys can pause and read that if you want. It's going to 32:51 give us the outline here. We'll say
+yes again. 32:58 Gives us the duration 7, five, and three. Uh, it used the append row and sheets. Perfect. That was added to the 33:05 sheet. It's in the ready state. So now this
+Google Sheets trigger is going to trigger. We're not going to see it 33:10 though because because when you're in the active state of your workflow, you're not going to get to see
+like the 33:16 the cool animations that happen in the canvas here. To see the executions, you'll need to go to the executions tab. 33:23 And if we look at the timestamp, so this
+this one is us messaging the 33:29 agent. And then if we click the latest one, it's still us messaging the agent. So any second here we'll see a new 33:35 execution with our Google
+Sheets trigger. There it goes. All right, our Google Sheets trigger went off. And 33:41 let's just click into the request. We got a success. So let's go to our sheet. It's
+generating. Perfect. So now we're 33:49 going to wait a certain amount of time and our web hook should go off and we'll see another execution here for that. So 33:55 it's been a
+few minutes and that actually failed. Sometimes this happens with key API. They'll give me a failure 34:00 for no no reason at all. It just says internal error. Please try again.
+So, I'm just going to run this again. That's 34:06 why we set up the error handling. I'm glad we did that down here because that web hook actually did go off. If we look 34:12 at
+the executions, but instead of going the success branch, it went the the other way. Um, 34:18 wait. Yeah, there it goes. Goes that way. This one went off again because our 34:24
+Google Sheets trigger uh went off since the sheet was updated with this failed status. And that's why we have this 34:29 filter here because it discarded that item due to it not
+being in the ready state. Anyway, so here I just updated 34:38 this manually with a different ID 002. And I just copy and pasted these columns 34:43 and set it to the ready state.
+So let's see if this fails again. Um, it shouldn't. It should be successful. And 34:48 I'll catch you when it's done. It It just updated the generating. Guys, I'm 34:54 sorry. I
+took a sneak peek at this one. It's actually insane. One second, though. Let's look at the execution that 34:59 happened. Um, so here's the new ones. The web hook 35:04 went off
+and then it shows to update the sheet and row with our success message and our video link. Awesome. So, let's 35:09 check out this video. I think it's freaking awesome. 35:30 Wow.
+The the eerie mist and then that huge monster and then you have all the 35:35 different scenes and the final one is like kind of like a person inside the lighthouse looking out of
+it. Then you 35:41 have the dramatic music with the croaking sounds. That's wild. Okay, so we're going to test two more ideas. I'm 35:47 going to do them at the same time so we can
+test if the workflow will work with two at a time. Uh let's go to our agent 35:53 editor. Now we'll open up the chat and we'll say um 35:58 okay let's generate a new one. There
+should be a flying drone chase 36:05 through neon skyscrapers at night reflections on wet pavement. 36:21 Okay, we confirmed and it's appending the row in the sheet. The storyboard
+has been saved. Let's start this other one. 36:26 A city street mid explosion. Everything frozen in midair while the camera smoothly pans through the [music] scene. 36:32 Send that
+off. 36:40 [snorts] 36:46 Confirm. All right, it's appending the row. Let's check the 36:52 sheet. We got one generating and one in the ready state. That's that will turn to
+generating very shortly. So, we're 36:58 probably going to wait about 10 15 minutes and I'll get back to you when these guys are done. Okay, those took a bit of time. Let's check
+them out. This 37:04 first one is the drone. 37:21 whole lot of detail, but yeah, lived up to the story that the director made for us, and I thought it was pretty good. 37:27 Let's
+see the second one here. 37:35 Okay, [music] 37:44 so that one was mainly to test out like the physics of slow motion in these videos and how it handles it. And I think it did a
+pretty good job. We got 37:51 this motorcycle flying through the air, some fruits, glass shattering over here, 37:56 humans, uh, fire even, and you can see it's like slow motion,
+there's smoke. Again, that one matched the story the 38:03 director generated very well. I have a few more ideas for videos that I really want to test out, so I might as well do
+38:08 it on camera, but I'm just going to show you guys the final result once they're done. So, I'll see you in a second. While these are generating, I wanted to Download Free
+Template 38:14 quickly mention my community. There's a link in the description that you can click to join for absolutely free, and 38:20 you'll be able to download this workflow
+along with all the other ones I make videos about. The community is growing 38:25 quickly, and it's a great place to network with like-minded people who are also interested in AI
+automation. So to 38:31 download the template, you'll come in here and find the video you're looking for under the YouTube assets tab. You'll click in and download the JSON file to
+38:39 your computer. Then back in Nan, you'll be able to click these dots up here and 38:44 click import from file. Then select that JSON file and you'll have the template ready to
+go. I'm also going to upload 38:49 this storyboard Google sheet so you don't have to create it yourself. The videos are all finished. Let's check Final video showcases 38:54 these
+out real quick. This first one is about a woman in a cabin. She looks out the window and sees her dog and there's a bear approaching and she comes out 39:01 with an axe and scares
+it away. So, let's look at the file. 39:11 Hey, back off. Go on. Get You're okay now. I've got you. Good boy. 39:21 So, it looks super realistic and the color grading in these
+scenes is amazing, but it doesn't make much sense 39:28 some of these scenes. So, AI is not going to be perfect. And honestly, when you generate these videos, it is kind of 39:35
+like a roll the dice if it's going to be any good. You know, if I really wanted to, I could get my agent to refine the 39:40 prompts, like explicitly say that the bear should go
+the other direction and not inside of the house like it is. But 39:46 anyway, let's go on to the next video. This next one is like a Lord of the Rings style. There's an army
+marching onto a castle. That's pretty much all I 39:54 gave the the director to work off of. So, let's see the video. 40:00 Super realistic. 40:13 That's cool. I told her the storm
+is rolling in. So, I got that shot at the end. And I like how the drums are going. 40:18 Pretty cool. All right, last but not least, we got close-ups of rugged cowboy hands loading
+guns and tightening boots. 40:24 Um, then medium shot of the group of cowboys exchanging serious looks and 40:29 mentally preparing for what's ahead. And then wide shot, the
+cowboys mounting horses and riding off into a dramatic 40:35 sunlet desert landscape. Let's check it out. 40:41 Everyone ready? Ready as we'll ever be. Then let's ride. 40:52
+Pretty cool. I told it to also have that like uh a stylized effect instead of being super realistic. So it kind of 40:59 looks like a video game. And I I think all these videos
+like the audio is perfect for all of them. But sometimes 41:05 some of the scenes are messed up and the physics don't make sense. Overall though, Storyboard is awesome. And by
+41:10 using this automation, you'll be able to come up with a vast amount of videos just by chatting with an agent. An agent 41:16 that's also going to help you direct and make the
+videos more creative. If you guys end up generating some cool videos, 41:21 I would love if you posted them in the community for us to see. If you enjoyed this video, please leave
+a like and 41:26 subscribe to the channel for more content like this. I'll see you in the next one. Intro 0:00 today we're talking about writing killer 0:01 scripts the reason
+winning creators go 0:04 viral so often is because of their 0:06 script writing you might have a great 0:08 video idea but how do you actually write 0:09 a script with a compelling
+story that 0:12 keeps people hooked the entire time this 0:14 is an art I've analyzed hundreds of the 0:17 top creators across every Niche and they 0:19 all run the exact same
+script writing 0:22 process so in this video I'm going to 0:23 break it all down this is the proven 0:25 five-step framework for how to write 0:27 killer scripts that keep viewers
+hooked 0:29 by the way I'm Callaway I've done over a 0:31 billion views I have a million followers 0:33 and this stuff is all I do all day long 0:35 all right let's dive in now
+before we 0:37 get into the script writing framework 0:38 there is a critical first piece that you 0:41 have to understand and this alone will 0:43 level up your script writing in
+a 0:45 massive massive way winning on social 0:47 media is all about hacking human 0:49 psychology this is the game within the Step 0: Psychology (Expectations vs Reality) 0:51
+game it is the most important building 0:53 block in content now content psychology 0:56 really boils down to one single 0:58 principle expectations vers reality 1:01 expectations
+are what people think is 1:03 going to happen reality is what actually 1:05 happens when reality beats expectations 1:07 and things go better than expected 1:09 people are happy
+they keep watching and 1:11 you win but when expectations beat 1:13 reality and things go worse than 1:14 expected people are not happy they stop 1:16 watching and you lose it
+really is that 1:19 simple this give and take is why you 1:21 feel so good after giving a public 1:23 speech because your expectations are 1:25 super low cuz you think you're going
+to 1:26 bomb and then after you go and it's fine 1:28 you feel great because reality Beats 1:29 meet expectations now I start here 1:31 because understanding this expectation 1:33
+vers reality psychology concept will 1:36 influence every decision you make when 1:38 you're writing a script that really is 1:39 where the sauce lies it is the black 1:42 magic
+that makes all this stuff really 1:44 work and if you understand that the 1:46 script writing process that I'm about to 1:47 go through becomes way easier okay so 1:49 these are
+the five script writing steps 1:51 in the process number one is packaging 1:53 number two is outline number three is 1:55 intro number four is body and number 1:57 five is outro I
+write every single 1:59 script in this exact same order now 2:01 let's take each one quickly and break 2:03 down how to do it your job when you're 2:04 writing the script is to
+make sure the Step 1: Packaging (Click Confirmation) 2:06 first few lines of the intro confirm and 2:08 ideally beat their expectations set by 2:11 the title this is called click
+2:12 confirmation it's one of the most 2:14 important principles to winning on 2:15 YouTube so if Mr Beast has a title that 2:17 says I spent 100 hours inside the 2:20 pyramids
+then right away in the first 2:22 sentence and ideally the first intro 2:24 he's going to show you and tell you that 2:25 he's in the pyramids this would meet 2:27 expectations now
+to exceed expectations 2:30 he would also add on something like I 2:32 have unprecedented access to explore 2:34 pieces that have never been explored 2:35 before and this takes
+base expectations 2:37 the pyramids and then beats them 2:39 unprecedented access this positive gap 2:42 of reality beating expectations hooks 2:44 the viewer and it turns out this
+is 2:46 exactly what Jimmy does in every single 2:48 video it's exactly what every winning 2:50 Creator does in every video so before 2:52 you write any script you need to have
+2:53 your video packaging dialed so you know 2:56 what to put in the intro to get this 2:58 confirmation and the package of the 3:00 video is made up of the idea title and 3:02
+thumbnail now the idea is a oneline 3:04 sentence describing what the video is 3:06 about more importantly this is the pain 3:08 point that you're trying to solve for 3:09 your
+ideal viewer Avatar or it's the 3:12 rabbit hole you're trying to create so 3:13 they go down the loop if you don't have 3:14 a good base idea that something they'd 3:16 actually
+want to watch it's going to be 3:17 so much harder to write a killer script 3:19 because they're not going to be 3:20 interested in it okay now next and most 3:22 important in this
+packaging is the title 3:24 it's critical that you have the title 3:26 established before you write the intro 3:28 I'm not going to cover how to write a 3:30 good title in this
+video because that's 3:31 a whole other psychology can of worms if 3:33 you guys are interested in that let me 3:34 know in the comments and I'll make a 3:35 video on titles but
+the most important 3:37 thing to know about the title is that 3:38 you're trying to trigger a click 3:40 curiosity Loop does the title alone get 3:42 the viewer curious enough
+about the 3:44 paino or problem that they cannot resist 3:46 clicking and they have to find out what 3:48 you have to say and also based on that 3:50 title what expectations should
+a viewer 3:52 have coming into the video if they did 3:54 click because slight tweaks in the title 3:56 wording can completely change the 3:58 incoming expectation and again the
+whole 4:00 point is to have reality beat 4:01 expectations you don't know what reality 4:03 should be with the click confirmation if 4:04 you don't know what that expectation is
+4:07 now again if you're bad with titles you 4:08 could use tools like one of 10 vid IQ 4:10 spotter Studio view stats there's so 4:12 many tools that allow you to remix 4:14
+titles and optimize them for YouTube 4:16 that's what I'd recommend I have a full 4:17 team that kind of does the ideas and 4:19 titles for me but if you don't have that 4:20 using
+one of these tools is a great way 4:22 to do it now when it comes to thumbnails 4:24 most YouTube experts will demand that 4:26 you have the title and thumbnail solved 4:28 before
+you even start writing this 4:29 script but I don't agree with this the 4:31 title for sure but I think it's okay if 4:33 you have the thumbnail loose but not 4:35 really dialed
+and that's because the 4:36 creative process and back and forth that 4:38 comes with the thumbnail can be a huge 4:40 inhibitor to Action Agency and 4:42 creativity when you're
+writing your 4:43 script if you have to wait and delay 4:45 constantly because you're waiting for 4:46 the thumbnail to write the script it's 4:47 just going to slow you down and
+so in my 4:49 opinion the title is a must a loose 4:51 thumbnail idea is fine that will get 4:53 dialed in over time all right let's move 4:54 on to step two of the five-step
+script 4:56 writing process which is outline now Step 2: Outline (Drive Valuable) 4:58 before I start writing the actual script 5:00 I really like to have a bulleted outline 5:03
+on the page first and this may seem 5:05 counterintuitive You' think You' do the 5:06 intro first and then the outline and 5:08 then the body why am I doing the outline 5:09 before
+the intro well my take is that 5:11 anybody can learn how to write a 5:13 compelling intro it's just a few Lego 5:15 bricks I'm going to go through it in a 5:16 second once you
+know this formula you 5:18 can easily print the intro so I know in 5:20 the back of my mind that I can solve the 5:21 intro the real Moe the real sauce of 5:24 videos that goes
+from good to Great is 5:25 having something actually unique 5:27 differentiated and novel to say in the 5:30 body of the video are your points 5:32 actually unique Could you
+actually beat 5:33 someone's expectations because your 5:35 reality is so good at what you're saying 5:37 now uniqueness in these points can come 5:39 from the actual tip itself
+the process 5:41 of distillation how you actually say the 5:43 tip or the example that you use to 5:46 explain what it is I find that writing 5:48 these in a quick outline bulleted
+first 5:50 is a great way to gut check if you 5:52 actually have something worth saying or 5:54 you're just summarizing and 5:55 regurgitating common things if you don't 5:57 have
+something worse saying that's not 5:59 unique but before you move forward and 6:00 waste time writing a script go research 6:02 more go watch other source material and 6:04 try to
+come up with more novel points I 6:07 think one of the reasons why my videos 6:08 work so well is because I'm saying 6:09 things that nobody else is saying I am 6:11 also
+distilling them down and using 6:13 different examples but I'm saying things 6:14 that I've never heard people say on 6:16 YouTube remember the goal with script 6:18 writing is to
+beat expectations with 6:20 reality if expectations are existing 6:22 based knowledge and you're just 6:24 repeating existing base knowledge you 6:25 will not be able to beat
+expectations 6:27 with your reality so tactically I like 6:29 to make a quick and dirty bulleted list 6:31 and just write this out and zoom out and 6:32 just think is this unique
+or not and 6:35 then for each point in the list I layer 6:36 on the what the why and the how the what 6:39 is what it is the why is why it matters 6:41 and the how is how it fits
+in the 6:43 overall puzzle of the story and again if 6:45 I don't have unique points in the 6:47 outline I'm not moving forward I'm not 6:48 making the video now it's important to
+6:49 call out all of this the idea the title 6:52 the outline is all done before breaking 6:55 ground on the script itself this is the 6:57 measure twice cut once of content I try
+6:59 to only make ideas that I feel like have 7:01 a chance to do well and if it's not 7:02 going to do well I don't make them I go 7:04 back to the research process okay let's
+7:06 move on to step three which is the intro 7:08 now before I write the full body of the 7:09 script I start with the intro and my Step 3: Intro (5 Step Formula) 7:12 ultimate
+goal after establishing The 7:13 Click confirmation is to build a 7:15 curiosity Loop you want to open a rabbit 7:18 hole in the viewer's mind that they just 7:19 can't help but go
+down each line should 7:21 make them want to go to the next line 7:23 now I have an intro hook framework that 7:24 works every time short form long form it 7:26 works every single
+time and you can just 7:28 copy it I'll give it to you this is 7:30 exactly how to do it okay so part one is 7:32 to give immediate context on what the 7:34 video is about this is
+so the viewer can 7:36 opt in and of course confirm the click 7:38 so for example in this video 7:39 specifically the title was how to write 7:41 a killer script that keeps viewers
+7:43 hooked and the first three lines of my 7:45 intro were today we're talking about 7:47 writing killer scripts the reason 7:49 winning creators go viral so often is 7:51 because
+of their script writing you 7:52 might have a great video idea but how do 7:54 you actually write a script with a 7:55 compelling story that keeps people 7:57 hooked the entire
+time so this was Tor 7:59 made to establish the context and 8:01 immediately click confirm that the video 8:03 is about script writing and keeping a 8:04 viewer hooked you want to
+start by 8:06 bluntly stating this as quickly as 8:08 possible okay now part two is to 8:09 establish the common take or belief so 8:12 what I like to do is establish the 8:13
+conventional belief on the topic people 8:16 will get more eager to listen when they 8:17 feel like you're talking about something 8:19 they care about the easiest way to build
+8:21 this common ground is by restating the 8:22 common belief because chances are if 8:24 they struggle with this topic they also 8:26 know the common belief and that is their
+8:28 belief so when you restate it it helps 8:29 connect in their mind that this is 8:31 something they should care about and it 8:32 also helps set up the contrast which is 8:34
+critical in part three so for the intro 8:36 for this exact video I said this this is 8:38 an art and it's one of the hardest 8:39 things to learn when you're starting out 8:41
+making videos again I'm doing this 8:43 because people want you to start out 8:44 confirming the belief they already 8:46 believe before you offer a way to change 8:48 it now the
+next part of the intro which 8:50 is critical is building a contrarian 8:52 take or contrarian approach against this 8:55 common belief and the only way to build 8:57 that contrast
+between the two is 8:58 actually to State the common belief 8:59 that's why you have to start there now 9:00 part three as I said is by creating 9:02 contrast by stating a
+contrarian 9:04 approach so you want to offer a 9:05 contrarian take or perspective that 9:07 contradicts that common belief and this 9:09 will stun them and hold them into 9:11
+needing to hear what you have to say the 9:13 best way to exceed their expectation at 9:15 that EVR moment when they're first 9:17 listening to the intro is by stating the 9:19
+common belief but then that you have a 9:21 contrarian approach that they may not 9:22 have heard before so in today's video 9:24 for the intro I wrote this but the good 9:26 news
+is there is a right answer I've 9:28 analyzed hundreds of the creators across 9:30 every Niche and they all run the exact 9:32 same script writing process this formula 9:34 has
+driven hundreds of billions of views 9:36 and it works every single time this is 9:38 me contrasting against the common belief 9:41 that script writing is Art I'm saying 9:43 it's
+not it's science there is a formula 9:45 and I have it now right away I've nailed 9:48 the clip confirmation and I've begin to 9:49 raise their expectations of what they 9:51
+believe is possible in the video because 9:52 I offer a different solution than what 9:54 they've thought of before now the last 9:55 two steps can be done in either order 9:57 but
+you have to do two things one a Lish 9:59 proof for why they should trust your new 10:01 approach and two give them a plan an 10:04 ordered list or steps for how you're 10:06 going
+to do it so in today's video I 10:07 wrote this so in this video I'm going to 10:09 break it all down this is the proven 10:10 fstep framework for how to write killer 10:12 scripts
+that keep viewers hooked by the 10:14 way I'm Callaway I've done over a 10:15 billion views I have a million followers 10:17 and this stuff is all I do all day long 10:19 so in
+this case I started with my plan 10:21 and then I lay it on the proof right at 10:22 the end by the end of this intro 10:23 framework and I'm telling you it works 10:25 for every
+video you have the viewer Hook 10:27 Line and Sinker by the way I know this 10:29 is is a lot to take in in one shot if 10:31 you need help actually tactically doing 10:33 this I
+put together a free 5-day email 10:35 series which kind of breaks down more of 10:37 these Advanced strategies in a much 10:39 easier form to digest it's called The 10:41 virality
+Blueprint you can grab it at 10:43 virality blueprint.com all right step 10:45 four in the script writing framework is 10:46 the body of the script and so what is Step 4: Body
+(2-1-3-4 Method) 10:48 actually happening in the viewer's brain 10:50 right at this moment as the viewer 10:51 watches the intro they're compiling all 10:53 the previous knowledge
+they had on the 10:55 topic plus combining it with the 10:57 promises that you're making in the intro 10:59 and their new expectation is that 11:01 they're hoping they will learn
+something 11:02 slightly different or better than what 11:04 they already knew so for example if I'm 11:06 making a video on storytelling and the 11:07 title is how to become a
+master 11:09 Storyteller and the intro is I'm going 11:11 to share six new unprecedented things 11:13 that will make you a master Storyteller 11:15 then the viewer has a pretty
+high 11:17 expectation because they're compiling 11:18 their mental database of all the things 11:20 they've learned about storytelling in 11:21 the past and they're using those as
+a 11:23 baseline knowledge set for what they 11:25 already know and so their expectation is 11:27 that one of my six things or all of my 11:29 six things are going to be new
+different 11:31 or better than what they currently know 11:33 that's how I would exceed their 11:35 expectations now at this exact moment to 11:37 really blow their expectations
+away the 11:39 first point in the body that I share the 11:42 first thing they hear after the intro 11:43 has to be amazing it has to be so good 11:46 that it blows their mind
+that's how you 11:48 really create this big gap between 11:49 reality and expectations and this is so 11:51 critical because if your first point of 11:53 the body of your video
+repeats something 11:55 they've already heard or is just not 11:57 that compelling immediately they will 11:58 get disappointed and they will lose 12:00 interest in the video This
+Is Why when 12:02 you watch a video that's just a 12:03 generalized summary regurgitating things 12:05 that you've already heard you usually 12:07 watch one or two points and then
+you 12:08 bounce maybe you'll see the first point 12:10 not think it's good scroll to the 12:12 description read the timestamps see if 12:14 there's anything unique and then
+usually 12:15 there isn't and you leave and this is 12:17 super common because creators usually 12:19 don't take enough time to come up with 12:21 unique different and better
+points in 12:23 the body of their videos if you really 12:25 think about it expectations are just the 12:27 viewers hope that they're going to learn 12:29 learn something new about
+the topic that 12:30 they don't already know and so if you 12:32 don't give them something new there's no 12:33 way you'll beat their expectations when 12:35 you don't beat their
+expectations they 12:36 leave this is why the first body point 12:39 of your video has to be something new 12:41 and different and my cheat code for this 12:43 which is not
+intuitive is to put your 12:45 second best body point in that first 12:47 slot I'm going to explain in a second 12:48 exactly why this works so well you would 12:50 think you'd
+want the best stuff first 12:52 because the viewers are decaying off the 12:54 video so why hold your best thing for a 12:56 second and here's why human brains work 12:58 in
+patterns if you show someone one 13:00 thing that's amazing they'll think it's 13:02 cool but if you show them two things 13:04 that are amazing especially if the 13:05 second
+thing is better than the first it 13:07 creates a subconscious pattern where 13:09 they have to stay to see the third 13:10 because they feel this value continuing 13:12 to drip up
+over time if you show your 13:14 best thing first and then your second 13:16 best thing is slightly worse it trains 13:17 the viewer subconsciously that the value 13:19 will be
+diminishing and it's not worth 13:21 staying but if you slightly increase 13:22 from 1 to two it creates this pattern 13:24 and they have to stay this is why most 13:26 music
+albums put their best songs in the 13:28 third third or fourth slot if you ever 13:30 wondered that why did the single The 13:32 Banger single with the billion streams 13:33 not go
+first on the album you would 13:35 think when you click the album and the 13:36 first track is the best one that would 13:37 make sense well usually the first track 13:39 is an
+intro but it's never the single in 13:41 the second slot why is that it's for the 13:43 same reason the second track is always a 13:45 great track but it's not the best track 13:46
+and so when you listen to two and three 13:48 and four you're increasing to the point 13:50 where you climax the best song at 3 or 4 13:52 that builds this pattern recognition and
+13:54 makes people stay for the whole project 13:56 now that is deep deep deep psychology 13:58 that you will not hear you're anywhere 13:59 else on YouTube and if you want to
+learn 14:01 more about that psychology stuff these 14:02 little tweaks that just make a massive 14:04 difference this is all I talk about in 14:06 my free newsletter content
+department 14:07 and my free community for creators wavy 14:10 world the links are in the description 14:11 for those for each point in the body you 14:13 want to include these
+three things I 14:14 call it the value Loop one is context 14:17 say what it is and explain it as simple 14:19 as possible two is application say how 14:21 to do it and use as many
+relevant 14:23 examples to kind of articulate your 14:25 point as possible and three is framing 14:27 say why this point matters and how it 14:29 fits into the overall puzzle of
+the full 14:31 story the context part needs to be clear 14:33 concise and digestible the application 14:35 has to be interesting enough and easy to 14:37 digest where they can
+begin taking 14:39 action on their own side and the framing 14:41 needs to reorient themselves so when 14:43 they zoom out they can see why it's 14:44 worth continuing to watch the
+video and 14:46 this three-step frame for explaining 14:48 points in the body it suits really well 14:50 the way the brain processes information 14:53 base facts first surface
+level and then 14:55 slowly deepening to add inference and 14:57 connect different points now as 14:58 mentioned before you want to organize 14:59 your points in the body based on
+shock 15:02 value novelty and uniqueness you want 15:04 your second best point to go first your 15:05 best point second your third best third 15:07 and so on now the easiest way to
+learn 15:09 how to do this tactically is just study 15:11 the videos on my channel I have 23 or 24 15:13 videos every single one of them follows 15:15 this exact same framework
+study the 15:17 pacing and the rhythm of how I do this 15:19 it'll get you much better when you watch 15:20 you will notice this constant zoom in 15:22 and zoom out I'm constantly
+looking at 15:23 the big picture going down for the 15:25 tactics big picture tactics it's kind of 15:27 like a wave this is what you want to 15:28 create it adds to the
+comprehension it 15:30 allows people to lock into the full 15:32 story but then also extract a tactical 15:34 piece that's how you want to layer these 15:36 body points now one
+power tip here is 15:38 how to seamlessly transition between the 15:40 points in the body and the best way to 15:42 do this while maintaining Max retention 15:44 is called reh
+hooking now I talk about 15:46 mechanically how to do this in other 15:48 videos but this is a really really 15:49 important concept you basically want to 15:51 set up these mini
+hooks between the end 15:53 of one point and the beginning of the 15:55 next one so for example you might say 15:56 something like that point was super 15:57 important but if you
+don't also couple 15:59 it with this one then the magic is lost 16:01 all of a sudden that makes the viewer 16:03 have to hold for the next one if they 16:04 liked what they heard
+in the first one 16:05 and reh hooking really works because 16:07 people's brains are on an attention 16:09 delay as soon as they see something 16:10 they'll have max level of
+interest and 16:12 that will slowly start to Decay if you 16:14 don't rehook them and get their interest 16:16 peing they will eventually just bounce 16:18 okay step five in the
+script writing 16:19 process is the last piece is the outro Step 5: Outro (Fortune Cookie) 16:22 and it feels like the outro would be an 16:23 afterthought like who would be
+listening 16:25 to this point but you can add retention 16:27 and shares and likes and rewatches at a 16:29 much higher clip if you just do this at 16:31 the very end of the video
+leave them 16:32 with a high note you want to wrap up the 16:33 video in a clean way you want to 16:34 summarize those points and remind them 16:37 of the paino solve that you walk
+through 16:39 this is the final push to remind them 16:41 that we did in fact have reality beat 16:43 expectations and this is like the free 16:45 chocolate that the restaurant
+gives you 16:46 when they bring the check they're doing 16:48 that on purpose they're trying to remind 16:49 you of the good service that they 16:51 invested the whole previous two
+hours 16:53 it's the same psychology you want to do 16:55 this at the very end of the video 16:56 because you want to leave the viewer 16:57 with a lasting impression of wow that
+16:59 was an amazing video I just remembered 17:01 all these tactics that I learned the 17:02 reality was much higher than my 17:04 expectations and this is where likes 17:06
+comments shares rewatches all the good 17:08 stuff that powers the algorithm it all 17:10 kind of comes from leaving them with a 17:12 high note now before we end this video I
+17:13 want to quickly share one bonus tip that Bonus: CTA Integration (Native Embedding) 17:15 will help you rev up the conversion 17:17 between that attention and driving leads
+17:20 and actual dollars from your videos a 17:22 common question I get around this script 17:23 writing process is how do I include a 17:25 call to action in my script without
+17:27 completely disrupting the flow and 17:29 making it feel like an ad and my 17:31 strategy for this is what I call native 17:33 embeds what you want to do when you're 17:34
+creating that outline is figure out 17:36 proactively which point naturally suits 17:39 highlighting the free resource you have 17:41 as the solve and so when you're speaking 17:42
+about the point you want to frame the 17:44 pain point and then give your own 17:46 Resource as the solve it'll seem way 17:48 smoother and more seamless if you do it 17:50 this
+way so you can either open the loop 17:51 with a paino and then give the solve or 17:54 you can speedrun a framework in a way 17:56 that's so deep and fast that most people 17:58
+won't be able to absorb and then you can 18:00 offer your free Resource as a way to 18:02 recap to review or to compress speed of 18:05 implementation if they need your help 18:06
+either way you don't want it to seem 18:07 like you're breaking flow in the script 18:09 you just want to seamlessly add it in 18:11 showing it natively and then move on for 18:13
+example I did this twice in this video 18:16 I'm not sure if you picked it up the 18:17 first time was when I broke down the 18:18 super super deep psychology piece and 18:20 then
+I said hey if you like the 18:22 psychology things that I'm talking about 18:23 and you want to go deeper I have a free 18:25 newsletter and a free community where 18:26 you can
+learn more I also went through 18:27 the full intro hook framework and then I 18:29 said if you want to go deeper I have a 18:31 free 5-day email series called virality 18:33
+blueprint.com that you can download you 18:35 may not have even picked up that I 18:36 called those out but the key is these 18:38 are free and they actually do solve the 18:40
+paino or enhance the points that I 18:42 talked about and here's one other tip 18:44 that's super helpful if you want to get 18:46 better at script writing but you're 18:47
+struggling with this there's so much to 18:48 organize the intro the points actually 18:50 writing it and getting the Rhythm down 18:52 it's a lot the thing that would be 18:53
+helpful is if you could organize all 18:54 your thoughts in a software and just 18:56 have it do some of that work for you so 18:58 I've been looking every for this and I 18:59
+built sandcastles sandcastles a for 19:02 doing this and when you have it it 19:03 compresses 60 to 90 minutes worth of 19:06 this organizational writing work down 19:08 into 60
+seconds it really is the most 19:10 magical way to do this so if you 19:11 struggle with the script writing aspect 19:13 you should look at sand castles it's one 19:14 of the best
+solves out there see I just 19:16 did it again that was another native 19:18 embed I tried to do that purposely cuz I 19:19 wanted to see if you would catch it but 19:21 that was
+me naturally integrating a 19:23 paino that we've talked about the whole 19:24 video in a way that didn't really feel 19:26 like an ad but for real if you want help 19:28 writing
+full short form video scripts 60 19:30 Minutes down to 60 seconds sand castle. 19:32 a is actually legit you should try it 19:33 out all right guys that's all I've got 19:35 for
+this video again this was the 19:36 step-by-step formula for how to write 19:38 killer scripts that keep viewers hooked 19:40 the full time I know we went super deep 19:42 into the

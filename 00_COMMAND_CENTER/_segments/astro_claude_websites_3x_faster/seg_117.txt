@@ -1,0 +1,108 @@
+service URL must be provided before sharing your OAuth integration with other users - if you have not provided them, other users will not be able to authorize your integration. All
+of these fields will be visible to users when they authorize your integration. PropertyDescription NameThe name of your integration. OAuth redirect URIA URI you control for use in
+the OAuth authorization flow. See the reference documentation for more details. Permission scopesThe actions that your integration can take on behalf of a user. See the Scopes
+reference for a full list of possible scopes. Tagline (optional)A brief description of what your integration does. Homepage URL (optional)URL of your website or homepage. Logo
+(optional)Your logo. Visible to users when authorizing your integration. Support email (optional)A support email where users may reach you. Privacy policy URL (required to share
+integration)Your service's privacy policy. Terms of service URL (required to share integration)Your service's TOS. Previewing the user authorization dialog When managing your OAuth
+integration, you can preview what the user authorization dialog will look like after adding at least one scope to your integration. Updating your client secret A client secret is
+an optional private key that authenticates your integration when requesting an OAuth token. You should generate a client secret if you will be issuing token requests from a server.
+To generate a client secret, navigate to your integration’s management page and click “Generate client secret”. Note that generating a client secret is potentially a breaking
+change: if you are already sending existing authorization requests, they will fail until you start sending this client secret. We ask you to confirm your decision to verify that
+this is ok. If you click “Generate”, a client secret will be generated: You will be unable to click “done” until you copy the client secret. Note that the client secret is not
+recoverable, as Airtable does not store a copy of your client secret. If you forget or misplace it, you can click “Regenerate client secret” to create a new one. Once your client
+secret is generated, you may also delete or regenerate your client secret at any time. Building your integration You can view our OAuth reference for more details about how to
+construct an authorization request. The OAuth.net Getting Started guide is a good general resource about the OAuth protocol. If you feel ready to jump into some code, you can check
+out our example setup repo here. Making API requests The OAuth access tokens you receive should be passed with your API requests as a Authorization: Bearer header. Refer to the
+authentication reference page for more details. The token will only be able to access endpoints corresponding to the scopes granted to it, and the bases that the user has granted
+to it. These may change at any time (e.g. the user could add an additional base, or revoke access to one). Use the list bases endpoint to list the bases that the token has access
+to, and the get userId and scopes endpoint endpoint to list the token's scopes. OAuth access tokens can be used to make requests to most public Airtable API endpoints (assuming
+that the corresponding scopes have been requested) including endpoints that were previously limited in availability such as the Metadata API and Enterprise API endpoints. Note:
+OAuth access and refresh tokens should be treated as opaque, variable-length strings. In particular, do not rely on tokens having a particular length or format. Changes to the
+token format (for newly created tokens) are not considered to be breaking changes. Distributing your integration After your integration has been built, the last step is to add a
+support email, privacy policy, and terms of service to your integration (via the management page at /create/oauth). This will enable other users to authorize your integration. ©
+AirtableTermsPrivacyWeb API API referenceGuides Search API reference... Press shift + S to search API reference. Introduction Personal access tokens OAuth integrations Webhooks API
+Guide Webhooks API The Webhooks API allows developers to be notified in real-time about changes in their base that they care about, from newly created records to a field being
+updated in an existing record, to a record moving in or out of a view. Read on to learn more about the basics of Webhooks API in Airtable. You can access the developer
+documentation for the Webhooks API here. Overview Sometimes referred to as "reverse APIs," webhooks allow developers to simplify many common API workflows. Typically, API usage
+involves the process of having one software program ask for a specific set of information from another software program, known as a GET request. This process works great when an
+application regularly fetches data from Airtable’s APIs to understand the current state of a table or base. However, this can be somewhat tedious when attempting to keep
+information up to date, as records are added, updated, or removed. Oftentimes, fetching information from Airtable using GET results in superfluous calls that don't actually find
+any changes from previous requests. Enter Webhooks! Webhooks allow the application you want information from (in this case, Airtable) to send a POST request to the application
+where you want the information to be used. This eliminates unnecessary API calls because the POST request is only sent based upon the Webhook's specifications. Depending upon the
+workflow you are trying to build, Webhooks may not always be the best option. You may also want to consider implementing our Run a script automation action. Endpoints Airtable's
+Webhooks API currently contains the following endpoints: Create a webhook Delete a webhook List webhooks Enable or disable webhook notification pings List webhook payloads Refresh
+a webhook More technical information about each of these endpoints is available in the Webhooks API documentation. FAQs When should I use the Webhooks API? The Webhooks API is an
+advanced API feature. It can be used for building custom automations and data replication workflows. However, some use cases may be more straightforward to implement and better
+suited to use an Automation with the Run a script action to make a POST request to your desired endpoint. How many webhooks can I register? There is a limit of 10 webhooks per
+base. A single OAuth integration can create up to 2 webhooks per base. What are the rate limits? For example, is it per webhook hook or base? All webhook endpoints, including the
+GET Payloads endpoint, will follow our standard rate limits of 5 requests per second per base. Can I filter out changes made by an Airtable Automation (or another source)? Yes,
+this is supported by the fromSources filter parameter in the specification. How long are payloads available to be retrieved? Payloads are retained for 7 days. Does the ping include
+the change payload? No, the change payload must be fetched from the GET payloads endpoint. Are the order of notification pings guaranteed? The notification ping order is not
+guaranteed, however the list of payloads from the GET payloads endpoint does have a stable order. It's also worth noting that a single notification ping may represent several
+changes in the base so even if there are many changes in the base at once, we may only send out one ping per hook. Will webhooks ever expire? Yes, to help you clean up your unused
+webhooks, webhooks created with personal access tokens or OAuth access tokens will expire and be disabled after 7 days. Users can extend the webhook life while the webhook is still
+active by refreshing the webhook or listing payloads. The webhook life will be extended for 7 days from the refresh time. Webhooks that were created with User API keys (now
+deprecated) will not expire, but can no longer be created. © AirtableTermsPrivacyGet 10k free credits when you signup for LlamaParse! Product LlamaParse Industry-leading document
+processing Parse Extract Index Open Source OSS repos trusted by millions of developers LiteParse Workflows LlamaIndex Solutions Persona Engineering & R&D Accelerate product
+development Administrative Operations Streamline business processes Financial Analysts Build AI-powered financial models Industry Insurance Automate claims and underwriting Finance
+Power financial research Manufacturing Optimize system uptime Healthcare & Pharma Accelerate clinical research Use cases Financial Due Diligence Speed up compliance reviews Invoice
+Processing Automate manual review Technical Document Search Find answers in complex docs Customer Support Instant, accurate responses Docs Resources Resources Customer stories See
+real-world success stories Jeppesen (a Boeing Company) Saves ~2,000 Engineering Hours with Unified Chat Framework Company About us Our mission and story Careers Join our growing
+team Brand Logos and brand guidelines View open roles at LlamaIndex Blog Pricing Book a demo Try for free Document OCR for the agentic stack LlamaParse turns hours of manual
+document processing into seconds of automation, with VLM-powered document understanding agents. Get started Book a Demo Get started with LlamaParse for free Our free plan includes:
+10,000 free credits per month (~1000 pages) Agentic OCR for layout-aware document parsing Structured extraction of defined schemas Build and deploy end-to-end document agents Try
+LlamaParse How it works We parse your most complex docs 01 / 02 / 03 Agentic Understanding Complex layouts turned into clean, LLM-ready outputs through semantic understanding.
+Specialized experts Task-specific agents break down content such as text, charts, tables, and more, routing it to the right expert. Auto-Correction Loops Recursive checks that
+detect and fix errors automatically, delivering high pass-through rates even on messy scans and multi-modal documents. Handwritten Text Parse messy handwriting, extract structure,
+and make it usable for AI workflows. Tables Extract rows, columns, and relationships — even from dense or irregular layouts. Charts Turn charts and graphs into structured data your
+pipelines can use. 1B+ Documents processed 25M+ package downloads a month 300k+ LlamaParse users Unrivaled performance across complex documents Benchmark LlamaParse VLM -
+Proprietary Commercial - IDP Open Source OCR Overall performance Charts Tables 01 LlamaParse LlamaParse powers enterprise-grade document automation with industry-best parsing,
+extraction, indexing, and retrieval — optimized for accuracy, configurability, and scalability. Learn more Book a demo Parse Industry-leading document parsing for 50+ unstructured
+file types — including support for embedded images, complex layouts, multi-page tables, and even handwritten notes. Extract Split Classify Index npm install @llamaindex/liteparse
+02 LiteParse Parse Any Document. Locally. Fast. Open-source document parsing from the team behind LlamaParse. Parsed text from PDFs, Office docs, and images — no cloud, no LLM
+tokens, no limits. View on GitHub Learn more Fully open-source Fast local processing All major formats Bounding box output Use cases How leading teams use document intelligence
+Context for AI Agents Enable LLMs to read complex documents with human-level precision. Book a demo Replace legacy IDP Modernize document processing without custom templates. Book
+a demo Multi-step document agents Build durable agents that automate knowledge work. Book a demo Industries Built for every document-heavy industry Get started Book a demo Finance
+From financial research and due diligence to automated invoice processing, leading banks, hedge funds, and fintechs are transforming workflows with AI. Explore finance Insurance
+Risk and protection leaders are turning unstructured data into action—streamlining underwriting, audits, and claim proccessing. Explore insurance Manufacturing Leading
+manufacturers are using AI to extract insights from specs, manuals, and inspection reports—faster and more accurately. Explore Manufacturing Healthcare From medical records and
+handwritten doctor notes to insurance claims, healthcare providers are using AI to streamline clinical and administrative workflows. Explore Healthcare 99.9% uptime Infrastructure
+designed for always-on document processing — stable under real production load. Enterprise-Grade Security Granular access controls, enhanced data encryption, and HIPAA, GDPR, and
+SOC2 compliant out-of-the-box. Dedicated Support & SLAs Dedicated support, fast response times, and SLAs tailored to mission-critical AI workloads. Flexible Deployment Run in our
+secure cloud or deploy fully in your VPC, ensuring data residence requirements. Enterprise Ready Built for teams running production-grade AI with reliability, security, and control
+at scale. Book a demo testimonials Trusted by leading AI teams Manuel De Juan Director, Global AI office at NttData “LlamaParse simplifies parsing complex documents which is
+crucial for end-to-end AI development.” Alvin Alaphat Founding engineer at Delphi “We benchmarked LlamaParse against everything else we could find. It had the most reliable output
+and cleanest formatting—especially for our most difficult content.” Dean Barr Applied AI Lead and Data Scientist at Carlyle “LlamaParse stands out as the premier solution for
+parsing complex documents in enterprise agent pipelines.” Upgrade your document processing today LlamaParse unlocks unrivaled accuracy and scale. Sign up for free Book a Demo Build
+document agents that understand, reason, and act Contact sales Sign up Explore AI Summary Solutions Engineering & R&D Administrative Operations Financial Analysts Developers
+Insurance Finance Manufacturing Healthcare & Pharma Finance Due Diligence Invoice Processing Technical Document Search Customer Support Products LlamaParse Parse Extract Index
+LlamaIndex Workflows Resources Customer Stories Glossary Applications Insights Company Pricing Blog About us Careers Brand Trust center Weekly newsletter Get a weekly roundup of
+the latest news and insights on the world of LLMs and word on the newest features of the LlamaIndex libraries. For example, "jane@company.com" Compliance © 2026 LlamaIndex Privacy
+Notice Terms of Service Data Processing AddendumFor AI agents: a documentation index is available at the root level at /llms.txt and /llms-full.txt. Append /llms.txt to any URL for
+a page-level index, or .md for the markdown version of any page. Logo Search / Connect Blog Help Center API Pricing Sign up API reference Introduction Authentication Streaming
+ElevenAgents Agents Conversations Users Tools Knowledge Base Tests Phone Numbers Widget Workspace SIP Trunk Twilio POST Outbound call via twilio POST Register call WhatsApp Batch
+Calling LLM MCP Analytics Environment Variables ElevenAPI Text to Speech Speech to Text Music Voices Text to Dialogue Voice Changer Voice Design Sound Effects Audio Isolation
+Dubbing Forced Alignment Pronunciation Dictionaries Audio Native ElevenCreative Studio Core Resources History Models Tokens Workspace Usage User Service Accounts Workspace Webhooks
+Legacy Voices Knowledge Base Dubbing ElevenAgents Twilio Outbound call via twilio Copy page POST https://api.elevenlabs.io /v1/convai/twilio/outbound-call POST
+/v1/convai/twilio/outbound-call cURL curl -X POST https://api.elevenlabs.io/v1/convai/twilio/outbound-call \ -H "Content-Type: application/json" \ -d '{ "agent_id": "string",
+"agent_phone_number_id": "string", "to_number": "string" }' Try it 200 Successful { "success": true, "message": "string", "conversation_id": "string", "callSid": "string" } Handle
+an outbound call via Twilio Headers xi-api-key string Optional Request This endpoint expects an object. agent_id string Required agent_phone_number_id string Required to_number
+string Required conversation_initiation_client_data object or null Optional Show 8 properties call_recording_enabled boolean or null Optional Whether let Twilio record the call.
+telephony_call_config object Optional Show 1 properties Response Successful Response success boolean message string conversation_id string or null callSid string or null Errors 422
+Unprocessable Entity Error Was this page helpful? Yes No Previous Register call Next Built with Customize and run in API ExplorerCustomize and run in API Explorer The AI Edge
+Search 1 Community Classroom Calendar Members Map Leaderboards About Search 1 YouTube Builds + Resources - 2025 0% Welcome to YouTube Builds + Resources! AI Business OS Why 95% of
+AI projects fail & how to succeed AI Video Battles Sora 2 vs Veo 3: 5 Same-Prompt Tests AI Video Generator Tools INSANE AI for Cinematic VFX! (Higgsfield.AI) This One AI Video Tool
+Does It All (FreePik) Apper.io Build Your Biz App Fast (No Coding Required) Blog Writing Why Deepseek V3 is the AI You Can’t Ignore! Bolt.new Claude Code Claude Code - Build Your
+First App! (Beginner's) Claude Releases Build Your Own Claude SKILLS in under 15 Minutes! Claude Sonnet 4.5 Is Here (New KING of Coding!) Claude Opus 4.5 Explained in 6 Minutes
+ComfyUI - Cloud Installs ComfyUI - Images ComfyUI - Video ElevenLabs - AI Agents ElevenLabs Agent That Calls & Qualifies Leads 11Labs AI Receptionist That Answers Cust Q's EASIEST
+Way to Build Voice AI Agents in 2026! Google Antigravity Google AI Studio Google Nano Banana Google NotebookLM Instagram Automations LinkedIn Automations Loveable n8️⃣n - AI Video
+Creation n8️⃣n - AI Avatar Videos n8️⃣n - Ads Generator n8️⃣n - Back Office Solutions n8️⃣n - Copywriting AI Agents n8️⃣n - Data Scraping n8️⃣n - Data Analyst AI Agents n8️⃣n - How
+To n8️⃣n - Image Generation n8️⃣n - Job Finding Solutions n8️⃣n - Lead Gen AI Agents n8️⃣n - MCP AI Agents ⚡️ Master Guide to MCP with AI Agents 🛠️ Set up Native n8n MCP In 6 min!
+Connect n8n MCP to Claude in 2 Minutes! n8️⃣n - RAG Agents n8️⃣n - Research AI Agents n8️⃣n - Stock Market AI Agents n8️⃣n - Voice AI Agents n8️⃣n - Vibe Coding Platforms Ollama
+(Local AI) Open Source - Text-to-Speech OpenAI Agent Builder OpenAI Release Reviews OpenAI Sora OpenAI - Image Generation Prompt Engineering Make.com - AI Agents Make.com -
+Business Services RetellAI Synthflow TikTok Automations VoiceFlow AI Agents Voiceflow - Business Services Vapi ⚡️ Master Guide to MCP with AI Agents 18:48 The future of automation
+is here! 🎉 In this video, I’m diving into n8n’s new MCP (Model Context Protocol) and showing you how to leverage Brave Search MCP to streamline AI tool discovery and data
+management. 💡 What You’ll Learn: ✅ How to set-up and host n8n with MCP capabilities ✅ How MCPs revolutionise automation in n8n ✅ Setting up Brave Search MCP for real-time AI tool
+lookups ✅ Automating tool discovery and search workflows Key Links: 🛠️ MCP Install Guide: here 📦 MCP Package Details: here ⚡️ MCP Capabilities + Integrations: here 📰 Anthropic MCP
+Release Notes: here 🔐 n8n recommendations for Self Hosting: here Resources n8n MCP Agent n8n MCP AI Agent Prompt ⚡️ Master Guide to MCP with AI Agents - YouTube Builds + Resources
+- 2025 · The AI Edge

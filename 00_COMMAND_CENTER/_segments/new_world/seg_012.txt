@@ -1,0 +1,224 @@
+dozen and then try to get it perfect on a dozen, then get to 50, then get to 100, and keep on tweaking the prompt 19:06 until um it actually passes all the tests you keep on
+throwing at it. If you're doing really good about this, 19:11 have a hold out set and don't, you know, look at those while you're while you're writing your prompts. Make sure it
+also 19:17 works on those. You're not just just fine-tuning the prompt just for your evals, right? What you'll find without 19:22 any I use the word fine tuning without any like
+technical fine-tuning you can go so far with just prompting if you're 19:29 being really careful about this you will find that the AI gets things wrong predictably you're ambiguous
+as part of 19:36 your prompts you're not giving it clear instructions about doing one thing or maybe it just constantly fails in a certain direction you have to give it 19:42
+direct give it you know prompting instructions to pull it back from making this kind of error you give it examples 19:48 right to to guide it away from certain classes of error
+errors, but it's not like going to be a surprise why or how 19:55 AI fails. Once you start prompting, you'll start to see patterns that you can prompt around to give instructions
+20:00 around. And what I like to say is like the biggest qualification for success here is whether you or whoever is 20:08 working on the prompts of your company is willing to
+spend two weeks sleeplessly working on a single prompt 20:14 to try to pass these emails. If you're willing to do that, you're in a really good place, right? It just it just takes
+20:21 such a grind because the thing is you're going to do these emails and at first you're going to pass like 60% of the time. And at this point most people just 20:27 give up.
+They're like, "AI just can't do this task, right? They're like, I just can't. I'm not going to do it." And then you'll spend a night prompting 20:35 and you're going to be at 61%.
+You're like, "Oh my god." The next group of people will give up at this point. What I'm here to tell you is that if you 20:41 spend like solid two weeks prompting and adding more
+evals and prompting, adding more evals and tweaking your prompt and 20:47 tweaking your prompt, tweaking your prompt, you're going to get to something that passes like 97% of the
+time. And the 3% is kind of explainable. It's like 20:54 a human would it's like a judgment call almost. Humans make similar kind of judgment calls. Once you're there, you 20:59
+can feel pretty good about how this might interact in in in uh production. What I recommend is like pre-production, 21:05 maybe in like beta, get to a 100, you know, tests per
+prompt and 100 tests for the overall task. If you're passing like 21:12 99 out of 100, again, you should feel pretty good about where you are, right? So, that's a just rough guide.
+If you 21:18 can beat a thousand, that's 10 times better. Do that. But it's hard. It's actually really hard to come up with great evals. So, I'd recommend just at 21:26 least 100,
+go to beta and put it in customers hands and set the expectation. 21:31 By the way, this is not yet perfect, that's why you're in a beta. And then you listen and learn. Every 21:39
+time a customer complains, either you have their data because that's how your app is set up, or you ask them like, "Hey, can you share that document and 21:45 that question you
+asked to see why it failed?" That's a new test. We've added much more eval at this point from real 21:52 things that happened to real customers than the ones we came up with in the
+lab. And that's going to your customers are going to do the dumbest with 21:58 your app. Okay? and they're going to do such dumb things that you'd not predict. But that's what
+customers really do. If 22:04 you've ever seen like a real person's Google queries, they're barely legible, you know? And I'm assuming the same 22:09 thing is true of chatbt. They
+see a bunch of stuff. Like your prompts probably look pretty smart. Most people 22:14 are like burrito me how ouch or whatever. Like what do you do with that? 22:20 Right? But you
+have to try to bring back a great result and determine what they're actually trying to say with 22:26 these ridiculous prompts. So do it like those become your real tests and just
+keep iterating. This is not a static 22:33 thing. New models will come out. Try the new models. Prompt fu and other frameworks make this really easy. Add a 22:39 new model. It'll
+compute how well it does against your prompt so far. Keep tweaking your prompts. Um sometimes the 22:45 addition or subtraction of a single word might move you up a single percent,
+but that's a very big deal if you're working in a field like finance, medicine, law 22:51 where single percentage increases in accuracy really matter to the the customers you're
+serving. Right? Keep 22:57 iterating. Never stop. There should be a new GitHub pull request like every other day or every day on your prompts. And 23:03 I'm telling you, if you
+just do those two last slides, you know, how do the professionals 23:08 really do it? Break it down to steps. Each step basically becomes a prompt or piece of code. And then you
+test each 23:14 step. Test the whole workflow all together. If you just do these two things, you'll be like 90% of your way 23:20 there to building a better AI app than what most
+of the crap that's out there, right? Because most people never eval. 23:26 and they never take the time to figure out how professionals really do the job. And so they make these
+kind of flashy 23:32 demos on Twitter. They maybe even raise capital and they may even be some of your like your heroes for a minute, but 23:37 be careful who chooses your heroes.
+The real people are behind the scenes quietly building, quietly making their 23:42 stuff better every single day. If you just do these two slides, you're going to be 90% of the way
+there and and better than most of the things that are 23:48 out there. That's the craziest part. Okay, now the hardest part, honestly. the part that frankly we we are still 23:55
+trying to figure out postexit you know at a multi-billion dollar company uh 24:01 it's still going to be really really really hard and I'm going to give some tips about marketing
+and selling AI apps 24:06 in this new kind of world where you're maybe replacing or assisting a job things that we've learned along the way but the first thing I'll say 24:14 this
+is a little bit counter to what I think is out there in a lot of the VC kind of a lot of people like say like the most important thing is sales and Why Product Quality Beats
+Marketing and Hype 24:20 marketing a lot of people really really think that when you guys series A's and series B's, you'll have people on your 24:25 board who say product doesn't
+really matter that much if you're really good at marketing and selling. And they've 24:31 seen some examples of this working out like really well. I think it's We for 10 years we
+had an okay 24:37 product at first. We went through different marketing and sales leaders, some of them super, you know, 24:42 wellqualified, etc., and they did okay. When we had
+an awesome product, all of a 24:48 sudden people were referring us by word of mouth. news was coming to us because we're 24:53 doing something genuinely new and interesting, right?
+And that and word of mouth and news is free marketing. Um 25:01 people coming to you like we had sales people because we had sales people from our older product that wasn't as good
+as the new one that we came out with with 25:07 you know based on LLMs and I will tell you those sales people became like order takers. So the most important thing you 25:14 could
+do for marketing and sales is to build a amazing product and then making sure the world knows about it 25:19 somehow. obviously can't just like build it and not show anybody. Tree
+falling in the woods, nobody hears it. It's not 25:24 going to do anything. But I do think that the quality of product matters so much more than your series A and B uh 25:30
+investors will say. So when you guys have those lame VCs on your board, you can think back to this talk and push back. All right. Um but it's still 25:37 important. It's still
+important to market and sell. I have just three pieces of advice here. The first thing is uh you might not be selling 25:44 traditional software anymore. Think about how you're
+going to package and sell it. The companies I'm most excited 25:49 about right now are taking real services, like for example, reviewing contracts for a company and they're just
+25:56 doing it. They're like doing the full service. Maybe there's a human in the loop. And this would usually cost somebody $1,000 per contract to review How to Price and Sell AI
+Products 26:04 if they went with a traditional law firm. They're charging $500 per contract. Again, for context, a lot of 26:09 the tools you guys use right now probably 20 bucks a
+month. $20 per per month versus $500 per contract. We're 26:16 talking about extreme step-ups in price. Price it according to the value you're 26:22 selling it. Don't shortcom
+yourself. It's maybe a little in conflict with what I just said, but also listen to your customers for how they want to pay. 26:28 Just ask them how would you rather pay for this.
+I'll tell you what we found out. We were thinking about a per usage 26:33 pricing like this review viewing contract company and that that may work in some cases where they prefer
+to pay that way. That might work. But when we 26:40 asked our customers, they said, "Listen, I'd rather pay more, but make it like 26:46 consistent throughout the year, then
+potentially pay less and pay per use." So, our customers wanted to pay $6,000 26:52 per seat. They wanted per seat, and they want to pay $6,000 per se, 500 bucks a month. Fine.
+It's a situation where our 26:59 customers wanted wanted predictable budgeting. Give it to them, right? Listen to your customers. 27:06 The third thing to really think about when
+you're marketing and selling is all this AI stuff is new and scary. These 27:13 big companies even, they want to dip their toes in the water. They want to try new things. Their CEO
+is like 27:18 sitting on a board of people at a Fortune 500 company. The whole board is like, "What are you doing about AI?" And 27:24 so their CEO is going to this company of like
+20,000 people. What are we doing about AI? And they're like, "I don't know. I'm trying like Greg's product." 27:30 Okay. They want to they want to try your product. But there's
+also this trust gap 27:35 because they used to do this thing by asking people and they can fire people, they can train people, they can coach people like people are not perfect,
+but 27:43 they're used to them. They are not they're not used to using your product yet. They have like no idea what to Building Trust with Customers 27:49 expect. So, how do you
+build trust? Some really smart companies are doing like head-to-head comparisons. Keep your law 27:56 firm and then use our thing side by side and then compare. How fast are we?
+How good were we? How different were the 28:01 results? keep your accountant use our AI accountancy and then compare like how 28:07 different how offer we in our accounting or tax
+accounting or whatever it is offer that that's a great way to build trust compare it against people um do 28:15 studies do pilots there are so many ways that you can do this but
+think think in 28:20 your head how do I build trust with my customer and finally the sale does not end when they've written the check and 28:28 definitely not when they started a
+pilot what I'm seeing right now is like an angel investor in this kind of post-exit world for for me is there are a lot of 28:35 companies like our ARR is $10 million and you dig
+under the surface and it's like oh yeah we have a pilot for like 28:41 six months and they pay us a lot of money for that pilot. Uh a lot of those pilots are not converting to real
+revenue and there's going to be a mass 28:46 extinction event uh as a lot of pilot revenue. It's like instead of ARR is like PR like pilot recurring revenue or 28:53 something that
+are not even recurring just pilot revenue I guess like is is not going to convert into real money and 28:58 that's a real danger I'd say for startups right now even ones that are
+reporting super high numbers in terms of 29:05 revenue big part of your job as a founder and a part of a job of the people you'll be hiring is making sure 29:11 that everybody uses
+the product really understands it train roll it out 29:16 consciously and this is different for every different industry for you know onboard board them really thoughtfully. Maybe
+that's in the app walking them 29:22 through steps so they try different things. Maybe that's actually a person sitting next to them. I don't know if you caught this, but a very
+small kind 29:28 of throwaway comment that Satcha said earlier today is that one of the most like growing roles at startups is these Product Isn’t Just Pixels, It’s Everything
+Around It 29:34 four deployed engineers, which I think is a really fancy term for just like boots on the ground people to sit next 29:40 to your customer and make sure the
+product's actually working for them, right? Whatever it takes. One thing I 29:46 said a lot in my company, I still feel this is very true, is that your product 29:51 isn't just the
+pixels on the screen. It's not just what happens when you click this button. It's the human 29:57 interactions with your support, customer success, with the founder, um it's
+training, it's, you know, everything 30:03 around it. If you don't get that right, then you might have the best pixels on the screen, but you'll be beat by a 30:10 company that
+that invests more in their customers and making sure that their products are actually well used. That's 30:15 all you need to do to build a awesome AI app and beat our $650 million
+figure handily. All right, so open up 30:21 for questions. [applause] 30:26 Hello. Thank you so much for your uh talk. I wanted to ask about the process of choosing uh what kind of
+industry to 30:33 go into to try to create more automation um in that way. So like if there are 30:38 already competitors in that space, would you uh suggest looking at another
+industry or would you suggest trying to 30:45 dive deeper into a niche of that industry or like how what would you advise in that situation? 30:50 So so I don't think you should
+care about competitors at all. First of all, for some of these spaces, the market is 30:56 so big because we're talking about like how much how many trillions of dollars are being
+currently spent on like 31:01 marketing professionals or support professionals or whatever. There's not going to be a single company that's going to win this entire market for for
+31:08 the vast majority of them. And frankly, a lot of the times you're going to be at 31:13 first scared of your competitors and then after you start building it, you're going to
+be dumbfounded about how bad they are and you're going to outbuild 31:19 them out. You run circles around them. It's not about the competitors. But what I will say is like kind of
+diving deeper into like how to pick a market. The 31:26 things I'd look at is um what are the kinds of roles that people are currently 31:31 outsourcing say to another country,
+right? If it's something that they're willing to do that for, then that's 31:37 probably a pretty good target for what AI could take over. Uh if it's a role where they feel like
+it's part of their 31:44 identity to do it in house, you know, for example, I don't think you're going to outsource for Pixar creating the 31:49 story of a Pixar movie, right? that
+is that is their that is they they feel whether they're right or wrong. Maybe AI 31:55 in two years will just like do better Pixar than Pixar. But the people at Pixar are going to
+feel very strongly about the storytelling element. So, you 32:02 know, don't try to outsource that part. Try to try to find the parts that are already outsourced. For example, find
+32:07 big markets, find where where there's a pain point across many different companies. Find um find things you know 32:12 about or can get access to information about. Um these
+are the kinds of things I'd be looking at uh while trying to 32:19 pick a market. But honestly, like there's so many huge markets. You could literally just print out like all the
+knowledge work stuff if you wanted to 32:24 keep it digital. Throw a dart at everything you point out. Whatever the dart lands, just choose that market and 32:30 start running at
+it and I think you're going to probably hit a trillion dollar market. So, um, competitors or not, 32:35 don't care. Thank you. Perfect. Thanks a lot. So, um, Michael from
+Switzerland, uh, I have a quick 32:41 question because you're a successful founder and, uh, many of us are going to found companies here. I wanted to know 32:46 how uh has your
+focus changed across the different stages of companies from say 32:51 the preede what did you focus on versus you know the C stages to the series A 32:57 stages and finally to the
+exit end which part did you enjoy the most? Uh it's a great question Michael so I'll What Founders Should Really Focus On 33:03 answer what I should have done and also what I did
+do. All right perfect thank you. What I should have done is at the seed stage focus on 33:09 making a great product that gets product market fit and then at the series A stage
+focus on making a great product that gets product market fit and then at 33:15 series B focus on making a great product makes great product market fit and then series C great
+product makes you know you can see probably the pattern here. 33:21 What I ended up doing is I ended up focusing on all kinds of other things that didn't matter nearly as much as
+33:28 those things. And I think if you start from like you know because what is a company outside of its product like it's 33:33 literally the service you're providing to your
+customers is through the product and if you focus almost entirely around 33:39 that and become obsessive around that in my opinion um then a lot of other things will follow for
+example what people do 33:44 we need to build a product that gets product market fit now you have like HR and recruiting etc to fill in for that 33:50 that answer how are people
+going to find out about this amazing product that's marketing and sales um what culture do 33:56 we need at the business to create a product that people love and really use. Now
+you have, you know, other parts of 34:02 HR and setting the culture, which is a very important part of your job as CEO. So you end up as CEO focusing on all 34:07 these different
+aspects by necessity, but all to that one end. And what ends up happening for a lot of founders 34:14 because they read like medium posts and blog posts and they talk to their
+series A and series B investors is they end up 34:19 focusing on HR or finance or fundraising or whatever not as means to the end of 34:25 building great creating a big great
+product that gets product market fit but instead as an end to themselves like oh 34:31 we need to have a greatly great culture in the abstract or we need to like now we need to
+hire marketing and sales. I 34:36 did this. I fell into this trap. Big mistake you know. Um I would I would instead and this is I I'm very like as 34:42 you can tell I'm one
+founder is very biased towards the product etc side but I think I feel very strongly. Hi Jake. So when I was 14 I sold my 34:49 startup to deote um and like you I'm kind of looking
+for the next thing to do like in the exit acquisition stage. If 34:55 you were here um at Y cominator startup school what would you be doing tonight? You know bar case text
+whatever you're 35:02 doing what would you be doing here exactly tonight now that you're exited. It's kind of amazing. I exit at 40 and 35:07 you exit at 14. Yeah. So, uh, you're
+already well ahead. It's awesome. Uh, actually, I 35:13 feel like in some ways for us in the early days, focusing on legal made sense for us because I knew legal, but also 35:20
+was kind of a mistake because at the time the legal software industry, Gree LLMs is actually pretty small because it 35:27 was like a fraction like you know lawyers make a trillion
+dollars a year sounds pretty good, but how much of that 35:32 are they really spending on software? And the answer is like a very small amount. So no matter how well we did as a
+company, we just weren't going to make 35:39 something that really changed that many lives um that really made that much money ultimately from a business perspective. Um and we
+were only making 35:46 incremental changes to the workflow and outputs of the people we were serving pre-LM and postludden 35:55 helped many more people and made them a lot more
+effective and changed many more lives. And I will tell you having Q&A: Picking Markets, Focus, and Defensibility 36:01 existed in both spheres of making small impacts on a small
+number of people um 36:07 and making only small differences their lives and contrasted with you know making a huge impact on many more 36:13 lawyers in our our case making them way
+more effective and efficient replacing some of the work they were doing with LLM. Um the latter felt a lot better and 36:21 I'm kind of addicted to that now. But I'd be focusing to
+long story short, I'd be focusing on the biggest problem you 36:27 could possibly think of that is possibly solvable with the technology and skill set that you have. You know, like
+what 36:33 do people want? People want what do what do businesses want? People want to be like skinnier and not like lose their 36:39 hair. They don't want to do their laundry.
+They, you know, want to have uh everybody wants to have a cleaner show 36:44 up to their house for eight hours a day and clean their whole house and make it spotless, but you just
+can't afford to do that. But could you make a robot that 36:50 does that for you? Right? Is that a kind of pro product that can s serve everybody in the world? In fact, is that
+36:56 the kind of product that like the dishwasher in the 50s could unlock a lot of human potential because now people 37:01 who are staying at home to try to take care of the kids
+are not having to clean up the house anymore, right? Because they can buy a $1,000 a year robot or 37:08 whatever. There is so much you can unlock with like just thinking what is
+the biggest problem that most people 37:13 face in businesses, you know, they want to market their products, want to sell their products, they want to make sure that people are
+doing great work. They 37:20 want to replace certain parts of their work with like more consistent, more available. Like that's where I'd be focusing my attention is just use a
+huge 37:25 problem that a lot of people have that you feel like you can solve and just go after it. Run as hard as you can. Great. Thank you. I think I have time for one more.
+37:31 Hey, I'm Sabo. Then I was wondering if you're making AI to be an assistant or replacement for a human, you could price 37:36 that service based off how much time it saves a
+human or how much you would charge the human for as a salary. But if 37:42 you're making something that AI is doing that humans could not possibly do, like looking through hundreds
+of thousands of 37:47 like law documents per se, how do you price such a service? And I I want to be like really nuanced with what I said 37:53 earlier. I think at first you can
+start charging what the humans charging and then you'll have competitors, they'll come in, they'll charge a little bit 37:59 less and then other competitors will come in, they'll
+charge a little bit less and it's kind of beautiful. how capitalism works and it'll make the 38:04 service cheaper and cheaper and cheaper and cheaper and at a certain point you
+know if unless you're in a very protected kind of space you will end up 38:11 charging a lot less than the people were which I think is probably a good thing at the end of the day
+for society right bad for your business good for society 38:17 uh because now you can have the services of a lawyer but for like 10 cents on the dollar one cents on the dollar for
+that 38:22 new category of like you know I I would I would start from what's the value 38:28 what's the value that you're providing to the business start there if they're going to
+save $100 million doing this or would have paid $5 million to do this. 38:34 Okay, take 10% of that, 20% of that, you know, have a conversation with your customer. How much is you
+willing to pay 38:40 to solve this problem for you is probably the best place to start. I actually have time for one more question rapid fire. It's a super fast one. 38:45 Hi,
+Jake. Uh, congrats on your exit. Um, I know you probably get this question a lot, but when you're building things 38:51 with prompts that are based off of models that may not be
+proprietary, how do you build defensibility and not end 38:57 up as a GPT wrapper? Basically, my fastest answer. Just build it. And as soon as you build it, you'll see how 39:02
+hard it was to build it. How many little pieces you have to build, how many data integrations, how many 39:08 checks, how fine-tuned the prompts need to be, how you have to pick
+your models super well. And when you do that, you're 39:14 going to find that you built something that nobody else can build because you spend like two years just doing nothing but
+that. So, I'm not scared. Don't be 39:20 scared. All right. Thank you, everybody. [applause] All From Y CombinatorWhat We're Covering 0:00 The CEO of OpenAI predicts the first 0:01
+oneperson billiondoll company is on the 0:04 horizon thanks to AI. And if one person 0:06 can do a billion, then you sure as hell 0:08 can build a business that makes you 0:09
+$10,000 a month. And in this video, I'll 0:11 show you how. If you're new to the 0:12 channel, my name is Lee Mley and I went 0:14 from zero AI experience to generating 0:15 over
+$7 million over the past 2 and a 0:17 half years by starting every kind of AI 0:19 business imaginable. I've started an AI 0:21 agency. I've started an AI software. 0:23 I've done
+AI consulting. You name it, 0:25 I've done it. And after seeing what 0:26 works for me in my journey and for the 0:28 hundreds of thousands of members in my 0:29 AI business
+community, I've engineered 0:31 the ultimate oneperson AI business model 0:33 for beginners to start. I had a strict 0:35 criteria on this. It had to be one, 0:37 simple to start
+with almost no cost or 0:39 experience needed. Secondly, it had to 0:40 be powerful using AI as your digital 0:42 team so that one person could do the 0:44 work of 100. And three,
+it had to be 0:46 profitable enough to actually replace 0:48 your salary. So in this video, I'm going 0:49 to be giving you that complete 0:50 blueprint. I'm going to be showing
+you 0:51 what to sell, who to sell it to, and the 0:54 AI tools that will do the work for you. 0:55 So, let's get started. Part 1 0:58 If you clicked on this video, chances 1:00
+are that you've been curious about 1:01 starting a business of some form for a 1:03 long time, and you're hoping that AI is 1:05 the thing that finally makes it 1:06 possible, that
+maybe it's easier now, 1:08 and maybe there's less risk. And you're 1:10 absolutely right. AI isn't just some fad 1:12 or trend. It's a tectonic shift in the 1:14 way work is done.
+It's the single 1:15 greatest wealth creation event for 1:17 individuals of our lifetime. But most 1:19 people are at best using AI as some kind 1:21 of Google replacement and are
+not 1:22 utilizing it fully for what it can 1:24 really do. In in 30 years time, people 1:26 will look back at this exact moment as 1:28 the great unlocking, the moment that the
+1:30 chains of the old world, the the 9to-5 1:32 corporate system, they finally began to 1:33 break. And the reason it's all happening 1:35 now is because of a concept that I call
+1:37 the solo entrepreneurs trifecta. It's 1:39 essentially a revolution that's 50 years 1:41 in the making. And AI is this final 1:43 explosive piece to the puzzle. So let me 1:45
+explain. So back in the 70s, computers 1:47 were seen as big brother, a tool for 1:50 centralized control. Sounds kind of 1:51 familiar, right? But then a bunch of 1:54 hippies out
+in California flipped that 1:55 script. They saw the computer not as an 1:56 oppressive tool for centralized control, 1:58 but rather one for individual freedom. 2:00 And from
+this, the personal computer was 2:02 born. And that was the first piece in 2:03 this trifecta. Then in the '90s, we got 2:06 the internet. It started connecting 2:07 those personal
+computers, giving all 2:09 these individuals access to the world's 2:11 information and creating the first wave 2:13 of online businesses. the individual was 2:15 getting more
+powerful. That was the 2:17 second piece. And now we have the final 2:19 piece of that puzzle, artificial 2:21 intelligence. To understand why this is 2:22 such an empowering thing
+for the 2:24 individual like you and I trying to 2:25 build businesses and create the life of 2:27 our dreams and have freedom, you need to 2:29 know the real secret of the
+wealthy, 2:31 which is leverage. It's a pretty simple 2:33 idea, but it is extremely powerful. It's 2:35 essentially getting more output for the 2:37 same amount of input. It's a
+difference 2:38 between pushing a boulder with your bare 2:40 hands versus using a lever to move it 2:42 more easily. The famous investor and 2:43 philosopher Nal Raakant says that
+the 2:45 wealthy use three levers. Labor which is 2:47 people, capital which is money, and code 2:50 and content which is essentially systems 2:51 at scale. For years, these were
+locked 2:53 away from you and I. And that's why all 2:54 the money has been sort of going to the 2:56 same people for so long. And AI is the 2:58 key that unlocks all of it. You
+don't 3:00 need to hire a team anymore. AI is your 3:01 digital labor. You don't need to be a 3:03 coder. AI helps you build your own apps 3:05 and you don't need to be a
+professional 3:07 writer. AI is your partner in creating 3:09 incredible content that connects with 3:10 millions. You are no longer one person. 3:12 With the right AI tools, you
+can be a 3:14 team of 100. And so the solo 3:16 entrepreneurs trifecta is complete. This 3:18 is the single greatest empowerment of 3:20 the individual in history. And like I 3:21
+said, the CEO of Open AI, Sam Alman, 3:23 predicts that the first one person 3:25 billion dollar company is coming soon 3:27 thanks to AI. That's because he 3:28 understands this
+trifecta and how 3:30 powerful it is when used right. People 3:32 look back at this time and realize that 3:34 was the moment that the power shifted 3:35 into our hands. And this
+video is your 3:37 guide to taking that power and running Part 2 3:39 with it. 3:42 So, how do we take this incredible 3:43 power, this solo entrepreneurs trifecta, 3:45 and
+actually use it to build your 3:46 oneperson AI business? How do we build 3:48 your escape plan from the life that you 3:50 don't want into the one that you do? 3:51 Well, every
+great escape needs a map. 3:53 And a map has three parts. First, we 3:55 need a destination, a clear financial 3:57 goal that means that you can quit your 3:58 job. Secondly, we
+need a vehicle, a 4:00 proven service that you can sell to get 4:02 there. And thirdly, we need a route, a 4:04 secret to find your first clients. So, 4:06 let's break down the
+first part of our 4:07 plan. First up is the destination. This 4:10 isn't just a number. It's your freedom. 4:12 And our target is going to be $10,000 a 4:14 month. That's a number
+at for most 4:15 people means you can quit your job, you 4:17 can pay all your bills, and you can 4:18 finally have control over your time. And 4:20 it's the number that gets you
+out of the 4:21 trap, basically. Now, I know that might 4:23 sound like a scary or a huge number when 4:25 you're starting from zero. But let's 4:26 break it down. This is the most
+4:27 important part. To make $10,000 a month, 4:29 you don't need hundreds of customers. 4:31 You just need four clients paying you 4:33 $2,500 a month. That's it. your entire 4:36
+goal over the next few months isn't to 4:37 build a massive business. It's just to 4:39 find four people that you can help. And 4:40 so I've reframed like this because that 4:42
+feels a lot more achievable, right? And 4:43 the next logical questions are, what on 4:45 earth can I sell to people for $2,500? 4:48 Where do I find these four people? And 4:49
+that's what the next two parts of this 4:50 map are for. So let's talk about the 4:52 next step, which is your vehicle. Okay, 4:53 so now we have our destination, $10,000 4:55 a
+month. Now we need a vehicle to get us 4:57 there. And look, I've run all the 4:58 different AI business models over the 4:59 past 2 and a half years. I started off 5:01 doing
+freelance AI consulting, and then 5:03 I started an AI automation agency. Then 5:05 I started an AI education business. Then 5:06 I started an AI SAS. And recently I 5:08 built an
+AI consulting company as well. 5:10 So I can tell you firsthand what is 5:12 beginner friendly and what isn't. 5:13 There's a lot of people online that 5:14 would tell you to start
+some like micro 5:16 SAS or something. But that's honestly 5:17 one of the hardest ways to make money, 5:19 especially if you're a beginner. You're 5:20 going to need hundreds and
+hundreds of 5:21 users just to get by and get to that 5:23 10K. Other people will tell you that you 5:25 should just go and start selling some 5:26 kind of online course. But that
+requires 5:28 a ton of trust and usually an audience 5:30 that can take months or years to build. 5:32 So, the fastest and most direct path to 5:34 that $10,000 a month is selling
+a simple 5:36 and proven AI automation system to a 5:39 business that you can build using no 5:40 code tools. This is what's called an AI 5:42 automation agency. But even with an
+5:44 agency, there are two main ways of doing 5:46 it. There's the general agency like my 5:47 own Morning Side AI where we can build 5:49 almost anything our clients want. But if
+5:51 I'm honest, that's quite a tough game to 5:52 play alone. It requires a team of expert 5:54 developers who are are so skilled that 5:56 they can do whatever is put on their
+5:58 plate basically. But for a oneperson 5:59 business, you want to play a different 6:01 game, a smarter game. You want to become 6:03 a niched AI automation agency. You sell
+6:06 one system to one type of business. This 6:08 is the key. You take the entire universe 6:10 of AI and you shrink it down to this one 6:12 tiny manageable area that you can
+become 6:14 an expert in fast. Now, I know what 6:16 you're thinking, Liam, that sounds 6:17 great, but I can't build AI systems. I'm 6:20 not a coder and I'm not technical. I 6:22
+hear you, but listen to me. That is 6:24 seriously the old way of thinking. Now, 6:25 I have taught hundreds of thousands of 6:27 people in my community and on this 6:28 channel
+how to build and sell AI 6:30 automations using simple no code tools. 6:32 I have seen people from every 6:34 background, every age, every race, and 6:36 every country learn these
+skills and 6:37 sell them successfully to businesses. I 6:39 know without a doubt that anyone can do 6:41 this. And to make it even easier for 6:43 you, I have done all the hard
+work for 6:44 you here. I've analyzed all the data 6:46 from my community and from my own 6:48 agency, and I've narrowed it down to the 6:50 four most in- demand AI systems that
+6:52 beginners can build and sell right now. 6:54 Almost every local business on the 6:56 planet needs one or more of these. 6:58 What's called a speedtole system, which 6:59 makes
+sure that they never miss any new 7:01 customers when they get in touch with 7:02 them. A WhatsApp or SMS AI booking 7:04 system that allows customers to get in 7:06 touch with
+businesses and book 7:07 appointments around the clock. Thirdly, 7:08 there is huge demand for social media AI 7:10 DM bots that can handle questions 7:12 incoming on things like
+Instagram and 7:13 Facebook. And finally, what's called an 7:15 AI receptionist that can answer the 7:17 phone on behalf of a business, handling 7:18 support questions and
+real-time booking. 7:21 explaining exactly how each of these 7:22 systems works right now is just going to 7:23 drag this video out way too long. So, 7:25 I'm going to be giving
+you my AI 7:26 solarpreneurs blueprint, which you can 7:28 get in the first link in the 7:29 description. And inside that guide, 7:30 there's going to be a full step-by-step 7:32
+tutorial on how to build each one of 7:34 these systems using simple no code 7:36 software. Your only job is to go through 7:37 each of those tutorials, follow along, 7:39 build
+them out, and then see which one 7:41 clicks with you, which one you're most 7:43 interested in or see the most potential 7:44 in. That's it. That is the vehicle that 7:46 you're
+going to sell. And in that free 7:47 guide, I'll also include a full list of 7:48 the AI tools that you'll need at every 7:50 step of your journey as an AI 7:51 solarpreneur to
+handle everything from 7:53 creating beautiful proposals to give to 7:55 your clients to writing engaging content 7:57 and more. 8:01 Okay, so you have your destination and 8:02
+you have built your vehicle. Now, how do 8:04 you find those first four clients you 8:05 need to get to $10,000? There are a few 8:07 different ways that you could do this. 8:08
+You could run paid ads, but they're 8:10 going to burn cash. And our first rule 8:12 of this business was low cost. you could 8:14 start to create content and that's how 8:16 I've
+built my brand and got the leads 8:17 for my businesses but that's a long game 8:19 and we need system that gets you results 8:21 now. So we're going to use the most 8:22 highly
+leveraged tool that a beginner 8:24 has remember getting more output for the 8:25 same input and that's cold outreach 8:27 specifically cold email. So cold email 8:29 is leverage
+at its finest. You're going 8:31 to write one email campaign and it's 8:33 going to talk to hundreds of businesses 8:34 a day for you on autopilot. It's like 8:37 having a sales
+team of 20 people working 8:39 around the clock for you at a fraction 8:40 of the cost. And now AI makes it even 8:42 easier. The email tools that we're going 8:44 to use have AI
+features that help you 8:45 write your campaigns and even respond to 8:47 emails for you to make sure that you 8:48 don't leave them sitting unresponded for 8:50 too long. It's
+essentially like creating 8:51 your own automated salesforce. So, next 8:53 question is, who are we going to be 8:54 emailing? And this is the most important 8:56 part of the
+strategy. The easiest way to 8:57 make money is to sell to people who know 8:59 less than you. We're not going to be 9:00 going after the techsavvy e-commerce 9:03 brands or
+digital agencies. They're much 9:05 more advanced with the AI adoption and 9:06 they're much more familiar with it and 9:08 therefore they're much harder to help as 9:09 a
+beginner. We're going to be going 9:10 after the most AI clueless businesses 9:12 you can find. So, think of local 9:14 businesses like HVAC companies, roofers, 9:16 plumbers, home
+cleaners, contractors. 9:18 They are years behind when it comes to 9:20 AI adoption and understanding, which 9:22 means the simple systems that you just 9:23 learned how to build
+in the previous 9:25 section are going to seem like magic to 9:26 them. And most of these businesses need 9:28 all four of the systems that I've picked 9:29 out to you. This
+creates a massive 9:31 knowledge gap between where they are and 9:32 where your knowledge with AI is. And 9:34 they'll be happy to pay you to fill 9:35 that. So, here's how it

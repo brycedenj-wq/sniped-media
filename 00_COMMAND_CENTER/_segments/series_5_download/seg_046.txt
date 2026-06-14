@@ -1,0 +1,224 @@
+13:56 it properly. So by the time I was done 13:57 building features, I'd always be 13:59 halfassing the security and there would 14:00 always be things just slipping through 14:02
+the cracks. When you're using AF for 14:03 coding, not only does the LLM not get 14:05 fatigued, but I am less fatigued as a 14:07 developer where I have a lot more of a 14:09
+clear head to be able to think through 14:10 these edge cases, have a good 14:12 conversation with it, and try to uncover 14:14 some of these issues. Let me be more 14:15 specific
+here. When I say vibe coding 14:16 and LLM based coding, I'm not 14:18 necessarily talking about LLM coding 14:20 where you're just shipping things and 14:21 not looking and just
+don't care about 14:23 any of this stuff. That will always have 14:25 inherent security issues, but it's the 14:27 same thing as just coding by hand and 14:29 just not really
+caring. that will also 14:30 have a lot of security issues. But the 14:32 vibe coding and the LLM based coding 14:34 that I'm talking about that is more 14:36 secure than doing it
+by hand is where 14:38 you know what's going on. You are in 14:40 control. You can still move super 14:41 quickly, but you at least care and are 14:43 very deliberate about
+security. Vibe 14:45 coding like that and using LLM that is 14:47 so much more secure than coding by hand. 14:49 My favorite conversations to have with 14:51 Claude are the ones
+where we're 14:52 deliberately talking about security. 14:53 We're having a back and forth thing 14:54 where I'm saying, "Well, what about this 14:56 scenario? What about if
+someone tries to 14:58 do a prompt injection?" I love having 14:59 conversations like that. It gives me 15:01 peace of mind when I ship something that 15:02 it is more secure, way
+more secure if I 15:05 didn't have that conversation. I had to 15:06 think through this stuff just by myself. Final tips :) 15:08 So, if you're watching this and you're 15:09
+thinking, "Oh my god, I got to go check 15:10 my app right now." Grab the markdown 15:12 file that I linked in the description, 15:13 paste it into Cloud Code Cursor, and let 15:15
+it audit your codebase. And then also be 15:16 sure to install the Superbase or 15:18 Firebase MCP if you're using any of 15:19 those services. Try to break your own 15:21 app.
+Think like someone who wants to 15:23 abuse your system. That alone will catch 15:25 the majority of issues. By the way, I 15:26 actually built an internal tool that I 15:29
+started using to audit my own apps. It's 15:31 basically an agent that thinks like a 15:32 pentester and tries to hack into your 15:34 app. So, it doesn't even need access to 15:36
+the codebase or anything. I've been 15:37 debating whether or not to release it 15:38 publicly. So, there's a wait list and if 15:40 enough people are interested, I'll 15:41
+probably go ahead and release that. 15:42 Again, this is not comprehensive. This 15:44 is barely scratching the surface. This 15:46 was just the common stuff that I've been 15:48
+seeing recently that I wanted to call 15:49 out, especially with people who are vibe 15:50 coding or building really quickly with 15:52 AI. But if you guys have any security 15:54
+tips or there's something that I missed 15:55 that you really think I should cover in 15:56 a part two of the video, please leave a 15:58 comment down below. If you enjoy this
+16:00 content, check out my Instagram and Tik 16:01 Tok. I post almost every other day about 16:03 building productivity apps. And 16:04 obviously, if you like this content, 16:05
+don't forget to subscribe. But thank you 16:07 guys so much for watching and I will see 16:08 you guys in the next video. [music] All From Chris Raroque Why Vibe Coding Fails
+Without Documentation 0:00 Vibe coding is cool until it's not. If 0:02 you don't have documentation to feed 0:04 your AI co-pilot, you're going to have a 0:06 hard time and it's
+going to suck and you 0:08 might want to give up. Oh, something's 0:10 really wrong. You're definitely going to 0:11 need to start over at least once. So, in 0:13 this video, I
+want to show you a 0:14 solution to this very commonly 0:16 experienced problem. And that is by 0:18 simply creating a product requirements 0:20 document, a PRD. It is a simple
+process. 0:24 It doesn't take long. You just need to 0:26 do a little research to prepare yourself 0:29 and your AI for what you want to build. 0:31 And you're going to have such
+better 0:33 results just by feeding a PRD to your AI 0:36 co-pilot. It doesn't matter if you're 0:37 using Bolt lovable replet or Cursor or 0:40 Claude Code or some Visual Studio
+Code 0:43 plugin, whatever. Feed the PRD to your 0:45 AI co-pilot and you're going to get much 0:46 better results. So, here we go. The Creating Your First PRD with Claude 0:48
+first thing I do here is I open up 0:50 Claude. I use Sonnet because I think 0:53 Claude is just better. I like the 0:55 personality more. You can use whatever 0:56 you want. Um,
+this is just what I use. 0:59 So, I say, "Help me create a product 1:02 requirements document." 1:05 Okay, that's easy enough, right? Here's 1:08 what we're building. I'm going to
+say, 1:11 let's What are we going to build? Let's 1:12 say an Astro 1:15 Howard blog 1:18 that is SEO optimized, SEO optimized, 1:22 search engine optimized, SEO friendly. 1:26 It
+has a sleek, modern design with a 1:30 dark color scheme and a purple 1:33 undertone. 1:35 So that's the basic overview. That's the 1:37 first thing I say. And this is normally
+1:39 an organic process for me. So I'll come 1:42 back we'll come back into it and perhaps 1:45 tweak it later. The next thing I say is 1:47 the tech stack I know I will use is
+well 1:52 we already know Astro Astro 1:55 Netlefi for deployment 1:59 and Superbase for the back end. Now I 2:02 don't really recommend Superbase for the 2:04 back end for a blog.
+Um like I'm going 2:07 to use Pocket Base. 2:09 Pocket Base for the back end. Pocket 2:12 Base is a super basic and open-source 2:16 back end, and it doesn't have a lot of 2:19 the
+features that Superbase has, but it 2:22 just keeps things cleaner and easier. 2:25 It's on GitHub. It's very easy to um set 2:29 it up. So, pocketbase.io. 2:32 You can check that
+out if you're 2:34 interested, but that doesn't really 2:35 matter. I'm just saying I want to use 2:36 PocketBase for the back end. So now Essential Tech Stack and Feature Planning
+2:40 Claude knows okay this is what we're 2:43 making. The tech stack is Astronetifi 2:46 and Pocketbased. This is the framework. 2:50 This is for deployment. That's the back 2:52
+end. That's pretty much it, right? Um 2:55 what else? These are the features I want 2:59 to include. Okay. An admin dashboard for 3:02 creating new posts and new users in case 3:04
+I want to add new users, right? a 3:07 newsletter subscription form at the 3:10 bottom. Archives, 3:14 [Music] 3:15 tags, categories, 3:18 and proper permal links for SEO 3:22 SEO
+metadata on each blog post. And 3:27 that's probably about it, right? And it 3:29 would be similar if you're making a 3:30 directory, right? You would Astro power 3:33 directory
+that is SEO SEO friendly as a 3:36 sleek modern design whatever you would 3:39 probably still use Astro Netleifi you 3:41 might you could still use pocket base 3:43 but you could
+use soup base whatever 3:45 these are the features I want to include 3:48 and that's pretty much all the like 3:52 really juicy stuff you need to tell 3:54 Claude to make this PR
+the last thing I 3:56 like to say is I will be building this 3:58 with an AI co-pilot it. So, I don't need 4:02 any team milestones or anything like 4:05 that because it likes to
+make it really 4:08 professional like you're Silicon Valley 4:10 startup and you do things by the book, 4:13 but we are just amateur vibe coders 4:15 here. So, we just do whatever
+we want. 4:19 There's one last thing here. Ask me if 4:21 you have any questions for clarification 4:24 and continue to write the PRD. So then 4:27 you have an extra layer of okay,
+what 4:30 did I miss? What do I need to know? So The Power of AI Clarification Questions 4:32 here we go. We get some questions here. 4:34 Looks like it's writing it too. This is
+4:37 another thing about using Sonnet versus 4:40 like Gemini, for example. It'll just go. 4:42 It'll just do it. It has questions for 4:45 me, but it just is doing it anyway and
+4:47 it'll fix it later. models like Gemini 4:49 get so annoying because first off, it 4:52 expects me to do a bunch of stuff when 4:54 I'm trying to use the AI co-pilot to do 4:57
+that stuff. And second off, it says, 4:58 "Would you like me to do this thing for 5:00 you?" Sonnet just does it. And that's 5:03 why I really like Claude. All right. So 5:05 then
+it asks these questions. Do you 5:07 want the admin dashboard to support rich 5:08 text editing? Comfortable with markdown. 5:12 Um, markdown I is perfect. 5:16 user roles. When
+you mention creating 5:18 new users, are these additional admin 5:20 users 5:22 or do you envision different user roles? 5:24 These are editors, contributors. So, 5:27 this is
+good. This is the clarification 5:29 we need. And that's why as we learn 5:32 conversation driven coding, we need to 5:34 just frequently be asking, hey, is 5:36 everything I'm
+saying clear? Because 5:38 otherwise it'll just go and probably 5:41 won't do a good job. 5:43 Convert kit 5:46 for newsletter 5:48 archive structure 5:51 both 5:53 UI frameworks
+no SEO requirements 5:58 um site map generation schema markup and 6:02 robots yes Database Schema - The Missing Piece 6:04 boom so now it already kind of created 6:09 most of the
+PRD here while I was 6:10 answering its questions and Now it's 6:14 just adjusting some things 6:17 and we'll just well let's wait for that 6:19 to finish. 6:22 Okay, so it's
+finished and just real 6:24 quick, we'll just scroll through it. I 6:26 want to show you just the most crucial 6:27 parts. We got our our executive summary 6:30 with our goals.
+It's got our text stack 6:33 here and it's got even more details than 6:35 I initially put in, right? Which is why 6:37 this is so important to create a PRD. We 6:39 got our
+architecture. We got our core 6:41 features, navigation, 6:44 how all of this is going to work with 6:46 organizing with permal links with SEO 6:49 stuff, robots, site maps, schema
+6:52 markups, Twitter card tags. Great email 6:55 capture with ConvertKit. We do not 6:57 actually need the ConvertKit API. 7:01 So, I'll write that 7:04 just the form ID. 7:06 So,
+as there's notes, I just write them 7:08 in here. And then at the end I I send 7:11 this list and it'll make the final 7:13 revisions. Create manage blog posts for 7:16 the admin
+dashboard. 7:20 Now the truth is I probably if I was 7:22 really trying to do a blog right now I 7:24 would probably not need editors and 7:26 contributors. Otherwise I would just
+use 7:27 Ghost or something a proper blogging 7:30 platform. 7:32 But 7:34 but it is fun to build 7:38 tags, categories, 7:40 visual design. Great. 7:44 Maybe we want to use sanif
+or sarif 7:47 fonts. We'd probably want to put in 7:48 there. I want a serif font. 7:54 Page load speed. SEO requirements. Okay, 7:57 this is the most important part, my 7:59
+friends. The data models. 8:02 This is how we create the database 8:06 schema here. In fact, it doesn't even 8:08 look like it made the database schema, 8:10 but maybe we should.
+Please mock up the 8:14 database schema because the database 8:16 schema is how you can stay consistent. 8:18 If you go from bolt to cursor or 8:21 whatever, you need a single
+source of 8:23 truth so the AI knows how the database 8:27 works. Otherwise, it just creates a 8:29 front end guessing and then your back 8:32 end doesn't match and it's a real
+real 8:35 hassle to solve. In fact, maybe you've 8:37 experienced that before. I know I have. Live Build Challenge: Bolt vs Claude Code 8:40 So, we'll just finish going through
+8:42 here. Deployment requirements. Good. 8:44 Third party integrations. We do not need 8:46 API. We already mentioned that. We do 8:47 need the end pocket base backup 8:50
+procedures. 8:52 Future enhancements. Yeah, not too 8:54 important for now. Great. So now I'm 8:57 just saying that last list here, we do 8:59 not actually need the ConvertKit API.
+I 9:01 want a Sarah font. Please mock up the 9:03 database schema. And now we have a PRD. 9:11 Great. So now we have a PRD that has the 9:13 database schema. I think this is really
+9:15 important. 9:18 This is really important. It might look 9:21 different. 9:22 It might look different for you 9:23 depending on how your AI made it, but 9:26 the point is you
+want to have as much 9:28 figured out now in the beginning. A lot 9:31 of the stuff you won't need to figure 9:32 out too much now, but you should take a 9:34 look at it. For
+example, user roles 9:38 up here. We have the relations for the 9:40 post categories. And if you don't 9:42 understand what something means, like 9:44 for example, this, let's ask,
+what does 9:48 this mean? 9:52 And then this is how we can learn as we 9:54 build. It explains the problem of the 9:57 many to many relationships and context 9:59 of categories and
+how we can't simply 10:01 store into the database something with 10:04 multiple categories. So it has to do 10:06 this whole many to many thing the 10:08 junction table. 10:10 So
+there you go. And then as you're 10:12 learning you can think oh maybe we don't 10:15 need that or maybe I didn't understand 10:18 that or whatever. And then you can 10:19 refine
+your PRD even more. So I'm going 10:23 to save the markdown file here. And now 10:27 just for fun, I'm going to pop it into 10:28 Bolt and Claude code, which I've been 10:30 really
+into lately. And let's see what 10:32 does a better job faster. 10:35 So in Bolt, I've attached the PRD. Say 10:38 build this blog. Follow the specs in the 10:41 PRD. And then over
+here, I've already 10:44 opened up my folder for this PRD 10:46 project. And it's asking if I'm giving 10:49 it permission. I say yes. And here at 10:52 first I'm going to press
+shift tab and 10:55 cycle through to plan mode on. I'm going 10:58 to say build the blog as specified in 11:03 astroblogp 11:05 prd 11:07 and cloud code all happens in the 11:09
+terminal which may seem intimidating but 11:11 it's really not. Check out the 5day 11:14 command line boot camp. There's a link 11:16 below. It'll help you get familiar with 11:18
+the terminal and just feel like it's not 11:20 some crazy some crazy blackmagic stuff. 11:23 The command line's really important if 11:24 you want to start building. If you want
+11:26 to build, you you really should you 11:28 really should get comfortable with the 11:29 command line. You don't have to become 11:30 like an expert, but the command line's
+11:32 important. So, here we go over here. 11:36 Claude probably using Opus just super 11:39 quickly made our whole plan. 11:43 So, let's proceed. 11:46 And meanwhile, Bolt is just
+building. 11:50 Bolt said, "Based on the comprehensive 11:52 PRD, I'll create a modern Astro power 11:54 blog." The real kicker here for this 11:57 demo, for this video, I'm not
+going to 11:59 actually focus too much on the pocket 12:01 base integration as much because that 12:03 might take some time, but the 12:05 deployment, if one of these can deploy
+12:08 Astro out of the gate to through 12:10 Netlefi, that would be incredible 12:13 because Astro seems to always give a lot 12:15 of problems. Bolt claims it's Astro Deployment
+Showdown and Results 12:18 compatible, and I have had success 12:21 deploying on Netlefi, but not without 12:23 problems. Um, but it would be really 12:25 cool to see if Claude
+Code can just make 12:28 it without any problem. And you can see 12:30 over here, I'm going back and forth, but 12:32 Claude Code, it will update the to-do 12:36 list. Look at
+this. So, I approve the 12:38 plan, and it's got a whole list here of 12:41 things to do. I can make this bigger. 12:45 And then it just says, "Okay, here we 12:47 go." And it
+updates the list as it 12:49 builds. It will prompt you once in a 12:52 while just like cursor, 12:55 which is why you want to give it 12:56 permissions to run certain commands
+12:58 inside the folder you're building in. 13:00 And I love how it uses some random verb 13:02 here when it says what it's doing. All 13:05 right. So now it wants to create Astro
+13:07 using the node install script. Say yes, 13:11 go for it. It'll also be interesting to 13:14 see which one's faster. Huh. So we'll 13:16 check back in here shortly. 13:19
+Okay, so they're built. First thing, I'm 13:22 over here. I'm in Bolt. And you can see 13:25 we have this fun little purple dark 13:28 blog. And I like the style of it. Let's 13:31
+see. Click that. Doesn't look like it 13:34 made the post. That's okay. What's 13:36 important here is we want to see how it 13:38 deploys. So I'm going to click deploy 13:40 and
+it'll just deploy it straight to 13:41 Netlefi. See how that goes. As that 13:44 runs, I've opened up Netlefi over here 13:47 and I'm going to import an existing 13:49 project from
+GitHub and this is going to 13:52 be the Claude Code project. I made a new 13:54 repo and I submitted it and it's called 13:57 I think PRD something or other prdode 14:01 and we'll
+call it PRD claude code. 14:06 And 14:07 this will be interesting because it's 14:10 supposed to be Astro. Let's see how that 14:13 deploys. Um, in fact, maybe just to save 14:17
+time on Netlfi, what is the base 14:20 directory build command and publish 14:24 directory for deployment? 14:28 And let's just make sure we do that 14:30 right. If you have a
+Nex.js file, 14:32 normally this fills it out just fine. 14:35 But for some reason, Astro is just 14:37 trickier. 14:40 Bolt. Let's click out. All right, it 14:43 deployed. Cool.
+And as you can see, 14:46 because we're using Astro and static 14:48 site generation, we can view the page 14:51 source and we can see all the actual 14:54 HTML. 14:55 Whereas in
+an X.js project, you don't 14:57 see the HTML because it's all rendered 15:00 client side. But this is static site 15:02 generation, 15:04 which is kind of silly because we don't
+15:05 have any other pages here. We do have 15:07 the category pages. And you can see we 15:10 have good permal link structure up 15:12 there. Cool. So, Bolt, I would say, did
+15:15 a pretty good job here, huh? Oh, there's 15:17 Did it even make the admin panel? Wow. 15:19 It did a lot. It did a lot with two 15:22 prompts. I mean, three if you count the
+15:24 deployment. So, pretty exciting. Pretty 15:27 easy way to make a blog, huh? All right. 15:30 So, let's check what we got to do. Okay, 15:33 we we don't have any environmental
+v 15:35 variables, so hopefully that doesn't 15:37 create a huge problem. 15:39 base directory is that build command. 15:44 Uhoh, can't post that. And Astro blog is 15:47 the
+publish. Whatever. Um, I'm actually 15:50 not going to put any environmental 15:51 variables in there. Let's just see what 15:54 happens here. It'll let us know if it 15:56 can't
+build because of the environmental 15:58 variables, but I don't see that being 16:01 problem unless it needs that site URL. 16:04 And you can see here the netlefi.coml 16:07 file
+in the project route already 16:09 includes optimized settings for headers, 16:10 caching, and redirects that will be 16:12 automatically applied during deployment. 16:15 So that's
+cool. U but it failed. So 16:18 let's see here. Package.json is missing. 16:22 So now I wonder if maybe it's not that 16:26 Astro blog directory and we should just 16:29 Okay, now
+we can change it. 16:32 the build command and pin run build 16:34 publish directory is dist. Okay, let's 16:38 actually do this simpler this 16:39 alternative configuration base
+directory 16:42 and we want to see where the netifi file 16:44 is. It's an astrol blog. Everything is 16:47 an astrol blog here. So should be fine. 16:51 Let's deploy that again.
+16:53 Failed. 16:56 Now I don't want to blame cloud code for 16:58 this because the repo structure is a bit 17:00 weird. I have my PRD folder and that is 17:04 the folder that is
+the git repo. As you 17:06 can see here, the repo itself is here, 17:10 but Astroblog is the actual deployment 17:12 folder. That often can create problems. 17:16 It would
+definitely be simpler just to 17:17 make the git repo inside of Astroblog. 17:20 But we've already come this far and it's 17:23 always fun to learn new ways to do 17:24 things. So,
+and actually it looks like 17:28 this had nothing to do with the folder 17:29 structure. It looked like that was all 17:31 fine and this is a dependency problem. 17:33 So 17:35 I
+guess bolt one. One thing I love about Troubleshooting Real Deployment Issues 17:38 cloud code is it just it's very agentic. 17:40 It's only asking permission to use 17:43 certain
+sensitive functions on your 17:45 computer but it's it's just doing 17:46 everything on its own. And that's 17:48 because autoac accept edits is on. And 17:50 you can see you can
+do shift tab to 17:52 cycle that if for some reason you don't 17:53 want it. So there it is. Now I'll go 17:56 back to my other terminal window. 17:58 get add and get commit fix
+deploy. 18:06 We push that to GitHub and now it's 18:09 going to automatically redeploy. 18:12 Bummer, huh? 18:18 Paste that in there. 18:20 Yeah. So, it's moving the files to the
+18:22 root. That was the problem. 18:25 The netcloud code is doing exactly what 18:28 I was thinking of doing manually. Press 18:31 up. Send that again. Let's check the 18:34
+deploys. You know, I might need to 18:37 change. Yeah, I need to change 18:41 the directory structure here. So, the 18:44 base directory is empty. MPM run build. 18:48 Publish is
+still dist. Okay. 18:52 So, now let's try this again. 18:58 Boom. We got it published. Let's check 19:01 it out. Okay. So, it did it kind of use 19:05 Serif and Sans Serif. 19:10
+All right. We don't have those pages 19:11 just like uh with 19:15 with Bolt. Got the blog perma link 19:18 categories 19:20 tags. So, it doesn't have as many pages 19:22 made
+here. 19:24 I made the about page. 19:27 Yeah, I mean overall 19:30 we won't we wouldn't know we won't 19:32 actually know until we integrate the 19:35 database 19:37 and we you
+know really test it out. But 19:40 overall I would say um Bolt did a better Final Results and Cost Comparison 19:43 job. I mean it got more done in more and 19:47 Bolt got more
+done in less time. But I 19:50 have a feeling, 19:52 just a hunch, and I don't have time to 19:54 go into this today, but I have just a 19:56 hunch that the database is going to be
+19:59 easier to implement with cloud code. So, 20:02 so I hope this video was helpful. I know 20:04 the point was to make a PRD and we took 20:05 it a little farther than that, but
+I 20:07 hope it was enlightening and maybe you 20:08 will feel inspired, empowered to try out 20:12 cloud code. I think it's really awesome 20:14 and you'll also save money on
+cursor. 20:16 I'm I'm just moving farther and farther 20:17 away from cursor these days. is I'm 20:19 using rue code with claude's API. I'm 20:22 using cloud code. I might even
+upgrade 20:24 to claude max or whatever it is. I think 20:26 $100 a month and just I'm already 20:29 getting so much done on $20 a month with 20:32 cloud code. Um and cursor was
+just I'm 20:34 getting like $200 $250 a month. It's 20:36 crazy. But like this video bolt could be 20:39 um could be good to keep in your stack. 20:42 So thanks for watching. Hit
+that 20:44 subscribe button if you're trying to 20:46 learn how to vibe code and trying to get 20:47 more perspective if you're a non-coder 20:49 like me and you're just trying to
+figure 20:51 it out. And check out that command line 20:53 boot camp because it's going to be 20:55 really helpful especially if you try 20:57 cloud code. See you in the next
+video. 20:59 Peace. Get Quote Sponsored geico.com Learn more Chapter 1: Intro 0:011 secondImagine a world where you only had to deal with one thing at a time. 0:055 secondsWhere no
+one tried giving you more work while you were already in the middle of an existing project. 0:1111 secondsWhere the dishes always stayed done, the trash was always taken out, and
+your house was always stocked. Yeah, we don't live in that world. 0:2121 secondsThis video is sponsored by 3i. So there's two core pillars to the way I handle my whole life.
+Chapter 2: The Pillars 0:3232 secondsThe first one is note-taking and the second is task management. 0:3636 secondsI have an incredibly simple methodology when it comes to both of
+these, both note-taking and task management. 0:4242 secondsIn this video, I am going to focus on the task management pillar of my system. 0:4747 secondsBasically, just how I handle
+like things that need to be done. 0:5151 secondsAnd it's not something that's designed for content creators or startup CEOs. 0:5656 secondsThis is stuff that can just apply to
+anyone, anyone that has stuff to do, which is probably all of us. 1:031 minute, 3 secondsYou don't need to sign up for my course on how to be productive or buy my must-have
+template. I'll walk you through the whole thing in this video. 1:111 minute, 11 secondsWith how my brain works, and everyone's different, but for me, how my brain works is
+note-taking and task management are the foundation 1:191 minute, 19 secondsof how I just am able to stay on top of things and how I am able to manage my life, manage my business,
+manage professional work, videos, things like that. 1:301 minute, 30 secondsI can't stand the productivity porn that's out there. You don't need to wake up at 4 a.m. and spend five
+hours figuring out every minute of your day. 1:391 minute, 39 secondsYou don't need to do that. 1:411 minute, 41 secondsIn fact, find the minimum amount of organization you need to
+do for your day. 1:461 minute, 46 secondsIf you're somebody that can spend five minutes organizing your day, putting together a task list or going through your task list, going
+through your calendar, going through your daily note, whatever, whatever that is. 1:561 minute, 56 secondsIf you can spend five minutes doing that, and if you were to get the same
+results as if you were to spend an hour doing that, obviously spend the five minutes. 2:062 minutes, 6 secondsThe five minutes is better. Your whole day should not be prepping a
+task list. It shouldn't be that at all. 2:142 minutes, 14 secondsBut if you need an hour to get organized, that's totally okay. If that's just how your brain works, that's fine.
+2:222 minutes, 22 secondsFind the minimum that you need to do. 2:242 minutes, 24 secondsSo if it's five minutes, 15 minutes, 30 minutes, an hour, that's fine. Just don't spend six
+hours organizing your day. 2:322 minutes, 32 secondsThe goal isn't work. 2:332 minutes, 33 secondsThe goal or the meaning of life or however you want to define it isn't more work.
+The goal is a good life and being happy. 2:422 minutes, 42 secondsNow for everyone that's gonna mean something a little different. 2:452 minutes, 45 secondsFor me, that means
+spending quality time with my girlfriend and my family, being financially secure so I can pay my bills and occasionally go on trips with the people mentioned and making art. 2:572
+minutes, 57 secondsThose are my goals to, for being happy. That's what all of this is working towards. This isn't me working towards, Oh, I can do more work. 3:063 minutes, 6
+secondsI can build another company. I can work 80 hours a week. Those aren't healthy goals. Healthy goals are what you should be pushing towards. 3:173 minutes, 17 secondsNow, what
+task manager you use or I use or what somebody else on the internet uses doesn't matter. Chapter 3: The App 3:253 minutes, 25 secondsIt absolutely doesn't matter. 3:273 minutes, 27
+secondsIn 2025 or 2026, whenever you're watching this video, they're basically all the same. 3:333 minutes, 33 secondsThey do details differently, but at the end of the day, they
+are a list of items and you can check things off and they will have some kind of project support. 3:413 minutes, 41 secondsEvery single one of them can do that. 3:433 minutes, 43
+secondsAnd if you're somebody that's like, I prefer pen and paper, that works too. Now I know people are interested in apps. I'm interested in apps. I'm gonna get into that. 3:513
+minutes, 51 secondsI am using Todoist. 3:523 minutes, 52 secondsIt's available on every platform and everything I talk about in Todoist will be relevant no matter what platform you
+are on. 3:593 minutes, 59 secondsThere is a few Apple specific automation things that I do that I wouldn't know how to replicate on other platforms. 4:064 minutes, 6 secondsBut if
+you're somebody that uses iOS, iPadOS or MacOS, you'll be able to take advantage of those. Chapter 4: The Setup 4:144 minutes, 14 secondsIf you've seen some of my past task manager
+videos, how I set up Todoist is going to look very familiar. 4:194 minutes, 19 secondsIt's how I set up the app things, It's how I set up reminders. It's how I like to work. And
+you'll be able to replicate this in just about any app. 4:284 minutes, 28 secondsSo the way this works is there are two top level projects, work and personal. These are my two
+modes, if you will. You know, I have a work mode and a personal mode. 4:374 minutes, 37 secondsI never try to do personal stuff when I'm in the work mode and I never try and do the
+work mode in my personal time. I wanna keep those two areas or modes of my life separate. 4:474 minutes, 47 secondsIn Todoist, I break down the actual projects for this area. 4:504
+minutes, 50 secondsFor my work mode, I have sponsors, long form videos, shorts, Instagram posts, comfort zone, blog posts, and Project Galactica, which is something 4:594 minutes,
+59 secondsthat has been in my task manager forever, but I have finally started to like actually make significant progress on it, so I'm okay having this here still. 5:105 minutes,
+10 secondsIn the personal mode, it's a lot smaller. 5:125 minutes, 12 secondsI have home for my home projects and things I need to do around the house, house projects. Then I have
+a shopping list for things I need to buy. 5:195 minutes, 19 secondsI'll put top level tasks in my work or personal area. 5:225 minutes, 22 secondsThis is stuff like company taxes
+or paying a bill or general work projects like updating my channel artwork. Chapter 5: Sponsor: 3і 5:305 minutes, 30 secondsThis video is sponsored by 3i. 5:325 minutes, 32
+secondsToday we've been talking about task management, but you know what one task I never have to worry about? Cleaning my floors. 5:385 minutes, 38 secondsThat's thanks to the 3i
+P10 Ultra Robot Vacuum and Mop. 5:445 minutes, 44 secondsJust like every robot mop and vacuum, this is gonna clean your floors. They're all gonna clean your floors. 5:495 minutes,
+49 secondsBut this one does things a little differently and I really like it. 5:535 minutes, 53 secondsSo the big feature of this robot is the ultra reach functionality. So what
+this does is it will extend the mop part out. 6:026 minutes, 2 secondsSo it gets into the edges. So it's not gonna leave any dust or dirt particles behind. It's going to get
+everything. 6:096 minutes, 9 secondsPlus it has a brush that sticks out. 6:116 minutes, 11 secondsSo the vacuum part will get the bigger pieces before the mop even gets to it.
+6:156 minutes, 15 secondsThere's no pushing dirt or food bits or anything like that into a corner where you have to manually go over there with the broom and sweep it up and then
+wipe the floor apart because the robot couldn't get into that edge. 6:266 minutes, 26 secondsNow, this will take care of it. The robot cleans up everything. 6:296 minutes, 29
+secondsThe dual mop system spins at 220 RPMs and the vacuum has 18,000 PAs of suction. 6:386 minutes, 38 secondsThat's over two times the suction of similar products. It even
+boosts the suction when it detects carpet. So that way it'll get everything out. 6:466 minutes, 46 secondsThe all-in-one base station handles cleaning the mop pads hot water and
+then air drying them. It also handles detergent dispensing and even has 6:546 minutes, 54 secondsa dust collector built in that is good for up to 70 days. It even has its own
+self-cleaning washboard. The robot itself navigates your house using 7:037 minutes, 3 secondsLiDAR to create a 3D map, then dual 3D light sensors and AI cameras so that it avoids
+things like cables and can navigate thresholds and avoid collisions. 7:137 minutes, 13 secondsThe AI-powered Dirt Scan feature can detect over 100 different objects in your house.
+7:197 minutes, 19 secondsIt'll customize the cleaning method if anything was left out, so it'll navigate around it. 7:247 minutes, 24 secondsIt also quickly learns your home and
+the best cleaning route. You can set up a schedule, no-go zones, and more in the app. 7:317 minutes, 31 secondsAnd my favorite part is the anti-tangle brush, so air doesn't get
+caught in it. 7:357 minutes, 35 secondsSo many robots don't have this, and I have spent so much time cutting hair out of robots. 7:417 minutes, 41 secondsI was really impressed
+with the results I got of this robot vacuum. 7:447 minutes, 44 secondsI'm gonna put some links in the description below, so you can go check out the 3i P10 Ultra Robot Vacuum and
+Mop. 7:527 minutes, 52 secondsMy thanks to 3i for sponsoring this video. If you have something to do, you need to capture it. Chapter 6: Capture 8:018 minutes, 1 secondIt doesn't
+matter how small you think it is or how small or even bad of an idea you think it is. 8:098 minutes, 9 secondsIf it's something you intend on doing, capture it. 8:138 minutes, 13
+secondsI've had so many ideas forgotten because I thought, Oh, you know, I'll remember that in like 20 minutes when I get to the office or something like that. 8:218 minutes, 21
+secondsNo, I never remember what it is. And what I mean by capture is write it down. 8:268 minutes, 26 secondsWe could get into the process of where to write it down or how to
+write it down, doesn't matter. 8:318 minutes, 31 secondsJust a place you know you will find things that you're like, oh, I had this idea. This is where I go when I had this idea
+and I wrote it down. 8:398 minutes, 39 secondsI've captured stuff that I thought, eh, this is probably a bad idea and it's turned out to be an amazing idea. 8:458 minutes, 45
+secondsMake sure whatever app or system you are using has a way to quickly write something down. 8:518 minutes, 51 secondsIf this is a notebook, always have that notebook and a pen
+on you. 8:558 minutes, 55 secondsMaybe make it like one of those small field notes notebooks or something like that, and have a small pen always on you. 9:019 minutes, 1 secondIf
+it's a note-taking app or a task-managing app that you need to capture that idea or thought or task or whatever it is, 9:099 minutes, 9 secondswhatever like popped into your head,
+make sure you have a way on your device to quickly get it into that app. 9:169 minutes, 16 secondsAnd it should be on all of your devices, whether you have your phone within reach,
+your iPad or Mac or work computer or whatever, whatever's within reach. 9:259 minutes, 25 secondsAnd let's be honest, we always have a device within reach. 9:289 minutes, 28
+secondsSo whenever that idea pops into your head, you should be able to grab a device and log that idea or thought or task, whatever it is. 9:379 minutes, 37 secondsFor me, because
+I use a dedicated task management app, I have been using a custom shortcut that I built. 9:439 minutes, 43 secondsNow, the quick TLDR for those that don't know what shortcuts is,
+is on the Apple platforms, iOS, iPadOS, macOS, and even VisionOS, there is an app called Shortcuts. 9:549 minutes, 54 secondsAnd in here, you can build custom automations that are
+just block-based automations. They're really simple. You start at the top and you work your way down. 10:0210 minutes, 2 secondsAnd as it goes through, those are the, each actions
+is what it will perform. Pretty straightforward. 10:0710 minutes, 7 secondsWith the new OS 26 updates, they now have a use model action in here. 10:1210 minutes, 12 secondsThis
+allows you to use AI chat bots, whether they're local models, Apple's cloud model, or even chat GPT. 10:1910 minutes, 19 secondsI built a shortcut that allows me to quickly capture
+a thought into a task and put it in the proper spot. 10:2610 minutes, 26 secondsI will link to it in the description below along with everything else that I mentioned. What this
+allows me to do is write out a task. 10:3210 minutes, 32 secondsTypically, I just type out the title of the task and when it needs to be done, and then I will put the pound symbol
+and the name of the project. 10:4010 minutes, 40 secondsThe shortcut will look at what I wrote, break it apart, and then assign the right data to the right field. 10:4710 minutes,
+47 secondsI built another shortcut with a list of shortcuts I run often like this task cut shortcut. 10:5310 minutes, 53 secondsSo when I run this, I pick which shortcut I want and
+it runs that one. 10:5710 minutes, 57 secondsI've assigned the shortcut, which I call action cut, to the action button on my iPhone so I can quickly run this no matter where I am
+in the OS. 11:0611 minutes, 6 secondsI also put the shortcut in the dock of my iPad so I can do the same thing here. Todoist does have natural language input. 11:1411 minutes, 14
+secondsSo I technically, I don't need to be using the shortcut. I could just open the app, type this out and go. 11:2011 minutes, 20 secondsBut what I have found in the past, and
+at least for me, the way my brain works is that if I go into an app, 11:2811 minutes, 28 secondsif I have that friction of needing to take out my phone, find the app, go into the
+app, find the plus button to hit a new task and stuff like that, that could be just enough friction that I just don't do it. 11:4211 minutes, 42 secondsMyself will just get lazy
+and I don't do it, or I'll see something else in that app and it'll pull my attention and I'll start focusing on that and I'll forget what popped into my head. 11:5111 minutes, 51
+secondsWith this shortcut, I don't need to switch apps. 11:5311 minutes, 53 secondsSo say I'm looking at something in Safari or I'm reading an article or something like that and it
+gives me an idea or it gives me a task I want to complete 12:0112 minutes, 1 secondor maybe my girlfriend texts me while I'm doing that reading and says, "Hey, can you make sure
+you take out the trash?" I can run that shortcut right from the action button 12:0912 minutes, 9 secondsor just tap on it right in the dock of my iPad, fill out the task, and then
+go right back to what I was doing. I don't lose that place. 12:1612 minutes, 16 secondsNo switching apps, no switching contexts. Chapter 7: Be An Editor 12:1912 minutes, 19
+seconds(gentle music) When it comes to managing a task manager, you need to be a good editor. 12:2612 minutes, 26 secondsAnd I'm not talking about being a video editor at all.
+12:2912 minutes, 29 secondsWhat I mean by being an editor is if you've had something in your task list for let's say six months, you've had something on your task list for six
+months, chances are you probably aren't going to do it. 12:4012 minutes, 40 secondsIt's never been assigned a due date, it might be in a project or two, or it might just be stuck
+in the inbox. Maybe it has that someday tag on it. 12:4912 minutes, 49 secondsI hate that someday tag. Nothing ever gets done when it has the someday tag. So at that point, you
+have two choices. 12:5712 minutes, 57 secondsYou're either going to do that task or you're not gonna do that task. 13:0013 minutesSo what I have found when I've come to this point
+where I'm like, okay, I've had this thing in my task manager for six months or a year, 13:0913 minutes, 9 secondsI either need to assign a due date to it and it needs to be done by

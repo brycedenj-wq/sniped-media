@@ -1,0 +1,223 @@
+right here so select this and then increase its Alpha transparency 1:17:42 right now it's zero which means there's no Shadow to 1 which means our shadow is 1:17:47 full black and
+then for shadow offsets change this that's how we can slowly bring this out 1:17:54 to make just a little better offset okay there we go and then for the text 1:17:59 this will be
+U1 exclamation points smiley face with a 1:18:06 nose boom okay we're gonna leave this as is for now but we are going to edit it in 1:18:12 just a second but I want to First
+display this in my world when we win the game so of course we're going to do that 1:18:17 within our Target game which we will be replacing this print screen so let's go ahead and
+delete that actually let me go 1:18:24 move my note set down and then drag from True creates a widget and that widget is 1:18:31 the end screen that we just made and then add it to
+viewports so the player can actually see it 1:18:37 okay press compile now if we go back to our game score is zero out of three 1:18:45 let's go increase that and then we won but
+there is an issue that is the player can still run around and now this U1 1:18:52 screen is just stuck to my player and we have no option to replay my game 1:18:57 so let's go
+ahead and add that option right now so you have the option to restart we need a button so go back into 1:19:04 the end screen and type in a button to go ahead and get it so let's
+drag in our 1:19:10 little button and for the anchor of course we're going to set this to the center let me go adjust my button like 1:19:16 this to make it bigger and then add
+text to my button so drag out text and hover 1:19:21 over and then let go so this text will ask us if we want to restart so restart 1:19:27 question mark also my button is way too
+bright so go to style and under normal for tint 1:19:33 decreases to something more darkish like right there 1:19:38 okay that's better press compile and now if we play our game
+1:19:44 we have this U1 but we're still playing the game and plus we don't get access to our mouse cursor so we want to stop 1:19:51 playing the game and we want to give the player
+the ability to get back their mouse cursor now for us the editor we 1:19:56 can just press shift and one to get our Mouse but the actual player won't have that ability but before
+we do that I 1:20:03 want it where when I press restart then the entire world restarts so let me go to wbp underscore end screen select my 1:20:11 button and then with my button
+selected all the way down here create an event for on clicked you will notice that this 1:20:17 is event on clicked or a button called button underscore zero so that name doesn't
+really make sense we can rename 1:20:23 it right here to restart button okay so what I want to happen is that it reloads 1:20:28 my current level right now my current level is
+called first person map so let's drag from here and go open level 1:20:35 by object reference and that will be this level which is first person map 1:20:40 okay great now let's
+stop the game and show the player's Mouse so jump back to 1:20:45 GM underscore Target game and then as soon as we win our game we add the windscreen we will drag from here and go
+1:20:53 set input mode UI only so that means the player can only input actions to the 1:21:00 user interface and the specific user interface I want the player to interact with is
+the end screen so drag from here 1:21:06 and let go like that also double-click to add in a reroute node 1:21:12 and now it's asking for the player controller so drag from here and
+go get player controller you can think of the 1:21:18 player controller as a reference to the player itself and then to show the mouse cursor because the mouse cursor will not
+1:21:25 show up drag from here and go show mouse cursor and we're gonna set it 1:21:31 so we're gonna set whether or not we see the mouse cursor and set that to true so 1:21:36 we
+do see it again okay compile press play Moment of Truth one two and 1:21:44 three we won and immediately we get back by mouse cursor I didn't have to press shift one and then if I
+select restart 1:21:50 we restart the game but there's a glitch and that is I can't move around anymore I need to reset the input mode to game 1:21:57 only so let's come up here
+and then at the very beginning of my game that our info mode will be set to game by getting 1:22:04 the player controller again so let's grab that and then drag from here and go
+set input mode game only 1:22:12 okay so now we are getting the game and go ahead and re-plug it up right there 1:22:19 now we do have one issue still and that is if we beat the
+game with the player 1:22:25 walking around so let's say the player is walking towards the target then hits 1:22:31 it even though we have no access we're unable to move our player
+around our player is still moving forward so we 1:22:38 need a completely disable movements because that is a glitch so go into let's go back to Target game 1:22:45 and down here
+drag from the player controller again and let's get a set 1:22:51 ignore move input so this will stop all the movement of my player character 1:22:57 okay now we want a new move
+input so any movement that we were doing will 1:23:04 be halted and stop immediately once the end screen is shown now if I beat my game when I'm running 1:23:10 so let's go fire
+right there and okay my player does stop and then I can click 1:23:16 restart and get back my player and let's make the end screen a little bit nicer because right now it's kind of
+1:23:22 bland so to do that let me go to end screen and go back to designer and right 1:23:27 here I'm going to add a blur so type in blur and drag in the background blur now
+1:23:33 I want this to take up the entirety of my canvas so go ahead and make that really large so the cup is this by 1:23:39 entire canvas and for the anchor make sure it's set to
+full screen so that the blur will be 1:23:45 everywhere no matter the size of my game window and then with blur selected let's increase this to 1:23:52 two and then you'll notice
+uh oh we are blurring the entire screen that's 1:23:57 something we don't want to happen and the reason why is because background blur is at the top now unreal is different from
+other programs like 1:24:03 Photoshop where the last item is actually at the top and then the top 1:24:08 item is on the bottom so I have to drag this that's all right after the
+canvas panel I let go it will blur it so now 1:24:15 our text and the restart button are above the blur background all right now before we add a timer to our game Let's 1:24:22
+really briefly go over exactly what we did so far since is this your first time creating a game we have done a lot 1:24:29 so to begin we created the Target Blueprint and the
+Target Blueprint is really simple it's just a static mesh 1:24:34 and we check whether or not a projectile is hitting that mesh and if it is we're 1:24:39 going to add a score to
+the game mode and then make sure this target can't be hit again in the future with these two 1:24:46 nodes and then into game mode is where the majority of my game is and so far
+1:24:52 our game has been pretty simple as soon as the player starts playing my game with the event begin play unreal 1:24:58 will try to find how many targets are in my world and
+set it as the max score so for example right now we have three 1:25:04 targets if I create a fourth one then we're gonna have a Max score out of four instead of three and then we
+create our 1:25:11 user interface now whenever the target is hit we will add one to the current score and then we'll update the user 1:25:17 interface and check if the player has
+been in the game by seeing if current score is equal to the max score and then 1:25:25 if it is we add the windscreen to tell the player that they won and then we stop our players
+movement 1:25:31 so this is what we have so far I can fire one two three and then four Timer 1:25:39 and we won right now the game is fun but it is not challenging the player has
+infinite time 1:25:46 to hit all the targets so let's make it challenging by adding a timer so the player will have to hit all the targets 1:25:52 before the timer expires and if
+they don't they lose the game that means we can either win the game or we can lose 1:25:59 it before we create the timer let's make the game a little bit harder by spreading out my
+targets so let me put a 1:26:05 Target all the way over here put this down let's grab all of these 1:26:12 and bring them all over here maybe one's bigger than the other 1:26:18
+and if I want to rotate the targets I can press e but then you'll notice I'm unable to rotate the Target in the 1:26:24 target's Direction so when I try rotate it it does a weird
+rotation if I want to rotate the Target in its direction then 1:26:31 come up here and select the sphere icon to make it a cube now I can properly rotate it the way I want 1:26:40
+and just like in the blueprints we're in the viewport I can hold down L and left Mouse button to rotate my sun in my 1:26:48 world I can hold down control and L to rotate my level
+Sun so that's control and L hell down to rotate the sun let's 1:26:55 go angle it right there but now if I play my game our player will spawn all 1:27:01 the way over there then I
+have to walk over here to shoot my targets and that's because 1:27:07 we have our player start right there so wherever my player start is is where the 1:27:12 player will be
+spawned so if I move this in the corner press play and the player will be spawned in the corner and if 1:27:19 your world doesn't have a player start then we press play we will
+start from our editor cameras location so if I 1:27:26 press play we just start at that location that we were at now to get a player start it's very 1:27:31 simple come up to that
+button go to Basics and then drag out the player start so that's how we bring one into 1:27:37 our level and let's angle it so it's facing the targets and then press play so
+respond 1:27:44 looking at the targets just in case if you ever do want to play your game not from the player's start but from the 1:27:50 camera then if I click on these three
+dots down here under spawn play rats we can select camera location to spawn once 1:27:58 again at our camera's location instead of the player start and to switch that back select
+player start 1:28:04 now it is finally time to add a counter to my game so that the player has to quickly hit all the targets if the timer 1:28:11 expires and it hits zero then our
+player has lost so of course we're going to add this game logic to our game mode now we 1:28:20 have our ad score event and all the nodes connected to it let me highlight
+everything and move it down just a 1:28:25 little bit because we are going to be adding to the event begin play So at the very end of the event begin play after 1:28:32 recreate
+our user interface let's add in some new functionality by dragging out here letting go and creating a brand new 1:28:39 node called set timer by events so what this node will do is
+that any 1:28:44 event that is hooked up to this node will run after a certain time so if I drag from event I can create a 1:28:51 new custom event and call this decrease counts I
+need to tell this node how many 1:28:57 seconds until this event can run and for now let me leave it at one second and to 1:29:03 show what this is doing let's drag from here and
+go print screen and this is decrease count is activated okay so now 1:29:13 if I press play you see that this runs and then after one second our decrease count will be activated
+and then a print 1:29:20 stream will be run but it just stops we want this to run every single second and 1:29:26 not just run once and that's where looping comes in handy so if I
+turn on looping and now if I press play after 1:29:32 one second it runs two seconds three and so on so every single second this event 1:29:38 is being activated which is what I
+want because we're going to set this to 0.1 1:29:43 seconds and now you see that every 0.1 seconds it runs so we're going in a lot 1:29:49 of decreased counts being activated let's
+create a variable that will hold our time so click on the add button and 1:29:55 this one will be called time press compile so we're able to change our default value and set this
+to something 1:30:02 like 500. now I want it where whenever this custom event will run one will be 1:30:07 subtracted from time so I can hold down control and drag it out to get
+time and 1:30:12 delete the print screen since we no longer need that and let me go ahead and move all these 1:30:18 nodes down to give myself more room and we're going to do a
+similar thing that we did right here where instead of 1:30:24 incrementing current score we will be decreasing Time by giving it a minus 1:30:29 minus so minus minus to decrement
+that integer and set it and in order to see 1:30:34 what our time is we will add in a print screen as you can guess we will add this to our user interface in just a second 1:30:41
+so plug that up and within the advanced menu let's make this red so I can 1:30:46 actually see it and it's going to decrement every 0.1 seconds that's too slow so it will decrement
+every 0.01 1:30:54 seconds and now if I press play we'll see that it goes down from 500 1:31:00 it continues decreasing up until we get to zero announced at the negative range so
+it's going to keep going down down 1:31:06 all right now that I know my timer is working let's add it to the user interface and we will do the exact same 1:31:13 thing we did with
+update score so double click to jump back to our user interface widgets within the graph and create a 1:31:21 new custom events that will be update time and go into designer
+because we 1:31:26 need to create that time text so what I could do is drag in text like 1:31:32 that or to keep it consistent so it has the same font I can select the other text
+Ctrl C 1:31:37 control V it and place it all the way over here so instead of having a b score 1:31:43 it will be time and it will be anchored to the top right hand corner so anchor
+1:31:49 top right hand corner we will give this a name so we're able to tell what it is within the graph and that is time 1:31:57 text go to graph and let's get the time text drag
+up here and go set text text 1:32:06 just like that and we're going to give it an integer input just like with the update score so click on the plus button 1:32:12 change this to
+an integer and this one will be new time 1:32:17 all right let me hook this up like that and then drag from in text and we will 1:32:24 use the two text string select that and then
+once again use the 1:32:30 append node that we're using up here so that's how we get append our time 1:32:36 to a sentence so pin that to B and the sentence will be time space now
+we need 1:32:43 to call this event within the game mode so let's go back to decrease counts and 1:32:48 it gets the user interface which we're setting right here so we're getting
+that user interface we created 1:32:54 and we are updating the time so the new time will be the time after 1:32:59 it's decremented and we also have to update the time before the
+set timer events so go ahead and copy these two 1:33:07 nodes and then set it right here like that and since we are getting the variable 1:33:14 that we set right here I could
+delete the user interface and then drag from here to keep it consistent 1:33:21 because it's the same thing and this will be set to the default time which is right now set to 500
+so go 1:33:28 ahead and drag it onto new time like that so if I press play we have a 1:33:35 timer going down from 500 all the way down to zero and then it goes into the negative
+range which is 1:33:42 something we don't want also keep in mind that you can adjust the difficulty of your game by increasing or decreasing 1:33:47 the time so if we want a really
+fast game instead of 500 it will be 100 so 1:33:53 now there's 100 units and then immediately goes to zero so let's leave this at 400 and add in a 1:34:00 lost condition so the
+player will lose when this time is less than or equal to zero 1:34:07 so drag from time and go less than and equal so now we are checking if this variable 1:34:15 is less than or
+equal to the number right here which is zero that is what I want hold down B and left click to edit 1:34:22 that if statement which is asking for that Boolean so now if this is
+true that that means the player has lost which is 1:34:29 pretty bad so we will drag from here and go print screen all caps you lost again we will add this 1:34:38 functionality to
+the end screen in just a moment but let's see if this is 1:34:43 working so start from 400 goes down and then it will hit zero and now it says 1:34:49 you lost you lost but we
+continually lose and the timer is still running I wanted to stop at zero so I will add in 1:34:56 a new variable and this variable will check is game over question mark and 1:35:02
+because it's a question mark it will be a Boolean so if it's true the game is over if it's false then the game is 1:35:07 still running and since the player did lose the game hold
+down alt and drag it into my graph to set the game over to 1:35:15 true we no longer want to run this game and then added another Boolean statement 1:35:22 so move this all over
+here and if you ever want to select multiple nodes just like in the viewport in case you don't 1:35:27 know you can hold down shift and left click if you don't want to drag out a
+box so hold down B left click to add in 1:35:34 a branch and now we will check so hold down control and drag out his game over 1:35:39 whether or not game over is set to false so
+we want to make sure that the game is not over yet with it not Boolean and 1:35:47 then we decrement our timer so let's see if this works it goes down to zero soon and there we
+1:35:56 go it stops it will only get one you lost okay now we're going to replace the print screen with the actual end screen 1:36:02 and luckily for us we already have the logic
+to bring up our end screen all the way over here so I can highlight all 1:36:09 these nodes that make up that logic which is creating the end screen and stopping our players
+movements Ctrl C 1:36:14 and control of Viet over here now do not worry we are going to go over how we can 1:36:20 simplify this so we don't have to duplicate nodes in a moment but
+let's highlight everything and plug it up 1:36:27 right there now we have one big issue and that is if I press play and if the timer goes to zero 1:36:33 we get a U1 screen we want
+to display that the player lost so we will go into 1:36:40 our end screen go into the graph and then I want to add a brand new Boolean 1:36:45 value so let's go ahead and let's
+create a new variable and this one will be lost game question mark So if the player did 1:36:53 lose the game then this Boolean will be true in the default value also here's a tip
+notice how we keep on pressing 1:36:59 compile and then we save our blueprint what I could do is click on the three dots go to save on compile and then 1:37:05 select always so now
+whenever I compile blueprint my blueprint will automatically save for us so we don't 1:37:12 lose any of our progress and speaking of saving let's go ahead and let's save all all
+right now I want it where when does 1:37:18 Boolean is created with the event construct we will see whether or not we lost the game also I don't like this 1:37:25 comment right
+here so I can click on the comment button to get rid of it now let's control and drag it into my graph 1:37:31 to of course as you can guess be left click to add in an if statement
+so if we did lose the game 1:37:39 then I want to set this text so let's make this a variable that's how I get 1:37:44 access to it within my graph and call this text and text go
+back to graph drag from end text and 1:37:52 go set text text the same node we've been using for our user interface and 1:37:58 then plug this up like that so the new text will be
+you lost exclamation points brownie base 1:38:05 we need a way to set this Boolean value loss game within our game mode and there 1:38:11 are several ways we can do that one way is
+to just drag out from the user interface and go set game lost 1:38:19 and then manually set it like that or another way which is a lot cleaner is to 1:38:24 go back to my end
+screen and have that variable lost game selected and down here within the options make 1:38:32 sure instance edible is turned on and expose on spawn is also turned on that 1:38:38
+will give us this little eye icon which is now visible so that is what this icon is doing right here this icon will allow 1:38:46 us to set our variable as soon as this blueprint
+or widget is created now 1:38:52 within our Target game you don't see it yet that's because I have to right click and select the refresh notes so we get 1:38:58 this brand new
+Option where I can set true or set it false now down here when 1:39:04 the player wins the game we want to make sure this is okay it looks like this hasn't updated so right click
+click on 1:39:11 refresh nodes I want to make sure that when the player does win the game this is set to false but when the player 1:39:16 loses the game this is set to true okay
+press play 1:39:23 counter goes down and then it says that we lost very sad if we restart the game 1:39:30 we won so very happy but now we have a really big glitch because our
+timer was still going down even though we won the 1:39:36 game and then it created two end screens on top of each other so we first won the game and then since the timer hits zero
+1:39:42 we then lost the game so which obviously doesn't make any sense you can't win and 1:39:47 lose a video game so that's because we need to make sure is Game Over Control see
+this and then control V it 1:39:55 right after we win the game to make sure that this timer is stopping when the 1:40:01 player wins the game and press compile you probably think
+that this graph does look messy and disorganized because we 1:40:08 are repeating the exact same notes we are repeating these notes and then we're 1:40:13 repeating these notes the
+only difference is this lost game is turned off right here and then it's turned on 1:40:19 right there so what we could do is combine these nodes into one event that's how we don't
+have to repeat them 1:40:25 so whenever we have logic that is continually repeated you want to add that to an event or a function so let's 1:40:31 go ahead and let's create a
+custom event and this one will be show and screen 1:40:38 now again highlights all these nodes press Ctrl C and Ctrl V it right there 1:40:44 so we will hook it up that's how the
+first node is setting the is game over to true 1:40:50 and then the only difference is this lost game so just like within my UI 1:40:56 graph we're adding inputs right here we will
+also add an input to my game mode 1:41:01 so let's drag out the lost game hover over this and then let go as a shortcut 1:41:07 that's why I didn't have to select the custom event
+and manually press the plus button okay now that we created an event 1:41:14 in my graph I can come up here and delete all those nodes 1:41:19 and then drag from here and then go
+show end screen just like that so we are 1:41:25 calling if I double click on it the custom event we just created and because we did lose the game make sure this is 1:41:32 set to
+true and then come down here and delete all those nodes and once again make a call to that event show and 1:41:39 screen and set this to false so what we just did was that we could
+bind all those 1:41:45 nodes into and events that's how we only have to show those nodes once and they've all 1:41:52 been condensed into its own node we're just making a call to
+the custom events 1:41:57 now technically the main bulk of my games logic is done so if I press play we have a timer and I have to hit all 1:42:04 the targets before the timer runs
+out or if I don't do anything and let's say I 1:42:09 just barely missed the last Target then we're gonna lose the game so to recap what we did this chapter we 1:42:16 went into
+the target game and we created a timer that will run every 0.01 seconds 1:42:22 this event and this event will first check if the game is already over and 1:42:28 then if it's not
+we will decrement that time update the user interface and then see if that time is less than or equal 1:42:34 to zero and then if it is it will call the show and Screen event if I
+double 1:42:40 click it'll just jump to it it's right underneath all that logic and then this will create our end screen and we're 1:42:46 even going to tell it whether or not we
+lost the game so up here we lost our game which means 1:42:51 it is set to true and then over here when we check if we won the game then this is going to be left blank to tell
+1:42:58 my end screen not to override this text with the you lost text congratulations you just created your Weapon Blueprint 1:43:05 first game in unreal but there are some
+additional changes we can add to make it even better because right now it doesn't 1:43:11 have game feel it doesn't feel satisfying to play our game and we want our game to be fun
+because why else 1:43:16 would people play it I want to make the gun look better and also have more of an impact when the player fires the bullet 1:43:22 that's why in this chapter
+I will go over how to create your own custom weapon completely from scratch so let's 1:43:28 hop back into unreal right now the weapon is built into the first person character so
+if I open up first person 1:43:35 character by going to first person Blueprints and double clicking on it we will see in the viewport that the weapon 1:43:42 is built in now
+generally at least for this case we can leave it within the first person character because we only 1:43:49 have one weapon but what if we have a multiple weapons that we want the
+player to hold then we wouldn't create the 1:43:56 weapon within the blueprint instead generally we separate out the weapon into a separate blueprint so that's what 1:44:03 we're
+going to do we're going to take this weapon and create its own blueprint class for it so I can delete it right 1:44:09 there and also come down to the arrow and delete it down
+there because that was being used by the weapon go into the 1:44:16 event graph and all this logic right here handles firing we're going to create our own fire logic so I can
+1:44:23 highlight all those nodes and press delete now if I press compile we are going to get one more error and that's 1:44:28 because in the construction script we are attaching
+the weapon to my arms we 1:44:33 don't need this because we don't have a weapon anymore so we could go ahead and delete that and press compile now let's 1:44:39 go ahead and create
+our weapon blueprints so control space and I'm going to create it within my blueprints 1:44:45 folder right click go to blueprint class actor and call this BP underscore rifle
+1:44:53 and the reason why I chose an actor is because this rifle is going to be placed in my world so double click to go into 1:44:59 the rifle and here is where we're going to be
+creating our weapon so to begin we could 1:45:05 use unreal's default gun but in my opinion I don't really think it looks nice that's why luckily for everyone 1:45:12 watching this
+video If you downloaded the content Link in the description you'll get the Sci-Fi weapon so if I 1:45:18 double click on this weapon this is what we're going to be using and in my
+opinion it does look a little bit nicer 1:45:24 than unreal's default weapon so let's go back at a rifle press control space and 1:45:29 drag this onto my default scene route and
+then let go so now our blueprint has 1:45:35 that weapon static mesh but you'll notice that we still get that little icon in the middle which is the default 1:45:40 state birds we
+do not need that anymore so I can hold down the left Mouse button on top of my static mesh hover it over 1:45:47 default scene routes and let go so now the only component of my
+blueprint is 1:45:53 the sniper rifle and also this is optional we can even drag in a scope 1:45:59 so let me go ahead and drag the scope up here and then let go to add in a scope
+and we will place the scope 1:46:07 right there so this is optional if you don't want the scope then you don't have to add it okay let's press compile and 1:46:13 now we created a
+simple rifle blueprints that I can drag into my world but of 1:46:19 course I don't want it just load in here I want it to spawn with the player as soon as the game begins so as
+soon as we 1:46:26 press play this weapon will be spawned and attached to my player's hand and we will do that in the first person 1:46:32 character so let's jump back to the event
+graph and up here we have event being play which will run as soon as my 1:46:39 first person character is created right here we are adding our inputs and then I'm going to drag
+from here and 1:46:46 immediately after that logic runs we will spawn an actor from class and of 1:46:52 course he's going to ask for a class we're going to spawn our rifle so we
+are spawning the rifle Blueprints 1:46:59 and then it's going to ask for a spawn transform this is asking for the location that we want this rifle to be 1:47:05 spawned at this
+doesn't really matter because we are going to attach this immediately to the arms 1:47:11 but for now I can drag out my arms into my graph and then we can get the world 1:47:17
+transform so this will get the location of my arms in space this is a transform instead of location 1:47:25 because transforms also contain rotations and scale and if I drag from
+1:47:30 the transform make transform and then select it right there we can see that transform just contains our location 1:47:36 rotation and scale so that's what that is I could
+plug that up and then I want to make sure that this always bonds 1:47:43 ignoring Collision really unfortunate if the player spawns without a gun and then we're going to
+immediately attach this 1:47:50 gun to a component specifically attach it to the arm component so drag from here and go attach 1:47:56 components to components and select the
+sniper rifle like that because we do not 1:48:03 want to attach only the scope to my arms I want to attach the entire sniper rifle 1:48:09 and plug it up like that now for the
+parents we're going to drag in arms once 1:48:14 again and hook it up so this is going to attach my rifle to my arms and we need a 1:48:20 location on my arms that's going to
+attach to and that is the grip point and make sure you spell it exactly like this 1:48:26 because there is a point on the player's hand called grip points and we're not going to
+keep relative I want this to 1:48:32 immediately snap to the grip points so set this to snap to Target also snap to 1:48:38 Target and snap to Target and then press compile so this
+is what our game would 1:48:44 be if we didn't run with it so let me break that and our player doesn't have a gun 1:48:49 now as soon as we spawn the gun and attach it to the arms
+now the player has a weapon so that's how you add weapons 1:48:56 and it's great because let's say if we have multiple weapons maybe we have a shotgun then I could go in here and
+just 1:49:01 change it out for a shotgun for the player to spawn with a different weapon alright so we got one big issue and that 1:49:09 is pretty obviously if I press the left
+Mouse button we don't fire the weapon also if I look on the ground the weapon 1:49:17 Shadow is showing which I don't want to happen so let me go into BP underscore rifle 1:49:22
+and select my static mesh components come up here to details and type in Shadow we do not want to cast Shadow 1:49:28 right there and let's not cast Shadow right there okay another
+thing I'm going to do 1:49:34 selecting the static mesh is come all the way down here to Collision and set 1:49:39 this to no Collision that's because right now our gun will block
+our world so we might walk up to a wall and then 1:49:45 the gun will block the player which is something that obviously doesn't have to happen so select the static mesh again
+1:49:51 and select that to no Collision so that's not blocking the player okay and now we're going to jump into the event 1:49:57 graph we don't need any of these events so delete
+it we're going to create a 1:50:02 custom event so type in custom events and you can probably guess what this 1:50:07 event will do and that is it will fire and to make sure our
+fire event is working you can probably guess what no 1:50:14 we're gonna do to debug and that is the print strain so let's go ahead and print string that 1:50:19 and then we have
+to call this fire event within the first person character because this is where we are going to 1:50:24 have the left Mouse click inputs so down here right click type in left Mouse
+and 1:50:31 select the left Mouse button so when I press the left Mouse button this pin will be activated and then we want it to 1:50:36 call the fire function so I need a
+reference to the rifle we created and I 1:50:42 can get that reference all the way up here so right after we spawn the rifle we need a variable that stores that 1:50:50 rifle so
+right click and go to promote to variable and call this 1:50:55 rifle the reason why is that a reference to this actor when it spawned will be outputted right here so this is where
+I 1:51:02 want to store it within that variable and then plug it up so now I can get 1:51:07 that rifle hold down control left Mouse button and let go to grab it and then 1:51:13
+type in fire and we can even see that this is a rifle because down here when 1:51:18 the variables for type it's selecting BB rifle and then plug that up so now if I press 1:51:25
+the play button you see top left hand corner we get hello that's how I know the fire event is working so I can start 1:51:31 to add my logic now right here all right so we need to
+spawn the projectile and we're going to do it the 1:51:38 same way that we spawn the rifle by dragging from fire and using spawn actor 1:51:43 from a class and we can also delete
+the print screen since that was just there for debugging so for the class that will 1:51:50 be projectile we are going to create our own projectile in just a second and then we
+need a location to spawn this 1:51:56 projectile so of course this should be spawned at the muzzle of the gun but we 1:52:01 need a way to indicate that hey it should be spawned
+here and it should point in this direction and we can do 1:52:08 that by adding a component called arrow and keep in mind that the player will 1:52:13 not see this Arrow so we're
+safe so let me go ahead and let's rotate this make sure snapping is turned on 1:52:19 90 degrees exactly and then place the arrow at the very front of the gun 1:52:26 this is where
+the bullets will be spawned and actually let me go decrease the arrow size since it's a little bit 1:52:33 too big and place it right here now within the event graph I 1:52:39 can
+grab my arrow and get the world transform 1:52:46 right there and plug it up now the first person projectile will be spawned at the 1:52:52 arrow so if I press play We Should okay
+now we're able to spawn our balls just 1:52:58 like beforehand but you'll see that there's no impact it's just flying out I want a little 1:53:05 animation to tell the player that
+hey something's coming out the gun so we will do that by playing an 1:53:12 animation on the arms but in order to play animation on the arms we need a reference to the player
+character so let 1:53:18 me get player character and then cast to first person character 1:53:25 to get access to those arms so now that we have a reference to this blueprint I can
+drag from here and get 1:53:31 the arms components go all the way down here and get the arms 1:53:37 okay now I can drag from arms and get the anim instance 1:53:44 we need this in
+order to play animations and then finally drag from here I know 1:53:49 there's a lot to get access to the arms but drag them here and do a play Montage so select Montage 1:53:57
+play and then hook it up like that so it's asking for an animation this 1:54:02 animation already comes with unreals default template so select FB underscore 1:54:08 rifle shoot
+montage and then plug this up so this is a lot of nodes but that's 1:54:13 okay before we Press Play Let's jump back into my game mode because I noticed that at least for play
+1:54:20 testing purposes this time is too little so let's set it to a time of 1000. 1:54:27 okay press play and now when I fire you can see the weapon recoiling now we 1:54:33
+should add two more nodes to the fire and that is of course sound and another one is a particle effect so every time I 1:54:40 fire there'll be a little bit of smoke and a muzzle
+flash okay let's go into the rifle and 1:54:48 right after we spawn the actor play sound at location 1:54:53 and this location will just be our rifles location in our world so I
+can drag from a location and get 1:55:01 actor location so this will get the rifle location and then for sound we 1:55:06 already have a sound and that is weapon rifle punch
+1:55:12 now when I fire we got some sound and we will now spawn 1:55:20 a particle effect and this particle effect is a system Sogo spawn system 1:55:25 attached the reason why
+we're using attached is because I want to attach this system to the arrow right here 1:55:32 so go back into event graph and the system is p underscore muzzle flash this 1:55:37
+came with a downloadable content so select it and we can view the muzzle flash 1:55:43 by going into sci-fi weapons effects and double click muzzle flash 1:55:50 so here is the
+little muzzle flash we'll be adding to the muzzle of my gun and 1:55:55 the components will be the muzzle which is Arrow so attach it like that and we 1:56:01 can leave everything
+as blank so now when I press play when I fire you'll see that we get a little bit of a 1:56:08 flash and that flash is even affecting lumen so it lights up my world 1:56:14 at this
+point we are almost done with a rifle what we did was that we took the weapon logic that was right here within 1:56:22 the first person character and turned that into its own
+blueprint that's how if we do have multiple weapons we can 1:56:28 switch in between them and if we go to the event graph what I'm doing is that at first when the player presses
+fire we 1:56:35 get that player's arms and then we play an animation on those arms we then of 1:56:40 course spawn the projectile and then we play sound at location and add a
+little 1:56:45 muzzle flash so really for this event we could have just gone away with one node and that is the spawn actor we didn't 1:56:52 have to add an animation sound or
+particle effect but then the gun felt 1:56:57 stiff it didn't feel like an actual gun it didn't feel fun to Fire and the point of us making a game is to make a fun 1:57:04 game so
+even though it doesn't add any gameplay effects it does look nicer Projectile 1:57:11 when we fire and it can be a little bit addicting we have one last change I want to make and
+that is the all projectile 1:57:18 because it doesn't feel like a bullet it's a bouncing ball and I don't know any guns in real life that's shoot out a 1:57:24 bouncing ball that
+just completely disappear after five seconds so let's create our own projectile that is a 1:57:31 little bit more realistic so control space we will go to blueprints right 1:57:37
+click create a new blueprint class and this will be an actor because this projectile is in the world space 1:57:43 and this is BP underscore bullets double click here to go into it
+now we're 1:57:48 essentially creating a bullet tracer so when the player fires a bullet they'll see a line flying by really fast 1:57:56 so we first have to add in a collision so

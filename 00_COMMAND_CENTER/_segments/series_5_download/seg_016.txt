@@ -1,0 +1,224 @@
+about this 4:43 is no matter where I'm at, I can click 4:45 on this comment and it's going to take 4:47 me to the exact place that was commented 4:49 on. Now, instead of tagging my
+teammate, 4:51 I can actually edit this at the exact 4:53 same time as the rest of my team. We can 4:55 all work in the same field at the same 4:57 time. And to emulate multiple
+people 4:59 being in studio, I'm going to open up 5:01 this same document in another tab. And 5:04 now it's as if two of us are editing 5:06 this document at the same time. I'm
+5:08 going to jump into the title field and 5:10 add an exclamation. And switch back over 5:12 to my other tab. And we'll see my icon 5:14 shows up saying this is the field I'm in
+5:16 in that other tab. And we can see the 5:18 exclamation point I've added. And like I 5:20 was saying, we can all be editing this 5:22 field at the same time, switching tabs,
+5:24 and it shows up in real time. So we can 5:27 see kind of like in a Google Docs 5:28 environment, our entire team working on 5:30 this document, making changes and also 5:32
+getting these presence indicators to see 5:34 where they are at in Sanity Studio. Now, 5:37 the last feature in collaboration I'll 5:39 show you is tasks. At the top, I can 5:41
+open up tasks, create a new task, 5:45 give it some information, including the 5:48 document that this task is for, which is 5:50 my current one, assign a teammate 5:53 and a
+deadline. 5:58 And now I can see a list of my tasks and 6:00 the documents that they are attached to. 6:03 Sanity Studio is a very collaborative 6:05 interface, letting your entire
+team work 6:07 on the same document at the same time. 6:10 Comment on fields, comment on text 6:12 within fields, and assign tasks to one More than rich text (Portable Text Editor)
+6:14 another. Now, let's take a look at that 6:15 body field in a little more depth. In 6:17 Sanity Studio, I'm going to open up this 6:19 document in presentation mode, which is
+6:21 going to let me see Sanity Studio on the 6:24 right side, letting me edit my document 6:26 and my live site on the left side, so I 6:28 can see a preview of the changes I'm
+6:30 making. And I can scroll down here 6:34 and click an individual paragraph and 6:36 it'll highlight that insanity studio. So 6:39 this body field, I'm going to expand it 6:41
+so it's full screen. And we have the 6:43 things we might expect like being able 6:45 to change our different headings to 6:47 bolding and italicizing content to the 6:50 things we
+might not expect like adding 6:52 all of these different custom blocks. So 6:55 let's add a new block. 6:57 And this one I'm going to do an inline 6:59 quote. Now, this one's
+really special 7:02 because I can combine static one-off 7:04 text with referenced content. 7:10 So, in this case, I could use Jimmy's 7:11 name, title, and picture and combine
+7:13 that with this one-off content. That 7:15 way, if in the future, if I need to 7:17 update Jimmy's picture, I can do that. 7:18 Um, but I can also have it paired with 7:20 this
+quote that only exists in this one 7:23 document. 7:24 I'm going to show you one more feature 7:26 in this portable text editor. That's the 7:28 name of this editor. I'm going to
+select 7:30 some content, select product reference, 7:33 and when I'm talking about gravel bikes, 7:35 I want to show them my S600 bike. So, 7:39 I'm going to select this. And we
+can see 7:42 on my live website that highlights the 7:45 gravel bike's text, and I can hover over 7:47 this and see a preview image and price 7:50 and just product details of this
+bike. 7:53 And it's also linked out so I can click 7:55 it. The portable text editor like Sanity 7:57 Studio is entirely configurable. So you 8:00 can add any type of block that
+you want 8:02 here. You can reference your existing 8:04 data like your products, your team, or 8:07 any other document that you have in 8:09 Sanity Studio. 8:11 The portable text
+editor lets us help 8:13 tell really good stories by breaking out 8:16 of just typing text and inserting 8:19 dynamic and rich content. Now, all of Technical 8:21 this was made
+possible because Sanity 8:23 Studio is configured with code. So, if 8:25 words like React and TypeScript entice 8:28 you, then hang on as we look under the 8:30 hood to see how all
+of this is possible. 8:33 Switching over to my code editor. This 8:35 is a minimal example of sanity studio. 8:38 It's mainly configuration except for 8:41 this one folder, schema
+types, which has 8:43 an index file. This is where we define 8:46 all of our schema. In reality, we would 8:49 create one file per schema type and then 8:51 import them all into
+here like I've done 8:54 here with this event. 8:56 And this defines a single field, but we 8:58 can add more fields. 9:01 And when I save this, my studio reloads 9:04 and we can
+see my name and image field 9:07 present. We also see this unknown fields 9:09 found. This is because all of this data 9:11 was saved in a studio that had these 9:13 fields present
+and we can see them right 9:15 here. Now this is important because I 9:18 want to make the distinction that 9:19 content lake is schema list. So if I 9:21 were to delete let's say
+my name field 9:25 save this 9:28 and here we can see that the name 9:29 content just shows up as in some unknown 9:31 data because there's no corresponding 9:33 field in my
+schema. One of the benefits 9:36 of the schemalist data store is me as 9:38 the developer being able to modify my 9:41 studio locally without worrying about 9:43 affecting
+production operations. Now, 9:45 once my modifications to my studio are 9:48 good to go, what do I do? All I need to 9:50 do is run pmppm sanity deploy. And this 9:54 will package
+up my sanity studio and 9:56 deploy it to Sanity's infrastructure. I 9:58 don't need to worry about build 10:00 pipelines or actions or anything like 10:01 that. It's all handled
+for me. And now 10:04 this version of my studio is available 10:06 to my editors. Sanity Studio is an open- 10:09 source React app that's configured with 10:10 TypeScript. And this
+enables us to 10:13 configure it to meet us where we're at 10:14 in our content operations. So we can use 10:17 a tool that actually matches how we 10:19 work. Sanity Studio is a
+powerful 10:22 application and the primary place where 10:24 we manage our content. And that is 10:26 Sanity Studio 101. Thanks for watching 10:28 and I'll see you in the next one.
+All From the series From Sanity Content management system Presentations 0:00Hi there, I'm Alex Cunningham and I'll walk you through this Notion tutorial step by step. Let's jump
+right in. 0:055 secondsToday, I'll guide you through creating a helpful, professionallook content management system right inside Notion using one of their ready-made templates.
+0:1414 secondsBy the end of this tutorial, you'll have a solid system to organize your blog posts, social media ideas, or really any content workflow, all set up in minutes 0:2323
+secondsand tailored to fit your own needs. If you've ever felt overwhelmed by scattered notes or folders, this is exactly what will turn that chaos into 0:3030 secondsclarity.
+Let's dive in. The fastest, smartest way to build your content management system in Notion is to start from their free template. Notion's team 0:3939 secondshas designed these with
+a polished look and thoughtful layouts, so you're not starting from scratch or worrying about missing important details. Using a 0:4747 secondstemplate is like moving into a fully
+furnished apartment that you can rearrange and decorate to match your style. First, open Notion on your 0:5454 secondsdesktop or in your browser. You'll notice a little drop- down
+menu on the top left of your workspace. This is where Notion keeps all its options and 1:011 minute, 1 secondtools. Give that a click and you'll see browse templates in the list.
+It might be near the middle or bottom depending on your screen. Selecting browse 1:101 minute, 10 secondstemplates takes you into Notion's template gallery, which is packed with
+helpful starting points for just about any project. Now, in the search bar, type content management system. 1:201 minute, 20 secondsSometimes templates are titled as master
+databases, especially if you're tracking a lot of interconnected content types. 1:271 minute, 27 secondsSo, if you don't see the exact phrase content management system, look for
+anything labeled as a master content tracker, database, or content calendar. 1:371 minute, 37 secondsThese all can work beautifully and offer similar features. Once you've spotted
+a template that looks like it'll fit your workflow, take a moment to click on it 1:441 minute, 44 secondsand browse the preview. You'll often see sample entries for blog posts,
+videos, or campaigns, and those placeholders give you a great sense of the template's 1:531 minute, 53 secondsstructure. When you're ready, just hit the add button. Notion copies
+the template into your own workspace instantly, so you're not editing a 2:012 minutes, 1 secondpublic version. It's all yours to tweak and tailor. Here's where the magic happens.
+With the template in your workspace, you can start plugging in 2:082 minutes, 8 secondsyour own credentials and content right away. For example, if you're managing a set of
+articles, replace the placeholder titles and dates with your real pieces. 2:162 minutes, 16 secondsIf you need to keep track of creative assets or collaborators, update those
+fields so everything reflects your actual workflow. Don't rush here. Taking 2:242 minutes, 24 secondsa few extra minutes to personalize each field makes your system more intuitive
+and saves hours down the road. Now, feel free to customize. Maybe you want to 2:332 minutes, 33 secondschange the cover image, add your logo, or tweak the color labels to match
+your brand. Notion makes this super simple. 2:402 minutes, 40 secondsJust hover over any section you want to change, click on the settings, and experiment with layouts until it
+really feels like your own workspace. You can 2:482 minutes, 48 secondsadd checkboxes, deadlines, tags for status updates, or links to Google Docs, whatever supports your
+particular 2:562 minutes, 56 secondsprocess. And honestly, if something doesn't make sense or you're not sure you need a certain column or feature, don't be afraid to delete or
+rename it. 3:043 minutes, 4 secondsRemember, templates are starting points, not rigid frameworks. And that's it. In just a few steps, you've set up a robust 3:113 minutes, 11
+secondscontent management system using Notion's template ready for all your creative projects or business needs. If you found this walkthrough helpful, give it a 3:193 minutes, 19
+secondsthumbs up. And if you have questions or want to share how you've customized your workspace, drop a comment below. I love hearing what people come up with. Don't 3:263
+minutes, 26 secondsforget to subscribe for more practical Notion tutorials and productivity tips. 3:303 minutes, 30 secondsThanks for watching and happy organizing. All From How To
+with Alex Unlocking Notion’s Full Potential 0:00 forget everything that you ever thought 0:01 you knew about notion. Now, while most 0:03 of you are familiar with the basics, 0:05
+today I'm going to expose the majority 0:07 of you who don't understand and don't 0:09 know, there's a bunch of use cases that 0:11 can actually transform Notion from your 0:12
+normal everyday note-taking app into a 0:15 business changing powerhouse. Now, as 0:19 you all know, inside of Notion, you can 0:21 do so many cool things with it. 0:22 Marketers
+can track campaigns across 0:25 various platforms. Product managers can 0:27 connect customer feedback directly to 0:30 feature development. Bloggers can turn 0:31 draft ideas into
+published posts without 0:34 ever leaving their workflow. So, I've 0:36 tested literally hundreds of 0:37 productivity systems and I'm about to 0:38 show you how a few different
+0:41 game-changing improvements can be found 0:43 that you're probably not even aware of. 0:45 And if you're tired of data silos and 0:47 endless app switching, you're going to
+0:48 love this. So, as we know, Notion is 0:51 essentially a tool that allows you to 0:52 interact with a few different things. If 0:56 you're new to the channel, obviously I 0:57
+cover Notion. It's a pretty popular 0:59 product. It's an all-in-one digital 1:00 command center pretty much. But it 1:02 essentially includes pages that can turn 1:06 into
+databases and the blocks on the 1:08 pages are the text you interact with and 1:10 then those are what you interact with 1:12 the most period of time. And it's a 1:15 pretty simple
+and effective product 1:17 because of the reason that you can click 1:19 around and it's so easy to 1:22 use. For me in my system, I have so many Setting Up A Custom Workspace 1:26
+different places that I can go with 1:28 this. I have a client CRM. I have a 1:32 content calendar for my own YouTube 1:34 channel. I have every task that you 1:36 could ever
+imagine across all of the 1:38 people inside of my company. There's so 1:40 many things here. As you can see, I have 1:42 every video that I've ever made, which 1:44 is pretty much
+an infinite amount of 1:47 them. It's actually nearly a thousand. 1:48 I'm getting up to video a thousand on my 1:51 YouTube channel. And it's a really 1:53 simple and easy setup.
+But sometimes 1:56 that's not enough. I need more enhanced 1:59 capabilities. I need a better front-end 2:01 interface. I need to show this to 2:02 clients without it getting all
+weird and 2:04 jumbled. And there's a lot of ways that 2:07 notion could be better. It's sharing 2:09 capabilities are pretty bad. I'm not a 2:11 huge fan of that. And the same
+goes for 2:13 my CRM. I have a lot of really cool 2:16 setups for things like my CRM and as I 2:19 showed previously, my project and task 2:21 management, but a lot of problems
+come 2:24 up in sharing with multiple users in 2:28 load times. There are so many different 2:30 problems. But I can show you there's 2:32 actually a tool that makes this so much
+2:35 easier. I can simply log into Whalesync Syncing Notion With Airtable 2:39 and connect any of these different 2:41 things. For example, if I go to new sync 2:43 and I just go
+to notion and I press 2:46 authorize, what I can do is I can select 2:48 the specific pages that I want. So 2:50 notion, like I said, is set up in 2:52 databases. So I can just
+grab some of 2:54 the databases like my content calendar 2:57 first and foremost, and I can sync it to 2:59 something like Air Table. Now, why would 3:00 I want to do this? Well,
+that's because 3:02 Air Table is a really good tool for 3:05 those of us who want to then integrate 3:08 it with tools like Nol Loco or other 3:10 sites. As mentioned previously,
+load 3:12 times in Notion are so bad. And I can 3:15 have it set up new tables that make it 3:18 really simple and easy to sync those two 3:22 different pages together. So, I can
+3:23 interact with Notion, put it into Air 3:25 Table, and then have a front-end 3:27 experience in something like Noelco to 3:29 share it with people. So once I press 3:31 this
+sync here, I can create a table 3:34 that would sync everything inside of 3:36 notion to air table. And then the same 3:39 goes for my CRM. I can keep this view 3:42 internal and
+then share what really 3:44 matters into a front-end solution inside 3:46 of whalesync because like I said, air 3:48 tableable to my understanding is a more 3:52 stable tool, is a
+better tool that 3:53 connects with a lot of these front-end 3:55 tools like no loco. And as you can see 3:57 right here, it's getting started. It's 3:58 got the couple properties
+that I want to 4:00 sync over there to my front end view and 4:02 I can actually sync it over. So, as you 4:04 can see, it's just going to take a few 4:06 moments and it'll move
+everything over. 4:07 And look at that. We already have it 4:10 inside of Air Table. Actually, didn't 4:13 take too long whatsoever considering how 4:14 many records I have. This
+is is pretty 4:16 quick. So, I could make some views in 4:18 here. I could simply turn this into a 4:20 different calendar view or I could just 4:22 keep this data here. It's kind
+of up to 4:24 you. Creating A Shareable Content Calendar 4:26 And now inside of a tool like no loco, 4:29 which is a really cool portal system, 4:32 what I can do is I could set up
+4:33 something like a new content calendar 4:37 that essentially can just import that 4:39 air table base. All right. Now, what's 4:41 really cool is it's actually able to 4:43
+analyze everything that's in here in 4:46 this air table table. And sure, there 4:49 are really nice templates you can use 4:52 from no local and other tools like that, 4:54 but
+this is actually setting it up 4:55 automatically with AI, which is really 4:57 cool. So, you can see right here, this 4:59 is something of a YouTube content 5:02 calendar that
+immediately I can share 5:04 with the public. As you can see right 5:06 here, I can literally just go to 5:07 publish, press this copy URL, and 5:10 immediately people can see my
+content 5:12 calendar. And for say example, I want to 5:15 add uh new team members and I want to 5:17 have a system where everything is up 5:19 todate from a CRM standpoint. I can
+have 5:22 this CRM in here too. This actually was 5:25 synced with another CRM that I have 5:27 inside of notion. You'll see here this 5:29 is a very basic canban board type of
+5:32 CRM, right? With your standard different 5:34 properties like estimated value and 5:36 email and who owns the account. But from 5:40 here, I can have all of those different
+5:43 tables aggregated into a single app. And 5:45 it was all through the power of taking a 5:46 whale sync and syncing it inside of Air 5:51 Table, which can connect to these 5:52
+front-end applications cuz notion quite 5:54 frankly doesn't have these capabilities. 5:56 It's slow, it's clunky, and you can't 5:59 connect it via the API to a lot of tools 6:00
+cuz they don't want to deal with that. 6:01 But nicely enough, Welsson can connect 6:04 those things. So imagine not only this 6:06 CRM but this task management system, 6:09 this
+timeline system that I have with 6:11 project management, the CRM that I have, 6:14 the for example, I have team and 6:16 dashboard, right? These are different 6:17 contractors and
+team members I work 6:18 with. Take this and put it entirely 6:20 inside of no locos so that notion 6:22 doesn't load so dang slow. Instead, this 6:25 is what we really want. We
+want a 6:28 backend and front end that work in 6:29 harmony. And I'm not just telling you 6:31 this because of the fact that I'm saying 6:35 I dislike notion or something. I do
+like 6:37 notion. I like working in it for me. But 6:39 sometimes I want to share this with a 6:40 client. We have an entire client base 6:42 here. And fact of the matter is I
+don't 6:46 want to have to share this portal system 6:50 like I do in here. This portal system I 6:52 have made inside of notion isn't great, 6:54 but I want to keep the data in
+the back 6:56 end there cuz I like interacting with it 6:57 as a team. But like this kind of hodge 7:00 podge setup that I have is just not 7:01 ideal. I'd rather have it in a
+front end 7:03 like NLCO which can only be synced via 7:05 whale 7:07 sync. And just so you know, I mean Whale Whale Sync Pricing And Features 7:10 does have a lot to it, right?
+From a 7:12 pricing standpoint, it comes at the solo 7:14 pricing, the startup pricing, the 7:16 business price, and then an enterprise 7:18 plan. And all of it, these are 7:20
+reasonable in my opinion, right? You 7:21 have 5,000 records in sync. So for 7:23 example, if you're a small agency and 7:26 you want to in internally use notion and 7:28 then have
+a front end, you can totally 7:30 share this and utilize it because then 7:33 with no loco, it's a pretty scalable 7:35 option for sharing that data that way. 7:39 And they have
+scalable record options, 7:41 too, which is really cool. So if you 7:42 only want certain features and 7:44 connectors, you don't have to go up to 7:46 the startup plan if you
+don't need to. 7:49 And if you just need these solo 7:50 connectors and want to go up to like 7:52 20,000 records for example, you totally 7:54 can. And they have the ability to
+7:56 connect with Air Table, Google Sheets, 7:58 Member Stack, Notion, Webflow, 8:00 Superbase, Stripe, all of your very 8:03 popular tools out there. Couple other 8:05 ideas that
+come to mind definitely would 8:08 be anything you want to be client-f 8:10 facing. So you can put it in that front 8:11 end like potential content review. Well, 8:13 obviously we
+have that internal CMS that 8:15 I showcased inside of here. But also 8:18 imagine this being not my internal 8:20 calendar, but calendar that only clients 8:23 can see. Cuz with
+these type of 8:25 front-end systems, you can filter it. So 8:27 it's like, oh, I'm logged in. I'm 8:29 connected to this client account. Then I 8:31 can only see my client work
+that's 8:33 connected to me. That's kind of ideal on 8:35 my perspective versus what we got in 8:37 Notion, which is I have to make a 8:39 million pages. It's so so much work. cuz
+8:42 I'm not a fan of it personally. Like you 8:43 saw that web flow was an integration. If 8:45 you definitely want to have like a web 8:47 flow integration to something like air
+8:49 table that then can go to a front end 8:51 like no loco that's a cool one too. 8:53 Obviously I focused on notion because of 8:55 who you guys are watching this YouTube 8:56
+channel but all of the different 8:58 platforms on there are on the table and 8:59 they work really easy. So that being 9:01 said if you want to try it out please 9:03 make sure to
+go and check out the link 9:05 down below. Whale sync is going to be a 9:06 gamecher for you if you are trying to 9:08 sync data outside of your notion into 9:12 ecosystems that
+will work more smoothly. 9:15 Thank you so much for watching and we'll 9:16 see you in the next one. Bye. All APIs 0:00 Hey there, I'm Sean C Davis, and I want to take you on a
+short little 0:03 journey that all began with an idea. 0:05 Now, I've been a user of Notion for a couple years now, but I became 0:09 a big fan of Notion as soon as they released
+their developer API. 0:13 To me and many other developers out there, that unlocked a 0:16 world full of possibilities. 0:18 And one of the most common cases I saw was using Notion
+as a CMS 0:22 or a content source for websites. 0:25 And it's a really great case, especially for simple websites because many of 0:29 the blocks in notion have a one-to-one
+mapping with primitive HTML elements. 0:34 Let me show you what I mean in Notion. 0:35 If I just have a basic page and I click in that page and I start typing, 0:40 everything I
+type is a new block. 0:43 Every time I hit return, I end up on a new block. 0:45 And by default, these blocks are just paragraph blocks, but I can add all 0:50 sorts of different
+types of blocks. 0:52 And yet many of these have a one-to-one mapping with primitive HTML elements. 0:56 For example, I can create an unordered list. 0:59 I can create an ordered
+list. 1:01 I can have a block quote element, I can have a code block element. 1:06 And so, you can use Notion as a content source where you simply take 1:10 all of the block
+content and map it to primitive elements in your website. 1:15 And as cool and efficient as that concept is, it's not really built to expand 1:20 and become much more complex than
+that. 1:22 And the reality is most websites out there require a bit more complexity, 1:27 even for their more simpler components. 1:30 For example, looking back at Notion, yes, I
+can have a JavaScript code 1:35 block and I can say something like hello = "world" and that's fine. 1:41 That should have a one-to-one mapping. 1:43 But now what do I do if I want
+my code block component to 1:47 be a little bit more complex? 1:48 Maybe I want to add a filename label above the code block in my site. 1:53 Now, in most content management
+systems, that's not going to be a problem at all, 1:57 but there's not really a clear and clean cut way when using Notion as a CMS to be 2:03 able to implement some sort of
+filename attribute to a code block component. 2:09 However, notion has two ideas that I think we can take advantage of so that 2:13 we can actually use Notion as a content source
+for increasingly complex websites. 2:19 The first is by taking advantage of the callout component. 2:22 The callout component in Notion is one of the few components that isn't
+directly 2:27 tied to some primitive HTML element. 2:30 Yes, sure there are callout components in a lot of websites, 2:33 but they're not primitive elements. 2:35 And the block
+type that Notion introduces, has an extra layer of opinion. 2:39 Let's take a look. 2:40 If I were to add a callout here, I can then type some text and there we go. 2:45 But the
+other thing I can do is I can control the styling of this 2:49 callout and I can control the icon. 2:52 We have the full set of emojis available to us, and we also have this set of
+2:56 custom icons that come from Notion. 2:59 The second thing that Notion has that we can take advantage of is 3:01 the ability to nest components inside of other components. 3:06
+And we can actually do that even within a callout component. 3:10 So I have this callout component and I can make a child component here 3:14 that is, for example, a code block.
+3:16 In fact, I can come up and take my code block and move it. 3:20 into the callout component, and the combination of these two things presents 3:25 this world full of
+possibilities where we can use some very opinionated 3:29 custom mapping from a callout component using its icon, or if you want some 3:35 other sort of style and mapping that
+directly to some code on my front end 3:41 that gets rendered as some interactive. 3:43 Now that's a super abstract idea. 3:45 So let me show you a little bit more about what I
+mean. 3:47 Here is a really basic webpage. 3:50 All I have is a link at the top, a title, a couple paragraphs, and then 3:54 two components that are a little more complex than the
+typical primitive 3:58 components, but they're very common components that we see throughout the web. 4:02 One is this tab system, so I have a series of tab labels at the top, but
+4:07 if I click one, the content within the area below, the tabs changes. 4:12 And the second is what I mentioned before, which is I have this basic 4:16 code block, but I also
+wanted to attach this filename label or 4:20 caption element above the code block. 4:23 And I think what we can do is we can design this system in Notion using 4:27 callouts and
+children within those callouts, along with the icons to 4:31 map directly to the components that would render like this in my website. 4:36 And here's how I think we can do it.
+4:38 What I want to do is take a notion database and consider each record in 4:41 that database to be a page in my website. 4:44 So every page here will have a slug property and
+that that will 4:48 become the URL path for the page. 4:50 And then we'll loop through the blocks and we'll map those blocks either 4:55 directly to primitive elements, or we'll
+use our opinionated callout mapping 4:58 system to render a richer component. 5:00 And here's what it looks like on the left, I have a Notion page. 5:05 I have a paragraph block.
+5:07 And then I have a callout component that is instructing the website, 5:11 how to render this tab system. 5:13 And basically we're just saying, here is this tabs icon, which is
+going to 5:17 tell the website that I want tabs, and then each child within this callout 5:23 component is itself a callout that has its own icon and the, the main label 5:30 here
+is going to be the label in the tabs, and then the child of that callout 5:35 becomes the content within the tabs. 5:37 So really opinionated, a little bit complex, but unlocking a
+5:41 world full of possibilities. 5:43 And our code block example is a little bit simpler, but it's the same idea. 5:47 We use the icon to indicate that we have a code block, and
+then the 5:52 main content within the code block is the filename or the caption, and 5:56 then the child is expected to be a code block and we will render that 6:00 directly and
+syntax highlighted using a library like highlight.js. 6:05 So I'm really excited about this idea and I wanted to put together a proof of 6:09 concept to show that it's possible
+that I can provide you with a foundation, 6:14 and then you can take that and apply your personal opinions to it and build 6:17 your own system out for your website. 6:20 And I'm
+going to do that in a series of three tutorial videos 6:23 that build on one another. 6:25 And what you'll be left with at the end is a JSON object that you can take 6:29 and
+consume in your framework of choice and render out individual components. 6:35 And here's a quick preview of what we're going to. 6:37 In part two, we're going to set up our API
+integration and 6:40 a connection to our database. 6:42 And then we're going to write a short script where we get 6:44 the ID for that database. 6:45 So I will show you preview
+here where I call node index.js in this example 6:51 project, which you'll get to run through. 6:54 And when I search for this, I will be given back an ID to this particular page,
+6:59 which I can take into part three where we are going to import the content from 7:04 notion directly into our file system. 7:07 So when we run that script in part three, what
+it's going to do is it's going to 7:11 connect to the Notion database, loop through all the pages, then loop through 7:16 all the blocks within those pages, and it's going to mash
+it all up into 7:20 this one big JSON file, and then it's going to write that file directly to 7:24 our file system as notion-export.json. 7:27 And we can see a preview here where
+there are hundreds of lines of code. 7:31 This is all the content coming from the Notion API, but this in itself is 7:36 not super usable from our front end. 7:38 We'd have to do a
+lot of parsing just to get to the content we want, 7:41 and that's not super efficient. 7:43 Plus, we'll then have to do things like syntax highlighting on the fly, 7:47 and also
+that's not very efficient. 7:50 So in part four, we're going to take this content and we're going 7:54 to transform it into something that our front end code can use. 7:57 That's
+going to include processing code blocks, doing the syntax highlighting so 8:02 that all our website has to do is render the content that it's given from this 8:07 JSON output and
+add the interactivity. 8:10 So in our script in part four, we run this same command with a new 8:14 script, and it happens immediately. 8:17 All we're doing is we're reading that
+file that we had generated in 8:20 part three, transforming it so our website can read it, and it will 8:24 write a file called content.json. 8:26 And we can see this as much
+shorter. 8:28 It is only the content that we really need to use in our website, 8:32 and it's even doing some processing. 8:34 So our code block component down here is actually
+using highlight 8:38 js and rendering the HTML. 8:40 So we don't have to do any of that interactivity on the front end. 8:42 We can simply bring the necessary CSS and we have a
+nice looking website. 8:47 So that's what we're going to cover over this four part series. 8:49 And if you go through it step by step by step, you'll learn the ins and outs of 8:53
+how I'm thinking about this opportunity, and you'll have this foundation that 8:56 you can take, you can add your own opinions, your own code to it, and you 9:00 will be able to
+use Notion as to CMS to power increasingly complex websites. 9:07 I'll see you right back here for part two. All From the series From Sean C Davis Content management system Web
+Development Software framework Web pages 0:00 Hey, it's Matt. Today we're talking 0:01 Notion on Replet and I'm going to show 0:03 you how to build with our new notion 0:04
+integration. I'm going to walk through 0:06 it end to end so you understand exactly 0:07 how you can get started building. But 0:09 what we're going to build is something 0:11 like
+this. So in front of me I have a 0:13 blog. It's pretty clean blog. I'd like 0:16 to think so. I'd like to think I have 0:17 good taste. You can be the judge of 0:19 that. Um with
+some posts, some whimsical 0:22 posts. Uh and this might just seem like 0:24 a normal app you could build on Replet. 0:26 I do this stuff all the time. The cool 0:28 part here is
+that these posts are coming 0:30 from a notion table and we're we're 0:33 pulling these posts in with our notion 0:34 integration and servicing them on our 0:37 app. That's pretty
+cool. So, the way 0:39 this video is going to work is I'm going 0:40 to walk through how to do this. I'm 0:42 going to start with a prompt agent. I'm 0:43 going to take a step back
+while agents 0:44 building. We're going to talk about 0:45 concepts, talk about what's going on, 0:47 and then we're going to dig in, edit the 0:49 code a little bit during the
+agent run, 0:51 uh, and build our app, debug, fix 0:54 things, learn prompting. So, if you want 0:56 to follow along with this in real time, 0:57 you can do just that. Um, uh, so
+what 1:00 are we doing here? We're going to get 1:01 started. We're going to go to home. 1:04 We're going to go to agent, and we're 1:05 going to say, "Hey, help me create a 1:07
+hyper minimalistic blog using Notion as 1:09 a CMS or content management system." The 1:11 blog should pull posts from a Notion 1:13 page. The table in the page has the 1:15
+following columns. Boom. You should 1:17 generate a slug for each post. Make the 1:19 blog theme black with white text. Keep 1:20 it extremely minimal. And then I'm 1:22 scraping
+the contents of this URL of my 1:24 actual portfolio just for some, you 1:26 know, uh, nice little detail because I 1:28 want the preview to kind of be personal 1:30 to me. I want
+to build something that, 1:31 you know, kind of resonates with me. Uh, 1:34 we won't really persist the the data. 1:36 But I like to do this cuz like if you 1:38 have a description
+or you want your site 1:39 to be kind of customized and relevant, 1:41 you can do that off the bat. Now, the 1:43 first thing agents going to do here is 1:45 it's going to throw us
+a little uh, 1:47 plan. Plan's important. Um, it makes 1:50 sure that we know agents on the right 1:51 track. You can see it's building a 1:53 modern web app with notion. That's
+what 1:55 we want. We're going to prove that. Now, 1:57 after the plan, the first thing agent 1:59 does is it generates a visual preview of 2:00 our app. This is important not just
+for 2:02 us, but it actually helps AI build 2:04 better. So, you're going to see like 2:05 some CSS and some HTML start streaming 2:07 into the web view here. Um, or preview 2:11
+rather. That's normal. Uh, and then very 2:13 shortly, what we should see is uh a 2:15 preview of our app. So, uh, we can check 2:17 to make sure that it kind of looks like 2:19
+what we'd expect. 2:21 Um, minimal blog should have some posts. 2:25 And these are actually, uh, these are 2:28 actually posts from, um, my portfolio 2:30 site, which is kind of
+neat. So, it's 2:32 very tailored to me. The design seems to 2:33 be on point. So, that's off to a good 2:35 start. Let's take a look at the Notion 2:38 integration. So, the cool
+thing about 2:40 this integration, um, is that there are 2:43 really two main patterns. You can pull 2:45 data from your notion database. Uh or 2:47 you can push data to your
+notion base 2:49 database. Now, I guess if if we're 2:51 really getting crazy, sometimes I get 2:53 crazy. Uh you could pull and push data 2:55 to that notion database. And those
+would 2:57 be some pretty powerful apps. But I'm 2:58 thinking pulling things like blog posts, 3:00 job listings, other data or trackers, 3:03 you know, habit trackers, workout
+logs, 3:05 cool stuff from Notion. I'm thinking 3:06 about pushing form submissions, surveys, 3:08 rankings. And the types of apps that I 3:10 build with these patterns are maybe a
+3:12 CMS, right, where I'm just writing blogs 3:14 and notion and then I already built this 3:15 front end. I don't have to worry about 3:16 the front end. It's already deployed. I
+3:18 don't have to touch it. Or I'm building 3:19 a site that, you know, maybe logs my 3:21 workouts to a notion database. Or I 3:23 already have this database and I want to 3:24
+visualize those workouts. Maybe a fully 3:26 customized job listing site that puts 3:28 forms in notion. You could also think 3:30 about integrating forms into your 3:31 website,
+not with like Google form 3:33 styling, but with actually the styling 3:35 of your website if your website's built 3:36 on replet. You can think about adding 3:38 surveys or
+interactive voting apps. And 3:41 what I realized when I started building 3:44 with this integration is that the power 3:45 of it comes from le leveraging 3:47 integrations. So
+we're already building 3:50 cool stuff on replet. We're already 3:51 building cool stuff on notion. And then 3:52 we're going to use agent to build and 3:53 deploy this thing. The
+power is that 3:55 replet has other integrations. So we 3:57 recently released replet off which means 3:59 you can add users and log into your apps 4:00 just with natural language.
+So now I 4:02 have a notion app on replet that I can 4:04 log into. That's pretty cool. We also 4:06 have like other integrations like 4:08 OpenAI. We have a bunch of integrations.
+4:10 You should check them out in our 4:11 documentation. Um the same is true of 4:14 Notion, right? We're going to be pushing 4:15 and pulling data from Notion, which is 4:17 an
+amazing app, but you could also start 4:19 to add notion automations, maybe some of 4:21 their AI integrations, their email 4:23 hooks, some of the formulas. That's even 4:25 what
+I started to do here, my blog post, 4:28 right? I just wrote these titles and I 4:29 was like, "Oh, I need to make this 4:30 video." Then I used AI to summarize it 4:33 to to build
+the description. So I used 4:34 AI to generate the body and then I 4:36 actually just used a formula to 4:38 calculate the reading time. And so I'm 4:41 building automations in
+notion. You 4:43 know, I'm tying in formulas. I could 4:45 pull in other automations, you know, 4:47 like when this thing this this database 4:50 is updated, then I send a message
+to 4:52 Slack or I send an email. Um, and that's 4:54 I think the power and the beauty of this 4:56 integration. Uh, so what are we going to 5:00 do? Well, we're going to prompt
+agent. 5:01 Check. Already did that. We're going to 5:03 create a connection in notion. We're 5:04 going to create a page with a database. 5:06 We already have that. We're going to
+5:07 enter our connection details in replet. 5:09 And we're going to get started building. 5:10 So again, this is going to be in real 5:11 time. You can follow along. We started
+5:13 building. We're going to go over to 5:14 replet just see what's going on. Um, 5:17 Replet is still coding up this website. 5:20 Uh, what I would expect is that when 5:22 it's
+done, we're probably going to get 5:23 an error. And I think this is like one 5:25 of the important things to understand 5:27 when you're building with AI. and that 5:28 is that
+you should expect to see some 5:31 errors or for there to be some speed 5:32 bumps. And I think we all as builders 5:34 got used to things just working and 5:37 everything being no
+code and everything 5:38 being low code um that we kind of forgot 5:41 how to debug things or fix things. And 5:43 you know like when you build with a 5:44 Google spreadsheet
+formulas break like 5:47 all the time. But we've just realized 5:49 like we've come to learn like okay well 5:50 now I have to do some work to get over 5:52 that hurdle of the

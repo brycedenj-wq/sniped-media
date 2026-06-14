@@ -1,0 +1,227 @@
+(gateway, remote gateway), provider settings, and allowlists. * `credentials/**`: channel credentials (example: WhatsApp creds), pairing allowlists, legacy OAuth imports. *
+`agents/<agentId>/agent/auth-profiles.json`: API keys, token profiles, OAuth tokens, and optional `keyRef`/`tokenRef`. * `agents/<agentId>/agent/codex-home/**`: per-agent Codex
+app-server account, config, skills, plugins, native thread state, and diagnostics. * `secrets.json` (optional): file-backed secret payload used by `file` SecretRef providers
+(`secrets.providers`). * `agents/<agentId>/agent/auth.json`: legacy compatibility file. Static `api_key` entries are scrubbed when discovered. * `agents/<agentId>/sessions/**`:
+session transcripts (`*.jsonl`) + routing metadata (`sessions.json`) that can contain private messages and tool output. * bundled plugin packages: installed plugins (plus their
+`node_modules/`). * `sandboxes/**`: tool sandbox workspaces; can accumulate copies of files you read/write inside the sandbox. Hardening tips: * Keep permissions tight (`700` on
+dirs, `600` on files). * Use full-disk encryption on the gateway host. * Prefer a dedicated OS user account for the Gateway if the host is shared. ### Workspace `.env` files
+OpenClaw loads workspace-local `.env` files for agents and tools, but never lets those files silently override gateway runtime controls. * Any key that starts with `OPENCLAW_*` is
+blocked from untrusted workspace `.env` files. * Channel endpoint settings for Matrix, Mattermost, IRC, and Synology Chat are also blocked from workspace `.env` overrides, so
+cloned workspaces cannot redirect bundled connector traffic through local endpoint config. Endpoint env keys (such as `MATRIX_HOMESERVER`, `MATTERMOST_URL`, `IRC_HOST`,
+`SYNOLOGY_CHAT_INCOMING_URL`) must come from the gateway process environment or `env.shellEnv`, not from a workspace-loaded `.env`. * The block is fail-closed: a new
+runtime-control variable added in a future release cannot be inherited from a checked-in or attacker-supplied `.env`; the key is ignored and the gateway keeps its own value. *
+Trusted process/OS environment variables (the gateway's own shell, launchd/systemd unit, app bundle) still apply - this only constrains `.env` file loading. Why: workspace `.env`
+files frequently live next to agent code, get committed by accident, or get written by tools. Blocking the whole `OPENCLAW_*` prefix means adding a new `OPENCLAW_*` flag later can
+never regress into silent inheritance from workspace state. ### Logs and transcripts (redaction and retention) Logs and transcripts can leak sensitive info even when access
+controls are correct: * Gateway logs may include tool summaries, errors, and URLs. * Session transcripts can include pasted secrets, file contents, command output, and links.
+Recommendations: * Keep log and transcript redaction on (`logging.redactSensitive: "tools"`; default). * Add custom patterns for your environment via `logging.redactPatterns`
+(tokens, hostnames, internal URLs). * When sharing diagnostics, prefer `openclaw status --all` (pasteable, secrets redacted) over raw logs. * Prune old session transcripts and log
+files if you don't need long retention. Details: [Logging](/gateway/logging) ### DMs: pairing by default ```json5 theme={"theme":{"light":"min-light","dark":"min-dark"}} {
+channels: { whatsapp: { dmPolicy: "pairing" } }, } ``` ### Groups: require mention everywhere ```json theme={"theme":{"light":"min-light","dark":"min-dark"}} { "channels": {
+"whatsapp": { "groups": { "*": { "requireMention": true } } } }, "agents": { "list": [ { "id": "main", "groupChat": { "mentionPatterns": ["@openclaw", "@mybot"] } } ] } } ``` In
+group chats, only respond when explicitly mentioned. ### Separate numbers (WhatsApp, Signal, Telegram) For phone-number-based channels, consider running your AI on a separate phone
+number from your personal one: * Personal number: Your conversations stay private * Bot number: AI handles these, with appropriate boundaries ### Read-only mode (via sandbox and
+tools) You can build a read-only profile by combining: * `agents.defaults.sandbox.workspaceAccess: "ro"` (or `"none"` for no workspace access) * tool allow/deny lists that block
+`write`, `edit`, `apply_patch`, `exec`, `process`, etc. Additional hardening options: * `tools.exec.applyPatch.workspaceOnly: true` (default): ensures `apply_patch` cannot
+write/delete outside the workspace directory even when sandboxing is off. Set to `false` only if you intentionally want `apply_patch` to touch files outside the workspace. *
+`tools.fs.workspaceOnly: true` (optional): restricts `read`/`write`/`edit`/`apply_patch` paths and native prompt image auto-load paths to the workspace directory (useful if you
+allow absolute paths today and want a single guardrail). * Keep filesystem roots narrow: avoid broad roots like your home directory for agent workspaces/sandbox workspaces. Broad
+roots can expose sensitive local files (for example state/config under `~/.openclaw`) to filesystem tools. ### Secure baseline (copy/paste) One "safe default" config that keeps the
+Gateway private, requires DM pairing, and avoids always-on group bots: ```json5 theme={"theme":{"light":"min-light","dark":"min-dark"}} { gateway: { mode: "local", bind:
+"loopback", port: 18789, auth: { mode: "token", token: "your-long-random-token" }, }, channels: { whatsapp: { dmPolicy: "pairing", groups: { "*": { requireMention: true } }, }, },
+} ``` If you want "safer by default" tool execution too, add a sandbox + deny dangerous tools for any non-owner agent (example below under "Per-agent access profiles"). Built-in
+baseline for chat-driven agent turns: non-owner senders cannot use the `cron` or `gateway` tools. ## Sandboxing (recommended) Dedicated doc: [Sandboxing](/gateway/sandboxing) Two
+complementary approaches: * **Run the full Gateway in Docker** (container boundary): [Docker](/install/docker) * **Tool sandbox** (`agents.defaults.sandbox`, host gateway +
+sandbox-isolated tools; Docker is the default backend): [Sandboxing](/gateway/sandboxing) <Note> To prevent cross-agent access, keep `agents.defaults.sandbox.scope` at `"agent"`
+(default) or `"session"` for stricter per-session isolation. `scope: "shared"` uses a single container or workspace. </Note> Also consider agent workspace access inside the
+sandbox: * `agents.defaults.sandbox.workspaceAccess: "none"` (default) keeps the agent workspace off-limits; tools run against a sandbox workspace under `~/.openclaw/sandboxes` *
+`agents.defaults.sandbox.workspaceAccess: "ro"` mounts the agent workspace read-only at `/agent` (disables `write`/`edit`/`apply_patch`) * `agents.defaults.sandbox.workspaceAccess:
+"rw"` mounts the agent workspace read/write at `/workspace` * Extra `sandbox.docker.binds` are validated against normalized and canonicalized source paths. Parent-symlink tricks
+and canonical home aliases still fail closed if they resolve into blocked roots such as `/etc`, `/var/run`, or credential directories under the OS home. <Warning> `tools.elevated`
+is the global baseline escape hatch that runs exec outside the sandbox. The effective host is `gateway` by default, or `node` when the exec target is configured to `node`. Keep
+`tools.elevated.allowFrom` tight and do not enable it for strangers. You can further restrict elevated per agent via `agents.list[].tools.elevated`. See [Elevated
+mode](/tools/elevated). </Warning> ### Sub-agent delegation guardrail If you allow session tools, treat delegated sub-agent runs as another boundary decision: * Deny
+`sessions_spawn` unless the agent truly needs delegation. * Keep `agents.defaults.subagents.allowAgents` and any per-agent `agents.list[].subagents.allowAgents` overrides
+restricted to known-safe target agents. * For any workflow that must remain sandboxed, call `sessions_spawn` with `sandbox: "require"` (default is `inherit`). * `sandbox:
+"require"` fails fast when the target child runtime is not sandboxed. ## Browser control risks Enabling browser control gives the model the ability to drive a real browser. If that
+browser profile already contains logged-in sessions, the model can access those accounts and data. Treat browser profiles as **sensitive state**: * Prefer a dedicated profile for
+the agent (the default `openclaw` profile). * Avoid pointing the agent at your personal daily-driver profile. * Keep host browser control disabled for sandboxed agents unless you
+trust them. * The standalone loopback browser control API only honors shared-secret auth (gateway token bearer auth or gateway password). It does not consume trusted-proxy or
+Tailscale Serve identity headers. * Treat browser downloads as untrusted input; prefer an isolated downloads directory. * Disable browser sync/password managers in the agent
+profile if possible (reduces blast radius). * For remote gateways, assume "browser control" is equivalent to "operator access" to whatever that profile can reach. * Keep the
+Gateway and node hosts tailnet-only; avoid exposing browser control ports to LAN or public Internet. * Disable browser proxy routing when you don't need it
+(`gateway.nodes.browser.mode="off"`). * Chrome MCP existing-session mode is **not** "safer"; it can act as you in whatever that host Chrome profile can reach. ### Browser SSRF
+policy (strict by default) OpenClaw's browser navigation policy is strict by default: private/internal destinations stay blocked unless you explicitly opt in. * Default:
+`browser.ssrfPolicy.dangerouslyAllowPrivateNetwork` is unset, so browser navigation keeps private/internal/special-use destinations blocked. * Legacy alias:
+`browser.ssrfPolicy.allowPrivateNetwork` is still accepted for compatibility. * Opt-in mode: set `browser.ssrfPolicy.dangerouslyAllowPrivateNetwork: true` to allow
+private/internal/special-use destinations. * In strict mode, use `hostnameAllowlist` (patterns like `*.example.com`) and `allowedHostnames` (exact host exceptions, including
+blocked names like `localhost`) for explicit exceptions. * Navigation is checked before request and best-effort re-checked on the final `http(s)` URL after navigation to reduce
+redirect-based pivots. Example strict policy: ```json5 theme={"theme":{"light":"min-light","dark":"min-dark"}} { browser: { ssrfPolicy: { dangerouslyAllowPrivateNetwork: false,
+hostnameAllowlist: ["*.example.com", "example.com"], allowedHostnames: ["localhost"], }, }, } ``` ## Per-agent access profiles (multi-agent) With multi-agent routing, each agent
+can have its own sandbox + tool policy: use this to give **full access**, **read-only**, or **no access** per agent. See [Multi-Agent Sandbox &
+Tools](/tools/multi-agent-sandbox-tools) for full details and precedence rules. Common use cases: * Personal agent: full access, no sandbox * Family/work agent: sandboxed +
+read-only tools * Public agent: sandboxed + no filesystem/shell tools ### Example: full access (no sandbox) ```json5 theme={"theme":{"light":"min-light","dark":"min-dark"}} {
+agents: { list: [ { id: "personal", workspace: "~/.openclaw/workspace-personal", sandbox: { mode: "off" }, }, ], }, } ``` ### Example: read-only tools + read-only workspace
+```json5 theme={"theme":{"light":"min-light","dark":"min-dark"}} { agents: { list: [ { id: "family", workspace: "~/.openclaw/workspace-family", sandbox: { mode: "all", scope:
+"agent", workspaceAccess: "ro", }, tools: { allow: ["read"], deny: ["write", "edit", "apply_patch", "exec", "process", "browser"], }, }, ], }, } ``` ### Example: no
+filesystem/shell access (provider messaging allowed) ```json5 theme={"theme":{"light":"min-light","dark":"min-dark"}} { agents: { list: [ { id: "public", workspace:
+"~/.openclaw/workspace-public", sandbox: { mode: "all", scope: "agent", workspaceAccess: "none", }, // Session tools can reveal sensitive data from transcripts. By default OpenClaw
+limits these tools // to the current session + spawned subagent sessions, but you can clamp further if needed. // See `tools.sessions.visibility` in the configuration reference.
+tools: { sessions: { visibility: "tree" }, // self | tree | agent | all allow: [ "sessions_list", "sessions_history", "sessions_send", "sessions_spawn", "session_status",
+"whatsapp", "telegram", "slack", "discord", ], deny: [ "read", "write", "edit", "apply_patch", "exec", "process", "browser", "canvas", "nodes", "cron", "gateway", "image", ], }, },
+], }, } ``` ## Incident response If your AI does something bad: ### Contain 1. **Stop it:** stop the macOS app (if it supervises the Gateway) or terminate your `openclaw gateway`
+process. 2. **Close exposure:** set `gateway.bind: "loopback"` (or disable Tailscale Funnel/Serve) until you understand what happened. 3. **Freeze access:** switch risky DMs/groups
+to `dmPolicy: "disabled"` / require mentions, and remove `"*"` allow-all entries if you had them. ### Rotate (assume compromise if secrets leaked) 1. Rotate Gateway auth
+(`gateway.auth.token` / `OPENCLAW_GATEWAY_PASSWORD`) and restart. 2. Rotate remote client secrets (`gateway.remote.token` / `.password`) on any machine that can call the Gateway.
+3. Rotate provider/API credentials (WhatsApp creds, Slack/Discord tokens, model/API keys in `auth-profiles.json`, and encrypted secrets payload values when used). ### Audit 1.
+Check Gateway logs: `/tmp/openclaw/openclaw-YYYY-MM-DD.log` (or `logging.file`). 2. Review the relevant transcript(s): `~/.openclaw/agents/<agentId>/sessions/*.jsonl`. 3. Review
+recent config changes (anything that could have widened access: `gateway.bind`, `gateway.auth`, dm/group policies, `tools.elevated`, plugin changes). 4. Re-run `openclaw security
+audit --deep` and confirm critical findings are resolved. ### Collect for a report * Timestamp, gateway host OS + OpenClaw version * The session transcript(s) + a short log tail
+(after redacting) * What the attacker sent + what the agent did * Whether the Gateway was exposed beyond loopback (LAN/Tailscale Funnel/Serve) ## Secret scanning CI runs the
+pre-commit `detect-private-key` hook over the repository. If it fails, remove or rotate the committed key material, then reproduce locally: ```bash
+theme={"theme":{"light":"min-light","dark":"min-dark"}} pre-commit run --all-files detect-private-key ``` ## Reporting security issues Found a vulnerability in OpenClaw? Please
+report responsibly: 1. Email: [security@openclaw.ai](mailto:security@openclaw.ai) 2. Don't post publicly until fixed 3. We'll credit you (unless you prefer anonymity) Aperture beta
+is now available. Start building with AI safely in minutes. READ MORE -> Blog Docs Download Contact sales Platform Meet Tailscale How Tailscale Works WireGuard® for Enterprises
+Features Integrations Docs Download Compare Tailscale Products Secure Access to AI Business VPN PAM CI/CD Connectivity Workload Connectivity Edge & IoT Homelab aperture dashboard
+Aperture by Tailscale Unified AI governance for AI agents and users. Join us at TailscaleUp Tailscale’s conference for engineering, security, and IT leaders. Learn more Solutions
+Solutions Cloud Connectivity Infrastructure Access Zero Trust Networking Remote Access Kubernetes Networking Secure SaaS Customers Customer Stories Instacart Cribl Mercury Hugging
+Face All Customer Stories Community Join the Community About Community Tailscale Insiders Community Projects Bring Tailscale to Work Events Events and Webinars TailscaleUp Learn
+more Docs Blog Changelog Press Join us at TailscaleUp Tailscale’s conference for engineering, security, and IT leaders. Learn more Partnerships Partner Opportunities Become a
+Partner Community Projects Integrations Contact Partnerships Team Pricing Login Get started - it's free! The best secure connectivity platform for the AI era A Zero Trust
+identity-based connectivity platform that replaces your legacy VPN, SASE, and PAM and connects remote teams, multi-cloud environments, CI/CD pipelines, Edge & IoT devices, and AI
+workloads. Start connecting devices Contact sales Business VPN Secure internal access to apps and data, anywhere. Privileged Access Auditable access to SSH, K8s, databases, and
+more. Securing AI Bring AI usage into focus with Aperture. Infra access Direct access to infra. No bastions required. Zero Trust networking Enforce least privilege with
+identity-based access. Product Business VPN Remote access for your global team Replace your clunky legacy VPN Infrastructure access to wherever your resources live, including
+Kubernetes clusters Connect SaaS and third-party apps without public exposure Works whether you’re in one or multi-cloud Learn more Laptop screen with a tailscale status popup
+30,000 businesses choose Tailscale Corelight logo 1,000+ hours saved with fewer connectivity issues. Read case study Cribl logo 25x headcount growth without dedicated IT resources
+for config or onboarding. Read case study Instacart logo 90% reduction in internal support requests. Read case study Cohere logo Duolingo logo Hugging Face logo Mistral AI logo
+Microsoft logo Nvidia logo Cribl gray logo Instacart gray logo Mercury logo Mercari gray logo Netlify gray logo Gofundmegraylogo revolut gray logo Easy, secure, identity-based
+access to anything Tailscale deploys quickly and enables Zero Trust access to any resource on your network. From CI/CD runners across multi-cloud environments, to SaaS tools and
+infrastructure, Tailscale connects it all, seamlessly. IT Security DevOps Engineering An illustration showing how IT might use Tailscale Installation takes minutes Get started in
+minutes. Integrations apply policies to your teams at scale. Switching is easy Cross-platform and infrastructure agnostic to give the flexibility you need. Bridge hybrid
+environments Across clouds or on-prem, Tailscale’s mesh overlay network connects it all. Developer approved, But don’t just take our word for it. @sharathpatali Sharath Patali
+Setting up a mesh VPN on all my devices was so damn easy thanks to @Tailscale. A tightly sealed network of remote devices with almost no configuration and also ease of adding a new
+device to the mesh is just what I wanted. Amazing work @Tailscale! @LiamJKeegan Liam Keegan Uhh this is sweet! Redirecting SSL authentication to Tailscale to handle it for you
+eliminates the need to manage PKI at scale, or go through the nightmare of changing keys out when someone leaves. And, EVERYTHING is protected, regardless of where the workload
+lives. AWESOME! MP @moderat10n Michael P. After installing @Tailscale on a bunch of machines on my home network (Linux x86 + aarch64, MacOS, Windows) I've just ventured out. Had to
+restart the process but holy moly, just SSH'ed into my boxes, building code and pushing configs around like I'm home. Amazing. Converted TL @tessalau Tessa Lau Just paid for
+@Tailscale. Installed it on our robots; so far so good. Compared to OpenVPN: * Serverless * Always on * Same config in office & field * Scales to large # devices * GUI-based ACL
+w/SSO * Fixed IPs, DNS-friendly * Dead simple config+use @morgallant Morgan Gallant The beauty of @Tailscale is that they enable people to make their own personal internet, for
+free in most cases. It’s this weird paradigm shift, since you have to actively work to make applications insecure rather than the other way around. @johnrlynch John Lynch If you
+deal with servers in any way drop everything and get this. VPN nirvana. @Tailscale https://tailscale.com @devilmonastery Michael R. @Tailscale busts double nat (travel router ->
+plane wifi) and connects me to my home server so I can silence a prometheus humidity alert (can’t really add water to the humidifier from here). @oddur Oddur Magnusson Sometimes
+you come across a tool that changes how you see things, @Tailscale is one of those. Thinking in terms of point 2 point VPN tunnels seems so outdated once you have seen that lights.
+@jgavinray J. Gavin Ray Been using @Tailscale for a while at work and personally. Who would have thought networking could be... easy?! @dixdotdev big jim The campus WiFi also
+prevented my original Wireguard VPN. Multiple NATs, blocked ports... Tailscale just figures it all out. There's honestly dozens of other reasons, but for me it just helps me to be
+portable. I run pihole too. I'd be lost without it now! @TheodoreJSalvo Theo Salvo Oh @Tailscale, I’ve put you off for so long not knowing what I was missing. In advance of
+#KubeCon I now can manage my home NAS and my home k8s cluster…from my phone! Thank you! @falsefalse llia Thanks to @Tailscale being available as a package for @Synology I was able
+to renew @letsencrypt certificate on my home NAS while being 8000 kilometers away from it. Amazing piece of tech 🥹 @sharathpatali Sharath Patali Setting up a mesh VPN on all my
+devices was so damn easy thanks to @Tailscale. A tightly sealed network of remote devices with almost no configuration and also ease of adding a new device to the mesh is just what
+I wanted. Amazing work @Tailscale! @LiamJKeegan Liam Keegan Uhh this is sweet! Redirecting SSL authentication to Tailscale to handle it for you eliminates the need to manage PKI at
+scale, or go through the nightmare of changing keys out when someone leaves. And, EVERYTHING is protected, regardless of where the workload lives. AWESOME! MP @moderat10n Michael
+P. After installing @Tailscale on a bunch of machines on my home network (Linux x86 + aarch64, MacOS, Windows) I've just ventured out. Had to restart the process but holy moly,
+just SSH'ed into my boxes, building code and pushing configs around like I'm home. Amazing. Converted TL @tessalau Tessa Lau Just paid for @Tailscale. Installed it on our robots;
+so far so good. Compared to OpenVPN: * Serverless * Always on * Same config in office & field * Scales to large # devices * GUI-based ACL w/SSO * Fixed IPs, DNS-friendly * Dead
+simple config+use @morgallant Morgan Gallant The beauty of @Tailscale is that they enable people to make their own personal internet, for free in most cases. It’s this weird
+paradigm shift, since you have to actively work to make applications insecure rather than the other way around. @johnrlynch John Lynch If you deal with servers in any way drop
+everything and get this. VPN nirvana. @Tailscale https://tailscale.com @devilmonastery Michael R. @Tailscale busts double nat (travel router -> plane wifi) and connects me to my
+home server so I can silence a prometheus humidity alert (can’t really add water to the humidifier from here). @oddur Oddur Magnusson Sometimes you come across a tool that changes
+how you see things, @Tailscale is one of those. Thinking in terms of point 2 point VPN tunnels seems so outdated once you have seen that lights. @jgavinray J. Gavin Ray Been using
+@Tailscale for a while at work and personally. Who would have thought networking could be... easy?! @dixdotdev big jim The campus WiFi also prevented my original Wireguard VPN.
+Multiple NATs, blocked ports... Tailscale just figures it all out. There's honestly dozens of other reasons, but for me it just helps me to be portable. I run pihole too. I'd be
+lost without it now! @TheodoreJSalvo Theo Salvo Oh @Tailscale, I’ve put you off for so long not knowing what I was missing. In advance of #KubeCon I now can manage my home NAS and
+my home k8s cluster…from my phone! Thank you! @falsefalse llia Thanks to @Tailscale being available as a package for @Synology I was able to renew @letsencrypt certificate on my
+home NAS while being 8000 kilometers away from it. Amazing piece of tech 🥹 Over 100 integrations. Cross-platform. Infrastructure agnostic. See all integrations Secure your
+networking using identity with Tailscale Get started Contact sales Company About Tailscale Careers Press Open Source Help & Support Support Sales Partnerships Security Changelog
+Tailscale Status Legal Terms of Service Privacy Policy California Notice Cookie Notice Your privacy choicesCheck mark and x on a white and blue pill button All Legal Social Discord
+GitHub LinkedIn Mastodon Reddit YouTube X (Twitter) © 2026 Tailscale Inc. Tailscale is a registered trademark of Tailscale Inc. | WireGuard is a registered trademark of Jason A.
+Donenfeld ClawHub Search skills and plugins System Light Dark Sign in with GitHub Skills Plugins Publishers Docs BUILT BY THE COMMUNITY. Equip Install Unleash. Ship. Build. Create.
+Unleash. Tools built by thousands, ready in one search. What are you looking for? Search self-improving agent GitHub integration security soul dashboard builder Featured skills
+View all X Search by jaaneek Skill Search X (Twitter) posts using the xAI API. Use when the user wants to find tweets, search X/Twitter, look up what people are saying on X, or
+find social med... 115 12.5k Install Trello by steipete Skill Manage Trello boards, lists, and cards via the Trello REST API. 148 38.4k Install Slack by steipete Skill Use when you
+need to control Slack from Clawdbot via the slack tool, including reacting to messages or pinning/unpinning items in Slack channels or DMs. 145 44.4k Install Caldav Calendar by
+asleep123 Skill Sync and query CalDAV calendars (iCloud, Google, Fastmail, Nextcloud, etc.) using vdirsyncer + khal. Works on Linux. 230 28.3k Install Answer Overflow by
+rhyssullivan Skill Search indexed Discord community discussions via Answer Overflow. Find solutions to coding problems, library issues, and community Q&A that only exist in Discord
+conversations. 168 18.9k Install X Search by jaaneek Skill Search X (Twitter) posts using the xAI API. Use when the user wants to find tweets, search X/Twitter, look up what people
+are saying on X, or find social med... 115 12.5k Install Trello by steipete Skill Manage Trello boards, lists, and cards via the Trello REST API. 148 38.4k Install Slack by
+steipete Skill Use when you need to control Slack from Clawdbot via the slack tool, including reacting to messages or pinning/unpinning items in Slack channels or DMs. 145 44.4k
+Install Caldav Calendar by asleep123 Skill Sync and query CalDAV calendars (iCloud, Google, Fastmail, Nextcloud, etc.) using vdirsyncer + khal. Works on Linux. 230 28.3k Install
+Answer Overflow by rhyssullivan Skill Search indexed Discord community discussions via Answer Overflow. Find solutions to coding problems, library issues, and community Q&A that
+only exist in Discord conversations. 168 18.9k Install Skills Agent skill bundles Plugins Gateway plugins Publishers Builders and orgs 52.7k tools 180k users 12M downloads 4.8 avg
+rating Trending Now View all Self-Improving Agent by pskoett Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation
+fails unexpectedly, (2) User corrects Clau... 3.6k 440.1k Install Skill Vetter by spclaudehome Security-first skill vetting for AI agents. Use before installing any skill from
+ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns. 1.1k 242.5k Install Polymarket by joelchance Query Polymarket prediction
+markets. Check odds, find trending markets, search events, track price movements. 130 191.4k Install Self-Improving + Proactive Agent by ivangdavila Self-reflection +
+Self-criticism + Self-learning + Self-organizing memory. Agent evaluates its own work, catches mistakes, and improves permanently. Use when... 1.1k 188.4k Install ontology by
+oswalpalash Typed knowledge graph for structured agent memory and composable skills. Use when creating/querying entities (Person, Project, Task, Event, Document), linkin... 608
+181.9k Install Github by steipete Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries. 602
+179.5k Install Featured plugins View all Opik by @vincentkoc OpenClaw Opik exporter — sends LLM traces to Opik v0.2.14 Install OpenClaw Plugin For Codex App Server by @huntharo
+Independent OpenClaw plugin for the Codex App Server protocol v0.5.0 Install Apify by @protoss70 Web scraping and AI-powered data extraction via Apify for OpenClaw — market
+research, competitor intelligence, trend analysis, lead generation, e-commerce, social media analytics, and more. v0.1.0 Install Browse Skills Plugins Audits Publish Publish Skill
+Publish Plugin Community GitHub OpenClaw Platform Deployed on Vercel Powered by ConvexSkip to content Navigation Menu Platform Solutions Resources Open Source Enterprise Pricing
+Search or jump to... Sign in Sign up openclaw / openclaw Public Code Issues 3.6k Pull requests 3.5k Actions Security and quality 535 Insights openclaw/openclaw Go to file Name
+mednsaltaywtf medns and altaywtf fix(cli): fix flaky config set help text test caused by env var leaka… d124c5a · 1 hour ago .agents refactor(telegram): simplify native draft
+progress path 5 hours ago .github fix(ci): authenticate proof verdict markers (#83692) 4 hours ago .vscode feat(DX): Add Out-of-the-Box Support for Debugging in VSCode-Based ID… 2
+weeks ago apps fix(macos): normalize settings pane margins 7 hours ago changelog/fragments feat(signal): support container REST API last week config test: add codex media path
+docker e2e 9 hours ago deploy chore: reduce root cleanup files 2 weeks ago docs test(qa-lab): add personal share-safe diagnostics scenario (#83717) 3 hours ago extensions
+test(qa-lab): add personal share-safe diagnostics scenario (#83717) 3 hours ago git-hooks fix(git-hooks): skip ignored staged paths 3 weeks ago packages fix: stop swallowing mkdir
+errors in memory ensureDir (#41259) 5 hours ago patches build(deps): consume fs-safe 0.2.3 5 days ago qa test(qa-lab): add personal share-safe diagnostics scenario (#83717) 3 hours
+ago scripts fix(ci): preserve Barnacle proof labels (#83735) 2 hours ago security fix: keep queued system event authority structured 3 days ago skills fix(skill-creator): reject
+empty name and description in skill valida… ( 5 hours ago src fix(cli): fix flaky config set help text test caused by env var leaka… 1 hour ago test fix(ci): preserve Barnacle
+proof labels (#83735) 2 hours ago ui fix(ui): render session-scoped tool events (#83734) 2 hours ago .crabbox.yaml fix: harden generated surface pruning 2 weeks ago .dockerignore
+chore: remove root assets 2 weeks ago .env.example docs(docker): document auth profile key mount last week .gitattributes fix: remove trailing newline from CLAUDE.md symlink target
+(#21160) 3 months ago .gitignore docs(skills): add release ci workflow skill 4 days ago .npmrc build(pnpm): upgrade workspace to pnpm 11 last week .oxfmtrc.jsonc build: pin
+explicit oxfmt defaults last week .oxlintrc.json chore(lint): remove underscore-dangle allow list (#83542) 8 hours ago .pre-commit-config.yaml chore: move swift configs under
+config 2 weeks ago .semgrepignore docs(outbound): add CLAUDE.md sibling symlink for AGENTS.md last week AGENTS.md docs: clarify formatter-friendly code shape 8 hours ago
+CHANGELOG.md fix(outbound): resolve send-capable channel registry (#83733) 1 hour ago CLAUDE.md fix: remove trailing newline from CLAUDE.md symlink target (#21160) 3 months ago
+CONTRIBUTING.md docs: clarify contributor changelog ownership last week Dockerfile feat(docker): add image apt package build arg 16 hours ago LICENSE Initial commit 6 months ago
+README.md build: update pi dependencies to 0.75.1 16 hours ago SECURITY.md build: align node version floor 16 hours ago VISION.md docs: clarify plugin api extension path 3 weeks
+ago appcast.xml chore: publish 2026.5.12 mac appcast 3 days ago docker-compose.yml fix(docker): pin setup cli container paths 5 days ago fly.toml revert: Switch back to tsc for
+compiling. 4 months ago openclaw.mjs fix(ci): restore release e2e checks 7 hours ago package.json test: add codex media path docker e2e 9 hours ago pnpm-lock.yaml ui: highlight
+WebChat code blocks (#83569) 5 hours ago pnpm-workspace.yaml build: update proxyline dependency 15 hours ago render.yaml docs(render): fix port env var, remove nonexistent setup
+wizard 2 months ago tsconfig.core.json build: enable stricter TypeScript checks last week tsconfig.core.projects.json chore: move test tsconfigs 2 weeks ago
+tsconfig.extensions.json build: enable stricter TypeScript checks last week tsconfig.extensions.projects.json chore: move test tsconfigs 2 weeks ago tsconfig.json build: enable
+stricter TypeScript checks last week tsconfig.plugin-sdk.dts.json Add Codex happy path prompt snapshots (#75807) 2 weeks ago tsconfig.projects.json perf: speed up type check gate
+last month tsdown.config.ts fix(build): bundle zod inline to fix pnpm global install resolution (#… yesterday vitest.config.ts test: move Vitest configs under test last month
+Repository files navigation README Contributing MIT license Security 🦞 OpenClaw — Personal AI Assistant OpenClaw EXFOLIATE! EXFOLIATE! CI status GitHub release Discord MIT License
+OpenClaw is a personal AI assistant you run on your own devices. It answers you on the channels you already use. It can speak and listen on macOS/iOS/Android, and can render a live
+Canvas you control. The Gateway is just the control plane — the product is the assistant. If you want a personal, single-user assistant that feels local, fast, and always-on, this
+is it. Supported channels include: WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, IRC, Microsoft Teams, Matrix, Feishu, LINE, Mattermost, Nextcloud Talk, Nostr,
+Synology Chat, Tlon, Twitch, Zalo, Zalo Personal, WeChat, QQ, WebChat. Website · Docs · Vision · DeepWiki · Getting Started · Updating · Showcase · FAQ · Onboarding · Nix · Docker
+· Discord New install? Start here: Getting started Preferred setup: run openclaw onboard in your terminal. OpenClaw Onboard guides you step by step through setting up the gateway,
+workspace, channels, and skills. It is the recommended CLI setup path and works on macOS, Linux, and Windows (via WSL2; strongly recommended). Works with npm, pnpm, or bun.
+Sponsors OpenAIGitHubNVIDIAVercelBlacksmithConvex Subscriptions (OAuth): OpenAI (ChatGPT/Codex) Model note: while many providers and models are supported, prefer a current flagship
+model from the provider you trust and already use. See Onboarding. Install (recommended) Runtime: Node 24 (recommended) or Node 22.19+. npm install -g openclaw@latest # or: pnpm
+add -g openclaw@latest openclaw onboard --install-daemon OpenClaw Onboard installs the Gateway daemon (launchd/systemd user service) so it stays running. Quick start (TL;DR)
+Runtime: Node 24 (recommended) or Node 22.19+. Full beginner guide (auth, pairing, channels): Getting started openclaw onboard --install-daemon openclaw gateway --port 18789
+--verbose # Send a message openclaw message send --target +1234567890 --message "Hello from OpenClaw" # Talk to the assistant (optionally deliver back to any connected channel:
+WhatsApp/Telegram/Slack/Discord/Google Chat/Signal/iMessage/IRC/Microsoft Teams/Matrix/Feishu/LINE/Mattermost/Nextcloud Talk/Nostr/Synology Chat/Tlon/Twitch/Zalo/Zalo
+Personal/WeChat/QQ/WebChat) openclaw agent --message "Ship checklist" --thinking high Upgrading? Updating guide (and run openclaw doctor). Models config + CLI: Models. Auth profile
+rotation + fallbacks: Model failover. Security defaults (DM access) OpenClaw connects to real messaging surfaces. Treat inbound DMs as untrusted input. Full security guide:
+Security Default behavior on Telegram/WhatsApp/Signal/iMessage/Microsoft Teams/Discord/Google Chat/Slack: DM pairing (dmPolicy="pairing" / channels.discord.dmPolicy="pairing" /
+channels.slack.dmPolicy="pairing"; legacy: channels.discord.dm.policy, channels.slack.dm.policy): unknown senders receive a short pairing code and the bot does not process their
+message. Approve with: openclaw pairing approve <channel> <code> (then the sender is added to a local allowlist store). Public inbound DMs require an explicit opt-in: set
+dmPolicy="open" and include "*" in the channel allowlist (allowFrom / channels.discord.allowFrom / channels.slack.allowFrom; legacy: channels.discord.dm.allowFrom,
+channels.slack.dm.allowFrom). Run openclaw doctor to surface risky/misconfigured DM policies. Highlights Local-first Gateway — single control plane for sessions, channels, tools,
+and events. Multi-channel inbox — WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, IRC, Microsoft Teams, Matrix, Feishu, LINE, Mattermost, Nextcloud Talk, Nostr,
+Synology Chat, Tlon, Twitch, Zalo, Zalo Personal, WeChat, QQ, WebChat, macOS, iOS/Android. Multi-agent routing — route inbound channels/accounts/peers to isolated agents
+(workspaces + per-agent sessions). Voice Wake + Talk Mode — wake words on macOS/iOS and continuous voice on Android (ElevenLabs + system TTS fallback). Live Canvas — agent-driven
+visual workspace with A2UI. First-class tools — browser, canvas, nodes, cron, sessions, and Discord/Slack actions. Companion apps — macOS menu bar app + iOS/Android nodes.
+Onboarding + skills — onboarding-driven setup with bundled/managed/workspace skills. Security model (important) Default: tools run on the host for the main session, so the agent
+has full access when it is just you. Group/channel safety: set agents.defaults.sandbox.mode: "non-main" to run non-main sessions inside sandboxes. Docker is the default sandbox
+backend; SSH and OpenShell backends are also available. Typical sandbox default: allow bash, process, read, write, edit, sessions_list, sessions_history, sessions_send,
+sessions_spawn; deny browser, canvas, nodes, cron, discord, gateway. Before exposing anything remotely, read Security, Sandboxing, and Configuration. Operator quick refs Chat
+commands: /status, /new, /reset, /compact, /think <level>, /verbose on|off, /trace on|off, /usage off|tokens|full, /restart, /activation mention|always Session tools:
+sessions_list, sessions_history, sessions_send Skills registry: ClawHub Architecture overview: Architecture Docs by goal New here: Getting started, Onboarding, Updating Channel
+setup: Channels index, WhatsApp, Telegram, Discord, Slack Apps + nodes: macOS, iOS, Android, Nodes Config + security: Configuration, Security, Sandboxing Remote + web: Gateway,
+Remote access, Tailscale, Web surfaces Tools + automation: Tools, Skills, Cron jobs, Webhooks, Gmail Pub/Sub Internals: Architecture, Agent, Session model, Gateway protocol
+Troubleshooting: Channel troubleshooting, Logging, Docs home Apps (optional) The Gateway alone delivers a great experience. All apps are optional and add extra features. If you
+plan to build/run companion apps, follow the platform runbooks below. macOS (OpenClaw.app) (optional) Menu bar control for the Gateway and health. Voice Wake + push-to-talk
+overlay. WebChat + debug tools. Remote gateway control over SSH. Note: signed builds required for macOS permissions to stick across rebuilds (see macOS Permissions). iOS node
+(optional) Pairs as a node over the Gateway WebSocket (device pairing). Voice trigger forwarding + Canvas surface. Controlled via openclaw nodes …. Runbook: iOS connect. Android
+node (optional) Pairs as a WS node via device pairing (openclaw devices ...). Exposes Connect/Chat/Voice tabs plus Canvas, Camera, Screen capture, and Android device command
+families. Runbook: Android connect. From source (development) Use pnpm for source checkouts. The repository is a pnpm workspace, and bundled plugins load from extensions/* during
+development so their package-local dependencies and your edits are used directly. Plain npm install at the repo root is not a supported source setup. For the dev loop: git clone
+https://github.com/openclaw/openclaw.git cd openclaw pnpm install # First run only (or after resetting local OpenClaw config/workspace) pnpm openclaw setup # Optional: prebuild
+Control UI before first startup pnpm ui:build # Dev loop (auto-reload on source/config changes) pnpm gateway:watch If you need a built dist/ from the checkout (for Node, packaging,
+or release validation), run: pnpm build pnpm ui:build pnpm openclaw setup writes the local config/workspace needed for pnpm gateway:watch. It is safe to re-run, but you normally

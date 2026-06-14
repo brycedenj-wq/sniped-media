@@ -1,0 +1,225 @@
+automatically. The process is straightforward and uses Google's standard authorization flow. Once connected, Google accounts support all platform features. Campaigns can send
+through Gmail, warm-up engages your Google accounts, and replies route back through the platform. Google's deliverability reputation becomes available for your campaigns. Google
+imposes certain sending limits that apply regardless of how accounts connect. Daily sending limits and per-message recipient limits are Google policies that Instantly.ai works
+within. Understanding these limits helps you plan capacity appropriately. Microsoft Outlook Connections Microsoft accounts also connect through OAuth. The process mirrors Google
+connection, with Microsoft's authorization system replacing Google's. Connecting Outlook and Microsoft 365 accounts brings Microsoft's email infrastructure into your sending
+capability. For operations targeting recipients who primarily use Microsoft email, sending from Microsoft accounts can improve delivery. Microsoft's deliverability characteristics
+differ somewhat from Google's. Understanding both platforms helps you leverage each appropriately. Some operations deliberately use mixed infrastructure to benefit from both
+providers. SMTP Connections SMTP connections provide flexibility to connect email services that do not offer OAuth integration. Any email provider that supports SMTP can connect
+through this method. SMTP connections require providing server details and credentials. Host addresses, ports, and authentication information configure how Instantly.ai
+communicates with your email server. The platform uses this information to send messages on your behalf. Security considerations apply to SMTP connections. Credentials are stored
+securely, but you are sharing access information. Using dedicated accounts for cold outreach rather than primary business accounts limits exposure if issues arise. SMTP opens
+access to diverse email providers. Services like Zoho, custom email servers, and niche providers all become usable through SMTP connection. This flexibility supports specialized
+requirements. Tracking Domain Setup Beyond email account connection, setting up custom tracking domains improves deliverability and branding. Tracking domains handle link tracking
+in your emails. When recipients click links, they pass through your tracking domain before reaching the destination. This enables click tracking while avoiding generic tracking
+URLs. Custom tracking domains use your own domain names rather than shared platform domains. This isolation prevents your reputation from being affected by other users' behavior.
+It also creates more professional-looking links in your emails. Configuration requires adding DNS records that point your tracking domain to Instantly.ai's tracking servers. The
+platform provides the specific records needed. Once configured and verified, your custom tracking domain handles all link tracking for your campaigns. Verification and Testing
+After connecting accounts, verification ensures everything works correctly. Send test emails to confirm that delivery functions properly. Check that emails arrive, show the correct
+sender information, and include working tracked links. Authentication verification confirms that SPF, DKIM, and DMARC are configured correctly. Tools within the platform and
+external verification services help check these settings. Warm-up enrollment puts newly connected accounts into the warm-up system. Even if accounts have sending history, enrolling
+in warm-up within the platform helps establish reputation specifically for the types of sends you will do. Taking time to verify properly prevents problems during actual campaigns.
+Issues caught during testing are far easier to fix than issues discovered mid-campaign. Video transcript Let's say you already have warmed inbox and you want to use them. That's
+totally possible. Instantly lets you connect your own Google, Microsoft, or SMTP accounts and keep everything under your brand. Here's what that looks like. For Google accounts, if
+you're on regular Gmail connection, it is simply as logging in with Google auth and approving access. If you're on Workspace or G Suite, there's one extra step. You'll need to
+create what's called an app password inside your Google's admin console. That's Google's way of saying, yes, this app is allowed to send and receive on behalf of this user. It
+sounds technical, but it's really just a couple of clicks, and we've got a full help guide that walks you through it screen by screen if you want that extra backup. For Microsoft
+three sixty five, the process is similar, but there's a catch. You need to make sure SMTP and IMAP are enabled on your Microsoft admin settings. Without that, nothing works. Once
+that's switched on, it's just a matter of logging in, approving permissions, and checking the box that says consent on behalf of my organization. After that, you're set. And if
+you're connecting through SMTP providers like SendGrid or Mailgun, you'll also need an IMAP inbox alongside them. That's what allows instantly to track replies, run warm up, and
+manage sending patterns. Usually, this looks like plugging in Gmail IMAP inbox to pair with your SNCP servers. Again, it's a host name, a port, and your login. Straightforward. Now
+here's one extra piece, custom tracking domains. By default, you can use instantly tracking domain for things like open and click tracking. But here's a trade off. That tracking
+domain is shared. You don't control its reputation. If you want full control, you can set up your own tracking domain or your DNS. That way, the reputation is yours alone. And if
+you're a type of sender who prefers not to track opens at all, you can skip this step completely. So here's the takeaway. Connecting your own accounts gives you flexibility and
+brand consistency. Yes, there are a few steps, especially with Google and Microsoft, but each one has a purpose. It's about security, authentication, and making sure inbox
+providers trust your traffic. And as with everything, don't stress. We've got detailed guides for each provider, so if you ever feel stuck, you can follow along click by click. The
+point is, if you want to run your own warmed accounts, you can, and it's easier than you think. Expand transcript Resources How to Get Emails Out of Promotions and Into Gmail
+Primary By Amanda Laine Feb 3, 2026 How to Create an AI Agent for Cold Email Outreach (Step-by-Step) By Chris Tweten Feb 4, 2026 AI For Sales Prospecting: Playbook For Scalable B2B
+Outreach By Amanda Laine Feb 5, 2026 Email Marketing for Small Business: From First Send to Steady Revenue By Amanda Laine Feb 6, 2026 Best AI Sales Agent Software: A Guide for
+Scaling Teams By Raul Kaevand Feb 9, 2026 View All Courses Building Your AI Sales Brain with Claude + Instantly 9 lessons by Hans Dekker Perform in-depth research using
+Perplexity's AI-powered search engine, within Instantly. 1 lessons by Hans Dekker Learn social listening best practices from the owner of Trigify. 3 lessons by Max Advanced cold
+email deliverability concepts that will help you avoid the spam folder and hit the inbox. 8 lessons by Hans Dekker Learn how to leverage Supersearch to find the perfect leads for
+your business. 5 lessons by Hans Dekker Set up your outbound infrastructure the right way from the start. 8 lessons by Hans Dekker Learn how to use webhooks and other more
+technical concepts to orchestrate multi-channel campaigns and integrate tools. 5 lessons by Hans Dekker Learn how to instruct co-pilot to be your ideal outbound assistant. 1
+lessons by Hans Dekker Deploying AI agents for your cold email campaigns is easier than it sounds 2 lessons by Hans Dekker Learn how to set up outbound campaigns in Instantly, the
+right way. 1 lessons by Hans Dekker View All Prompts Supersearch Personalized Outreach for Video Marketing Professionals by Vibhor Takkar Supersearch Personalized Cold Email
+Openers for Real Estate Agents by Mehdi Oulaoub Supersearch Extract First Name from Email Addresses Prompt by Andrew Wang Supersearch Personalized Cold Email Opener Generator for
+Sales Teams by Anonymous Supersearch Personalized Email Openers for Custom Fabrication Sales by Soni Frigo Supersearch Identify CEOs’ Pain Points for Investor Outreach by Neil
+Thompson Supersearch Cold Email Opener Generation for Sales Teams by Yousif Shamasha Supersearch Extract Measurable Customer Benefits For Sales Teams by Timothy Wenger Supersearch
+Categorize Contacts by Industry and Company Name by Eric Evans Supersearch Personalized Email Openers for Digital Nomad Outreach by Dmitrii Malakhov Supersearch Assume Hybrid
+Teams’ Onboarding and Security Challenges by Mike McDonald Supersearch Summarize Top Google Review for Sales Teams by Yahya Hisham Supersearch Suggest Training Topics for Sales
+Outreach Prospects by Robin Rudolph Supersearch Extract First Names from Email Addresses List by Mehdi Oulaoub Supersearch Personalized Cold Email Openings for Sales Teams by Soni
+Frigo Supersearch Identify Home Health Care Marketing Pain Points by Spencer Horne Supersearch Extract B2B Domains From Email Addresses by Henri-Georg Eiche Supersearch
+Personalized First Line Generator for Sales Teams by Mehdi Oulaoub Supersearch Predict Likely Gender from First Name by Timothy Wenger Supersearch Format Company Names for Sales
+Email Copy by Gabe Mitchell Supersearch create ai case study bullets for sales teams by Kaushal Parikh Supersearch Write Cold Email Openers From LinkedIn Profiles by Josip Šare
+Supersearch Clean Company Names for Sales Data Enrichment by Akash Joshi Supersearch Personalized Landmark Mention for Cold Emails by Ananay Goyal Supersearch Extract City Name
+From Mailing Address Prompt by Timothy Wenger Supersearch Identify Most Valuable Clients by Industry CEOs by Devang from MMM Supersearch Write Casual One-Sentence Compliments for
+Leads by Ben kane Supersearch Clean Company Names for Lead Enrichment by Jamie Holden Supersearch Personalized Email Intro for Sales Lead Generation by David Jovanovic Supersearch
+Identify HubSpot CMS Pain Points for Industry Leaders by Valeriya Stepanova Supersearch Lowercase Clean Job Titles for Sales Teams by Timothy Wenger Supersearch Spot Video
+Storytelling Gaps for Construction Marketers by Vibhor Takkar Supersearch Personalized Cold Email Openers for Sales Teams by Tomoya Mori Supersearch Find Companies Posting
+Marketing or Ad Job Listings by Amir Dawoud Supersearch Personalized Website First Lines for Sales Teams by Ankit Modi Supersearch Verify Law Firm Practice Area for Lead Routing by
+Romney Bales Supersearch Personalized Prospecting Sentences for Sales Emails by Valentin Vouriot Supersearch Personalize Cold Emails With Unique Company Insights by Conor Ryan
+Supersearch Craft Conversational Cold Email Openers from Company Data by Bruno Berardi Supersearch Personalized Cold Email Openers for B2B Outreach by Edward Zhang Supersearch B2B
+Programmatic Outreach Prompt for Cannabis Agencies by Christian Valdez Supersearch Summarize Company Offerings for Sales Researchers by Timothy Wenger Supersearch Generate Friendly
+Informal Greetings For Sales Outreach by Timothy Wenger Supersearch Define ICP for Sales Teams Using Data by Timothy Wenger Supersearch List Industry Pain Points for B2B Sales
+Teams by Timothy Wenger Supersearch Personalized First-Line Compliment for Sales Outreach by Timothy Wenger Supersearch Icebreaker Line Generator for Sales Prospecting by Timothy
+Wenger Supersearch Humorous Cold Email Opener Generation for Sales Teams by Timothy Wenger Supersearch Clean Company Names for B2B Outreach Emails by Xrfan . Supersearch Write Role
+and Industry-Specific B2B Hook by Timothy Wenger Supersearch Curiosity-Driven Cold Email Questions for Sales Teams by Timothy Wenger Supersearch Personalized Industry Joke
+Generator For Cold Outreach by Timothy Wenger Supersearch Personalized Email Openers for Sales Outreach by Dominik Kolber Supersearch Pain Point Sentence Generator for Sales
+Outreach by Timothy Wenger Supersearch Extract Core Company Keywords for Lead Research by Timothy Wenger Supersearch AI Follow-Up Prompt for B2B Sales Teams by Timothy Wenger
+Supersearch Identify Company Niche Market for Sales Teams by Timothy Wenger Supersearch Find Fitness Companies Selling Digital Fitness Products by Charles Biggins Supersearch
+Personalized Linkedin Appreciation Lines for Sales Emails by Vatsal Nigam Supersearch Generate One-Sentence B2B Product Description Prompt by Timothy Wenger Supersearch Humorous
+Follow-Up Question Prompt for Sales Teams by Timothy Wenger Supersearch Validate Tech Stack for Outbound Sales Teams by Timothy Wenger Supersearch CTO Tech Stack Analysis for
+Leadership Insights by Timothy Wenger Supersearch Peer-Led Cold Email Openers for Sales Teams by Timothy Wenger Supersearch Personalized Cold Email Openers for Sales Teams by
+Timothy Wenger Supersearch Personalized Cold Email Opener for Sales Teams by Timothy Wenger Supersearch Cold Email Openers for B2B Sales Teams by Timothy Wenger Supersearch Clean
+Normalize Job Titles For Outreach by Timothy Wenger Supersearch Intro Email Prompt for Construction Quantity Surveyors by Thea Flores Supersearch Personalized Email Openers for
+Manufacturing Decision Makers by Jakob Michaels Supersearch identify company product type for b2b researchers by Corentin Stephan Supersearch Personalized Email Openers for Sales
+Outreach by Avinash Raju Supersearch Personalized First Line Generator for Cold Email Outreach by Lincon Parrott Supersearch Classify Companies for AI B2B Outreach by Adam Ögren
+Supersearch Identify Company Collaboration Tools for Sales Outreach by Shrikanth K Supersearch Abbreviate Job Titles for B2B Sales Teams by Ilson Mendes Supersearch Summarize
+LinkedIn Posts for Dutch Outreach by Lucas Bakx Supersearch SDR Subject Line Personalization for Sales Teams by Arjun Varma Supersearch Find Top SEO Competitor Domains for Outreach
+by Ryder Meehan Supersearch Edit Restaurant Names for Conversational Email Use by Coby Skonord Supersearch Simplify Company Names for Sales Prospecting by Viktor Budanovic
+Supersearch Craft Cold Email Outreach for Web Designers by Cal Nettle Supersearch Personalized LinkedIn Icebreakers for Sales Outreach by Franz Weber Supersearch Generate Bill Burr
+Style Puns From Coaching Websites by Jahan Hadi Supersearch Find Similar Job Titles at Same Company by Oswaldo Canho Supersearch Write Cold Email Openers from LinkedIn Descriptions
+by Thomas Ottosen Supersearch Personalized IT Outreach Sentence for Sales Teams by Josh Champion Supersearch Generate Industry-Specific Cold Email Openers For Founders by Jay
+Feldman Supersearch Clean Company Names for Outreach Personalization by Salomon Wainberg Supersearch Simplify Company Names for Cold Email Campaigns by Divyang Ledwani Supersearch
+Personalized Email Openers for B2B Outreach Teams by Jonas Gaida Supersearch Shorten Industry Names for Cold Email Personalization by Aron Gunnarsson Supersearch Personalized
+Icebreaker Compliment Generator for Sales Teams by Alexander Ioncescu Supersearch Extract Company Products Achievements History For Cold Emails by Barzan Ahmed Supersearch
+Personalized Cold Email Subject Lines for Sales Teams by Thomas Ottosen Supersearch Clean Company Names for Outreach Sales Teams by Paolo Shamoon Supersearch Remove Location Words
+From Company Names by Eerik Haamer Supersearch Don Draper Style Cold Email Opener Prompt by Ezra Gonzalez Supersearch Classify Company Professions for Sales Teams by Zachary Brown
+Supersearch Clean Human-Readable Titles for Sales Outreach by Andrew Tannus View All Unlock the power of AI With Get started now to access exclusive templates and elevate your
+projects to the next level. Get Started See pricing Products Outreach CRM Verification Lead Database Website Visitors Inbox Placement Deliverability Email Accounts Instantly AI AI
+Sales Agent Automations Use Cases Agencies Freelancers Enterprise Founders Sales VIP Service Marketing Sales Development Resources Blog API Help Desk Instantly Accelerator Careers
+Affiliate Facebook Group Slack Community Experts Instantly Academy Instantly Creators Instantly vs Apollo Integration Program Meet Our Partners Refer a Friend Reviews Quick Links
+Pricing Company Terms AI Sales Agent Terms Privacy Don’t Sell My Info Privacy Center Cookie Declaration © 2026 Instantly. All rights reserved. Pricing Login Get Started See Demo
+Instantly Academy Infra basics - getting started 5 Infra basics - getting started 5 8 video 2:12 minutes Next Lesson Search Infra basics - getting started 1 Infra basics - getting
+started 2 Infra basics - getting started 3 Infra basics - getting started 4 Infra basics - getting started 5 Infra basics - getting started 6 Infra basics - getting started 7 Infra
+basics - getting started 8 Unlock The Power Of AI With Instantly Find warm leads, scale email campaigns, reach primary inboxes, engage smarter and win more with AI. Get started
+with Instantly Setup Essentials Proper setup creates the foundation for everything that follows. This lesson covers the essential configuration steps that every cold outreach
+infrastructure needs. Getting these basics right prevents problems and positions your operation for success. DNS Authentication DNS authentication verifies that your emails
+legitimately come from your domain. Three protocols work together to establish this verification. SPF, or Sender Policy Framework, tells receiving servers which mail servers are
+authorized to send email from your domain. You publish this information as a DNS record. When servers receive email claiming to be from your domain, they check your SPF record to
+verify the sending server is authorized. DKIM, or DomainKeys Identified Mail, adds a cryptographic signature to your emails. You publish a public key in DNS, and your sending
+server signs emails with the corresponding private key. Receiving servers use the public key to verify signatures, confirming emails have not been altered and genuinely originated
+from your domain. DMARC, or Domain-based Message Authentication Reporting and Conformance, ties SPF and DKIM together. It specifies what should happen when authentication fails and
+enables reporting about authentication results. DMARC gives you visibility into how your domain is being used for email. Configuring Authentication Records Setting up
+authentication requires adding DNS records for your sending domains. SPF records list all the servers that send email on your behalf. This includes Instantly.ai's servers plus any
+other services that send email from your domain. The platform provides the specific include statement to add. DKIM records publish the public key used to verify your email
+signatures. The platform generates these keys and provides the DNS records to add. Each domain needs its own DKIM configuration. DMARC records start in monitoring mode to gain
+visibility without risking delivery. As confidence builds, DMARC policies can move to quarantine or reject mode for stronger protection. DNS changes take time to propagate across
+the internet. After making changes, wait several hours before testing. Premature testing often shows failures that resolve themselves as propagation completes. Tracking Domain
+Configuration Custom tracking domains require their own DNS configuration. CNAME records point your tracking subdomain to Instantly.ai's tracking servers. This creates the
+connection that lets the platform handle tracking on your behalf while using your domain name. SSL certificates secure the connection between recipients and your tracking domain.
+The platform handles certificate provisioning and renewal automatically once DNS is configured correctly. Verification through the platform confirms that tracking domain setup is
+complete. The platform checks DNS configuration and SSL status, reporting any issues that need attention. Sending Settings Beyond authentication, sending settings control how your
+accounts behave. Daily sending limits cap how many emails each account sends per day. These limits protect account reputation by preventing volume spikes. Set limits that match
+your warm-up stage and capacity plans. Sending windows define when emails go out. Sending during business hours in recipient time zones tends to produce better engagement.
+Configure windows that match your audience's work patterns. Delay settings add time between individual emails. Small random delays make sending patterns look more natural.
+Providers expect some variation in how humans send email. Reply detection settings determine how the platform identifies and routes replies. Proper configuration ensures replies
+appear in your interface and trigger appropriate automations. Initial Verification After completing setup, verify that everything works correctly before sending real campaigns.
+Send test emails to yourself and colleagues. Verify that emails arrive, sender information appears correctly, and links track properly. Check spam folders to ensure emails reach
+the inbox. Use email testing tools to verify authentication. Services that analyze email headers can confirm SPF, DKIM, and DMARC are passing. This verification catches
+configuration errors before they affect real sending. Confirm platform settings match your intentions. Double-check limits, windows, and other configuration. Errors caught now are
+much easier to fix than errors discovered during campaigns. Documentation helps future maintenance. Record what you configured and why. When settings need adjustment later,
+documentation helps you understand the current state and reasoning behind it. Video transcript Once your accounts are connected, there are a few key setup steps to make sure your
+infrastructure is bulletproof. The first is DNS authentication. That means setting up SPF, DKIM and DMARC records in your domain's DNS settings. Sounds intimidating, but all it
+really means is proving to inbox providers that your emails are legit and authorized. Think of it like a passport. Without those stamps, you look suspicious at the border. With
+them, you sail right through. Why does this matter? Because without these records, your chances of hitting spam, they skyrocket. And with them, you're telling providers like Google
+and Outlook, yes, this message really is from us and it hasn't been tampered with. Now the good news is you don't need to memorize how DNS works. We've got a step by step guide
+that shows you exactly where to click and what to paste in. It takes a few minutes and once it's done, it's done. The second piece is your tracking domain. By default, gives you
+one, but if you want full control over reputation, it's smart to set up your own custom tracking domain. That way you're not sharing reputation with anyone else and your domain
+health is completely in your hands. If you don't plan to track opens or clicks, you can skip this step, but most senders benefit from having their own. The last piece is your
+sending settings. This covers how many messages go out per day, how much delay there is between them, and what your daily sending pattern looks like. The key here is to mimic human
+behavior. You don't want to blast two hundred emails at exactly nine am every day. That looks robotic. You want natural spacing, gradual ramp up, and safe daily limits. So in
+short, DNS tracking and sending settings are the pillars of setup. They're not flashy, but they're the reason your messages land. And once they're configured, you rarely have to
+touch them again. Expand transcript Resources How to Get Emails Out of Promotions and Into Gmail Primary By Amanda Laine Feb 3, 2026 How to Create an AI Agent for Cold Email
+Outreach (Step-by-Step) By Chris Tweten Feb 4, 2026 AI For Sales Prospecting: Playbook For Scalable B2B Outreach By Amanda Laine Feb 5, 2026 Email Marketing for Small Business:
+From First Send to Steady Revenue By Amanda Laine Feb 6, 2026 Best AI Sales Agent Software: A Guide for Scaling Teams By Raul Kaevand Feb 9, 2026 View All Courses Building Your AI
+Sales Brain with Claude + Instantly 9 lessons by Hans Dekker Perform in-depth research using Perplexity's AI-powered search engine, within Instantly. 1 lessons by Hans Dekker Learn
+social listening best practices from the owner of Trigify. 3 lessons by Max Advanced cold email deliverability concepts that will help you avoid the spam folder and hit the inbox.
+8 lessons by Hans Dekker Learn how to leverage Supersearch to find the perfect leads for your business. 5 lessons by Hans Dekker Set up your outbound infrastructure the right way
+from the start. 8 lessons by Hans Dekker Learn how to use webhooks and other more technical concepts to orchestrate multi-channel campaigns and integrate tools. 5 lessons by Hans
+Dekker Learn how to instruct co-pilot to be your ideal outbound assistant. 1 lessons by Hans Dekker Deploying AI agents for your cold email campaigns is easier than it sounds 2
+lessons by Hans Dekker Learn how to set up outbound campaigns in Instantly, the right way. 1 lessons by Hans Dekker View All Prompts Supersearch Personalized Outreach for Video
+Marketing Professionals by Vibhor Takkar Supersearch Personalized Cold Email Openers for Real Estate Agents by Mehdi Oulaoub Supersearch Extract First Name from Email Addresses
+Prompt by Andrew Wang Supersearch Personalized Cold Email Opener Generator for Sales Teams by Anonymous Supersearch Personalized Email Openers for Custom Fabrication Sales by Soni
+Frigo Supersearch Identify CEOs’ Pain Points for Investor Outreach by Neil Thompson Supersearch Cold Email Opener Generation for Sales Teams by Yousif Shamasha Supersearch Extract
+Measurable Customer Benefits For Sales Teams by Timothy Wenger Supersearch Categorize Contacts by Industry and Company Name by Eric Evans Supersearch Personalized Email Openers for
+Digital Nomad Outreach by Dmitrii Malakhov Supersearch Assume Hybrid Teams’ Onboarding and Security Challenges by Mike McDonald Supersearch Summarize Top Google Review for Sales
+Teams by Yahya Hisham Supersearch Suggest Training Topics for Sales Outreach Prospects by Robin Rudolph Supersearch Extract First Names from Email Addresses List by Mehdi Oulaoub
+Supersearch Personalized Cold Email Openings for Sales Teams by Soni Frigo Supersearch Identify Home Health Care Marketing Pain Points by Spencer Horne Supersearch Extract B2B
+Domains From Email Addresses by Henri-Georg Eiche Supersearch Personalized First Line Generator for Sales Teams by Mehdi Oulaoub Supersearch Predict Likely Gender from First Name
+by Timothy Wenger Supersearch Format Company Names for Sales Email Copy by Gabe Mitchell Supersearch create ai case study bullets for sales teams by Kaushal Parikh Supersearch
+Write Cold Email Openers From LinkedIn Profiles by Josip Šare Supersearch Clean Company Names for Sales Data Enrichment by Akash Joshi Supersearch Personalized Landmark Mention for
+Cold Emails by Ananay Goyal Supersearch Extract City Name From Mailing Address Prompt by Timothy Wenger Supersearch Identify Most Valuable Clients by Industry CEOs by Devang from
+MMM Supersearch Write Casual One-Sentence Compliments for Leads by Ben kane Supersearch Clean Company Names for Lead Enrichment by Jamie Holden Supersearch Personalized Email Intro
+for Sales Lead Generation by David Jovanovic Supersearch Identify HubSpot CMS Pain Points for Industry Leaders by Valeriya Stepanova Supersearch Lowercase Clean Job Titles for
+Sales Teams by Timothy Wenger Supersearch Spot Video Storytelling Gaps for Construction Marketers by Vibhor Takkar Supersearch Personalized Cold Email Openers for Sales Teams by
+Tomoya Mori Supersearch Find Companies Posting Marketing or Ad Job Listings by Amir Dawoud Supersearch Personalized Website First Lines for Sales Teams by Ankit Modi Supersearch
+Verify Law Firm Practice Area for Lead Routing by Romney Bales Supersearch Personalized Prospecting Sentences for Sales Emails by Valentin Vouriot Supersearch Personalize Cold
+Emails With Unique Company Insights by Conor Ryan Supersearch Craft Conversational Cold Email Openers from Company Data by Bruno Berardi Supersearch Personalized Cold Email Openers
+for B2B Outreach by Edward Zhang Supersearch B2B Programmatic Outreach Prompt for Cannabis Agencies by Christian Valdez Supersearch Summarize Company Offerings for Sales
+Researchers by Timothy Wenger Supersearch Generate Friendly Informal Greetings For Sales Outreach by Timothy Wenger Supersearch Define ICP for Sales Teams Using Data by Timothy
+Wenger Supersearch List Industry Pain Points for B2B Sales Teams by Timothy Wenger Supersearch Personalized First-Line Compliment for Sales Outreach by Timothy Wenger Supersearch
+Icebreaker Line Generator for Sales Prospecting by Timothy Wenger Supersearch Humorous Cold Email Opener Generation for Sales Teams by Timothy Wenger Supersearch Clean Company
+Names for B2B Outreach Emails by Xrfan . Supersearch Write Role and Industry-Specific B2B Hook by Timothy Wenger Supersearch Curiosity-Driven Cold Email Questions for Sales Teams
+by Timothy Wenger Supersearch Personalized Industry Joke Generator For Cold Outreach by Timothy Wenger Supersearch Personalized Email Openers for Sales Outreach by Dominik Kolber
+Supersearch Pain Point Sentence Generator for Sales Outreach by Timothy Wenger Supersearch Extract Core Company Keywords for Lead Research by Timothy Wenger Supersearch AI
+Follow-Up Prompt for B2B Sales Teams by Timothy Wenger Supersearch Identify Company Niche Market for Sales Teams by Timothy Wenger Supersearch Find Fitness Companies Selling
+Digital Fitness Products by Charles Biggins Supersearch Personalized Linkedin Appreciation Lines for Sales Emails by Vatsal Nigam Supersearch Generate One-Sentence B2B Product
+Description Prompt by Timothy Wenger Supersearch Humorous Follow-Up Question Prompt for Sales Teams by Timothy Wenger Supersearch Validate Tech Stack for Outbound Sales Teams by
+Timothy Wenger Supersearch CTO Tech Stack Analysis for Leadership Insights by Timothy Wenger Supersearch Peer-Led Cold Email Openers for Sales Teams by Timothy Wenger Supersearch
+Personalized Cold Email Openers for Sales Teams by Timothy Wenger Supersearch Personalized Cold Email Opener for Sales Teams by Timothy Wenger Supersearch Cold Email Openers for
+B2B Sales Teams by Timothy Wenger Supersearch Clean Normalize Job Titles For Outreach by Timothy Wenger Supersearch Intro Email Prompt for Construction Quantity Surveyors by Thea
+Flores Supersearch Personalized Email Openers for Manufacturing Decision Makers by Jakob Michaels Supersearch identify company product type for b2b researchers by Corentin Stephan
+Supersearch Personalized Email Openers for Sales Outreach by Avinash Raju Supersearch Personalized First Line Generator for Cold Email Outreach by Lincon Parrott Supersearch
+Classify Companies for AI B2B Outreach by Adam Ögren Supersearch Identify Company Collaboration Tools for Sales Outreach by Shrikanth K Supersearch Abbreviate Job Titles for B2B
+Sales Teams by Ilson Mendes Supersearch Summarize LinkedIn Posts for Dutch Outreach by Lucas Bakx Supersearch SDR Subject Line Personalization for Sales Teams by Arjun Varma
+Supersearch Find Top SEO Competitor Domains for Outreach by Ryder Meehan Supersearch Edit Restaurant Names for Conversational Email Use by Coby Skonord Supersearch Simplify Company
+Names for Sales Prospecting by Viktor Budanovic Supersearch Craft Cold Email Outreach for Web Designers by Cal Nettle Supersearch Personalized LinkedIn Icebreakers for Sales
+Outreach by Franz Weber Supersearch Generate Bill Burr Style Puns From Coaching Websites by Jahan Hadi Supersearch Find Similar Job Titles at Same Company by Oswaldo Canho
+Supersearch Write Cold Email Openers from LinkedIn Descriptions by Thomas Ottosen Supersearch Personalized IT Outreach Sentence for Sales Teams by Josh Champion Supersearch
+Generate Industry-Specific Cold Email Openers For Founders by Jay Feldman Supersearch Clean Company Names for Outreach Personalization by Salomon Wainberg Supersearch Simplify
+Company Names for Cold Email Campaigns by Divyang Ledwani Supersearch Personalized Email Openers for B2B Outreach Teams by Jonas Gaida Supersearch Shorten Industry Names for Cold
+Email Personalization by Aron Gunnarsson Supersearch Personalized Icebreaker Compliment Generator for Sales Teams by Alexander Ioncescu Supersearch Extract Company Products
+Achievements History For Cold Emails by Barzan Ahmed Supersearch Personalized Cold Email Subject Lines for Sales Teams by Thomas Ottosen Supersearch Clean Company Names for
+Outreach Sales Teams by Paolo Shamoon Supersearch Remove Location Words From Company Names by Eerik Haamer Supersearch Don Draper Style Cold Email Opener Prompt by Ezra Gonzalez
+Supersearch Classify Company Professions for Sales Teams by Zachary Brown Supersearch Clean Human-Readable Titles for Sales Outreach by Andrew Tannus View All Unlock the power of
+AI With Get started now to access exclusive templates and elevate your projects to the next level. Get Started See pricing Products Outreach CRM Verification Lead Database Website
+Visitors Inbox Placement Deliverability Email Accounts Instantly AI AI Sales Agent Automations Use Cases Agencies Freelancers Enterprise Founders Sales VIP Service Marketing Sales
+Development Resources Blog API Help Desk Instantly Accelerator Careers Affiliate Facebook Group Slack Community Experts Instantly Academy Instantly Creators Instantly vs Apollo
+Integration Program Meet Our Partners Refer a Friend Reviews Quick Links Pricing Company Terms AI Sales Agent Terms Privacy Don’t Sell My Info Privacy Center Cookie Declaration ©
+2026 Instantly. All rights reserved. Pricing Login Get Started See Demo Instantly Academy Infra basics - getting started 6 Infra basics - getting started 6 8 video 2:26 minutes
+Next Lesson Search Infra basics - getting started 1 Infra basics - getting started 2 Infra basics - getting started 3 Infra basics - getting started 4 Infra basics - getting
+started 5 Infra basics - getting started 6 Infra basics - getting started 7 Infra basics - getting started 8 Unlock The Power Of AI With Instantly Find warm leads, scale email
+campaigns, reach primary inboxes, engage smarter and win more with AI. Get started with Instantly Understanding Warm-Up New email accounts cannot immediately send at full volume.
+Email providers need to see a pattern of legitimate sending behavior before trusting an account with high volume. Warm-up is the process of gradually building this trust.
+Understanding how warm-up works helps you manage it effectively. The New Neighbor Analogy Think of warm-up like being a new neighbor. When you first move into a neighborhood,
+people do not know you yet. If you immediately throw loud parties every night, neighbors will complain and you will get a bad reputation fast. But if you start by saying hello,
+having occasional guests, and gradually becoming a familiar presence, neighbors come to see you as a normal part of the community. When you do have a bigger gathering, people
+understand it as reasonable behavior from someone they know. Email providers work similarly. A new account that immediately sends hundreds of emails triggers suspicion. The same
+account that starts with small volumes, exchanges emails naturally, and gradually increases activity looks like a legitimate sender developing normal business communication. How
+Instantly Warm-Up Works Instantly.ai's warm-up system automates the reputation-building process. When you enroll accounts in warm-up, they begin exchanging emails with other
+accounts in the warm-up network. These exchanges generate the activity patterns email providers want to see. Emails get sent and received. Recipients open messages and reply.
+Conversations develop naturally. All of this happens automatically across thousands of accounts in the network. The scale and diversity of the network creates realistic engagement
+patterns. Your accounts interact with many different domains and providers, mimicking how real business email works. This diversity helps build robust reputation that performs well
+across different recipient types. Warm-up activity adjusts based on account age and health. New accounts start with minimal volume and gradually increase. Accounts showing healthy
+metrics increase faster. Accounts showing stress signals slow down. This adaptive approach optimizes reputation building while avoiding damage. Managing Warm-Up in Bulk Operations
+with many accounts need efficient warm-up management. Handling accounts individually does not scale. Bulk enrollment adds multiple accounts to warm-up at once. When you provision
+new accounts or connect existing ones, you can enroll them all simultaneously rather than one at a time. Account health dashboards show warm-up status across your infrastructure.
+You can see which accounts are progressing well and which need attention. This visibility helps you manage at scale without losing track of individual accounts. Automatic
+adjustment means most accounts need minimal hands-on management. The system responds to signals and adjusts warm-up activity appropriately. Your attention can focus on accounts
+that show problems rather than routine monitoring of healthy ones. Warm-Up Timeline How long warm-up takes depends on your target sending volume and starting conditions. New
+accounts with no history typically need two to four weeks to reach moderate sending capacity. Reaching higher volumes takes longer. Attempting to skip or rush warm-up usually
+backfires through reputation damage. Accounts with existing history may progress faster. An account that previously sent successfully and then sat dormant still retains some
+reputation. Warm-up rebuilds from that foundation rather than starting from zero. Patience during warm-up pays dividends in reliable capacity later. Accounts that warm up properly
+perform better and more consistently than accounts rushed into service. The time invested in proper warm-up saves time later on problems that rushed accounts experience. Ongoing
+Warm-Up Warm-up is not just for new accounts. Even established accounts benefit from ongoing warm-up activity. Continuous warm-up maintains reputation between campaigns. If an
+account stops all activity, its reputation can drift. Maintaining some warm-up activity during quiet periods keeps accounts healthy. The balance between warm-up and sending shifts
+as accounts mature. New accounts dedicate most capacity to warm-up. Mature accounts dedicate most capacity to campaigns while maintaining enough warm-up to stay healthy. Platform
+settings let you configure this balance. You can set warm-up volume relative to sending volume, ensuring accounts maintain appropriate activity levels regardless of campaign volume
+fluctuations. Warm-Up Best Practices Several practices help warm-up succeed. Be patient. Rushing warm-up is the most common mistake. Accept the timeline and use the waiting period
+productively for campaign preparation and list building. Monitor progress. Check warm-up dashboards regularly to ensure accounts progress normally. Early intervention on struggling
+accounts prevents bigger problems. Coordinate with sending. As accounts complete warm-up, transition them to campaigns gradually. Do not suddenly shift from warm-up mode to full
+sending. Gradual transition maintains the reputation warm-up built. Video transcript Now let's talk about warm up. The process of teaching inbox providers to trust your accounts.
+When you buy a brand new domain, it's like moving into a new neighborhood. Nobody knows you yet. If you suddenly send five hundred emails in a day, people get suspicious. Warm up
+is how you build trust gradually by starting small and increasing volume over time. Instantly makes this automatic. And as soon as you connect an account, you can turn on warm up.

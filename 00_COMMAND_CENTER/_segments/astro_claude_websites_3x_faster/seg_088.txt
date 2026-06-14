@@ -1,0 +1,224 @@
+course this is an introductory video and I just 39:00 wanted to introduce you to a very quick rag example um in L index okay uh in the 39:07 next videos in this series we're going
+to be covering much more detailed and 39:13 and advanced topics of Lama index but please let me know if you have any questions and if you're excited about 39:19 more content about
+Lama index I'll be happy to be making more of it um so yeah 39:27 thank you very much for watching if you have any questions suggestions or even 39:33 Corrections please be sure to
+leave them in the comments below and I will see you 39:38 next time [Music] All From the seriesOverview 0:01 Hi everyone, Felia from Lindex here and 0:03 today I am really exciting
+to introduce 0:06 you to a new tool that we are releasing 0:08 today. Light pars an open-source parsing 0:12 tool with spatial text extraction that 0:14 doesn't have any LLM or
+cloud 0:16 dependency. 0:18 Lights has a really fast and fully local 0:23 text extraction with a flexible OCR 0:26 system that has a built-in sensible 0:29 default with test and uh
+can also be 0:33 extended through HTTP servers. It can 0:36 generate screenshot and uh it does 0:39 produce multiple output formats such as 0:42 JSON and text. It has bounding box
+0:45 detection uh and can be installed as a 0:49 standalone binary on Linux, Mac OS and 0:53 Windows system Linux. So you can 0:56 basically have it everywhere and you can 0:58
+basically run text extraction for simple 1:02 to quite complex documents. So today I'm 1:05 going to showcase uh the uh product to 1:08 you. And in order to install light bars,
+Installation 1:12 the easiest way is to run npm install 1:17 minus g lama index/ 1:21 light bars. I already have uh light bars 1:24 installed. And in order to verify light 1:27
+bars installation, you can use the uh 1:31 CLI command and just run lit uh d-help. 1:35 So as you can see this prints the help 1:38 message. This means that we have light 1:40 bars
+installed. And as I was saying, you 1:43 can perform two main operations with 1:46 light pars which are parsing documents 1:49 and screenshotting document pages. Let's 1:52 start
+with uh parsing and let's parse Parsing a document 1:56 this dipstick OCR PDF that we have here 2:00 that we can open in the default app 2:03 which is basically the uh famous paper
+2:07 around dips OCR. So let's get back to 2:10 our 2:12 CLI and run parse 2:16 tips CR PDF and let's redirect the 2:19 output because light parse outputs to 2:21 standard output.
+So we can just redirect 2:23 to dipscr.txt. 2:26 Uh the standard format as I was saying 2:28 is text. So this will be output is 2:31 outputed as text and as you can see we 2:34 are
+already done 22 pages in less than a 2:38 second. And as you can see, we have text 2:41 extraction, which might be unfamiliar to 2:44 many of you that are maybe accustomed to 2:47
+uh more mainstream tools like Py PDF or 2:50 PI PDF. Uh but as you can see here, the 2:54 distribution of text respects and the 2:57 spatial distribution of the text in the 2:59
+original uh PDF that we uh that we saw 3:02 earlier. So, so much so for what concern 3:06 uh text output, we can also uh go and 3:10 set the format 3:13 to JSON and we can redirect
+these to 3:18 JSON. As you can see, we now have pages 3:22 like a JSON map uh that contains an 3:27 array of pages. each page as wage height 3:30 and text and several different
+text 3:32 items with bounding boxes that with font 3:36 detection, font size detection and 3:39 obviously as I was saying before the 3:41 text content becomes in hand uh for when
+3:44 you want to do some more structured text 3:46 extraction from your documents. So now 3:50 that we uh have understood what light 3:54 pars can do on a single document, we can
+3:57 go on and take a look at what light bars 4:00 can do on multiple PDF documents. I have Batch parsing 4:03 here a papers uh folder with other 4:06 papers uh for papers and
+light bars can 4:11 uh perform batch operations uh as you 4:14 can see here with like batch parsing and 4:17 so we can do batch pars input directory 4:21 is papers and output
+directory will be 4:24 papers parsed 4:28 and as you can see this is four PDFs 4:30 with many pages 4:32 have been now turned into text files 4:38 and this can be done obviously
+for uh 4:41 JSON files as well. So once we know uh 4:45 how to parse files we can also take Screenshotting documents 4:48 screenshots of files as you can see 4:51 here. So we can
+do lead screenshot 4:56 [snorts] the document which will be 4:57 dipsyr.bdf PDF. Uh we can take a range 5:02 of pages as as you can see here 1 to 10 5:06 and we can output this
+screenshots 5:10 and as you can see we have now extracted 5:13 the screenshots from each pages and we 5:16 can take a look as you can see we have 5:19 page one page two page three
+all in 5:23 PNG format. Parsing non-PDFs 5:25 Obviously, light parse doesn't only work 5:28 on PDFs. It also works on office 5:32 documents for example word documents, 5:35
+presentation, excel sheets and it also 5:38 works on images. The only thing that you 5:41 have to uh keep in mind when it comes to 5:44 office documents and images is that you 5:46
+will need extra dependencies for that. 5:49 And as you can see here uh the two 5:51 dependency that you will need are pro 5:54 are libra office and image magic. So 5:58 let's first
+install libri office from 6:00 brew because I am on Mac. If you are on 6:03 ubunt ubuntu or dabian you will go with 6:06 abt get. So let's now install. 6:12 And as you can see the
+installation is 6:14 now complete. So we have Libri Office 6:17 installed and we just now need to 6:20 install image magic. 6:24 And now that we have Libri Office and 6:27 image
+magic installed, we can uh proceed 6:30 by parsing office docs that we have 6:33 here. For example, a PowerPoint and a 6:36 doics and we can uh for example pars 6:40 images that I
+have here or directly the 6:43 screenshot. So for example, we can go 6:46 delet screenshot page one dot.png 6:51 and we're going to output that. 6:56 And as you can see, it will
+take a 6:58 little bit of more time, but we have the 7:02 uh page here extracted from the paper 7:06 text. And we can do the same with an 7:10 office document. We have an office
+7:12 document. We have this sample uh with 7:16 this sample document uh with some 7:18 headings, list, links, tables and uh 7:21 plots. And we can do let ours 7:27 docs 7:30 uh
+sample tree do6 and obviously also 7:34 here it will take a little bit more 7:37 time. Let's redirect it to sample.txt. 7:40 txt 7:42 so that we can have everything 7:45 and
+simple.txt 7:47 has extracted uh all the document and as 7:50 you can see has maintained for example 7:52 spatial distribution of text for our 7:55 table the table that we had in
+the 7:57 document. One more interesting thing OCR Customization 8:01 that you can do with light pars is to 8:04 plug in and extend life bars with uh OCR 8:08 servers. We are going
+to use this Python 8:11 script with an OCR uh server leveraging 8:15 easy OCR. And if you want to write your 8:18 own OCR server, you will have to have an 8:21 OCR endpoint. It
+takes a file as uh a 8:26 required parameter and a language as 8:29 basically a optional parameter that 8:32 defaults to English because obviously 8:34 OCR can have different
+languages. This 8:37 is to substitute the built-in OCR that 8:40 uh that as I was saying before is 8:43 taseract.js. 8:45 So if uh we can run the server and now 8:49 that the
+server is up we can copy the 8:52 URL of the server and go to Lars 8:57 OCR server 9:00 URL 9:04 dips 9:05 OCR PDF 9:10 with dep= CR 9:12 ECR 9:15 td 9:16 and we can parse that.
+And as you can 9:19 see obviously we have now slightly 9:23 different results cuz we will we have 9:26 used a uh we have used a OCR back end 9:31 which is um the one that we
+specified on 9:33 the server that we ran with uh UV and 9:37 Python uh before. So the server that we 9:40 set up here. So this is basically 9:43 everything you need to know for
+what 9:46 concerns light pars as a CLI tool. You Library Usage 9:51 can also use light pars as a typescript 9:53 library. We have an example in our rit 9:59 uh and you will also be
+able to use 10:01 light pars as a uv tool. So it will also 10:04 be available as a python package. So you Agent Skill Usage 10:08 not only will be able to use this as a 10:11 CLI
+tool or as a library but you can 10:14 also use it as a skill and you will be 10:18 able to use this uh command 10:22 with the skills CLI tool by VCEL to add 10:25 the run lama
+llama par agent skills 10:28 repository and select the light parse 10:31 skill. So we're going to be running this 10:34 bash command. 10:37 So we run bash add skill. We set it up
+10:40 for cloud code. We install it for our 10:43 project. We go with the sim links. And 10:46 as you can see we have skills installed. 10:51 So we will be using cloud and we will
+be 10:54 invoking the light skill directly. 10:58 And uh it will ask us if we have 11:00 everything installed. And so I will say 11:02 yes, I have everything installed. These 11:07
+are the dips OCR. 11:11 PDF file in the current directory and 11:15 redirect the output to 11:18 seek OCR load. 11:22 read the DXD file and produce a report 11:26 for me on the
+content of the paper. So 11:30 once this is uh done we will have the 11:34 parse file we will have dips ocrdo 11:38 as you can see here and now we are 11:41 summarizing the uh
+research uh content 11:46 and here is the uh summary that cloud 11:50 produced by reading the uh file that you 11:53 just parsed with light parse. So as you 11:55 can see you can
+use light pars as a 11:58 skill uh for coding agents. You can use 12:02 it for cloud code but you can use it 12:04 also for all the agents that support 12:06 skills. So this was
+basically everything 12:10 for what concerns uh light bars. I hope 12:13 you enjoy the video and I hope you will 12:17 leave a little star on the GitHub repo 12:19 for light pars
+and if you have any 12:23 feedback for us just let us know in the 12:26 GitHub issue. See you on the next time. All From the seriesIntro 0:00 everyone welcome back to the channel
+0:02 today we are solving a big and classic 0:04 challenge extracting precise and stru 0:08 data from complex PDFs and automating 0:11 the entire process into a database 0:13
+here's what we're going to do we're 0:15 going to use this PDF as you see highly 0:18 unstructured very complex we're going to 0:22 use llama passs to process the document 0:24 and
+extract structured text we will 0:28 leverage open AIS structured output to 0:32 Define and retrieve precise Fields like 0:36 the address prices the dates the Brokers 0:39 I will
+show you how to set up superbase 0:41 create a database table and use it in 0:45 the entire workflow and finally automate 0:47 the whole process with n8n connecting 0:50 the super
+base database the open AI API 0:54 llama passs and everything you 0:57 need I will show you how to hand and Why Typical Tools Fail with Complex PDFs 1:00 this step by step apply it
+to your 1:02 specific use case so you can build an 1:05 entire pipeline to extract all data you 1:09 need and insert them into your database 1:11 or youra now you might ask why not
+just 1:15 use a basic retriever augmented 1:17 generation setup upload a five vectorize 1:20 it and query it sounds simple right well 1:23 here's the issue rag is amazing for 1:26
+tasks like unstructured Q&A for example 1:29 if you have a PDF or Google doc with 1:32 mainly text like user questions and 1:35 answers an llm combined with their Arc 1:39 can
+retrieve highly relevant context to 1:42 answer new questions it's perfect for 1:45 retriever based tasks but when it comes 1:48 to extracting specific Fields with high 1:51
+accuracy it starts to fall apart for 1:54 these kinds of tasks we need a proper 1:57 passing so what is passing passing is What is Parsing? 2:00 the process of analyzing
+unstructured 2:02 data and transforming it into structured 2:05 format that llms can understand and 2:08 manipulate think of it like breaking 2:10 down a complex PDF and desect it
+to 2:14 extract specific Fields like names dates 2:17 transaction amounts it's about 2:19 understanding the structure and patterns 2:22 within the data to retrieve exactly what
+2:24 we need with high precision and by 2:27 implementing proper passing technique 2:30 we can automate the extraction process 2:32 ensuring that the data fed into our 2:36
+database is both accurate and reliable 2:40 for structured documents like invoices 2:44 or legal documents this isn't a big deal 2:48 because they are often consistent most 2:51
+solutions out there already have trained 2:54 models to extract amounts company names 2:57 dates and other standard fields and 2:59 invoices follow a specific format now of 3:03
+course you might have a different logo 3:06 you might have different different names 3:09 but the the silhouette or the structure 3:13 is very very similar for invoices um and 3:17
+these Solutions now have trained their 3:21 models on thousands or even millions of 3:25 invoices and they can do it pretty 3:27 accurately now if you have another type 3:30 of PDF
+let's say a financial document or 3:34 in this example a PDF with listing 3:38 properties these Solutions quite fail 3:41 they they are not accurate at extracting 3:44 the data you
+need because the PDF the 3:47 model didn't see formats before that's 3:51 why it failed here's an email I got from 3:54 my client lately so this is a real 3:57 project guys they
+have proper the 4:00 listing PDS and need to extract details 4:03 as stated in here they need owners they 4:07 need listing Brokers the brokerage firm 4:11 they need the Centrist
+number and the 4:14 indicator and they tried other Solutions 4:18 but they weren't reliable why because 4:21 the PDF's layout was inconsistent 4:24 traditional passes struggle to
+identify 4:28 the fields they wanted to extract and 4:30 they couldn't handle the unstructured 4:32 format so here's how the PDF looks like 4:36 we have here the cess number the
+client 4:39 wants to extract we have the price the 4:42 address here we have the amount and what 4:46 you can see is we have different number 4:51 of listings for each page so for
+example 4:55 on this page we have two listings one 4:57 and two this one as well but I I saw one 5:02 page with more or less listings I this 5:06 page we have three listings and in
+this 5:09 page we have none and that's where llama LlamaParse: What It Is and How It Works 5:12 pass comes in a tool powered by llama 5:16 index and Lama pass isn't just another
+5:19 PDF pass it can hander formats like 5:23 messy in inconsistent layouts it's open 5:27 source and especially designed for llm 5:30 applications we can take a look at this 5:33
+example we could extract the text and 5:37 even transform or convert the chart into 5:41 a table which is game changer when 5:45 implementing rug pipelines so if you 5:50 skipped
+the passing step and just upload 5:55 this document as it is into your vector 5:57 database your llm won't won't be able to 6:00 read the chart obviously but if you 6:04 transform
+it properly into markdown 6:07 format with Advanced passing techniques 6:10 you would be able to 6:12 retrieve any information on the PDF so 6:16 that's why passing is very
+important 6:20 when it comes to building reliable BR 6:23 pipelines or even transforming 6:25 unstructured data from PDF into 6:27 structured data what we are going to see 6:30 in
+this video before using the API let's 6:32 check out the playground first go to get 6:36 started start using LMA pass so here we Find Optimal Parameters to Parse Our PDF 6:39 can
+upload our PDF and here we can 6:44 adjust the settings and play with the 6:47 parameters a bit so Lama pass offers 6:50 many options for passing your document 6:54 that's why I
+recommend always to begin 6:56 with a playground upload some PD fs and 7:00 see what the output would look like when 7:03 using one parameter or another and then 7:07 when you know
+exactly what parameters 7:10 you're going to use you can later move 7:14 to using the API because all these 7:17 parameters would be needed then when 7:20 requesting or when using
+their API so 7:23 here we have few modes we have a fast 7:27 mode when your goal is to process 7:30 documents very fast we have the accurate 7:34 mode and they have different
+pricings as 7:36 you see so here the fast mode would cost 7:39 you one credit for three pages the 7:42 accurate one the premium mode is 15 7:45 which is which could be a bit pricey
+and 7:48 we have other modes we have also a 7:51 structured output directly embedded into 7:54 llama pass but to be honest I've uses 7:58 I've used the this feature a few times
+8:02 but I found when using Lama pass really 8:06 only for passing and then using an open 8:09 AI model or even CLA to extract the data 8:15 that I need I found it much more 8:18
+reliable but yeah you can try this out 8:21 you can Define your Json schema put in 8:25 what you want to extract from the 8:27 document and you're good to go we have 8:31 passing
+extra instructions here so you 8:35 you can see it kind of as a prompt just 8:37 writing what you want to extract from 8:40 your PDF we have the text and images 8:44 handling so
+you could Define you could 8:47 use the OCR or skip it you can you have 8:52 really lots of options here so I 8:54 recommend you to play play with these a 8:57 bit to find the most
+optimal parameters 9:01 for your specific use case you can also 9:04 Target pages and here we have a web hook 9:07 if you are using it in your app and we 9:13 have a cache settings
+also which could 9:15 be very handy for our example let's use 9:18 the accurate mode and see how it 9:21 performs let's click on pass so it's 9:24 uploading the file and it will
+gives us 9:27 a job ID back which we are going also to 9:30 use in our n8n workflow later on I will 9:34 show you how to use it so it's going to 9:37 take few minutes so the
+passing is 9:39 complete let's take a look at the 9:41 results we have the property we have the 9:45 price we have here the address and some 9:49 text we have property number two
+so this 9:52 looks very good we have even pages in 9:57 here page separator you can also set 10:00 this up if you want another type of 10:04 separating the pages you can find it in
+10:08 page formatting yeah and here you can 10:11 put your page separators we have a 10:14 default value in here which is the three 10:16 hyphens we have also the same output but
+10:21 in text by I found mark down is better 10:24 when using an afterwards we have also 10:28 adjacent format we have the images here 10:32 are the images in our PDF and these
+10:35 images you could also build another 10:38 route in your process for processing the 10:41 images with another llm for example so 10:45 you see now how we've been able to 10:48
+successfully pass this highly complex 10:51 PDF with just few clicks and we didn't 10:56 really use the other parameters let jump Designing the Workflow 10:59 to 11:00 whimsicle
+and map out the whole workflow 11:03 and make sure we don't forget anything 11:06 so first things first we going to use a 11:10 trigger which is going to be watch 11:14 Google
+drive folder and then after that 11:19 we're going to download the file we're 11:23 going to pass it to llama pass using the 11:26 parameters we just used on the 11:28 playground
+11:29 after that as I showed you on the 11:32 playground when passing files to lamaas 11:37 API we are going to get a job ID back 11:42 and with this job ID we going to make 11:47
+another API request to see if the job is 11:50 complete or not so here we're going to 11:53 check the job status and then we're 11:58 going to grab 11:59 the content in markdown
+format so here 12:03 get PDF content in MD format after that 12:10 we are going to pass it to open AI 12:15 structured outputs I'm going to show you 12:18 how to set this up in n8n
+and then we 12:23 are going to insert to super base pass 12:27 to super base so here what we need is to 12:33 define the Json schema with all the data 12:39 that we need to extract
+from the 12:40 markdown format so we need this schema 12:44 especially for the open AI structured 12:46 output node and after that make sure 12:51 that this schema matches the
+super base 12:55 table so for that we are going to go to 12:59 chat GPT and we are going to grab the Defining the JSON-Schema 13:05 markdown format we just got just an 13:09
+example so this is only the property one 13:13 and we're going to tach H GPT to 13:17 generate a Json schema to extract 13:22 following data points and just grab the 13:27 data in
+here here in our customer 13:30 inquiry so chbt is going to generate 13:34 thejason so really simple now that we 13:37 have that let's go back so we have the 13:40 Json schema for
+our open a structured Automating the Workflow with n8n 13:44 output going back to n8n I already 13:47 created the two first notes which are 13:49 pretty simple so the first one is
+going 13:51 to be our trigger watching a specific 13:55 folder where every time when a file is 13:58 created inside 13:59 the folder it's going to trigger our 14:01 automation so
+let's test this out as you 14:05 see we have already one file and after 14:09 that we're going to download this file 14:11 using this ID which is found in here 14:16 let's test
+this out and as you see we 14:20 are able to download the file our next 14:22 step is going to be an HTTP request to 14:25 pass the data to Lama pass Setting up LlamaParse API Call
+14:31 and here let's jump to the Llama pass 14:36 documentation this is what we need when 14:39 uploading a file and start 14:41 passing we are going to use this 14:45 URL paste it
+in here the method is going 14:49 to be post yes and for the 14:51 authentification 14:53 going to use a generic credential 14:57 type go to header of as you see here I 15:02
+already 15:03 configured um my authorization but uh 15:07 for you guys it's pretty simple so you 15:09 go to the playground Lama Cloud go to 15:12 API key and you can generate a
+new key 15:16 is found in here as you can see beer and 15:21 then space your API key we also need 15:26 these headers as well so authorization 15:29 is done we still need these two
+so the 15:32 first one is going to be accept in the 15:34 headers so send headers name is 15:39 accept sorry going to close this 15:42 application SL 15:45 Json and another 15:47
+parameter which is content type and 15:51 multiart form data just copy this in 15:54 here and we also need this body 15:58 parameter 15:59 going to show you how to set this up so
+16:01 go to body we're going to use for data 16:05 and then use n and binary file the name 16:09 is going to be file and the input data 16:13 field name is going to be data which
+is 16:16 referencing to this name and we are good 16:20 to go it's that simple Let's test this 16:24 step and as you see we get back an ID 16:28 with this state is pending and for
+16:31 production environments we are going to 16:35 need a weight module to wait few seconds 16:39 before checking the status of the job so 16:42 here we can wait 30 seconds we
+don't 16:45 need it for these testing purposes but I 16:48 want to create a workflow that is very 16:52 close to a rear W project that's why we 16:56 are we are using a weight modu
+in here 16:59 we don't need to test this so after 17:02 waiting 30 seconds we are going to make 17:05 another request to the Lama Cloud API to 17:10 check um the status of the job
+as I said 17:13 so go back to the documentation and here 17:16 we have the check check the status of 17:20 the passing job we are going to paste 17:24 this part in here and then I
+let's 17:29 wait 30 17:31 seconds and what we need is passing the 17:35 job ID in the URL and of course we need 17:40 another authentification 17:42 it's going to be the same and
+we also 17:46 need to pass this header as 17:53 well let's copy it in here then 17:57 application slash 17:59 Chase and we are good to go let's test 18:02 this out perfect so we
+are we see here 18:06 that the status is Success so the 18:08 passing is 18:10 complete now we can make another HTTP 18:14 request to fetch the 18:20 content so use 18:23 this
+18:26 URL the method is 18:29 get as well and we're going to replace 18:32 this placeholder with our actual 18:40 ID and authentification 18:47 and also the same 18:51 parameter in
+the 18:53 headers accept then application slash 18:57 Json go back in here test so perfect you 19:01 can see in here we have the whole marked 19:05 content this looks good and to
+make this 19:08 workflow closer to reality let's put an 19:12 if 19:14 between um to check if the 19:17 status 19:19 is 19:21 Success so if the the status is Success 19:26 it's
+going to move to the next notes to 19:28 grab the content and if it still needs 19:32 time we are going to wait 19:35 again maybe 1 minute this time so 60 19:40 seconds and then we
+try um the checking 19:45 job status let's rename um these 19:51 requests so the first one is upload PDF 19:59 this one is going to be 20:04 check drop 20:11 status and this one is
+get PDF content 20:17 in MD 20:20 format perfect so now that we have the 20:23 content format we are going to use the 20:27 uh open a structured output feature in Using Structured
+Output Feature 20:30 in in which is called information 20:35 extractor and as you can see in here we 20:39 have we're going to pass the mark down 20:41 in the text and we're going
+to Define 20:44 our custom schema type which is defined 20:48 Below in here and paste uh the Json 20:52 schema that we generated with 20:55 chpt and we are also adding a system
+20:58 prompt which is very simple so you are 21:02 an expert extraction algorithm um if you 21:05 do not th the value or of an attribute 21:09 uh you may omit the attributes value
+the 21:12 text can contain one or many listing 21:14 properties make sure you extract all of 21:17 them and now let's go back and add the 21:21 model in this case open AI let's
+choose 21:26 GPT 4 o and perfect so now let's test 21:30 this step and you can see the model has 21:34 successfully extracted all the data we 21:36 need in here listings so this is
+the 21:40 first one this is the second one and we 21:43 have 16 listings now it has become very 21:48 easy to put this data in a database as 21:52 now all our data is structured so
+we 21:55 have in fields names we have the content 22:00 and yeah I hope that you understand a 22:03 bit um how we solve the problem so first 22:08 we are passing um with PDF and
+22:12 converting it to markdown format and 22:14 then leveraging the gamechanging feature 22:17 in my opinion of open air which is 22:19 structured output and you can use it 22:22
+with this simple node in n8n just give 22:25 it the schema of the data you want to 22:27 extract 22:29 and as an an additional uh tip for this 22:33 example we have only eight
+pages of PDF 22:36 but let's assume you have 100 Pages what 22:39 I would do in here is maybe add a piece 22:42 of code just after downloading the file 22:46 and then you can split
+the PDF in 22:50 batches let's say for example 10 pages 22:53 at a time upload them all to Lama pass 22:57 and because we have the context um 23:01 window limitation for open AI so
+GPT 40 23:05 I think they have limitation of uh 32k 23:10 though if we have 100 Pages PDF it's not 23:13 going to or fit into the window so I 23:16 would split it into Pages or
+batches 23:19 maybe 10 pages and then Loop through all 23:23 batches or pages and extract all the 23:25 data and after that we have a structured 23:29 Json that we can easily
+insert into any 23:33 database and that's what what we are 23:35 going to do next okay so our last step Setting Up Supabase 23:38 is going to be creating our database so 23:41 go
+to super base.com and start your 23:44 project and then we're going to create a 23:46 new project you can specify the name and 23:50 very important the database password 23:53 that
+we are going to use later but I cre 23:56 already created mine go back to the the 23:58 dashboard we can go to my project and 24:03 here we have two options either we can 24:06
+create a new table and create manually 24:10 all columns but the better and easier 24:13 way I found is to use this SQL editor 24:18 let's go back to GPT and then ask it to 24:21
+create a SQL query to generate a table 24:27 for this data and as you can see in here 24:30 we have the SQL query let's copy the P 24:35 the paste this in and hit and let's name
+24:38 it listings then hit run so you see a 24:42 success when we go back to our 24:44 database we can or table editor you can 24:48 see our database is created with our 24:53
+columns which is a bit faster than 24:56 creating tables manually and defining 25:00 the types Etc going back to n8n we're 25:04 going to first split out the data that 25:08 we got
+so we're going to split listings 25:12 and test the step as you can see we we 25:15 splitted the result into arrays so we 25:18 have each listing separated and now it's 25:22 going
+to be very simple to insert all 25:25 this into super base create row 25:28 and then we will Arch every field so 25:33 let's select our database and then here 25:37 we going to
+select address and then put 25:39 the address and do it for all Fields 25:43 original price is this 25:46 one okay so I mapped out all Fields as 25:50 you can see in 25:51 here and
+let's check our database which 25:56 is empty for now 25:59 and then let's test the whole 26:03 workflow and as you see the workflow is 26:05 now complete let's check our database
+26:08 let's refresh and as you see here we 26:12 have all the data all the listings the 26:15 prices all the data that the client 26:18 needed and finally guys few tips I want
+Final Thoughts 26:21 to emphasize here at the end of the 26:23 video so really make sure before 26:26 implementing such pipeline 26:28 which can be more complex than this 26:31
+pretty simple example is play around 26:35 with uh the parameters on the llac cloud 26:38 playground as I showed you to find the 26:41 optimal ones for your specific use case 26:44
+and only after that go ahead and build 26:47 your workflow the second point I want to 26:50 emphasize is when the PDF is too large 26:54 let's say hundreds of pages make sure to
+26:57 split it it and loop through the pages 27:01 otherwise the data extraction isn't 27:03 going to be reliable because you have 27:05 the limitation of the context window and
+27:08 finally make sure to to define a proper 27:11 adjacent schema as I showed you you can 27:13 do it very easily with Chad GPT for 27:15 extracting your data if you find this
+27:18 video helpful hit the like button and 27:21 subscribe it really helps the channel 27:23 grow and keeps me motivated to create 27:25 more content like this I've got a lot
+27:28 more exciting content coming your way in 27:31 the next few weeks from building air 27:33 powered workflows to automating complex 27:35 business processes we're going deep
+into 27:38 practical applications that you can 27:41 Implement right away also feel free to 27:43 drop any questions or suggestions in the 27:47 comments below I read them all and
+your 27:49 feedback shapes these videos thanks so 27:52 much for watching and I'll see you next 27:54 time let's keep building scaling and 27:57 automating together All From AI
+RachidVideo Overview 0:00 If you're interested in AI development, then you're in the right place. Today I'm going to be showing you how to build an advanced 0:06 AI agent that uses
+multiple lamps. We're going to run our agent through a series of steps. 0:12 We're going to connect the two agents together. We're going to parse the output. And you're really
+going to see how to get a bit more advanced here 0:18 and how to do some really cool stuff with LMS running on your own computer. We're going to be doing everything locally. 0:25
+We're going to use something known as oh Lama and Lama Index. And you're really going to get a taste of what AI development is capable of 0:31 in the short video that even beginner
+or intermediate programmers can follow along with. So with that said, let's get into a quick demo. 0:38 Then I'll walk you through a step by step tutorial on how to build this
+project. So I'm here inside of VS code, and I'm going to give you a demo of how Project Demo 0:45 this works. And the concept is that we're going to provide some data to the model.
+This data will be a coding project that we've worked on. 0:53 We've kept it simple for this video. But if you scaled this up you could provide it a lot more code files and it can
+handle all of those potentially at the same time. 1:01 So you can see that we have a Readme dot pdf file in our data directory. And this is a simple kind of documentation for an
+API that we've written. 1:09 We then have a test.py file. And this is the implementation of that API in Python. 1:15 So the idea here is we want our agent to be able to read in
+this information and then generate some code based on the existing code that we already have. 1:24 So I've just run the agent here, and I've given this a sample prompt that says
+read the contents of test.py 1:29 and write me a simple unit test in Python for the API. Now the idea here is that we've provided this agent some different tools that can utilize,
+1:37 and it will decide when it needs to utilize the tools and use them to get the correct information. 1:43 So in this case, it will use a tool to read in the test on py file. It
+will then use a tool to actually parse and get access to the information in the readme dot pdf. 1:52 It's then going to generate some code for us. And then what we'll do is use
+another model to parse that output and save it into a file. 1:59 So you can see that when I ran this, it did exactly that. Now it doesn't always give us the best result because we
+are running these models locally. 2:06 And I don't have a supercomputer here, so I can't run the best possible models, but it's showing you what's possible. 2:12 And obviously all
+of this is free. You don't need to pay for anything because we're running it locally using all open source models. 2:17 So what this did here is generate this test API file. You
+can see there's a few minor mistakes, but if I fix these up by just adding 2:24 the correct parentheses and removing the escape characters here you see that we actually have a
+functioning unit test written for our flask API. 2:33 So this is pretty cool. We might need to change this a little bit to make it work, but it just outputted all of that for us
+2:39 based on the context of the files that we provided to it. Now, if we go here and read through 2:44 kind of the output we're getting from the model, you can see that it's
+actually sharing with us its thought process. So it says the current language of the user is English. 2:51 I need to use this tool to help me answer the question. It's using the
+Code Reader tool. It passes the file name equal to test.py. 2:58 It reads in the contents of test.py and then it says okay, I can answer without using any more tools. 3:03 I'll use
+the user's language to answer, to write a simple unit test, blah blah blah. You do this and then write all of this code. 3:10 Now behind the scenes, what actually happens is we
+pass the output of this using a secondary model 3:16 and take just the code and then generate it into a file, and that file name will be generated by a different LM. 3:23 To make
+sure it's appropriate for the type of code that we have. So it is a multi-step process here. 3:28 It worked quite well. And you can see it also gave us a description of what the
+finished code was. So that's what I'm going to be showing you how to build. 3:35 I know that it might seem simple, but it's actually fairly complex, and it uses a lot of different
+tools which are really interesting to learn about. 3:42 With that said, let's get into the full tutorial here and I'll explain to you how we can build this out completely from
+scratch. Agents & Projects 3:49 So let's get started by understanding the tools and technologies that we need to use to actually build out this project. 3:54 Now, what we need to
+do for this project is we need to load some data. We need to pass that to our LM. 4:00 We then need to take the result of one L11, pass it to another LM, and then we need to
+actually use a tool and save this to a file. 4:08 There's a few different steps here. And if we wanted to build this out completely from scratch that would take us a very long
+time. 4:14 So instead we're going to use a framework. Now of course we're using Python, but we're also going to use Lama index. 4:19 Now we've teamed up with them for this video.
+But don't worry, they are completely free and they provide an open source framework 4:25 that can handle a lot of this heavy lifting and specifically is really good at loading in
+data and passing it to our different labs. 4:34 I'm on their website right now just because it explains it nicely, but you can see Lamb Index is the leading data framework for
+building LM applications. 4:42 It allows us to load in the data which you'll see right here, index the data, query it and then evaluate it. 4:48 And also gives us a bunch of tools
+to connect different loops together to parse output. You're going to see a bunch of advanced features in this video. 4:56 Now, as well as using Lama index, we're going to use
+something called a Lama. Now Olam allows us to run open source. 5:02 Lem's locally on our computer. That means we don't need to pay for ChatGPT. We don't have to have an open AI
+API key. 5:09 We can do all of this locally. So the summary here is that we're using Python lama index o lama. 5:16 We're also going to throw in another tool which is new from Lama
+index called Lama Pass. Don't worry it's free as well. 5:21 And all of that is going to allow us to build out this advanced AI agent that has Rag capabilities Rag meaning
+retrieval, augmented generation. 5:29 Whenever we're taking this extra information and passing it into the model that's really known as right. 5:34 I have an entire video that
+discusses how Rag works. You can check that out here. But for now, let's get into the tutorial and let's see exactly how we can 5:42 build this application. So I'm back on my
+computer and we're going to start by installing all the different dependencies that we need. Installation/Setup 5:48 We're then going to set up a Lama. And then we'll start writing
+all of this code again. Oh Lamas. How we run the models locally. 5:54 We need to install that first before we can start utilizing it. Now there are some prerequisites here. 5:59 So
+what we're going to do is I have a GitHub repository that I'll link in the description. And in that GitHub repository you'll find a data directory 6:08 that contains a Readme file
+and a test.py file. Now you don't need to use the specific piece of code, but 6:14 what you should do is create a data directory in a directory in VS code. So I've just opened up a
+new one here in VS code, made a new folder called data, 6:22 and then put these two files inside of here. Specifically we want some kind of PDF file in some kind of Python file.
+6:28 We can have multiple of them if you want, but the concept is this is the data that we're going to use for writing the retrieval augmented generation. 6:35 So you need
+something inside of here. So either take it from the GitHub repository or populate it with your own data. 6:41 Now from the GitHub repository as well there is a requirements.txt
+file. Please copy the contents of that file and paste it into a requirements.txt file 6:50 in your directory, or simply download that file. This is just going to save you a lot of
+headache, 6:56 because it has all of the specific versions of Python libraries that we need in order for this project to function properly. 7:03 So really again, we want to get

@@ -1,0 +1,224 @@
+one more cool 2:23 optimization we can make in modern 2:25 browsers you can optimize resource 2:26 priority by using preload links to make 2:29 sure that important assets are 2:30
+discovered first in addition you can 2:32 change the fetch priority on images to 2:34 either high or low so that low priority 2:36 image is at the bottom of the page won't 2:37 get
+loaded before the more important 2:39 ones unfortunately though largest 2:40 contentful paint isn't the only thing we 2:42 need to worry about we also have first 2:43 input delay
+which measures interactivity 2:46 a website needs to have a first input 2:47 delay of 100 milliseconds or less and at 2:50 300 milliseconds becomes bad what it's 2:52 measuring is
+the amount of time it takes 2:54 from the moment a user interacts with 2:55 the page like when they click on a 2:57 button to the time it takes the browser 2:58 to process event
+handler is for that 3:00 interaction basically you don't want a 3:02 website to render if the actual things 3:03 on it don't work measuring it is a 3:05 little more tricky but I'll
+show you how 3:06 to do it in just a minute with the new 3:08 web vitals plugin and basically the only 3:09 way to optimize it is to reduce your 3:11 JavaScript execution time but
+One does 3:13 not simply just get rid of their 3:14 JavaScript you can use tools like web 3:16 workers and Party Town to move some of 3:18 your JavaScript into a worker or most
+3:20 JavaScript Frameworks have the option 3:21 for lazy loading like react lazy for 3:23 example or there are Frameworks like 3:25 quick that are optimized for instant 3:27
+interactivity by using highly aggressive 3:29 lazy loading but that brings us to our 3:30 final metric cumulative layout shift it 3:33 measures visual stability or in other 3:34
+words elements on the page shouldn't be 3:36 jumping around in unexpected ways you 3:38 can measure it by generating a 3:39 lighthouse reporting Chrome Dev tools or 3:41 with the
+web vitals extension as we'll 3:43 see in a minute one of the easiest ways 3:44 to get bad CLS is to use images without 3:46 Dimensions when using images they should 3:48 always
+have a width and height or 3:50 alternatively use the CSS aspect ratio 3:52 property that's usually an easy fix 3:54 unless you have responsive images that 3:56 need to change
+their aspect ratio based 3:58 on the viewport in that case you'll 3:59 likely want to use Source set to use 4:01 different images under different 4:02 conditions in addition you
+might get bad 4:04 CLS as a result of advertisements being 4:07 injected into the website or from poorly 4:09 designed animations that try to do too 4:10 much we could talk all day
+about 4:12 performance but I think these three 4:13 metrics are the most important to 4:15 understand now that you know how they 4:16 work let's do some real world analysis 4:18
+the Chrome team at Google just released 4:20 a new web vitals extension and go ahead 4:22 and install it and then also go to the 4:24 settings and enable console login after 4:26
+that go to your favorite webpage like 4:28 fireship.io and open up the console 4:30 you'll notice that we now get console 4:32 logs for CLS and LCP when it comes to 4:35 largest
+contentful paint it will tell us 4:36 exactly which element is affecting that 4:38 metric which is extremely important 4:40 because that's the thing you want to 4:41 optimize in
+addition it will break down 4:43 the time for its subparts like time to 4:45 First byte and element render delay then 4:47 when it comes to layout shift it will 4:49 give us the
+elements in the Dom that are 4:50 affecting that metric so we might want 4:52 to investigate those and see if we can 4:54 do anything to optimize them if we then 4:55 click on
+something we'll also get a log 4:57 for first input delay and we'll also get 4:59 measurement chance for any interactions 5:01 thereafter and this will allow you to 5:02 pinpoint
+any bottlenecks with 5:03 interactivity I've only been using this 5:05 extension for a couple days now but it's 5:07 been a game changer for analyzing 5:09 performance on my own
+website primarily 5:10 because it's so good at pinpointing the 5:12 exact things that need to be fixed but 5:13 when you have a website that has 5:15 hundreds or thousands of
+different pages 5:17 it's impossible to go through and 5:18 analyze performance on every single page 5:20 and that's why you should know about 5:21 this other tool called unlite
+house it's 5:23 an open source tool that runs a Google 5:25 Lighthouse report on every single page 5:27 in your website and it does everything 5:29 in parallel so it only takes a
+couple of 5:30 minutes to analyze hundreds of pages to 5:32 run it simply create a new directory and 5:34 then run npx on Lighthouse with your 5:37 website address it'll bring up a
+UI to 5:39 show you how bad your website 5:40 performance is in real time and while I 5:42 was happy to find that most pages had 5:43 great performance there were some 5:45
+unexpected pages that had very poor 5:47 performance and I never would have known 5:48 that otherwise I thought that was pretty 5:50 interesting so I went ahead and ran on 5:51
+lighthouse on a variety of popular 5:53 websites first I tried amazon.com I 5:56 expected it to have relatively poor 5:57 performance just because it's relatively 5:59 complex with
+tons of images but it 6:01 actually did quite well although when 6:02 using the web vitals plugin I noticed a 6:04 lot of cumulative layout shift issues on 6:06 Amazon Google as
+expected performed very 6:08 well because they're the ones that 6:09 create all these performance rules in 6:11 the first place and almost every major 6:12 website I analyzed
+including Reddit and 6:14 hub all performed extremely well with an 6:17 average performance of around 90. the 6:18 one website that really crushed it in 6:20 performance though is
+astro.build the 6:22 homepage for the Astro framework it 6:24 almost got perfect 100s across the board 6:26 so it really does live up to its claims 6:27 for awesome performance
+what's cool 6:29 about unlite house though is that it 6:30 also has an SDK so you can integrate it 6:33 into your continuous integration 6:34 pipeline as well if you want to learn
+6:35 more about stuff like this become a pro 6:37 member at fireship i o for even more 6:39 content thanks for watching and I will 6:41 see you in the next one All From Beyond
+Fireship Welcome to Core Web Vitals Mastery 0:00 greetings web Masters and digital 0:02 enthusiasts I'm Irvin and today we're 0:04 delving into core web vitals on the Ulta 0:07
+host Channel stick around as we explore 0:10 what they are why they matter and most 0:12 importantly how to master them for an 0:14 enhanced website experience don't forget 0:17 to
+subscribe and hit the bell for 0:18 updates let's get Introduction to Core Web Vitals 0:23 started introduction to core web vitals 0:26 as the internet evolves website 0:29
+performance and you user experience 0:30 become crucial core web vitals 0:33 introduced by Google are metrics 0:35 revolutionizing how we gauge a websites 0:38 quality set to
+impact search rankings 0:40 since May 2021 what are core web vitals What Are Core Web Vitals? 0:45 these metrics focus on loading speed 0:47 interactivity and visual stability 0:50
+comprising largest contentful paint 0:52 first input delay and cumulative layout 0:55 shift meeting Google's thresholds for 0:58 these metrics is crucial for a positive 1:00 user
+Why Core Web Vitals Matter 1:01 experience why core web vitals matter 1:04 core web vitals matter for user 1:06 experience search rankings mobile 1:09 friendliness increased
+conversions and 1:11 competitiveness in the crowded digital 1:13 landscape importance of core web vitals Importance of Core Web Vitals in SEO 1:16 in SEO core web vitals are a
+Cornerstone 1:20 of SEO strategy emphasizing Superior 1:22 user experience while crucial they're 1:25 part of a broader strategy that includes 1:27 keyword optimization backlink
+building 1:30 and content creation how to optimize How to Optimize Your Website for Core Web Vitals 1:33 your website for core web vitals 1:35 optimizing for core web vitals
+involves 1:37 a comprehensive approach improve page 1:40 speed minimize render blocking resources 1:43 optimize Website Layout utilize caching 1:46 plugins reduce server response
+time 1:48 minimize third-party scripts minimize 1:51 JavaScript and CSS prioritize above 1:54 theault content and monitor with tools 1:56 like Google's page speed insights 1:58
+improve user EXP experience optimizing Improve User Experience 2:01 core web vitals isn't just about SEO 2:03 it's about delivering an exceptional 2:05 user experience key steps
+include 2:08 reducing page loading time prioritizing 2:10 above theold content providing clear 2:13 navigation ensuring responsive design 2:15 and minimizing intrusive
+interstitials Conclusion 2:18 in conclusion core web vitals are a 2:20 GameChanger prioritizing user experience 2:23 and optimizing loading speed 2:25 interactivity and visual
+stability lead 2:27 to higher search rankings increased 2:29 engagement and Better Business outcomes 2:32 thank you so much for watching and if 2:33 you find this video helpful
+please don't 2:35 forget to like subscribe and hit the 2:37 notification Bell for more tutorials and 2:39 helpful content like this your journey 2:41 to mastering core web vitals
+begins 2:47 now All From UltaHost Intro 0:00 So what are core web vitals? Well, let's answer that right now. 0:00 So what are core web vitals? Well, let's answer that right now.
+0:07 Google has a vested interest in serving good web pages they created web vitals as an initiative 0:12 to standardize site performance across the whole internet to understand
+what core web vitals are we What are Web Vitals? 0:18 first need to know what web vitals are web vitals are a collection of metrics used by Google to test 0:24 your site's
+performance against a standard this standard by which all other sites are measured is 0:29 Created from data collected and shared in the Chrome ux report affectionately known as
+Crux 0:35 Crux is a publicly accessible collection of real user experience data essentially Google Chrome 0:41 collected website performance data as their users browse the internet
+those metrics were then used 0:47 to create a baseline for performance and then that Baseline was made available to the whole world web 0:53 vitals then show you how far below or
+above your site is performing in specific areas compared to 1:00 everybody else on the internet while your site might have a really cool parallaxing landing page 1:05 that
+crossfades into a super high resolution and interactive image and it might work well on your 1:09 local machine when your users on the internet try to access your site they might
+have a different 1:14 experience to combat this Google started offering core web vitals as recommendations for what is 1:20 acceptable regarding loading and response time but
+starting in the year 2020 Google informed the 1:26 world that web vitals would now categorically impact your site's ranking on Google's serp 1:31 so having good web vitals now
+officially falls under the realm of SEO or at least in part and 1:37 from Google's perspective this just makes sense they want to give you the end user good search 1:42 results
+from good and stable web pages what would happen if all the first page search results took 1:48 over 20 seconds to load people might just give up on the search completely or look
+it up in a 1:52 book or heaven forbid they might even migrate to Bing just joking nobody uses big so whether you 1:58 are a developer or just a site owner if you want your pages to
+rank high on a search platform it's 2:03 important to know how your site's web vitals are right now but which vitals are important I mean What are Core Web Vitals? 2:10 you can
+test lots and lots of web vitals there are too many to cover in a single video but Google 2:14 says that there are three web vitals that will really impact your site's ranking
+Three core web 2:20 vitals core web vitals are web vitals that will have a profound effect on your website's ranking 2:25 in a search engine and dramatically affect your user's
+experience they include largest contentful Largest Contentful Paint (LCP) 2:31 paints first input delay and cumulative layout shift let's take a look at each one of these 2:37
+largest contentful paint largest contentful paint is the amount of time it takes for your web page 2:43 to load its largest piece of content and is used to measure your site's
+loading performance Google 2:48 recommends LCP to occur within 2.5 seconds of your Page's first load request for a decent user 2:54 experience in the real world this means that
+when somebody clicks on your site from Google the user 2:59 should see the largest piece of content on their screen in under two and a half seconds Google also 3:05 reports that if
+the page does not load in under 3 seconds 53 percent of your users will back out of 3:11 the site immediately that's a huge loss to any business and not only that when half the
+people 3:16 who clicked on your site's link immediately back out Google views that as a signal that 3:21 people do not want to see your site Google will see that as a reason to
+lower your site's ranking 3:26 and you will experience a huge loss in traffic so LCP is super important oversized file size 3:33 uncompressed images and bad hosting are typically
+the underlying problems here here but you would 3:38 need to investigate further to know for sure the second core web vital is first input delay First Input Delay (FID) 3:44 first
+input delay is the amount of time from when a user attempts to interact with your site 3:48 up until the point when your site is actually able to process the event handlers so if
+your 3:53 landing page has a form a link or anything interactive Google recommends that FID should 3:58 take place in less than 100 milliseconds anything more than that in your
+users will likely notice 4:04 this may cause them to abandon your site or more likely not to return in the future there 4:09 are a myriad of reasons why your site may have a slow
+FID but one of the most common reasons 4:14 is because of JavaScript JavaScript is a single threaded programming language and has a single 4:20 call stack overly simplified this
+one call stack means that JavaScript will not execute the next 4:25 line of code until it finishes the one before it in practice if your web page is executing a large 4:31
+Javascript file it's going to be frozen until it finishes that job so make sure that your scripts 4:36 are not bloated and are in an order that works towards a greater end user
+experience cumulative Cumulative Layout Shift (CLS) 4:42 layout shift key simulative layout shift is the third core web vital that measures your 4:47 website's visual stability and
+how many layout shifts occur a layout shift occurs anytime an 4:53 element shifts its position unexpectedly as a page is loaded or is interacted with one on-page 4:59 element will
+probably begin pushing or moving other elements around the screen and that can 5:04 lead to a really unpleasant user experience to calculate this core web vital Google takes two
+5:09 measurements one called the impact fraction or what percentage of your viewport is affected by 5:14 the shift and the distance fraction where the edge of the shifted element
+lands after the shift both 5:21 of these measurements are taken as a percentage and then the two numbers are multiplied together 5:24 to produce a layout shift score too much math
+well there's even more methodology behind it 5:30 but that's how Google wants us to think about it all that to say Google calculates a layout 5:35 shift score based on how much
+your elements move around the screen and the largest score 5:39 taken throughout the lifespan of your page is the cumulative layout shift score Google record 5:44 men's a CLS score
+of no more than 0.1 meaning that your elements should not move more than 10 5:50 percent across the viewport when a shift occurs the most common culprit for a bad CLS score is 5:55
+CSS specifically poorly planned CSS animations or even worse putting CSS inside of JavaScript 6:03 that runs later in a web Page's render remember what I said about the single call
+stack that 6:08 can cause your CSS to load seconds later into a Page's lifespan and will massively affect 6:13 your user's experience and CLS score so clean up your CSS follow best
+practices and keep it simple 6:20 besides Simple Sites are trending right now so win-win and those are core web vitals there are How to Find Issues with Core Web Vitals? 6:26 many
+other web vitals that Google takes into consideration when ranking sites but those are 6:31 the three big ones what's really important though is that you can find these issues and
+address them 6:36 quickly before your users or Google completely destroys your site's ranking you should always 6:42 monitor your site with a tool like Sematext Experience or some
+attack synthetics where 6:46 you can monitor multiple sites in one place set up alerts for when your sites are not working 6:50 as they should and get a full breakdown report when
+an incident occurs free trial for Sematext 6:56 down in the description below snag that while you can if you like this content be sure to like And 7:01 subscribe and check out our
+YouTube channel where we have loads of similar content for developers 7:05 and devops stay safe out there and I'll see you in the next video keep monitoring everybody All From the
+series Introduction 0:00 hey today we will discuss web performance what it means and how to build fast web applications this video 0:08 is useful for preparing for system design
+interviews or enhancing your skills as a web developer if you are 0:15 here for the first time my name is dimma I'm a senior front developer based in Berlin on this channel I speak
+about 0:23 system design inters and web development if you enjoy this video don't forget to 0:28 click the like button and subscribe to the channel also if you have any suggestions
+for the topics of the 0:35 following videos please leave them in the comments the introduction is over 0:40 let's dive in the first question is when we say web performance what do
+we exactly mean if 0:48 for example an application takes 5 minutes to load but after that works 0:53 fast can we call it fast I adopt it to be honest the opposite is also true if
+0:59 the application loads very fast but works slowly we can't call it performance those we come to two 1:08 directions in which we should work how fast the application loads and
+how fast 1:14 the application works only if an app or website loads quickly and runs fast we 1:20 can conclude that it is fully performant so which direction is more preferable I
+1:27 would say both but with nuances if you have unlimited resources go ahead and 1:33 work in both directions as we already know software development is about 1:38 balancing
+tradeoffs and benefits it means we cannot always prioritize both 1:44 loading time and UI speed in reality each of the directions can be more or 1:50 less important in different
+cases and we will look at them when would loading Loading time 1:55 time be critical when operating in a competitive market we cannot afford to 2:01 be slower than our competitors
+if our site takes too long to load users will 2:08 easily find a replacement mobile users mobile users often have poor connections 2:14 and if our site load slowly The Experience
+on mobile devices becomes even worse conversion rate dependency if 2:22 our conversion rate depends on loading speed we should take it very seriously 2:28 we will look at an
+example later to see how Revenue may depend on loading speed 2:33 for websites where users gravitate toward impulse purchases like e-commerce 2:39 websites we must make the path
+from idea to purchase as smooth as possible it is 2:45 likely and I'm sure you have observed this effect yourself that when you want 2:51 to buy something you don't really need but
+face obstacles it is very easy to 2:56 drop the idea and high traffic volume with a high number of daily users or 3:02 expectations of future growth the cost of slow loading
+becomes significant for 3:09 example if 3% of users live before the site Lots it is not a big deal with 3:15 1,000 users but it is a serious issue if we have millions each lost
+user is a 3:22 potential customer an example of website that combines all these trads is Amazon or 3:29 any other major e-commerce platform if we were asked with designing an 3:35
+e-commerce site we should prioritize loading speed very seriously how do we 3:40 know this we have studies for example according to Amazon's research a 100 3:47 millisecond delay
+in long time leads to a 1% drop in sales which could be 3:53 significant loss for a market giant according to Google research 53% of Valu 3:59 users abandon a side that takes
+longer than 3 seconds to load Walmart found 4:04 that a 1 second Improvement in speed increased conversions by 2% however there are cases when loading 4:13 speed is not as critical
+for example lower card abandonment risk When developing a service rather than in 4:20 Marketplace card abandonment risk is lower users rarely choose a service 4:26 based on how
+quickly it lots they usually usually stick with because of 4:31 features that satisfy their needs if a service is useful they are likely to buy 4:37 or subscribe even if loading is
+slightly slower than expected let's focus on low 4:45 power devices When developing an app for a specific segment of users who have at 4:50 least midlevel devices we can skip
+optimizations for lowend devices for 4:56 example when creating tools like clipchamp or other video editors we don't anticipate users working on Old 5:04 Android phones they might
+try but we can't and shouldn't guarantee the same 5:09 performance as on mid-range devices because those users aren't our main 5:15 audience and B2B focus when providing busino
+Business Services we can be less 5:22 demanding about loading speed first we expect that employees of companies 5:27 buying car product have at least mid-range devices if most
+users rely on 5:33 Modern Windows or Mac OS laptops should we spend resources optimizing for low 5:39 end devices and poor connections second our Reacher future set usually
+outweighs 5:46 minor delays if the app fits client needs they won't abandon it just because 5:52 it takes longer to load even though our users are in programmers they can 5:57
+recognize poorly designed applications if our application is complex has many 6:03 features or handles large data sets users will tolerate a longer loading 6:09 time knowing
+intuitively that such applications take time and are worth it 6:15 on the other hand if we're developing a website for a local pet shop for example 6:20 users will expect quick
+loading if it doesn't they will likely perceive it as 6:26 a poorly designed does this mean loading speed isn't important for these apps now it 6:33 means we should focus on UI
+speed first while we can deprioritize loading speed 6:40 it doesn't mean we shouldn't invest in it at all loading time must still be 6:46 good enough even if users are more
+tolerant due to the app's unique 6:51 features or target audience next let's take a look at cases where your speed is UI Speed 6:57 critical task oriented application many websites
+such as news sites blog 7:03 and e-commerce platforms serve various purposes task oriented apps are designed 7:08 for users to complete specific tasks for example we use Google
+Sheets to manage 7:14 spreadsheets or figma for design skas these apps require smooth fast 7:20 interfaces because users interact with them actively in what we call workflow 7:26
+while users can tolerate slow loading for one time action they won't accept if 7:32 the application requires thousand of interactions during normal usage long 7:37 session time the
+importance of UI smoothness increases with session length 7:42 short session don't waste as much total time but long sessions magnify the 7:48 negative effects of a slow interface
+for e-commerce sites Revenue depends on 7:54 loading speed for B2B applications Revenue depends on UI speed employes 7:59 using these tools must work effectively if they can't due
+to a slow un responsive UI the client company will 8:06 lose money and likely replace our product for apps where frequent 8:11 interactions secure yourp is critical in contrast
+apps with fewer interactions 8:17 May prioritize UI speed less however all apps must maintain a baseline of 8:23 responsiveness for example Amazon avoids have animations to ensure
+interfaces 8:29 where across all devices and nwork conditions a good example of an app 8:34 where yourp is critical is figma it has a task oriented nature users open it to 8:39
+complete their work it's complex and includes many interactions we can say that typical session time for 8:46 applications like figma range from 10 minutes to several hours which
+is quite long it provides services for individual 8:53 customers but the service is mostly B2B oriented for an application like figma 8:58 we can say that U speed is more important
+than loading Time Spa and CSR enable downloading the 9:07 entire application and using client side roading without back and Page requests this is not true all the time because we
+9:14 can also split applications into chunks and load them only when needed which 9:19 we'll discuss later but in general SP works this way usually when we talk 9:25 about Spa we
+imply that application uses CSR the same is true for NPA 9:30 applications which usually utilize SSR the main benefit of spa combined with 9:36 CSR is that we don't need to refresh
+the top each time we need to show a new page 9:42 to the user as a result we get a smoother UI the main downside is that 9:47 metrics like loading time time to interactive and SEO
+Suffer Without techniques like code splitting later in 9:55 this video we will discuss many performance optimizations techniques but not all of them are equally useful for 10:01
+both sbaa and MPA applications you should understand that for example Cod splitting is not applicable in the case 10:09 of SSR whereas adding a CDN would be useful in all cases
+what is the usual Checklist 10:15 session time for services like Amazon the typical session length is short a 10:21 user opens a website adds a couple of items to the card and
+makes a purchase 10:27 for services with short session time loading time is more important for 10:32 applications like figma the length of the typical session is usually longer a
+user opens the app and works for hours 10:39 possibly in this scenario the responsiveness of the interface is more important than the loading time is it a 10:47 competitive market
+in general every Market is competitive to one degree or another however some applications 10:54 provide a unique set of features which makes them harder to overtake Amazon is 10:59
+a unique business in terms of its size and number of clients but as a website 11:04 it's not too complex creating a clone of Amazon would not be too difficult Amazon 11:11 does its
+job better than its competitors and it's very trusted by people which is 11:17 why I believe it's so popular however would it have been as popular if it hadn't been convenient not
+as much I 11:24 believe people like it among other things because you can open it do what you want and finish quickly sites like 11:31 Amazon do not require fancy animations or
+modern design instead we should focus on providing the best possible user 11:38 experience in other words we should concentrate on both loading time and UI 11:43 speed for web
+applications like figma the situation is a bit different it would be difficult for our competitors 11:50 to create a service like this or for our customers to find a good
+replacement in 11:56 other words we don't need to attract customer customers as aggressively from the first seconds they can wait a couple 12:03 of seconds longer because they know
+what they will get eventually just loading 12:09 time UI speed directly affects Revenue if we see a direct correlation between 12:15 our revenue and loading speed we should
+definitely invest more resources into it as we saw earlier for Ecommerce websites 12:23 this correlation can be quite serious for web services like figma our revenue 12:29 is is
+less if at all correlated with lad times users usually pay for a monthly or 12:35 yearly subscriptions and do not abandon our service because of loading time two 12:41 users use
+our app from mobile devices we can refr this question to do we expect 12:48 that our users will use our app or website from mobile phones or other low 12:55 power devices with
+potentially poor network connection if so we have to 13:00 optimize performance in a more aggressive way we should use every opportunity to make it accessible to the 13:07 widest
+range of devices conversely if we know that our users mostly use laptops 13:14 or desktop computers we can feel more relaxed about performance instead we can 13:19 focus on
+providing a better and broader set of features does the speed of UI 13:25 affect workflow technically UI speed affect workf flow either way but for 13:30 applications like figma it
+is critical because sessions are long and include many interactions in contrast for 13:38 e-commerce websites like Amazon sessions are usually short and do not involve too 13:44
+many interactions as we know session length and the number of interactions 13:49 per minute can amplify the negative effects of a slow interface I believe we Now understand 13:56
+what we will discuss today and what metrics we want to improve now we are approaching one of the most important 14:03 questions how exactly can we improve the loading time the
+first question is what Loading time in detail 14:09 is included in the loading time for users it's quite obvious right a user 14:15 opens the site it loads and they see a picture
+on the screen the user consid 14:21 the site successfully loaded under the hoood however a lot of things are happening during this time first the 14:27 user clicks on the link or
+types a URL in the browser search bar and presses enter the browser catches this event and 14:36 sends a request to the server here we will skip some steps for Simplicity and 14:42
+jump right to the server the next step is the server handling this request if 14:47 it is a dynamically generated page the server needs to render it if it's a 14:52 static page the
+server simply sent it as is in either case it takes some time to 14:58 handle the request and pass the page to the client when the browser receives the page it already knows what
+to do with it 15:05 thanks to the content type HTTP header the browser parses and renders the page 15:11 in our example the entire process took 4 seconds in the reality of course
+this 15:17 time depends on multiple factors that's the loading time metrics we should work on our goal is to make it as fast as 15:24 possible it might be helpful to tie each step
+to a particular web metric the 15:30 phrase loading time might be too abstract if a site loads quickly but for 15:35 example product image is important to users take two minutes to
+load can we call this side fast I don't think so so 15:43 our goal is to improve each step of the site loading process let's look at them the first three steps browser sends a
+15:50 request to the server the server handles the request and sends a web page to the browser the browser receives the first 15:57 bite of data these are represented by the ttfb
+or time to First Bite metric 16:05 this metric is important because it reflects need for clency and server performance the request should be 16:11 delivered and handled by the
+server quickly the next step is rendering the first visible element on the page called 16:18 FCP or first contentful paint this metric is important because it helps user understand
+that the application is 16:25 working next the browser renders the largest visible content on the page and 16:30 finally the page becomes fully interactive at this point users can
+16:36 interact with button links and other elements we will work on each of these 16:42 metrics because they are all important only when the page is fully loaded and 16:47
+interactive we can say that the loading is complete to discuss metrics meaningfully we need to know what 16:54 defines good or bad performance for each magic mentioned there there
+is a scale 16:59 to help us evaluate our current standing these benchmarks are provided by Google 17:05 Lighthouse a built-in Tool in Google Chrome for measuring web performance
+and other metrics for time to First Bite a 17:12 good time is under 200 milliseconds anything higher needs to Improvement for 17:18 FCP I'm for less than 1.8 seconds for LCP keep
+it under 2.5 seconds and for 17:27 time to Interactive Target less than 3.8 seconds these numbers serve as 17:34 benchmarks to guide our optimization strategy the first metric we
+want to Time-to-First-Byte 17:39 focus on is time to First Bite our main goals here are process the request on 17:45 the server as quickly as possible deliver data to the client as
+quickly as possible if we can improve these two 17:51 parameters we can improve time to First Bite as a whole here are the steps we can take to achieve this use a a Content 17:59
+delivery Network or CDN to serve static files optimize server side processing 18:06 like datab based queries for example optimize DNS lookup time with DNS Prof 18:11 fetching
+enable compression to reduce response size use reses to cat however 18:17 responses use HTTP 2 or higher for multiplexing and lower latency and 18:24 reduce HTTP overhead by
+minimizing headers and cookies the first and 18:29 probably most important step we can take to significantly improve time to First buite and loading time overall is adding 18:37 a
+CDM caching resources on a CDM servers eliminates the need for request to 18:42 travel all the way to the origin server no matter how optimized our network 18:48 connection is or
+how small the response size one thing we cannot bypass is the 18:53 speed of light to deliver content to the client the data must Traverse the D 18:59 between the client and the
+server the opper solution is to reduce this distance and that's where CDN help 19:06 dramatically by placing This Server closer to the end user we achieve faster resource delivery
+and reduced a lot on 19:14 the origin server as shown in the picture the client and the origin server 19:20 are far apart however we can deliver data to the client faster than if
+the 19:25 CDN Network were not there and addition to its main purpose a CDN may also have 19:32 advanced features that improve data delivery further compression CDN 19:37
+automatically compress files before delivering them significantly reducing file sizes and improving loading time 19:45 this also reduces the load on our servers image optimizations
+CDN process 19:52 and serve images in optimized formats and resolutions tailor it to the user's 19:58 device and Network they can transform images into modern formats like webp
+20:03 while delivering PNG or gpeg as fallbacks for unsupported devices they 20:09 also adjust image resolution for mobile devices these optimizations improve loading time and
+conserve 20:17 resources minification CDN can Minify files on the Fly delivering smaller CSS 20:24 and JavaScript while this can be done on our servers sedans can handle it if
+20:30 needed and optimize cash heat raos sedan's cash content intelligently 20:36 across Edge servers CH measures how effectively we use the CDN cache and 20:43 good CDN providers
+can help improve this metric there are some problems we may face when using a CDN the first one is 20:51 CDN costs CDN can become expensive especially for high traffic Advanced
+20:57 features of other features we discussed earlier are useful but can significantly increase our bills therefore we should 21:05 carefully choose what we truly need the next
+problem is geographical limitations 21:10 a CDN May lack sufficient coverage in K user regions impacting performance in 21:16 the picture we see that our client is in the North
+America but unfortunately the 21:21 CDN provider doesn't have points of presence in this region when choosing a 21:27 CDN provider we must consider where most of our audience is
+located and ensure 21:32 the provider has points of presence in those areas security risks CDN can 21:38 introduce potential vulnerabilities such as cash poisoning or
+misconfigurations the additional data 21:44 transfer points also brings new security risks especially if we do not control 21:50 them we must also consider dat privacy concerns
+which are governed by gdpr and 21:56 other laws since CDN process and cach data often across multiple regions we 22:03 must configure CDN to avoid caching sensitive data to prevent
+private information leaks here's a table to help 22:10 you understand what should and shouldn't be cached we definitely should cach 22:16 public resources these do not contain user
+specific information uh the cash 22:21 duration depends on how frequently the asset changes frequently updated assets 22:26 should have shorter time to leave values and static
+content these change and 22:32 frequently if ever example includes images videos CSS and JavaScript files 22:38 these should be cached with long time to leave sometimes it might be
+appropriate to cach also Dynamic content Dynamic 22:46 content change frequently such as API responses however during habit traffic 22:52 catching these responses for a short
+period of time for example for 5 seconds 22:57 can sign significantly reduce the load on the origin server we should never 23:03 cash private resources these contain data intended
+for a single user such as aise resources and should not be cached 23:10 for security reasons cash heat ratio is a measurement of how many contact 23:16 requests a cach FS
+successfully compared to how many request it receives in the 23:23 picture we see two scenarios the client receives data from the CDN cache which is called called a cach hit and
+the 23:30 other the CDN has to request information from the origin server because it wasn't 23:35 previously cached known as a cash Miss since cashing assets is the primary goal
+23:41 of a CDN we aim for the highest possible CHR a typical website consisting mostly 23:47 of static content could have a CHR in the 95 to 99% range a website with a lot 23:55 of
+dynamic content may have a much lower CHR R there are several ways to improve 24:01 CHR here are some of them handle query parameters effectively configure the CDM 24:06 to
+normalize or ignore query parameters where appropriate for example URLs like 24:13 site.com items and s.com items id1 123 could share the same 24:21 cache if the results are the
+same avoiding a necessary request to the origin server avoid an necessary cookies 24:29 minimize the use of cookies in responses because CDN typically do not cash responses
+containing cookies this makes 24:37 sense because Resources with credentials like cookies are often private and shouldn't be cashed optimize frequent 24:44 updates use shorter TTL
+or scheduled cache cleaning for regularly updated 24:50 content such as weather report or Front Page News cash and frequently updated 24:56 assets apply long details for static
+assets like logos CSS images JavaScript 25:03 files and do not change them often this reduces server load and improves 25:09 performance how do we choose a good CDN there are five
+parameters to consider 25:15 geographical distribution and number of points of presence a broad network of 25:21 points of presence reduces latency by delivering content faster to

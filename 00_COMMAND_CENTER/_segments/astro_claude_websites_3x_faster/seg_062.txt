@@ -1,0 +1,224 @@
+Okay. Before we 8:26 going further, don't forget that we have Video generation process and handling results 8:29 our community where we have any course 8:32 where we have all
+everything you need to 8:34 know about Nitan and AI, how to work 8:38 with OpenAI models, how to build 8:41 different rack agents and so on. Okay, 8:43 let's go back and quickly
+check how we 8:46 can generate video with replicate. 8:48 Again, we need to specify model here. It 8:52 will be like provider quake vG and then 8:57 model is clink to one master.
+From the 9:00 inputs what we need to specify again we 9:02 need to go to replicate check the cling 9:05 master and here we will see that again 9:08 we need to specify prompt. We
+can 9:10 specify a start image if we need it but 9:12 it's not required and for example for 9:15 model 2.1 9:17 not a master but simple 2.1 the start 9:20 image is required. Yeah.
+So be aware 9:22 again and after that we need to specify 9:25 aspect three options here and again two 9:27 options for durations. Let's set up our 9:31 set node. Yeah. So here we
+set node 5 9:34 second aspect ratio and prompt. 9:37 Basically that's all what we need. So we 9:40 go here specify map all these data. 9:43 Again duration is integer. So you don't
+9:46 need to set up double quotes. And after 9:49 a few seconds we have a result. Yeah. So 9:52 we can check it and again yeah because 9:55 it was a pinch result not a real result
+9:57 again we need to trigger it again to get 9:59 the real result of the video. I 10:02 triggered this workflow yesterday and as 10:04 you can see a requested file not found.
+10:07 So you have only one day maybe of 10:11 storing your results and you need to 10:13 always store it if you want to check it 10:16 later. Okay, let's uh wait a few seconds
+10:19 to get the result. Okay, after actually 10:23 a few minutes, we have a result. Yeah, 10:26 so our video was generated. We can go 10:28 and check it. Yeah, so it's a cat
+eating 10:31 dinosaur. Okay, fine. And the last one, 10:34 we going to use the same model but with 10:38 the image. So we need to specify image. 10:40 We specify start image. And I
+actually 10:43 took the image from our previous 10:45 generation. this one the first one and 10:48 then we need to set up this parameter as 10:51 well here as a start image you can
+10:54 provide URL so in case you don't have 10:58 URL you can save it and store somewhere 11:01 on the free hosting for images or 11:03 superbase storage for example and get 11:06
+direct link that can be used for 11:08 generation okay let's wait a couple 11:11 minutes more and we'll check the results 11:14 okay so our video is generated it and we 11:16 can
+check it. We again copy output, open 11:19 it and as you can see we used our first 11:21 image and it's quite looks good. Okay, 11:24 let's jump to real implementation of 11:26
+this solution. We need to somehow 11:28 display these images how somehow Building an AI agent to interact with generation workflows 11:30 interact with all these workflows and
+11:33 for that I build simple AI agent with 11:36 multiple tools. But before we will check 11:39 it detail it please subscribe on our 11:42 channel and click like to this video. It
+11:44 really helps us to make more interesting 11:46 content. Okay, so if you don't know 11:48 about AI agents, it's better to check 11:50 some basic guide on our channel and here
+11:54 I just want to quickly show you that all 11:56 these solutions can be simply very easy 11:59 implemented for real use. So I built 12:02 this AI agent. I use two tools for
+this 12:05 AI agent that triggers workflow, the 12:08 same workflow. And here I'm planning at 12:11 also create video edit image and with 12:14 nana banana and two models for 12:17
+generating images with cidream and image 12:20 genen. I've already tested it and as you 12:22 can see I asked to please generate logo 12:25 5 milli and then I can ask okay let's
+12:29 add community under the logo and for 12:33 editing I also implemented nana banana 12:35 model. Okay something not working. Let 12:38 me quickly check it. Okay, so it's 12:40
+completely wiped our previous logo and 12:43 dialogue. So I just created a new one 12:46 and right now I can check that like 12:48 previously the input from the AI agent 12:53 was
+specified wrong and right now it 12:55 specify the right URL and again it use 12:58 nana banana to change this logo and add 13:02 a simple little community beneath. Yeah. 13:04 So,
+as you can see, you can implement 13:07 all these solutions in real business 13:10 solutions and use it for your needs. 13:12 Thank you for joining me today and have 13:15 a good
+one. See you. All From the series0:00 There is a new kit on the block when it 0:01 comes to AI generation of videos and 0:03 images and it makes life 100 times 0:05 easier. It's
+called Kai AI and it allows 0:07 you to connect to a load of different uh 0:09 video models and image models through 0:12 one API. Now this might not sound 0:14 massive. What this
+means is that when 0:16 new models come out, you don't have to 0:17 keep connecting and creating new 0:19 accounts with new providers or when you 0:21 want to use um Clling or you
+want to use 0:24 MidJourney and you want to use VO3. You 0:26 don't have to keep playing around with 0:27 different APIs. You only have to use 0:29 one. You only have to have one
+API key. 0:31 You only have to keep one account topped 0:33 up with credit. And when you're using uh 0:35 workflows to generate videos or images 0:38 or social media posts using
+AI, it just 0:40 makes it so much easier. Now, this isn't 0:43 a sponsored video, but I wish it was 0:44 because I'm starting to roll this out 0:46 through all of my workflows. And
+I'm 0:47 going to show you exactly how it works 0:48 and how you can implement it within your 0:50 workflows to just make generation of AI 0:53 videos and AI images much, much
+easier. 0:56 Let's get into it. Okay, so here we are 0:57 on Kai's website and you can see that uh 1:00 what they do is give you access to the 1:02 best video models, image models,
+and 1:04 music models all in one place with one 1:06 API, which is the thing that makes it so 1:07 great. Um you can sign up for a an 1:10 account here, a free account. You can
+1:11 sign up with Google and one thing we're 1:13 going to take a look at is um the API 1:16 market section it's got over here cuz we 1:17 can see all of the things that it does.
+1:19 So it's got three sections to it. Video 1:21 generation, image generation, and music 1:23 generation. But it doesn't just create 1:26 video or create images or create music.
+1:28 But within those sections, you can do 1:29 different things such as uh text to 1:32 video, image to video, video editing, uh 1:35 lip syncing, and we can click into one 1:37
+such as video editing. And we can see 1:38 they've got several models here for 1:40 video editing. Okay, so this is the 1:42 front end. When you create your account, 1:44 you're
+going to come to something that 1:45 looks a little bit like this. In fact, 1:46 let me go back to the dashboard. Looks a 1:47 little bit like this. You'll probably 1:49 have fewer
+credits than I do. I think 1:50 you get like 50 to start with, so you 1:52 can start playing around with it for 1:54 free. But essentially, you got a little 1:55 dashboard here to
+show you your usage. 1:57 And then on the left hand side, we've 1:59 got the playground. The playground is 2:01 essentially how you can use these 2:02 different models on this
+website here 2:05 through like a guey, right? On a website 2:07 rather than through the API. So let's 2:09 have a little look at this. We can 2:11 access models such as VO3 and use
+2:14 different versions of the model. We can 2:16 access like runway and go from uh image 2:19 to video or text to video. So use the 2:22 different options that it's got. And 2:24
+let's have a look at flux context. So 2:27 you can see here we can change different 2:29 things such as the ratio, enable 2:31 translation, put format of the image and 2:34 also
+which version of the model we want 2:35 to use. I'm going to simply say um a 2:40 photo 2:42 of 2:44 a space 2:46 cowboy. That's a little Jiraquai 2:48 reference for all of those
+uh funk fans 2:51 out there. Give it a second and it's 2:53 going to give us our images within like 2:55 the web interface here. Simply accessing 2:58 Flux Context. I'm not sure
+which 2:59 provider they use, but there we go. Um 3:03 that's different to what other providers 3:04 give me, but I I guess it's not wrong. 3:06 That is a space cowboy. There you
+go. 3:08 So, you can see we can use um any of 3:10 these models here through the 3:12 playground. But what is really cool 3:14 about Kai is the API side of things cuz 3:17 we can
+access all of these models 3:19 through one single API. Previously, if 3:21 we wanted to use uh V3 and also uh 40, 3:25 so open AAI's 40 image generator or 3:28 midjourney, we'd
+have to like pull 3:29 together different APIs and use 3:31 different API keys and top up different 3:33 uh accounts to make sure we got credits 3:35 with everything. Not with Tai.
+You just 3:37 update one API. You have one API key. 3:39 Make sure you get credit on that. And 3:40 you can use all of these for everything 3:42 that you want to do involving
+images or 3:44 involving uh video or involving um songs 3:48 as well, which I'm not really going to 3:49 dig into this video, but if you're into 3:52 that sort of thing, you can
+also use it 3:53 for that. So, the first thing you want 3:55 to do um on the API side of things is 3:58 create an API key. Simply come over to 4:00 API key and create an API key.
+and uh 4:03 you give it a name and it's going to 4:05 give you a key. Looks a little bit like 4:07 this. Just a string of like random 4:09 numbers and letters. Next, we want to go
+4:12 over to the model that we want to use. 4:14 So, I'm going to select Nano Banana. And 4:16 it's going to open up a new tab. And you 4:18 can see here we've got the different
+4:20 versions of Nano Banana. We've got like 4:21 an edit version. So, we can edit an 4:23 existing image that that we give it. Um 4:26 such as this one. You can see here. This
+4:27 just really well shows off the 4:29 capabilities. Um, so we're just giving 4:31 it this model here and it's managing to 4:33 create this output here. Um, which is 4:36 like
+super. This you just could not tell 4:38 this is AI and it's got so much detail 4:39 in it. Um, it's it's it's fantastic and 4:43 I'm sure it's only going to get better. 4:44 But
+we are going to use the Nano Banana 4:47 uh just text to image generator in this 4:49 example. So in order to actually run 4:52 this, we are going to be using uh N8N. 4:55 NA10 is
+uh if you don't know about it, 4:57 fantastic bit of software at the time of 4:59 recording, my favorite bit of software 5:01 for creating um AI automations, AI 5:04 agents,
+essentially anything, any AI 5:07 workflow. NA10 is the best. Has been for 5:09 6 months, 12 months, and I don't see 5:12 anything uh usurping it anytime soon. 5:16 So, um I have
+built out two flows which 5:18 I'm going to rebuild with you guys, show 5:20 how it works to show two different 5:21 models that we can use through Kai. one 5:23 is nano banana and
+then we're going to 5:25 look at VO3. So one thing to note here 5:28 is uh and if it doesn't make sense to 5:30 you don't worry I'm going to go through 5:32 it in detail. One thing
+to note here is 5:34 that with everything with Kai we have to 5:37 access it in two steps. We have to first 5:39 uh make a request to generate an image 5:41 or generate a video and
+then we have to 5:43 uh get the response back and uh the way 5:47 that we're going to check for a response 5:48 is by pulling. What that means is we're 5:50 just going to check
+every 3 seconds or 5:52 if it's a video, I think we're going to 5:53 check every 30 seconds to see if there's 5:55 a response. There is a little bit of a 5:57 more um advanced way
+to do it with uh 6:00 web hooks, but we're not going to look 6:01 at that today. drop in here and say if 6:04 you want some NA10 templates absolutely 6:06 for free, I'm going to
+give you not 10, 6:09 not 15, not 20, but 997 6:13 uh NA10 templates of premium quality 6:16 from everything from social media post 6:18 generation to crypto analysis, 6:21
+everything you can imagine. If you want 6:22 it, simply go to this page here. I'll 6:24 leave a link in the description and you 6:26 can get all of those 997 6:28 templates for
+free to use within NA10. 6:31 Anyway, back to the video. Okay, so if 6:33 we go back over to Nano Banana, what 6:35 we're going to do is go on the API over 6:38 here and you can
+see here we've got 6:39 create task and query task. That's 6:41 essentially what I was talking about 6:42 earlier where we can, you know, create 6:44 it. We send off that request
+and then we 6:46 try and get the response back and it's 6:48 going to give us an ID when we create 6:50 it, which we can then ask it, hey, have 6:52 you created this image yet for
+this ID? 6:55 And it will say yes or no. So all we 6:57 need to do and uh Kai makes this super 6:59 easy is we click on create task. We can 7:03 then scroll down and we can see an
+7:05 example and it's in curl. And the great 7:07 thing about this is we can simply copy 7:09 this and come over to NAN. We're going 7:12 to create an HTTP node which you can 7:15
+find over here just going HTTP and 7:17 clicking on this. I've already created 7:19 one and we're going to open it up. Now, 7:22 if you've never used um NAM before, this 7:25 might
+look a little bit foreign to you, 7:26 but don't worry. It's actually very 7:27 simple. I've got a few details filled in 7:29 already, but all you want to do is go on 7:31 import
+curl and simply paste in that 7:33 curl that we copied from this section 7:36 here. And once you do that, we can 7:38 simply click import. The only thing 7:41 that's changed on
+mine is it's got rid 7:42 of my API key. So, what we need to do is 7:45 come back over to Kai, come on our API 7:48 key, click copy, come over here, replace 7:52 the API key, and
+it's as easy as that. 7:54 Then, we'll be able to execute this, and 7:57 it's going to send off, and this is 7:58 going to start generating an image. Now, 8:00 it hasn't generated
+the image straight 8:01 away. It's just started, and it gives us 8:03 a task ID as we can see here. And we can 8:07 then use that task ID uh in the next 8:10 step in order to query
+has it been 8:12 created yet. And in order to run that 8:15 query, we need oops, let's find the 8:17 right one to go over to the query task 8:20 and simply we grab this again here
+and 8:23 we go copy and we're going to come over 8:27 uh to NAN and again create another HTTP 8:30 node and simply import the curl here. 8:34 Just like that. And there we go. And
+8:36 again, the only things we have to 8:37 replace are the API key, which I can 8:40 paste in there. Oh, that's the wrong 8:41 thing. I forgot what I had on my 8:43 clipboard. Um,
+let's replace that. Come 8:47 on. 8:50 There we go. We've got our API key in 8:52 there. Then what we have to do is simply 8:55 get our task ID and put that in as a 8:58 parameter
+in this section here. So, 8:59 we're going to go over to the left, find 9:01 task ID, and drag and drop that one in. 9:04 Now we can execute this step and we can 9:07 see here that
+we do have a result JSON. 9:10 Now the way that this works, there are 9:11 several ways you can do it, but the way 9:12 that this works is when you first ask 9:14 for that image,
+it's not going to have a 9:16 uh a result JSON uh field that's for 9:19 that's filled in. So what we want to do 9:21 and what we're doing here in this like 9:22 polling system is
+we're running an if 9:24 statement. And what this if statement 9:26 does is it looks to see if the result 9:29 JSON is empty. If it is empty, then what 9:33 we're going to do is
+we're going to wait 9:36 for three seconds and then go back and 9:38 check again to see what the response is 9:40 to see if this time it's updated and to 9:42 see if that response
+JSON is filled in. 9:44 So let's run this and uh it is filled 9:47 in. So it should go down the false 9:48 section. Come on. There we go. So it has 9:51 gone down the false
+section. Then we 9:53 simply just need to do a little bit of 9:54 reformatting and uh we're just changing 9:57 this string which is actually JSON but 9:59 it's given to us in a
+string into an 10:01 object. So we're going to execute this 10:03 and then what we're doing is we have got 10:05 the URL of the image and we are simply 10:08 nothing using another
+HTTP node that's 10:11 just get and then the URL we're not 10:13 changing anything else not putting 10:14 anything else into this HTTP request 10:16 just putting in the URL and
+we'll 10:19 execute that and that will give us a 10:21 binary file of our image which we can 10:23 view and there we go. Fantastic. I 10:25 didn't even look what the prompt was,
+10:27 but I'm guessing it's a like an 10:28 intergalactic banana that's colorful. 10:31 Uh, let's have a look what's the default 10:33 prompt here. Um, a surreal painting of a
+10:35 giant banana floating in space, stars, 10:38 and galaxies. Fantastic. So, there we 10:40 go. Pretty good as we would expect from 10:42 Nano Banana. So, let's have a look at
+10:44 how VO3 works. And it's basically the 10:47 same thing. We are asking to create the 10:49 video. We're then seeing if the video 10:51 has been created, and we are waiting if
+10:53 it hasn't been created yet. The only 10:55 difference really is that um VO takes 10:57 VO3 takes a little bit longer to 10:59 generate a video and therefore uh the 11:02 wait
+is 30 seconds rather than 3 11:04 seconds. So what we do uh is we come 11:07 over to let's go back over here and go 11:10 to V3. So the only difference this time 11:13 is that we
+need to go over to document 11:15 um on the on the dashboard of Kai. And 11:17 you can see here we've got all the 11:19 documentation for all the different APIs 11:21 uh that you
+can connect to. and VO3 is 11:23 the first one that we've got selected 11:25 and again the same way we have got a 11:27 post request which is requesting the 11:29 video to be
+created and then a get 11:32 request so we're retrieving the 11:34 information so if we click on the post 11:36 request again we've got curl so we can 11:38 just copy that curl
+come over to NAN or 11:41 wherever you're running it maybe you're 11:42 not using N10 maybe you're using 11:43 something else I'm going to remove this 11:46 down here and 11:48 in
+the video generator we simply import 11:51 curl Just like that. And it's going to 11:53 fill in everything we need apart from 11:55 the token. So if we go back over to Kai, 11:57
+find our token again. And this is the 11:59 token. This is the only token we have to 12:01 manage. We don't have to deal with all 12:02 the different uh API keys that we get 12:04
+from all the different models. We just 12:06 deal with one. Put it in here. Um and we 12:09 can edit a few things here. So um you 12:13 can input an image if you want to. I'm 12:16
+not going to. So I'm going to take this 12:18 out of the API call. You can see here 12:21 we've got the prompt. Um we've got a 12:23 call back URL. Now what this is is what 12:25 I
+mentioned a little bit earlier with um 12:28 how you can get a result. What this will 12:30 do is it will essentially uh fire this 12:33 web hook here when we've got a result.
+12:36 This is a little bit more complex as it 12:38 means we've got to set up a web hook 12:39 within N10 or whatever stack you want to 12:41 use. Uh in this example, I'm not going
+12:43 to use it, so I'm going to remove that. 12:47 We can also set things up such as do we 12:49 want to watermark. I'll leave that in 12:50 the aspect ratio, the model. Um, I'm
+12:53 actually going to use the fast version. 12:55 So, if we go over to V3 and scroll down, 12:58 we can see 13:00 uh where is it? I believe it's here 13:03 somewhere. Yeah, we
+can uh use the 13:05 different models. So, I'm going to use 13:06 the V3 fast. That's just underscorefast. 13:09 So, we go over here, underscorefast. 13:13 Um, and then a dog
+playing in the park 13:15 is fine. So, let's execute this step. 13:17 And we should see we get a task ID. 13:19 There we go. Um which we will use just 13:22 like we did up here.
+Oops. Um for 13:25 checking the result. So similar thing. 13:28 We've just copied the um where are we 13:31 over here. We've copied this get here 13:34 with this curl up here. And
+what we're 13:38 doing is we are passing in um our task 13:41 ID as a parameter into the URL. Uh, 13:44 we've just copied the curl, imported it 13:46 again using that task ID just
+like we 13:48 did previously. And we're going to 13:50 execute this step. And it's probably 13:51 going to say that it hasn't generated 13:52 yet. And the way that we're checking
+if 13:54 it's been generated or not is the 13:56 complete time. So when it has been 13:58 completed, the complete time is not 14:00 going to be empty because we just 14:02
+requested it just now. The complete time 14:05 is empty at the moment. So if we run 14:06 this if we can see that this fires down 14:10 the true route. Hopefully you can see 14:11
+that here. It says that uh it's true 14:14 that this field is empty. So, it's going 14:15 to wait. It's going to go back around. 14:18 That's going to take 30 seconds because 14:20
+there's no point pulling every 3 seconds 14:22 because it's probably going to take like 14:23 a minute or so for these to run. Um, so 14:26 it's going to take 30 seconds and it's
+14:28 going to loop back around and do it all 14:29 over again. So, let's run the check 14:31 status again and then let's run the if 14:33 again. You see this time that it is 14:35
+false, which means it has been 14:37 completed. We are simply running a get 14:40 request from the URL that uh this over 14:44 here gives us. This gives us this URL 14:46 here. And
+we can run a get request on 14:49 that URL. And when we do that, we see 14:51 that we get the binary file of this 14:53 video. Give it a second. There we go. 14:56 And here we go.
+There's our lovely. And 14:59 it does have sound. I'm not sure if you 15:00 can hear it or not, but uh fantastic. We 15:03 can then like save it to Google Drive. 15:05 We can
+create a social media post out of 15:06 it. We can do whatever we want with it. 15:08 Uh, however you want to incorporate it 15:10 into your AI workflow. There we go. That 15:13 is
+an overview of how you can use Kai AI 15:15 both on the dashboard, but also in an AI 15:17 workflow like this. I really, really 15:20 like it because it means I don't have to 15:21
+worry about dealing with lots of 15:23 different APIs from lots of different 15:24 providers and making sure they've all 15:25 got credit. And, you know, when a new 15:28 model
+comes out, I don't have to go and 15:29 create a new account with them. I can 15:30 just keep everything in one place. If 15:33 you know of open router that does the 15:35 same but
+with LLMs. This is for video 15:38 and image uh models. Basically the same 15:40 thing. Very very helpful. There we go. I 15:43 hope you have found this useful. Go 15:45 ahead and
+try it out. As I said, this is 15:46 not a sponsored video. I wish it was. Uh 15:48 but it's just a great tool that I really 15:50 love. So if you like this video, please 15:51 do
+give it a like. Subscribe if you want 15:53 to see more videos like this. And I'll 15:54 see you in the next one. Bye-bye. All From Matt Penny | Applied AIIntroduction 0:00 If
+you're a developer building with AI, 0:01 you know the drill, right? You've got 0:03 one API for video, another for music, a 0:06 third for images, and they all have 0:07 different
+keys, different builds, 0:09 different everything. It's a mess. Well, 0:11 today we are diving deep into a 0:13 potential solution for all that chaos. 0:16 Kia.ai. We're going to
+walk through a 0:18 really thorough review from popular AI 0:20 tools.ai to see if this is the shortcut 0:22 we've all been looking for. So, let's 0:24 get into it. And let's just
+start right 0:27 here with this quote from the review 0:29 because honestly, it says it all. This 0:31 is the entire promise of Key.AI in a 0:34 nutshell. It's not just about
+getting 0:35 access to models. It's about getting 0:37 access to the best, the absolute 0:39 cuttingedge models all through one 0:41 single endpoint. And the kicker, at a 0:43
+massive discount. That sets the bar What is Kie.ai? 0:45 pretty high. So, let's see if they clear 0:47 it. But before we get to the solution, 0:50 let's really nail down the
+problem. what 0:52 the review so perfectly calls the AI API 0:55 jungle. And trust me, if you've ever 0:57 tried to ship a modern AI product, you 0:59 know this jungle is real.
+Sound 1:01 familiar? You want to use Google's VO 1:03 for video. So, okay, you set up a whole 1:06 Google Cloud project. Then you need Suno 1:08 for music. That's a completely
+separate 1:10 account. You want that unique midjourney 1:12 style. Get ready for what the review 1:14 calls Discordbot gymnastics. And before 1:17 you know it, your code is a
+tangled 1:19 nightmare of different client libraries 1:21 and your finance department is staring 1:22 at three, four, five different bills. It 1:25 just eats up so much time and
+energy. 1:27 Okay, so that's the pain. And this is 1:29 where key.ai steps onto the stage, Every frontier model, one API key 1:32 promising to be the machete that cuts 1:35 through
+that entire jungle with one 1:37 single elegant tool. So how in the world 1:40 does it work? Well, the review describes 1:42 key.ai as a unified API gateway. Think 1:45 of it like
+a CDN but for AI models. 1:48 Instead of you connecting to every 1:49 single vendor, your app makes one call 1:52 to key.ai. They do all the messy work. 1:55 They translate your
+request for the 1:56 right vendor. They handle their 1:57 authentication. They bill your one 1:59 account. And then they send a clean, 2:01 standardized response right back to you.
+2:03 The goal is dead simple. One API key, 2:05 one bill, one integration to rule them 2:08 all. All right, so the integration 2:10 sounds smooth, but a gateway is only as 2:12
+good as the places it can take you, 2:14 right? So, what about the horsepower? 2:15 What models are we actually talking 2:17 about here? Let's take a look at the 2:18 catalog.
+First up in the video corner, 2:21 we're talking about the big guns. The 2:23 review highlights access to Google's 2:24 heavyweight champion VO3.1 for 2:27 incredible text to
+video, complete with 2:29 synchronized audio. They've also got 2:31 runway affin. 2:34 Now, it's worth noting this space moves 2:36 at light speed, so access to these 2:37 Frontier
+models can always change, but 2:39 having them all under one roof like 2:41 this, that is a massive advantage. Now 2:44 for music, Kio gives you the keys to the Suno V4.5 Plus
+music API demo 2:47 entire Sunno Kingdom from V3.5 all the 2:50 way up to the latest V4.5 plus. You can 2:53 see right here in their playground, you 2:55 have all the options.
+Generate full 2:56 8-minute tracks, get the instrumental 2:58 stems, basically everything you'd need 3:00 to bake highquality AI music right into 3:02 your application. Oh, and the
+review 3:04 points out it's about 50% cheaper than 3:06 going directly to Sunno. Not bad. And 3:09 this slide, this just perfectly 3:11 illustrates the sheer range you're 3:12
+getting. On the left, you've got 3:13 Google's Nano Banana Pro, which is built 3:15 on Gemini 3.0, by the way, for just 3:18 ridiculously sharp, highfidelity images. 3:20 And then
+on the right, you've got Cling 3:22 for cranking out professionalgrade 1080p 3:24 video. And you can switch between these 3:26 completely different creative tasks 3:27 without
+ever, ever changing your API 3:30 key. Okay, listen up because this is 3:33 what the review highlights as a huge 3:35 differentiator. Kia.ai AI is currently 3:37 the only way you
+can programmatically 3:39 use MidJourneys models without fighting Nano Banana Pro image generation 3:41 a Discord bot. For any developer who has 3:44 actually tried to automate
+MidJourney, 3:46 you know, this is an absolute gamecher. 3:48 It takes one of the world's most popular 3:50 and iconic image models and turns it 3:52 into just another simple,
+reliable API 3:54 endpoint. So, let's just recap. You're 3:56 getting top-of-the-line models across 3:58 every major category you can think of. 4:00 Video, image, music. They even
+have 4:02 unified endpoints for large language 4:04 models. It's the whole shebang. It's a 4:07 comprehensive toolkit for building 4:08 pretty much any multimodal AI app you 4:10
+can dream up, all without that headache 4:12 of juggling a dozen different vendors. A 4:14 killer model catalog is one thing, but 4:17 let's be real. For developers making a 4:19
+decision, it often comes down to the 4:21 brass tax, price, performance, and those 4:24 little extra perks that just make your 4:26 life easier. Let's start with the perks, 4:29
+and this is a good one. Key.ai gives you 4:31 a seriously generous free trial. You get 4:33 5,000 free credits just for signing up. Midjourney via REST API 4:36 And here's the best
+part. No credit card 4:38 required. The review made a point of 4:39 this. This isn't just enough for a Hello 4:41 World test. We're talking enough credits 4:43 to generate dozens
+of video clips or 4:45 maybe a whole album's worth of music. 4:47 You can actually build a real prototype. 4:49 All right. Now, for the main event, 4:51 price. This number is the
+headline for a 4:54 reason. Key.ai is consistently 30 to 80% 4:58 cheaper than paying the official vendors 5:00 directly. How do they do that? Well, 5:02 they negotiate massive
+volume deals and 5:04 then they pass those savings on to you. 5:06 For a startup or frankly even for a big 5:09 company, saving that kind of money on 5:11 your AI spend is
+transformative. And of 5:14 course, being cheap doesn't matter if 5:16 the service is always down. KOI promises 5:19 a 99.9% uptime SLA, and the review team 5:22 said they saw zero
+timeouts during all Flux.1 Kontext pricing advantage 5:25 their testing. They also called out this 5:26 quiet but super important feature, 5:28 edgeside retry logic. Basically, if
+an 5:31 upstream model has a temporary glitch, 5:33 KYI handles retrying it for you, so your 5:35 application never even sees the error. 5:37 That is clutch. So, how does KIA.ai
+5:41 actually stack up against the 5:42 competition? The review puts it all out 5:45 on the table. While a platform like 5:47 Replicate is still the king for 5:49 open-source
+models, KIA.ai just 5:51 completely dominates its own lane with 5:53 huge wins on price and that exclusive 5:55 access to commercial models like Mitch 5:57 Ernie. The takeaway is
+simple. If you're 5:59 building a commercial product and you 6:00 need the best of the best models, KA is 6:02 positioned to be your top choice. So, 6:05 it's powerful, it's
+cheaper, and it's 6:07 reliable. But is it a pain to get 6:10 started? The review team actually put a 6:12 stopwatch on it. And the answer is under 6:15 10 minutes. The entire
+process is just 6:17 these five simple steps. You sign up, 6:19 you get those free credits, you grab Pay-as-you-go credit system 6:21 your one API key, pick an endpoint like 6:23
+/v1/vo 6:25 for video, and you post your request. 6:27 For the bigger jobs, you get a task ID 6:29 back that you can check on. It's a 6:31 standard, clean, asynchronous rest 6:33
+pattern any developer on the planet will 6:35 feel right at home. And that lightning 6:38 fast integration is made possible by 6:39 what the review called really solid 6:42
+documentation for every single model. 6:44 You've got clear guides with copy and 6:46 paste code snippets for curl, Python, 6:47 Node. This is exactly what developers 6:50 want to
+see. No guesswork, just clear 6:52 instructions to get you from zero to a 6:54 working API call in minutes. 6:56 So, after putting the whole platform 6:58 through its paces, the
+models, the 7:01 pricing, the performance, what was the 7:03 final bottom line conclusion from the 7:05 reviewers? And I've got to say, I 7:08 appreciate that the review gives a
+7:09 really balanced view here. The strengths 7:11 are obvious. You save real money, you 7:13 get every key model, and the integration 7:15 is a breeze. But they also point out the
+7:17 potential downsides. With any gateway, 7:19 there's a risk of vendor lockin. You 7:21 might not get every single experimental 7:22 feature the day it launches. And yeah, 7:24
+for some, figuring out the credit system 7:26 is a little more brain work than a 7:28 simple dollar price. These are totally 7:30 fair points to keep in mind. But even 7:32 with
+those trade-offs, the final verdict 7:34 is overwhelmingly positive. A 4.6 out of 7:37 five is a fantastic score. The key Verdict + who should use it 7:40 takeaway is that for
+their target 7:42 audience, developers building multimodel 7:44 AI products, the benefits you get in 7:46 cost savings and saved engineering time 7:48 are just they're too big to
+ignore. And 7:51 that really brings us to the final 7:52 question, doesn't it? The review makes a 7:54 really compelling case that key.ai tears 7:56 down some pretty big walls,
+walls of 7:58 cost and complexity. So, it leaves us 8:01 with this thought. If those barriers 8:03 were suddenly gone for you, what new 8:05 ideas, what new applications would you
+8:07 finally be free to build? Something to 8:09 think about. All From Popular Ai Tools Search transcript 0:055 seconds[music] 0:099 seconds[music] 0:1717 seconds[music] 0:1919
+secondsHi guys, in this video I show you how to create a keyi API key and connect it to NHN. This works the same way both for 0:2727 secondsself-hosted and cloud-based NHN
+instances. Unlike OpenAI, key.AI does not use a built-in credential type in 0:3434 secondsNHN. So, we're going to do through HTTP request notes, which you can see in this little
+workflow I made. I'm going to 0:4242 secondsgive you this for free later on. But here is the HTTP request. This is a post node and with its value and of the 0:5151 secondsbearer,
+you're going to paste your keyi API key. So, let's get started, guys. 1:001 minuteOkay. And this one here is not a key. Okay. 1:061 minute, 6 secondsSo, you search for key.ai.
+key.ai. 1:121 minute, 12 secondsAnd this is how the first page is going to look. And uh if you don't have an account, make one. And click here API market. 1:231 minute, 23
+secondsAnd then here on the left sidebar you can see where it says API keys. 1:301 minute, 30 secondsSo click it and the blue button here with the plus. 1:351 minute, 35
+secondsCreate new key. Click here and then enter a name you like. NHN easy to remember. Create. And then copy this. 1:481 minute, 48 secondsAnd this is the exact API key you're
+going to paste into the HTTP request node. So let's click here emulate the 1:561 minute, 56 secondsworkflow and then you paste it where it says beer here. So this is going to be
+small space between the API key and the 2:032 minutes, 3 secondsbearer. So this is exactly how that now you can use uh image generators, video 2:112 minutes, 11 secondsgenerators,
+so on. Let's paste it here too. and you're going to need to paste it in every single 2:182 minutes, 18 secondsHTTP request node that wants to talk to key.ai. But that's is about
+it, guys. 2:252 minutes, 25 secondsSo, yeah, take care and uh hope you have a good day. Peace. All Watched0:00[Music] 0:022 secondshey everyone today I'll show you exactly how to
+create AI ugc videos very fast for your product um using get hooked 0:1010 secondsthis will save you a lot of time this will save you a lot of money and this will also make you a
+lot of money so uh if you go here to ugc AI videos this is 0:1717 secondswhen you will see this uh this functionality so all you have to do is Click generate new AI video so here
+uh 0:2525 secondsyou would click um like for example I'll just click test new product and I would choose an ad uh from 0:3434 secondsmy inspiration So currently um we're able to do
+videos up to one and a half minutes so it doesn't do vs CS as of 0:4343 secondsright now uh we're working on that but let's say if I wanted to do something like this uh like
+replicating this ad 0:5151 secondsfor this specific product um I would choose the product that I have here so 0:5858 secondsum let me see what I have here let's say I want to sell
+this matcha here and 1:041 minute, 4 secondsthat's a product I am selling uh English what is the language of the script uh I'll just stick with English for this one seven it's kind
+of for me it's 1:141 minute, 14 secondsoptimal level of uh the um of the creativity and um let's say I'm selling this product right so 1:231 minute, 23 secondsthat's my objective
+to sell mushroom matcha and um it will take the original script from this video and it will recre 1:291 minute, 29 secondscreate that script um that is um based it will take the
+script from this video right and then it will adapt to this 1:381 minute, 38 secondsspecific product so if you want to take uh instead the script from your direct competitor let's
+say you're selling mushroom coffee your competitor selling 1:461 minute, 46 secondsmushroom coffee you're selling painter Leaf product um then uh your competitor uh is also selling
+um pain relief 1:551 minute, 55 secondsproduct right so now this will adapt specifically to my product so before F mus much my energy CRA crushed every 2:022 minutes, 2
+secondsafternoon I Tred coffee energy drinks and even naps but nothing worked then I try this and now I feel Unstoppable all 2:092 minutes, 9 secondsday long so you have three
+variations of these hooks kind of like leading parts of the ad and I mean all of them are 2:172 minutes, 17 secondsgreat like you can see before discovered much much I struggled
+with constant fatigue brain fog trying energy drinks and coffee just me just got me more 2:242 minutes, 24 secondsjittery but the moment I sied this I felt a wave of clarity and
+energy like never before so um I choose the one that 2:322 minutes, 32 secondsI like the most here and also you can customize it if you want right you can see all of this is
+customizable I'll just choose the first 2:402 minutes, 40 secondslet me choose the second one I like the second one the most then body is the same again you can customize it if you
+want if you have some experience with 2:472 minutes, 47 secondscopywriting you want to um like pretty much like adjust some of these scripts and so you 2:542 minutes, 54 secondscan
+see it took the original script from that video that is selling um the pain relief product or back product and it 3:013 minutes, 1 secondadapted it to my specific product here
+which is a mushroom coffee now here's some of the images that were like 3:103 minutes, 10 secondspre-selected um from the page right so some of these images were pre-selected you
+can um also download or drop your 3:183 minutes, 18 secondsimages here uh then you choose the format in which you want to generate your video if you choose one in one it will go in
+most feeds um which will 3:273 minutes, 27 secondspretty much like reach most of the people you can also do more like portrait which is um format for short shorts and stories um
+then you choose 3:353 minutes, 35 secondsthe caption style so this here is kind of like what the background uh would look like uh for the ad right so you 3:433 minutes, 43
+secondswould just experiment with with different ones here and it will give you um kind of different look for your 3:503 minutes, 50 secondsvideos and then you choose over 220
+avatars right so let's say I want this ad to be with um like older lady right 4:004 minutesso that's the one I Chosen and then I choose uh the accent that I want so if I want to

@@ -1,0 +1,225 @@
+minutes, 5 secondsSo now as we can see here we've changed our folder from Shannon to idea forge. 14:1014 minutes, 10 secondsSo, we're going to do npm and then install. We're going
+to press enter to make sure that we've got any of the required folders and extra elements that 14:1814 minutes, 18 secondswe need to actually be able to run this application
+locally. Next, we're going to do npm and then run and then dev. 14:2514 minutes, 25 secondsWe'll enter this and this should start it up. So, it's running locally on our machine.
+The most important part of this is we need to check the port that it's 14:3314 minutes, 33 secondsusing. So, in this use case, it's going to be 3001. So, that's the specific port
+that we need to take note of. Now, to check it's all definitely running, we're 14:4114 minutes, 41 secondsjust going to copy this. We're going to come across to a browser. We're
+going to press enter in there. We'll probably get an error. Yep, I was expecting that because, of course, it doesn't have some 14:5014 minutes, 50 secondsof the Superbase URL and
+the public API key. So, of course, if your app doesn't have this, don't worry. It will then be able to show you the app running and you can go through and do the pen testing.
+15:0015 minutesBut, of course, we just need to go through and add this quickly for ours to work. So for mine, I'm just going to come back to the terminal, dot controll and then c
+just to stop it running. And 15:0915 minutes, 9 secondsthen quickly going to just come through and do nanoev local just to have a local file for us to use. So there we go. 15:1615
+minutes, 16 secondsEverything added in. Now we're going to do controll and then x just to exit. 15:2115 minutes, 21 secondsWe're going to do yes, we want to save everything. And
+then we want to press enter to save everything. Ready to go. 15:2715 minutes, 27 secondsSo now that's all saved with our API keys. We should now be able to run that and be able to
+see everything up and running in our local app. So now we're 15:3515 minutes, 35 secondsjust going to do npm run then dev just to start it back up. And we should be able to see
+everything running. So again, we'll copy this URL. We'll then 15:4315 minutes, 43 secondsopen up a new tab, paste in there, and there we go. We can see everything's up and running
+as we would expect for the local host. So now we're ready for 15:5015 minutes, 50 secondstesting. Let's get Shannon actually running. So now to run Shannon, I'm going to come
+across to a new terminal, but you can do it in the previous one you've just installed. This is just to 15:5915 minutes, 59 secondsshow you, of course, if you're running this
+multiple times, how to do it. First of all, we're going to make sure that we go into the specific folder we've created, which of course will be 16:0716 minutes, 7 secondsShannon.
+Now, we're just going to make sure that we read in our API key, just of course the one that we had before, and we'll make sure to set the max 16:1516 minutes, 15 secondsoutput
+tokens to that higher limit as well. Of course, this is cuz we're testing it again, just to make sure everything's set up. So now to run the 16:2216 minutes, 22 secondstest, we're
+just going to enter this command in here, which is going to tell Shannon to start the actual analysis. 16:2916 minutes, 29 secondsAnd we're going to be using port 3001 for this
+process. And we want to analyze this specific repo that we've developed to get the outputs. We're going to 16:3716 minutes, 37 secondstriple check that, of course, our Docker
+desktop is also set up and running. And now all I need to do is press enter. And there we go. It's now starting up some 16:4616 minutes, 46 secondscontainers. is pulling down the
+required aspects that we need to do all of this testing. Of course, we're then going to break it down into the five phases so we 16:5516 minutes, 55 secondscan go through and do
+this analysis for us. So, this will take a little while just to get everything set up. The entire process is normally around 90 17:0217 minutes, 2 secondsminutes to complete
+everything for us, but we can also go through and actually see what it's doing throughout the process as well. So, there we go. It's now gone through the first phase, which of
+course is setting everything up. 17:1217 minutes, 12 secondsWe're making sure that we install all of the different local files. And now, as you can see there, we've got the
+defensive testing that we'll be able to 17:2017 minutes, 20 secondsrun in the background. So, we're going to be able to see everything as it goes through. We're also going to be
+able to see, of course, how it's doing the 17:2717 minutes, 27 secondsanalysis. So, this is where we're going to come through and be able to use the logs element to check its
+progress as it goes through. If we come across to 17:3517 minutes, 35 secondsDocker, we'll also see that we've now got Shannon that was working in the background as a container.
+So, we know it's actively working and it's already 17:4317 minutes, 43 secondsbeen 37 seconds. So we can see it's going through the CPU usage, everything like this. I'm running it
+on an M1 Max MacBook Pro from a couple of years ago. 17:5217 minutes, 52 secondsSo again, it should be more than powerful enough to handle a lot of these queries. So now, if we
+want to see exactly what Shannon's doing at any point in time, all we need to do is copy 18:0118 minutes, 1 secondthis URL here, or we can run any of these queries, but I'm going
+to copy this URL here. We're going to come across to our browser, just paste in 18:0918 minutes, 9 secondsthere, and now we should be able to see exactly what it's doing. Now,
+there's lots of detailed information here. Don't worry about that at all. It's what it's 18:1718 minutes, 17 secondsdoing at any specific point in time to actually analyze how our
+app's working. 18:2218 minutes, 22 secondsSo, now to explore the UI a bit more. Of course, we can come back to the name spaces. We can see the workflows that it's currently doing.
+We can see parent 18:3018 minutes, 30 secondsworkflows. We can see, of course, the different schedules if anything's triggered, the batch operations. We can click through all of
+this as much as we 18:3718 minutes, 37 secondsneed because this is just the web UI that we've got set up to be able to see everything going on. So, if I come back to our agent, as
+we can see here, we've 18:4618 minutes, 46 secondsgot the history of everything it's doing down the bottom, how long it's been running for, any relationships, any workers that it's
+running. We've got any 18:5418 minutes, 54 secondspending activities, lots and lots of information in here to really see what Shannon's doing at any one point. So if we come
+through to a new terminal, do CD 19:0219 minutes, 2 secondsand then Shannon, this will open us into the folders. And if we then run that command there for the logs, what we should
+be able to see is exactly what 19:1019 minutes, 10 secondsit's doing at any specific point in time. So now, as we can see here, it's going through completing all of the different
+actions, the testings for still in phase one and two. So actually 19:2019 minutes, 20 secondsgoing through and really analyzing everything first before it starts executing the pen
+testing and of course gives us the results as part of phase 4. Chapter 4: Results & Report Breakdown 19:2719 minutes, 27 secondsSo there we go. And we've just got our results back.
+We can see everything on the right hand side here. Breaking down the model that he used. We can see the 19:3519 minutes, 35 secondsnumber of terms. This is going to break it down
+by a section that it's done. If we come all the way down the bottom, we'll see the summary here. We'll see that it cost a total of $57 to run it. 19:4619 minutes, 46 secondsIt had
+$2,93 turns and an agent count of 11. It did run for a significant portion of time. That's because I walked away from the computer and just let it run in 19:5519 minutes, 55
+secondsthe background. But of course, we'd want to keep an eye on this in the future. I love the map for the event history that we've got here as well. As we can see, 20:0320
+minutes, 3 secondsthis just took a little bit longer than usual because it ran out of credits, so I just had to top it up whilst it was running in the background. But as we can
+20:1020 minutes, 10 secondssee here what it did and how long each section took. And if we click on them, as we can see here, we then get lots and lots of results coming back to
+really 20:1820 minutes, 18 secondsunderstand in depth. And if we come back across to the logs as well, we'll be able to see in here the actual cost, the agents, we can see the
+duration, but I 20:2720 minutes, 27 secondsalso love that we're able to see the agent breakdown in here as well. So, we can see how long it took at each step. 20:3320 minutes, 33
+secondsAnd of course, we'll be able to run this as many times as we wanted across our apps because for $57, yes, it may not be perfect. And they've got the enhanced 20:4220
+minutes, 42 secondspro version that you can use with the company that developed Shannon directly, but it's incredibly good. Of course, we also want this in the report format. So,
+20:5020 minutes, 50 secondswhat we're able to do is come back across to the folder where we have all of our GitHub repo stored. As we can see here, we've now got a brand new folder
+20:5820 minutes, 58 secondsthat we'll be able to analyze, which is called deliverables. In here, we've now got all of the different reports that it's generated for us, and we've
+got the 21:0721 minutes, 7 secondsmain one here we'll be able to view. So, I'm just going to open this up in a quick text edit as we can see here. And now, he's got several
+different 21:1421 minutes, 14 secondsvulnerabilities that's identified. We've got some critical ones that we need to actually go through and work. It looks like there are no SQL or
+command inject ones. There's no XS vulnerabilities. 21:2621 minutes, 26 secondsThere's tons and tons of different ones in here. Again, I'm not an expert on all of this different
+stuff. So, I really recommend what you should do is understand it yourself. Kind of walk 21:3421 minutes, 34 secondsthrough it step by step some of the different points, what makes
+sense, what doesn't make sense. Or what we're able to do is literally come across to 21:4121 minutes, 41 secondsplatforms like Claude, go through and attach all of the files. We
+can then literally give it a prompt saying please can you analyze all of the reports from 21:4821 minutes, 48 secondsa pen tester and summarize them for a report and tell me the
+key insights and next steps. And whilst that runs through, look at the other documentation 21:5621 minutes, 56 secondswe've got. We've got both the analysis and the exploitation
+reports. So for example, the author analysis. If we just open this up again with another text 22:0422 minutes, 4 secondsedit, what we'll be able to see is basically the hypothesis
+and how it went through really analyzed the entire process. the executive summary pulling 22:1322 minutes, 13 secondsout some of the key points of what he wants to go after. But
+then if we come through and open up the evidence side of it instead is that we now come through 22:2022 minutes, 20 secondsand we can actually see how and why it was able to
+execute and pull through some of the information. So again, I'm not an expert on all of this stuff. 22:2722 minutes, 27 secondsDefinitely recommend going through and checking out,
+but this is why tools like this are so amazing because now it's not a matter of weeks to get insights like 22:3422 minutes, 34 secondsthis coming back. We're able to get it within
+a matter of hours now. And yes, it may not be 100% of the way there on everything, but their quality is 22:4222 minutes, 42 secondsincredibly high. They've got 96% success rate, so
+it's definitely something to take into consideration. Imagine being able to run through all of these 22:5022 minutes, 50 secondsreports. That's what claude and claude code and
+anti-garantity can massively help with. There we go. It's just come back with a report. And as we can see on 22:5822 minutes, 58 secondsthe right hand side, we got two critical
+vulnerabilities, four confirmed vulnerabilities, and a ton of different ones. Again, this was just an example 23:0523 minutes, 5 secondsrepo we set up really quickly just to
+demonstrate what you are able to do and why it's really important to be able to go through analyze your repos for 23:1323 minutes, 13 secondsvulnerabilities. Then come back across
+to platforms like anti-gravity, VS Code, Claw Code, all of these different ones, be able to tell it what it needs to do 23:2123 minutes, 21 secondsor literally give it access to
+the deliverables and it will go through and make the enhancements based on any vulnerabilities it's been able to 23:2923 minutes, 29 secondsdetect. So, if you're doing anything
+with volume coding, bringing your app ideas to life, I definitely recommend coming through and doing some AI pen testing or just making sure you're 23:3723 minutes, 37
+secondsreally making your apps as secure and as robust as possible. And that's where Shannon comes into play. If you're interested about AI and automation, definitely subscribe to
+the channel. 23:4623 minutes, 46 secondsWe've got lots of content. If you want to take your learning for AI and automation to the next level, join our community, which is the first
+link in the description. If you want AI and 23:5523 minutes, 55 secondsautomation for your business, it's the second one. Stay tuned for more and have a great day. All From the
+seriesYou Can Now Code From Your Phone 0:00 You can now control clawed code from 0:01 your phone. And Tropic have just 0:03 released a brand new feature called 0:04 remote control.
+And it's genuinely one 0:06 of the biggest features I've been 0:08 waiting for. In this video, I'll show 0:09 you exactly what remote control is, how 0:12 we're able to get it set
+up and running, 0:14 how it also differs from teleport, and 0:17 then we'll get straight into actually a 0:18 demo as well. We'll cover the setup, the 0:21 differences, and a real
+life demo all in 0:23 about 10 minutes. So, if you've ever 0:25 been stuck at your desk trying to 0:26 babysit clawed code to finish a project, 0:29 now that's completely over. So,
+what is 0:31 remote control? Well, it enables us to 0:33 actually connect to our local running 0:35 instance on our computer for that 0:38 current clawed code that we've got. 0:40
+We're then able to use our phone to 0:42 actually talk to our machine and 0:44 actually execute commands. we're able to 0:47 work on both services at once and is 0:50 going to
+survive for at least 10 minutes 0:52 even if your network completely drops 0:53 off. Currently, you do need to have a 0:55 max plan to be able to run this, but 0:57 they are also
+going to have support for 0:59 the pro plan in the future. So, now Setting Up Remote Control (Live Demo) 1:01 we're going to come across to cursor 1:02 quickly and I'll show you
+exactly what 1:04 you mean. We've been chatting to Claude 1:06 code on the right hand side here and 1:08 he's generated this quick example 1:11 dashboard or website that we've got
+in 1:12 the background that of course we want to 1:14 go through and change that this is 1:16 actually a SAS that we've got built out 1:18 or a more complex challenge. This is 1:20
+where we can actually talk to it whilst 1:22 we're on the go. All we need to do is 1:24 come to the right hand side. We're going 1:26 to do forward slash and then remote 1:28
+control as we can see here and press 1:31 enter. Then we're going to say enable 1:33 remote control for this session or we 1:35 can say never mind and we'll enter out. 1:38 We're
+going to say enable control for 1:40 this session and it's going to load it 1:42 up for us. What you should now see is 1:44 that we've got this unique URL here. 1:46 Make sure that
+you never share this with 1:48 anyone else because it's unique 1:49 instance. So now if I come across to my 1:52 iPad here, what we'll be able to see is 1:54 that we've actually
+got that instance 1:55 still running in the background. As we 1:57 can see here, it's got everything from 1:59 what we were using before, all the 2:01 changes that we wanted, what
+we're going 2:02 to use, and that specific design. So 2:05 now, if I come down the bottom, we can 2:07 simply go through and just say, please, 2:09 can you go through and now
+change it so 2:11 that we've got a dark color scheme 2:14 instead of a white color scheme. Please 2:16 also make sure to use the UI Max Pro 2:19 skills that you've got access to to
+2:21 really enhance that design that we've 2:22 got. Now, we're going to send that off. 2:24 What we should then see is it running on 2:26 the iPad, but also because it's now 2:29
+directly connected to our local machine, 2:31 it's automatically able to go off and 2:33 execute that command. So that's how it's 2:35 now completely changing the game for how 2:37
+we're able to interact with clawed code. 2:40 So no matter where we are, what we're 2:41 doing, we can have the iPad, our phone, 2:44 whatever it may be, running constantly 2:46
+with us and it will go through and 2:48 actually execute it on your local 2:49 machine. And this has been the major 2:51 difference for how we're able to run 2:52 clawed code
+remotely because up until 2:55 now the main feature that we've had for 2:57 that is teleport and it's been a little Remote Control vs Teleport 2:59 bit unreliable for how we're
+actually 3:01 able to go through and invoke it. The 3:03 other side of this is of course it would 3:05 start a clawed code instance on the web. 3:09 You wouldn't actually be
+running it on 3:11 your local machine like you can with a 3:13 remote control. What it would do is it 3:15 would start it up on the web. It would 3:17 then go through, execute any
+of the 3:19 commands, the tasks, anything like that, 3:21 and then it would put it down to your 3:23 local terminal later on. What we're now 3:25 able to do instead is we're
+actually 3:27 able to talk using our phone, our 3:29 browser, our iPad, whatever it may be, 3:32 and then never taking it outside of our 3:34 machine. We're able to make sure that
+3:36 those updates are completed and executed 3:38 exactly like we would if we were sat 3:40 right in front of the machine. So, 3:42 that's definitely the way I'm going to 3:43 be
+using it instead of using teleport to 3:46 chat to it like we did in the past. Now, 3:48 the remote control feature also isn't 3:50 automatically activated. It will only 3:53 run
+when we actually run the command 3:55 clawed remote control in the CLI or when 3:58 we're in IDEs like cursor, anti-gravity, 4:01 VS Code. We're able to use forward/ 4:03 remote
+control and of course do it that 4:05 way. They've also thought about some of 4:07 the security as well. So, it's only 4:09 going to make outbound HTTP requests. 4:12 It's never
+going to open up or try and 4:14 receive any of the inbound requests to 4:17 our machine. So, when do we want to use 4:19 remote control versus clawed code on the 4:21 web? Well,
+remote control is definitely 4:23 way that I'm going to be using it 4:25 because it executes everything on the 4:27 local machine versus clawed code web 4:30 doing exactly what we
+say, running it on 4:32 the cloud infrastructure from Anthropic. 4:35 So, if we're deep in the middle of a 4:36 Vive coding session, working session, 4:38 whatever it may be,
+that's where, of 4:40 course, having a remote control is 4:41 fantastic to be able to access it and go 4:43 through and execute all of the commands. Limitations & What's Next 4:45
+But there are some key limitations to be 4:47 aware of. We're only able to do one 4:50 remote session at a time at the moment. 4:52 The terminal must stay open on your 4:54
+machine, whether that's running locally 4:56 on your Mac Mini, your MacBook, whatever 4:59 that may be, or a VPS instance that 5:01 you've got set up. And of course, if 5:03
+there's an extended network outreach, 5:06 there's roughly more than 10 minutes and 5:08 it will time out. But you just need to 5:10 run Claude remote control again and it 5:13
+will start it up for you. And as we can 5:14 see in the background here, what we're 5:16 able to see is exactly the same as what 5:18 I've got on my local machine. I can also 5:21
+see on the iPad nice and easily. So, if 5:23 I wanted to go through and see exactly 5:25 what the machine is doing, but I was 5:27 walking around the house, I was in a 5:28
+different room, anything like that, we 5:30 can access it nice and easily. So, as we 5:33 can see there, we've now got it up and 5:35 running. I can still see that it's 5:36
+executing the Playright code on the 5:39 iPad. I can't see that specific design 5:41 because, of course, it's running on 5:42 localhost 5174. So, actually on the 5:45 local
+instance. So, there we go. And 5:47 just after about 4 minutes, I've got 5:49 exactly the same as we can see on the 5:51 iPad, which will be over the screen now 5:53 as exactly the
+same as what we can see 5:55 within the terminal on our local device. 5:57 And this is just the start of what's 5:59 possible with remote control. So I 6:01 definitely recommend
+you checking it 6:02 out, making sure that you turn on that 6:04 remote control for your specific 6:06 project, walk away, have it installed on 6:08 your phone, your iPad, whatever
+it may 6:10 be, chat to it back and forth, and just 6:12 see how it completely changes how we're 6:14 able to use clawed code. And I think 6:17 this is absolutely fantastic from
+6:18 Anthropic because it's really taking 6:20 inspiration from their teleport feature 6:22 early on as well as the rise of 6:24 platforms like OpenClaw coming to the 6:26 market
+for how we're able to create 6:28 these autonomous agents that were able 6:30 to chat to anywhere in the world at any 6:33 time to execute specific commands. Of 6:36 course, with
+clawed code being a lot 6:38 safer than platforms like OpenClaw at 6:40 the moment. And if you want to learn 6:41 more about AI and automation, check the 6:43 first link in the
+description and come 6:45 across to the community. And as always, 6:47 stay tuned for the next video and have a 6:48 great day. All From the seriesFor AI agents: a documentation
+index is available at the root level at /llms.txt and /llms-full.txt. Append /llms.txt to any URL for a page-level index, or .md for the markdown version of any page. Logo Search /
+Connect Blog Help Center API Pricing Sign up API reference Introduction Authentication Streaming ElevenAgents Agents Conversations Users Tools Knowledge Base Tests Phone Numbers
+Widget Workspace SIP Trunk Twilio POST Outbound call via twilio POST Register call WhatsApp Batch Calling LLM MCP Analytics Environment Variables ElevenAPI Text to Speech Speech to
+Text Music Voices Text to Dialogue Voice Changer Voice Design Sound Effects Audio Isolation Dubbing Forced Alignment Pronunciation Dictionaries Audio Native ElevenCreative Studio
+Core Resources History Models Tokens Workspace Usage User Service Accounts Workspace Webhooks Legacy Voices Knowledge Base Dubbing ElevenAgents Twilio Outbound call via twilio Copy
+page POST https://api.elevenlabs.io /v1/convai/twilio/outbound-call POST /v1/convai/twilio/outbound-call cURL curl -X POST https://api.elevenlabs.io/v1/convai/twilio/outbound-call
+\ -H "Content-Type: application/json" \ -d '{ "agent_id": "string", "agent_phone_number_id": "string", "to_number": "string" }' Try it 200 Successful { "success": true, "message":
+"string", "conversation_id": "string", "callSid": "string" } Handle an outbound call via Twilio Headers xi-api-key string Optional Request This endpoint expects an object. agent_id
+string Required agent_phone_number_id string Required to_number string Required conversation_initiation_client_data object or null Optional Show 8 properties call_recording_enabled
+boolean or null Optional Whether let Twilio record the call. telephony_call_config object Optional Show 1 properties Response Successful Response success boolean message string
+conversation_id string or null callSid string or null Errors 422 Unprocessable Entity Error Was this page helpful? Yes No Previous Register call Next Built with> ## Documentation
+Index > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt > Use this file to discover all available pages before exploring further. # Security <Warning>
+**Personal assistant trust model.** This guidance assumes one trusted operator boundary per gateway (single-user, personal-assistant model). OpenClaw is **not** a hostile
+multi-tenant security boundary for multiple adversarial users sharing one agent or gateway. If you need mixed-trust or adversarial-user operation, split trust boundaries (separate
+gateway + credentials, ideally separate OS users or hosts). </Warning> ## Scope first: personal assistant security model OpenClaw security guidance assumes a **personal assistant**
+deployment: one trusted operator boundary, potentially many agents. * Supported security posture: one user/trust boundary per gateway (prefer one OS user/host/VPS per boundary). *
+Not a supported security boundary: one shared gateway/agent used by mutually untrusted or adversarial users. * If adversarial-user isolation is required, split by trust boundary
+(separate gateway + credentials, and ideally separate OS users/hosts). * If multiple untrusted users can message one tool-enabled agent, treat them as sharing the same delegated
+tool authority for that agent. This page explains hardening **within that model**. It does not claim hostile multi-tenant isolation on one shared gateway. ## Quick check: `openclaw
+security audit` See also: [Formal Verification (Security Models)](/security/formal-verification) Run this regularly (especially after changing config or exposing network surfaces):
+```bash theme={"theme":{"light":"min-light","dark":"min-dark"}} openclaw security audit openclaw security audit --deep openclaw security audit --fix openclaw security audit --json
+``` `security audit --fix` stays intentionally narrow: it flips common open group policies to allowlists, restores `logging.redactSensitive: "tools"`, tightens
+state/config/include-file permissions, and uses Windows ACL resets instead of POSIX `chmod` when running on Windows. It flags common footguns (Gateway auth exposure, browser
+control exposure, elevated allowlists, filesystem permissions, permissive exec approvals, and open-channel tool exposure). OpenClaw is both a product and an experiment: you're
+wiring frontier-model behavior into real messaging surfaces and real tools. **There is no "perfectly secure" setup.** The goal is to be deliberate about: * who can talk to your bot
+* where the bot is allowed to act * what the bot can touch Start with the smallest access that still works, then widen it as you gain confidence. ### Deployment and host trust
+OpenClaw assumes the host and config boundary are trusted: * If someone can modify Gateway host state/config (`~/.openclaw`, including `openclaw.json`), treat them as a trusted
+operator. * Running one Gateway for multiple mutually untrusted/adversarial operators is **not a recommended setup**. * For mixed-trust teams, split trust boundaries with separate
+gateways (or at minimum separate OS users/hosts). * Recommended default: one user per machine/host (or VPS), one gateway for that user, and one or more agents in that gateway. *
+Inside one Gateway instance, authenticated operator access is a trusted control-plane role, not a per-user tenant role. * Session identifiers (`sessionKey`, session IDs, labels)
+are routing selectors, not authorization tokens. * If several people can message one tool-enabled agent, each of them can steer that same permission set. Per-user session/memory
+isolation helps privacy, but does not convert a shared agent into per-user host authorization. ### Secure file operations OpenClaw uses `@openclaw/fs-safe` for root-bounded file
+access, atomic writes, archive extraction, temp workspaces, and secret-file helpers. OpenClaw defaults fs-safe's optional POSIX Python helper to **off**; set
+`OPENCLAW_FS_SAFE_PYTHON_MODE=auto` or `require` only when you want the extra fd-relative mutation hardening and can support a Python runtime. Details: [Secure file
+operations](/gateway/security/secure-file-operations). ### Shared Slack workspace: real risk If "everyone in Slack can message the bot," the core risk is delegated tool authority:
+* any allowed sender can induce tool calls (`exec`, browser, network/file tools) within the agent's policy; * prompt/content injection from one sender can cause actions that affect
+shared state, devices, or outputs; * if one shared agent has sensitive credentials/files, any allowed sender can potentially drive exfiltration via tool usage. Use separate
+agents/gateways with minimal tools for team workflows; keep personal-data agents private. ### Company-shared agent: acceptable pattern This is acceptable when everyone using that
+agent is in the same trust boundary (for example one company team) and the agent is strictly business-scoped. * run it on a dedicated machine/VM/container; * use a dedicated OS
+user + dedicated browser/profile/accounts for that runtime; * do not sign that runtime into personal Apple/Google accounts or personal password-manager/browser profiles. If you mix
+personal and company identities on the same runtime, you collapse the separation and increase personal-data exposure risk. ## Gateway and node trust concept Treat Gateway and node
+as one operator trust domain, with different roles: * **Gateway** is the control plane and policy surface (`gateway.auth`, tool policy, routing). * **Node** is remote execution
+surface paired to that Gateway (commands, device actions, host-local capabilities). * A caller authenticated to the Gateway is trusted at Gateway scope. After pairing, node actions
+are trusted operator actions on that node. * Operator scope levels and approval-time checks are summarized in [Operator scopes](/gateway/operator-scopes). * Direct loopback backend
+clients authenticated with the shared gateway token/password can make internal control-plane RPCs without presenting a user device identity. This is not a remote or browser pairing
+bypass: network clients, node clients, device-token clients, and explicit device identities still go through pairing and scope-upgrade enforcement. * `sessionKey` is
+routing/context selection, not per-user auth. * Exec approvals (allowlist + ask) are guardrails for operator intent, not hostile multi-tenant isolation. * OpenClaw's product
+default for trusted single-operator setups is that host exec on `gateway`/`node` is allowed without approval prompts (`security="full"`, `ask="off"` unless you tighten it). That
+default is intentional UX, not a vulnerability by itself. * Exec approvals bind exact request context and best-effort direct local file operands; they do not semantically model
+every runtime/interpreter loader path. Use sandboxing and host isolation for strong boundaries. If you need hostile-user isolation, split trust boundaries by OS user/host and run
+separate gateways. ## Trust boundary matrix Use this as the quick model when triaging risk: | Boundary or control | What it means | Common misread | |
+--------------------------------------------------------- | ------------------------------------------------- |
+----------------------------------------------------------------------------- | | `gateway.auth` (token/password/trusted-proxy/device auth) | Authenticates callers to gateway APIs
+| "Needs per-message signatures on every frame to be secure" | | `sessionKey` | Routing key for context/session selection | "Session key is a user auth boundary" | | Prompt/content
+guardrails | Reduce model abuse risk | "Prompt injection alone proves auth bypass" | | `canvas.eval` / browser evaluate | Intentional operator capability when enabled | "Any JS
+eval primitive is automatically a vuln in this trust model" | | Local TUI `!` shell | Explicit operator-triggered local execution | "Local shell convenience command is remote
+injection" | | Node pairing and node commands | Operator-level remote execution on paired devices | "Remote device control should be treated as untrusted user access by default" |
+| `gateway.nodes.pairing.autoApproveCidrs` | Opt-in trusted-network node enrollment policy | "A disabled-by-default allowlist is an automatic pairing vulnerability" | ## Not
+vulnerabilities by design <Accordion title="Common findings that are out of scope"> These patterns get reported often and are usually closed as no-action unless a real boundary
+bypass is demonstrated: * Prompt-injection-only chains without a policy, auth, or sandbox bypass. * Claims that assume hostile multi-tenant operation on one shared host or config.
+* Claims that classify normal operator read-path access (for example `sessions.list` / `sessions.preview` / `chat.history`) as IDOR in a shared-gateway setup. * Localhost-only
+deployment findings (for example HSTS on a loopback-only gateway). * Discord inbound webhook signature findings for inbound paths that do not exist in this repo. * Reports that
+treat node pairing metadata as a hidden second per-command approval layer for `system.run`, when the real execution boundary is still the gateway's global node command policy plus
+the node's own exec approvals. * Reports that treat configured `gateway.nodes.pairing.autoApproveCidrs` as a vulnerability by itself. This setting is disabled by default, requires
+explicit CIDR/IP entries, only applies to first-time `role: node` pairing with no requested scopes, and does not auto-approve operator/browser/Control UI, WebChat, role upgrades,
+scope upgrades, metadata changes, public-key changes, or same-host loopback trusted-proxy header paths unless loopback trusted-proxy auth was explicitly enabled. * "Missing
+per-user authorization" findings that treat `sessionKey` as an auth token. </Accordion> ## Hardened baseline in 60 seconds Use this baseline first, then selectively re-enable tools
+per trusted agent: ```json5 theme={"theme":{"light":"min-light","dark":"min-dark"}} { gateway: { mode: "local", bind: "loopback", auth: { mode: "token", token:
+"replace-with-long-random-token" }, }, session: { dmScope: "per-channel-peer", }, tools: { profile: "messaging", deny: ["group:automation", "group:runtime", "group:fs",
+"sessions_spawn", "sessions_send"], fs: { workspaceOnly: true }, exec: { security: "deny", ask: "always" }, elevated: { enabled: false }, }, channels: { whatsapp: { dmPolicy:
+"pairing", groups: { "*": { requireMention: true } } }, }, } ``` This keeps the Gateway local-only, isolates DMs, and disables control-plane/runtime tools by default. ## Shared
+inbox quick rule If more than one person can DM your bot: * Set `session.dmScope: "per-channel-peer"` (or `"per-account-channel-peer"` for multi-account channels). * Keep
+`dmPolicy: "pairing"` or strict allowlists. * Never combine shared DMs with broad tool access. * This hardens cooperative/shared inboxes, but is not designed as hostile co-tenant
+isolation when users share host/config write access. ## Context visibility model OpenClaw separates two concepts: * **Trigger authorization**: who can trigger the agent
+(`dmPolicy`, `groupPolicy`, allowlists, mention gates). * **Context visibility**: what supplemental context is injected into model input (reply body, quoted text, thread history,
+forwarded metadata). Allowlists gate triggers and command authorization. The `contextVisibility` setting controls how supplemental context (quoted replies, thread roots, fetched
+history) is filtered: * `contextVisibility: "all"` (default) keeps supplemental context as received. * `contextVisibility: "allowlist"` filters supplemental context to senders
+allowed by the active allowlist checks. * `contextVisibility: "allowlist_quote"` behaves like `allowlist`, but still keeps one explicit quoted reply. Set `contextVisibility` per
+channel or per room/conversation. See [Group Chats](/channels/groups#context-visibility-and-allowlists) for setup details. Advisory triage guidance: * Claims that only show "model
+can see quoted or historical text from non-allowlisted senders" are hardening findings addressable with `contextVisibility`, not auth or sandbox boundary bypasses by themselves. *
+To be security-impacting, reports still need a demonstrated trust-boundary bypass (auth, policy, sandbox, approval, or another documented boundary). ## What the audit checks (high
+level) * **Inbound access** (DM policies, group policies, allowlists): can strangers trigger the bot? * **Tool blast radius** (elevated tools + open rooms): could prompt injection
+turn into shell/file/network actions? * **Exec filesystem drift**: are mutating filesystem tools denied while `exec`/`process` remain available without sandbox filesystem
+constraints? * **Exec approval drift** (`security=full`, `autoAllowSkills`, interpreter allowlists without `strictInlineEval`): are host-exec guardrails still doing what you think
+they are? * `security="full"` is a broad posture warning, not proof of a bug. It is the chosen default for trusted personal-assistant setups; tighten it only when your threat model
+needs approval or allowlist guardrails. * **Network exposure** (Gateway bind/auth, Tailscale Serve/Funnel, weak/short auth tokens). * **Browser control exposure** (remote nodes,
+relay ports, remote CDP endpoints). * **Local disk hygiene** (permissions, symlinks, config includes, "synced folder" paths). * **Plugins** (plugins load without an explicit
+allowlist). * **Policy drift/misconfig** (sandbox docker settings configured but sandbox mode off; ineffective `gateway.nodes.denyCommands` patterns because matching is exact
+command-name only (for example `system.run`) and does not inspect shell text; dangerous `gateway.nodes.allowCommands` entries; global `tools.profile="minimal"` overridden by
+per-agent profiles; plugin-owned tools reachable under permissive tool policy). * **Runtime expectation drift** (for example assuming implicit exec still means `sandbox` when
+`tools.exec.host` now defaults to `auto`, or explicitly setting `tools.exec.host="sandbox"` while sandbox mode is off). * **Model hygiene** (warn when configured models look
+legacy; not a hard block). If you run `--deep`, OpenClaw also attempts a best-effort live Gateway probe. ## Credential storage map Use this when auditing access or deciding what to
+back up: * **WhatsApp**: `~/.openclaw/credentials/whatsapp/<accountId>/creds.json` * **Telegram bot token**: config/env or `channels.telegram.tokenFile` (regular file only;
+symlinks rejected) * **Discord bot token**: config/env or SecretRef (env/file/exec providers) * **Slack tokens**: config/env (`channels.slack.*`) * **Pairing allowlists**: *
+`~/.openclaw/credentials/<channel>-allowFrom.json` (default account) * `~/.openclaw/credentials/<channel>-<accountId>-allowFrom.json` (non-default accounts) * **Model auth
+profiles**: `~/.openclaw/agents/<agentId>/agent/auth-profiles.json` * **Codex runtime state**: `~/.openclaw/agents/<agentId>/agent/codex-home/` * **File-backed secrets payload
+(optional)**: `~/.openclaw/secrets.json` * **Legacy OAuth import**: `~/.openclaw/credentials/oauth.json` ## Security audit checklist When the audit prints findings, treat this as a
+priority order: 1. **Anything "open" + tools enabled**: lock down DMs/groups first (pairing/allowlists), then tighten tool policy/sandboxing. 2. **Public network exposure** (LAN
+bind, Funnel, missing auth): fix immediately. 3. **Browser control remote exposure**: treat it like operator access (tailnet-only, pair nodes deliberately, avoid public exposure).

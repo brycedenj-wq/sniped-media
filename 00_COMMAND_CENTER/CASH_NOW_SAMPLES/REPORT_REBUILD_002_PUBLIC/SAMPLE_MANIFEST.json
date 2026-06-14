@@ -1,0 +1,62 @@
+{
+  "task_type": "cash_now_sample",
+  "task_subtype": "report_deck_rebuild_clean_source",
+  "serious": false,
+  "lane_claim": "NONE: Cash Now separate from Lane Discovery by ledger law",
+  "task": "Sample 002: rebuild a U.S. federal public-domain small-org document into a designed source-true brief; the public-usable Menu B exhibit",
+  "folder": "00_COMMAND_CENTER/CASH_NOW_SAMPLES/REPORT_REBUILD_002_PUBLIC",
+  "source": {
+    "document": "IRS Instructions for Form SS-4 (Rev. December 2025)",
+    "url": "https://www.irs.gov/pub/irs-pdf/iss4.pdf",
+    "downloaded": "2026-06-12",
+    "pages": 7,
+    "legal_status": "U.S. government work, public domain (17 U.S.C. 105); no third-party content present",
+    "record": "before/SOURCE_RECORD.md"
+  },
+  "required_artifacts": {
+    "sample_brief": "SAMPLE_BRIEF.md (exists)",
+    "source_capture": "before/iss4_irs_source.pdf + before/iss4_extracted_text.txt + before/SOURCE_RECORD.md",
+    "before_exhibit": "before/before_page-1..7.png (150dpi renders)",
+    "after_rebuild_pdf": "after/ein_guide_rebuilt.pdf (12 pages, letter) + after/ein_guide_master.html",
+    "before_after_composite": "QA/BEFORE_AFTER_SPREAD.png (4 content-matched page pairs, caption 'same facts, 3 days, $300.')",
+    "receipt_closed": "OS_RECEIPT.md Layer 3 filled; QA/QA_VERDICT.md"
+  },
+  "required_gates": {
+    "source_true": "PASS after one fix round: round-1 hostile judge found zero hard factual errors, 7 overreaches + 2 dropped lines; all fixed; round-2 verifier confirmed all 9 with no new drift",
+    "public_domain_verified": "PASS: U.S. government work; no third-party content existed; no IRS insignia in the rebuild",
+    "voice": "PASS: zero em-dashes (verified incl. lookalike codepoints)",
+    "legibility": "PASS: judge finding: method cards/speed labels get a lay reader to the right action faster than the original",
+    "cold_pick": "PASS: two fresh-context agents (hostile judge + independent re-verifier), builder crowned nothing",
+    "one_sitting": "PASS: ~40 minutes, cap was 3h",
+    "zero_spend": "PASS: 0 credits, $0 (curl/Chrome/pdftoppm/ImageMagick)",
+    "operator_verdict": "PASS as draft proof at checkpoint (operator ruling 2026-06-12). Do not revise/polish/publish/send/outreach/spend."
+  },
+  "residuals": [
+    "phone-size legibility not separately gated",
+    "spread caption states the offer's terms (3 days, $300), not the build's actual time; flagged in QA_VERDICT.md"
+  ],
+  "spend": {
+    "credits": 0,
+    "dollars": 0
+  },
+  "external_use_status": "BLOCKED until separate operator approval (outreach blocked, polish stopped)",
+  "status": "STOPPED \u00b7 operator-accepted draft proof at checkpoint \u00b7 Cash Now Menu B proof artifact",
+  "last_updated": "2026-06-12",
+  "classification": "PUBLIC-SAFE SOURCE \u00b7 NOT APPROVED TO SHOW YET",
+  "proves": [
+    "Menu B Document Rebuild demonstrable with a clean public-domain source",
+    "OS can rebuild a dense ugly source document into a clearer designed artifact",
+    "before/after spread makes the $300/3-day offer understandable",
+    "workflow runs in one sitting",
+    "workflow runs with 0 credits and $0 tools",
+    "source-truth survives hostile review and a correction pass"
+  ],
+  "does_not_prove": [
+    "demand",
+    "buyer willingness to pay",
+    "public conversion",
+    "mobile/phone legibility",
+    "long-term lane",
+    "permission to publish or send"
+  ]
+}

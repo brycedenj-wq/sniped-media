@@ -1,0 +1,14 @@
+⏺ Commit landed cleanly. Reporting. --- git log --oneline -6 01b05e9 stage SNIPED_OS source expansion into raw cc308ae import scripts and legacy processing artifacts f1bff18 import
+raw staged intake baseline b409ae3 import processed corpus: BATCH_001 through BATCH_004 b10c9cc import command center: inventory staging plans and future-source notes 2930fdf init
+operating layer for AI-Brain-Refinery git status --short (empty) Working tree state CLEAN. Nothing to commit, working tree clean. --- One discrepancy worth flagging (not blocking)
+The commit body says "235 file objects" per the user-supplied text. The actual git add raw/ staged 243 files (my prior per-destination tally in the report was off by ~8 · likely
+undercounted website-design data CSVs and website-seo scripts). The 27 destination count is accurate. If you want the commit message corrected, the cleanest move is: git commit
+--amend -m "$(cat <<'EOF' stage SNIPED_OS source expansion into raw - Landed 243 file objects across 27 raw/ destinations from ~/Downloads/ SNIPED_OS. - Verified §5 staging checks
+12/12 PASS. - No extraction, chunking, or master-file updates performed. - Ghost references absent from SNIPED_OS and not staged: - Made to Stick mobi duplicate - Toyota Way -
+Superforecasting - The Signal and the Noise - The Personal MBA - Jab, Jab, Jab, Right Hook EOF )" Or leave it as-is and note the count drift in the next session save. Either is
+fine · no one else is consuming this commit log. Also flagged: I removed raw/14_WEB/__MACOSX/ (1 macOS sidecar file ._website-copy) before staging · pure unzip noise, not corpus
+material. Worth adding __MACOSX/ to .gitignore in the next housekeeping pass so future zip extractions don't reintroduce it. --- State after commit - 6 commits on main. Clean
+checkpoint history from operating-layer init through staging. - Working tree clean. - raw/ now contains 727 files (484 baseline + 243 from this staging pass), organized into the
+new chapter subdivisions. - BATCH_005 photography canon source pile is fully staged at raw/02_TIER_1_CANON_BOOKS/photography/ (14 files) + raw/09_ART_SERIES/ (19 files) +
+raw/10_REFERENCE/photography_scans/ (5 files) · ready for /batch-extraction 005 when authorized. - No master files touched. ACTIVE_KNOWLEDGE_STATE.md still names BATCH_005 as
+"recommended, not executed." Stopping per instruction.

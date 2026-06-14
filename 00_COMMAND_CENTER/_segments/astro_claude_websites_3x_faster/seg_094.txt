@@ -1,0 +1,224 @@
+a common misunderstanding. I think Nex.js is just a framework that combines like the 1:22:37 client side and back end uh on like the way they structure their folders in their
+directories. There's a lot of 1:22:43 different patterns. And when I say frameworks, it's kind of like how you group these files. Although Nex.js is 1:22:49 the same company as
+Vzero, which was very famous for being able to design 1:22:54 good websites with AI. But yeah, so I think I think you're kind of like you got you're on the right track. Yeah.
+1:22:59 Nice. Um, so it's given me a plan. I do want to read it. And so I can full screen it 1:23:06 here. So now I can read it. Overview. I'm going to skim this real fast. 1:23:12
+And this is one of the ones that you can edit, right? Because it's yellow. Yep. So if I see anything wrong, I'll go ahead and tell it to like do something 1:23:19 else. Uh, yep.
+Yep. Yep. React. Yep. Find the schema. 1:23:27 Image URL text box. create it at great. 1:23:33 I'm going to go ahead and add here that I want you to use the magic link feature
+1:23:40 uh that requires a sixdigit verification 1:23:45 code for the O. So, this is going to sub point just kind of point it to the correct direction again. And so, this is
+1:23:52 kind of giving me its plan. Um, I like it. It's a it's pretty neat. 1:23:58 um app create browse API components. Okay. Yeah. Um 1:24:04 skim skim and I think it looks good.
+So I'm going to 1:24:09 go ahead and let it build now. So you know looking at it, it's actually very 1:24:16 similar to uh you know the agents view. Oh, it's asking me for
+permission. As in 1:24:22 like the layouts are the agents view is definitely more spacious, but you know, I think we're 1:24:28 going to be seeing a lot of changes. Yep. Come over
+on the left and I kind of want to keep track of what's going on 1:24:34 because it's a pretty big change. So, this is why I'm sticking over here. Later you'll also be able to see
+that if 1:24:40 we are debugging any issues I can directly reference the files and I can use like the at this command and you can 1:24:48 point to files here which is really
+important and when you're pointing to files to add the context to your agent 1:24:54 you're kind of telling the agent hey look specifically at this file there's something wrong or
+I think this is the 1:25:00 problem obviously this is a little more technical leaning um and I did want to dive into a little bit about how like 1:25:06 you know as you upskill you
+can use cursor and all of its features a bit more. So when you're attaching files, 1:25:13 it's obviously very important to be able to see kind of what the file is, the directory,
+and all its relations. 1:25:20 Makes sense. And it is still checking. 1:25:26 Cool. Yeah. Oh, I probably should not have used composer. 1:25:31 That's probably maybe I should have
+ran this on agents for three. 1:25:37 Maybe you should have. Yeah. Well, we'll see if this fails. Um, so this is a really good test. So, um, 1:25:44 yeah. And I think one thing you
+could do is you could just stop it and then re not saying you should do this right now. 1:25:49 Um, and then just use the agents and you could have used, you know, what you did
+earlier, GBT5, um, Claude and Composer 1:25:56 at the same time. Um, but I think that's a good backup option if this fails. But this is a really good 1:26:02 test to see how
+composer is. Yeah, you know, we'll see. All right, we're back and wow, we've got, you know, Testing and Debugging the Application 1:26:09 a lot of things going on. 18 files edited.
+As you can see, there are a lot 1:26:15 more files in my folder directory now. And the app is ready to use. Test the 1:26:20 flow. Oh, next steps. Okay, so it's telling me to do a
+few things. Once again, these are implied that I need to 1:26:26 open the terminal. So, I'm going to go ahead and clear the terminal. Oops. 1:26:32 clear and push the schema. I'm
+going to go ahead and do that. Oh, install. Yep. 1:26:39 Go ahead and 1:26:44 cool. Oh, I have to log in. Okay. Instant CLI login. So, and by the way, 1:26:52 you could literally
+ask cursor to do this stuff for you, right? Like, yeah, you could. 1:26:58 You want to talk about command K in the terminal? I don't know if you've ever used that. Oh. 1:27:05 Um,
+it is taking a second to come up. Oh, weird. Command K was pressed waiting for second 1:27:12 key of chord. Ah. Huh. What is that? It's waiting for something from you. I don't
+know. I don't know if command K 1:27:19 exists anymore. I haven't used it in so long. It literally says command K to generate command. 1:27:24 Oh, yeah. Anyway, command K. Well,
+ignore. 1:27:29 Yeah. Um, honestly, we'll be back after I figure out. All right, so we're back. 1:27:34 It did give us a lot of file changes. As you can see, there are a lot of
+files and the project directory got a lot more 1:27:40 complicated. And uh let's just see if it works. It's telling me to 1:27:46 um do this. But let me just try out the Okay, let
+me just try out Let me just 1:27:53 run the dev server locally and check out the website first to kind of see if it's 1:27:58 able to load. And okay, I see a lot of issues already
+with the website. First 1:28:05 of all, Nex.js is out of date. Uh I should have caught that from the plan. So this goes back to reference, you 1:28:10 know, if you read the plan,
+um it actually said it was going to use Next 14. We're actually on next 16 right now. 1:28:17 So that is just wrong in general. And obviously there was um an error that we 1:28:22
+saw with uh what is this? Instant DV and Webpack module. So I think you know 1:28:29 composer uh it's a fast model but just wasn't really like you know aware of 1:28:35 what was
+going on this time. So I'm going to actually run this prompt with sonnet 4. And to do that uh sonnet 4.5 1:28:41 I'm going to go head over to agents. The good thing is I can take
+this whole plan basically and feed it to Sonnet 4. Oh, 1:28:49 and this is their to-dos. So, I'm not going to grab the to-dos. I'm going to just grab the plan. I'm going to go to
+1:28:54 agents, create a new agent. This time I'm going to be using set 4.5 and I will 1:29:01 be telling it this is the plan and I'm going to go and change next to be next 1:29:07
+16, which is the current next. So, we're still passing in this key and we're 1:29:12 telling it that we want it to uh new files or honestly this is maybe a little 1:29:17 more too
+detailed. I'm just going to give it a plan mode again. Let it plan on the plan and uh let's see. Yeah, this 1:29:25 stuff looks good. I'm going to delete this new files because I
+don't want it to be too specific since the old plan 1:29:31 definitely had some problems. This way it'll kind of generate a new plan. And so, uh, I see here 1:29:38 I want to use
+Tailwind. Uh, so I am just editing the plan before I send it off. And, uh, let's see. Yeah, 1:29:47 I think everything else here looks pretty decent or I'm just skimming through it
+as well. Um, I don't think we 1:29:53 need to give it a specific file structure. So, I'm going to delete this as well. And the file structure is what 1:29:58 we were looking at
+over here. It was kind of like planning what files to make. Uh, just delete that. And let's 1:30:04 see, uh, these are kind of some key features. Yep, I like that. Uh, creation
+flow, post meme, converts canvas to 1:30:12 blob, uploads to instant DB storage. Yep. Yep. This all looks pretty good. 1:30:17 Um, technical implementations. It's talking about
+some React stuff and 1:30:22 the migration strategy. Okay, cool. Um, 1:30:28 this looks good. I'm going to tell it to think about this plan. I might actually run it two times and
+we'll see what 1:30:35 Sonnet 4 cooks up and we'll probably build with Sonnet 4.5. Wait, so is it it's going to plan? 1:30:41 We're getting a plan right now or are we get it's
+going to generate code? No, it's planning. So, we're on plan 1:30:46 mode. I just fed it the plan of composer one. I think composer one was a little out of date and it tried to use
+next 14 1:30:53 which is going to cause a lot of problems. So I just told it no like let's just use sonnet and if this gives 1:31:00 me another plan I don't like I will uh I don't
+know tell it like to directly 1:31:07 use next 14. Gotcha. All right. So it's asking me some questions. Uh okay. So oh yeah there's a 1:31:15 current this is a great point. I
+didn't undo the other plan. So um so it 1:31:22 actually was asking me like oh and I caught this because it was saying your package already is using next 14. So 1:31:29 obviously
+we still have all of this code that composer wrote for us that doesn't work. We want to get rid of it and 1:31:35 that's why we use git to make a commit. So we dropped the
+checkpoint last time we did the slash commit command. Right? 1:31:42 So remember this. We can just go right back to it and it'll discard all of this stuff. So, I'm going to go
+ahead and do 1:31:48 that. Uh, do you want to just use the git tree? I think it's cleaner if you wanted to show them up there. Like, you could probably 1:31:55 just remove the
+changes. Uh, yeah, the changes. 27 changes. Um, I 1:32:02 don't know. Okay, that's just how I understand it versus going in the terminal. No, no, no. You're right. Here are all
+1:32:08 the 27 changes. Um, these are all the files that composer wrote and you know 1:32:14 they are not working obviously. So if we want to get rid of all this code and let
+1:32:19 sonnet 4.5 start on kind of like a fresh point of the last checkpoint that we left. So you can go ahead and you know 1:32:27 like delete these if it makes it more
+intuitive. Um but the same thing is just 1:32:33 heading over here and get stash. And so now that'll also Oh, actually deleting 1:32:39 might actually be faster. Um cuz new 1:32:45
+Don't you just go to the top and go to changes and there's like a little button there that like lets you delete. Oh, discard. Discard all. Yeah. Okay. No, that's 1:32:51 great. Um
+what is going on here? 1:32:57 Okay. So now if we look into our folders, ah there's just a lot of 1:33:03 folders. Okay, that's the problem. There's a lot of empty folders now.
+[snorts] Um, we're back with our 1:33:08 original three files from before any of this mess happened. Um, but the next 1:33:15 JS left us with a lot of folders that we're just going
+to go ahead and delete as well. And this is why being able to 1:33:20 see the folder view is pretty nice. So, I can just, you know, delete all of these and clean up my working
+directory, 1:33:28 which is the repo that we had. Do not delete the dot cursor one. This is where 1:33:33 your commands and rules live. And obviously, I'm trying to reestablish my
+next app. So, I'm going to delete these 1:33:40 as well. And boom. We're kind of back to where we were before this whole mess. 1:33:46 So, this is the prompt that we want to do.
+And I realized that this is actually a very complicated prompt because we're 1:33:51 asking it to refactor into the whole codebase. And generally, that means like, you know, it
+gets pretty messy. 1:33:58 And so, actually, I'm going to bring this back to agent, but we will be exploring editor. uh after we run this 1:34:04 kind of big prompt. So amazing. I
+want to go into editor. Uh oh, okay. Well, it's here. And I don't want 1:34:11 composer for this because um I do want to trust the frontier models on this or I guess yeah, we'll
+run sonnet and gpd5. 1:34:20 Uh you know what? Sure. Like twice. Um just go two and two. I like it. 1:34:25 Yeah, I like it. And so great. uh you know let's do a plan mode and
+let's kind 1:34:33 of see or I guess okay I think we just rip it yeah I think we can just rip it since we have so many 1:34:39 agents running and we'll just take the best one so
+that's another way to use this new this is what I mean by like I 1:34:44 feel like the cursor 2.0 is like one of the most powerful like ways to use AI like I 1:34:50 don't even I
+could do a plan is probably the best practice but I I have I have faith so I have faith as well 1:34:56 yeah let's just run this So, now we have four agents going, and 1:35:01 this
+will take a bit of time. This might take five minutes. Uh, Sonnet 4.5, Sonnet 4.5, GBT5, and GPT5. We'll see 1:35:07 how it does. Boom. We're back. And interestingly enough, I
+mean, this Sonnet one just kind of died, but we 1:35:14 have three that completed and all of them gave us plans. And so, this is kind 1:35:20 of the agent saying, "Hold on, hold
+on. This is a really big change. I need to take some time and propose a plan 1:35:26 anyways." is even though we weren't on plan mode, all of them gave me a plan and it's asking me
+for permission. So, 1:35:32 off camera, I went off and I read a few plans. Um, I think the Sonnet 4 definitely is the most detailed plan, 1:35:38 but it also has way too many
+features that I didn't ask for, so it's too complicated. I'm going to discard the 1:35:44 Sonnet 4.5 plan. So, I'm really focusing on these two plans. And I kind of like the first
+plan more, although it had a 1:35:50 few things or like questions that it was kind of asking. So it was saying like oh 1:35:56 you know go and explore o providers or like a storage
+system. I'm just going to go ahead and say this plan 1:36:03 looks good but I want you to use instant DB storage 1:36:09 and instant DB off with magic link. Uh it will send me a
+sixdigit 1:36:20 signin code. So, I think with this it'll go ahead and use this plan and what I 1:36:26 told it to make the transition. And uh let's see. I'm going to go ahead and
+use 1:36:34 4.5. Yeah, let's give it a try. Let's do it. 1:36:39 No, it's just updating the plan now. Build it. Is this because I switched to 4.5? So, 1:36:47 this is probably like
+something that I didn't know until now, but I have a feeling that it gave me this plan 1:36:52 because I switched to 4.5 from chat GBT and so it's kind of like updating the 1:36:59
+plan. I have the feeling that if I just ran it on um codeex, it would have just 1:37:04 started coding, but I think it's just, you know, asking for permission. I'm going to give it
+a little skim through again to make sure everything's right 1:37:10 because this is a pretty big refactor. Um, all these things look pretty good. Yep. minimal. Yep. I like it
+because the 1:37:18 real difference is that once again, this is a lot more minimal. Um, and this this is just like too much. I think I think 1:37:25 we don't want it to, you know,
+it's already a big task. We don't want it to over complicate things, which is why I chose to stick with this plan. It's just 1:37:31 echoing me the plan back. I'm just going to go
+ahead and say go ahead. And now 1:37:36 it'll start writing me some code. All right, we are back. And wow, was that a 1:37:42 big change. It took a while. We took a break. We're
+back though. 2400 lines of code written. So, um I want to hop right 1:37:50 into it and test it, but I do want to skim this a little bit. And it probably has a few things that we
+need to do. So, 1:37:58 let's see. Okay, it's telling me about what it did. Okay, how to use. Okay, so 1:38:03 what file is this? Is this some It's a file that it wrote. It's a
+markdown. A lot of times when you ask for a big change, it'll often update the 1:38:11 readme and write you a little markdown document. implementation summary.mmd. 1:38:16 Yeah. So
+basically, yeah, and it has a lot of helpful tips at the end. So I highly recommend reading it or at least 1:38:22 definitely skim through it. Um, it looks mostly like correct in
+terms of uh what 1:38:28 like I'm looking for. So it's mentioning everything that I kind of asked it for. Um, and so what I'm really looking for 1:38:35 is kind of like how to get
+started and Yeah. Okay. Yeah. Here how to use. So it says that we need to do the database and 1:38:42 I think our server is already running. So, um, all we really needed, oh, it
+has instructions to publishing as well. But, 1:38:48 uh, before we hop right into it, let me just make sure we are going to have to push some things for Instant DB because 1:38:56
+in order for a database to work, you kind of have to define the tables and it's asking us to do that. So, I'm going to go ahead and do that. Um, it's gave 1:39:04 us the
+permissions. Once again, I'm just going to be copying it. Bash genuinely means put this into a terminal. So, I 1:39:11 will do just that. Uh, I have this terminal here. Let's clean
+this up. And 1:39:16 I'm going to just paste the first command in. And so it's it's instant DB asking to 1:39:24 log me into the terminal, which makes sense because we're using
+instant DB and 1:39:30 uh we kind of need the terminal to make sure the whole setup is logged in for the app that we have hosted. So, um just 1:39:37 going to proceed and okay, so
+I'm already logged in on the website. Um and 1:39:43 it's just asking if I can log in. So, I will go ahead and log in. Um close. 1:39:49 Cool. And then we needed to run the push.
+1:39:55 So, let's just follow some instructions. Uh it's asking if it can push these table changes. This is exactly what I 1:40:02 wanted. And some permissions. So, it's actually
+really good that it wrote permissions because this way, you know, 1:40:07 our app is more secure. Um, going to just say yes to everything. Everything worked. Okay, that's good. Uh,
+probably 1:40:14 because it had some documentation. This part sometimes get tricky. If you do get caught up in it, I would just, you know, 1:40:21 ask the AI like what's going on.
+And if it's like continuously making errors, I 1:40:27 would try different models like GPD5 cursor uh uh not composer and uh sonnet 1:40:34 4.5 as well as always telling it to do
+research online because these things do change a lot. Whatever they're trained 1:40:40 on might be wrong and they might default to something incorrect. Yeah. Can I add something?
+Can you pull up the terminal just a little bit so we 1:40:46 can see it? Oh yeah. I want to talk about one thing real quick. Uh because I've been, you know, I vibe code a lot. I
+use I've used like 1:40:52 four or five of the different like uh database softwares. Superbase, Firebase, 1:40:57 um and now I use Instant DB. Um I just want to go over this rules
+or 1:41:03 permissions folder. And so what this is um basically and you can if even if you don't code, 1:41:09 you can kind of like reason your way through it. What all this does
+is if you think about like Twitter and when you 1:41:14 sign into Twitter, you have certain rules and permissions on like what you're allowed to view as a user, right? And so
+that's all this is is basically 1:41:22 saying like what user can see what is that effectively what the rules and permissions are. Yeah, exactly. So as you can see here 1:41:29
+just through skimming we can kind of see that is defining for the memes anyone can view it but only the owner can uh 1:41:37 update or delete it and you can only create it if
+you're authenticated. Right. So so like in the feed of memes everyone 1:41:43 can see them, right? But only the person who posted the meme can edit it or make 1:41:48 changes or
+delete it. Yeah, exactly. And you can reason through a lot of things. Um, I like Instant DB because it 1:41:54 automatically has something called files, which if you're more
+technical, this means you can use it as file 1:42:00 storage. So for memes, they're images and databases don't actually store images in the table. Um, but that's why 1:42:08 I like
+instant DB. That was basically automatic. And you can see something similar like, you know, you're only 1:42:13 allowed to vote uh you can see all the votes u but you're only
+allowed to create votes if you're authenticated. 1:42:18 So, that makes sense. And you're only allowed to like delete your vote if you're the one who voted. So, all of this stuff
+looks really good. Um, I'm 1:42:25 excited to test it out. Uh, let's just hop over to Okay. Yeah, I think this is 1:42:30 this is it. And, uh, I do see a sign-in page. Let's see if
+the permissions are 1:42:36 working. Um, so if I just try to post this, I see that I see like we have some 1:42:41 good stuff. We have um the two. Okay. Nothing. Okay. So, created
+there's a create page 1:42:48 and then a feed page. Yeah. Cool. Yeah. And uh I see the signin button, 1:42:54 but I do want to test if the permissions are working. So, let's just
+try to post this photo. And yeah, it says please 1:43:00 sign in to post memes. So, okay. Oh, wow. It it automatically links me to the sign-in page. Uh I'm going to go 1:43:07
+ahead and sign in. So, this is my email. Um maybe blur this. I don't know. 1:43:14 Uh okay, cool. We are shown enter six-digit code sent to your email. I will check my phone right
+now. 1:43:20 So, when you use Instant DB, it's by default uses this like six-digit verification code. So, you get an email 1:43:26 from Instant DB, right? Is that what it is? Yeah.
+Um, I can actually show the email on uh I guess here. So, I did just get 1:43:35 an email. Um, so you know, 1:43:40 this is the code I got. It does come from something called, you
+know, meme generator, which is the project name. 1:43:47 So, that's kind of nice. I do think there's a way to customize this, but Instant DB kind of does this out of the 1:43:52
+box. You can also do sign in with Google, sign in with Apple, all the fancy stuff. Uh, that's a little more 1:43:58 complicated. You have to give it some more API keys, but it is
+possible with Instant DB and you could probably do it vi coding as well. Yeah. So, it's it's a 1:44:05 lot easier to get started not using signin with Google. um like you should
+just test it and this is the simplest 1:44:11 way to test and then once you have everything like created and it looks good then you I then you add that after 1:44:17 that's how I
+usually do it. Yeah. Yeah. I think that's a great suggestion. Um to not to get too into 1:44:22 the details, but when you do start, you know, signing in with Google, you need their
+like OOTH and their they have 1:44:28 tokens that you have to feed the AI and then finding that token is really like difficult because you have to go through 1:44:33 like Google,
+you know, like technical like dashboard and all that stuff. Um 1:44:39 and AI can't really do that for you. So that is a current limitation of Vive coding. that stuff. You will
+have to go 1:44:44 dig through Google's OOTH documentation and figure out how to create one. Um, 1:44:50 but okay. Yeah, this is the Yeah, cool. This is the project. Um, I'm going
+to go 1:44:56 and enter this code in and we are in. And And notice how his emails up at the top 1:45:02 right. Yeah. Um, and so you're signed in, it looks like. Cool. Um, I do
+think I will be able to 1:45:09 post something now. So, let's actually make a meme. Uh, the little girl or whatever and just say like you like 1:45:16 coding question mark or
+something. I don't even know what is this meme template usually. 1:45:21 You don't vive code with cursor. 1:45:26 I like it. Emily, what do you think of this meme? Okay, it's
+funny. Okay. Um, 1:45:33 post the feed meme posted posted successfully. Okay. 1:45:40 Oh, and yeah, didn't nail the aspect ratio, but that's okay. The aspect ratio is a little
+weird. It 1:45:47 has the only text in it as the title. Um, I can't click on it to full screen 1:45:53 it. So, these are all features that we can add. But question, do you want to
+show what it 1:45:58 looks like in the actual database? Oh, yeah, that's a great suggestion. Um, so in the database, I'm expecting So, 1:46:05 these are the tables. Wait, let's
+let's hop back. Let's go to explorer. So, so yeah, I think so. 1:46:11 There's the public app ID, which Kihan will probably either rotate or delete after this video because you
+definitely 1:46:17 want to keep that safe. As you see, we could set up this database with that public app ID. So, if you give someone 1:46:23 your public app ID, they literally can
+uh just edit your database, uh, which is 1:46:28 not good. Um, the explorer, what the explorer does, the explorer kind of lets you oh, flip 1:46:34 through like the data that you
+have. So, you know, over here we have the one meme 1:46:39 that I just made. Uh, and then it has the link to the image. Uh, this is the 1:46:45 one user, which is me, Riley. You
+can actually Oh, I guess you can't really check this out until I publish it. But 1:46:51 that's true. We can do that in a sec. Um, so yeah, we have one user, which is myself, and
+we have one meme, which is 1:46:57 the meme that I just posted. Pretty cool. Uh, and so I guess like I want to 1:47:04 test the upvoting feature. And I can upvote it. Let's see if
+we see a vote 1:47:09 come through. Yeah, we do. And the good part is you can you can link it to the 1:47:14 meme. That's the same meme that I posted. And you could link it
+probably to me. Yeah. So that is me. So that's a 1:47:20 little bit about a little brief intro to databases. Uh, it really is just a collection of tables 1:47:26 that your app
+uses. So it's good. Uh, pretty impressed that everything works. 1:47:31 Um, you can create more memes. This is all really fine and dandy. Yeah. So, I did say we were going to go
+talk about 1:47:38 the editor view. This is the editor view. Um, you know, terminals live down here. You can also collapse them. Uh, 1:47:46 but the key point is um the agent does
+exist here. This is the same chat. I'm 1:47:52 going to make a new one. And we can actually ask it to um Oh, nice. It only 1:47:58 lets me upload it once to like open the meme.
+Since this aspect ratio is cutting off some of the meme, I would like to 1:48:04 ideally like tap and see the full meme. And so I guess we can kind of just add ask that as a
+feature. Um, and you know, 1:48:12 if you're technical, you can kind of like look through and see how all of this like looks. Um, and 1:48:21 let's see. I think like app feed page.
+This is probably where we're rendering. 1:48:28 Yeah, this is where we're rendering this. So, I can actually do this. So, it actually says plan at for context or 1:48:34 slash for
+commands. I'm just going to go ahead and add page. Oh, uh, slashfeed/page. 1:48:40 Yep. Next.js is interesting. It likes to name everything page. But we can go ahead and attach
+this specific file. And 1:48:46 if you are a little confused here, this is all called page.tsx. This is telling me that inside of the app folder itself, 1:48:54 there's a page.tsx
+tsx specifically. It's looking at this one right here. Um, you can tell because it kind of points 1:48:59 you down this way and uh there's there's quite a few. There's one inside
+of app 1:49:05 feed. So, this is a subfolder. Uh, inside of here, there's a page. Inside of login, there's a page. So, I want to 1:49:10 point it to the code file that I know that
+I want it to kind of work on. So, 1:49:16 page inside of feed, I'm going to say when I tap on a meme, I want it to full 1:49:24 screen. Um, yeah, that's kind of like the only
+feature. I think it'll work 1:49:30 just fine. Uh, I think we can go back to composer. This should be a pretty quick fix. Um, and so yeah, I guess the first 1:49:37 feature we
+wanted to highlight was the add context. There's actually quite a few things you can add. You could add like uh specific docs, you know, you 1:49:44 could add whole files and
+folders. Like I just showed you adding one file, but 1:49:50 you can actually append like the whole folder. So I could literally do like slash app. Um there's a caveat here 1:49:55
+though when you do append slash app and I guess it makes sense to kind of do it for this. Um so when just a little bit 1:50:02 of how cursor works technically when you do add a
+file it'll append the whole file. So all of this stuff I'm basically 1:50:09 just you know crl +ving this whole file in here right. Um when you do at app 1:50:15 like a folder it
+will actually give you like it'll condense that into like a 1:50:21 summary of all of the subfolders and the files inside of it and a little bit of a 1:50:27 highlevel like
+abstraction of what exists in the file. So it won't append like every single line while if you do 1:50:34 append a page it will basically append every line or try to. So just
+wanted to point that out. Um if you are asking for 1:50:41 big requests and you just add the folder the result won't be as good if you pinpoint like specific pages that you 1:50:46
+want to be updating which is what I'm doing here. I kind of gave it app to kind of you know tell it since this is a 1:50:52 new conversation give it a little more of an idea of
+what's going on. And uh let's just run it. 1:50:58 Okay. Wow. It is. It does work fast. Imagine if it got as good as like Sonnet 1:51:04 4.5 and it was this speed. That would be
+insane. Probably will happen sometime. Yeah. Um, so it's telling me 1:51:12 it added a full screen meme. Uh, and then you know, let's just accept these or I'm pretty sure without
+accepting you 1:51:19 can test if it works. So, okay. Yeah, I love it. Yeah, pretty pretty pretty quick. Yeah, 1:51:25 it works. Wait, can you do one thing for me? Can you post
+another meme? And you don't even need to add text to it. I just want to see what it looks like with multiple 1:51:32 fe memes in the feed. Yeah, sure. Uh, post this. Maybe you have
+to. Oh, no. 1:51:38 Okay. Okay. So, it shows up in like a grid type deal. Okay. Okay. Yeah. Yeah. Yeah. I can I can keep posting memes, you know, like easy. 1:51:46 Yeah. [snorts]
+Okay. Okay. Yeah. Okay. So, it is a little scuffed. We can play with the aspect ratio. Um, I do think that that 1:51:53 will actually be a little bit challenging. uh just from my
+experience. But well, yeah, I mean like how would it do 1:51:59 it in a grid unless you literally just did it in a vertical grid like Twitter, you know? Yeah. But like honestly, I
+think this is 1:52:05 fine. Yeah, I think this is good. I think I think tapping to like see the full meme is like a good middle fix. Um 1:52:11 and as you begin like playing with
+code and vibe coding, you'll be able to tell like, oh, AI really messes up at this 1:52:18 one thing or like so it kind of takes a little bit of experience to know like what is
+hard, what is not hard. And we 1:52:23 kind of mentioned this earlier when we were like, "Oh yeah, this like change to Nex.js is going to be a pretty big change." Um, a change like
+this is, you 1:52:30 know, as you can see, super small, but pretty impressed. I'm going to go ahead and accept. You can also, you know, keep 1:52:37 it shows you line by line where
+certain things are inserted or deleted or changed. And so these are pretty useful. 1:52:43 Let's say like if this one was like terrible and wrong, I could actually reject it um and
+then only accept like 1:52:50 the ones that I like. But for this, I'm just going to keep everything. Um, and uh, there's a few more files. Yep. 1:52:57 Styling. Okay, great. And so
+now we have full screen mode. Cool. Yeah. So, just Deploying the Application with Vercel 1:53:03 to make like this lesson go on, why don't I try and deploy this? So, Riley, 1:53:08
+you can come on and start upvoting my memes cuz, you know, I spend a lot of time on the memes. They're really good. 1:53:13 I think this one truly speaks to me. Uh, so, you know, I
+don't know how to deploy things, but it's good that you can grow 1:53:20 with cursor. So I can create a new chat and I can say I'm going to put this on ask mode. I'm going to learn
+with it. 1:53:26 How can I deploy this? Let's do it. Yeah, this is literally how I first deployed 1:53:32 on cursor. I asked it and it said to use Verscell CLI. Um it it suggested
+railway but I think 1:53:39 on Oh yeah, Versell it has yeah it gives you a few options. Versel is easiest for Nex.js which is 1:53:45 why I asked it to refactor to Nex.js. I
+personally think it's the easiest. I like it a lot. Um, and you know, there's 1:53:52 a lot of alternatives, but it'll kind of like tell you a little bit about each what you need
+to do. Uh, and so, you 1:54:01 know, it has some important notes and, uh, it'll give you a suggestion, right? 1:54:06 Yeah, it says recommended for cell. Okay. So, tells you to
+sign in. I mean, honestly, we can just follow this step 1:54:12 by step. Push your code to GitHub. So, uh, we have been using Git, but GitHub 1:54:18 is like the cloud version of
+Git. So, you can actually have Git locally, which is what we've been doing so far, and you 1:54:24 can actually have it associated and pushed onto GitHub. So, I'm going to go ahead
+and do that. I will be showing 1:54:30 every step along the way. So, I'm just going to go to my GitHub account. This is my GitHub account. Uh, and you know, 1:54:40 let's see. I'm
+going to have to create a new repository. And this repository is going to just be called meme generator. 1:54:47 And if you don't know how to like walk through these steps of using
+GitHub, you can also ask cursor. Um, but if you're a 1:54:54 developer, I'm sure you know how to use GitHub. It's have to choose an owner, my guy. Oh, you're right. I'm part of not
+just 1:55:01 myself anymore. [laughter] Um, so yeah. Uh, I mean this actually tells you what to do. So push an 1:55:06 existing repo. We have a repo. I'm just going to do this and,
+uh, stick this into here. Cool. 1:55:14 One, two, three. Wait, also literally, can I Wait, have you entered that in 1:55:21 yet? Uh, not the last part. Yes. What's up? Can I show
+you how I do it? Cuz you can oneshot this to Verscell. 1:55:26 Oh, yeah. I'm not even kidding. If you go to GitHub, go to GitHub, copy the Git repository link. Just the 1:55:33
+repository link at the Yeah, that one. Ah, yeah. Copy it. Paste it in a cursor. Setting Up the CLI 1:55:38 Okay. Um, I would change it to Sonnet. I know Sonic can do But I don't
+know about composer. Okay. 1:55:43 I would say um have you you've already signed into the CLI on Verscell. Have 1:55:48 you done that before? This is a new computer so I don't
+think so. But maybe that's good. Maybe that's okay. I think it'll actually take you 1:55:54 through that. So can you whisper flow or uh do the voice thing isn't available. 1:55:59
+Okay. It's not long. Just say I just created this GitHub repo. I want you to commit my code here and then I want you 1:56:06 to to deploy to the to Verscell and use 1:56:11 the
+Verscell CLI to do so. That's it. Cool. Do you want to talk about what a Understanding Command Line Interfaces (CLI) 1:56:18 CLI is and what Versell CLI is? Yeah. So, honestly, I
+could not give you I've used a lot of CLIs in the last year 1:56:23 as I've learned how to use AI coding. I command line interface, I believe, is what it it stands for. Um, and it
+is um 1:56:32 I don't know. Anything else? I just know that it has to do something with the terminal. Is Claude code a CLI 1:56:38 or is it a kind kind of kind of it's a TUI? Yeah.
+Or which I don't know the difference. I 1:56:43 just hear everyone talking about it, but I use them all the time. So I just know it is an interface you can use in the terminal.
+1:56:49 Yeah. It's basically like um you know like this is like git is a CLI 1:56:55 technically because you know any commands that you can run inside of a 1:57:00 terminal that
+aren't like pre-built to your Mac is a CLI. So it's basically 1:57:05 saying can I use Verscell which is you know the owner of next to deploy this uh 1:57:11 project using like
+commands using like terminal commands. But you were on ask mode. Yeah, I was. 1:57:17 But I kind of wanted to read a little bit, but I just forgot I was on ad mode. Okay. So, it
+tells me how to commit. It 1:57:22 tells me to log in. Okay. And then it tells me to run d-prod. Okay. Um or if I 1:57:27 I don't want to do it manually, so I'm going to just tell
+it to go go. Yep. So, Deploying Code to Vercel 1:57:33 yeah, you have to make sure it's on agent mode and it should just do it. At least cursor six months ago can do this. 1:57:38
+I haven't pushed to Verscell in a long time. I used to make web apps a lot 1:57:43 more. Um, cool. So it is running. Okay. Yeah. Perfect. And the CLI is the same as what you were
+1:57:49 using to set up uh Instant DB. Yes. Yes. That's a great example. I was using Instant DB CLI to log in. You 1:57:56 know, you saw them ask me to log in. I think for sale
+will do something similar and update the permissions too. 1:58:01 Yep. Yep. And to update the permissions and schemas. So yeah, I think uh Handling Environment Variables 1:58:07
+and yeah, and then the one thing you do have to do manually, if you add any APIs um to your app, uh you have to place 1:58:13 those manually in Verscell, I believe. I don't think
+it can add environment variables um through this. 1:58:19 So yeah, here I see this is probably the line that is going to ask me to sign in or something. 1:58:25 Um let's see. But I
+believe it's already pushed your code to uh GitHub, right? So, if you go 1:58:30 to the arc and refresh. Yeah, here's your code there. Perfect. 1:58:35 Yeah. And uh here's the read
+me that AI wrote. Pretty neat, honestly. Okay, it's 1:58:41 telling me to log in. Okay, I expected that. Um, let's see. Okay, so this is Interacting with the Vercel Deployment
+1:58:47 actually a very good thing to point out because the cursor's agent can use the 1:58:52 terminal. Uh, it can run commands for you, but you know, these commands expect humans
+to kind of follow up. So, for 1:58:59 example, it's telling me to press enter to open the browser. If I press enter, nothing really happens here. So, I can actually pop this out
+into an external 1:59:05 one. And uh this basically just gives me some more space to hopefully interact 1:59:11 with the command. And uh okay, so that one actually failed. Um I'm
+going to 1:59:17 have to copy this line or I can I can just tell it like not working. give me 1:59:23 the command to run because obviously this command is kind of waiting for me to
+do something and 1:59:29 so it wants you to press enter so that you can sign into versel on the web right is that kind of what's 1:59:35 exactly and you know the AI isn't able to
+like press enter for me or sign in for me which makes sense so uh it's 1:59:40 telling me to just go and run the login command myself fair enough oh paste this 1:59:46 in oh okay
+so this is another thing cursor has their own like weird terminal 1:59:52 Gen, you probably don't want to be in this most of the time. Uh, it's more so for the agent to use. So,
+I'm actually 1:59:57 going to kill this and create a new one. So, I'm going to go run the login command. And it's telling me to visit a 2:00:04 website or press enter. Okay. I can
+actually press enter. So, enter the code from your device. Okay. Okay. 2:00:12 Authorization successful. I think you can close this tab. Okay. Congrats. I'm signed in. Great. Um,
+and now it's 2:00:18 telling me to deploy to Versell. Uh oh. I would just say I've signed in. 2:00:24 Continue. That's what I would do. [laughter] It might be it's a shortcut to
+you, but 2:00:29 to me it's the only way because I I I don't know how to do it otherwise. No, I mean this is great. You're Exploring Cursor's Capabilities 2:00:35 teaching me about
+Vive coding. So, um it's running something. Let's see. 2:00:42 Searching for existing project. It looks like it's doing something. And then it it can fail. But the thing 2:00:48 is
+is when it fails, it'll give you a project link that you can click on and 2:00:54 then the errors will pop up in Verscell that you can copy and give it back to cursor quad. 2:01:00
+Yeah. You know, with the new browser, you could probably even just open [laughter] it in cursor. Yeah. 2:01:06 Oh wow. Definitely this screen does get a little crowded though. I
+don't like the browser. I'd much rather use the the swipe back and forth. 2:01:12 Oh yeah, like the full screen. Yeah. Yeah. Yeah. Yeah. Uh, I think there's a lot of potential. You
+know, if you got a 2:01:18 big monitor, I'm out here with my laptop. I would personally use the browser inside of the app if I was ever doing anything. Um, but let's see. The

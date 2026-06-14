@@ -1,0 +1,223 @@
+step, it knows the type of format we want the output to be in. 42:40 So now I say my Json underscore prompt underscore template is equal to. 42:48 And this is a prompt template.
+And I simply pass my Json prompt string. 42:53 Now at this stage what we do is we write kind of wrapper on the prompt template. So we can actually inject inside of here. 43:00 The
+response. So the response if we look here is this okay. Just bear with me. This will make sense as we get there. 43:06 And then lastly we're going to make an output pipeline. And
+the pipeline is going to look like this. 43:12 It's a query pipeline. And the query pipeline is going to have a chain. And the chain is going to go that we first need to get the
+Json prompt template. 43:20 We're then going to get whatever we need in the template. And then we're going to pass that to our lamp. 43:26 And notice this time I'm using my normal
+Mistral LM which is this one right here. I'm not using the code LM because I want a different L, for this 43:34 task, a more general purpose one, not one specifically for code.
+Okay. So now we have our output pipeline. 43:40 So the idea here is that what we want to do is we want to take the output pipeline and we want to pass this result to it. 43:46 And
+then we're going to get the result back, which is going to be that formatted object that we want to look at. So I know this is a bit complicated, but that was kind of 43:53 the
+point of this video was to make it a bit more advanced. And you're going to see now how we do this. So we have the result from Agent Duck Query prompt. 44:00 Now let's take that
+result and pass it to our next agent. So we're going to say next result is equal to the output pipeline dot run. 44:10 And we're going to pass the response equal to the result. So
+whatever the result was from the first agent that's now what we're passing. 44:19 Is this variable right here in this code parser template prompt. Then we can print out the next
+result. 44:27 And we can see what we get. Now keep in mind this doesn't always work. There is sometimes some errors based on how the parsing occurs. 44:34 But overall it's pretty
+good. So let's go up here and let's run our agent again. 44:40 And let's get it to do a similar thing that it did before where it calls like a post endpoint or something. 44:45
+Okay. So a similar prompt as before, read the contents of test.py and write a Python script that calls the post endpoint to make a new item. 44:52 Let's type enter in here and
+let's see what we get. All right. So we can see that we get the kind of thought process here of the first line, 45:00 which is that it needs to use the code reader tool, which it
+does, and then it generates this code. And then what happens is 45:06 we actually get output here from our second line that says assistant. And then it gives us this Python object
+or this Json object really where 45:14 we have the code which is all of the code that it generated, which was this. Right. And then it has the what else description. 45:22 Use the
+request library in Python to do this. And then it has a file name which is this. 45:28 So now that we have this kind of output what we want to do is take this output and load it as
+kind of valid Json. 45:34 what do you call it? data in Python? I'm going to show you a fancy way to do that. 45:40 Once we have that, we can then access all the different fields
+like code description and file name. 45:45 And we can utilize those to save a new file on our computer. So again we've gone through we've generated the code. 45:52 We've used our
+different tools from the Rag pipeline. And then we've now parsed our output into this format where we're able 45:59 to utilize these different fields. We just now need to load this
+in, so that it's kind of valid for us to be able to view. 46:05 Okay. So now that we have that, what we're going to do is the following. We're going to say our cleaned Json 46:11
+is equal to and we're going to go up to the top of our program. And we're going to import s t. 46:17 Now AST is something that going to allow us to actually load in Python code.
+46:22 So what we'll do is we'll take the output from here and we'll load it in as a Python dictionary. 46:27 So we're going to say AST dot literal evaluation. And then we're going
+to convert the next result into a string 46:35 because it's actually a response object. And we're going to replace the assistant which was kind of 46:41 what was leading here with
+an empty string. So all we're doing is removing that assistant that came before that valid Python dictionary, 46:50 and then we're loading in the rest of this as a Python
+dictionary object. So now this is actually going to give us a Python dictionary. 46:57 And what I can do is I can print code generated and then I can print what it is. 47:04 So I
+can say my cleaned Json and then access the code. And then I can print my description. 47:10 So I'm going to go here and go backslash n backslash n description. 47:16 And this
+needs to be a backslash not a forward slash okay. And then the description will be 47:23 the cleaned Json of the description. I can then say my file name is equal to the cleaned
+Json. 47:32 And this will be my file name okay. So let's run this now and see if we get the correct output. 47:38 And then we're just going to add some error handling here. And
+we're actually going to save the file because it is possible that some errors could occur. 47:44 So let's save and let's bring this up and let's quit. And let's copy this prompt
+because this one worked. 47:51 And we will paste it again. And we'll see if we're able to actually get all of those different fields. And if we load in the Python object properly.
+47:58 All right. So you can see here that we're getting our result code generated which is this create item. And then it has some lambda function here. 48:04 And then we have the
+description. And then we didn't print out the file name. But we would have had the file name as well. 48:10 So it gave us a different result than we had last time. but you can see
+this is indeed working. And now we can quit and we can move to the next step, 48:17 which is a little bit of error handling and then actually saving the file. So what we want to do
+now is just make sure that this works before Retry Handle 48:24 we move forward. Because it's possible that we could get an error. So what we're going to do is retry this prompt or
+this sequence of steps 48:31 a few times to just make sure it's hand or it's working properly. Sorry. Before we move on to the next step. 48:37 So we're going to say retries are
+equal to zero. And we're going to say while retry are less than three. 48:44 So we'll just retry this three times. Then inside of here we're going to do this. 48:49 And we're going
+to say try. And we're going to try the following. We're then going to say accept. 48:55 And this is going to be exception. As if we're going to say retries plus equals one here.
+49:03 And then we're going to break if this happened successfully. So what's going to happen now is we're going to retry this up to three times. 49:10 So every time we fail
+something happens here that's wrong. We simply retry it and it will go and do this again 49:16 with the same prompt that we typed. Now we can also do an error message here. We
+could say print error occurred retry number. 49:26 And then we can make this an F string. And we can put in the number of retries. And then we can print out what the error. 49:32
+Actually once okay. So that should be our retry block. I'm now going to come down here and I'm going to say okay 49:39 if retries is greater than or equal to three which means this
+block actually failed. 49:45 We never successfully generated this cleaned Json. Then I'm simply going to say continue, which means we're going to go back up here 49:52 and ask for
+another prompt. And I'm going to say print. Unable to process 50:00 the request, try again. Okay. Now you've probably seen this sequence before, but pretty much we'll try to do
+this. 50:06 If it doesn't work, we'll just say, hey, you know, that prompt didn't work for some reason. Okay, give us another one because it's possible 50:11 they ask us to do
+something we're not able to do or the outputs not possible. there's all kinds of errors that could occur here. 50:16 So we're just kind of handling that and cleaning it up a bit
+with this logic. Now, if we do get down to this point here, Saving To A File 50:22 that means that we were able to actually generate this code. So what we can do is we can save it
+to a file. 50:28 So we can write a little try here and we can say try with open and we can say open the file name which we have here. 50:37 And then we can say that we want to open
+this in W as f and we can say f dot. 50:43 Right. And we can write the clean Json code into that file okay. 50:50 And then we can say print saved file. And we can just print out
+the file name. 50:56 And then we can have an accept here. And we can say print 51:01 error saving file. Okay. Now just to make sure that we're not going to overwrite a file name
+51:08 that we already have, what we can do is we can do an Aussie path 51:13 dot join and we can make an output, folder here. So we can say output and then file name. 51:21 Now we
+need to import OS. So we'll go to the top of our program and import OS. 51:26 Sorry I know I'm jumping around all over the place here. Then we can go here and we can make a new
+folder called output. 51:33 So now all of the output we'll just go inside of this folder. So we don't accidentally override any files that we already have. 51:39 Okay. So kind of
+final run here. Let's give this a shot and see if this works. 51:45 So let's bring up the code. Let's clear and let's run. 51:51 And then we'll enter our prompt and we'll see if it
+gives us that generated code okay. So we're going to use the same prompt as before. 51:58 And now what we're looking for is that we actually get a generated file inside of this
+output directory. 52:03 Okay. So it seemed this did actually work. You can see it has the code generated here. And then if we go into our output we have this create item file.
+52:12 Now we do need to remove this because there was a few characters that I guess it left in here. But what it's doing is looking for an access token. 52:19 Open up test.py okay
+f dot read response request post access token response dot status. 52:26 So it's not perfect. There's a few things that it probably shouldn't be doing here. but overall it gave us
+kind of some good starting code, 52:35 or at least kind of prove the point that, hey, we can generate some code. It is attempting to call the API, it is calling it in the correct
+way. 52:41 So yeah, I mean, I would call that a success. Obviously we can mess around with a bunch of different prompts. We can see what ones it works for. Once it doesn't work
+for. 52:48 Remember we're using these local models which are quite small, which don't have the same capabilities of something like ChatGPT. 52:54 If we did this at an enterprise
+level with the best hardware, with the best models, obviously we'd get some better results. 53:01 But for now, I'm going to quit out of that model and I am going to wrap up the
+video here. All of this code will be available to download from the link in the description. 53:09 A massive thank you to Lama index for sponsoring this video. I love working with
+them. Their framework is incredible and it really just opens my imagination 53:18 and eyes to what's possible with these labs. I mean, look what we were able to create in about 30
+or 45 minutes. 53:24 Obviously I was walking you through it step by step. I was going slower than I would normally code this out. And we have an advanced AI agent that can do some
+code outputting and parsing. 53:33 We're using multiple different agents locally, and we can continue to train these and do some really cool things. 53:39 Anyways, if you guys want
+to see more videos like this, definitely leave a comment down below. Like the video? 53:44 Subscribe to the channel and I will see you in the next one. All From Tech With
+TimGetting Started 0:00 In this video, I'll give you a full beginner's guide to using Cursor 2.0. 0:05 This is an agentic AI code editor. 0:07 It is a fork of a popular editor
+called VSCode, which means it shares all of the same core features, 0:13 except it adds AI on top, meaning you can generate massive amounts of code, files, projects, etc. 0:19
+using AI models. 0:21 You can use this for free. 0:22 You can also pay for premium subscriptions where you have more credits 0:25 and you can just generate more code. 0:27 So with
+that said, let's get into it. 0:29 Okay, so first of all, I'm going to assume that you've downloaded Curser on your computer. 0:33 If you haven't, go to the cursor website, simply
+download it and then sign in to your account. 0:38 Now once you open up cursor, you may or may not see a view that looks similar to this. 0:43 You may see one that looks something
+like this. 0:45 You may see something with the pane closed. 0:47 Don't worry too much about it. 0:48 What we want to start by doing, though, is just opening up some kind of folder
+0:53 where we can start writing some code and we can store all of the code for our project. 0:57 So regardless 0:58 what view you're seeing 0:59 or what your cursor looks like,
+because it will probably look different than mine. 1:02 Find this file menu here. 1:04 Go to open Folder and then simply create a new folder on your desktop and open it. 1:09 So in
+my case I had a folder called demos. 1:11 Let me just find it right here. 1:13 And actually I think I called it demo two. 1:15 So I just pressed on it and did select folder. 1:18
+And then when I did that I'm now inside of this folder, which you can kind of see from the top here. 1:22 So all of the code that I generate will be stored here. 1:25 And I'll be
+able to find it later on. 1:26 Just make sure you don't lose all of your code of course. Okay. 1:29 Now we'll go through the rest of the features here inside of Curser in just a
+minute. 1:32 But I do want to quickly note some of the new things that they released, in case New Cursor Changes 1:35 you've used this before, because it has changed a lot. 1:38 So
+cursor has been around now, I think for maybe two years. 1:41 It's very, very popular. 1:42 And they've constantly changed the user interface, you know, added a bunch of features,
+1:46 made it better, etc.. 1:47 Now about a month ago, from what I'm filming this video, they released their own model called composer. 1:53 Now, the reason this is important is
+you can change the different models 1:56 that you use inside of cursor, and previously you could use something like GPT. 2:01 You could use Gemini, you could use Claude. 2:04 But
+now they have their own model which claims to be four times 2:07 faster than kind of those similar, you know, comparison models. 2:10 And if we keep going down here, they also have
+released a feature that allows you 2:14 to run multiple agents at the same time, which is very cool. 2:18 And it increases kind of the efficiency or the amount of code you can
+generate with this tool. 2:22 Overall, everything else, if you've used this before, is mostly the same, 2:25 but they have drastically redesigned the interface, which is why I'm
+making this video, 2:29 because it can be very confusing to understand how to navigate it. 2:32 Okay, so those are the major changes. 2:34 Now let's go into cursor and let's start
+writing some code. 2:38 So first things first you're going to notice that in the editor yours might look different than mine. UI Overview 2:43 The reason why mine looks like this
+is because I've applied a theme. 2:47 So if you want to change the theme of your code editor, you can use the keyboard 2:50 shortcut Ctrl shift P or Command Shift P. 2:55 Now this
+is going to open up something called the command palette. 2:58 Okay. 2:58 Now this is going to allow you to kind of get a shortcut to various different commands. 3:03 And if you're
+looking for something 3:04 you don't know where to find it, you can search for it inside of here. 3:07 So if you want to change the theme, for example, you can type in theme 3:10
+and then you'll be able to go preferences Color theme and then change it to whatever you want. 3:14 So the default one I believe is just like cursor light or cursor dark or
+something. 3:18 I'm using monarchy because that's my favorite, but overall nothing changes. 3:21 It just, you know, looks a little bit different, right? 3:24 I'll also note that
+there's a bunch of settings you can play with 3:26 that will also help you understand the tool a little bit better. 3:29 If you press on the settings wheel right here in the top
+right hand corner. 3:32 This will open for you the cursor settings and keep in mind 3:36 all of these windows that you see on the screen. 3:38 You can usually resize them. 3:40
+Also, if you want to make something a little bit larger you can do that. 3:43 And if you see this tab here, it works just like a Chrome tab 3:46 where you can drag it around, you
+can move it to different places in the editor, 3:49 and you can right click it and pin it, or split it to the left or open a new window. 3:54 So feel free to make this look however
+you like. 3:56 Everyone has different preferences, so there's a bunch of settings here. 3:59 We'll go through some of them later on. 4:00 Just wanted to note that those do exist
+and they're worth kind of reading through. 4:04 Okay, so once you're in this kind of view here, 4:08 you're going to notice that there's a lot of different ways that you can view
+this editor. 4:12 Now what they've done is they've centered a lot of the focus around this kind of a chat window, 4:17 which is this right here where you can type a prompt just
+like you would to something like ChatGPT, 4:22 and it can start generating code for you immediately. 4:25 So we could do that, but I want to show you all of the different views
+that you have. 4:28 So you know, kind of how to get between them, especially if yours looks a little bit different. 4:32 So you'll see that we have agents up here and then we have
+editor. 4:36 Now if you switch between these views here, you'll see that in the editor view. 4:39 It will actually show you any files that you have. 4:42 So you can directly view
+the code like you would in a more traditional editor. 4:46 Whereas if you go to the agent view, you'll be able to view 4:49 all of the running agents that you have and kind of work
+directly with the model. 4:53 So this is a major change 4:54 that they've made, but you can just switch between them really easily like this. 4:58 Now you're also going to notice
+that there's some of these kind of toggle buttons at the top left. 5:02 So for example, if I toggle this left bar here, it toggles the agent sidebar 5:06 where I can see all of my
+agents. 5:08 If I toggle again, you see the now I'll get kind of like a code editor view, 5:11 and I can toggle that like that. 5:13 If I go with this, I can toggle, for example,
+the terminal to appear here. 5:17 If I toggle on the right side, I can now open up my editors again. 5:20 So feel free to play around with these and kind of toggle or on toggle
+windows based on what you want. 5:26 If we go back to the editor view I know slot here, you'll see that 5:29 we also have this chat window here which allows you to interface with
+one agent. 5:34 But if you wanted to remove that and just fully view the files, you can press this button right here. 5:38 And it will kind of get rid of the eye pane. 5:41 Okay.
+So that's the overall like UI outline. 5:43 Don't be too intimidated by it. 5:45 Where we're usually going to want to start is right here in this agent pane. 5:48 So this is where
+we can actually start getting the model to generate some code for us. Make a Plan 5:52 But I do want to warn you that before you just start going crazy and asking it to do stuff,
+5:56 you really should have a general sense of what it is that you actually want to do. 6:00 Do you want to build a website? Do you want to build a game? 6:02 Do you want to make a
+backend tool? What is it that you want? 6:05 What is the final outcome that you're looking for? 6:08 The more that you can plan that out on your own and really understand what it
+is that you want, 6:13 the better results you're going to get from these agents. 6:15 Because ultimately, these agents just try to guess what you mean based on the prompts 6:19
+that you give them. 6:20 So the more information, the more context, 6:22 and the more discreet and specific you are, the better the results are. 6:26 So first of all, ask yourself
+what like medium do I want my application to be in? 6:30 Isn't even an app? 6:31 Is it a website? 6:32 Is it some backend tool? Is it running on a server? 6:34 Understand that
+first. 6:35 Then if it's something visual, you probably want to have a general sense 6:38 of what you want it to look like in terms of maybe a wireframe or a mockup. 6:42 And if it
+has some features, you probably want to know what those features are, 6:45 because if you just let this thing go crazy, it will go crazy, and it will generate a lot of stuff 6:49
+that is very hard to review and you probably do not want. 6:52 So anyways, let's get into all of that. 6:54 After just a quick word from our sponsor, now you're going to see in
+this video 6:57 that AI agents can talk all day, but actually getting them to do something 7:01 real is a whole different story, and sometimes not even possible in tools like this.
+7:06 Now that's where arcade MXGp comes in. 7:09 Now it's the missing layer that gives your AI agents real power. 7:13 Arcade MXGp is a tool calling platform that lets your AI
+securely act on your behalf. 7:18 It can call APIs, access data, trigger workflows all through a unified SDK. 7:24 Now, it takes you from an idea for a tool to running an MXGp
+server 7:27 to actually chatting with it right inside of Curser or another MXGp client in just minutes. 7:33 So instead of manually writing up dozens of APIs or worrying 7:36 about
+permissions, arcade handles all of that for you. 7:39 Authentication, tool registration, and security so your agents can just focus on getting work done. 7:45 And the best part is
+it's open. 7:47 Simple to set up and built for developers who actually ship real AI features, not just demos. 7:53 So if you're building AI agents Copilots Autonomous Dev Tools,
+7:57 arcade, MXGp is how you make them actually do things. 8:00 Check it out from the link in the description below and start building your first MXGp server today. 8:05 You'll be
+surprised how fast you can go from concept to working integration. 8:09 Okay, so let's continue here. 8:11 And like I was saying, we want to start generating a plan. 8:13 So from
+this window here you're going to see that you have Agent Plan and ask modes okay. 8:18 So what we're going to do is go to the plan mode. 8:21 And I just want to quickly ask us to
+generate a plan for some kind of in this case 8:25 let's go website that we want to build. 8:27 Now I actually want to build a game because I think games are kind of fun. 8:30 So
+I'm going to ask it to build like Tetris for me. 8:32 Hey, can you build a Tetris application for me and generate a plan for a simple front end website 8:38 that anyone could run
+in their browser that allows them to play the game of Tetris? 8:42 Keep it really simple. 8:43 We don't need any advanced features, I just want basic Tetris with the score, 8:47
+the ability for the shapes to move around it just like the most MVP version you can think of. 8:51 So what I just did there is I used a voice tool that I have on my computer called
+Whisper Flow 8:56 to dictate myself and just talk directly into the model. 8:59 This also has a built in voice mode. 9:01 It's not available right now, but if I didn't have
+something, 9:03 you could use the voice mode and kind of just input directly in the window. 9:06 And I'm kind of streaming my thought process and telling it what I want to do, 9:10
+and then I'm going to get it to start generating this plan. 9:13 So I'm going to go ahead and press enter. 9:15 I've just left the default model as composer, which you can change
+down here to anything that you want. 9:20 And you're going to see that it will take a second now and it will start writing up this plan for me. 9:24 So you can see on the right
+hand side it shows me the plan. 9:27 This writing, I'm 9:27 just going to close the terminal here, and it's giving me what's called a markdown file. 9:32 Now for all of the plans
+inside of here. 9:33 Typically it uses this MD file or markdown file, 9:37 and you can see that it's just generated this plan really quickly. 9:40 And it's came up with nine to do
+list items that we need to complete in order. 9:44 So now what we're able to do that we have, the plan is we can view it by just pressing this button. 9:48 Right. It's going to
+show us the plan. 9:51 If we didn't like the plan, we could ask the model to adjust the plan or change 9:54 something around in there. We also could manually changed our self. 9:57
+You can see that I can just type, you know, directly inside of this window if I wanted to do that. 10:02 So I would go here. 10:03 I would review the plan, make sure that it's
+good. 10:05 And then I'm going to press this build button either from here or from here. 10:09 Now if you click this little down arrow, you'll see that you can actually build this
+in the cloud. 10:13 I'm not going to do that right now because that's a little bit more advanced. 10:15 But for now we're just going to go build locally or just the default build.
+10:19 And when we do that it's going to spin up a new AI agent. 10:22 Now that's going to start actually executing these steps and building the plan for us. 10:26 Right. Or
+building this application. Agent Use 10:28 Now while this runs, what we'll do is we'll just open a new agent 10:31 so I can show you kind of the multi-agent feature and some other
+stuff that's interesting here. 10:35 So from this side, if you can't see this, you can just toggle it. 10:38 Right. So toggle the agent sidebar. 10:40 You'll be able to make a new
+agent. 10:41 If you go to new agent, same thing here. 10:43 You're able to write in your prompt and ask it to start doing something. 10:46 You also see that voice mode button I was
+talking about right here. 10:49 Now what's interesting is that you can change the modes, right? 10:52 So we have a plan mode, which is what we used previously. 10:54 We have an
+agent mode, which means it can just go and start building stuff 10:58 and generating a bunch of code. 11:00 Or we have an ask. 11:00 But now an ask mode is something that won't
+actually touch any files or modify anything. 11:05 It will just give you a response like a text based response. 11:09 So if you want to know how to run your project, 11:10 for
+example, you can just ask it in ask mode and it will tell you how to do that. 11:14 If you want to ask a question about something unrelated 11:16 or you want to ask a question
+about a file but you don't want it to change something. 11:19 Use this ask mode is kind of the most safe mode that you have. 11:23 If you do use this agent mode, just be prepared
+that the model can make a lot of wild changes, 11:28 and especially if you're trying to do small targeted changes, it might not always be what you want, 11:33 and it can be a
+little bit messy to kind of fix that and revert it and go back to the things that 11:37 has changed and potentially broke. 11:38 Now, also like I said, we have the models. 11:40
+I'm just going to leave it on the composer model, but you could change it if you want. 11:44 But generally now just use the composer model 11:46 and then you have a few other
+features like the ability to upload an image, for example. 11:49 So if you had like a mock up of what you wanted 11:51 the app to look like, you could just put it here and tell it,
+build this right. 11:55 You have this web browser feature now, which is something new, which allows, 11:58 what is a cursor to actually use a web browser to test the application
+for you, 12:03 which is really cool, and it will just automatically do that as long as you have that enabled. 12:07 You can also add other tools, which we won't talk about right
+now. 12:09 And then you have this context which allows you to actually refer 12:13 to specific files, folders, terminals, browsers, all kinds of stuff. 12:18 So you can explain to
+the model more in-depth what it is that you're looking for. 12:22 So I'll show you that in one second. 12:23 But let's go back to this agent here and we can see that I believe it
+has finished. 12:28 And we'll know that it's finished, because we now have this awaiting review tab, 12:33 which tells us that we need to review the code that it's generated and
+see if this code is good. 12:38 So there's a little review button here. 12:39 So I'm going to press on review. 12:41 When we do that it's going to open up something called a diff.
+12:44 Now a diff is essentially a list of all of the changes that have been made by this agent. 12:49 Cursors kind of change the way that it's shown. 12:51 The diffs now. And you
+can see that it's in this kind of file. 12:54 And we can collapse them or open up the individual file by pressing into it. 12:58 So here I'm just looking at one file. 13:00 I can
+click between the files. 13:02 Or I can go back to this view. 13:04 And I can kind of scroll through them and just see everything that's changed. 13:08 So what I typically suggest
+that you do, rather than just pressing you know, keep 13:11 all is test your code first, make sure it works and then press accept all. 13:17 The reason for this is that the way the
+cursor makes changes is when you see them here, 13:23 they're effectively already made, so they already exist in your files. 13:26 The code is already here and it's going to stay
+there 13:30 unless you press this undo all button. 13:33 This is kind of an important distinction because a lot of people get confused by this. 13:36 Once you ask the model to do
+something, the code it's generated, it's just there. 13:40 Like if I close the file right now or close the project, reopen it. 13:43 This code is still here. 13:44 If I wanted to
+remove it 13:46 because maybe it made a mistake or did something I don't want, I need to press this. 13:50 Undo all button. 13:51 But it can sometimes go away. 13:52 Or you can
+lose this undo all button, 13:54 especially if you get further into the project and you keep using this agent. 13:58 So that's why I'm saying before we press this keep all button,
+14:01 we want to make sure that we actually review the code. 14:04 So in my opinion, reviewing the code from here is a little bit difficult. 14:08 I don't really like this view
+myself. 14:10 So what I'm going to do is switch over to the editor, view. 14:14 Now from the editor view, you're going to see now that in my opinion, 14:17 a little bit easier to
+read the code, 14:18 and you can actually view the different files that have been written in the left hand side here. 14:23 So it's going to show you all of the files in the
+directory structure. 14:26 So from here you can review the code press keep 14:29 right or undo if you know what the code is doing. 14:32 But what I'm going to suggest is that you
+actually run the project, 14:35 see what the output is, and then ask the model either to make some changes or to keep it if it's working. 14:40 So what I'm going to do is I'm going
+to change the agent here to ask mode, 14:45 and I'm going to say, how can I test and run this code? 14:50 And I'm going to see what it tells me. 14:52 And notice that because I'm
+in ask mode is not going to generate any files for me. 14:56 So it simply says, okay, install live server and then right click index.html. 15:01 Okay, so if I didn't know to do
+that I would ask it how to install live server. 15:05 But I know that if you go to this extensions tab 15:08 and you type live server. 15:09 So this is extensions here inside of VS
+code or inside of cursor, 15:13 you can install this thing called Live Server which I already have installed. 15:16 Once it's installed. 15:17 And then I can go back to my files.
+15:19 Notice 15:19 there's some buttons up here right that I'm pressing that allow you to toggle between different features. 15:23 You can see there's a bunch of them extensions,
+source control searching right. 15:27 Probably pretty intuitive. 15:28 So I'm going to go back to the explorer. 15:30 And I'm going to right click index.html and press open with
+Live Server just like it. 15:34 All right. So I'm going to open that with the live server. 15:36 And now this goes into my browser I'm going to press Start Game. 15:40 And I can
+see that I can kind of move this around and that I can play Tetris 15:46 okay. 15:46 And it seems to be working pretty well. 15:48 If I press the enter key, I can pause it. 15:51
+Okay. Pretty cool. 15:53 So that's all good. 15:54 So because that's good, what I'm going to do is I'm going to go back here 15:58 and I'm going to go to my review page. 15:59 So
+either I can do it right here by just pressing keep all or I can go back to agents. 16:04 And let's just close these and I can press keep individual files or keep all. 16:09 And
+I'm going to press keep all. 16:10 And now I've kept all of the files. 16:11 And now the changes that you see here, it's just showing me the changes that were made. 16:15 But I
+can't really like undo them very easily. 16:18 So that's why you want to be really careful when you do this review and you keep it or you undo it. 16:22 I hope that kind of makes
+sense. 16:23 But that is how you review the code, which is probably the most confusing part, 16:28 to be honest, of this tool. 16:29 So what I'm going to do now is show you a few
+other features that are definitely worth noting. Code Edits 16:33 So once I've made kind of some major changes, I do like to go into the editor mode. 16:37 Now from the editor
+mode, maybe I want to like read through the code 16:41 and maybe I want to make a change to a specific function. 16:43 You know, if I actually know what I'm doing right, I know how
+to cut. 16:46 So if I like highlight this function, for example, 16:49 you'll see that I actually have a few, little things that pop up directly for me. 16:52 Now I have this quick
+edit which I can access with control K or command k. 16:57 This will allow me to just make a really small change directly in the file. 17:01 So I can say, you know, clean up 17:04
+this code or something and add comments, 17:08 okay. 17:08 And if I do that, then it will just change whatever I've highlighted. 17:11 So I'm doing like a really targeted precise
+change. 17:15 And then of course if I don't want that, I can just reject it and get rid of it, right? 17:19 I also have the ability to reference this directly in my agent. 17:23 So
+maybe I'm going to hit this button right? 17:24 Control L and now it's going to reference this code directly. 17:28 And I could ask the agent, know what does this code do? 17:33
+Okay I just got that wrong. 17:34 But now I'm in asked mode. So it's going to read through this. 17:36 And it's going to explain it to me kind of line by line so I can understand
+what it's doing. 17:40 And you can see it's quite fast. 17:41 And if I didn't want to do that, and maybe I wanted to just reference an entire file or something, 17:45 I can use
+this add symbol and then I can reference individual files, I can reference documentation. 17:51 So I could add like my own documentation here for example, and reference that. 17:55
+Or I could just reference a file. 17:56 So let's reference like game dot JS is this you know good code. 18:00 All right. Random right. 18:01 I'm just showing you that you can kind
+of add the context of the chat window. 18:04 And these are useful things that I always do as a developer. 18:08 I'm like looking at a specific function where maybe I don't quite
+understand it or I don't know why 18:12 it was generated. 18:13 And I'll ask the model, you explain this or fix it or make this really targeted change. 18:17 So at the beginning
+you start doing a lot of changes. 18:19 And as the code gets larger and larger, you do smaller amounts of changes that are a lot 18:24 more targeted. 18:24 So you get a more
+predictable result that you're actually able to review. 18:28 Now, for some reason, you are planning on actually writing your own code. 18:31 I just want to quickly show you that
+if you do start writing, 18:34 you will get autocomplete by default inside of cursor. 18:37 So notice that it's just like predicting the next line that I'm going to write. 18:40 If
+you want to accept this prediction, you can simply hit the tab key on your keyboard. 18:46 By doing that, it will just complete the line so you can see like I'm 18:50 just typing
+something and then if I hit tab, it just does the completion. 18:54 I just want to show you that that's another way to kind of use the AI. 18:57 Like we have the chat window, we
+have kind of that quick inline edit that you saw 19:01 that was like, you know, the precise change to a highlighted portion. 19:04 And then we have the autocomplete. 19:05 If you
+are actually writing your own code directly inside of the file. 19:08 Okay. So that's most of the usage of the AI. 19:10 And just keep in mind that I can run multiple of these
+agents at the same time if I wanted to. 19:15 And I can kind of have an agent running in the background while I go and do something else. 19:19 So let's actually do that. Let's
+open up a new agent. 19:22 And just so you're aware here, you should make a new agent when you want to do a different task. 19:27 So if I still wanted to continue working on my
+game and I wanted to just kind of go based off the code 19:32 that was just written here, I would do it in this agent, 19:35 the one that currently exists, because it knows all of
+the decisions it just made. 19:39 It has access to all of this context, so it's going to probably give me a better result 19:43 if I put it directly inside of this agent. Right.
+19:46 But if I want to do another discrete separate task, I make a new agent. 19:51 And then in this agent I ask it what I want it to do. 19:53 So in this case, I'm going to say
+the following. 19:55 Please create a simple landing page that is decoupled from the game 20:00 that just kind of advertises Tetris and has a button that says play, 20:03 and then
+redirects me to the game where I can actually start playing. 20:06 So I'm just asking it for a landing page. 20:07 Again, this is a separate thing, kind of detached from the game.
+20:10 So I'm putting in a new agent. 20:12 I'm going to go ahead and press on start, and then it's going to start actually generating the code. 20:17 Now if I wanted to, I could
+have asked it to come up with a plan for this first. 20:20 But because this is a relatively simple task, I've decided just to go ahead and press enter 20:25 and let it kind of do a
+more simple plan itself, because it will automatically plan if it needs to 20:30 and then start generating the code. 20:31 Okay, so this agent's running, what I'm going to do now
+is I'm going to go back into the editor 20:35 and I'm just going to start doing some other stuff. 20:37 So for example, I'm going to open this I'm going to close all these files.
+20:39 I'm going to start kind of cleaning up the tabs. 20:41 And I'm going to show you some other features that cursor has. 20:44 So if you go to the settings wheel here, what I
+want to show you 20:47 is that you can change, first of all, all of the settings for like agents, 20:51 for the tabs for the various models, you can enable disable add your own

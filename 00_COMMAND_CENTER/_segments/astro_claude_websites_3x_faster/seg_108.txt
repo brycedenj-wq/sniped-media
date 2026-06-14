@@ -1,0 +1,227 @@
+internal SSO), use `headersHelper` to generate request headers at connection time. Claude Code runs the command and merges its output into the connection headers. ```json
+theme={null} { "mcpServers": { "internal-api": { "type": "http", "url": "https://mcp.internal.example.com", "headersHelper": "/opt/bin/get-mcp-auth-headers.sh" } } } ``` The
+command can also be inline: ```json theme={null} { "mcpServers": { "internal-api": { "type": "http", "url": "https://mcp.internal.example.com", "headersHelper": "echo
+'{\"Authorization\": \"Bearer '\"$(get-token)\"'\"}'" } } } ``` **Requirements:** * The command must write a JSON object of string key-value pairs to stdout * The command runs in a
+shell with a 10-second timeout * Dynamic headers override any static `headers` with the same name The helper runs fresh on each connection (at session start and on reconnect).
+There is no caching, so your script is responsible for any token reuse. Claude Code sets these environment variables when executing the helper: | Variable | Value | |
+:---------------------------- | :------------------------- | | `CLAUDE_CODE_MCP_SERVER_NAME` | the name of the MCP server | | `CLAUDE_CODE_MCP_SERVER_URL` | the URL of the MCP
+server | Use these to write a single helper script that serves multiple MCP servers. <Note> `headersHelper` executes arbitrary shell commands. When defined at project or local
+scope, it only runs after you accept the workspace trust dialog. </Note> ## Add MCP servers from JSON configuration If you have a JSON configuration for an MCP server, you can add
+it directly: <Steps> <Step title="Add an MCP server from JSON"> ```bash theme={null} # Basic syntax claude mcp add-json <name> '<json>' # Example: Adding an HTTP server with JSON
+configuration claude mcp add-json weather-api '{"type":"http","url":"https://api.weather.com/mcp","headers":{"Authorization":"Bearer token"}}' # Example: Adding a stdio server with
+JSON configuration claude mcp add-json local-weather '{"type":"stdio","command":"/path/to/weather-cli","args":["--api-key","abc123"],"env":{"CACHE_DIR":"/tmp"}}' # Example: Adding
+an HTTP server with pre-configured OAuth credentials claude mcp add-json my-server
+'{"type":"http","url":"https://mcp.example.com/mcp","oauth":{"clientId":"your-client-id","callbackPort":8080}}' --client-secret ``` </Step> <Step title="Verify the server was
+added"> ```bash theme={null} claude mcp get weather-api ``` </Step> </Steps> <Tip> Tips: * Make sure the JSON is properly escaped in your shell * The JSON must conform to the MCP
+server configuration schema * You can use `--scope user` to add the server to your user configuration instead of the project-specific one </Tip> ## Import MCP servers from Claude
+Desktop If you've already configured MCP servers in Claude Desktop, you can import them: <Steps> <Step title="Import servers from Claude Desktop"> ```bash theme={null} # Basic
+syntax claude mcp add-from-claude-desktop ``` </Step> <Step title="Select which servers to import"> After running the command, you'll see an interactive dialog that allows you to
+select which servers you want to import. </Step> <Step title="Verify the servers were imported"> ```bash theme={null} claude mcp list ``` </Step> </Steps> <Tip> Tips: * This
+feature only works on macOS and Windows Subsystem for Linux (WSL) * It reads the Claude Desktop configuration file from its standard location on those platforms * Use the `--scope
+user` flag to add servers to your user configuration * Imported servers will have the same names as in Claude Desktop * If servers with the same names already exist, they will get
+a numerical suffix (for example, `server_1`) </Tip> ## Use MCP servers from Claude.ai If you've logged into Claude Code with a [Claude.ai](https://claude.ai) account, MCP servers
+you've added in Claude.ai are automatically available in Claude Code: <Steps> <Step title="Configure MCP servers in Claude.ai"> Add servers at
+[claude.ai/customize/connectors](https://claude.ai/customize/connectors). On Team and Enterprise plans, only admins can add servers. </Step> <Step title="Authenticate the MCP
+server"> Complete any required authentication steps in Claude.ai. </Step> <Step title="View and manage servers in Claude Code"> In Claude Code, use the command: ```text
+theme={null} /mcp ``` Claude.ai servers appear in the list with indicators showing they come from Claude.ai. </Step> </Steps> A server you've added in Claude Code takes
+[precedence](#scope-hierarchy-and-precedence) over a claude.ai connector that points at the same URL. When this happens, `/mcp` lists the connector as hidden and shows how to
+remove the duplicate if you'd rather use the connector. To disable claude.ai MCP servers in Claude Code, set the `ENABLE_CLAUDEAI_MCP_SERVERS` environment variable to `false`:
+```bash theme={null} ENABLE_CLAUDEAI_MCP_SERVERS=false claude ``` ## Use Claude Code as an MCP server You can use Claude Code itself as an MCP server that other applications can
+connect to: ```bash theme={null} # Start Claude as a stdio MCP server claude mcp serve ``` You can use this in Claude Desktop by adding this configuration to
+claude\_desktop\_config.json: ```json theme={null} { "mcpServers": { "claude-code": { "type": "stdio", "command": "claude", "args": ["mcp", "serve"], "env": {} } } } ``` <Warning>
+**Configuring the executable path**: The `command` field must reference the Claude Code executable. If the `claude` command is not in your system's PATH, you'll need to specify the
+full path to the executable. To find the full path: ```bash theme={null} which claude ``` Then use the full path in your configuration: ```json theme={null} { "mcpServers": {
+"claude-code": { "type": "stdio", "command": "/full/path/to/claude", "args": ["mcp", "serve"], "env": {} } } } ``` Without the correct executable path, you'll encounter errors like
+`spawn claude ENOENT`. </Warning> <Tip> Tips: * The server provides access to Claude's tools like View, Edit, LS, etc. * In Claude Desktop, try asking Claude to read files in a
+directory, make edits, and more. * Note that this MCP server is only exposing Claude Code's tools to your MCP client, so your own client is responsible for implementing user
+confirmation for individual tool calls. </Tip> ## MCP output limits and warnings When MCP tools produce large outputs, Claude Code helps manage the token usage to prevent
+overwhelming your conversation context: * **Output warning threshold**: Claude Code displays a warning when any MCP tool output exceeds 10,000 tokens * **Configurable limit**: you
+can adjust the maximum allowed MCP output tokens using the `MAX_MCP_OUTPUT_TOKENS` environment variable * **Default limit**: the default maximum is 25,000 tokens * **Scope**: the
+environment variable applies to tools that don't declare their own limit. Tools that set [`anthropic/maxResultSizeChars`](#raise-the-limit-for-a-specific-tool) use that value
+instead for text content, regardless of what `MAX_MCP_OUTPUT_TOKENS` is set to. Tools that return image data are still subject to `MAX_MCP_OUTPUT_TOKENS` To increase the limit for
+tools that produce large outputs: ```bash theme={null} export MAX_MCP_OUTPUT_TOKENS=50000 claude ``` This is particularly useful when working with MCP servers that: * Query large
+datasets or databases * Generate detailed reports or documentation * Process extensive log files or debugging information ### Raise the limit for a specific tool If you're building
+an MCP server, you can allow individual tools to return results larger than the default persist-to-disk threshold by setting `_meta["anthropic/maxResultSizeChars"]` in the tool's
+`tools/list` response entry. Claude Code raises that tool's threshold to the annotated value, up to a hard ceiling of 500,000 characters. This is useful for tools that return
+inherently large but necessary outputs, such as database schemas or full file trees. Without the annotation, results that exceed the default threshold are persisted to disk and
+replaced with a file reference in the conversation. ```json theme={null} { "name": "get_schema", "description": "Returns the full database schema", "_meta": {
+"anthropic/maxResultSizeChars": 200000 } } ``` The annotation applies independently of `MAX_MCP_OUTPUT_TOKENS` for text content, so users don't need to raise the environment
+variable for tools that declare it. Tools that return image data are still subject to the token limit. <Warning> If you frequently encounter output warnings with specific MCP
+servers you don't control, consider increasing the `MAX_MCP_OUTPUT_TOKENS` limit. You can also ask the server author to add the `anthropic/maxResultSizeChars` annotation or to
+paginate their responses. The annotation has no effect on tools that return image content; for those, raising `MAX_MCP_OUTPUT_TOKENS` is the only option. </Warning> ## Respond to
+MCP elicitation requests MCP servers can request structured input from you mid-task using elicitation. When a server needs information it can't get on its own, Claude Code displays
+an interactive dialog and passes your response back to the server. No configuration is required on your side: elicitation dialogs appear automatically when a server requests them.
+Servers can request input in two ways: * **Form mode**: Claude Code shows a dialog with form fields defined by the server (for example, a username and password prompt). Fill in the
+fields and submit. * **URL mode**: Claude Code opens a browser URL for authentication or approval. Complete the flow in the browser, then confirm in the CLI. To auto-respond to
+elicitation requests without showing a dialog, use the [`Elicitation` hook](/en/hooks#elicitation). If you're building an MCP server that uses elicitation, see the [MCP elicitation
+specification](https://modelcontextprotocol.io/docs/learn/client-concepts#elicitation) for protocol details and schema examples. ## Use MCP resources MCP servers can expose
+resources that you can reference using @ mentions, similar to how you reference files. ### Reference MCP resources <Steps> <Step title="List available resources"> Type `@` in your
+prompt to see available resources from all connected MCP servers. Resources appear alongside files in the autocomplete menu. </Step> <Step title="Reference a specific resource">
+Use the format `@server:protocol://resource/path` to reference a resource: ```text theme={null} Can you analyze @github:issue://123 and suggest a fix? ``` ```text theme={null}
+Please review the API documentation at @docs:file://api/authentication ``` </Step> <Step title="Multiple resource references"> You can reference multiple resources in a single
+prompt: ```text theme={null} Compare @postgres:schema://users with @docs:file://database/user-model ``` </Step> </Steps> <Tip> Tips: * Resources are automatically fetched and
+included as attachments when referenced * Resource paths are fuzzy-searchable in the @ mention autocomplete * Claude Code automatically provides tools to list and read MCP
+resources when servers support them * Resources can contain any type of content that the MCP server provides (text, JSON, structured data, etc.) </Tip> ## Scale with MCP Tool
+Search Tool search keeps MCP context usage low by deferring tool definitions until Claude needs them. Only tool names load at session start, so adding more MCP servers has minimal
+impact on your context window. ### How it works Tool search is enabled by default. MCP tools are deferred rather than loaded into context upfront, and Claude uses a search tool to
+discover relevant ones when a task needs them. Only the tools Claude actually uses enter context. From your perspective, MCP tools work exactly as before. If you prefer
+threshold-based loading, set `ENABLE_TOOL_SEARCH=auto` to load schemas upfront when they fit within 10% of the context window and defer only the overflow. See [Configure tool
+search](#configure-tool-search) for all options. ### For MCP server authors If you're building an MCP server, the server instructions field becomes more useful with Tool Search
+enabled. Server instructions help Claude understand when to search for your tools, similar to how [skills](/en/skills) work. Add clear, descriptive server instructions that
+explain: * What category of tasks your tools handle * When Claude should search for your tools * Key capabilities your server provides Claude Code truncates tool descriptions and
+server instructions at 2KB each. Keep them concise to avoid truncation, and put critical details near the start. ### Configure tool search Tool search is enabled by default: MCP
+tools are deferred and discovered on demand. Claude Code disables it by default on Vertex AI. It is also disabled when `ANTHROPIC_BASE_URL` points to a non-first-party host, since
+most proxies do not forward `tool_reference` blocks. Set `ENABLE_TOOL_SEARCH` explicitly to override either fallback. Tool search requires a model that supports `tool_reference`
+blocks: Sonnet 4 and later, or Opus 4 and later. Haiku models do not support it. On Vertex AI, tool search is supported for Claude Sonnet 4.5 and later and Claude Opus 4.5 and
+later. Control tool search behavior with the `ENABLE_TOOL_SEARCH` environment variable: | Value | Behavior | | :------- |
+:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| | (unset) | All MCP tools deferred and loaded on demand. Falls back to loading upfront on Vertex AI or when `ANTHROPIC_BASE_URL` is a non-first-party host | | `true` | All MCP
+tools deferred. Claude Code sends the beta header even on Vertex AI and through proxies. Requests fail on Vertex AI models earlier than Sonnet 4.5 or Opus 4.5, or on proxies that
+do not support `tool_reference` blocks | | `auto` | Threshold mode: tools load upfront if they fit within 10% of the context window, deferred otherwise | | `auto:N` | Threshold
+mode with a custom percentage, where `N` is 0-100. For example, `auto:5` for 5% | | `false` | All MCP tools loaded upfront, no deferral | ```bash theme={null} # Use a custom 5%
+threshold ENABLE_TOOL_SEARCH=auto:5 claude # Disable tool search entirely ENABLE_TOOL_SEARCH=false claude ``` Or set the value in your [settings.json `env`
+field](/en/settings#available-settings). You can also disable the `ToolSearch` tool specifically: ```json theme={null} { "permissions": { "deny": ["ToolSearch"] } } ``` ### Exempt
+a server from deferral If a server's tools should always be visible to Claude without a search step, set `alwaysLoad` to `true` in that server's configuration. Every tool from that
+server then loads into context at session start regardless of the `ENABLE_TOOL_SEARCH` setting. Use this for a small number of tools that Claude needs on every turn, since each
+upfront tool consumes context that would otherwise be available for your conversation. The following `.mcp.json` entry exempts one HTTP server while leaving other servers deferred:
+```json theme={null} { "mcpServers": { "core-tools": { "type": "http", "url": "https://mcp.example.com/mcp", "alwaysLoad": true } } } ``` The `alwaysLoad` field is available on all
+server types and requires Claude Code v2.1.121 or later. An MCP server can also mark individual tools as always-loaded by including `"anthropic/alwaysLoad": true` in the tool's
+`_meta` object, which has the same effect for that tool only. Setting `alwaysLoad: true` also blocks startup until the server connects, capped at the standard 5-second connect
+timeout. This applies even when [`MCP_CONNECTION_NONBLOCKING=1`](/en/env-vars) is set, since the tools must be present when the first prompt is built. Other servers still connect
+in the background when nonblocking is enabled. ## Use MCP prompts as commands MCP servers can expose prompts that become available as commands in Claude Code. ### Execute MCP
+prompts <Steps> <Step title="Discover available prompts"> Type `/` to see all available commands, including those from MCP servers. MCP prompts appear with the format
+`/mcp__servername__promptname`. </Step> <Step title="Execute a prompt without arguments"> ```text theme={null} /mcp__github__list_prs ``` </Step> <Step title="Execute a prompt with
+arguments"> Many prompts accept arguments. Pass them space-separated after the command: ```text theme={null} /mcp__github__pr_review 456 ``` ```text theme={null}
+/mcp__jira__create_issue "Bug in login flow" high ``` </Step> </Steps> <Tip> Tips: * MCP prompts are dynamically discovered from connected servers * Arguments are parsed based on
+the prompt's defined parameters * Prompt results are injected directly into the conversation * Server and prompt names are normalized (spaces become underscores) </Tip> ## Managed
+MCP configuration For organizations that need centralized control over MCP servers, Claude Code supports two configuration options: 1. **Exclusive control with
+`managed-mcp.json`**: Deploy a fixed set of MCP servers that users cannot modify or extend 2. **Policy-based control with allowlists/denylists**: Allow users to add their own
+servers, but restrict which ones are permitted These options allow IT administrators to: * **Control which MCP servers employees can access**: Deploy a standardized set of approved
+MCP servers across the organization * **Prevent unauthorized MCP servers**: Restrict users from adding unapproved MCP servers * **Disable MCP entirely**: Remove MCP functionality
+completely if needed ### Option 1: Exclusive control with managed-mcp.json When you deploy a `managed-mcp.json` file, it takes **exclusive control** over all MCP servers. Users
+cannot add, modify, or use any MCP servers other than those defined in this file. This is the simplest approach for organizations that want complete control. System administrators
+deploy the configuration file to a system-wide directory: * macOS: `/Library/Application Support/ClaudeCode/managed-mcp.json` * Linux and WSL: `/etc/claude-code/managed-mcp.json` *
+Windows: `C:\Program Files\ClaudeCode\managed-mcp.json` <Note> These are system-wide paths (not user home directories like `~/Library/...`) that require administrator privileges.
+They are designed to be deployed by IT administrators. </Note> The `managed-mcp.json` file uses the same format as a standard `.mcp.json` file: ```json theme={null} { "mcpServers":
+{ "github": { "type": "http", "url": "https://api.githubcopilot.com/mcp/" }, "sentry": { "type": "http", "url": "https://mcp.sentry.dev/mcp" }, "company-internal": { "type":
+"stdio", "command": "/usr/local/bin/company-mcp-server", "args": ["--config", "/etc/company/mcp-config.json"], "env": { "COMPANY_API_URL": "https://internal.company.com" } } } }
+``` ### Option 2: Policy-based control with allowlists and denylists Instead of taking exclusive control, administrators can allow users to configure their own MCP servers while
+enforcing restrictions on which servers are permitted. This approach uses `allowedMcpServers` and `deniedMcpServers` in the [managed settings file](/en/settings#settings-files).
+<Note> **Choosing between options**: Use Option 1 (`managed-mcp.json`) when you want to deploy a fixed set of servers with no user customization. Use Option 2
+(allowlists/denylists) when you want to allow users to add their own servers within policy constraints. </Note> #### Restriction options Each entry in the allowlist or denylist can
+restrict servers in three ways: 1. **By server name** (`serverName`): Matches the configured name of the server 2. **By command** (`serverCommand`): Matches the exact command and
+arguments used to start stdio servers 3. **By URL pattern** (`serverUrl`): Matches remote server URLs with wildcard support **Important**: Each entry must have exactly one of
+`serverName`, `serverCommand`, or `serverUrl`. #### Example configuration ```json theme={null} { "allowedMcpServers": [ // Allow by server name { "serverName": "github" }, {
+"serverName": "sentry" }, // Allow by exact command (for stdio servers) { "serverCommand": ["npx", "-y", "@modelcontextprotocol/server-filesystem"] }, { "serverCommand": ["python",
+"/usr/local/bin/approved-server.py"] }, // Allow by URL pattern (for remote servers) { "serverUrl": "https://mcp.company.com/*" }, { "serverUrl": "https://*.internal.corp/*" } ],
+"deniedMcpServers": [ // Block by server name { "serverName": "dangerous-server" }, // Block by exact command (for stdio servers) { "serverCommand": ["npx", "-y",
+"unapproved-package"] }, // Block by URL pattern (for remote servers) { "serverUrl": "https://*.untrusted.com/*" } ] } ``` #### How command-based restrictions work **Exact
+matching**: * Command arrays must match **exactly** - both the command and all arguments in the correct order * Example: `["npx", "-y", "server"]` will NOT match `["npx",
+"server"]` or `["npx", "-y", "server", "--flag"]` **Stdio server behavior**: * When the allowlist contains **any** `serverCommand` entries, stdio servers **must** match one of
+those commands * Stdio servers cannot pass by name alone when command restrictions are present * This ensures administrators can enforce which commands are allowed to run
+**Non-stdio server behavior**: * Remote servers (HTTP, SSE, WebSocket) use URL-based matching when `serverUrl` entries exist in the allowlist * If no URL entries exist, remote
+servers fall back to name-based matching * Command restrictions do not apply to remote servers #### How URL-based restrictions work URL patterns support wildcards using `*` to
+match any sequence of characters. This is useful for allowing entire domains or subdomains. **Wildcard examples**: * `https://mcp.company.com/*` - Allow all paths on a specific
+domain * `https://*.example.com/*` - Allow any subdomain of example.com * `http://localhost:*/*` - Allow any port on localhost Hostname matching is case-insensitive and ignores a
+trailing FQDN dot, matching DNS semantics. A pattern like `*://Mcp.Example.com/*` matches `https://mcp.example.com/api`, and `https://mcp.example.com.` is treated the same as
+`https://mcp.example.com`. Paths remain case-sensitive. **Remote server behavior**: * When the allowlist contains **any** `serverUrl` entries, remote servers **must** match one of
+those URL patterns * Remote servers cannot pass by name alone when URL restrictions are present * This ensures administrators can enforce which remote endpoints are allowed
+<Accordion title="Example: URL-only allowlist"> ```json theme={null} { "allowedMcpServers": [ { "serverUrl": "https://mcp.company.com/*" }, { "serverUrl":
+"https://*.internal.corp/*" } ] } ``` **Result**: * HTTP server at `https://mcp.company.com/api`: ✅ Allowed (matches URL pattern) * HTTP server at `https://api.internal.corp/mcp`:
+✅ Allowed (matches wildcard subdomain) * HTTP server at `https://external.com/mcp`: ❌ Blocked (doesn't match any URL pattern) * Stdio server with any command: ❌ Blocked (no name or
+command entries to match) </Accordion> <Accordion title="Example: Command-only allowlist"> ```json theme={null} { "allowedMcpServers": [ { "serverCommand": ["npx", "-y",
+"approved-package"] } ] } ``` **Result**: * Stdio server with `["npx", "-y", "approved-package"]`: ✅ Allowed (matches command) * Stdio server with `["node", "server.js"]`: ❌
+Blocked (doesn't match command) * HTTP server named "my-api": ❌ Blocked (no name entries to match) </Accordion> <Accordion title="Example: Mixed name and command allowlist">
+```json theme={null} { "allowedMcpServers": [ { "serverName": "github" }, { "serverCommand": ["npx", "-y", "approved-package"] } ] } ``` **Result**: * Stdio server named
+"local-tool" with `["npx", "-y", "approved-package"]`: ✅ Allowed (matches command) * Stdio server named "local-tool" with `["node", "server.js"]`: ❌ Blocked (command entries exist
+but doesn't match) * Stdio server named "github" with `["node", "server.js"]`: ❌ Blocked (stdio servers must match commands when command entries exist) * HTTP server named
+"github": ✅ Allowed (matches name) * HTTP server named "other-api": ❌ Blocked (name doesn't match) </Accordion> <Accordion title="Example: Name-only allowlist"> ```json
+theme={null} { "allowedMcpServers": [ { "serverName": "github" }, { "serverName": "internal-tool" } ] } ``` **Result**: * Stdio server named "github" with any command: ✅ Allowed
+(no command restrictions) * Stdio server named "internal-tool" with any command: ✅ Allowed (no command restrictions) * HTTP server named "github": ✅ Allowed (matches name) * Any
+server named "other": ❌ Blocked (name doesn't match) </Accordion> #### Allowlist behavior (`allowedMcpServers`) * `undefined` (default): No restrictions - users can configure any
+MCP server * Empty array `[]`: Complete lockdown - users cannot configure any MCP servers * List of entries: Users can only configure servers that match by name, command, or URL
+pattern #### Denylist behavior (`deniedMcpServers`) * `undefined` (default): No servers are blocked * Empty array `[]`: No servers are blocked * List of entries: Specified servers
+are explicitly blocked across all scopes #### Important notes * **Option 1 and Option 2 can be combined**: If `managed-mcp.json` exists, it has exclusive control and users cannot
+add servers. Allowlists/denylists still apply to the managed servers themselves. * **Denylist takes absolute precedence**: If a server matches a denylist entry (by name, command,
+or URL), it will be blocked even if it's on the allowlist * Name-based, command-based, and URL-based restrictions work together: a server passes if it matches **either** a name
+entry, a command entry, or a URL pattern (unless blocked by denylist) <Note> **When using `managed-mcp.json`**: Users cannot add MCP servers through `claude mcp add` or
+configuration files. The `allowedMcpServers` and `deniedMcpServers` settings still apply to filter which managed servers are actually loaded. </Note>Skip to content logo n8n Docs
+Chat with the docs Search Using n8n Integrations Hosting n8n Code in n8n Advanced AI API n8n home ↗ Forum ↗ Tutorials (blog) ↗ Using n8n Getting started Learning path Choose your
+n8n Quickstarts Video courses Text courses Level one Level two Understanding the data structure Processing different data types Merging and splitting data Dealing with errors in
+workflows Automating a business workflow Test your knowledge Using the app Understand workflows Manage credentials Manage users and access Keyboard shortcuts Key concepts Flow
+logic Working with data Glossary n8n Cloud Overview Cloud free trial Access the Cloud admin dashboard Update your n8n Cloud version Set the timezone Cloud IP addresses Cloud data
+management Change ownership or username Concurrency Download workflows AI Assistant Enterprise features Source control and environments External secrets Log streaming Security
+settings Insights License key Releases Release notes v2.0 breaking changes v2.0 Migration tool v1.0 migration guide Help and community Where to get help Contributing Licenses and
+privacy Privacy and security Sustainable use license Table of contents Data structure of n8n Creating data sets with the Code node Exercise Referencing node data with the Code node
+Exercise Transforming data Exercise Using n8n Getting started Text courses Level two Understanding the data structure# In this chapter, you will learn about the data structure of
+n8n and how to use the Code node to transform data and simulate node outputs. Data structure of n8n# In a basic sense, n8n nodes function as an Extract, Transform, Load (ETL) tool.
+The nodes allow you to access (extract) data from multiple disparate sources, modify (transform) that data in a particular way, and pass (load) it along to where it needs to be.
+The data that moves along from node to node in your workflow must be in a format (structure) that can be recognized and interpreted by each node. In n8n, this required structure is
+an array of objects. About array of objects An array is a list of values. The array can be empty or contain several elements. Each element is stored at a position (index) in the
+list, starting at 0, and can be referenced by the index number. For example, in the array ["Leonardo", "Michelangelo", "Donatello", "Raphael"]; the element Donatello is stored at
+index 2. An object stores key-value pairs, instead of values at numbered indexes as in arrays. The order of the pairs isn't important, as the values can be accessed by referencing
+the key name. For example, the object below contains two properties (name and color): { name: 'Michelangelo', color: 'blue', } An array of objects is an array that contains one or
+more objects. For example, the array turtles below contains four objects: var turtles = [ { name: 'Michelangelo', color: 'orange', }, { name: 'Donatello', color: 'purple', }, {
+name: 'Raphael', color: 'red', }, { name: 'Leonardo', color: 'blue', } ]; You can access the properties of an object using dot notation with the syntax object.property. For
+example, turtles[1].color gets the color of the second turtle. Data sent from one node to another is sent as an array of JSON objects. The elements in this collection are called
+items. Items An n8n node performs its action on each item of incoming data. Items in the Customer Datastore node Creating data sets with the Code node# Now that you are familiar
+with the n8n data structure, you can use it to create your own data sets or simulate node outputs. To do this, use the Code node to write JavaScript code defining your array of
+objects with the following structure: return [ { json: { apple: 'beets', } } ]; For example, the array of objects representing the Ninja turtles would look like this in the Code
+node: Array of objects in the Code node JSON objects Notice that this array of objects contains an extra key: json. n8n expects you to wrap each object in an array in another
+object, with the key json. Illustration of data structure in n8n It's good practice to pass the data in the right structure used by n8n. But don't worry if you forget to add the
+json key to an item, n8n (version 0.166.0 and above) adds it automatically. You can also have nested pairs, for example if you want to define a primary and a secondary color. In
+this case, you need to further wrap the key-value pairs in curly braces {}. n8n data structure video This talk offers a more detailed explanation of data structure in n8n.
+Exercise# In a Code node, create an array of objects named myContacts that contains the properties name and email, and the email property is further split into personal and work.
+Show me the solution Referencing node data with the Code node# Just like you can use expressions to reference data from other nodes, you can also use some methods and variables in
+the Code node. Please make sure you read these pages before continuing to the next exercise. Exercise# Let's build on the previous exercise, in which you used the Code node to
+create a data set of two contacts with their names and emails. Now, connect a second Code node to the first one. In the new node, write code to create a new column named workEmail
+that references the work email of the first contact. Show me the solution Transforming data# The incoming data from some nodes may have a different data structure than the one used
+in n8n. In this case, you need to transform the data, so that each item can be processed individually. The two most common operations for data transformation are: Creating multiple
+items from one item Creating a single item from multiple items There are several ways to transform data for the purposes mentioned above: Use n8n's data transformation nodes. Use
+these nodes to modify the structure of incoming data that contain lists (arrays) without needing to use JavaScript code in the Code node: Use the Split Out node to separate a
+single data item containing a list into multiple items. Use the Aggregate node to take separate items, or portions of them, and group them together into individual items. Use the
+Code node to write JavaScript functions to modify the data structure of incoming data using the Run Once for All Items mode: To create multiple items from a single item, you can
+use JavaScript code like this. This example assumes that the item has a key named data set to an array of items in the form of: [{ "data": [{<item_1>}, {<item_2>}, ...] }]: return
+$input.first().json.data.map(item => { return { json: item } }); To create a single item from multiple items, you can use this JavaScript code: return [ { json: { data_object:
+$input.all().map(item => item.json) } } ]; These JavaScript examples assume your entire input is what you want to transform. As in the exercise above, you can also execute either
+operation on a specific field by identifying that in the items list, for example, if our workEmail example had multiple emails in a single field, we could run some code like this:
+let items = $input.all(); return items[0].json.workEmail.map(item => { return { json: item } }); Exercise# Use the HTTP Request node to make a GET request to the PokéAPI
+https://pokeapi.co/api/v2/pokemon. (This API requires no authentication). Transform the data in the results field with the Split Out node. Transform the data in the results field
+with the Code node. Show me the solution Chat with the docs This page was Thumbs upHelpful Thumbs downNot helpful Back to top Previous Level two: Introduction Next Processing
+different data types Made with Material for MkDocsSkip to content logo n8n Docs Chat with the docs Search Using n8n Integrations Hosting n8n Code in n8n Advanced AI API n8n home ↗
+Forum ↗ Tutorials (blog) ↗ Using n8n Getting started Learning path Choose your n8n Quickstarts Video courses Text courses Level one Navigating the editor UI Building a
+mini-workflow Automating a (real-world) use case Designing the workflow Building the workflow Exporting and importing workflows Test your knowledge Level two Using the app
+Understand workflows Manage credentials Manage users and access Keyboard shortcuts Key concepts Flow logic Working with data Glossary n8n Cloud Overview Cloud free trial Access the
+Cloud admin dashboard Update your n8n Cloud version Set the timezone Cloud IP addresses Cloud data management Change ownership or username Concurrency Download workflows AI
+Assistant Enterprise features Source control and environments External secrets Log streaming Security settings Insights License key Releases Release notes v2.0 breaking changes
+v2.0 Migration tool v1.0 migration guide Help and community Where to get help Contributing Licenses and privacy Privacy and security Sustainable use license Table of contents Is
+this course right for me? What will I learn in this course? What do I need to get started? How long does the course take? How do I complete the course? Using n8n Getting started
+Text courses Level one Level one: Introduction# Welcome to the n8n Course Level 1! Is this course right for me?# This course introduces you to the fundamental concepts within n8n
+and develops your low-code automation expertise. This course is for you if you: Are starting to use n8n for the first time. Are looking for some extra help creating your first
+workflow. Want to automate processes in your personal or working life. This course introduces n8n concepts and demonstrates practical workflow building without assuming any prior
+familiarity with n8n. If you'd like to get a feel for the basics without as much explanation, consult our quickstart guide. What will I learn in this course?# We believe in
+learning by doing. You can expect some theoretical information about the basic concepts and components of n8n, followed by practice of building workflows step by step. By the end
+of this course you will know: How to set up n8n and navigate the Editor UI. How n8n structures data. How to configure different node parameters and add credentials. When and how to
+use conditional logic in workflows. How to schedule and control workflows. How to import, download, and share workflows with others. You will build two workflows: A two-node
+workflow to get articles from Hacker News A seven-node workflow to help your client get records from a data warehouse, filter them, make calculations, and notify team members about
+the results What do I need to get started?# n8n set up: You can use n8n Cloud (or the self-hosted version if you have experience hosting services). A course user ID: Sign up here
+to get your unique ID and other credentials you will need in this course (Level 1). Basic knowledge of JavaScript and APIs would be helpful, but isn't necessary. An account on the
+n8n community forum if you wish to receive a profile badge and avatar upon successful completion. How long does the course take?# Completing the course should take around two
+hours. You don't have to complete it in one go; feel free to take breaks and resume whenever you are ready. How do I complete the course?# There are two milestones in this course
+that test your knowledge of what you have learned in the lessons: Building the main workflow Passing the quiz at the end of the course Check your progress You can always check your
+progress throughout the course by entering your unique ID here. If you complete the milestones above, you will get a badge and an avatar in your forum profile. You can then share
+your profile and course verification ID to showcase your n8n skills to others. Let's get started! Chat with the docs This page was Thumbs upHelpful Thumbs downNot helpful Back to
+top Previous Text courses Next Navigating the editor UI Made with Material for MkDocsSkip to content logo n8n Docs Chat with the docs Search Using n8n Integrations Hosting n8n Code
+in n8n Advanced AI API n8n home ↗ Forum ↗ Tutorials (blog) ↗ Using n8n Getting started Learning path Choose your n8n Quickstarts Video courses Text courses Level one Navigating the
+editor UI Building a mini-workflow Automating a (real-world) use case Designing the workflow Building the workflow Exporting and importing workflows Test your knowledge Level two
+Using the app Understand workflows Manage credentials Manage users and access Keyboard shortcuts Key concepts Flow logic Working with data Glossary n8n Cloud Overview Cloud free
+trial Access the Cloud admin dashboard Update your n8n Cloud version Set the timezone Cloud IP addresses Cloud data management Change ownership or username Concurrency Download
+workflows AI Assistant Enterprise features Source control and environments External secrets Log streaming Security settings Insights License key Releases Release notes v2.0
+breaking changes v2.0 Migration tool v1.0 migration guide Help and community Where to get help Contributing Licenses and privacy Privacy and security Sustainable use license Table
+of contents Getting started Editor UI settings Left-side panel Top bar Canvas Nodes Finding nodes Adding nodes Node buttons Summary Using n8n Getting started Text courses Level one
+Navigating the Editor UI# In this lesson you will learn how to navigate the Editor UI. We will walk through the canvas and show you what each icon means and where to find things
+you will need while building workflows in n8n. n8n version This course is based on n8n version 1.82.1. In other versions, some user interfaces might look different, but this
+shouldn't impact the core functionality. Getting started# Begin by setting up n8n. We recommend starting with n8n Cloud, a hosted solution that doesn't require installation and
+includes a free trial. Alternative set up If n8n Cloud isn't a good option for you, you can self-host with Docker. This is an advanced option recommended only for technical users
+familiar with hosting services, Docker, and the command line. For more details on the different ways to set up n8n, see our platforms documentation. Once you have n8n running, open
+the Editor UI in a browser window. Log in to your n8n instance. Select Overview and then Create Workflow to view the main canvas. It should look like this: Editor UI Editor UI

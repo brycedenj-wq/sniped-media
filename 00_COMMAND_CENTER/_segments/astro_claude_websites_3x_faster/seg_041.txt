@@ -1,0 +1,224 @@
+live? For batch testing, you can generate fake call scenarios as JSON files using AI and run them through the 28:34 simulation tool. It's a quick way to stress test a new agent
+before real callers get anywhere near it. And that worked great for us, but at the scale 28:40 that we were testing and building agents, we ended up building our own simulation
+tool off retail because we 28:45 needed more control over the test conditions. But for most people, the built-in batch tool is more than enough. 28:51 Run your agents through every
+conversation path you can think of, every edge case, every knowledgebased question. If you've got a booking flow, 28:58 book fake appointments before you let a real caller anywhere
+near it. If you've got an objection handling built in, try 29:03 to be as difficult as possible to put your agent through its paces. The iteration cycle here is pretty simple.
+29:08 Listen to real calls. Spot the patterns where things aren't perfect. Find the specific section in the prompts or the 29:13 tools that owns that behavior. Fix it and then
+validate that fix. Test your latency, too. That's the gap between the 29:19 caller and the AI responses. Benchmarks put retail around 580 to 620 29:25 milliseconds average response
+time. Vapi can sometimes be faster, but both are comfortably within the 800 millisecond 29:31 threshold where conversations feel natural to the caller. What we found is that raw
+speed is less important than 29:38 smooth turn taking. If you think about that demo I showed you, that's worth more on a real call than shaving 50 29:43 milliseconds off the
+response time by using a cheaper LLM that's not as good or a voice that doesn't sound as 29:49 natural. A conversation that flows naturally beats a conversation that's technically
+faster but sounds robotic. 29:54 [music] In terms of compliance, retail is SOC2 type 2 certified. It's HEPA ready and 30:00 it's GDPR compliant through Amazon Web Services data
+processing addendum. Retail's hosting is Amazon Web Services 30:06 US region, not EU. So, if you're in healthcare, finance or legal, have that conversation with your data
+protection 30:12 officer before you deploy. Don't let me or any YouTuber be the reason you skip that call. Limitations & Final Takeaways 30:20 So, there's lots to love about retail
+and using it in production, but there's three places where retail falls short 30:26 compared to other platforms we work with. First is that post call data extraction. It hits a
+ceiling. Retail's 30:32 built-in extraction, which I showed you, is brilliant for pulling out a handful of clean fields, name, phone number, 30:38 booking time. But the moment you
+need it to extract 12 or 15 fields from a single call, it gets messy. And because the 30:44 extraction runs as a separate process from the actual conversation, it can't actually
+reference your agent prompt, 30:50 only the call transcript. So, we've had calls where the agent clearly heard something during the conversation, but 30:56 the extraction process
+just couldn't find it because it didn't have the context of the prompt to help it. In 31:01 most other platforms we've tested, the data extraction will be fully aware of the
+agent's prompt, which gives it the 31:06 context it needs to seek the right data to extract. Second is the agent handbook ceiling. Retail ships with these default 31:12 agent
+handbooks, and they're really cool and they're perfectly fine when you're starting out. But after a few hundred calls, you're going to start spotting 31:18 patterns, phrases that
+work well, phrases that don't, specific ways of handling certain situations. You want to 31:25 bake those into the handbook itself, but there's no layer in retail for you to add
+your own material on top of their 31:30 handbooks. So, we ended up building our own system for this. If you're running one or two agents, you're not going to notice. If you're
+scaling past that, you 31:37 might end up doing the same. And then third is that web hook issue. There is a single agent level web hook URL field 31:43 per agent. So rather than
+having dedicated slots for different stages, all the events you select ping that one 31:49 specific address. That's fine when you've got a single client, but when you're running 20
+agents for 20 31:54 different clients and one of them needs their own CRM wired into the call life cycle. You're suddenly forced to manage 32:00 these specific requirements through
+that one shared URL. It would be so much cleaner if you could specify multiple 32:06 web hooks at the agent level. for instance, having separate dedicated URLs for pre-all and post
+call events. 32:12 Despite all of that, retail is the platform that we run a large portion of our business on. And now you know why. 32:18 So that's basically everything you need
+to use retail properly. But knowing the platform is only half of it. The real 32:23 question is how you can actually use it to create great AI voice agents that sound and respond
+in a manner that keeps 32:28 your human callers on the line. I've referenced that we write our prompts using a five section prompt framework. And if you hit this video here, I'll
+32:35 break down exactly how you can create AI voice agents better than 99% of people. Live Call 0:02 Thank you for calling Mike's Barberh 0:03 Shop. This is Jenna. How can I help
+you? 0:06 Hi, I'm looking to get a haircut. Can I 0:07 uh book an appointment to come in? 0:11 Absolutely. I can help you with that. 0:12 Can I have your name for the 0:13
+appointment? 0:14 Yeah, my name's Anthony. 0:17 Thanks, Anthony. Is the number you're 0:19 calling from the best one to use for the 0:21 appointment? 0:22 Yeah, this phone number
+works perfect. 0:25 Great. Thank you. Do you have a 0:27 preferred barber you'd like to request 0:29 for your appointment? 0:30 Yeah, I want to see Mike. 0:34 Perfect. What day and
+time works best 0:36 for your appointment? 0:37 Can we do this Monday at 2 p.m.? 0:41 One moment while I check availability 0:43 for Monday at 2 p.m. with Mike. All set. 0:45 Your
+appointment at Mike's Barber Shop 0:47 is booked for Monday at 2 p.m. with 0:48 Mike. Is there anything else I can help 0:50 you with today? 0:51 Um, yeah. Actually, can I
+reschedule 0:53 that appointment to 3 p.m.? 0:58 Sure. Let me check if 3 p.m. on Monday 1:00 is available for you. One moment, 1:01 please. All set. Your appointment at 1:03 Mike's
+Barber Shop is rescheduled for 1:05 Monday at 3 p.m. Is there anything else 1:07 I can help you with today? 1:09 Yeah, you know what? I forgot. I'm 1:11 actually bald. I have no
+hair, so cancel 1:13 my appointment. I don't want to come in 1:14 anymore. 1:17 No problem at all, Anthony. I'll cancel 1:19 your appointment for you right now. One 1:21 moment,
+please. Your appointment has 1:23 been cancelled. Is there anything? 1:24 I was an AI receptionist I built for a Intro 1:27 barber shop. Now, in this video, I'm 1:29 going to show
+you exactly step by step 1:30 how I built it so that you can replicate 1:33 it. The way this works is pretty simple. 1:35 Customers call in. Barbers are normally 1:39 too busy to
+answer the phone or they 1:41 have to answer the phone while cutting 1:42 hair. To fix that problem, we're going 1:44 to build an AI receptionist that answers 1:46 all their calls
+24/7, answers any 1:48 questions, handles appointments, and 1:51 even organizes all of their calls into 1:53 notes. To do this build, we're going to 1:55 be using Retail AI and
+N8N. And the good 1:58 news is that they are both completely 2:00 beginner friendly. I'll leave the link 2:01 down to both if you need them. My name 2:03 is Anthony. I've been
+building and 2:04 selling AI receptionists for almost a 2:06 year now. I also run a school community 2:08 centered around building and selling AI 2:10 receptionists. Now, let's get
+into the Retell AI 2:12 build using Retail AI. So, we're on the 2:15 homepage of Retail AI now. And here is 2:17 the AI receptionist that you just heard, 2:19 the one built from
+Mike's Barberhop. And 2:22 I'm going to do a live build showing you 2:24 how I created it. I'm not going to 2:25 gateep anything. To get started, hit 2:27 create an agent in the
+top right. Voice 2:29 agent, single prompt, and start from 2:32 blank. Now, we're inside the agent. And 2:34 the first thing I'm going to do is I'm 2:36 going to create those
+functions, the 2:37 things that allow it to transfer calls 2:39 back to the business, book appointments, 2:41 cancel, and reschedule. So, I'm just 2:43 going to hit add, and I'm
+going to do 2:44 call transfer first, which is going to 2:46 be right here. And you're going to want 2:48 to throw in the barberhop's phone 2:49 number. Once it's in, you can go
+ahead 2:51 and hit save. That's transfer call 2:52 finished. Now, let's do the calendar 2:55 functions. So, I'll hit custom function. 2:57 And the first one I'll do is book 2:59
+appointment. 3:01 And this function is going to book 3:04 appointments and check availability. So 3:06 I'm going to say call this function to 3:08 check availability 3:10 and book
+appointments on the calendar. 3:15 I have to put an example here just so I 3:17 can save this. 3:21 And that's all we're going to do for 3:22 now. We can go ahead hit save. I'm
+going 3:24 to do the same thing for the reschedule 3:27 function. So I'll do reschedule 3:29 appointment and I'm going to say call 3:31 this function to reschedule an 3:33
+appointment and then again just that 3:35 placeholder for now. Next we have a 3:36 cancel appointment function. Same deal. 3:40 Call this function to cancel 3:41 appointments and
+throw in that little 3:44 you have to throw a placeholder because 3:46 retail won't let you save unless you do 3:48 if you were wondering. So 3:50 example.com/webhook 3:53 is
+actually going to allow us to save 3:54 this function and move on. Now, the last 3:56 function I'm going to create is a Google 3:57 Sheets function, which is going to store 3:59
+all the call details of every call 4:02 inside of a Google sheet. So, we'll name 4:04 this one just Google Sheets, and we're 4:06 going to say call to log details about 4:10 every
+phone call. And there we go. That 4:12 is set. We can hit save. Now, we need to 4:14 actually train the AI receptionist on 4:16 the business so that it knows things 4:17 like
+pricing and hours. So, there's a 4:19 really simple method to do so. I'm going 4:22 to come over to Mike's Barberhop's 4:24 website. I'm going to copy their URL. 4:27 I'm going to
+bring it over to Chat GPT. 4:29 And what I've done is I've created a 4:31 custom GPT that anybody can access 4:33 completely for free. Just come over to 4:35 explore GPTs on chat
+GPT and type in 4:38 Anony's 4:40 prompt plus KB GPT and it'll come up 4:43 right there. You can just click into it 4:44 and hit start chat. And this GPT is 4:47 going to allow you
+to simply say create 4:50 me a KB4 and then give the uh the URL 4:54 from the website that you want to pull 4:55 all the information from. And what this 4:57 GPT is going to do is
+it's going to go 4:59 onto that website and scrape it for all 5:02 of the information that an AI 5:03 receptionist would need. So you don't 5:04 need to manually create one. So as
+we 5:06 can see this GPT is saying I found the 5:08 main business info including hours, 5:10 phone, address, listed services, etc. 5:12 I'm going to go ahead and copy that KB 5:15
+that it created. Bring it over to 5:17 retail. And we're going to come to the 5:19 knowledgeb section and hit add. Add new 5:21 knowledge base. And I'm going to hit the 5:23 plus
+sign right here. And I'll name this 5:25 Mike's IT KB. 5:29 Add text. And just paste it in. I'll go 5:32 KB again. 5:33 We can now come into our agent over to 5:36 the agent we're
+creating 5:39 and head into the knowledge base and 5:41 just add Mike's YT and KB. Now, this 5:44 retail AI receptionist has all of that 5:46 information that this GPT pulled from
+5:50 their website. Now that we have like the 5:52 middle section done, that's kind of what 5:53 I like to do first because everything 5:54 else kind of relies on it. Um, let's go
+5:57 ahead and organize this a little bit 5:58 better. So, I'm going to name this 5:59 Mike's Barberhop 6:03 um YT receptionist. 6:06 And then I'm going to come below the 6:07
+prompt section to the welcome message. 6:10 And we're going to do AI speaks first 6:12 custom message. And we want the first 6:14 thing the AI to say is, "Thank you for 6:16
+calling Mike's Barber Shop. How can I 6:20 help you?" Right? Something natural that 6:22 that any receptionist would say. And 6:24 we're good there. Now really the last 6:26 thing
+we need to do on retail AI is 6:28 create this prompt. We need to tell the 6:31 AI receptionist who it is, what it's 6:33 doing, and then really when to use these 6:35 functions
+and the knowledge base. So I'm 6:37 going to first go with a role to take 6:39 care of telling it who it is and what it 6:41 does. Now to create your prompt, you can 6:43 actually
+use that GBT that I just showed 6:46 you guys to create your prompt, right? 6:48 So you can say create a prompt for this 6:52 business as well. and that'll create you 6:54 a pretty
+good prompt. It won't be 6:56 perfect, but it'll get you like 80% of 6:58 the way there. So, back into my agent, 7:00 I'm going to throw in some critical 7:01 rules, basic rules
+for the AI to follow. 7:04 We have the knowledgebased section. So, 7:05 we have you have access to Mike's 7:08 Barberhop's knowledge base. Use it to 7:10 answer questions. And most
+importantly, 7:11 if you don't have the answer, don't 7:13 guess cuz AIS love to guess. And here we 7:16 have the bulk. We have the appointment 7:18 booking flow. So, we start with
+7:20 appointment booking. The slots are 60 7:22 minutes. The goal is to handle 7:24 appointments just like a human would and 7:26 a ask these questions one at a time. And 7:28 the
+questions are going to be the user's 7:30 name or the caller's name, the caller's 7:33 number, the preferred barber, whoever 7:34 they want to book with, and then the 7:36 date and
+time that they want to come in. 7:38 Once you collect all that information, 7:40 say one moment and invoke the book 7:41 appointment function, which we have 7:44 right here, to
+check availability and 7:46 book the appointment. If you guys 7:47 remember, inside of that function, 7:49 that's exactly what it says. Let's call 7:51 this function to check
+availability and 7:52 book appointments. After booking, say 7:55 all set, your appointment at Mike's 7:56 Barber Shop is booked for the day and 7:58 time that they picked. Let's
+now do the 7:59 cancellation flow. So I have for 8:02 cancelling appointments. If the user 8:03 wants to cancel an appointment, just 8:05 confirm their number and say is the 8:07
+number you're calling from the one you 8:08 used to book the appointment. Then 8:09 invoke cancel appointment. So it's going 8:11 to call that function, search for the 8:14
+caller's appointment by their phone 8:15 number and cancel it. And then lastly 8:17 for appointments we have the reschedule 8:20 appointment flow. So if the user wants 8:21 to
+reschedule their appointment again 8:23 we're going to find their appointment um 8:25 by searching for their phone number. So 8:26 same thing we have here. And then after 8:28 the
+number is collected ask what time 8:30 they want to book the no appointment 8:31 for. After you have their number and the 8:34 new time for the appointment, call our 8:36
+reschedule appointment function to 8:38 reschedule the appointment. And after 8:40 it's set, say your appointment is all 8:42 set, it's rescheduled for the date and 8:44 time. If
+that appointment slot is booked 8:46 that it tried to reschedule for, then 8:48 it's simply just going to offer the 8:49 three closest alternatives. And if the 8:52 appointment
+wasn't found, then just let 8:54 the caller know and verify what number 8:56 the appointment was booked under. That's 8:57 going to be it for the appointment flow. 8:59 That really
+was the bulk of it. Next, we 9:01 have just a simple transfer flow. This 9:03 tells the air receptionist when to 9:05 transfer phone calls. So, it's pretty 9:07 much simple. If the
+caller wants a live 9:10 person or the AI can't help, we're going 9:14 to want to transfer the call back to the 9:15 business, it's just going to send the 9:17 caller to the phone
+number that you put 9:18 in here. Like I said, it should be the 9:20 barber shop's phone number. Lastly, we 9:23 just have some closing. So before the 9:25 phone call ends, you
+want to say, "Is 9:27 there anything else that I can help you 9:29 with today?" And if no, the caller is 9:31 all set. We want to invoke the Google 9:33 Sheets function which is
+going to take 9:36 all the details from the phone call and 9:38 then put them inside of that Google 9:40 sheet function and the AI reception is 9:43 just going to say thank you for
+calling 9:44 have a great day and it's going to 9:45 invoke that end call function ending the 9:48 phone call. So just like that our AI 9:50 receptionist is able to carry out all
+9:52 these functions and reference the 9:54 knowledge base without any 9:55 hallucination. Now, the last thing we 9:57 really need to do on retail AAI is 9:59 actually fill out
+these functions cuz if 10:01 you remember, we just threw in a 10:02 placeholder and then our parameters, 10:04 which is the information that we're 10:06 sending over to the
+calendar. These need 10:08 to be filled out as well. We're going to 10:10 go ahead and get started in NAN and 10:12 we'll get the workflow started and then 10:14 we'll need to come
+back and fill out our 10:15 API endpoint and parameters. So, let's 10:18 head over to NADN and get that started. n8n 10:20 So, here we are on NADN. Again, if you 10:22 need the
+link, it'll be down in the 10:24 description. Go ahead, sign in or make 10:26 an account, whatever you got to do. Once 10:28 you're inside of Naden, you can then 10:30 start
+creating workflows. So, we're 10:31 going to hit create a workflow. And as 10:33 we can see, we have an empty canvas 10:34 here. Now, there's going to be two main 10:36 ways that
+you can go about this. The 10:38 easy way or the harder way. The harder 10:41 way, which I'll show you first, is just 10:42 using Naden's AI. You can pretty much 10:45 just tell
+it, I want to build a workflow 10:48 that checks availability on Google 10:52 Calendar and books appointments. 10:55 Now, NADN is creating that workflow for 10:57 us. And as we can
+see, Naden created the 10:59 workflow for us. But it's not perfect. I 11:02 would say again, just like the GPT, this 11:05 is going to get you like 80% of the way 11:07 there. Now,
+the easier way is going to 11:09 be heading into my school group and 11:12 coming over to the template vault. For 11:14 time purposes, this is what we're going 11:16 to do. I'm
+going to grab this NAND 11:18 workflow, download it, and then we're 11:21 going to go ahead and hit this import 11:23 button up here. Import from file, and 11:26 I'm just going to
+drag in that N that 11:27 NAN file. And here we go. We have the 11:30 check and the book on the calendar flow. 11:33 We have the cancel, we have the 11:34 reschedule flow, we have
+the 11:36 cancellation flow, and then we have the 11:38 simple Google Sheets workflow. These are 11:40 four separate workflows. I know this may 11:43 look like a lot, but if you do
+go the 11:44 route of creating it yourself with 11:46 Naden's AI, you can go back and forth 11:48 with it and and get it here, I would 11:51 say, in a couple of hours. Now, once
+you 11:54 kind of have the workflow down, there's 11:56 a few things you're going to have to do. 11:58 So, 11:59 you're going to have to sign into your 12:01 calendar. So, we'll
+make sure that I'm 12:02 signed in here. You're going to want to 12:04 go ahead and hit create new credential 12:06 and then simply sign in with Google 12:09 right there. and you
+can go ahead and 12:12 select your calendar that you want to 12:13 book on. Do the same for the other other 12:15 Google calendar nodes. Just go ahead and 12:17 make sure you're
+signed in and you're 12:19 going to be good to go there. Do the 12:20 same for the rest of the workflows. Make 12:22 sure you just sign in to all of the 12:24 Google Calendar uh
+modules or nodes. And 12:29 then for the Google Sheets one, same 12:31 thing. Just sign into your Google Sheets 12:32 account. You can then pick whatever 12:33 Google Sheets
+document you actually want 12:35 to store information in. Now, once 12:37 you're signed in to your accounts, you 12:39 just want to come over to the web hooks, 12:42 and we have to
+drag over our web hook 12:44 URLs to Retail AI. Basically, just 12:47 connecting them. So, come into the web 12:49 hook. We'll start with the check in the 12:51 book one, and we're
+going to grab that 12:54 test URL, bring it over to retail, and 12:56 throw it into our book appointment 12:59 function API endpoint right there. 13:03 I'm going to do the same for
+the rest of 13:05 the functions. reschedule, cancel, and 13:07 the Google Sheets. So, I'll come back 13:10 out, go over to the reschedule one, copy 13:13 that URL just by clicking
+it, head into 13:15 the reschedule appointment function, and 13:17 simply paste that in and hit update. 13:20 And we're going to keep going down the 13:23 line. 13:31 Lastly, the
+Google Sheets one. 13:38 Okay, now that we have our API endpoints 13:41 all set, we're we've connected these 13:43 functions to this actual workflow. 13:48 Now, what we need to do
+is we need to 13:49 finish these functions. We need to 13:51 decide what information we're sending 13:53 over to this workflow. So, we'll start 13:56 with the book appointment one.
+We're 13:59 going to go over to the parameter 14:00 section and we're going to hit form. And 14:01 parameters is a fancy word for block of 14:05 information. We're going to hit
+add. And 14:08 the first field we're going to enter is 14:10 the start time of the appointment. So 14:13 we're just going to write start time. 14:15 And we're going to write start
+of 14:16 appointment. 14:19 And we want it formatted in ISO8601. 14:22 That's just how computers read time. 14:24 Don't ask me, but you want ISO8601 when 14:27 you're when you're
+talking about time or 14:28 you're telling a computer to work with 14:31 time. So, start of appointment and 14:34 ISO8601. Just by putting that 14:36 description in, our retail
+agent is 14:38 going to know, okay, when the caller 14:40 gives the date and time for the 14:42 appointment, take the start time. And 14:44 then we're going to do the same for the
+14:45 end time. End time. And we're going to 14:47 write end of appointment 14:50 format ISO8601. 14:52 Okay. Now, if we remember inside of the 14:56 prompt, we're also asking the
+caller for 14:58 their name, their number, and their 15:00 preferred barber. So, we want that 15:02 information carried over into the 15:04 appointment, right? Obviously. So, I'll
+15:06 come into that book appointment 15:08 function. And under the start time and 15:10 the end time, let's just do a summary 15:12 field. 15:14 And we're going to write name
+number. 15:17 And Retail will know, okay, I'll throw 15:19 the caller's name and their number into 15:21 this field. 15:22 And then for description, 15:25 actually I'm going to
+change the summary 15:27 to name and preferred barber. And then 15:31 for description, I'm going to throw a 15:33 phone number. Now, our function is 15:34 basically set up to say,
+okay, we have a 15:37 start time field, end time field, 15:38 summary, description, and this is what 15:40 goes into each of them. You can think of 15:41 these like as like columns
+inside of a 15:44 Google sheet. You have the start time 15:45 and then the start of the appointment. 15:47 And they're just going to act as 15:48 variables for every call. hit
+payload 15:51 args only and then we can update this 15:53 function and it's completely finished. 15:55 Let's now do the cancel appointment 15:57 function. So if we go down to the
+cancel 15:59 appointment flow, all we need to send is 16:02 the caller's phone number, right? Cuz 16:03 we're looking for appointments based on 16:05 the caller's phone number. So
+I'm going 16:06 to go ahead open the cancel appointment 16:08 function. Scroll down to parameters 16:10 form. We're going to hit add and I'm 16:12 going to do phone 16:15 number
+and just write number payload 16:19 args on only and update. Same thing for 16:22 the reschedule appointment flow. 16:23 Although we're going to have a little 16:24 more
+information here, right? For 16:26 rescheduling the appointment, we also 16:27 need the appointment time. So, we're 16:30 doing by number and then we're also 16:33 asking them time
+and date. So, we're 16:35 just going to do form add phone number 16:39 just like we did for cancel appointment. 16:45 And I'm going to hit add. And we're 16:46 going to do start
+time, 16:49 start of appointment, 16:51 ISO 8601, and end time, 16:56 end of appointment. 17:00 Very similar process for all of the 17:03 functions. payload args on only and we
+17:07 are all good to go. We can go ahead and 17:09 hit update. Now lastly, we have the 17:11 Google Sheets function. So we want to 17:14 pretty much organize a summary for the
+17:16 barberh shop. And this is the 17:18 information that they want brought over. 17:20 They want name, number, appointment, 17:22 specialist, and summary. So the 17:24 parameters
+are pretty much just going to 17:25 mirror these fields. So I'll come into 17:27 the Google Sheets function, 17:30 and I'm just going to again mirror 17:32 those. So, I just threw
+in name, 17:33 summary, number, appointment time, and 17:35 specialist, and the descriptions that 17:36 match. We can go ahead hit payload args 17:39 on only update, and we're all
+good to 17:41 go. Our functions are pretty much 17:42 complete now. Now, let's actually attach 17:44 a real phone number to this AI Adding Number 17:46 receptionist so that we can
+give this to 17:48 a barber shop and they can actually use 17:50 it. So, back on retail, we'll come to 17:52 the home section. And retail lets you 17:53 buy phone numbers right on
+their 17:55 platform. Come over to the phone number 17:57 section, hit the plus sign, buy a new 17:59 number, and then you can just search any 18:01 area code you want and purchase
+a phone 18:04 number. Once you have it purchased, 18:06 simply come back to the agent, come into 18:08 the come up to the top right, hit 18:10 publish, inbound phone number, and
+18:12 select that phone number that you just 18:14 bought. Hit publish. And just like that, 18:18 we have our AI receptionist live 18:20 attached to a real phone number that 18:21
+anybody can call. Another small tip so 18:24 that the business itself doesn't have to 18:25 change their phone number or anything, 18:27 you can attach this phone number to the
+18:29 business's phone number or barber shop's 18:31 phone number in this case through simple 18:32 call forwarding. Just call their 18:34 carrier, tell them to forward calls from
+18:36 their business's phone line to your 18:38 phone line. That way, nobody ever sees 18:40 your receptionist's phone number and all 18:42 calls are forwarded from the business to
+18:44 your AI receptionist. You can also set 18:46 up a bunch of features on how to 18:47 transfer calls back. If you want the AI 18:49 receptionist to only answer certain 18:51
+hours of the day after a certain amount 18:52 of rings, there's a lot of things you 18:54 can do with call forwarding. That's 18:55 another thing that makes this product so 18:57
+great. Now that our receptionist is 18:59 live, let's actually go over to Google 19:00 Calendar. We'll go into a brand new week 19:03 and I'm going to do a live test. 19:08 Thank
+you for calling Mike's Barberhop. 19:09 This is Jenna. How can [clears throat] I Test Call 19:11 help you? 19:11 Hi, I'm looking to get a haircut. Can I 19:13 uh book an
+appointment to come in? 19:16 Absolutely. I can help you with that. 19:18 Can I have your name for the 19:19 appointment? 19:20 Yeah, my name's Anthony. 19:23 Thanks, Anthony. Is
+the number you're 19:25 calling from the best one to use for the 19:27 appointment? 19:28 Yeah, this phone number works perfect. 19:31 Great. Thank you. Do you have a 19:33
+preferred barber you'd like to request 19:34 for your appointment? 19:36 Yeah, I want to see Mike. 19:39 Perfect. What day and time works best 19:41 for your appointment? 19:42 Can
+we do this Monday at 2 p.m.? 19:47 One moment while I check availability 19:48 for Monday at 2 p.m. with Mike. All set. 19:51 Your appointment at Mike's Barber Shop 19:52 is booked
+for Monday at 2 p.m. with 19:54 Mike. Is there anything else I can help 19:56 you with today? 19:57 Um, yeah. Actually, can I reschedule 19:59 that appointment to 3 p.m.? 20:04
+Sure. Let me check if 3 p.m. on Monday 20:05 is available for you. One moment, 20:07 please. All set. Your appointment at 20:09 Mike's Barber Shop is rescheduled for 20:11 Monday
+at 3 p.m. Is there anything else 20:13 I can help you with today? 20:15 Yeah. You know what? I forgot. I'm 20:17 actually bald. I have no hair. So, 20:19 cancel my appointment. I
+don't want to 20:20 come in anymore. 20:23 No problem at all, Anthony. I'll cancel 20:25 your appointment for you right now. One 20:27 moment, please. Your appointment has 20:29
+been cancelled. Is there anything else I 20:31 can help you with today? 20:32 That's going to be it. Thank you so 20:34 much. Bye-bye. So, as we can see, it 20:36 booked my
+appointment, rescheduled it, 20:37 and canceled it. And then, if we come 20:39 over to the Google Sheets, we can see 20:41 that it logged me as well. while I 20:44 booked,
+rescheduled, cancelled, and I 20:46 had no further assistance. So, there you 20:48 have it. That's how simple it can be to 20:49 create an AI receptionist for a barber 20:51 shop
+that handles all of its phone calls 20:53 around the clock. This is a great 20:55 product that you can pitch to anybody, 20:57 even your own barber. So, that's how I 20:59
+recommend you get started. Go to your 21:01 local salon or barber shop, pitch them 21:03 this product. I'm sure they're going to 21:04 thank you for it because they already 21:06
+know the pain point of having to answer 21:08 phones while cutting hair. If you want Download Build 21:11 to download the entire NAD workflow and 21:14 the actual retail AI
+receptionist, I'll 21:17 leave them available inside of my school 21:19 group. It's going to be in the template 21:20 vault and the link for my school group 21:22 will be the first
+one in the 21:23 description. Inside my school group, we 21:25 are building and selling AI 21:27 receptionists. I give you everything you 21:29 need when it comes to building,
+21:31 marketing, and even closing clients, as 21:34 well as access to not only the downloads 21:36 in this video, but the downloads from 21:39 any video I've ever created. You
+also, 21:41 most importantly, get my support 24/7 21:44 through the DMs here. You can send me a 21:46 screenshot, screen recording, message, 21:48 anything you would like, and I'll
+get 21:49 back to you within a couple hours. This 21:51 one-on-one support is specifically 21:53 tailored for building and selling AI 21:55 receptionists and getting your AI 21:57
+business off of the ground. So, if 21:58 you're serious about building and 21:59 selling AI receptionists, check out the Outro 22:01 group down below. If you found this 22:03 video
+at all helpful, please like and 22:05 subscribe. And if you want to learn a 22:07 little bit more about how to get your AI 22:08 receptionist business off the ground, 22:10 you can
+go ahead and [clears throat] 22:11 click on this full guide up here now. All From Anthony ShooshLive Demo 0:00 I just built this AI voice receptionist that can do pretty much
+anything. All of the backend automations are happening thanks to this Naden MCP server that has 0:07 seven different custom workflows that I built out in NAND. So, in today's
+video, I'm going to be showing you guys how I configured Vappy on the front end and 0:13 Naden on the back end and more importantly showing you guys how you can replicate or
+customize this system. Not 0:18 only am I giving you guys the system prompt and all the workflows that you'll see today for completely free, I'm also chucking in this 15-page
+resource guide 0:24 that walks through the entire configuration and pretty much everything that you need to know about this system. So let's hop into a live demo and then 0:30
+let's walk through the build. All right, so on the lefth hand side we have Vappy. This is Kylie, our Hercules detailing AI receptionist. And on the right hand side 0:36 we have our
+MCP server with these seven custom workflows that we built out in Naden. So before we give Kylie a call, 0:42 I'm going to pull up the calendar on the lefth hand side and the CRM
+on the right hand side so that we can see all of this updating and happening in real time. 0:48 We're going to do two scenarios. I'm going to call in as a new user and have an
+account created and book an appointment. And then I'm going to call 0:54 back and I'm going to ask if I can change that appointment. All right. So, we're gonna go ahead and give
+Kylie a ring and we'll see how this works. 1:00 Hi, this is Kylie with Hercules Detailing. Can I please have your email so I can look you up in the system? 1:07 Yeah, I'm actually
+a new caller, so I won't be in the system. Welcome. Super glad you called Hercules 1:13 Detailing today. Uh, all I need is your email address, your full name, and phone number to
+get you set up. Just let me 1:19 know those details. Don't worry, I'll confirm them with you so we get everything perfect. Go ahead whenever 1:24 you're ready. Sure. Yeah, my email
+is nateample.com. My name is Nate Herk. That's spelled 1:30 with a K at the end. And then my phone number is 3334445678. 1:38 Awesome. Thanks for that, Nate. Just to confirm, your
+email is nateample.com. 1:44 Your full name is Natek with a K at the end and phone number is 3334445678. 1:51 Right? If that all looks good to you, give me one second to send that
+in and get your profile set up. 1:57 All set, Nate. You're officially in our system. Super easy. Now, what can I help 2:03 you with today? Are you looking to book an appointment?
+Have a question. Or is there anything else on your mind? 2:10 Yeah, I'm just looking to schedule an interior detailing for tomorrow. 2:15 Great choice. Interior detailing will have
+your car feeling fresh. Just give 2:21 me one second and I'll check our availability for tomorrow real quick and let you know what times are open. 2:29 Sounds good. Okay, here's
+the scoop. All right, here's what tomorrow looks like. We do have some time slots already 2:36 taken. One in the morning from 10:15 to 11:15 and another from 2 to 3, but every 2:42
+other hourlong slot during the day is open. Just letting you know what time you'd like to come in for your interior 2:48 detailing. Appointments last one hour. So you can pick any
+time slot outside of the 10:15 2:55 11:15 and two three windows. What works best 3:00 for you? Yeah, let's do an 8 a.m. slot. Give me one second to process that for 3:07 you. 3:13
+All right, Nate, you're all set for an interior detailing appointment tomorrow at 8 a.m. Your spot is reserved and 3:20 ready to go. If you need to change anything or have any
+questions about your appointment or our services, 3:25 seriously, just let me know. Anything else you'd like help with? Nope, that's it. Thank you so much. 3:31 Sweet. All right,
+so just had to hang up on her there. So, we can see that all that updated in real time. And if I now go to 3:37 the call log, if we just give this a sec, this should trigger over a
+summary of the call, as you can see, as well as 3:43 the outcome, which was appointment got booked. And the summary was that we set up an account. And now we've booked in 3:49 an
+appointment for 8 a.m. So now we're going to run another example where I call in and I ask if I can move this appointment. So I'm going to go ahead 3:55 and give Kylie another
+ring. Hi, this is Kylie with Hercules 4:00 Detailing. Can I please have your email so I can look you up in the system? Yeah, it's nateample.com. 4:09 Awesome. Thanks, Nate. Let me
+check on that real quick and see what we've got for you in the system. Just give me a 4:15 sec. All right, Nate. Looks like I found you. Welcome back. What can I help with 4:21
+today? Yeah, I just want to actually move my appointment. I was going to see if I could just bump it an hour later. 4:29 Cool. No problem at all. Let me check on that real quick so
+we don't double book anyone. 4:36 I want to see what's available for you around that time. Give me just a second. 4:42 All right, Nate, here's the scoop. After bumping your
+appointment an hour later to 9:00 a.m., it looks like that time is 4:47 totally open for you. No conflicts at all in the calendar, so you're in the clear. Um, just to confirm,
+you're 4:55 moving your interior detailing appointment, right? Ready for me to update it to 9:00 a.m. for you? Let me 5:01 know. and I'll get it all sorted out. Yeah, that's
+perfect. Let's go ahead and do it. 5:06 Give me one sec to process that for you. 5:16 Boom. It's done. Your interior detailing appointment is now officially moved to December 7th
+at 9:00 a.m. and it'll run 5:23 until 10:00 a.m. You're all set. Anything else you want to update or ask about while I got you online? Nope, 5:30 that's it. Thank you so much for
+your help today. You got it, Nate. Thanks for call. All right, hang up on her again. And now 5:36 let's just give it one sec and we will see that that call comes in and it should
+say that everything was updated. As you can see, there we go. We just got 5:43 that call log and we can see the outcome here was that the appointment got rescheduled. And once
+again, in the appointment log, we can see under the 5:49 notes that this appointment was moved to 9:00 a.m. instead. All right, so now that you guys have seen a live demo or 5:54
+maybe I guess heard a live demo, let's jump into how I went about building this thing from completely scratch. All Voice AI Transparency 6:00 right, so I'm sitting here editing
+this and I just wanted to say something really quick. The idea of these systems is to make them as good as possible so 6:06 you can make the experience for the caller as good as
+possible. But I still think that the AI systems, whether 6:12 that's inbound or outbound, should start off the conversation by saying, "Hey, I am Kylie, an AI assistant for
+Hercules 6:17 Detailing." because it'll just never be perfect, you know, with interruptions or with like little just kind of etiquette 6:23 things. So, I think that you should
+always have an AI caller tell the human 6:28 that, hey, I'm an AI caller. But anyways, let's get back to the video. All right, so in a voice agent, there's really two main pieces.
+You've got the High Level Breakdown & Wireframe 6:34 front end, which is like the voice AI, and you configure it in something like Vappy, which is what we're doing here 6:39 today.
+And then you have the back end, which are some of the actual automations that are taking place. And as you guys know, we're using these seven edited 6:45 workflows that are being
+communicated to Vappy with this MCP server trigger. So, if you've never heard of Vappy before or 6:51 the idea of a voice agent is very foreign to you, then I would definitely
+recommend checking out this video, which is kind of a prerequisite. It's like a 6:57 40-minute full beginner's guide, and then hop into this video. So, I'll tag that right up
+there. So, I'm going to break down with you guys exactly how I 7:04 went ahead and built this and how you should go ahead and think about building a voice agent system. And it all

@@ -1,0 +1,224 @@
+want to use the URL to some external media. 11:19 And those are just two small of the many many use cases and possibilities that you have with these expressions because 11:26
+whenever you edit an expression, you can see down here there's this text tip. Anything inside the expression is 11:32 JavaScript. This means inside of these expressions, you can
+use the full power of JavaScript. And the cool thing is you 11:39 don't even have to know how JavaScript works. You just have to know this very small part of JavaScript which are
+the 11:44 expressions. And in case you are interested in learning more about these expressions and more about these technical aspects of NAN, then feel free 11:52 to check out my
+course that I've created called technical NAN simplified. In that course, I basically teach you all of the 11:59 technical aspects of NAND completely from the ground up including
+expressions. So if you're interested in 12:04 that, I'll put a link in the video description. Tip number 11, data search. If you have a note and some input or 11 Data search 12:11
+output data that is very complex. So for example, here I get some posts from Reddit and you can see there is a huge 12:19 amount of fields in this data item and it's quite
+convoluted and it's really hard to see what's going on. And let's 12:25 say I need to find an ID field because I want to add the ID inside of here. Then 12:31 obviously I can start
+and scroll down this page and hope that I will eventually run into the ID field by 12:37 accident. But what you can do instead you can just click on this search icon here and then
+search for whatever you 12:43 want to find and then n will highlight this search term anywhere it occurs in your data. So let's see the ID. There it 12:51 is. It is highlighted ID
+and then I can drag it here into this field. And this obviously also works in table mode. So 12:57 if you search something here, let's say I search for NAN, you can see then it
+highlights that search term wherever it 13:05 finds it. And the same holds true for the JSON view. Tip number 12, human in the loop. This is also one of my 12 Human in the loop
+13:11 favorites. A lot of people don't know that actually in NAN you can make your AI results absolutely perfect. I mean 13:19 100% perfect. And that is by using a note from this
+category called human in 13:25 the loop. And it then describes it at wait for approval or human input before continuing. If I click on that, you can 13:32 see it opens up all of
+these chat applications like Telegram, WhatsApp, Gmail, Discord and so on so forth. And 13:38 basically the way this works is you can use any of these chat applications and make
+your automation ask you for 13:44 approval before it can continue. So it will send you an approval request on any of these platforms here and only once 13:51 you approve then the
+automation will continue and if you reject then the automation will stop. So let's have a 13:58 look at a really interesting example here. Um right here I have this AI node 14:04
+and the task of this AI node is as follows. So it's using claude set in the 14:09 background and here the system prompt is you are an expert at writing controversial Twitter posts
+to create 14:15 maximum engagement. I will provide you with a subtopic of digital marketing and you have to write an extremely 14:22 provocative and controversial tweet. Only write
+a single post not multiple posts and so on so forth. So the task of 14:29 this note is to write an extremely controversial tweet because these posts usually tend to perform quite
+well and 14:36 get a lot of engagement. However, the problem is sometimes they can be a little too controversial and too pro 14:42 provocative. So uh let's run an example. I up
+here in the user prompt I have to enter the topic of the post. In this 14:48 case I wrote LinkedIn content marketing and let's execute this step. Okay, let's 14:53 see what it
+generated. LinkedIn thought leaders posting the same recycled motivational garbage every day aren't 14:59 marketers. They are digital parasites feeding off algorithm dopamine while
+adding zero actual value to anyone's 15:06 professional life. So as you can see it is quite controversial and very provocative and it might be a little too 15:12 controversial and
+provocative and that is why in the next step I've added this human in the loop ask for approval note 15:19 with telegram and the operation it uses here is send and wait for
+response. This is basically the operation you get when 15:25 you select telegram here from the human in the loop category. And then here I defined a message. In this case, it only
+15:32 asks me if I want to approve this new Twitter post. And then the text of the generated post. And let's execute this. 15:40 So I'm going to pin this post here and execute the
+workflow. And maybe you heard it. I already received a message 15:46 on Telegram. And you can see right now the workflow is still executing. This uh 15:52 circle is still spinning
+and it is just waiting now for my approval. 15:57 So let's go to Telegram. I received this message. Do you want to approve this new Twitter post? And then the post it 16:04
+generated. In this case, I think it's too provocative. So I'm going to decline it. 16:11 Okay. And back inside NN, you can see it received some data with approved set to 16:18
+false. And then in the next step, I just added a filter note that removes all posts that I 16:26 disapprove, that I reject. And only those posts where I approve, where approve is
+set to true, they are 16:31 actually sent to Twitter. And this is such a great way to give your AI full autonomy while still remaining in full 16:38 control of the output quality.
+Tip number 13, start to learn rack as soon 13 RAG 16:43 as possible. Rack stands for retrieval augmented generation and this is just a 16:48 fancy term which basically means that
+you provide data to the AI that it has 16:54 not been trained on. So that could be some relevant examples that you want to provide to the AI or some parts of a PDF 17:01 document
+things like that. And the reason why it makes the AI so much better is these AI models that we're 17:08 using for our automations they have gotten really really smart. However, if
+there they have not been trained on a 17:14 specific use case or if they do not know something, they cannot give you a great result. But if you provide the data, the 17:21
+necessary examples or information to them, then they will give you an excellent result. A lot of people are 17:26 quite intimidated by rack because usually involves vector
+databases. However, it is not really that 17:32 difficult. And if you're interested in learning how to set up your own rack systems, then subscribe to this YouTube 17:39 channel
+right now because that's one of the next videos I'm going to upload here on this channel. And when you subscribe, 17:44 you're going to be notified. Tip number 14, do not overuse
+AI agents. A lot of 14 Don't overuse agents 17:49 people that are new to Nadn, they discover it and want to use it because they've heard how amazing these AI 17:55 agents here are.
+And yes, they are absolutely amazing. they you can give them a lot of autonomy and in my opinion 18:02 they can be quite revolutionary. However, you should not underestimate the
+traditional way of running AI 18:07 automations and that is in this sequential execution order. So for example, here I have such a trai 18:13 traditional AI automation and
+essentially just contains three straightforward AI text prompts. So this 18:20 one, this one and this one with some logic in between. And the great 18:25 advantage with these
+sequential and traditional AI automations, you have full control over what happens. So you 18:32 can fine-tune and adjust a lot and make the AI perform a task exactly how you want
+it. And because you have so much 18:38 more control over what happens, usually your costs for these AI automations are going to be lower than a similar AI 18:45 agent. And on top
+of that, in some cases, you just have much better control of the output and thus get higher 18:51 quality results. And don't get me wrong, AI agents, they are super useful, but do
+not discount this sequential way of 18:59 building AI automations. It always depends on the use case. Tip number 15, 15 Import cURL 19:04 import curl. See, the most powerful node
+in Nadn is actually a node called the 19:09 HTTP node because the HTTP node allows you to in integrate any thirdparty 19:15 service or any thirdparty functionality even if NN has
+not built an integration 19:21 for it. And a lot of people don't know that the HTTP node is actually quite easy to use even if you do not fully 19:27 understand everything that's
+going on here because of this button up here which says import curl. See every third 19:35 party service that you can integrate in Naden has an API. So this basically means that
+your automation can access 19:42 that third-party service automatically. And in almost every documentation of thirdparty services, you're going to 19:48 find a example of how to
+send an HTTP request in this curl format. You just 19:56 have to dig through the documentation a little bit, but usually you can select different programming languages and one
+20:01 of them is going to be curl. In this case here, I'm trying to integrate something from anthropics, so some cloud 20:07 model. And now I display the request in curl format.
+And then I can just copy this without really understanding too 20:14 much of what's going on here. And back in Nadn, I just click this import curl button, paste it in here, and
+click on 20:21 import. And Nadn automatically fills out all of these different fields with the 20:26 data from this curl format. And now you're basically 80 to 90% of the way 20:31
+there and only have to make a few small adjustments to get this HTTP request to 20:36 work exactly how you want. Tip number 16, managed credentials. Sometimes in 16 Manage
+credentials 20:41 Nadn you want to integrate a service like for example I want to integrate anthropic some type of cloud sonnet 20:48 model and a text prompt and then you find out
+that naden has not implemented a certain functionality that this 20:54 application offers. So what you can do in this case you can use an HTTP request 21:00 to implement this
+functionality yourself in a custom way. However, the really cool thing is you can still have NAND 21:08 manage your credentials. So you you don't have to worry about the
+authentication and storing some 21:13 passwords or access tokens, but instead up here you can just click on authentication and then you select 21:20 predefined credential type. And
+then if Naden has an integration for it, then you can just search for it. in this 21:26 case, enthropic. And you can see it automatically loads my default anthropic credentials
+that I 21:32 can now use for the request and I don't have to worry about it and copy and paste these access tokens myself. Tip 17 Never miss updates 21:38 number 17, never miss
+important NAND updates. If you always want to stay uptodate about NADN's latest features, 21:45 then you can go to this website right here or to this link
+github.com/nadn-iio/nadn/rees. 21:55 And on this page, N8N publishes all of the new versions and all of the new updates that they have released. And 22:02 usually they release one
+new bigger version with features every single week. And you can identify these bigger 22:09 updates because the version number always ends in0. That means that this version
+includes some new features. For 22:15 example, this version was released 2 days ago. And here you can see a list of the new features that NN has added. And 22:22 obviously what you
+can also do is you can just subscribe to this YouTube channel because whenever there's going to be an important NN update, I will 22:29 make a video about it. Tip number 18, back
+up your workflows. One of the first automations that you build in Nadn 18 Backup workflows 22:36 should be a backup automation. And the way this works is NAN has a node 22:42
+called N8N. And basically this node allows NN to control itself. And one of 22:48 these actions that you can take within this node is called get many workflows. 22:54 This one
+right here. I've already added this to the automation here. And if we open this up, you can see it's quite a 23:00 simple note. And when I execute this, it gives me all of my
+workflows in the form 23:06 of JSON data. You can see it's quite a lot of data. And then in the next step, you can use that data to store it to 23:12 some type of cloud storage,
+for example, Google Drive or you could store it to some type of S3 bucket and things like 23:18 that. And this way, if anything happens with your account or especially with your
+self-hosted and an instance with 23:24 your server, then you will still have your workflows and do not have to build them from scratch again. Tip number 19, 19 Create data item
+23:30 you can use the set node of NN or also called edit fields node to create data 23:36 items in your workflow with static data. So right here for example, I've added 23:41 such
+a set node and I called it website information. And it includes two fields, one called name marketing site and one 23:49 URL example.com. And when I execute the step then this node
+returns the fields in a form of a single data item that I 23:56 can use in the rest of my automation. So right here for example I have this uptime monitoring automation that checks
+24:03 my website if it is still online or if there are some problems that I have to check. And here in all of these steps I 24:10 use the data from the set node. For example, here
+I use it to visit the URL 24:15 or here in the notification I use the name and also the URL so that when I receive this message I can click on it 24:22 and immediately see what's
+going on. Tip number 20. The only downside with this set note data approach is that it always 20 Create multiple items 24:30 creates a single data item. But let's say here for
+example I want to check multiple of my websites then this 24:36 approach would not work. But what I could do instead is I can remove this 24:42 note and instead add a code node and
+let's also call this website 24:47 information. And inside of the code note you set the mode to run once for all items language JavaScript. And then you 24:55 remove all of that
+and just type return and square brackets. So because we want 25:01 to return a list of items and then for each item you type curly brackets and 25:07 then the fields of the item.
+So one was name marketing website, 25:14 URL example.com. And now I can copy this and with a comma 25:21 in between paste this multiple times and this will generate me multiple
+data items. So for example, this one I could 25:28 call documentation website and this one I call support website. 25:36 Let's execute this. And you can see here I get the data
+items as a result and I 25:42 get three items this time. And this means the rest of the automation will now also execute multiple times 25:48 depending on how many output items we
+get here. Tip number 21, multicursor. 21 Multi-cursor 25:54 And a lot of people do not know that in N8N inside of the code node you can do 25:59 the following. So you click
+somewhere and then you have a cursor placed and then you hold your option key on Mac or 26:05 your alt key on Windows and then when you click somewhere else then this creates a
+second cursor and if you click 26:12 again it creates another cursor and this way you can have a multicursor and can edit text in multiple places at the same 26:20 time. For
+example, I could turn website or name into website name. 26:25 And there's a second way how you can do this. If you select a piece of text, for example, URL, and then hit command D
+on 26:34 Mac or control D on Windows, then this will select the next occurrence of that 26:39 piece of text. And if you hit it multiple times, it will select all of the occurrences
+of that text. And then 26:45 you can also do the same thing and edit this occurrence in all places at the same time. Tip number 22, AI 22 AI Pre-Filter 26:52 prefiltering. A lot of
+people that want to build AI automations in NN, they want to use the 26:58 best and the most intelligent models. And that is a good idea if you want to build the best AI
+automations. The 27:04 problem however is these intelligent models, they can be really expensive. And to reduce the cost while keeping the 27:11 quality extremely high, what you
+can do is you can use the so-called prefiltering method. And the way 27:17 pre-filtering works is in between your input and your expensive AI operation 27:22 with the intelligent
+model, you put another AI operation and that is an AI 27:28 prefilter. And this operation uses a much much cheaper model. In this case, I 27:34 use Google Gemini 2.5 flashlight.
+Super cheap and efficient model. And the task 27:39 of this prefilter step is to remove 70 to 90% of the input that is obviously 27:45 not relevant and only keep the last 10 to 30%
+of hardest input and only this is 27:52 then passed on to the more expensive more intelligent model and thus it has much less work to do and you save a lot 27:58 of money. If you
+are interested in a more detailed tutorial on how pre-filtering works, I've actually 28:03 recorded a video about this a few days ago and I will show it here on the screen right
+now and you can watch it 28:09 and learn more about this technique. Tip number 23. You can use the set node, the 23 Simplify data 28:14 edit fields node to simplify data. So right
+here in this workflow, I get some 28:20 articles from a news website. And as you may be able to see, the response data is 28:26 very big and very convoluted with lots of different
+pieces of data, most of which I actually don't really need. And 28:33 to solve this issue and make the data much more clear, what I did after this 28:39 article step where I get
+the latest post from the news website, I added a set 28:44 note. And in this set note, I extract the most important content from this 28:50 input data. in this case the title, the
+URL, the text of the post and the author and only return that as part of my data. 28:57 And if we look at the output data here, you can see it is much easier to see what is going
+on. It is much more clear 29:04 and also this makes it so much easier to work with the data later in the next steps of our automation. Tip number 24, 24 Execution logs 29:12 learn
+to read the execution logs. If you want to analyze your workflows and see if everything works as expected, for 29:18 example, if your AI does what it is supposed to do, then
+obviously you can open up the individual nodes and look at 29:25 the input and the output data and then you can close it and then go to the next node. Look at here at the data and
+to 29:31 the next node and so on so forth. But this is not super efficient. What you can do instead down here, you can click 29:38 on this bar or on this up arrow here. And this
+opens up the execution logs. 29:45 And this is basically a much more compressed and quicker to use overview 29:50 of all of your execution data. Here on the right side, you can
+activate the input and output data. And then you can 29:57 very quickly switch between all of the different nodes and immediately see both the input and the output data right next
+30:02 to each other. Super useful. And here the same as inside of the node window you can also switch between the schema 30:10 the table and the JSON data view. So if I switch this
+to table for example then you could use the trick that we 30:17 discussed today tip number eight the page size equals one trick. You could use that in combination with 30:24 these
+execution logs. And this way you can go through the data really quickly and see if everything works as expected 30:30 or if you still have to make changes somewhere. Tip number 25,
+the configuration note. Most of the times 25 Configuration node 30:36 when you set up a workflow, if you think about it, the settings or the configuration of that workflow is
+spread 30:43 all over the different nodes. For example, in this first node, I have set a limit for the maximum amount of posts 30:49 that I want to retrieve that could be counted
+as a setting. So the limit of the posts or here in this AI block, I 30:57 have defined the response format that I want the AI to return. That is also another setting. Or here in
+this 31:02 telegram node, I've also determined which chat ID the notification should be sent to. So what you can do instead, you 31:09 can create a new node and you're going to add
+this node as the second node in your workflow behind the trigger and you 31:16 use a set node for that. And then here you just define all of your settings as 31:21 individual
+fields. And this note we call it config I usually call it or configuration. And then we can start to 31:27 define our settings. So for example, the first one was maximum amount of
+posts that we want to retrieve number 10. Then 31:36 the AI response format was this one 31:42 right here. And the Telegram chat ID where I want to send the notification to 31:47
+is this ID here. And now what I've done is I've extracted all of the important 31:52 settings and configuration of this workflow and put it into this single node. I can then go
+inside of all of 31:58 these nodes and replace the hard-coded values with my settings. So instead of writing the 10 here, the limit, I pull 32:04 whatever number is set in the
+configuration note. Then we do the same thing for our AI block with the response 32:10 format, I don't hardcode it here anymore, but instead I go to the configuration node and pull
+in the AI 32:17 response format from there. And the same with the Telegram chat ID, I just pull in the Telegram chat ID from the 32:23 configuration node as well. And now my
+automation works exactly the same except all of my settings are in this single 32:29 node. And this has the great advantage that first of all I can quickly make changes and test
+out different things 32:35 because I only have to make the edits in a single place. But also if I make changes to my workflow settings in this 32:42 node, I can be confident that
+the changes have been made in all of the places. Whereas if I spread my settings 32:48 across all my different nodes, then sometimes it can happen I make a change somewhere but I
+forget to make the 32:54 change in all necessary nodes and then my workflow will no longer work as expected. Tip number 26, load execution 26 Load execution data 33:01 data. If you
+want to make changes to your automation, but currently you don't have any execution data available in 33:08 your notes, then you don't have to execute your workflow again, but
+instead you can just click up here on executions 33:14 and there you have a list of all of your previous executions. And here you can select one and then click on copy to 33:21
+editor and then this will paste the execution data into your workflow and you can start to make your changes based 33:27 on that loaded execution data. Tip number 27, copy JSON.
+Sometimes you 27 Copy JSON 33:33 might need to use your execution data and bring it over into another application. For example, if you want to 33:39 run an AI prompt based on the
+execution data or want to do some analysis of it, 33:44 then what you can do is up here you just switch the view from schema to JSON. So display the data in JSON view. And then
+33:51 when you hover over the data, you get this copy icon. And then with that copy icon, you can click it. And then you can 33:58 go for example to chat GPD and paste it as part
+of your prompt. Tip number 28, 28 Name your nodes 34:03 name your workflows. And this is one of the most important tips to keep your automations organized. So for example, 34:10 if
+I want to add a new node between these two nodes here, let's say a filter node. A lot of people would just add 34:16 this filter node, then set up some type of filtering condition,
+and then just leave it as it is. So with the name 34:22 filter. But this is not a good name. All of these default names usually are really bad because filter what what does 34:29
+that mean? It means absolutely nothing. Instead, what you should do is you should name your nodes in a way that by 34:35 looking at that name, you should be immediately be able to
+tell what this note does. So in this case, the task of 34:43 this filter is to remove all of the nonrelevant articles. So what I'm going 34:49 to do here, I'm going to call this
+remove nonrelevant articles. 34:54 And then when I come back to this automation in a few weeks or even in a few months, I look at it and then I 35:00 immediately see what's going
+on. Tip number 29. When you are testing your automations, a lot of times you receive 29 Limit test data 35:06 much more data than you need for your test purposes. So for example,
+here I pull the latest 50 articles from a news 35:13 website. And that is important later for the live version of this automation. But during testing, I do not need the latest
+35:20 50 articles. For example, three articles would be more than enough. So what you can do is after you pull in your data 35:26 from some external service, you put a limit note
+here inside of your workflow 35:31 and then for example in my case restricted to a maximum of three items. And this way when I execute this now 35:38 this executes much quicker
+because it only has to go through three items which is more than enough for test purposes. 35:44 But the really cool thing about the limit node is that it does not affect the data
+structure of your workflow. So 35:49 it passes through whatever items it receives, the only thing that it changes is it limits the amount of items. And 35:57 that means once you're
+finished testing your workflow, you can just remove the limit note. And that's all the changes 36:04 that you have to make. Tip number 30. If you split up your workflow into
+multiple subworkflows, 30 Open sub-workflow 36:10 then if you want to open this subworkflow to see what's going on or you want to make some changes inside of 36:16 it, then you
+don't have to open it up manually, but instead you just find your subworkflow note. Then you hold your 36:22 command key on Mac or your control key on Windows and then you
+doubleclick it 36:27 and then it automatically opens up in a new tab where you can have a look at it or make the necessary changes. Tip 31 AI spending limits 36:34 number 31,
+always set spending limits for every AI provider that you use. So 36:40 most of the big AI providers, like for example here, I I have Anthropic, they allow you to set a monthly
+spending 36:46 limit. And that means if you have some type of mistake or some type of bug in your automation and suddenly your 36:52 automation executes a thousand times, then with
+a spending limit, you are not 36:58 going to run into a huge surprise bill. But instead, once once it reaches $50, 37:03 it will just stop executing. And I don't know how you feel
+about it, but after setting up these spending limits, I felt 37:10 so much more confident in trying out new things and making some changes in my automations and running small 37:15
+experiments because I don't have to be worried about running into a huge surprise bill. Tip number 32, AI is more 32 Beyond text prompts 37:22 than just text prompts. So in the
+beginning when I started with the AI automations I mostly used open AIS or 37:29 Google Geminis's message a model action or the AI agent node where basically you 37:35 just send a
+text prompt to an AI and you get a text prompt back. But AI is so much more than just text. For example, 37:42 if we have a look at all of the actions that we can take inside of
+this Google Gemini note. Yes, we have this text 37:47 action message a model but there are also other functionalities like analyze a video. You can have the AI literally 37:54
+watch a video and analyze it for you. Or you can generate a video or analyze an image or a document, transcribe a 38:01 recording. There's so much more to AI than just the basic
+text prompts or the textbased AI agents. And I encourage you 38:08 to have a look at all of these other advanced functionalities. Tip number 33, the dot notation. Inside of the set
+33 Dot notation 38:16 note, you can group related fields together. So for example here in this case I extract the important data from a 38:23 news article from a news post and it
+contains a field called title URL text 38:29 and author but in my opinion the fields title URL and text kind of belong 38:35 together in a group because they all represent some
+aspect of the content of that article and inside the set node you 38:41 can just prefix a field name with a prefix name. In this case, I choose content and then dot that's why it's
+38:49 called dot notation. So content.title, content, 38:54 content dot URL and content.ext. And if I execute this again now, you can 39:01 see these three fields title, URL, and
+text are now grouped within a separate 39:07 object called content. And this makes it much easier to look at, but also it's now really obvious which of these data 39:13 fields
+belong closer together. Tip number 34, item linking. If you want to be good at building NAT and automations, 34 Item linking 39:20 you have to fully understand the concept of item
+linking. And item linking basically refers to the concept that 39:27 whenever the data items here are passed through the automation, every data item 39:33 has a parent data item
+and that has another parent item and that has another parent item, another parent item and so 39:39 on so forth until you're back at the beginning of the workflow. And whenever in
+Nadn you reference data from a 39:46 previous step that has more than a single item then item linking or the item linking concept becomes really 39:53 important because somehow NAN
+has to determine for example if in this step you reference data from this post info 39:59 step. Somehow NAN has to determine which of these 10 items that this post info 40:05 step
+output should it use. Tip number 35. And then I'm going to also give you a cool little bonus tip. Uh tip number 35 Alternative table apps 40:13 35 is look at alternative table
+applications. A lot of people use Google 40:19 Sheets in Naden and it's one of the most popular integrations and it's not a bad application but in my opinion it's also 40:26 not
+really userfriendly. A lot of people use Google Sheets because it is free and it is very popular. And ever since I 40:34 started to use air table as the database for my automations
+instead of Google Sheets, um I'm looking much more forward 40:41 to working with these ta with this tablebased data because it's just so much easier and so much more fun to use.
+40:47 And obviously air table is a paid application or I mean it has a free plan but only a very small one. But what you 40:53 can do instead if you don't want to pay for air
+table, you can also use these self-hosted tablebased applications like 41:00 base row, no codeb or c table. You can self-host them in a very similar way as 41:06 you would
+self-host nadn. And this way you can store an unlimited amount of data without paying for a subscription 41:12 while still using a really userfriendly table application. Okay. And
+now I'm going to give you my small little bonus Bonus tip 41:18 tip at the end. But before I do that, please don't forget to like this video if you enjoyed this content today 41:24
+because that signals to me that I should produce more videos just like this. Okay. And now to the bonus tip. If you 41:31 want to use data inside of a set node from a previous step
+that you just want 41:37 to pass on completely without changes, then you don't have to click on add 41:42 field here. Then write the name uh of the field and then pull in the value
+of 41:48 the field. But what you can do instead, you can just pull in the value directly into 41:54 this area. Then it turns green. You drop it and then it automatically adds this
+field with the correct name and the 42:00 correct expression which references the data from the previous step. 42:06 Okay, thank you for tuning in. My name is Mike. I wish you a
+great day. Bye. All From the seriesIntro 0:00 In this video, I'm going to show you 0:01 everything you need to know if you're 0:03 trying to build AI voice agents using 0:06 Retail
+AI. I've been using Retail AI 0:09 every single day for almost a year. So, 0:11 there's nobody better that can give you 0:13 this tutorial that I'm about to show you 0:16 now. I
+will say I'm going to try to go 0:17 quick to cover everything in a short 0:19 span of time. So, try to follow along 0:22 and take out a notepad if necessary. So, Pricing 0:25
+first things first, pricing. Using 0:27 retail is going to cost you nothing 0:30 because they offer a pay as you go plan. 0:32 You only pay for time that you spend 0:34 actually
+talking to your AI 0:36 receptionist. So whether that's testing 0:38 or somebody's actually calling your your 0:40 AI voice agent or it's making phone 0:42 calls whenever it's live
+is when you'll 0:45 be getting charged. 0:47 So we logged in in the top right. If you 0:48 don't have an account, make sure to make 0:50 one. I'll leave a link to retail down in
+0:52 the description if you need to still 0:54 sign up. Now, here's the main dashboard Dashboard 0:57 you're going to get brought to. It 0:58 automatically throws you into the
+agent 1:00 section. Here are all the agents that 1:02 I've already uh built before. And then 1:05 it organizes them into nice folders for 1:07 you as well. Under the agent section,
+we 1:09 have a bunch of other sections that play 1:11 into uh your agents. We're going to go 1:14 ahead and we're going to create one and 1:16 I'm going to show you just the basics
+of 1:17 creating an AI voice agent. Um, and then 1:20 I'll show you we'll do a brief overview 1:22 of how these sections play into your 1:25 finished AI voice agent. So to create
+1:27 one, top right, create an agent. If Creating Agent 1:30 you're creating a voice agent, obviously 1:31 select voice agent. And then you have 1:33 four options here. The only
+two you 1:35 should ever look at are single prompt or 1:36 conversational flow. If you're creating 1:38 an AI receptionist, one that receives 1:40 phone calls, go with single
+prompt. If 1:42 you're making an AI voice agent that 1:44 makes phone calls outbound, go ahead and 1:47 select conversational flow. I always 1:50 start from blank. You can mess
+around 1:51 with their templates if you want to. 1:54 Now, once inside of the AI agent 1:57 dashboard, you're going to see we have 1:58 three sections. We have a prompting 2:01
+section. This whole left side is pretty 2:03 much about prompting. We have the 2:05 settings and functions section and then 2:07 we have the testing section. Like I 2:09 said,
+testing is going to incur pricing, 2:11 going to incur charges if you use it. 2:15 The prompt is the backbone of the entire 2:17 AI voice agent. I'll show you guys a 2:19 quick
+trick for configuring your prompt. Prompting 2:22 You want the prompt to be configured to 2:25 tell the AI voice agent who it is and 2:27 what it's doing. And I have a sweet 2:29
+little gift for you guys that you can 2:31 come on to chatt and use. It's free. 2:33 Just go to explore GPTs on chat GPT and 2:36 search my uh GPT and you'll see it come 2:41 up if
+it wants to load. Okay, prompt NKB 2:44 GPT. Hit start chat and you can go ahead 2:47 and tell it to create. I've configured 2:49 this GPT to create the perfect prompt 2:52 every
+time. All you have to do is tell 2:54 it create me a prompt and plug in 2:57 whatever business. So, let's go with 2:59 Mike's Dental. and it'll go ahead and 3:01 it'll draft up a
+perfect prompt that's 3:04 capable of transferring phone calls, 3:06 checking availability on a calendar, and 3:08 booking appointments on a calendar. Here 3:09 we go. So, we have
+like a a RO section. 3:11 We're telling the AI you help callers, 3:12 critical rules, things to do throughout 3:14 the call. We have a knowledgebased 3:16 section telling it can
+answer questions 3:17 on the business by using the knowledge 3:19 base, which we haven't added yet. 3:21 Appointment booking, how to do 3:22 appointments, how to transfer calls
+3:24 whenever somebody wants to talk to a 3:25 live person or the AI can't help. 3:28 example dialogue just for context and 3:29 then how to close phone calls. So we'll 3:31 go
+ahead and we'll copy that. You can 3:33 bring that into Retail AI and just go 3:35 ahead and paste that in. That's your 3:37 prompt taken care of. You want your 3:38 prompt to
+connect to your functions, Functions 3:40 right? So create functions. Retail has a 3:43 bunch of different native functions 3:44 here. The most important ones are end 3:46 call,
+which Retail already makes for 3:47 you. Uh call transfer. This is how you 3:51 can transfer calls wherever you want. So 3:53 select call transfer and then just plug 3:55 in any
+phone number um wherever you want 3:58 the calls transferred to and then make 3:59 sure to prompt the agent to when to call 4:01 that tool. Right? So if you select call 4:03
+transfer 4:05 then you want to say something like like 4:07 this rule if the caller mentions an 4:09 emergency invoke transfer call. So in 4:13 that case, if the caller says, "Oh,
+like 4:14 I'm I'm bleeding." The a the AI Calendars 4:17 receptionist, the AI agent's going to 4:19 transfer the call to whatever number you 4:21 plug in. Right here, you have a
+bunch of 4:24 uh you have two calendar functions. So 4:26 check availability and book appointment 4:27 on Cal.com. Retail has chosen Cal.com 4:30 because Cal.com is a bridge to
+other 4:32 calendars. It's not necessarily its own 4:34 calendar. 4:36 It connects to calendars and you'll 4:38 notice that when you're signing up. So 4:40 just go to cal.com, sign
+up. K.com's 4:42 also free. And then you'll see this 4:44 page. It tells you connect your 4:45 calendar. You see? So, you get to 4:47 connect. This is convenient because you 4:49
+can connect any calendar you want. If 4:50 you have the business's uh calendar 4:52 information, their username and 4:54 password, you can sign into the 4:55 business's let's say
+you're building for 4:56 a business, you can sign into their 4:58 calendar right here. And then that will 5:00 connect this function will connect your 5:03 AI your AI voice agent
+to cal.com. And 5:06 cal.com is obviously connected to that 5:08 calendar that you signed in with, right? 5:10 Um you have send SMS. You can select 5:13 that if you want to send
+text messages 5:14 from your agent. Custom function. This 5:16 is for connecting to uh things like uh 5:19 NAND or Zapier workflow platforms where 5:22 you want to do more advanced
+workflows. 5:25 Knowledgebased section. This is where 5:27 you can add um a block of information Knowledge Base 5:30 regarding the business's uh I guess 5:32 information, right?
+So, if you want the 5:34 AI voice agent to know how to answer 5:37 questions based on the business's hours, 5:40 the services, their pricing, stuff like 5:43 that, like regular
+business information, 5:45 throw inside of a knowledge base by 5:47 hitting add, add new knowledge base 5:52 and then add documents and hit add text. 5:54 And then you just want to
+throw in like 5:56 pricing, you know, whatever. You can 5:59 also have the chat the GPT configure 6:02 that for you because it's a it's a 6:04 prompt and knowledgebased GPT. So
+once 6:07 you have that configured, 6:10 you can just simply add that by heading 6:12 into the agent 6:15 and going over to knowledgebase, hitting 6:17 add, and selecting that KB
+right that 6:20 you just configured. Speech settings. Settings 6:23 Retail does a great job at configuring 6:24 speech settings for you. Uh I would go 6:27 backgrounds. These are

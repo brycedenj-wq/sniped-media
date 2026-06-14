@@ -1,0 +1,224 @@
+this is on the 25:39 port 203 so you're going to want to put 25:41 your IP address for the machine that's 25:43 running engine X proxy manager and I'm 25:46 aliasing it so if I
+didn't have this 25:48 already you just click on Alias and do 25:51 this to the root of the domain name that 25:54 you added is hopkey and here if you 25:56 really wanted to you
+can set up certain 25:59 ports right now I just have it allow all 26:01 I'm the only one that has access to this 26:03 but if you had a machine or IP with 26:05 multiple services
+and you wanted certain 26:07 groups of users to be able to only 26:08 access specific Services you could set 26:11 Port restrictions to specific groups 26:13 it's beautiful so I'm
+going to hit 26:15 update resource and there we go we could 26:17 see it's online with uh twin gate 26:19 connected here you can see the Alias of 26:21 hopkey Donnet and I head on
+over to 26:25 proxmox hop. net you can see I'm not 26:27 currently connecting to any network it 26:29 is working great we can see the little 26:32 lock there it's encrypted let's
+just log 26:34 in real fast log 26:37 in and there we go we are now on the 26:40 external web uh navigating my local IP 26:43 address absolutely beautiful and just My Setup n' Tips
+26:46 like that it is the next day I have had 26:48 some time to go through and add 26:50 basically all the services that I 26:51 currently have spun up to this engine X 26:53
+proxy manager right here and I have 26:56 quite a few of them you can see 19 26:58 different proxy hosts for example I have 27:01 Docker hop. net which this links to the 27:03
+actual uh protainer or painer instance 27:06 that the uh proxy is running on as that 27:09 is our local but I went ahead and added 27:11 the um instances of porer of all my 27:14
+other Docker machines or virtual 27:16 machines here so then I can manage a 27:18 wide variety of containers you can see 27:19 18 here 7 5 11 five I have a lot of 27:23 different
+things running I also got home 27:24 assistant here working and again a lot 27:26 of these do require some special little 27:28 configurations to get it to work so for 27:30
+example if I do head over to home 27:32 assistant within the file editor I 27:34 needed to go over to the configuration 27:37 yaml file and add HTTP use x Ford for 27:42 True
+trusted proxies and then the actual 27:44 IP of that proxy you see we have fret 27:47 that's the home assistant we have image 27:50 we have the jelly one we just created 27:52 lar
+NC nzb get udoo which I'm kind of 27:56 testing and playing around with here you 27:58 could see it's working fine a lot of 28:00 these didn't require any special 28:01
+configurations one thing I will note is 28:03 with these uh sonar radar and all those 28:06 I really wanted to set it up in a scheme 28:08 where it was r. hop. net radar and put
+28:13 all of those under the same subdomain 28:15 but it just wasn't working for me that 28:17 would have been really nice to use the 28:19 custom location for all of those so I
+28:20 didn't have 19 proxy hosts so if you do 28:23 know how to get that working I would 28:25 absolutely love to know I think torrent 28:28 hopkey was another one I needed to add
+28:29 some custom variables here just Googling 28:32 found these proxy read timeout 120 28:35 redirect off Max size 100 and 28:38 beautifully all these hopkey Donnet 28:40 domains
+are accessible if I travel over 28:43 uh to it via twin gate if I'm on some 28:46 remote connection so that is great for 28:48 the public domains I am going to work on 28:50 trying
+to find a way to hide my IP I 28:52 know there are various different methods 28:54 to go ahead and do that because for the 28:56 file and media streaming um Cloud flare 28:59 is
+not a fan of that so if you know of a 29:01 good way please also let me know down 29:03 below or any other tips and tricks or 29:05 anything I could have missed so with all 29:07
+that I do hope you have an absolutely 29:09 beautiful day and goodbye All From the series From TechHut How to set a custom domain name with 0:02 Google Sites. Let's get started.
+What's 0:04 up everybody? My name is David. I hope 0:05 you're having a great day. So, what's so 0:07 great about Google Sites is that they 0:09 don't content lock the ability to
+set a 0:11 custom domain name like other platforms. 0:13 For example, like WordPress.com allows 0:15 you to build a website, but your 0:17 website's going to be my 0:18
+website.wordpress.com. And if you want 0:20 to set a custom domain name like 0:21 mybsite.com, 0:22 well, you need to upgrade your account 0:24 to a paid plan. But with Google
+Sites, 0:26 there's nothing to upgrade to. This 0:28 feature is completely unlocked and you 0:29 can set a custom domain name. The only 0:31 cost required is that you actually 0:33
+purchase a domain name at a domain name 0:35 register. Now, in this short tutorial 0:36 video, I'm going to walk you through the 0:38 entire process step by step. So, let's 0:40
+get started. Welcome to my laptop. Let's 0:42 begin. So, this is the website that I 0:44 built with Google Sites. And as you can 0:45 see, it has a custom domain name, 0:47
+vlog.com. So, step one for setting a 0:50 custom domain name is that you need to 0:53 get a domain name at a domain name 0:55 register. And for that, I recommend 0:56 namecheep.com
+because they have very low 0:59 registration prices and low renewal 1:01 rates. So, if you're brand new to 1:03 namecheep, your.com is only going to 1:05 cost you $6.49 for the
+first year. So, 1:07 to get started, all you have to do is 1:09 put in the domain name that you want to 1:10 register right here. Then, click on 1:13 search. Then, it's going to
+take you to 1:15 a page which will tell you whether or 1:16 not the domain name that you want to 1:18 register is available. Now, if it is 1:20 available, then you can simply add
+it to 1:21 your cart. If it's not available, then 1:23 click up top here and change to a 1:25 different word combination. When you 1:27 find a.com, and I do recommend a.com if 1:30
+this is your first website, simply click 1:32 on the add to cart button right there. 1:34 And then down here, it's going to pop up 1:36 with the red checkout button. You can 1:38
+ignore all these upsells over here. Just 1:40 click on the red checkout button right 1:42 there. And boom, we're on the NameCheep 1:44 shopping cart page. So, just make sure 1:46
+everything is correct. So, you have your 1:48 domain name registration over here. You 1:50 can register your domain name for up to 1:51 10 years in advance, which is what you 1:53
+want. And you do get domain privacy 1:55 included for free. And you do want 1:57 domain privacy because part of I can 1:59 rules when you're registering a domain 2:01 name is to
+provide accurate information 2:02 like your name, email, address, phone 2:04 number, things like that. Domain privacy 2:06 keeps all of that information private. 2:09 Anyways, when
+you're ready to make a 2:11 purchase, click on confirm order. And 2:13 once you sign up to NameCheep, you're 2:15 going to be directed to the checkout 2:16 page. So again, just
+make sure your 2:17 order is correct, your registration, the 2:20 domain name, and so forth, and when 2:22 you're ready, submit payments. Once 2:24 you've purchased your domain
+name from 2:26 namecheep, it's now time to assign it as 2:28 the custom domain name for your Google 2:31 site. Now, I went ahead and removed 2:33 vlog.com, so I'm going to be
+starting 2:35 from scratch so you can follow along. 2:37 Anyways, click on the little gear icon 2:39 right there, and you're going to see an 2:41 item that says custom domain name
+right 2:43 here. Click on that. And now you need to 2:45 connect your domain name. So go ahead 2:47 and click on connect domain. Now you 2:49 need to type in the domain name that
+you 2:51 registered at namecheep or whatever 2:52 domain name register you have your 2:54 domain name from into the box right 2:56 here. All right. So I went ahead and put 2:58 in
+davidtutorial.com and it says this 3:00 domain is not verified. Please verify 3:02 your ownership. That's totally normal. 3:04 So go ahead and click on verify your 3:06 ownership.
+3:08 and it should open into a new tab and 3:11 you should be looking at something 3:12 called Google Search Console. Now over 3:14 here it says domain and your domain name 3:16
+should be populating this little search 3:18 function right there where you can enter 3:20 your domain or subdomain in. That's 3:22 correct. Now you want to click on 3:24 continue.
+Once you click on that, it's 3:26 going to tell you how to verify your 3:28 domain ownership via DNS records over 3:30 here. Now the easiest way is to set up a 3:33 text record.
+So, we need to copy this 3:36 text record right here into the DNS 3:38 configuration for davidtutorial.com. 3:40 Now, that sounds really confusing and 3:41 complicated. It's not.
+It's really as 3:43 simple as copying and pasting. So, to 3:46 get started verifying our domain 3:47 ownership via DNS records is very 3:49 simple. Simply click on the copy button
+3:51 right there. It copies the Google site 3:53 verification. Now, we need to navigate 3:55 back over to namecheep or whatever 3:57 domain name register you're using. So, 4:00
+this is my domain list. I have 4:01 davidutorial.com right over here. Now 4:04 you need to click on the advanced tab 4:06 right there. Once you do that, you're 4:07 going to be
+looking at this page over 4:09 here and you scroll down. It says no 4:11 records found. So not a big deal. We 4:13 need to add in a text record. Why a text 4:15 record? Because it
+says txt record right 4:17 there. So you click on add a new record. 4:20 Scroll down where it says txt record. 4:23 Click on that. Then go ahead and click 4:25 on paste over here
+to paste in the 4:28 verification code. Now the host should 4:30 be at okay. doesn't need to be anything 4:33 else or w it's the at symbol right 4:35 there. Next, click on the
+check mark to 4:38 save changes. Now, once you've done 4:40 that, simply navigate back to search 4:42 console and click on the verify button 4:44 right down here. 4:47 And next,
+let's just say ownership 4:49 verified. So, you are good to go. Now, 4:51 once you verify domain ownership within 4:53 Google search console, simply navigate 4:55 back to Google
+sites, click on the gear 4:57 icon, click on custom domains, and then 5:00 click on connect domain. Now input your 5:02 domain name in here once again and then 5:05 click on next.
+Now instead of it showing 5:07 that you have to verify ownership. Well, 5:09 now it tells you to enter in a CNAME 5:12 record so you can properly connect your 5:13 Google site to
+your domain name. Now you 5:15 have to enter in ghschoolhosted.com. 5:19 So go ahead and highlight this little 5:20 piece of text right there. Take that and 5:23 we need to enter
+in a CNAME record. So 5:26 sounds again sounds complicated but it's 5:28 very simple. Simply navigate back to 5:30 your namecheep account or again whatever 5:31 domain name
+register you're using. Then 5:33 you need to enter in another record 5:35 right here. So we have a txt record. Now 5:37 we need to enter in a CNAME record. So 5:39 just scroll down
+and find where it says 5:41 CNAME. CNAME is right there. Click on 5:43 that. Then the target is this right 5:45 here. So ghssgooglehosted.com 5:48 and then the host is www. And I'm
+5:51 getting that from right here. www. 5:53 Anyways, when you input that 5:54 information, go ahead and click on the 5:56 little green check mark to save 5:58 everything. And it's
+as simple as that. 6:01 Now, let's jump back over here to our 6:04 Google Sites over here. And then click 6:05 on done. And now it's assigning the 6:08 domain name. And there you
+go. You've 6:11 successfully connected your domain. Now, 6:13 again, it's not instantaneous. Please be 6:15 patient. Give it 30 minutes to 1 hour. 6:18 Everything will be working
+correctly, 6:19 but it's not instantaneous. All right, 6:21 everyone. That's it for this short 6:23 tutorial video on how to set a custom 6:24 domain name with Google Sites. Hope
+you 6:26 enjoyed it. If you did, subscribe and 6:28 hit that like button. My name is David. 6:30 Thanks for watching and have a great 6:31 day. Bye-bye. All From David Utke 0:00
+You have just set up your website, maybe 0:02 installed WordPress, and now you're 0:04 looking to set up CloudFare DNS. But 0:07 here's the thing. If you mess this part 0:10 up,
+your entire site can go offline. 0:12 Worse, if your DNS isn't properly 0:14 optimized, your site could load 100 to 0:17 300 milliseconds slower, which might 0:20 sound small, but
+it can drop your 0:21 conversion rate by up to 7 to 20% 0:25 depending on how people land on your 0:27 site. And we haven't even talked about 0:29 security yet. Weak DNS setups
+leave your 0:32 site exposed to bots, DDoS attacks, and 0:35 other vulnerabilities that can take your 0:38 site down or even get it blacklisted. 0:40 So, in this video, you will
+learn 0:42 exactly how to set up CloudFare DNS step 0:44 by step. And I'll even show you how to 0:47 add a free firewall to proactively 0:49 protect your WordPress site. Let's get
+0:51 started. Head over to cloudfare.com. Log 0:54 in and you'll land inside the Cloudfare 0:56 dashboard. Next we are going to do is 0:59 add your domain to Cloudfare and click
+1:02 continue. Cloudfare will now scan all 1:04 the existing DNA records connecting to 1:06 your domain. This usually takes a few 1:08 seconds. Once the scan is done, 1:10
+CloudFare will show you a few pricing 1:12 options. If you're just getting started, 1:15 just pick the free plan. It includes 1:17 everything you need. global CDN, shared 1:20 SSL,
+basic DDS protection, and it's 1:23 perfect for most websites. Now, here's 1:25 an important part. Cloudfare has pulled 1:28 in all your current DNS records from 1:30 your domain
+registar, and you need to 1:32 double check that everything looks 1:33 correct. Let me explain what you are 1:35 looking at. A records point your domain 1:38 to your server IP.
+Make sure both agate 1:41 and www are pointing to your actual 1:43 hosting IP. CNAME records are usually 1:46 for subdomains like blog.acample.com. 1:49 These should point wherever
+they did 1:51 before. MX records handle your email. So 1:54 if you are using Google Workspace, Zoho 1:56 or Microsoft, double check these haven't 1:59 gone missing. TXT records are
+usually 2:01 for SPF, TKIM, and email verification. 2:05 Just make sure nothing got stripped out 2:07 in the import. You'll also see little 2:10 cloud icons next to each record.
+This is 2:12 CloudFare's proxy toggle. If the cloud 2:15 is orange, that means traffic is going 2:17 through CloudFare, which activates CDN 2:20 and security features. If it's
+gray, 2:22 it's DNS only. No caching, no firewall, 2:26 just a straight DNS lookup. Once 2:28 everything looks good, scroll down and 2:30 click continue. Now, Cloudfare is going
+2:32 to give you two name servers, something 2:34 like dina.ns.cloudfair.com 2:37 and elliot.ns.cloudfare.com. 2:41 These are the two DNS control points for 2:44 your domain. And
+we now need to go back 2:46 to your domain registar, in this case, 2:49 Blue Host, and replace the old name 2:51 servers with these new ones. Once that's 2:54 done, hit save name
+servers. Now, here's 2:56 the thing. DNS changes don't happen 2:58 instantly. It can take anywhere from 5 3:01 minutes to 48 hours to fully propagate 3:03 around the world, but
+usually you will 3:06 see it switch over in an hour or two. 3:08 All right, go back to Cloudfare. Right 3:11 now, your domain will probably show a 3:13 pending status, and that's
+completely 3:15 normal. Cloudfare is waiting to detect 3:17 your name server update. Just refresh 3:19 every now and then, and once the change 3:21 goes through, your domain will
+switch to 3:23 active, and you are now officially 3:25 running on CloudFare DNS. At this point, 3:28 Cloudfare is handling your DNS and 3:30 routting traffic through their global
+3:32 network. But there are a few quick 3:34 settings you can turn on to make your 3:36 site faster. Head to the speed section 3:38 and look for optimization tab. Here's 3:40 what
+I recommend enabling. Autominify. 3:44 This compresses your HTML, CSS, and JS 3:47 files. Rocket loader. This helps load 3:50 JavaScript more efficiently. Then go to 3:52 caching
+tab. Set caching level to 3:55 standard. Set browser cache TTL to at 3:58 least 4 hours. You can also enable 4:01 always online if you want a cached 4:03 version of your site to
+show when your 4:05 server goes down. And if you're feeling 4:07 fancy, you can go to page rules and 4:09 create one that says example.com and set 4:12 cache everything with edge
+cache TTL set 4:15 to day one. Next, let's make sure your 4:18 site has https security enabled. Go to 4:21 the SSL or TLS tab inside Cloudfare and 4:25 set SSL mode to full if your
+hosting 4:27 already supports HTTPS. 4:30 If you're not sure, start with just 4:32 full. You can always upgrade later. Then 4:35 then turn on always use HTTPS and 4:38 automatic
+HTTPS rewrites. And that's it. 4:41 Your site should now have a valid SSL 4:44 certificate and serve over HTTPS. Let's 4:47 secure your site a little more. While 4:49 we're here,
+first go to security tab and 4:52 enable botfight mode. Trade for blocking 4:56 spammy bot traffic. Set security level 4:58 to medium or high depending on how 5:00 targeted your
+site is. If you want to go 5:03 a step further, you can set up rate 5:06 limiting for pages like wp login.php 5:09 to prevent brute force attacks. After 5:12 this, let's quickly
+set up the firewall 5:14 too. Just head to the description or 5:16 pinned comment below and you'll find a 5:18 link there. Click it and it will take 5:20 you to Malare website and
+Malare will 5:23 automatically scan it for any existing 5:25 malware. It also activates a firewall 5:28 that proactively protects your site from 5:30 future threats. all without
+you having 5:33 to configure anything manually. Now, 5:35 once that's done, let's make sure 5:37 everything's live and working. You can 5:40 use a site like DNS checker.org to 5:42
+confirm that your name servers have 5:44 updated globally. Then head back to your 5:47 CloudFare dashboard. Go to overview and 5:50 check the analytics tab. You'll start 5:53
+seeing traffic caching stats and 5:55 security events as people use your site. 5:57 And that's it. You're now running your 5:59 website through CloudFare DNS, and 6:02 you've got a
+proactive firewall, keeping 6:04 your site safe. You've just unlocked 6:07 faster load times, free SSL, DDoS 6:10 protection, and better control over your 6:13 entire domain, all
+without paying a 6:15 dime. Most beginners don't get this far. 6:18 They either skip DNS setup altogether or 6:21 mess it up trying to guess their way 6:23 through it. But you did
+not. You took 6:26 the time to do it right. And now your 6:28 site has an edge that most websites 6:30 don't. If this video helped you, give it 6:32 a like so more people can find
+it. And 6:35 if you've got questions or you're stuck 6:37 anywhere, drop them in the comments. 6:38 I'll reply to everyone. Thank you for 6:41 watching and I'll see you in the next
+6:42 one. Click here if you want to 3x your 6:45 sight speed in just 1 minute. Trust me, 6:47 you're going to love it. Click here and 6:49 I'll see you All From WPDev Cloud
+computing Introduction 0:00 Two powerful analytics platforms, both 0:02 trusted by thousands. But in a world of 0:05 privacy, performance and data control. 0:08 Which one really
+delivers? On the left, 0:10 Google Analytics, deep data for 0:13 growthdriven teams. And on the right, 0:15 plausible analytics, privacy first, 0:18 simple analytics. Let's skip
+the 0:20 buzzwords and get to the real stuff. 0:22 Each category earns points, and at the 0:24 end, you'll see exactly who comes out on 0:27 top. The result might not be what you
+0:29 expect. All right, let's map out exactly 0:31 what's on the table. We're comparing 0:33 Google Analytics and Plausible on price, 0:36 privacy, and compliance, features, and
+0:38 customization, integrations, ease of 0:40 use, performance, and speed, and 0:43 finally, data ownership and export. 0:45 Stick with me because there are some 0:47 wild
+differences hiding in here. First 0:50 up, price. Let's not pretend budget 0:52 isn't important. So, Google Analytics, 0:55 it's free for literally unlimited usage, What is Google
+Analytics? 0:58 which sounds fancy, but uh there's a 1:02 catch. If you want those premium 1:03 features, the setup can get pretty 1:05 complicated. And let's be real, data 1:08
+privacy might cost more than you think. 1:10 Now, plausible, no free tier, 1:12 unfortunately. You do need to pay at 1:14 least about €9 a month if your site's 1:17 got 10K views,
+but hey, their pricing is 1:20 about as clear as it gets. One simple 1:22 monthly fee and you know exactly where 1:24 you stand for price. Plausible slides 1:26 ahead just for that
+transparency. Now 1:30 privacy and compliance. This one's 1:32 spicy, especially in the current privacy 1:34 climate. Google Analytics offers some 1:36 basic GDPR and CCPA tools,
+but here's 1:40 the rub. You'll need to deal with cookie 1:42 consent banners and uh their data is 1:45 stored in the US. Some people get 1:47 nervous about that. Plausible though.
+I 1:49 mean, this is their sales pitch. They're 1:50 cookieless out of the box, GDPR, CCPA, 1:54 and PECR compliant. And get this, you 1:58 actually own all your data. That's kind
+2:01 of rare these days. Sure, you don't get 2:03 super deep tracking, but for privacy, 2:06 plausible is king. Features and 2:08 customization. All right, if you like 2:11
+tinkering, this is your category. Google 2:13 Analytics is kind of nuts. custom 2:16 events, multi-dimensional reporting, 2:19 full-on funnel analysis, and so many 2:22 marketing
+integrations. The downside, 2:24 there's a lot. The learning curve is 2:26 steep, and the dashboard can feel like 2:28 piloting a spaceship. Plausible takes What is Plausible
+Analytics? 2:31 the opposite approach, almost zen-like. 2:34 Simple dashboard, basic page views and 2:36 events, everything at a glance, and it's 2:39 open source, of course. No
+heat maps, no 2:42 session replays, and not much deep 2:44 funnel stuff. So, if ultra advanced is 2:47 your jam, Google Analytics still reigns 2:50 here. Oh, and here's something
+cool. Did 2:52 you know Plausible's tracking script 2:54 clocks in at just 1KB? Yeah, you heard 2:58 me. That's almost 75 times smaller than 3:01 Google Analytics script. Kind of
+wild if 3:03 you care about page speed, right? Moving 3:05 on to integrations. With Google 3:08 Analytics, you get, no joke, the power 3:11 to integrate with Google Ads, Search
+3:13 Console, Big Query, Firebase, and even 3:17 more through their APIs. That's mega 3:19 robust, but heads up, technical setup 3:21 can be daunting, and your data lives 3:24 with
+Google. Now, plausible, you can 3:26 self-host it, which is awesome if you 3:28 want to dodge ad blockers, but 3:30 integration options with external stuff 3:32 and CRM, it's
+limited. So on this front, 3:35 Google Analytics definitely has the edge 3:37 for those deep connections. Ease of use, 3:40 big one. Google Analytics has a 3:42 dashboard packed
+with info, but for 3:44 newbies, oof, it's overwhelming and 3:46 setup drags on forever. Plausible is 3:49 like someone designed it with 3:50 minimalists in mind. Modern dashboard
+3:53 setup is literally one line of code. 3:55 Seriously, and you just see all your key 3:58 metrics right away. It doesn't get much 4:00 easier than that. If user friendliness
+4:02 matters, and I know it does for a lot of 4:04 you, Plausible wins hands down. Let's Installation & Setup (Web, WordPress) 4:06 talk performance and speed. Google 4:08
+Analytics is a beast for big sites. 4:10 Yeah, but its tracking script kind of a 4:12 heavy lifter and it can slow down your 4:14 site. A whopping 75 times heavier than 4:17
+Plausible. Plausible boasts this tiny 4:20 super fast script. And if you self-host, 4:23 ad blockers don't touch it. Unless 4:24 you've got huge complex needs, Plausible 4:27 just
+feels snappier and way lighter on 4:30 its feet. Last but not least, data 4:32 ownership and export. Google Analytics 4:34 does let you export data, but it's 4:36 usually through
+Big Query and uh the 4:39 rights still sit with Google who use it 4:42 for their own service tuning. Plausible. 4:44 Your data is all yours. They're clear 4:46 about it. You can
+grab it via CSV with a 4:49 single click and they actually delete 4:51 everything if you close your account. 4:52 Only thing historical data gets capped 4:54 at 24 months. Still
+full ownership is a 4:57 huge plus for plausible. So visualizing 5:00 the face off Google Analytics leads in 5:03 features and integrations, but plausible 5:05 just nails price,
+privacy, ease of use, 5:09 speed, and data ownership. It's like a 5:12 classic power versus simplicity debate. 5:15 Totally depends on what you need. You 5:17 know what? Here's
+where I land after all 5:19 that. Google Analytics is your go-to if 5:21 you're a data nerd or running big time 5:24 campaigns. You can slice and dice every 5:26 detail. But
+Plausible Analytics, if you 5:28 care about privacy, want something 5:30 simple, and just want analytics that 5:32 don't get in your way, it's honestly 5:33 perfect. Especially for
+small sites or 5:36 ambitious startups, different vibes, 5:38 right? Still deciding? Test whichever 5:40 fits what you care about. Try out a 5:41 dashboard or two. See the real
+5:43 difference in action and pick the one 5:45 that just feels right for your site. All Google Welcome! 0:00 hello and welcome back to a better 0:01 computer my name is matt and
+today's 0:02 video is going to be just me exploring 0:05 my website analytics which i use 0:07 plausible to track 0:09 so plausible is a google analytics 0:11 alternative and i was
+thinking about 0:13 writing a video about this but i just 0:14 kind of thought it would be more useful 0:16 to 0:17 just kind of walk you through the 0:18 interface and show you
+how it works so 0:20 this is going to be a no frills maybe 0:22 even no edits video 0:24 but in the next like 10 15 minutes we'll 0:25 just kind of explore together and see 0:27
+how plausible works so you can get an 0:29 idea whether it would work for you 0:31 so Dashboard overview 0:33 plausible let's take a look at my 0:35 dashboard so 0:36 this is my
+plausible analytics dashboard 0:39 and you can see my analytics for my 0:42 personal site birchtree.me 0:44 there's currently zero visitors on it 0:46 before i started recording
+there were 0:47 like five people there so a little 0:48 disappointing that 0:50 there's zero i'm actually recording but 0:52 that's fine 0:53 and basically this shows me a chart of
+0:55 the last 30 days 0:56 and i can see a chart for unique 0:58 visitors total page views bounce rate 1:01 visit duration that sort of thing 1:03 i leave it on page views
+typically it 1:04 will remember between page loads so if i 1:06 reload remembers where i i was hey i'm 1:08 up to one visitor awesome 1:11 but i can go ahead and change the range
+1:14 that i'm looking at i could look at just 1:15 the last seven days um you can see that 1:17 there's keyboard shortcuts for all these 1:20 uh so i could do d to see just today's
+1:22 traffic i could do r to see real time uh 1:25 traffic right 1:27 let's go back to oh i forget them 1:30 they're kind of hard to remember let's 1:31 do y so here's my whole
+year of traffic 1:34 on birch tree so this is 2022 and you 1:36 can kind of see month by month here's 1:38 what they are 1:39 and you can see unique visitors total 1:41 pages like
+all those all those things 1:44 so those are all here you can download 1:46 the state as a csv if you'd like as well Who is sending traffic to your site? 1:48 and then you can go
+down here and see 1:50 some more information so tap sources who 1:53 is sending traffic to your website 1:55 so you will be able to see that here you 1:57 can see i get basically
+all of my 1:59 traffic from google people are searching 2:00 things they're asking questions and i'm 2:02 one of the google results uh duckduckgo 2:05 twitter when i tweet things
+youtube 2:07 probably from you find people uh bing 2:09 and then some other places like this 2:11 i can see the details so i can see like 2:14 how many um how long they stayed what
+2:16 their bounce rate was right like people 2:19 um looks like 87.89 so search engines 2:22 are the highest bound bounce rate um 2:25 yandex 98 bounce rate gs um those are 2:28
+the highest because they just they 2:30 aren't looking for a blog they're 2:30 looking for 2:31 an answer to a question or how to do 2:33 something whatever um anyway you're not
+2:35 here to learn about my site um you're 2:37 here to see what plausible does um they 2:39 also have this campaigns thing uh so you 2:41 can if you do like those uh little tags
+2:43 at the end of your 2:46 um 2:47 url you can see like where they came 2:49 from so i only have a few these aren't 2:51 really people don't usually add these to 2:53 me um yeah
+like i don't even know what 2:55 these are but if i was doing some sort 2:57 of campaign where i wanted to add a tag 2:59 to it i could use these to track how 3:01 many people were
+coming What pages are popular? 3:03 from those tags 3:05 top pages are what pages get the most 3:07 hits on my site 3:09 you can see my top 3:11 post which has been my top post for
+3:13 years is what happens and i'll just go 3:15 to it in a new tab 3:17 what happens when you try to charge your 3:18 iphone wired and wirelessly at the same 3:20 time i wrote
+this right after the iphone 3:22 got charged wireless charging in 2017 3:25 that's almost five years ago now and the 3:28 answer is nothing like it doesn't change 3:30 anything but
+this post 3:32 every single year gets a shocking number 3:35 of hits so 3:36 if you're a writer just know that a lot 3:39 of your hits are going to come from 3:41 one or two things
+3:42 this one is also another one i didn't 3:44 really think much of i basically just 3:45 cropped the windows 11 wallpapers the 3:47 default wallpapers to work on your phone 3:49
+look nice this gets tons of hits 3:52 weird 3:52 the home page and then some other things 3:54 but 3:55 yeah so 3:56 kind of you can see the details there as 3:58 well so you can
+see raw numbers page 4:00 views bounce rate time on the site right 4:02 97 of people who see this one leave 4:04 right away i don't blame them it's not a 4:06 great article it's
+not a great thing but 4:08 it was a question people had at the time 4:10 and i answered it and they're still 4:11 apparently asking it so yeah wild um 4:15 entry pages so these
+these are the pages 4:17 like what's the first page uh user went 4:19 to exit pages it's what is what's the 4:21 last page they were on 4:23 when they left um so yeah you can see
+4:25 kind of the same things for those uh Countries visiting your site 4:28 with countries you can see all the 4:30 countries like people are visiting you 4:31 from i'm a heavily
+u.s centric 4:34 site although i think if we go to 4:35 countries you'll see yeah there we go 4:38 united states and then uk india all 4:40 these countries down here uh regions
+4:42 goes down breaks it down to states uh in 4:44 the us as well um some maybe uh 4:48 like provinces elsewhere around the 4:50 world um you can see more people from 4:52 england
+visit than people from 4:53 california 4:55 the more you know uh and then biggest 4:56 cities uh what's also interesting is i 4:59 can see 5:00 that even though the united states
+is by 5:02 far the most popular country for people 5:04 to come from uh 5:06 the most common country people who visit 5:08 my site come from is the united states 5:10 it's still
+only a third of my total 5:11 traffic so a good thing to remember even 5:13 though i'm writing for a us audience and 5:15 assume they're that 5:16 two-thirds of people visiting the
+site 5:18 are coming from elsewhere in the world 5:19 which is just an interesting thing to 5:20 remember Devices visiting you site 5:22 devices what sort of device mobile 5:24
+desktop laptop tablet what browser are 5:26 they using safari and chrome pretty much 5:28 split the difference 5:30 and if we go to os we'll see this 5:31 difference is probably
+due to more ios 5:33 users than android users um yeah ios is 5:36 my number one mac number two android 5:38 windows and then ipad way down here ipad 5:41 barely beating linux come
+on all the 5:43 linux is 666x which is 5:45 just perfect because i do not enjoy x 5:48 um chrome os ubuntu fedora yeah 5:50 so yeah so here's kind of the just 5:53 that's the data
+you get to see um Tracking several sites at once 5:56 you can also see that i'm tracking more 5:59 than one website with plausible so i'm 6:01 not only tracking my personal blog
+i'm 6:03 also tracking quickbind lookup which is 6:06 a bin lookup site that i created years 6:08 ago at this point i think in 2017 2018 6:11 to just look up credit card bin
+numbers 6:13 and it's been pretty successful actually 6:15 so if i go to like google and do 6:17 bin lookup which is what a lot of people 6:20 do i'm the top result here and so i
+get 6:22 a good amount of google traffic um as 6:24 again evidenced by this google bing i 6:27 assume these are people just using the 6:28 default search engine on their work 6:30
+computer 6:31 there's only one website on or only one 6:33 page on the site um i guess i could go 6:35 to it how about that i'll just go to it 6:38 um and so basically yeah if you
+need to 6:40 like know some information about a 6:41 credit card 6:42 type it in search there you go you could 6:45 like 6:46 if you want to like copy the bank name 6:47 copy it
+you can then paste it into 6:48 whatever you want again you're not here 6:50 to learn about my websites um but 6:53 if you uh 6:54 um you may want to know actually let me 6:56 go
+back to that um how did i get 6:58 plausible on here anyway i'm tracking 7:01 both of these it's all kind of the same 7:03 information um like again more current How to add the
+tracker to your site code 7:06 visitors is much more popular than my 7:08 blog itself 7:09 if i view the source um 7:11 yeah so i put it right here uh here's 7:14 the script which
+basically says here's 7:16 my quickbin lookup domain and here's the 7:19 link to the plausible analytics 7:21 javascript file that loads and does the 7:23 tracking on the site
+right 7:25 and if i go to 7:26 um 7:27 my yeah so 7:29 i was looking at this earlier to make 7:31 sure i knew what was up this is my ghost 7:33 site so my birchtree.me site runs on
+7:36 ghost 7:37 and under code injection you can see i 7:39 can put stuff in the header and that's 7:41 right here 7:42 same link to the same javascript file 7:44 but this one's
+for birdstreet.me and 7:46 that difference is how you know 7:49 how it knows to track for quickbin or 7:51 for birchstream 7:53 but anyway so you can track multiple 7:55 sites you
+could add another one if you 7:56 want if we go to view all you could add 7:58 another website as far as i know you can 8:00 track as many websites as you'd like 8:02 it's all
+about page views Cost 8:05 so i guess before i go into 8:07 some more of the details i can go to my 8:09 account settings 8:11 and you can basically see it is a paid 8:13 service
+so i'm currently paying 22 bucks 8:16 a month which is pretty significant i 8:17 might actually drop this i might go back 8:18 to google analytics i'm not sure i like 8:20 this
+because i really just want to know 8:22 how many people are visiting the site 8:23 and i'd rather not use google if i don't 8:26 have to because i know people have 8:27 issues with
+google it's not so much i 8:29 have an issue with google i know my 8:30 readers are more likely to have an issue 8:32 with google but anyway um this is 8:34 maybe more money than i
+want to spend on 8:35 this this is more money than i spend on 8:36 hosting and everything like this is the 8:38 most expensive part of running these 8:39 websites 8:41 which is not
+maybe ideal but i'm paying 8:43 for 200 000 views per month 8:46 um as you can see across the two sites 8:47 we get 115 000 views per month so 8:51 i was going just a little bit
+over it 8:52 for a while and then they kind of 8:53 emailed and said hey you need to upgrade 8:55 your plan otherwise we're gonna cut you 8:57 off um so you can see the pricing
+here 9:00 um yeah again i'm on the 200 000 a month 9:03 i'm not sure why it's 22 9:05 dollars for me i'll have to check that 9:07 but this is basically the monthly page 9:09 views
+and how much you're paying for 9:10 each uh yearly billing is here so i 9:13 could actually save some money by doing 9:15 committing to a year of plausible i just 9:18 i'm just not
+9:20 i'm not committed to plausible yet to 9:22 say i'm going to pay for a year upfront 9:23 but anyway so that's the pricing um you 9:25 can update your billing info and all 9:26
+that good stuff but yeah so let's go 9:28 back to here and then we'll go into Site settings 9:31 birch stream 9:32 so let's look into some of the settings 9:34 you can do here so
+to do that you want 9:35 to go here and then go to site settings 9:38 so these are for birch tree specifically 9:41 if i'd have to go to the quick bin page 9:42 and then select
+from there 9:44 to get those settings but you can see my 9:45 domain is here i can change my time zone 9:47 for reporting so that just makes the 9:49 graphs show like in my local
+time zone 9:52 so it makes more sense to me here's the 9:54 javascript that i pasted on to both of 9:55 those sites i can get it here 9:58 people you can add more users if you'd
+9:59 like so i can add 10:01 i just give it an email and then i can 10:03 choose they're an admin or a viewer 10:04 admins can make changes and invite more 10:06 people viewers can
+just view the 10:08 analytics i'm not going to do that right 10:10 now because it's just me Make your analytics public 10:13 visibility so this is kind of cool 10:15 so you can
+make your entire analytics 10:18 dashboard public so i'm going to go 10:20 ahead and do that here and i'm going to 10:22 copy this link and then open an 10:25 incognito window i'm
+just going to paste 10:27 it and there you go so i'm not signed in 10:29 i'm in incognito mode 10:31 i've got the login button here but i can 10:34 still see everything and so just
+know 10:36 when you share this it's everything you 10:38 can see real-time data you can see all 10:41 the reports let's look at all time data 10:43 for my site right like here's
+everything 10:46 that's ever happened here's all that 10:47 same granularity 10:49 i can download the report so it is just 10:51 making the page public be aware of that 10:54 but
+you can do that if you'd like 10:56 so i'm just going to leave that turned 10:57 on if you want to visit this go ahead go 10:59 crazy 11:01 shared links i can share 11:03 your
+stats privately by generating a 11:05 link 11:06 and then i can add password security to 11:07 it so yeah so 11:10 name the link and then give it a 11:11 password if i'd like 11:12
+i'm not going to do that but it would 11:14 ask you to do a password 11:16 i can do an embed of the dashboard so it 11:18 looks like i can embed the html that 11:21 would put this
+on another website so 11:23 that's kind of cool if you want to make 11:24 a dashboard for people Goals and email notifications 11:26 or like let them view your analytics 11:27
+somewhere else 11:28 uh goals i actually haven't played with 11:30 these so 11:31 what is the goal trigger custom event 11:35 event name or a page view so they get to 11:37 a page
+oh this isn't really for me um 11:40 this i guess is like if i have like a 11:42 shopping cart so i'd like be able to put 11:44 the cart 11:45 like receipt page or something here i

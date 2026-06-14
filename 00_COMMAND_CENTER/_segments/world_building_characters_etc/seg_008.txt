@@ -1,0 +1,224 @@
+simulations around and things like that. So this area I 28:36 wanted to test kind of not being procedural but being more handplaced. And then I you know actually hand 28:41 painted
+some foliage in in different crevices and areas. Hand placed some rocks filled in the edges. Certain areas 28:46 of your environment you might want this more of this approach. And
+thirdly I have a kind of a blended approach for 28:51 the cliff. So for the cliffs I actually created again an assembly of meshes. So like a bunch of cliff meshes that are 28:58
+all in the same blueprint which is parent biomes actually has their own 29:03 blueprint class for this which you can put all the meshes inside this blueprint class. They become
+hierarchal instatic meshes and then you can actually plug 29:09 that into the biome system and have them procedurally generate these big clumps of meshes. So that's a way I was
+able to 29:16 create these big craggy cliffs would have been kind of difficult to do otherwise are not really sculptable in 29:21 the landscape. you can get it kind of close, but
+at a certain point, this level of detail isn't really possible from just sculpting the landscape. And 29:27 so, you kind of need to at a certain point have meshes that poke up to
+the surface and add that detail. Some other 29:32 quick things I want to mention, the plug-in also allows for dynamic swapping of meshes over to blueprints when you 29:39 get close
+to them, which is really useful because some of you building survival type games will need a system 29:44 where you can come up to trees and chop them down, for example. So, they
+have that built in where you can set it up so that the static meshes of the trees will 29:51 just be static meshes and then as you get close to them, they can swap over to a mesh
+that you can actually interact 29:56 with and then you can use that to chop down the tree or if it's a chest that you come and you interact with. For example, this pirate message
+in a bottle 30:03 that my character is picking up. So, that could be something that could be swapped on the fly when you get close to it or interact with it and so on. So, 30:09
+that again, that's another kind of useful bit of utility that's built in. Also, the biome tool has a bunch of 30:14 really useful debugging tools built in because there were
+certain times when I ran into issues where I would just see 30:20 like a mesh of of meshes and I didn't really know what was going on or things wouldn't be spawning. Usually, it
+was 30:25 user error, honestly. But I would come to that and I would be like, "Oh, okay. What do I do?" And so that would come 30:31 over to their debugging view and I could debug
+each individual mesh or each individual layer or each individual 30:37 biome. It was really flexible in that way. So that was really useful and helped him fix a lot of problems
+that 30:43 came up through the process. As I was working on this project, I did run into one uh or two small bugs. So I reached 30:49 out to the team as I was working on them. The
+one I ran into was specifically when I was generating my landscape. I was actually using an early 30:56 access version of one of the releases. And so probably they hadn't run into
+this yet, but I was generating the 31:01 landscape and then as I generated my full landscape, all the biome meshes, it was crashing my GPU. We thought at first 31:07 it was because
+it was too dense. Turns out it was just a bug which they ended up fixing very quickly within a matter of days and sending me an updated 31:13 version which was awesome actually and
+it shows they really care about their tool and developing it. There was another situation where I had a all of 31:20 this foliage on the ground that I was spawning different plants
+and they had one kind of noise pattern that I was 31:25 using and because there was one noise pattern for all of the plants, they ended up just kind of spawning on top of 31:31
+each other and I really wanted to have this feeling like they were clumping in areas of different plants. Like there's 31:36 like a whole area of ferns and a whole area of flowers
+and they wouldn't necessarily be equally on top of each other but they would have these defined 31:43 different clumping areas. And because of that, um, I just kind of reached out
+to them and I was like, "Hey, you know, I 31:48 think this, you know, it would be really useful if there was some procedural tools here built in for, you know, having different
+noise per plant. They 31:55 were really responsive in actually adding that into the new release." Special thank you to Daniel who was working with me from their team. sorry 32:01
+for all of my questions, but he was very kind in helping me get up to speed on everything. In terms of performance, cuz 32:07 I know a bunch of you are probably going to have
+questions about that. With some optimizations I had to do with lowering 32:12 my texture sizes and and uh some rendering optimizations, I was able to get this environment running
+at between 32:18 45 and 60 frames per second on my 4K display, which to me I think is great 32:23 for how dense the foliage is and the ocean and biome and everything running
+together. I'm actually really happy with 32:30 uh how little I actually had to do to get it to run pretty well. If you're interested in using these tools yourself, you can find a
+link to all of 32:38 them in the description uh below the video. Also, you can find a link to their documentation on going deeper on 32:45 some of these topics that I've covered.
+It's a very deep set of tools and I didn't have time obviously to go into 32:50 every detail on them, but I would check out those documentation as well. or you can work with me
+directly through AI 32:56 Arts Academy to get personalized training and coaching on how to use this on your project. If you're interested in 33:02 that, you can find a link to Azel
+Arts Academy in the description as well. If you'd like to see me work more with 33:07 these tools and develop this island further or actually create a video on their other plug-in,
+Erant Paths, which 33:14 is really cool and able to generate tons of procedural road systems using some 33:19 really great logic for, you know, cross-sections and curves and
+different road shapes and and types and tunnels. 33:26 It's really cool. And so, if you're interested in a video on how to use that, let me know in the description. 33:31 Either
+way, I hope you got a lot out of this video. And at the very least, it illuminated the path forward for those 33:36 of you wanting to build these kind of maps for open world or
+survival type games. Some of these tools that you have 33:42 available to you are doing a lot of the heavy lifting and solving a lot of problems that were really difficult to solve
+in the past. So, I'm really 33:49 excited for this moment that we're in when these tools are available to all of us and empower us to make whatever we 33:55 have in mind. So, I
+hope you feel inspired to pick up some of these tools and start making stuff yourself or incorporate them into your workflow that 34:02 I will leave you. Have a wonderful day. I
+will see you in the next one. 0:00 What's up, guys? Welcome to new Unreal Engine 5 tutorial. Today, I'm going to show you how to create a complete 0:06 adventure game in Unreal
+Engine 5. This video will cover everything that you will need. You will end up with an 0:12 advanced character movement using motion matching, interaction with levers, with 0:17
+bridges, with chests, and a quest system. I want to mention that you can 0:22 download the complete project and more than 200 assets through my Unreal Club. 0:28 You can check it
+out through the link in the description. With that said, it's going to be a very easy build to follow. So, let's get started. All right. So, to 0:34 get started with our project,
+we're going to be using the game animation sample from Epic Games. It is official 0:40 from Unreal Engine, and it includes insane movement with motion matching for 0:47 our
+characters, and it's basically the most realistic thing you can get out of the box. So, just add this into your 0:53 Epic Games library. And then in your Epic Games library, just
+go over here and search it up and you should see it 0:59 over here. If you don't see it, just restart the Epic Games launcher. Now, 1:04 very important for this video, I'm going to
+be using Unreal Engine 5.6.1, but you can use any version that is 1:11 newer or more recent. Okay, let's go ahead and click create project. And then 1:16 let's name this something
+as adventure. Select a path and make sure that you 1:22 select Unreal Engine 5.6 six or the one they're going to be creating this on. Click on create. And now after a few 1:29
+seconds, we should have the project created. If we go up here and search for 1:35 Adventure Masterass, you should see it over here. So, double click and open 1:41 this up. Okay, as
+you can see, the price opened. And if I go ahead and press play, we can now move with our third 1:48 person character. And it looks literally insane. This is tripleA animations
+1:53 because we're using motion matching which is one of the newest features in Unreal Engine 5. But now what I want to 2:01 do is go ahead and add an item into our player. So
+let's go ahead and add a 2:07 holding animation. And this holding animation will work for any type of item that we want. But in this case, let's 2:14 add a torch kind of giving
+that uncharted vibe. Let's go ahead and do this. Okay. So what I did was in the 2:21 description give you a free animation that you can download. So you go ahead 2:26 and sign up
+and you should be able to download this free animation. So once you have extracted the zip file, just 2:33 drag it into our content browser. Okay, it's literally an FBX. So you
+just drag 2:39 it and you will see this window over here. Basically just scroll down until you see the skeleton. Okay. Now on the 2:47 skeleton, just click on this dropdown and
+search for mannequin and you should 2:53 see this UFN mannequin. Okay. This is the mannequin that we're using with this motion matching template. You see, 2:59 select this and then
+keep everything default. Okay. Import on animations and so on. Click on import. And now, as you 3:06 can see, if we double click this over here and I move this to here, we have
+3:12 this insane holding animation that we can start to use in our player. Very 3:18 easy, right? But of course, this asset right now is just in the content browser. And one of the
+key things that 3:23 we always have to do when creating an Unreal Engine project is organize our 3:28 assets. So, let's go ahead and double click on characters and let's right
+click here, create a new folder, and 3:34 call this something as custom. And this is where we'll be saving all of 3:40 our stuff. Okay. So, expand this. Over here, we have custom.
+Go back to content. And then just drag this into 3:46 our new custom folder and click on move. And now, yes, we have it inside of here. So, it's nice and organized. Perfect. 3:54
+So, now let's go ahead and add this into our character. So click on content 3:59 blueprints and then open up ABP sandbox character and this is the animation blueprint of our
+character. This is 4:07 where all the animations are calculated. So just click here in the NM graph. If you don't see it just double click here 4:14 and as you can see we have this
+graph with all of these kind of nodes that create our animation. Now, this is more 4:21 complex than regular third person templates, and this is because we're using the motion
+matching s uh feature, 4:28 but it's also simpler because we can simply add things on top as overlays, 4:34 and it's exactly what we're going to be doing. So, zoom in until the
+end, which is where we have the output pose, and 4:40 just move it to the right. Okay, so make some space. And then what we want to do is just drag from here which is our last 4:47
+pin and do a layered if I know how to type 4:53 layered blend per bone. Okay. Now this bone essentially splits the body in two 4:59 depending on where we want the body to be
+splitting. And what we're going to be doing is to place the holding animation 5:06 on the upper body but then all the other stuff on the lower body. Okay. So very 5:12 very simple.
+So now on the asset browser, which if you don't see, you can just go to window and find it. Let's go 5:18 ahead and search for our holding item animation that we imported and drag
+it in. Now make sure to select it and 5:25 scroll down over here and click on loop animation. So this animation will loop. This is very important. And now just 5:31 connect this
+into the second pin in our layered blend bone node. Okay, just drag 5:38 this here. Okay, now if you compile you'll see that nothing happens. And this is because we haven't set up
+this 5:44 note over here to, you know, split the body in two or anything like that. So if we click on this skeleton icon here, you 5:51 can see our skeleton. And we have here all
+the bones in our hierarchy. So if we 5:57 were to split the but in two, we would go to like the spine 03. Just copy the name. Go back to our animation blueprint 6:05 and on the
+layer setup in our length blimp per bone node, just expand this 6:10 dropdown. add a new item over here and paste this in. Now, once we do this, it 6:16 works. We have a holding
+torch or holding item and we can go ahead and move around, but it looks a bit weird. 6:24 And this is because all of the movement in the upper body for our locom motion is being
+overridden and absolutely 6:31 cancelled with our holding animation. And our holding animation doesn't have movement. So, it looks very broken. So, 6:37 let's fix this right now.
+First things first, we don't need to go ahead and split the body in half. We can only take 6:44 our arm. So to do this, we can find here our clavicle L or R, which is better 6:52
+because it's in the right arm. And just copy this, paste this over here. And then we can 6:59 add a blend. And this is basically to have a bit of a transition. So let's put like
+two. Okay, it's like doing a bit of 7:07 a transition. So it's not like super cut and it looks weird. And then last but not least, let's enable mesh space 7:12 rotation blend
+because it will correctly orient the body forward. And now we move 7:19 around. It looks super realistic and super nice. So we are actually holding our you know torch or whatever
+it is. So 7:28 now we are ready to go ahead and actually import our torch 3D model and add this into our character. So, this is 7:34 the 3D model that we're going to be using for
+our torch. It is free from SketchFab. But don't worry because I'm 7:40 going to make your lives easier and leave it included in my downloads in the 7:45 description. So, just make
+sure that you download the bundle that is free in the description and you'll get also this. 7:52 Okay. So, right over here on the content browser, just right click and create a new
+folder. Call this something as 7:57 models. And then right over here, simply go ahead and drag your Torch GB asset. 8:04 Remember to always extract the folder that I leave in the
+description and drag it into the content browser. Okay? And 8:10 then this will pop up. Leave everything by default. Just click on import. And then after a few seconds, we have a
+new 8:17 folder with the materials, the textures, 8:22 and the actual torch static mesh. So it might take a while to compile the shaders, but just drag it. And here it 8:28 is. So,
+we're ready to go ahead and add this asset into our player. So, go ahead 8:34 and just right click on sorry, double click on the blueprint folder to open this up. And then we have
+here the 8:39 sandbox character. So, just right click on the sandbox character, which is our player character right now. And create a 8:45 child because we're going to be modifying
+some things. And to not break stuff, let's just create a child. Okay. 8:50 Now this will be something as sandbox character 8:56 adventure or actually you know we can just make it
+easier and just call this 9:01 bp adventure character. Okay, perfect. Open 9:08 this up. So now over here we can see that we have all of the things in our 9:14 parent but it's a
+bit cleaner. Okay, so you can see. So just go inside the mesh 9:19 and add a new static mesh and this will be our torch. Okay. 9:25 So now we can select this static mesh and in the
+details panel we can search for our torch 3D model that we imported. 9:32 And there we go. It's a bit big but don't worry because what we need to do now is create a socket so we
+can attach 9:38 this torch into our hand. So I'll compile, save, select the mesh and 9:44 double click over here. And now we have it enabled. Um, so just click on the 9:51 skeleton
+icon over here. And now we are in the skeleton of this. So in the hand R just right click and add a new socket. 9:59 And then rename this socket to be something as the item socket
+10:05 or torch if you want, but I'm going to make it universal. So then just right click on this item socket and click on 10:12 add preview asset and then search for our torch. And
+this will make our 10:18 placement way easier because we can visualize, you know, where our torch 10:23 goes because the socket can work for any model. It's just a universal
+location in 10:30 our skeleton, you know. So if we go ahead and add our torch, we can put it 10:36 more precisely where we want. But on top of that, to make it even more accurate,
+we can go up into preview animation and 10:43 search our holding item animation. And now we can even see how it would look 10:48 with our, you know, um, animation. So make sure to
+always select the uh, 10:55 socket, not the preview. Okay. And now let's start to play around with the scale. So let's have this scale by maybe 11:01 like 0.5. And then we can
+start to approach this. 11:07 Um, we just need to Okay. Yes. This this keyboard is going crazy. Um, there we go. 11:13 And we can start to move this bit more to the left. 11:20
+Yeah. So, I mean, I'm new setup, guys. This is why the what is going on it's 11:26 hard to grab. I'm not at home anymore. I'm actually in Silicon Valley in San 11:32 Francisco. I
+removed. So, that's a big thing for content now. Uh, but anyways, 11:37 I'm getting used to the setup here that I created. Um, okay. 11:42 So, kind of it works. Maybe still a bit
+big, but obviously it doesn't have to be exact. You can put the amount of time 11:50 and effort that you want to do this, but if you want to copy my values, here they are. Okay.
+So, anyway, going back into 11:56 our adventure character blueprint. Um, leave some things to load for some reason. 12:02 This animations are out to saving. Um, but once this is
+completed, 12:08 we can go back into our torch and then we can simply go to the pen 12:15 socket, click this icon over here and search for our new one, which is item socket. And
+there we go. It has 12:21 automatically placed in the correct position that we had over here. So now 12:26 the only thing we have to do is scroll down and make sure in the
+collision presets you set this to no collision 12:33 because otherwise the torch will start to bang into our own character and mess things up and we don't want that. Okay, 12:39
+this is only visual stuff. Okay, so now when we press play nothing happens and you will see in a second. You're like 12:46 what? But we just added this in the character blueprint.
+Well remember that we created a child. We haven't set our 12:53 game mode to spawn the child instead of the original one. So on the wall settings, which once again, if you don't
+12:59 see world settings or any other window, just go up into window and find it. But then on the selected game mode, just 13:06 expand this dropdown and you see the default pawn
+class. That's that's our player. Okay. So just get the adventure 13:12 character and drag it into here to replace it. And then you save everything. Press play. And here we are.
+13:19 We now have our torch, which is pretty cool. Now, on top of this, we should have some fire effects. Now, that I'm 13:27 aware of, I don't know if there's any fire. Yeah,
+there's not really any fire stuff that we can use, but there's 13:34 actually one quick thing that we can import to get some fire going, at least to make our torch a bit more, you
+know, 13:40 immersive. So, just go into here, add, and then click on feature or content 13:45 pack. Then go to content and then click on start content and add to project. And 13:50
+this will add some default materials and particles that we can use. So then close 13:56 this and we should have this here on started content. And then you should have here some
+fire particles. Here it 14:04 is. Okay. So a quick thing that we can do is just drag this into our blueprint 14:10 tab. It will open this up and then drag this into our torch. And
+now it is the 14:15 child of our torch. And now what we can do is simply uh move this up. So I think 14:21 it's the Z. Just move it up into the point of our torch. And there we go.
+14:28 We now have fire which is quite cool. Now it looks a bit weird if we move around because you know of some things. 14:34 This might not be the best um particle right now but
+you know it's also temporarily which is cool. Perfect. So 14:42 now we have added a custom additive animation and a torch which is a new item. Let's go. And by the way guys, if
+14:50 you want to learn Unreal super fast and code games so easily it feels like autopilot, join my Unreal club. You will 14:58 get access to more than 200 assets from my
+tutorials. The same ones I used to 15:03 make viral games played by streamers like I should speed and XQC. What type 15:08 of assets? Well, pre files from my tutorials on many
+mechanics and systems 15:14 that you can use migrate into your own games. This tutorial that you're watching right now is also included and 15:20 there's many more things included
+when you get inside. The link is in the description. Join them real club now. 15:27 Okay, so we have successfully added a really cool item that we can hold. But 15:32 now, let's
+get started with our interaction system. So, let's go ahead 15:38 and open up our content browser and double click in our blueprints folder, which is right here. Now, let's right
+15:44 click and create a new folder. Let's go like custom, 15:50 open this up, and let's rightclick and create a new blueprint class. Now, this blueprint class will be an actor
+15:57 component. So, actor components are really cool because they're basically external blueprints that we can just 16:04 attach and add into other blueprint classes. This means
+that we can build 16:09 custom code and reuse it for many characters, which is really cool. So, select this BPC for blueprint component 16:18 uh underscore and then let's do
+interact. And this is where our interaction logic 16:24 will go. So, first things first, we have to use our interact key. And 16:31 it's pretty cool because there's already one
+created with this uh motion matching template that we're using. Just right 16:37 click, do I A underscore, and then type interact, and you should see this over 16:43 here. We just
+put an arrow. Okay, so this triggers when we press the E key. Okay, if you want to also check it out, 16:50 it's compile safe. Go to the content and then search for EA 16:56
+interact. Click here uh comment or controlB and we 17:01 can go to the folder and then IMC sandbox. So this is the list with all of 17:07 the keys in our game. And if we find
+interact which is here, we have it as E 17:14 and as the gamepad face button top. Perfect. Right. Good. So, let's now 17:19 close this and we're going to go back to our BPC
+interact. And when we start pressing our key, we want to start to do 17:27 some cool stuff, which is to do a line trace. Now, a line trace is essentially 17:32 an invisible line
+that goes from one point to another. And we will use this 17:38 to detect the items that we have in front. Well, not items, but in general, things that we can interact with. So, do
+17:46 a sphere trace by channel. And yes, instead of line, let's do a sphere 17:51 because we have a bigger range to detect objects and it's going to be easier. So, 17:57 you
+select this one by channel. Uh, let's do some space over here. So then 18:02 what we want to do is just right click and get the owner of this component 18:10 because what we want
+to do is go ahead and get the starting location of where 18:18 this owner is. And then for the endpoint we simply just 18:23 want to do a get rotation and we just want to go ahead
+and get the 18:30 forward vector. So we get the direction going forwards. Let's make some more 18:35 space. And then from here just times this by a value. Uh so times Oh my god.
+18:42 So I switched from um Windows to max change. Uh perfect the 18:49 keys are all different. Now right click on the second ping and go to float. And now over here just go ahead
+and type 18:56 something as you know maybe um 19:01 150. Okay this is like the distance that you will be able to detect object. Now 19:06 is get this and add this with the second
+sorry we want to add um so we have to uh 19:12 there we go add with the second pin and this will give us the direction for the end point for the radius but like uh 25 19:21 and
+then the draw to for duration. So we can preview this now before we can press 19:27 play and test this up. We got to add this blueprint component into our 19:33 character. So
+double click into blueprints and open up the adventure character which is always the one that 19:39 we are using. Okay, make sure to not get mixed with the sandbox character. Okay,
+always open up the adventure character 19:45 except for something that we might need later on. Okay, so now just in the components add the interact BPC. 19:55 Press enter, compile,
+save, and that's it. Press play. And when we press E, you 20:01 can see that there's an invisible sphere coming in front of us. So, we can detect things. But there's one little
+detail is 20:08 that we cannot detect the things we look up or down. It's always like forward. 20:13 Let's go ahead and fix this real quick. Go into the interact and right below
+20:19 this uh flow of code, we can just right click and do get camera 20:26 manager. And then from here what we can do I just get 20:35 the rotation which is here. 20:40 Perfect.
+If I know how to There we go. And then we can just drag this into here and 20:48 delete these two notes and pop this up. Compile. Press play. Press E. And as you 20:56 can see, it
+also looks up because now we're getting the camera rotation instead of our body's rotation. Now you 21:02 can see that also the arm kind of bugs when we look around. Don't worry,
+we will fix this a bit later. Okay, 21:08 perfect. So now with that said, we want to make the radius a bit bigger because it's a bit too small. So on the radius, 21:15 put like
+maybe 150. And if we do this and press play. Okay. Okay, that's too 21:22 big now. That's definitely too big. Let's do like um 50 maybe. Okay. 21:30 Yeah, better. So now it's easy
+to detect objects that are in front of us. When it goes green, we detected a collision, 21:36 which is quite cool. All right, but we are not finished. We have to do a couple more
+things. So let's get back into 21:42 here. So we want to control a couple of things. First of all, that you cannot 21:47 spam attack this interact. U may for later on we control it
+but for now just 21:54 go ahead and add a branch which is basically an if over here and then just 21:59 create a new variable and be like can interact 22:06 and just drag this get
+and plug it here. Okay. Now compile and make sure to 22:11 select this variable and by default put as true. So if we can interact we will interact. Perfect. Now we also receive
+22:19 parameters with our sphere trace but we are not doing anything with it. We are still not actually interacting. We're 22:25 detecting that object but not doing anything. So
+get this over here and do a 22:30 branch. We're going to detect if we have actually detected something. Then the out hit contains everything. So just 22:35 call this node that will
+break our data. Now we have everything the location the 22:40 impact point the hit actor the hit component. What we want to do is get the hit actor and call the interact event.
+22:50 But to create the interact event, we need one thing which is called an 22:55 interface. So before we do anything, go back to the content browser, go into 23:00 custom, right
+click, go into the blueprint section, and click on blueprint 23:06 interface. call this uh something as BPI 23:12 [Music] um interact and open this up. And now let's call it 23:19
+something as interact. Okay, it will be universal for all of our stuff. So now 23:25 with this interface created, we can call events from any point. So, we go back to 23:30
+interact. We can get our actor and do interact 23:35 and just pop this up over here. It's going to be this one. Easy. Right now, 23:41 we don't have anything yet to interact with.
+But let's do one thing real quick just to test. Let's go back to the um 23:49 content browser, right click on our folder, create a blueprint class, and you select actor because an
+actor is 23:55 something on our level. call this something as bp 24:01 test because it's actually just a test to show you guys and just add a you know 24:06 sphere for example so
+we have something and make sure that the sphere has collision and it does okay now one thing 24:14 that I want to point out is the channel traces okay so we go to the interact you
+24:20 can see that the sphere trace is running on the visibility channel this means that this line trace can only detect and 24:28 interact with objects that have the visibility
+channel under collision set 24:33 to block. Perfect. It has it. So, we're good to go. Now, we need one thing. We 24:38 need to go to the class settings over here and find the
+interfaces and add the interface that I talked about which was 24:45 interact. Now, with this, we can just double click and boom, we can do 24:50 something. We can for example
+destroy this actor this sphere when we interact 24:57 with it. So when we press play oh of course I have to drag the sphere to the level. There we go. 25:04 So now if I go here and
+press Z it gets destroyed because that's what we are 25:11 doing. Um the interact will simply go interact and interact for our sphere 25:16 will do destroy. Simple as simple right
+super super easy. So there we go. We 25:21 have this uh gone ahead and created. Perfect. So now that we have an interaction system working, it is 25:27 finally time to create one
+of the interaction objects, which is going to be a chest that we can interact with and 25:34 open up. So first of all, let's go ahead and open up our models folder that we 25:40
+created. And right over here, let's import a chess model. So once again, I 25:45 will be leaving this chess model in the description included in the free 25:50 download package.
+Just go ahead and get the zip folder extracted and drag the GB 25:57 file into the content browser. Just go ahead and click import, leaving everything by default. 26:05 And there
+we go. We have a new folder with the materials, textures, and also scale dimensions. So you save. And you 26:12 can see that we even have a nice cool animation that opens and
+closes. 26:19 Um yeah, so everything is literally uh perfect. So now let's go ahead and put 26:24 this chess model in an actor. So over here, let's go back into content 26:31
+blueprints custom and let's do exactly the same thing that we did with the BB 26:39 test. So, it's right click, create a new blueprint class, and it's going to be an actor. And
+just to go over this if you 26:46 don't remember, an actor is essentially an object that is placed in the world, 26:52 and it has a location. Okay, as simple as that. So, let's put
+this bp chest. 26:59 Open this up. And the first thing that we want to do is add a skeletal mesh. 27:05 And this is going to be our chest. Now you might be wondering why are we
+adding 27:10 a skeletal mesh instead of a static mesh and that is because our skeleton mesh 27:16 will enable us to play an animation and also the chest is simply a skeleton mesh
+27:22 not a static mesh. So let's choose this put in here the chest and then we can go 27:28 into details panel and just put in our chest model that we imported. Here it 27:33 is.
+And we can just compile, save, and there we go. Now, let's just also check 27:39 out ability size. So, we can delete this test blueprint that we did both from the 27:44 level and
+from the content browser. Just basically delete this. 27:49 And there we go. And I just get the chest, drag it up. We can maybe rotate it a bit. And we press play. We can see 27:58
+how it looks. And it I think it's perfect size. Honestly, it's literally perfect. You could make it even a bit 28:04 bigger maybe. So you can go here, put the the lock on the scale
+1.2 or 1 28:12 point5 maybe. Um yeah, just play around with 28:17 that to make it bigger. Anyway, so now let's go ahead and make sure that we can 28:22 interact with our chest. So
+as you remember, it is very easy. We just need 28:27 to go into here, go to class settings, and add an interface. And the interface is the one that we created which is BPI 28:34
+interact. Okay, this is the interface that we added earlier in order to be able to interact with our interaction 28:41 system. So now we can just go into interfaces and double
+click to add the 28:46 event of interact. And we can put what Terry want here to happen when we interact with the chest. In this case, 28:54 it's going to be very very simple
+because we only want to go ahead and, 28:59 you know, open up the chest. So, what we have to do is get our chest skeleton 29:04 mesh and do a play animation node. 29:09 Literally
+play animation. That is that. And we just need to go ahead and find 29:15 the chest open, which is this one here. And that's it. It will literally go ahead and work. We don't have
+to do 29:21 anything else. And also I want to mention that we don't need to add an anprint 29:28 or anything like that because we're using this play animation node and we 29:33
+don't need anything. If we were using this other one which is play montage 29:40 then in that case we would need to play or not play sorry but add an animation 29:46 blueprint into
+our chest model. Okay. But the play animation is like faster for our chest. 29:52 Okay, so this would pretty much work. If I go here and nothing happens. Why? 29:58 Because of one
+very important thing. If we go here and we go to the chest, we 30:04 can scroll down until we find the collision. And as you can see, it 30:09 doesn't have a collision. Obviously,
+this is important. We need to be able to 30:14 detect the chest through a collision. So over here go ahead and just put this to 30:21 custom and then put everything to ignore
+except visibility and then wall static 30:27 wall dynamic and pawn. Okay. So visibility is the most important one right now because we are doing our 30:35 sphere trace through the
+visibility. Okay. And then the other ones are just to collide with the player like the pawn 30:42 and things like that. Now also in collision enabled in this dropdown go ahead and
+put in something as um quy 30:49 only and that's it. So if we now go ahead 30:55 and press E we can actually open up the chest and it opens and closes. It is 31:01 pretty pretty
+cool. Now there's one thing that will happen right now and is that if I go here and press E 31:09 and then press E again and kind of like you know I can basically open up the chest
+like 20 times. So let's make sure 31:16 that we only open this chest like you know one or two times or whatever that 31:21 is. So what we can do is simply add a do once node and
+this do once node will 31:30 only let this code at the end run one 31:36 time unless we go and reset this. Okay, this is exactly the same as creating a 31:41 new branch and a new
+boolean variable and just you know having it okay how we 31:46 have the chest open yes or no and all that stuff. Perfect. So there we go. We have a really cool chest. But now let's
+31:53 enhance this chest with some visual effects and your sounds. Okay. So in 31:59 order to add the visual effects, just remember that we went and 32:05 uh imported the story
+content uh package where we have different particles that 32:10 we can use. In this case, let's use the explosion, but we're going to be modifying this because um we want to 32:17
+have it a bit smaller and that stuff. So, open up the chest again and right 32:23 after we go ahead and play the animation and drag from here and do spawn emitter 32:29 at
+location. Okay, so this will enable us to select the explosion that we 32:36 imported and spawn it in our location. Okay. Now, if you use a different type of particle like Niagara,
+which is a new 32:44 system, you will need to do spawn system at location instead of emitter. Okay, 32:52 this is if you use Miagra, which is the new system, but the starter
+content only 32:58 has the old system. So, we have to use emitter. Okay, perfect. So now with that 33:04 said, for the location, it will literally just be the get actor location
+33:10 because it's where the chest is at. And rotation, we don't care. Scale, we want 33:15 to make it a bit smaller maybe. So let's put it at 08 for all the axis. And then 33:20
+pulling, just put this on outer release. So it will reuse the same particle and it will be a bit more performant. Okay, 33:27 perfect. So now if I go here and open this up, we have
+a little chest. But it 33:33 looks a bit, you know, weird because we also want to go ahead and add an offset 33:38 upwards because the particle was a bit too close to the ground.
+Just get this. 33:45 Do an add. Okay. Move this bit here. Connect this 33:51 new pin. And then on Z, which is upwards, right? Up and down. We want to put like maybe like 25 or
+something like 33:58 this. Obviously, we will just need to uh test this. So, let me put this window 34:04 here. Okay, there we go. It's a bit better. So, now 34:10 with that, we
+just need to go ahead and play a little sound. So, over here, just 34:15 do play sound. Guess what? At location. Now, this is important if you want to 34:22 make the sound appear
+in 3D, which is essential when doing immersive sound. 34:28 So, we have, of course, a couple of, you know, sounds that we can use. Now, if you don't see a lot of these, just make
+34:34 sure they go into here, the little settings icon, and you enable engine content and plug-in content. Okay. Um, 34:41 anyway, with that said, let's find one which is dockable.
+And then we have a 34:48 couple of them like open, drop, close. And in this case, open is the one that I 34:54 want to choose. So once again we can get the get actor location for
+the location 35:00 of this uh pop-up and we need a very important thing to make it actually 3D. 35:05 Right now it is not 3D because we don't have an attenuation setting. The
+attenuation is how we can make it in 3D 35:13 because it's literally like a radius on where the sound will be higher and 35:19 lower. So for this, let's simply go to the content
+browser, double click and open up our audio folder and right here 35:26 just right click and go into the audio category and then add a sound attenuation. Name this something as SA
+35:34 underscore and then we can put like um you know it's 3D and we can use this 35:42 universally for everything. Now you could also go ahead and create a sound 35:48
+attuntonation for only the chest, then only the player, then only the attack, 35:54 things like that for many games and all that stuff. But I usually like to create one universal
+sound attenuation that I 36:01 can use for most like 80% of the assets and it's just a bit better. Okay, but up 36:07 to you. Now in the attenuation uh function over here put this

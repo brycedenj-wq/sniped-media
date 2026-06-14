@@ -1,0 +1,224 @@
+JSON data. But you build all of this 9:02 simply using natural language. and all 9:04 you see when interacting with it is 9:05 natural What Can You Build? 9:07 language. Using just
+the concepts we've 9:09 covered, LLMs, memory tools, APIs, and 9:13 HTTP requests, you could already build 9:15 powerful agents. things like an AI 9:18 assistant that reads your
+emails and 9:20 summarizes tasks, or a social media 9:22 manager that generates content and posts 9:24 it for you, a customer support agent 9:26 that checks your knowledge base and
+9:28 replies to common questions, a research 9:30 assistant that fetches real-time data 9:32 from APIs and turns it into useful 9:34 insights, or a personal travel planner 9:36
+that checks flight prices, checks 9:38 weather at your destination, and 9:39 recommends what to pack. These aren't 9:41 futuristic ideas. They're real tools you 9:43 can build
+right now using exactly what 9:45 you've already learned. And now that you 9:47 understand how agents work, let's dive 9:49 into the platform we'll be using to 9:51 build n8n
+Overview 9:53 one. NAD is a powerful tool for building 9:56 automations and agents using a visual 9:58 interface. No coding required. It's 10:00 fairly inexpensive compared to
+other 10:02 tools. And what's really nice is they 10:04 have a 14-day free trial that gives you 10:06 a ton of usage. All your building and 10:08 testing doesn't cost anything
+until the 10:10 workflow is finished. then you get 1,000 10:12 uses on the finished workflow. For most 10:14 people, that's going to feel like 10:16 completely unlimited usage for
+14 days 10:18 to see if you want to continue. And this 10:19 isn't sponsored by them or anything. I 10:21 have zero affiliation. And there is also 10:23 an open- source version you
+can install 10:25 and run locally for free if you want. 10:27 The core of how it works is you build 10:28 workflows by dragging and dropping 10:30 blocks called nodes. Each node
+10:32 represents a specific step like calling 10:34 an API, sending a message, using chat 10:37 GPT, or processing data. You connect the 10:39 pieces you need and your agent comes
+to 10:41 life. And here's the really cool part. 10:43 Naden now has a dedicated AI agent node. 10:46 So this node actually gives you spots to 10:47 plug in the three components we
+talked 10:49 about earlier. The brain, your chosen 10:51 LLM like catch or cloud. The memory to 10:54 carry context and remember things. And 10:56 tools like Gmail, Slack, Google
+Sheets, 10:58 or any custom API. That means you can 11:00 build a full-blown agent, one that 11:02 reasons, remembers, and acts all from a 11:04 single node connected to whatever
+11:06 services you want. Agent Build Overview 11:10 Now, it's finally time to build an 11:12 agent. We're going to start with the 11:14 weatherbot idea, but expand it into 11:16
+something actually useful, cuz let's be 11:18 honest, I don't need an email telling me 11:19 the weather when I can just open an app. 11:21 So, here's what this agent will do.
+11:22 Every morning, it checks my calendar if 11:24 I've scheduled a trail run event. It 11:26 checks the weather near me, looks at a 11:28 list of trails I've saved, and 11:30
+recommends one that fits the conditions 11:32 and how much time I have. Then, it 11:34 messages me with the suggestion. All of 11:36 that happens inside a single AI agent 11:38
+node using NADN's built-in LLM memory 11:41 and tool integrations. This build is 11:43 custom to me, but the structure is 11:45 universal. Any personal assistant agent 11:47
+typically starts with three things: 11:48 access to your calendar, a way to 11:50 communicate, and some personal context, 11:53 like the Google sheet I'm using here. 11:54
+Everything I'm using is easy to swap out 11:56 or customize. You can use the exact same 11:58 tools to build something tailored to 12:00 you. I'm starting in a fresh project in
+12:02 NAN. That's basically just a folder for 12:04 organizing workflows. In this one, none 12:06 of my credentials are linked. That way, 12:07 I can walk through everything from
+12:08 scratch. First, I'll click start from 12:10 scratch. That creates a new workflow. Set Trigger 12:13 Then hit add first step. That opens the 12:15 list of available triggers.
+We'll use 12:17 this one on a schedule since we want 12:19 this to run automatically every day. I 12:22 will set it to 5 a.m. And that's it. 12:24 First step done. Next, let's add
+the AI Agent Node 12:26 agent itself. Click the plus button. 12:28 Find the AI section and open it up. then 12:31 select AI agent. This adds the node and 12:34 opens it up. A quick
+note on how these 12:36 are set up. The left side shows what 12:38 input is coming into the node. That's 12:40 typically the output from the previous 12:42 node. In this case, it's
+just the 12:44 trigger. The right side will show the 12:46 output, what this node is sending to the 12:48 next after it executes whatever it is 12:50 you set up. Then in the middle
+is 12:52 parameters and settings where you'll set 12:54 up exactly what you want the node to do. 12:56 We'll leave this as is and click out 12:57 back to the canvas for now. When
+you 12:59 create a node this way, it will connect 13:01 to the previous node automatically. But 13:03 if you create one separately or need to 13:05 move one around, just click the
+13:06 connection line and hit the trash icon 13:08 to delete it. Then drag from the output 13:10 of one node to the input of the next to 13:12 reconnect. This single node is where
+13:15 everything happens. It links to your 13:16 LLM, your memory system, and all the 13:19 tools your agent can use. Next, let's Connect the Brain 13:21 set up the brain of the
+agent, the LLM. 13:23 Down here on the AI agent node, go down 13:26 where it says chat model and click the 13:28 plus icon. Now select the language model 13:30 you want to use.
+I'll use open AI, but 13:32 depending on your use case, you may 13:34 prefer something else. Claude is great 13:35 for writing. Gemini does well with 13:37 coding. You can check
+the LLM 13:39 leaderboard online to compare models 13:41 based on different tasks. This won't 13:43 work yet because we haven't added 13:44 credentials. Click create new 13:46
+credentials. Then it'll ask for your API 13:48 key. To find that, head to 13:50 platform.openai.com/ 13:52 openai.com/ settings. Once you're here, 13:55 click API keys, then create
+new secret 13:58 key. I'll give it a name, and I'm going 14:00 to remind myself to delete this one 14:01 later. Now, choose your default project 14:04 or make a new one if you
+want. Now, 14:05 click create secret key, then copy it. 14:08 You won't be able to see this again 14:09 later. Back in NAND, paste that key into 14:12 the credentials field and
+save. Now, 14:14 you'll see a list of OpenAI models to 14:16 choose from. GPT4 Mini is a great 14:19 default for this build. Just one 14:20 important note. If this is your first
+14:22 time using the OpenAI API, you'll need 14:24 to fund your account separately from 14:25 ChatBD Plus. To do that, you go to the 14:28 billing tab and then add a few dollars
+14:30 to your credit balance. For most models, 14:32 each request costs under a penny, unless 14:34 you're using like a deep research or 14:36 something with long responses. But
+14:37 that's it. Your brain is fully 14:39 connected. Next, let's set up the Setting up Memory 14:40 memory. Just come down to memory and 14:42 click the plus button. And I'll
+choose 14:44 the simple memory option, which is 14:46 perfect for temporary context during a 14:48 single run. I'll leave the context 14:50 window length at five. That number just
+14:51 tells the agent how many previous 14:53 messages to remember at once. To show 14:55 you what that actually means, here's 14:56 something cool. You can chat directly 14:57
+with your agents inside Naden. I'll add 15:00 a new node, come down to add another 15:02 trigger, then pick on chat messages. 15:04 I'll click back out to the canvas. Then 15:06 I
+can drag the node over to the 15:08 beginning and connect it to the agent. 15:10 Now next to the node, I can click open 15:12 chat and a chat box appears. And now I 15:14 can chat
+directly with my agent. I'll 15:16 say hi and my name is Kevin. Now, 15:19 because we set the memory context window 15:21 to five, the agent remembers the past 15:23 five messages
+in here. I can say what's 15:25 my name? And it will respond knowing 15:27 that my name is Kevin. If I removed the 15:28 memory, it would forget after each 15:30 message, like
+starting over every time, 15:32 and there's not much to talk about yet 15:33 since the agent isn't built out, but 15:35 once it is, you can ask it to do things, 15:36 get info, or
+even just explore what it's 15:38 capable of. You can also connect your 15:40 agent to other interfaces like Slack or 15:42 WhatsApp to interact through those 15:44 instead, which
+is what I like to do most 15:45 of the time. I'm not going to use this 15:47 chat trigger in this build, so I'll 15:48 delete it. But now you know how memory 15:50 works and why it
+matters. And click save 15:52 up at the top. Always remember to save Adding Tools 15:54 as you go, just in case. Now we'll move 15:56 on to the most powerful part, tools. 15:59
+Each tool is a sub node connected to the 16:01 AI agent node. Click the plus icon, and 16:03 you'll see a huge list of pre-built 16:05 integrations. everything from Google and
+16:07 Microsoft to Slack, Reddit, Notion, and 16:10 much more. If the service you want isn't 16:12 in this list, you can still connect it 16:13 manually using an HTTP request, but
+for 16:16 most major platforms, it's already built 16:18 in. I'll start with Google Calendar. And 16:19 again, I'll need to create credentials. 16:21 Naden makes this very simple.
+Just click 16:24 sign in with Google. You choose your 16:26 account and approve the permissions. 16:28 I've already set the approvals on this 16:30 account, but it will have a few
+check 16:31 boxes your first time. Now, it's 16:33 connected. And the main thing to check 16:34 is to make sure it's set to the right 16:36 calendar. You could use all these drop
+16:38 downs to tell it to add, edit, or move 16:40 things around on your schedule. For 16:41 this, it only needs to be able to see 16:42 what's on it. And that's one tool 16:44
+connected. And the next tool we'll do is 16:46 for getting the weather. This one's 16:47 easy, too. I will search for weather and 16:50 select open weather map from the list. 16:51
+Like before, we need to connect it to 16:53 the service, but this one takes an extra 16:54 step compared to something like Google 16:56 calendar. Instead of logging in, it 16:58
+requires an API key just like OpenAI 17:00 did. And if I didn't know how to do 17:01 that, here's something really helpful. 17:03 Every node in nadn has a quick link to 17:05 the
+documentation and there's also an 17:07 askai button right inside the node that 17:09 will walk you through the setup. I head 17:11 to openweather.org and create an 17:13 account.
+Then click the drop down and 17:16 find my API keys. Then create a new one 17:18 and copy it. Back in nadn, paste it and 17:21 save the credentials. And that's it. The 17:24 only
+other setting I'll change here is 17:26 switching the units from metric to 17:27 imperial so I get temperatures in 17:29 Fahrenheit. Then I can enter the name of 17:31 a city near
+me. I'll just use Draper 17:33 Utah. Next up, I'll add Google Sheets. 17:36 This connection process works just like 17:38 Google Calendar. I just select my Google 17:40 account,
+approve the permissions, and 17:41 I'm connected. And this is the document 17:43 I want the agent to use. It's a simple 17:45 list of trails I want to run. Each entry 17:47
+includes the trail name, the mileage, 17:49 elevation gain, and a rough estimate of 17:51 how long it'll take, plus how much shade 17:53 is on the trail. These estimated times
+17:55 were calculated using a formula I 17:57 generated with Chat GPT. I am actually 17:59 building a much more advanced version 18:00 that syncs with Strava. It analyzes 18:02
+heart rate and split pace based on 18:04 terrain, then adapts over time. But for 18:06 now, this basic version works great. 18:08 This document is called trails. And I've 18:10
+labeled the individual sheet at the 18:11 bottom as runs. That way, I can add more 18:14 tabs later for hikes, family trails, 18:16 mountain biking, rock climbing, or 18:18
+anything else. Back in NADN, I just use 18:20 the drop downs to select the document 18:22 trails and the sheet runs. And that's 18:25 it. The tool is ready to go. 18:28 The next
+tool we need is Gmail. Again, 18:30 this connects just like the other Google 18:32 services. Login, approve the 18:34 permissions, and you're all set. Back in 18:35 the node
+settings, I'll specify who the 18:37 email should go to. In this case, I'll 18:39 just send it to myself using the same 18:40 email it's coming from. For the subject 18:42 and
+message, I'll choose the option, let 18:44 the model define this parameter. This 18:46 lets the LLM generate both the subject 18:48 line and the body of the email. So, the 18:50
+message is fully customized based on the 18:52 trail it picks, the weather, air 18:53 quality, and everything else going on 18:55 that day. The last thing I'll do here is 18:56
+I'll go through and rename each of my 18:59 nodes so it's easier to keep track of 19:00 what they do. And that also makes it 19:02 easier to reference each tool by name in 19:04
+the prompt I'll give to the LLM. Now, we 19:06 could stop here, but I want to add one 19:07 final tool. This time, one that doesn't 19:09 have a pre-built integration. In Utah,
+19:12 we get bad air quality, especially in 19:13 the winter and sometimes in the summer, 19:15 too. So, I want the email this agent 19:17 sends to include a quick air quality
+19:19 check. The weather API I used earlier 19:21 doesn't include air quality. Also, the 19:23 data from Apple's weather app or Google 19:25 weather often isn't very accurate. But
+19:27 airnow.gov is much more reliable. It 19:29 uses local sensor data, and it's the 19:31 official source used by many agencies. 19:33 But there's a problem. It's not in the
+19:35 list of built-in tools. That's actually 19:37 not a problem at all. We can use an HTTP 19:39 request node. Every tool we've used so 19:41 far actually runs on HTTP requests
+under 19:44 the hood. The only difference is that 19:45 NADN already configured those for you. 19:48 This time, we'll do it ourselves. Here's 19:49 how. First, I'll add a new tool
+and 19:51 search for HTTP request. It defaults to 19:54 a get request, which is what we want. 19:56 And it asks for a URL. So, here's the 19:58 steps to get that URL. I'll go to
+20:01 airnow.gov. Then under resources, 20:03 there's a link for 20:04 developers/appi. There will be an option 20:06 like this on a lot of sites. You can 20:08 also just search
+something like air now 20:10 api on Google to find it. Once I'm here, 20:12 it has instructions on exactly what I 20:14 need to do. So, I'll just follow those. 20:15 I need to
+create an account. 20:19 Then it wants me to paste in the API 20:20 code they emailed to 20:24 me. And once I'm logged in, I go to web 20:26 services. And for what I'm building, I
+20:28 want the current observations by 20:30 reporting area. So under that, I'll use 20:32 the query tool. Now I can enter a zip 20:34 code near me. I'll switch the response 20:36
+type to JSON and click build. Now that 20:39 generates a full URL I can copy. That's 20:41 all I need, but I'll show real quick. 20:42 When I click run, I can see what the 20:44
+data looks like. So, it returns a JSON 20:46 object with values like AQI and 20:48 category. I don't need to be able to 20:50 read that. My agent can. So, I'll copy 20:52 that URL
+and back in this HTTP request 20:54 node. I'll just paste it in here under 20:56 the URL. Then, real quick, I'll rename 20:57 the node to something like get air 20:59 quality and
+update the description so I 21:01 remember what it's doing. Then, I'll 21:02 check the box for optimize response. 21:04 That tells NAD to autoparse the JSON 21:07 into items the
+LLM can use more easily. 21:09 It would work either way. ChatBT can 21:11 handle raw JSON just fine, but this just 21:13 keeps things cleaner. And that's it. 21:14 Honestly, it's
+not much harder than 21:16 using a built-in integration. Now, if 21:18 the tool you want doesn't have an API at 21:20 all, that's a different story. That's 21:22 more advanced and
+outside the scope of 21:23 this tutorial. But if you've made it 21:25 this far and then you do a couple 21:26 builds. By that point, you'll already 21:28 know enough to be able to
+figure it out. 21:29 Just look at the site's documentation or 21:31 ask Chatbt to walk you through how to 21:33 connect it. There's multiple different 21:34 options for how it
+works. But since 21:36 you'll understand these concepts at that 21:37 point, you should be able to follow it 21:38 no problem. Now, the final step before 21:40 we can run this is
+writing a prompt for 21:42 our agent. Right now, it has access to 21:44 all these tools, but no idea what it's 21:46 actually supposed to do. But that's 21:47 where the prompt
+comes in. It tells the 21:49 agent who it is, what the job is, what 21:51 information it has access to, and how to 21:53 act. The most important elements to 21:55 include in your
+prompt are role, what 21:58 kind of assistant is it? Task, you know, 22:01 what is it trying to accomplish? Input 22:03 or what data does have access to? Tools, 22:06 which actions
+can it take? Constraints, 22:08 what rules should it follow? And output, 22:10 what should the final result look like? 22:12 The easiest way to generate this prompt 22:14 is to ask
+chatbt. I just tell it what my 22:16 agent is supposed to do and ask it to 22:18 write a structured prompt using those 22:20 parts. And usually I already have a 22:22 conversation
+open about the project I'm 22:23 building. So it's just a natural part of 22:25 the workflow. It gave me a clean, well 22:27 structured prompt that covers everything 22:29 I need.
+So I'll read through it just to 22:30 double check. That's always a good 22:32 habit. But this one looks good. Now I'll 22:34 go back to the AI agent node in NADN. 22:36 under the
+source for prompt. I'll change 22:38 it from connected chat trigger node to 22:41 define below. Then I'll paste the prompt 22:43 into the box below. That's it. Now the 22:45 agent
+knows what to do. Now our AI agent Testing and Debugging 22:49 is complete. Let's give it a try. So 22:50 I'll come down here and hit test 22:52 workflow. And we get an error.
+That's 22:55 actually on purpose. I left this one in 22:56 to show you the easiest way to handle 22:58 most errors you'll run into. I already 23:00 have that chat open with chatbt
+about 23:02 this agent. So, I'll just screenshot the 23:04 error. Then, I drop that into the 23:05 conversation and ask how to fix 23:08 it. Now, it gives me step-by-step 23:10
+instructions, tells me exactly what to 23:12 change, and it even includes the text I 23:14 need to copy and paste. I just go to the 23:16 note it mentioned, make that change, and
+23:18 test the workflow 23:25 again. Okay, this time it completed, but 23:27 I still got an error. This time it shows 23:30 it's in the weather node. So, this one 23:31 was not
+intentional. Um, okay. I think I 23:34 know what it's saying is wrong, but just 23:35 to confirm, I'll screenshot this and ask 23:37 chat GPT 23:39 again. So, it tells me the city
+name 23:41 isn't formatted correctly for the API. 23:44 So, to fix that, I just go to the site. 23:46 I'll search for Draper. It shows Draper 23:49 US instead of the UT I put for
+Utah. So, 23:51 I'll switch that out. Now, I'll test the 23:53 workflow again. 23:58 All right, this time it completed 23:59 successfully with no errors. So, I will 24:01 go check
+my inbox. And there it is. I 24:03 have an email with the trail 24:04 recommendation based on the day's 24:06 weather, air quality, and my schedule. I 24:08 could fine-tune the
+prompt to touch up 24:09 the formatting in here and make it look 24:11 a little prettier. I can also take out 24:12 the sent by NADM part, but this is 24:14 amazing. I also want to
+show what this 24:16 looks like talking to it. So, really 24:18 quick, I'll add a chat node, then 24:20 connect that to the agent. Now I'll open 24:23 up the agent and switch the
+source to 24:25 connected chat trigger node. Then I'll 24:28 open up the chat and ask what is the 24:30 weather today. Nice. It finds the 24:33 weather in my area. I have 2 hours.
+What 24:36 trail should I 24:38 run? Now it searches the list and it 24:41 came back with a few options and it gave 24:43 me its best choice which would allow a 24:45 little extra
+time for stretching or a 24:46 cool down. So, it's using the tools it 24:48 has access to and the context I've given 24:50 it to make its decisions. That was just 24:52 a really
+quick demo to show that chat Possibilities From Here 24:54 feature, but when you give access to a 24:56 lot more tools and information, plus the 24:58 ability to add and change
+things across 25:00 your calendar, documents, or anything 25:01 else, this gets super powerful. In a 25:04 short amount of time, you can build your 25:05 own advanced personal
+assistant to save 25:07 yourself time. And that's a good place 25:09 to start with these so you can fine-tune 25:10 your agents before building something 25:12 that others will
+interact with. When you 25:14 do get to that point, they're also 25:15 extremely powerful at work or in your 25:18 business. And at Futureedia, we use 25:19 agents for all kinds of
+tasks, and no 25:21 matter what industry you're in, there's 25:23 a good chance agents can save you time 25:25 and money with research, customer 25:27 support, sales workflows,
+financial 25:29 automations, you name it. So, I hope 25:31 this helped you if you're just getting 25:33 started. I'll be making more videos on 25:34 NAD and more advanced workflows
+soon, 25:37 especially if this one is received well. 25:38 But if you want to go way more in depth 25:40 on learning AI on Futureedia, we have 25:42 over 20 comprehensive courses
+on how to 25:44 incorporate AI into your life and career 25:46 to get ahead and save time. You can get 25:49 a 7-day free trial using the link in the 25:51 description. All From
+the series 0:00If you want to make your first AI agent but don't know where to start, this is the perfect video for you. Hi everyone, I'm Ishan Sharma and today I'll show you 0:088
+secondshow to build a AI agent which will search the latest news about AI. We'll take that news and we'll turn it into a real script. We'll turn it into a 0:1616 secondsLinkedIn
+post with text and image as well and it will email it to you every single day. So, every day you'll get a 0:2323 secondsreal script for a Instagram reel to record and a LinkedIn
+post that you can just post right away and grow your personal brand. If you want to start 0:3232 secondscreating content or if you just want to put some content out there, build
+your personal brand, this is the AI agent that you need to build in your workflow. 0:4141 secondsIf that sounds good, hit the like button and subscribe and watch this video till
+the very end. With me, I have make.com. 0:4747 secondsThat is the platform we'll be using to build our AI agent. today. It is the best platform for non- tech people to 0:5656
+secondsbuild AI workflows and agents from scratch without knowing how to code. Let me show you how to get started. It is free for you to sign up. So you can go 1:041 minute, 4
+secondsahead and login. Once you log in, this is the interface you will see. Now every AI workflow is called as a scenario and 1:101 minute, 10 secondsevery agent is called as a
+make AI agent. Now in make.com agent has access to scenarios that it can execute on its 1:181 minute, 18 secondsown. So let's start by creating a new scenario. This will be our new
+AI workflow. So the first thing you need to figure out is when do you want to 1:271 minute, 27 secondstrigger it? Now we will later automate it. Let's say every morning 11:00 a.m.
+1:311 minute, 31 secondsYou want to analyze the most important tech news. You want to turn that news into real and LinkedIn post for you and get a email for that. But today I want
+1:401 minute, 40 secondsto basically have a trigger that I can use to get this workflow started. So I will get a simple web hook. We'll get a 1:481 minute, 48 secondscustom web
+hook and we will create a new web hook right here. So I'll just call it you know content 1:571 minute, 57 secondsgenerator web hook and I will click on save and this is the link
+that I now have. Now 2:052 minutes, 5 secondsevery time I will open this link I will be able to trigger this workflow. That is essentially how this works. I'll click on save and
+this is the first module that we've made in our scenario. 2:162 minutes, 16 secondsEvery scenario is built up of these little drag and drop sections or modules with which you'll be
+able to build the entire workflow. So this is the first 2:252 minutes, 25 secondsone. Now once we have triggered this workflow, the next step is to find the latest news in the
+space of AI for 2:332 minutes, 33 secondsexample. You can have it for in the space of tech, finance, business, whatever it is, whatever you need, you can mention it in the prompt.
+So, we 2:412 minutes, 41 secondswill need to get news. And the best AI tool to find news is Perplexity. So, I'm going to search Plexity right here. And 2:492 minutes, 49 secondsas
+you can see, they have so many different apps that you can attach, so many integrations. But we will go and do a create a chat completion in Publexity 2:582 minutes, 58 secondsAI.
+So, this is going to be our module which will search the latest news in AI. 3:053 minutes, 5 secondsSo, if you will see, we will need to have a connection. Now I have already
+connected it to my publicity account. 3:103 minutes, 10 secondsBut the way it works is that you have to click on add and it will ask for a API key. And to get the API key you just
+have to go to this link called publicity.ai/acount/appi. 3:193 minutes, 19 secondsWhen you will do that you will come to your publicity account. You'll have to create a API group.
+So I have just made a group called make.com. Try publicity 3:283 minutes, 28 secondsfor a make.com workflow. And once I have entered that I can set up my billing. So 3:343 minutes,
+34 secondsI have already you know added $5 into it and once you do that then you can go on to API keys and generate your own API 3:423 minutes, 42 secondskey right here. So this is
+what my API key is. I will blur it for this video and you can just click on create and you can keep using it. You can also view the 3:513 minutes, 51 secondsusage metric over here
+but you get the API key you paste it over here and now you have a publicity connection. Then you have a model. So I have selected 3:593 minutes, 59 secondssonar which is their
+basic model which searches for news. But you can also go for sonar pro reasoning reasoning pro depending on what you want. I just 4:074 minutes, 7 secondswanted to keep it simple.
+Here is the most important part which is the prompt that we will enter on perplexity. So this will be add item. This is the 4:154 minutes, 15 secondsmessage. So the content and the
+role. So I'll set the role as the user. So I am the user and I'm giving it a prompt. Now 4:224 minutes, 22 secondsthis is the prompt that I have added. So it says find and analyze
+the most important AI tool or product that was launched in the last 4 to 5 days. Your 4:304 minutes, 30 secondsgoal is to summarize it in plain language based on reputable sources.
+4:344 minutes, 34 secondsRespond only in valid JSON format like this. So we get title which is the name of the tool or product. We get a detailed summary of what this tool does
+4:434 minutes, 43 secondsand then the URL direct link to the best source article about it. So this is the information that we will get from this perplexity module. Rest all we can
+leave 4:524 minutes, 52 secondsblank and click on save. So now we have a workflow which will search for the top AI news and will give us the top AI tool launched in the last few
+days. Now let's 5:005 minutesjust save this and try to run this module right here and I will enter and hence trigger this workflow and it will 5:085 minutes, 8 secondsnow search
+for the most important news and let's click on this magnifying glass and look at the output. So we get search 5:155 minutes, 15 secondsresults. So if I click on search results I
+get the top news. So Gemini's AI big news massive upgrades. Now we need to 5:245 minutes, 24 secondswrap this data around braces. So I'll just go for tools. I'll click on compose a
+string and I'll basically add the 5:345 minutes, 34 secondssearch results right here. So that is going to be the content. We will now add 5:405 minutes, 40 secondsa JSON parser. So
+I need three different outputs from this which is going to be 5:465 minutes, 46 secondsthe title. It will be the summary and the URL. So I need to get that out from the output I
+got from publicity. 5:575 minutes, 57 secondsSo I will basically have my data structure which is basically looking like this. So you can see title text, 6:046 minutes, 4
+secondssummary is also text and URL is also text. That is how it looks like. We'll click on save and the JSON string that 6:126 minutes, 12 secondswe will add is going to be the
+output from this tools module from the before 6:196 minutes, 19 secondsone. We'll click on save and now we can add our next module. So so far we have 6:256 minutes, 25 secondsthree
+outputs from this particular workflow. The title, summary and the URL for every headline. Now I will add the 6:346 minutes, 34 secondsnext module which will be the Gemini module
+which will create the real script and the LinkedIn post for us. So I'll go 6:416 minutes, 41 secondsahead and say Gemini and we will click on create a completion. So if you've
+6:486 minutes, 48 secondsnever used something like make before, let me show you how to attach a AI chatbot with it. Right? So you have 6:556 minutes, 55 secondsGemini right here. I
+need to basically click on add to connect it to my Gemini account. And here I need to paste my API 7:037 minutes, 3 secondskey. So basically I go to AI.studio and over here I'll
+click on get my API 7:117 minutes, 11 secondskey. I'll click on create an API key and then it will make an API key for me like I have below. So I can just copy this 7:197 minutes,
+19 secondsand I can add it here in my API key field and click on save. When I will do that I will have a good to go connection for me. I already have one set up for 7:277 minutes,
+27 secondsme. Now in the AI model I want to go with 2.5 flash. So Gemini 2.5 flash is the latest and the fastest model that we 7:357 minutes, 35 secondswill go ahead with. Then we
+have the messages. This is again the important part where we'll enter the prompt. The role is going to be that of a user. 7:437 minutes, 43 secondsParts will have message type. It
+would be a text message. And here we will enter the prompt that we want the AI 7:527 minutes, 52 secondschatbot to take. So in this case I want to add a massive prompt which
+includes information for how I want my reel to be 7:597 minutes, 59 secondslike for how my LinkedIn post to look like and then I'll also give it the output I'm getting from my
+perplexity 8:068 minutes, 6 secondsmodule. So this is what the prompt looks like. So I say act like a top tier content strategist right this is today's 8:138 minutes, 13 secondstop
+AI news. So I give it title and this title is basically going to be from this 8:208 minutes, 20 secondsand then we will have the URL which will be from right here and then we will
+take summary to be choices message content. 8:298 minutes, 29 secondsSo basically we are going into publicity we are going onto the choices we are going on to the messages and the
+8:378 minutes, 37 secondscontent. So this is basically the summary part of it. So if I will close this I will see this as the main prompt. 8:458 minutes, 45 secondsSo I say write a
+150word Instagram real script in the style of Vishan Sharma who explains tech and AI news in clear casual dramatic way that sounds natural 8:538 minutes, 53 secondsin English. Then
+I say follow this format start with a bold hook explain what is happening and I have written 9:019 minutes, 1 seconddown how I like to speak and then I also have written the style
+in which I want my LinkedIn post to be like. So it says summarizing the news write in this 9:099 minutes, 9 secondsformat start with bold exciting oneliner that creates curiosity
+and then end with a question. So that's how it looks like. 9:169 minutes, 16 secondsThis is my long prompt and then I have given it the format in which I want the output to look
+like. So return your 9:229 minutes, 22 secondsoutput in a clean HTML format for email using the following structure. So you have uh the heading two tag, you have 9:309 minutes, 30
+secondsInstagram reel, then real script here, then you have LinkedIn post, LinkedIn caption here, and then you have the URL 9:399 minutes, 39 secondsand the title over here. So the
+title is going to be right here and we are good to go. So what I'm doing here is 9:469 minutes, 46 secondsbasically I'm passing variables from the previous modules outputs. So the
+outputs of the previous module will become the 9:559 minutes, 55 secondsinputs for my next module. So as you can see I have entered the title which I got from my JSON module and
+this choices 10:0310 minutes, 3 secondsmessage content as summary from my publicity module right here. Now I can click on save and we are good to go. Now 10:1110 minutes, 11
+secondsyou can actually test it out. I'll click on save. I'll click on run once and I will again enter this link. Hence 10:1910 minutes, 19 secondstriggering this entire workflow.
+It will search for the AI news for us. We got the latest AI news and now it is turning that into a real caption and LinkedIn 10:2810 minutes, 28 secondspost and it gave us an
+output. So I can click on this and I can see the first operation. I can go onto the result and this is what I got at the end of it. 10:3910 minutes, 39 secondsThis is in HTML
+format. So you can put it and you can get a very well scripted thing out. Okay. Now let's keep building. So we already have the script 10:4710 minutes, 47 secondsand the LinkedIn
+post. The next step is to get our image created. And for image we need to do two things. I was thinking to make a image in which I am on the 10:5610 minutes, 56 secondslaptop and I
+have the most important text from the news written on my t-shirt and written on the laptop as well. So maybe that is the image I want to 11:0511 minutes, 5 secondscreate. So I'll
+click on add another module. I'll want to have a Gemini. I'll say create a completion and just like we 11:1211 minutes, 12 secondsdid before we will be using the 2.5 flash model.
+The message role would be user the parts would be text and now we 11:2111 minutes, 21 secondscan enter the message that we want. And this is what the message will basically look
+like. So based on the following AI news return the single most important 11:2911 minutes, 29 secondsword that represents the main topic of the news and we have the summary from the
+publiclexity output that we got. So now I will click on save and I will add 11:3711 minutes, 37 secondsanother module now which will actually create my image. So you can create
+your image using various different apps. I am using Gemini because I have the free API 11:4511 minutes, 45 secondsfor that. You can do the same if you want to or if not you can use
+chat GPT API key. You can use any other app as well by simply having a HTTP module and 11:5411 minutes, 54 secondssending a request for that app. So I'll click on create an image
+and for this 12:0112 minutes, 1 secondcase we would be using the image gen 3.0. So this is the latest image generation model. I can enter the image 12:0812 minutes, 8
+secondsprompt. I will select allow adults and I'll keep the aspect ratio to be 1 is to1. In this case I want it to be like a Lego styled image. So this is the prompt 12:1612
+minutes, 16 secondsfor it. Don't worry I'll put all the prompts in the description of the video and you can take it from there if you want this exact version. Now this result
+12:2312 minutes, 23 secondsis going to be from our latest model of Gemini which is the one word that we want to put on the t-shirt and then we 12:3112 minutes, 31 secondscan just
+click on save. So now we have a workflow which gives us an image a real caption a LinkedIn post caption and that 12:3912 minutes, 39 secondsis all. The next step is to send this to
+us on email. So let's add that and complete our agent right here. So I will 12:4612 minutes, 46 secondsbasically search for Gmail and I'll click on send an email. Now for this also
+you will have to add a connection. 12:5312 minutes, 53 secondsSo you'll have to login with your email ID with your Gmail ID to allow make to send emails on your behalf. So if you
+do that you will basically have this 13:0213 minutes, 2 secondsconnection like I do right here. I'll put this as my email address. Let's just 13:0813 minutes, 8 secondssay this is
+my email. Uh subject I can say um today's 13:1513 minutes, 15 secondstop AI news. I think I can take the result from the previous Gemini model and that could be the subject. Again,
+as you can see, it is completely variable. 13:2413 minutes, 24 secondsYou can have variables from the previous modules that you can put into it and that looks very good to go. Then
+we have the content. Now, this is where you will 13:3313 minutes, 33 secondshave the body of your email. So, you need to specify what do you want the person to see at the end.
+Before that, we can also add an attachment. So, this 13:4113 minutes, 41 secondsis an attachment for the image that we have created. So we'll click on add an attachment and you can
+select Gemini AI create an image. So the output we get 13:5013 minutes, 50 secondsfrom it will be the attachment of this email. So that is good to go. Now we just need to sort out
+the body and this is what the body would look like. So 13:5813 minutes, 58 secondstoday's AI content I will basically put this the result that you get from the Gemini module which
+creates the LinkedIn post and caption and the script for us. 14:0614 minutes, 6 secondsAnd this is the image source. So I have set it as C id which is content ID AI 14:1414
+minutes, 14 secondsimage. So basically we need to say AI image right here so that it is able to reference that. So which is basically 14:2114 minutes, 21 secondsnaming that this
+image is called AI image uh AI image and then we are 14:2814 minutes, 28 secondsreferencing it in our email itself. So it will basically be putting that image in line with the
+content. So once you do 14:3514 minutes, 35 secondsthat you can basically click on save and uh that's good to go. Let's run this. 14:4114 minutes, 41 secondsThe web hook is
+triggered. Publicity is searching for the latest AI news. It sent the AI news to the Gemini module to 14:4814 minutes, 48 secondsmake the real script and the LinkedIn post caption.
+We are figuring out the most important word from the news which we can put in the image. 14:5614 minutes, 56 secondsAnd now we are creating an image itself. 14:5914 minutes, 59
+secondsAnd now we are sending an email with the image attached to it. And this is what the output looks like. As you can see, 15:0715 minutes, 7 secondswe got the Instagram real
+script. We got the LinkedIn post. Again, this is in Hindi. We can always change that by tweaking the prompt. But this is the 15:1515 minutes, 15 secondsLinkedIn post that we got.

@@ -1,0 +1,224 @@
+to add custom connector. And then we're going to call this one Higsfield. 3:053 minutes, 5 secondsAnd we're going to paste in that MCP link right there. And then click add. 3:093
+minutes, 9 secondsThere we go. And now once you have it added here, you're going to want to then click this button right here. that says connect. This is going to then open up
+3:173 minutes, 17 secondsHigsfield to make sure that you're authorizing it with the correct account. And then you go ahead and click allow. This brings us back over here to Claude.
+3:253 minutes, 25 secondsAnd now we have that connected. So what this allows us to do now is we can go into Claude and we can ask it, hey, generate an image, generate a video, and
+3:333 minutes, 33 secondsthen it'll use Higsfield in the background to do that. And now you might be wondering, how am I going to then have a voice over for that? So you have two
+different options for this. Number 3:413 minutes, 41 secondsone, what most people are probably going to do is just going to be using 11 Labs on their own and then generating a
+voice over and then uploading that audio file 3:503 minutes, 50 secondsinto Claude. However, if you want Claude Code to do literally everything for you, then what you do is you go
+into here, go 3:573 minutes, 57 secondsback to connectors in your settings, and then go to browse connectors, search 11 Labs, and then do 11 Labs Player right 4:054 minutes, 5
+secondshere. Then click install, and then click install. And then it'll show up right here. Click this settings button, then 4:124 minutes, 12 secondsgo to configure, and then it's
+going to require an 11 Labs API key. And you can get that from this URL right here. Then we're going to click to create a new 4:204 minutes, 20 secondskey, and then we'll just call
+this one cla code. And I'm just going to select unlimited usage credits right here. So 4:274 minutes, 27 secondsit can use as many as we want under my account. And I'm going to
+give it access to text to speech, speech to speech, speech to text, just all this stuff 4:354 minutes, 35 secondsright here. And then click to create the key. Then we'll copy that
+to the clipboard. Head on back over to Claude Code. Paste that in. Then we're going to 4:434 minutes, 43 secondswant to select this switch to make sure this is enabled. Go down
+here and then give it all of these permissions right here. That way it can generate audio and 4:514 minutes, 51 secondseven music if you want as well. And now to verify that this
+is working, go down here to this little plus button and then go to connectors and make sure Higsfield 4:584 minutes, 58 secondsand 11 Labs are showing right there. And then we're
+going to copy this prompt right here that is shown on the screen. 5:055 minutes, 5 secondsPaste it in wingget install gy. ffmpeg and then go ahead and click enter and 5:125
+minutes, 12 secondsthen go ahead and click trust this workspace and then we're going to give Claude the permission to use something called PowerShell on Windows. So we're 5:205
+minutes, 20 secondsgoing to then click allow once and now just like that we have ffmpeg installed. 5:255 minutes, 25 secondsBasically what that's going to allow you to do is render
+these videos directly using cloud code. So that way you don't have to generate a bunch of clips and 5:325 minutes, 32 secondsthen edit them together yourself in an external editor
+like Cap code for instance. You can feel free to do that if you want, but just know that it is 5:405 minutes, 40 secondsgoing to be some extra work if you do that. And typically
+for most people out there watching this, you're probably going to want to do that just because it gives you more control over doing this. 5:495 minutes, 49 secondsI just want to
+show you how much you can automate using Claude Code and how much you can actually just get it to do a lot of the work for you and automate this. 5:575 minutes, 57 secondsIt's not
+perfect. However, this is a preview of where this technology is going and you'll probably be amazed at how good that it is. And so now what we're going to do is paste in this 6:066
+minutes, 6 secondsmaster prompt right here. So this prompt says you're going to produce a complete ready to upload YouTube video end to end. Work in the current directory. 6:156
+minutes, 15 secondsCreate a folder structure script audio visuals final. And then we have a video brief right here where we're going to 6:226 minutes, 22 secondsgive it our topic.
+So we're going to switch this topic out and we're going to give it a different title. I've seen a lot of these travel review channels 6:306 minutes, 30 secondsdoing incredibly good
+on YouTube. I saw one that did videos on tips and tricks for airline travel. I saw another one that talked about going on cruises, but 6:386 minutes, 38 secondsI haven't seen one
+that talked about hotels. So, we're going to ask this video idea to be about things hotel staff won't tell you. And then for the 6:486 minutes, 48 secondstarget length, I'm going
+to actually make this a 3inut video right here. It doesn't need to be that long. I'm going to ask it to be an 8minute video right 6:556 minutes, 55 secondshere, which should be
+around a 6,000word script. For the style, we'll do educational conversational. But we can get rid of Matt Par style right there with a hook and a three-act structure. 7:057
+minutes, 5 secondsRehook every 60 to 90 seconds. We can get rid of the call to action right there. And for the aspect ratio, 16x9 7:127 minutes, 12 seconds1080p confident tone. And
+then again, we can get rid of the CTA right there. And then it tells it what to do for the voice over. Below that, then we have the 7:207 minutes, 20 secondsvisuals using the
+Higsfield MCP on exactly which models to use. Now, it's really important that you see right here that we're asking it to use Cance 2.0, 7:287 minutes, 28 secondsknow which even
+though Higsfield is the cheapest place to use Sea Dance, it is still not the cheapest model in the world. In fact, it's one of the more 7:367 minutes, 36 secondsexpensive. So, keep
+that in mind. You can use cheaper models out there like for example Cling 3.0 using this Higsfield MCP. But we're going to select 7:447 minutes, 44 secondsCance for this. And we'll
+also say and for the introduction, 7:517 minutes, 51 secondswhich is the most important part of the video, we'll definitely want to use C dance for that. And then we're asking it
+7:587 minutes, 58 secondsto run these in parallel. Then we're even getting it to make a thumbnail as well. And actually, I would like it to 8:058 minutes, 5 secondsuse um GPT image
+2 for that cuz it's a bit better than Nano Banana in my opinion for YouTube thumbnails. And then 8:138 minutes, 13 secondswe're going to ask it to stitch and render all of this
+together, overlaying the audio and everything else to make a full complete video. And it's even going 8:218 minutes, 21 secondsto give us some title options. And it's going to ask
+us not to use copyrighted stuff as well. There we go. And I'm going to select Opus 4.7 for this. You 8:298 minutes, 29 secondsdon't need to, but it is going to be the best model
+that Claude has. And then go ahead and click enter. And as you can see, I accidentally said six words of the script. And that's clearly a typo. 8:388 minutes, 38 secondsIt should
+be 600. And it actually knew that right here. And then below that, we said your voice ID is a placeholder. 8:448 minutes, 44 secondsI'll need to pick an 11L labs preset voice
+unless you give me a specific voice ID. And if we go to 11 Labs and we search Matt right here, I actually have 8:518 minutes, 51 secondsmy voice cloned. It's this orange one right
+here. 79,000 people have already used it almost every single week. I literally see people using this voice right here, which is kind of crazy. 9:009 minutesPlease only use it for
+good things if you do. But what we're going to do is click this to copy this voice ID. Go back to Claude Code. say here 9:099 minutes, 9 secondsis the voice ID since we forgot to
+put that in the original prompt and then it says cost 25 9:179 minutes, 17 secondsto 40 cance video generations plus image generations cost does cost a lot of money I'll say let's
+keep the the seance 9:259 minutes, 25 seconds2.0 0 generation just for the intro of the video and use cheaper video models 9:349 minutes, 34 secondsfor the rest and use GPD image 2
+for the images and make sure the images 9:439 minutes, 43 secondshave some motion in them like zooming in as well. And then there we go. We'll go 9:509 minutes, 50 secondsahead and
+click enter. And we'll also click allow on that. And then again, we'll go ahead and click allow. And again, click allow. And now, as you can 9:589 minutes, 58 secondssee, it's
+putting together this plan where it's going to write the script, do the shot list, show it to us for review, and then in phase B, it will go ahead 10:0510 minutes, 5
+secondsgenerate the voice over, the video clips, the thumbnail, and then stitch it all together. And then we can give it the voice ID right there. And it says, "Got it. Let me find
+the actual model 10:1410 minutes, 14 secondsIDs for GPD image 2, confirm a cheap video option, and then write the script." So, it's actually going through models right here, doing
+the research 10:2110 minutes, 21 secondsfor us. And that's what's so cool about this. It's automating a lot of that work that is so repetitive and honestly just not a good use of
+your time. Your time 10:2910 minutes, 29 secondsis better spent doing things like finding amazing video ideas, planning out the structure of your channel, monetizing your channel
+correctly, and building a real brand through YouTube. 10:3910 minutes, 39 secondsAnd that's a really important key we're going to get into in just a little bit. 10:4210 minutes, 42
+secondsBuilding a real brand through YouTube and actually making a lot of money from it. But going back here on over to Claude, as you can see, it says that the 10:5110 minutes, 51
+secondsvoice ID is noted. It found the models here and now it is going ahead and writing our script. And we can actually see it writing the script in real time. 10:5810 minutes, 58
+secondsAnd it's got a great hook right here saying that fully booked room, it's probably not fully booked. The mini bar detected a soda you never touch. And it's talking about
+these things in 11:0611 minutes, 6 secondshotels that are very common experiences for a lot of people. And it's using hooks and rehooks in order to keep people's attention
+throughout the entire 11:1311 minutes, 13 secondsvideo. And just like that, we've got a script that is written. Now, it's going ahead and writing our shot list of 32 different
+shots with shots 1 through 5, 11:2111 minutes, 21 secondssuch as the intro and hooked flag for Cance 2.0. And for the next shots, we're going to be using GPT image 2 stills where
+we'll get an effect of zooming in 11:3011 minutes, 30 secondsand everything else. And again, it'll use FFmpeg for that. And there we go. 11:3411 minutes, 34 secondsNow, we have the
+script written. We've got the shot list done, and it's going to actually use VO3.1 Light, which is a cheaper video model for doing the movement shots. And it's going to use 11:4211
+minutes, 42 secondsthis voice. And it shows the rough cost right here. We'll go ahead and click allow. This is going to cost us 4 to 500 Higsfield credits. And I have 2,400 in
+11:5111 minutes, 51 secondsthe account. So, I should have plenty in order to do this. And it'll use 11 Labs using my 11 Labs credits. And now our 11:5811 minutes, 58 secondsvideo
+is done. Claude literally did all of the work for us in the background. 12:0412 minutes, 4 secondsAnd now we have a complete video right here that's 3 minutes and 44 seconds long
+using Cance 2.0 videos, V3 videos, 12:1212 minutes, 12 secondsGPT2 images, and it's all together with our voice over and everything else. So, we're going to go ahead and take a
+look at this. Oh my gosh, I cannot believe we 12:2112 minutes, 21 secondsjust made a whole video with Claude Code. Let's take a look at what this video looks like right here. That
+fully booked room. 12:2712 minutes, 27 secondsIt's probably not fully booked. The mini bar. Wow. I just want to point something out. It literally did a transition right there. So
+instead of just jump cutting 12:3612 minutes, 36 secondsthat, it transitioned to the next thing by putting a nice crossfade. So it's probably not fully booked. The mini 12:4512
+minutes, 45 secondsbar that detected a soda. It's got a mini bar of video. Wow. 12:5012 minutes, 50 secondsI've worked hotel front desk and there is a long list of things the
+property will never volunteer. No way. This is incredible. You're going to learn five of them. 12:5812 minutes, 58 secondsWe'll cover the upgrade trick almost no guest ever asks
+for the exact room they always offer. And it even put a title 13:0613 minutes, 6 secondsscreen as well. That is absolutely insane. And the fees you can flat out refuse. 13:1213
+minutes, 12 secondsLet's start with upgrades because the rules are not what most No way. 13:1713 minutes, 17 secondsFront desk agents have wide discretion on day. This is actually
+crazy after 8:00 p.m. when premium rooms are mathematically likely to sit empty all 13:2513 minutes, 25 secondsnight. Booking direct, not through Expedia or Booking.com,
+automatically even has a booking. So, this is 13:3213 minutes, 32 secondsabsolutely insane. This is literally going to change faceless YouTube channels forever or even any type of
+YouTube channel. Like I promised you, I 13:4013 minutes, 40 secondswanted to go over how you can make this so because this is going to allow anybody to create YouTube videos super
+easily and that's going to cause a lot 13:4813 minutes, 48 secondsof competition. There's going to be a lot of people doing this. So, how do you make your content unique and how do
+you make it stand out? Well, the secret is having a character who's the face of 13:5613 minutes, 56 secondsyour channel. That way, if someone copies you, they're just building your
+brand because you have something that's the face of the channel. And that face 14:0414 minutes, 4 secondsof the channel can be a mascot. It can be an animal. It can be a AI image
+generated person. Channels like Zinny Studio do this and they're incredibly 14:1214 minutes, 12 secondssuccessful. It can be a whole host of different things, but the key is having
+a host of the channel. If you want me to do a tutorial on exactly how to do that 14:2014 minutes, 20 secondswith Claude Code as well, just let me know and I can definitely show
+you. But basically, you can prompt Claude Code to put in a character who is the face of 14:2814 minutes, 28 secondsthe channel if you wanted to. And if you want to get the best
+deal on Higsfield, by the way, which powers the entire back end of this, you can check out the link 14:3614 minutes, 36 secondsdown below in the description because remember, you
+are going to need it to actually generate these videos using Claude Code because it'll generate the 14:4314 minutes, 43 secondsvideos with Higsfield in the background through that
+connector MCP. And also, if you want to get on the wait list for my YouTube program called Tube Accelerator, 14:5114 minutes, 51 secondsthe link for that will also be down in the
+description below. It's actually closed right now, so you cannot buy it even if you want to. And that's because my team and I will actually help you to 14:5914 minutes, 59
+secondsget the results that you want with YouTube. So, we can only take on so many people at a time. And I'm going to actually start limiting the amount of people who do come into
+my programs 15:0715 minutes, 7 secondsbecause it is getting to be a lot to fulfill. So, make sure you get on the wait list for Tube Accelerator so you don't miss out when I do
+reopen it and you can hopefully claim your spot if 15:1515 minutes, 15 secondsYouTube is something that you want to do. You want to do it the right way where you can actually
+potentially make a lot of money from it. And now I kind of want to go back to this video and 15:2215 minutes, 22 secondsjust see some more of it because this is absolutely
+incredible. Your birthday or your anniversary, say so out loud. It is literally a check box on their screen and most guests never mention it. 15:3415 minutes, 34 secondsPoliteness
+plus a real reason plus a late checkin beats almost any loyalty tier you can buy. Now about the room they hand you first. Here's the secret. 15:4415 minutes, 44 secondsIt's And if
+you wanted to, you could even request this to have subtitles on this as well if that's something you want to do or just subtitles in the 15:5215 minutes, 52 secondsbeginning. And
+the real only limit to this is your imagination when it comes to prompting it in order to get the results that you want. And a lot of 16:0016 minutespeople don't know how to prompt
+it. They don't know what are the best tactics and the best techniques and everything else. 16:0416 minutes, 4 secondsAnd that's why in my new program, Tube Accelerator 2.0, 0. When
+we do launch it, I'm going to give people access to all of my best practices in documents 16:1316 minutes, 13 secondsthat you could then go ahead and upload into Claude and just
+tell it follow all this and it'll have all of my secrets, all of my techniques, all of my script 16:2116 minutes, 21 secondswriting formulas, all of the best thumbnail formulas.
+And I almost forgot that within Claude, they also generated us three thumbnails. So, we have this 16:2916 minutes, 29 secondsthumbnail right here, this one right here. This is
+actually a pretty good one, and this one right here. Also pretty decent as well. So you could then 16:3716 minutes, 37 secondsgo ahead and split test all three of those. And if you
+want to make more thumbnails, I would just recommend using GPT image 2 or using a dedicated 16:4516 minutes, 45 secondsthumbnail software like TZY in order to generate thumbnails
+if you want even better quality. And then it also even gave us a title right here. These title 16:5316 minutes, 53 secondsoptions, five things hotel staff will never tell you. Why
+you're paying more for the worst room. Hotel upgrade tricks nobody asked for. I worked at a hotel. 17:0117 minutes, 1 secondHere's what they hide. These are five great titles that
+you can use. And then it even gave us a description along with chapters even. That's crazy. And a set 17:1017 minutes, 10 secondsof tags that we can just go ahead and copy paste.
+Claude code did all of it for us. Absolutely incredible. And now if you want that in-depth breakdown and 17:1817 minutes, 18 secondsexactly how to make this into a real business,
+check out this video next to me right here. My name is Matt Parr. We are entering a very exciting time for doing YouTube, but only if you do it the 17:2717 minutes, 27 secondsright
+way. Because a lot of types of channels are going to get way too commoditized, but not these kind. And I'm going to show you why in that video. and I'll see you there. All From the
+series0:00 With the launch of Claude Code, it's 0:01 finally possible to create channels like 0:03 these. Now, I'm sure you've seen those 0:05 channels pulling in millions of views
+by 0:06 ranking things like currency, 0:08 population, countries, and other similar 0:10 topics using motion graphics. And what 0:12 really makes those channels stand out is 0:14
+the quality of the motion graphics they 0:16 use. Normally, making videos like that 0:18 would take several hours and sometimes 0:20 even days inside Premiere Pro and After 0:22
+Effects. But now, with Claude Code, 0:24 videos like these can be made in 0:26 minutes. So, in this course, I'm going 0:28 to break down exactly how to model and 0:30 recreate a
+channel like this using 0:32 Claude Code. We'll go through the full 0:34 process from start to finish. From 0:36 creating your own channel to letting 0:37 Claude Code handle most
+of the heavy 0:39 lifting like generating the video, 0:41 adding the voice over, and editing 0:43 everything, all inside Claude Code. All 0:45 right, so the very first step is
+going 0:47 to be creating your channel, and 0:49 branding it. That's what we're covering 0:51 in this segment. Now, if you'd rather 0:53 jump straight into the full video 0:54
+creation process, you can use the 0:56 timestamps below to skip ahead. But for 0:58 now, we're going to focus on setting up 1:00 the channel properly. One thing to 1:02 understand
+about creating and branding a 1:04 strong channel is that you want to model 1:06 existing brands. Look at how other 1:09 channels package themselves, their 1:11 visuals, their
+style, their overall 1:13 feel, and then decide how you want to 1:16 shape yours. For example, I really like 1:19 this particular channel. I like how they 1:21 consistently use a
+red theme across both 1:23 their banner and their logo. That kind 1:25 of consistency makes the channel feel 1:27 clean and recognizable. Next, you'll 1:29 need a channel name.
+Now, you could use 1:31 AI to generate one, but I already have 1:33 something in mind, so I'm just going to 1:35 go with that. I'm going to call mine 1:37 ranked data. Since this
+type of content 1:40 is based on real data, the name fits 1:42 really well. I like how it sounds and it 1:45 matches the theme I'm going for, so 1:47 that's what I'll stick with.
+All right. 1:48 So, for the branding, I'm going to use 1:50 Canva because it's quick and easy. You 1:52 could also use AI if you prefer, but 1:54 Canva works perfectly for this.
+So, go 1:57 ahead and search for Canva. And if you 1:59 don't already have an account, just 2:01 create one. The free version is more 2:03 than enough. Once you're inside Canva,
+2:06 click on the create button in the top 2:08 corner, then search for logo. That 2:11 should bring up a range of pre-built 2:12 templates. I'm going to select the 2:14 YouTube
+channel logo option and then 2:16 switch over to a completely blank 2:18 canvas. This gives me full control over 2:20 the design, which is exactly what I 2:22 want. Now, I'm going
+to add some text 2:25 that says ranked in all capital letters 2:28 and then adjust the font so it looks 2:30 bold and clean. You want something that 2:33 stands out and is easy to
+read at a 2:36 glance. Next, I'll choose a background 2:38 color. And here's something important. 2:40 Whatever color you pick, make sure it 2:42 stays consistent across your
+thumbnails, 2:44 your banner, and your logo. That 2:46 consistency is what ties your whole 2:48 brand together. At first, I was thinking 2:50 of going with green, so I'll quickly
+2:52 test a few shades to see how it looks, 2:54 but honestly, the red looks really good. 2:57 It stands out more and feels stronger 2:58 visually, so I'm going to go with that.
+3:00 Once you're happy with your design, go 3:02 ahead and download it. And one quick 3:04 thing to keep in mind, if you're 3:06 following this same style, make sure 3:08 your text
+is centered. YouTube tends to 3:10 crop the edges of profile images, so 3:13 anything important needs to sit right in 3:15 the middle to stay visible. All right, 3:17 so take some
+time to experiment with 3:19 different color options and make sure 3:21 everything looks clean and consistent 3:23 before you download your logo. Now, 3:26 since I've got my logo
+ready, the next 3:28 step is creating the banner. This part 3:30 works a little differently, so let's 3:31 walk through it. Go back to the Canva 3:33 homepage, then search for
+banner. You 3:36 should see options like YouTube banner. 3:38 Go ahead and click on that. Now, banners 3:41 can be a bit tricky. The reason is that 3:44 YouTube crops and displays
+different 3:46 parts of your banner depending on the 3:47 device someone is using. So, what 3:50 someone sees on a desktop can look very 3:52 different from what someone sees on a
+3:54 laptop or a mobile device. That's really 3:57 the main challenge here. But luckily, 3:59 there's an easy workound. I found a 4:01 template that shows exactly how your 4:03
+banner will appear across different 4:05 devices. So, what I'm going to do is 4:07 upload that template into Canva, place 4:10 it onto my blank canvas, and drag it 4:12 into
+position. Once it's in place, I'll 4:15 click on it and set it as the background 4:17 image. This way, I have a clear visual 4:20 guide while designing, and I can make 4:22 sure
+everything important stays within 4:24 the safe area. Now, this template shows 4:26 you exactly what people on different 4:28 devices will see. The red zone here 4:31 represents
+what viewers on mobile 4:33 devices will see. This center area is 4:35 the universal zone, meaning everyone, 4:38 whether they're on a TV, laptop, or 4:40 mobile, will see whatever
+you place 4:42 there. So any important details should 4:45 always stay within this section. The 4:47 white area outside of that is only 4:50 visible to people on desktop while the
+4:52 full banner is visible on TV. So once 4:55 you understand that layout, it becomes 4:57 much easier to decide where everything 4:59 should go. For my text, I like to keep 5:01
+things minimal. So I'm just going to add 5:04 something simple like subscribe in the 5:06 center. I'll make it bold, adjust the 5:09 size, and position it carefully so it 5:12 sits
+right inside that universal zone. 5:15 Next, I'll change the text color to red 5:18 since that's the color I used for my 5:19 logo. 5:21 You always want your branding to stay 5:22
+consistent across everything. Now, if 5:25 you're having trouble matching the exact 5:26 color in Canva, here's a simple trick. 5:29 Just upload your logo back into Canva, 5:32
+drag it onto your workspace, then click 5:34 on the color tool. From there, use the 5:37 color picker and select the exact color 5:39 directly from your logo. That way, 5:42
+everything matches perfectly. 5:45 All right. So once you've uploaded your 5:47 banner image or your logo, depending on 5:49 the color you're trying to match, go 5:51 ahead and
+click on the color wheel. 5:53 Canva will show you the exact color 5:55 palette used in that image. All you need 5:57 to do is copy that color. Then go back 6:00 to your banner,
+click on it, open the 6:02 color wheel again, and paste in that 6:04 exact color code you just copied. As 6:06 soon as you do that, you'll notice your 6:08 banner and your logo now
+match 6:10 perfectly. This is great for branding 6:12 because it keeps everything consistent 6:14 and gives your channel a much more 6:15 polished premium look. So now both your
+6:18 banner and your logo share the exact 6:20 same color, even if that color wasn't 6:23 originally available in Canva's default 6:25 options. Once you've got both your logo 6:27
+and banner ready, head over to your 6:29 YouTube channel and click on customize 6:31 channel. From there, upload your logo as 6:33 your profile picture and then upload 6:35 your
+banner. For the description, keep 6:37 it simple. You don't need to over 6:39 complicate it or write a full essay. A 6:41 short, clear description works just 6:43 fine. For the
+channel description, I'm 6:45 going to keep it simple. Something like 6:46 I rank stuff, daily videos, or you can 6:49 adjust it based on your posting 6:50 schedule, like new
+videos every day or 6:53 new videos every week. The goal is just 6:56 to make it clear and clean. You can also 6:59 add a simple emoji to make it a bit more 7:01 engaging and then
+include a quick 7:03 subscribe line underneath. That's really 7:05 all you need. You don't have to write a 7:07 long paragraph or anything complicated. 7:10 Simple and clean works
+best here. Once 7:12 that's done, just click publish and then 7:14 head back over to your channel. And as 7:16 you can see, everything looks really 7:18 good. Now, now that we've
+covered the 7:20 branding, let's move on to the actual 7:22 video creation process. All right, so 7:24 for the video production side, we're 7:26 going to use a tool called
+Remotion. And 7:28 the only way to access it is through 7:30 Claude Code. So, the first thing you 7:31 need to do is open your browser and 7:33 search for Claude Desktop. Look for
+the 7:36 option that says claude download. Then 7:38 click on it and choose your operating 7:40 system, whether that's Mac or Windows. 7:43 In my case, I'm on Windows, so I'll 7:45
+click on the Windows option, and that 7:46 will download Claude onto my computer. 7:49 Once it's downloaded, just click on the 7:51 file to start the installation process. 7:53
+After that, Claude will install itself 7:55 and set everything up for you. Now, 7:57 during the installation process, Claude 7:59 is going to show a few pop-ups. Just go 8:02 ahead
+and grant all the necessary 8:03 permissions so it can install properly 8:05 on your computer. 8:07 Once that's done, the next thing you 8:09 need is a clawed account. This part is
+8:12 very straightforward. You can simply 8:14 sign in using your Google account. In 8:16 some cases, you might also be asked to 8:18 provide a phone number, but that's about 8:20
+it. You'll need this account on the 8:22 Claude website so you can properly use 8:24 the Claude desktop app you just 8:26 installed. Now, one question that 8:28 usually comes up is
+whether all of this 8:30 is completely free. The best way to 8:32 think about Claude is to compare it to 8:33 ChatGpt. ChatGpt has a free plan, but it 8:37 also offers a paid plan
+with more 8:39 features. Claude works the same way. 8:41 There's a free version, but the paid 8:43 plan gives you more capabilities. So, 8:45 I'm just going to log into my Claude
+8:47 account real quick. And yeah, that's 8:49 pretty much it. I'm in. All right. So 8:53 the chat icon gives you access to the 8:55 regular claude interface right from your 8:57
+desktop which is pretty useful. Then the 9:00 next icon is called co-work and that's 9:03 more focused on automation and developer 9:06 tools. We're not really going to use 9:08
+that in this course. The last icon is 9:10 the code section and that's where you 9:12 get access to claude code. This is what 9:14 we'll be using for the entire course. So 9:16 the
+first thing you want to do here is 9:18 create a folder to store all your 9:19 project files. Just click on create 9:22 folder, give it any name you like, then 9:24 select it and
+save it within your clawed 9:26 interface. After that, you'll notice a 9:28 few settings like the model and the 9:30 mode. Now, the model you choose affects 9:32 how many tokens
+are used. Generally, the 9:34 more advanced and faster the model is, 9:37 the more tokens it consumes. To keep 9:39 things simple, starting with the Sonnet 9:41 4.6 model is
+perfectly fine. As for the 9:44 mode, you can just leave it on accept 9:46 edit. That works well for what we're 9:48 doing. And that's pretty much it. The 9:51 default settings are
+good enough, so you 9:53 don't really need to change anything 9:54 else. All right, so the next step is to 9:56 install a couple of dependencies. These 9:58 are basically tools
+that Claude Code 10:00 will rely on to create motion graphics. 10:02 Now, the main tool we're going to use 10:03 for motion graphics is Remotion. But for 10:06 Remotion to work
+properly, it requires 10:08 two specific dependencies, node.js and 10:12 git. Getting these is very 10:13 straightforward. Just open your browser 10:15 and search for downloadit.
+Then download 10:18 the version that matches your operating 10:19 system. In my case, I'm on Windows, so 10:22 I'll click on the Windows download 10:23 option, and it'll start
+saving to my 10:25 computer. Next, do the same thing for 10:28 Node.js. 10:29 Search for Node.js, open the official 10:32 website, and download the version that 10:34 matches your
+operating system. Again, 10:36 I'll select the Windows version, and 10:38 it'll download to my computer. Once both 10:40 files are downloaded, you're ready to 10:41 install them.
+Now, if you already have 10:43 Node.js js installed on your computer. 10:46 Just make sure it's at least version 18 10:48 because that's what Remotion requires to 10:49 run
+properly. 10:51 Once you've downloaded both Node.js and 10:54 Git, all you need to do is install them 10:56 like any normal software. Just go 10:58 through the setup, allow the
+necessary 11:00 permissions, and click through the 11:01 steps. Next, next, accept, and so on 11:05 until everything is fully installed. 11:07 That's really it. That's how you
+install 11:09 Node.js and Git on your computer. Now, 11:12 once both of those are installed, head 11:14 back to Claude Code and ask it to 11:16 install the Remotion skill and set
+it 11:18 up. Remotion is what we'll be using for 11:20 all our motion graphics. When you send 11:23 that request, Claude will automatically 11:25 pull Remotion from GitHub and
+install it 11:28 on your system. If you already have 11:30 Remotion installed, it'll simply tell 11:32 you that it's already set up. If not, 11:34 Claude may ask for a few
+permissions 11:36 like access to search the web or install 11:38 dependencies. Just go ahead and approve 11:40 those so everything can run smoothly. 11:42 And once Remotion is
+fully set up, 11:44 that's when things start to get 11:45 interesting. Now, you want to think of 11:47 Claude code as a chatbot interface where 11:49 you tell it what to do and it
+handles 11:51 the execution for you. That's really the 11:53 power of it. Because of that, the key 11:55 skill here is learning how to 11:57 communicate what you want clearly. And
+12:00 that's where prompting comes in. You 12:02 need to understand how to prompt Claude 12:04 code properly so it can use Remotion to 12:07 generate the exact motion graphics
+12:09 you're aiming for. To make this easier, 12:10 I've created a Google document that 12:12 includes several prompt templates along 12:14 with the exact prompts I'll be using
+12:16 throughout this course. Go through them 12:18 and study how I structure my prompts. 12:20 That pattern will help you learn how to 12:21 write your own. And feel free to 12:23
+experiment with some of the examples as 12:25 well. Now, inside the Remotion document, 12:28 everything is colorcoded to keep things 12:29 organized. The purple tags indicate a
+12:32 new project. The green highlighted 12:34 sections are the actual prompts I'm 12:36 using, and the red highlighted sections 12:38 are templates. The templates are there 12:40
+for you to customize. You can fill them 12:42 in with your own details. Things like 12:44 the length of your video, your color 12:46 palette, or the specific idea you want 12:49 to
+build around. And if you're not sure 12:50 how to fill them out, here's a simple 12:52 workaround. Just copy the entire 12:54 template and paste it into Claude. it 12:57 can
+generate a completed version for you 12:59 which you can then take and use directly 13:01 in remotion. All right, so what I'm 13:03 going to do now is copy one of the 13:05 prompts
+I already created. This is the 13:07 flag population prompt. I'll copy 13:10 everything from the filled out version, 13:11 head back to Remotion and paste it in. 13:14 Once I send
+the prompt, Remotion 13:15 immediately starts working. It begins 13:17 setting up the project and may ask for a 13:19 few permissions. Just go ahead and 13:20 approve those so it
+can generate 13:21 everything properly. Now, all you need 13:24 to do here is give it a little time. 13:26 Sometimes it takes a few seconds, 13:27 sometimes up to a minute. After
+that, it 13:30 generates the animation and provides you 13:32 with a localhost URL where you can 13:35 preview everything inside its studio 13:37 environment. From there, you can
+watch 13:38 the animation, decide if you want to 13:40 download it or go back and make changes 13:42 if needed. So, I'm just going to let it 13:44 run for a bit. And after a couple
+of 13:46 minutes, this is what we get. Now, once 13:49 Claude Code finishes generating your 13:50 animation, it gives you a full overview 13:53 of what it created. the title, the
+13:55 breakdown cards, and the different 13:57 phases it went through. It basically 13:59 summarizes the entire project for you. 14:01 Then it also provides a studio link, 14:04
+usually something like localhost col 14:06 3000. When you click on that, it opens 14:09 up a preview where you can see your 14:10 animation. As you can see, mine is about 14:13 30
+seconds long, which is exactly what I 14:15 ask for in the prompt. And the animation 14:17 itself is ranking global population. 14:21 So, let's preview it real quick. When I 14:23
+hit play, it starts with a popup that 14:26 says the world's most populated 14:28 countries. Then it fades out and 14:30 transitions into the main sequence. From 14:33 there, it
+displays each country along 14:34 with its population on a graph. It also 14:37 gives a quick overview of the countries 14:38 and includes small red and green 14:40 indicators that
+show increases and 14:42 decreases in population over time. And 14:45 honestly, it looks really good. This is 14:48 actually pretty impressive, especially 14:50 considering this
+came from a very basic 14:52 prompt. The style is already very 14:54 similar to the kind of channel we're 14:56 trying to model. These types of channels 14:57 usually focus on
+ranking different 14:59 countries by different metrics or 15:01 comparing changes over time. And as you 15:03 can see, this output looks really clean 15:05 and well put together. I
+especially like 15:07 how each bar uses the actual flag of the 15:10 country it represents. That detail makes 15:12 a big difference. And remember, this all 15:14 came from a very
+basic prompt. Now, if 15:17 you're happy with the result, all you 15:19 need to do is click on render, then 15:20 select render video. That will start 15:23 processing your
+animation. Once it's 15:26 finished, you'll see a folder icon 15:27 appear. And when you click on it, it 15:29 shows you exactly where the project is 15:31 saved on your computer.
+From there, you 15:34 can export your animation as an MP4, 15:36 which is really convenient. Now, keep in 15:39 mind, this is just the first animation 15:41 we've created. It's a
+simple one. No 15:44 voice over, no music, just the visuals. 15:48 I'm just showing you what Remotion is 15:49 capable of at a basic level. So, let's 15:51 have some fun with it.
+We're going to 15:53 run a few more projects and experiment a 15:55 bit to see the different kinds of 15:56 outputs we can get. I've got a couple 15:59 more animation prompts
+ready, so I'm 16:00 just going to copy another one from the 16:02 Google document. These are still basic 16:04 animation prompts, nothing too complex. 16:06 Once we're done testing
+remotion like 16:08 this, we'll move on to getting Claude 16:10 code to generate full videos for us with 16:12 editing, background music, and 16:14 voiceovers all handled inside
+the 16:16 studio. So, I'll copy this new prompt, 16:18 head back to Claude, paste it in, and 16:21 send it. Now, just give it a few seconds 16:23 to process. The exact weight time
+can 16:26 vary depending on the model you're 16:27 using. More advanced models tend to 16:30 generate results faster, but they also 16:32 use more tokens. So, that's something to
+16:34 keep in mind as you go. All right. So, 16:36 after a couple of minutes, we get our 16:38 output. Claude gives us an overview of 16:40 the project along with access to the
+16:41 studio link. So, I'll go ahead and click 16:43 on that link to preview the animation. 16:46 Now, this one is a bit different. It's a 16:48 graph-based animation that zooms in
+and 16:50 highlights specific timestamps over 16:52 time. It's about 30 seconds long, which 16:55 is exactly what I asked for in the 16:56 prompt. As you can see, this looks 16:58
+really clean. The concept here is 17:00 Japan's collapsing birth rate, and the 17:02 animation shows how the numbers decline 17:04 across different years. It highlights 17:06 key

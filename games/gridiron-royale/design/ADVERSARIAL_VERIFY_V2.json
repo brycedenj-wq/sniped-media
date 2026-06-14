@@ -1,0 +1,174 @@
+[
+  {
+    "key": "code-bugs",
+    "verdict": "fail",
+    "findings": [
+      {
+        "severity": "major",
+        "title": "Game-over screen auto-dismisses / unintended restart: cmd.any fires from key auto-repeat, held gamepad buttons, and clicks on the SHARE button",
+        "detail": "In 'over' mode any input pulse restarts the match once modeTimer (1.2s, game.js:845) expires: game.js:912-915 `if (state.modeTimer <= 0 && c.any) startMatch();`. Three concrete triggers: (1) Keyboard auto-repeat: the keydown handler (game.js:48-52) sets `anyKeyPulse = true` without filtering `e.repeat`, so a player still holding W/ArrowUp when the clock hits zero (the normal case at FULL TIME) keeps pulsing `c.any` ~30x/s and the score screen self-dismisses exactly 1.2s after it appears. (2) Gamepad: game.js:105-107 sets `anyKeyPulse = true` on EVERY poll for any pressed button, so a pad player still holding the sprint button (button 0, held constantly during play) gets an automatic restart 1.2s into the game-over screen, never seeing their score/HOF. (3) Mouse/touch on the overlay buttons: the window pointerdown listener (game.js:56-57) sets `anyKeyPulse = true` unconditionally and the shareBtn/restartBtn handlers (game.js:875-882) do not stopPropagation, so clicking COPY CHALLENGE restarts the match on the next sim tick (overlay hidden by startMatch at game.js:709-710, welcome VO plays, drop begins) before the click handler even copies the text; the 'COPIED. SEND IT.' feedback is applied to a now-hidden button. All three are deterministic from the code, no race needed.",
+        "fix": "Require a fresh edge for restart: ignore `e.repeat` in keydown, track gamepad button rising edges instead of level, and either stopPropagation in the overlay button handlers or gate the over-mode restart on a dedicated 'pressed this frame after release' flag rather than the raw anyKeyPulse."
+      },
+      {
+        "severity": "major",
+        "title": "Same-tick tackle + touchdown both fire: scoring a TD at the goal line can also consume a down and wipes the style bonus first",
+        "detail": "Inside the 'run' branch, updateDefenders runs BEFORE the goal-line check with no mode re-check between them: game.js:1010-1011 `updateDefenders(dt); if (state.pz >= CFG.driveLen) touchdown();`. The tackle test (game.js:1096-1098) sees mode 'run' and calls tackled(), which decrements downs, zeroes chain/streak, and clears hotHand (game.js:827-833). Then touchdown() still executes on the same tick because control is still inside the run branch, overwriting mode to 'td' (game.js:793-794) and reading the now-zeroed chain for the style bonus (game.js:791 `state.styleBonusAtTd = CFG.chainBonus[state.chain]`, always 0). Reachable: defenders recycle to `state.pz + 18 + rng*30` clamped to `CFG.driveLen + 6` = z 86 (game.js:1081-1084), i.e. they legally stand on/past the goal line, and the tackle radius is 1.3 (2.0 for tanks), so crossing pz >= 80 within radius of a goal-line defender fires both in one 60Hz step. Net effect when triggered: 'TACKLED!' banner is overwritten by 'TOUCHDOWN! +7', a down is silently lost on a scored TD, hot hand and the chain style bonus are destroyed, and downs can later reach -1 (the HUD clamps at game.js:649 but endMatch still triggers a down early on the following tackle).",
+        "fix": "Either return/flag out of the run branch immediately when updateDefenders changes mode, or guard the goal-line check: `if (state.mode === \"run\" && state.pz >= CFG.driveLen) touchdown();` (and/or check touchdown before the tackle sweep so the score wins cleanly)."
+      },
+      {
+        "severity": "minor",
+        "title": "Held keys stick across window blur: phantom run/sprint after alt-tab",
+        "detail": "The `held` Set (game.js:46) is only mutated by keydown/keyup (game.js:48-53). The blur handler (game.js:1206) pauses the loop but does not clear `held`, and the keyup fired while unfocused never reaches the page. Alt-tabbing while holding W/Shift leaves those commands latched; on focus (game.js:1207) the sim resumes and the hero auto-runs/sprints into defenders until the player taps and releases the same key again. Recoverable, so minor, but it is a real input-fidelity break on every alt-tab-while-moving.",
+        "fix": "In the blur handler: `held.clear();` (and reset touchState.sprint/jukeL/jukeR/spin)."
+      },
+      {
+        "severity": "minor",
+        "title": "Pending juke dilationTimer cancels the touchdown slow-mo",
+        "detail": "startJuke sets `tdilation = 0.8; dilationTimer = 0.3` (game.js:1052-1053, real-time countdown at game.js:903). touchdown() sets `tdilation = 0.35` with NO dilationTimer (game.js:795-796), relying on tdPhase 0 to restore it (game.js:1016). If the player jukes within 0.3s of crossing the goal (a juke-into-the-endzone finish, which is common), the still-running juke dilationTimer expires during td phase 0 and line 903 snaps `tdilation = 1`, ending the celebration slow-mo almost immediately and running the 0.7s phase timer at full speed. Cosmetic only (no state corruption, phase transitions still occur), hence minor.",
+        "fix": "In touchdown(), clear the pending juke dilation: `state.dilationTimer = 0;` before setting tdilation = 0.35."
+      },
+      {
+        "severity": "minor",
+        "title": "Unguarded localStorage access: module-scope getItem can kill boot; setItem throw aborts endMatch before the overlay shows",
+        "detail": "game.js:681 `best: Number(localStorage.getItem(\"gridiron_best\") || 0)` runs at module top level with no try/catch. In storage-blocked environments (Chrome 'block all cookies', some embedded webviews/private modes) touching localStorage throws SecurityError, which aborts the whole module: the game never boots, leaving only the head error note (index.html:12-16). Separately, endMatch's `localStorage.setItem` calls (game.js:848-849 and 868) are also unguarded; a quota/security throw there exits endMatch after `state.mode = \"over\"` (game.js:844) but before `hud.gameoverOverlay.style.display = \"flex\"` (game.js:870), so the match ends with no game-over screen and the next input silently restarts. The hof JSON.parse is correctly try/caught (game.js:864) but the writes are not. Environment-dependent, so minor.",
+        "fix": "Wrap all localStorage reads/writes in a small safeGet/safeSet helper with try/catch; in endMatch, show the overlay before (or independent of) the storage writes."
+      }
+    ]
+  },
+  {
+    "key": "perf-law",
+    "verdict": "fail",
+    "findings": [
+      {
+        "severity": "major",
+        "title": "Per-frame string allocation in hudUpdate via fmtTime",
+        "detail": "/Users/sniper/AI-Brain-Refinery/games/gridiron-royale/public/game.js line 645: hudUpdate() (called every rendered frame from render() at line 1199) executes `const ts = fmtTime(state.time);` unconditionally. fmtTime (lines 639-642) builds `((s / 60) | 0) + \":\" + String(s % 60).padStart(2, \"0\")`, allocating 2-3 fresh heap strings per frame (~360/sec at the measured 120fps), even when the second has not ticked and even on the title screen. The hudCache.time comparison suppresses only the DOM write, not the string construction. This violates thresholds.md line 6 (\"Per-frame heap allocations in the loop: 0\") and is precisely the hidden string-concat case the law names. Impact is small (young-gen GC) but it is a genuine, unconditional per-frame allocation in the hot path.",
+        "fix": "Cache the integer second instead of the formatted string: `const s = Math.max(0, Math.ceil(state.time)); if (hudCache.timeS !== s) { hudCache.timeS = s; hud.time.textContent = fmtTime(state.time); }`. fmtTime then runs at most once per second."
+      },
+      {
+        "severity": "minor",
+        "title": "navigator.getGamepads() allocates a new array every 60Hz tick",
+        "detail": "/Users/sniper/AI-Brain-Refinery/games/gridiron-royale/public/game.js line 100, inside readCommands() which runs every update() step: Chromium returns a freshly allocated array (and snapshot Gamepad state) on each getGamepads() call. This polls and allocates 60 times/sec even when no gamepad has ever been connected. Host-side and unavoidable while actively polling, but avoidable when no pad exists.",
+        "fix": "Set a `padsConnected` flag from `gamepadconnected` / `gamepaddisconnected` events and only call navigator.getGamepads() when the flag is true."
+      },
+      {
+        "severity": "minor",
+        "title": "Unconditional per-tick DOM style writes/reads in the 60Hz path",
+        "detail": "/Users/sniper/AI-Brain-Refinery/games/gridiron-royale/public/game.js lines 1104-1105: `hud.arrowL.style.opacity = warnL ? \"1\" : \"0\"` (and arrowR) write inline style every updateDefenders() tick even when the value is unchanged, forcing style-attribute churn at 60Hz. Line 905 reads `hud.vignette.style.opacity === \"1\"` every tick; CSSStyleDeclaration getters can materialize a string per read in Blink. Not heap growth, but avoidable per-frame DOM work in the fixed-step loop.",
+        "fix": "Mirror arrow and vignette visibility in plain booleans (e.g. lastWarnL, vignetteOn) and touch el.style only on transitions."
+      },
+      {
+        "severity": "minor",
+        "title": "Worst-case headroom confirmed: instancing, DPR cap, pools, and budgets all hold",
+        "detail": "Positive findings, recorded for the law audit. Instancing: crowd 1200 = one InstancedMesh (game.js lines 353-378, matrices written once at init), confetti 600 = one InstancedMesh driven by preallocated Float32Array pools and a reused Object3D dummy (lines 534-591). DPR cap 1.5 enforced at line 222 per thresholds.md. Defender pool fixed at 10 (CFG.defMaxCount, line 17), under the 12 cap; skinned defenders cannot be instanced, one draw each is per design (thresholds.md line 5). No unbounded growth found: hall-of-fame sliced to 5 (line 867), one-shot WebAudio nodes are event-driven and GC after playback, no per-match listener accumulation, all entity pools fixed. Reused temps throughout render(): _v1/_v2/_dummy/_box/_size/_colA/_colB; ballBone.getWorldPosition correctly targets preallocated _v2 (line 1148). Worst-case estimate from the measured baseline (32-33 calls, 98.7k tris at 5 defenders, implying ~10-11k tris/character over a ~35k static scene): 10 defenders + hero + per-rig shadows + visible confetti = roughly 43-50 draw calls and ~145-160k triangles, well under the 150-call budget. Phone GPU: the dominant cost is 11 separate skinned draws with per-skeleton bone-matrix uploads plus 11 AnimationMixer updates on CPU; at DPR 1.5 this holds 60fps on mid-tier phones and clears the >=30fps phone floor on older chips. The fail verdict rests solely on the fmtTime per-frame allocation; fixing that one line brings the loop to the stated zero-allocation law."
+      }
+    ]
+  },
+  {
+    "key": "gates",
+    "verdict": "fail",
+    "findings": [
+      {
+        "severity": "critical",
+        "title": "Zip size breach: 28.9 MiB vs frozen < 25 MiB budget (Gate 10 FAIL)",
+        "detail": "Packaging /Users/sniper/AI-Brain-Refinery/games/gridiron-royale/public/ yields a 30,281,939-byte zip (28.9 MiB), over the locked budget in design/thresholds.md line 11 and OS_PULL_V2 Gate 10 ('FAIL on size breach'). Breakdown: hero_run.glb 7.55 MB + defender_run.glb 6.99 MB + hero_dance.glb 6.70 MB = 21.2 MB raw (GLBs barely compress), cover.png 2.57 MB, favicon.png 2.10 MB, sky_pano.png 2.04 MB, audio 3.70 MiB (audio itself is inside its 4 MiB target), vendor ~1.4 MB. Zip layout itself is correct: index.html and logic.js sit at zip root.",
+        "fix": "Compress the three GLBs with Draco or meshopt (gltf-transform optimize; typical 3-6x reduction puts them at 4-7 MB total), re-export cover.png as quality-80 JPEG or downscaled PNG, replace the 2.1 MB favicon.png with a 256px version, and recompress sky_pano.png. Re-zip and confirm < 25 MiB before Gate 10 sign-off."
+      },
+      {
+        "severity": "major",
+        "title": "strings.js drifts from the locked Section 2 copy set in OS_PULL_V2",
+        "detail": "OS_PULL_V2.md Section 2 is marked 'locked' and is a drop-in for public/strings.js, but the shipped file diverges: (1) the entire 'export const VO' announcer table (10 lines, tier routing, needed by Gate 5 transcription check) is absent from strings.js; (2) crowdSurge reads 'CROWD SURGE \u00b7 FULL TANK' instead of locked 'CROWD SURGE \u00b7 +500', implying the P11 mechanic drifted from +500 banked points to a stamina refill; (3) locked keys missing: style, crowd, legendary, waveCleared, tickerHotHand, tickerAllStar, tickerHallOfFame, tickerDefenseBeat, rankRookie/rankPro/rankAllStar/rankHallOfFame (replaced by a rankNames array), styleBonus present but used with appended ' +N' concatenation at game.js:801. STR.legendary and STR.waveCleared are never referenced in game.js, suggesting the P10 ticker and P11 LEGENDARY MOMENT features are unimplemented or renamed.",
+        "fix": "Either conform strings.js to the locked Section 2 set (re-add VO table, restore crowdSurge '+500' copy and the +500 mechanic, add the missing keys and wire the ticker/legendary features) or record an explicit operator-approved amendment to OS_PULL_V2 Section 2 before Gate 5/Gate 6 sign-off. A locked doc and the shipped copy cannot disagree silently."
+      },
+      {
+        "severity": "minor",
+        "title": "Boot error path writes raw English to player-visible #loadNote outside strings.js",
+        "detail": "index.html:15 sets loadNote.textContent = 'ERR: ' + message inside the window error handler, and game.js:1246 writes the raw error message string to the same element. Both are player-visible when boot fails, bypassing the strings.js-only rule (P17). Everything else routes through STR (48 usages verified; canvas endzone text uses STR.endzoneA/B).",
+        "fix": "Add an STR.bootError template (e.g. 'LOAD FAILED \u00b7 {msg}') and route both handlers through it, or accept as diagnostic-only with a recorded exception."
+      },
+      {
+        "severity": "minor",
+        "title": "favicon.png exists (2.1 MB) but index.html has no icon link",
+        "detail": "assets.csv row 3 defines favicon_icon as 'deploy favicon + catalog icon'. The file exists at public/assets/favicon.png (2,103,952 bytes) but index.html contains no <link rel=\"icon\">, so browsers will 404 on /favicon.ico, and 2.1 MB is far oversized for an icon. Not a referenced-asset failure (nothing in game.js/index.html points at it), but it inflates the zip and the catalog-icon intent is unwired in the page itself.",
+        "fix": "Add <link rel=\"icon\" href=\"./assets/favicon.png\"> and downscale the file to 256px or smaller (also helps the zip budget)."
+      },
+      {
+        "severity": "minor",
+        "title": "Internal design docs ship inside the package (public/design/)",
+        "detail": "public/design/ contains OS_PULL_V2.md, plan.md, thresholds.md, assets.csv, duplicating games/gridiron-royale/design/. Packaging from public/ ships internal QA gates and design internals with the game (~14 KB, negligible size but a hygiene leak).",
+        "fix": "Exclude design/ from the package step (zip -x 'design/*') or remove the duplicate folder from public/."
+      },
+      {
+        "severity": "minor",
+        "title": "Passing gates recorded for the receipt",
+        "detail": "Asset existence: 18/18 referenced files exist non-empty in public/assets/ (13 AUDIO_FILES at game.js:121-135, 3 GLBs at game.js:400-404, sky_pano.png at game.js:295, cover.png at index.html:88); the four 8,795-byte sfx files have distinct MD5s (not placeholder dupes). Relative paths: all references './'-prefixed, zero absolute or remote URLs in game.js/index.html/strings.js/logic.js. Em-dash: U+2014 byte grep across all four files returns zero matches; zero crutch words; max one '!' per string. logic.js stub present at public/ root with exports meta, setup, validateAction, applyAction, isGameOver, viewFor. index.html has the viewport meta (line 5) and loads ./game.js as a module with the three import map at ./vendor/three.module.js. Audio total 3,875,221 bytes = 3.70 MiB, inside the 4 MiB target."
+      }
+    ]
+  },
+  {
+    "key": "voice",
+    "verdict": "fail",
+    "findings": [
+      {
+        "severity": "major",
+        "title": "crowdSurge reward copy drifted from the locked set, and the mechanic drifted with it",
+        "detail": "/Users/sniper/AI-Brain-Refinery/games/gridiron-royale/public/strings.js line 26 reads \"CROWD SURGE \u00b7 FULL TANK\". The locked set (design/OS_PULL_V2.md Section 2, line 137) reads \"CROWD SURGE \u00b7 +500\", and the P11 directive (line 56) defines the reward as +500 bonus points banked on the next drive. game.js lines 812-816 implement a stamina refill (state.stamina = CFG.staminaMax; state.burstTimer = 3), not banked points. So the string honestly describes the shipped mechanic, but both string and mechanic deviate from the locked spec. The string is not a voice failure (all-caps, middle dot, declarative); it is a set-fidelity failure.",
+        "fix": "Paired fix only, never the string alone. Either (a) bring the mechanic to P11 spec (+500 banked next drive) and set crowdSurge to \"CROWD SURGE \u00b7 +500\", or (b) get operator approval to amend OS_PULL_V2 P11 and Section 2 to the full-tank reward and keep the current string. Swapping the copy without touching the mechanic makes the HUD report a reward the player did not receive."
+      },
+      {
+        "severity": "major",
+        "title": "Nine locked v2 keys and the entire VO table are missing from strings.js",
+        "detail": "OS_PULL_V2.md Section 2 is designated a \"drop-in replacement for public/strings.js\" but strings.js omits: style (\"STYLE\"), crowd (\"CROWD\", the P8 crowd-energy meter label), legendary (\"LEGENDARY MOMENT\"), waveCleared (\"WAVE {n} CLEARED\"), tickerHotHand, tickerAllStar, tickerHallOfFame, tickerDefenseBeat (the P10 recognition ticker lines), and the export const VO announcer script table (P7/P8/P13). grep of game.js/logic.js shows zero references to legendary, waveCleared, or ticker keys, so the P10 ticker and P11 legendary moment appear unimplemented; the missing copy is the symptom. game.js does call playVo(\"voHothand\"/\"voMvp\"/\"voTouchdown\") but the VO text table lives only in the design doc, so Gate 5 transcription QA (>= 90% accuracy against the VO table) has no in-repo reference next to the strings it governs.",
+        "fix": "Adopt the full locked Section 2 drop-in into /Users/sniper/AI-Brain-Refinery/games/gridiron-royale/public/strings.js (including the VO export), or record an operator-approved scope cut for the unbuilt P10/P11 surfaces. Per P18, an undocumented deviation from a locked set cannot be crowned."
+      },
+      {
+        "severity": "minor",
+        "title": "Rank key structure diverges from the locked schema (content identical)",
+        "detail": "strings.js line 16 uses rankNames: [\"ROOKIE\", \"PRO\", \"ALL-STAR\", \"HALL OF FAME\"] plus an extra rank: \"RANK\" HUD label (line 15); the locked set defines four individual keys (rankRookie/rankPro/rankAllStar/rankHallOfFame) and no rank label. All four rank strings match the locked copy exactly and the RANK chip label is in voice (all-caps HUD, supports the P9 always-visible rank chip). No copy change needed; note it so a future locale swap or the Section 2 drop-in does not silently break game.js line 609/656, which index into rankNames.",
+        "fix": "Optional: when reconciling finding 2, either keep the array and update Section 2 to match, or move game.js to the four locked keys. Pick one schema and lock it."
+      },
+      {
+        "severity": "minor",
+        "title": "Voice scans clean on every retained string (receipts)",
+        "detail": "Hostile pass found no voice failures in the strings strings.js does carry. Byte scan for U+2014 em-dashes: zero hits. Crutch-word grep (obsessed, stunner, fire-as-hype, literally, honestly): zero hits. Exclamation stacking: max one \"!\" per string, confirmed. Case discipline holds: HUD banners and event cards all-caps (TOUCHDOWN! +7, STREAK OVER., LAST DOWN. MAKE IT COUNT.), taglines and end-screen headlines sentence case (\"Drop in. Juke everything. Take it to the house.\", \"New best. Prove it.\"). No AI-tell phrasing, no generic marketing fluff; praise lines name evidence per P8. shareText/shareTextMvp omit the locked {url} token but game.js line 877 appends location.href, so clipboard output matches the P15 line exactly; no change needed. No hardcoded player-visible literals found in game.js/logic.js/index.html, so P17 (all copy in strings.js) holds for the implemented surface.",
+        "fix": "None. Recorded so the verdict is traceable: the fail is set fidelity (findings 1 and 2), not voice quality."
+      }
+    ]
+  },
+  {
+    "key": "tenx-refuter",
+    "verdict": "pass-with-notes",
+    "findings": [
+      {
+        "severity": "major",
+        "title": "Hot hand is fake depth: a label with zero gameplay effect",
+        "detail": "In /Users/sniper/AI-Brain-Refinery/games/gridiron-royale/public/game.js, state.hotHand is only ever set (line 804), cleared (831), and displayed via showSub. Grep confirms no other reads: no speed bonus, no score multiplier, no defender behavior change. The claimed 'hot hand streak' status system is a banner plus one VO line. A player who notices nothing changed while 'HOT HAND' was up will correctly call it cosmetic.",
+        "fix": "Give hot hand a real effect (e.g. +8% base speed or doubled chainBonus while hot), or stop listing it as a status system and call it a streak callout."
+      },
+      {
+        "severity": "major",
+        "title": "Rank ladder and hall of fame are thinner than the claim implies",
+        "detail": "rankFor() (game.js 603-605) maps the current match score to 4 names at 7/14/21 and resets every match. There is no persistence, unlock, or cross-match progression; the only persistent meta is localStorage best + a local top-5 list of your own scores on one browser (862-869). 'Rank ladder' and 'hall of fame' language oversells two HUD labels. Share-bait is a clipboard copy of a text template (875-882), which is fine but it is the floor of share mechanics, not a hook.",
+        "fix": "Persist career-best rank across matches and show it on the title screen, or reframe these as per-match score tiers in any future claim."
+      },
+      {
+        "severity": "major",
+        "title": "The withhold-reveal 'crowd audio' is the touchdown stinger looped at low gain",
+        "detail": "startAmbient() (game.js 189-196) loops audio.buffers.touchdown as the ambient bed at gain 0.1. The signature withhold-reveal beat at 14/21 (setAmbientLevel 0.6 then 1.7, lines 820-821) is therefore modulating a quiet looped jingle, not crowd noise. The mechanism is real and wired correctly, but the asset is a placeholder shortcut; an attentive player hears a repeating stinger, not a stadium holding its breath.",
+        "fix": "Add a real crowd-loop asset (even 10s of stadium walla) and point startAmbient at it; the modulation code needs no change."
+      },
+      {
+        "severity": "minor",
+        "title": "Defender archetypes are one recolored GLB; visually they read as palette swaps",
+        "detail": "All three types clone defender_run.glb with tint/scale changes (game.js 467-471, 486-494). Behavior differences are real (blitzer leadFactor 1.0 vs 0.6 at line 1071, tank stagger-instead-of-knockdown at 1087-1093, radius 2.0) but a player sees the same model and same run clip in pink/purple at 0.94x/1.16x scale. The depth exists in code more than on screen.",
+        "fix": "Cheapest fix is silhouette: a helmet/pad accessory mesh per type, or a distinct anim timeScale plus posture lean for the tank."
+      },
+      {
+        "severity": "minor",
+        "title": "Tying your best score shows the 'New best. Prove it.' headline",
+        "detail": "In endMatch (game.js 847-858), best only updates when score > best, but newBest is computed as state.score > 0 && state.score === state.best, which is true on an exact tie of the previous best. Headline lies on ties. Also the juke 'time dilation' is 0.8x for 0.3s with a 3.4-degree camera roll (1047-1056, 1189-1191): real code, near-imperceptible in play, so listing it as a headline feature oversells it.",
+        "fix": "Track prevBest before the update and set newBest = state.score > prevBest. Consider deepening juke dilation to ~0.6x for 0.25s so the feature is actually felt."
+      }
+    ]
+  }
+]

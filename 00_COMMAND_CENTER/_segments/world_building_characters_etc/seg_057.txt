@@ -1,0 +1,224 @@
+could Vibe Marketing Recap... What we created 50:39 create a landing page, we created a lead magnet, we created a prototype 50:45 um for a thumbnail app, which is right here.
+Right. this little thumbnail 50:50 prototype that we may actually use again later in this video. We created this dashboard, this interactive dashboard 50:56 that's like really
+immersive. I'm not a huge fan of the styling, but we could change that. And then we created a game, 51:03 right? We created all of these things that we can immediately share and
+eventually you're going to know how to 51:08 deploy them to the internet. And this is only going to get easier and easier as time goes on. That's why right now it's the best time
+to learn how to vibe code. 51:14 You want to do it while it's a little bit hard, right? because everyone's going to be doing it in like a year or two. But yeah, that's what we can
+create 51:21 in terms of static landing pages. And so we are just now getting into the fun 51:26 part, which is the web app. Now we can create web apps that have a database. So
+51:32 your friends are going to be able to sign in and use it live, and you're going to be able to see their data 51:38 update in real time. And I'm going to show you a ton of
+really cool web app examples. And yeah, let's move on to the 51:45 next section. Now, we're getting to the fun part. So, I think it's time to bring out the special pencil because
+we are PART 3: Building Notes App with Database and Authentication using Instant DB 51:51 going to begin building full-on web apps. And that includes database and 51:57
+authentication. And this is about to get much more fun. Same thing as earlier, we're going to go 52:03 ahead and open up sandbox.dev. We're going to press enter. Now, what we're
+going to do is we're going to open up 52:10 instant DB. Many people who vibe code use superbase which is a place where Using InstantDB to build apps 52:18 people do o and database.
+We think it's much worse, much harder. AI is really 52:23 bad at superbase and we run into a lot of problems. Instant DB makes it incredibly easy to work with. Don't 52:31 expose
+this key. I'm going to delete this key at the end of this video. Um, 52:36 this is basically all you need. So when you create an account on Instant DB, 52:41 which is where all of
+the data is going to be stored for the app that we're about to create, you need to create a 52:49 new app. And so remember, all you need to do is go to instantdb.com. 52:56 Okay,
+that is the domain. And when you create an account, you're going to get a dashboard. And then you're going to 53:01 create new app. and we're gonna call this Riley 53:06 to do app.
+We're gonna start off really, really simple. We're going to hit let's 53:12 go. Now, what we're going to do is we're going to copy this public app ID, right? 53:18 This is the key
+that you need to communicate 53:23 uh with the database for this app. And so within Vibe Code Sandbox, what we're 53:29 going to do is we're going to open up Cloud Code. We're
+going to go next.j JS. This is kind of the old reliable stack. 53:36 And we're going to hit continue with cloud code and nex.js. Okay. So now we have this Riley to-do app. And we
+can 53:43 just copy this key right here. And we're going to create a basic to-do list app. I want you to research instant DB. This 53:53 is what I will be using for database and
+off. 54:01 I want to implement a signin page and users can create notes. 54:11 They can edit their notes and upload images as 54:19 attachments to their notes. Please use 54:25
+this public app ID for instant DB. We're 54:31 going to paste this in right here. This is my key. Please do research on this. 54:41 And use the docs for instant DB so that it works
+on the 54:50 first try. Now, what we're going to do is we're going to copy this and I'm going to run 54:57 it. So you can see here that it's actually loading right now and we see
+55:03 this sign in with email, sign in with Google. I've never actually done the signin with Google on Instant DB before. 55:09 I've always found that the signin with email feature
+within Instant DB is the 55:15 easiest way to test um both database and authentication. Okay, so it's done 55:20 loading. We basically just entered one prompt and it loaded for a
+very long time. It basically had to search all of 55:26 the Instant DB docs. I have no idea if this is going to work, but I'm going to enter my email. So, Riley, 55:33 so for
+whatever reason, it's a little bit weird. The styling is 55:38 showing up a little bit weird, but we're going to send a magic code. So, now it's sending a verification code. So,
+I'm 55:43 going to check my email. Now, we have this verification code. We can copy this. So, this allows us to sign into 55:49 our profile. So, we just signed in. Yeah, the
+styling up here of my notes title. Hello. This is my note. This is 55:58 my note. I am typing now. I don't know why it's styled like this, but we can 56:04 create this note. We can
+see here. Hello, I am typing now. This note, it 56:10 seems like it was entered into the database. So, if we go to instant DB and we we are on Riley to-do app, which is 56:18 the
+Riley to-do app one, we go to explorer. So we have files 56:24 users. Okay, let me refresh this. Okay, so we have one note. This is my note. I 56:30 am typing now. Title, hello.
+This is my note. So it was entered into the 56:36 database. If I signed out and signed in right as a different user other than 56:43 this user right here, I wouldn't be able to see
+my note. At least in theory. What I want to do here is I'm just going to 56:49 screenshot this and I'm going to attach this image here. So, we're going to 56:54 browse files,
+screenshot. This image here shows what it looks like for 57:01 whatever reason when I type the text is really light on the light background. 57:09 Please fix this. And then also,
+please really simplify. Um, please really make 57:18 this look sleek. I hate the way this looks. Take inspo 57:26 from bare note. Make it look more like that, but don't break the
+database and 57:36 off. That does work great. And so now we're going to wait. Okay, so it's done. 57:42 It looks a lot different. I'm already signed in, so we can hit new note.
+Hello, my name is Riley again. I welcome 57:52 you to my first note. Smiley face. Yay. 57:59 So, we can hit save. And look at that. It enters it in here. This looks a lot better.
+This new note button. I don't 58:06 like the color. Change the color of the new note button, please. Can you make it 58:15 dark gray, but when I hover make it look really
+clickable, 58:25 please can you also allow me to wait, let me 58:31 see if I can do something. Testing images. Oh, 58:37 hello. I am about to save images to this. Let's see if the
+58:44 files. So, I want to see if we can upload files. So, I'm going to hit choose file. We're going to do this 58:50 screenshot and we're going to hit save. Okay, we got an issue.
+Failed to fetch on window 58:57 headers properly. Okay, upload images properly. I got this error. Please, can 59:08 you fix this? Paste that in. Enter. Okay, let's go 59:14 ahead
+and test this again. We're going to hit new note. Test image. 59:21 Choose a file. Do this screenshot. 59:27 We're still running into an image here. That's 59:36 Oh, did that work?
+59:42 For whatever reason, the images might not be working. I'm getting an error. If 59:52 there's anything that I need to paste into instant DB permissions, 1:00:01 please tell me
+now I want this to work. 1:00:06 Okay, I'm going to explain what I mean by that in just a second. Permission denied has not storage permissions. 1:00:12 Okay, this is great. I
+whenever I get multiple errors in a row 1:00:18 on Instant DB if you go to permissions, you can like paste stuff in here, I know 1:00:24 that it has the power to actually update
+that uh straight like Claude code can do it. 1:00:31 It doesn't always do it. Please give me what I need to paste into the 1:00:38 permissions. And now we're going to wait for
+that. Okay. So, correct instant DB 1:00:44 storage permissions. Use the simpler version that works. Okay. I'm going to copy this. 1:00:54 Save. Huzzah. Your rules have been
+updated. Now, let's go ahead and upload 1:01:01 an image. Wait. Save. Where is it? 1:01:08 There it is. Okay. Our image is now loading. So we can see here is the 1:01:13 image.
+Very very cool. We literally have an app that you can sign into. We have a 1:01:21 new note that you can create. Um and you can sign in, sign out. We can try 1:01:26 signing in.
+I'll just sign in again. Riley at not a number.com. 1:01:33 And we can send a magic code. Um, we can open the code, right? This is how we 1:01:40 sign in. I have not yet tried
+Google signin yet. I don't know if that works, 1:01:45 but new note. Hi. We can choose file and 1:01:53 upload one of these images. I don't know why it goes down to the bottom, but
+1:01:58 there we go. The point is is we now created a web app that your friends can sign into. What's cool about this is see 1:02:05 this sandbox link will allow me to sign in
+directly on my phone. I can sign in from the same account or I can sign in 1:02:12 with a different email account. And you now have this web app that you can use in the sandbox.
+And again, we're going 1:02:18 to talk about deployments a little bit later. Okay. So, we created this really API's (AI Power ups for your vibe coded apps) 1:02:23 simple notes
+app. And what I'm going to do is I'm actually going to open up a new sandbox. We're going to dive into my 1:02:30 favorite section of this entire video, which is APIs. And APIs are
+really fun Building Thumbnail Editor App with Nano Banana API 1:02:37 in the AI era because there are so many brand new AI experiences you can create 1:02:43 for your users and
+it's just so much fun in the era of 1:02:49 AI agents. So, what we've done so far is we created a very simple notes app and 1:02:55 it was really cool, right? We created a notes
+app. It had a database. Users could sign in and uh you could add 1:03:02 notes, upload images, and it was all stored in Instant DB. We're going to create another app, another web
+app 1:03:09 right now, except we're going to utilize some really cool APIs. So, what APIs are 1:03:16 for those of you who've used Chat GBT, right? Chat GBT is an AI model that is
+1:03:22 packaged into a really nice experience. ChatGBT started as GBT3 which was 1:03:28 technology that was it was an AI model trained on language but it wasn't it 1:03:34 didn't
+actually start out in chat GBT chat GBT was the packaging of this 1:03:40 technology that made it go viral that created the AI revolution and that is a 1:03:46 really key thing to
+understand that there might be experiences that you can 1:03:52 create as someone as a vibe coder that could unlock a new way of experiencing 1:03:59 technology that could be a
+multi-million dollar business. And if we look here, 1:04:05 right, like chatbt is like text to text. That's at least how it started, right? You type, you type some text as an input
+1:04:14 and then the AI responds with a text answer and then you might respond again. 1:04:19 And then recently, right, you can upload images, right? So now it's images image to
+text right it can respond with text 1:04:27 um now it can also respond with images right uh chat GBT can also respond um 1:04:34 with images and the open AI image model is very
+good and then there's also a lot 1:04:41 of image models right nano banana by Google was just released and so if you 1:04:46 go to a website like ka and you want to create an image
+Right. We what we can do 1:04:52 is we can actually upload an image. We can change this to nano banana. We can 1:04:59 select this model. We can upload an image. Let's find a
+image. 1:05:05 That would be good. So, we're going to upload this screenshot of me or this um thumbnail. 1:05:13 And I'm going to say make the man wearing sunglasses. 1:05:18 And
+we are using the nano banana technology except Korea a like a Korea 1:05:25 is almost a billion-dollar company at this point. One of the fastest growing companies in the creative
+AI space right 1:05:31 now and it is using the APIs of all of the popular tools. And so you can use 1:05:38 Nano Banana to make these edits, right? And so I can remove this image
+and what I can do is I can download this one and 1:05:45 we can use this one. So now we have this image of me wearing sunglasses and I can say make his hair longer and we are
+1:05:53 using the nano banana technology that Google created through Crea. Crea is the 1:05:59 experience packaged of this nanobanana technology and make it blonde. Right? 1:06:07
+We're making the hair longer and we're making it blonde. And we can just 1:06:12 continue this path of editing these images. And you can see here that we are using nano banana. And
+there we go. I 1:06:19 have now have long hair. I don't like the way my mouth looks. So we can I'm 1:06:25 going to just show you like this is a pretty cool experience that you can
+create with other people's technology. 1:06:30 Right? That is one of the points here is like these AI models are getting so good. There's so many different use cases. Right? Girls
+might want to use 1:06:37 them to edit their Instagram pictures. guys might want them for YouTube thumbnails. That's kind of how I would 1:06:42 want to use this. And we can just
+continue this iteration. And using some of these tools is a good way to get 1:06:51 train your brain into understanding what all of these different APIs do. And so let's say that I
+wanted to actually use 1:06:58 this nano banana technology. One thing that I really like to do is so we're 1:07:04 remember the stack that we've been using. We've been using cloud
+code and nex.js. JS. We've been using NextJS. One 1:07:10 thing you could do is you can go to any AI model and we can say Nex.js. This is the stack that I'm using. I want to
+1:07:20 create an app that lets me edit images. Please 1:07:26 write in this app. I would upload my image and then I would just type the 1:07:31 edit that I want it to make and it
+uh I want it to send it to the Google API and 1:07:36 I want it to make the edit and return the image and I want this to work perfectly. So please give me the 1:07:42 documentation
+that I need to make this work in the proper language. This is a brand new model. Find the right 1:07:48 documentation and write out all the code that I should provide to an AI
+agent to make this app. You can do the same Bringing a Prototype to life with Nano-Banana 1:07:55 prompt in chat GPT. In fact, I'm going to do that as well. So, I'm going to enter
+this into perplexity. We can give 1:08:00 this to chat GPT as well. Any AI model, we're basically searching the internet. 1:08:05 We're taking information about an API, right? This
+API 1:08:11 um that we're going to use, which is Nano Banana, which allows people to edit images. I want to make it in my own app. 1:08:17 I'm going to make it specifically for
+YouTube thumbnails. And then we're going to create our own app for this. and 1:08:24 we're going to use brand new AI technology. So, Perplexity responded and I've used Perplexity
+for a very long 1:08:31 time with this stuff. I'm just going to copy this right here. And of course, we're going to go to sandbox.dev. We 1:08:36 already created a prototype for
+this earlier. So, earlier we created this 1:08:42 prototype for nail.ai, which is this very simple nail.ai app. 1:08:48 We can upload a thumbnail, right? We can upload this and we
+can say make his 1:08:54 glasses red and we can press enter. Obviously, it doesn't do it. And now 1:09:00 what I'm going to do is I'm going to say okay, I want to make this
+prototype come to life. I want this to work with the 1:09:07 brand new uh image model called Nano Banana by Google. I want this to work perfectly 1:09:14 and have versions and I
+want to be able to select the version I want to edit. 1:09:19 So, I want to be able to rapidfire enter in prompts to edit the first thumbnail 1:09:26 that I um like I want to be
+able to edit the thumbnail and then I want after it's 1:09:32 done loading to show up and then I immediately want to enter in a new prompt to edit that brand new thumbnail and I
+want to do that over and over 1:09:38 again and be able to go back to previous versions to edit that one. Please think deeply about this. Right? Think very 1:09:46 deeply about
+this. I'm going to give you some documentation on this new nano banana technology. Search the internet 1:09:51 more if you have to and really think about how you can make this
+work. I really want it to work. So, we're 1:09:56 entering that prompt. Now, what I'm going to do is I'm going to enter in I'm going to paste that prompt from 1:10:03 Perplexity
+which explains basically how to use this technology. And now here is What are API Keys? Why do you need them? 1:10:12 my Gemini API key. So, anytime you use 1:10:17 an API, right,
+anytime you use an API, you need to have an API key. So, we're 1:10:24 using the Gemini API uh API. Um it's part of Gemini and Nano 1:10:33 Banana is like a subset. So, it's a
+technology within Gemini. So, we're using Nano Banana. In order to use any 1:10:40 of the Gemini AI APIs, you need an API key. This API key is kind of like a 1:10:47 password that
+like connects your account 1:10:53 to the application that you're using, right? Because it's not free. It's very cheap to use in my opinion. And this 1:11:01 password um you need
+to basically give this password to Claude. And so Claude 1:11:08 is going to paste this key into the app that we make. So we're making an app and 1:11:14 Claude is going to give
+this key to our app. So our app is basically going to 1:11:20 communicate with Gemini. Um, and this is going to happen like so 1:11:29 we're going to communicate with Gemini and
+we're going to do this when the user 1:11:36 um prompts our application. Right? Anytime a user prompts our application 1:11:42 or types into the edit box, 1:11:47 right? You can
+see here, remember we created this prototype earlier. We're going to upload our thumbnail. Anytime a 1:11:53 user types into this input prompt, the app is going to communicate with
+the 1:11:59 Gemini API and say like, "Hey, I want to edit this image. Here's the API key." 1:12:05 And if you have an API key and it has sufficient credits, it will allow it. And
+then the Gemini API, the Gemini API 1:12:14 will send an image back to the app and then the user, right? And then the 1:12:23 user is happy or sad, right? Maybe the 1:12:29 image
+is bad, right? If you do a bad job setting up the app, it could fail, 1:12:34 right? If you do a bad job coding this and so you might need to do some testing. Maybe the API won't
+work 1:12:40 perfectly. And so what we need to do is we need to get the Gemini API key. To do this, I'm going to go to Google AI Getting Google API key for Nano Banana 1:12:49
+Studio and we need just need to create an account on Google AI Studio and we 1:12:54 need to hit get an API key. Get API key. Create an API key. We can just select 1:13:01 any
+project or create a new project. And we can actually test this out for free. Google's very they do give you a lot of 1:13:08 credits for free. So, I can copy that API key. And we
+need to go back to the app that we were creating right here. 1:13:16 Here's the key. This is the key. Please make this app fully work as a YouTube 1:13:25 thumbnail editor and
+we're going to press enter. 1:13:31 I'm going to very quickly hit escape and I'm just going to go slashmodel. 1:13:38 I'm going to make sure. Okay, I'm going to switch to Opus.
+Okay, please 1:13:43 continue. And now we're on Opus, which is a much better model. This is a more complex task. It has to read 1:13:50 documentation and it has to implement the
+API key and make this feature work. 1:13:55 This is the hard this is the main feature of the app. So, I'm going to use Opus to make sure that it does a lot better. Okay, let's give
+this another 1:14:02 test. We can open this up in a new tab. We are going to choose. Let's go ahead 1:14:08 and choose this. Please make him smiling. 1:14:14 And here we go. It's
+not failing immediately, which tells me I think it's 1:14:20 going to work, but we will see. Boom. It works. So, we should be able to 1:14:27 click. Okay. So, we can click through
+the different versions. Please make his 1:14:32 hair brown and give him an orange turtle neck. Uh his hair 1:14:42 brown and longer and give him a turtleneck. Amazing. 1:14:49
+Okay, this is very cool. 1:14:59 Oh wow, that works very well. That's insane. 1:15:04 And you know, Korea is, like I said, a multi-billion dollar company. And now we created an app
+that in my opinion might 1:15:11 actually be a better UI. I have one more idea on how we can make it better. But first, what I want to do is I'm actually 1:15:17 going to compact
+this uh just because the conversation's getting a little bit longer. I want to make sure, right, we 1:15:24 have a lot of conversation going on here. I want to compact it so that
+the AI performs a little bit better. And so, 1:15:31 while it's compacting, I'm going to enter in my prompt. So, I want you to make the image that is uploaded and 1:15:37 edited
+bigger by like 1.5x. 1:15:43 And then I want you to make 1:15:49 the versions almost seem like a sidebar 1:15:56 on the right. Right now they are too big. Please can you make
+1:16:07 them smaller and on the right? so I can see 1:16:14 more of them. And the full image thumbnail 1:16:21 should be visible, but they should just be small, 1:16:31 please.
+Actually, that's probably good. We can 1:16:37 run this. Right. This is a little bit big. I want to see more of this thumbnail. I want to 1:16:43 get in detail. And then I want to
+put these a little bit over here. And I feel like that'll be fire for nail.ai. This 1:16:50 could legit make a decent amount of money. 1:16:55 Ooh, it's making changes live. You
+see that? Now it should make it a little bit smaller. Let's see. This is great. This 1:17:02 is good. It made it the same width. Now I hopefully it edits the version history
+1:17:08 and see it's making changes. Let's see. 1:17:14 Okay, it's a little bit smaller. We are getting a little bit cut off here on the side. 1:17:21 Um, let's just say add a gold
+chain to 1:17:26 his neck. 1:17:32 Good. Okay, we can scroll up and down. 1:17:38 Please make the sidebar a little bit smaller. All the images 1:17:47 should appear slightly
+smaller. And right now the selected image on the 1:17:57 side has a blue ring around it and that 1:18:03 is being cut off. 1:18:09 You can see this. This is like being cut off all
+weirdly right here. I'm not quite sure what that's all about. Okay. 1:18:15 So, now we have this chain. Yeah, I want this to be smaller. I don't like this like blue ring is getting
+cut off here. 1:18:22 I don't want that to happen. Okay. Now, let's see if we upload a new image here. 1:18:30 Make the man on the right have bigger eyes 1:18:39 and blond hair.
+[Laughter] 1:18:47 Make the man on the right um labeled 1:18:54 weirdo and make him wearing a tank top. 1:19:03 Make the man on the right have a thick 1:19:09 mustache. French
+mustache. This is crazy. This 1:19:15 works great. I love this app. And yeah, we created this, you know, and 1:19:21 we gave him a mustache. Uh, wait, we can copy this image,
+right? 1:19:27 Oh, wow. Oh, wow. This is insane. This is absolutely fantastic. Building a Mobile app 1:19:38 Okay, so let's think about what we've done so far, right? We've created
+a bunch of different static pages and a 1:19:46 lot of these fall under the vibe marketing category, right? Creating landing pages, collecting information 1:19:51 through lead
+magnets, creating artifacts like the presentation, the dashboard, 1:19:57 and other prototypes. We then used that same prototype to create an app that 1:20:03 used an API. The API
+that we chose to use was this Nano Banana API. And we 1:20:09 created an app that we could edit thumbnails using this nano banana API. 1:20:14 And we also created a simple notes
+app with a database and authentication. And 1:20:20 this was a web app. So we created a web app and we've created static pages. What 1:20:25 I want to do now is I want to move over
+to the mobile app category. So I want to show you that the same way you can just 1:20:32 go to an app or a site and build web apps with the most powerful tools, you can also do it
+on mobile. And so the way 1:20:38 that you do this is we're going to go ahead and open up our phone and we are going to go to Vibe Code. And here we 1:20:46 get access to those
+same models. Claude Sonnet. We're going to use Claude for Opus or we could use GPT5. Right now I'm 1:20:54 going to go ahead and use Claude Opus 4.1. Remember we were talking
+yesterday about APIs. We were talking about using 1:21:01 Claude which is a powerful AI chat model. OpenAI which has access to a lot 1:21:07 of different APIs, right? You can use
+just the GPT5 API. So if you could 1:21:12 basically create your own custom chatbot, you could use Gemini. You could do the same thing. 11 Labs. Vibe Code 1:21:19 app comes
+pre-built with OpenAI. It has Gemini. It also has XAI, so Grock, and 1:21:27 it also has Anthropic. So it has these four APIs automatically built in. and 11 1:21:34 Labs. The app
+that I want to create right now is a voice notes app. And you'll see here that the APIs are built 1:21:41 in directly. So I can say, I want you to build an app that allows me to
+speak a Building a mobile app using AI API's 1:21:49 voice note. Use the OpenAI API with Whisper. I want to use Whisper to get 1:21:55 the transcription of that voice note. And
+then I want to convert it into an AI summary. And yeah, I want to be able to 1:22:01 record a voice note. I want a big button at the very bottom of the phone. And it should be a
+pill that's almost the width 1:22:08 of the bottom of the phone that says record. And I want these to show up in a very simple list top to bottom on the 1:22:14 screen. White
+background, relatively simple. And then when I click on it, I want it to open from the right into a 1:22:23 notes details page where it shows the transcript as a button. I can
+click it 1:22:30 to open the full transcript, but it shows a summary. And I also want to use the OpenAI API to summarize it and then 1:22:36 also use the OpenAI API to use AI to
+title the note as well. Please build 1:22:42 this app. The app name should be called Monkey Note. So here we go. We are using 1:22:49 the same models that we were using in sandbox
+directly on our phone to build a mobile app that we can get on the app 1:22:55 store. So we can enter this in right here. And now the agent is going to work and it will literally
+make the app on 1:23:02 our phone and we can continue making changes just like in the sandbox. Okay, so it appears like it's done and once 1:23:09 it's done it'll just start
+bundling. So it's building the app directly on the phone and here we go. We have Monkey 1:23:15 Note. Let's see if this works. Hello. This is a test note to see if 1:23:21 Monkey
+Note, the app that I just made, is working. I hope that it's working. 1:23:27 Okay, we're getting this error. Remember, it's a very similar process. Um, so I'm going to go ahead
+and paste 1:23:33 in this error and let's see if that fixes it. Right. In order to edit your app, all you do is you press this little 1:23:39 orange button on the side. You paste
+in your prompt. Very similar to cloud code on the computer. And I you can just copy 1:23:46 your error and paste it right back in. That's what I normally do. And hopefully it fixes
+it. I feel like this is lo 1:23:52 local storage that has been saved from a different app that I've created previously, but we'll see if this works. 1:23:58 Okay, so it's done. Um,
+we have monkey note. We're immediately getting this render error. So, I'll copy that for 1:24:05 later. Let me see if this works. Hello. Uh-oh. I'm getting an error. I'm still
+1:24:11 recording even though I'm getting some errors. There's just all kinds of errors here. Riley Brown is talking about 1:24:17 errors on his app, Monkey Note. Okay. processing
+transcribing your note. Okay, 1:24:24 we got so many errors, but look at this. Okay, what is happening? 1:24:31 Okay, we're getting all kinds of weird errors. There's so many
+errors going on 1:24:36 right now. I don't fully understand what's going on. There's errors when I start recording. There's errors after I 1:24:43 start recording. I'll paste one
+of them below. Please really just like think about how to simplify 1:24:49 how this works and just make it work properly. The summaries are working and the app looks good. I'm just
+getting 1:24:55 these like weird errors. Okay, a lot of vibe coding. You do have to deal with debugging, right? And I copied one of 1:25:02 the errors. I'm just going to paste it
+right here and we'll see if uh Opus figures this out. And again, remember in 1:25:09 Claude um Claude code, remember the clear the slashclear command. The way 1:25:14 that you do
+this is you press this little eraser right here on the phone. You can see that that clears the chat. 1:25:21 We are definitely going to move this. This is not a good place to have
+the clear chat. In fact, this whole sheet is 1:25:28 going to be redesigned. There's a lot of things that you can do, right? You can share, you can connect this to SSH if 1:25:34
+you want to use it with cursor or something like that. That is basically how to do that. So, let's wait for these 1:25:41 changes to be made. Monkey Note is loading. All right, so
+here we have Monkey Note and we can press record. 1:25:49 Hello, I'm recording on Monkey Note. I hope that the error we be had previously 1:25:55 is no longer an error. I really
+hope this works from the bottom of my heart. I hope this works. Testing, testing, 1:26:01 one, two, three, banana, chicken, turtle. Let's see. Please, no error. We're not getting
+an error right away. 1:26:06 Okay, there we go. This works. We see the summary the and can we do view the 1:26:13 transcript? There we go. We have the full transcript. It's a
+little bit off to the right, but that's okay. We now 1:26:20 created this app. And since this is a mobile app, it uses your own phone 1:26:25 storage. So, this app is stored
+directly on your phone, but in order to set up a database that uses like instant DB, the 1:26:32 process is identical to what we did in the sandbox earlier. All you would need to
+do is go to instant DB, get your 1:26:38 public app ID and give it to the agent and say use the database. And you can do the same thing with mobile app. But I 1:26:45 really like
+creating these local app first because this will be saved. All of this is stored on our phone, right? Even 1:26:52 if we left the app, right, we could see the transcript and these
+are stored directly on our phone. Oh, here's 1:26:58 testing monkey note error resolution. So yeah, we ran into a little bit of errors there. What I want to show you is after
+1:27:04 I was done filming yesterday with the thumbnail, I created a uh an app, a 1:27:10 version of this app on my phone. And look at how crazy this this app is. This 1:27:16 is
+one of the coolest mobile apps I think I've created yet. And something that I would actually use for my business. And I'm actually going to be 1:27:23 releasing this as a template
+that you can fork directly on the Vibe Code app 1:27:28 is you're going to be able to you're going to be able to take this app and turn it into your own. And so this app 1:27:34
+allows me to upload a um right I took this photo of myself earlier today. I 1:27:40 can upload this photo and it uses Nano Banana and we can say give him an orange 1:27:47 beanie
+and we enter that in. and it looks very similar to the web app, but there's something about using it on the 1:27:52 mobile app that just makes it really, really fun. And this is
+the app that I'm going to submit to the app store because 1:27:58 I might actually submit this to the app store. See, it gave him an orange beanie and I can immediately say, make
+his 1:28:04 shirt a black sweater and add lights 1:28:10 around the white board. And it just makes it very very easy to um edit 1:28:18 YouTube thumbnails just right here on my
+phone. Right. It added lights around the whiteboard. And then I can press these 1:28:25 three dots and hit export all. And we can go okay. If I go to photos, we can 1:28:31 see
+here that we have this one. Look at this black shirt. This looks exactly 1:28:36 like me. We have the lights going around the whiteboard. That's pretty insane. And so, yes, we
+created this app. We 1:28:44 created this app on our phone, right? We created this app on the Vive Code app. But the Vive Code app also has a web 1:28:50 app. And once you sign in,
+you'll see here that we can see all of our So, we 1:28:56 can also work on this on our phone. And when we make changes on our computer, we can scan this QR code and it will 1:29:02
+actually just open up on our phone. And I can even show you how this works. Right? If I'm using camera on my phone, 1:29:10 I can scan this QR code and this will actually just open
+up the Vibe Code app 1:29:15 and it will open up the exact app that we're working on. And then I can just make changes on the computer and it will 1:29:21 update to the phone.
+Right? This will all update to the phone. I could say 1:29:27 make nano-banana dash Riley all caps in the title. I just 1:29:34 want to show you that you can make changes on the
+computer and it will 1:29:39 actually update directly on our phone app as well. So you can make changes on the computer and some people prefer the 1:29:46 computer which I think is
+awesome. And the reason I'm showing you this is we are going to be deploying this to the 1:29:51 app store. So we're entering the final part of our video where we want to take our
+apps and actually put them on the 1:29:57 internet. We want to allow other people to use them. We want to be able to put them on the app store. And this is the 1:30:03 first step
+to actually charging money for our apps. In the next video in the 1:30:09 series, we're going to talk only about payments. This is going to be a very long video by itself. Um, and
+that's 1:30:16 going to be a really, really fun one. But the first thing that you need to understand before you get to payments is you need to understand how to deploy. Deploying
+Mobile apps to the App Store 1:30:22 Okay. So, once you see this saving progress thing right here, you will um 1:30:28 you'll it it is done coding. And so all you have to do is hit
+this refresh button. And here we see that Nano Banana 1:30:35 was changed to all caps. And so I like the state of this app. It allows you to edit images all just immediately. You
+1:30:42 can switch between these which is like really fun to see. And we can press this. And I'm going to press export all. 1:30:51 Right. You can do that which is really fun. You
+can save them all to your library. I think that is a good version 1:30:57 one of this product to see if other people would actually like to get this app. Now, we can just go to the
+app 1:31:03 store. In order to deploy to the app store, what you're going to need, this bundle identifier is autogenerated. You 1:31:09 don't need to edit this. I'm going to change
+this app name to Nano Banana 1:31:15 Riley. And version, I'm just going to leave it at 1.0. We're going to generate an app 1:31:22 icon. Man in orange hoodie with a 1:31:28 YouTube
+logo on the hoodie. I don't know. You can generate anything here. 1:31:35 Okay, that's fine. Save icon. Now, continue to build setup. So, here 1:31:42 you're going to need an Expo
+Access token. And you're going to just click on this and open this up in a new tab. I 1:31:49 already have this set up and so it automatically gets set up for me. And here's the
+token. Whatever page you get 1:31:55 taken to, you're going to create a free account. Then you're going to create a token and you're going to copy that token and you're going to
+paste that 1:32:01 token right here. It's that easy on Expo. Then what you're going to do is you're going to set up an Apple 1:32:07 developer account. And I already have an Apple
+developer account. And this part 1:32:12 is somewhat difficult. It just takes a little bit of time. But down below this video, I'm going to include a guide on 1:32:20 how to get
+set up with an Apple developer account. And we may even link a video. I may make a separate video 1:32:27 just on this on how to get set up with an Apple developer account. Once
+you get that set up, then you can just start 1:32:33 uploading unlimited apps to the app store. And you can just create a ton of apps, send them to your friend, get them 1:32:39 on
+the actual app store. Because after that, all you have to do is hit start build process. And this will begin 1:32:47 building your app and sending it to the app store. And then you
+are basically 1:32:54 done. In the guide that I paste below, it'll show you all the steps that you need to do beyond this step, which is 1:33:02 basically creating a description
+for your app. You also need to create a static landing page somewhere or a link. 1:33:10 You could even use a notion document that has terms of service and privacy policy which
+take almost no time, but 1:33:16 I'll explain that in the guide. And then you're ready to send it to Apple for review 1:33:22 here. One thing you need to do while you're deploying
+to the app store is you need to just hit allow. And then there's 1:33:29 a sixdigit code that I have on my phone. It's not showing up here. I think it's 1:33:34 for privacy
+reasons, but I'm just going to type in that code. And then this is going to complete the 1:33:42 build. You basically need to give permission from your Apple developer 1:33:47
+account to send this app to the app store. And that's what it's doing right now, which is very cool. Deploying your apps from Sandbox 1:33:57 Okay. And then finally, I do want to
+talk about deploying directly to the internet. And by the time you see this 1:34:04 video, we may not have deployments yet, but deployments will be here within the next few days.
+So, we're going to add a 1:34:09 one-click deployments here button right here at the top, and you're going to be able to deploy it to the internet. For 1:34:16 those of you who um
+maybe you want to download your code, you can do that. And 1:34:22 then then you can download then you can deploy on Versell, you could deploy on Netlefi or any of these various
+tools. 1:34:29 And so to download your code, what you're going to do is you're going to press this download button right here. And this will not only save your 1:34:36 project, but
+it will also send you an email. And then that email 1:34:41 in your email, you will see uh an email. And then all you have to do is click here and your app will download. And
+1:34:48 then you can open it up in cursor. Right? I could if you love using cursor 1:34:53 you can come into cursor and you could open up a new project and if I you go into the
+downloads 1:35:00 here's the project that I downloaded I can hit open and this will open up the project right here as you can see right 1:35:07 here and then you can actually just
+tell cursor please upload this code to this 1:35:12 repo and then you could paste in a GitHub repo link get repo link and then 1:35:18 and deploy to Verscell using the CLI. That's
+how normally how I deploy. 1:35:24 There's a lot of different ways you can deploy, but the point is is you can get your code locally on your computer. You could open up with cloud
+code. You can 1:35:31 open it up with cursor for those of you who are a little bit more advanced, but we're going to have a deploy button. We'll get it straight to the internet.
+1:35:36 And in future videos, I'll talk about payments. I will also talk about custom domains. And I'm just all I'm going to 1:35:44 do for the rest of my life is make content

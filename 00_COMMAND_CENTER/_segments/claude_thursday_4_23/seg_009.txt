@@ -1,0 +1,224 @@
+know how it's hosted. 1:09:541 hour, 9 minutes, 54 secondsIt's not going to have to like do a bunch of API calls to various services to this out. It just already knows all this
+stuff because that's what this slash init just did. So if you don't already have a Claude dot MD, 1:10:031 hour, 10 minutes, 3 secondsI'd highly recommend going to your folder,
+generate one. Once you have it generated, then you can continue making additions and changes as necessary, 1:10:091 hour, 10 minutes, 9 secondsbut literally just having a
+description of the way that the folder works is like, honestly the, the, the 90% of the battle. So for simplicity, 1:10:171 hour, 10 minutes, 17 secondsI've compiled the top
+recommendations into a quick do and don'ts guide for you. The first thing to do is just run backslash init first, 1:10:241 hour, 10 minutes, 24 secondsanytime you're working in a
+new folder. The second is, I just use bullet points and short headings, try and compress information as much as possible. Basically write in like a high information density style.
+1:10:331 hour, 10 minutes, 33 secondsDon't just voice transcript dumped into your Claude dot MD. If you wanted to write a Claude dot MD, for instance, using AS help, I might
+actually voice dump into Claude and then say, 1:10:401 hour, 10 minutes, 40 secondsturn this into a very high information density summary of rules and stuff. But the most important
+things at the top, 1:10:461 hour, 10 minutes, 46 secondsthere's anything that like it absolutely shouldn't do like never delete XYZ file or whatever. Mention it up at the very top.
+The first few things that AI learns, it tends to remember. 1:10:541 hour, 10 minutes, 54 secondsIt's sort of like the middle gap of the prompt. If I were to show you guys what this
+actually looks like, basically goes like this. It remembers a lot of the beginning. 1:11:031 hour, 11 minutes, 3 secondsIt doesn't really remember much of the middle and then it's
+more likely to remember some of the end. So this is called your primacy bias. 1:11:101 hour, 11 minutes, 10 secondsHuman beings are like this too, which is really interesting. And
+then this is called your recency bias, which means, you know, 1:11:161 hour, 11 minutes, 16 secondsClaude and us are biased towards remembering things at the very beginning of a
+stretch and at the end of the stretch, but more so the beginning, 1:11:231 hour, 11 minutes, 23 secondswhich is why you put very important guardrails at the top. Periodically
+review and prune this. Like treat it like living code. If you have Claude constantly update the Claude.md, 1:11:331 hour, 11 minutes, 33 secondsyou will find over time it adds
+things that aren't really super necessary, some super precise instructions. It starts changing sort of the way that it talks to you and stuff. 1:11:401 hour, 11 minutes, 40
+secondsSo I treat it sort of like technical debt and then I reduce it over time. What not to do is don't dump entire style guides and API docs into it. 1:11:471 hour, 11 minutes,
+47 secondsThis is an unfortunate habit that I've seen a lot of people do where they basically are like, oh, you know, I want this to be my, I don't know, let's just say a Panda doc
+companion. So they go to the Panda doc API, 1:11:561 hour, 11 minutes, 56 secondsthen they download the entire thing. And then they try and paste it into the Claude.md ends up
+being 10,000 tokens. And then keep in mind, this is initialized every single time you run Claude code, 1:12:041 hour, 12 minutes, 4 secondsright? In addition to it taking a little
+bit longer, cause now you have that initialization time. It's also just a pain in the ass and it's, and it's more costly while reducing Claude's quality as mentioned. 1:12:121
+hour, 12 minutes, 12 secondsSo don't do that instead, like talk to Claude, say, okay, what specific API endpoints are we going to need? 1:12:171 hour, 12 minutes, 17 secondsAnd
+then give it the whole API and then just have it like prune it down to just the specific sections that you need or specific, 1:12:231 hour, 12 minutes, 23 secondsmaybe high level
+instructions on how to use this API that maybe is not super relevant or trivial, I should say. 1:12:301 hour, 12 minutes, 30 secondsClaude.md allows you to do what's called an at
+include. This is very simple to just, you know, I didn't want to spend too much time on this, 1:12:371 hour, 12 minutes, 37 secondsbut basically if in your Claude.md, you just say,
+you know, 1:12:411 hour, 12 minutes, 41 secondsat get.md and you have a folder called get.md somewhere else in your computer. It'll actually go and it'll like include that into the
+Claude.md. 1:12:501 hour, 12 minutes, 50 secondsAs you guys can see that functionality sort of taken care of by rules, but I just don't add include a bunch of files unless
+absolutely necessary. 1:12:581 hour, 12 minutes, 58 secondsDon't write really vague rules in general, like treat Claude like, you know, a really intelligent savant style
+intelligence, but also, you know, 1:13:061 hour, 13 minutes, 6 secondspeople that are, they tend to be really intelligent and savant take a really intelligent one specific little
+slice of the field. If you give them too much rope, they'll just hang themselves. 1:13:141 hour, 13 minutes, 14 secondsSo try not to write like really high level, vague
+aspirational things, unless absolutely necessary, unless it makes sense. For instance, don't just say be smart. Don't say make no mistakes. 1:13:241 hour, 13 minutes, 24
+secondsClaude's not going to understand that. Right? I keep seeing a meme rolling around Twitter and it's like, Claude, make me $1 million. Don't make any mistakes. And it's like,
+1:13:331 hour, 13 minutes, 33 secondsthat's just not going to, that's not going to improve the quality of its output or anything like that. 1:13:371 hour, 13 minutes, 37 secondsIn
+general, you want to keep it somewhere between like 200 to maybe 500 lines or so max. The recommendation is not to go any longer than 500 lines. Otherwise again, 1:13:461 hour, 13
+minutes, 46 secondsyou're just dumping it a ton of context. And then don't forget to add rules when Claude keeps making the same mistake. 1:13:521 hour, 13 minutes, 52 secondsSo
+like if you're working with a particular library or particular software platform, or again, a particular API, like Panda doc or whatever, and they have a very specific way of going
+about things, you know, 1:14:001 hour, 14 minutesevery time you load up a fresh instance of Claude code, it's going to continuously make that mistake, which is going to cost you
+again in tokens, but then also in context because of quality. 1:14:081 hour, 14 minutes, 8 secondsSo if you find that it makes a mistake more than two or three times, tell it,
+1:14:111 hour, 14 minutes, 11 secondsHey, you know, I want you to add this to your Claude NMD so that this would work the next time I run it on a fresh instance of Claude. That's
+one of my favorite things to tell it. Okay. 1:14:201 hour, 14 minutes, 20 secondsSo these are just some high level rules. Obviously there are more. If you want like a really
+powerful way of, you know, 1:14:251 hour, 14 minutes, 25 secondsfinding solid Claude code tips and specifically at Claude.MD stuff, I actually go straight over to Twitter slash X
+and then I say, 1:14:341 hour, 14 minutes, 34 secondsyou know, compile the last month of high ROI Claude.MD writings. What are the best things to include? 1:14:451 hour, 14
+minutes, 45 secondsBecause this technology moves so quickly rather than me, you know, 1:14:491 hour, 14 minutes, 49 secondstrying to like tell you guys to always include a certain
+snippet of text in your Claude.MD. Basically I just have it go through the last month of Twitter posts. 1:14:561 hour, 14 minutes, 56 secondsAfter a moment it'll tell you the most
+useful high ROI insights and patterns. Grok obviously is X's model. They have access to all Twitter posts. 1:15:031 hour, 15 minutes, 3 secondsAnd there's some extraordinarily
+intelligent people on here that basically live inside of Claude code. So I get most of like my advanced tips from them. And yeah, you know, 1:15:121 hour, 15 minutes, 12
+secondsthere's a lot of instructions and advice here given in just the last month or so. Okay. Now that we've talked about the Claude.MD, 1:15:171 hour, 15 minutes, 17 secondslet's
+talk about a few additional features that not a lot of people understand they have access to inside of Claude code. 1:15:241 hour, 15 minutes, 24 secondsThe first is this concept
+of auto memory. So basically in addition to the Claude.MD, 1:15:291 hour, 15 minutes, 29 secondsthere is an additional tiny little file that's injected at the top of every session.
+1:15:341 hour, 15 minutes, 34 secondsAnd you'll find that Anthrobek and the developers of Claude code do a lot of these injections. It's not just the Claude.MD and it's not just
+this memory file, 1:15:411 hour, 15 minutes, 41 secondswhich I'll talk about. They have a lot of tool calls, definitions, lots of stuff. So the way that memory works basically is
+if you tell Claude something in one instance, and you tell it to remember it, 1:15:521 hour, 15 minutes, 52 secondsit'll actually write it to this memory file. And then in another
+instance, when you pull it up, this is like a global memory file. It'll, it'll remember you. So if I open up Claude code again and down here, I say, 1:16:021 hour, 16 minutes, 2
+secondsI don't know, what's my brother's name. 1:16:081 hour, 16 minutes, 8 secondsSo I try and ask it some, let's say personal information that I want it to find out for me. It'll
+say, I don't know your brother's name. 1:16:151 hour, 16 minutes, 15 secondsYou haven't shared that with me. I say, remember that my brother's name is George. 1:16:221 hour, 16
+minutes, 22 secondsNow what it's going to do is it'll save that to its memory file. Okay. Which already has a few other things like the fact that my dog's name is Yelpers. 1:16:311
+hour, 16 minutes, 31 secondsYou guys think my dog's name is Yelpers? Then if I go to a new fresh Claude code instance, and then I say, what's my brother's name? Notice how this
+time we're not going to have that issue. 1:16:411 hour, 16 minutes, 41 secondsIt's just going to say George. And the reason why, if we just go back to this very stereotypical,
+prototypical example, which just continues to grow. 1:16:491 hour, 16 minutes, 49 secondsIn addition to both the enterprise Claude.md, the global Claude.md and then the local
+Claude.md, 1:16:581 hour, 16 minutes, 58 secondsyou also have a file here, which is separate from all of those called memory.md. 1:17:091 hour, 17 minutes, 9 secondsAnd Claude will
+inject this at the very top of basically every new session. So in addition to again, this global section here, and then this local section, 1:17:181 hour, 17 minutes, 18 secondswe
+also have a memory. And then we have a bunch of other tool call definitions and stuff like that, which I'll talk a little bit about later in practice. 1:17:241 hour, 17 minutes, 24
+secondsMemory isn't super valuable or anything like that. I mean, Claude.md does a lot of that, of course, but you know, it's separate from Claude.md. 1:17:321 hour, 17 minutes, 32
+secondsYou can kind of treat this as Claude's own notes. It's not really your instruction set. Okay. Next up are agents. As you see here, 1:17:381 hour, 17 minutes, 38 secondswe
+have this agent sub folder within the .Claude local settings folder. This can be pretty difficult to understand. So I'm just going to give you a high level overview now, 1:17:461
+hour, 17 minutes, 46 secondsand then we're actually going to do a lot more agent development later on in the course. But let's just say I want an agent called tell me the time.md.
+And this is a really simple agent. 1:17:581 hour, 17 minutes, 58 secondsI basically just want it to tell me the current time. I can define the tools that it has access to, the
+model, 1:18:051 hour, 18 minutes, 5 secondsthe max number of turns that I can have it autonomously go and fulfill my request. Whether I want it to have global or local memory,
+1:18:121 hour, 18 minutes, 12 secondsI can give it a little description, a name, and then also down here, just like a brief little outline of what it is that I want to do. And so
+in this case, hypothetically, I'm just saying this is a time teller. 1:18:211 hour, 18 minutes, 21 secondsYou know, I basically want my big agent to talk to my smaller agent and
+then say, Hey, what's the time? Very simple and straightforward. 1:18:271 hour, 18 minutes, 27 secondsSo I'm actually going to open up a new session here, and I'm going to say,
+what time is it? Use my agent. 1:18:361 hour, 18 minutes, 36 secondsAnd if you haven't already seen the sub agent tool call, it looks a little bit different from what you guys are
+probably used to. Notice how now we're opening up this task called tell me the current time. 1:18:461 hour, 18 minutes, 46 secondsAnd what happened is we see this little in input.
+What this is is this is our main agent talking to a sub agent. 1:18:531 hour, 18 minutes, 53 secondsAnd so this main agent basically said, I see that Nick said, what time is it?
+And he asked me to use my agent. 1:19:021 hour, 19 minutes, 2 secondsLet me check all of my available agents. And then went through the agents folder, found that there was an agent
+called tell me the time.md and then said, Oh, 1:19:101 hour, 19 minutes, 10 secondsI see there's an agent here that can tell me the time. Since Nick asked me for that. This is
+obviously the one that he wants me to use. It then creates a task called tell me the current time, 1:19:191 hour, 19 minutes, 19 secondsand then sends the new agent a message
+saying, Hey, Nick wants to know the current time. Please determine the current time and report it back. Then at the very end, 1:19:281 hour, 19 minutes, 28 secondsit says the
+current time is 2 23 PM empty. Anything else the agent wanted you to tell me? 1:19:371 hour, 19 minutes, 37 secondsYes. It greeted you with a howdy partner. And then it gave me a
+little cute cowboy emoji. The reason for that obviously is because down here I said also say howdy partner. 1:19:461 hour, 19 minutes, 46 secondsAnd so you can have agents for a
+million different things. In general, one off functions like tell me the time aren't really that valuable because, you know, 1:19:541 hour, 19 minutes, 54 secondsyour parent agent
+can sort of already tell you the time for the most part. But there are a couple of agents that do make sense. 1:20:021 hour, 20 minutes, 2 secondsAnd so if we split this into
+parents and then the variety of different ways you could call this used to be master slave, by the way, which, you know, had a bunch of issues. They had to change it. 1:20:101
+hour, 20 minutes, 10 secondsNow it's like kind of like parent agent and then child agent. But if you think about it, there are a few agents that actually make sense. 1:20:191 hour,
+20 minutes, 19 secondsThe first agent that makes sense is in general, having some sort of research sub agent. 1:20:241 hour, 20 minutes, 24 secondsThe reason why is because the way
+that agents work is they're spawned with their own context. 1:20:281 hour, 20 minutes, 28 secondsAnd so this agent down here that we just spawned has no no context aside from just
+this input. It literally the only text inside of it's, um, you know, 1:20:381 hour, 20 minutes, 38 secondsprompt is the user wants to know the current time, please determine the
+current time along with, you know, the high level instructions that we defined and tell me the time. Like that's, 1:20:451 hour, 20 minutes, 45 secondsthat's literally all that it
+has. That's its whole Claude done MD, essentially. Um, and so because of this, because of the separation of context, you know, 1:20:531 hour, 20 minutes, 53 secondsif you want to
+keep the total number of tokens that you use as low as possible in the parent agent, which is usually the smartest one, like the one that you're paying the big API token usage and
+stuff like that for, 1:21:011 hour, 21 minutes, 1 seconduh, 1:21:021 hour, 21 minutes, 2 secondsinstead of trying to fill in a hundred thousand tokens of research when it goes on
+the internet and it looks up trends, then it goes, 1:21:081 hour, 21 minutes, 8 secondschecks out Google analytics and then it goes pumps things into, I don't know, 1:21:121 hour,
+21 minutes, 12 secondsduck, duck, go instead of like filling or polluting all the context of the parent agent. What you do is you basically just say, Hey, you know, 1:21:201 hour,
+21 minutes, 20 secondsgo research X, Y, Z, and tell me a summary. And then it will go pollute all of its own context window, 1:21:311 hour, 21 minutes, 31 secondsget it super long
+might use 50 or a hundred thousand tokens, which is why a lot of people use the, uh, sonnet model series at the time of this recording for that purpose. 1:21:391 hour, 21 minutes,
+39 secondsAnd then the only thing that actually makes it back to the parent is just that summary. So down here, this could use a hundred thousand tokens, right? 1:21:451 hour, 21
+minutes, 45 secondsBut then like the tokens that it transmits back might only be, I don't know, like two K or something, which is, if you think about it at a cost savings amount of
+50 times, 1:21:531 hour, 21 minutes, 53 secondswe're literally 50 times cheaper than whatever the parent costs would have been. And then we also get to use, um, you know, a lot of
+cheaper sub models and stuff like that, like sonnet, 1:22:011 hour, 22 minutes, 1 secondlike Haiku and so on and so forth. So research is really, really good. And that's one, uh,
+sub agent that I would almost always create. 1:22:071 hour, 22 minutes, 7 secondsI'm actually going to show you guys how to create one later for your code and then also for other
+automation purposes. Another one that I really recommend is basically having like a reviewer agent. 1:22:171 hour, 22 minutes, 17 secondsThe way that the reviewer agent works is in
+contrast with the research agent, you know, it having no context is actually the whole point. 1:22:251 hour, 22 minutes, 25 secondsSo basically what happens is this parent writes a
+bunch of code, right? You know, it's like your index.html or as we're going to see, it's going to be Python scripts or whatever the heck, 1:22:331 hour, 22 minutes, 33 secondsit's
+just going to do a bunch of code for you. And then after writing all that code, okay, its context is now really biased towards the way that it wrote that code. 1:22:411 hour, 22
+minutes, 41 secondsBasically, you know, if you think about it, there's like 10,000 tokens and all of those tokens are like, Hey, you know, I should write the code this way because
+of whatever reason. Well, 1:22:491 hour, 22 minutes, 49 secondsif you want it to write really, really good code, 1:22:511 hour, 22 minutes, 51 secondsa lot of the time what you
+have to do is you actually have to give it to another version of itself with no context and then just say, Hey, this is, this is the code knowing absolutely nothing. Do you think
+this is good code? 1:23:021 hour, 23 minutes, 2 secondsAnd if the answer to that question is yes, then obviously it's a good code. But if not, okay, what usually happens is when
+you do this, when you spawn a new agent and then give it the code, it'll say, 1:23:091 hour, 23 minutes, 9 secondsit's kind of weird that you wrote it that way. Why did you write
+it that way? And then the reason why is because the initial version of cloud, as mentioned, 1:23:151 hour, 23 minutes, 15 secondswas just really biased because it had just done all
+this thinking and stuff like that. And so, you know, they do this in, you know, like big enterprises, stuff like that. Like you do, 1:23:231 hour, 23 minutes, 23 secondswhat's
+called a code review where, you know, 1:23:251 hour, 23 minutes, 25 secondsa programmer writes some big long function or some cool tool or creates a nice app. 1:23:291 hour, 23
+minutes, 29 secondsAnd then they're so biased about the way to do things because they've just spent like 10 hours, you know, 1:23:351 hour, 23 minutes, 35 secondshammering a
+particular method or a particular approach that when they give it to the code reviewer, okay, another human being, the guy looks at it and he's like, what the hell is this? Why did
+you do it this way? 1:23:431 hour, 23 minutes, 43 secondsHe could have done it way easier with another way or whatever. Or, you know, Hey, I noticed that your security is kind of
+off. So in this instance, 1:23:501 hour, 23 minutes, 50 secondswhat the reviewer sub agent does is it basically takes advantage of the fact that it has no input and then it's able
+to look at the code with like a totally blank face. And so with this, you basically say, you know, 1:24:001 hour, 24 minuteslook at the code with zero context or no context and
+break down the code, 1:24:101 hour, 24 minutes, 10 secondsplus improve it. And then what it'll do is it'll take all of the code. So it might feed in, 1:24:161 hour, 24 minutes, 16
+secondsyou know, like 10,000 lines or something. And then it'll return just the changes to the parent agent. And then, you know, this might be again, like 2k tokens or something.
+And the parent agent will, 1:24:251 hour, 24 minutes, 25 secondswill do the changes cause it's usually smarter. And then, you know, now your code's way higher quality. Finally, one
+that a lot of people are using is sort of this middle one here, 1:24:321 hour, 24 minutes, 32 secondswhich is like QA slash testing. Now this is more of like an advanced
+programming thing, but basically in order to determine whether or not a piece of code works or a tool works or a piece of software is like good, typically, 1:24:421 hour, 24
+minutes, 42 secondsyou can develop a bunch of tests and then you can subject to your tool or software that you just created to these tests to figure it out. Now, 1:24:491 hour, 24
+minutes, 49 secondsobviously your parent agent can do this, but, you know, 1:24:521 hour, 24 minutes, 52 secondsthis is just something that would pollute the context and be
+tremendously costly, both in terms of tokens, but also the intelligence of the parent model. 1:24:581 hour, 24 minutes, 58 secondsAnd so typically what people do is they'll break
+things down into this research sub agent, a reviewer sub agent, and then also some sort of QA or automated test sub agent in big enterprise. And that's how they do like automated
+testing of their code, automated test driven development, and so on and so forth, 1:25:111 hour, 25 minutes, 11 secondswhich is similar to what I was doing earlier when we designed
+those websites, where, you know, we tell it to do the thing, it goes and it does the thing, and then it uses some sort of way to verify that it did the thing correctly. 1:25:201
+hour, 25 minutes, 20 secondsYou can kind of think of the QA agent as like a way to facilitate that. It's just with design, it's pretty easy because you just fee a screenshot in and
+then you look at, you know, the screenshot and if the screenshot's good, then you're good. 1:25:291 hour, 25 minutes, 29 secondsWith, you know, backend development, obviously you
+need a way to determine, hey, is the thing that I said that it should be able to do actually happening. Last but not least, we have skills, 1:25:381 hour, 25 minutes, 38
+secondswhich were previously referred to as custom slash commands. 1:25:411 hour, 25 minutes, 41 secondsNow skills are pretty great skills, basically allow you to automate a vast
+majority of, I want to say like the day-to-day knowledge work that you may or may not be 1:25:481 hour, 25 minutes, 48 secondsdoing, especially when you pair it with tools like
+Excel or Google sheets or whatnot. Now I came up with this idea of directive orchestration executions. 1:25:571 hour, 25 minutes, 57 secondsIt was this framework that I put about
+probably about like four or five months ago, just as Claude was figuring out how skills worked and stuff like that. And they've since created skills, 1:26:061 hour, 26 minutes, 6
+secondswhich I think is actually a much better alternative to my DOE framework. So I just use skills now, but basically what these things are, are just like subagents. 1:26:151
+hour, 26 minutes, 15 secondsThese are high level instructions that you can give to the parent agent. Okay. The one distinction between subagent and skills is in the subagent,
+1:26:231 hour, 26 minutes, 23 secondsit does it all look like a different agent in the skill. 1:26:251 hour, 26 minutes, 25 secondsIt's like given to the parent agent and basically
+it's just a list of instructions allows it to do something. 1:26:291 hour, 26 minutes, 29 secondsSo I want to give you guys a brief little example of what that might actually look
+like using a skill that I developed called shop Amazon. So heading back to our folder here, if I go down to skills, 1:26:361 hour, 26 minutes, 36 secondsyou see that there is now a
+skill called shop-amazon.md. Up at the top right hand corner, the name is shop Amazon. 1:26:431 hour, 26 minutes, 43 secondsUnderneath here is browse and purchase items on
+amazon.ca via the Chrome dev tools MCP using the user as defined compare by products in Amazon. 1:26:501 hour, 26 minutes, 50 secondsThen there are a bunch of high level
+instructions about how exactly to use a various, like some various tools to browse Amazon for me and then find products that I want to do, including stop, like get purchase
+approval, 1:27:041 hour, 27 minutes, 4 secondsdo not skip the step. So, I mean, like I often buy products on Amazon. And to be honest, 1:27:091 hour, 27 minutes, 9 secondsthere's
+just so much junk on Amazon now that I don't want to have to spend every day hours of my time like rifling through mostly, you know, 1:27:171 hour, 27 minutes, 17 secondslike SEO
+optimized garbage, which doesn't actually mean anything. So what I did is I put together a skill to do that for me. And at the moment, 1:27:231 hour, 27 minutes, 23 secondsI
+require something to connect my basically in photography, like a bounce sheet or a reflector with one of my stands. 1:27:331 hour, 27 minutes, 33 secondsSo what I want to do is
+just, I'm going to speak into it. I'm going to say, Hey, 1:27:371 hour, 27 minutes, 37 secondsI'm shopping for something to connect one of my reflectors to one of my tripod mounts.
+1:27:441 hour, 27 minutes, 44 secondsI purchased the reflector a couple of days ago and I didn't realize that I needed, you know, something separate to kind of clip the two
+together. Could you shop Amazon and give me some options that I could use? 1:27:561 hour, 27 minutes, 56 secondsSo I'm just going to press enter here and then I'm just going to let
+it go on its way. We open up the thinking. 1:28:011 hour, 28 minutes, 1 secondWhat it's going to start with is the user is asking me to help them shop on Amazon. Then the user
+wants to find a reflector holder or whatever. 1:28:081 hour, 28 minutes, 8 secondsAnd now what it's going to do is actually an open up a Chrome tab for me using Chrome dev tools.
+And it's going to go and it's going to look for it. Okay. Now it knows that I'm in Canada for instance. 1:28:161 hour, 28 minutes, 16 secondsSo it's actually looking it up at
+Amazon.ca up here, scrolling through, it's going to open things up, take screenshots of various parts of the page. 1:28:251 hour, 28 minutes, 25 secondsIt's going to read through
+everything and so on and so forth. And it'll actually at the end of it, get me a bunch of options, according to what I wrote in my, you know, shop dash Amazon markdown skill.
+1:28:351 hour, 28 minutes, 35 secondsAnd so if you think about it, 1:28:361 hour, 28 minutes, 36 secondslike this is something that previously a virtual assistant or something
+might have done, right? I mean, this is something that like I would have just given to somebody and delegate it away. Hey, you know, 1:28:451 hour, 28 minutes, 45 secondsI'm
+setting up a photography studio in X, Y, and Z. Well, now I can actually just write a skill, a high level skill that teaches it how to use Amazon. 1:28:521 hour, 28 minutes, 52
+secondsAnd then once it goes through Amazon and you know, finds me the products, 1:28:551 hour, 28 minutes, 55 secondsthen just gives me like a big list of things like this. So
+what I can do now is I could say, Hey, you know, I want to buy X, Y, and Z. And then I can go and actually buy it for me. You know, obviously I recommend, 1:29:041 hour, 29
+minutes, 4 secondsif you guys are like making purchase decisions with Claude Code, this isn't really something I'd a hundred percent automate. You know, maybe I'd have it add all
+the products to cart. And then I'd say, Hey, 1:29:121 hour, 29 minutes, 12 secondsgive me the page so I can review it and then purchase it myself. But you can automate this about
+as crazily in detailed as you want. 1:29:191 hour, 29 minutes, 19 secondsWhat we've done is we basically made an API out of Amazon and they don't have one specifically because they
+don't want everybody to. With cloud skills, you can do something like that super easily. 1:29:281 hour, 29 minutes, 28 secondsThe variety of other skills that you can create, this
+one's called Upwork Scrape Apply. I have a bunch that do like, you know, lead scraping for me more generally. 1:29:361 hour, 29 minutes, 36 secondsI have skills that automate the
+process of sending welcome emails to new clients. I have skills that automate the process of building their deliverables. 1:29:421 hour, 29 minutes, 42 secondsAnd what's really
+cool is you're not the only person that had, like you don't actually have to put the whole skill together yourself. 1:29:481 hour, 29 minutes, 48 secondsYou can just have cloud
+help you put the skill together for a future instance of cloud. And in practice, that's usually what I do. I'll say something like, Hey, I want to build a skill that does X, Y, and
+Z. Can you help me format it? 1:29:571 hour, 29 minutes, 57 secondsHere's like how skills work. Cause sometimes it won't know for whatever reason. It'll have to go research skill
+formatting and stuff like that. And then we'll say, yeah, sure. I could put one together for you. 1:30:051 hour, 30 minutes, 5 secondsThen what you do is you take that feed that to
+a fresh instance of Claude Code that has no understanding of what the skill is, see how it does. If it screws up, you just give it feedback and say, 1:30:121 hour, 30 minutes, 12
+secondscan't modify the skills that you do better next time. You rinse and repeat and eventually you get an error rating, which may start off at like, I don't know, let's say like
+it, 1:30:201 hour, 30 minutes, 20 secondsit's only good 70% of the time on your first. Well, after some changes, now it's good 80% of the time. Then after a couple more changes,
+1:30:271 hour, 30 minutes, 27 secondsnow it's good 90% of the time. And then eventually I want to say, you can get to like 98 to 99% fidelity and accuracy, which in any sort of
+knowledge field nowadays is more than enough. 1:30:361 hour, 30 minutes, 36 secondsI'd say most human beings screw up more than one to 2% of the time. So we'll cover a little bit
+more about skills and how to create them, how to take preexisting SOPs and workflows and stuff like that, 1:30:441 hour, 30 minutes, 44 secondsand convert them into skills a little
+bit later on. But for now, just know that they're there. Okay. So most everything the year has now been covered. We talked about Claude, 1:30:541 hour, 30 minutes, 54 secondswe've
+talked about the Claude.md, we've talked about the local, we talked about the agents folder, the skills folder, the rules folder. We only have a few things left. Like there's MCPs
+to talk about, 1:31:031 hour, 31 minutes, 3 secondsbut now's not a good time to, so I'm going to push that off to later. And then also the settings.json is a good thing to mention,
+but since this deals with hooks, I'll also talk about that later. 1:31:111 hour, 31 minutes, 11 secondsYou're now at the point where you understand, I want to say, you know, 90% of
+the internal workings of Claude code. You understand the file structure, the organization, 1:31:201 hour, 31 minutes, 20 secondsyou understand the highest ROI way to build
+anything, whether it is a simple website or something more complex, like a full stack app or an automation. From here on out, 1:31:271 hour, 31 minutes, 27 secondsit's really just
+learning a little bit more about Claude's various modes. So plan mode, dangerously skip permissions, you know, 1:31:351 hour, 31 minutes, 35 secondsask before editing and so on and
+so forth. And then we can take a listen and we can use it to build something really, really cool. 1:31:391 hour, 31 minutes, 39 secondsWhat we're going to learn about next are the
+various permission modes available to us in Claude code. Now, just so we're all on the same page here, when I say permission mode, 1:31:481 hour, 31 minutes, 48 secondswhat I'm
+referring to is this little button down at the very bottom of the GUI. And you can toggle through this button pretty straightforwardly and easily. 1:31:571 hour, 31 minutes, 57
+secondsAnd as you can see here, when we do, we get four main modes. The first is ask before edits. The second is edit automatically. 1:32:041 hour, 32 minutes, 4 secondsThe third
+is plan mode. And the fourth is bypass permissions. 1:32:081 hour, 32 minutes, 8 secondsI should note that you're not actually getting a bypass permissions right out of the gate
+here, at least not as of the time of this recording. So I'll show you guys how to enable that yourselves. 1:32:161 hour, 32 minutes, 16 secondsSo we're going to run through each of
+these as well as some extras. And then at the end of today's module, we're going to focus significantly more on plan mode. I'm going to walk you guys through how plan mode works,
+1:32:241 hour, 32 minutes, 24 secondswhy you might want to use it, 1:32:261 hour, 32 minutes, 26 secondsand then ultimately how to use plan mode to build something that I've
+personally been wanting to build for quite a while. So we're going to do it interactively together. 1:32:321 hour, 32 minutes, 32 secondsSo permission modes control how your agents
+handle permissions. You also give the current permission mode to any sub agents that you employ, 1:32:421 hour, 32 minutes, 42 secondswhich is going to be pretty important for
+later. Now they tend to inherit the permission context from the main conversation, 1:32:481 hour, 32 minutes, 48 secondsbut there are a couple of situations in which they can
+actually override the mode too. For now, 1:32:521 hour, 32 minutes, 52 secondsI just want you to pretend that all we're talking about are our current top level agents. We're not
+focused on any sub agents or any additional functionality, nothing like what we just talked about earlier. 1:33:031 hour, 33 minutes, 3 secondsSo we have default. Default is
+standard permission checking with prompts. You guys remember down here where it says ask before edits, 1:33:101 hour, 33 minutes, 10 secondsyou guys can think of this as basically
+the default. Okay. 1:33:141 hour, 33 minutes, 14 secondsAnd so the default setting is before Claude makes any changes to any files on your computer, 1:33:211 hour, 33 minutes, 21
+secondsit has to ask you whether or not it's okay to do it. And I'll show you guys what that looks like right now by saying, you know, 1:33:301 hour, 33 minutes, 30 secondschange
+the title of the project to Nick's happy fun time. So because I'm in ask before edits mode, 1:33:391 hour, 33 minutes, 39 secondsyou'll see that before it does any sort of change,
+1:33:421 hour, 33 minutes, 42 secondswhat it's going to do is it's first going to look at the specific file that defines the title. It's going to pop open on the right hand side,
+the exact section of the page that it's considering updating. 1:33:531 hour, 33 minutes, 53 secondsSo initially it's a profile name dash work log profile name. In this case was
+Nick. It defines some really cool, badass variable stuff for me, 1:33:581 hour, 33 minutes, 58 secondsbut because of my dumb request at now saying title equals Nick's happy fun
+time in lowercase, you'll also notice, 1:34:041 hour, 34 minutes, 4 secondsI'm just going to have to remove my head here so that we can see this a little bit better. You'll also
+notice that down at the bottom, it says, Hey, should we make this edit to index.astro? That's the file. 1:34:141 hour, 34 minutes, 14 secondsAnd I have three choices. I can either
+say yes, by clicking or pressing one, two saying yes, allow all edits this session or three. I could say no. 1:34:241 hour, 34 minutes, 24 secondsAnd finally, I can also say tell
+Claude what to do instead. JK please don't do this. And so because of this, it's going to say no changes made. 1:34:331 hour, 34 minutes, 33 secondsAnd I will not have actually
+gone through the request. Obviously, most of the time we don't actually do that. We don't actually make that third, 1:34:401 hour, 34 minutes, 40 secondsor rather we don't click
+that fourth one. As you see, it's also kind of annoying, but generally speaking, if you guys are working in a code base, that is, 1:34:481 hour, 34 minutes, 48 secondsI don't know,
+really high risk, sort of high reward thing, where like every change needs to be good, or it's going to screw everything up. You can use ask before edits. 1:34:561 hour, 34
+minutes, 56 secondsI should note that very few people are nowadays. We moved away from ask before edits. Most people now use either the next setting them to show you, 1:35:031
+hour, 35 minutes, 3 secondsor they just bypass permissions like me entirely. The next major setting is accept edits and accept edits. What we do is we auto accept any edits to
+files, 1:35:131 hour, 35 minutes, 13 secondsbut then if you want to create new files, it'll still ask you for it. And so going back to our little Claude code page here, 1:35:201
+hour, 35 minutes, 20 secondswe moved from ask before edits to edit automatically. Okay. We can now edit any preexisting files. So we can do is we could say, sorry, I actually want
+you to do this, 1:35:311 hour, 35 minutes, 31 secondsupdate the project to the title. And because we've selected edit automatically instead of ask before edits, 1:35:391 hour, 35
+minutes, 39 secondsit'll actually go through and it'll automatically update that for me. See how there was no little panel on the right hand side. 1:35:441 hour, 35 minutes, 44
+secondsSo this is useful when you want to give the model like carte blanche control over any preexisting files, but you don't want it to like have any control or any ability to
+make new ones. 1:35:531 hour, 35 minutes, 53 secondsSo I'm just going to say revert the change and keep in mind that now, because we're in edit automatically, it can do so without
+actually having to pop. The next one is don't ask. Now there's no, 1:36:031 hour, 36 minutes, 3 secondsdon't ask permission prompt explicitly set up here. So if you want to get to
+your permissions, you actually have to go backslash permissions and then continue in a terminal. 1:36:111 hour, 36 minutes, 11 secondsThis is going to open up a new page for you.
+That's going to then pump in Claude with some permissions tab. 1:36:171 hour, 36 minutes, 17 secondsAnd then you're going to get a list of all of the different permissions that you
+can have, including rules in this workspace. So as you can see, 1:36:241 hour, 36 minutes, 24 secondswe have allow, ask, deny workspace. Okay. So this is equivalent to our edit all
+tab. 1:36:321 hour, 36 minutes, 32 secondsDeny will always reject requests to use any tools. 1:36:361 hour, 36 minutes, 36 secondsAsk will always ask for confirmation before using
+tools and allow won't ask before using any. What's cool is you also have the ability to add a new rule. 1:36:441 hour, 36 minutes, 44 secondsSo permission rules are basically where

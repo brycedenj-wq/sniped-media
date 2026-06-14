@@ -1,0 +1,224 @@
+may 22:55 need to debug it. It has nothing to do 22:56 with the database. It's just probably 22:57 your project. Going back over here, uh, 23:00 let's go ahead now and test this
+out. 23:02 Now, there is a few debugging methods in 23:04 case this did not work properly for you 23:06 guys. So, here we have our leads and 23:08 there it is. You can see daryl
+darl.com. 23:12 So, you can see that it's fully 23:13 integrated with the website. Now, there 23:15 is one debugging method I want to show 23:17 you just in case something did not
+work 23:19 out. I realize uh this video is kind of 23:21 hard to make for everyone because you 23:22 may have different results than me, but 23:24 this is the correct way and how
+to do 23:25 it. But here, I'll go ahead and give you 23:27 a prompt to run. Now, sometimes this may 23:30 or may not have been entered in the 23:31 right repository. So, what you
+can do 23:33 here is you can say, I want this to be 23:35 merged directly to the main branch. 23:37 That'll essentially force the actual AI 23:39 to put this information in the
+main 23:41 branch instead of like a side 23:42 repository. So, I'll just go ahead and 23:44 run this prompt and just see what 23:46 happens here. Okay, so it looks like 23:48 mine
+was already there. So, nothing more 23:49 for me to do, but sometimes it may push 23:52 to the wrong uh branch. Now, let's go 23:54 back over here to GitHub. So, next thing 23:56
+I'll do is go over here to GitHub and 23:59 under repositories 24:01 under YouTube house. 24:05 If I click on environmental production, 24:07 you should see something that looks
+just 24:08 like this. If it does not look like 24:10 this, then something went wrong. So, you 24:12 should see this. And what this does here 24:14 is that this reroutes everything
+from 24:16 Hostinger to Superbase. So, Hostinger is 24:19 basically the middle person. Now, if you 24:21 did get an error for whatever reason, if 24:23 you click on all
+deployments, it'll say 24:26 failed. And if you click on the arrow 24:28 right here, it'll explain why it failed. 24:30 And this has happened to me in the past. 24:32 And all
+you're going to do is just copy 24:34 the entire thing right here. And then 24:36 give it to actual cloud and say, "Hey, I 24:38 got this error." You know, you paste it 24:40 in
+here saying, "I got this error from 24:42 Hostinger. What is the problem? How can 24:44 I connect it?" And they should be able 24:45 to debug it with Hostinger. Hostinger 24:47
+acts as the middle person to make sure 24:48 that your database and claude are 24:50 working in sync together. Well, party Outro 24:52 people, you made it to the end. Thanks 24:53
+for watching. You know, this video 24:54 actually took me a while to make. Uh, at 24:56 first we were doing this through 24:58 terminal and to be honest, it didn't 24:59 make a lot
+of sense cuz when you're 25:01 building this through terminal, your 25:02 project or whatever, you can't really 25:04 visually see what you're doing too well. 25:05 So, I thought
+to myself, I'm like, you 25:07 know, man, this is not going to work. We 25:08 got to find an easier way how to do 25:10 this. So, me and my two developers, we 25:12 dig through the
+trenches and this is 25:14 what we pulled out. So, I hope you guys 25:15 really enjoy this video. You have any 25:17 questions for me about Claude or 25:18 Hostinger or WordPress
+or whatever, let 25:20 me know in the comments below and I'll 25:22 do my best to get to all of your 25:23 comments. My name is Daryl Wilson and I 25:25 will see all of you party
+people in the 25:26 next video. Take care. Sell more Intro 0:00 If you've been using Cloud for a while, 0:01 you've probably built a lot of skills 0:02 and a lot of agents. So
+today, I'm going 0:03 to talk about three different simple 0:05 ways to actually deploy those agents so 0:07 that they run while you sleep. So I 0:08 don't want to waste any time.
+Let's just 0:09 get straight into today's video. Okay, 0:11 so before we get into the different 0:12 methods, let me just paint you a picture 0:14 here. There's kind of two
+different 0:15 things that we're going to be looking at The Deployment Framework 0:17 because the different ways that you 0:18 deploy your agents have different pros 0:20 and cons.
+So here's kind of like the 0:22 slider we're looking at. The first thing 0:24 is where does it actually run? Does this 0:26 run on your machine and is it dependent 0:28 on your
+machine staying on or is it 0:30 running somewhere on the cloud whether 0:31 that's like Anthropics cloud or your own 0:34 sort of cloud environment modal trigger 0:36 VPS whatever
+it may be and then on the 0:38 vertical here we basically have how 0:40 deterministic is this thing is this the 0:41 full agentic autonomous agent loop or is 0:44 this more of a
+script that just runs 0:46 basically the same way every time and 0:48 there's not like that autonomous 0:50 decision-making magic agent. So, as I'm 0:53 breaking down these
+different methods, I 0:55 will explain based on this method, where 0:57 does it sit on the scale? Because the 0:58 truth is, there's not one best way to 1:00 deploy an automation.
+It depends on the 1:02 type of automation. So, here is kind of 1:03 a quick breakdown that we're going to be 1:05 coming back to throughout the video. So, 1:07 don't feel like you
+need to absorb all 1:08 of this right now, but for each of these 1:10 methods, we're going to be looking at 1:11 where it actually runs. We're going to 1:12 be looking at the WAT
+framework that 1:14 I've talked about. So, workflow, agent, 1:16 tools, and what's actually getting 1:18 deployed and what's not. We'll be 1:19 looking at if your computer needs to
+be 1:20 on and if your session needs to be on. Method 1 1:22 So, I will break all of this down. It's 1:23 going to be super super simple. Okay, so 1:25 method number one is just
+setting up a 1:27 loop, which I think is a super cool way 1:29 to just like very quickly deploy an 1:31 automation. Basically, the idea is you 1:33 ask Claude Code to run a loop
+and do X, 1:35 Y, and Z in the loop. So, basically, 1:37 it'll fire off every 10 minutes or so. 1:39 It'll run the skill, it'll run the 1:40 automation, execute what it needs to,
+1:42 and then it will stop. And then in 10 1:44 more minutes, it will just fire up 1:45 again, and it will loop through that 1:47 process until you either tell it to stop 1:49 or
+it's hit its limit. So, how does this 1:50 actually work under the hood? Cloud code 1:52 has three different tools for this sort 1:55 of thing, which is called cron create, 1:57
+cron list, and cron delete. And if 1:59 you've ever heard me or other people in 2:00 the AI space say cron, that just 2:02 basically means a scheduled task. A cron 2:04 is like
+what time it fires off at. So, 2:07 saying that you're going to set up a 2:08 cron is basically like I'm just going to 2:09 set up a scheduled automation. And 2:10 theuler is
+actually internal to the 2:12 cloud code process. And what's really 2:14 cool is that all of these crons that you 2:16 might set up or these loops are session 2:18 scoped. So if
+you're working in five 2:19 different sessions, you know, five 2:21 different terminals or five different 2:22 tabs in your desktop app, then each one 2:25 of those individual
+sessions can have 2:26 their own loops and they don't interfere 2:28 with each other, unless they're all like 2:29 writing to the same file or something, 2:31 which in that case
+they would, but 2:32 they're session scoped. So you can run 2:34 these in the cloud desktop app or in the 2:36 terminal, which is pretty cool. The 2:38 terminal does give you a few
+extra 2:40 things for some reason which I will 2:41 explain. But for now, let me just show 2:43 you how easy this is because you don't 2:44 actually have to remember syntax of like
+2:46 how you do like a sloop and how you, you 2:49 know, explain how this works. You can 2:50 see you can obviously do the sloop and 2:52 then tell it to do something every 10 2:54
+minutes or so. Or you can just use 2:55 natural language. So I can say, hey, can 2:57 you just go ahead and set up a loop for 2:59 every 10 minutes to remind me to take 3:00 out
+the trash. So I shoot that off. And 3:03 now you can see it's going to use a 3:04 specific tool and a specific skill in 3:06 order to set up that loop. And right now 3:08 I'm
+showing the desktop app. Like I 3:09 said, I will bounce over to the terminal 3:11 in just a sec. You can see that it just 3:13 ran a skill called /loop. And now it's 3:15 using
+its tool search. And it's going to 3:17 have to use the tool that we talked 3:18 about which was called croncreate. As 3:20 you can see right there and this is 3:21 basically just
+like cron syntax. And you 3:24 don't have to understand how to read it 3:25 because it will explain it to you in 3:26 natural language. Now, what's kind of 3:28 cool about this and
+interesting is that 3:29 when you create a cron and you say every 3:31 10 minutes, that doesn't mean the first 3:33 one's going to be 10 minutes from now. 3:34 Right here, you can
+see at the bottom, 3:36 it actually tells you in the desktop app 3:37 how many seconds are left until your 3:40 next cron. And you can see that it says 3:41 every 10 minutes, next
+in 1 minute, ends 3:43 in 3 days. So, when you set up a loop, 3:46 you're basically going to be limited to 3:47 how long they run, which is 3 days in 3:48 the desktop app. And it
+does this 3:50 because it doesn't want to have everyone 3:52 running acron every 10 minutes on, you 3:54 know, like 1050, 11, 11:10, 11:20 3:58 because then, you know, their API
+would 3:59 get throttled. So, it kind of does like 4:01 this random jitter thing, which I'll 4:02 talk about in just a sec. So, anyways, 4:04 that's how easy it is to use on the
+4:06 desktop app. And then if you wanted to 4:07 stop it, you could just come in here and 4:08 say kill that loop and it will go ahead 4:10 and use the cron delete and kill it. Or
+4:12 you could obviously just like open up 4:13 this tab and just like close the 4:15 session. Now, what's interesting is in 4:17 the desktop app, if you were running a 4:18 loop
+every five minutes or so and you 4:20 clear your chat, it will kill that cron. 4:23 But what's cool is that in the terminal, 4:24 it doesn't actually do that. So, here's 4:26 an
+example that I just worked on to show 4:28 you guys. I said, "Set up a loop every 4:30 minute to remind me to take out the 4:31 trash." It creates this cron job, right? 4:33 And
+then it fires it. And then what I 4:35 did is a slashcle. And then after I 4:37 cleared the session, I said, "Do you 4:38 have any crons in this session?" And it 4:40 used its cron
+list tool to take a look. 4:42 and it said yes, I still have the once a 4:44 minute remind me to take out the trash. 4:46 So that's cool. You can basically in the 4:48 terminal
+clear sessions if your context 4:50 is starting to fill up and your crons 4:52 are still alive as long as you don't 4:54 actually terminate that session. And 4:55 then the next
+thing is that I wanted to 4:56 set up a loop every 5 minutes that will 4:58 run the /clear command because if you 5:00 have a loop running every 10 minutes and 5:02 it's processing
+skills and looking at 5:03 data, then your context window is going 5:06 to slowly fill up and you're going to 5:07 hit context rot. So, it would be nice to 5:08 set up another
+cron. And in this case, I 5:10 said every five minutes, but it's going 5:11 to run the slashclear command. And it's 5:13 interesting because claude code actually 5:15 doesn't think
+that's going to work, but 5:16 it does. I basically tried it. I set one 5:19 up where I inject just the word /cle, 5:22 and it actually treated it like a clear 5:23 command. Right
+here was the actual cron 5:25 firing off. And then after it cleared 5:27 it, once again, I said, "What crons do 5:28 you have?" And it found both of them 5:30 still alive. So that
+is why whenever I'm 5:33 really going to use loops, I'm using it 5:34 in the terminal because you get 5:36 functionality like this, which you don't 5:38 get in the desktop app for
+some reason. 5:39 And another interesting thing is that 5:41 these crons or these loops are supposed 5:43 to actually run for 7 days. And right 5:45 now in the desktop app, you
+could see 5:46 that it said three. Now maybe if I 5:48 relaunched and I updated that would 5:49 update and now we would see that these 5:51 live for seven days. But typically when
+5:52 you're using the terminal, you just get 5:54 more functionality. And then real quick, 5:56 that jitter thing that I was talking 5:57 about to avoid every session hitting the
+5:59 API at the same exact moment, the 6:01 recurring tasks fire up to 30 minutes 6:04 after the scheduled time. So if you want 6:06 something to run like at 9:17 and 9:27 6:09
+exactly, it might not do it because of 6:12 this whole jitter thing, but it would 6:13 still set up an interval to run like 6:14 every 10 minutes. So one example that I 6:16 was
+using this for is when I first 6:18 started doing the Nate's AI agent 6:19 responding to comments on my YouTube 6:21 videos. I would just upload a video and 6:23 then I would go
+into cloud code and say, 6:24 "Hey, set up a loop for every 10 minutes 6:26 to read the comments on my new upload 6:29 and respond to them using the transcript 6:30 and, you know,
+point them in the right 6:32 directions." And so that was me just 6:33 setting up a loop. I could even say, 6:34 "Set up a loop to do that for every 10 6:36 minutes and then
+automatically kill the 6:38 loop after 24 hours and it would do 6:39 that." Okay, anyways, real quick, pros 6:41 and cons. The first pro is that this is 6:43 zero setup. You
+literally just say set 6:45 up a loop and it runs. You get the full 6:47 agentic loop because all this is doing 6:48 is working inside of your session. So 6:50 all your skills, all
+your files, 6:52 anything that you do normally when 6:53 you're doing your knowledge work in 6:54 cloud code, you get access to. You can 6:57 even do a loop that runs skills 6:59
+explicitly. You can make it shut itself 7:01 down after certain amount of iterations. 7:03 And you can run the slash commands 7:05 directly like you guys just saw me do 7:07 with
+the /clear loop. Now some cons. The 7:10 session has to stay open obviously. So 7:11 if you close out of that terminal 7:12 session, the loop dies. Your machine has 7:15 to stay
+on. So if your computer turns 7:17 off, the loop also turns off. You've got 7:19 a 7-day expiry and then the whole fixed 7:21 interval thing that we talked about and 7:23 then of
+course the different nuance 7:24 there with desktop app versus terminal. 7:26 So that was loop. This is basically what 7:29 we're seeing. Your machine is where it 7:30 lives. You
+get the workflow, you get the 7:32 agent, and you get the tools. And one 7:34 quick thing to clear up is with this WAT 7:36 framework. People have been asking me 7:38 like, okay,
+well, where do skills live 7:40 in there? Well, skills are basically the 7:41 W and the T because sometimes you have a 7:43 skill that's just a W, right? Sometimes 7:45 your skill
+is just here's how I write a 7:47 LinkedIn post. And that's just a 7:48 workflow. But sometimes you have a skill 7:50 where it's like, okay, here's how I 7:51 write a LinkedIn post
+and generate the 7:53 infographics. And in that generate 7:55 infographics section of the workflow or 7:57 the skill, you're probably pointing to 7:59 this image generator and this
+API, and 8:02 you're combining those together, the 8:03 tools with the workflow is a skill. 8:06 Anyways, you're getting all three of 8:07 those elements, WAT. Your computer has
+8:09 to say on and your session has to say 8:11 open as well. Real quick, guys, I know 8:13 we're about to cover a ton of 8:14 information in this one. So, I have 8:15 broke all of
+this down into a very 8:17 simple resource guide, which you can 8:18 access for completely free. The link for 8:20 that is down in the description. All you 8:21 have to do is join
+my free school 8:22 community. And once you get in there, 8:24 click on classroom and go to all YouTube 8:26 resources and you'll be able to find 8:28 everything in there. So, if
+you want to Method 2 8:29 grab that resource guide, completely 8:31 free, head over there. But anyways, 8:32 let's get back to the video. Thanks, 8:34 guys. All right, so now let's
+move on to 8:35 this next one, which is desktop 8:37 scheduled tasks and cloud routines. And 8:39 the reason I put them together in one 8:41 bucket is because if you open up your
+8:42 cloud desktop app and you go to 8:44 routines, you can see right here that 8:46 you can create different routines. And 8:48 in here, you can either have local or 8:49 remote.
+So they work very, very 8:52 similarly, but there's one main 8:53 difference. And that is what I'm going 8:55 to talk about real quick. And it's 8:57 honestly pretty obvious. Like
+right 8:58 here, scheduled tasks run on your 9:00 machine. So if you close out of the 9:01 desktop app, they won't run. And the 9:03 cloud routines will run no matter what 9:05
+because they're actually running inside 9:06 of Anthropics infrastructure on 9:08 Anthropics Cloud, which is why if you're 9:10 doing the cloud routines, you're limited 9:12 to how
+many runs you can do per day. So 9:14 right here, I'm on a max plan and I get 9:16 15 runs a day for remote scheduled 9:19 tasks. And if you're on the pro, you 9:20 only get five.
+And I think if you're on 9:22 team or enterprise, you get 25. 9:24 Otherwise, it'll just cost you extra 9:26 usage. But what's really cool about 9:27 these is it's very similar to
+that loop 9:29 because you're basically just getting to 9:32 inject a prompt into the conversation of 9:34 a regular cloud code terminal. So it's 9:36 nothing too crazy. So for
+example, if I 9:39 look at that school wins engagement one, 9:40 which I currently have paused because I 9:42 switched this over to a Hermes agent, 9:44 you can see that I have
+these 9:45 instructions, right? I basically say, 9:46 "Hey, run the wins engagement skill. 9:48 This means you do XYZ in this order. 9:50 Here are all my instructions." And so 9:52
+when this actually runs, if I go down to 9:53 like an example that ran, you can see 9:56 May 6th, what it does is it just injects 9:58 that entire prompt into a cloud code 10:00
+session and then it just executes it. 10:03 Right? This project has my API keys. It 10:05 has my context. It has everything that 10:07 it needs and it can even search through 10:08
+other things. So you get the full 10:10 agentic loop right here. You get cloud 10:12 code on a timer. Now the cloud routines 10:14 are basically the exact same way, right? 10:16
+Let me just click on this remote one, 10:18 which is a paused one at the moment. you 10:20 put in a specific prompt and that just 10:23 gets injected right into the session. 10:24
+Same exact way. The only difference is 10:27 that because these run on Anthropics 10:28 cloud, you are basically getting like a 10:31 clone of a repo in the cloud. And so you 10:34
+have to set environment variables a 10:35 little bit differently. So I'm not going 10:36 to do a full breakdown right now, but I 10:38 did a full breakdown video which I will 10:40
+tag right up here. If you're interested 10:41 in checking that out, click up there. 10:44 Okay, so pros and cons here. The pro, 10:46 this is built into cloud code on the 10:48
+desktop app. So there's no extra 10:49 infrastructure or configuration. You 10:52 obviously get your full cloud code 10:54 session capabilities with skills, um, 10:56 shell, mcps,
+sub aents, reasoning, all 10:58 that. The cloud variant is awesome 11:00 because you can literally set up those 11:01 cloud routines and your machine can be 11:02 off and your
+terminal can be closed, 11:05 whatever it is, that will always run no 11:07 matter what. Something else that's 11:09 really cool about the local ones. So 11:11 remember, if you
+guys saw, I had all of 11:12 these local ones running, too. If I 11:14 accidentally turned off my computer for 11:16 like five days and then I turned it back 11:18 on, when I open
+up the desktop app, 11:21 Cloud Code would look through all of the 11:22 local tasks that hadn't fired while it 11:25 was turned off and it would play 11:26 catchup, which is
+pretty cool. But 11:27 definitely keep that in mind because if 11:29 you don't want it to play catchup, 11:30 you're going to want to make sure that 11:31 you like pause those.
+Otherwise, it will 11:33 play catch-up. And what else is cool on 11:34 the remote ones is that you can have 11:36 those be called by an API. So, it's 11:39 basically a web hook
+that you could have 11:41 other automations call on. So besides 11:43 those just being timebased, they can 11:45 also be event driven because you can 11:47 also set them up to be
+called by like a 11:49 GitHub action. So here is me creating a 11:51 new cloud routine. You can see I can 11:53 choose schedule GitHub event or API. So 11:56 that's pretty neat. Of
+course though 11:58 it's tough because you only have 15 per 12:00 day unless you want to use extra usage. 12:01 Anyways, cons. The cloud routines you 12:04 have a 1 hour minimum
+interval. So you 12:05 couldn't run like one every 20 minutes. 12:07 If you wanted to do something like that, 12:08 you would probably just want to do a / 12:10 loop. The cap can
+be pretty tight, five 12:12 a day with pro, but you know, you can 12:14 always upgrade. Of course, if you're 12:15 doing the desktop ones, the local ones, 12:17 you have to keep
+everything on. And the 12:18 other thing to think about is whenever 12:20 you're injecting prompts into your cloud 12:22 code sessions. And the idea is that you 12:24 don't have to
+give any input, you really 12:26 want to play with the prompts and you 12:27 really want to watch it for a while to 12:29 make sure that it can just autonomously 12:30 go do
+whatever because careless prompt 12:32 scoping can cause unwanted actions, 12:34 which is just the nature of an 12:36 autonomous automation. Okay, so that was 12:38 these two right
+here. These two 12:39 scheduled tasks we have obviously this 12:41 one is on your machine. This one is in 12:42 Anthropics cloud. They all have the WA 12:45 and the T which is
+great. And then the 12:47 scheduled tasks needs your desktop app 12:49 open and your machine open. You don't 12:51 need the session open because it starts 12:52 a new session. And
+then the cloud 12:54 routines you don't need anything on or 12:56 any sessions open. So it's truly a 247 12:59 type of system. Okay. So moving on to Method 3 13:02 method three we
+have deploying to 13:04 something like modal or trigger.dev 13:06 which is kind of it's not your own 13:08 cloud. It's either modal or 13:09 trigger.devscloud, but it's not 13:10
+enthropic. It's something that you are 13:11 kind of configuring on your own, but 13:13 it's not very difficult. The idea here 13:14 is that you basically write a script. 13:16 So,
+Python if you're using modal or 13:18 TypeScript if you're using trigger.dev. 13:20 You deploy that script to modal or 13:23 trigger and you can have them run on a 13:25 schedule
+or even like a web hook fire. 13:27 So it can be like an an API at endpoint 13:29 essentially and then it executes that 13:31 Python script or type script script and 13:33 then it
+gives you the output and you get 13:35 a dashboard in modal or trigger to see 13:37 how many times they've run and you can 13:39 see you know errors and how long it took 13:41 and
+stuff like that. So what's the 13:42 difference between modal and trigger.dev 13:44 well modal is Python serverless. You 13:46 write a Python function and you just 13:48 push it
+over to modal and then it runs 13:50 in the cloud on a cron. So this very 13:53 much feels more like a script on a 13:54 timer. Trigger.dev dev uses TypeScript 13:57 and it feels a
+little bit more agentic 13:59 because sometimes your things get broken 14:00 down into like two different um like 14:02 scripts that would call on the other 14:04 one. So typically
+I have preferred to 14:06 use trigger.dev but at the end of the 14:08 day if you have a very deterministic 14:09 process they're both going to achieve 14:11 you the same result and
+I don't really 14:12 know how to write code in Python or 14:14 TypeScript. Obviously my cloud code does 14:16 it for me. But if you do understand 14:18 Python way better than
+TypeScript then 14:20 you probably would want to go with 14:21 modal. Cloud code works with both of 14:23 these two options very very well. It 14:24 understands how to push scripts
+to the 14:26 dev and move them to the prod. It 14:28 understands that you need to put your 14:30 environment variables over on modal or 14:31 trigger.dev so that your automation
+can 14:33 actually access things. I'm not going to 14:34 do a full breakdown right now, but I 14:36 have done multiple videos with modal on 14:38 this channel. I will tag one of
+those 14:39 right up here. And then I will also tag 14:41 a video that I did with trigger.dev that 14:43 I made on this channel which breaks it 14:44 down a little bit more. I will
+tag that 14:46 one right up here. Anyways, the oneline 14:48 analogy modal is a chron job in the 14:50 cloud. Trigger.dev dev is a durable 14:52 workflow engine that happens to
+also 14:54 support cron. But once again, both of 14:55 these could be uh an API endpoint. You 14:58 could turn that into a web hookup call. 14:59 Okay, so that was modal
+trigger.dev. You 15:02 can see here that's going to run on your 15:03 cloud or technically like modal's cloud. 15:06 And for the WAT framework, you're 15:08 basically just
+deploying your skill. 15:10 You're basically just deploying the 15:11 workflow and the tools. You don't get 15:13 that autonomous agent loop. And what 15:15 else that means is all
+of the AI 15:17 processing that you're going to be doing 15:19 there will be an API call. Whether 15:20 that's the cloud API or whether that's 15:22 to open router, it will be not
+your 15:24 cloud code subscription, which means it 15:26 might be more expensive, right? Because 15:28 you're running an AI processing that's 15:30 token based, paper token. But
+the other 15:31 cool thing about this is that a lot of 15:33 these automations that you're going to 15:34 deploy because they're going to be 15:36 primarily pretty deterministic,
+might 15:39 not even use AI at all. And that's where 15:41 I would opt for one of these is if the 15:43 process doesn't need AI and I can just 15:44 chuck that script up somewhere
+to run on 15:46 a cadence because it doesn't need your 15:48 computer on and it doesn't need any sort 15:49 of session to be open. Now, what you 15:51 guys notice down here is I do
+show you Claude Agent SDK 15:52 an option with modal and trigger.dev 15:54 that gives you the a part of the WAT 15:57 framework and that is using the agent 15:58 SDK. So, what is
+the cloud agent SDK? 16:00 So, this is not really an official 16:02 method that I'm diving into right now. 16:03 It's just kind of like a little bonus 16:04 thing to think about.
+But the agent SDK, 16:07 it almost gives you like an endpoint for 16:09 cloud code because essentially cloud 16:12 code is kind of just like a user 16:14 interface built on top of
+Claude's agent 16:16 SDK. It has the tools, it has the query 16:19 ability, it has more of that agent feel 16:22 compared to if you just hit, you know, a 16:24 raw cloud API
+endpoint where you're just 16:27 kind of talking to the model and you get 16:28 an answer back. But the agent SDK is 16:30 like cloud code where it has like that 16:31 harness and
+it can call tools and things 16:33 like that. So yeah, the cloud API gives 16:35 you just the brain that talks back while 16:36 the agent SDK gives you cloud code 16:38 essentially
+the brain plus the hands. So 16:40 it can do all of these, you know, bash, 16:42 file edits, web search, that whole loop 16:44 and it's already wired up so that you 16:45 can
+actually do the work instead of just 16:47 give you some sort of like text based 16:49 output. So here's kind of what it would 16:51 look like. You would send off a query. 16:53
+You would shoot off an API call to this 16:55 agent SDK. The agent would read that. It 16:58 would decide on what tools it would 16:59 reason. It would run the tools. It would
+17:00 get the results and it would keep 17:02 iterating and then it would give you 17:03 some sort of output. And so that's 17:04 essentially what cloud code is, right? 17:06 It's
+just wrapped up nice. Like I said, 17:08 now the one thing that used to confuse 17:09 me a lot about how the agent SDK worked 17:11 and how cloud code worked was when 17:12 you're
+in a cloud code session. So for 17:14 example, if I just pull up this one, we 17:16 can see how much has been used of my 17:18 limit. And I could do something like a 17:20
+slashclear and I could do a slashcompact 17:22 and I could do things like that. And I 17:24 know that if I'm having a long ongoing 17:25 conversation and I keep scrolling up, 17:27
+Claude will actually read that and help 17:29 use that as context for my next 17:31 decision. And the thing about the agent 17:33 SDK is by default, every message that 17:35 you
+send off is going to be stateless, 17:37 meaning it wakes up, no memory, nothing. 17:40 So basically the fix there is when you 17:41 make your request to the agent SDK, if 17:44
+you're sending over the session ID, 17:45 that's how you have an ongoing session. 17:47 The agent SDK will also autocompact and 17:49 things like that, but I don't think it 17:50
+does a SLC clear. If you want to do a 17:52 slash clear, you would basically just 17:53 start a new session. But anyways, it can 17:55 do all these tools of course and it can 17:57
+utilize sub aents, MCPS, hooks, skills, 18:00 slashcomands, cloud.mmd, memory, 18:02 compaction, all that kind of stuff. And 18:04 obviously, this is an official SDK from 18:07
+Enthropic. But the one thing that of 18:08 course is bad about this is that you 18:10 cannot use your cloud subscription if 18:11 you're using the agent SDK. It requires 18:13 a
+cloud API key. So, it's going to be 18:16 much more expensive than you just using 18:18 Cloud Code in your app or VS Code, your 18:22 terminal, whatever it is, wherever you 18:23
+use Cloud Code. I'm so glad that I 18:24 waited a few days to post this video 18:26 because then on May 13th, they just 18:29 announced that your monthly credit can 18:33 actually
+go towards something like the 18:35 Cloud Agent SDK, but it's not exactly 18:38 like super straightforward. It's not the 18:39 same weekly usage that you get. It's 18:42 like a
+different dedicated budget. So, 18:44 I'm not going to dive into that too much 18:46 right now. I just wanted to let you guys 18:47 know. Um, Theo made a really good 18:49
+breakdown where he kind of dives into 18:51 like the scale and the different 18:52 nuances. So, I will link that in the 18:54 description if you guys want to check 18:55 that out
+after this if you're interested 18:56 in like understanding what this really 18:58 means. But, just want to let you guys 18:59 know. So, let's get back to the video. 19:01 But the
+idea of pushing some sort of 19:03 automation to modal or trigger.dev is 19:05 still the same except for you just get 19:07 the agent now, which obviously lets 19:09 those
+automations be a little bit more 19:11 nondeterministic, a little bit more 19:12 agentic. not even a little bit more, a 19:14 lot more agentic. Okay, so there are two 19:16 more
+things that I wanted to very very Managed Agents & Hooks 19:18 briefly touch on. I'm not going to dive 19:19 into them in this video, but I did want 19:21 to call them out. So the
+first thing is 19:23 managed agents, which is a fairly new 19:25 service that Anthropic has spun up, 19:27 which lets you do managed agents 19:30 completely on Anthropic Cloud.
+Now, the 19:32 reason I'm not going to dive into them 19:33 in this video is because I played around 19:34 with it and I honestly don't love it. 19:37 Like I'm just going to keep
+working in 19:38 my own infrastructure, the way that I 19:40 have my routines, the way that I have my 19:41 endpoints, things like that. I think a 19:43 big value of the managed
+agents is for 19:45 people who've probably never opened up 19:46 cloud code before and they're looking to 19:47 start building some agents. It just 19:49 feels a little bit more
+like wrapped up 19:51 nicely, but there's some functionality 19:52 in there that I don't get. So, if you 19:55 already are using cloud code and you 19:56 understand it really well,
+then I would 19:57 just say stick with cloud code. But if 19:59 you guys do want me to play around with 20:00 them more and give you a video, just let 20:01 me know in the
+comments. Obviously, I'm 20:03 here to experiment and figure out what 20:05 works for what use case. And the other 20:06 thing that I wanted to touch on was 20:08 hooks, which
+honestly I haven't talked 20:09 about too much on this channel, but it's 20:11 a really really important and really 20:12 cool feature of Cloud Code. So hooks are 20:15 basically
+like eventdriven 20:17 little automations and they're much more 20:19 deterministic. So you write something to 20:21 Cloud Code, right? The agent does 20:23 something whether
+that's a um a GP or a 20:25 glob or an edit to a file and after a 20:28 specific event happens, you can set up a 20:31 hook to fire. So then that hook script 20:34 runs every time
+a certain action happens 20:36 and that is very very powerful if you 20:38 kind of layer a bunch of hooks together. 20:40 So a real quick example is every time 20:42 cloud code
+sends you a message that is 20:45 something that can fire a hook and you 20:46 can have that hook fire a noise 20:48 notification so that if you're working 20:50 you can hear when
+cloud code has sent 20:51 you a message. The other things of 20:53 course could be like a pre-tool use, it 20:55 could be a postto use, it could be a 20:57 session start or a
+session end. So 20:58 there's a lot of power. I think if 21:00 you're already just starting to like 21:01 have some light bulb moments of, oh wow, 21:03 every time the session
+ends, I want it 21:04 to do this or every single time it uses 21:06 like one of these tools, I would like it 21:08 to do this for me. That's where you 21:10 start to sort of loop
+them together. So 21:11 it's a very very powerful feature. If 21:13 you guys want to see like a full kind of 21:15 masterclass breakdown of hooks and 21:16 different use cases and
+how they work, 21:18 let me know and I would love to bring Final Thoughts 21:19 you guys a video about that as well. But 21:20 anyways, that is going to do it for 21:22 today and I
+know we covered a ton of 21:23 information in this one. So I threw all 21:25 of this into a resource guide that you 21:26 can access for completely free. The link 21:28 for that is
+down in the description. You 21:29 just have to join my free school 21:30 community. This is what it will look 21:31 like once you join. And then once you're 21:33 in there, you're
+going to go to 21:34 classroom and then you'll just click on 21:35 all YouTube resources. Everything that 21:37 I've ever shared for free is in there. 21:39 But if you guys enjoyed
+the video or you 21:40 learned something new, please give it a 21:41 like. It helps me out a ton. And as 21:43 always, I appreciate you guys making it 21:44 to the end of the video
+and I will see 21:45 you all in the next one. Thanks 21:47 everyone. All From the series In this video 0:00 You spent hours building something 0:01 really cool in cloud code, but
+now 0:03 you're stuck trying to deploy it. Well, 0:05 today I'm going to show you how to set 0:06 up your GitHub repository, deploy to 0:08 Railway, and also deploy to Verscell.
+0:11 And we're going to see which one's 0:11 quicker, which one's easier, and by the 0:14 end of this, you're going to be able to 0:15 share with a live URL. Now, without 0:18
+squir, let's get into it. All right, so Step 1: Setup Github Repo 0:20 first things first is we want to set up 0:22 our GitHub repository. We're just going 0:24 to click here, new,
+assuming you've 0:26 already logged into your GitHub account. 0:28 I do want to keep this private. 0:30 And we're going to create repository. 0:32 And we want to copy this SSH
+command 0:35 here. And go into our terminal where we 0:39 have Claude already spun up. All we want 0:42 to do is type in let's set up GitHub. 0:45 And I'm just going to put that on
+0:47 another line. 0:49 And Claude's going to get to work. All If you run into SSH error use HTTPS 0:51 right. So, it's letting us know there's 0:52 an SSH key authentication
+issue. I'm 0:55 guessing because it's a private repo. 0:57 And let's try switching to HTTPS 1:03 and see if that helps. 1:05 All right, perfect. It's been 1:06 successfully pushed.
+And we just want to 1:09 refresh this page is here. Looks like. 1:13 Perfect. We have a nice read me that I 1:15 had claw generate for us. Wonderful. So 1:18 now we want to deploy
+this. Let's go Option 1: Deploy on Railway 1:22 deploy a new project. Set up here. We're 1:25 going to grab GitHub repo 1:30 and let's go to 1:33 should be a new one here for 1:34
+veterinarianlmo.com. 1:39 Beautiful. 1:42 And it's initializing. 1:44 Now, this is where we would want to 1:46 update any variables. So, I'm just going 1:49 to copy this whole
+line. And a cool 1:51 trick with railway and I'm pretty sure 1:52 it's the same with a versell is if you 1:54 just copy the entire line and you just 1:56 paste it here, it's going
+to create both 1:59 fields for you. All right, so now we're 2:01 just going to deploy that. 2:06 Beautiful. So it took about 2 minutes to 2:08 deploy. Now let's go take a look at
+this 2:11 deployment 2:15 settings. Do we have a public URL? We do 2:17 not have a public URL quite yet. 2:21 Now, let's say you're not going to be 2:22 using a custom domain.
+Since we're 2:25 waiting for this to propagate for the 2:26 sake of the demo, all you had to do was 2:28 hit generate domain. And we can copy 2:30 this. And now 2:33 this is
+publicly available. And this is 2:35 the landing page. It's pretty slick. I 2:37 drew some inspiration from a template I 2:39 found on VO, uh, which is by Versell. 2:43 Get
+notified. You enter in your details 2:47 as a veterinarian practice or pet 2:49 hospital and this gets sent to a Google 2:53 sheet that I created just to start 2:55 logging
+everything. And yeah, if you Want to see me Demo this? 2:58 want to see me uh build this in a demo, 3:00 let me know that you're interested in 3:02 this type of landing page and I
+can show 3:03 you how I put this together. This took 3:05 me less than two hours, honestly. 3:07 Probably less than an hour without my 3:09 walking away from my laptop and and kind
+3:11 of squirreing away. But uh it's pretty 3:13 slick. Straight to the point brand logo. 3:17 Ranked top five on chat. GPT perplexity 3:19 Gemini and Claude. Pet owners are asking
+3:21 for AI vet recommendation. Make sure 3:23 they find you first. Get notified. And 3:25 it has this cool popup 3:28 module there. So this is how simple it 3:31 was on Railway.
+Now let's move over to 3:34 Versel. Option 2: Deploy on Vercel 3:36 What you want to do is obviously create 3:37 your Versell account. Go into here. add 3:40 a new project 3:44 and
+we're going to import here the repo 3:47 that we created for our project. 3:51 Keep everything default. Now, this is 3:54 where if you have any variables, you do 3:55 want to enter
+them in. We're going to 3:57 paste that in there and we're going to 3:59 hit deploy. 4:05 Wow, Versell killed it with speed. 4:07 That's amazing. So, we're going to 4:08 continue
+to our dashboard. And this is 4:11 right, we didn't have to generate a 4:13 domain. Versel does generate a domain 4:15 for us. So, pretty nice touch. Pretty 4:18 nice touch. Let's

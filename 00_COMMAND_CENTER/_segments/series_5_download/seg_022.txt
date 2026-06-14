@@ -1,0 +1,224 @@
+go to And as you can 4:21 see here, I feel like it's running 4:23 smoother on Versell as well. So, Custom Domain on Vercel 4:25 beautiful. Now, we're going to do the 4:27 custom
+domain demo here on um on Versell 4:31 rather than Railway. And let's go into 4:36 let's go back domains. And we want to 4:40 add a domain. And this is where we 4:43 let's say you
+have your own custom 4:44 domain. You enter it in here. 4:49 Voila. 4:52 So now we want to add a type A record 4:54 into our DNS editor. 4:57 And we're going to add that in there.
+5:00 Then we also 5:04 see if it's that quick. Maybe not. Then 5:07 we want to grab this CNAME resolves too. 5:10 Hit create. Voila. All set. So we can 5:14 take that off screen.
+5:19 And look at how quickly it's refreshed. 5:21 It's just going to take another bit of 5:23 time here. 5:25 Voila. As you can see, that's how easy 5:27 it was. 5:29 And voila,
+look at that. We're on our 5:32 own domain. That only took, you know, 5:33 maybe a minute for the records to 5:36 propagate. And uh voila. That's how 5:39 quick and easy it was to
+deploy your 5:41 very own cloud code project on either 5:44 Railway or Versel. It's never been 5:46 easier to build, but it's also never 5:48 been easier to deploy. Versel has a
+5:51 great hobby 5:53 plan that you don't have to pay anything 5:55 monthly. Railway 5:58 is definitely more cost um prohibited, 6:02 but I wanted to give you the example of Not
+sure which one to use? 6:05 both because sometimes your tech stack 6:07 of your app, right, depending on the 6:09 environment you need to deploy in maybe 6:12 Railways better
+suited than Versel. 6:16 The best way to figure that out is talk 6:18 to Claude, right? So hey, 6:23 I'm curious as your as per your 6:28 recommendations 6:31 as a dev ops
+engineer. 6:36 Please evaluate 6:39 the tech stack of this app and give me 6:45 recommendations 6:47 on where to deploy. 6:53 I'm not going to give it any preface of 6:55 versel or
+railway. I just want to see 6:57 what it says. So, I'm giving it a role, 6:59 letting it know that it's a DevOps 7:00 engineer. 7:03 and then please evaluate the tech stack 7:05 of
+this app. So it's going to evaluate 7:07 the codebase and then it's going to give 7:09 recommendation as far as where it thinks 7:11 you should deploy your app. So it tells 7:14 us
+our stack right next.js React API 7:17 routes with external Google app script 7:20 integration static assets 7:23 variables no database lets us know that 7:26 top recommendation is
+Versell. Based off 7:29 of our demonstration today, Verscell was 7:31 quicker. It was easier to set up the 7:33 custom subdomain or rather the custom 7:35 domain. So definitely
+spot on there. 7:38 Does it give us any alternatives? Okay, 7:42 alternative is Netlfi which is great and 7:45 I can run a demo netfly if you'd like me 7:47 to drop a comment
+below. Let me know 7:49 that you're interested. And it looks 7:50 like alternative Cloudflare pages. 7:53 Interesting. And then not recommended. 7:56 It's just letting you know AWS
+digital o 7:59 ocean oon I wonder if it misspelled that 8:02 there. Uh and then self-hosted, right? 8:05 Because it does require server 8:07 management. Not self not every 8:08
+self-hosted environment uh supports 8:11 next.js. So I hope you found some value Final thoughts 8:14 in today's video. Drop a comment below. 8:17 Let me know what you're working
+on, what 8:18 you deployed. I'd really love to know. 8:20 I'm not an AI expert. I'm building in 8:22 public and sharing what actually works. 8:24 If you'd like to see me make a
+8:26 particular video around a specific 8:27 topic, drop a comment below. Let me know 8:29 who you are, what you do, who your 8:31 target audience is, and what your 8:32 question
+is, and I will add a video to 8:34 my queue customtailored just for you. 8:37 Thank you so much for tuning in to 8:38 today's video. My name is Marcelo. This 8:41 is Clear Mud, and
+clarity matters. 8:47 [music] All From the series Intro 0:00 Claude is amazing for building websites. 0:02 You can tell it what you want, have it 0:03 create the design, and boom,
+you got a 0:05 beautiful website. But here's the 0:07 problem, right? After you create your 0:08 application or your websites, how do you 0:10 actually put it on a live domain?
+That's 0:12 what I'll be covering today in this 0:13 video. I'll show you how to set this up 0:14 with Mac, connect your cloud website 0:16 project, upload it to a real hosting
+0:18 environment, and make it work on your 0:19 real live domain. Plus, I'll show you 0:21 also how to incorporate a free database 0:23 onto your AI websites. Now, this video 0:25
+is exclusive for Mac users. Believe it 0:27 or not, there is a different setup 0:29 process depending on if you're using Mac 0:31 or Windows. Now, if you do use Windows, 0:33 I
+have a tutorial in the description. 0:35 This will walk you through how to set up 0:36 your AI website on a live domain. So, in 0:38 this video, I'm going to show you how to 0:40
+take an AI generated website by Claude 0:42 AI and launch it on a real live domain. 0:44 What's even better is any change or 0:46 update you make on your AI website will 0:48 be
+automatically updated and reflected 0:50 on your live website instantly. And you 0:52 can do all of this in about 10 minutes. 0:54 So, let's get started. Now, the first 0:55 thing
+that we're going to do is head 0:56 over to Claude AI. So, there is a link 0:58 to Claude in the video description. So, 1:00 the first step is to download Claude on Setup Process
+1:02 your computer. So, I put a link in the 1:04 video description. You'll go ahead and 1:05 download Claude for MacOss. So, here 1:08 you'll click on download 1:10 and then
+obviously you'll go through the 1:12 installation process. Now, once you 1:14 install Claude, you will then have it 1:16 available on your desktop where you can 1:18 run commands
+and prompts like normal. 1:20 Now, before we even touch Claude, we 1:22 need to download two specific programs. 1:24 The first program we need to install is 1:26 Node.js. This
+essentially allows us to 1:28 view JavaScript on a local server. So 1:30 all you got to do is just click on get 1:32 Node.js. Click on Mac OS installer and 1:35 then go through the
+installation 1:37 process. This is really quick and easy 1:38 to install. So here I'll just install it 1:40 with you guys. All you got to do is 1:41 click on continue. Continue.
+Agree. 1:45 And that's it. So NodeJS has been 1:47 installed onto your desktop. So then 1:48 you'll click on close. The next thing 1:50 that you'll need to download is Git. 1:52
+This essentially allows you to work in a 1:54 local environment and push projects from 1:56 local to online. So right here you'll 1:58 click on install for Mac and the first 2:01
+thing that you'll see is homebrew. 2:02 You'll just go ahead and click on 2:03 homebrew and we're going to install 2:05 homebrew. Now they actually have a 2:06 package installer.
+So if you scroll down 2:09 you'll see that you can download it from 2:10 GitHub. So here I'll click on latest 2:12 GitHub release. Then I'll scroll down 2:14 and I'll just download
+the latest 2:16 version. So here is the homebrew 2:17 package. I'll go ahead and open this. So 2:20 it's the same thing. really easy to 2:22 install. You'll just click on continue,
+2:24 continue, agree, and now it's installing 2:26 homebrew onto your computer. This is 2:28 typically required if you're going to 2:29 work on cloud code on local. Anyways, 2:33
+all right, cool. So, let's go ahead and 2:34 close this. Next, let's go ahead and 2:36 close and reopen it. So, we reopen 2:39 Claude. Now, before we jump over to 2:41 Claude Code,
+I actually want to create a 2:42 prompt that we can give to Claude Code 2:44 for my project. So, here's my prompt. I 2:47 want to create a real estate website 2:48 using Nex.js.
+Now, this part is 2:50 critical. Any project or application you 2:52 make, make sure that you instruct it to 2:54 create it with Nex.js. Next.js is a very 2:57 clean framework that
+can structure your 2:58 code to make sure your website is really 3:00 fast. Next, make sure the website is 3:02 award style design. Use blue, brown, and 3:04 white colors and
+elegant fonts. Now, 3:06 here's the thing. Generate me a prompt 3:08 that will create this for Claude code. 3:09 So, I'm not actually making the website. 3:12 I'm just getting the
+prompt that we're 3:13 going to give to Claude Code. So, let's 3:15 go ahead and run this prompt. Okay, so 3:17 the prompt has been finished. And as you 3:18 can tell, it's a very
+detailed prompt. 3:20 Also, you can see that it instructs it 3:21 to make it with Nex.js. That's a very 3:23 important part. And I'm just going to 3:25 copy all this and then we're
+going to 3:26 paste this into cloud code. So, here we 3:28 go. We're going to go ahead and copy all 3:30 this and then let's jump over to Cloud 3:32 Code. So, here I'll click on
+the code Create Project 3:35 and then I'm going to click on create a 3:36 new session. Now, before we go on any 3:38 further, we first need to create a 3:40 project. Now, I'm going
+to minimize my 3:42 window and I'm going to right click on 3:43 my desktop and create a new folder. Now, 3:45 we're going to store our project inside 3:47 of this folder. So over
+here I'm going 3:48 to put roofers websites and then I will 3:52 replace this folder. Now if you already 3:54 have a project here you can just replace 3:56 it. If you don't have
+any project at all 3:57 it might prompt you to add a project. So 4:00 it'll tell you to add a folder right 4:01 here and then in the desktop you'll just 4:03 select that folder.
+But I want to 4:05 replace this. So I'm going to click on 4:06 the roofer websites and I'm going to 4:08 replace it. So desktop and then here is 4:11 the roofer website folder.
+Then I'll 4:13 click on open. So now you can see that 4:15 we're working on this specific project. 4:16 So, anything that we create will be 4:18 stored in the roofer's website
+folder. 4:20 Now, I'm going to enter in that prompt. 4:22 So, over here, I'll make this larger and 4:24 then I'll rightclick, click on paste, 4:26 and then I'm just going to go
+ahead and 4:28 run this prompt with Claude. Now, it's 4:30 asking us if you want to trust the 4:31 workspace. Obviously, yes, this is your 4:33 computer. So, make sure you click on
+4:35 trust workspace. And now it's generating 4:37 the code for my project. And this 4:38 process obviously can take a few 4:40 minutes. All right. So, the website has 4:42 been
+finished. And over here, I'll click 4:44 on the local host. And here is the real 4:47 estate websites. Looks really nice. Very 4:49 strong landing page. But I also want to 4:51 see
+this from Claude Code. So let's go 4:53 back to Claude. Now in order to see the 4:55 project while you're working on it over 4:57 here, I'll go ahead and click on the 4:58 preview
+tab. And this will set up the 5:01 preview. And then here's the project. So 5:03 now we can kind of work on it while 5:04 we're entering prompts. And of course 5:06 you can make
+this bigger or smaller. So 5:07 for example, you can make it bigger and 5:10 smaller and stuff like that. But let's 5:12 go ahead and keep prompting. So next 5:14 we'll type in I
+want to initiate a git 5:16 repository for this project. Now here 5:19 auto is on but for this one I want to 5:22 select accept edits because I might need 5:24 to adjust some
+settings. 5:26 Now prompt periodically will prompt you 5:28 with like questions and ask for 5:29 permissions. Just go ahead and click on 5:31 always allow. 5:33 Okay. So now that
+we've done that now I 5:35 want to enter in this prompt. I want to 5:37 push this project to GitHub. 5:40 Next it'll ask you if you want to 5:41 authenticate the GH. So go ahead
+and 5:44 select the authenticate gh. Okay. So now 5:47 that we've done that, we now need to Push Project To Github 5:48 copy this and open terminal. So here 5:50 I'll click on copy
+code. Now let's open 5:53 up terminal on our Mac. Now before we go 5:55 to terminal, there's one thing that we 5:57 should mention. So you do need to have a 5:58 GitHub account in
+order for this to 6:00 work. Many of you probably already have 6:01 a GitHub account. Now GitHub is a free 6:03 service and all you got to do is just 6:05 sign up and make an
+account. What GitHub 6:07 does is they essentially store the files 6:10 so that your host can fetch them. So 6:12 you'll go through the sign up process 6:13 and make a free account
+with GitHub. And 6:15 here you'll see that I have a bunch of 6:17 repositories. Repositories are basically 6:19 projects and websites. So all these are 6:21 websites right here.
+And if you want to 6:23 ever make a new repository, all you got 6:25 to do is click on new. And then you'll 6:28 give your repository a name. So for 6:30 example, you can put like
+a roofing 6:31 project, right? Or something like that. 6:34 And then you'll scroll to the bottom and 6:36 then click on create repository. Now, 6:38 when using Claude, uh it can
+actually 6:40 create your own repository for you or 6:42 you can select the repository you want 6:44 it to store the data in. So, now that we 6:46 have our GitHub set up, let's
+jump over 6:47 to terminal. Now, the first thing you'll Terminal 6:49 do is go over here to your finder. 6:53 You will then go over to click on the 6:55 applications and then
+you'll type in 6:56 terminal. So over here we'll type in 6:58 terminal 7:01 and then make sure you select 7:02 applications and then we'll open up this 7:04 application 7:06 and
+all we got to type in is exactly 7:08 what they gave us. So we're just going 7:09 to type in gh login 7:12 and now it's saying okay where do you 7:14 want to use GitHub? So here
+I'm going to 7:16 put github.com. Make sure that you 7:18 select github.com and press enter. Next 7:20 it's asking what protocol. Just select 7:22 https. 7:24 Then it's asking if
+you want to log in 7:26 with a web browser. Make sure that you 7:28 select login with a web browser. 7:31 The next thing you'll do is just go 7:32 ahead and copy this link. So here
+we'll 7:34 just copy this and then we'll open up 7:37 our browser. So over here we're already 7:39 logged in and I just want to go over 7:41 here and just rightclick and paste that
+7:43 link. 7:46 And all I got to do is click on 7:48 continue. 7:50 Now they're asking to authorize our 7:51 device. Now I'm going to minimize this 7:53 window. And it did give us
+a code and we 7:55 just have to paste that code in. So here 7:57 I will copy this code and then paste it 8:00 in. Okay. And then I'll click on 8:02 continue. 8:05 I'll scroll to
+the bottom and then click 8:07 on authorize GitHub. And then you'll get 8:09 a success message. So now our device is 8:11 now connected. 8:15 Then you'll type in done and then
+you'll 8:16 get the authentication complete message. 8:18 So let's head over back to Claude and 8:20 I'll just type in done. 8:23 Next, I'll click on always allow. Now, 8:25 it did
+actually create a new repository. 8:27 Sometimes that might happen where it 8:29 should actually prompt you and ask you 8:31 which repository. In this specific case, 8:33 it
+actually just made its own repository 8:35 on its own. If you want to push it to a 8:37 specific folder like we created earlier, 8:39 I'll just instruct it. So, here I typed 8:40
+in push this project to my online repo 8:43 using this command. And we're going to 8:44 get this command from GitHub. Now, in 8:47 case you can't find out where I am, all 8:48 you
+got to do is just go over to the uh 8:51 profile. You will then click on the 8:53 repository. So here we have repositories 8:57 and then you're going to see roofers 8:58 websites.
+Now this was the actual 9:00 repository I wanted it to push but all 9:02 we got to do is go over here and copy 9:04 this command and go back to claude and 9:06 then I'll hold shift
+and enter and then 9:08 I will paste in this command. 9:12 So now essentially what I'm doing here 9:14 is I'm instructing Claude now to push 9:16 this specific project to a
+specific 9:17 folder in my GitHub and it's done. So 9:20 now basically if we click on this folder 9:22 here, you're going to see that all of 9:24 the files now are contained in my
+9:26 roofer's website repository. So now that 9:28 this project is synced up with GitHub, 9:30 now we can push it to a live domain. Connect Website 9:32 Okay, so let's say that you
+have your 9:33 website finished and you're ready to go. 9:35 Now we're going to go to Hostinger. Now 9:37 the reason why we're using Hostinger is 9:38 not because it's cheap or I
+recommend 9:40 it. It's because they have a Node.js app 9:42 installer. This allows Hostinger to 9:44 fetch your AI websites and to 9:46 automatically reflect it on a real live
+9:47 domain. Hostinger can also communicate 9:50 directly with Claude and self-correct 9:51 any errors that you come across. You can 9:53 also add a CDN to your AI websites, 9:55
+flush the cache, add a business email 9:58 force, and also add a free database. All 10:00 right, so let's get started. Now, in the 10:02 video description, there is a link. This
+10:03 will take you to Hostinger to deploy 10:05 your AI website using their app 10:06 installer. So, in the video description, 10:08 it'll take you to this page in order to 10:10
+deploy your web app. Once you get here, 10:12 you'll click on view plans. And 10:14 obviously there's only two different 10:16 plans, but you can always just select 10:17 the
+cheapest one. So here under the 10:19 business, I'll click on choose plan. 10:21 Next, we're about to our cart page. And 10:23 here you can select the period. I 10:24 definitely
+recommend a minimum of 12 10:26 months. This calls you for a free domain 10:28 and a 30-day money back guarantee for 10:30 any reason whatsoever. Now, we also have 10:32 a coupon
+code for all of you party 10:34 people. If you go over here and enter 10:36 the coupon code daryl 10, you will save 10:38 an additional 10% off any of the plans 10:40 at Hostinger.
+So here, I'll click on 10:42 apply. And there it is. We got an 10:45 additional 10% off our web hosting 10:47 package. So once you enter in that 10:48 coupon code, you'll then
+click on 10:50 continue. Next, you'll register and make 10:52 an account with Hostinger. Next, you'll 10:54 put in your billing address. So you'll 10:56 put your first name, your
+last name, and 10:58 sign up. Next, you'll put in your credit 11:00 card details. So here, I'll fill this 11:02 out. All right. Once you put in your 11:04 credit card details,
+you'll then click 11:06 on submit payment. 11:13 Next, you can enter in your free domain. 11:15 So, here you'll type in the name for 11:16 your new AI websites. So, I'll put 11:18
+something in like Wilson AI websites. 11:21 And then here, I'll select my free 11:22 domain and then click on next. Next, 11:25 it'll ask you if you want to deploy your 11:27
+Node.js web app. Here under the import 11:30 git repository, you'll select connect 11:31 with GitHub. Now, just make sure that 11:33 you're logged into GitHub and Hostinger 11:35
+will automatically sync up with GitHub. 11:37 So, here I'll select my uh username and 11:39 then we'll select accept new 11:41 permissions. Then you'll see an option 11:43 to
+deploy your Node.js web app with 11:45 GitHub. So all you got to do is click on 11:47 connect with GitHub and then we'll 11:48 select our repository. Now obviously 11:50 here we
+have a lot of different websites 11:51 that I created and I can easily import 11:53 any one of these websites onto a live 11:55 domain. So I'll select the roofers 11:57 websites
+and then click on continue. And 11:59 then here are the settings. So you'll 12:01 see the framework preset is Nex.js. This 12:03 is why creating it in Next.js was so 12:05
+critical. And all you got to do is click 12:07 on deploy. And now it's deploying the 12:09 actual roofers website onto our live 12:11 domain. So this process might take a few 12:13
+minutes. All right, look at that. So we 12:15 can see a preview of our websites here. 12:17 I'll click on go to dashboard. Now, if 12:19 you want to see your websites here, I'll
+12:21 go ahead and click on the preview 12:22 button. And voila, look at that. We have 12:24 our brand new websites on our live 12:27 domain right here. And of course, we can 12:29
+scroll down, take a look, and everything 12:31 is intact. A lot of animations, a lot of 12:33 JavaScript. And obviously, you can 12:35 adjust this to your liking. you know, 12:37
+you can modify it and do whatever you'd 12:39 want and all the changes will be 12:40 reflected live on your live domain. Now, 12:43 before I show you that, there are some 12:44
+really cool options that I want to show Bonus Features 12:46 you with Hostinger. Now, here you can 12:47 add a CDN to your actual AI website. So, 12:50 over here, I'll turn on the
+CDN. 12:53 And here we can actually enable this. 12:55 So, I will enable the CDN. And there we 12:58 go. So, now we have a CDN enabled on our 13:00 website. And of course, we can
+also 13:02 flush the cache. Cool. Let's go back 13:04 over here to the performance tab. Now, 13:06 if you ever want to create an email for 13:08 your website, all you got to do is
+click 13:10 on setup email. And then here, you can 13:12 create a free business email from 13:14 Hostinger using your domain. So, I'll 13:16 click on get started. And I'll click on
+13:18 start free trial. You get a year of 13:20 business emails free. After that, I 13:22 think they charge you like $2 or $3 a 13:24 month. So, I'll put in my new email 13:25
+address. This will be daryl at coolai 13:28 websites. And then I'll put in a 13:29 password. Next, I'll click on create 13:31 mailbox. Then I'll click on open inbox. 13:34 And then
+from here we can actually send 13:36 and receive business emails using that 13:37 address. Now uh here you'll see that we 13:40 have this notice. It does take a little 13:41 time
+for your domain to propagate. 13:43 Obviously I just created this domain so 13:45 it might take like 5 to 10 minutes for 13:46 it to fully propagate. So let's go back 13:48 to
+Hostinger. So the next thing I want 13:50 to show you all is the deployments. So 13:52 on the right side I'll click on all 13:54 deployments. 13:55 Now anytime there's an update to
+your 13:57 website you're going to see all the 13:58 changes committed right here. Now, let's 14:00 go ahead and jump back to Claude. Make a 14:02 change and see if the website
+14:03 automatically adjusts. So, back over 14:05 here, I'm just going to make a really 14:07 small change. So, I'm going to put here, 14:09 I'll put change the heading text to the
+14:10 roofs that make dreams. I don't know, 14:12 something really generic. You know, I 14:13 don't want to have to completely 14:14 rechange the website. I just want to 14:16
+adjust the text. Okay. So, you can see 14:18 that the text has been adjusted. Now, 14:20 you can continue to work on your 14:22 project. And when you want the changes 14:24 to be
+applied, you then need to ask 14:26 Claude. So, over here, I'll type in this 14:28 command. push the changes to GitHub now. 14:31 So now I'm actually instructing it to 14:33
+actually push these changes onto the 14:35 website. Okay, so the changes has been 14:37 pushed. Now let's head over back to 14:38 Hostinger. Now I'm going to stay on this 14:40
+page right here and uh it should 14:42 automatically start to actually fetch 14:44 the website. It periodically actually 14:46 goes and fetches the information from 14:48 GitHub
+and it applies it on your live 14:50 websites. So let's go ahead and refresh 14:52 this page. So when I refresh the page, 14:55 you notice here how it's building. Now, 14:57 here
+is the actual websites. So, no 14:59 changes have been made because it's 15:01 currently building. So, it does just 15:03 take a few seconds. One, two, three. 15:07 Okay. One, two.
+Okay. About 3 to 4 15:09 seconds. And now it's completed. So, if 15:11 I go back over here and I refresh the 15:14 page, 15:17 you're now going to see that the change 15:18 has
+been text to the roof that makes 15:20 streams. So this is a really clever way 15:22 on how you can work on your project from 15:24 cloud without having to manually you 15:27 know
+upload the file constantly with 15:29 this way. It's all synced and automated. 15:31 Now there is one more thing I want to 15:33 show you all. So you can actually run 15:34 speed
+tests on your website. You're 15:36 going to see that as of right now our 15:37 website is extremely fast and that's 15:39 because we're using a very good 15:40 framework. Now also
+I'll be showing you 15:42 all how to incorporate a database for 15:44 those of you who want to store emails 15:46 information or just customer 15:48 information. But at this point,
+your 15:50 website is fully synced up and ready to 15:51 go with Hostinger. If you have any 15:53 questions for me, let me know in the 15:54 comments below. All right, Connect
+Database 15:55 congratulations on setting up your AI 15:57 website. Now, for those of you who are 15:59 happy with the way it is, you are free 16:00 to go. Congrats. Now, for those
+of you 16:02 who want to incorporate a free database 16:04 onto your website, in this part of the 16:06 video, I'll walk you through how to do 16:07 that. And again, with a
+database, you 16:09 can store customer information like 16:11 emails, anything people entering on your 16:13 website, you can store in a database. So 16:15 you can market to them
+later, you can 16:17 sell it, you can add it to your uh email 16:20 campaigns or whatever. So uh let me walk 16:22 you through how to set this up. All 16:23 right. So in this
+section of the video, 16:25 I'll be showing you how to incorporate a 16:26 database onto your AI websites. Now a 16:29 database allows you to store things like 16:31 for example,
+if someone fills out this 16:33 form, it'll be saved in a database. To 16:35 give you an example, this is my database 16:37 right here. And you'll see that we have 16:38 like the
+name, the email, the phone 16:40 number, and then we have the message. 16:42 So, I'll be showing you how to 16:43 incorporate this on your AI websites. 16:46 You guys ready? All
+right. Now, the 16:48 first thing that we're going to do is 16:49 make a free account at subabase.com. 16:51 Now, I'll put a link to Subbabase in the 16:53 description. You can
+sign up for free 16:55 and have like a free trial. They have 16:57 like a free server you can use. Now, 16:59 after you go to the sign up process, 17:00 I'll go to my dashboard.
+You'll first 17:03 see your organizations. And this is 17:05 basically like a a folder with all your 17:07 projects. So, here are all my projects. 17:10 These are essentially all
+applications 17:11 and websites. Now, the first thing I 17:13 want to do when I get here is I want to 17:14 create a new project. So, right here, 17:17 new project. And the project
+name for 17:19 this one will be YouTube house. Okay. 17:22 And then I'll just throw in a password. 17:24 After that, we'll scroll down. We'll 17:26 make sure these two options are
+17:27 selected. You don't need to enable this 17:28 one. And then you'll just click on 17:30 create new project. 17:32 Here, they're just saying this might 17:34 cost you. No
+problem. I'll click on I 17:35 understand. So, now Subase is building 17:38 your database. Now, this process might 17:40 take a few minutes. Okay, so after you 17:42 see healthy,
+the server is now 17:43 established. Now, let's head back to 17:44 Claude. 17:47 Okay, so going back to Claude, I'm over 17:49 here in my project. Now, this is the 17:51 current
+website that I'm going to set 17:52 this up on. It's a brand new website. 17:54 Uh, I just finished making it, but I 17:56 haven't connected it with the database 17:57 yet. So, the
+first thing I want to do is 17:59 go over here to Claude and then click on 18:02 settings. Now, just make sure you're 18:04 using the Claude desktop version. Okay, 18:06 we'll go
+over to connectors and then 18:08 click on customize. Now, here under 18:10 connectors, I'll click on add connector 18:12 and click on browse connectors. 18:15 And we're going to
+type in supabase. 18:17 Here we go. Supabase. There it is. So, 18:20 I'll go ahead and click on this plus 18:21 icon. And then it'll automatically 18:24 prompt me to the Sup. 18:26
+All I got to do is just make sure I 18:28 authorize AP access. So, here this is my 18:31 organization. And then I'll click on 18:33 authorize cla. All right. So, we're 18:35
+connected and it looks like it's going 18:37 to redirect me back to the application. 18:39 All right. Now, once we get here under 18:42 the connector section, click on subase.
+18:44 You always want to make sure for the 18:46 tool permissions that always allow is 18:47 selected. So, make sure this is 18:49 selected. And scrolling down, same thing 18:51
+for write delete tools. Make sure this 18:53 is always allow. Okay. If you don't have 18:55 that on, it's going to constantly ask 18:57 you for all these things. It takes a lot
+18:58 of time. It gets really annoying. So, 19:00 just make sure that you have that 19:01 selected. Now, let's go back to our 19:03 project. All right. Now, the first thing 19:05
+that we're going to do is enter in a 19:06 command. Now, we're going to enter in a 19:08 command from Superbase. So, going back 19:10 over here, let's click on the connect 19:12
+button. Now, here we have a few options. 19:14 Framework, direct, OM, and MCP. Now, 19:17 we're going to select the MCP. Make sure 19:19 the client is cloud code. Now, scrolling
+19:22 down, you're going to see connect your 19:23 app. Now, we've already done step one, 19:25 and we've already done step two. We did 19:28 it that way just because there's less
+19:29 errors. Maybe you guys might get 19:30 something different on your screen. So 19:32 we did it that way just to make sure 19:33 that you know there's less errors as 19:35
+possible. Now here we're going to 19:37 install the agent. So I'll click on copy 19:40 and then let's go back to claude and 19:42 then we'll type in this command. I want 19:44 you
+to run the following command colon 19:46 and then I'll just paste in that prompt 19:48 from subabase and then I'll run this 19:50 prompt. All right. So now that it's 19:52 trained
+with the AI now we're going to 19:54 ask it to integrate a database onto this 19:56 specific application. So let's type in 19:58 this prompt here. Okay. So this prompt 20:00 is a
+little bit longer. This is about 20:01 half of it. Now I want to implement 20:03 superbase into this application to make 20:05 the next.js dynamic. Now we're saying 20:07 this
+because we're essentially saying I 20:09 want to make the database dynamic, 20:11 meaning it can automatically adjust to 20:12 your website depending on what you 20:14 build. I
+don't want authentication for 20:16 now. Allow every user to access our 20:18 application and submit forms. Make sure 20:19 you install the following libraries. Now 20:22 we're
+going to go back over here to 20:23 Superbase and we're going to go over 20:26 here and click on framework. Now I 20:28 wanted to install this specific library. 20:30 So, I'm going
+to copy this. Go back to 20:32 Claude. Okay. Hit space. And then I'll 20:36 paste that in. But we're not done yet. 20:38 All right. I'm gonna hold shift and 20:39 enter. And
+there's one more line we're 20:40 going to have to enter. And the last 20:42 line is, and these are the environmental 20:44 variables that you need to connect 20:45 locally to the
+database so we can test 20:47 for functionality. Make sure you add 20:49 these variables to the ENV file. Now, 20:51 we're going to get this from Subabase as 20:53 well. So going
+back to superbase under 20:55 the framework section under add files 20:57 we're going to copy these and then we're 21:00 going to go back to claude we're going 21:01 to hold shift
+enter and then paste it 21:03 in. Now I know this is a long prompt but 21:06 when you're building your database it 21:07 needs to build it in the correct 21:08 structure and if you
+don't do this it's 21:11 going to build it in an incorrect 21:12 structure and it's going to be wild. 21:14 You're going to have a lot of errors. 21:16 It's not going to fetch well
+with 21:17 Hostinger. So make sure you use this 21:19 same exact prompt. I'll also put this in 21:21 the video description for all of you. 21:23 I'm going to spell there we go.
+Let's 21:24 spell a little bit wrong. All right. So, 21:26 now that you entered in all this 21:27 information, make sure that you guys do 21:29 enter this verbatim except obviously
+for 21:31 this because you're going to have 21:32 different keys. Uh I'll go ahead now and 21:34 run this prompt. Now, it's currently 21:36 building a database. So, this process
+21:38 might take like 5 minutes. Now, when you 21:40 enter in that prompt, they might ask you 21:42 if you want to migrate to Nex.js. Make 21:44 sure that you select migrate to
+Nex.js 21:47 when it prompts you with that question. 21:49 I've already selected it, so it didn't, 21:50 you know, I clicked it too fast, but it 21:52 will ask you that question.
+Now, it 21:54 might prompt you to install Nex.js. Just 21:56 go ahead and click on always allow. And 21:59 we're going to click on always allow 22:00 again to apply migration. All
+right. And 22:03 after about uh 10 minutes or so, uh they 22:05 finally integrated it. Now, it looks 22:07 like my application experienced some 22:08 sort of errors. And again,
+this has 22:10 nothing to do with your application. Uh 22:12 but if you do get errors, it's just 22:14 because the application is correcting 22:15 itself and fixing itself. Now,
+this 22:18 actually works. So, if I go over here to 22:20 my Subabase accounts, I'll go over here 22:24 and go to table editor. Uh, you can 22:26 actually run some test leads. So,
+here 22:28 I'll click on leads and you can see 22:30 right away that uh Claude is now 22:33 connected. So, these are just uh demos 22:35 from Claude. So, you can ask them to run
+22:37 a demo. And here there is two. So, we 22:39 know that it's connected and working. 22:40 But we're not done yet. Don't get too 22:42 comfortable. All right. I know everyone
+22:43 just wants to quit the video. There's a 22:44 lot more to do. So, we're going to go 22:46 back over here to Claude and we want to 22:48 commit these changes and push it to
+22:49 GitHub. Commit the changes and push it 22:51 to GitHub in the main branch. So, here 22:54 I'll run this. Now, the reason why I'm 22:55 putting main branch is because that's
+22:57 where my project is currently located. 22:59 So, I just want to make sure that it's 23:00 exactly where it's supposed to be. Now, 23:02 if I go back over here to my hosting
+or 23:05 app, you're going to see it's building. 23:06 Now, it's building it because we're 23:08 pushing it to the actual application. 23:10 So, uh yeah, just letting you know that
+23:13 uh it is connected and it is working. 23:14 So, let's go back to Claude. So, now we 23:17 want to push this to environmental 23:19 production cuz right now we're working
+23:20 in local host, but if we use this on our 23:22 own live website, it's not really 23:24 working at the current time. So, what we 23:26 want to do is push this into 23:27
+environmental production. So, let's go 23:29 ahead and run this prompt. So, you're 23:30 going to type this exactly. Adjust the 23:32 git ignore to allow environmental 23:34
+production. Add environmental production 23:36 with the two variables commit and push. 23:39 But don't press anything yet because we 23:41 need to get the actual variables. So,
+23:43 we're going to go over here to the 23:45 Subabase under our project. 23:49 We're going to go over here to connect 23:50 and then we're going to take these two 23:52 files
+right here. So, I'm going to copy 23:54 this, go back to the application, 23:57 and then we're going to hold shift, 23:58 press enter, and then we're going to 24:00 paste those in
+there. Just like that. 24:01 And then we'll hit send. Now, this is 24:03 probably the last step that we're going 24:04 to do. Essentially, why we're doing this 24:06 is we want to
+make sure Hostinger can 24:08 communicate with Claude. So, we're just 24:09 giving them those keys. Okay? And that's 24:12 pretty much it. So now I'll test this 24:14 out. Let's go
+back over here to 24:15 Hostinger really quick and you're going 24:17 to see that it's building. I'll click on 24:19 all deployments 24:21 and you're going to see that this one
+24:23 was completed successfully and now it's 24:24 currently building the next one. Okay. 24:26 So now let's test this out. I'm going to 24:28 open up this window here Test
+Database 24:31 and then we are going to fill out this 24:32 contact form. All right. So this is the 24:34 live websites. I'm gonna scroll down and 24:37 I'm gonna put Daryl
+daryl.com. 24:40 I'm a buyer. What is my budget here? 24:43 I'll just put a million dollars, 24:45 whatever. And then I'll put howdy. And 24:48 then I'll click on request access.
+Okay. 24:51 Now, if this did not work, if something 24:53 happened to your contact form, you may 24:54 need to debug it. It has nothing to do 24:56 with the database. It's just
+probably 24:57 your project. Going back over here, uh, 25:00 let's go ahead now and test this out. 25:02 Now, there is a few debugging methods in 25:04 case this did not work
+properly for you 25:06 guys. So, here we have our leads. And 25:08 there it is. You can see daryl at 25:10 daryl.com. So, you can see that it's 25:12 fully integrated with the
+websites. Now, 25:15 there is one debugging method I want to 25:17 show you just in case something did not 25:19 work out. I realize uh this video is 25:21 kind of hard to make for
+everyone 25:22 because you may have different results 25:23 than me, but this is the correct way on 25:25 how to do it. But here, I'll go ahead Debugging Methods 25:27 and give you
+a prompt to run. Now, 25:29 sometimes this may or may not have been 25:31 entered in the right repository. So, 25:33 what you can do here is you can say, I 25:35 want this to be
+merged directly to the 25:36 main branch. that'll essentially force 25:38 the actual AI to put this information in 25:41 the main branch instead of like a side 25:42 repository.
+So, I'll just go ahead and 25:44 run this prompt and just see what 25:45 happens here. Okay, so it looks like 25:48 mine was already there. So, nothing more 25:49 for me to do, but
+sometimes it may push 25:51 to the wrong uh branch. Now, let's go 25:54 back over here to GitHub. So, next thing 25:56 I'll do is go over here to GitHub and 25:59 under
+repositories 26:01 under YouTube house. 26:05 If I click on environmental production, 26:07 you should see something that looks just 26:08 like this. If it does not look like 26:10
+this, then something went wrong. So, you 26:12 should see this. And what this does here 26:14 is that this reroutes everything from 26:16 Hostinger to Superbase. So, Hostinger is
+26:19 basically the middle person. Now, if you 26:21 did get an error for whatever reason, if 26:23 you click on all deployments, it'll say 26:26 failed. And if you click on the
+arrow 26:28 right here, it'll explain why it failed. 26:30 And this has happened to me in the past. 26:32 And all you're going to do is just copy 26:34 the entire thing right here.
+And then 26:36 give it to actual cloud and say, "Hey, I 26:38 got this error." You know, you paste it 26:40 in here saying, "I got this error from 26:42 Hostinger. What is the
+problem? How can 26:43 I connect it?" And they should be able 26:45 to debug it with Hostinger. Hostinger 26:47 acts as the middle person to make sure 26:48 that your database and
+claude are 26:50 working in sync together. And just like Outro 26:52 that, we have an AI website. Pretty 26:53 simple, right? Now, I think this is 26:55 probably one of the easier

@@ -1,0 +1,224 @@
+reasoning component so it is a reasoning engine too and using that 29:17 reasoning engine it can figure out that when someone types this kind of question see when as a human when
+we look at 29:24 these questions what do we think let's say if we have to go to Wikipedia or not Wikipedia Expedia and if you have to 29:30 type uh convert this question let's say
+if your friend asks you this question 29:35 and let's say you are that reasoning engine you go to Expedia and in the 29:40 source you will put New York destination you will put
+Delhi date you will put first August how can you do that because 29:46 you have that reasoning engine in your brain similarly llm has a reasoning engine using which from that
+sentence it 29:53 will figure out source is this destination is this that and it will call the Xperia plugin and that will 30:00 return the response back let's look at some other
+question when was Elon Musk 30:05 born what is his age now in 2023 now maybe this can be answered by the 30:11 llm's knowledge but let's say you are asking some question which is
+related to 30:17 an event which happened in 2022 now this guy doesn't have knowledge after September 2021 but once again it has a 30:24 reasoning capability so it will say okay in
+order to answer that question first I need to find out when was Elon Musk born 30:31 for that it can use things like Wikipedia so agents essentially do this 30:38 thing agents will
+have tools and using that tool it will try to fetch the 30:43 answer so Elon Musk was born in 1971 and then there could be another tool which 30:49 will tell you 2023 minus 1971
+how much is that so there is a math tool that it 30:55 can use to compute that and it will in the end say Elon Musk is 52 year old so 31:02 this is what agents are agents will
+connect with external tools it will use 31:08 llm's reasoning capabilities to perform a given task let's look at a different 31:14 question how much was U.S GDP in 2022 plus Phi I
+am doing just like a it's a 31:20 it's a silly operation no one cares but usgd pin 2022 llm doesn't know because 31:27 its knowledge is still 2021 so it will go to Google it will
+find that answer 31:32 and then it will use mat tool to do plus 5. all these tools like Google Search 31:38 tool map tool and Wikipedia tools are available as part of langchin and
+you can configure your agent so your agent 31:45 is nothing but using all these tools and llms reasoning capability to perform a 31:50 given task that is your agent and this agent
+can be used in our Jupiter 31:56 notebook so that's what I'm going to show you next so let's first import 32:01 couple of important modules and classes and once I've imported them
+I will 32:10 create tools so I will say load tools and I will give list of tools now if you 32:18 do Google search On Tools here so let's say if you do Google Search 32:24 link
+chain agent load tools you will come here you will see list of two see I 32:30 have Wikipedia as a tool I have twilio I have all these tools that I can use 32:37 so we are going to
+use Wikipedia tool here it is called Wikipedia we keep it 32:42 yeah and the math tool is called llm math and here you need to provide the 32:49 llm variable is the one which we
+created above somewhere here see this is the variable okay 32:55 so this thing is called tools and then you can create an agent using 33:01 this initialize agent method okay so
+initialization method will take 33:09 tools it will take llm and it will take agent and in the agent 33:15 I will give this 0 now see hold on zero short react 33:22 description
+react means uh thought and action so when we are reasoning we first 33:29 have a thought then we figure out where to go and we take an action so it mimics 33:34 that particular
+concept here I will call this an agent and then I will ask the 33:41 question agent dot run when was Elon Musk born and what is his age in 33:49 2023 so let's see what this gives
+us see 33:54 perfect it says 52 year old in 2023 if you want to go uh step by step in the 34:01 reasoning process you can say verbose is equal to True uh and it will tell you by
+34:06 the way verbose is equal to True is the variable that you can use here in any function to kind of figure out the 34:13 internal steps that it is taking so here the first step
+when it Encounters this 34:18 question it knows actually that it has to go to Wikipedia to get the birth date of Elon Musk so it went to Elon Musk 34:26 Wikipedia page and which
+will have this particular date here and then 34:33 um I think it uses the matte tool sometimes I don't know it should have used the math tool 34:40 uh Elon was um it doesn't show
+but if you don't rerun it again 34:48 okay I don't know why this is not working but previously I was seeing that let me show you a previous snapshot that 34:54 I have um here it
+says okay went to Wikipedia for 35:00 Elon musk's birth date and then it use the action as a calculator so there it 35:05 is using the llm math tool and it is just calculating the
+final answer it is 35:11 saying it is 52 year old let's try a different option so this 35:18 time we are going to use a serp API so if you don't know about serp API it is Google
+search API whatever you 35:25 do in Google and what results it gives you if you want to access those results 35:31 programmatically you can use this particular API you can log in
+using your Gmail account I have already logged in 35:37 and when you go to dashboard it will give you this API key so this is 35:43 similar to our open AI API it will be a big big
+string I have stored that API key 35:49 into my private file that secret key file that I have and I'm going to 35:55 initialize some environment variable so for serp API you need
+to initialize this 36:00 variable and this is the keys which I got from there okay so you can just copy paste this key if you want to keep things simple I don't want to show that
+36:08 key publicly here that's why I have this thing here and once I have this thing the next steps are kind of similar so I 36:17 can just copy paste pretty much everything here
+and I will just say Okay 36:23 initialize the agent sir BP and llm math are the two tools I 36:28 am going to use and in my agent I will say agent dot run 36:33 and what was the US
+GDP in 2022 and plus 36:39 five okay and while it is executing it let's do Google here so when you do 36:46 Google usdp 2022 it will tell you 25.46 so this serp API this API will
+do 36:55 Google search and it will tell you the answer that it is this so check this so first it is searching 37:01 US GDP this and then it is adding Phi number to this and it is
+giving you uh 37:07 this particular result we'll talk more about agents in our future videos uh one 37:13 thing I've noticed is agents are not perfect sometimes they give stupid
+answer this whole thing is evolving so 37:18 in the future it will get better but for agent this is what we have and now we will talk about memory Memory 37:24 when you look at any
+chat board applications such as chat GPT you will notice that it remembers the past 37:31 conversation Exchange here I asked who won the first Cricket World Cup then a 37:37 it's
+totally irrelevant conversation what is five plus five then I am asking who was the captain of the winning team 37:42 now see here I did not say which match which game cricket
+football Etc but it 37:47 remembers that I'm talking about cricket and it is giving me a relevant answer same thing happens with human 37:52 conversation we start a topic then we
+keep on saying things but we remember what the topic is about 37:59 if you look at the llm Chain by default These Chains do not have memory they are 38:06 stateless and if you look
+at the available methods that this chain has 38:12 you'll find that it has an element called memory here see memory uh and if 38:20 you check the memory so here if you try to print
+the memory see you 38:26 don't get anything because the object is set to none now if you want you can 38:33 attach memory to it so for memory you have to create an additional
+object and attach it so that it remembers all these 38:40 conversations this is useful especially if you're building a chat board let's say for your 38:47 customer care Department
+uh in that many times they need to save their 38:53 transcripts of those conversations for legal and compliance reasons so here uh 38:59 I'm going to import an object called
+conversational buffer 39:06 memory which is a very common type of memory in line chain module and create 39:11 an object of that class so I will just say this is a 39:16
+conversational buffer memory and then the same chain I will print here but I 39:23 will just pass memory as an additional argument 39:30 okay and then I'll run the same chain one
+more time 39:36 for a different question now when you look at chain dot memory 39:43 see there is a memory attached to it we explicitly attach this conversion memory 39:48 to it
+and if you look at the buffer and if you just print it for nice alignment 39:53 Etc see human then AI this human and a address now this looks good you can save 40:01 this into your
+database as a saved transcript of your customer service center conversation uh but one problem 40:08 with this particular object which is conversation buffer memory is that it will
+keep on growing endlessly so let's 40:15 say you have 100 conversational exchanges and by that what I mean is one 40:21 question answer pair so one question answer pair is one
+conversational exchange this is second so in total this 40:29 is two conversational Exchange so here if you have 100 conversational exchange what's going to happen is next time
+when 40:36 you ask a question to open AI when you say chain dot run it is going to send 40:41 all this past history to open Ai and open AI charges you per token so this is 40:47
+one token second token third four and so on for thousand tokens they charge like 40:53 point zero zero two dollars something this is on the model so your cost is gonna go up so if
+you want to save the 40:59 cost and kind of do things in an optimized way uh you need to restrict this buffer size you can say just 41:06 remember last five conversational
+exchanges okay and this thing can be 41:11 done using something called conversation chain so open AI link chain provides 41:19 this conversation chain which is just very simple
+object so let me just create 41:26 that conversation chain where you can just pass llm 41:31 is equal to open AI temperature is equal to 0.7 41:38 and I'll just call it convo and
+let's check the default prompt that 41:45 is associated with it see default prompt is this let me just check the template 41:51 let me just print the template associated with this
+this is the default template that comes 41:56 and it says that the following is a friendly conversation between human and Ai and there is history and there is 42:02 input so if you
+look at this conversation window here there is a history this is the history and the next 42:10 question you're going to type is the input so input history same way input history
+okay 42:17 now when you ask a bunch of questions to this so I'm just going to copy paste 42:23 those questions here uh what is five plus five 42:29 and then who was the captain of
+the winning team now when you do convert 42:36 memory it won't be empty because by default 42:41 conversation chain has this memory associated with it so by default this 42:47
+conversation chain object comes with inbuilt conversation buffer memory and 42:52 if you print the buffer you will see the entire 42:59 transcript of our conversation now while
+this looks good once again think about 43:04 the open AI token cost if this keeps on building the buffer endlessly then you 43:10 might have 5000 tokens in one conversation and
+when you make a next call like this is gonna actually send an 43:17 entire history entire conversation to open Ai and that will increase your bill on the API call 43:24 to tackle
+that problem maybe what you can do is you can say just send only last 10 or 20 conversational exchanges 43:31 because that's what I care about that might be enough based on the use
+case that you're dealing with and for that 43:38 there is an object called from Lang chain dot memory 43:44 import there is a conversational buffer window memory you are restricted
+in the window 43:49 you are saying let's say my window and key is the parameter 43:57 you're saying just remember only last one conversational exchange which is one question answer
+pair okay so let's try 44:05 this out and let's see how this goes so I'm going to copy paste some code here 44:10 create a same conversational chain object asking my first question
+asking my 44:18 second question now when I ask the second question here what is 5 plus 5 it remembers the previous Exchange 44:24 but when I I asked the third question here it
+remembers only what is 5 plus 5 it 44:31 doesn't remember this it's like a short memory loss like Memento or Disney movie it just forgot what happened here so 44:39 when I asked
+this question it will say I'm sorry I don't know because it doesn't know which game you are talking 44:44 about which particular match you are talking about okay so here I know
+it's probably not the best example but the idea is I 44:52 wanted to demonstrate this K parameter here and based on this use case uh you might see benefit in using 44:59
+conversational buffer window memory that's all we had for this video in the future we are going to build end-to-end 45:06 llm applications using some of the advanced features such
+as retrieval QA chain the face or DB store Vector store 45:14 uh things like that so if you want to get notified about upcoming llml line 45:19 chain videos what you can do is
+subscribe to the channel or click the like button if you really found some 45:26 benefit from this video making these kind of videos takes a lot of effort and 45:32 clicking that
+thumbs up button or subscribing or sharing this video might be a smaller food for you but it would 45:40 mean a big thing for us it will help us get this video to more people so
+that 45:45 those people can also benefit and we also get some appreciation some reward of the hard work that we are putting and 45:52 if you have any question Post in the comment
+box below the code link is given in the video description thank you for 45:59 watching bye bye thank you All From the seriesIntro 0:00 Today we're going to do a crash course on
+Langchain, the Python framework for working with and building AI agents. It 0:06 makes it super simple to interact with standalone models, build complex agents, and integrate all
+sorts of other 0:11 components like embedding models or vector stores. And all of this without caring about specific differences in API 0:18 definitions of the various providers.
+The goal of this video today is to cover as much as possible in a short amount of 0:23 time. We're going to start by talking about Langchain and its ecosystem. Then we're going to
+take a look at a couple 0:28 of simple examples for building agents and working with standalone models. We'll learn how to work with message 0:34 histories, stream responses, use
+tools, generate structured output, handle multimodal input, pass context, and keep 0:40 track of memory. After that, we'll also build a simple rag example. And finally, we're going
+to take a look at Langchain's powerful middleware, as well 0:48 as some interesting use cases for it. That's quite a few things to cover, and I think you can learn a lot today,
+especially since we're going to work 0:54 with the latest version of Langchain 1.0. If you like this video, let me know by hitting the like button and subscribing. But now, let us
+get right 1:00 into it. 1:06 [music] All right. So, we're going to cover LangChain Ecosystem 1:11 quite a lot today, which is why I'm going to try to speed this up to cover as much
+as possible in a concise way so 1:16 we don't waste too much time here. I want to start by just briefly talking one or two minutes about Langchain, the 1:22 Langchain ecosystem,
+and also its development history. Now, langchain itself as I mentioned is a Python 1:28 framework for building and working with AI agents. The main use case or the main benefit of
+using Langchain is that we 1:35 can use all these models and related tools in an abstract way. So, regardless of the provider, regardless of whether 1:40 you're using OpenAI or
+Enthropic or Google, you basically have the same classes and methods everywhere. And if 1:47 you have a system built on langchain that uses vector stores, embedding models, uh AI
+models, agents, whatever, 1:53 you can easily just swap out the underlying technology and you can keep the code the same for the most part. So 1:59 that's what I would consider the
+main selling point of Langchain that you have this abstract highlevel way of working 2:05 with agents and related tooling. Now in addition to lang, we also have lang graph which is
+more low-level. We have 2:10 more granular control. We can build complex graph-based event-driven agents or agentic systems. We're not going to 2:17 cover Langraph in this video
+today. I do have videos on this channel where we use Langraph, but it's not going to be the 2:23 topic of this crash course. And finally, we also have Lang Smith, which is like a
+collection of tools for observing, 2:28 evaluating, monitoring, and deploying models. We're not going to cover that either. We're going to focus fully on 2:34 Langchain today.
+Speaking of which, Langchain is now on version 1.0. So, some of you guys watching this might 2:39 have already worked with Langchain in the past. Maybe you're already familiar with
+the package to some degree. But if 2:45 you take a look at 1.0, you will notice that some things have changed. So, when I first used Langchain, the structure 2:51 was a little bit
+different. We had Langchain, then we had Langchain core, and langchain community. And then you 2:56 also had langai, langchain anthropic as separate import packages. So you would
+3:01 do something like from langchain core import something from langchain openai 3:07 import something. Now with 1.0 it seems like if you look in the documentation 3:12 everything
+is going through the main langchain package. So from langchain do something we import stuff. The second 3:19 thing you will notice is that langchain is now much more focused on
+being a library for agents. Not just for 3:24 integrating tools not just for using models and vector stores and all that but actually for building agents. Which 3:30 means that we
+now have here langchain agents with create agent and in the past in my opinion it was more like langchain 3:37 is this general toolkit for working with these tools and lang graph
+was more about the agent side. So we can still 3:43 use the packages like langchain core and langchain community but for the most part it's enough to just go with the 3:48 main
+lang package that is the modern way of working with this framework. Cool. So now that we covered that let us go ahead Environment Setup 3:54 and set up our environment. In my case
+I'm going to use uv which is a rustbased python package manager. Of course, feel 4:00 free to use pip or pip 3 install. Feel free to use virtual environments with virtual env or
+ven, whatever you want to 4:06 choose. In my case, I'm going to go to my tutorial directory, say UV init, and then I'm also going to say UV at 4:13 langchain. Now, one thing that's
+important is if you want to use lang chain together with some AI provider, 4:19 which you usually want to do, you need to also provide it in square brackets. So for example, if I
+want to install 4:24 lang chain with the openai dependencies, what I will do is I will say open AI in 4:30 square brackets here. So in my case, UV add langchain openai. If you use
+pip, you do pip or pip 3 install langchain 4:37 openai. And this will also install packages like of course openai. And you 4:42 have to do that basically for all the providers that
+you want to use. So you want to do that for enthropic, you want to do that for mistral AI. I'm going to 4:50 actually just do it now to show you how this works. Mistral AI and you
+also want to do this for Google genai if you plan 4:56 to use all these models. Now what we're also going to need is API keys. If you want to use models from providers of 5:02
+course you have to authenticate yourself. So we're going to create a file called and this file will contain 5:08 our keys. So these keys will be the open_appi_key. It's going to
+also be the Mistral API 5:15 key, the Anthropic API key, and I'm not sure what the correct name is for the Google one, but 5:22 I'm just going to say Google API key, even though
+that's probably not the correct one. So, what you want to do is you want to go to the providers if you 5:28 have accounts there if you have API keys and you want to paste them
+here. So, I'm going to go to OpenAI console to Mistral 5:34 Console, Enthropic Console, and to my Google Cloud Platform. There I'm going to take the API keys, copy paste them 5:40
+here. I'm not going to show how to obtain them or maybe I'm going to show them for one of them. So yeah, here for example, we go to platform.openai.com/api 5:48 keys or you just go
+to API keys here on the left and here you can create a new secret key or API key. You do that for 5:54 the various providers. Then you just copy paste the keys here like this or
+you use quotation marks if you want to 5:59 and that is our end file. So in my case I already did this and now I'm going to install an additional package called 6:06 python-.end.
+This is going to allow us to load these API keys into our Python script. Now, to 6:13 get autocomp completion, I'm also going to activate this environment here. This is something I
+just have to do for Neoim 6:18 to get autocomp completion. So, you can ignore that if you're not coding in the terminal. And then we're going to go into our main py file and get
+started 6:25 with a first simple example. So, instead of just covering the concepts one by one, I'm going to show you how to build Simple AI Agent Example 6:30 a simple agent. And
+we're going to cover a couple of concepts while we're doing that. So, we're going to start with the import. Let's import requests. Then also 6:38 as I said from we're going to
+import load.n this is for loading the API keys 6:43 into the environment. And then from langchain agents as we saw already in the docs 6:49 we're going to import the create agent
+function. This is like the central function that is going to create agents 6:55 that we then use to do stuff. And in this function we can do a lot of things. So we can provide
+middleware, we can 7:01 provide tools, we can do a lot of things in that function or with that function. In addition to that, I'm also going to 7:06 say now from langchain.tools
+import tool. This is a decorator that we can use to annotate a function to 7:13 basically make that function a tool. We can also provide some uh information like a description or
+the name of the 7:18 function. So for example, we can say add tool and I want to define a tool that is called get weather. This is going to 7:25 obviously get the weather and I can
+provide a description here for the agent to know what this function is about or 7:31 what this tool can do. In my case, I'm going to say here return weather information for a given
+city. 7:38 Theoretically, you can also say return direct is equal to true if you want to have just the output of that tool 7:43 immediately returned to the user. In this case, set
+this to true. We can also explicitly set it to false. I think it's 7:49 the default, but just so we know it exists, we're going to set it to false. And then we're going to say now
+the 7:55 function is get weather. It's going to get a city, which is going to be a string as input. And we're going to make 8:00 it very simple here. Here I don't want to use a
+mock function. So I'm actually going to ping a weather API. But this 8:06 one is actually open source and free to use or maybe not open source, but you don't need an account to use
+it. So we're going to say here response is 8:12 equal to requests.get. And we're going to use https/wtr.in/ 8:22 city question mark format equals j1. And of course this needs to be
+an fstring 8:27 otherwise we cannot parse or we cannot format the city into the string here. But this basically gives us a JSON 8:33 object with temperature and the weather
+information for a given city. And all we want to do here is we want to return the 8:39 JSON object that we get here. So return response.json and then the model the agent can do
+whatever it wants with that 8:46 information or whatever it thinks is the most reasonable thing to do. So to keep it simple we're going to have just this one tool. And now we're
+going to say 8:52 agent is equal to create agent. And the first thing we want to do here is we want to provide the model. Now the model 8:57 can just be a string. For example, I
+can say GPT-40. Now 40 doesn't support tool use. So 9:03 we're not going to use that. But I can go with 4.1 mini. For example, this would be open AI. It is automatically 9:11
+recognized as OpenAI. So if I don't have Langchain OpenAI installed, it's not going to work. So for this, a couple of 9:17 things need to be present. One is an OpenAI API key in
+the environment. And the other thing is langchain open AAI 9:24 needs to be installed. So these two things need to be given so that we can actually use this model. After that I
+9:30 can just say give me a list of tools and this list will contain just get weather as an entity. So we're not calling the 9:36 function we're passing it. And then we can provide
+a system prompt like you are 9:41 a helpful weather assistant who always cracks jokes and is humorous while 9:49 remaining helpful. So just to give you an example so that you can
+see that the system prompt actually affects the agent and 9:56 then in order to get something from this agent in order to send something to the agent I should say we can just
+invoke 10:02 it. So I can say agent.invoke invoke and here what we do is we pass a dictionary 10:08 that contains a field messages and this messages has to point so this key 10:15
+messages has to point to the value which is a list and this list will contain all the messages as dictionaries with ro and 10:22 content as we know it from the typical API. So ro
+is going to be user and 10:28 content is going to be whatever we want to ask for. For example, what is the weather like in Vienna? Question mark. 10:36 So I need to then save this
+as a response. And down here I can then print the entire response. So print response 10:45 or I can say if I want to get just the message, I can get from response the messages.
+Maybe let me do that here with 10:52 square brackets and a string. And then I want to have the last message. So negative one. And then from this 10:58 message, I'm interested in
+the content. So I can run this now. And I get a problem because because I'm of course 11:04 not loading the environment variables. So I need to import load. But I also 11:10 need
+to call it to load the data from the end file. So let's go ahead and say uvun main py. I'm doing it outside here 11:16 so I can see all the output. And what you see up here is the
+raw response 11:22 object which contains the entire message history also with all the data that was provided by the API. And as a result 11:29 down here I get the actual message.
+The weather in Vienna right now is partly cloudy with a comfortable temperature of 11:36 about 15° C and then some information about the wind speed and humidity and so on. So
+actually quite comprehensive. 11:42 We're going to build on top of this example and extend it later on. But before we go deeper into agents, let me remove all of this. I want to
+show you Standalone Model Inference 11:48 how to use standalone models. So maybe you don't want to have an agent. You just want to interact with a simple 11:54 model and that's it.
+And you want to do that in a more abstract way. So you can replace the models that you're using. 11:59 For this you can also use lang chain but not agents. You want to use lang
+chain chat models. And you want to import the 12:05 function init chat model. And for this we're also not going to use tools. We're just going to do it like this. And it's 12:11
+actually quite simple and straightforward. I just say model is equal to init chat model. Then I can provide basic parameters like again the 12:18 model identifier which is going to
+be 4.1 mini again. And theoretically if I 12:24 want to I can do stuff like temperature 0.1 for example. And once I'm done with 12:29 all this I can just say response is equal to
+model.invoke and here I just 12:34 provide a prompt now like hello what is python question mark and then I can 12:40 print the entire response object or I can just print the
+response content. So in this case, response.content since we 12:47 didn't pass a message history or conversation history. And of course, one more time, I forgot the load. So we're
+12:54 going to add this and run this again. And there you go. We get an answer that tells us what Python is, a highle 13:00 interpreted programming language. And we also have again
+this entire response object if we want to access different 13:06 fields like the total amount of tokens and stuff like this. But you can see how easily this is done in lenchain.
+And we 13:12 can also just swap the model if we want to use a different one. So instead of using GPT I can say I want to use Mistral medium. I just have to provide 13:18 the proper
+string from the website and then I can run this and everything else in the application stays the same. I'm 13:25 now just using Mistral uh medium instead of GPT4.1 mini and I'm
+going to get the response and everything's going to work 13:31 in the same way. There you go. It's a quite comprehensive response but we get the answer here from Mistl. Let me now
+13:38 switch back to 4.1 mini. Now if we want to pass a conversation history and not just a single prompt, we can do that as Conversations 13:45 well with this list and dictionary
+sort of notation that we used before. But we can also import specific classes for 13:51 that. I can also say from langchain dot messages import human message AI message 13:58 and
+system message. This makes it then super simple to work with. I can just say conversation is equal to a list and 14:05 in here I can say I first have a system message. For example,
+you are a helpful 14:10 assistant for questions regarding programming. Then the second message 14:16 could be something that a human asks. Like for example, what is Python? 14:22
+Maybe let's stay consistent here with a quotation marks. Let's use single quotations everywhere. And then we're 14:27 going to say an AI already answered that. We're going to say
+that it told us Python is an interpreted 14:35 programming language. not question mark but period and then we're going to say the human has a follow-up question which 14:42 relates
+to the previous messages and this is when was it released question 14:48 mark. So now instead of invoking on a string I can also invoke on a conversation and actually I'm missing a
+14:55 t here and here as well and now the rest stays the same and we have a conversation. So Python was first 15:01 released in 1991 by gofo fun rosesome. Now, we saw with Mistl
+that responses Streaming Responses 15:06 can be quite long and we need to wait for them to be finished before we can start reading them. If we don't want that, if we want to read
+them in real 15:12 time as they're generated, we can also stream the response. So, let us maybe go back here to the prompt and let us also 15:19 change the model back to mistrol.
+So, here I'm going to say mistrol medium 258 15:26 and we're going to ask the same question, but instead of just getting the response here, we're going to stream it. So we're not
+going to invoke. We're 15:31 going to say model stream and we're going to iterate over this generator here to generate the chunks. So I'm 15:37 going to say for chunk in model
+stream I'm going to print the chunk.ext. 15:43 I'm going to have no line breaks after each print and I'm going to say flush is equal true equal to true so I can see 15:50 the
+output in real time. And we're going to delete that and run this. And now you 15:56 can see how this is generated in real time and I can read while it's still generating. So let us
+now come back to Advanced Agent Example (Context, Memory, Structured Output) 16:01 our initial example with the agent here and the weather function. We're now going to extend it to
+incorporate more 16:07 concepts. So on the one hand I want to have structured output. I want to have the output message or summary and I also 16:13 want to have some key
+information like the temperature or the humidity. Also I want the agent to be able to realize 16:20 what location I'm asking this question from. So I don't have to specify the
+city. So I just want to say what's the 16:26 weather like? And the agent should realize that I'm asking from a specific city based on mock database entries that 16:32 we're going
+to provide here. And with this context, it's going to then retrieve the proper information. And 16:38 finally, I would also like to add memory to this agent so it can remember that
+we had a conversation and we're now 16:43 continuing that conversation. So we're going to add some imports for all of this. First of all, from core Python, we're going to add here
+from data 16:50 classes the data class. And for langchain here, we're going to say from langchain.models 16:57 or chat models importit chat model. In addition to tool, we're also
+going to import tool runtime. And 17:05 finally here from lang graph. Now I said we're not going to do lang graph. We're 17:10 not going to cover the langraph framework, but we're
+going to use uh one specific class from there. It's from 17:16 checkpoint memory the inmemory saver which is going to be important for 17:21 remembering the message history. Cool.
+So now let us create two data classes. One is going to be for the context. 17:26 We're going to keep track of the user ID that the model is communicating with so that we can
+actually look up the 17:32 location of that user from our database which we're going to just model as a match case statement in a function. And 17:39 then we're also going to have
+a data class for the response format. So we're going to say here at data class and then 17:45 it's going to be a class called context. Quite simple and it's just going to have a
+user ID which is a string. And then 17:50 for the response format we're going to say data class response format. And here 17:56 I want to have a summary which is going to be a
+string. I want to have a temperature in Celsius which is going to 18:03 be a float. I want to have the same in Fahrenheit. And I also want to have a humidity whatever the unit is
+here. 18:10 Cool. So now what we're going to do is we're going to add an additional tool and this tool is going to be locate 18:16 user. So the name is going to be locate user and
+it's going to have the following description. Look up a user's 18:24 now I have to use double quotations here. Look up a user's city based on the 18:31 context. Now the interesting
+thing is we're not going to pass the user ID as a parameter. We're going to have a tool 18:38 runtime which contains context. So the context is going to contain the user ID and
+we're going to get it from this 18:44 context. How do we do that? We say deflocate user and here we have a 18:49 runtime. This runtime is going to be a tool runtime and we're going
+to pass here in square brackets the context 18:56 class the data class we just created. And here what we're going to do is we're going to get the user ID from 19:02
+runtime.context. And I'm going to use a match statement. So match runtime dot context dot user 19:09 ID. And depending on the value, we're going to return a different city. So
+let's make up some cases here. If the 19:14 user ID is ABC123, I'm just going to return Vienna. Another case could be if the user ID is XYZ456, 19:24 then I'm going to say that
+we're in London. Then another case could be HJKL 19:30 for Vim and then 111. That would return Paris. And if it's none of these, if 19:36 it's unknown, we're going to say case
+default is just going to return unknown. 19:41 Now, you can define unknown behavior in multiple ways. You can provide it in the description. You can even provide it in 19:47 the
+return value itself. You can provide it in the system prompt. You can also add some custom logic. But basically, we 19:53 need to somehow instruct the model that if it's unknown,
+just say it's unknown. Maybe it can do it automatically as 19:58 well. Uh, wherever you want to put that, put that somewhere how you want to handle unknown values. But we're going
+20:03 to look up based on the user ID in the context. So remember the connection here we have the runtime the tool runtime 20:10 passed to this tool which is based on the data
+class context which we defined up here which contains the user ID. So 20:17 now we're going to go down here create the model to show you that we can also pass a model instance. So
+model is going 20:23 to be init chat model GPT-4.1- mini and the temperature not this sort 20:30 of temperature but the model temperature is going to be 0.3 for example and then
+20:37 we're going to create a checkpointer which is going to be an in-memory saver. As I said this is for remembering 20:42 conversations. We're going to add to the agent
+invocations a thread ID and this 20:48 is going to determine the conversation that we're focusing on. So we can keep asking questions about the same 20:54 conversation. And now we
+can combine all of this into the create agent function. So we're going to say agent is equal to 21:00 create agent. Model is equal to model. Tools is equal to get weather and
+locate 21:06 user. System prompt can stay the same. Now new stuff here is context schema. 21:12 This is going to be the class the data class of our context. So just context. Then
+also response format. I think it's 21:19 not surprising that this will be our class response format. And finally, checkpointer also not surprising is 21:26 going to be the
+checkpoint. So what our agent now does is it has access to a model GPT4.1 mini. It has access to two 21:34 tools. One for getting weather information about the city, one for
+locating the user, so getting the city 21:39 of the user based on the user ID. We have a system prompt here. We now also have the ability to pass context. So for 21:46 this we use
+the data class context which again contains the user ID. Then we have a response format which means that our 21:51 model is forced now to answer in a specific format. This format
+is going to be a summary string and then three 21:58 floats for temperature and humidity. And finally we add memory to the model so it can keep track of conversations based on
+22:05 a thread ID. So now when we invoke something we also need to pass context 22:10 and thread ID. For this we're going to start by saying config is equal to dictionary which is
+going to have a key 22:17 called configurable. And this configurable is going to point to another dictionary which contains thread 22:22 ID which itself points to one for example.
+And now for the invocation I'm going to say what is the weather like 22:28 without specifying a city but I'm going to specify context and I'm going to pass the configuration. So
+for the 22:35 configuration just config equals config and for the context we're going to say context is equal to context an instance 22:42 of the data class where we set the user
+ID to be equal to ABC123. 22:48 So that would result in Vienna again. We should get the same response. And since we're now working with this response 22:54 format, since we're

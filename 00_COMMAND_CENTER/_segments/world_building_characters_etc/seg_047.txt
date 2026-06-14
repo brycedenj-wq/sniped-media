@@ -1,0 +1,224 @@
+This will take a minute. Once that's done, inside of your Claude conversation, you will 3:233 minutes, 23 secondshave multiple commands that you will need to insert and enter to
+[music] create the other tools. Run brew- version. If it shows a version, homebrew 3:313 minutes, 31 secondsis installed. [music] If you're on Windows, you'll need Git. Go to
+git-scm.com. 3:373 minutes, 37 secondsDownload Git for Windows. [music] Doubleclick the installer. Click next. 3:413 minutes, 41 secondsNext, next. Install. You're done. Python
+installation is the same as Mac. [music] Go to python.org download install verify 3:493 minutes, 49 secondswith python- version [music] in command prompt. The key thing on Windows
+when you install Python check the box that says add [music] Python to path. That's 3:583 minutes, 58 secondswhat makes it work globally. Now this is where the workflow connects.
+Three keys from three places. [music] Each takes about 2 minutes. Now we need to gather 4:064 minutes, 6 secondsour API keys from 11 Labs. Go to 11labs.io io. And on [music] the
+left side panel, go down to developers, click 4:144 minutes, 14 secondsAPI keys, create a new key. Name it whatever you like [music] and make sure you go to permissions and allow
+access to these features here. Open up a text 4:224 minutes, 22 secondsfile or notepad and paste the key in with it labeled clearly. [music] Now listen to theoretico. Theoretico
+uses a specific tone that we want to emulate. 4:304 minutes, 30 secondsOnce you found the voice over you're going with, copy the ID. Go back to that same text [music] file. Paste
+in the key alongside its correct label. Now we are 4:384 minutes, 38 secondsalmost done. We need [music] our key.AI API key for video generation. Go to key.ai. Create an account.
+You'll need 4:464 minutes, 46 secondsto add credits. $5 should be fine for now. Once you're in, go to API keys. 4:514 minutes, 51 secondsCreate a new key. Name it whatever. Copy
+it. Now, paste it into your text file alongside its label. [music] Now, one last key. We need Claude's API key. Go to console.anthropic.com. 5:035 minutes, 3 secondsSign in with
+your Anthropic account. Go to API keys. Create a new key. Name it whatever. Copy it. Paste it alongside 5:105 minutes, 10 secondsthe label. Now you have all three. Keep this file
+safe. Don't show it to anyone. 5:155 minutes, 15 secondsBut do save it. You'll need it in the next step. So now open Finder, Mac or File Explorer, Windows. Create a new 5:235
+minutes, 23 secondsfolder on your desktop. Name it theoretical_mation. 5:265 minutes, 26 secondsInside that folder, create three subfolders. Config, [music] scripts, videos. Inside
+videos, create three more 5:345 minutes, 34 secondssubfolders. raw underscore scenes final underscoreoutput [music] logs. Your structure should look like this. This looks tedious.
+It's not. It takes a few 5:435 minutes, 43 secondsminutes and it's why the automation works [music] cleanly. Everything knows where to live. 5:485 minutes, 48 secondsThis is where
+your API keys live. They should be pasted in your text edit or notepad following the exact structure you see I have. Now, inside of the text 5:565 minutes, 56 secondseditor, go to
+the format menu and click make plain text. Now, go to file greater than save as. Name it. env with the dot 6:046 minutes, 4 secondsat the start. Make sure you're saving it inside
+your theoretical_automation/config/folder. 6:086 minutes, 8 seconds[music] 6:106 minutes, 10 secondsThe system will ask, are you sure you want to use a name starting with a dot?
+6:136 minutes, 13 secondsClick use dot. If you're on Windows, open Notepad. Make sure you are following the same API key format. Go to file greater than save as. Name it.env. 6:236
+minutes, 23 secondsSet the file type to all files, not TXT. 6:266 minutes, 26 secondsSave it in theoretical_automation/config/. 6:306 minutes, 30 secondsOnce it's saved, you should
+see a hidden file in your folder. Don't touch it. 6:346 minutes, 34 secondsIt's working. [music] Create a new text file. Name it video ideas.txt. 6:406 minutes, 40 secondsInside,
+list your what if history ideas, one per [music] line. These are the ones you can use. What if the library of Alexandria never burned? What if Julius 6:486 minutes, 48
+secondsCaesar defeated Cleopatra? What [music] if the Black Death never happened? What if the Byzantine Empire never fell? Save this in your theoretical_automation 6:576 minutes,
+57 secondsfolder. [music] This is what Claude Code will randomly pull from when you run the workflow. The more ideas you add, the more variety you get. Claude Code 7:057 minutes, 5
+secondsdoesn't work in the web app. You need the desktop app. Go to the link in the notion guide or search Claude desktop app. Download it for your operating 7:127 minutes, 12
+seconds[music] system. Install it. Open Claude desktop. Sign in with your account. 7:177 minutes, 17 secondsYou'll need a Claude subscription, $20 per month for Claude code to
+work. It uses a certain amount of tokens and [music] the free tier doesn't support 7:247 minutes, 24 secondsit. At the top, you'll see a code button. Click it. This enables code
+mode. At the [music] bottom left, you should see a folder icon. Click it. That folder icon opens a file browser. 7:357 minutes, 35 secondsNavigate to your desktop. [music] Find
+theoretical automation. Click it. Select that folder. Claude Code is now working 7:427 minutes, 42 secondsinside that folder. Everything it creates, [music] everything it modifies,
+everything it generates will live here. 7:487 minutes, 48 secondsOnce you've selected the folder, go to [music] settings, bottom left gear icon. Turn on allow bypass permissions
+mode. 7:557 minutes, 55 secondsThis lets Claude Code modify files without asking permission every 5 seconds. There are risks, but if you're only using it here, you're fine. This is
+8:038 minutes, 3 secondswhere [music] it gets real. We're building the actual workflow. Claude Code will walk you through each step, [music] and it'll ask you questions. You can
+just copy the questions and paste it 8:128 minutes, 12 secondsinto your other Claude conversation and have it answer for you. Just make sure to answer each one. Claude Code is
+building your workflow as you talk to 8:208 minutes, 20 secondsit. Once it finishes, it will create files in your scripts [music] folder. 8:238 minutes, 23 secondsThese are Python
+scripts that do the actual work. It might ask you to run terminal commands. If it does, follow along. If something breaks, just say 8:328 minutes, 32 secondsthat didn't work. Fix
+it. Claude will read the error and rebuild it. I ran into three different errors on my first build. [music] Each time, I just told Claude what broke and it fixed itself. 8:418
+minutes, 41 secondsOnce Claude finishes building, go to your theoretical_automation folder. Check config/.env env [music] 8:488 minutes, 48 secondsexists with your API keys.
+Script/ haspython files video ideas.txt has your ideas. [music] 8:558 minutes, 55 secondsYou're in a claude code session with this folder selected. If all of that is there, you're
+ready. [music] Now, here's where most people hit a fork in the road. You can follow the next steps. 9:049 minutes, 4 secondsCreate the command from scratch. Answer Claude's
+questions. Debug when something breaks. Update files when skills don't load. Iterate until it works. That's the 9:139 minutes, 13 secondsroute I took. It teaches you how the system
+[music] works. And yeah, you'll learn a lot. Or you can skip the debugging entirely. Inside Creator OS, 9:219 minutes, 21 secondswe're giving members the exact Claude [music] code
+files I built and tested on both Mac and Windows. Not screenshots, not here's how to build it, the actual 9:299 minutes, 29 secondsworking files. You just upload them into Claude
+and Claude automatically personalizes the commands for your system. No debugging, no broken skills. 9:389 minutes, 38 secondsNo, this didn't work. Fix it loops. 9:399 minutes, 39
+seconds[music] You get the same end result. a fully automated workflow generating videos, but you skip the two to three hours of troubleshooting I went through. 9:479 minutes, 47
+secondsAnd here's the bigger part. Inside the community, we walk you through the setup, not alone in a video. Actual people who've already run this, who've 9:559 minutes, 55
+secondsalready hit the errors, who know exactly what to do when something breaks. Because this is where most people quit. 10:0110 minutes, 1 secondNot at the [music] complicated
+parts, at the frustrating parts, the parts where you're alone, something's not working, and you don't know if it's your setup or 10:0910 minutes, 9 secondsthe workflow. We handle
+that for you. So if you want to learn by building from scratch, keep going. But if [music] you want to skip the pain and just have it 10:1610 minutes, 16 secondsworking this week,
+the files and community support are [music] first link in the description. In Claude Code, open a new session. Top left, new session. 10:2410 minutes, 24 secondsType /generate
+video. Hit [music] enter. Claude may ask you clarifying questions. Answer them one by one. Then Claude runs. Now open 10:3310 minutes, 33 secondsyour terminal [music] Mac or
+command prompt Windows. Navigate to your theoretical_automation folder by [music] typing tail-fide/logs/publish_log.md. 10:4610 minutes, 46 seconds[music] On Windows, you might
+need to type get-ashcontent videos/logs/publish_log.md-tail10-wait. 10:5410 minutes, 54 seconds[music] 10:5610 minutes, 56 secondsYou're watching in real time now. Voice over
+generating, images being created, images converting to video clips, clips stitching [music] together, music 11:0511 minutes, 5 secondsadding, all of it. Go grab coffee. Check back
+in 5 to 10 [music] minutes, depending on video length. The first time, something might break. A skill 11:1211 minutes, 12 secondsmight not load. A file path might be wrong. A model
+might reject your prompt. 11:1711 minutes, 17 secondsThat's normal. Here's the part most tutorials don't tell you. Claude code fixes itself. [music] If something fails, it reads
+the error, figures out 11:2411 minutes, 24 secondswhat went wrong, and rebuilds the broken part. It's honestly insane. [music] I ran into an issue where the prompt got flagged by
+safety filters. The workflow 11:3311 minutes, 33 secondstried again with different [music] wording. It worked. I didn't do anything. The system just fixed it. 11:3811 minutes, 38
+secondsSometimes you'll see, let me read the script to understand the issue and fix it. That's Claude analyzing what went wrong and patching it. If you hit 11:4511 minutes, 45
+secondssomething it can't autofix, just tell it what's wrong. The voice over isn't generating or the final output folder is empty. Claude will dig into it. Go to 11:5411 minutes,
+54 secondsvideos/fal_output/you video is there. This first one won't be perfect. You didn't give it custom 12:0112 minutes, 1 secondprompts. You didn't refine anything. You just
+ran it to see if it works. That's the [music] point. It worked. Now you know the system is real. Now you can start optimizing. [music] Watch it. 12:1012 minutes, 10 secondsNotice
+what's good. Notice what's weak. 12:1312 minutes, 13 secondsThat tells you what to tweak in your next run. I didn't realize how important the first run was until I saw the workflow
+actually output [music] a video. That's when I believed it could scale. Here's what most people miss. 12:2312 minutes, 23 secondsThis isn't just a tool to make one video. This is
+[music] a system. You can run this on three different video ideas simultaneously. Three different 12:3012 minutes, 30 secondshistories, three different what-ifs, all generating at
+once. Open three different clawed code sessions. [music] In each one, run /generate 12:3912 minutes, 39 secondsvideo with a different idea. While the first one is rendering,
+[music] start the second. While the second starts, start the third. All three are running. 12:4612 minutes, 46 secondsAll three will [music] generate voice over, images, animation,
+stitching without you touching anything. 5 to 10 minutes later, you have three finished 12:5512 minutes, 55 secondsvideos. That's the difference between spending 3 hours per video
+and spending [music] 5 minutes per video setting up three workflows. While the videos are 13:0313 minutes, 3 secondsrendering, you're researching your next three ideas. You're
+managing [music] the channel. You're thinking strategy. 13:0913 minutes, 9 secondsThat's the difference between spending 3 hours per video and spending [music] 20 minutes setting
+up the workflow, then just waiting. Some videos won't generate 13:1713 minutes, 17 secondsperfectly. Some prompts will need refining. Some API calls will fail. That's not the
+workflow breaking. 13:2313 minutes, 23 seconds[music] That's the workflow teaching you what works and what doesn't. Every error is data. Every failed run shows you where to tighten
+your prompts, where to 13:3013 minutes, 30 secondsadd constraints, where to be more specific. Most creators are [music] stuck clicking buttons for 3 to four hours per video. That's
+15 to 20 hours 13:3813 minutes, 38 secondsper [music] week if they're posting five videos. With this workflow, you're spending 20 minutes setting up the automation, [music] then 5
+to 10 minutes 13:4513 minutes, 45 secondsactually running it. That's 30 minutes per video, maybe 2.5 hours per week if you're posting five videos. You just got 17 hours back. What
+do you do with 17 13:5413 minutes, 54 secondshours? You research better ideas. You study what's actually converting. You optimize titles and thumbnails. You build community. You
+think about scale. 14:0314 minutes, 3 secondsThat's the gap between $1,000 a month and $5,000 a month. That's the gap between a side project and a real channel. The difference
+isn't talent. 14:1214 minutes, 12 secondsIt's not even ideas. It's automation. 14:1414 minutes, 14 secondsInside Scalable Creator OS, we're giving members the exact files I built
+and tested on both Mac and Windows. [music] No setup. Just plug them in, personalize 14:2314 minutes, 23 secondsthe prompts, answer Claude's questions, run the command. You're not
+rebuilding this from scratch. You're using what's already tested and working. Because 14:3114 minutes, 31 secondshere's the reality. Most people watching this will try it, hit
+something frustrating, and quit. They'll go back to manual cap cut editing, back to 14:3814 minutes, 38 secondsclicking buttons for hours. But the ones who stick, the ones who get
+this running, they're going to generate three to four videos per week while everyone 14:4514 minutes, 45 secondselse is making one. Inside the community, you also get
+troubleshooting. 14:4914 minutes, 49 secondspeople who've already hit the errors, already fixed them, already scaled to five videos a week. [music] You're not alone in this. You
+don't need to be a coder to use Claude code. You don't need 14:5814 minutes, 58 secondsto understand Python or terminal commands. You just need to be willing to follow instructions
+and ask questions. 15:0315 minutes, 3 secondsClaude does the actual work. If you're serious about building a long- form automation channel, check out the first link in the
+description. [music] Join 15:1015 minutes, 10 secondsthe community, get the files, get your videos uploaded this week. Otherwise, [music] you know what to do. Thanks for watching.
+See you in the next one. Sync to video time All From BigStepsMedia0:00What if I told you you could clone the exact formula of any viral YouTube channel in less than 1 hour without
+showing your face, without editing 0:088 secondsskills, and without a single expensive tool. I know it sounds crazy, but after this video, you are going to wish someone told you
+this sooner because 0:1717 secondsright now there is a group of beginners quietly using one AI tool to clone channels that are pulling in millions of 0:2424 secondsviews a month.
+And today, I'm going to hand you the exact step-by-step workflow they use. Stick with me until the end because the last step is where the real 0:3232 secondsmagic happens. Let's be
+real for a second. Most people who try starting a faceless YouTube channel quit within 30 days. And it is not because they are 0:4141 secondslazy. It is because nobody ever showed
+them the actual system. They sit there staring at a blank screen trying to come up with ideas, writing scripts that 0:4949 secondssound boring, creating thumbnails that nobody
+clicks, and posting videos that get 12 views from their own mom. But here is the truth nobody wants to say. 0:5959 secondsStarting from zero is the hardest path you can take
+because you are guessing at everything. The hook, the script, the 1:071 minute, 7 secondsvisuals, the thumbnail. And guessing doesn't pay the bills. However, the smartest creators
+online, they don't guess. They model what is already 1:161 minute, 16 secondsworking. That is exactly what we are about to do with AI doing 95% of the heavy lifting. So, here is
+the plan. I 1:241 minute, 24 secondsam going to break this entire workflow down into just five simple steps. Follow them in order and by the end of this video, you will have
+everything you need to launch your first faceless channel. 1:351 minute, 35 secondsLet's get into it. Step one, ideation. 1:381 minute, 38 secondsEvery viral channel starts with
+one thing, a winning idea, not a random idea, a proven idea that is already 1:451 minute, 45 secondsworking on YouTube right now. So, in this first step, we are going to let Claude
+AAI generate those ideas for us. 1:521 minute, 52 secondsBut not just any ideas. Ideas modeled after channels that are already crushing it. And here is how to do it. Head over to
+Claude and create a free account. You 2:002 minutesdon't need the paid plan to start. The free version gives you more than enough. No downloads, no complicated setup. 2:072
+minutes, 7 secondsEverything runs right inside your browser. Now comes the most important part of this entire system. Once you're signed in, open a new chat and paste 2:152
+minutes, 15 secondsthis master prompt. This is the engine of the whole workflow and hit send. In a few moments, Claude asks you which channel you want to model. Pick any 2:242
+minutes, 24 secondsfaceless channel that is performing well in a niche you actually enjoy. Stickman finance videos, 3D explainer animations, 2:312 minutes, 31 secondsBible stories,
+AI powered animation channels, anything. Copy the channel URL from YouTube and paste it to Claude. 2:382 minutes, 38 secondsNext, Claude asks for video transcripts. 2:412 minutes,
+41 secondsThis is the step most people skip and it is the one that separates amateurs from pros. Go back to the channel. Click popular videos. Open one of the top 2:502 minutes, 50
+secondsperformers. Scroll under the description and click show transcript. Copy the full transcript. Paste it into Claude. Do this for two or three more videos and 2:592 minutes,
+59 secondshit send. Now Claude has the full DNA of that channel. The hooks, the pacing, the storytelling, everything. Claude then 3:073 minutes, 7 secondshands you 10 fresh video
+ideas, all in the same style as the channel you modeled. Pick the one that excites you the most. And that's step one done. You 3:153 minutes, 15 secondshave your golden idea. But
+an idea alone is worthless without a script that keeps people watching. That is exactly where 3:233 minutes, 23 secondsstep two comes in. Step two, script writing. A great idea
+will get people to click, but the script is what keeps them 3:303 minutes, 30 secondsglued to the screen. And this is where most faceless channels fall apart. They have decent
+ideas, but boring scripts. 3:363 minutes, 36 secondsNo hook, no curiosity, no retention loops. Lucky for us, Claude already has everything it needs to write a winning 3:443
+minutes, 44 secondsscript. It studied the channel. It learned the pattern. It knows what works. So once you pick your idea in step one, send it back to Claude. In a 3:533 minutes,
+53 secondsfew moments, Claude drafts a full video script in under 60 seconds, matching the exact tone, pacing, and flow of the channel you modeled. It nails the hook, 4:024
+minutes, 2 secondsincludes retention loops every 30 seconds, builds curiosity throughout, and ends with a clear call to action. 4:084 minutes, 8 secondsYou just got a script that
+would cost $300 from a freelancer. Read it one more time. Make tiny edits if you want to add 4:154 minutes, 15 secondsyour own voice. Then copy the final version into a fresh
+Google Doc and save it. And that's it. Your script is done. 4:224 minutes, 22 secondsThat's step two. However, a script sitting in a Google doc isn't a video. You need visuals. Not
+just any visuals. 4:294 minutes, 29 secondsYou need cinematic AI generated visuals that make your channel look like a million-doll production. That's the next step. And this is
+where things get really fun. Step three, create visuals. 4:404 minutes, 40 secondsThis step makes people stop scrolling. 4:424 minutes, 42 secondsStrong visuals are the difference
+between a channel that grows fast and a channel that dies at 40 subscribers. 4:484 minutes, 48 secondsHere's how we handle it. Back in Claude, the system will ask you to generate
+image prompts that match the reference channel's style. It will then ask you to 4:554 minutes, 55 secondsdrop a screenshot of some videos of the channel. These are just screenshots
+of the kind of images or scenes the channel you modeled actually uses. Go back to 5:035 minutes, 3 secondsthat channel, open a few of their videos, take five to 10 screenshots that
+capture the visual style, the characters, the backgrounds, the colors, 5:115 minutes, 11 secondsthe overall vibe. Upload all those screenshots to Claude and type images attached.
+Here's a pro tip. Do not copy their style exactly. Add your own twist. 5:225 minutes, 22 secondsGo more 3D, more cinematic, more pixel art, whatever feels fresh. That way, your
+channel stands out instead of looking like a copy. Clot studies the 5:315 minutes, 31 secondsscreenshots and reverse engineers the visual style. Then it generates around 20
+detailed image prompts, one for every scene in your script. Now open Google 5:395 minutes, 39 secondsFlow, the tool we are going to use for every single visual in this video. It is
+free to start, runs in your browser, and it gives you access to the two most 5:485 minutes, 48 secondspowerful AI models on the market right now. Nano Banana 2 for images, VO3 for
+video animations. Let's start with the 5:555 minutes, 55 secondsimages. Create a new project in Google Flow. Switch the model to Nano Banana 2. 6:006 minutesGrab your first image
+prompt from Claude and paste it in. Before you hit generate, do this one little trick. Upload a reference image first. 6:076 minutes, 7 secondsSomething that shows your main
+character or the core visual style you want to lock in. This keeps every single image 6:146 minutes, 14 secondsconsistent across your whole video. Same character, same face, same
+colors, same world. Now, hit generate. Within 6:216 minutes, 21 secondsseconds, Nano Banana 2 creates a stunning image that matches your prompt and your reference. Download it.
+Repeat 6:286 minutes, 28 secondsfor every prompt Claude gave you. By the end, you will have every visual your script needs. Let's move now to the animations. Go back to Claude and
+ask 6:376 minutes, 37 secondsfor video prompts based on the image prompts. Claude takes every image prompt and converts it into a cinematic video animation prompt. So, every still
+image 6:466 minutes, 46 secondsnow has a matching motion prompt. Back in Google Flow, switch the model to V3. 6:516 minutes, 51 secondsUpload the image you just generated as your
+base. Paste the matching video prompt. Hit generate. Veo3 brings that still image to life. Camera movement, 7:007 minutescharacter motion, atmosphere, depth. It looks like
+something out of a high budget animation studio. Do this for every scene. You will have a full 7:107 minutes, 10 secondscinematic video library. No cameras, no animators, no
+editors, just Google Flow doing the heavy lifting. That's step 7:187 minutes, 18 secondsthree. Your visuals are locked in. But moving pictures with no voice is just a silent movie.
+And nobody watches silent 7:257 minutes, 25 secondsmovies anymore. So in step four, we give your channel a voice that sounds so human. Viewers will swear it's you. Step 7:337
+minutes, 33 secondsfour, generate voice over. A voice is what gives your channel its personality. 7:397 minutes, 39 secondsIt's what makes viewers connect. It's what turns a random
+video into a brand. 7:447 minutes, 44 secondsAnd the best part, you don't have to record a single word yourself. Head over to 11 Labs. It's the best AI voice tool on the internet
+right now. The free plan 7:527 minutes, 52 secondsgives you more than enough to get started. Create a free account. Once you are in, click on the text to speech option on your
+dashboard. Now, grab the 8:018 minutes, 1 secondscript you saved in step two. Copy the entire thing. Paste it into the 11 Labs text box. Next, pick your voice. 11 Labs gives you
+dozens of built-in voices. 8:128 minutes, 12 secondsMale, female, young, deep, calm, energetic. Pick one that matches the vibe of your channel. Here's a pro tip. 8:208 minutes, 20
+secondsIf you modeled a fast, energetic channel, pick a confident, young voice. 8:248 minutes, 24 secondsIf you modeled a storytelling or documentary channel, pick a deeper, slower
+voice. The voice you choose sets the entire mood of your video, so don't 8:338 minutes, 33 secondsrush this choice. Once you've picked your voice, press generate. In about 30
+seconds, 11 Labs delivers a voice over 8:408 minutes, 40 secondsthat sounds like a real human. No robotic tone, no weird pauses, just clean, professional audio. Download the 8:488
+minutes, 48 secondsMP3 file. Save it in the same folder as your script and your visuals. Now you have everything you need. Script, 8:548 minutes, 54 secondsimages, animations,
+voice over, all generated with AI, all ready to become a full video. Now it's time to assembling 9:039 minutes, 3 secondseverything together into a finished video your audience
+will actually watch. 9:079 minutes, 7 secondsStay with me. Step five, assembling everything together. This is the final step, the best part of the whole process. Open Cap Cut. It's
+free. It 9:179 minutes, 17 secondsworks on desktop and mobile and it's built for beginners. If you've never edited a video before, don't stress. 9:249 minutes, 24 secondsI'll walk
+you through the exact flow. 9:269 minutes, 26 secondsStart with your voice over. Drag the MP3 file from 11 Labs into the Cap Cut timeline. This is your foundation. Every 9:349
+minutes, 34 secondsvisual you add from now on follows the voice over. Next, add your visuals. Drag every image and every animation you 9:419 minutes, 41 secondscreated in Google
+Flow into the media panel. Then drop them onto the timeline one by one in the order your script 9:499 minutes, 49 secondsfollows. Match every visual to the exact moment the voice
+over mentions it. If the voice says, "Let me show you something crazy." You cut to the crazy visual right there. Keep your cuts fast. 10:0010 minutesA new visual every 3 to 5
+seconds. This is what keeps viewers glued to the screen. Long static shots kill 10:0810 minutes, 8 secondsretention. Fast cuts save it. Now add captions. Cap Cut has a built-in
+autocaption feature. Click it, let it 10:1510 minutes, 15 secondsscan your voice over, and in seconds you get full subtitles. Style them bold, clean, and easy to read. Highlight
+the 10:2210 minutes, 22 secondspower words in a different color words like money, AI, free, fast, secret. This alone can double your retention. Then 10:3110 minutes, 31
+secondslayer the sound design. Add a soft background, music track, lowfi, tech, or cinematic works great. Keep the volume 10:3810 minutes, 38 secondslow around 15 to 20% so it
+doesn't fight the voice over. Sprinkle in sound effects on transitions. Whooshes, 10:4610 minutes, 46 secondsclicks, ding sounds, small details that make your video feel
+professional. 10:5110 minutes, 51 secondsFinally, add light transitions, fade, mix, swipe, quick glitch, but don't overdo it. One transition every 10 to 15 11:0011 minutesseconds
+is plenty. When everything looks clean, hit export. Choose 1p 30 frames per second. And just like that, you're done. 11:0811 minutes, 8 secondsPicture this. You've just gotten the
+news you've been waiting months for. 11:1311 minutes, 13 secondsYour boss calls you in, tells you you're doing a great job, and hands you a raise. Maybe it's $5,000 more a year.
+11:2211 minutes, 22 secondsMaybe it's $10,000. 11:2411 minutes, 24 secondsEither way, you walk out of that office feeling like you've finally turned a corner. Fast forward 3
+months. You check 11:3211 minutes, 32 secondsyour bank account and somehow somehow you just built a full faceless YouTube video, script by Claude, visuals by 11:4111 minutes, 41
+secondsGoogle Flow, voice by 11 Labs, edit by Cap Cut, 100% AI powered, 0% on camera, and ready to upload. That's the system. 11:5111 minutes, 51 secondsThat's the entire playbook.
+Now it's your move. Smash that subscribe button right now because on this channel, I drop one AI money-making system every 12:0012 minutessingle week. miss one and you miss a real
+opportunity. And if you are serious about building your first AI income stream, click the next video on your 12:0912 minutes, 9 secondsscreen. That is where I show you the trending
+faceless niches right now to pick one of them and start right now. 12:1612 minutes, 16 secondsThanks for watching and see you in next tutorial. All From AIpreneur0:00So, in today's
+video, I'm going to show you how you can use Claude in a variety of different ways to help you start up a faceless YouTube channel. Now, there's 0:077 secondssome very unique and
+interesting ways that you can use Claude to assist you if you're a complete beginner that's looking to build up their first faceless 0:1515 secondschannel. And if you're someone
+that might be confused as to how to get started, maybe you're not sure of exactly what type of channel to start, 0:2222 secondswhat type of videos to make. This is the video that
+you definitely need to watch from start to finish because I'm going to break down a lot of the things that a lot of people on YouTube don't share. 0:3131 secondsSo, we're going to
+jump straight into it right now with one of the first initial ways that you can use Claude to assist you with your first Faceless channel, 0:4040 secondswhich is going to be by
+using the Claude browser. So, most of you probably didn't know this, but Claude actually has an extension tool that you can attach to 0:4949 secondsyour Google Chrome browser, and
+it works similar to an AI assistant in the sense that you can ask it any task, and it's 0:5757 secondsgoing to go onto the internet automatically and come back with exactly what
+you told it to do. Literally, all you need to do is install it onto your 1:051 minute, 5 secondsbrowser by going over to the Chrome web store and clicking on add to Chrome. 1:101
+minute, 10 secondsNow, it is important to know that if you did want to use Claude directly as an extension tool, you're going to need one of the paid plans with Claude, either
+1:191 minute, 19 secondsthe Pro or Max. But don't worry, as we move on in this video, I'm going to be showing you some other ways that you can use Claude without necessarily having
+to 1:261 minute, 26 secondspay for it. But now that I've got it added to my browser, I'm going to show you exactly what I'm going to do next. 1:321 minute, 32 secondsAnd what I'm
+going to do is go over to YouTube. I'm going to click on my extension tools. And this is where you're going to see Claude. So, I'm just 1:401 minute, 40 secondsgoing to select it
+like that. And the first way that I'm going to use it is to help me find a YouTube channel that I could potentially start. If there's one 1:481 minute, 48 secondsthing that I've
+learned with the majority of the different internet businesses that I've built up is that one of the best things that you can do is replicate what is working for someone 1:571
+minute, 57 secondselse. If you're able to see someone publishing videos, a similar style of video that you can see yourself making as well, and you're also able to see 2:042
+minutes, 4 secondsthat they've been successful maybe in a relatively short amount of time, then this, I would say, is going to be one of the best methods to go with as a 2:122
+minutes, 12 secondscomplete beginner. And this is something that the clawed browser is going to be able to help with. So firstly, what I'd recommend that you do is select the 2:202
+minutes, 20 secondsquick mode. So with this, you're going to be able to use Opus 4.6, six, which is fast mode, so that it's not going to delay. It's not going to waste any time.
+2:292 minutes, 29 secondsIt's going to do exactly what you tell it to do. And again, for those of you that haven't seen this extension tool before, basically, the way it works is
+2:362 minutes, 36 secondsthat when you enter a specific prompt, it's going to go directly on the internet on your browser, and it's going to complete that job without you having
+2:442 minutes, 44 secondsto do anything yourself. So, let me show you exactly what I mean, right? So, if I just go over to this prompt box, what I'm going to do is tell it that I
+want to start a YouTube channel within the 2:522 minutes, 52 secondsancient financial wisdom niche, and I want it to find me five to 10 faceless YouTube channels, between 10K to
+50K 3:013 minutes, 1 secondsubscribers that started in the last year, according to their about us bio page. So, with this prompt, what I'm 3:083 minutes, 8 secondsbasically telling
+Claude to do is go onto YouTube, scan this niche that I gave it and find me a few different channels and come back with the results. 3:173 minutes, 17 secondsSo, all I'm going to
+do is click on enter. You can also select act without asking. What this means is that Claude 3:253 minutes, 25 secondsisn't going to come back every few seconds and ask for
+permission. So, of course, you need to be cautious of this, but I'm telling it to do something 3:323 minutes, 32 secondsbasic. So, I'm just going to click on enter. Okay. Okay. And
+just like that, as you can see, Claude is now working and it should go directly onto YouTube. 3:413 minutes, 41 secondsYeah. So, as you can see, I'm not typing anything, guys.
+Whenever you see that orange glowy thing around the border of the browser, that means that Claude is 3:493 minutes, 49 secondsdoing its thing. So, we can see that it's typed in the
+name of the niche that I want to go into. And what it's doing now is a scanning through various 3:573 minutes, 57 secondsdifferent YouTube channels. And the really good thing about
+this is that because I gave it specifics to look out for, eg to make sure that they've got 4:044 minutes, 4 secondsbetween 10 to 50k subscribers and also to make sure that they
+haven't published a video, let's say more than a year ago. 4:124 minutes, 12 secondsThis is going to help me find brand new channels or at least, you know, a channel that's been
+started in the past year that has seen success and has been able to get a minimum of 10,000 4:204 minutes, 20 secondssubscribers. And it's going to be from that point where I can
+now do a little bit more research into that channel to see exactly what type of videos they're 4:274 minutes, 27 secondsposting, what they're doing, and how I can maybe do it
+myself. So, I'm going to let Claude do its thing. This process does take a little while because it has 4:364 minutes, 36 secondsto go through a bunch of different channels. So, it
+may take around 5 to 10 minutes, maybe longer, but whatever the case is, I'm going to be back ASAP. 4:444 minutes, 44 secondsOkay, guys, I'm back. And by the looks of it, it seems
+to have found a few different channels that we can do a little bit more research into. So, we can see this channel. There's also this 4:534 minutes, 53 secondsone. You know, a few
+different channels that meet the niche that I entered in initially. But what I'm going to do now is just take one of these channels and 5:015 minutes, 1 secondshow you one of the
+next ways that Claude can assist you, specifically if you're looking to use the extension tool. So, I'm going to be using this 5:085 minutes, 8 secondschannel as an example. And
+I'm just going to enter another prompt directly into the extension tool. I'm just going to say go on to this channel. So, I'm 5:175 minutes, 17 secondsgoing to give it the name and
+find their most popular video and extract the script from the YouTube video. So, this is another unique way that you can use 5:255 minutes, 25 secondsClaude that people don't know
+that they're able to do. And yes, you can go onto any regular transcript extractor on the internet, but there's a certain 5:335 minutes, 33 secondsreason why it's going to be more
+beneficial to use Claude. So, I'm just going to enter this in and let it do its thing. Okay, so we can see that it's 5:415 minutes, 41 secondsclicked into the most popular videos
+on the channel and it's now clicked on to the most popular video which is about the nine Japanese habits to build wealth 5:515 minutes, 51 secondsquietly. So, it's going through
+everything and it's now started the process of also going through the transcript. The reason why this is a powerful thing to do if you're using 5:595 minutes, 59 secondsClaude is
+because if you're able to use it to look at a video that has done well and you're able to also use it to analyze exactly why the video's done 6:076 minutes, 7 secondswell, you can
+now take it a step further so that it can help you create a video that's also going to do well as well. 6:136 minutes, 13 secondsBut yeah, as we can see on the right hand side,
+it's now come back with the full transcript. It's come back with the intro. It's come back with each of the 6:206 minutes, 20 secondsdifferent habits that is mentioned in the
+video. and it's organized it in a way that's going to be a lot better for you to analyze. If you was to use a 6:286 minutes, 28 secondsregular transcript tool, it would just come
+back with paragraphs that you're going to have to go through and decide for yourself. But with this one, it structured it in a more easy to see way. 6:376 minutes, 37 secondsBut
+yeah, those are two of the initial ways that you can use the Claude browser specifically to help you with a faceless YouTube channel. And it doesn't end there because Claude can do
+so much 6:466 minutes, 46 secondsmore. I'm going to show you how you can put this script to work. How you can generate a unique script from scratch using Claude and some other
+things that 6:556 minutes, 55 secondsyou're capable of doing. So, first things first, we're just going to go over to the regular Claude interface. I want to show you guys the third
+way that you can use Claude, which is to 7:037 minutes, 3 secondsbasically use it to help you come up with a step-by-step custom blueprint for the channel that you're about to
+build. 7:097 minutes, 9 secondsSo, now that I've done the first step and I can see different channels in my niche, ones that are successful, brand new ones that are making videos
+that I 7:177 minutes, 17 secondscan see myself making as well, what I now need to do is build out a custom blueprint that's going to lay out everything I need to do from signing up
+7:247 minutes, 24 secondsfor my YouTube account. Deciding on what channel name to go with, the banner, the images, all of the graphics to build up 7:327 minutes, 32 secondsthe

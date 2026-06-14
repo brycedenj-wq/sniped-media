@@ -101,3 +101,9 @@ Conversations, replies, pitches, offers, copy, creative, pricing, strategy, the 
 
 ## Guardrails (unchanged)
 Research and list-building only, no outreach, no contact, ever. Employer-clean (no Serverfarm data/lists/accounts; no targeting employer clients/vendors/employees; public sources only; own accounts/time). No fake proof. No platform/registry/network public claim. No photography-only reduction. No automation before proof. This SOP feeds the warm/manual Phase 1 when BJ decides to go; building it starts nothing. Anchor-class: not chunked, not in master files, total_chunks unchanged at 1,837.
+
+---
+## Note 2026-06-12 · Kickstarter funding-band heuristic (operator-approved)
+- Campaigns at 10-50% of funding goal may indicate validated-but-under-resourced operators (zero-funded = unvalidated; overfunded giants = agency/in-house locked). RESEARCH USE ONLY.
+- No scraping or mass contact without separate operator approval.
+- All outreach remains DRAFT-ONLY and trust-distribution aligned: AI sources and drafts; the operator reviews and sends. Mass cold-blast is banned.

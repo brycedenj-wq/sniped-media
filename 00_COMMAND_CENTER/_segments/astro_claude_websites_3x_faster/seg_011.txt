@@ -1,0 +1,223 @@
+happens 11:07 is if there's this claw.md file in the working directory it's just plopped into context. It's 11:12 plopped into the prompt. And basically what it says is hey claude
+by the way these are important 11:16 instructions the developer left for you. Be sure to pay close attention to this. And there's 11:22 various places you can put the cloudmd file.
+You can put it in a project and check it in so all 11:27 your teammates share it. You could put one in your home directory if there's things you just want 11:31 claude to always
+know about regardless of what you're working on. And the things you put in here 11:35 are things like, hey, by the way, maybe this is how you run the unit tests. Or just so you
+know, 11:41 to make kind of your searching and life easier, here's like just like an overview of kind of how 11:46 this project is laid out, where the tests live, what different
+modules are, things like that. 11:51 or here's our style guide. All sorts of things like that to just make Claude's life a bit easier. 11:56 And you can build these things up over
+time. The other thing you can do, which is important, 12:03 is permission management. When you're running Cloud Code, there's all sorts of different kind 12:07 of permission things
+flying by. Kind of out of the box, what happens when you start our tool is for 12:13 read actions. If Claude is searching or reading, we just let it go. But once it starts writing
+or 12:20 running bash commands or doing things that could change change stuff on your machine potentially, 12:26 that's when we kick in this UI and it says something like yes, yes,
+always allow this or no, 12:33 um, I want to do something else. And using that permission management and being smart about it 12:38 can help you work faster. So there's something
+called autoaccept mode where if you're working 12:43 with cloud code and you press shift tab, claude will just start working. There's things you can 12:48 do like you can configure
+claude in the settings where specific commands like on bash like if you 12:54 just are like tired of saying yes run npm run test you can just always approve that. So fiddling with
+13:01 your permission management is a great way to kind of speed up your workflow integration setup. So, 13:08 one thing that is going to help you get the most out of cloud code is
+remember that it's great at 13:12 the terminal. And if there's applications that you use which have kind of a way to access them 13:18 through CLI and GitHub is a great example of
+that. They have a powerful tool called GH you 13:23 can basically give more work to cloud code and you can do that either by just installing more 13:29 CLI tools or you can attach
+more MCP servers. Um, I would say just through experience that if you're 13:37 using something like um, a CLI tool that's well known and well documented and you're trying to 13:43
+choose between the CLI tool and just installing it on your machine and grabbing an MCP server, 13:48 I would recommend using the CLI tool. Um, and then also if you internally have
+your own tools 13:56 at Anthropic, we have something called coup that does a whole bunch of stuff for us. You can also 14:01 tell Claude about that and you pro that's the sort of
+thing you'd put in claude.mmd and then context 14:07 management. So remember that claude is an agent and when it's an a what what it does it's calls 14:13 these tools and the
+context builds up and up over time and at least for anthropic our models have a 14:19 context window of 200,000 tokens and you can max this thing out. So you kind of have two
+options 14:24 when you're in a long session with claude and you're working and you're going back and forth. 14:29 You'll see in the bottom right you'll start to get this little
+warning that'll say hey you're 14:33 starting to fill up the context window and kind of depending on what's going on you have two options. 14:38 You can run slashcle and just start
+over and that clears everything out except for for instance 14:43 claw.mmd or you can run slash compact and what'll happen is basically it's like a user message is 14:50 inserted
+and it just says something like hey I need to go summarize everything we've been 14:55 up to. I'm going to give this to another developer and they're going to pick up where I left
+off. And 14:59 then that summary is what kind of seeds the next session. You can go from there. We spend a lot of 15:04 time tuning this kind of compact functionality so that as
+you max out the context window and 15:09 then run compact, you can start back over and keep going efficient workflows. What can you do 15:16 with cloud code? And how do you get the
+most out? So using planning and to-dos. talked a little bit 15:22 about this before, but one of the best things you can do is when you open up Cloud Code, instead of 15:26 saying,
+"Hey, I need you to fix this bug," you can say, "Hey, I have this bug. Can you search around, 15:32 figure out what's causing it, and just like tell me a plan how we're going to
+fix it?" And this can 15:36 save you a lot of time because you can verify, you can read Claude's plan, and you can verify 15:41 what it's going to do. And then the other thing that
+we have is we have this to-do list feature. 15:46 So often when Claude's working on a big task, it'll create a to-do list. And if you're kind of 15:52 paying attention, you can
+kind of watch this to-do list, and if you see anything kind of weirder in 15:57 there or something that doesn't make sense, that's when you can press escape and say, "Hey Claude,
+16:01 let's change the to-do list. I think you're on the wrong path." Smart vibe coding. So it's 16:06 very tempting and it's very powerful to just let Claude work and press enter
+and see what happens 16:11 at the end. I think there's a few things that can help make this better. And there's I think a talk 16:16 later today about just this for 30 minutes. But
+doing things like having test-driven development, 16:22 having Claude make small changes, run the tests, make sure they pass, always having Claude do 16:28 things like check the
+TypeScript and the linting, and then commit regularly so that if it's kind of 16:33 going off the rails, you can always fall back and try again. You can use screenshots to guide
+and 16:39 debug. So Claude is built on top of our models which are multimodal. You can always just grab 16:44 a screenshot, paste it in, or if you have a file somewhere that's an
+image, you can just say, "Hey, 16:49 Claude, look at this mock.png and then build the website for me or whatever." And then advanced 16:56 techniques. So, as you're getting used to
+using Claude, what are some things you can think about 17:02 uh to kind of push things to the next level? And one of the things we see both internally and with 17:07 customers is
+when you've started to use this tool for a while, it's going to be very tempting to use 17:12 multiple clouds at once. And so I know people at Anthropic and a few customers that
+run four clouds 17:18 at the same time. There's various ways to do this. You can have it in T-Mox or just different tabs, 17:24 all sorts of crazy things. So I would challenge you
+to try getting multiple clubs running at once 17:30 and kind of be orchestrating all these things. It's quite fun. I can only do two, but I know 17:35 people that do four. Use
+escape. So, escape is your best friend. While Claude is working, 17:42 you can kind of keep an eye on what it's up to, and you can press escape to stop it and interject 17:47 and
+say, "Hey, I think you're going on the wrong path, or I want you to do something else." Knowing 17:52 when the right time to press escape is versus just letting Claude figure it
+out, is key to 17:56 getting the most out of the tool. And there's a hidden feature. Not too many people know about it, 18:01 but if you press escape twice, you can actually jump
+back in your conversation. You can go back 18:06 and you can kind of reset tool expansion in MCP. So, this is taking it to the next level. If you 18:13 feel like with bash and with
+the tools that cloud has that it still can't do something, this is 18:19 when you should start looking at MCP servers. And then headless automation. And I think this is the 18:24
+thing we're most excited about, but also we are still trying to wrap our heads around internally, 18:30 which is how can we use Claude programmatically. We have that in GitHub
+actions. We want to figure 18:35 out other creative places we can start using it. I would challenge you all to do the same. 18:43 So, with that said, uh I'm going to jump over to
+my computer because there's one other best 18:48 practice, which is it's always good to stay on top of everything that's new. So, we're shipping 18:55 super fast. I'm going to
+throw I'm just going to go over a few things that are new as of today. Um, 19:01 one thing is when you're in Cloud Now and you fire it up, you can do slashmodel. You can see what
+19:06 model you're running on. I'm on default, which happens to be Sonnet. We can jump over to Opus. 19:12 You can do the same thing in slashconfig. Switch it here. So that's new.
+Make sure you're running 19:20 the model that works for you. There's another thing that's new about these models which is 19:25 you can say something like um can you figure out
+what's in this project? And for a long time for a 19:32 while we've had this like think hard or extended thinking. Now this is great but with our past 19:39 models the we wouldn't
+let our model think between tool calls and that's probably when the thinking 19:44 matters most. So starting with cloud 4 they can now our models now think between tool calls and
+19:49 we can watch this happen. So we have Claude in this project. There's a few different files in 19:53 here and I'm just going to tell it to think hard and figure out what's in
+this project and we can 19:58 watch Claude start to work. And so the way you know you triggered thinking is you'll see kind 20:03 of this lighter gray text and then it'll call some
+file, it'll call some tools, it'll read 20:08 some stuff, and then we see some more thinking. And this is awesome. Um, so I encourage you when 20:14 you're working on tasks and
+solving bugs, throw a think hard in there. And then the other thing, 20:20 and you know what, we'll just throw it up real quick, is I have this in VS Code, but of course 20:27 this
+is in Jet Brains as well, but we have these new great integrations with VS Code and and Jet 20:33 Brains. Um, we can do things like Claude's going to know what file I'm in. What
+file am I in? 20:41 That is not what I meant to say, 20:43 but Claude's going to figure it out. And you can do things like this. 20:58 So these are the sort of things I would
+encourage you to stay on top of. We have a public 21:03 uh kind of GitHub project called Claude Code under Enthropic. You can post issues there, 21:08 but we also post our change
+log there. And so I check this once a week and make sure that I'm on 21:14 top of all the new stuff we're shipping because even I can't keep up with it. So, with that said, 21:19
+we have like four minutes left. I'm happy to answer questions about anything cloud code 21:23 related. We have it here. I can live demo some stuff if you're interested. Um, let's
+do a few. 21:33 Thanks. Real quick, this might be obvious, but multiple cloud MD files in a project. I presume 21:40 that's possible and it just figures it out or no? So, there's a
+few options, of course, like in the 21:46 same directory. You couldn't um but you could have one here and one in a subdirectory. And I think we 21:57 changed this so that all the
+subdirectory ones aren't read in because like Anthropic, we have a 22:02 monor repo and people would open it at the top and blow up their context with all the claud MDs. So, 22:08
+we encourage Claude when it's searching around and it discovers claw.md files in um child directories 22:15 that are relevant to be sure to read them. But by default, it just reads
+the cloud MD file in the 22:21 current working directory when you fire it up. And then also you can set one in like your home 22:25 directory. Um there are things you can do
+though. We have this new thing like in your cloud MD you 22:31 can start referencing other files. So you could for instance um do something like this with an 22:39 at sign um if
+you have other cloud MD files that you just kind of know you always want to read in 22:45 um to do something like that. Hi. Okay. I um have not had luck getting Claude to respect
+my Claude 22:54 MD. Like there's one thing particular. Yes. where I'll ask it to refactor something and then it 22:59 will leave inline comments explaining the like the what of it
+is and it's like like something that's 23:04 extremely obvious and so I'll tell it like go and remove any inline comments that describe the what 23:09 of what's happening and then
+it will remove it and then immediately do it again and like the same 23:13 pass. So do you have any strategies for dealing with that? So there's kind of two things that 23:18 fix
+that. So that was actually kind of a model problem. There's nothing in the prompt. We have 23:22 actually a lot in the prompt for 37 that said, "Whoa, do not leave comments." And
+despite that, 23:28 the model just loves to leave comments. Um, so it doesn't surprise me that your cloud MD didn't help 23:32 much either. We already did a lot I did a lot of work
+to try to tamp it down from what happens out 23:37 of the box. So we mostly fixed that in Cloud 4. Now there might be some new weird behavior quirks, 23:45 but the other thing we
+made better in Cloud 4 is it's just better at following instructions. 23:49 Um, and we've gotten a lot of feedback from early testers that, uh, all of a sudden, whoa, 23:54 my
+cloud MD is being followed way more closely. Um, and it might be a good chance to go look in 23:59 your CloudMD and decide, do I still need this stuff? Maybe I can take some of it
+out. Maybe 24:05 I need to add a few new things. So, moving over to the new models might be a good time 24:09 to take another look at what's in there and see what you need and what
+maybe can go. Uh, 24:15 for the record, I'm trying to think of something that you might not have thought of. We're doing 24:19 multi- aent execution and parallelization. Can you
+make it so that for four agents, 24:24 say agents two and three use the context from agent one, maybe agent four uses the context from 24:30 agent two at a certain point. Yeah. Um
+yeah, etc. That's interesting. We're trying to So, 24:37 kind of like I said at the beginning, we're trying to do the simple thing that works, 24:39 which is just one agent that's
+great at coding and does everything. Um I think we want to figure 24:45 that out. Probably what's going to happen is if you wanted to do that, you would ask all your 24:50 agents
+to probably like write to a shared markdown file or something like that so they can all kind 24:55 of like check in and communicate. Um, sometimes like I'll be working with
+cloud.md or claude and 25:01 I'll just say like, "Hey, I need you to write some stuff in like ticket.md for another developer and 25:06 then I'll fire up another cloud code and
+I'll be like, hey, read ticket.md like another developer 25:11 left this note for you. Like this is what you're going to work on." So, I would think about trying 25:15 to write
+that state to a file and then just kind of like count on the model's ability to just like 25:20 read files and make sense them um is probably the best you can do today. And maybe
+we'll figure out 25:26 clever ways to expose that uh in the product as something more native. Cool. All right. And with 25:36 that said, I have some rare clawed code stickers that
+I found in my backpack. So, come find me. 25:42 I'll be hanging out over there or something. Um, happy to share them. Thank you. [Applause] All From Anthropic0:01 All right. So, in
+the last lesson, we 0:03 talked about the claude ND files, 0:04 otherwise known as memory, which Claude 0:06 code uses when you're asking it to do 0:08 something. Now, it's able to
+do this 0:09 because the claw.md file, gets added 0:12 automatically as context to any claw 0:15 code session like this one we've got 0:16 going on now. But what do we mean when
+0:18 we say context? Well, just like in 0:21 conversations with real people, 0:23 responses are more accurate and 0:24 appropriate from AI models when you 0:26 provide additional
+relevant information 0:28 or context to your prompts. Imagine I 0:31 just said the word banana to you in a 0:34 conversation without any additional 0:35 context. You probably
+wouldn't know how 0:37 to react and you would most likely think 0:39 I'm quite strange. But if I said to you, 0:41 first of all, my favorite fruit is a 0:43 banana, then I've added
+context to that 0:46 word, and you might still think I'm 0:47 strange, but at least you know why I'm 0:48 saying the word banana, and you could 0:50 even respond with your own
+favorite 0:52 fruit. The same is true when you're 0:54 having a conversation with Claude Code 0:56 or any other AI powered chat. If I just 0:59 told Claude Code to fix the link, it
+1:03 probably won't know where to start or 1:04 what link I'm referring to or even 1:07 what's wrong with the link. But if I 1:09 referenced a specific file or component 1:11 where
+that broken link is as context to 1:14 the prompt, then Claude's got a much 1:16 better chance of knowing what I'm going 1:18 on about. And the results are going to 1:19 be much
+better because now instead of 1:21 having to scan the entire codebase for 1:23 some kind of broken link that it doesn't 1:24 know about, it's going to find it right 1:26 away in
+the file we added as context. So 1:29 we can manually add files as context to 1:31 Claude code by using the at symbol 1:33 followed by a path to the file. For 1:36 example, I could
+say at source and then 1:41 back slashcomponents 1:43 and then also back slash UI. And as I'm 1:46 writing this, notice that we get some 1:47 file options that appear down here,
+1:50 which I can just cycle through using my 1:52 arrow keys to select a file. So I'm 1:54 going to select this button component 1:56 file and I'm going to shift on it so 1:58 that
+it gets added to my chat right 2:00 here. So now inside that button 2:02 component, we have different variants, 2:04 right? like primary, success, warning, 2:07 etc. I'm going to
+add two more, which is 2:08 just black and white variants for high 2:11 contrast. So, I'm going to say add a 2:13 black variant with white text and a 2:16 white variant with black
+text. And then 2:19 uh with black text rather, sorry. And 2:21 then I'm going to hit enter. And because 2:23 we provided the file as context, it's 2:26 going to know to look at the
+variants in 2:28 that file and add them in. If we didn't 2:31 add the context, then it wouldn't know 2:33 maybe which file or components to add 2:35 the variants to. And now you
+can see 2:37 it's asking us to make changes, which 2:39 I'm going to accept. And then if I open 2:41 up the file in a moment when it's 2:43 completed this, we should hopefully see
+2:45 the black and white variance. So, let me 2:48 cross this off. Oh, it's asking to make 2:49 another change. So, let me press yes to 2:51 do that. 2:54 And now, if we open this
+file, we should 2:56 be able to see those two new variants. 2:59 Another way to give Claude code context 3:01 of the file that you want to work on is 3:03 by opening the file
+itself and just 3:04 putting your cursor somewhere inside it. 3:06 And when we do that, you can see the 3:08 file name underneath the chat window 3:09 over here, which tells us
+it's been 3:11 added to the context. Now, if you close 3:13 that file, well, it's still there. But 3:16 that's because the cursor is still kind 3:17 of active inside that file. But
+if you 3:19 open a new file, just put your cursor 3:20 inside that one instead, then it's going 3:22 to update over here as well. Now, you 3:24 can only add one file to the context
+3:26 this way, but you can add multiple files 3:28 by using the at symbol several times in 3:30 the prompt itself. Also, you can select 3:32 a portion of code inside a file, and
+3:35 it's going to hone in and use that 3:36 little section you've highlighted as 3:38 context. And you can see that down here 3:40 in the chat as well, that this amount of 3:42
+lines is selected. 3:45 So, you can also add references using 3:47 this at sign to claw. ND files. So if I 3:51 wanted to reference a schema file for 3:54 example for whenever
+Claude works with 3:56 data modules, I could do and it would 3:57 load that file up into the context then 4:00 or I could reference a testing config 4:02 file in here or anything
+else I think 4:04 Claude Code should know when making 4:06 edits to certain parts of the code. So 4:09 that's how we add files as context using 4:11 the at sign or opening the file
+4:14 manually. But we can also add images as 4:16 context too. So, I've got a picture of a 4:19 button over here with a 3D effect, and I 4:21 want Claude Code to apply that kind of
+4:23 3D effect to our buttons. So, what I'm 4:26 going to do is drag and drop the button 4:28 file into the chat session over here. 4:31 And now, it's added as context. Then, 4:33
+what I'm going to do is paste in a 4:35 prompt, and it says, can you update the 4:37 button design? Let's just make this more 4:39 specific. We'll say button design in the 4:42
+button 4:44 component 4:46 to look more like the button on this 4:48 image with a 3D effect keeping all of 4:50 the color variants. I'm also going to 4:53 reference the file in
+context as well by 4:56 saying at source and then we want to go 4:58 into components and let's do backslash 5:02 components to do that. And then we want 5:04 the button file down
+here. So, I'm going 5:07 to tap on that to add it to the context 5:09 as well. Then press enter. All right. 5:12 So, I'm going to allow it to make these 5:14 edits. 5:16 And again,
+it wants to make some more 5:17 edits. I'm going to press yes to allow 5:19 it to do this. All right. And now it's 5:21 changed it. Okay. And now in a browser, 5:24 we can see
+those buttons look a lot more 5:27 3D. It's added that 3D effect. It's also 5:29 added, I think, a subtle gradient going 5:32 from top to bottom. So, yeah, it's done 5:33 a really
+good job there. So, we've seen 5:35 now how to add context to prompts, which 5:37 essentially gives Claude code more 5:38 information about any given task. So, 5:40 adding context
+when it's needed is 5:42 really important. However, adding too 5:44 much unnecessary context can lead to 5:47 less accurate results. Now, on a prompt 5:50 byprompt basis, you're
+probably not 5:52 going to intentionally do that. If 5:54 you're working on the button component, 5:55 you most likely won't add 50 other 5:57 unrelated files as context. However,
+it 5:59 can happen unintentionally. So let me 6:01 explain how first of all and then we'll 6:03 look at some ways to combat that. So 6:05 imagine we're working on a feature like
+6:07 a shopping basket and we provide clawed 6:09 code with a bunch of different prompts 6:11 and files as context over several 6:13 different messages inside the session. 6:15
+Well, all of those files and messages 6:17 including the AI model responses. 6:19 They're all stored in context in the 6:21 current chat session. And that means 6:23 whenever
+you're sending new prompts, 6:25 Claude codes got the entire chat history 6:27 plus any additional context you manually 6:29 added like files as context for the 6:31 session. Now,
+that's okay while we're 6:34 working on this feature because it is 6:36 probably useful for Claude to know about 6:38 that history and the changes that it's 6:40 been making. But
+imagine we then get 6:42 sidetracked because the button doesn't 6:44 quite look right inside the shopping 6:46 basket and we start asking Claude code 6:48 to make UI changes to the
+button 6:50 component which is I suppose a 6:52 completely separate thing to the 6:54 shopping basket. Yes, we might use the 6:56 button on that section but largely the 6:58 basket
+page is unrelated to the button 7:01 component. So, if we started working on 7:03 the button component in this chat, 7:05 Claude code's going to still have all of 7:07 that
+previous chat and file context 7:09 about the basket page, which in respect 7:11 to working on the button is pretty 7:12 useless. And we're essentially giving 7:14 Claude a bunch
+of useless context to 7:16 read while it's working on the button. 7:18 And that could confuse him. It might 7:20 even start making inline edits to the 7:22 button itself on the
+basket page, which 7:24 isn't what we wanted. So, when we're 7:26 working on a feature with claude code, 7:28 it's always best to keep the context 7:30 clean and focused on
+whatever we're 7:31 working on and not let it get bloated 7:34 with information that it doesn't need. 7:36 So, how do we combat this? Well, there's 7:39 a few ways. First of all,
+you could just 7:41 exit the chat using the forward/exit 7:43 command and then start a new one in the 7:45 terminal by typing claude again and 7:46 hitting enter. And then from
+inside any 7:49 session, you can resume all the previous 7:51 sessions by using the forward slashres 7:53 command, which I'm going to show you 7:54 later. But if you don't want to
+do that 7:57 and you want to stay inside the same 7:59 session, you've got essentially three 8:01 options. You can use the clear command 8:03 and that's going to clear the entire
+8:05 session history and context back to its 8:07 original state. It will keep the claw MD 8:09 files as context, but anything else that 8:11 you manually added in the chat and any
+8:13 conversation history that all gets 8:15 cleared. So, it's like deleting the chat 8:17 and starting a fresh one, which might be 8:18 useful if you fully completed a task and
+8:20 you want to move on to the next one. The 8:23 other option or one other option should 8:25 I say is to use a command called forward 8:27 slashcompact. And this tells claw to
+8:30 look through the entire session history 8:32 and context and compact it into a small 8:35 summary and then just delete the rest. 8:37 So that small summary of the session 8:38
+history will remain in the session 8:40 context, but the rest gets deleted. So 8:42 it reduces all of the context a lot. It 8:45 squashes it right down. Now, I find this 8:47
+useful if I'm working on a single 8:49 feature, but the session starts to get 8:52 really long and the context bloated. And 8:54 then I can just carry on with the same 8:56 feature
+in the same session using that 8:58 compact summary, and it's still going to 9:00 be there as context. The third option is 9:03 to tap escape twice in the chat window. 9:06 And
+this lets you essentially rewind to 9:09 a previous point in the session and 9:11 remove all later chats and files from 9:14 the context. So, this could be useful if 9:16 you were
+working on a feature, maybe you 9:18 got sidetracked by a bug or something 9:20 else and you wanted to trim all of that 9:23 last bit from the history in the 9:25 context. So, you
+could do that. So, 9:28 that's three approaches to keeping the 9:30 context clean and focused. Now, let me 9:32 show you them in action. All right. So, 9:34 first of all, let's try
+double escape. 9:36 So, press it twice like so. And you can 9:39 see I can go back in the chat. Now, I 9:41 cleared it earlier on. So that's why you 9:43 see this clear and that's
+the beginning. 9:45 But you could go back to an earlier 9:46 point in the chat by just pressing enter 9:48 on any one of these. Now I'm going to 9:49 escape to get out of this
+because I 9:51 don't want to do that just yet. Uh the 9:53 next one I'm going to try is compact. So 9:56 I'm going to use that compact command. 9:59 And you can see also you can
+give this 10:00 an additional argument right here or 10:02 instructions as to how you would like 10:04 this compacted. I'm not going to do 10:05 that. I'm just going to press
+enter. 10:09 And then you can see it's created a 10:11 summary right here. And we can now have 10:15 that in our context. But if we now press 10:17 double escape, you can see this
+is the 10:20 only thing left. So we have this which 10:23 is the original one and then the compact 10:25 command. So all the history has actually 10:27 been cleared except for this
+bit of 10:30 context that remains in the session. All 10:33 right. So let me escape out of this. And 10:35 then finally I'm going to use the clear 10:37 command like so. And you
+can see here it 10:39 says clear conversation history and free 10:41 up context. I'm going to press enter and 10:43 that's going to get rid of everything. 10:45 So now if I press
+double escape, you can 10:47 see there's no history in the chat. 10:50 Awesome. I also mentioned that one 10:52 option would be to exit out of the 10:54 current chat using for/exit
+and then 10:56 just pressing enter. So that's going to 10:58 stop the session and dump you back in 10:59 the regular terminal interface again. 11:02 And if you start Claude up
+again by 11:04 typing Claude and then hitting enter, 11:06 it's going to start on a brand new chat 11:08 session with zero context added to it 11:10 except for that claw md file.
+So you can 11:13 start working on your new feature 11:14 straight away. And then if you wanted to 11:17 resume a previous chat session, you can 11:20 use the forward slashres
+command and 11:22 then press enter. And that's going to 11:24 show you all of the current chat 11:26 sessions you have going on with Claude 11:28 Code for this project, including
+when 11:30 you last used that session, how many 11:33 messages are in it, uh the branch it's 11:35 working on, and a summary. So, I could 11:37 select one of these, and then I get
+put 11:39 back into that chat session with all of 11:42 its previous context intact. Now, there 11:44 is one more small thing I want to 11:46 quickly mention when it comes to 11:47
+context, and that is something called 11:49 the context window. And the context 11:50 window represents how much context an AI 11:53 model or tool can handle at once. It's 11:56
+measured in tokens where one token is I 11:58 think about three or four characters in 12:00 a word. Now the context window is 12:02 generally different depending on which 12:04
+tools or models that you're using in 12:06 Claude code. The context window is 12:08 200,000 tokens at this point in time 12:10 which is a fair amount. But if your 12:12 sessions
+last a long time, have a lot of 12:15 manually added context and back and 12:17 forths, then that context window is 12:19 eventually going to fill up. Claude Code 12:21 actually
+tells you when you're 12:23 approaching this limit as well by giving 12:25 you a little message. And when that 12:26 happens, I found the results to drop off 12:29 a little bit. So
+if your session context 12:32 is ever getting a bit bloated, remember 12:34 those three things that we can do to 12:36 reduce it. We can double escape to trim 12:38 out any recent
+history and go back to a 12:41 previous part of the chat session. We 12:43 can use the forward slashcompact command 12:45 to summarize the context and 12:46 significantly reduce
+it. Or we can use 12:49 the forward slashclear command to 12:51 completely clear the entire context and 12:54 start a fresh. So then I think that's 12:56 enough about context for
+now and in the 12:58 next lesson we're going to talk about 13:00 tools and permissions. Claude Co0:00 All right then, gang. It has been a 0:02 while in the making, but it is
+finally 0:03 here. The Claude Code Masterclass 0:05 available now over on netinja.dev. The 0:07 course is $15 to buy. But if you use the 0:10 promo code Claude Ninja, all one word,
+0:12 you can grab it at half price for just 0:14 $7.50. Anyway, I've spent the last six 0:17 or seven weeks putting this together, 0:18 trying to pack in as much genuinely 0:20
+useful, practical content as possible, 0:22 and I've really enjoyed making it. So 0:24 whether you're completely new to Claude 0:26 Code, you've been using it a little bit 0:28 but
+without any real structure or 0:30 workflow, or even if you're slightly 0:31 skeptical about AI tools in general, 0:34 this course is built with you in mind. 0:36 It's also not a
+vibe coding course. In 0:38 my experience, AI is at its most 0:40 powerful when it's paired with some 0:42 coding experience and project knowledge. 0:44 And that's the angle this
+course takes 0:45 throughout. Anyway, we start off with 0:47 the fundamentals and that means getting 0:49 Claude Code installed and set up 0:50 properly, going through some key
+0:52 settings and commands and then dropping 0:54 it into a real project to analyze an 0:56 existing codebase and start making 0:58 changes. From there, we dig into how to 1:00
+manage context effectively, how Claude's 1:02 tools work under the hood and how 1:04 permissions are handled, and how to 1:06 create custom commands for the kinds of 1:08 tasks
+that you're going to be doing all 1:09 the time. We also take a proper look at 1:12 hooks, including building our own hook 1:14 to automatically format code whenever 1:16 Claude
+Code edits a file so it fits 1:18 neatly into a realworld workflow. Once 1:20 we've covered the basics, we'll move on 1:22 to a specd driven development workflow 1:24 that I use
+all the time now in my own 1:26 projects. And to do that, we'll be using 1:27 a mixture of custom commands, claude 1:30 codes, planning mode, and extended 1:32 thinking with the
+Opus model to 1:33 implement new features in a structured 1:35 way. It's a simple three-step workflow 1:38 that keeps me firmly in the loop. It 1:40 lets me review every code
+change and 1:42 then jump into the weeds to make manual 1:44 edits whenever I want. And honestly, I 1:46 think that level of control is essential 1:48 if you're going to be using
+AI as part 1:50 of your development cycle. After that, 1:52 we'll look at MCP servers and how they 1:54 let Claude code interact with things 1:56 outside of your codebase. In
+particular, 1:59 we'll use the Figma MCP server to pull 2:01 in design information and a Firebase 2:03 server to communicate directly with a 2:05 backend. Then we'll move on to
+skills, 2:09 which let us bake in more predictable 2:10 patterns and outcomes by essentially 2:12 teaching Claude how to do certain things 2:15 in a specific preferred way. So that
+2:17 might be how schemas and data models are 2:19 created or how database queries are 2:21 structured, that kind of thing. On top 2:23 of that, we'll do a proper deep dive 2:25
+into sub aents and how they can improve 2:27 your workflow using isolated context 2:29 windows and by running tasks in 2:31 parallel. We'll also be making three sub 2:34 aents of
+our own which are going to fit 2:35 nicely into that specd driven workflow 2:37 that we set up in the course. And while 2:40 we're learning all of this, we'll be 2:41 building a
+project called Pocket Heist, 2:43 which is designed to add a little bit of 2:45 mischief to the workplace. The idea is 2:47 that co-workers can assign each other 2:49 little heists
+around the office using 2:50 secret code names. It's a fun little 2:52 project, but it also gives us a solid 2:54 realistic app to demonstrate the 2:55 benefits of using Claude
+code as we 2:57 build it out. Now, once the core 2:59 functionality and design of the 3:00 application are all in place, we're 3:02 going to bring GitHub into the workflow 3:03 as
+well, and we'll use the Claude GitHub 3:06 app to automatically review pull 3:08 requests and have it work independently 3:10 on open issues. After that, we'll deploy 3:12 the app
+to Vel and set up automatic 3:14 deployments whenever the production 3:16 branch updates. On top of all of that, 3:18 we'll take a look at a slightly newer 3:20 tool, the clawed
+code for the web tool, 3:22 which lets us spin up tasks remotely in 3:24 the cloud and open pull requests 3:26 directly on GitHub without running 3:27 anything locally. And again,
+we're going 3:29 to be doing all of this in a structured, 3:31 refined way that fits nicely into a 3:33 development workflow. Not vibe coding, 3:35 not oneshotting the whole
+application, 3:37 but instead using claude code to make us 3:39 10 times more productive. So whether 3:42 you're completely new to claude code and 3:44 aentic coding or if you have
+some 3:46 experience with it but haven't really 3:47 figured out how to fit it nicely into 3:49 your own workflow or even if you're an 3:51 AI skeptic then this course is designed
+3:53 for you. It's packed full of tips, 3:55 tricks, and things I've learned over the 3:57 last year since its release and it's 3:58 going to put you in a much better 4:00 position
+to harness the power of AI in 4:02 your own projects. So again, use the 4:04 promo code Claude Ninja to get the 4:06 course for half price, just $7.50, 50, 4:08 but that code's
+only available for the 4:10 next few weeks. After that, it's going 4:11 to be full price of $15, which is still 4:14 less than most courses sell for to be 4:15 honest. So, I'll
+leave the link to this 4:17 course down below the video. Or if you 4:20 want access to my entire library of 4:22 masterclass courses and pro exclusive 4:24 shorter courses, not
+found anywhere 4:26 else, you can sign up for a Net Ninja 4:28 membership and get instant access to all 4:30 of them, including this brand new Claude 4:33 Code Masterass as well.
+That's just $9 a 4:35 month and you can even get your first 4:36 month half price by using this promo 4:38 code right here. So again, I'll leave a 4:40 link to the pro membership
+page below 4:42 the video as well. Anyway, I really, 4:44 really hope you enjoyed the course. I've 4:46 had loads of fun making it and I'm going 4:47 to see you all in the next
+one. 5:02 Heat. Heat. N. 5:36 again. Claude C0:01 Okay then gang, in this lesson we're 0:03 going to talk about the tools available 0:04 to Claude code out of the box and also 0:07
+how we can give project Y permissions to 0:09 Claude to use certain tools. So whenever 0:13 we ask Claude code to do something, it 0:15 generally uses some kind of built-in 0:16
+tool to perform an action. For example, 0:18 to read a file, it would use a read 0:20 tool. To edit a single file, it uses the 0:23 edit tool. To run a bash command, it 0:25 uses
+the bash tool. And we don't need to 0:28 reference these tools when we send our 0:29 prompts or messages. Claude Code knows 0:32 when it needs to use certain tools based 0:34 on
+your instructions. Now, you might 0:36 have noticed that when I've asked Claude 0:38 to do some of these things in past 0:40 lessons, like edit a file, it asks me 0:42 for
+permission to do that thing before 0:44 it actually does it. And we can either 0:46 say yes or no, depending on whether we 0:48 want to grant that permission or not. On 0:51 the
+anthropic docs, it lists all of 0:53 these built-in tools available to Claude 0:55 Code, and it outlines what each one 0:57 does. It also shows you whether each of 0:59 these tools
+requires permission before 1:01 it gets used. For example, the bash and 1:03 the edit tools, they do require 1:05 permission, but read doesn't. So, if I 1:07 ask Claude Code to
+look at a file, it's 1:10 not going to prompt me to give it 1:11 access, but if I ask it to change a 1:13 file, then it will do. There's a tool 1:15 down here, by the way, called
+to-do, 1:17 right? and it uses that tool to make 1:18 these little checklists of things it 1:20 needs to do when you give it a task to 1:22 kind of keep itself on track. It's 1:24
+pretty nice and you're going to see them 1:25 quite often as you're working with 1:27 Claude Code. Now, again, you don't need 1:30 to remember the names of all of these 1:31 tools

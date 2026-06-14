@@ -1,0 +1,224 @@
+build. So it's just finding one more issue to fix. All right, so it has the 16:32 build is working. So, we're going to go ahead and just run it and see how it's doing. It's
+noticing that I'm already running the app on port 3000. So, it 16:39 just started it on 3001. That's typical. You just want to be careful about that. We'll fix that in just a
+minute. See if 16:45 the subscriptions load. Right. There we go. Cool. So, we got free, enterprise, and pro. Definitely some styling to do 16:52 here and probably we want to be
+able to sort that properly, but it looks like initially we have this coming up properly. All right. So, from here it's 16:58 asking us to sign in to subscribe. So, I haven't
+actually signed in. Definitely some thought around navigation that 17:03 we'll need to do. I'm going to go ahead and just sign in first of all just to see something here. And we'll
+go back to 17:09 the subscriptions page now that we're logged in. So free is the default plan and then we have enterprise. So it seems 17:16 to be working. I'm just going to jump
+back to Visual Studio here. So I did a quick test. I'm going to go ahead and 17:22 have it use the Playright MCP and I'm going to go ahead and give it the username and password. So
+I'm going to 17:27 grab this here. Can you go ahead and do some basic testing since you know better what you built and what pages are where? Testing Subscription Flow 17:33 I'll go
+ahead and give you a user that already exists. I'll give you the username, email, and the password. I'm 17:39 just really curious to see how well this works. So, here it's just
+trying to use curl. Sometimes it does this. It's not using the Playright MCP. Can you use the 17:45 playright MCP to test, not just curl? I'm going to move this over just a bit
+17:50 just so we can see everything that's happening. So, it's just asking for permission to be able to autofill these 17:56 things in. In general, a lot of the times you're just
+going to want to give it permission to do whatever it's trying to do and then give it permission for 18:02 the next time. Otherwise, it just keeps asking you over and over again.
+It's going to subscribe to the pro plan. See 18:07 if that works. I'm going to copy this. Failed to start checkout process. Looks like it's able to handle that on its 18:14 own. It
+looks like it doesn't have the API key in the local. So, it never filled out any of this information that 18:20 it needs. Perfect. I found the issue. Correct. Yes. Of course, it's
+not really finished until we've tested this out. 18:26 So, you need to put in all of the environment variables that we need and if you need any from me, let me know and 18:31 let
+me know when we can actually test the entire system. Sometimes AI is funny. It's basically telling us that it 18:37 wasn't able to test everything and it's telling us it's done as
+well and wondering if we want really want to test 18:42 everything. So, it's asking for my Superbase credentials, but that's already in there and it needs the Stripe 18:48
+publishable key. So, Superbase is already connected and working in the ENV 18:54 local. You might want to just check and make sure what we already have there. Like you said, you
+already have the Stripe key. So now, let me get you the 19:01 Stripe publishable key. Grab this. Drop that in there. Let me know if you need anything else. All right, I'm going to
+19:07 just stop. I was having that issue again with port 3000. So, I'm going to just kill this other version I had. I killed 19:14 the other version of Nex.js that was running on
+3000. You can go ahead and use it now. All right. So, looking at the local ENV variable, it does look 19:20 like it has everything in here now. So now here we have the playright
+window open. Now one thing I'm curious about is when it gets to the credit card spot. 19:28 Will it know what to put there? All right. So it didn't attempt to put in any credit
+card information here. I noticed you didn't actually try to put 19:34 in a test credit card. I am in test mode. So you should be able to do that. Does the documentation in Stripe
+provide 19:40 any information around what you should use for a test card and expiration date and CVC? Right. So it's going to put in 19:47 the card information. just go ahead and
+not save my information for faster checkout later on so we can get past 19:54 that one spot. Now, I surely could test this, but I'm just curious to see how well the MCPs are able
+to navigate 20:00 through these testing scenarios. So, it unchecked it. See if it subscribes. Processing subscription successful. Your 20:06 plan is now active. Awesome. Okay, now
+I'm noticing that it's still showing the 20:12 free plan even though we subscribed. While this is working, I'm going to jump over to Stripe and let's just look at 20:18 the
+transactions. So, we have one here. Subscription created. Perfect. And then 20:24 let's jump over to Superbase. Check out the tables. So, then we have features, prices, products,
+and subscriptions. 20:30 Notice that there's no subscription for the one we just created. Okay. So, that's probably why the front end is not 20:36 working correctly. All right. So,
+we're getting there. One thing I noticed is the subscription is properly created in 20:42 Stripe. However, I did notice that when we came back to the subscription plans page, it's
+still on the free plan and 20:49 there was nothing added to the database that shows us that the plan has switched 20:55 to pro. And you can see on the playright page that it's
+still showing the free plan as the current plan. So, a little 21:01 bit of debugging to do on as to why it didn't save that subscription to our Superbase database after it was
+21:07 completed. I'm actually going to flip into plan mode. So, you're absolutely right. The payment went through, but our hook system didn't create anything. So, 21:14 let's see.
+So, it looks like there might be a web hook that's missing. So, basically what it's trying to say is that because we're running this locally, 21:21 Stripe wasn't able to
+successfully initiate the web hook back to our server. But, we do need to test this to 21:26 make sure it's okay. So, basically, it wants to install the Stripe CLI, which probably
+is best practice, but it did 21:32 give us an alternate approach where it can just call the web hook for us. But, I think we should probably use the CLI. 21:38 So I'm going to go
+ahead with the plan and install the CLI. I'm just curious as well. So it's going to automatically install that for us. So first thing that Fixing Webhook Integration 21:44 needs to
+happen is we just need to log in using the tool. All right. Wants to rerun the dev site. Let it start it. I'm 21:49 approving these one by one just because I'm in uncharted
+territory learning as I go. So I want to see each command. So 21:55 now it's going to test that web hook. And just so you understand what ends up happening is that we are
+communicating 22:01 back and forth with Stripe, right? So, normally your website is on the public 22:06 internet and Stripe is able to access it. In this case, because we're on our
+local computer, when Stripe is trying to 22:13 send stuff back to our local computer, it's not able to because, you know, you have a modem in the way and there's 22:19 really no
+way to get in touch with your local. So, we're setting up a workaround to do that using the Stripe integration 22:25 command line tool. So, now it's going to go through the process
+again. It's going to subscribe. Let's see if it unchecks this this time. Trying to do a quick 22:31 snapshot of the current page. It auto unchecked that. Now it's processing.
+Subscription successful. So it looks 22:38 like the payment was successful and the web hooks are now being received. Most are returning 200, but it did get one 22:44 with a 500. So
+now it's just investigating the error. Sees two issues. So now it's trying to fix those 22:49 payment issues. Seeing some database issues. So it's going ahead and fixing those. So
+it's just working through issues that it's seeing on its own. All 22:56 right. So it says it's fixed. Just going to go back to port 3000 where we have our subscriptions. I believe
+this should 23:01 take us to Stripe itself. Manage subscriptions. Failed to create portal session. So that's an issue. Let's try 23:07 to go through this process here. Subscribe to
+the enterprise. You already have an active subscription. Okay. So we 23:13 have this problem here. Manage subscription. I went to manage subscription in my own session. And when
+23:19 I did so, let me grab the error. I got this error. Feel free to test in 23:25 playright MCP if you need to. Otherwise, if you have enough information, go ahead and fix that.
+All right. So, now it sees 23:31 the issue. So, it looks like it was just testing with the fake customer ID and that's the actual issue. So, now it's deleting things and checks the
+box. All 23:37 right. So, it's still continuing to debug the various issues. So, it's still having an issue with the rowle security 23:43 and superbase. So, it's figuring out it's
+just using different roles that it should be using. So, now it's going to be able to use the service role instead 23:49 of it actually being a user. Okay, we're just giving access
+to Stripe to use the command line. This is actually pretty 23:56 cool. this command line tool for Stripe that essentially allows us to facilitate this communication I was talking
+about 24:01 here for us. So it's able to simulate what's happening here. So now we have the subscription there. So now it's 24:08 getting back to the manage subscription button. If
+you remember we were trying to fix that, but it had to do some other work to get that ready to fix. And so 24:15 now we're back here and we're at the same spot. So I wanted to log
+into Stripe, but now it's going to try to use 24:20 the MCP. Go ahead and use the MCP. And if that doesn't work, then let me know what you need configured inside of the 24:28
+Stripe portal and I'll do that for you. All right, so now we have the instructions on setting up the portal. So I'm just going to grab these, follow 24:34 the instructions. All
+right, so I see a few things here. Invoices, invoice history, customer information, payment Setting Up Customer Portal 24:41 methods, cancellations, subscriptions. So it told us to
+leave this off. 24:47 Business information. So now there's a couple questions I have. It says, "Should we activate the test link and do 24:53 we want a redirect link?" It looks
+like most of that is already set up. One question I do have is that it mentioned, 25:00 "Should we activate a test link and do we want to set up a redirect link?" So, 25:05 this
+looks like it was already somewhat set up. So, not sure exactly what you're requiring me to do here and what the 25:12 purpose was. So, look like that might not be something that
+we even really need to worry about right now. So, I mentioned that I haven't maybe saved 25:18 this. So, I'm just going to come back to the top and just save the changes. See if
+that does anything. Activate test 25:24 link. So, now this is a situation where it's starting to just suggest things and try things. When it seems like the AI is 25:30 just
+starting to guess, I tell it to make sure to read the documentation and really to look and see if there's 25:36 anything that it can find online. Can you go ahead and just use the
+documentation or the community support 25:42 and try to figure out and make sure you know what you're doing versus just trying different things? Let's go ahead 25:48 and do that
+and come up with a plan. So, I'm going to put that in there and then I'm going to jump back to plan mode. All 25:53 right. So, based on the research, I have a clear understanding
+what the issue is. Root cause no configuration provided in your test mode default configuration 26:00 because the Stripe customer reporter requires an active save configuration
+simply by visiting the page. Okay. So, I 26:05 did save it. So, I'll let it know that I did save it. So, I'm going to jump out of the plan mode and just tell it that I did save it.
+Okay. Just so you know, I 26:11 did save it. So, that was done. So what's the plan given that I have done 26:16 that? So now here be careful here because it's saying because you've
+already saved the configuration let me present a plan for alternative 26:23 approaches to fix the issue. So it's getting confused. I saved it after we went through all that
+information. It's 26:28 trying it's it's starting to think that I saved it beforehand. No, you misunderstood me. I saved it after we 26:34 started to investigate this issue just a
+couple seconds ago. Not before this issue first started. So given that I 26:42 saved it after we started to have the issue, let's pick up again where we left off. And what is the
+plan to finalize 26:48 the setup? All right. So now it's it basically just wants to continue forward. So let's go. So it's going to automatically navigate back. All right. 26:55
+Cool. So now we can navigate and manage the subscription. Perfect. And we can Testing Plan Switching 27:00 modify the billing it looks like. Now one thing it did mention back here
+was that it wouldn't allow me to actually 27:06 change subscriptions. So I am going to take note of that and just ask later how difficult that is. They should still 27:13 obviously
+be able to cancel it and resubscribe. So problem solved. The customer portal is now fully functional. Here's what we achieved. Can you use the 27:19 playright MCP to also cancel
+the subscription on the page you're currently on just to make sure that that's working and that it reflects in 27:26 the SAS application that it was cancelled. So it wants to think
+that it's done even though it hasn't really tested the cancellation yet. And now, 27:33 part of the reason why I'm using the built-in Stripe pages, as you see here, if you were to
+try to build all this 27:40 out, it would be very difficult and there's a lot of compliance involved. All right, cool. So, it actually shows 27:45 that it's active but cancels at
+the end of the period. So, it was able to handle that gracefully. I'm just going to click through myself. Manage here. So, we 27:51 could say don't cancel. Let's see what happens
+if I do that. I noticed in the billing portal there is a button that 27:58 says don't cancel subscription. if I manage the subscription because I still have an active subscription
+left. Should 28:05 I expect that functionality to work? Do you want to test that in the Playright MCP real quick? I'm on the manage 28:11 subscription page. So, I'm just continuing
+to explore these different features and making sure they work. So, 28:16 it looks like it worked on the Stripe side of things, but I wonder back in the portal if it's now
+subscribed again. So, 28:22 now it's just checking the logs to make sure everything worked. So, it's waiting for it to go back to the application, 28:28 but I don't see anything
+here that's going to do that automatically. It looks like it's just going to stay here. I don't get the sense that it's going to 28:33 forward back automatically. You might want to
+just go back to the main page, subscription page, and see if everything 28:40 was updated properly on its own using the Playright MCP. All right, cool. So, we can see that it is
+active again. 28:46 Cool. Can you do me one favor and investigate the technical difficulty and the work involved to allow switching 28:53 plans? It looks like the possibility could
+happen on the Stripe side of things, which might be more simple, I 28:58 assume. I'm assuming that we could probably also do it from the actual SAS interface as well, but I'm I'm
+not 29:05 familiar with the most simple way to set that up. Again, we want to keep this as simple as possible. Can you go ahead and 29:11 review the documentation and look up the
+best practices for keeping this as simple as possible and suggest a plan 29:18 forward? Now, before I do this, one thing I am going to do is I'm going to jump back to the terminal
+here. I'm just 29:24 going to do a get status. And I'm going to go ahead and get add everything to this project. Although, I'm noticing 29:30 that I shouldn't have included the
+claude and the playright mcp into the GitHub repository. So, I'm going to do a 29:36 get status. We're going to see all those files in there. So, I need to reset these folders
+here. So, I'm going to do 29:41 get reset.cloud and get reset.playwright. 29:48 MCP get status. All right. So now we move those back. So now one thing I want to do is just add
+those to the get 29:55 ignore so we don't do that the next time. Get ignore and we will add 30:01 and playright. That way we won't accidentally do that next time. Save. 30:06 Get
+status playright dash MCP. Now when we do a get status they won't even show 30:12 up. And then we'll get add the ignore. And I'm just doing this now because I don't want to take
+this next step with a 30:18 bunch of code that's working and mess it up. So get commit added Stripe Adding Sort Order & UI Improvements 30:23 integration. So now that that's
+committed now, I'll go ahead and run this. And then I'm going to go ahead and move it into plan mode cuz I realized it 30:30 was an auto accept. All right, so it's got a plan here.
+Based on my research, there are two main approaches. Option 30:35 one, Stripe customer portal. Simple as recommended. You just enable the switch plans feature in your existing
+portal. 30:41 Zero code changes. Stripe handles the entire UI. So we just need to turn it on. Current status. Your web hook 30:48 handler already processes updated events. So it
+should work. So recommended approach to start with 30:53 option one. All right. So we'll go ahead and let it move forward with that based off of what I understand. I'm going to
+30:59 be the one that has to do that. So it's trying to do that again. I'm just going to tell it I'll make that change. I'll 31:04 make the change in the customer portal. You can
+just do the testing with the 31:12 Playright MCP. All right. So, while that's chugging along, I'll go over to the customer portal here and we saw that 31:21 subscriptions customers
+can switch plans. So, we'll turn that on and we'll save the changes. You must add at least 31:27 one eligible product. So, we have to actually add the products here. So, we'll say
+enterprise and the pro plan. 31:33 All right. So, we'll save that. Okay. It's ready. So now what it's testing is 31:38 just to make sure it can work here and then once they've
+changed it that it should be in the new plan back in the 31:45 actual SAS framework. All right. So now that it's seen that it was able to select that. So now it needs to continue.
+So that's coming up with the 31:52 plan here. So the remaining tasks are complete the plan change, verify the web hook, test the end to end flow mark to 31:58 complete. So let's go
+ahead and say yes. All right. So that looks like it works. And now it's just making sure that the web hook is set up correctly. And I'm 32:04 noticing that is not on the new plan
+yet. So it's noticing that the web hook did not correctly register the 32:12 subscription change. So it's saying it's totally done except there's a minor issue. So there's no
+front-end caching 32:18 as far as I know. And you're saying it's done, but it's not done. So can you figure out and do some research, check 32:24 the logs, and then do some online
+research with the documentation to see 32:29 what's going on? All right. So it sees the issue. So, it just didn't update the product ID. So, it looks like we were 32:35 just
+missing a little bit of code, right? So, it's trying to test again. I wonder if it goes tries to go back to 32:40 the other plan. Now, the one thing that the AI is looking for is
+it wants to make sure that it's on the pro plan, but it already was. So, it's going to find 32:47 that. So, I might just walk through it myself and just double check. All right.
+So, let's just go to the subscriptions 32:53 and take a look. So, now realistically, I should be able to go through this process. Confirm. And now if I go to 33:01 subscriptions,
+now we're on the right plan. Perfect. Awesome. All right. So, one quick thing I want to do is I want to be able to control the sort order. 33:07 Really should be free, pro, and
+enterprise. Can you please make it so in the Superbase database, we have a sort 33:14 order because in reality, the subscriptions should be free, pro, and 33:19 enterprise. And we
+should have a integer in the products if that's the right 33:24 table. Don't assume products. I'm just assuming that would be the table to put this in. But we need to be able to
+33:29 adjust that. Can you go ahead and add that column and then update the product so that the free is first, then pro, and 33:36 then enterprise so that when I load the
+subscription page, they're in the right order. Also, one thing that I'm noticing 33:41 here is that when we're subscribed, we probably shouldn't have this here, but let's do one
+thing at a time. I'm going 33:46 to come back to that. So, what's cool about this is that it's building this whole database. We haven't really looked at it much because it's just
+been doing 33:51 this, but we have all of our features here that are associated with specific products. product ID and these are the 33:58 different features. So the features, the
+prices and the products here are all configured. And so now what we're trying 34:04 to do is add a sort order here. And let's do a refresh. So I don't see a sort order added. Maybe
+it's on the 34:10 prices. So we have one subscription. That's me. So it's interesting because it added some code here. And it said it 34:16 added this to superbase products sort
+order. Okay. So it did add it. So now 34:22 we're just trying to get it to work. So I'm not seeing the order reflected here. Let's just double check in the database. 34:28 Maybe
+they didn't put the order correctly. So we have enterprise 3. Okay. So it's just not working. Looking 34:33 at the subscription page, I do see in the database you have added the
+sort order column, but it is not being 34:40 reflected on the subscription page itself. Feel free to use the play rate MCP to take a quick screenshot if you 34:46 need that, but do
+please confirm that it's correct before you say that it's done. So it's confirming everything is 34:52 correct. It just seems like something in the front end code is not correct.
+So now it's kind of going off on a tangent. 34:58 Like it's checking a bunch of different stuff. This has to be a front-end rendering issue. It has nothing to do with APIs or
+anything like that. You Final Testing & Wrap-up 35:05 display these in a specific order and somehow in the front-end code, I'm pretty sure that there is an issue 35:11 there. So it
+said it found something. All right, there we go. So now the remaining issue that I'm seeing here is that if you're already subscribed, 35:18 subscribing doesn't make sense. You
+would really want to manage subscription. So, I'm going to fix that. 35:23 When we are subscribed, when we have a plan, this button here should be manage subscription instead of
+subscribe. Okay. 35:29 And now it's seeing that there's an different issue, but it doesn't understand that I did something manually. So, you're seeing a 35:35 discrepancy between
+the plans, but I did that behind the scenes. So, that's working fine. The only remaining issue 35:41 that I'm seeing right now is that when we are subscribed, and right now I'm
+looking at the pro plan where it says 35:47 subscribe. I believe that should really be manage subscription since subscribing 35:52 doesn't make sense here. We really want to manage
+the subscription. So when we are subscribed somewhere and we have a button that allows someone to change 36:00 actually maybe it should be um switch plan. So in the upper portion
+of the 36:05 page where we have the subscription plans and we show the current plan and which plan it is and that it's active and then the manage subscription button. 36:11 That
+looks good. But in the three areas, if we are already subscribed, that 36:17 button instead of saying should subscribe should be switch plans or switch to pro perhaps. What do you
+36:24 think? So, I'm going to go back into plan mode. I see you're about to make a change, but let's confirm what it should be. Should it just say go pro or go 36:30 enterprise
+depending or should we make it more generic where we just say switch plans? And just to confirm, are you 36:38 going to automatically just go to the manage subscription page as if
+they clicked the manage subscription button 36:45 or is there something fancier that you're going to try to do? Let's keep it as simple as possible. So again, remind 36:50 yourself
+to keep saying simple so that something crazy doesn't happen. And it's still in plan mode. So while that's happening, I'm going to definitely jump 36:57 back to get, do a get
+status, get add, get commit, added, switch plans. You're 37:03 absolutely right to keep it single. Let me clarify the current behavior. Current behavior is subscribe plan update
+37:10 subscribe button change from subscribe to switch plan when user already has an active subscription. Keep existing 37:16 checkout flow. Simple conditional text switch plan
+single line change. All 37:21 right, let's just go with that. These are all things that we could modify and make better later. All right, so it says 37:26 switch plans. Now, let's
+just make sure it goes back to So, it didn't go back to the manage subscription. So the trick 37:33 was is that when we're unsubscribed, it should be it should say subscribe and
+37:39 when it says switch plan, it should just click the same thing and go to manage subscription. Okay, so you did change 37:45 the button to switch plan, but there's an issue. So
+keep in mind when we are unsubscribed, it should say subscribe 37:52 and then it should go through the subscription process. When we are already subscribed, it should say switch
+37:58 plan, which it does. But when it says switch plan, it should simply act as the 38:03 manage subscription button like we have above. So the button should change functionality
+depending on what state 38:10 we're in. If there's no subscription, we subscribe and we go through the subscribe process. If there is a 38:15 subscription, then we say switch plan
+and we simulate going to the manage subscription page. Carefully look at the 38:22 code as it is now and make sure that we have the button working in the in both situations
+properly and keep it simple. 38:28 This is a very simple solution. It just needs to do something different depending on where we are and have a 38:34 current subscription or not.
+So again, when I get into these little situations kind of near the end, I like to keep going into plan mode. Go a little slower 38:40 just so we don't go down some rabbit hole and
+spend the next 4 hours fixing the most simple thing that we did. All 38:45 right, so go ahead and read the plan. So it's trying to make an on click handler. Does it really need to
+be dynamic with 38:51 JavaScript? It sounds like the solution you're trying to come up with is an on click JavaScript style correction. Is 39:00 that something that we have to do?
+That seems a little bit more hacky to me than just directing to the proper page and 39:06 setting the page up properly. Can we do it the correct way in a simple way without opening
+up potential hacks? Or 39:13 let me know if you think that this is an actual good solution based off of your experience and what the comm and how the 39:18 community does this. Can
+you can you do a quick search in the documentation or in the community as well just to back up 39:24 how we're doing this? So basically, they were going to add some code here that
+detected it. So when I clicked on it, it 39:30 would do one or the other. But realistically, I think that the button should be programmed correctly based off of the situation and
+not some sort of 39:37 code that's added after the fact. So again, that's why I said, "Hey, go look and see what the community does." So, 39:42 after researching Stripe's official
+documentation, Stripe's official best best practices, checkout versus. So, 39:48 this is what I wanted it to do. So, it's saying this is not a hack. I didn't necessarily think
+going to the right page was a hack. I thought maybe the way 39:54 it was doing with the on click. So, I'm just going to confirm that. I do this often cuz I'm just trying to learn.
+I didn't think sending it to different 40:01 pages was a hack. I was just wondering if the on click specifically using that as the solution to direct to the right 40:07 page is a
+hack as opposed to just making sure that the button goes to the right place or is that how it's already done. 40:15 I'm not trying to over complicate things just trying to make
+sure that we are doing it the right way. Now also you got 40:21 to be careful here too. I said wasn't a hack and it says was a hack. Also when you're dictating make sure that it's
+40:26 dictating correctly. It actually made a mistake there but let's just see how it handled this. All right. Got it. So this is not a hack. This is actually standard 40:33
+practice. Now if you have been doing this, you might not have stopped here. I'm stopping here because there are other platforms where this is kind of a 40:39 hack. But it sounds
+like in React, this is normal. But I don't mind stopping things just to learn and investigate 40:44 things that I'm not sure about. All right, let's go ahead with the simple
+conditional onclick approach. All right, 40:50 so now if I click switch plan, it should basically take me to manage subscription. Perfect. Okay, that 40:56 worked. Great. Can you
+go ahead and just clear out any active subscriptions this current user has so that we could make 41:03 sure that the button now says subscribe instead of manage subscription. So
+it's going to go into Superbase. Well, looks 41:08 like actually it's going to go to Stripe first. I don't know that we have to do it in Stripe, but so realistically I 41:13 think
+where we need to cancel this is inside of our Superbase database, not necessarily in Stripe. Actually, I was 41:20 thinking since we're talking about the SAS application, I'm
+talking about in Superbase. I believe if we cleared the 41:26 subscription out there, that would send us back to where it says subscribe. No. So, basically, I'm talking about
+coming 41:32 here to Superbase into these subscriptions here. And it looks like I just cleared it out. So now, if we come 41:38 back to our subscriptions, and now it's back to
+subscribe. And if I click subscribe, it should take me to the 41:44 subscribe page. Perfect. Now, if you want to get access to this SAS framework without having to vibe code
+everything 41:50 from scratch, make sure to jump into the Vibe Encoders community. You'll find the framework inside the classroom. We've 41:56 got support calls where you can get
+help and a networking call on Friday. And there's an engaged group of startup entrepreneurs that you can find in there 42:02 all working together on their new company. I'd love to
+see you inside the community. But either way, I hope you enjoyed this video and I'll see you on 42:08 the next All From the series Watched 12:58 Backend web development - a
+complete overview Su Intro 0:00 hey everyone my name is sam oh and welcome to the seo fundamentals course by ahrefs in this course i'll be 0:05 teaching you the fundamentals of seo
+with a heavy focus on execution and while it's a beginner's seo course i 0:12 don't want you to be fooled by the word beginner even for an eight-figure business like ours we don't
+do anything 0:18 crazy technical or complicated right from the start we've stuck with the fundamentals of seo that led to 0:25 compounded growth and today our site gets over a
+million monthly visits from google search alone making seo one of 0:32 our most effective strategies to get traffic to our site so the course is broken down into four modules plus
+this 0:39 video which is more of an introduction to the course as well as in seo 101 in this video we'll go over the basics of 0:46 seo and cover things like what it is why it's
+important and how it works you'll 0:51 then move on to module one which is on keyword research throughout these lessons i'll show you how to find 0:56 keywords to target that can
+benefit your business it'll also set the foundation for the next module which is on-page seo 1:03 in this module we'll talk about optimizing your pages to rank for those keywords
+the next module will be on link 1:10 building this is one of google's most prominent ranking signals which has proven to contribute to higher rankings 1:16 in search finally we'll
+finish off the course with the basics of technical seo which will mostly be about best practices and 1:23 website maintenance all right let's kick things off with the seo basics
+we'll talk about what search What is SEO and why it is important 1:28 engine optimization is why it's important and how google works seo stands for search engine 1:35 optimization
+and it's the process of optimizing content to be discovered through a search engine's organic search 1:41 results now let's talk a bit about how they work if you're completely new
+to seo then it's easiest to think of search 1:47 engines as libraries but instead of storing books they store copies of websites and web pages 1:54 so when you search for a query
+the search engine will then look through all pages in its index and try to return the 2:00 most relevant results and seo helps demonstrate to search engines that your page is that
+result 2:07 now you might be thinking why should i focus on seo when there are so many other marketing mediums well 2:13 there are three major things that attract marketers to
+search engine optimization and in my opinion these 2:19 three things make seo the best traffic source number one unlike paying for ads 2:24 search traffic is free number two
+organic traffic is typically consistent 2:29 once you're ranking high whereas other mediums like social media and email marketing often result in traffic spikes 2:36 that usually
+end up fading to nothing and it makes sense because social media networks are designed to surface fresh 2:42 content emails often get marked as read forgotten or land in the spam
+box whereas search traffic is a result of 2:49 users actively searching for information and the number of searches for a given topic is typically consistent month to 2:56 month and
+number three you have the opportunity to reach massive audiences you wouldn't have access to otherwise in 3:03 fact as of october 2019 there were nearly 4.39 billion internet users
+3:09 around the world and almost 4 billion of those people are google users this is why search engine optimization 3:15 is an 80 billion dollar industry and why marketers from all
+walks of life are 3:20 adopting and pursuing it today everyone wants their business to get discovered and seo is the perfect way to do that 3:28 now let's briefly talk about how
+google works and there are two parts to this the first is crawling and indexation and 3:34 these two things are what actually allows google to discover web pages and create their
+search index so to actually 3:41 attain information google uses crawlers also known as spiders which gather publicly available information from all 3:49 over the web the spiders
+will start crawling from a list of known urls called seeds 3:54 then they follow the hyperlinks on those pages and crawl those newly discovered pages and this process goes on and
+on 4:02 allowing them to collect a ton of information they then take all of this data back to google servers to be added 4:08 to their search index and that's what people like you
+and i are searching through when we key in a query in google 4:15 now if you were to search for something and google returned every result that mentioned your words on the page
+then 4:20 you'd end up with really bad results this brings us to the second part which is google's ranking algorithm 4:27 google has hundreds of ranking signals and they make
+tweaks to their algorithm 500 to 600 times per year so to be frank 4:35 no one knows exactly how their algorithm works but they've given us clues and some 4:40 guidelines to better
+4:55 are just speculation at best but i do want to cover a few of the most important factors that you'll need to 5:00 understand from a fundamental standpoint first are backlinks
+backlinks are links 5:06 from a page on one website to another and google has said on their house search works page that if other 5:12 prominent websites link to a page that's
+proved to be a good sign that information is well trusted 5:19 the easiest way to understand the value of a backlink is to think of them as votes when a page receives a backlink
+5:25 it's essentially another website vouching for the content on the page and the more votes you get from credible 5:31 sources the higher the trust and we also studied the effect
+of backlinks on search traffic and found a clear 5:38 positive correlation between backlinks from unique websites and a page's organic traffic 5:44 second is search intent which
+represents the reason behind a searches query and if you think of google's goal for search 5:50 their job is to return the most relevant results for any given query so with that
+5:55 said you can discover search intent simply by looking at the top ranking pages for the query you want to rank for 6:02 for example if you search for slow cooker recipes you'll
+see that the search results are mostly blog posts 6:08 with a list of slow cooker recipes so if you try and rank a product page where you're selling a slow cooker you won't 6:15 be
+matching search intent and therefore you won't rank now if we change the query to just slow 6:20 cooker you'll see that the dominant types of pages are ecommerce category pages so
+if you try and rank your blog 6:27 post of slow cooker recipes then you probably won't rank because you're not matching search intent this is a 6:33 critical concept to understand
+and i'll share a simple three-point checklist you can use to determine search intent for 6:39 any query in the next module and third is content depth search engines are made 6:44
+up of computer programs so they can't actually read and understand text like you and i would nevertheless google has 6:52 poured billions of dollars into creating sophisticated
+technology that understands content to a certain degree 6:59 but it's your job as a content creator to provide context about the subject for 7:04 example if you look at the top
+ranking pages for the quarry how to drive a car you'll find that they talk about things 7:10 like fastening your seatbelt familiarizing yourself with the gas and brake pedals
+adjusting your seat and 7:16 mirrors and other things that a first time driver may not know basically you want to be able to answer 7:22 the search's quarry the best that you
+possibly can and naturally it should lead to content that has depth 7:29 now it's important to note that depth doesn't always translate to length for example a topic like how to
+turn off 7:36 iphone 12 doesn't need to and shouldn't be long in fact the top ranking page is 7:41 only 185 words but the content itself solves the user's query from start to 7:47
+finish alright so the basics are in the book and it's time to move on to the keyword research module 7:53 hey it's amo and welcome to the first module which is on keyword research
+in this first lesson we're going to talk What are keywords 7:59 about what keywords are and how to choose them using a simple four point checklist let's get started so what are
+8:06 keywords in the context of seo they're simply just words and phrases that people type into search engines to find 8:12 what they're looking for for example if you are shopping

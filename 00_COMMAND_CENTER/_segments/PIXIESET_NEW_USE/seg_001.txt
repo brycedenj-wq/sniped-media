@@ -1,0 +1,224 @@
+PIXIESET Help Center Contact Us Pixieset - Help Center Client Gallery Getting Started with Client Gallery Search Articles in this section Connecting a Custom Domain to Client
+Gallery Uploading Videos to your Collections Adding and applying watermarks How do I upload from Lightroom? Getting Started with Client Gallery File size and format requirements
+for Pixieset Uploading to Client Gallery Bulk creating collections in Client Gallery Sending email campaigns in Client Gallery Using folders to share and organize galleries See
+more Connecting a Custom Domain to Client Gallery A subdomain (e.g. gallery.patriciajohnsonphoto.com) allows you to create a dedicated web address for your galleries, while staying
+consistent with the rest of your online presence. If you want a seamless branded experience for your clients, connecting a subdomain to Client Gallery is a smart choice. This guide
+will walk you through setting up a subdomain (e.g. gallery.patriciajohnsonphoto.com). The process will not interfere with your root domain (e.g. patriciajohnsonphoto.com) if it is
+already pointed somewhere else, like your main photography website. Note: If you want to connect a custom domain to your Pixieset Website, see this guide instead. On this page:
+Before you start Step One: Log into your domain provider’s dashboard Step Two: Add the CNAME Record Step Three: Connect to Client Gallery Troubleshooting Before you start An
+upgraded Client Gallery or Suite subscription is required to set up a subdomain to your Client Gallery. Ensure you have a third-party domain with full access to its DNS settings.
+If you do not own a domain, you will need to purchase one first from a domain provider like GoDaddy before you can complete the steps in this guide. Your domain must remain hosted
+by a third-party domain provider in order to stay connected to Client Gallery. This is because you are connecting a subdomain to Pixieset, not transferring your domain. Step One:
+Log into your domain provider’s dashboard Log into your domain provider’s dashboard and locate your DNS records. This section is typically called DNS Settings, but it may also be
+called DNS Manager, Zone File Settings, Domain Manager, or similar. CustomdomainCG1.png Important: When following the guide, do not modify any existing MX records. MX records
+manage your email address and removing them will interrupt your email service. Step Two: Add the CNAME Record In your DNS settings, add a new CNAME record with the following
+properties as shown below. You can replace “gallery” with any subdomain you want to use for your gallery links. For example, if you use “proof”, the link will follow the format
+“proof.patriciajohnsonphotos.com/collectionname”. TypeHost (or Alias)Points to (or Data/Value)TTL CNAMEgallerydomain.pixieset.com1 hour (or the minimum time allowed) Important:
+Paste “domain.pixieset.com” exactly as-is into your new CNAME record. Do not replace it with your username or your personal domain details. Step Three: Connect to Client Gallery
+Once your new record is set up, you are ready to connect your subdomain to your Client Gallery collections: In your Client Gallery Dashboard, go to Settings > Branding. Under
+Custom Domain, click +Add custom domain. Enter your subdomain name and click Next to verify and save. CustomdomainCG2.png That’s it! If you see your subdomain appear afterwards,
+then the connection was successful. Our system will start generating a security certificate for your subdomain and no further action is required on your end. Troubleshooting I
+can’t update my DNS records. I updated my DNS records, but it's not working. My galleries are showing as "Not Secure" or are missing the security certificate. I want to use my root
+domain instead of a subdomain. I can’t update my DNS records. If you can’t modify your DNS records, it typically means that the records are being used for domain forwarding (or a
+redirect). Check your domain provider’s for a dedicated section called “Forwarding”, “Redirects”, or similar. You will need to delete any forwards or redirects that are set up
+there. CustomdomainCG3.png If there are no forwards or redirects, confirm that your domain is being actively hosted. Some domain providers may “park” your domain if it hasn’t been
+used so you will need to reactivate it. If you cannot activate the domain yourself, your domain provider’s support team will be able to assist directly. I updated my DNS records,
+but it's not working Provided your domain is actively hosted by your domain provider, any DNS changes can take up to 48 hours to propagate across the entire internet. If you're
+confident that you have set up the records outlined in the above guide correctly, you may need to simply wait for the DNS changes to propagate. Keep in mind that you will also need
+to create your DNS records with the domain provider that is hosting your domain. This may not be the same provider that you purchased the domain from. For example, if you have
+purchased your domain from GoDaddy but you use Bluehost for hosting, you will need to create the DNS records in Bluehost’s dashboard. My galleries are showing as "Not Secure" or
+are missing the security certificate. This is expected if you very recently connected your subdomain, as SSL security certificates may take some time to generate. We recommend
+allowing 24 hours for this to complete but it should be much faster. If your certificate does not generate successfully, review your domain’s DNS records to make sure there aren’t
+any CAA records saved with your domain host. CAA records can prevent the system from generating a security certificate successfully, so you would want to delete those. You can
+always contact support@pixieset.com if your certificate is not in place after a full day. I want to use my root domain instead of a subdomain. If you prefer to use just your root
+domain (e.g. patriciajohnsonphoto.com) instead of a subdomain (e.g. gallery.patriciajohnsonphoto.com) for your galleries’ links, you can achieve this by setting up one CNAME record
+for “www” and two A records for “@”. Instead of following Step #2 in the guide above, set up these three records instead. We recommend pasting the values to ensure the records are
+entered correctly. Do not replace “www” or “domain.pixieset.com” with your username or your personal domain details. TypeHost (or Alias)Points to (or Data/Value)TTL
+CNAMEwwwdomain.pixieset.com1 hour (or the minimum time allowed) A@104.16.185.1731 hour (or the minimum time allowed) A@104.16.186.1731 hour (or the minimum time allowed) Tip: If
+you can’t enter “@” when setting up your A records, try leaving the field blank or entering your domain name. Was this article helpful? Related articles Setting up a Custom Domain
+for Pixieset Website Logos & Branding Getting Started with Client Gallery Managing your Client Gallery Homepage All you need to know about Domains Can't find what you're looking
+for? Contact our support staff. We'll get back to you within 24 hours. Contact Us Copyright 2025 Pixieset. All rights reserved. PIXIESET Help Center Contact Us Pixieset - Help
+Center Client Gallery Getting Started with Client Gallery Search Articles in this section Connecting a Custom Domain to Client Gallery Uploading Videos to your Collections Adding
+and applying watermarks How do I upload from Lightroom? Getting Started with Client Gallery File size and format requirements for Pixieset Uploading to Client Gallery Bulk creating
+collections in Client Gallery Sending email campaigns in Client Gallery Using folders to share and organize galleries See more Uploading Videos to your Collections If sharing
+videos is a part of your workflow you can easily upload them to your Client Gallery Collections. Clients can view videos directly in the gallery or download them to their device.
+Video uploads are supported on upgraded Client Gallery Plans or Suite Plans. On this Page Uploading Videos to your Collection Supported Formats and Recommended Settings Changing
+the Video Thumbnail Providing Video Downloads Reviewing Video Download Activity Uploading Videos to your Collection There are two ways to upload videos to a collection: 1. Drag and
+drop your video files into the uploader. 2. Click Add Media > Browse files to select them from your device upload (1).gif Alternatively, you can embed videos from Youtube or Vimeo
+Screen Shot 2024-10-17 at 10.38.42 AM.png Supported Formats and Recommended Settings You can upload as many videos to your Collections as you like within the minute limits of your
+Client Gallery or Suite Plan. Pixieset supports the following video formats: MP4 MOV AVI M4V To optimize the video upload process, as well as your client’s download experience, we
+recommend the following video encoding settings: 1080p/2K or smaller MP4 file format H.264 video CODEC 8-bit 4:2:0 or below Changing the Video Thumbnail If you want to add a custom
+thumbnail for the video, click More (...) > Edit thumbnail Edit thumbnail.png Providing Video Downloads Within your Collection Settings, you can also turn on Video Downloads for
+your clients. This allows clients to easily download their video from the Collection using the Download PIN you provide them. Go to Collection Settings > Download Ensure Download
+Status is On then turn on Video Download Video download.png Videos can be downloaded one at a time, straight to the client’s device. Video downloads through Pixieset will be
+downloaded in a high-quality MP4 format up to 2048px on the longest edge, based on the orientation of your uploaded video. 4K downloads are available on Pro and Ultimate Plans for
+Client Gallery and Suite. The video download file may be smaller in size than the original file, after processing. Reviewing Video Download Activity You can review your client’s
+Video Download Activity straight from your Dashboard in a few easy steps: Go to the Activities Tab (next to Settings) > Download. Click on the Single Video Download tab so see any
+video download activity.Video Activity.png Was this article helpful? Related articles Adding videos to your website Connecting a Custom Domain to Client Gallery Getting Started
+with Client Gallery Uploading to Client Gallery Embedding Videos in your Collections Can't find what you're looking for? Contact our support staff. We'll get back to you within 24
+hours. Contact Us Copyright 2025 Pixieset. All rights reserved. PIXIESET Help Center Contact Us Pixieset - Help Center Client Gallery Getting Started with Client Gallery Search
+Articles in this section Connecting a Custom Domain to Client Gallery Uploading Videos to your Collections Adding and applying watermarks How do I upload from Lightroom? Getting
+Started with Client Gallery File size and format requirements for Pixieset Uploading to Client Gallery Bulk creating collections in Client Gallery Sending email campaigns in Client
+Gallery Using folders to share and organize galleries See more Adding and applying watermarks Adding Watermarks.png Watermarks protect your images and reinforce your brand
+throughout the client experience. In Pixieset, you can add customizable text or image watermarks to your galleries so your photos stay protected while looking their best. On this
+page: How watermarks work in Pixieset Creating a watermark Applying a watermark Watermarking new photos Watermarking existing photos How watermarks work in Pixieset Watermarks
+created in Pixieset apply to display images in your gallery. For print orders, the watermark is always removed. For original resolution or high resolution downloads (3600px), the
+watermark is always removed. For web-sized downloads (640px, 1024px, or 2048px), the watermark is removed by default but you can customize it to remain in place instead. Watermarks
+created in Pixieset do not apply to videos in the gallery or video downloads. If you update a watermark file, it does not impact the photos you already watermarked. You will need
+to re-apply the watermark to the photos in these cases. Creating a watermark You can create a text or image watermark for your collections. Pixieset supports up to 3 separate
+watermark files in Client Gallery. Tip: For image watermarks, we recommend uploading a PNG file with a transparent background and a minimum width of 1600px. The width or height
+cannot exceed 5000px. To set up a watermark: Go to Settings > Watermark. Click + to create a new watermark. Select a watermark type and customize its opacity, scale, and position.
+Click Save. Once saved, your watermark is ready to be applied to new and existing collections. Adding Watermarks 2.png Applying a watermark When you have a watermark in Client
+Gallery, you can apply it to new photos you upload or any existing photo. Tip: Have a default watermark you want to apply to new collections regularly? Consider setting up a
+preset. Watermarking new photos When you create a collection, you can choose a watermark you’d like to use and the preference is saved for new uploads in that collection. To
+watermark new photos: Click +Add Media. Confirm the watermark you’d like to use. Drag photos to upload. Once uploaded and processed, your photos will be watermarked. Tip: You can
+also view and adjust the default watermark for a specific collection in that collection’s settings (Settings > General). Any updates will apply to future uploads in the collection.
+Adding Watermarks 3.png Watermarking existing photos You can apply a watermark to photos that you already uploaded. To watermark existing photos in a collection: Select the photos
+you want to watermark. Click ••• in the action bar. Select Watermark. Choose your watermark and click Save. Watermark changes can take anywhere from less than a minute to several
+hours to process depending on the number of images. During this time, affected photos will be unavailable. Tip: To select all photos in the set, select one photo and then press
+Ctrl + A or ⌘ + A. Adding Watermarks 4.gif Was this article helpful? Related articles Download Sizes - Available Resolutions Adding and Editing Watermarks - Tutorial Video
+Collection Download Settings Getting Started with Client Gallery Uploading Videos to your Collections Can't find what you're looking for? Contact our support staff. We'll get back
+to you within 24 hours. Contact Us Copyright 2025 Pixieset. All rights reserved. PIXIESET Help Center Contact Us Pixieset - Help Center Client Gallery Getting Started with Client
+Gallery Search Articles in this section Connecting a Custom Domain to Client Gallery Uploading Videos to your Collections Adding and applying watermarks How do I upload from
+Lightroom? Getting Started with Client Gallery File size and format requirements for Pixieset Uploading to Client Gallery Bulk creating collections in Client Gallery Sending email
+campaigns in Client Gallery Using folders to share and organize galleries See more How do I upload from Lightroom? The Pixieset Lightroom plug-in allows you to further streamline
+your upload workflow. If you have not downloaded and installed the plug-in, please follow the steps here to Install the Lightroom Plug-in. You can also watch a tutorial video for
+uploading with the plugin here. Uploading from Lightroom: To create a new gallery, right-click on a Gallery under the Pixieset Publish Service and select Create Collection...
+How_do_I_upload_from_Lightroom__1.png A Highlights Set will be created just like how it is on Pixieset. You can create more Sets by right-clicking on the Gallery, and selecting
+Create Set.... The naming convention is customized to mirror what you would see on Pixieset: A Collection (i.e. J and J's Wedding) can contain multiple Sets (i.e. Ceremony,
+Reception, Getting Ready, etc.). When you are ready to upload, simply drag the images from your Lightroom library to the desired Sets on the left. You can only upload images to a
+Set within the Collection, just like on Pixieset. Select the Collection/Set you wish to upload, and click Publish to start the uploading process. You can upload one Set at a time,
+or the entire Collection all at once. Any new Collections or Sets will be created on Pixieset as you publish. How_do_I_upload_from_Lightroom__2.png Viewing and Organizing: After
+the upload is finished, right click on the Gallery, and click Show on Pixieset Dashboard to view this Collection in your Pixieset dashboard. Keep in mind that this Collection will
+be in "Preview" mode. From there you can select a Photo Cover or Video Cover, Publish, and Share with clients from your Pixieset Dashboard. How_do_I_upload_from_Lightroom__3.png
+When you make edits to the published (uploaded) images in Lightroom, Lightroom recognizes these changes and will mark these images for re-publishing. Click Publish on these images
+for the changes to reflect on Pixieset. How_do_I_upload_from_Lightroom__4.png When you remove images that are published to Pixieset, you can choose if you would like those images
+to be removed from Lightroom only, or from both Lightroom and Pixieset:LR.png You can synchronize your Gallery structure in Lightroom with how it appears on Pixieset at any time.
+To do this you'll want to right click on Pixieset, select Edit Settings..., and click the Sync Now button under Pixieset Settings. This is useful if you have moved Collections/Sets
+around in Lightroom and simply want a refresh. Note: "Sync Now" will only attempt to sync your gallery structure (collection/set names). Any photos uploaded/removed will not be
+synced. FAQ: What versions of Lightroom does this Plug-in support? This plug-in is supported on Mac OS X 10.9, Windows 7 and above; Lightroom 4 and above. What happens when I
+rename the Collections/Sets in Lightroom? The changes will be reflected on Pixieset right away. If you have made changes on Pixieset (outside of Lightroom), you will need to go to
+Edit Settings... and click on Sync Now to update these changes in Lightroom. What happens when I delete the Collections/Sets in Lightroom? The deletion will not reflect on
+Pixieset. Your Collections and images will remain on Pixieset, they will simply be removed from your local Lightroom Collection. If you have deleted Collections or Sets on
+Pixieset, you can choose to keep or delete these from your Lightroom when you click Sync gallery structure. What do I do if I receive the error 'File is too large'? You will need
+to go to Edit Settings... and under File Settings > Limit File Size To, enter 51,200. This will limit the photo file size exported from Lightroom to be under 50 MB, which is the
+current limit of the Lightroom Plugin. How do I update my Lightroom plug-in? If you have selected "Automatically check for updates", Lightroom will prompt you whenever there's an
+update available. You can also manually update/check for updates by going to File > Plug-in Manager... What is new in the latest update? Version 1.0.4 - Bug fix for Collection
+Default settings - Duplicate filename detection enhancements Version 1.0.3 - Support for Collection Defaults - Ability to change Collection watermark setting within Lightroom - Bug
+fixes Version 1.0.2 - Allows photo deletions in Lightroom to be reflected on Pixieset - Support for 32-bit (x86) operating systems Was this article helpful? Related articles How do
+I install the Lightroom Plugin? How do I upload from Lightroom - Tutorial Video Uploading to Client Gallery Adding and applying watermarks How do I install the Lightroom Plugin? -
+Tutorial Video Can't find what you're looking for? Contact our support staff. We'll get back to you within 24 hours. Contact Us Copyright 2025 Pixieset. All rights reserved.
+PIXIESET Help Center Contact Us Pixieset - Help Center Client Gallery Getting Started with Client Gallery Search Articles in this section Connecting a Custom Domain to Client
+Gallery Uploading Videos to your Collections Adding and applying watermarks How do I upload from Lightroom? Getting Started with Client Gallery File size and format requirements
+for Pixieset Uploading to Client Gallery Bulk creating collections in Client Gallery Sending email campaigns in Client Gallery Using folders to share and organize galleries See
+more Getting Started with Client Gallery With Client Gallery you can deliver your work seamlessly — we help you take care of sharing, proofing, downloads, selling, and more. Not
+sure where to start? This article will guide you through some of the key functionalities. Managing your Client Gallery Every client is unique, and their gallery can be tailored to
+suit. A variety of beautifully designed cover styles and settings, including typography and color, help each unique collection make an impact for your clients. Learn more about
+Managing your Client Gallery Collection Contact Link one or more of your Studio Manager contacts to your collection using the Collection Contact field, or add new contacts as
+needed. You can find your assigned contacts, along with any contacts in Studio Manager, when sharing by email. Adding a Collection Contact is not a privacy feature - you can read
+about collection privacy options further below. gallery1.png Learn more about Contacts in Studio Manager here Sharing your Collections No matter how you choose to share your
+collections, you have options to suit your needs in Pixieset. Email, social media, QR code, Quick Share links - just click the Share button from any published collection to get
+started, or read more about sharing in our helpful guide below. Learn more about Sharing your Collections Collection Privacy You have complete control over your work with Client
+Gallery’s privacy controls. You can turn your Client Gallery Homepage On/Off, add any necessary passwords for collection visitors and clients, and choose which collections are
+shown publicly. Learn more about Privacy Options for Client Gallery Digital Downloads Provide photo and video downloads for collection contacts and their visitors directly from
+your Client Gallery. Rest assured knowing that you have full control over who has access and what they can download, and view a history of completed downloads from your dashboard.
+You can also limit the number of photo downloads by collection or by contact. Learn more about Digital Downloads Proofing Use Favorite Lists to speed up the proofing process and
+better serve your clients, whether they’re making selections for retouching, album designs, downloads, etc. With options to limit client selections, review client notes, share
+selections as a download, and view a history of this activity for your collections, you’ll have your finished work with clients in no time! Learn more about Proofing Store Sell
+professional print products, digital downloads, and other items directly through your collections. With a stunning online Store setup and an automatic fulfillment system on hand,
+we make it easy for you to sell your photos online and generate income for your business. Learn more in the Store help section Mobile Gallery App Create personalized apps that your
+clients can add to their phone or tablet for viewing at any time. As clients share the app with family and friends, exposure to your branding and contact information can help
+increase brand awareness and referrals. Learn more in the Mobile Gallery App help section Was this article helpful? Related articles Uploading to Client Gallery Collection Download
+Settings Uploading Videos to your Collections Introduction to Pixieset Store Customizing slideshows in Client Gallery Can't find what you're looking for? Contact our support staff.
+We'll get back to you within 24 hours. Contact Us Copyright 2025 Pixieset. All rights reserved. PIXIESET Help Center Contact Us Pixieset - Help Center Client Gallery Getting
+Started with Client Gallery Search Articles in this section Connecting a Custom Domain to Client Gallery Uploading Videos to your Collections Adding and applying watermarks How do
+I upload from Lightroom? Getting Started with Client Gallery File size and format requirements for Pixieset Uploading to Client Gallery Bulk creating collections in Client Gallery
+Sending email campaigns in Client Gallery Using folders to share and organize galleries See more File size and format requirements for Pixieset Pixieset supports a wide variety of
+file types so you can showcase and deliver your work in the format you like. For images, you can upload JPEG, PNG, GIF, and RAW files. For video, MP4, MOV, AVI and M4V files are
+supported. Learn more about size requirements and other recommendations based on Pixieset’s products below. On this page: Client Gallery Pixieset Website Mobile Gallery App Best
+Practices for File Uploads Frequently Asked Questions (FAQs) Client Gallery Image Uploads Pixieset supports the following image types for gallery uploads: JPEG and PNG files up to
+100 MB GIF files up to 85 MB RAW files up to 100 MB on select Client Gallery and Suite Plans NEF, RAF, RAW, PEF, ARW, DNG, RW2, ORF, CR2, and CR3 files are supported Note: If
+you’re selling print products, only JPEG files are supported. Video Uploads Pixieset supports the following video formats for gallery uploads: MP4, MOV, AVI, and M4V files up to
+3840 x 2160px (4K) Note: Your video files do not get upscaled. If a file is uploaded in 1920 x 1080px and your subscription allows up to a 3840 x 2160px (4K) size for downloads,
+Pixieset will not scale up the video to 4K. Recommended Video Settings To optimize the video upload process, as well as your client’s download experience, we recommend the
+following video encoding settings: 3840 x 2160px (4K) (available on select upgraded Client Gallery and Suite plans) or smaller MP4 file format H.264 video CODEC 8-bit 4:2:0 or
+below Video downloads through Pixieset will be downloaded in a high-quality MP4 format up to 3840 x 2160px (4K) in size, depending on the original video you have uploaded and your
+plan. Pixieset Website Image Uploads Pixieset supports the following image types for uploads in the website builder: JPEG, PNG, or GIF files up to 50 MB Uploads are automatically
+resized to improve display quality and to ensure fast loading times for your site visitors. Manually resizing photos is not required but to further optimize your site’s loading
+times, we recommend uploading files that are 5 MB or less, and close to 2500px on the long edge. Mobile Gallery App Image Uploads Pixieset supports the following image types for
+uploading to a mobile gallery app: JPEG and PNG files up to 100 MB GIF files up to 85 MB Best Practices for File Uploads For filenames, use alpha-numeric characters (A-Z, 0-9) with
+a dash (-)or underscore (_) only. Do not use spaces and special characters such as the vertical bar (|), as these are typically incompatible with built-in unzip programs. Avoid
+uploading images with excessively large pixel dimensions (e.g. more than 10,000 pixels) for the best uploading experience. This is not necessary in typical use cases involving
+printing and downloads. For example, an image that is 3600px on the long edge is already enough to print photos on up to poster size canvases. Upload your images in the sRGB color
+space to ensure colors appear consistent across all devices and print products. If you are uploading photos for printing, see our additional recommendations here. Frequently Asked
+Questions (FAQs) How many images and videos can I upload to Client Gallery and Pixieset Website? Is there a file size limit for video uploads? Can clients purchase any of my image
+and video files from their gallery? How many images and videos can I upload to Client Gallery and Pixieset Website? All Pixieset subscriptions are storage-based, so the number of
+images and videos you can upload will depend on the file sizes and your current subscription(s). You can review and manage your subscriptions from your Billing page. Is there a
+file size limit for video uploads? You can upload as many videos to your collections as you like within the limits of your Client Gallery or Suite Plan. There aren’t any limits to
+the video size you can upload, although we recommend uploading videos that are 3840 x 2160px (4K) or smaller for best results. Can clients purchase any of my image and video files
+from their gallery? All image file types are available for sale as digital image downloads. If you're selling print products, files must be uploaded to the gallery in JPEG format.
+At this time, video uploads can be downloaded through the gallery but they cannot be sold through the integrated store. Was this article helpful? Related articles Uploading Videos
+to your Collections How do I install the Lightroom Plugin? Choosing the right Subscription Uploading GIFs and PNGs Customizing slideshows in Client Gallery Can't find what you're
+looking for? Contact our support staff. We'll get back to you within 24 hours. Contact Us Copyright 2025 Pixieset. All rights reserved. PIXIESET Help Center Contact Us Pixieset -
+Help Center Client Gallery Getting Started with Client Gallery Search Articles in this section Connecting a Custom Domain to Client Gallery Uploading Videos to your Collections
+Adding and applying watermarks How do I upload from Lightroom? Getting Started with Client Gallery File size and format requirements for Pixieset Uploading to Client Gallery Bulk
+creating collections in Client Gallery Sending email campaigns in Client Gallery Using folders to share and organize galleries See more Uploading to Client Gallery Are you ready to
+create beautiful galleries for your clients using photos and videos from their photo shoot? The Client Gallery uploader provides a simple way to add these to your collections,
+helping you to deliver your work quickly. There are two ways to upload from your browser: either select them from your device, or drag and drop your supported image and video files
+into the uploader. Note: If you are planning to upload from Lightroom instead, you can read more here. How to upload You can upload from any collection in your dashboard by
+clicking + Add Media or by dragging and dropping into the photo grid. Uploading To CG.gif If you’ve set a watermark to be used on upload, or if you’re using a Preset that includes
+a watermark, it will automatically be added to the uploaded image files. Images and videos will temporarily show a ‘processing’ status while the upload is completed behind the
+scenes. During this time they will not be visible in the gallery - a ‘processing’ icon will be shown in place of any thumbnails. If you run into any difficulty with uploading/image
+processing, see our troubleshooting guide here. Tip: Need to upload several collections at the same time for a client or project? Learn about our bulk collection creation tools
+here. Was this article helpful? Related articles Creating Collections & Sets Getting Started with Client Gallery Uploading Videos to your Collections Creating and Sharing a Mobile
+Gallery App Adding and applying watermarks Can't find what you're looking for? Contact our support staff. We'll get back to you within 24 hours. Contact Us Copyright 2025 Pixieset.
+All rights reserved. PIXIESET Help Center Contact Us Pixieset - Help Center Client Gallery Getting Started with Client Gallery Search Articles in this section Connecting a Custom
+Domain to Client Gallery Uploading Videos to your Collections Adding and applying watermarks How do I upload from Lightroom? Getting Started with Client Gallery File size and
+format requirements for Pixieset Uploading to Client Gallery Bulk creating collections in Client Gallery Sending email campaigns in Client Gallery Using folders to share and
+organize galleries See more Bulk creating collections in Client Gallery bulkcreatesplash.png Bulk creating collections is a quick way to stay organized during busy seasons or large
+projects. In Pixieset, you can bulk create collections in a folder, reducing repetitive setup and keeping your collection delivery workflow running smoothly. This article outlines
+how to upload photo folders from your computer to bulk create collections, and how to use a CSV to create collections before shoots. On this page: Bulk upload collections with
+photos via desktop folders Bulk create collections via a CSV Exporting folder details Bulk upload collections with photos via desktop folders Bulk uploading folders from your
+computer into Client Gallery is the simplest way to bulk create collections when your photos are organized and ready to share. Each desktop folder will create its own collection,
+allowing you to load all your finished work in one batch. If you upload a desktop folder that contains subfolders, the system will combine all photos from those subfolders into a
+single collection. Note: Drag-and-dropping folders into the uploader is recommended, as the ‘Browse files’ option only allows one folder at a time due to browser limitations. To
+bulk create collections with photos and videos: In Collections, click the ▼ next to New Collection and select New Folder. Open your new folder and choose Bulk Create. Drag folders
+from your desktop into the uploader. Review the list of collections that will be created. Click Create & Upload. Select which settings you want to apply to the collections and
+click Continue. When your photos are done uploading, you can bulk publish your collections with the bulk edit tool. Tip: Add a layer of privacy to your new collections by setting
+up a folder password. bulkcreate1.0.gif Bulk create collections via a CSV Bulk creating collections via a CSV file is ideal when you want to set everything up in advance, before
+the photos are ready. This method quickly generates empty pre-named collections so you are fully prepared for upcoming events or back-to-back sessions. To bulk create collections
+with a CSV: In Collections, click the ▼ next to New Collection and select New Folder. Open your new folder and choose Bulk Create. Select Create via CSV. Download the CSV template
+and fill it out with your collection names. Drag the completed CSV file into the uploader. Review the list of collections that will be created. Click Create Collections. Select
+which settings you want to apply to the collections and click Continue. bulkcreate2.0.gif Exporting folder details Exporting your folder details into a CSV is an easy way to review
+and manage large sets of collections at once. When working in bulk, such as preparing multiple events, mini sessions, or ongoing client projects, the CSV gives you a clear snapshot
+of everything inside a folder without needing to open each collection. To obtain a CSV export of your folder information: In Collections, select the folder. Click Export in the top
+right corner. Learn more about the exported folder information here. FolderExport2.png Was this article helpful? Related articles Using folders to share and organize galleries
+Getting Started with Client Gallery Creating a landing page Setting up a Custom Domain for Pixieset Website Uploading Videos to your Collections Can't find what you're looking for?
+Contact our support staff. We'll get back to you within 24 hours. Contact Us Copyright 2025 Pixieset. All rights reserved. PIXIESET Help Center Contact Us Pixieset - Help Center
+Client Gallery Getting Started with Client Gallery Search Articles in this section Connecting a Custom Domain to Client Gallery Uploading Videos to your Collections Adding and
+applying watermarks How do I upload from Lightroom? Getting Started with Client Gallery File size and format requirements for Pixieset Uploading to Client Gallery Bulk creating
+collections in Client Gallery Sending email campaigns in Client Gallery Using folders to share and organize galleries See more Sending email campaigns in Client Gallery Email
+Campaign - Cover - 1200x700.jpg Email campaigns are a powerful way to promote sales or special offers with clients and those that viewed your collections. With Pixieset, you can
+send personalized campaigns and track their performance right from your Client Gallery. Note: Email campaigns are currently in early access. Support for all accounts is coming
+soon. On this page: What can I use email campaigns for? Building your marketing audience Creating an email campaign How recipients are counted Best practices for campaign content
+Avoid common spam triggers General campaign tips Reviewing campaign performance Frequently asked questions (FAQ) What can I use email campaigns for? If you want to stay connected
+with clients and keep your business top of mind, email campaigns help you reach your audience with less effort. Here are some ways you can use email campaigns for your photography
+business: Announce store sales: Promote products in your collections’ integrated store, such as photo albums, wall art, or digital downloads. Promote new sessions: Announce limited
+time services like seasonal mini sessions. Link directly to your booking site and share a discount code to incentivize repeat bookings. Celebrate client milestones: Remind clients
+of upcoming anniversaries, birthdays, and significant moments with a personalized offer. Request reviews to grow your reputation: Invite clients you worked with recently to share a
+testimonial. Building your marketing audience Your marketing contact list is made up of visitors who choose to receive emails by selecting a consent checkbox in supported gallery
+flows. The checkbox must be explicitly selected by visitors to ensure valid consent. It can be shown in the following places: Email registration: When visitors enter their email to
+access a collection. Store checkout: When clients enter their email while purchasing products. Photo and video download: When visitors enter their email before downloading files.
+Favorite sign-in: When clients sign in via email to create or view their favorites. To manage where the marketing consent checkbox appears: Go to Marketing > Settings. Under
+Gallery Marketing Opt-in, select the gallery flows where you want the consent checkbox to appear. Visitors who check the consent box in their collections are added to your
+marketing audience and can be included in future email campaigns. Note: The checkbox will only appear if the related feature is enabled in that collection. For example, enabling
+marketing opt-in for email registration will only apply to collections where email registration is turned on. Email Campaigns1-1.png Creating an email campaign Important: The
+structure and content of your email campaign plays a critical role in its success. For tips on improving placement and engagement for your campaigns, see Best practices for
+campaign content below. To send an email campaign: Go to Email Campaigns and click New Campaign. Choose a template or start from scratch. Enter a campaign name. Under Email,
+customize the email content (title, cover image, message, and button). Under Recipients, build your audience from visitors who have opted in to email marketing through your
+collections. Click Send Now to send immediately, or schedule the campaign for a later date. Email Campaigns1-2.png How recipients are counted When you select an audience, Pixieset
+automatically calculates how many recipients your campaign will be sent to. You can click the recipient count to review the exact email addresses included. Only eligible contacts
+are included in the total. The following contacts are excluded from the recipient count: Unsubscribed contacts: Anyone who has opted out of marketing emails. Cleaned contacts:
+Email addresses that were identified as invalid (e.g. “gnail.com”) are automatically excluded to help protect your campaign’s reputation. Duplicates across collections: If the same
+contact appears in multiple collections, they are linked to their most recent collection and counted only once. Note: For scheduled campaigns, the recipient list stays the same
+unless you edit the campaign. Contacts who unsubscribe or are deleted before the send time will still be removed automatically. Email Campaigns1-3.png Best practices for campaign

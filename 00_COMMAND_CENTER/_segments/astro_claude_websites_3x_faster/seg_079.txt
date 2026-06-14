@@ -1,0 +1,224 @@
+is 13:51 close to that kind of pattern. But similarly, you can also 13:55 recognise aspects of the bridge design pattern, which is a 14:00 pattern that has multiple hierarchies.
+Normally, you have 14:02 to in the standard bridge pattern, but these hierarchies, 14:05 they both have an abstraction connected on the abstract level. 14:09 By the way, I did a
+video about bridge already a while ago, 14:11 humanoids out for the link here at the top. But the idea of the 14:15 bridge is that you can then vary these different arrow keys
+14:19 without affecting the other hierarchies. And that's also 14:22 something that you can see here, for example, I could write an 14:24 output parser that generates a tree like
+structure, but I can 14:28 do that without having to do any work on the large language model 14:32 side. And similarly, I can add comfortability to another large 14:36 language
+model without having to change anything in the output 14:39 parser. So that's clearly a feature of the bridge pattern. 14:42 Another thing you also recognises ideas from patterns
+14:45 like template methods, which provides specific 14:48 implementations and then you call methods on it in a 14:52 particular structure. And that's also sort of what happening
+14:55 here. So the, we create like a standard objects like L I'm an 15:00 output parsers prompt template. And then we run them through a 15:04 particular sequence, which is the
+template and that uses those 15:07 objects, calls methods on them, and then returns the result. So 15:11 there's quite a few of these interesting patterns that you 15:13 see in
+language. And even though it doesn't directly, like hard 15:16 coded implements the Brits button it doesn't call something 15:19 a bridge or something or a strategy. It simply uses
+the 15:22 ideas from those patterns to create a library that's well 15:26 designed. And by the way, if you'd like to become better at 15:29 detecting these kinds of patterns in
+code yourself, then 15:33 you should definitely check out my free workshop on code 15:36 diagnosis, you can join via this link below. It's real practical, 15:40 I'll show you a
+three factor framework to help you review 15:44 code look at code more efficiently, while still finding 15:47 the problems and detecting the patterns fast. So again, it's 15:51
+totally free. You can sign up at Ironwood gold's last diagnosis 15:54 contains don't have practical advice about half an hour, I'm 15:57 sure you're going to enjoy it a lot. So
+what design lessons can Final Thoughts 16:00 we learn from LangChain? Well, one really important lesson, in my 16:03 opinion is that LangChain shows how important it is to define
+16:08 concepts. Well, if you define the concepts wrong, then your 16:12 library is not going to be designed well. So we have very 16:16 clear concepts like prompts, language
+models, output, 16:19 parsers, etc, etc. And it really shows that if you define these 16:23 things, well, they connect well, it works well. It's easy to use, 16:27 I still think it
+would be nice if LangChain took the next 16:31 step. And also let us abstract away a bit more from whether 16:34 something is an LM or a chip model. I don't think a lot of 16:37
+people really care about that. And the way that we interact 16:41 with it is mostly the same. So I think that would be a nice next 16:44 step, but really shows that it pays off if
+you spend some time 16:47 really thinking about the concepts and how they are 16:50 related. Another really important lesson is that even 16:53 though we have all these design
+patterns, it's not that 16:56 important that you follow them strictly to the letter, it's way 17:00 more important to think about the principles that are behind 17:03 the patterns
+and apply those principles judiciously. 17:06 principles like coupling, cohesion, making sure you split 17:11 creating resource from using a resource keeping things simple 17:15
+cancel by focusing on the principles instead of the 17:18 patterns, you're going to design great code, you can use newer 17:21 features from a language that wasn't supported maybe
+by the 17:24 older design patterns, overall is going to lead you to a great 17:28 design. One example of several principles is called grasp, 17:31 especially if you work with
+Python, I think is a great 17:34 starting point. To learn more about that, watch this video 17:37 next. Thanks for watching. I'll see you next time. All From the series From
+ArjanCodesIntroduction 0:00 If you write code in 0:00 Python and you're at all 0:01 interested in A.I., 0:03 then you need to check out LangChain. 0:05 Now, this is a relatively
+new framework 0:06 that allows you to build 0:08 AI powered applications 0:09 in both Python and JavaScript. 0:11 Now we'll be looking at Python here, 0:13 but the main benefit of
+laying chain 0:14 is that you can actually connect 0:15 to external data 0:16 sources, databases, APIs, 0:19 and really any data that you'd like. 0:20 And you can very easily build
+0:22 applications that are context aware 0:24 and that can reason 0:25 using popular language 0:26 models like Chat GPT. 0:28 Now in this video 0:29 I'll give you a high speed 0:30
+overview of LangChain, 0:31 show you some of the simple features 0:33 and capabilities 0:34 and give you enough 0:35 so that you can get started today. 0:36 Building an
+applications in Python. 0:39 In my opinion, this is a must learn 0:41 really cool module 0:42 and surprisingly simple. 0:43 Stick around 0:44 for the whole video 0:45 to see 0:45
+exactly how you can use this 0:46 in your next Python app. Installation/Setup 0:48 So the first thing 0:49 we need to do to work with 0:50 LangChain is install it. 0:51 Now they
+have fantastic documentation 0:53 that I'll link down below 0:54 that will show you all of these steps. 0:55 But of course 0:56 you can just follow along with me. 0:58 So since
+we're going to be 0:58 installing this for Python, 1:00 we can see on this page here 1:01 we have a few options. 1:02 Pip install langchain 1:03 pip install langchain 1:05 LMS or
+pip install langchain all. 1:08 Now I'm going to recommend that you go 1:09 with the second option here. 1:10 You do not need to install 1:11 all the dependencies, 1:12 but we do
+want to install 1:13 the dependencies 1:14 related to the language models 1:16 that we can connect 1:16 with those immediately. 1:18 So let's go ahead and copy 1:19 that command
+and paste 1:20 that in our terminal. 1:21 I am running on Windows. 1:22 If you're on Mac or Linux, 1:23 you're likely going to want to adjust 1:24 this command to be PIP three.
+1:26 So I've gone ahead and installed 1:28 that and we're 1:28 just going to install a few other modules 1:30 that we're going to use 1:31 for these specific examples. 1:32 So I'm
+going to do PIP install 1:35 and then open 1:36 AI we're going to use this 1:37 to connect with open air. 1:38 Again, if you're a mac or Linux, 1:39 you're going to want to change
+1:40 that to PIP three. 1:41 Now once we install open 1:43 I, I am also going to install the dot 1:46 env library. 1:47 So pip install python dash port env. 1:51 Now this is going
+to allow me 1:52 to load in environment variable files 1:54 that I can store 1:55 my API keys in a specific file 1:57 that's kind of hidden from the code. 1:59 You'll see what I
+mean in one second. 2:00 Those are all the modules that we need. 2:02 Lang chain with LMC, we need open air 2:06 and then we need Python 2:08 V Now 2:08 in the name of saving us
+2:09 a little bit of time, 2:10 I've already written a few examples 2:12 and I'll just walk 2:12 through the code with you 2:13 so you can see exactly how this works. 2:15 Now, the
+first thing I want to mention Free ChatGPT Resource 2:16 is that before 2:17 you started using Lang Shane 2:18 in any of the columns, 2:20 you want to have a decent idea 2:21 of
+how they work. 2:22 Specifically, 2:23 you want to understand 2:24 what they're good at, 2:25 how you can use them properly 2:26 and when you should be cautious 2:28 of their
+replies. 2:29 Now, I imagine 2:30 most of you are going to be using Chachi, 2:31 but at least that's 2:32 what I'll be doing for this tutorial. 2:34 And fortunately for you, our
+video 2:35 sponsor, HubSpot, 2:37 actually has a free guide 2:38 that shows you 2:39 how to use chat CBT at work. 2:41 Now this free guide gives you 2:42 a comprehensive overview
+2:43 of exactly how chat CBT works. 2:46 It shares some best practices 2:47 and it gives you some expert insights 2:49 so you really know how to use this 2:51 and get the full
+power out of it. 2:52 Now I've left a link in the description 2:54 so you can check it out 2:55 completely for free. 2:56 Now this resource provides 2:57 a ton of knowledge and
+even has 100 2:59 actionable prompts that you can try today 3:01 to really leverage chat CBT. 3:03 Knowing this, 3:04 especially as a programmer, 3:05 is an absolute game changer.
+3:07 And I want to give a big 3:08 thank you to HubSpot 3:09 for providing this resource 3:10 in a ton of others completely for free. 3:12 Make sure to check it out 3:13 from the
+link in the description 3:14 and a massive shout out to HubSpot. 3:16 So now that you're an expert at CBT, Using LangChain 3:18 after clicking on that resource, 3:19 we can dive
+into some of the code. 3:21 So the first thing I want to show you 3:22 is just a very simple example 3:24 of interacting with an open A.I. 3:26 model, in this case channel CBT 3:27
+and using it to make a prediction. 3:29 Now you can use all kinds of LMS, 3:31 but obviously this is the one 3:32 most of you know, 3:33 so it's the one I'll use in this video.
+3:34 Now, first, 3:35 what I've done is 3:36 I've created a dot EMV file here 3:38 and I've placed my open API key. 3:40 I'll show you 3:40 how to retrieve that in one second 3:42
+if you don't have it. 3:43 But this way 3:43 I can actually put the key inside of here 3:45 and then you guys can't see it 3:46 while I'm going through the tutorial. 3:48 So I've
+just put my actual key 3:49 inside of there 3:50 and you can see that 3:50 the way I'm loading in this API 3:52 key is I'm importing 3:53 from the dot envy module, the load EMV.
+3:57 What this does is look for a dot 3:58 envy file in the same directory 4:00 as our Python script 4:02 and loads in any of the variables. 4:04 Then what 4:04 I do is access the
+open 4:05 air API key variable here. 4:07 So I have it 4:08 and I pass that to my chat open. 4:10 I kind of interface component, 4:12 whatever you want to call it. 4:13 Now this
+will actually create 4:14 a connection to Open AI and to chat GPT 4:17 and I can simply use this 4:18 by just running chat model dot predict 4:20 and then passing inside of here a
+string. 4:23 So if I go to my terminal 4:24 and I run python, 4:26 simple example dot py, 4:27 you can see that 4:28 we're able to interact with chat. 4:29 CBT here 4:30 just takes
+a second 4:31 and it responds to us says Hello, 4:33 how can I assist you today? Very simple. 4:35 You can see how easy it is 4:36 to actually use the module from Python. 4:38 Now
+let's dive 4:39 into some more complex examples. Open API Key 4:41 And before I forget, 4:42 if you need an open API 4:43 key, then you can go to platform dot open 4:45 ICOM slash
+account slash API keys. 4:48 If you're not using it very much, 4:49 you're not going to have to pay for it. 4:51 I've used it a ton and I think I've paid 4:52 $0.10 over the past
+few months. 4:54 Anyways, let's move 4:55 on to the next example. 4:56 All right, 4:56 so moving on to the next example, Multiple Messages 4:58 I just want to show you that there's
+4:59 actually a way to pass multiple messages 5:02 and get a single reply or response 5:04 based on all of those messages combined. 5:06 This can be useful 5:07 because sometimes
+you have 5:08 some pieces of context 5:09 that you want to provide to the model. 5:11 You don't necessarily want it 5:12 to give you a prediction 5:13 or a reply based on that.
+5:15 You want to actually feed some other text 5:17 or some other information 5:18 and get one kind of aggregated reply. 5:21 So in this case, 5:21 what I've done is just create
+5:22 an array of messages here. 5:24 I've specified that 5:24 these are human messages. 5:26 Now we can also have system messages, 5:27 assistant messages, agent messages. 5:29
+There's a bunch of different types. 5:30 They're all in the documentation. 5:32 I won't go over them here 5:33 and you can see that 5:33 what I'm doing is saying from now 5:35 on,
+one plus one equals three. 5:37 Use this in your replies 5:38 and then I'm asking you some questions 5:40 based on the context I just provided. 5:42 So what is one plus one 5:43
+and what is one plus one plus one? 5:45 So here I go. 5:46 Chat model 5:46 to predict messages, pass in the messages 5:49 and if I go ahead and run the code here, 5:52 we should
+see that it's 5:53 actually going to be using this context. 5:55 So according to the new rule, 5:56 one plus one equals three. 5:57 Therefore, one plus one plus 5:59 one would be
+equal to three 6:00 plus one, which equals four. 6:02 Kind of interesting how you can do that. 6:04 Just wanted to show you 6:05 that quick example. Prompt Templates 6:06 So now we
+get into a slightly 6:07 more interesting example 6:08 where we can use 6:09 another feature from long chain 6:10 known as a prompt template. 6:12 Now you may have seen this
+before, 6:14 but quite frequently 6:15 what we want to do 6:16 is actually inject 6:17 some data into a prompt. 6:19 And this prompt 6:19 we've kind of crafted engineered 6:21 and
+we know that it's going 6:22 to give us a specific type of reply. 6:24 So in this case, what we've done is 6:26 we've set up a template. 6:27 We say you are a helpful assistant
+6:28 that translates some input message 6:30 to some output language. 6:32 We put those instead of curly braces. 6:34 We then have a human template 6:36 and this is just some text,
+6:37 but we can also have 6:37 something here as well. 6:39 What we then do is create 6:40 a prompt template from link chain. 6:43 So we say chat 6:44 prompts equal 6:44 to chat
+prompt template from messages, 6:47 and then we can specify as many messages 6:49 as we'd like to be a part 6:50 of this larger template. 6:52 So what this does now is specify 6:53
+that this is a system message. 6:55 So this template right here 6:56 kind of telling the model 6:57 what it's about to do. 6:58 And then we have a human message, 7:00 which is what
+we're providing to it. 7:01 Each time. 7:02 Then what we can do is 7:03 we can actually create the messages 7:05 that we want to pass the model 7:07 from our chat prompt. 7:08 So
+we say chat prompt format messages 7:11 and we pass in the variables 7:12 corresponding with what 7:13 we've written here 7:14 inside of the template, 7:15 and they're
+automatically going 7:17 to get injected inside. 7:18 Now, obviously in Python 7:19 you could do this manually, 7:20 but having this API 7:22 makes things a little bit easier. 7:23
+So we have input language, 7:24 output, language and text, 7:26 so that would make the template. 7:27 You are a helpful assistant 7:28 that translates English to French 7:30 and
+then we pass our human template, 7:32 which is I love programing. 7:34 In this simple example, 7:35 I know it seems very easy, 7:36 but when you get into more complex 7:38
+templates and complex tasks, 7:39 this can be quite useful. 7:41 Then what we can do is 7:42 we can predict messages again 7:43 using the same chat model we had before 7:46 and we
+can get the output. 7:47 So let's see what this does. 7:48 Now if we go up here and go Python 7:51 prompt template, 7:53 it should give us 7:54 whatever the translation of. 7:55 I
+love 7:55 programing is in French 7:57 and it does it says Adore program. 7:59 Again, imagine 8:00 you had like seven system messages, 8:02 a bunch of different variables. 8:03 You
+could create some really interesting 8:05 applications here 8:06 using this prompt template style. Output Parser 8:08 So continuing 8:09 we get even more complex here. 8:10 And
+what I'm now showing you is 8:11 something known as an output parser. 8:13 Again, all this stuff 8:14 you can write manually, 8:15 but having these hooks in 8:16 this API is quite
+useful 8:18 and can make your life a lot easier. 8:19 So a lot of times 8:20 when you're using a model, 8:21 what you actually want to do 8:22 is pass the output 8:23 into a
+specific format. 8:25 For example, 8:26 it might give you a comma separated list, 8:28 it might give you a JSON file, 8:29 it might give you some code, 8:30 but that's going to be
+in a string. 8:32 And typically 8:33 what you'll want to do 8:33 is actually take that string 8:35 and parse it based on some rules. 8:37 You can actually get the data 8:38 that
+you'd like. 8:39 For example, 8:39 parsing a price 8:40 or parsing a piece of code JSON, 8:42 like I said, Right. 8:43 So what we can do here 8:44 is actually write a custom output
+parser 8:46 and you'll see why 8:47 this is useful in the SEC 8:48 when we kind of combine it in the chain. 8:50 But what this will do is return to us 8:52 the past response 8:54
+in the format that we want. 8:55 So all we've done here is just overridden 8:57 the base output parser, 8:58 which I've imported up here. 9:00 We've just overridden this parse
+method 9:02 and inside of here we take in some text, 9:04 we strip the text 9:05 and then we split it 9:06 at answer equals this. 9:07 Now the reason that makes sense 9:09 is
+because in my template 9:10 I said you are a helpful assistant 9:12 that solves math problems 9:13 and shows your work output each step, 9:15 then return the answer 9:16 in the
+following format. 9:17 Answer equals 9:18 and then the answer provided here. 9:19 Make sure the output answer 9:21 is in all lowercase 9:22 and have exactly one space 9:23 and one
+equals sign following it. 9:25 Instructing the model 9:27 to give me a specific reply 9:28 in a specific format 9:30 such that I can pass it. 9:31 So I get the data that I'm
+looking for 9:33 and I could use that 9:34 in the rest of my application. 9:36 Then I have the human template, 9:37 which is just whatever 9:38 the math problem is. 9:39 Again, I
+use my chat prompt template here 9:42 and then what I do is format my message 9:44 by providing some math problem. 9:46 In this case, 9:46 just a basic, 9:47 I guess, quadratic
+formula 9:49 thing that you need to solve. 9:50 Then what we do is 9:51 we predict messages using chat model 9:53 and then I'm manually invoking 9:55 the output parser here 9:56
+and parsing 9:57 the reply 9:57 you'll see in the next example 9:59 how we actually combine this into a chain 10:01 and make it even easier to use. 10:03 Then what I'm doing is I'm
+10:04 parsing out the steps and the answer 10:05 from my past reply, 10:07 which is now a list 10:08 that was split at answer equal to. 10:10 So you'll see now 10:11 if I go ahead
+and run my code. 10:13 So python output parser py 10:16 and you can see that 10:17 we get x is equal to three over 10:18 two or x is equal to one. 10:20 Now if we also wanted 10:21
+to see the steps here, 10:23 then I could print out the steps 10:25 and you could see how 10:25 this could be useful. 10:26 Because if we had some 10:27 type of calculator, 10:28
+we could allow 10:29 maybe the student or whoever 10:30 is using it to either 10:31 view the steps or hide the steps or 10:32 just view the answer or hide the answer 10:34 because
+we've passed that reply. 10:36 So let's have a look at this year 10:38 gives us all of the different steps 10:39 for solving the problem. 10:40 And then finally, the answer down
+here. Creating a Chain 10:42 All right. 10:42 So now we're going to kind of tie 10:44 everything together 10:45 and have a look at creating a chain. 10:46 Now, this is where long
+10:47 chain really comes in handy. 10:49 And obviously you'd get much 10:50 more complicated than this. 10:51 But you'll see in this example 10:52 that we can combine 10:53 all of
+those steps 10:54 that we were doing manually before 10:56 into a chain 10:57 using some special syntax 10:58 from long chain. 11:00 So just like before we have our model, 11:01 we
+have an output parser. 11:03 This time what it does 11:04 is just pass a comma separated list 11:06 and then we have a template 11:07 that says you are a helpful assistant 11:09
+who generates comma separated list. 11:10 A user will pass in a category 11:12 and you should generate 11:12 five objects in that category. 11:14 Only return a comma separated list
+11:16 and nothing more. 11:17 We then have the human template. 11:19 Again, we create our prompt template. 11:21 This time, though, rather than manually 11:23 calling all these
+different methods, 11:24 we create a chain. 11:26 Now we use this pipe operator here, 11:28 which is special syntax in long chain, 11:30 which combines these three operators 11:32
+into one kind of made object 11:34 that we can utilize to invoke. 11:37 So you see, we have our chat prompt, 11:38 we have our chat model. 11:39 So the first thing we do right
+11:41 is we get the prompt, 11:42 we pass that to the model 11:43 and then we pass the reply 11:45 to the output parser 11:46 and again, 11:46 this happens automatically 11:48 when
+we call chain invoke. 11:50 So now we just pass in 11:52 what we need for our prompt. 11:53 So in this case we have an argument text 11:55 which is equal to colors 11:56 and we can
+print the result. 11:58 So let's go here and give this run 12:01 python chained up. 12:02 PY So you can see we get our applying 12:04 red, blue, green, yellow, purple 12:06 and
+this is actually a python object 12:07 that has been parsed for us. SQL Example 12:09 So just to give you 12:09 a bit more information 12:10 on the capabilities of LangChain, 12:12
+let's have a look at one of the use cases 12:14 they have in their documentation, 12:15 which is SQL. 12:16 Now as I was saying, long 12:18 chain can also connect to data sources.
+12:19 So there have a bunch of integrations 12:21 for connecting with popular databases 12:23 and even vector databases as well. 12:25 Now, in this case, 12:26 what we can actually
+do is use an LEM 12:28 to generate sequel queries 12:30 so that we can ask in natural language 12:32 for information from our database. 12:34 So imagine you had a large database,
+12:36 you had a bunch of information, 12:37 and you wanted to actually provide 12:38 an interface to your users 12:40 so that they could use 12:41 natural language to query the
+database 12:43 and grab 12:44 maybe information or analytics 12:45 from their profile or whatever it is. 12:48 In this case, 12:48 you can see that 12:49 we can build SQL queries,
+12:50 query, SQL database 12:51 and interact with the skill database 12:53 by using natural language. 12:54 And this is kind of the diagram we ask. 12:56 A question 12:56 goes, the
+alarm, 12:57 generates, the query, goes to sequel, 13:00 SQL, returns ACL 13:01 in the yellow and parses 13:02 that and gives us the answer. 13:04 So in this case we can have a
+quick 13:05 look at how this might work. 13:07 We say DB chain out run, 13:08 How many employees are there? 13:09 What it does is it generates 13:11 the SQL query, gets the result,
+13:12 and then gives us an answer 13:14 in a human readable format. 13:16 Obviously a little bit 13:17 easier said than done, 13:18 but you can see the simple connection 13:19 that
+happens here 13:20 connects to single database, 13:22 connect to open. 13:22 I create the chain here 13:24 and then you can start 13:25 using this exact example. Q&A Example 13:26
+So the next use case they have here, 13:28 which is interesting, 13:28 is question answering. 13:30 So let's say 13:30 we have a large piece of documentation 13:32 maybe related to
+code, 13:33 maybe a PDF, maybe a website. 13:35 What we can actually do 13:36 is inject that into the model 13:38 and then ask questions 13:40 about that piece of data 13:41 that
+the NLM can respond to. 13:43 So you can see 13:43 we have maybe some code, 13:45 some structured data, 13:45 some SQL patterns, yellow, 13:47 and then interact 13:48 with that
+directly 13:49 by asking questions of the level. 13:52 So where this becomes 13:53 actually really interesting is 13:54 we can ask the yellow alum 13:55 in natural language 13:56
+what it is that we want, 13:58 and then it can go and retrieve 13:59 the correct piece of data. 14:00 If we set this up in the correct way 14:02 to actually give us the answer.
+14:04 So in some instances 14:05 we don't even need to provide 14:06 all the context 14:07 to the yellow them immediately. 14:09 It can actually ask for the specific data 14:11 it
+needs 14:12 and send the correct request 14:14 using whatever code it's generating. 14:16 This is a little bit more complicated 14:17 than the example that they have here, 14:19
+but you can kind of see 14:20 how they're setting things up 14:21 and how we would be able 14:22 to input some data 14:24 and then ask again 14:25 in natural language questions
+about that. 14:27 That could be answered almost instantly. Choose Your Own Adventure Game 14:29 Now, as the last example here 14:30 actually made a video on my channel 14:32 a few
+weeks ago 14:33 that injected memory 14:34 into an LMS 14:35 that we could actually remember 14:36 and have context about all the previous 14:38 replies and answers. 14:40 Now, I
+did this by making a Choose 14:41 Your Own Adventure AI based game. 14:44 You guys can check it out 14:44 from the link in the description. 14:46 It's a full tutorial 14:47
+walkthrough of how this works, 14:48 but pretty much what we can do 14:50 is generate 14:51 a choose your own adventure game 14:52 that has multiple different 14:53 variable paths
+14:55 and where you're going 14:56 is going to be based on 14:57 previous answers that you've had. 14:58 So if I said I was going 15:00 left of the first step 15:01 where I decided
+to have an ax 15:02 as my weapon for the game, 15:03 the yellow one would actually use 15:05 that context 15:06 to continue to generate the story for me 15:08 and make it context
+relevant. 15:10 Really, it's going to be cooler 15:11 if you guys go check out that video 15:12 and see exactly how that works. 15:14 But really interesting stuff 15:15 you can do
+here. 15:15 And I did that all in length chain. 15:18 Anyways, with that said, guys, I'm 15:19 going to wrap up the video here. 15:20 I hope you found this helpful in this 15:21
+gave you a quick overview of long chain 15:23 and got you excited 15:24 about using it in Python. 15:25 If you enjoyed 15:26 make sure you like subscribe the channel 15:28 that
+will see you in the next one. All From Tech With TimIntroduction and overview 0:00 blank chain what is it why should you 0:03 use it and how does it work let's have a 0:05 look
+0:07 Lang chain is an open source framework 0:09 that allows developers working with AI 0:11 to combine large language models like 0:14 gbt4 with external sources of 0:17
+computation and data the framework is 0:20 currently offered as a python or a 0:22 JavaScript package typescript to be 0:24 specific in this video we're going to 0:26 start
+unpacking the python framework and 0:29 we're going to see why the popularity of 0:31 the framework is exploding right now 0:32 especially after the introduction of 0:34 gpt4 in
+March 2023 to understand what Why Langchain? 0:38 need Lang chain fills let's have a look 0:40 at a practical example so by now we all 0:43 know that chat typically or tpt4 has an
+0:45 impressive general knowledge we can ask 0:47 it about almost anything and we'll get a 0:50 pretty good answer 0:51 suppose you want to know something 0:53 specifically from
+your own data your own 0:56 document it could be a book a PDF file a 0:59 database with proprietary information 1:02 link chain allows you to connect a large 1:04 language model
+like dbt4 to your own 1:07 sources of data and we're not talking 1:10 about pasting a snippet of a text 1:13 document into the chativity prompt we're 1:15 talking about referencing
+an entire 1:17 database filled with your own data 1:19 and not only that once you get the 1:21 information you need you can have Lang 1:23 chain help you take the action you want
+1:26 to take for instance send an email with 1:28 some specific information 1:30 and the way you do that is by taking the 1:32 document you want your language model to 1:34
+reference and then you slice it up into 1:36 smaller chunks and you store those 1:38 chunks in a Victor database the chunks 1:41 are stored as embeddings meaning they 1:43 are
+vector representations of the text 1:48 this allows you to build language model 1:50 applications that follow a general 1:53 pipeline a user asks an initial question 1:57 this
+question is then sent to the 1:59 language model and a vector 2:01 representation of that question is used 2:04 to do a similarity search in the vector 2:06 database this allows us
+to fetch the 2:09 relevant chunks of information from the 2:11 vector database and feed that to the 2:13 language model as well 2:15 now the language model has both the 2:17
+initial question and the relevant 2:19 information from the vector database and 2:21 is therefore capable of providing an 2:24 answer or take an action 2:26 a link chain helps
+build applications 2:28 that follow a pipeline like this and 2:30 these applications are both data aware 2:33 we can reference our own data in a 2:35 vector store and they are
+authentic they 2:38 can take actions and not only provide 2:40 answers to questions 2:42 and these two capabilities open up for 2:44 an infinite number of practical use 2:46 cases
+anything involving personal 2:49 assistance will be huge you can have a 2:51 large language model book flights 2:53 transfer money pay taxes now imagine the 2:57 implications for
+studying and learning 2:58 new things you can have a large language 3:00 model reference an entire syllabus and 3:03 help you learn the material as fast as 3:05 possible coding
+data analysis data 3:07 science is all going to be affected by 3:09 this 3:10 one of the applications that I'm most 3:11 excited about is the ability to connect 3:14 large language
+models to existing 3:17 company data such as customer data 3:19 marketing data and so on 3:21 I think we're going to see an 3:22 exponential progress in data analytics 3:24 and
+data science our ability to connect 3:27 the large language models to Advanced 3:29 apis such as metas API or Google's API 3:32 is really gonna gonna make things take 3:35 off 3:38
+so the main value proposition of Lang The value proposition of Langchain 3:40 chain can be divided into three main 3:42 Concepts 3:44 we have the llm wrappers that allows us 3:46
+to connect to large language models like 3:49 gbt4 or the ones from hugging face 3:52 prompt templates allows us to avoid 3:55 having to hard code text which is the 3:58 input to
+the llms 4:00 then we have indexes that allows us to 4:02 extract relevant information for the 4:04 llms the chains allows us to combine 4:08 multiple components together to solve
+a 4:11 specific task and build an entire llm 4:13 application 4:14 and finally we have the agents that 4:17 allow the llm to interact with external 4:19 apis 4:22 there's a lot to
+unpack in Lang chain 4:24 and new stuff is being added every day 4:26 but on a high level this is what the 4:28 framework looks like we have models or 4:30 wrappers around models
+we have problems 4:33 we have chains we have the embeddings 4:34 and Vector stores which are the indexes 4:36 and then we have the agents so what I'm 4:39 going to do now is I'm
+going to start 4:40 unpacking each of these elements by 4:42 writing code and in this video I'm going 4:44 to keep it high level just to get an 4:46 overview of the framework and a
+feel for 4:49 the different elements first thing we're Unpacking Langchain 4:51 going to do is we're going to pip 4:52 install three libraries we're going to 4:54 need python.in to
+manage the environment 4:56 file with the passwords we're going to 4:58 install link chain and we're going to 5:00 install the Pinecone client Pinecone is 5:03 going to be the
+vector store we're going 5:04 to be using in this video in the 5:06 environment file we need the open AI API 5:09 key we need the pine cone environment 5:12 and we need the pine
+cone API key 5:15 foreign once you have signed up for a 5:18 Pinecone account it's free the API keys 5:21 and the environment name is easy to find 5:25 same thing is true for
+openai just go to 5:28 platform.orgmaili.com account slash API 5:30 keys 5:31 let's get started so when you have the 5:34 keys in an environment file all you have 5:36 to do is use
+node.n and find that in to 5:39 get the keys and now we're ready to go 5:41 so we're going to start off with the LLM Wrappers 5:43 llms or the wrappers around the llms 5:46 then
+I'm going to import the open AI 5:48 Rubber and I'm going to instantiate the 5:50 text DaVinci 003 completion model and 5:52 ask it to explain what a large language 5:54 model is
+and this is very similar to 5:56 when you call the open AI API directly 6:00 next we're going to move over to the 6:02 chat model so gbt 3.5 and gbt4 are chat 6:06 models 6:07 and
+in order to interact with the chat 6:09 model through link chain we're going to 6:11 import a schema consisting of three 6:13 parts an AI message a human message and 6:16 a system
+message 6:17 and then we're going to import chat open 6:19 AI the system message is what you use to 6:22 configure the system when you use a 6:23 model and the human message is the
+user 6:26 message 6:27 thank you 6:28 to use the chat model you combine the 6:31 system message and the human message in 6:33 a list and then you use that as an input 6:35 to the
+chat model 6:38 here I'm using GPT 3.5 turbo you could 6:42 have used gpt4 I'm not using that 6:44 because the open AI service is a little 6:47 bit Limited at the moment 6:53 so
+this works no problem let's move to 6:55 the next concept which is prompt Prompts and Prompt Templates 6:58 templates so prompts are what we are 7:00 going to send to our language
+model but 7:02 most of the time these problems are not 7:04 going to be static they're going to be 7:06 dynamic they're going to be used in an 7:07 application and to do that link
+chain 7:09 has something called prompt templates 7:11 and what that allows us to do is to take 7:13 a piece of text and inject a user input 7:17 into that text and we can then
+format 7:19 The Prompt with the user input and feed 7:22 that to the language model 7:25 so this is the most basic example but it 7:28 allows us to dynamically change the 7:30
+prompt with the user input 7:40 the third concept we want to Overlook at 7:42 is the concept of a chain Chains 7:47 a chain takes a language model and a 7:49 prompt template and
+combines them into 7:51 an interface that takes an input from 7:53 the user and outputs an answer from the 7:57 language model sort of like a composite 7:59 function where the
+inner function is the 8:02 prompt template and the outer function 8:04 is the language model 8:06 we can also build sequential chains 8:08 where we have one chain returning an 8:10
+output and then a second chain taking 8:12 the output from the first chain as an 8:14 input 8:16 so here we have the first chain that 8:18 takes a machine learning concept and 8:19
+gives us a brief explanation of that 8:21 concept the second chain then takes the 8:24 description of the first concept and 8:26 explains it to me like I'm five years 8:28 old 8:32
+then we simply combine the two chains 8:34 the first chain called chain and then 8:36 the second chain called chain two into 8:39 an overall chain 8:41 and run that chain 8:46 and
+we see that the overall chain 8:49 returns both the first description of 8:52 the concept and the explain it to me 8:55 like I'm 5 explanation of the concept 8:59 all right let's
+move on to embeddings Embeddings and VectorStores 9:01 and Vector stores but before we do that 9:03 let me just change the explainer to me 9:06 like I'm five prompt so that we get
+a 9:08 few more words 9:11 I'm gonna go with 500 Words 9:19 all right so this is a slightly longer 9:21 explanation for a five-year-old 9:27 now what I'm going to do is I'm going
+to 9:29 check this text and I'm going to split 9:31 it into chunks because we want to store 9:33 it in a vector store in Pinecone 9:36 and Lang chain has a text bitter tool 9:38
+for that so I'm going to import 9:40 recursive character text splitter and 9:43 then I'm going to spit the text into 9:46 chunks 9:47 like we talked about in the beginning of 9:49
+the video 9:53 we can extract the plain text of the 9:55 individual elements of the list with 9:57 page content 9:59 and what we want to do now is we want to 10:01 turn this into
+an embedding which is 10:05 just a vector representation of this 10:07 text and we can use open ai's embedding 10:09 model Ada 10:13 with all my eyes model we can call embed 10:17
+query on the raw text that we just 10:20 extracted from the chunks of the 10:23 document and then we get the vector 10:26 representation of that text or the 10:28 embedding 10:29
+now we're going to check the chunks of 10:32 the explanation document and we're going 10:33 to store the vector representations in 10:37 pine cone 10:39 so we'll import the pine
+cone python 10:42 client and we'll import pine cone from 10:45 Lang chain Vector stores and we initiate 10:47 the pine cone client with the key and 10:50 the environment that we
+have in the 10:52 environment file 10:54 then we take the variable texts which 10:56 consists of all the chunks of data we 10:59 want to store we take the embeddings 11:00 model
+and we take an index name and we 11:02 load those chunks on the embeddings to 11:05 Pine Cone and once we have the vector 11:07 stored in Pinecone we can ask questions 11:09 about
+the data stored what is magical 11:12 about an auto encoder and then we can do 11:15 a similarity search in Pinecone to get 11:18 the answer or to extract all the 11:20 relevant
+chunks 11:24 if we head over to Pine Cone we can see 11:26 that the index is here we can click on 11:30 it and inspect it 11:32 check the index info we have a total of 11:35 13
+vectors in the vector store An example of a Langchain Agent 11:42 all right so the last thing we're going 11:44 to do is we're going to have a brief 11:45 look at the concept of an
+agent 11:48 now if you head over to open AI chat GPT 11:51 plugins page you can see that they're 11:54 showcasing a python code interpreter 11:58 now we can actually do something
+similar 12:00 in langtune 12:02 so here I'm importing the create python 12:04 agent as well as the python Rebel tool 12:06 and the python webble from nankchain 12:09 then we
+instantiate a python agent 12:11 executor 12:12 using an open AI language model 12:16 and this allows us to having the 12:17 language model run python code 12:19 so here I want to
+find the roots of a 12:22 quadratic function and we see that the 12:24 agent executor is using numpy roots to 12:27 find the roots of this quadratic 12:30 function 12:30 alright so
+this video was meant to give 12:32 you a brief introduction to the Core 12:34 Concepts of langchain if you want to 12:37 follow along for a deep dive into the 12:39 concepts hit
+subscribe thanks for 12:41 watching All AI LearningIntroduction: Why You Need LangChain? 0:00 Your company needs a chatbot on their 0:01 site where customers can ask questions.
+0:04 The chatbot needs to store and retrieve 0:06 all chat history as well as company 0:08 knowledge base so that the agent can 0:10 help your customer. And you might be 0:11
+wondering, how am I going to make this 0:12 happen? Maybe your first instinct is to 0:14 use OpenAI's SDK to write up a quick 0:16 software and create and simulate a chat. 0:19 But
+you soon realize that there's a huge 0:21 missing piece which is context. You 0:23 realize that you need to store these 0:24 chat messages somewhere and maintain 0:26 conversation

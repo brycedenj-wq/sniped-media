@@ -1,0 +1,224 @@
+hours, 28 minutes, 52 secondsis handy if somebody's looking at the logs do we do that for speakers it's a habit i like to get into so let's do that so we'll say console.log
+2:29:002 hours, 29 minutescalling speakers okay all right so let's deal with these duplicates 2:29:082 hours, 29 minutes, 8 secondsfirst things first let's get a hold of their
+phone numbers so i'm going to define uh using a let because i'm going to reassign this so i'm going to 2:29:152 hours, 29 minutes, 15 secondsspecifically use a let so i can
+reassign registrant phone numbers so what we'll do is we'll get all of them and then i will 2:29:232 hours, 29 minutes, 23 secondswe'll make it unique so uh this we're gonna use
+the registrants which is an array and we're gonna map and remember um uh the the registrant 2:29:322 hours, 29 minutes, 32 secondsfor so for each one of these registrants uh what
+we want to return is the phone number right so that's a really quick map so we'll 2:29:402 hours, 29 minutes, 40 secondshave a list of uh duplicate phone numbers and i spelled this
+wrong we don't registrant that's like when you like really like things 2:29:482 hours, 29 minutes, 48 secondsyou registered it okay all right um so next we need to do like a set so
+we'll say uh const so we're not going to 2:29:552 hours, 29 minutes, 55 secondsreassign this why we're using a const registrant phone numbers equals a new set so if you haven't
+used the set before basically you pass it in 2:30:022 hours, 30 minutes, 2 secondsiterable or in our case we're going to pass in an array which is an iterable and it's going to
+return the unique phone numbers which is awesome now i 2:30:112 hours, 30 minutes, 11 secondswill reassign uh registrant phone numbers if we do this destructuring of our set we
+will go ahead and we'll turn 2:30:182 hours, 30 minutes, 18 secondsit into a brand new array and when i said registrant phone numbers that's not going to work we need registered
+phone 2:30:252 hours, 30 minutes, 25 secondsnumbers set and register phone number is set there we go all right so i'm going to get all of the phone numbers i'm going to pass it
+through a 2:30:332 hours, 30 minutes, 33 secondsset and then i'm going to turn the set into an array that's what this dot dot destructuring of that and i'm going to put it back
+into this registered phone number so now we have 2:30:412 hours, 30 minutes, 41 secondsjust the phone numbers all right now with our unique registrant phone numbers we could just
+do a four of loop 2:30:502 hours, 30 minutes, 50 secondslike we did for the speakers we could just loop through all of them with a four of loop but there are going to be way more
+registrants than speakers especially 2:30:592 hours, 30 minutes, 59 secondswhen our app blasts off so you do actually have 10 seconds before your function times out but let's
+explore what it looks like to make the ad 2:31:072 hours, 31 minutes, 7 secondsparticipants api call asynchronous so instead of waiting for each registrant we kick off a bunch of
+requests all at once now this is a 2:31:152 hours, 31 minutes, 15 secondscommon need and i thought it'd be beneficial to explore now do note that it'll be a little challenging to
+grok if this is your first time seeing this so 2:31:242 hours, 31 minutes, 24 secondsmake sure that you take advantage of being in a video course and rewind back to watch this bit
+again so promises in javascript are objects that will 2:31:322 hours, 31 minutes, 32 secondseventually return a value in fact that's what they're promising it's something like when
+i get a value back i'll let you know if it was successful or failed i 2:31:412 hours, 31 minutes, 41 secondspromise when we use the await keyword like we did here basically what
+we're saying is a wait for the promise 2:31:482 hours, 31 minutes, 48 secondsto come back and tell me that it's finished we're not actually taking full advantage of the fact that
+we can run multiple requests at once 2:31:562 hours, 31 minutes, 56 secondswhen we use them in a for loop like this because we're saying four and this basically just waits and
+we're just making one request and it will go and 2:32:052 hours, 32 minutes, 5 secondsfinish then we'll come back and do the for loop we could run them all asynchronously at once
+and then come back and get their results 2:32:122 hours, 32 minutes, 12 secondslet's do that so what i'm going to do is i'm going to get back an array of promises like all at once
+2:32:202 hours, 32 minutes, 20 secondsso if you use the map method of an array which we have an array right we have these registrant phone numbers and we are going to map and if
+you use an async 2:32:292 hours, 32 minutes, 29 secondsfunction to define this it'll automatically return a promise back to you so i'm going to make an async function here async
+2:32:372 hours, 32 minutes, 37 secondsand uh each one of these registered phone numbers we're going to pass in the registrant uh we'll just we'll call this phone number 2:32:452
+hours, 32 minutes, 45 secondsnow we should call registrant phone number just to be clear in our code so we'll call registrant phone number so we'll for each one of those unique
+2:32:522 hours, 32 minutes, 52 secondsnumbers we're going to make a registrant phone number and inside the body of this function we just do what we would normally do so 2:33:002
+hours, 33 minuteswe want the function to return a participant and we can use a weight in here it's fine that we do so we're going to await the client and we'll do very similar
+2:33:092 hours, 33 minutes, 9 secondslike we did up top we'll do conferences and we're looking for the talk code from that resource we're going to get the participants collection
+and we're 2:33:172 hours, 33 minutes, 17 secondsgoing to create a new one of those the two is the registrant phone number that we have here registrant 2:33:252 hours, 33 minutes,
+25 secondsphone number and the from is also like we used above we have the context.twilio number 2:33:342 hours, 33 minutes, 34 secondsand these people that we're calling we want
+them to call in muted we do not want them to beep 2:33:432 hours, 33 minutes, 43 secondsand we do not want them to start the conference we want the the conference will be started
+uh by our speakers 2:33:502 hours, 33 minutes, 50 secondsremember we're inside of this map function and the way that the map works is we're going to return a value in here we'll
+say participant 2:33:582 hours, 33 minutes, 58 secondsdot call cent right just like we did before so before we were adding to an array in this case what's happening is these
+promises are going to come back 2:34:062 hours, 34 minutes, 6 secondsand they will all eventually have the value of this participant call sid okay so we have a list of promises
+that 2:34:142 hours, 34 minutes, 14 secondsare all kicking off and they're all going to run at the same time that's what this async map is about right so we've got we've got this
+list of promises so now 2:34:222 hours, 34 minutes, 22 secondsuh what we want is when all those promises are all done we want the results so we're going to get the results of those
+promises and a cool way 2:34:302 hours, 34 minutes, 30 secondsto do that is this there's this new method called promise.all settled uh relatively new it's in node 12 2:34:382
+hours, 34 minutes, 38 secondsand we're going to pass in promises and note we are waiting for that to be finished because promise all settled itself is a promise so i'm going to
+2:34:462 hours, 34 minutes, 46 secondsawait that and we're going to bring back the results so when all things are are done when they've all come back either successfully or failed
+we'll get a 2:34:542 hours, 34 minutes, 54 secondshandle on those but we really only want to get ones that were successful so what we'll do is we'll use that results array that
+comes 2:35:032 hours, 35 minutes, 3 secondsback and the results array has an object and it has a status and a value so we're going to filter anything that was not 2:35:102 hours,
+35 minutes, 10 secondssuccessful so each one of those results uh we want to get rid of one or we want to keep ones that are fulfilled 2:35:192 hours, 35 minutes, 19
+secondsfulfilled okay so we're saying of all the results i only want the ones that are fulfilled because there could be ones that were rejected so these are these are 2:35:282
+hours, 35 minutes, 28 secondspromises that were successfully done we're going to get those and then we're going to map okay we're going to take a map of that result 2:35:372 hours,
+35 minutes, 37 secondsand that results we're going to return the value so we're going to going to loop through all of the results and only get the fulfilled ones and when they are
+2:35:452 hours, 35 minutes, 45 secondsfulfilled we are going to return the value of that result which will give us these registrant call cents let's walk that one more time because
+i 2:35:542 hours, 35 minutes, 54 secondstotally understand if that was a bit murky okay so uh we are going to get back registrants we are going to make them unique 2:36:022 hours,
+36 minutes, 2 secondsand then we are going to make a set of promises we are going to build an array of promises for all of the phone numbers that we have and we're going to do that
+2:36:102 hours, 36 minutes, 10 secondsby making an async function inside of this map and that will automatically return a promise and a promise again 2:36:172 hours, 36 minutes, 17
+secondswe'll have a future value and the future value that we want wanted to have eventually is this call sid so what's going to happen is immediately as soon 2:36:252 hours, 36
+minutes, 25 secondsas it hits each one of these the promise will start running and when that promise runs it will run until it either is successful or failed 2:36:332 hours, 36
+minutes, 33 secondswhen it finally reaches that we pass in the promises here it will automatically push out to the results and each one of those results has a status and a value
+2:36:412 hours, 36 minutes, 41 secondsand we're going to only get the ones that are fulfilled and we're going to return the value i'm glad that i got a chance to show off the style
+because if you come across it you should understand what it's trying 2:36:502 hours, 36 minutes, 50 secondsto accomplish check the notes for more on javascript promises one thing
+to remember is that there is a default setting of one cps or calls per second 2:36:582 hours, 36 minutes, 58 secondsnow you can change that but by default these calls are going to
+queue up on twilio side anyway even if we make these requests and then twilio will release 2:37:072 hours, 37 minutes, 7 secondsthem at the cps rate which again by default is 1.
+2:37:112 hours, 37 minutes, 11 secondsmore notes on the calls per second in the notes and now after all that work let's log it out let's make sure we got 2:37:182 hours, 37
+minutes, 18 secondswhat we think we got here so we will do console dot log and we will say the code that was 2:37:272 hours, 37 minutes, 27 secondssubmitted is event dot talk code
+and we want the speakers 2:37:352 hours, 37 minutes, 35 secondswe can we'll show how many called we'll do that first we'll do speaker.callsids dot length so those are the number of
+2:37:432 hours, 37 minutes, 43 secondsspeakers that we called registrants we could do uh yeah we'll get the call sides that we 2:37:522 hours, 37 minutes, 52 secondsjust got we can
+do the registration calls so these are the number of calls that were made and then uh because we have that we know 2:37:582 hours, 37 minutes, 58 secondswho failed so uh failed
+registrant attempts let's just do 2:38:062 hours, 38 minutes, 6 secondsuh so that would be the registrant uh phone numbers right that are writ 2:38:142 hours, 38 minutes, 14
+secondsthat that unique list uh length minus minus the registrant 2:38:242 hours, 38 minutes, 24 secondscall sids.length right so we'll know that is the value that is the 2:38:312
+hours, 38 minutes, 31 secondsnumber of the successful ones because we filtered them out all right and then we definitely want to do the callback at the end of our function right um
+and we're going to put null 2:38:392 hours, 38 minutes, 39 secondshere in case there's any errors uh we don't have any right now and uh what we'll do is we will do a talk code so
+2:38:472 hours, 38 minutes, 47 secondswe'll just write out what happened here and if you pass an object in here um the twilio function will do a really nice job in return a json
+stringified which 2:38:572 hours, 38 minutes, 57 secondsis is very nice so we'll just put in a speaker call sids and again it will automatically uh use the key as speaker call sids
+and the value 2:39:052 hours, 39 minutes, 5 secondsas what we want so registrant call sets so uh hypothetically uh that should work 2:39:122 hours, 39 minutes, 12 secondsand i
+think we're ready to try this out so i'm gonna grab this start talk function now remember um in if this was live it's it's local here under my dev 2:39:202 hours, 39 minutes, 20
+secondsenvironment i can run this locally even though it's protected but once we get it deployed that won't work so i'm going to pass in the talk code and i want to do that let's
+just do the 2:39:282 hours, 39 minutes, 28 secondstaco talk so let's say that it's time to do the taco talk so if everything is working correctly in our code what should happen is
+my phone should ring 2:39:362 hours, 39 minutes, 36 secondsand then my wife's phone should ring and i think we got it but you never know let's do it shoot uh it looks like we don't
+have it it's just kind of spinning 2:39:442 hours, 39 minutes, 44 secondsright so uh let's take a look at the server log yep we got an error and that's okay we can deal with errors
+so we we hit the calling speakers uh uh 2:39:542 hours, 39 minutes, 54 secondsoutput i'm glad we put that there so we've got calling speakers uh it's in here and then it says
+required parameter ops 2:40:012 hours, 40 minutes, 1 secondfrom in participant oh it says i didn't put the from but i did oh you know what shoot this is twilio 2:40:082 hours, 40
+minutes, 8 secondsphone number not twilio number did i do that again i think i did julio phone number it looks like i 2:40:152 hours, 40 minutes, 15 secondsmade the same mistake
+twice um anything else here you know what they're i did it jeez wow 2:40:232 hours, 40 minutes, 23 secondsthat was a bad that was a bad uh take there so we want the participants to
+be muted i'm sure you were screaming at your screen i i couldn't hear you but 2:40:302 hours, 40 minutes, 30 secondsthank you for screaming at your screen glad that you're that
+invested so the participants will now be muted um 2:40:372 hours, 40 minutes, 37 secondswe've got the phone number there uh and i don't like how that was just kind of hanging right
+it was just kind of hanging but um it is what it is so we 2:40:462 hours, 40 minutes, 46 secondsshould do this and it should be my phone ring then my wife's phone will ring ready
+here we go my shoot 2:40:542 hours, 40 minutes, 54 secondsmy phone rang but there's only there's nothing in the call sets there i'm gonna i'm gonna hang up because what good is a
+one person conference call 2:41:022 hours, 41 minutes, 2 secondsand let's see uh yeah failed registration attempts is one but you'll see that the code completed right so it made it
+through here went all the way 2:41:102 hours, 41 minutes, 10 secondsdown to the bottom so we actually this is a good thing to talk about what the promises we didn't talk about this
+before but you probably might want to know why something didn't work right and 2:41:192 hours, 41 minutes, 19 secondsright now the error is being swallowed um so let's fix that so
+i'm going to use those same results so we'll say results dot uh 2:41:272 hours, 41 minutes, 27 secondsfilter we're going to filter out any results that is the status is rejected
+2:41:352 hours, 41 minutes, 35 secondsokay so now we have these objects right that same object that we had that has the value it also has when it's a problem uh if 2:41:442 hours,
+41 minutes, 44 secondsyou want to so we will we'll just loop through each of these uh that are rejected and what we'll do is for each of those results uh we'll error out 2:41:512
+hours, 41 minutes, 51 secondswe'll do a console.error and uh we have a thing called a result reason um that is where the the message 2:41:582 hours, 41 minutes, 58 secondsof why
+something failed is so let's do that we should have the same example i'm just adding a little bit of uh debugging sauce there for us in 2:42:062 hours, 42 minutes, 6 secondsthe
+future so we should get back the same thing yes just my phone rang and if we come over here 2:42:142 hours, 42 minutes, 14 secondsuh we should see here we go can't read property
+create of undefined and it's right after the calling 2:42:212 hours, 42 minutes, 21 secondsregistrant so we outputted that we're in here in this function and party pants
+conferences don't have party 2:42:302 hours, 42 minutes, 30 secondspants you might have party pants that you wear to a conference but we want participants not party pants okay
+2:42:382 hours, 42 minutes, 38 secondsi think we got it i think we got it i i'm feeling good about it and uh now if there's any other errors we'll at least see them okay so
+2:42:452 hours, 42 minutes, 45 secondswhoo my wife is going to answer her phone and let us know if we got this uh i think we should i'm going to reload this 2:42:542 hours, 42
+minutes, 54 secondshere we go we should hear my the speaker phones ring and then we should hear my wife's phone ring she's got a fun ringtone it's a 2:43:022 hours, 43 minutes, 2
+secondsit's a seal i don't know if you can hear it or not it's a seal ringing uh so i'm gonna answer 2:43:112 hours, 43 minutes, 11 secondsshe's gonna answer do do you hear uh on
+hold music yeah that's cause i haven't picked up the phone when i do can you hear me now can you yeah you can 2:43:202 hours, 43 minutes, 20 secondsyeah yeah and i can't hear you
+at all yeah try talking oh no but you can hear me okay she's 2:43:272 hours, 43 minutes, 27 secondsgiving me the thumbs up wow this is kind of awesome it's kind of made me think of
+another app really like this would be a great way for me to just listen to my partner 2:43:362 hours, 43 minutes, 36 secondsand not try to fix everything when we're in a discussion
+like i could just listen on mutant my wife could tell me about what she's going through and i would be unable to interrupt her that's awesome 2:43:452 hours, 43 minutes, 45
+secondsyeah yep she's giving me a big old thumbs up and i had nod on that one thanks for helping us test okay 2:43:532 hours, 43 minutes, 53 secondsand if we look at our log we
+look at our log here we have a speaker and a registrant it looks like we did it we have a working application 2:44:022 hours, 44 minutes, 2 secondswell i mean at least on my local
+machine here we should get this thing deployed what do you say we're getting a pretty solid application Chapter 19: Deploy 2:44:102 hours, 44 minutes, 10 secondsrunning though it
+won't work if i close my laptop what do you say we get this code deployed on someone else's server 2:44:172 hours, 44 minutes, 17 secondsyou're gonna love this ready to deploy your
+application to the cloud let's do this twilio serverless 2:44:242 hours, 44 minutes, 24 secondscolon deploy there we go that's all you do it's going it's making a brand new dev
+environment you'll see it's passing my 2:44:322 hours, 44 minutes, 32 secondsenvironment variables up um it's got a service name it's making a new service remember how we made that
+exploration service before by default 2:44:392 hours, 44 minutes, 39 secondsit's made this dev environment um you'll which you'll see in the url here and it's put any dependencies
+that i've put so remember this could be a node package so i could actually upload the 2:44:482 hours, 44 minutes, 48 secondsdependencies as well so it would do that awesome and
+then it's built these are different things and this one is the incoming call and the incoming message 2:44:552 hours, 44 minutes, 55 secondsand this is protected and now it's
+properly protected we'll look at that here in a second uh but first we're ready to wire up our number right so 2:45:022 hours, 45 minutes, 2 secondswe'll do uh twilio phone numbers
+list we'll get our phone number there i'm gonna grab that 2:45:102 hours, 45 minutes, 10 secondsand here we go we'll say twilio phone number is update and i'm going to do the voice
+url is equal to 2:45:192 hours, 45 minutes, 19 secondsthe incoming call right that's what we want with the incoming call for the voice url and you could do two at the same time
+actually so the sms 2:45:272 hours, 45 minutes, 27 secondsurl is equal to the incoming message smms url and now i can shut my laptop down i don't need to keep it running anymore
+except i 2:45:352 hours, 45 minutes, 35 secondsforgot to paste the number that's what i did i copied it and i forgot to paste it um so not quite yet okay don't shut your laptop yet
+here we go uh when i come in 2:45:442 hours, 45 minutes, 44 secondshere and i am going to uh paste that phone number and now boom we are now wired up to these functions 2:45:532
+hours, 45 minutes, 53 secondsthat exist and you'll see that it did the function name these four digits and then this dash dev and i wanted to show you that protected start talk so
+let's 2:46:012 hours, 46 minutes, 1 secondlet's try to get to that and you'll see now where locally before i could see it you'll see now that it's being protected 2:46:102 hours,
+46 minutes, 10 secondsunauthorized you are not authenticated to perform this request you can make this request but you need to have the right the right header so i want to show
+2:46:192 hours, 46 minutes, 19 secondsyou how to generate that because this is something that you might end up doing you might want to call a function from your code and let me
+show you how to do 2:46:262 hours, 46 minutes, 26 secondsthat probably the quickest way for us to do that is to use uh the node repl you could imagine doing this in your own code
+most of the helper 2:46:342 hours, 46 minutes, 34 secondslibraries have the ability to do this but i'm going to use my dot m file so you don't see my secret auth token so 2:46:412
+hours, 46 minutes, 41 secondsi'm going to install a package called node.m and i'll show you how that works here in a second cool so i'm going to clear and i'm going 2:46:502 hours,
+46 minutes, 50 secondsto run node now and i'm going to use that dot if so i'll say const ignore equals we're going to require 2:46:592 hours, 46 minutes, 59 secondsthe dot m and
+then i'm going to call the method on that object called config and the reason why i'm ignoring it is because when it 2:47:072 hours, 47 minutes, 7 secondsreturns it will show you
+uh what that is but now you can see that myprocess.m this is how you get to your environment 2:47:142 hours, 47 minutes, 14 secondsvariables it has the things that are in my
+environment which like twilio phone number so there's my twilio phone number also my auth token is here 2:47:222 hours, 47 minutes, 22 secondsso we're going to get a hold of a
+package that's inside of the twilio library that has a utility method on it that's going to help us generate a header 2:47:302 hours, 47 minutes, 30 secondsso i'm going to say
+const web hooks equals require and we'll bring in twilio slash lib 2:47:392 hours, 47 minutes, 39 secondsslash web hooks slash web hooks um and on here there is a function called
+2:47:472 hours, 47 minutes, 47 secondsget expected twilio signature and what this takes is it takes the auth token so it's going to use my auth token to sign uh 2:47:562 hours, 47
+minutes, 56 secondswhat it is that we want so that's my auth token right so uh that's the auth token so then i'm going to get access to the url that we wanted so this is the
+2:48:042 hours, 48 minutes, 4 secondsurl this is the the start talk url that we were trying to hit that we couldn't um so we're going to paste that here 2:48:112 hours, 48 minutes,
+11 secondsso there's the start talk and then the final thing that we're going to do is we're going to pass the form parameters that we want so 2:48:182 hours, 48 minutes, 18
+secondsremember that takes a thing called talk code and uh it that was for the taco one so that will use the same uh example that 2:48:262 hours, 48 minutes, 26 secondswe did so a
+request to this with this top code specifically is going to be the signature it's going 2:48:332 hours, 48 minutes, 33 secondsto generate the signature that twilio expects to have
+so there is our signature so i'm going to copy this 2:48:402 hours, 48 minutes, 40 secondssignature and now i can make a request to that i can make a post request and as long as
+there's a header that says x twilio signature it will work now 2:48:492 hours, 48 minutes, 49 secondsi have an http client on my local machine here that i use just to kind of
+explore different things explore different places so i'm going to make a 2:48:572 hours, 48 minutes, 57 secondsnew request here and again this is just you can put whatever you want
+in here but i'm going to make a post request 2:49:042 hours, 49 minutes, 4 secondsto the start talk like we want and what what this will let us do is we can set our headers um so
+the headers i'm going to add a header and i'm going to 2:49:122 hours, 49 minutes, 12 secondsadd x-twilio dash signature and that value is what we generated there 2:49:202 hours,
+49 minutes, 20 secondsin the body i'm going to form in code i'm going to send a talk code and for taco and now again that header will only 2:49:272 hours, 49 minutes, 27
+secondswork for that so i'm going to send this post request to the function that's available and it should if everything works correctly 2:49:372 hours, 49 minutes, 37 secondsring
+both my phone and my wife's phone so here we go i'm gonna send it here we go um you see that i got the code back too 2:49:452 hours, 49 minutes, 45 secondsand my wife's phone
+there's the the dolphins or i guess the sea lions uh erica so there's that 2:49:542 hours, 49 minutes, 54 secondsand i'm gonna hang that up so cool we got it working and you'll see
+that uh the the the response came back and it's what we wanted so we were actually able to call 2:50:032 hours, 50 minutes, 3 secondsthat because we signed uh that with the header
+the header that we sent we sent a header that had that awesome and again 2:50:112 hours, 50 minutes, 11 secondsyou can imagine any sort of http client so anything from your code
+hitting that endpoint as long as you have that header 2:50:182 hours, 50 minutes, 18 secondsyou can hit protected endpoints now you might be imagining i wish i could have seen the
+logs of what was happening well there's a great trick so i'm going to 2:50:272 hours, 50 minutes, 27 secondsdrop out of here and i'm going to say twilio serverless logs and i can
+do dash dash tail and by 2:50:352 hours, 50 minutes, 35 secondsdefault it will show you the last bit of what just had happened and so we should see the results um so we saw calling
+speakers calling registrants 2:50:442 hours, 50 minutes, 44 secondsyeah awesome so there we go so so while that's running if i go and i can again do another another uh request to
+that 2:50:522 hours, 50 minutes, 52 secondssame one i'm going to send that same uh request and we should see there's the phones ring and we see that the log pop through 2:51:002
+hours, 51 minutesthere but one final thing that i wanted to show you is that we did actually create 2:51:072 hours, 51 minutes, 7 secondsa service right so when we came in here we
+created a service under functions uh but uh and it's the the fomo service but we 2:51:142 hours, 51 minutes, 14 secondswant the source of truth to be our code and not uh not the ui
+here right because we if people were changing the ui you could 2:51:222 hours, 51 minutes, 22 secondshave stuff in your code and you could change your code so it comes in read only
+you can still see it you can see what the code is that's running but 2:51:292 hours, 51 minutes, 29 secondsit's read only and you can change this via the api but this is a good way
+to protect you from editing this when you have code that might overwrite it when 2:51:372 hours, 51 minutes, 37 secondsyou deploy later more in the notes on this a great practice
+whenever you're launching an application is to grab user feedback i was thinking we could send an Chapter 20: Send a follow-up survey 2:51:462 hours, 51 minutes, 46
+secondsautomated survey when the conference was over i figured this would also be a good time to explore messaging services and check out all the awesome benefits that 2:51:532
+hours, 51 minutes, 53 secondsthey provide we should totally grab our users feedback when they're done with the talk now a nice way to do this is to shoot off a text message to them
+using a 2:52:022 hours, 52 minutes, 2 secondsstatus callback web hook on the conference so let's do that so you can actually set conference call settings 2:52:092 hours, 52
+minutes, 9 secondswhen you create your participants now only the first one that actually causes a conference to get created will set the properties and afterwards it's 2:52:172
+hours, 52 minutes, 17 secondsignored so we can do that let's add it to our start talk code where we call the speaker so and this one here we'll do it here 2:52:252 hours, 52
+minutes, 25 secondsadd them at the bottom here so we'll do conference status callback 2:52:342 hours, 52 minutes, 34 secondsand we are going to need to know what domain is it on so
+uh we're going 2:52:412 hours, 52 minutes, 41 secondsto figure that out later let's just go ahead and assume there's a variable called domain name and we'll pass that to one called
+status 2:52:502 hours, 52 minutes, 50 secondshandler that will handle any status that comes from the conference you can actually specify the events you want uh when you do that and
+you could 2:52:582 hours, 52 minutes, 58 secondsdo it's called conference status call back events and even though it's singular it actually takes an array and 2:53:062 hours, 53
+minutes, 6 secondswe're only interested in when somebody leaves when the participants leave is what we're interested in now let's get that domain name now this is a 2:53:142 hours,
+53 minutes, 14 secondslittle uh a little tricky um there's some good news and the good news is that uh you can do this you could say 2:53:222 hours, 53 minutes, 22 secondsdomain
+name is equal to context dot domain name now the bad news 2:53:292 hours, 53 minutes, 29 secondsis if you are running locally which you often are when you're doing development uh
+the domain name that is around 2:53:372 hours, 53 minutes, 37 secondsactually is a local host so uh what what you typically do is you say if the domain name starts with localhost
+right 2:53:442 hours, 53 minutes, 44 secondsso localhost that being your local computer then what you want to do is you want to set the domain name to uh whatever your url is for
+ngrok right 2:53:532 hours, 53 minutes, 53 secondsso so like uh your your ngrok uh domain which you know here's mine let's let's restart mine here 2:54:032 hours, 54 minutes, 3
+secondsi would look something like this so like it would be this https in grock like this and we'll paste that in here and uh without the https right 2:54:122 hours, 54 minutes, 12
+secondsso we just want the just the domain name because we're going to specify it has to be https here and then we're going to 2:54:192 hours, 54 minutes, 19 secondsreplace that
+domain name there awesome and now let's make that new status handler function so i'm going to go 2:54:262 hours, 54 minutes, 26 secondsahead and make a new uh we'll go status
+handler and let's just make it protected make sure that it's signed it doesn't 2:54:332 hours, 54 minutes, 33 secondsneed to be but now that we've learned how to do that we might
+as well do it right and i'm going to get our little delicious coffee pasta going on here i'll grab this 2:54:422 hours, 54 minutes, 42 secondsbecause i think it'd be cool if we
+knew oh my goodness we're going to get the client too uh what talk they were coming to we could include that in the message 2:54:502 hours, 54 minutes, 50 secondsthat we sent so i
+will go to our status handler we're going to start it off the same way we're going to close that out so we've got the data coming in we've got the 2:54:582 hours, 54 minutes, 58
+secondsclient coming in now uh and the file needs to be two spaces there we go so it looks good 2:55:062 hours, 55 minutes, 6 secondsand when you get a callback from the conference
+so let's let's take a look at the notes here uh these are the request parameters that come back so um you can 2:55:142 hours, 55 minutes, 14 secondssee that when it gets posted
+it's going to have the conference set it's going to have the friendly name which is cool because remember we named that our talk and it's got some other uh things that 2:55:222
+hours, 55 minutes, 22 secondsare available in here you can get a hold of the call sid right so that's the call that had happened uh when when we were leaving and that's what we
+want we want 2:55:292 hours, 55 minutes, 29 secondsto get a hold of that call set so we can get some information uh you'll also have this there's a status callback event in
+2:55:372 hours, 55 minutes, 37 secondshere someplace that gets posted status callback 2:55:442 hours, 55 minutes, 44 secondsevent there we go and it's going to be one of these guys
+yeah here we go so uh let's get back to 2:55:532 hours, 55 minutes, 53 secondsit so we're going to switch on that we're going to switch on it gets posted and it's called status
+callback event it's kind of a thing and 2:56:012 hours, 56 minutes, 1 secondwe're the one that we are specifically looking for um is when the participant leaves so when case
+participant leaves this is the 2:56:092 hours, 56 minutes, 9 secondsone uh where we want to send the text so uh let's do that i'm gonna i'll close it out i like to always make sure
+that i close it out 2:56:172 hours, 56 minutes, 17 secondsand uh we'll do just in case somebody else pushes something here and they're expecting it we can say just let them know
+that it's unhandled unhandled event and then we'll do 2:56:262 hours, 56 minutes, 26 secondsevent dot status call back event there we go and we will break there okay so we know
+that the 2:56:352 hours, 56 minutes, 35 secondsconference was named the friendly name of it was actually the code right so it was like in this case it's taco if we were calling him
+for taco so that would 2:56:432 hours, 56 minutes, 43 secondsbe taco and then we get a hold of the talk about the taco taco about the taco we do data dot get talk 2:56:522 hours,
+56 minutes, 52 secondsby code and we can pass in that code there we go now we have our talk let's make sure that we're in here we'll just we'll log out 2:57:012 hours, 57 minutes,
+1 secondand we'll say uh sending text about dollar talk 2:57:082 hours, 57 minutes, 8 secondstitle title there we go yeah so we'll say sending the text about let's talk about tacos
+yeah so we want to get a hold of 2:57:162 hours, 57 minutes, 16 secondsthe call because remember we want to be able to text the person who we called right because there's two
+directions right we somebody could call 2:57:242 hours, 57 minutes, 24 secondsin and also we could call somebody so we're going to get a hold of the call and we'll inspect the call
+a little bit so we'll go call and we're going to use 2:57:322 hours, 57 minutes, 32 secondsthe client and we are using a weight so i'm gonna make sure this is async and it is so
+we're gonna await 2:57:392 hours, 57 minutes, 39 secondsthe client dot calls and at the event dot call so uh client that calls and this is 2:57:472 hours, 57 minutes, 47
+secondsevent dot call sid uh we're gonna fetch that call now we need to figure out which way the 2:57:552 hours, 57 minutes, 55 secondscaller came in right because you could call
+in and that would be it would be coming from the caller and then when we make the call it's to the caller the the 2:58:042 hours, 58 minutes, 4 secondsregistrant if you will so we
+need to figure out what direction we want so um we'll use a little we'll use one of these guys one of these 2:58:122 hours, 58 minutes, 12 secondsternary operations we'll do
+call.direction if that is equal uh to outbound api that means that we used 2:58:212 hours, 58 minutes, 21 secondscode uh to call them instead of them calling in we're going to
+return back uh call 2 right otherwise we're going to 2:58:282 hours, 58 minutes, 28 secondsreturn back call from uh it's kind of a little little hokey there let's see what so it's
+call direction if 2:58:352 hours, 58 minutes, 35 secondsit's equal to outbound api we're gonna return the two otherwise we're gonna return the from awesome okay next i guess we'll
+just create that 2:58:442 hours, 58 minutes, 44 secondsmessage right so we'll we'll do const message and we know how to do this we're going to await as we do client.messages.create
+right that's what 2:58:512 hours, 58 minutes, 51 secondswe did originally and we're get it needs to have some things it needs the 2 and that 2 is going to be that attendee number
+and 2:58:592 hours, 58 minutes, 59 secondshmm needs a from doesn't it and we don't want to use the same number that we got so i'm just going to leave that blank for right now
+because i'm not 2:59:072 hours, 59 minutes, 7 secondssure just yet what number that is and then let's do the body just so can we can think about what we want this message to say uh
+let's 2:59:152 hours, 59 minutes, 15 secondssay thanks for attending and then we'll tell them what talk it's talking about that'll be that'll be nice for them to know um talk.title
+2:59:242 hours, 59 minutes, 24 secondsand then you know we'll ask the nps question because we only can really ask one in a simple survey right a simple response based survey so
+we'll say on a 2:59:332 hours, 59 minutes, 33 secondsscale of 1 to 10 how likely would you 2:59:412 hours, 59 minutes, 41 secondshow likely are you are you to recommend 2:59:492
+hours, 59 minutes, 49 secondsphone mo to your friends or family now this is called the nps and 2:59:572 hours, 59 minutes, 57 secondsyou can get a score you can see it's called the
+net promoter score and you can see how much people really like your product and this is a great way to get uh 3:00:063 hours, 6 secondsquantitative data probably not the best at
+qualitative because we're only asking one question but we'll do what we can all right now let's deal with this to do 3:00:133 hours, 13 secondswho should this come from it could
+come from the number we got in the beginning that seems clunky though right because that number is used to handle 3:00:213 hours, 21 secondsregistering and we're calling out with
+it so i think it's probably one of those cases where it's time to buy a new number and so we never really got to walk through buying a new number so 3:00:303 hours, 30 secondslet's
+go do it together so uh let's buy one so if i come here under phone numbers and i come under manage you can see i 3:00:373 hours, 37 secondshave buy a number so uh let's do that we
+can buy a number and we can do uh some pretty cool things with that there's there's these filters here and i can say 3:00:453 hours, 45 secondsshow me where the last part of the
+number and i can choose the country i can choose any sort of country which is is good to know about um i can uh say 3:00:543 hours, 54 secondsthat it ends in a certain way i'm
+gonna say i want i want my number to end and phone mo let's see let's see if we've got any numbers oh awesome we do so this must be it here this this four six six 3:01:023 hours, 1
+minute, 2 secondsthree three six six three six six that must be what fomo is i like i like this canton number here i'm gonna go ahead i'm gonna buy this number 3:01:113 hours, 1

@@ -1,0 +1,224 @@
+toggle is working. We'll do toggle heading. 25:5725 minutes, 57 secondsThen we'll be able to do testing again. 25:5925 minutes, 59 secondsWe'll see if that collapses. So, that
+doesn't work. So, we need to go through and test that. But, as you can see here, we've got an incredibly good first version. We'll be able to bring to life. 26:0826 minutes, 8
+secondsBut this isn't just where superpowers really comes into its own. It's really good at also being able to work with existing code bases, understanding what 26:1626 minutes, 16
+secondsyou're trying to achieve, where you want to make improvements, come through and plan and everything like this to really help get the best outputs. So, what do I think of
+Super Paz within Claude Code? Chapter 14: My Honest Review 26:2726 minutes, 27 secondsWell, I think it's an absolutely fantastic dev partner that we'll be able to use actually
+building out and improving existing applications. It's 26:3626 minutes, 36 secondsgoing to give us a much better structure, much better outputs than of course not using it. in the
+more standard version of clawed code. It also 26:4426 minutes, 44 secondshas the huge potential as AI involves as the skills update and we notice better ways of of course getting
+outputs. Is it 26:5126 minutes, 51 seconds100% of the way there? No. There's still a few elements here or there that could be improved, but of course that's the stay with
+everything in AI and 26:5826 minutes, 58 secondsautomation at the moment. This is one of the things that I'm really excited to see grow and improve in the future because it helps
+us set up those really 27:0627 minutes, 6 secondssolid foundations for our Vive coding that we're doing. If you're interested in more about AI and automation, make sure to check
+out the community, the 27:1327 minutes, 13 secondsfirst link in the description. If you want AI and automation for your business, check out the second one. And make sure to
+subscribe to the channel. 27:2027 minutes, 20 secondsIt really helps us out. Stay tuned for more around AI automation. And have a great day. Sync to video time All From the
+seriesHidden Agent Teams Feature 0:00 Board Code has a brand new experimental 0:01 feature that most people don't know 0:03 about. It's called agent teams. Instead 0:06 of getting
+one AI to write all of your 0:08 code, come up with ideas, or work in 0:10 isolation like sub teams, our brand new 0:13 agent feature enables all of the 0:15 different agents to
+talk together, share 0:17 the task list, and coordinate the entire 0:20 build. By the end of this video, you'll 0:21 know exactly what agent teams are, how 0:23 they work, how to
+turn it on, and see an 0:26 example of it building an app. So first 0:28 things first, what are agent teams? 0:30 Well, you may have already heard of sub 0:32 agents working within
+claude. And what 0:35 these enable us to do is within a single 0:37 session, we give our basically team lead 0:41 a task that we wanted to complete and 0:43 then it will delegate
+it off to specific 0:45 team members that will go through and 0:48 complete specific tasks. So it could be 0:50 a UI designer, software engineer, and 0:52 researcher. But one of
+the big 0:54 limitations with these sub agents at the 0:56 moment is that they're not able to go 0:58 through and talk to each other. So 1:00 they've almost got these walls in 1:02
+between them that mean they go off and 1:04 complete their tasks in isolation. But 1:06 that's going to completely change with 1:08 agent teams. What we're able to do with 1:10
+agent teams is coordinate multiple 1:13 instances of claude code. We're going to 1:16 have one team lead coordinating, but 1:19 more importantly, we've got team makes 1:21 the work
+independently in their own 1:23 context window and they're able to 1:26 completely communicate with each other. 1:28 So what this looks like is we then end 1:31 up with a much more
+cohesive approach 1:33 and output for what we're trying to 1:35 achieve because no longer do we have the 1:37 siloed work being completed but instead 1:40 we're able to have all of
+the different 1:41 agents talk to each other as we go 1:44 through the entire process. What we're 1:46 also able to do as well is of course 1:47 just like we could with sub agents
+is 1:50 we're able to speak to each one 1:52 individually so that we can set them off 1:54 with specific tasks. But unlike before 1:57 where they would just have that 1:59
+information for their specific part and 2:01 not know what's going else with the 2:03 other agents, they'll be able to 2:04 dynamically update and adjust with that 2:07 new task
+given to them and how it's 2:10 going to coordinate and change the 2:12 output based on what the other agents 2:15 are doing as well. Now when we want to 2:17 use agent teams is
+most effective for 2:20 parallel exploration adding real value. 2:23 So for example, research and review 2:26 having new modules or features added 2:28 into our app or applications
+or vibe 2:30 coding platform whatever it may be or an 2:32 existing code base we're analyzing 2:34 debugging with complete hypothesis and 2:37 cross layer coordination. But that
+does 2:40 come at a cost for token usage because 2:42 of all of this communication that's 2:44 going on. Your token usage is going to 2:46 be much higher with agent teams than it
+2:49 will be with isolated sub agents. and 2:51 I'm going to cover my thoughts on the 2:53 end of that, whether it's worth having 2:54 the extra higher token usage or not. So, 2:58
+to get it set up, we're going to need to 3:00 come down and actually copy this command 3:02 across, or you can go through and make 3:04 the changes directly in your settings 3:06
+JSON file for Clawude Code to do it for 3:09 you automatically. What I'm going to do 3:11 is just copy all of this. We're then 3:13 going to come across to our terminal. 3:14 We're
+going to type Claude to start it 3:16 up. We're going to say, "Please, can you 3:18 enable the agent team feature?" And then 3:21 we're just going to paste what we copied 3:22
+across from the documentation. This is 3:24 going to go through and make the changes 3:26 to our local config file. So again, if 3:28 you wanted to do this directly, you can
+Enabling & Starting the Build 3:30 as well or we can just get Claude to do 3:32 it for us. So there we go. And after 40 3:34 seconds, it's just come through and 3:36 added the line
+that we needed to into 3:39 our config file because this is 3:40 experimental. So we need to make sure 3:42 it's turned on. Now we've got it turned 3:44 on. How do we get it to
+work? Well, when 3:46 we're going through, we actually need to 3:47 make sure that Claude is told to create 3:50 an agent team, and we need to describe 3:52 the task and the team
+structure that we 3:54 want in natural language. So, for this 3:57 example today, we're going to be coming 3:59 across to Reddit. We're going to be 4:00 getting some of the top
+ideas over the 4:03 last month that have been upvoted, some 4:05 of the rising ones to really understand 4:07 maybe a SAS idea that we could build 4:10 based off some of the points
+already in 4:12 here. To power this, we're going to be 4:13 using bright data scraper feature as 4:16 it's got a dedicated one for Reddit that 4:19 will go through and extract all
+of the 4:20 details for us and it's only going to 4:22 cost us $1.50 per thousand records. To 4:26 build it, I'm going to come across to VS 4:28 Code. I've already created a prompt
+4:30 beforehand, which is where we're going 4:32 to ask our agents to go through and 4:34 build a Nex.js JS app called Idea Forge, 4:38 a SAS idea generator that scrapes Reddit
+4:40 data via Bright Data and runs them 4:43 through three AI agents, researcher, 4:45 strategist, and devil's advocate with 4:48 real time SSC streaming. And as we can 4:50 see
+here, we've got lots and lots of 4:52 details to try and help get that best 4:54 output possible the first time. What 4:56 we'll also see in here is we got the 4:58 agent system
+prompt for the researcher, 5:01 the strategist, and the devil's advocate 5:03 as it goes through and builds 5:05 everything. So, as you can see there, 5:07 lots and lots of detail.
+We're going to 5:09 come to the right and just do claude and 5:10 then dangerously skip permissions just 5:13 so that it can build the app nice and 5:14 quick. Of course, I don't
+recommend you 5:16 turning this on for everything. And one 5:18 thing that's worth noting is if you do 5:20 turn dangerously skip permissions on, 5:22 every single sub agent that
+you've got 5:24 will go through and have the same 5:26 permissions. Now to start that build 5:28 out, I'm going to give it the command. 5:30 Then it needs to read the idea MD file
+5:33 so that it can get the full 5:34 understanding. And then again explicitly 5:37 we need to tell it that we want to 5:39 create three agents as we can see here 5:42 that will go
+through and complete the 5:44 request. So now it's going to go 5:45 through, as you can see here, read and 5:47 understand the full project of what 5:49 we're trying to build. And
+now it's 5:51 going to go through and hopefully 5:52 understand that we need the three sub 5:54 agents so that it can execute every 5:56 single part. So what's the architecture
+5:58 of our agent teams? Well, as you can see 6:00 here, we're going to have the main team 6:02 lead that's able to coordinate 6:04 everything going on for that specific 6:06
+request and spawns the teammates to 6:09 resolve the task. We're then going to 6:10 have the teammates, i.e. that research 6:12 agent, the UI designer, everything like 6:15 this to
+complete a specific element 6:17 within it. We're going to have an 6:19 overall task list that we need to go 6:21 through and delegate to the teammates, 6:24 but also for our team
+lead to be able to 6:26 check as well. And of course, we need 6:28 that mailbox to check between all of the 6:31 different agents that they're actually 6:34 communicating with each
+other and 6:36 getting the latest information for what 6:38 they need to do. As mentioned, the token 6:40 usage will be significantly higher with 6:42 the agent teams that are
+going through. 6:44 So, what we need to be careful of is how 6:46 much they're doing. Of course, the 6:48 restrictions around what we want them to 6:50 achieve. So, that's where
+our PRDs, 6:52 MRDs, everything like this really come 6:55 into play so that the agents know what 6:57 good looks like versus just going off 6:59 and spitting out really rubbish
+code at 7:01 the end. Claude also recommended some 7:03 example use cases around running 7:05 parallel code reviews investigating with 7:08 complete hypothesis and they've got some
+7:11 best practice in here to get the 7:12 outputs. What I want to do though is 7:14 we'll come down the bottom because there 7:16 are some key limitations that we need to 7:18 be
+aware of. First things first is 7:20 there's no session resumption within 7:23 process teammates. So, of course, when 7:26 they're going through and completing a 7:27 session if
+they've not finished, they've 7:29 not stored what their latest situation 7:31 is after resuming a session, the lead 7:33 may attempt to message teammates that no 7:36 longer exist
+because they only span up 7:38 for that specific task, that specific 7:40 session as they're going through. Also, 7:43 of course, this is still experimental, 7:45 so it's not
+perfect. So, sometimes 7:47 teammates are failing to mark tasks as 7:49 completed, which blocks any dependencies 7:52 with the other agents. So that's where 7:54 we can get some
+infinite loops going 7:56 through. That's why I recommend not 7:58 turning on the dangerously skip 7:59 permissions going through and trying to Watching Agents Collaborate in Real
+Time 8:01 complete everything because that's not 8:03 what we want for this specific task. 8:05 Also, at the moment, we're only able to 8:07 go through and have one team per 8:09
+session. We can't have nested teams or 8:11 anything else like that. And the lead is 8:13 fixed. And there's loads of other 8:14 limitations within this as well. And 8:16 we're
+going to cover my final thoughts 8:18 at the end, but these are some of the 8:19 key things you need to be aware of if 8:22 you're thinking of using it. So if we 8:24 come down the
+bottom here, we can see 8:25 that we've got two agents that are 8:27 currently spun up. So for example, if we 8:29 do at front end and then UI, we'll be 8:33 able to send that
+agent a specific 8:35 message. So say you've got a brand new 8:37 idea of how you want the UI to look. 8:39 Maybe you want it to look more like 8:41 Claude or you've got a favorite
+web app 8:43 that you've seen on on dribble or awards 8:45 or anything like this. You could give 8:47 that agent that specific task as it's 8:49 going through. to see the different
+8:51 agents working as well. We can do shift 8:53 and up and then we'll be able to see the 8:55 different ones that are currently going 8:56 through and we'll be able to talk to
+8:58 them as we need for anything else. We 9:01 can come down to front end engineer do 9:03 enter and now we'll be able to see 9:05 exactly what it's working on and be able 9:07 to
+go through and see what it's changing 9:09 updating and if we wanted to go through 9:12 we can go and update it as we need. So, 9:14 we're going to do Ctrl and then T just 9:16 to
+hide it. And we can come back up to 9:18 the team lead as well. You can also 9:20 choose the display mode as well. So, by 9:23 default, all of the teammates will run 9:25 inside
+your main terminal. And we do 9:27 that shift up and down to see what 9:29 they're working on. But we can also 9:31 change it to be split PES as well so 9:34 that we can see each
+one in a bit more 9:36 detail as it's going through. If you 9:38 want to do that, you just need to make 9:40 sure that the teammate mode is changed 9:42 from in progress to being
+split panes 9:46 instead. And that's one of the fantastic 9:48 features, of course, because it's now 9:49 able to communicate with the different 9:51 agents. If we gave that update
+to our 9:54 front-end API agent, what actually it 9:57 would talk to the back end, any of the 9:59 software engineers, any researchers, 10:01 anything else that we've set up to
+10:03 really make sure that it all works 10:05 together at the end. So, we'll let it 10:07 keep running through now and see if it's 10:09 able to complete the task. So, there we
+10:11 go. It's just gone through and said it's 10:13 built with zero errors. Now, it's going 10:15 to shut down the teammates and clean up 10:17 the team. So, that's again, as
+10:19 mentioned, every time it completes our 10:21 tasks or close them down, we won't be 10:23 able to reference them again unless 10:24 we've stored it somewhere. That's why it
+10:26 can be quite useful. For example, on the 10:29 left hand side here, we could come up to 10:31 the top. We could close this down. We 10:33 could do a new one. We could do
+agents 10:35 team.md 10:37 and then if you wanted you could store 10:38 some information in there like a skills 10:40 repository so that it knows how to use 10:42 each agent each
+time if you wanted to 10:45 versus it spinning up a new version 10:47 every time you wanted it to do 10:48 something. So there we go. I've gone 10:50 through and added our API keys
+in there. 10:52 Now we're going to say run it and show 10:54 it to me in the browser. So there we go. 10:55 We got the first version back. We're 10:57 going to come through and
+just remove 10:59 these other two for the subreddits. 11:01 We've got the different versions that we 11:03 could do. So maybe we'll do hot. We'll 11:05 bring this down to maybe
+we've got 10 11:07 results that we want to send off. We can 11:09 do demo on and off. And we can do launch 11:12 agents. Now this should go off. Start 11:14 analyzing the
+subreddits. It looks like 11:17 there was a quick error. So we'll just 11:18 copy this. We'll come back across and 11:20 say I got this error when running the 11:23 scrape. So
+there we go. It looked like 11:25 it was just an error with the API keys. 11:27 So we get it to restart the server and 11:29 we'll make sure that it's picking up our 11:31
+EMV.local local file storing all of the 11:33 API keys. So if we come back across, 11:35 we'll remove these two here. We'll bring 11:38 this down to 10 again. We'll launch this
+11:40 as well. Let's see if it's able to go 11:41 off. Again, we would massively improve 11:43 that cuz it's streaming back raw JSON 11:46 that we're getting back from bright 11:48
+data. But it is really, really 11:49 interesting to see that actual data 11:51 coming across. Then it looks like it's 11:53 now on stage three all about generating 11:56 the ideas.
+So if we just scroll down 11:58 here, we haven't got anything yet. It 12:00 looks like it's doing it on the left 12:02 hand side here versus the final output 12:05 on the right.
+So, we would massively 12:07 want to improve this UI that we have in 12:09 the background. So, I'm really 12:11 interested to see once it's gone 12:12 through, come up with all of
+these 12:14 different ideas. It looks like we're 12:16 doing the next agents that devil's 12:18 advocate play. So, now if I come back up 12:21 to the top, we've just got those
+ideas 12:22 back. We've got price scout on the right 12:25 hand side. We've got churn guard. We've 12:27 got on boarding optim as well. So it Final Results & Honest Review 12:30
+looks like these are pretty bad ideas. 12:32 So we definitely want to go through and 12:33 improve them. Maybe we want to use some 12:35 rising ideas. So for example, we could
+12:38 come across to our small business 12:39 instead. We'll see what maybe some of 12:41 the posts are in here. We'll come back 12:43 across to our platform. Of course, we 12:45
+need to massively change this UI. So 12:47 we'll come through and say great, but we 12:49 need to massively improve the UI design. 12:53 Please use the front end design skill to
+12:57 enhance its design and look more premium 13:01 and in the clawed color scheme and we'll 13:05 send that off. Now we should go give us 13:07 a much better design as an output.
+We'll 13:09 see if it also uses the agents 13:11 potentially to do some UI testing and of 13:14 course actually doing the code that 13:15 would sit behind the back end as well as
+13:17 the front end to see if it's able to 13:19 optimize that. So there we go. We've got 13:21 everything back. It didn't spin up any 13:23 separate agents. So now if we come back
+13:25 across, commandshift R just to see if 13:27 it's done any better. It looks like 13:29 we've got some new ideas in here. So 13:31 let's do rising instead this time. Let's
+13:34 come down to say 20. We'll do launch 13:37 agents again. Now see what it's going 13:39 through. Again, if we're going to 13:40 productize this, we definitely want to 13:42
+improve that agent feed coming through. 13:45 But now we'll be able to see the SAS 13:46 ideas at the end and see if they're any 13:48 better. So there we go. We just got our 13:50
+results back. Now we've got the pricing 13:52 scout. Again, an awful three out of 10. 13:55 We do have churn scope though, so 13:56 combines exit surveys with usage 13:59
+analytics, which would be a six out of 14:01 10. So that's probably the best one that 14:03 we've got so far. And then we've got the 14:05 onboarding kit as well. So what do I
+14:07 think of the new agents feature 14:09 included? Well, for most people, I don't 14:11 think it should actually be used, 14:12 especially given the high-end token 14:14 usage
+because what I tend to see is the 14:16 outputs are maybe 10, 20, 30% better, 14:19 but they're definitely not worth a 14:21 significantly higher token usage versus 14:24 just
+using sub agents or a really well 14:27 structured prompt with an MRD, PRD, and 14:29 all this information that can then let 14:32 Claude go through with again those sub 14:34
+agents or just one agent to complete 14:36 that entire task that you wanted to. 14:39 Agent teams do make sense for a small 14:41 amount of narrow situations. For 14:43 example, if
+you're doing large green 14:45 field builds, all with separate elements 14:47 that are going to be quite substantial 14:48 to the end product that need you to go 14:51 through and
+do some processing and 14:53 actual development in parallel, such as 14:55 debugging and testing different 14:57 hypotheses and approaches or being able 14:59 to review the code
+from multiple 15:01 different angles. But for everyday work, 15:03 going through fixing bugs or coming up 15:05 with new ideas or generating a new 15:07 component, it's complete
+overkill. You 15:10 could be paying three times the tokens 15:12 to be able to coordinate all the 15:13 different agents, enable them to speak 15:15 to each other for not that much
+of a 15:17 significant improvement for the output. 15:19 So, it's impressive tech and an 15:20 impressive idea, but not quite yet that. 15:23 Maybe that's why it's still 15:24
+experimental. Make sure to click 15:26 subscribe. It really helps us out and 15:28 join the community if you're interested 15:29 in learning more about AI and 15:31 automation. All
+From the seriesChapter 1: AI Hacker Powered by Claude + Shannon 0:00Check this out. I'm about to run an AI hacker that's able to go through and completely analyze our codebase for
+the brand new app that we've developed, Vibe 0:077 secondsCoding. And we'll be able to see any vulnerabilities for potential attacks. And now all I need to do is press enter.
+0:1414 secondsAnd there we go. It's now starting up some containers. It's pulling down the required aspects that we need to do all of this testing. Of course, we're then 0:2222
+secondsgoing to break it down into the five phases so we can go through and do this analysis for us. So there we go. It's now gone through the first phase, which of course is
+setting everything up. 0:3131 secondsWe're making sure that we install all of the different local files. And now, as you can see there, we've got the defensive testing that will be
+able to 0:3939 secondsrun in the background. If we come across to Docker, we'll also see that we've now got Shannon that was working in the background as a container. So, we know
+0:4747 secondsit's actively working and it's already been 37 seconds. So, we can see it's going through the CPU usage, everything like this. So, there we go. And we've 0:5656
+secondsjust got our results back. We can see everything on the right hand side here. 1:001 minuteBreaking down the model that he used. We can see the number of terms. This is going
+to break it down by a section that it's done. I love the map for the event 1:091 minute, 9 secondshistory that we've got here as well. But as we can see here what it did and how
+long each section took. And if we click on them, as we can see here, we then get 1:171 minute, 17 secondslots and lots of results coming back to really understand in depth. In
+here, we've now got all of the different reports that it's generated for us. And 1:261 minute, 26 secondswe've got the main one here we'll be able to view. So I'm just going to
+open this up in a quick text edit as we can see here. And now we've got several different vulnerabilities that's 1:341 minute, 34 secondsidentified. We've got some critical ones
+that we need to actually go through and work. There's tons and tons of different ones in here. Then come back across to 1:421 minute, 42 secondsplatforms like anti-gravity, VS
+Code, claw code, all of these different ones. 1:461 minute, 46 secondsbe able to tell it what it needs to do or literally give it access to the deliverables and it will go through
+and make the enhancements based on any 1:541 minute, 54 secondsvulnerabilities it's been able to detect. Vine coding with clawed code and anti-gravity makes you be able to ship
+code faster and build your very own SAS 2:022 minutes, 2 secondsin the matter of hours. But you're probably not even running security tests. And if you do, maybe it's once a year.
+For 364 days of the year, you're 2:102 minutes, 10 secondsshipping brand new code, not realizing it's potentially full of vulnerabilities. And that's a massive security gap. But
+Shannon solves this. 2:182 minutes, 18 secondsIt's an AI pen tester that delivers actual exploits, not just alerts. In this video, I'm going to run us through what AI pen testing
+is, why it's really 2:272 minutes, 27 secondsimportant for when you're vibe coding your ideas to life, how we're able to set up Shannon completely for free from 2:342 minutes, 34
+secondsGitHub, how we can run it on our actual apps, and last of all, some example outputs, too. So, if you want to make 2:412 minutes, 41 secondsyour Vivecoded app secure, let's
+jump straight in. But first, what is pen testing and why is it important? Well, essentially we want to break our web 2:492 minutes, 49 secondsapp, identify any vulnerabilities
+before we get third-party actors that are could be hackers, white hat, black hat 2:562 minutes, 56 secondshackers, whatever it may be that are trying to gain access to our brand
+new app that we just released and we're running for many users potentially and 3:053 minutes, 5 secondsthey could get access to lots of data behind the scenes and some sensitive
+information. But what we want to do is whilst we're developing our code locally 3:123 minutes, 12 secondsbefore we come and push it through to GitHub with the latest changes or an
+updated version of our app and make it publicly accessible over platforms like 3:213 minutes, 21 secondsVersel, we want to make sure that we're cutting off any issues at the start
+so that we can't have that vulnerability 3:283 minutes, 28 secondsexposed from day one. Now, previously to do this, we had two methods to achieve it. We've been able to do it
+manual for many years now where we had to book a 3:373 minutes, 37 secondsspecific pen tester that would be able to go through and do it for us. We normally had to schedule that
+work to be completed. It would take a couple of 3:453 minutes, 45 secondswork to actually get completed by the tester. Normally have a week to write a report and it would cost
+between $5 to 3:533 minutes, 53 seconds$15,000 to complete the entire process. But that's where Shannon comes into play and the use of Claude. What we're able to do 4:024 minutes,
+2 secondsis all running locally on our machine is we just simply run a command. First of all, it goes through phase one trying to 4:094 minutes, 9 secondsidentify potential
+different vectors to of course attack from. It's then going to go through and explain that in a bit more detail. Then it's going to run the actual commands and try and exploit it.
+4:194 minutes, 19 secondsAnd then it's going to identify any certified vulnerabilities at the end and disregard any that it couldn't actually achieve. This entire process can 4:274
+minutes, 27 secondsactually take 90 minutes, but it depends on the amount of code you've got going through. And we can do it for a fraction of the cost to the main developer here.
+4:354 minutes, 35 secondsWith most of the examples running around $50 according to their documentation. 4:404 minutes, 40 secondsAnd the best part about all of this, Shannon is
+entirely free for us to use the live version. It's only going to cost us our API keys. So, we can get it 4:484 minutes, 48 secondsto go through and break our app before anyone else
+does. But Shannon is incredibly powerful. So, it's worth noting that you should only use this on 4:564 minutes, 56 secondsnonproduction environments and to make sure that you're
+only using it within ethical and legal bounds. So, for example, you're only using it on your 5:045 minutes, 4 secondscode base. You're not doing it on any code bases you don't have
+authorization for. So, what can Shannon actually do? 5:115 minutes, 11 secondsWell, it's a fully autonomous operation that runs with one single command that we're going to show you
+in this video. 5:175 minutes, 17 secondsIt produces pen tester grade reports with production exploits, i.e., It's really going to go through and analyze 5:245 minutes, 24
+secondswhere the potential issues are for our app, how we can access it, export data, and then it's going to help write a report about it, what's broken, where we 5:335 minutes, 33
+secondsneed to improve. And it does this through several different areas and methods to extract the data. And it can run it in parallel to complete this 5:415 minutes, 41
+secondsprocess faster versus doing it through one specific agent. And powering all of this, we're able to use clawed code or 5:495 minutes, 49 secondsthe anthropic API key. if you
+don't want to work with them, we've also got access to OpenAI and Google Gemini, too. So, now let's check out what it's able to Chapter 2: My Test App Demo (Idea Forge SaaS) 5:585
+minutes, 58 secondsdo. So, as we can see here, I've got a quick vibe coded app that I've just brought to life really quickly to help us show the example. We're going to come 6:056
+minutes, 5 secondsthrough and log into an account. So, there we go. And we'll just sign in with a dummy account. This entire app enables us to go through scrape Reddit for some
+6:146 minutes, 14 secondsbusiness ideas completely powered by Brite Data. and we're using claw to generate all of the ideas just to show 6:216 minutes, 21 secondsyou a quick
+example. As we can see here, it's an entirely working app. So, we'll just come down to, for example, this year, we're going to say that we want 25 6:296 minutes, 29
+secondsdifferent apps for small businesses, high demand, maybe easy build, and we'll launch the agent. Now, it's going to start going through actually providing 6:386 minutes, 38
+secondsthat result for us. So, as we can see there, it's starting to run in the background. Whilst it does that, I've also connected it to an example super 6:466 minutes, 46
+secondsbase as well. So, we've got a couple of different API keys, ideas, profiles. 6:506 minutes, 50 secondsAgain, none of this is best practice. I just want to show you what's
+possible and how it's going to go through and analyze it on the back end. So, there we 6:576 minutes, 57 secondsgo. It's just gone through and scraped a load of different posts as
+we can see here. Some of the up votes, some of the down votes. And if we open that link up, 7:057 minutes, 5 secondsas we can see here, it takes us through to a real account for a
+post that's on Reddit. So, we know it's some real data. 7:117 minutes, 11 secondsNow, it's going through and it's just finished generating some pain points. As we can see here,
+we've got some signals. 7:177 minutes, 17 secondsSo, for example, small business bookkeeping. We've got solo entrepreneur burnout. We got seasonal business cash flow. We got loads
+and loads of 7:257 minutes, 25 secondsdifferent points in here. All ranked based on, of course, their scores. Now, it's going to go through and generate some SAS ideas for us. So,
+there we go. 7:327 minutes, 32 secondsIt's finished generating the ideas. 7:347 minutes, 34 secondsWe've got bookkeep. We got some information in there as an example why we should
+build it, what we should use it for, contract keeper, seasonal cash. 7:437 minutes, 43 secondsWe got local lead tracker. So, there's a couple of different points in there, of
+course, all based on their scoring as well, which we could definitely improve. 7:517 minutes, 51 secondsAgain, we're just showing an example app that we're able to go through news.
+Same with the stress testing. And we've just got the results back, as we can see 7:587 minutes, 58 secondshere. So, now if we wanted to bring this to life, we absolutely could with
+these four example ideas here, which are rubbish, but again, it's a fully working app that we've got in the background. 8:088 minutes, 8 secondsWe've got our dashboards, our
+profiles, our settings, everything like this, plus the back end that you just saw. First things first, you're going to need to Chapter 3: Full Setup: Docker, Clone & Launch 8:158
+minutes, 15 secondsmake sure that you have Docker installed because this is going to enable us to create an isolated container for it to go through and do all of the testing 8:248
+minutes, 24 secondsthat we need it to do without, of course, affecting any of our local machine in the same way. So, once you've got Docker installed, well, as we can see here,
+we're going to have a nice 8:338 minutes, 33 secondssimple five-step process, which I'm going to run through in more detail now, walk you through step by step, but you'll also be
+able to find all of this 8:408 minutes, 40 secondsin the community as well if you want to walk through it in your own time. So, first thing, we're going to need to come through and
+make sure that we've got 8:478 minutes, 47 secondsShannon actually running locally on our machine. So, if we come back across to GitHub where we'll find all of the files, we're
+going to come down to where 8:558 minutes, 55 secondswe've got the quick start guide, and we're just going to simply copy this first part here. We're then going to come across to
+our terminal, and to make 9:039 minutes, 3 secondssure we're installing it on our local desktop, we're going to do cd and then the squiggly line here and press enter to make sure
+we're on the desktop. Now, 9:119 minutes, 11 secondswe're able to go through and just paste our command in here to actually clone that repository down to our local machine so that
+we can go through and 9:199 minutes, 19 secondsuse it. This will be as fast or slow as your internet allows. So, it could take a couple of minutes, but as you can see there, it's
+gone through and resolved it 9:269 minutes, 26 secondsincredibly quickly for me. And now that we've got Shannon locally on our machine, we need to go through and create one
+specific folder because we're 9:339 minutes, 33 secondsgoing to be running this with our local instance. We need to come through and create a repos folder because, of course, we're
+going to be running this locally on our machine versus trying to 9:429 minutes, 42 secondsdo the pen testing on the web. But you can do that as well. I'm not showing that in this
+video. So what we're going to do is come down and copy this command 9:519 minutes, 51 secondshere. Come back across to our terminal and paste. What you want to do is just rename
+this part here. So for example, ours is SAS idea and then gen because 10:0010 minutesthis is going to go through and actually create a repos folder which is going to be where we
+store all of the files for our specific app. The GitHub repo we've 10:0810 minutes, 8 secondsdeveloped. That's where we want to store it. So we're going to press enter. Now to show
+you quickly, I've just come across to my specific location where we 10:1510 minutes, 15 secondsinstalled it earlier on with our command up the top here. And as we can see, we've
+now got a folder called Shannon. 10:2110 minutes, 21 secondsAnd we've got all of the details in here from the GitHub repo. And we've got the folder with SAS ideas gen in here for
+us to use. So now we know that we've 10:3010 minutes, 30 secondsdefinitely got all of that installed. We need to come through and give it the power of clawed and clawed code for it
+to be able to execute all of the 10:3810 minutes, 38 secondscommands. You can also run it with, for example, Chat GBT 5.2 or Gemini 3 models. Just make sure to check the 10:4510
+minutes, 45 secondsdocumentation for the latest. So, we've made sure to clone the repos. Now, we're going to come through and create our API keys. So, to add our clawed API keys,
+10:5310 minutes, 53 secondsfirst of all, we're going to copy this command here. Come back across to our terminal and paste in there. Now, you need to delete this part here. So, we
+11:0011 minutescan go through and add our API key. To do that, we're going to come across to platform.claw clawed to be able to come through and create our API key. I'm 11:0911
+minutes, 9 secondsgoing to call this YouTube demos. And then we're just going to call it Shannon and then delete me. Now, we're going to be able to add that in there. Copy this
+11:1611 minutes, 16 secondsAPI key. Come back across to our terminal, paste in there, and make sure that we add our end quotes at the end. 11:2311 minutes, 23 secondsNext, we're
+going to press enter. Now that we've added our API key, we need to come back across, copy this command here, and then run that as well. just 11:3211 minutes, 32 secondsincreasing
+the amount of Max Esport tokens that we're able to use with Shannon. Now, they say that it costs around $50 to complete this process. 11:3911 minutes, 39 secondsAgain, varying on,
+of course, the code that it's analyzing. So, I recommend just coming through to your limits, coming down to spend limits here, and 11:4711 minutes, 47 secondsthen changing it to
+around $60 just so it's got some buffer room in case it uses more. That's going to help us just control the spend and make sure that you 11:5511 minutes, 55 secondsdon't rack up a
+huge bill if you didn't intend to. So now we've come through and added our API keys and the clawed code settings. Now we need to come through 12:0312 minutes, 3 secondsand actually
+download our app from our GitHub repo to be able to run it locally. So for this example, I'm going to come across to the git repo that I had for the app we showed earlier on.
+12:1312 minutes, 13 secondsWe're going to come down and just copy this command here. Come back across to the terminal, paste in there. But we need to add some specific points
+first. 12:2212 minutes, 22 secondsFirst we're going to do full stop forward slash and then repose. Then we'll do forward slash and the SAS idea generator that we had from earlier
+on. 12:3112 minutes, 31 secondsSo what this means is it's going to go through and download all of our files from GitHub and store it in that specific repo folder for of course
+12:3912 minutes, 39 secondsShannon to use. So now all we need to do is press enter and it should start cloning it down to our specific repo. So 12:4612 minutes, 46 secondsnow if we
+reopen up our folders again, as we can see here, we've now got all of those details and files and folders and everything that we originally had in our 12:5512 minutes, 55
+secondsGitHub repository now accessible locally and specifically in the repos folder for us to go through and do the testing. So now we've got everything downloaded. 13:0413
+minutes, 4 secondsWhat do we need to do? Well, now we need to come through and check if our app is already running. As mentioned, you can come through and use the URL if you want
+13:1113 minutes, 11 secondsto, but you need to make sure that again you're only using it in non-production environments. and we really don't want to be testing on anyone else's
+only ones 13:1913 minutes, 19 secondsthat we're authorized to actually run it on. For many of us that are actually running it locally on our machine and within the repos folder,
+this is where we need to come through and make sure 13:2613 minutes, 26 secondsthat we start the app up first. So, we're going to need to come through, make sure that we're in the
+right folder for where we've downloaded it and then 13:3413 minutes, 34 secondsjust start that dev and we need to make sure that we note the port so that we can give it to Shannon
+next for it to go through and execute the test. So to do 13:4313 minutes, 43 secondsthis, we're going to do cd because this is going to be directing us to that specific folder.
+That's where we're going through. We're going to do cd 13:5113 minutes, 51 secondsrepos forward slash. So we just make sure to come up. We'll do forward slashs ideas genward slash
+and then we called 13:5813 minutes, 58 secondsit idea forge. So we're just going to come back and do idea and then forge as well. So now we're going to press enter. 14:0514

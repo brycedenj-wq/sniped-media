@@ -1,0 +1,224 @@
+been a developed over the years to take text documents and compress them down 6:58 into a numerical rep presentation that then can be very easily searched now there's a few ways to
+do 7:06 that so Google and others came up with many interesting statistical methods where you take a document you look at 7:13 the frequency of words and you build what they call
+sparse vectors such that the vector locations are you know a 7:20 large vocabulary of possible words each value represents the number of occurrences of that particular word and
+7:27 it's sparse because there's of course many zeros it's a very large vocabulary relative to what's present in the 7:32 document and there's very good search methods over this
+this type of numerical representation now a bit more recently 7:40 uh embedding methods that are machine learned so you take a document and you build a compressed fixed length 7:45
+representation of that document um have been developed with 7:51 correspondingly very strong search methods over embeddings um so the intuition here is 7:59 that we take documents
+and we typically split them because embedding models 8:04 actually have limited context windows so you know on the order of maybe 512 tokens up to 8,000 tokens or Beyond but 8:12
+they're not infinitely large so documents are split and each document is compressed into a vector and that Vector 8:20 captures a semantic meaning of the document itself the
+vectors are indexed 8:25 questions can be embedded in the exactly same way and then numerical kind of 8:30 comparison in some form you know using very different types of methods
+can be performed on these vectors to fish out 8:37 relevant documents relative to my question um and let's just do a quick 8:43 code walk through on some of these points so I have
+my notebook here I've 8:51 installed here um now I've set a few API keys for lsmith which are very useful 8:58 for tracing which we'll see shortly um previously I walked through
+this this kind of quick start that just 9:04 showed overall how to lay out these rag pipelines and here what I'll do is I'll Deep dive a little bit more on indexing 9:11 and I'm
+going to take a question and a document and first I'm just going to 9:16 compute the number of tokens in for example the question and this is interesting because embedding models
+in 9:22 llms more generally operate on tokens and so it's kind of nice to understand how large the documents are that I'm 9:28 trying to feed in in this case it's obviously a very
+small in this case question now I'm going to specify open 9:35 eye embeddings I specify an embedding model here and I just say embed embed 9:40 query I can pass my question my
+document and what you can see here is that runs 9:47 and this is mapped to now a vector of length 1536 and that fixed length Vector 9:53 representation will be computed for both
+documents and really for any document so 9:58 you're always is kind of computing this fix length Vector that encodes the semantics of the text that you've passed 10:05 now I can do
+things like cosine similarity to compare them and as we'll see here I can load 10:13 some documents this is just like we saw previously I can split them and I can index them here
+just like 10:22 we did before but we can see under the hood really what we're doing is we're taking each split we're embedding it 10:27 using open eye embeddings into this this
+kind of this Vector representation and that's stored with a link to the rod 10:33 document itself in our Vector store and next we'll see how to actually do retrieval using this
+Vector store hi Retrieval 10:41 this is Lance from Lang chain and this is the third video in our series rag from scratch building up a lot of the 10:47 motivations for rag uh from
+the very basic components um so we're going to be 10:54 talking about retrieval today in the last two uh short videos I outlined 10:59 indexing and gave kind of an overview of this
+flow which starts with indexing of our documents retrieval of documents 11:06 relevant to our question and then generation of answers based on the retriev documents and so we saw
+that the 11:13 indexing process basically makes documents easy to retrieve and it goes 11:18 through a flow that basically looks like you take our documents you split them in some
+way into these smaller chunks that 11:25 can be easily embedded um those embeddings are then numerical representations of those documents that 11:31 are easily searchable and
+they're stored in an index when given a question that's also 11:38 embedded the index performs a similarity search and returns splits that are relevant to the 11:45 question now if
+we dig a little bit more under the hood we can think about it like this if we take a document and 11:52 embed it let's imagine that embedding just had three dimensions so you know
+each document is projected into some 11:58 point in this 3D space now the point is that the location in space is determined by the semantic 12:06 meaning or content in that
+document so to follow that then documents in similar 12:12 locations in space contain similar semantic information and this very 12:17 simple idea is really the Cornerstone for a
+lot of search and retrieval methods that you'll see with modern Vector stores so in particular we take 12:25 our documents we embed them into this in this case a toy 3D space we
+take our question do the 12:32 same we can then do a search like a local neighborhood search you can think about in this 3D space around our 12:39 question to say hey what
+documents are nearby and these nearby neighbors are 12:45 then retrieved because they can they have similar semantics relative to our 12:50 question and that's really what's going
+on here so again we took our documents 12:56 we split them we embed them and now they exist in this high dimensional space we've taken our question embedded it 13:02 projected in
+that same space and we just do a search around the question from nearby documents and grab ones that are 13:09 close and we can pick some number we can say we want one or two or
+three or n documents close to my question in this 13:17 embedding space and there's a lot of really interesting methods that implement this very effectively I I link 13:22 one here
+um and we have a lot of really nice 13:28 uh Integrations to play with this general idea so many different embedding models many different indexes lots of 13:35 document loaders um
+and lots of Splitters that can be kind of recombined to test different ways of doing this 13:41 kind of indexing or retrieval um so now I'll show a bit of a code walkth through so
+here we defined 13:50 um we kind of had walked through this previously this is our notebook we've installed a few packages we've set a few 13:57 environment variables using lsmith
+and we showed this previously this is just an overview showing how to run rag 14:04 like kind of end to end in the last uh short talk we went through indexing um and what I'm going
+to do 14:11 very simply is I'm just going to reload our documents so now I have our documents 14:19 I'm going to resplit them and we saw before how we can build our 14:24 index now
+here let's actually do the same thing but in the slide we actually showed kind of that notion of search in 14:31 that 3D space and a nice parameter to think about in building your
+your retriever is 14:38 K so K tells you the number of nearby neighbors to fetch when you do that retrieval process and we talked about 14:44 you know in that 3D space do I want
+one nearby neighbor or two or three so here we can specify k equals 1 for example 14:53 now we're building our index so we're taking every split embedding it storing it now what's
+nice is I asked a a 14:59 question what is Task decomposition this is related to the blog post and I'm going to run get relevant documents so I 15:05 run that and now how many
+documents do I get back I get one as expected based upon k equals 1 so this retrieve 15:12 document should be related to my question now I can go to lsmith and we 15:17 can open it
+up and we can look at our Retriever and we can see here was our question here's the one document we got 15:23 back and okay so that makes sense this document pertains to task ke
+15:29 decomposition in particular and it kind of lays out a number of different approaches that can be used to do that 15:35 this all kind of makes sense and this shows kind of in
+practice how you can implement this this NE this kind of KNN 15:42 or k nearest neighbor search uh really easily uh just using a few lines of code 15:48 and next we're going to
+talk about generation thanks hey this is Lance from Lang chain Generation 15:55 this is the fourth uh short video in our rack from scratch series that's going to be focused on
+16:01 generation now in the past few videos we walked through the general flow uh for 16:07 kind of basic rag starting with indexing Fall by retrieval then 16:13 generation of an
+answer based upon the documents that we retrieved that are relevant to our question this is kind of 16:19 the the very basic flow now an important consideration in 16:25 generation
+is really what's happening is we're taking the documents you retrieve and we're stuffing them into the llm 16:32 context window so if we kind of walk back through the process we
+take documents we split them for convenience 16:39 or embedding we then embed each split and we store that in a vector store as 16:45 this kind of easily searchable numerical
+representation or vector and we take a question embed it to produce a similar 16:52 kind of numerical representation we can then search for example using something like KN andn in
+this kind of dimensional 17:00 space for documents that are similar to our question based on their proximity or 17:05 location in this space in this case you can see 3D is a toy
+kind of toy 17:10 example now we've recovered relevant splits to our question we pack those into the context window and we produce 17:17 our answer now this introduces the notion
+of a prompt so the prompt is kind of a you 17:25 can think have a placeholder that has for example you know in our case B keys 17:30 so those keys can be like context and question
+so they basically are like 17:35 buckets that we're going to take those retrieve documents and Slot them in we're going to take our question and 17:41 also slot it in and if you
+kind of walk through this flow you can kind of see that we can build like a dictionary from 17:48 our retrieve documents and from our question and then we can basically populate
+our prompt template with the 17:54 values from the dict and then becomes a prompt value which can be passed to llm 17:59 like a chat model resulting in chat messages which we then
+parse into a string and get our answer so that's like 18:06 the basic workflow that we're going to see and let's just walk through that in code very quickly to kind of give you
+18:11 like a Hands-On intuition so we had our notebook we walk through previously install a few packages I'm setting a few 18:19 lsmith environment variables we'll see it's it's
+nice for uh kind of observing and debugging our 18:25 traces um previously we did this quick start we're going to skip that over 18:30 um and what I will do is I'm going to build
+our retriever so again I'm going 18:36 to take documents and load them uh and then I'm going to split them here we've kind of done this previously so I'll go 18:42 through this
+kind of quickly and then we're going to embed them and store them in our index so now we have this retriever object here now I'm going to 18:50 jump down here now here's where it's
+kind of fun this is the generation bit and you can see here I'm defining 18:55 something new this is a prompt template and what my prompt template is something really simple it's
+just going to say 19:00 answer the following question based on this context it's going to have this context variable and a question so now 19:06 I'm building my prompt so great now
+I have this prompt let's define an llm I'll choose 19:12 35 now this introdu the notion of a chain so in Lang chain we have an expression language called L Cel Lang 19:20 chain
+expression language which lets you really easily compose things like prompts LMS parsers retrievers and other 19:27 things but the very simple kind of you know example here is just
+let's just take our prompt which you defined right 19:33 here and connect it to an LM which you defined right here into this chain so there's our chain now all we're doing is 19:39
+we're invoking that chain so every L expression language chain has a few common methods like invoke bat stream in 19:47 this case we just invoke it with a dict so context and
+question that maps to the 19:54 expected Keys here in our template and so if we run invoke what we see is 20:01 it's just going to execute that chain and we get our answer now if
+we zoom over to Langs Smith we should see that 20:07 it's been populated so yeah we see a very simple runable sequence here was our 20:14 document um and here's our output and here
+is our prompt answer the following 20:21 question based on the context here's the document we passed in here is the question and then we get our answer so 20:28 that's pretty nice
+um now there's a lot of other options for rag prompts I'll 20:34 pull one in from our prompt tub this one's like kind of a popular prompt so it just like has a little bit more
+20:41 detail but you know it's the main the main intuition is the same um you're 20:47 passing in documents you're asking them to reason about the documents given a question
+produce an answer and now here 20:53 I'm going to find a rag chain which will automatically do the retrieval for us and all I have to do is specify here's 20:59 my retriever which
+we defined before here's our question we which we invoke with the question gets passed 21:06 through to the key question in our dict and it automatically will trigger the 21:12
+retriever which will return documents which get passed into our context so it's exactly what we did up here except 21:18 before we did this manually and now um this is all kind of
+automated for 21:25 us we pass that dick which is autop populated into our prompt llm out to parser now 21:31 let invoke it and that should all just run and great we get an answer
+and we 21:37 can look at the trace and we can see everything that happened so we can see our retriever was 21:44 run these documents were retrieved they get passed into our 21:49
+LM and we get our final answer so this kind of the end of our overview um where 21:56 we talked about I'll go back to the slide here quickly we talked about indexing retrieval and
+now 22:02 generation and follow-up short videos we'll kind of dig into some of the more com complex or detailed themes that 22:09 address some limitations that can arise in this
+very simple pipeline thanks hi my from Lang chain over the Query Translation (Multi-Query) 22:17 next few videos we're going to be talking about career translation um and in this
+first video 22:23 we're going to cover the topic of multi-query so query translation sits kind of at the 22:29 first stage of an advanced rag Pipeline and the goal of career
+translation is 22:36 really to take an input user question and to translate in some way in order to 22:42 improve retrieval so the problem statement is pretty intuitive user
+queries um can be 22:51 ambiguous and if the query is poorly written because we're typically doing some kind of semantic similarity search 22:57 between the query and our documents
+if the query is poorly written or ill opposed we won't retrieve the proper 23:05 documents from our index so there's a few approaches to 23:10 attack this problem and you can kind
+of group them in a few different ways so 23:15 here's one way I like to think about it a few approaches has involveed query rewriting so taking a query and 23:22 reframing it like
+writing from a different perspective um and that's what we're going to talk about a little bit 23:27 here in depth using approaches like multi-query or rag Fusion which we'll talk
+about in the next video you can 23:34 also do things like take a question and break it down to make it less abstract like into sub questions and there's a 23:40 bunch of
+interesting papers focused on that like least to most from Google you can also take the opposite 23:46 approach of take a question to make it more abstract uh and there's actually
+approach we're going to talk about later 23:51 in a future video called stepback prompting that focuses on like kind of higher a higher level question from the 23:59 input so the
+intuition though for this multier approach is we're taking a 24:05 question and we're going to break it down into a few differently worded questions uh from different 24:10
+perspectives and the intuition here is simply that um it is possible that the 24:17 way a question is initially worded once embedded it is not well aligned or in 24:24 close
+proximity in this High dimensional embedding space to a document that we want to R that's actually related so the 24:30 thinking is that by kind of rewriting it in a few different
+ways you actually increase the likel of actually 24:36 retrieving the document that you really want to um because of nuances in the way 24:41 that documents and questions are
+embedded this kind of more shotgun approach of taking a question Fanning it 24:47 out into a few different perspectives May improve and increase the reliability of retrieval that's
+like the intuition 24:54 really um and of course we can com combine this with retrieval so we can 24:59 take our our kind of fan out questions do retrieval on each one and combine
+them in some way and perform rag so 25:06 that's kind of the overview and now let's what let's go over to um our code 25:11 so this is a notebook and we're going to share all this
+um we're just installing a few 25:18 packages we're setting a lsmith API Keys which we'll see why that's quite useful here shortly there's our diagram now 25:25 first I'm going to
+Index this blog post on agents I'm going to split it um well 25:31 I'm going to load it I'm going to split it and then I'm going to index it in chroma locally so this is a vector
+store 25:37 we've done this previously so now I have my index defined so here is where I'm defining my prompt for multiquery which 25:44 is your your assistant your task is to
+basically reframe this question into a few different sub 25:50 questions um so there's our prompt um right here we'll pass that to 25:56 an llm part it um into a string and then
+split the string by new lines and so 26:02 we'll get a list of questions out of this chain that's really all we're doing here now all we're doing is here's a 26:09 sample input
+question there's our generate queries chain which we defined we're going to take that list and then 26:15 simply apply each question to retriever so we'll do retrieval per question
+and 26:21 this little function here is just going to take the unique Union of documents uh across all those retrievals so let's run 26:27 this and see what happens so we're going
+to run this and we're going to get some set of questions uh or documents back so 26:36 let's go to Langs Smith now we can actually see what happened under the hood so here's the
+key 26:42 point we ran our initial chain to generate a set of of reframed questions 26:48 from our input and here was that prompt and here is that set of questions that we
+generated now what happened is for 26:55 every one of those questions we did an independent retrieval that's what we're showing here so that's kind of the first 27:00 step which is
+great now I can go back to the notebook and we can show this working end to end so now we're going to 27:07 take that retrieval chain we'll pass it into context of our final rag
+prompt we'll also pass through the question 27:14 we'll pass that to our rag prompt here pass it to an LM and then Pary output 27:19 now let's let's kind of see how that works so
+again that's okay there it is 27:24 so let's actually go into langth and see what happened under the hood so this was our final chain so this is great we took 27:31 our input
+question we broke it out to these like five rephrase questions for 27:36 every one of those we did a retrieval that's all great we then took the unique Union of documents and you
+can see in 27:42 our final llm prompt answer the following cont following question based on the context this is the final set of 27:50 unique documents that we retrieved from all
+of our sub questions um here's our initial question 27:57 there's our answer so that kind of shows you how you can set this up really easily how you can use l Smith to kind of
+investigate what's going on and in 28:04 particular use l Smith to investigate those intermediate questions that you generate in that like kind of question 28:11 generation phase
+and in a future talks we're going to go through um some of these other methods that we kind of 28:17 introduced at the start of this one thank you last L chain this is the second
+Query Translation (RAG Fusion) 28:23 video of our Deep dive on query translation in our rag from scratch series focused on a method called rag 28:30 Fusion so as we kind of showed
+before career translation you can think of as the first stage in an advanced rag 28:38 pipeline we're taking an input user question and We're translating it some way in order to
+improve 28:44 retrievable now we showed this General mapping of approaches previously so 28:50 again you have kind of like rewriting so you can take a question and like kind of
+break it down into uh differently worded 28:58 are different different perspectives of the same question so that's kind of rewriting there's sub questions where 29:04 you take a
+question break it down into smaller problems solve each one independently and then there step back 29:10 where you take a question and kind of go more abstract where you kind of
+ask a higher level question as a precondition 29:16 to answer the user question so those are the approaches and we're going to dig into one of the particular approaches 29:22 for
+rewriting called rat Fusion now this is really similar to what we just saw 29:27 with multiquery the difference being we actually apply a a kind of a clever rank ranking step of
+29:33 our retriev documents um which you call reciprocal rank Fusion that's really the only difference the the input stage of 29:41 taking a question breaking it out into a few
+kind of differently worded questions 29:47 retrieval on each one is all the same and we're going to see that in the code here shortly so let's just hop over 29:54 there and then
+look at this so again here is a notebook that we introduced 29:59 previously here's the packages we've installed we've set a few API keys for lsmith which we see why is quite 30:07
+useful um and you can kind of go down here to a rag Fusion 30:13 section and the first thing you'll note is what our prompt is so it looks really similar to The Prompt we just saw
+with 30:19 multiquery and simply your helpful assistant that generates multiple search queries based upon user input and here's 30:26 the question output for queries so let's
+define our prompt and here was our query 30:33 Generation chain again this looks a lot like we just saw we take our prompt Plum that into an llm and then basically 30:39 parse by
+new lines and that'll basically split out these questions into a list 30:46 that's all it's going to happen here so that's cool now here's where the novelty comes 30:52 in each
+time we do retrieval from one of those questions we're going to get back 30:58 a list of documents from our Retriever and so we do it over that we generate 31:03 four questions
+here based on our prompt we do the over four questions well like a list of lists 31:09 basically now reciprocal rank Fusion is really well suited for this exact problem we want to
+take this list to 31:15 list and build a single Consolidated list and really all that's going on is it's looking at the documents in each 31:22 list and kind of aggregating them
+into a final output ranking um and that's 31:28 really the intuition around what's happening 31:33 here um so let's go ahead 31:39 and so 31:46 let's so let's go ahead and look at
+that in some detail so we can see we 31:53 run retrieval that's great now let's go over to Lang Smith and have a look at what's 32:00 going on here so we can see that here was our
+prompt to your helpful assistant 32:06 that generates multiple search queries based on a single input and here is our search queries and then here are our 32:14 four retrievals so
+that's that's really good so we know that all is 32:19 working um and then those retrievals simply went into this rank 32:25 function and our correspondingly ranked to a final list
+of six unique rank 32:31 documents that's really all we did so let's actually put that all 32:37 together into an a full rag chain that's going to run 32:43 retrieval return that
+final list of rank documents and pass it to our context 32:50 pass through our question send that to a rag prompt pass it to an LM parse it to 32:56 an output and let's run all
+that together and see that working cool so there's our final 33:07 answer now let's have a look in lsmith we can see here was our four questions 33:13 here's our retrievals and
+then our final rag prompt plumed through the final list 33:18 of ranked six questions which we can see laid out here and our final answer so 33:25 this can be really convenient
+particularly if we're operating across like maybe different Vector stores uh or 33:32 we want to do like retrieval across a large number of of kind of differently worded questions
+this reciprocal rank 33:38 Fusion step is really nice um for example if we wanted to only take the top three documents or something um it 33:46 can be really nice to build that
+Consolidated ranking across all these independent retrievals then pass that to 33:52 for the final generation so that's really the intuition about what's happening here thanks
+Query Translation (Decomposition) 33:58 hi this is Lance from Lang chain this is our third video focused on query translation in the rag from scratch 34:04 series and we're going
+to be talking about decomposition so query translation in 34:09 general is a set of approaches that sits kind of towards the front of this overall rag Pipeline and the objective
+34:16 is to modify or rewrite or otherwise decompose an input question from a user 34:21 in order improve retrieval so we can talk through some of 34:26 these approaches previously
+in particular various ways to do query writing like rag fusion and multiquery 34:32 there's a separate set of techniques that become pretty popular and are really interesting for
+certain problems 34:37 which we might call like kind of breaking down or decomposing an input question into a set of sub 34:43 questions um so some of the papers here that are are
+pretty cool are for example 34:49 this work from Google um and the objective really is 34:54 first to take an input question and decompose it into a set of sub problems 35:00 so
+this particular example from the paper was the problem of um last letter 35:07 concatenation and so it took the inut question of three words think machine 35:13 learning and broke
+it down into three sub problems think think machine think machine learning as the third sub 35:19 problem and then you can see in this bottom panel it solves each one individually
+so it shows for example in 35:25 green solving the problem think machine where you can catenate the last letter of k with the last letter of machine or 35:32 last letter think K
+less machine e can concatenate those to K and then for the 35:39 overall problem taking that solution and then and basically building on it to get 35:45 the overall solution of keg
+so that's kind of one concept of decomposing into sub problems solving them 35:52 sequentially now a related work called IRC or in leap retrieval combines 35:58 retrieval with
+Chain of Thought reasoning and so you can kind of put these together into one approach which 36:05 you can think of as kind of dynamically retrieval um to solve a set of sub 36:11
+problems kind of that retrieval kind of interleaving with Chain of Thought as noted in the second paper and a set of 36:19 decomposed questions based on your initial question from
+the first work from Google so really the idea here is 36:25 we're taking one sub question we're answering it we're taking that answer and using it to help answer the second 36:31
+sub question and so forth so let's actually just walk through this in code to show how this might 36:37 work so this is The Notebook we've been working with from some of the other
+uh videos you can see we already have a 36:43 retriever to find uh up here at the top and what we're going to do 36:49 is we're first going to find a prompt that's basically going
+to say given an 36:54 input question let's break it down to set of sub problems or sub question which can be solved individually so we 37:01 can do that and this blog post is
+focused on agents so let's ask a question about what are the main 37:06 components of an LM powerered autonomous agent system so let's run this and 37:13 see what the decomposed
+questions are so you can see the decomposed questions are what is LM technology how does it work 37:21 um what are components and then how the components interact so it's kind of a
+sane way to kind of break down this 37:27 problem into a few sub problems which you might attack individually now here's 37:32 where um we Define a prompt that very simply is going
+to take our question 37:38 we'll take any prior questions we've answered and we'll take our retrieval and basically just combine them and we 37:45 can Define this very simple chain
+um actually let's go back and make sure retriever is defined up at the 37:52 top so now we are building our retriever good we have that now so we 37:59 can go back down here and
+let's run this so now we are 38:06 running and what's happening is we're trying to solve each of these questions 38:12 individually using retrieval and using any prior question
+answers so okay very 38:18 good looks like that's been done and we can see here's our answer now let's go over to langth and actually see what 38:25 happened under the hood so
+here's what's kind of of interesting and helpful to see for the first question so here's our 38:31 first one it looks like it just does retrieval which is we expect and then it
+uses that to answer this initial 38:37 question now for the second question should be a little bit more interesting because if you look at our prompt here's 38:44 our question now
+here is our background available question answer pair so this 38:49 was the answer question answer pair from the first question which we add to our prompt and then here's the
+retrieval for 38:55 this particular question so we're kind of building up up the solution because we're pending the question answer pair 39:00 from question one and then likewise
+with question three it should combine all of 39:05 that so we can look at here here's our question here's question one here's question two great now here's additional 39:14
+retrieval related to this particular question and we get our final answer so that's like a really nice way you can 39:20 kind of build up Solutions um using this kind of
+interleaved uh retrieval and 39:26 concatenating question answer pairs I do want to mention very briefly that we can 39:31 also take a different approach where we can just answer
+these all individually and then just concatenate all those 39:37 answers to produce a final answer and I'll show that really quickly here um 39:43 it's like a little bit less
+interesting maybe because you're not using answers from each uh question to inform the next 39:50 one you're just answering them all in parallel this might be better for cases
+where it's not really like a sub 39:55 question decomposition but maybe it's like like a set of set of several in independent questions whose answers 40:02 don't depend on each
+other that might be relevant for some problems um and we can go ahead and run 40:08 okay so this ran as well we can look at our trace and in this 40:14 case um yeah we can see that
+this actually just kind of concatenates all of our QA pairs to produce the final 40:22 answer so this gives you a sense for how you can use quer decomposition employ IDE IDE from
+uh from two different 40:28 papers that are pretty cool thanks hi this is Lance from Lang chain this is Query Translation (Step Back) 40:34 the fourth video uh in our Deep dive on
+queer translation in the rag from 40:39 scratch series and we're going to be focused on step back prompting so queer translation as we 40:45 said in some of the prior videos kind
+of sits at the the kind of first stage of 40:51 kind of a a a rag pipeline or flow and the main aim is to take an question and 40:58 to translate it or modify in such a way that it
+improves retrieval now we talked through a few 41:04 different ways to approach this problem so one General approach involves rewriting a question and we talk about 41:10 two ways
+to do that rag fusion multiquery and again this is this is really about taking a question and 41:16 modifying it to capture a few different perspectives um which may improve the
+retrieval 41:22 process now another approach is to take a question and kind of make it less abstract like break it down into sub 41:29 questions um and then solve each of those
+independently so that's what we saw with like least to most prompting um 41:35 and a bunch of other variants kind of in that in that vein of sub problem solving 41:42 and then
+consolidating those Solutions into a final answer now a different approach 41:48 presented um by again Google as well is stepback prompting so stepback prompting 41:55 kind of
+takes the the the opposite approach where it tries to ask a more abstract question so the paper talks a 42:04 lot about um using F shot prompting to produce what they call the
+42:12 stepback or more abstract questions and the way it does it is it provides a number of 42:19 examples of stepb back questions given your original question so like this is
+42:24 like this is for example they like for prompt temp you're an expert World Knowledge I asked you a question your response should be 42:30 comprehensive not contradict with the
+following um and this is kind of where you provide your like original and then 42:38 step back so here's like some example um questions so like um 42:46 like uh at year saw the
+creation of the region where the country is located 42:53 which region of the country um is the county of of herir 42:58 related um Janell was born in what country what is janell's
+personal 43:04 history so that that's maybe a more intuitive example so it's like you ask a very specific question about like the country someone's born the more abstract 43:11
+question is like just give me the general history of this individual without worrying about that particular 43:16 um more specific question um so let's actually just walk through
+how this can 43:22 be done in practice um so again here's kind of like a a diagram of uh the 43:28 various approaches um from less abstraction to more abstraction now here is where
+we're 43:35 formulating our prompt using a few of the few shot examples from the paper um so again like input um yeah 43:45 something about like the police perform wful arrests and
+what what camp members of the police do so like it it basically 43:51 gives the model a few examples um we basically formulate this into a prompt 43:56 that's really all going on
+here again we we repeat um this overall prompt which 44:02 we saw from the paper your expert World Knowledge your test is to step back and paraphrase a question generate more a
+44:08 generic step back question which is easier to answer here are some examples so it's like a very intuitive prompt so 44:16 okay let's start with the question what is Task
+composition for llm agents and 44:21 we're going to say generate stack question okay so this is pretty intuitive right what is a process of task compos I so like not worrying as
+44:28 much about agents but what is that process of task composition in general and then hopefully that can be 44:36 independently um retrieved we we can independently retrieve
+documents related to the stepb back question and in 44:43 addition retrieve documents related to the the actual question and combine those to produce kind of final answer so 44:49
+that's really all that's going on um and here's the response template where we're Plumbing in the stepback context and our 44:57 question context and so what we're going to do here
+is we're going to take our input question and perform retrieval on 45:04 that we're also going to generate our stepb back question and perform retrieval on that we're going to
+plumb 45:10 those into the prompt as here's our very here's our basically uh our prompt Keys 45:15 normal question step back question um and our overall question again we 45:21
+formulate those as a dict we Plum those into our response prompt um and then we 45:29 go ahead and attempt to answer our overall question so we're going to run that that's 45:35
+running and okay we have our answer now I want to hop over to Langs Smith and 45:41 attempt to show you um kind of what that looked like under the hood so let's see 45:48 let's
+like go into each of these steps so here was our prompt right you're an expert World Knowledge your test to to 45:55 step back and paraph as a question um so um here were our few
+shot prompts 46:03 and this was our this was our uh stepb question so what is the process of task 46:08 composition um good from the input what is Tas composition for LM agents we
+46:14 perform retrieval on both what is process composition uh and what is for LM agents 46:20 we perform both retrievals we then populate our prompt with both 46:27 uh original
+question answer and then here's the context retrieve from both the question and the stepb back question 46:33 here was our final answer so again this is kind of a nice technique um
+probably depends on a lot of the types of like 46:41 the type of domain you want to perform retrieval on um but in some domains 46:47 where for example there's a lot of kind of
+conceptual knowledge that underpins questions you expect users to ask this 46:54 stepback approach could be really convenient to automatically formulate a 46:59 higher level
+question um to for example try to improve retrieval I can imagine if you're working with like kind of 47:05 textbooks or like technical documentation where you make independent
+chapters focused on more highlevel kind 47:12 of like Concepts and then other chapters on like more detailed uh like 47:18 implementations this kind of like stepb back approach and
+independent retrieval could be really helpful thanks hi this Query Translation (HyDE) 47:25 is Lance from Lang chain this is the fifth video focused on queer translation in our
+rack from scratch 47:31 series we're going to be talking about a technique called hide so again queer translation sits 47:37 kind of at the front of the overall rag flow um and the
+objective is to take an input question and translate it in some 47:43 way that improves retrieval now hide is an interesting 47:49 approach that takes advantage of a very simple
+idea the basic rag flow takes a 47:55 question and embeds it takes a document and embeds it and looks for similarity between an embedded document and 48:02 embedded question but
+questions and documents are very different text objects so documents can be like very 48:08 large chunks taken from dense um Publications or other sources whereas 48:14 questions
+are short kind of tur potentially ill worded from users and the intuition behind hide is take 48:22 questions and map them into document space using a hypothetical document or

@@ -1,0 +1,224 @@
+that should save 2:23 us quite a lot of time. write the 2:26 prompts for each of the individual nodes 2:28 and think about the flow of the agent 2:30 overall. Those are two things
+that take 2:32 a disproportionate amount of time when 2:34 building voice agents and to not have to 2:36 do them as much for the first draft 2:38 means that you can have something
+you 2:39 can test and demo and start tweaking a 2:42 lot faster. Now, speaking of which, 2:44 another thing that you can use Claude 2:46 and GPT for is writing tests for your 2:48
+voice agent. This is another thing that 2:49 takes up a lot of time. A lot of people 2:50 don't do it to the extent that they 2:52 should. And this is the difference 2:53 between a
+voice agent being genuinely 2:56 really valuable and worth thousands if 2:58 not tens of thousands of dollars versus 3:00 one that is a bit of a toy that goes 3:01 rogue and causes
+all kinds of chaos when 3:03 it gets deployed to production. Tip 3:05 number four, set up a test suite in 3:07 Vapy. I'm going to touch on evals in a Robust Testing Strategies 3:09
+moment, but test suites are particularly 3:10 important because they can prevent 3:12 having regression with your voice AI, 3:14 which is a real fear where, you know, 3:15 you make
+a small tweet to a global 3:17 prompt, you make it sound a little bit 3:18 more natural in one area and then you 3:20 find out a week later in a call log that 3:22 it said
+something absolutely insane to a 3:24 caller. So to prevent that from 3:26 happening, you want to use test suites. 3:28 So you can go over to the sidebar, click 3:29 over here on
+test suite, create a new 3:31 test suite, [music] and then if you 3:33 select the assistant that you want it to 3:35 test, click generate tests, and then you 3:37 can give it a
+description of what you 3:39 want. So we could say try and troll this 3:42 agent to do something illegal like ask 3:47 for a credit card or give legal advice. 3:51 So we can then
+generate a bunch of test 3:52 cases. And what this now means is every 3:55 time we deploy a new version of our 3:57 agent, we can get it to run these tests 3:58 and make sure we're
+not going backwards 4:00 or having any weird behavior. So you can 4:02 think of these a little bit like 4:03 integration tests where you could build 4:05 a test suite for different
+routes or 4:06 different themes, different problems 4:08 that you might have with your agent. And 4:10 the idea is then you want to get maximum 4:12 coverage across your agent. So
+you want 4:15 to have essentially end to end testing 4:17 covering all of the different routes and 4:18 different edge cases that could trip 4:20 your agent up. So for tip number
+five, 4:22 while we're talking about testing, Vappy 4:24 released evals last month. So eval are a 4:27 little bit more granular. These are 4:28 essentially unit tests that you can
+use 4:31 to test specific components or specific 4:33 prompts to make sure you're getting the 4:35 output that you would expect. So you can 4:36 create the evals in the dashboard
+here 4:38 or you can write them in code if you are 4:40 working directly with the API. So 4:41 essentially you can drop in your prompts 4:43 and a mock response that the caller
+4:45 would say and then you can run an 4:46 evaluation against it. Now, if the 4:48 response that you're expecting is very 4:50 deterministic, you could have this 4:52 evaluate as
+an exact match, but more 4:54 likely and interestingly, you can use 4:56 LLM as a judge to work out whether the 4:58 response was what was intended or not. 5:00 So, what this does
+is it creates an AI 5:02 judge prompt here and then you could use 5:04 structured criteria to say pass criteria 5:06 is X and then fail criteria is Y and 5:09 that will evaluate as
+pass or fail based 5:11 on that criteria. Now, this is 5:13 particularly good if you've got a really 5:15 complex agent with lots of prompts, lots 5:17 of different nodes and
+components, and 5:18 you want to make sure, particularly as 5:19 you're building the agent or adding new 5:21 functionality, creating a new version, 5:23 that everything that
+you've built before 5:24 is acting as expected. So, essentially 5:26 the same thing as unit testing. Tip 5:28 number six is to create test cases and 5:30 evals from your call logs.
+So, if you go 5:32 into call logs and click on a 5:33 transcription, if you find any instances 5:35 where the agent was tripped up by a 5:37 caller, what you can do is click the
+5:39 little thumb down icon here. That's 5:42 going to then create that as an eval. 5:44 And what you can do is if it was tripped 5:45 up and said the wrong thing, you can 5:47
+change the content of what you expected. 5:50 And then all you need to do is hit save. 5:52 So enough about testing. We're going to Global Prompt Design 5:53 move on to prompting,
+which is probably 5:54 the thing that's going to have the 5:55 biggest impact on improving the quality 5:57 of your voice agents. So in my opinion, 5:59 your global prompt should
+be pretty 6:01 lean, particularly if you're using Vappy 6:02 workflows, because there are two things 6:04 that you then don't need to include in 6:06 your global prompts. the
+conversational 6:08 flow because that's defined by the 6:10 actual workflow flow and then the task 6:14 instructions because those can be 6:15 defined in the individual
+conversation 6:17 nodes. So assuming that you are building 6:20 in vapy workflows, there are really only 6:22 three things that should go into your 6:24 global prompt. Firstly, the
+identity of 6:27 the agent and you can break this down 6:29 into the persona, context about the 6:31 company and the personality or the tone 6:34 that the agent should have. and
+I'll 6:35 give you an example of this in a moment. 6:37 Secondly, the purpose or the goal that 6:39 the agent is trying to achieve. And then 6:41 finally, guardrails. Anything that
+the 6:43 agent definitely shouldn't be doing. So, 6:45 as an example of this, I would break the 6:48 global prompt into three sections like 6:49 this. So, for the identity, you
+could 6:51 say, "You are Melissa. You're an AI 6:53 receptionist for a dental clinic which 6:55 provides dental surgery for people in 6:57 North London. You should speak in a 6:59
+friendly conversational tone, etc." So, 7:01 I would keep that fairly simple, maybe 7:03 two, three sentences. Then secondly, we 7:05 have purpose. And again, less is more 7:07
+here. I would keep this to one or two 7:09 sentences max. Just saying your job is 7:11 to book appointments and triage calls to 7:12 the right people. Then finally, a couple 7:15
+of guardrails. Now, I wouldn't overdo 7:16 this. I would think of just, you know, 7:18 what are three to five things you 7:20 definitely don't want it to do. So, do 7:21 not give
+medical advice, do not give 7:23 legal advice, do not do anything to do 7:24 with payment, and do not make up or 7:26 hallucinate any information. just things 7:28 that you
+absolutely do not want your 7:30 voice agent to do that it potentially 7:32 could do in the context of how people 7:34 are going to be talking to it. So just 7:36 to emphasize a
+few things that are not 7:38 here. We don't have anything around 7:40 pronunciation. If you're using Vappy, 7:41 you can use a pronunciation dictionary. 7:43 I think you need to
+use the API for that 7:45 and you have to be using 11 Labs, but 7:47 that allows you to provide the exact 7:49 pronunciation. We're not giving it any 7:52 knowledge about the
+company, things like 7:53 pricing or products offered that you can 7:56 just upload as knowledge. And then the 7:57 agent can use rag to then go and get the 8:00 relevant bits of
+information that it 8:01 needs. That's far more efficient than 8:03 popping it all into the global prompt 8:05 here. Granular tasks. We're not saying 8:08 exactly what the agent
+needs to do 8:09 because again assuming we're using Vappy 8:11 workflows. We can break that down into 8:14 the individual nodes which we'll talk 8:15 about in a moment. The next
+thing is 8:17 conditional. So we don't have any if 8:19 statements saying if this do that. that 8:21 is all going to go in the individual 8:23 node prompts because we don't want
+every 8:25 single step of the conversation to have 8:27 to run through that conditional. It's 8:28 just going to eat up latency and cause 8:30 us lots of problems. And then
+finally, 8:32 as I mentioned, there's no 8:33 conversational flow here. If this were a 8:35 single prompt agent or assistant in 8:37 Vapy, you'd want to provide the kind of 8:40
+the flow of the conversation. We're not 8:42 providing that here because in Vapy 8:43 Workflows, you're defining all of that 8:45 in the flowchart editor. So, if it were 8:47 me, I
+would start with this being pretty 8:49 lean and then I'd add to it as I saw 8:51 weird behavior when I started testing 8:52 it. And generally where I would add the 8:55 most
+information is around tone. So, I'd 8:57 add in things like voice realism. So, 8:59 adding hesitations, pauses, potentially 9:02 conciseness if you start to hear your 9:04 agent
+ramble on for three full 9:06 sentences. Turn taking. This is 9:09 something I used to include in my 9:10 prompts by default, but I've kind of 9:11 started removing it because a
+lot of the 9:13 agents just do this better by default 9:15 now. information handling. Sometimes I 9:17 find this a bit annoying when the agent 9:18 keeps confirming everything
+back. So, it 9:21 depends. You might want to say something 9:22 like if the user provides a number or a 9:24 date, maybe you want to confirm that, 9:26 but don't confirm other
+things. It can 9:28 be really frustrating if the agent 9:29 confirms everything back to you. But 9:31 obviously, some bits of information if 9:33 they're being piped into a CRM or
+need 9:35 to be structured in a certain way, you 9:36 may want to make sure that they're 9:38 correct. And then finally, ask one 9:39 question at a time. This is something 9:40
+that I do generally end up adding into 9:42 my global prompt because otherwise the 9:44 agent can ask two, three, four bits of 9:46 information which sounds very unnatural 9:48 and
+generally doesn't work. So tip nine, 9:50 this is around the individual node Node Prompt Best Practices 9:52 prompts. Now, there's no right or wrong 9:54 necessarily when it comes
+to how to 9:55 write these prompts. But generally 9:57 speaking, you want to think about what 9:58 is the goal of this step of the 10:00 conversation and then work backwards 10:02
+from there to create clear step-by-step 10:04 instructions for how the conversation 10:06 should go and what things the agent 10:08 should ask to meet that goal. Now, some 10:11
+people like to write these prompts in 10:13 markdown or kind of use specific 10:14 formatting. As far as I've seen, there's 10:16 no advantage to doing that, providing 10:18 that
+the way that you structure the 10:21 prompt is clear and logical for the 10:23 agent to understand. Generally speaking, 10:25 I try to write the prompts like this, 10:27 where I
+have kind of clear numbered 10:29 step-by-step instructions. A few other 10:31 things also worth considering when 10:33 writing your node prompts is to tell the 10:34 agent
+explicitly when to wait for a 10:37 response. So here for example, after 10:40 asking what treatment would you like to 10:41 book, I would probably say here wait for 10:44 the
+caller to respond. Another little 10:46 pro tip that you can consider here, 10:47 particularly when you're calling tools 10:49 or running functions that are increasing 10:51
+latency, is to have the agent say 10:54 something while you're running those 10:55 functions in the background. So it just 10:57 it doesn't reduce latency, but it 10:58 reduces the
+perception of latency 11:00 because someone is still talking to the 11:02 caller. So the other things that I would 11:04 include here in the node prompt is 11:05 something around
+error handling. So, 11:07 what do you do if the agent gets 11:09 confused or doesn't know how to answer? 11:11 It's always good to have some kind of 11:12 fallback in case the
+caller doesn't kind 11:14 of follow the happy path or there's no 11:16 obvious route for where they should go 11:18 next. Tip number 10, while we're talking 11:20 about prompting
+is to provide examples 11:22 in your node prompts. Generally 11:24 speaking, if you're finding that your 11:26 agent is not doing what you want or 11:27 you're getting too much
+variation, nine 11:29 times out of 10, the fastest way to get 11:31 it back on track and a bit more 11:32 consistent is to provide an example. So 11:34 you could just add in an
+example saying, 11:36 "I also just wanted to flag that as it's 11:38 within 24 hours, we do have a 50% 11:40 cancellation fee that applies. Is that 11:41 okay?" And that should
+make the agents 11:43 response a bit more consistent. Final 11:45 tip when it comes to prompting is to 11:46 know this is not a science. So you need 11:48 to test and iterate on
+your prompts. And 11:50 all of these suggestions could equally 11:52 make your prompts better or worse. So 11:55 you could increase the amount of 11:56 emotional language. You
+could condense 11:57 your prompt into fewer words. Generally 11:59 speaking, that's a good idea with your 12:00 global prompt, but it can go either way. 12:02 When it comes to the
+individual node 12:04 prompts, you could add more detail. You 12:06 could add examples, as we just said. You 12:08 can add more positive guidelines or 12:10 negative guidelines.
+Another little fun 12:12 tip that I've found sometimes works 12:14 surprisingly well is to add stakes into 12:16 your prompt. So, agents generally 12:18 respond quite well when you
+add stakes 12:20 to the prompt in the conversation. So, 12:22 you could add things like, "I'll give 12:23 you a tip," or, "I bet you can't do 12:25 this. My career depends on
+this." When 12:27 you add stakes into your prompts, 12:28 sometimes you'll notice that the agent 12:30 just works a bit harder to give you the 12:32 response you want. Sometimes
+works, 12:34 sometimes doesn't. Generally speaking 12:35 though, to know that if your prompts are 12:37 getting better or worse, you need to use 12:39 two things. You need to use
+the test 12:40 suites that we talked about earlier. 12:42 That is going to tell you whether your 12:43 agent overall is getting better or worse 12:45 at meeting its objective. And
+you need 12:47 to use the evals to make sure the 12:48 individual prompts are delivering 12:50 consistently what you hope to get out of 12:53 that step of your workflow. Final tip
+is 12:55 around model selection. So when it comes Model Selection Guide 12:56 to voice AI, you've got three models to 12:59 think about. You've got the speechtoext 13:00
+transcriber model. You've got the LLM 13:03 model, which is working out what to 13:04 respond with. And then finally, you've 13:06 got the texttospech voice engine. So by 13:09
+default, the Vappy default model 13:11 selection is pretty good. It usually 13:12 goes to Deepseek Nova 2 for the 13:14 transcriber, GP 4.1 for the LLM 13:17 inference, and Vappy
+Voices or 11 Labs 13:21 for the voice engine. Now, it's worth 13:23 considering that every model choice is a 13:26 trade-off between three things: latency, 13:28 cost, and quality.
+You can't improve all 13:31 three at the same time. Any improvement 13:33 in one area is going to affect the other 13:34 two. Generally, the big challenge with 13:36 voice AI is
+latency. So, if you're 13:39 finding that you're having issues with 13:40 latency and you've already tried 13:42 everything else, making the prompts more 13:43 efficient,
+localizing phone numbers, 13:46 that kind of thing, if you're still 13:47 having issues, you could consider 13:48 changing the model to one that has lower 13:50 latency. it is
+almost certainly going to 13:53 cost more. The other thing to take into 13:55 account is that often what you will find 13:58 when changing the model to something 13:59 fast like
+the GPT realtime models, they 14:02 are very fast, but sometimes it can just 14:04 shift the latency elsewhere. So, it's 14:06 always worth testing and monitoring this 14:08 to see
+are you actually getting better 14:10 endto-end latency rather than just 14:12 shaving off latency and moving the 14:13 problem elsewhere. So, hopefully that's 14:15 been useful
+and you've learned 14:16 something. If you've got any of your own 14:17 Vappy tips to share or questions about 14:19 using Vappy, drop them in the comments 14:21 below. Otherwise,
+if you want to see me 14:23 build an AI receptionist in Vapy Live, 14:25 you can check that out in this video. All From IntellagentsLive Demo 0:00 Today I'm going to be showing you
+guys 0:01 how we can build an AI agent that can 0:03 make phone calls for you while you 0:04 sleep. We're going to be using nodn for 0:06 the automation logic and we're going to
+0:07 be using Vappy for the voice agent and 0:10 I'm going to be giving you guys 0:11 everything that you need to replicate 0:12 the system for completely free. The 0:13 workflow,
+the templates, the resources, 0:15 everything that you need. So I'm going 0:17 to hop into a live demo, explain how the 0:18 system works, and then you guys will be 0:20 able to
+copy this on your own. All 0:21 right, so what we're looking at right 0:22 here is the entire NADN automation. This 0:24 is the workflow we're going to be 0:25 breaking down today
+for our outbound 0:27 calling. There are tons of different use 0:29 cases when you want to think about 0:30 outbound phone calling as far as 0:32 automations. It could be getting
+0:34 surveys, getting reviews, it could be 0:36 reactivating leads, things like that. 0:38 Today, the use case that we're going to 0:39 be going over is outbound lead 0:41
+qualification. So, pretend that you have 0:43 a website. And in this case, let's 0:44 pretend the business is an AI automation 0:46 agency of some sort. And on your 0:48 website,
+you've got a form submission. 0:49 And when someone submits a form, this 0:51 workflow is basically automatically 0:52 going to call them and qualify them, ask 0:54 them a few more
+questions, see what 0:55 their intent is, and then log all of 0:57 that information so that you know way 0:59 more about this prospect before you 1:00 actually make your outreach.
+So 1:02 typically what you'd probably see in 1:04 practice is a form submission like we 1:05 have at UPAI and then once they hit 1:07 submit, all that data gets sent to a web 1:09
+hook in NAND and that would trigger this 1:12 whole workflow. But for the sake of the 1:13 demo and just so I can give you guys a 1:15 template that works, we are going to 1:16
+just be using a native end form 1:18 submission trigger. So I'm going to go 1:19 ahead and execute workflow. It's going 1:21 to open up this form that you guys can 1:22 see. And
+let me fill this in real quick 1:24 with some mock data and then we'll fire 1:26 it off and we'll hear the agent call me 1:28 and we'll listen to the conversation. 1:30 Okay, so
+here is the form submission. 1:32 We've got Richard, we've got the phone 1:33 number, the email, the company name, the 1:35 role, the request, and the company size. 1:37 So I'm
+going to fire this off. We'll see 1:38 the workflow start running and we're 1:40 going to see this HTTP request right 1:42 here which just says call lead. And what 1:44 that's
+going to do is it just triggered 1:45 off a phone call as you can see. And so 1:48 now I'm going to answer it and we're 1:49 going to talk to this agent. 1:52 Hello. 1:54 Hey, this
+is Elliot, an AI agent calling 1:56 from Upet. Is this Richard with 1:58 Greengrass? 1:59 Yes, this is Richard. 2:02 Great. Thank you for filling out the 2:03 form. I was just
+going over it and um I 2:06 have some questions to see if you'd be a 2:07 good fit for our services. You're 2:10 looking to automate lead generation for 2:13 your gardening
+business, Green Grass, 2:15 correct? 2:15 Yep, that's right. 2:18 Perfect. Can you tell me what 2:19 specifically prompted your interest in 2:21 exploring automation solutions now?
+2:24 Yeah, over the holidays, business just 2:25 really started to slow down and when I 2:27 stopped doing the outreach myself, it 2:29 just felt like I took my foot off the 2:30
+gas. And I would love for us to be able 2:33 to have a system where we're constantly 2:34 having an, you know, a flow of leads 2:36 coming in. 2:38 Absolutely. I understand the
+need to 2:40 maintain, you know, a steady flow of 2:42 leads even during slower periods. Um, 2:44 how soon are you looking to implement an 2:47 automation solution for this? 2:49
+I'd love to get something up and running 2:50 within the next month. 2:53 Got it. That's a fairly swift timeline. 2:55 Have you had any past experience with um 2:58 automation or
+ori solutions in your 2:59 business? No, no, we haven't played 3:02 around with AI yet. 3:05 That's perfectly fine. Do you have a 3:07 budget in mind for exploring these 3:08
+automation solutions? And are you open 3:11 to a paid discovery phase to scope out 3:15 the best fit before implementation? 3:18 Yeah, I think we were maybe looking at 3:19 like 5
+to 10K and um yeah, would we be 3:23 able to at least get some sort of intro 3:24 discovery call for free and then we 3:26 could talk about paid consulting 3:28 sessions? 3:31 Yes,
+absolutely. Um, if it's a good fit, 3:33 uh, we typically start with a free 3:35 30-minute discovery call. Uh, from 3:37 there, any further consulting and 3:39 scoping sessions
+would be paid. Thank 3:41 you for sharing that information. A team 3:44 member will follow up with you soon to 3:46 discuss the next steps. Thank you for 3:48 your time, Richard.
+3:50 Okay. Thank you. I appreciate it. 3:53 Goodbye. 3:55 Goodbye. Okay. Richard hung up or not 3:57 Richard. um his name was Elliot. Elliot 3:59 hung up on us. Anyways, what you
+can see 4:01 is going on is this is still polling 4:03 because this is waiting to actually grab 4:05 the information back from that phone 4:06 call. And once it does, it'll
+actually 4:08 log it in our Google sheet, which I have 4:10 right over here. So, let's just give 4:11 this a sec. We'll see this actually 4:12 finish up and push that data into the
+4:14 sheet. We'll go look at the sheet and 4:16 then we're going to break down this flow 4:18 node by node so that you guys know 4:19 exactly what is going on. There you go. 4:22
+You can see that that polling finished 4:23 up. It says that it's getting pushed 4:24 into the Google sheet, which I can pull 4:25 up right here. And there you can see 4:27 that
+the row just popped up which was 4:29 Richard calling from green grass. The 4:31 request was automating lead generation 4:33 for my gardening business. We've got the 4:35 company
+size, the interest, the 4:37 motivation, the urgency, the past 4:39 experience, the budget, the intent, and 4:41 the status has been marked off as 4:42 complete. So, this agent was
+able to 4:44 qualify them, get all of this 4:46 information that we wouldn't have 4:47 initially got from the form that he 4:49 filled out, and now we have a lot more 4:51
+information to actually go reach out to 4:52 Richard and start working with their 4:54 business. All right, so now that you High Level Wireframe 4:56 guys have seen a live demo,
+hopefully it 4:57 doesn't seem too complicated. We're 4:58 going to break it all down, make it 4:59 super simple. But before we actually 5:01 start going through this node by node,
+I 5:03 wanted to show you guys the wireframe 5:04 that I built before I actually built 5:06 this in Naden and I was brainstorming 5:08 because I think it's really important to 5:09
+understand at a high level what you're 5:11 expecting to build before you jump into 5:12 nen and start connecting nodes. And this 5:14 is something that I talk a lot about in 5:16
+my paid community. If you want to check 5:17 that out, I have full courses in here 5:19 about building AI automations and then 5:20 being able to spin up your own business 5:22
+with naden. Link for that will be down 5:24 in the description. So, let's break down 5:26 this wireframe really quickly. We know 5:28 that the trigger of this workflow is 5:29
+going to be a form. And on the form, 5:31 we're capturing information like their 5:33 name, their phone number, their email, 5:34 company name, ro request, company size, 5:37 just
+so we have some basic information 5:38 about their business. From there, what 5:40 we want to do is we want to call the 5:41 lead and we want to call them with this 5:43
+information in mind. So, our Vappy Voice 5:45 agent needs to know their name, their 5:47 company, and their request and maybe 5:48 some other things, too. And so I'm going 5:49 to
+show you guys how we can actually 5:50 make the voice agent aware of that 5:53 information that they submitted 5:54 dynamically. But before we actually call 5:56 the lead, one
+thing that's really 5:57 important to think about is normalizing 5:59 the data and specifically the phone 6:01 number. Because we all know phone 6:02 numbers can have different
+country codes 6:04 or people can put them in with 6:05 parentheses and dashes or they can't do 6:07 that. And so we have to think about how 6:09 does Vappy want to receive our
+number 6:11 and how do we ensure that people give us 6:13 the number in that way. And sometimes 6:15 you can control that. If you're building 6:16 your form submission, you can
+require a 6:18 specific input. Sometimes you can't. In 6:20 our case, we didn't have full control. 6:22 So, that's why we built this normalized 6:23 data step to just make sure
+every time 6:25 our phone numbers will actually work and 6:27 not throw an error into the workflow. 6:29 Now, the next step is something that I 6:31 only knew because I've played
+around 6:32 with Fabby before, which is basically 6:33 that it takes one request to call the 6:35 lead and then it takes a second request 6:37 to get back the call details. And so,
+6:39 that's what you were seeing while I was 6:40 on the phone, how it was doing this 6:42 polling flow and it was going back and 6:43 forth. What we were doing is we called 6:45
+the lead, we waited, and then we checked 6:47 in to see if the call was done. And if 6:49 it wasn't, we would wait again and then 6:51 check again. And so this is called 6:52
+polling. And it means that we're just 6:54 going to keep checking until we know for 6:55 a fact the call is actually done and we 6:57 have that data that we need. And then 6:59
+when we have confidence that the call is 7:01 done, we can move on to the final piece, 7:02 which is basically just saying, did they 7:04 actually pick up the phone or not? If we
+7:06 got sent to voicemail, we're going to 7:07 log that we got sent to voicemail. If we 7:08 didn't, then we're going to log all the 7:10 data. And that is pretty much the end of
+7:12 the flow at a high level. Okay, so all 7:15 this live data is still in here. Let's 7:16 just start breaking down the actual Initial Data Gathering 7:19 workflow. So we all
+know that the first 7:21 thing in here is the form submission 7:23 where I put in my information and then 7:24 it comes back out here with name, phone 7:27 number, email, company,
+all this 7:29 information, right? I've already said 7:30 that like four times. So that's the 7:32 information from the form. Then we knew 7:34 that we wanted to standardize the
+data. 7:35 And for this, what I did was I used a 7:37 code node. And so I wanted to show you 7:39 guys exactly how I built this code node 7:41 because we all know I don't know how
+to 7:43 code and I don't want to know how to 7:44 code. I just want to know how to work 7:45 with it to make systems work. Anyways, 7:47 what I did here was I clicked on JSON. 7:49
+So now I can see the incoming JSON to 7:51 our code node. I clicked on this copy 7:53 button to copy all of this incoming JSON 7:55 and I went to my best friend for coding 7:58
+Claude and I pasted it in here. And so 8:00 this is the actual oneshot prompt that I 8:03 used to get this code node. I said 8:04 here's the incoming JSON. Obviously, it 8:06 was
+it was a different example, but I 8:07 said, "Here's the incoming JSON. I need 8:09 you to help me write the code node for 8:11 an NIN code node. What I need is for you 8:14 to
+standardize the phone number output." 8:16 So, it always has to be this 10-digit 8:17 number with no parentheses, dashes, or 8:19 any other punctuation. We always want 8:21 the
+10-digit number. If someone adds a 8:23 plus one in the beginning or a different 8:24 type of country code or there's not 8:26 enough numbers, or there's too many 8:27 numbers,
+then just output incorrect 8:28 format. And so because I knew exactly 8:31 what I wanted and exactly the guardrails 8:32 to protect against, it was able to give 8:34 me the code in
+one try. So I copied this 8:36 in. I got it right here. And now it's 8:39 fixed. And later maybe I'll show an 8:41 example of if I switched up the number, 8:42 how it would output
+incorrect format or 8:45 something like that. As you can see, 8:46 this is the line that does that right 8:48 there. And so what it will do is the 8:50 next thing we check is if
+the phone 8:51 number is incorrect or not because if 8:53 it's incorrect, this API called evapy 8:55 will fail. So this filter as you can see 8:58 or sorry this if node we're
+checking if 9:00 the field right here JSON phone number 9:03 is equal to incorrect format then it's 9:06 going to go up the true branch which 9:07 will basically log it in the
+sheet and 9:09 say hey this number isn't valid but 9:11 because it's false as you can see it 9:13 gets sent down the below path which then 9:17 goes into calling the actual
+prospect. Vapi Configuration 9:21 So, what I want to do now is we're going 9:23 to hop into Vappy and I'm going to show 9:24 you guys the way that I've actually 9:25 configured the
+Vappy Assistant and then 9:28 we'll look at the way that I actually 9:29 set up the API call once we know that 9:31 the assistant has been prompted and 9:33 given the right tools
+and everything 9:34 like that. Okay, so here is our Vappy 9:38 lead qualifier agent and I'm just going 9:39 to break down this information and I'm 9:41 going to talk about why I
+did the things 9:43 that I did and it's actually way simpler 9:45 than you'd think because we don't really 9:47 have any tools. This agent is just a 9:49 conversational agent that
+is extracting 9:51 data. So the first thing we're doing 9:53 here is I am using OpenAI and I'm using 9:55 model GBT40 cluster. The second thing I 9:57 configured was the first
+message. So 9:59 here I decided that I wanted the 10:01 assistant to wait for the user to speak 10:02 first because that seems more natural. 10:04 When you call someone typically
+they 10:05 pick up and they say hey you know what I 10:07 mean? So that's why I did that. Then we 10:09 move into the system prompt. So I won't 10:11 read this line for line but
+I'm going to 10:13 give you guys a really good idea of what 10:14 we're actually looking to extract here. 10:16 So I said identity, you are Elliot, an 10:18 outbound lead
+qualification voice agent 10:20 for Upit, a B2B service business 10:22 specializing in automation and AI 10:23 solutions. So I'm just giving it some 10:25 context as far as like
+the environment 10:26 that he's he's living in to make all of 10:29 the conversations a little bit better. I 10:30 gave him a style. I gave him response 10:32 guidelines. And then
+I gave him prospect 10:35 information. And this is where things 10:37 get a little interesting because what 10:38 we're doing in here is we're giving 10:40 variables. So you can
+see the name of 10:41 the prospect is a variable. And we know 10:43 it's a variable because we wrapped it in 10:45 two curly braces, similar to the way 10:47 that we do it in
+Naden. So we'll have a 10:49 variable for the lead name. We'll have a 10:51 variable for the lead company name. And 10:52 we'll have a variable for the lead 10:54 request. So when
+we actually make our 10:56 API call to Vappy, we're going to 10:57 substitute all these variables so that 10:59 the agent is dynamically looking at new 11:01 information every time
+we trigger a 11:03 call. We then have the tasks and goals. 11:05 So we tell it to open. We tell it that 11:08 if they say no or wrong number, then 11:09 apologize and end the call.
+If it's not 11:11 a good time, you know, apologize and ask 11:13 when a a good time would be. And if 11:15 they're fine with talking, then go ahead 11:16 and say, you know, like,
+"Hey, we saw 11:17 your form. I wanted to ask you some more 11:19 questions." We gave Elliot the core 11:21 goals of the call. And then here, the 11:22 conversation flow and
+required topics. 11:24 This is where we say, "Here's the 11:26 information that we want you to get from 11:27 the user." So the first thing is 11:29 interest confirmation. Confirm
+if they 11:31 are interested in wanting to speak and 11:33 also looking for implementation work. 11:35 Then we want to get the motivation. So 11:36 what triggered their interest in
+filling 11:38 out a form? We want to understand their 11:40 urgency and timing. So evaluate the 11:41 seriousness and the project timeline. We 11:43 want to see if they've worked
+with 11:44 people before, worked with vendors of AI 11:46 automation or automation in the past. We 11:48 want to ask about some budget things. So 11:50 we want to find out their
+financial 11:52 preparedness. And finally, we want to 11:53 understand if they're okay with the idea 11:55 that they're not just going to be able 11:56 to get endless free
+discovery calls. And 11:59 we want to make sure that they're not 12:00 tire kickers. So that's why we bring up 12:01 that last qualification piece at the 12:02 end. And I'm not
+saying this is the 12:04 optimal way to run an AI agency. I'm 12:06 just making an example for you guys. We 12:07 told it that it can end the call. We 12:08 gave it some error
+handling and some 12:10 behavior rules. And that is basically 12:12 the system prompt. Now with voice 12:14 agents, the system prompt is really what 12:16 make or breaks the entire
+system. This 12:18 is one that I threw together in, you 12:20 know, 30 minutes of testing maybe. But 12:22 really the idea would be if you put an 12:23 agent, you know, into
+production, you're 12:25 constantly monitoring the calls. And if 12:27 you've seen past videos I've done with 12:28 Vappy, you can see how you can automate 12:30 your call logs and
+automate your 12:32 analysis and all that kind of stuff, but 12:33 you're constantly tweaking the system 12:35 prompt over time. That should just be 12:36 the expectation with most
+AI systems in 12:39 general. Anyways, from there, we don't 12:40 do too much else. We don't give it any 12:42 knowledge base. We don't give it any 12:43 files. We configured our
+voice. I'm 12:45 actually using one from Vappy right now 12:46 called Elliot. Really, the only other 12:48 thing that's important to know here is, 12:50 well, I guess one tiny
+thing is that we 12:52 gave it the ability to end the call. So, 12:54 by default, this predefined function to 12:56 end the call will be turned off. So, I 12:57 just toggle that
+on. But really, the 12:59 important part is structured outputs. 13:01 So, some of my Vappy videos in the past, 13:03 you'd seen summary and success 13:05 evaluation, and these are
+now 13:07 deprecated, and they're all just part of 13:09 structured outputs now. And structured 13:10 outputs looks a little different, but 13:11 it's super easy, and it's the
+exact same 13:13 thing. Essentially, we're just telling 13:15 the agent exactly which fields we want 13:17 it to return. So, after the 13:19 conversation, we want it to send us
+over 13:21 to Nitn the status, the budget, the 13:23 urgency, past experience, motivation, 13:25 and I'll show you guys exactly what that 13:26 is later. But the way that we
+actually 13:28 start to configure this stuff is we're 13:30 going to click right here, add more 13:31 structured outputs. When I click on 13:33 this, it brings us to a different
+13:34 section of Vappy where we can configure 13:36 different structured outputs. So, for 13:38 example, for past experience, I created 13:40 one called past experience. I told
+Vappy 13:43 that this was going to be a string. And 13:44 then I said we want to know if the 13:45 prospect has had past experiences with 13:47 automation and/or AI, and if so, how
+has 13:50 that experience been? So, it's really 13:51 just as simple as that. Now, if you 13:52 wanted to get a summary or analysis, you 13:54 can see that there's tons of
+different 13:56 templates for structured outputs. So, 13:57 here you could get a call summary. You 13:59 could get success evaluation on a scale 14:01 or past fail. Or what I did
+in this case 14:03 was I just created them all from scratch 14:05 where I named them, I made the type, and 14:07 then I described what I actually want 14:08 the agent to extract in
+this structured 14:10 output. Now, the lastly, the most 14:12 important thing about this is that all 14:13 of these structured outputs can be 14:15 applied to many different
+assistants or 14:17 workflows as you can see right here. So 14:19 what you have to do is in each of these 14:21 structured outputs at the bottom, you 14:22 just have to link up the
+agent that you 14:24 want. So in this case, it is our lead 14:26 qualifier agent. So we have these seven 14:28 structured outputs right here. If I go 14:29 back to the assistant
+and I go to our 14:32 analysis, you can see that we have those 14:34 exact same seven structured outputs 14:35 right here. And this is what gets sent 14:37 over when we make that
+request later to 14:39 get back the call information. So I'll 14:40 make sure I point that out to you guys 14:42 when we get there. Okay, so now we're 14:44 back in any and we're
+going to talk 14:45 about how I set up this API call. So, I Vapi API Calls 14:47 know I may be going a little fast and I 14:48 apologize for that, but I will say I did 14:50 a
+actual full live breakdown of this 14:53 video in my paid community right here in 14:55 the project section. So, it was like a 14:57 little over an hour, I think. The 14:59 video's
+right here. And I've also done 15:00 tons of other live breakdowns and 15:03 projects in this course. So, if you're 15:05 interested, link for in the description. 15:06 So,
+anyways, what you're going to do is 15:07 you're going to go to Google and you'll 15:09 type in Vappy API documentation. And 15:11 then once you get there, it'll look 15:12
+something like this. And you want to 15:14 click on API reference. This basically 15:16 tells us how we need to do actions with 15:18 assistants or squads or calls or chats, 15:20
+whatever it is. And so for this first 15:22 API call, we know that what we have to 15:24 do is create a call. So I went in here 15:26 and I saw that I have this endpoint. 15:28
+I've got the post method. I could see 15:30 the different parameters that I could 15:32 throw into my actual body of the 15:33 request, which basically lets us say, 15:35 "Hey,
+Vappy, here's what I want to do. I 15:37 want to create a call. Here's my 15:39 account." That's where we'll put in our, 15:41 you know, API key. Here is the assistant 15:43 I want
+to use. Here's the phone number I 15:44 want you to call from. Here's the 15:46 information I want you to have. Blah 15:47 blah blah. And so really just think 15:49 about it as
+that we're making a request. 15:50 So let me open up this actual node to 15:52 show you guys how you would actually 15:54 configure this for yourself. So if you 15:56 copy this
+template, you'll have pretty 15:57 much everything in here. You'll just 15:58 have to fill out a few different things, 15:59 but we have our method here is post. We 16:01 have our

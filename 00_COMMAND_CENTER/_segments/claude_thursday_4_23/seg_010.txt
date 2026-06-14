@@ -1,0 +1,224 @@
+you give it a, 1:36:471 hour, 36 minutes, 47 secondsthe name of a tool and then you either allow it to use the tool or you force it to ask you for permissions before using a tool
+that obviously takes us to that logical question. Well, what are tools, Nick? We haven't talked about them. 1:36:581 hour, 36 minutes, 58 secondsWell, the variety of different ones
+that Claude code could use. There's stuff like the ability to fetch things from the web. There's stuff like bash, which is the ability to write like terminal commands and whatnot.
+And, you know, 1:37:071 hour, 37 minutes, 7 secondsthe purpose of this course is not to go through every single one of the tools. Cause to be honest, 1:37:101 hour, 37 minutes, 10
+secondsthey're always changing the tools and like the sorts of tools that we have and that's not super valuable, but it's just so that, you know, 1:37:161 hour, 37 minutes, 16
+secondsyou can identify and then change on a like file or tool basis, which things Claude code has access to. So long as you're hyper, 1:37:251 hour, 37 minutes, 25 secondshyper
+specific about it using in this case, you know, this little tools output. The next tab is delegate. 1:37:321 hour, 37 minutes, 32 secondsNow this is a coordination mode for agent
+team leads. Basically, 1:37:361 hour, 37 minutes, 36 secondsthe Claude code now has that feature called the agent teams feature where a single agent up at the top can delegate a
+bunch of work to a bunch of sub agents. 1:37:431 hour, 37 minutes, 43 secondsAnd so this is the permission that the agent team lead is given, which basically allows them to
+delegate tasks. Although, it's not allowed to do anything aside from just team management tools. 1:37:521 hour, 37 minutes, 52 secondsWe'll talk a little bit more about that later.
+Then we have bypass permissions. This is what I've been using up until now in basically all instances. 1:38:001 hour, 38 minutesBypass permissions is great because you can do
+whatever the heck you want. I should note that there is obviously a risk here. 1:38:051 hour, 38 minutes, 5 secondsThere was a case a little while ago where somebody had Claude
+code running on bypass permissions. And then I think it was on like a Linux computer or something, 1:38:121 hour, 38 minutes, 12 secondswhere there's a simple terminal command that
+you could use to basically delete everything on your computer. It's like sudo rm-rl or rf or something like that. 1:38:191 hour, 38 minutes, 19 secondsI don't remember the exact
+command. I'm sure Claude would be able to tell you. And basically because of a misinterpretation of the request and, you know, it did a bunch of research on its own, whatever,
+1:38:291 hour, 38 minutes, 29 secondsit eventually thought it had to run this command. 1:38:301 hour, 38 minutes, 30 secondsSo it ran the command and it basically deleted all of
+the data on the person's hard drive. They basically had it bricked and then they needed to take it in to fix it. I want you to know that these sorts of things are possible, of
+course, 1:38:401 hour, 38 minutes, 40 secondsand I'm not a lawyer, so don't sue the hell out of me if the sense of happening to you, but it's very unlikely in practice. This sort
+of thing occurs, it's a vanishingly small percentage of the time. 1:38:491 hour, 38 minutes, 49 secondsAnd nowadays with agents getting more and more autonomy and other things, and
+then more and more skill and more ability to plan their own work, like we're going to talk about in a moment with plan mode. You know, 1:38:581 hour, 38 minutes, 58 secondsmost
+people are shifting towards using bypass permissions. Bypass permissions also allows Claude to create new files, not just delete them. 1:39:051 hour, 39 minutes, 5 secondsThat in
+addition to editing files can present a risk. The main risk, if we're just being like business minded here, is actually you just like, 1:39:111 hour, 39 minutes, 11 secondsyou
+create a bunch of additional files that maybe you don't need. And, you know, because of that, your workspace can bloat over time. 1:39:181 hour, 39 minutes, 18 secondsSo it's
+pragmatic and pertinent to every now and then just ask Claude code to go through your files and see if there's anything in the workspace that just isn't required anymore. You know,
+realistically, 1:39:261 hour, 39 minutes, 26 secondsas you guys are going to see when we build this next project, Claude's going to try a bunch of approaches to do things, both on
+the front end and the back end, although the back end, 1:39:341 hour, 39 minutes, 34 secondsusually much more often. And in doing so, it'll accumulate like different libraries that
+it probably doesn't need. It'll accumulate different files. 1:39:411 hour, 39 minutes, 41 secondsIt'll create temporary Jasons and all this fancy stuff. And as a result of that, if
+you're not constantly on top of that, you can have a folder that has like 10,000 files and it's all just temp stuff, 1:39:511 hour, 39 minutes, 51 secondswhich slows down your
+computer and bloats Claude code. I've done it before. So we'll talk a little bit more about context management, how to effectively do that in one of the next modules. 1:39:591
+hour, 39 minutes, 59 secondsBut I just wanted you guys to know that for now in terms of how to set up bypass permissions, it's actually non-trivial to do this. And if it's the very
+first time that you're setting up Claude code, 1:40:071 hour, 40 minutes, 7 secondsyou won't have access to that. So head over to the extensions tab, get into Claude code for VS
+code. You're going to want to click this little gear icon and go to settings. 1:40:151 hour, 40 minutes, 15 secondsThat's going to open up this tab over here. I'm just going to
+move it over to the middle so we could see. 1:40:191 hour, 40 minutes, 19 secondsYou'll notice that one of the first settings is Claude code allowed dangerously skip permissions.
+So it'll recommend this only for sandboxes with no internet access. 1:40:271 hour, 40 minutes, 27 secondsObviously mine has internet access just fine. So, you know, accept this at
+your own risk, but if you click this button, you will now have access to it down below. 1:40:341 hour, 40 minutes, 34 secondsThere's a few other settings here like Claude code
+auto-save enable new conversation shortcuts, disable login prompts, and so on and so forth. I don't really use or change any of these in practice. Okay. 1:40:431 hour, 40 minutes,
+43 secondsAnd then finally you have plan mode, 1:40:451 hour, 40 minutes, 45 secondswhich is going to make up the bulk of what we're talking about next plan mode is read only
+exploration, 1:40:511 hour, 40 minutes, 51 secondswhich basically means Claude code can research things using web tools. So you can go on the internet and find things out for you.
+It can read through all the preexisting files in your directory. 1:41:011 hour, 41 minutes, 1 secondIt can also reason from first principles and it can kind of use its own
+intelligence to figure things out. 1:41:051 hour, 41 minutes, 5 secondsAnd then it can basically take all of this and put this into a plan document before presenting it to you. Now
+plan mode is awesome. 1:41:121 hour, 41 minutes, 12 secondsAnd I use plan mode all the time and basically anytime I'm doing any sort of build that's more complicated than a simple
+design. The reason why it's so good is because instead of acting, 1:41:211 hour, 41 minutes, 21 secondswhich in the real world takes a lot of time and energy to both do and then
+undo all plan mode does is it just researches all the factors involved in the build before doing it. 1:41:301 hour, 41 minutes, 30 secondsIf you work in this like theoretical plan
+space and not the actual like space of the, you know, the build and all the libraries and all the code, 1:41:391 hour, 41 minutes, 39 secondsyou will save many, 1:41:401 hour, 41
+minutes, 40 secondsmany hours of building over the course of just the next few days and probably tens and hundreds of hours over the course of a lifetime of using this tool.
+1:41:491 hour, 41 minutes, 49 secondsA minute of planning saves you 10 minutes of building. It's just super high leverage and I'd recommend you. So imagine two possible scenarios
+for me in the first scenario, 1:41:561 hour, 41 minutes, 56 secondsyou build something with Claude code, then you test it and then you realize that there's some issue with it.
+Maybe you're building a simple web app that, you know, 1:42:061 hour, 42 minutes, 6 secondsupon login adds some numbers or credentials to a database. So you've done this now you've
+realized that it's wrong. What that means is because the approach is wrong. 1:42:151 hour, 42 minutes, 15 secondsBasically the time that you spent building while not completely
+wasted, a big chunk of it is wasted. Okay. So not only have you spent the 15 minutes to build the thing, 1:42:231 hour, 42 minutes, 23 secondsnot only you spent the five minutes to
+test the thing, you also have to rebuild the thing, 1:42:261 hour, 42 minutes, 26 secondswhich can take 15 minutes multiplied by however many times you have to continuously test
+and retest. 1:42:311 hour, 42 minutes, 31 secondsThat means that the total amount of time it takes you is 35 minutes plus a fair number of tokens. Not a lot of people talk about,
+but this can obviously eat into costs. That is scenario one. 1:42:401 hour, 42 minutes, 40 secondsAnd this is the build without plan approach. Okay. Now in scenario two, which is
+the build with plan, 1:42:491 hour, 42 minutes, 49 secondswhat you do is you spend your first five minutes, just planning something super in depth with Claude codes, plan mode,
+somewhere during the plan, because we're folk, we're, 1:42:571 hour, 42 minutes, 57 secondswe're building a super like a granular line item scope here. 1:43:011 hour, 43 minutes, 1
+secondWe're looking at all the tools and we're looking at the objects and whatever the heck, there's like a lot that's going on out of the hood because we're doing that. Claude
+code realizes that it won't work halfway through, 1:43:091 hour, 43 minutes, 9 secondsand then just recreates a better plan that does it. 1:43:121 hour, 43 minutes, 12 secondsThe
+total amount of time it takes for you to like get to the building is just five minutes plus five minutes, 10 minutes. And then maybe your actual build time now, 1:43:201 hour, 43
+minutes, 20 secondsbecause it's like so much better and faster and stuff like that is only five minutes or 15. So you think about it, like not only have we saved 20 minutes on a
+single build, 1:43:281 hour, 43 minutes, 28 secondsand we've also done so with significantly fewer tokens. What that means is it's much better to like do all of your work here,
+1:43:371 hour, 43 minutes, 37 secondsbasically during the planning of the spec. And this is true not only from Claude code, but any sort of programming or really any sort of
+project development, 1:43:461 hour, 43 minutes, 46 secondsas opposed to here, which is like where, you know, your machines are actually building this thing, 1:43:531 hour, 43
+minutes, 53 secondslike this fantastic, amazing Lego block based construction. 1:43:571 hour, 43 minutes, 57 secondsI'm just going to pretend that like we're building some sort of
+building or pyramid here, right? Because, you know, if you screw this up, 1:44:041 hour, 44 minutes, 4 secondswhat that means is now you have to knock all these Lego blocks down,
+and then you have to rebuild it from scratch all over again. So better to go off the blueprint or the architecture diagram or whatever, 1:44:131 hour, 44 minutes, 13 secondsand
+make changes there than in the physical world. The physical world incurs a fair amount of real costs. By the way, I know we're working in the virtual world here, but it's the same
+thing as like planning a construction project, right? 1:44:221 hour, 44 minutes, 22 secondsYou plan construction projects that you don't run into a situation where you don't have
+enough materials on site. And you're like, Oh my God, I got to fricking stop everything for the day and go find some. 1:44:301 hour, 44 minutes, 30 secondsSo how do you actually
+use plan mode in reality? Well, 1:44:331 hour, 44 minutes, 33 secondswhat I want to do next is I want to use plan mode to build out a pretty complicated project. This project is
+going to basically be a full stack web application. 1:44:411 hour, 44 minutes, 41 secondsIt's going to have a front end. It's going to have authentication and like an interface
+where you can log in. 1:44:461 hour, 44 minutes, 46 secondsAnd it's also going to have a backend and we're going to build it in just a few minutes. 1:44:491 hour, 44 minutes, 49
+secondsThe specific project that I'd like to build today is basically a proposal generation platform. I want to automatically be able to generate proposals, 1:44:581 hour, 44
+minutes, 58 secondshigh quality sales documents that I can then send to prospects through this web interface. I want to do it all natively. 1:45:051 hour, 45 minutes, 5 secondsAnd
+I basically want to rebuild the functionality of, I don't know, like docuSign or like Panda doc. I want there to be all the bells and whistles on it. 1:45:131 hour, 45 minutes, 13
+secondsI want there to be like the ability for people to sign, but also to like pay. I want to have my own little login screen so that I can give it to my clients. 1:45:211 hour,
+45 minutes, 21 secondsAnd then maybe my colleagues. And I can obviously also use it myself. I want to, you know, 1:45:251 hour, 45 minutes, 25 secondshave like a couple of
+templates that I produce based off of it basically end to end. I want to build a fricking app today. This is much more complicated than just a simple landing page. Right? 1:45:331
+hour, 45 minutes, 33 secondsSo how am I going to go about doing it? Well, 1:45:351 hour, 45 minutes, 35 secondsthe first thing I'm going to do is I'm actually just going to build
+out what I'd consider to be a pretty straightforward project spec, which is just a list of things that I want this to be able to do. 1:45:431 hour, 45 minutes, 43 secondsAnd
+there's a bunch of different formatting methodologies here and like different ways of doing it. You don't really have to worry too much about that. 1:45:491 hour, 45 minutes, 49
+secondsAll I'm going to do is I'm basically going to dump everything in via voice transcript to a little text tab. 1:45:541 hour, 45 minutes, 54 secondsAnd then I'm going to feed
+that into Claude Code and have it actually format that into a specs document for me. So I'm going to open up my voice transcription tool and get after it. 1:46:021 hour, 46
+minutes, 2 secondsMy goal today is to build a proposal generation platform. 1:46:061 hour, 46 minutes, 6 secondsI want this proposal generation platform to have everything that a
+common tool like Panda doc might have in so far that I want it to be able to generate end to end high quality proposals as okay. 1:46:201 hour, 46 minutes, 20 secondsSo I just did
+that. I have a tremendous amount of context. 1:46:231 hour, 46 minutes, 23 secondsNow what I'm going to do is I'm actually going to go to a new window and antigravity, which just
+closed out of the old one. I'm then going to open up a new folder. So go open folder. 1:46:321 hour, 46 minutes, 32 secondsAnd here I'm going to say new one. Let's just call this
+proposal generator app. Once I've created this, I'm going to dump right in. 1:46:401 hour, 46 minutes, 40 secondsThen I'm going to go to Claude Code here. Let me zoom in so we
+could see this a little bit better down here. I'm going to go, um, sorry, not by a past permissions plan mode. 1:46:491 hour, 46 minutes, 49 secondsAs you can see, I'm pretty
+eager. And then I'm going to go back here, copy this and then just dump all this in. It's for a matter of white space. 1:46:561 hour, 46 minutes, 56 secondsSo bear with me. And
+what I did here is I just, I just dumped in more or less everything that I wanted to do in the app. So I didn't specify things in a technical way. 1:47:041 hour, 47 minutes, 4
+secondsI just told it what I wanted. My goal today is to build a proposal generation platform. 1:47:081 hour, 47 minutes, 8 secondsI want this proposal generation platform to have
+almost everything that a common tool like Panda doc might have, except for the template builder functionalities. I just want to give you a template and have you do it. 1:47:161
+hour, 47 minutes, 16 secondsAside from that, I want to be able to generate end to end high quality proposals as static pages that I could send the URL to the client with. And now
+it's going to ask me a bunch of questions about it. 1:47:241 hour, 47 minutes, 24 secondsSo what front end framework do you want to use? I don't know, whatever's the best. So I'm
+just going to say this one. Sure. For e-signatures, how legally robust do you need them to be? Um, I don't know what that means. 1:47:331 hour, 47 minutes, 33 secondsI'll just
+click the simplest one for straight payments. Will proposals have a fixed price or variable amounts you set on proposal? That's a great question. I'll say variable are using super
+base for the database too. 1:47:421 hour, 47 minutes, 42 secondsI'll say super base for everything. Cool. Submit answers. 1:47:451 hour, 47 minutes, 45 secondsSo what basically
+this just did is it crafted a little graphically user interface for me to ask me some questions about specific ways that it wants to do the project. Um, and in this way we can go
+back and forth, which is quite nice. 1:47:561 hour, 47 minutes, 56 secondsOkay. Tailwind for utility, CSS, shad, CN UI for polished. I don't know what the hell that means. Let's
+just click it. Can you share the proposal template now? Paste it, link it, or tell me the thought path. 1:48:051 hour, 48 minutes, 5 secondsI'll paste it next message. That sounds
+great. 1:48:081 hour, 48 minutes, 8 secondsSo what I'm going to do now is I'm going to go find a template of a proposal that I want it to automatically generate for me. Okay. So I
+have my proposal template over here. It's pretty sexy. You know, 1:48:161 hour, 48 minutes, 16 secondsI give people some problem areas, some solutions. Um, you know, I talk about
+why us, I have a little photo of me, Alex Ramosi and Sam Evans up there. 1:48:231 hour, 48 minutes, 23 secondsSo it's pretty sexy. What I'm going to do next. I'm just going to move
+this into my workspace one-time project. And over here, I'm just going to rename this to call this proposal template. 1:48:331 hour, 48 minutes, 33 secondsThat's okay. And then
+over here, I'll say, great, it's in proposal template.pdf. And, um, just because I also want the design to be really cool, 1:48:421 hour, 48 minutes, 42 secondsuse a simple clean
+design, sort of like, uh, Apple, 1:48:461 hour, 48 minutes, 46 secondsfollow the proposal template design in the actual generation of the page for everything else though, make it
+kind of Apple-esque. Okay. Next up, 1:48:531 hour, 48 minutes, 53 secondsit'll read through my proposal template and then think up what to do next. And now it is generating a plan
+for me. It's figured out the nine page proposal document. 1:49:011 hour, 49 minutes, 1 secondIt's designing some detailed implementation thing with all the information, the user
+flow and so on and so forth. What's interesting is it's giving this to a sub agent. 1:49:091 hour, 49 minutes, 9 secondsYou could see because it's using the task feature, which is
+basically coded sub agent language. As you can see, 1:49:141 hour, 49 minutes, 14 secondsthere's a tremendous amount of information that it's going through in order to generate
+this. It's also doing some research, like looking up things from Panda doc, just because I referenced it. Okay. 1:49:221 hour, 49 minutes, 22 secondsAnd at the end it's now
+finished the final plan file. 1:49:251 hour, 49 minutes, 25 secondsSo what I'm going to do is I'm just going to scroll through it and read it for myself. It's very comprehensive
+proposal generator platform implementation plan. 1:49:311 hour, 49 minutes, 31 secondsWe're going to build a Panda doc like proposal generation platform for left like users will
+sign in, create proposals via AI and share public URLs with clients. Clients will view sign canvas signature and pay. 1:49:421 hour, 49 minutes, 42 secondsThe proposal page will
+follow the provided PF template design. Also the app is Apple esque and minimal. Here's the tech stack. I don't know what most of that stuff means to be honest, 1:49:501 hour, 49
+minutes, 50 secondsand I'm not going to worry about it. Proposal template sections, cover your problem areas, your solution. Why us, our team, what working with us looks like, what
+your investing contracts, 1:49:581 hour, 49 minutes, 58 secondssignature payment, database schema profiles. I don't know again, what the heck this means. I'm not going to worry
+about it. And then over here we have a bunch of routes, API things, false structures, 1:50:081 hour, 50 minutes, 8 secondsyou know, as somebody that is not a developer by trade,
+I'm not going to focus too much on that stuff, but it looks like when people sign in, they hit log in and those will be a dashboard page. When they create, 1:50:171 hour, 50
+minutes, 17 secondsthey'll click new proposal, which will go to dashboard slash new. There'll be a few form fields to fill out like brief description and pricing rows. They'll
+submit it. That'll call Opus and then we'll generate them. 1:50:271 hour, 50 minutes, 27 secondsAnd then in order to copy, we just copy this URL and send it to the client. That
+looks pretty clean to me. I'm sure it's not going to be perfect, but yeah, why don't we give it a go? 1:50:351 hour, 50 minutes, 35 secondsSo what I'm going to do is I'm going to
+so auto accept. And I know just because I've done some things before with this tool stack, SuperBase specifically, I'm just going to go through it. 1:50:441 hour, 50 minutes, 44
+secondsI'm going to set up a SuperBase account while it's running me through all of the stuff that way I can kind of, you know, double up on the time. While this does some work for
+me, I can go and do the, the SuperBase stuff. 1:50:521 hour, 50 minutes, 52 secondsSo SuperBase is a simple database. 1:50:531 hour, 50 minutes, 53 secondsBasically it just handles
+like the logins and also handles like the generation of records and stuff. First thing that you would want to do, if you were doing something similar, is you just log right into
+SuperBase. 1:51:011 hour, 51 minutes, 1 secondSet up a new account if you don't already have one and then start your project. I'm doing this for free. So I just started one called
+proposal underscore generator, and then I'll click on it, which will take me to the project. 1:51:101 hour, 51 minutes, 10 secondsSomewhere on the left-hand side here, we have API
+keys. 1:51:131 hour, 51 minutes, 13 secondsAPI keys are basically just what we want to give to this so that it just does everything for me. So let's see here. We want to give it
+all keys. 1:51:231 hour, 51 minutes, 23 secondsSo I'm just going to go copy API key. And then also I'm just going to, looks like it's asking me some questions here because it's
+now, oh, 1:51:311 hour, 51 minutes, 31 secondsit's still in plan mode. So keep in mind, we want to go to bypass permissions mode now, because instead of having to ask me every five
+seconds for things, you know, 1:51:381 hour, 51 minutes, 38 secondsI want this to be able to proceed. And then I'm just going to give it some stuff. I'll say SuperBase, I don't
+know, secret key. 1:51:451 hour, 51 minutes, 45 secondsJust going to give it to it and also give it my SuperBase public key. Why am I doing all this? 1:51:521 hour, 51 minutes, 52
+secondsBecause I know it's going to need this information in order to move forward. 1:51:551 hour, 51 minutes, 55 secondsNow in Stripe, I'm going to go over to one of my accounts
+and then I'll go test mode, create sandbox. 1:52:011 hour, 52 minutes, 1 secondWhat this will do is this will give me like a little sandbox version of Stripe that I could use with
+its own API keys and everything like that. This way I can basically like, you know, 1:52:101 hour, 52 minutes, 10 secondsprocess the payments and stuff like that using this test.
+So here it is right now. And then if I want to get my API keys, I have them both over here. 1:52:171 hour, 52 minutes, 17 secondsSo I'm just going to copy the Publishal key. You
+know, I said, I want you to take payments during using Stripe basically, which is why it's doing this. Let's go public. 1:52:281 hour, 52 minutes, 28 secondsAnd then over here,
+I'll go private key. Cool. 1:52:321 hour, 52 minutes, 32 secondsAnd so now I basically loaded it up with what I think is everything that it'll need in order to actually go and
+like, you know, connect. So I'm just going to press enter here. 1:52:411 hour, 52 minutes, 41 secondsIn case you guys didn't know, when you press enter, what you do is you
+basically queue up another message. So when this is done with all of its tasks, it'll now have access to all of my keys and stuff. 1:52:491 hour, 52 minutes, 49 secondsSo now that
+it's done that task, 1:52:501 hour, 52 minutes, 50 secondsit's going to create all the files and it's just adding all of the information and stuff like that. It looks like we have
+the SuperBaseAnon key. I think that might be something else that we need. 1:52:591 hour, 52 minutes, 59 secondsSo I'm going to have to find that information out. It'll ask me to do
+this in a moment. So it's not that big of a deal. This is here. It just got my API keys. So it's going to update the ENV file. 1:53:071 hour, 53 minutes, 7 secondsAnd then at the
+end of this, it's probably just going to ask me like, Hey, can you also include X, Y, and Z? Now I could have, of course, just asked this thing to start building for me. You know,
+I could have just given it all the specs and said, go for it. 1:53:151 hour, 53 minutes, 15 secondsBut the planning that I did not only improves the probability that it'll be able
+to do this on a quote unquote one shot, 1:53:231 hour, 53 minutes, 23 secondsbut it also improves the token efficiency because it's not going to be exploring 10 different
+approaches at the time of building instead. You know, 1:53:311 hour, 53 minutes, 31 secondsit has like a document it can refer to. And that's kind of interesting, but human beings
+sort of do better that way too, right? Like if they're in a business and then you give them an SOP, 1:53:401 hour, 53 minutes, 40 secondsstandard operating procedure, or you give
+them a checklist or something, or you give them a simple three-step rule, they always have to accommodate. 1:53:471 hour, 53 minutes, 47 secondsThey're much, much more likely to
+actually use those rules. So, uh, 1:54:021 hour, 54 minutes, 2 secondsyeah, 1:54:221 hour, 54 minutes, 22 secondsyeah, 1:54:231 hour, 54 minutes, 23 secondsthe time that I'm back,
+this thing is either still working or it's just wrapping up its completion. I think right now we're like six or seven minutes in, 1:54:321 hour, 54 minutes, 32 secondsbut what's
+really cool is you can parallelize your work. So obviously this is all about being productive, 1:54:351 hour, 54 minutes, 35 secondsbut there is also sort of like a time management
+component to this as well. 1:54:391 hour, 54 minutes, 39 secondsLike after you do a plan and we're building a real big full stack app here, this is not a trivial enterprise.
+1:54:441 hour, 54 minutes, 44 secondsAfter we do that, like we're gonna have to wait a few minutes. So, you can just set this aside, the value that this thing is going to get just
+watching, 1:54:521 hour, 54 minutes, 52 secondshaving me just watch it is quite low. You can actually just set this aside, 1:54:561 hour, 54 minutes, 56 secondslet it continue the
+building and then come back either when it's done or when you hear that little hook chime go off, which is personally what I use to make sure I'm always in the loop. Anyway, I'm
+gonna go marinate the salmon. 1:55:041 hour, 55 minutes, 4 secondsWhen I come back, this app should be done. Okay, so three or four minutes later, I just got back and I see that it
+is now good to go. It's just asking me for a few things. 1:55:121 hour, 55 minutes, 12 secondsSuperBase project URL, which I'll find, my Anthropic API key, I need to run an SQL
+migration, give it a Stripe webhook, then ultimately deploy to Netlify. 1:55:211 hour, 55 minutes, 21 secondsWhat I'm gonna do is I'm gonna focus on testing all this stuff locally,
+and then I'm gonna give it access to all this information. 1:55:271 hour, 55 minutes, 27 secondsAnd then after I'm done, I'll do the pushing and the deploying and I'll run and go
+see what that looks like. 1:55:311 hour, 55 minutes, 31 secondsKeep in mind, you don't need to have any computer programming experience to do this. 1:55:341 hour, 55 minutes, 34
+secondsI mean, I didn't really give it anything that was programming specific, I just gave it a bunch of needs. 1:55:381 hour, 55 minutes, 38 secondsAnd while of course it went
+through and did a bunch of things that were most definitely programming, I wasn't really a part of that, which is quite valuable. So I'm gonna go find this information, 1:55:461
+hour, 55 minutes, 46 secondsI saw your next public SuperBase URL and then my Anthropic API key. Okay, so I see it says, reference using APIs and URLs, 1:55:531 hour, 55 minutes, 53
+secondsthis project ID, so I imagine that's probably that. I'll say project ID for SuperBase is here, 1:56:001 hour, 56 minutesand then throw up a key, I'll just sign into Cloud
+real quick and grab, okay, so then I'm gonna grab this and then over here, I'm just gonna call it proposal generator app. 1:56:101 hour, 56 minutes, 10 secondsAnd so I'm gonna give
+me a key that I could use to copy and no, you can't steal this from me because I I will have deleted it right after this. 1:56:191 hour, 56 minutes, 19 secondsNice try folks. You'd
+be surprised at how many YouTubers don't, 1:56:221 hour, 56 minutes, 22 secondswhich is hilarious, like half the YouTube API keys that you see still work like six months later. Be
+careful fellow YouTubers, run the SQL migration is next. 1:56:301 hour, 56 minutes, 30 secondsSo paste the contents of this thing into your SuperBase SQL editor. So I guess I need
+to do that myself. So I'm just gonna grab this, copy all this and then what? 1:56:401 hour, 56 minutes, 40 secondsSuperBase SQL editor and execute it. 1:56:421 hour, 56 minutes, 42
+secondsOkay, while I'm doing that, I'm just gonna give it this and then where do I get that? SuperBase SQL editor. 1:56:501 hour, 56 minutes, 50 secondsOkay, there's one right over
+here. That looks like it, no clue what the heck I'm doing. I'm gonna click run, success, no rows returned, awesome. 1:56:591 hour, 56 minutes, 59 secondsI think that's what's
+supposed to happen. Anyway, we'll see, it'll tell me if there are any issues. 1:57:031 hour, 57 minutes, 3 secondsStripe webhook, register this in the Stripe dashboard and put the
+whatever secret in ENV various. 1:57:091 hour, 57 minutes, 9 secondsI don't know what that means and I honestly don't think I need to do that. So I'm just gonna ask, okay, let's
+test this puppy locally. Okay, so it's giving me the information. 1:57:181 hour, 57 minutes, 18 secondsIt's also saying that the local host thing is ready to go. So I'm actually
+just gonna open this up, paste this in and see, cool, I got it. 1:57:261 hour, 57 minutes, 26 secondsSo it says I'm gonna have to confirm my email. So I don't really like that. So
+the first thing I'm gonna do is I'll say, looks good. If the user email isn't confirmed, 1:57:341 hour, 57 minutes, 34 secondsdon't give it to them in a red error message that's
+kind of unfriendly. 1:57:401 hour, 57 minutes, 40 secondsJust tell them to check their email after their initial signup because right now there's no notification with that.
+1:57:471 hour, 57 minutes, 47 secondsAnd then basically I'm just gonna like work through this step by step, page by page. 1:57:511 hour, 57 minutes, 51 secondsOkay, and the first
+thing I'm getting is I check my email inbox. I'm not seeing an email. So I'm just going to give it a message telling it, 1:57:581 hour, 57 minutes, 58 secondshey, first of all, let
+them know that they need to confirm their email. 1:58:021 hour, 58 minutes, 2 secondsSecond of all, actually make sure that the email is being confirmed because I'm not getting it
+upon the sign in. 1:58:061 hour, 58 minutes, 6 secondsOkay, and then it gave me the ability to turn off the toggle email. So I'm just gonna save that. So we now no longer need to
+confirm the email. 1:58:151 hour, 58 minutes, 15 secondsAnd I'm gonna go back here. Okay, cool, and it looks like I'm now into the dashboard. Bottom left-hand corner, we have what
+looks to be, I don't know, some Next.js stuff, I think. 1:58:231 hour, 58 minutes, 23 secondsI'm not really sure what this is. It might just be like some developer stuff. On the
+top right-hand corner, it looks like we can sign out. So let me just try signing out. 1:58:311 hour, 58 minutes, 31 secondsCool, and now in the middle, we can create a new
+proposal. Just says proposals up here. So click create new. Now there's a bunch of information. I like this. 1:58:391 hour, 58 minutes, 39 secondsSo why don't I just go my own
+information? I wonder if I just generate proposal if that's gonna work. Let's do 1,000, 1,500, 2,000. 1:58:461 hour, 58 minutes, 46 secondsOkay, and then AI, Powered Sales
+Pipeline. I actually like this, so why don't we do that. 1:58:501 hour, 58 minutes, 50 secondsThe client needs an automated lead generation system that integrates with their
+existing CRM. 1:58:541 hour, 58 minutes, 54 secondsThey currently spend 20 hours a week on manual outreach and wanna reduce this to under five hours while increasing qualified
+leads by 3x. I know they want to get to 100K a month. 1:59:021 hour, 59 minutes, 2 secondsLet's do that. Okay, now for the money shot, let's generate proposal. Click on the button,
+don't know what's going on. 1:59:111 hour, 59 minutes, 11 secondsNo clue whether this is working. 1:59:121 hour, 59 minutes, 12 secondsGenerally speaking, when you see a little bar
+like this with a little circular thing, 1:59:171 hour, 59 minutes, 17 secondslike this is pretty poor in terms of like user experience because I just don't know if it's working or
+not. I'm not really sure. Be nice if there could be some sort of progress, 1:59:251 hour, 59 minutes, 25 secondssome way that I could see the thing actually being generated or upon
+clicking this, it'd be nice if I went to a new page. So I think I'm probably gonna do that. 1:59:341 hour, 59 minutes, 34 secondsHey, I'm not sure if the proposal has been
+generated. It's been 10 or 15 seconds right now. 1:59:391 hour, 59 minutes, 39 secondsCould we do some additional user feedback after they click the generate proposal button? Some
+sort of status, some sort of updates. 1:59:471 hour, 59 minutes, 47 secondsBasically, there just needs to be some way that I know that the proposal is actually being generated, not
+just hanging all day. Okay, it did end up generating the proposal after a while. 1:59:551 hour, 59 minutes, 55 secondsIt looks very clean, but still I want you to do this. Okay, so
+I'm just gonna feed that in here. I'm really liking this. I mean, look at the logo even, that's very sexy. 2:00:032 hours, 3 secondsUsing the same font, nice confidential. Oh, this
+is so sexy. Look at that, huh? Wow, I just built a proposal for this. 2:00:132 hours, 13 secondsWhat I'm gonna do now is just give it some more feedback. 2:00:152 hours, 15
+secondsI don't like how the text immediately under your problem areas is really constrained width-wise. 2:00:242 hours, 24 secondsYou should make that a little longer, maybe two
+times as wide. 2:00:302 hours, 30 secondsIn each of the sub benefits underneath 01, 02, 03, 04, it's a little too wide now. 2:00:392 hours, 39 secondsSo make that maybe 75% as
+wide. Do the same thing with the text under your solution. Under YS looks great. 2:00:482 hours, 48 secondsI want to have that image of myself, Alex Formosy and Sam Ovens in there
+somewhere. 2:00:532 hours, 53 secondsSo find a way to include the image in a high quality manner. 2:00:582 hours, 58 secondsThere's some minor spacing problems with the we've done
+this before, we focus on money and we don't treat AI as a fad. 2:01:072 hours, 1 minute, 7 secondsThey're not perfectly lined up to the numbers one, two, three on the left-hand
+side. Add some images of myself and Noah. 2:01:172 hours, 1 minute, 17 secondsThe what you're investing looks pretty clean. Chapter 14: Adjusting the Proposal Design 2:01:252
+hours, 1 minute, 25 secondsBut in general, there's a bit of a discord between everything being left aligned and then the service agreement being in white in the middle. 2:01:352
+hours, 1 minute, 35 secondsFind a way to fix that. Okay, and now there's one more thing I want to do. 2:01:432 hours, 1 minute, 43 secondsI just want to verify this works. 2:01:502
+hours, 1 minute, 50 secondsOkay, and now I'm just going to click sign and pay and we're going to see what happens. Okay, cool, looks like we're here in the example sandbox. That's
+awesome. I'm just going to pump in some payment information here. Chapter 15: Testing Payment Functionality 2:01:582 hours, 1 minute, 58 secondsCool, looks like the payment went
+through and then we also have this wonderful payment received button. You can close this window. That's awesome. Okay, great, so let's just adjust that final bit. 2:02:082 hours, 2
+minutes, 8 secondsExcellent, everything worked great. On the final page where you do the confetti, make the confetti last a little bit shorter. The ones on the left and the right
+were a little long. 2:02:172 hours, 2 minutes, 17 secondsAnd then change will be in touch shortly to get started. 2:02:222 hours, 2 minutes, 22 secondsYou'll receive an email with
+more details and a link to book a kickoff call. Actually, screw that. 2:02:292 hours, 2 minutes, 29 secondsLet's just give them a direct calendar link to book a kickoff call. Why
+not? That's way easier and way faster. Okay, so I'm just going to give it my own calendar. 2:02:392 hours, 2 minutes, 39 secondsI'll just give it an example here and then boom,
+I'll just have it go off again. So I mean, this looks really clean so far. I guess there's one more thing I have to check. I have to check and see if we can see the proposals
+listed. 2:02:482 hours, 2 minutes, 48 secondsOkay, so yeah, we can. So can I click on this? Can we go right back to the page? Nice. 2:02:522 hours, 2 minutes, 52 secondsNow, can I
+just open this up in some new tab that's not logged in? Nice, so the slash P must be slash public. That's really clean. So I mean, I like this. 2:03:002 hours, 3 minutesWe did this
+in just a few minutes. Honestly, very sexy as you guys could see. I did very little work. 2:03:062 hours, 3 minutes, 6 secondsAnd yeah, I just need to find a way to basically
+standardize the spacing and the width. 2:03:112 hours, 3 minutes, 11 secondsI don't like how this one over here is on the left-hand side and then this stuff stretches all the way
+up to the right. 2:03:162 hours, 3 minutes, 16 secondsBut this is just a minor design thing and we can absolutely significantly upgrade this. God, we even have the signature here,
+which looks so cool. I love how that you can now build your own apps, right? 2:03:252 hours, 3 minutes, 25 secondsLike you don't actually have to go to like a big developer or pay
+out the ass for some big platform. 2:03:292 hours, 3 minutes, 29 secondsYou can just like one-shot an app like this with good enough Claude Code skills. 2:03:332 hours, 3 minutes,
+33 secondsOkay, and it's gone through and it's updated the widths and stuff like that. That looks pretty clean. 2:03:372 hours, 3 minutes, 37 secondsNow I'm just gonna go give it

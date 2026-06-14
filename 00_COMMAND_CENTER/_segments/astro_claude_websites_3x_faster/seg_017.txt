@@ -1,0 +1,224 @@
+name of the field. So, this just means the budget field from the 20:49 previous node. Same thing in the email node. All these fields were asking for information from the previous
+node. So 20:54 they all start with dollar sign JSON. Then they state the name of the field. Easy as that. Now in the sheet node, 21:00 things look a little different. The data
+there isn't coming from the last node. It's coming from one earlier in the workflow called on form submission. So 21:07 we look in that on form submission folder right here. Then
+find the JSON item or item.json called company. 21:16 So then the next one means in the folder on form submission find the JSON item called contact name and so on. And all 21:23
+these extra brackets are used when something has spaces in it. But I'm not trying to show you how to write all of this, just how to read it. And really 21:29 that covers the
+basics. Definitely not everything, just the basics, but it's not too complicated. There's other types 21:35 you'll see and different expression patterns. Some can be really useful,
+like back in this weather workflow. For 21:41 the temperature, I wouldn't really want the numbers after the decimal. I just want a clean number. So adding math.round at the
+beginning then adding 21:48 round brackets that gives me just the clean number or like I mentioned how I'd clean the number up in a budget 21:53 workflow. What that would actually
+look like is this. 21:59 So I don't have a ton of these memorized and you don't need to. You can just ask chatgpt to write them. I'm mentioning it 22:04 because it's good to know
+that little changes like this are possible. That way you'll know to ask for them. So again 22:09 I'll just stress in practice you don't need to write JSON from scratch. Nadn gives
+you drag and drop fields and 22:15 whenever you get stuck, chatbt can explain any JSON snippet or generate new ones for you. It is just helpful to know 22:21 the basics so it
+doesn't look like an alien language when you're using it. And the more workflows you build, the more familiar it becomes. Agents vs Automations 22:29 For this next build, we're
+going to be using the AI agent node. The automations we've built so far can be incredibly 22:35 useful, but agents take things to another level. So, here's the difference.
+Automation equals static and 22:40 rulebased. It follows a fixed path from A to B to C. Even if it branches, merges, and uses AI along the way. It's 22:47 still just executing
+predefined steps. Agent equals dynamic and flexible. It 22:52 can reason, plan, and decide which tools to use based on the context. So, think of it like a digital employee that can
+22:58 think, remember, and get things done. At the core, every agent relies on three components. There's the brain, the large 23:05 language model like ChatBT, Claude or Gemini.
+This is what does the reasoning and language generation. Memory. This 23:11 gives the agent context. It can remember past interactions, keep track of a conversation, or pull from
+external 23:17 memory sources like documents or a vector database. Then tools are how the agent interacts with the outside world. 23:23 Tools can involve retrieving data or
+context, taking action, or orchestrating other workflows that could also include 23:30 other agents. Now, NADN's agent node gives you slot for all three of these. so your agent can
+think, remember, and 23:36 act all inside your workflow. One last topic before we jump into the APIs and HTTP Requests 23:42 build. HTTP requests and APIs. To go beyond the
+pre-made integrations, you'll 23:47 use an HTTP request node. I mentioned it earlier, but here's a deeper look. So API stands for application programming 23:53 interface. It's just
+how software talks to software. So I like the example of a vending machine. You press a button, 24:00 that's the request, then the machine gives you something back, the response.
+You don't need to know what's happening 24:05 inside. Just give the right input and you get your result. And the two API requests you'll get most are get, which 24:11 pulls
+information like checking the weather, fetching a video, or loading a news feed, and post, which sends 24:17 information like submitting a form, adding to a Google sheet, or
+sending a prompt to chat GBT. There's others, too. 24:22 Those are the main ones, though. But in short, API is the options like the buttons on a vending machine. HTTP 24:29 request
+is actually pressing one of those buttons. With NAD, you don't have to build everything from scratch. Most 24:34 things you'll want to connect to are already there and easy to use,
+and that's what we've done so far. But you can also build custom tools using HTTP 24:42 requests to connect to any public API, even when it's not officially integrated. For a
+really quick example, 24:47 back in that simple daily weather automation, let's say I want air quality data. Open Weather doesn't provide it, 24:53 but air.gov does, though, I
+check the list, and there's no built-in integration, so I'd need to use an HTTP 24:59 request node. This will be a get request. Then we need a URL to put in here. To get that, I'll
+go to 25:05 airnow.gov. You can also just search something like air now api on Google to find it. And from there, I'll create an 25:11 account and paste in the API code they email
+me. Once logged in, I go to web services, current observations by 25:18 reporting area, and then launch the query tool. I'll enter the same zip code near me, switch the response
+type to 25:23 JSON, and click build. that generates a full URL I can copy, drop it into the URL field of the HTTP request node in 25:31 NADN. And that's it. Honestly, it's not much
+harder than a built-in integration. And in this example, what I'd actually 25:36 need to do is connect these both to the trigger. Then I could use a merge node to combine the data
+into one email. But 25:41 these HTTP requests come up a lot. Each one will have slightly different steps, but it's usually easy with documentation 25:47 on their site to follow. Or
+like always, you can ask Chat GPT to help. Build 3 25:53 We have covered a lot so far and now we're ready for the big one. Building a personal assistant AI agent. This agent 26:00
+can handle all kinds of tasks, checking your calendar, managing emails, researching topics, even triggering 26:06 other workflows. And my setup all connects it to things like
+summarizing YouTube comments, scraping Reddit posts, 26:11 and generating short form videos. That's for illustration purpose and also to help spark some ideas of what's 26:17
+possible. You'd customize it with whatever tools make sense for you. The reason I think this is the best place to 26:22 start with building agents is you'll actually use it every
+day. That means you'll quickly spot mistakes, learn to 26:27 fix them, and iterate. Just adding tools and refining workflows until it becomes genuinely useful and time-saving. And
+26:33 since you're in full control, it's a safe place to learn before building agents for clients or your business. 26:38 Let's get this started. So, like every other workflow, it
+starts with a trigger. I'll use the chat trigger inside NAD, so I don't have to keep 26:44 switching windows. Later, you can swap this out for Slack, WhatsApp, Telegram, Discord,
+whatever you prefer. Next is 26:50 the AI agent node. You can find it under AI or search for it. Now, it has all 26:56 those slots I mentioned before, the brain, memory, and tools.
+We'll start with the brain, an LLM of your choice. 27:02 I'll select OpenAI for this. Inside the settings, we need credentials. So, with OpenAI, that means we need an API key.
+27:08 Go to platform.openai.com/s. Add funds to your account if you haven't already. This is separate from your 27:14 existing Chachi BT subscription. Then click API keys, create
+new secret key. 27:19 Give it a name. Choose a project if needed. Then copy the key right away. You won't be able to see it again later. 27:25 Paste that into the credentials field
+in NAN and hit save. Now you can pick a model. I'll select GPT40. That'll work 27:31 for this. Next, I'll set up the memory. So I'll use their simple memory option. This is for the
+built-in chat interface 27:37 I'm using. If I don't add memory, it forgets everything after every message. So, I'll set this to 10 and I'm good to 27:43 ask it something. So, I'll
+click open chat and ask, "What do you think of NAD?" Now, it will respond using chat 27:49 GPT. That's working, but it can't do much else for us because we haven't connected 27:55
+any tools. So, let's add some of the most common for a personal assistant. You'll probably want it to see your calendar. Click the plus button under 28:02 tools and select Google
+Calendar. You can give it varying levels of permission just to read so it can tell what's on 28:07 your schedule and summarize things. Or you can allow it to make changes. So, you
+can ask it to add something to your calendar and it can actually do it. Or 28:14 you could ask it to move something around and optimize your schedule. Another tool would be Gmail.
+Same idea for what you'd want it to be able to do. 28:20 You can allow it to send emails on your behalf. I'll just let it read for now so it can summarize my emails for me. Then
+28:25 I also want access to a Google sheet. I'll just go with that sponsor intake sheet we created earlier. Then I'll just 28:31 use the same document and sheet. Same type of thing
+we've already done. That's a few tools connected pretty easily. But 28:36 let's test what we can do already with just these connected. But before that, the last important step we
+need to do is 28:41 add a system prompt. This will be inside the AI agent node. We can give it custom instructions to guide what we want it to 28:48 do. The main points to include
+in your system prompt are the role, in this case, a personal assistant, the 28:53 instructions, what types of things you want it to do, the tools it has access to and when to use
+those tools, then any 29:00 relevant context about you or your business, and any restrictions. Those won't all apply every time. Just adapt 29:06 it to what you're working on. Now,
+the easiest way to get this is to ask chatbt. Explain what the agent does and 29:11 what tools it has access to. You may already have an ongoing chat about your build anyway. So,
+ask it to include 29:16 those things. Then, grab that prompt. And to actually add it in here, click add options, then system message, and 29:23 paste it in. You can see I gave it
+the role, listed the tools to use, and the rules for tool usage. That's it. It's 29:28 good to go. Now, for the test, I'll open up the chat and ask, "Summarize my recent emails."
+Send that. And looks 29:36 like it's using the right tool. And there it is. The recent emails were just the tests from the sponsorship form. But 29:41 now this will be a pretty
+good test. I'll ask, do I have any good sponsorship requests? In my system prompt, I asked 29:48 it to read the sheet whenever asked about sponsors, not my email. Nice. It used the
+right tool. And those are the 29:54 exact requests I entered. Perfect. Now, let's test out the calendar. I'll set up a call with them. What openings do I 30:00 have on my calendar
+tomorrow? Now it has my schedule listed first. 30:07 Then it identified the gaps I have open to schedule in. Great. And I can say draft an email response for me and 30:13 include
+the two options I have free for meetings during the day. 30:18 And there it is. That looks good. Although not in my same aggressive tone, but that'll work. So just like that, 30:25
+connecting a few basic tools, there's already a lot we can do. And when using any of these, like the calendar, email, or sheets, I'll typically want to be 30:31 able to do more
+than read only. I want it to be able to make changes, send emails, add new items, all of that. So, 30:37 I actually will make a separate workflow like this calendar agent. This can
+do all of those things. And the trigger is 30:42 when executed by another workflow. I do that same thing with Gmail and the other tools. If you try to add all these nodes 30:48
+into one agent, it gets really hard to stay organized and for the agent to figure out what to do. This makes it 30:53 much more efficient. But that does bring me to a very powerful
+aspect of all this. calling other workflows, including 30:59 other agents. Using your agent to work with other agents and workflows can add a ton of functionality far beyond just
+31:06 using a calendar to connect to other workflows. It's pretty easy. I can come back in here and delete the calendar 31:11 tool. Now, I'll add another tool, but this time I'll
+use the call naden workflow tool. From there, I choose the 31:18 calendar agent from the list. Then, it opens up fields for inputs that I set up in that workflow. If I needed a
+specific 31:23 format, I could use that here. or what's best in a lot of cases is clicking these stars which is defined automatically by 31:30 the model. Since I'll be interacting
+using natural language, I can just let the agent know in the system prompt what 31:35 these fields are for. Then it will adjust how to fill them out based on whatever I typed. This
+is what I'd recommend doing after connecting all the 31:41 main tools that are relevant to you. Build separate workflows that you can test on their own. Then give your agent 31:47
+access to them. So I'll connect those others that I mentioned and show how this works in practice. Here's the full 31:52 personal assistant with the calendar, Gmail, and documents
+as sub aents with full access to those tools. Then there's 31:58 a Reddit curator, a YouTube summarizer, and this HTTP request is to a YouTube shorts creator that I demoed in a
+32:05 previous video. Then, of course, I added all of these tools into the system prompt so it knows what they are and when to call them. Now, I'll open up the 32:11 chat and ask,
+"What are the comments like on my recent YouTube video?" And I'll paste in the link. So, I send that 32:17 and it uses the brain, then goes straight to using the YouTube summarizer
+tool. That one works pretty quick. Now, 32:23 back in the brain to process that. And there it is. We have the overall impression, sentiment breakdown, helpful 32:30 critiques, the
+editing can be overwhelming, parts were unclear, reduced the flashy transitions, and the 32:35 positive, it was relatable, made complex AI concepts accessible, graphics and
+presentation style received praise for 32:42 being visually appealing. So, the opposite of the critiques. I mean, that's how YouTube works, though. I'll get comments that say great
+editing and 32:48 bad editing, or I go too fast, then others that say I go too slow on the same video. Someone loves it, someone 32:53 hates it. That's YouTube. But sometimes
+there's really helpful critiques mixed in. This also has the top comments, 32:59 recent comments, content ideas, and mentions the spam. So, I have to like read through and remove
+anything that was spam. So, that worked great. Now, 33:06 how about what are the best recent posts about AI on Reddit? Okay, looks like 33:11 it's triggered the Reddit curator.
+This one takes a minute, so I can jump over to that workflow. Then when I go to 33:16 executions, it will show that one is currently running. And this is that one I showed before
+that scrapes six different AI subreddits. Then it has 33:23 chatgpt read through all the posts and picks the 10 best. So we'll go back to the agent and looks like that's 33:28
+finishing up going through chat GPT again. And here's all the posts. It will actually show images on here too if any 33:33 of them had images as part of the post. Looks like these
+ones didn't. And all of these are links. I can click on it and 33:38 go directly to the posts if it sounds interesting. So perfect. Now I'll say post an AISMR short to my YouTube
+33:46 channel. Here we go. It triggered the right tool and says got it. I've started the AISMR video workflow. You'll get an 33:52 email when the video posts. So I'll open up that
+workflow. Go to executions and we can see this one's running now. But 33:58 it takes a while since it has to generate the videos. Then it generates sound effects to go with them.
+And then it edits it all together. After that it 34:04 will actually post it, too. When you use the call another workflow tool, your agent waits for a response. So for this 34:09
+one, I had to set it up as a web hook. That way it just triggers it to run and then responds right away. And this is a 34:14 workflow I modified from a template. Naden has
+thousands of templates you can search through and build from. I made a 34:20 whole video just showing how to use those templates. This was one of those I demoed. That's why it's
+using the kind of outdated AISMR trend. Again, this is 34:27 just an example. I'll come back when this is finished. But there it is. The full workflow completed. It posted to 34:33
+YouTube, updated a sheet, and sent me an email. So I can go to YouTube and there it is. Gonna watch a little bit. 34:56 And there you have it, an AI personal assistant. Hopefully
+that sparks some ideas for what you can build. I just Final Tips 35:02 want to give a few final tips before we wrap up. So number one is expect errors. They are part of the
+process. Every 35:08 workflow is different and even experienced NAD end users hit snags all the time. The key is to test, iterate, 35:14 and adjust until it works. It also leads
+into number two. Use chat GBT as your build partner. There's even a custom GPT 35:21 trained on the NADN docs that I would recommend. It's often more helpful than a fresh chat.
+Number three, keep 35:27 exploring. There's a ton you can build with just what's in this video. Then a big next step for many people is 35:33 retrieval augmented generation that
+uses a vector database like Pine Cone that lets your agents pull from a much larger 35:39 knowledge base than just chat history or Google Docs. It opens up a whole new level of
+workflows that could include 35:44 up-to-date and dynamic data from your business. And if you want to go deeper into learning AI, we've built a full Futurepedia 35:50 course
+platform on Futuredia with over 500 lessons across over 20 AI courses. 35:55 You'll find full learning paths on chat GPT, prompt engineering, custom GPTs, video generation, coding
+with AI, and a 36:03 lot more. It's all included in one subscription. You can get a 7-day free trial using the link in the description. 36:09 Or a great next step after this video
+would be watching this one where I walk through exactly how to build from the 36:15 free templates on the main NAN site. It's a great way to see how others structure their
+workflows to get ideas 36:20 or just use them as All From the seriesChapter 1: Course Introduction 0:00दिस इज़ द एडवांस एनएन कोर्स दैट विल टेक यू फ़ बिगिनर टु एडवांस। इसके अंदर हम
+मल्टीपल कॉन्सप्ट्स को कवर करेंगे और रियल बिज़नेस यूज़ केस जो है वो बिल्ड करेंगे। 0:1010 secondsआउटलाइन आपके सामने है। आप देख भी सकते हैं। बेसिक आपको बताता चलूं कि हम इसके अंदर जो है
+वो बेसिक चैट बोर्ड से लेके रैक चैटबोर्ड तक बिल्ड करेंगे। क्लाइंट 0:1919 secondsऑनबोर्डिंग सिस्टम बिल्ड करेंगे और http और एपीआई को भी समझेंगे कि वो किस तरह से वर्क करती हैं। एंड
+उन्हीं को यूज़ करके 0:2525 secondsआगे हम कंटेंट जो कि वीओ3 और नैनो बैनो को यूज़ करके हम कंटेंट ऑटोमेशन भी बिल्ड करेंगे जो कि आपके YouTube ऑटोमेशन TikTok 0:3333 secondsऑटोमेशन के
+लिए भी हेल्प करेंगे और उसी के बाद हम एमसीपीस जो कि एक एडवांस कांसेप्ट है हम उसको भी डिस्कस करेंगे और अपने खुद का एमसीबी सर्वर भी NA10 के अंदर जो है वो 0:4141 secondsबिल्ड करेंगे।
+यह पूरा NA10 का कोर्स होने वाला है। अगर आपने इस कोर्स को एंड तक देख लिया तो आप किसी भी किस्म का एआई एजेंट NA10 के अंदर जो है वो बिल्ड कर सकेंगे। 0:4949 secondsNA10 जो है वो एक
+पॉपुलर फ्रेमवर्क है फॉर बिल्डिंग एआई एजेंट। और यही जो है वो आपका फ्यूचर है। अगर तो आप इस टाइम इसके ऊपर ग्रिप बिठा लेते हैं तो इन फ्यूचर जो है आपको कोई मसला प्रॉब्लम नहीं आने लगेगी।
+0:5959 secondsसो दिस इज़ द ओनली वीडियो दैट यू विल नीड टू नो ऑल अबाउट Na10। लेट्स गेट स्टार्टेड। अच्छा तो हम सबसे पहले हम Na10 Chapter 2: N8N Introduction & Settings 1:081 minute, 8
+secondsकी ऑफिशियल वेबसाइट के ऊपर आ जाएंगे। एंड दिस इज द N10 ऑफिशियल वेबसाइट। ठीक है? हम फ्रॉम स्क्रैच स्टार्ट कर रहे हैं। ओके? 1:171 minute, 17 secondsतो यह हम N10 की डायरेक्ट
+वेबसाइट के ऊपर आ गए हैं। ठीक है? और यहां पे बस जस्ट बेसिक इनेशन है। आप इसको रीड भी कर सकते 1:241 minute, 24 secondsहैं। ठीक है? लेकिन हम जो है वो डायरेक्ट जो है वो गेट स्टार्टेड पे
+जाएंगे और यहां पे हम अपना एक न्यू अकाउंट जो है वह 1:321 minute, 32 secondsक्रिएट करेंगे। ठीक है? तो उसके लिए आपको जो है वह जस्ट एक कंपनी ईमेल चाहिए। कंपनी ईमेल यहां पे लिखा हुआ है।
+यहां पे आपकी पर्सनल ईमेल या कोई भी ईमेल जो है वह जल 1:391 minute, 39 secondsजाएगी। अच्छा यहां पे एक पर्सनल टिप है कि आपने जो है वो जस्ट ईमेल को यूज़ करके अकाउंट क्रिएट कर लेना है।
+आपको ना 15 डेज का जो है 14 डेज का जो है वो फ्री ट्रायल 1:481 minute, 48 secondsमिल जाएगा। सही है? तो अब आपने क्या करना है कि अब आपने इसको पर्सनल Gmail से ट्राई नहीं करना क्योंकि जब
+आप पर्सनल ईमेल से लॉगिन कर लोगे या साइन अप कर लोगे तो आपको 1:561 minute, 56 seconds14 डेज के बाद ट्रायल एंड हो जाएगा। तो वो आपकी Gmail जो है वो वेस्ट हो जाएगी। देन आपको न्यू Gmail
+क्रिएट करनी पड़ेगी और सपोज़ करो कि आपने जो है वो फ्री ट्रायल जो है वो प्रैक्टिस करने के लिए 3-4 मंथ के 2:052 minutes, 5 secondsलिए यूज़ करना है क्लाउड। आप इसका पेड वर्जन नहीं लेना
+चाहते ना आप सेल्फ पोस्ट करना चाहते हो। ठीक है? तो उसके लिए क्या करोगे कि सिंपली आपको जो है वो ये एडिशनल 2:122 minutes, 12 secondsटिप है। आपने सिंपली Google पे आके लिख लेना है temp
+mail.org ठीक है? आपने इस वेबसाइट के ऊपर आ जाना है टil org की वेबसाइट पे और यहां से आपने जो है 2:212 minutes, 21 secondsवो कोई भी एक टेम मेल उठा लेनी है। ठीक है? तो ये बिल्कुल आपके
+रियल ईमेल की तरह होती है। ठीक है? लेकिन ये है कि आप इसको यूज़ करके साइन अप कर सकते हो अपना अकाउंट। 2:292 minutes, 29 secondsदेन अगर बाद में आपका वो अकाउंट खराब भी हो जाता है या वो
+आपका अकाउंट जो है वो ट्रायल खत्म हो जाएगा तो आपकी ये ईमेल किसी काम की नहीं होती। ठीक है ना? आप दोबारा से जो है वह इस ईमेल को यहां से 2:382 minutes, 38 secondsक्लिक करें, चेंज करें।
+नई ईमेल क्रिएट हो जाएगा। आप देन उससे जो है वो एक और Na10 का क्लाउड अकाउंट जो है वो क्रिएट कर सकते हैं। इससे क्या होगा कि आपके मल्टीपल Na10 2:462 minutes, 46 secondsके अकाउंट आप
+क्रिएट कर सकते हैं। एंड अगर आप फ्री ट्रायल खत्म हो गए तो आप उसको वापस से जो है वो यूज़ में ला सकते हैं। 2:522 minutes, 52 secondsठीक है ना? तो सिंपली आपने ईमेल को कॉपी कर लेना है।
+एंड यहां पे लाके आपने जस्ट पेस्ट कर लेना है। सबमिट कर लेना है। और आपको यहां पे कह रहा है कि आपको कोड आएगा। 3:013 minutes, 1 secondकोड भी आ जाएगा। आपका आपने वापस इस मेरे पेज पे आ
+जाना है। आप नीचे जाएंगे। ठीक है? के रिफ्रेश करेंगे तो आपको यहां पे जो है वह एनट का कोड मिल जाएगा। मैं सिंपली इसके ऊपर क्लिक करता हूं एंड वापस अगेन 3:103 minutes, 10 secondsनीचे
+जाऊंगा और यहां पे हमें जो है वह यह हमारा कोड जो है वो आ जाएगा। मैं इसको कॉपी करके इधर पेस्ट करके सबमिट कर देता हूं। ठीक है? थोड़ी सी वेरिफिकेशन हो गई। 3:203 minutes, 20 secondsअब
+यहां पे हमें अपना नेम एंटर करना पड़ेगा। एक और इसकी जो है वो टिप यह है के अ यहां से जो आपकी ईमेल होगी आपने उसका जो 3:293 minutes, 29 secondsहै वो ऐड से पहले पहले नाम आपने जो है वो
+कॉपी कर लेना है। ठीक है ना? तो आपने अपना भी यूजरनेम ना दे। कोई मसला नहीं है। ठीक है ना? सिंपली आपने अकाउंट नेम के अंदर भी 3:363 minutes, 36 secondsवही नाम लिख देना है। ठीक है? यह
+ऐड से पहले पहले मैं इसको जो है वह कॉपी कर लेता हूं। आपने ऐड से पहले पहले इसको जो है वो कॉपी कर लेना है। अकाउंट इसी को अकाउंट 3:453 minutes, 45 secondsनेम दे दें। इसी को ही आप जो है
+वो फुल नेम दे दें। इसी को आप जो है वो पासवर्ड दे दें। ठीक है? तो अब यह कह रहा है कि पासवर्ड मस्ट कंटेन एट लीस्ट वन अपर केस। 3:543 minutes, 54 secondsतो मैं सिंपली जो है वो इधर से
+जो स्माल जी था उसको मैं कैपिटल जी कर देता हूं। 3:583 minutes, 58 secondsठीक है? तो यहां से आपने जस्ट चेक मार्क करके स्टार्ट 14 डे फ्री ट्रायल। ठीक है? 4:044 minutes, 4 secondsऔर
+अकाउंट नेम में कह रहा है कि द नेम मस्ट बी इन लोअर केस स्टार्ट विद लेटर फॉलवर्ड बाय अ लेटर डिजिट। ठीक है? एंड एंड विद अ लेटर डिजिट। इसमें जो है वो 4:124 minutes, 12 secondsस्पेशल
+करैक्टर नहीं आएगा। सिंपली आप इसको ऐड को रिमूव करके जस्ट अपना ट्रायल जो है वो कंटिन्यू कर दें। इस तरह से आपका जो है वो अकाउंट जो है वो क्रिएट हो जाएगा। आपने सिंपली पासवर्ड को जो है
+वो सेव कर लें। 4:234 minutes, 23 secondsठीक है? यहां पे आपसे थोड़ी सी वह वेरिफिकेशन वगैरह लेगा। तो आप जस्ट उसको जो है वह कंटिन्यू करें और अपना अकाउंट जो है फ़दर प्रोसेस करें। तो
+सिंपली जो है 4:314 minutes, 31 secondsयहां से कुछ भी फर्क नहीं पड़ता। आप कुछ भी ऑप्शन सेलेक्ट कर सकते हैं। 4:414 minutes, 41 secondsजस्ट सबमिट कर दें। एंड यहां पे वो कह रहा है किसी
+टीम मेंबर को इनवाइट करना है। आप यहां पे किसी को भी इनवाइट कर सकते हैं। 4:474 minutes, 47 secondsलेकिन हम स्किप कर देंगे। एंड यहां पे वो कह रहा है योर वर्क स्पेस इज़ स्टार्टिंग अप।
+ठीक है? तो कुछ देर के बाद हमारी वर्क स्पेस जो है वो क्रिएट हो जाएगी। 4:554 minutes, 55 secondsवेट करते हैं। अच्छा अब क्या हुआ? हमने टेम मेल से यूज़ करके अकाउंट क्रिएट कर लिया। 14
+डेज का ट्रायल। हम उसको कंज्यूम करेंगे। देन उसके बाद आपने दोबारा कंज्यूम करना होगा। आप जस्ट ट मेल पे जाए। यहां पे 5:035 minutes, 3 secondsजाके चेंज के ऊपर या डिलीट के ऊपर क्लिक
+करेंगे। आपकी न्यू मेल आ जाएगी। आप जस्ट उसको अगेन यूज़ कर सकते हैं। ठीक है ना? तो 5:105 minutes, 10 secondsइस तरह से हम Na10 को फ्री में मल्टीपल टाइम यूज़ कर सकते हैं। हां, यह जो है
+वो मैं आपको बता रहा हूं ट्रेनिंग पर्पस के लिए। ठीक है ना? जब आप प्रोफेशनल काम 5:175 minutes, 17 secondsकरेंगे, प्रोफेशनल किसी क्लाइंट वगैरह पकड़ेंगे और आगे भी आप प्रोसेस किसी
+बिज़नेस के लिए करेंगे। ठीक है ना? किसी बिज़नेस को ऑटोमेट करने के लिए तो आपको फिर प्रॉपर जो है वह सेल्फ होस्ट वर्जन या 5:265 minutes, 26 secondsक्लाउड वर्जन दोनों में से किसी एक को
+लेना पड़ेगा। तो दोनों की वीडियो जो है वह आपको मेरे YouTube के ऊपर मिल जाएंगी। किस तरह से सेल्फ वाश करना है। आप इज़ली उसको 5:345 minutes, 34 secondsजो है वो कर सकते हो। ठीक है? तो इस
+तरह से आपका जो है वो N10 का इंटरफ़ेस आ जाएगा। 5:385 minutes, 38 secondsसबसे पहले हम एनटन की थोड़ी सी बेसिक्स को इधर डैशबोर्ड को समझते हैं। ठीक है? तो जैसे ही आप यहां पे आ जाओगे ये
+आपके पास जो है वो प्रॉपर लेफ्ट साइड के ऊपर लेफ्ट 5:475 minutes, 47 secondsबार के ऊपर आपको सारी जो है वो डैशबोर्ड की आपको डिटेल मिल जाएगी जिसके अंदर आपका ओवरव्यू आ जाएगा सिंपली। ठीक
+है? उसके बाद ये आपकी वर्क स्पेस है। एक किस्म का 5:565 minutes, 56 secondsडाटाबेस समझ लें पर्सनल वर्क स्पेस। सही है? जितने भी आप वर्क फ्लो बनाएंगे वो इस डाटाबेस के अंदर आ रहा होगा।
+इस वर्क स्पेस के अंदर आ रहा होगा। ठीक है? इसी 6:026 minutes, 2 secondsतरह यहां पे जो है वो एडमिन पैनल है। आप एडमिन पैनल के अंदर आ सकते हैं। यहां पे आके आपने जो है वो अगर
+एग्जीक्यूशन वगैरह 6:106 minutes, 10 secondsआप अपनी देख सकते हैं। ठीक है? और भी बड़े ऑप्शंस हैं। आप यहां पे इसको एक्सप्लोर कर सकते हैं। एडमिन पैनल क्या-क्या कर सकता है। प्रॉपर यह
+अपने डैशबोर्ड को मैनेज 6:196 minutes, 19 secondsकरना हो आप यहां से कर सकते हैं। उसके बाद सबसे ज्यादा इंपॉर्टेंट जो होता है वो यह टेंपल्लेट्स वाला ऑप्शन होता है। 6:236 minutes, 23
+secondsटेंपल्लेट के ऊपर आप जब हम क्लिक करते हैं तो हम Nitin की ऑफिशियल वेबसाइट के ऊपर आ जाते हैं। जहां पे जो है हमें टेंपल्लेट जो है वो पड़े हुए मिल जाते हैं। ठीक है? 6:296
+minutes, 29 secondsअब टेंपलेट होते क्या हैं? टेंपल्लेट बेसिकली ये होते हैं कि Na10 के ऊपर कुछ बिल्डर्स ने सॉलशंस बिल्ड कर लिए हैं और 6:366 minutes, 36 secondsवो आपको फ्री ऑफ कॉस्ट
+यूज़ करने के लिए इधर प्रोवाइड कर दिए हैं। ठीक है ना? तो जब भी आप कोई सशन बिल्ड करते हो ना तो सबसे पहले जो सशन होता है ना वो आपने यहां 6:456 minutes, 45 secondsपे सर्च करना है। अगर
+तो यहां पे किसी ने वो आपका सशन पहले ही बिल्ड किया हुआ है। 6:486 minutes, 48 secondsतो आपको फ्रॉम स्क्रैच बिल्ड करने की जरूरत नहीं है। आपने जस्ट उसको डाउनलोड कर लेना है एंड उसको
+अपने N10 के अंदर यूज़ करना है। ठीक है ना? तो सिंप सपोज़ करो मैंने WhatsApp के लिए एक चैट बोर्ड बनाना था। तो मैं जस्ट WhatsApp सर्च करता हूं। 6:586 minutes, 58 secondsतो WhatsApp के
+हिसाब से फिल्टर हो के ये मेरे पास जो है वो 39 रिजल्ट आ गए। मींस के 39 चैट बॉट्स हैं। सही है ना? तो मैं जस्ट इसके ऊपर क्लिक करूंगा एंड यूज़ फॉर 7:067 minutes, 6 secondsफ्री कर दूंगा।
+ठीक? तो इसको मैं डाउनलोड कर सकता हूं। ठीक है? इसको मैं जो है वो कॉपी भी कर सकता हूं। इसको मैं डाउनलोड भी कर सकता हूं। इसको मैं डायरेक्टली जो है 7:147 minutes, 14 secondsवो इंपोर्ट
+भी करा सकता हूं। ठीक है? तो आप इस तरह से किसी भी जेएस को जो है वो यूज़ कर सकते हैं। सही है? टेंप्लेट का यूजेज ये है। सही है ना? कि आपने जो सशन बिल्ड करना है अगर वह किसी ने पहले
+बिल्ड 7:227 minutes, 22 secondsकर चुका है या वह पहले उसने बिल्ड करके आपको फ्री ऑफ़ कॉस्ट यहां पे प्रोवाइड कर दिया है तो आप उसको जस्ट कंज्यूम कर सकते हैं। सही है? तो टेंपलेट जो है वो
+बड़ाेंट 7:307 minutes, 30 secondsहै। इसी तरह यहां पे आपको इंसाइट्स वगैरह मिल जाएंगी एंड सिंपली यहां से आपको जो है वो पर्सनल सेटिंग्स मिल जाएंगी जिसके अंदर आप अपनी साइन आउट हो सकते
+हैं। एंड यहां 7:377 minutes, 37 secondsपे एक्स एडिशनल जो है वो आपको सेटिंग्स वगैरह मिल जाएंगी। आप इसको अच्छे तरीके से देख लें। जो जो हम हमारी इंपॉर्टेंट होती रहेंगी हम उनको विद इन
+द कोर्स डिस्कस 7:457 minutes, 45 secondsकरते रहेंगे। ईच एंड एव्री सेटिंग हमारे लिए इंपॉर्टेंट नहीं होगी। ठीक है ना? 7:487 minutes, 48 secondsलेकिन जो जो होंगे हम उसको डिस्कस करते
+रहेंगे। 7:517 minutes, 51 secondsठीक है? उसके बाद जो है वो ये सारा सा बेसिकली ओवरव्यू था। अच्छा तो अब आपके पास जो है वो सिंपली जो है वो इस तरह से ये डैशबोर्ड हो जाता है। तो सिंपली
+मैं जस्ट 8:008 minutesस्टार्ट फ्रॉम स्क्रैच कर देता हूं। तो ये बेसिकली मेरा जो है वो एक न्यू वर्क फ्ल्लो जो है वो बिल्ड कर देगा जिसका नेम ये है माय वर्क फ्लो। ठीक है? तो आपने 8:098
+minutes, 9 secondsन्यू वर्क फ्ल्लो किस तरह से बिल्ड करना है? आप दो तरीके से कर सकते हो। जस्ट आप ओवरव्यू के ऊपर आ। ठीक है? इस तरह से आपका होगा। या तो आप पर्सनल के ऊपर जाएं। ठीक
+8:168 minutes, 16 secondsहै? ये आपका बेसिकली अ जो है वो वर्क स्पेस है जो कि बेसिकली डाटाबेस है जहां पे आपके सारे वर्क फ्लोस होंगे। तो सिंपली यहां पे क्रिएट अ न्यू वर्क फ्लो करेंगे
+8:248 minutes, 24 secondsतो आप इसी पेज पे आ जाएंगे या स्टार्ट फ्रॉम स्क्रैच करेंगे तब भी आप इसी पेज के ऊपर आ जाएंगे। ठीक है? तो ये सारा जो है वो आपका कैनवस आ जाएगा। अब इधर आपने जो
+है वो प्रॉपर अपनी ऑटोमेशन या सारी चीजें जो 8:338 minutes, 33 secondsहै वो आप इस कैनवस के ऊपर जो है वो बिल्ड करोगे। इसकी थोड़ी सी सेटिंग को देख लेते हैं। आपने जो है वो वर्क फ्लो अगर
+ज़ूम करना है तो आप सिंपली जस्ट वर्क फ्ल्लो को 8:408 minutes, 40 secondsइधर से ज़ूम कर सकते हो। इधर से ज़ूम आउट कर सकते हो। इधर से ज़ूम इन कर सकते हो। ठीक है? एंड ये जो है वो फिट टू
+स्क्रीन हो जाएगा। उसके बाद जो है आपका यहां पे कुछ 8:488 minutes, 48 secondsसेटिंग आ जाती है जिसके अंदर यहां पे सबसे पहले आपका जो है वोेंट है वर्क फ्लो का नेम। यहां पे आप नेम चेंज
+कर सकते हो। 8:538 minutes, 53 secondsसपोज़ करो मैं यहां पे लिख देता हूं माय फर्स्ट वर्क फ्लो। ठीक है ना? तो यहां पे आप अपने वर्क फ्लो का नाम चेंज कर सकते हो। जो भी आप प्रॉब्लम का
+सशन बिल्ड कर 9:019 minutes, 1 secondरहे हो वो सिंपली आप यहां पे जो है उसका नाम जो है वो मेंशन कर दो। ठीक है? इसी तरह आपके जो है वो यहां पे वेबसाइट को जब आप ऑटोमेशन बिल्ड हो जाती है
+सिंपली इस 9:099 minutes, 9 secondsबटन के ऊपर जब आप क्लिक करोगे तो आपका वेबसाइट वर्क फ्ल्लो जो है वो डिप्लॉय हो जाएगा। ठीक है? ठीक है? वो पब्लिश हो जाएगा। अभी इस वजह से आ रहा नहीं
+है क्योंकि हमारा जो है वो ऑटोमेशन बिल्ड 9:169 minutes, 16 secondsनहीं है। अभी ठीक है ना? जब इसके अंदर कुछ नोट्स आएंगे तो आप देखना आगे हम वर्क फ्लो पब्लिश भी किया करेंगे। तो उसके
+अंदर आपको दिखेगा कि वर्क फ्ल्लो जस्ट क्लिक करने के ऊपर आपका जो है वर्क फ्ल्लो जो है वो 9:249 minutes, 24 secondsपब्लिश हो जाएगा। इसी तरह यहां पे जो है वो थ्री डॉट्स हैं। इसके अंदर
+भी काफी सारी जो है वोेंट सेटिंग होती है। यहां से आप अपने वर्क फ्ल्लो को जो है वो डाउनलोड कर सकते हैं। यहां से शेयर कर सकते हैं। 9:339 minutes, 33 secondsठीक है? यहां से अगर आपने
+कोई वर्क फ्ल्लो जो है वो अगर इंपोर्ट करवाना है। किसी ने आपको JSN दिया हुआ है। ठीक है? कि आपने टेंपल्लेट्स के अंदर से जैसे डाउनलोड किया हुआ है और आप चाह रहे हो कि वो आपके N10 9:419
+minutes, 41 secondsके अंदर आए तो आप उसको यूआरएल से भी इंपोर्ट कर सकते हो, फाइल से भी इंपोर्ट कर सकते हो। तो ज्यादा जो है वो फाइल ही होता है। सपोज़ करो तो मैं सिंपली इंपोर्ट फ्रॉम
+फाइल करूंगा और यह मेरे पास जसन है 9:499 minutes, 49 secondsपुराने वर्क फ्लो का या किसी से मैंने लिया था। मैं जस्ट सिंपली इसको क्लिक करूंगा ओपन करूंगा। तो यहां पे जो है वो मेरा पूरा
+जो है वो वर्क फ्लो जो है वो आ 9:579 minutes, 57 secondsजाएगा। ठीक है ना? इसी तरह आप अपने वर्क फ्ल्लो को जो है वह सिंपली इंपोर्ट जो है वह कर सकते हो इधर से। एंड आपने वर्क फ्लो को
+डाउनलोड करना है तो जस्ट आप वर्क फ्लो 10:0610 minutes, 6 secondsको यहां से डाउनलोड भी कर देते हो। यहां से आप डाउनलोड भी कर लोगे। ठीक है? तो इस तरह से जो है वो आपका प्रॉपर जो है वो
+10:1410 minutes, 14 secondsकैनवस है। अच्छा जब भी आप ऑटोमेशन बिल्ड करते हो तो आप दो तरीके से बिल्ड कर सकते हो। या तो आप खुद मैनुअली यहां से ऐड करते जाओ नोट्स या यहां से करो या यहां
+से करो। 10:2110 minutes, 21 secondsबात एक ही है या आप यहां से बिल्ड विद ए से करो। तो बिल्ड विद एन का न्यू फीचर है। 10:2510 minutes, 25 secondsआप सिंपली जस्ट यहां पे प्र डालते हो कि
+मेक अ WhatsApp 10:3110 minutes, 31 secondsचैटब फॉर माय बिज़नेस। जस्ट सिंपली यहां पे अगर आप प्रम लोगे और यहां पे आप एंटर करोगे तो ये क्या करेगा? ये एन एक किस्म का जो है वो आपके
+10:4010 minutes, 40 secondsNa10 के अंदर इधर कैनवस के अंदर आपका जो भी प्रॉब्लम होगा उसका सशन यहां पे बिल्ड करेगा। ठीक है? फिर जस्ट फिर बाद में आपको जो है वो कुछ नोट्स को कॉन्फ़िगर
+करना 10:4910 minutes, 49 secondsपड़ेगा। कुछ क्रेडेंशियल्स कनेक्ट करने पड़ेंगे और थोड़ा बहुत उसको जो है वो एडिट करना पड़ेगा। लेकिन ये आपका काम जो है वो 90 80 टू 90% जो है वो कर देगा।
+लेकिन आई 10:5610 minutes, 56 secondsडोंट रिकमेंड दिस। ठीक है? क्योंकि होता ये है कि स्टार्टिंग के अंदर हमें कुछ फाउंडेशंस हमें फंडामेंटल्स हमारे क्लियर 11:0311 minutes, 3
+secondsनहीं होते। तो हम एआई से बनवा लेते हैं और जब एआई बना देते हैं तो बाद में हमें समझ नहीं लगता कि क्या हो रहा है, क्या नहीं हो रहा है। किस तरह से हमने उसको जो है वो मेंटेन रखना
+है। किस तरह से हमने उसको 11:1111 minutes, 11 secondsएडिट करना है। ठीक है? तो आपने कभी भी बिल्ड विद एi को यूज़ नहीं करना। हां, उसी केस में यूज़ करना है। जब आपका कोर्स यह एंड हो जाएगा,
+तब आप एट द एंड इसको यूज़ 11:1911 minutes, 19 secondsकरने हैं। इससे सशन बनाना है। और फिर आपके पास सारे फंडामेंटल सारी चीज़ें क्लियर होंगी। तो, आप फिर उसको जो है वो एडिट कर सकते हो।
+लेकिन स्टार्टिंग में आपने इसको नहीं यूज़ करना। आपने जस्ट ऐड फर्स्ट स्टेप 11:2811 minutes, 28 secondsसे जो है वो कर लेना है। ठीक है? तो, यहां से जो है वो हम अपना वर्क फ्लो जो है वो
+स्टार्ट करेंगे। 11:3311 minutes, 33 secondsअच्छा उसके बाद जो है वो यहां से भी आप ऐड कर सकते हो और यहां से भी जो है वो ऐड कर सकते हो। ठीक है? तो हम जस्ट सिंपली इसके ऊपर क्लिक कर
+लेते हैं। अच्छा सबसे पहले 11:4011 minutes, 40 secondsऑटोमेशन के अंदर जो है वो इंपॉर्टेंट होता है कि सबसे पहले ऑटोमेशन के अंदर हम ट्रिगरर्स ऐड करते हैं। बेसिकली हमारा ऑटोमेशन को
+ट्रिगर क्या करेगा। ठीक है ना? 11:4811 minutes, 48 secondsतो ऑटोमेशन के बेसिकली तीन ही फंडामेंटल्स नोड होते हैं। एक फंडामेंटल जो होता है वो ट्रिगर होता है। दूसरा जो होता है वो
+इंटरमीडिएट नोड्स होता है। तीसरा जो है वो 11:5611 minutes, 56 secondsएंडिंग नोड होते हैं। ठीक है ना? तो सबसे पहले आपको जो है वो ट्रिगर ऐड करना पड़ता है कि आपके वर्क फ्लो स्टार्ट
+कहां से होगा? ट्रिगर के अंदर जो है वह मल्टीपल ऑप्शंस आ जाते हैं। मैनुअल ट्रिगर, ऑन ऐप 12:0512 minutes, 5 secondsइवेंट, ऑन अ स्केजुअल इवेंट, ऑन अ वेब, हुक कॉल। यहां पर मल्टीपल हैं।
+तो यूज़ केस के मुताबिक जो हम ना अपने ट्रिगर को चेंज करता रहते हैं। सही है ना? ये डिपेंड करता 12:1212 minutes, 12 secondsहै हमारे यूज़ केस के हिसाब से कि हमारा जो है वो कौन सा ट्रिगर
+जो है वो यूज़ होगा। 12:1612 minutes, 16 secondsठीक है ना? हम हर ट्रिगर को यूज़ नहीं करते। लेकिन हां, यूज़ केस के हिसाब से हम चेंज करते हैं। जहां पे हमें ट्रिगर मैनुअली करना होगा, वहां
+पे हम वो करेंगे। 12:2312 minutes, 23 secondsतो जहां पे हमें वेब कॉल करना होगा, वहां पे हम वो करेंगे। जहां पे हमें ऑन फॉर्म सबमिशन करना होगा, वहां पे हम वो करेंगे। 12:2812 minutes,
+28 secondsठीक है ना? तो ट्रिगर बेसिकली आपका वर्क फ्ल्लो स्टार्ट करता है। लेकिन उसके स्टार्टिंग में हम जो है वो वही वाला वर्क ट्रिगर यूज़ करते हैं जो बेसिकली हमारी जो है वो नीड होती
+है। ठीक है ना? 12:4012 minutes, 40 secondsवही वर्क फ्लो ट्रिगर यूज़ करते हैं जो कि बेसिकली हमारी जो है वो नीड होती है। ठीक है? तो यहां पे मल्टीपल आपके पास जो है वो 12:4812 minutes,
+48 secondsट्रिगर हो जाते हैं। सही है? तो ये यूज़ किसके हिसाब से वेरी करते हैं। अच्छा यहां पे हम सबसे पहले ट्रिगर मैनुअली देख लेते हैं। ठीक है? तो ट्रिगर मैनुअली का मतलब 12:5712
+minutes, 57 secondsयह है कि जब भी हम अपना वर्क फ्लो बनाते हैं या कोई ऑटोमेशन बिल्ड करते हैं। ठीक है? तो उसको बेसिक लेवल के ऊपर टेस्ट करने के लिए ना हम ट्रिगर मैनुअली वाला जो है
+13:0613 minutes, 6 secondsवो ट्रिगर सेलेक्ट करते हैं। ठीक है? कोई भी आप ऑटोमेशन बना रहे हो, कोई भी एब्सोल्यूशन बना रहे हो ना, तो एज अ डेवलपिंग स्टेज में जब वह बिल्ड हो रहा है। अभी
+बिल्ड कंप्लीट नहीं हुआ। तो, वह 13:1413 minutes, 14 secondsबिल्ड हो रहा है ना, तो उस फज़ में आपने जो है वह ट्रिगर मैनुअली वाला ट्रिगर यूज़ करना है। ठीक है? यह बेसिकली आपका क्या होगा
+कि यह बेसिकली आपके वर्क फ्ल्लो को 13:2213 minutes, 22 secondsजो है वह एक्टिवेट कर देगा। ठीक है? इसको यूज़ किस तरह से करना है? आपने जस्ट इसको कॉल करने के लिए ये नीचे से एग्जीक्यूट
+वर्क फ्लो वाला क्लिक करना है। तो आपका वर्क फ्लो आगे जितने भी नड्स होंगे वो ऑटोमेटिकली जो है वो कॉल होने लग जाएंगे। 13:3213 minutes, 32 secondsठीक है ना? तो ट्रिगर मैनुअली उसी केस
+में कंज्यूम करना है। उसी केस में यूज़ करना है जब आप वर्क फ्लो जो है वो स्टार्टिंग में बिल्ड कर रहे हो। ठीक है ना? क्योंकि बिल्ड कर रहे होते हैं 100 मामलात होते हैं, एरर्स आते हैं।
+रिॉल्व करना होता है। 13:4213 minutes, 42 secondsतो आप उसको जो है वो एक प्रॉपर फंक्शनल ट्रिगर के साथ नहीं टेस्ट करते। आप जस्ट टेस्ट ट्रिगर यूज़ करते। तो N10 ने एक 13:4913 minutes, 49
+secondsकिस्म का ये समझो ये हमें टेस्ट ट्रिगर दिया हुआ है। ठीक है ना? हम इसको यूज़ करके अपने वर्क फ्लोस को टेस्ट कर सकते हैं। तो मोस्टली स्टार्टिंग में हम यही यूज़ करते हैं। तो जब
+हमारा ऑटोमेशन कंप्लीट हो जाता 13:5813 minutes, 58 secondsहै हम उसके बाद अपने जो है वो ट्रिगर को जो है वो चेंज कर लेते हैं। ठीक है? इसके अलावा आप मल्टीपल ट्रिगर भी यूज़ कर सकते हो।
+सही है? मल्टीपल ट्रिगर भी यूज़ कर सकते हो। डिपेंड करता है यूज़ किसके है। 14:0914 minutes, 9 secondsठीक है? अगर तो आपने चैट बोर्ड बनाना है तो उसके लिए आप ये वाला यूज़ करोगे ऑन चैट
+मैसेज वाला। ठीक है? तो यहां पे आप कुछ भी ओपन चैट का बटन आ जाएगा। मैं सिंपली यहां 14:1714 minutes, 17 secondsपे हाई लिखता हूं। तो मेरा वर्क फ्लो जो है वो चल जाएगा। ठीक है? तो चैटब
+बिल्ड कर रहे हो तो उसके लिए यह वाला ट्रिगर यूज़ करना पड़ेगा। अगर आप मैनुअल कोई प्रॉब्लम 14:2414 minutes, 24 secondsसॉल्व कर रहे हो तो उसके लिए आपको टेस्टिंग करने के लिए मैनुअल ट्रिगर
+ऐड करना पड़ेगा। नहीं तो अगर कोई और यूज़ कर रहे हो तो आपको वो वाला करना पड़ेगा। ठीक है? तो ये यूज़ किसके हिसाब से वैरी करता 14:3314 minutes, 33 secondsहै? हम बाद में इसको देखेंगे कि हर
+प्रॉब्लम में जो सा ट्रिगर जो है वो यूज़ हो रहा होगा हम उसी को जो है वो यूज़ करेंगे। ठीक है? तो अभी मैं ट्रिगर 14:4114 minutes, 41 secondsमैनुअली ऐड कर देता हूं। इसके बाद जो है हमारे
+इंटरमीडिएट्स आ जाते हैं। उसके अंदर आपके पास मल्टीपल नोड आ जाते हैं। उसके बाद अब आपने बेसिकली अब अपने प्रॉब्लम को 14:4814 minutes, 48 secondsसॉल्व करना है। अब उस प्रॉब्लम को सॉल्व
+करने के लिए आप कुछ भी नोड यूज़ करते हो। 14:5114 minutes, 51 secondsआप एआई के यूज़ कर सकते हो नो। आप एक्शन इनप के यूज़ कर सकते हो। डाटा ट्रांसफॉर्मेशन के फ्लो के कोर के मल्टीपल यहां पे
+नड्स आ रहे हैं। ठीक है ना? आप कोई भी प्रॉब्लम को जो है वो सॉल्व कर 15:0015 minutesसकते हो। सपोज़ करो मेरा कोई प्रॉब्लम है चार्ट बोर्ड टाइप का। ठीक है ना? तो मैं उसके अंदर एi वाले न
+यूज़ करूंगा। एआई एजेंट एंथ्रोपे, Google jn है यहां पे ओपन 15:0815 minutes, 8 secondsए तो बेसिकली ये सारे जो है वो हम नड जो है वो यूज़ कर लेंगे। लेकिन उसके अलावा जो है वह हम अगर किसी
+एप्लीकेशन के अंदर थर्ड 15:1515 minutes, 15 secondsपार्टी एप्लीकेशन के अंदर हमने जो है वह एक्शन परफॉर्म करवाना है जिस तरह से WhatsApp के अंदर कोई एक्शन को परफॉर्म करवाना है Gmail के
+अंदर परफॉर्म करवाना है तो मैं सिंपली यहां पे जस्ट Gmail लिखता हूं। तो देखो मेरा Gmail टूल आ गया। 15:2515 minutes, 25 secondsठीक है ना? इसी तरह से अगर हमने कोई एक्शन जो है वो किसी
+एप्लीकेशन के अंदर परफॉर्म करवाना होगा या Google शीट को अपडेट करना होगा या कोई कंटेंट राइट करवाना होगा। कोई 15:3315 minutes, 33 secondsभी यूज़ करना होगा एप्लीकेशन तो उसके लिए हमें

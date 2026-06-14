@@ -1,0 +1,226 @@
+interrupting the customer. Show 5 properties stopSpeakingPlan object This is the plan for when assistant should stop talking on customer interruption. You should configure this if
+you’re running into these issues: The assistant is too slow to recognize customer’s interruption. The assistant is too fast to recognize customer’s interruption. The assistant is
+getting interrupted by phrases that are just acknowledgments. The assistant is getting interrupted by background noises. The assistant is not properly stopping — it starts talking
+right after getting interrupted. Show 5 properties monitorPlan object This is the plan for real-time monitoring of the assistant’s calls. Usage: To enable live listening of the
+assistant’s calls, set monitorPlan.listenEnabled to true. To enable live control of the assistant’s calls, set monitorPlan.controlEnabled to true. To attach monitors to the
+assistant, set monitorPlan.monitorIds to the set of monitor ids. Show 5 properties credentialIds list of strings These are the credentials that will be used for the assistant
+calls. By default, all the credentials are available for use in the call but you can provide a subset using this. server object This is where Vapi will send webhooks. You can find
+all webhooks available along with their shape in ServerMessage schema. The order of precedence is: assistant.server.url phoneNumber.serverUrl org.serverUrl Show 7 properties
+keypadInputPlan object Show 3 properties Was this page helpful? Yes No Create Assistant Next Built with List Assistants | VapiFor AI agents: a documentation index is available at
+the root level at /llms.txt and /llms-full.txt. Append /llms.txt to any URL for a page-level index, or .md for the markdown version of any page. Logo Search / Ask AI Website Status
+Support Dashboard MCP MCP client MCP server On this page Prerequisites Setup Steps 1. Obtain MCP Server URL 2. Create and Configure MCP Tool 3. Add Tool to Assistant How MCP Works
+Request Headers Tool Configuration MCP Tool Example Usage Default Configuration (Streamable HTTP) Custom Configuration (SSE Protocol) Best Practices Example MCP Providers Make MCP
+Zapier MCP Composio MCP References MCP Model Context Protocol (MCP) Integration Copy page Connect your assistant to dynamic tools through MCP servers for enhanced capabilities. The
+Model Context Protocol (MCP) integration allows your Vapi assistant to dynamically access tools from MCP servers during calls. This enables your assistant to: Connect to any
+MCP-compatible server Access tools dynamically at runtime Execute actions through the MCP server This powerful integration allows your assistant to leverage a wide range of tools
+without requiring individual integrations for each service. Vapi also provides its own MCP server that exposes Vapi APIs as callable tools. See the Vapi MCP Server documentation to
+learn how to use it with Claude Desktop or custom applications. Prerequisites Before you can use the MCP integration, you need to: Have access to the Vapi Dashboard Have an
+assistant created in Vapi Have access to an MCP server URL (e.g., from Make, Zapier, Composio, or other MCP providers) Setup Steps 1. Obtain MCP Server URL First, you need to
+obtain an MCP server URL from your chosen provider: Sign up for an MCP-compatible service (e.g., Make, Zapier, Composio) Navigate to the MCP configuration section of your provider
+Generate or copy your MCP server URL For Zapier MCP, visit https://mcp.zapier.com/mcp/?client=vapi? to generate your MCP server URL. This URL should be treated as a credential and
+kept secure. To generate your Make MCP Server URL (also known as MCP Token), navigate to your Make profile > API Access tab > Tokens > Add token. See Obtaining MCP Token
+documentation for detailed instructions. This URL should be treated as a credential and kept secure. 2. Create and Configure MCP Tool After obtaining your MCP server URL, create
+and configure the tool: Go to Dashboard > Tools page Click the Create Tool button Select MCP from the available options Provide a name and description explaining when it should be
+invoked Configure the tool with the following required field: serverUrl: The URL of your MCP server The MCP server URL should be treated as a credential and kept secure. It will be
+used to authenticate requests to the MCP server. 3. Add Tool to Assistant Now, add the MCP tool to your assistant: Navigate to Dashboard > Assistants page Select your assistant Go
+to the Tools tab In the tools dropdown, select your MCP tool Click Publish to save your changes How MCP Works The MCP integration follows these steps during a call or chat session:
+When a call or chat starts, Vapi connects to your configured MCP server using Streamable HTTP protocol by default, fetches the list of available tools, and dynamically adds them to
+your assistant’s available tools The assistant can then use these tools during the interaction Each time the model invokes a specific MCP tool, Vapi creates a new connection to the
+MCP server and sends the request with the X-Call-Id/X-Chat-Id header to identify the call or chat The MCP server executes the action and returns the result This process repeats for
+every tool invocation, meaning multiple MCP sessions are created per call or chat Vapi uses multiple MCP sessions throughout a single conversation to ensure consistent behavior
+across both calls and chat interactions. Each tool execution creates a separate connection to the MCP server, allowing for isolated and reliable tool execution. All tool
+invocations include the X-Call-Id/X-Chat-Id header to identify the specific call or chat. The MCP tool itself is not meant to be invoked by the model. It serves as a configuration
+mechanism for Vapi to fetch and inject the specific tool definitions from the MCP server into the model’s context. The tools available through MCP are determined by your MCP server
+provider. Different providers may offer different sets of tools. Request Headers MCP requests from Vapi include identifying headers to help with context and debugging: X-Call-Id:
+Included in requests during voice calls to identify the specific call X-Chat-Id: Included in requests during chat interactions to identify the specific chat X-Session-Id: Included
+in requests during chat interaction if the chat is part of a session Tool Configuration MCP Tool This tool uses the following configuration options: Required: server.url: The URL
+of your MCP server (e.g., https://mcp.zapier.com/api/mcp/s/********/mcp) Optional: server.headers: Custom headers to include in requests to the MCP server metadata: Additional
+configuration options for the MCP connection protocol: Communication protocol to use. Options are: "shttp" (default): Uses Streamable HTTP protocol "sse": (deprecated) Uses
+Server-Sent Events protocol The server URL should be treated as a credential and kept secure. It will be used to authenticate requests to the MCP server. Example Usage Here’s how
+the MCP tool can be used in your assistant’s configuration: Default Configuration (Streamable HTTP) { "model": { "provider": "openai", "model": "gpt-4o", "messages": [ { "role":
+"system", "content": "You are a helpful personal assistant named Alex. You can help users with various tasks through voice commands. You have access to tools that allow you to
+perform actions on the user's behalf.\n\nWhen a user requests an action, check if any of the available tools can help accomplish that task.\n\nCommon tasks you can help with
+include:\n- Scheduling appointments and meetings\n- Sending messages or emails\n- Creating or updating documents\n- Managing to-do lists and reminders\n- Searching for
+information\n- Making reservations\n- Ordering food or services\n- Checking account balances or transaction history\n- Controlling smart home devices\n\nAlways be polite,
+professional, and helpful. If a tool fails or isn't available, explain the situation to the user and suggest alternatives if possible." } ], "tools": [ { "type": "mcp", "function":
+{ "name": "mcpTools" }, "server": { "url": "https://mcp.zapier.com/api/mcp/s/********/mcp" } } ] } } Custom Configuration (SSE Protocol) If you need to use Server-Sent Events
+protocol instead: { "model": { "provider": "openai", "model": "gpt-4", "messages": [ { "role": "system", "content": "You are a helpful personal assistant named Alex..." } ],
+"tools": [ { "type": "mcp", "function": { "name": "mcpTools" }, "server": { "url": "https://mcp.zapier.com/api/mcp/s/********/mcp", "headers": { "Authorization": "Bearer
+your-token", "X-Custom-Header": "your-value" } }, "metadata": { "protocol": "sse" } } ] } } Best Practices Protocol Selection: Use the default Streamable HTTP protocol for better
+performance unless you specifically need SSE Dynamic Tool Awareness: Be aware that the available tools may change between calls Clear Instructions: Provide clear instructions in
+your assistant’s system message about how to handle dynamic tools Error Handling: Include fallback responses for cases where tools fail or are unavailable User Communication:
+Explain to users what tools you’re using and what actions you’re taking Security: Treat the MCP server URL as a credential and keep it secure Example MCP Providers Make MCP The
+Make MCP Server provides access to the Make scenarios you select, allowing you to provision them as Custom Tools through MCP. Define your Make scenarios, configuring scenario
+inputs and outputs and setting them to be scheduled on demand Get your Make MCP Token Choose your MCP Tool Access Control mechanism and define your MCP URL Add the URL to your Vapi
+MCP tool configuration Your assistant will now have access to your chosen Make scenarios Make Cloud MCP allows you to build simple or complex Custom Tools using business logic to
+access the most important apps in your business tech stack. Check the full list in the Make app gallery. Zapier MCP Zapier offers an MCP server that provides access to thousands of
+app integrations: Go to https://mcp.zapier.com/mcp/?client=vapi? Generate your MCP server URL Add the URL to your MCP tool configuration Your assistant will now have access to
+Zapier’s extensive integration network Zapier MCP provides access to over 7,000+ apps and 30,000+ actions without requiring complex API integrations. Composio MCP Composio also
+offers an MCP server for integration: Log in to the Composio dashboard at https://mcp.composio.dev/dashboard Select the tool you want to integrate (e.g., Gmail) Enable the MCP
+server for the selected tool by connecting your account using authentication flow Create a server and copy the generated URL Add this URL to your MCP tool configuration as the
+serverUrl Your assistant will now have access to the specific Composio tool integration Context Overflow Warning: Some MCP server tool calls (eg: GitHub API queries) may return
+large amounts of data. This can exceed model context limits, affecting assistant performance and potentially causing failures, especially with models like GPT-4o. Best Practices:
+Configure your MCP tools to return focused, relevant data Use filtering parameters when available to limit response size Test your integration with realistic queries before
+deploying Monitor token usage and context size during development References Model Context Protocol Introduction Zapier MCP Make MCP Need Help? Join our Discord community for
+support with MCP integration API Reference View the complete API documentation for tools Was this page helpful? Yes No Edit this page Vapi MCP Server Connect Vapi to AI assistants
+with Model Context Protocol (MCP) Next Built with Model Context Protocol (MCP) Integration | VapiFor AI agents: a documentation index is available at the root level at /llms.txt
+and /llms-full.txt. Append /llms.txt to any URL for a page-level index, or .md for the markdown version of any page. Logo Search / Ask AI Website Status Support Dashboard MCP MCP
+client MCP server On this page Overview Quickstart: Claude Desktop Config Core Tools Integration Options Custom MCP Client Integration Example: Build a client with Node.js Detailed
+example: Build a client with Node.js References MCP Vapi MCP Server Copy page Connect Vapi to AI assistants with Model Context Protocol (MCP) Overview The Vapi MCP Server exposes
+Vapi APIs as tools via the Model Context Protocol (MCP), so you can manage assistants, phone numbers, and calls from any MCP-compatible AI assistant (like Claude Desktop) or agent
+framework. Use this server to connect your AI workflows to real-world telephony, automate voice tasks, and build richer conversational agents. Looking to use MCP tools inside a
+Vapi assistant? See the MCP Tool documentation for integrating external MCP servers with your Vapi agents. Using the Vapi CLI? Auto-configure MCP in your IDE with one command: vapi
+mcp setup This automatically configures Cursor, Windsurf, or VSCode with the Vapi MCP server. Learn more → Quickstart: Claude Desktop Config Fastest way to get started: connect
+Claude Desktop to the Vapi MCP Server. 1 Get your Vapi API key Get your API key from the Vapi dashboard. 2 Edit Claude Desktop config Open Settings → Developer tab → Edit Config. 3
+Add the Vapi MCP server block Insert this into your claude_desktop_config.json: { "mcpServers": { "vapi-mcp": { "command": "npx", "args": [ "mcp-remote", "https://mcp.vapi.ai/mcp",
+"--header", "Authorization: Bearer ${VAPI_TOKEN}" ], "env": { "VAPI_TOKEN": "YOUR_VAPI_API_KEY" } } } } Replace YOUR_VAPI_API_KEY with your API key. 4 Restart Claude Desktop Save
+and restart Claude Desktop. Example prompt: “Have my customer support assistant call Jeremy at +1555123456.” Core Tools The Vapi MCP Server exposes these actions as MCP tools:
+ToolDescriptionExample Usage list_assistantsList all Vapi assistantsShow all configured assistants create_assistantCreate a new Vapi assistantAdd a new assistant for a use case
+get_assistantGet a Vapi assistant by IDView assistant config list_callsList all callsReview call activity create_callCreate an outbound call (now or scheduled)Initiate or schedule
+a call get_callGet details for a specific callCheck status or result of a call list_phone_numbersList all Vapi phone numbersSee available numbers get_phone_numberGet details of a
+specific phone numberInspect a phone number list_toolsList all available Vapi toolsTool discovery get_toolGet details of a specific toolTool integration info Scheduling calls: The
+create_call action supports scheduling with the optional scheduledAt parameter. Integration Options Remote (streamable-HTTP) Remote (SSE) OpenAI responses API Local Connect to the
+Vapi-hosted MCP server using the streamable-HTTP protocol. Recommended for most production use cases. Use this for clients or SDKs that support streamable-HTTP transport. Endpoint:
+https://mcp.vapi.ai/mcp Authentication: Pass your Vapi API key as a bearer token: Authorization: Bearer YOUR_VAPI_API_KEY Example config: { "mcpServers": { "vapi-mcp": { "command":
+"npx", "args": [ "mcp-remote", "https://mcp.vapi.ai/mcp", "--header", "Authorization: Bearer ${VAPI_TOKEN}" ], "env": { "VAPI_TOKEN": "YOUR_VAPI_API_KEY" } } } } Custom MCP Client
+Integration You can use any MCP-compatible client (SDKs available for multiple languages). 1 Install an MCP client SDK Choose a language: TypeScript Python Java Kotlin C# 2
+Configure your connection Set up your SDK to connect to the Vapi MCP Server (https://mcp.vapi.ai/sse) and authenticate with your API key. 3 Use MCP tools Query available tools,
+list assistants, create calls, etc, via your SDK. Example: Build a client with Node.js Streamable-HTTP SSE import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js'; import dotenv from 'dotenv'; dotenv.config(); const mcpClient = new Client({
+name: 'vapi-client', version: '1.0.0' }); const transport = new StreamableHTTPClientTransport( new URL('https://mcp.vapi.ai/mcp'), { requestInit: { headers: { Authorization:
+`Bearer ${process.env.VAPI_TOKEN}` } } } ); async function main() { await mcpClient.connect(transport); const assistants = await mcpClient.callTool({ name: 'list_assistants',
+arguments: {} }); console.log(assistants); await mcpClient.close(); } main(); Detailed example: Build a client with Node.js Streamable-HTTP SSE #!/usr/bin/env node import { Client
+} from '@modelcontextprotocol/sdk/client/index.js'; import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js'; import dotenv from 'dotenv';
+// Load environment variables from .env file dotenv.config(); // Ensure API key is available if (!process.env.VAPI_TOKEN) { console.error('Error: VAPI_TOKEN environment variable is
+required'); process.exit(1); } async function main() { try { // Initialize MCP client const mcpClient = new Client({ name: 'vapi-client-example', version: '1.0.0', }); // Create
+Streamable-HTTP transport for connection to remote Vapi MCP server const serverUrl = 'https://mcp.vapi.ai/mcp'; const headers = { Authorization: `Bearer ${process.env.VAPI_TOKEN}`,
+}; const options = { requestInit: { headers: headers }, }; const transport = new StreamableHTTPClientTransport(new URL(serverUrl), options); console.log('Connecting to Vapi MCP
+server via Streamable HTTP...'); await mcpClient.connect(transport); console.log('Connected successfully'); // Helper function to parse tool responses function
+parseToolResponse(response) { if (!response?.content) return response; const textItem = response.content.find(item => item.type === 'text'); if (textItem?.text) { try { return
+JSON.parse(textItem.text); } catch { return textItem.text; } } return response; } try { // List available tools const toolsResult = await mcpClient.listTools();
+console.log('Available tools:'); toolsResult.tools.forEach((tool) => { console.log(`- ${tool.name}: ${tool.description}`); }); // List assistants console.log('\nListing
+assistants...'); const assistantsResponse = await mcpClient.callTool({ name: 'list_assistants', arguments: {}, }); const assistants = parseToolResponse(assistantsResponse); if
+(!(Array.isArray(assistants) && assistants.length > 0)) { console.log('No assistants found. Please create an assistant in the Vapi dashboard first.'); return; } console.log('Your
+assistants:'); assistants.forEach((assistant) => { console.log(`- ${assistant.name} (${assistant.id})`); }); // List phone numbers console.log('\nListing phone numbers...'); const
+phoneNumbersResponse = await mcpClient.callTool({ name: 'list_phone_numbers', arguments: {}, }); const phoneNumbers = parseToolResponse(phoneNumbersResponse); if
+(!(Array.isArray(phoneNumbers) && phoneNumbers.length > 0)) { console.log('No phone numbers found. Please add a phone number in the Vapi dashboard first.'); return; }
+console.log('Your phone numbers:'); phoneNumbers.forEach((phoneNumber) => { console.log(`- ${phoneNumber.phoneNumber} (${phoneNumber.id})`); }); // Create a call using the first
+assistant and first phone number const phoneNumberId = phoneNumbers[0].id; const assistantId = assistants[0].id; console.log(`\nCreating a call using assistant (${assistantId}) and
+phone number (${phoneNumberId})...`); const createCallResponse = await mcpClient.callTool({ name: 'create_call', arguments: { assistantId: assistantId, phoneNumberId:
+phoneNumberId, customer: { number: "+1234567890" // Replace with actual customer phone number } // Optional: schedule a call for the future // scheduledAt: "2025-04-15T15:30:00Z"
+// assistantOverrides: { // variableValues: { // name: 'John Doe', // age: '25', // }, // }, }, }); const createdCall = parseToolResponse(createCallResponse); console.log('Call
+created:', JSON.stringify(createdCall, null, 2)); } finally { console.log('\nDisconnecting from server...'); await mcpClient.close(); console.log('Disconnected'); } } catch (error)
+{ console.error('Error:', error); process.exit(1); } } main(); For more detailed examples and complete client implementations, see the MCP Client Quickstart. References Github repo
+Model Context Protocol docs Vapi dashboard MCP client quickstart Need help? Join our Discord community for MCP support. API reference Full API documentation for tools. Was this
+page helpful? Yes No Edit this page Previous Built with Vapi MCP Server | VapiFor AI agents: a documentation index is available at the root level at /llms.txt and /llms-full.txt.
+Append /llms.txt to any URL for a page-level index, or .md for the markdown version of any page. Logo Search / Ask AI Website Status Support Dashboard Client SDKs Web SDK iOS
+Flutter React Native Python Server SDKs TypeScript Python Java Ruby C# Go Ecosystem Ecosystem Copy page Find all of our resources here. Vapi AI Ecosystem Vapi CLIOverview · GitHub
+· Project Integration · MCP Setup · Webhook Testing Real-time SDKsWeb · Flutter · React Native · iOS · Python · Vanilla Client ExamplesNext.js · React · Flutter · React Native
+Server ExamplesVercel · Cloudflare · Supabase · Node · Bun · Deno · Flask · Laravel · Go · Rust ResourcesOfficial Docs · API Reference · MCP Server CommunityVideos . UI Library Was
+this page helpful? Yes No Edit this page Built with Ecosystem | VapiFor AI agents: a documentation index is available at the root level at /llms.txt and /llms-full.txt. Append
+/llms.txt to any URL for a page-level index, or .md for the markdown version of any page. Logo Search / Ask AI Website Status Support Dashboard Get started Introduction Phone calls
+Web calls Vapi Guides Composer CLI quickstart Assistants Quickstart Core concepts Conversation behavior Model configurations Tools Custom keywords Custom voices Custom transcriber
+Custom TTS Custom LLMs Examples Observability Evals Simulations Boards Structured outputs Scorecard Monitoring Squads Quickstart Overview Handoff tool Passing data between
+assistants Examples Best practices Prompting guide Debugging voice agents Enterprise environments (DEV/UAT/PROD) IVR navigation Testing Phone numbers Free Vapi number Inbound SMS
+Telephony integrations SIP integration Phone Number Hooks Calls Place calls In-call control Call end reasons Troubleshoot call errors Call insights Outbound Campaigns Quickstart
+Overview Chat Quickstart Streaming Non-streaming OpenAI compatibility Session management Variable substitution SMS chat Web widget Webhooks Workflows Quickstart Overview Examples
+Resources On this page Overview Installation Quick start Key features 🚀 Project integration 🤖 MCP integration 🔗 Local webhook testing 🔐 Multi-account management 📱 Complete feature
+parity Common commands Configuration Auto-updates Next steps Get started Vapi CLI Copy page Overview The Vapi CLI is the official command-line interface that brings world-class
+developer experience to your terminal and IDE. Build, test, and deploy voice AI applications without leaving your development environment. In this guide, you’ll learn to: Install
+and authenticate with the Vapi CLI Initialize Vapi in existing projects Manage assistants, phone numbers, and workflows from your terminal Forward webhooks to your local
+development server Turn your IDE into a Vapi expert with MCP integration Installation Install the Vapi CLI in seconds with our automated scripts: macOS/Linux Windows Docker curl
+-sSL https://vapi.ai/install.sh | bash Quick start 1 Authenticate Connect your Vapi account: vapi login This opens your browser for secure OAuth authentication. 2 Initialize your
+project Add Vapi to an existing project: vapi init The CLI auto-detects your tech stack and sets up everything you need. 3 Create your first assistant Build a voice assistant: vapi
+assistant create Follow the interactive prompts to configure your assistant. Key features 🚀 Project integration Drop Vapi into any existing codebase with intelligent
+auto-detection: vapi init # Detected: Next.js application # ✓ Installed @vapi-ai/web SDK # ✓ Generated components/VapiButton.tsx # ✓ Created pages/api/vapi/webhook.ts # ✓ Added
+environment template Supports React, Vue, Next.js, Python, Go, Flutter, React Native, and dozens more frameworks. 🤖 MCP integration Turn your IDE into a Vapi expert with Model
+Context Protocol: vapi mcp setup Your IDE’s AI assistant (Cursor, Windsurf, VSCode) gains complete, accurate knowledge of Vapi’s APIs and best practices. No more hallucinated code
+or outdated examples. 🔗 Local webhook testing Forward webhooks to your local server for debugging: # Terminal 1: Create tunnel (e.g., with ngrok) ngrok http 4242 # Terminal 2:
+Forward webhooks vapi listen --forward-to localhost:3000/webhook Important: vapi listen is a local forwarder only - it does NOT provide a public URL. You need a separate tunneling
+service (like ngrok) to expose the CLI’s port to the internet. Update your webhook URLs in Vapi to use the tunnel’s public URL. 🔐 Multi-account management Switch between
+organizations and environments seamlessly: # List all authenticated accounts vapi auth status # Switch between accounts vapi auth switch production # Add another account vapi auth
+login 📱 Complete feature parity Everything you can do in the dashboard, now in your terminal: Assistants: Create, update, list, and delete voice assistants Phone numbers: Purchase,
+configure, and manage phone numbers Calls: Make outbound calls and view call history Workflows: Manage conversation flows (visual editing in dashboard) Campaigns: Create and manage
+AI phone campaigns at scale Tools: Configure custom functions and integrations Webhooks: Set up and test event delivery Logs: View system logs, call logs, and debug issues Common
+commands Assistant management Phone number management Call operations Debugging and logs Configuration The CLI stores configuration in ~/.vapi-cli.yaml. You can also use
+environment variables: # Set API key via environment export VAPI_API_KEY=your-api-key # View current configuration vapi config get # Update configuration vapi config set <key>
+<value> # Manage analytics preferences vapi config analytics disable Auto-updates The CLI automatically checks for updates and notifies you when new versions are available: # Check
+for updates manually vapi update check # Update to latest version vapi update Next steps Now that you have the Vapi CLI installed: Initialize a project: Add Vapi to your existing
+codebase Set up MCP: Enhance your IDE with Vapi intelligence Test webhooks locally: Debug webhooks with tunneling services Manage authentication: Work with multiple accounts
+Resources: GitHub Repository Report Issues Discord Community Was this page helpful? Yes No Edit this page Previous Assistants quickstart Build your first assistant and make a phone
+call in minutes Next Built with Vapi CLI | VapiFor AI agents: a documentation index is available at the root level at /llms.txt and /llms-full.txt. Append /llms.txt to any URL for
+a page-level index, or .md for the markdown version of any page. Logo Search / Ask AI Website Status Support Dashboard On this page May 11, 2026 What's New: Week of May 11, 2026
+May 4, 2026 What's New: Week of May 4, 2026 April 27, 2026 What's New: Week of April 27, 2026 April 20, 2026 What's New: Week of April 20, 2026 April 13, 2026 What's New: Week of
+April 13, 2026 March 31, 2026 What's New: October 2025 – March 2026 September 29, 2025 Breaking Changes & API Cleanup September 28, 2025 Evaluation Execution & Results Processing
+September 26, 2025 Voicemail Detection & Handling Improvements September 23, 2025 Advanced Analytics & Variable Grouping What's New? Subscribe via RSS Subscribe to the latest
+product updates Enter your email Submit May 11, 2026 What’s New: Week of May 11, 2026 New Assistant Builder Experience: An updated, streamlined assistant configuration experience,
+now available to all users. UI optimizations for the Phone Numbers page were also made to align its look and interactions with the new experience. May 4, 2026 What’s New: Week of
+May 4, 2026 Soniox — General Availability: The Soniox transcriber is now rolled out to all customers. Configure it on any assistant via assistant.transcriber (provider: soniox) for
+low-latency, multilingual real-time speech-to-text. April 27, 2026 What’s New: Week of April 27, 2026 Deepgram Flux — Multilingual Support: Full support for Deepgram’s multilingual
+Flux model. Multilingual agents can now leverage the same smart turn-taking that powers the English Flux transcriber, making cross-lingual conversations feel more fluid and
+natural. April 20, 2026 What’s New: Week of April 20, 2026 Logs UX Refresh: New filter layout plus a round of UX improvements — improved date picker, active row is clearly
+highlighted across all log views when the flyout is opened, log tables are fully keyboard-accessible, sortable cost and duration columns, pagination, and more. Squads
+contextEngineeringPlan Handoff Type — previousAssistantMessages: Forwards only the conversation history from before the current assistant’s session. The current assistant’s own
+messages and tool calls are excluded entirely from the handoff payload. See the updated handoff context configuration docs. assistant.speechStarted Event — Live Captions &
+Word-Level Timing (GA): A new opt-in message fires as the assistant begins speaking each segment, carrying the full turn text, turn, source (model / force-say / custom-voice), and
+optional timing: Per-word alignment on ElevenLabs Cursor-based word-progress on Minimax (set voice.subtitleType: "word", with correct CJK handling) Text-only fallback on all other
+providers Subscribe by adding "assistant.speechStarted" to your assistant’s clientMessages and/or serverMessages — now GA with no feature flag. Use it for live captions,
+karaoke-style highlighting, or any UI that needs to stay in sync with assistant audio. Fully backward-compatible; no existing messages changed. Autofallbacks on Transcribers: Let
+Vapi pick the best transcriber to fall back to if your primary one fails — even mid-call. Opt in by setting assistant.transcriber.fallbackPlan.autoFallback.enabled to true. See the
+updated transcriber fallback plan docs. April 13, 2026 What’s New: Week of April 13, 2026 Monitoring — GA: Automated call quality monitoring is now generally available. Detect
+issues with trigger-based rules, get alerts when something goes wrong, and surface resolution suggestions — all from the dashboard. Monitoring quickstart Announcement blog post
+March 31, 2026 What’s New: October 2025 – March 2026 Here’s a summary of major items shipped from October 2025 through March 2026. Platform Squads v2: Visual builder to simplify
+sophisticated multi-assistant orchestration with seamless handoffs between specialized agents. Composer (Alpha): Intelligent assistant inside the dashboard that allows you to
+describe what you need through plain text prompts to help build, adjust, and debug voice agents. Simulations (Alpha): Voice agent testing feature to build confidence through
+enabling systematic, AI-powered testing in specific scenarios with evaluation of outcomes. Monitoring & Issues: Automated call quality monitoring with trigger-based issue
+detection, alerting, and resolution suggestions. HIPAA with Data Retention: New compliance mode with private storage and in-dashboard toggle/purchase flow — available for
+additional cost. Zero Data Retention: Compliance mode that keeps context data during call as needed to execute tasks and retains no data afterwards. Consolidated Logs: Unified log
+viewing into a single page. Vapi Voices: 12 new ultra-realistic voices released, optimized for latency and cost with adjustable speed controls exposed. 8 legacy voices deprecated.
+New Models & Provider Support Transcriber Models (Speech-to-Text) Deepgram Nova-3 Languages: Added Hebrew, Urdu, Tagalog, and Arabic bilingual support. Cartesia Transcriber:
+ink-whisper. Soniox: stt-rt-v4. Intelligence Models (LLM) GPT-5 Family: OpenAI’s latest intelligence models, including GPT-5, 5-Mini, 5-Nano, 5.1, 5.2, 5.4, 5.4-Mini, 5.4-Nano.
+Claude 4.5–4.6: Anthropic’s latest intelligence models Sonnet 4.5, Opus 4.5, Opus 4.6, Sonnet 4.6. Gemini 3 Flash: Google’s latest intelligence models. Grok 4 Fast: Reasoning and
+non-reasoning variants. GPT Realtime Mini: OpenAI’s lightweight realtime model. Voice Models (Text-to-Speech) Cartesia: sonic-3, sonic-3-2026-01-12, sonic-3-2025-10-27. WellSaid:
+Caruso (new), legacy. Inworld: inworld-tts-1 (REST, original), inworld-tts-1.5-max (WebSocket, $10/M chars), inworld-tts-1.5-mini (WebSocket, $5/M chars). ElevenLabs Scribe v2:
+Latest version of ElevenLabs speech-to-text. Developer Tools & API Structured Outputs Improvements: Updates to our AI-powered analysis and data extraction tool, including transient
+structured outputs, audio-based extraction, and regex extraction. SIP Request Tool + DTMF over SIP INFO: Send SIP requests and DTMF tones via SIP INFO messages during calls.
+Variable Passing Between Tool Calls: Pass output variables from one tool call as input to subsequent tool calls. Encrypted Tool Arguments: Encrypt sensitive tool arguments to
+protect data in transit. Low Confidence Speech Hook: Hook that triggers when the transcriber returns low-confidence speech results. Time Elapsed Hook: Hook that triggers at
+specified time intervals during a call. assistant.speechStarted Event: New event fired when the assistant begins speaking. MCP Improvements: Bearer auth, $ref dereferencing, child
+tool messages/discovery. Warm Transfer Improvements: SIP support, caller ID, context engineering, variable filling. September 29, 2025 Breaking Changes & API Cleanup Legacy
+Endpoint Removal: The following deprecated endpoints have been removed as part of our API modernization effort: /logs - Use call artifacts and monitoring instead /workflow/{id} -
+Access workflows through the main workflow endpoints /test-suite and related paths - Replaced by the new evaluation system /knowledge-base and related paths - Integrated into model
+configurations Knowledge Base Architecture Change: The knowledgeBaseId property has been removed from all model configurations. This affects: XaiModel, GroqModel, GoogleModel
+OpenAIModel, AnthropicModel, CustomLLMModel All other model provider configurations Transcriber Property Deprecation: AssemblyAITranscriber.wordFinalizationMaxWaitTime and
+FallbackAssemblyAITranscriber.wordFinalizationMaxWaitTime are now deprecated: Use smart endpointing plans for better speech timing control More precise conversation flow management
+Enhanced end-of-turn detection capabilities Schema Path Cleanup: Removed numerous unused schema paths from model configurations to simplify the API structure and improve
+performance. This cleanup affects internal schema references but doesn’t impact your existing integrations. New v2 API: We are introducing a new API version v2. These changes are
+part of our ongoing effort to: Simplify the API structure for better developer experience Remove redundant and deprecated functionality Complete the transition to new evaluation
+and compliance systems Improve API performance and maintainability For details on the new features that replace these deprecated endpoints, see our recent changelog entries:
+Enhanced Authentication & Custom Credentials (Aug 30) Recording Consent & Compliance Management (Sep 2) Evaluation System Foundation (Sep 5) Evaluation Execution & Results
+Processing (Sep 28) If you’re currently using any of the removed endpoints or properties, you must migrate to the new alternatives before this release. Contact support if you need
+assistance with migration strategies. Migration Guide Logging & Monitoring Replace /logs endpoint usage with call artifacts, monitoring plans, and end-of-call reports for
+comprehensive logging. Testing Framework Migrate from test-suite endpoints to the new evaluation system with mock conversations and comprehensive result tracking. Knowledge Base
+Update model configurations to use the integrated knowledge base system instead of separate knowledgeBaseId references. Speech Timing Replace deprecated transcriber timing
+properties with smart endpointing plans for better conversation flow control. Removed Endpoints The following endpoints are no longer available: GET /logs - Use call artifacts
+instead GET /workflow/{id} - Use main workflow endpoints GET /test-suite, POST /test-suite - Use evaluation endpoints GET /test-suite/{id}, PUT /test-suite/{id}, DELETE
+/test-suite/{id} - Use evaluation management POST /test-suite/{testSuiteId}/run - Use evaluation runs GET /knowledge-base, POST /knowledge-base - Integrated into model
+configurations All related nested endpoints and operations See Also: Authentication System Updates (Aug 30) - For credential management migration Recording Consent Features (Sep 2)
+- For compliance system details Enhanced Transcription (Sep 8) - For AssemblyAI timing alternatives September 28, 2025 Evaluation Execution & Results Processing Evaluation
+Execution Engine: Run comprehensive assistant evaluations with EvalRun and CreateEvalRunDTO. Execute your mock conversations against live assistants and squads to validate
+performance and behavior in controlled environments. Multiple Evaluation Models: Choose from various AI models for LLM-as-a-judge evaluation: EvalOpenAIModel: GPT models including
+GPT-4.1, o1-mini, o3, and regional variants EvalAnthropicModel: Claude models with optional thinking features for complex evaluations EvalGoogleModel: Gemini models from 1.0 Pro to
+2.5 Pro for diverse evaluation needs EvalGroqModel: High-speed inference models including Llama and custom options EvalCustomModel: Your own evaluation models with custom endpoints
+Evaluation Results: Comprehensive result tracking with EvalRunResult: status: Pass/fail evaluation outcomes messages: Complete conversation transcript from the evaluation startedAt
+and endedAt: Precise timing information for performance analysis Target Flexibility: Run evaluations against different targets: EvalRunTargetAssistant: Test individual assistants
+with optional overrides EvalRunTargetSquad: Evaluate entire squad performance and coordination Evaluation Status Tracking: Monitor evaluation progress with detailed status
+information: running: Evaluation in progress ended: Evaluation completed queued: Evaluation waiting to start Detailed endedReason including success, error, timeout, and
+cancellation states Judge Configuration: Optimize evaluation accuracy with model-specific settings: maxTokens: Recommended 50-10000 tokens (1 token for simple pass/fail responses)
+temperature: 0-0.3 recommended for LLM-as-a-judge to reduce hallucinations For LLM-as-a-judge evaluations, the judge model must respond with exactly “pass” or “fail”. Design your
+evaluation prompts to ensure clear, deterministic responses. Evaluation Capabilities Multi-Model Support Choose from OpenAI, Anthropic, Google, Groq, or custom models for
+evaluation, matching your quality and performance requirements. Comprehensive Results Detailed pass/fail results with complete conversation transcripts and timing information for
+thorough analysis. Flexible Targets Test individual assistants or entire squads with optional configuration overrides for comprehensive validation. Status Monitoring Real-time
+evaluation status tracking with detailed reason codes for failures, timeouts, and cancellations. September 26, 2025 Voicemail Detection & Handling Improvements Enhanced Beep
+Detection: Improve voicemail detection accuracy with CreateVoicemailToolDTO.beepDetectionEnabled specifically for Twilio-based calls. This feature detects the characteristic beep
+sound that indicates voicemail recording has started. Workflow Voicemail Integration: Configure comprehensive voicemail handling in workflows with enhanced message and detection
+capabilities: Workflow.voicemailMessage: Custom messages for voicemail scenarios (up to 1000 characters) Workflow.voicemailDetection: Configurable detection methods for different
+providers Assistant Voicemail Enhancement: Improved voicemail handling in assistant configurations with Assistant.voicemailMessage and Assistant.voicemailDetection for consistent

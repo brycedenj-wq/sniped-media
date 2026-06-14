@@ -1,0 +1,224 @@
+care to do cuz 19:16 that would just break too many things 19:18 now I did reach a point at which it was 19:21 really difficult to make any changes I 19:24 would make a change and
+it would just 19:25 take so many iterations to get it right 19:27 so many iterations to fix a bug and I 19:31 think if I had known all of this stuff 19:32 beforehand I would have
+been able to get 19:34 a lot further and I got to say it does 19:36 become pretty addicting I'm sitting 19:39 doing something else I will come write a 19:42 command build this
+feature and walk away 19:44 and just let it work and come back 10 19:47 minutes later to see either it worked or 19:49 it didn't I would iterate walk away come 19:51 back and so
+it's something you can 19:52 almost do asynchronously something where 19:54 you're doing something else and you can 19:56 just give it command after command now 19:58 one thing
+that I do wish I had was this 20:00 available on my phone now repet has 20:03 something like this but I don't love its 20:05 coding agent it's just a little bit more 20:07
+difficult to use so I really wish that 20:09 there was a fully hosted version that I 20:11 can use on my phone anywhere because 20:13 coding legitimate coding becomes much 20:16
+more feasible when you're using an agent 20:18 like this and just typing something out 20:19 on your phone is super easy to do and 20:22 you can watch it and you can iterate on
+20:24 it and it doesn't require a full screen 20:26 a keyboard and a mouse so it's kind of 20:29 opening up an entire world of 20:31 possibilities with mobile coding so a 20:33
+couple last suggestions commit often 20:36 commit often I cannot suggest that 20:38 enough make sure that every single 20:40 change you make you are committing 20:42 because you
+can always roll back if it 20:45 gets to a state that is just unfixable 20:48 and another version of that is you can 20:50 actually see the chat history so you can 20:52 roll back
+to previous chats so if I just 20:55 click this one so I added dark mode I 20:58 scroll to the very top and I can just 21:00 say restore checkpoint and it will roll 21:02 the code
+back for me so you not only 21:04 have get to do that but you also have 21:07 this built-in versioning through cursor 21:09 or through wind surf itself so those are 21:12 all of
+the best practices that I've 21:13 learned over uh about 100 or 150 hours 21:17 worth of vibe coding different 21:19 applications a game and it's been a lot 21:22 of fun and I
+can't wait till these tools 21:24 get better this is the worst that they 21:26 will ever be and so all of these 21:28 problems you're experiencing now or I'm 21:30 experiencing now
+they're only going to 21:32 get easier to deal with in the future so 21:35 enjoy Vibe code away you really need to 21:38 know very little about coding to build 21:40 something
+incredible and I encourage you 21:42 to build if you enjoyed this video 21:44 please consider giving a like And 21:46 subscribe and I'll see you in the next 21:47 one All From the
+series From Matthew BermanOpenAI Developers Home API Codex ChatGPT Resources Start searching Home OpenAI Developers plugin Docs MCP Demo apps Videos Agents Audio & Voice Computer
+Use Codex Evals gpt-oss Fine-tuning Image generation Scaling Tools Video generation Introduction Core concepts Tools Orchestration Example use cases Best practices Conclusion and
+next steps Copy Page 1-3 hours Beginner Building agents Learn how to build agents: Foundational concepts to practical implementation Building agents Introduction You’ve probably
+heard of agents, but what does this term actually mean? Our simple definition is: An AI system that has instructions (what it should do), guardrails (what it should not do), and
+access to tools (what it can do) to take action on the user’s behalf Think of it this way: if you’re building a chatbot-like experience, where the AI system is answering questions,
+you can’t really call it an agent. If that system, however, is connected to other systems, and taking action based on the user’s input, that qualifies as an agent. Simple agents
+may use a handful of tools, and complex agentic systems may orchestrate multiple agents to work together. This learning track introduces you to the core concepts and practical
+steps required to build AI agents, as well as best practices to keep in mind when building these applications. What we will cover Core concepts: how to choose the right models, and
+how to build the core logic Tools: how to augment your agents with tools to enable them to retrieve data, execute tasks, and connect to external systems Orchestration: how to build
+multi-step flows or networks of agents Example use cases: practical implementations of different use cases Best practices: how to implement guardrails, and next steps to consider
+The goal of this track is to provide you with a comprehensive overview, and invite you to dive deeper with the resources linked in each section. Some of these resources are code
+examples, allowing you to get started building quickly. Core concepts The OpenAI platform provides composable primitives to build agents: models, tools, state/memory, and
+orchestration. You can build powerful agentic experiences on our stack, with help in choosing the right models, augmenting your agents with tools, using different modalities
+(voice, vision, etc.), and evaluating and optimizing your application. Building agents guide Building agents guide Official guide to building agents using the OpenAI platform.
+guide Choosing the right model Depending on your use case, you might need more or less powerful models. OpenAI offers a wide range of models, from cheap and fast to very powerful
+models that can handle complex tasks. Reasoning vs non‑reasoning models In late 2024, with our first reasoning model o1, we introduced a new concept: the ability for models to
+think things through before giving a final answer. That thinking is called a “chain of thought,” and it allows models to provide more accurate and reliable answers, especially when
+answering difficult questions. With reasoning, models have the ability to form hypotheses, then test and refine them before validating the final answer. This process results in
+higher quality outputs. Reasoning models trade latency and cost for reliability and often have adjustable levers (e.g., reasoning effort) that influence how hard the model
+“thinks.” Use a reasoning model when dealing with complex tasks, like planning, math, code generation, or multi‑tool workflows. Non‑reasoning models are faster and usually cheaper,
+which makes them great for chatlike user experiences (with lots of back-and-forth) and simpler tasks where latency matters. Reasoning guide Reasoning guide Overview of what
+reasoning is and how to prompt reasoning models guide Reasoning best practices Reasoning best practices Prompting and optimization tips for reasoning models guide How to choose
+Always start experimenting with a flagship, multi-purpose model—for example gpt-4.1 or the new gpt-5 with minimal reasoning_effort. If your use case is simple and requires fast
+responses, start with gpt-5.4, then try gpt-5.4-mini or gpt-5.4-nano if you need lower latency and cost. If your use case however is somewhat complex, you might want to try gpt-5.4
+or a reasoning model like o4-mini. As you try different options, be mindful of prompting strategies: you don’t prompt a reasoning model the same way you prompt a GPT model. So
+don’t just swap out the model name when you’re experimenting, try different prompts and see what works best—you can learn more in the evaluation section below. If you need more
+horsepower, you can use more powerful models, like o3 or gpt-5 with high reasoning_effort. However, if your application presents a conversational interface, we recommend having a
+faster model to chat back and forth with the user, and then delegating to a more powerful model to perform specific tasks. You can refer to our models page for more information on
+the different models available on the OpenAI platform, including information on performance, latency, capabilities, and pricing. Reasoning models and general-purpose models respond
+best to different kinds of prompts, and flagship models like gpt-5 and gpt-4.1 follow instructions differently. Check out our prompting guide below for how to get the best out of
+gpt-5. OpenAI models page OpenAI models page Overview of the models available on the OpenAI platform. guide Building the core logic To get started building an agent, you have
+several options to choose from: We have multiple core APIs you can use to talk to our models, but our flagship API that was specifically designed for building powerful agents is
+the Responses API. When you’re building with the Responses API, you’re responsible for defining the core logic, and orchestrating the different parts of your application. If you
+want a higher level of abstraction, you can also use the Agents SDK, our framework to build and orchestrate agents. Which option you choose depends on personal preference: if you
+want to get started quickly or build networks of agents that work together, we recommend using the Agents SDK. If you want to have more control over the different parts of your
+application, and really understand what’s going on under the hood, you can use the Responses API. The Agents SDK is based on the Responses API, but you can also use it with other
+APIs and even external model providers if you choose. Think of it as another layer on top of the core APIs that makes it easier to build agentic applications. It abstracts away the
+complexity, but the trade-off is that it might be harder to have fine-grained control over the core logic. The Responses API is more flexible, but building with it requires more
+work to get started. Building with the Responses API The Responses API is our flagship core API to interact with our models. It was designed to work well with our latest models’
+capabilities, notably reasoning models, and comes with a set of built-in tools to augment your agents. It’s a flexible foundation for building agentic applications. It’s also
+stateful by default, meaning you don’t have to manage the conversation history on your side. You can if your application requires it, but you can also rely on us to carry over the
+conversation history from one request to the next. This makes it easier to build conversations that handle conversation threads without having to store the full conversation state
+client-side. It’s especially helpful when you’re using tools that return large payloads as managing that context on your side can impact performance. You can get started building
+with the Responses API by cloning our starter app and customizing it to your needs. Responses guide Responses guide Introduction to the Responses API and its endpoints. guide
+Responses starter app Responses starter app Starter application demonstrating OpenAI Responses API with tools. code Building with the Agents SDK The Agents SDK is a lightweight
+framework that makes it easy to build single agents or orchestrate networks of agents. It takes care of the complexity of handling agent loops, has built-in support for guardrails
+(making sure your agents don’t do anything unsafe or wrong), and introduces the concept of tracing that allows to monitor your workflows. It works really well with our suite of
+optimization tools such as our evaluation tool, or our distillation and fine-tuning products. If you want to learn more about how to optimize your applications, you can check out
+our optimization track. The Agents SDK repositories contain examples in JavaScript and Python to get started quickly, and you can learn more about it in the Orchestration section
+below. Agents SDK quickstart Agents SDK quickstart Step-by-step guide to quickly build agents with the OpenAI Agents SDK. guide Agents SDK — Python Agents SDK — Python Python SDK
+for developing agents with OpenAI. code Agents SDK — TypeScript Agents SDK — TypeScript TypeScript SDK for developing agents with OpenAI. code Augmenting your agents with tools
+Agents become useful when they can take action. And for them to be able to do that, you need to equip your agents with tools. Tools are functions that your agent can call to
+perform specific tasks. They can be used to retrieve data, execute tasks, or even interact with external systems. You can define any tools you want and tell the models how to use
+them using function calling, or you can rely on our offering of built-in tools - you can find out more about the tools available to you in the next section. Rule of thumb: If the
+capability already exists as a built‑in tool, start there. Move to function calling with your own functions when you need custom logic. Tools Explore how you can give your agents
+access to tools to enable actions like retrieving data, executing tasks, and connecting to external systems. There are two types of tools: Custom tools that you define yourself,
+that the agent can call via function calling Built-in tools provided by OpenAI, that you can use out-of-the-box Function calling vs built‑in tools Function calling happens in
+multiple steps: First, you define what functions you want the model to use and which parameters are expected Once the model is aware of the functions it can call, it can decide
+based on the conversation to call them with the corresponding parameters When that happens, you need to execute the execution of the function on your side You can then tell the
+model what the result of the function execution is by adding it to the conversation context The model can then use this result to generate the next response Function calling
+diagram With built-in tools, you don’t need to handle the execution of the function on your side (except for the computer use tool, more on that below). When the model decides to
+use a built-in tool, it’s automatically executed, and the result is added to the conversation context without you having to do anything. In one conversation turn, you get output
+that already takes into account the tool result, since it’s executed on our infrastructure. Function calling guide Function calling guide Introduction to function calling with
+OpenAI models. guide Built-in tools guide Built-in tools guide Guide to using OpenAI's built-in tools with the Responses API. guide Build hour — agentic tool calling Build hour —
+agentic tool calling Build hour giving an overview of agentic tool calling. video Built‑in tools Built-in tools are an easy way to add capabilities to your agents, without having
+to build anything on your side. You can give the model access to external or internal data, the ability to generate code or images, or even the ability to use computer interfaces,
+with very low effort. There are a range of built-in tools you can choose from, each serving a specific purpose: Web search: Search the web for up-to-date information File search:
+Search across your internal knowledge base Code interpreter: Let the model run python code Computer use: Let the model use computer interfaces Image generation: Generate images
+with GPT Image models MCP: Use any hosted MCP server Read more about each tool and how you can use them below or check out our build hour showing web search, file search, code
+interpreter and the MCP tool in action. Web search LLMs know a lot about the world, but they have a cutoff date in their training data, which means they don’t know about anything
+that happened after that date. For example, gpt-5 has a cutoff date of late September 2024. If you want your agents to know about recent events, you need to give them access to the
+web. With the web search tool, you can do this in one line of code. Simply add web search as a tool your agent can use, and that’s it. Web search guide Web search guide Guide to
+using web search with the Responses API. guide File search With file search, you can give your agent access to internal knowledge that it would not find on the web. If you have a
+lot of proprietary data, feeding everything into the agent’s instructions might result in poor performance. The more text you have in the input request, the slower (and more
+expensive) the request, and the agent could also get confused by all this information. Instead, you want to retrieve just the information you need when you need it, and feed it to
+the agent so that it can generate relevant responses. This process is called RAG (Retrieval-Augmented Generation), and it’s a very common technique used when building AI
+applications. However, there are many steps involved in building a robust RAG pipeline, and many parameters you need to think about: First, you need to prepare the data to create
+your knowledge base. This means pre-processing the files that contain your knowledge, and often you’ll need to split them into smaller chunks. If you have very large PDF files for
+example, you want to chunk them into smaller pieces so that each chunk covers a specific topic. Then, you need to embed the chunks and store them in a vector database. This
+conversion into a numerical representation is how we can later on use algorithms to find the chunks most similar to a given text. There are many vector databases to choose from,
+some are managed, some are self-hosted, but either way you would need to store the chunks somewhere. Then, when you get an input request, you need to find the right chunks to give
+to the model to produce the best answer. This is the retrieval step. Once again, it is not that straightforward: you might need to process the input to make the search more
+relevant, then you might need to “re-rank” the results you get from the vector database to make sure you pick the best. Finally, once you have the most relevant chunks, you can
+include them in the context you send to the model to generate the final answer. As you may have noticed, there is complexity involved with building a custom RAG pipeline, and it
+requires a lot of work to get right. The file search tool allows you to bypass that complexity and get started quickly. All you have to do is add your files to one of our managed
+vector stores, and we take care of the rest for you: we pre-process the files, embed them, and store them for later use. Then, you can add the file search tool to your application,
+specify which vector store to use, and that’s it: the model will automatically decide when to use it and how to produce a final response. File search guide File search guide Guide
+to retrieving context from files using the Responses API. guide Code interpreter The code interpreter tool allows the model to come up with python code to solve a problem or answer
+a question, and execute it in a dedicated environment. LLMs are great with words, but sometimes the best way to get to a result is through code, especially when there are numbers
+involved. That’s when code interpreter comes in: it combines the power of LLMs for answer generation with the deterministic nature of code execution. It accepts file inputs, so for
+example you could provide the model with a spreadsheet export that it can manipulate and analyze through code. It can also generate files, for example charts or csv files that
+would be the output of the code execution. This can be a powerful tool for agents that need to manipulate data or perform complex analysis. Code interpreter guide Code interpreter
+guide Guide to using the built-in code interpreter tool. guide Computer use The computer use tool allows the model to perform actions on computer interfaces like a human would. For
+example, it can navigate to a website, click on buttons or fill in forms. This tool works a little differently: unlike with the other built-in tools, the tool result can’t be
+automatically appended to the conversation history, because we need to wait for the action to be executed to see what the next step should be. So similarly to function calling,
+this tool call comes with parameters that define suggested actions: “click on this position”, “scroll by that amount”, etc. It is then up to you to execute the action on your
+environment, either a virtual computer or a browser, and then send an update in the form of a screenshot. The model can then assess what it should do next based on the visual
+interface, and may decide to perform another computer use call with the next action. Computer use diagram This can be useful if your agent needs to use services that don’t
+necessarily have an API available, or to automate processes that would normally be done by humans. Computer Use API guide Computer Use API guide Guide to using the Computer Use API
+(CUA). guide Computer Use API — starter app Computer Use API — starter app Sample app showcasing Computer Use API integration. code Image generation The image generation tool
+allows the model to generate images based on a text prompt. It uses GPT Image models for image generation with world knowledge. This is a powerful tool for agents that need to
+generate images within a conversation, for example to create a visual summary of the conversation, edit user-provided images, or generate and iterate on images with a lot of
+context. Image generation guide Image generation guide Guide to generating images using OpenAI models. guide Orchestration Orchestration is the concept of handling multiple steps,
+tool use, handoffs between different agents, guardrails, and context. Put simply, it’s how you manage the conversation flow. For example, in reaction to a user input, you might
+need to perform multiple steps to generate a final answer, each step feeding into the next. You might also have a lot of complexity in your use case requiring a separation of
+concerns, and to do that you need to define multiple agents that work in concert. If you’re building with the Responses API, you can manage this entirely on your side, maintaining
+state and context across steps, switching between models and instructions appropriately, etc. However, for orchestration we recommend relying on the Agents SDK, which provides a
+set of primitives to help you easily define networks of agents, inject guardrails, define context, and more. Foundations of the Agents SDK The Agents SDK uses a few core
+primitives: PrimitiveWhat it is Agentmodel + instructions + tools Handoffother agent the current agent can hand off to Guardrailpolicy to filter out unwanted inputs
+Sessionautomatically maintains conversation history across agent runs Each of these primitives is an abstraction allowing you to build faster, as the complexity that comes with
+handling these aspects is handled for you. For example, the Agents SDK automatically handles: Agent loop: calling tools and executing function calls over multiple turns if needed
+Handoffs: switching instructions, models and available tools based on conversation state Guardrails: running inputs through filters to stop the generation if required In addition
+to these features, the Agents SDK has built-in support for tracing, which allows you to monitor and debug your agents workflows. Without any additional code, you can understand
+what happened: which tools were called, which agents were used, which guardrails were triggered, etc. This allows you to iterate on your agents quickly and efficiently. agentic
+workflows To try practical examples with the Agents SDK, check out our examples in the repositories below. Agents SDK quickstart Agents SDK quickstart Step-by-step guide to quickly
+build agents with the OpenAI Agents SDK. guide Agents SDK — Python Agents SDK — Python Python SDK for developing agents with OpenAI. code Agents SDK — TypeScript Agents SDK —
+TypeScript TypeScript SDK for developing agents with OpenAI. code Multi-agent collaboration In some cases, your application might benefit from having not just one, but multiple
+agents working together. This shouldn’t be your go-to solution, but something you might consider if you have separate tasks that do not overlap and if for one or more of those
+tasks you have: Very complex or long instructions A lot of tools (or similar tools across tasks) For example, if you have for each task several tools to retrieve, update or create
+data, but these actions work differently depending on the task, you don’t want to group all of these tools and give them to one agent. The agent could get confused and use the tool
+meant for task A when the user needs the tool for task B. Instead, you might want to have a separate agent for each task, and a “routing” agent that is the main interface for the
+user. Once the routing agent has determined which task to perform, it can hand off to the appropriate agent than can use the right tool for the task. Similarly, if you have a task
+that has very complex instructions, or that needs to use a model with high reasoning power, you might want to have a separate agent for that task that is only called when needed,
+and use a faster, cheaper model for the main agent. Orchestrating multiple agents Orchestrating multiple agents Guide to coordinating multiple agents with shared context. guide
+Unlock agentic power — Agents SDK Unlock agentic power — Agents SDK Video demonstrating advanced capabilities of the Agents SDK. video Multi‑agent collaboration Why multiple agents
+instead of one mega‑prompt? Separation of concerns: Research vs. drafting vs. QA Parallelism: Faster end‑to‑end execution of tasks Focused evals: Score agents differently,
+depending on their scoped goals Use agent‑as‑tool (expose one agent as a callable tool for another) and share memory keyed by conversation_id. Example use cases There are many
+different use cases for agents, some that require a conversational interface, some where the agents are meant to be deeply integrated in an application. For example, some agents
+use structured data as an input, others a simple query to trigger a series of actions before generating a final output. Depending on the use case, you might want to optimize for
+different things—for example: Speed: if the user is interacting back and forth with the agent Reliability: if the agent is meant to tackle complex tasks and come out with a final,
+optimized output Cost: if the agent is meant to be used frequently and at scale We have compiled a few example applications below you can use as starting points, each covering
+different interaction patterns: Support agent: a simple support agent built on top of the Responses API, with a “human in the loop” angle—the agent is meant to be used by a human
+that can accept or reject the agent’s suggestions Customer service agent: a network of multiple agents working together to handle a customer request, built with the Agents SDK
+Frontend testing agent: a computer using agent that requires a single user input to test a frontend application Support agent demo Support agent demo Demo showing a customer
+support agent with a human in the loop. code CS agents demo CS agents demo Demo showcasing customer service agents orchestration. code Frontend testing demo Frontend testing demo
+Demo application for frontend testing using CUA. code Best practices When you build agents, keep in mind that they might be unpredictable—that’s the nature of LLMs. There are a few
+things you can do to make your agents more reliable, but it depends on what you are building and for whom. User inputs If your agent accepts user inputs, you might want to include
+guardrails to make sure it can’t be jailbreaked or you don’t incur costs processing irrelevant inputs Depending on the tools you use, the level of risk you are willing to take, and
+the scale of your application, you can implement more or less robust guardrails. It can be as simple as something to include in your prompt (for example “don’t answer any question
+unrelated to X, Y or Z”) or as complex as a full-fledged multi-step guardrail system. Model outputs A good practice is to use structured outputs whenever you want to use the
+model’s output as part of your application instead of simply displaying it to the user. Structured outputs are a way to constrain the model to a strict json schema, so you always
+know what the output shape will be. If your agent is user-facing, once again depending on the level of risk you’re comfortable with, you might want to implement output guardrails
+to make sure the output doesn’t break any rules (for example, if you’re a car company, you don’t want the model to tell customers they can buy your car for $1 and it’s
+contractually binding). Structured outputs guide Structured outputs guide Guide for producing structured outputs with the Responses API. guide Optimizing for production If you plan
+to ship your agent to production, there are additional things to consider—you might want to optimize costs and latency, or monitor your agent to make sure it performs well. To
+learn about these topics, you can check out our AI application development track. Conclusion and next steps In this track you: Learned about the core concepts behind agents and how
+to build them Gained practical experience with the Responses API and the Agents SDK Discovered our built-in tools offering Learned about agent orchestration and multi-agent
+networks Explored example use cases Learned about best practices to manage user inputs and model outputs These are the foundations to build your own agentic applications. As a next
+step, you can learn how to deploy them in production with our AI application development track. OpenAI Developers Home API Codex ChatGPT Resources Start searching Home OpenAI
+Developers plugin Docs MCP Demo apps Videos Agents Audio & Voice Computer Use Codex Evals gpt-oss Fine-tuning Image generation Scaling Tools Video generation Introduction Phase 1:
+Foundations Phase 2: Application development Phase 3: Testing and evaluation Phase 4: Scalability and maintenance Conclusion and next steps Copy Page 2-4 hours Intermediate AI app
+development: Concept to production Build, deploy, and optimize AI apps. AI app development: Concept to production Introduction This track is designed for developers and technical
+learners who want to build production-ready AI applications with OpenAI’s models and tools. Learn foundational concepts and how to incorporate them in your applications, evaluate
+performance, and implement best practices to ensure your AI solutions are robust and ready to deploy at scale. Why follow this track This track helps you quickly gain the skills to
+ship production-ready AI applications in four phases: Learn modern AI foundations: Build a strong understanding of AI concepts—like agents, evals, and basic techniques Build
+hands-on experience: Explore and develop applications with example code Ship with confidence: Use evals and guardrails to ensure safety and reliability Optimize for production:
+Optimize cost, latency, and performance to prepare your apps for real-world use Prerequisites Before starting this track, ensure you have the following: Basic coding familiarity:
+You should be comfortable with Python or JavaScript. Developer environment: You’ll need an IDE, like VS Code or Cursor—ideally configured with an agent mode. OpenAI API key: Create
+or find your API key in the OpenAI dashboard. Phase 1: Foundations Production-ready AI applications often incorporate two things: Core logic: what your application does,
+potentially driven by one or several AI agents Evaluations (evals): how you measure the quality, safety, and reliability of your application for future improvements On top of that,
+you might make use of one or several basic techniques to improve your AI system’s performance: Prompt engineering Retrieval-augmented generation (RAG) Fine-tuning And to make sure
+your agent(s) can interact with the rest of your application or with external services, you can rely on structured outputs and tool calls. Core logic When you’re building an AI
+application, there’s a good chance you are incorporating one or several “agents” to go from input data, action or message to final result. Agents are essentially AI systems that
+have instructions, tools, and guardrails to guide behavior. They can: Reason and make decisions Maintain context and memory Call external tools and APIs Instead of one-off prompts,
+agents manage dynamic, multistep workflows that respond to real-world situations. Learn and build Explore the resources below to learn essential concepts about building agents,
+including how they leverage tools, models, and memory to interact intelligently with users, and get hands-on experience creating your first agent in under 10 minutes. If you want
+to dive deeper into these concepts, refer to our Building Agents track. Building agents guide Building agents guide Official guide to building agents using the OpenAI platform.
+guide Agents SDK quickstart Agents SDK quickstart Quickstart project for building agents with the Agents SDK. code Evaluations Evals are how you measure and improve your AI app’s
+behavior. They help you: Verify correctness Enforce the right guardrails and constraints Track quality over time so you can ship with confidence Unlike ad hoc testing, evals create
+a feedback loop that lets you iterate safely and continuously improve your AI applications. There are different types of evals, depending on the type of application you are
+building. For example, if you want the system to produce answers that can be right or wrong (e.g. a math problem, a classification task, etc.), you can run evals with a set of
+questions you already know the answers to (the “ground truth”). evals In other cases, there might not be a “ground truth” for the answers, but you can still run evals to measure
+the quality of the output—we will cover this in more details in Phase 3. Launch apps with evaluations Launch apps with evaluations Video on incorporating evals when deploying AI
+products. video Basic techniques The first thing you need to master when building AI applications is “prompt engineering”, or simply put: how to tell the models what to do. With
+the models’ increasing performance, there is no need to learn a complex syntax or information structure. But there are a few things to keep in mind, as not all models follow
+instructions in the same way. GPT-5 for example, our latest model, follows instructions very precisely, so the same prompt can result in different behaviors if you’re using gpt-5
+vs gpt-4o for example. The results may vary as well depending on which type of prompt you use: system, developer or user prompt, or a combination of all of them. Learn and build
+Explore our resources below on how to improve your prompt engineering skills with practical examples. Prompt engineering guide Prompt engineering guide Detailed guide on prompt
+engineering strategies. guide Reasoning best practices Reasoning best practices Prompting and optimization tips for reasoning models guide Another common technique when building AI
+applications is “retrieval-augmented generation” (RAG), which is a technique that allows to pull in knowledge related to the user input to generate more relevant responses. We will
+cover RAG in more details in Phase 2. Finally, in some cases, you can also fine-tune a model to your specific needs. This allows to optimize the model’s behavior for your use case.
+A common misconception is that fine-tuning can “teach” the models about your data. This isn’t the case, and if you want your AI application or agents to know about your data, you
+should use RAG. Fine-tuning is more about optimizing how the model will handle a certain type of input, or produce outputs in a certain way. Structured data If you want to build
+robust AI applications, you need to make sure the model outputs are reliable. LLMs produce non-deterministic outputs by default, meaning you can get widely different output formats
+if you don’t constrain them. Prompt engineering can only get you so far, and when you are building for production you can’t afford for your application to break because you got an
+unexpected output. That is why you should rely as much as possible (unless you are generating a user-facing response) on structured outputs and tool calls. Structured outputs are a
+way for you to constrain the model’s output to a strict json schema—that way, you always know what to expect. You can also enforce strict schemas for function calls, in case you
+prefer letting the model decide when to interact with your application or other services. Structured outputs guide Structured outputs guide Guide for producing structured outputs
+with the Responses API. guide Phase 2: Application development In this section, you’ll move from understanding foundational concepts to building complete, production-ready
+applications. We’ll dive deeper into the following: Building agents: Experiment with our models and tools RAG (retrieval-augmented generation): Enrich applications with knowledge
+sources Fine-tuning models: Tailor model behavior to your unique needs By the end of this section, you’ll be able to design, build, and optimize AI applications that tackle
+real-world scenarios intelligently. Experimenting with our models Before you start building, you can test ideas and iterate quickly with the OpenAI Playground. Once you have tested
+your prompts and tools and you have a sense of the type of output you can get, you can move from the Playground to your actual application. The build hour below is a good example
+of how you can use the playground to experiment before importing the code into your actual application. Build hour — built-in tools Build hour — built-in tools Build hour giving an
+overview of built-in tools available in the Responses API. video Getting started building agents The Responses API is your starting point for building dynamic, multi-modal AI
+applications. It’s a stateful API that supports our latest models’ capabilities, including things such as tool-calling in reasoning, and it offers a set of powerful built-in tools.
+As an abstraction on top of the Responses API, the Agents SDK is a framework that makes it easy to build agents and orchestrate them. If you’re not already familiar with the
+Responses API or Agents SDK or the concept of agents, we recommend following our Building Agents track first. Learn and build Explore the following resources to rapidly get started
+building. The Agents SDK repositories contain example code that you can use to get started in either Python or TypeScript, and the Responses starter app is a good starting point to
+build with the Responses API. Responses starter app Responses starter app Starter application demonstrating OpenAI Responses API with tools. code Agents SDK — Python Agents SDK —
+Python Python SDK for developing agents with OpenAI. code Agents SDK — TypeScript Agents SDK — TypeScript TypeScript SDK for developing agents with OpenAI. code Inspiration Explore
+these demos to get a sense of what you can build with the Responses API and the Agents SDK: Support agent: a simple support agent built on top of the Responses API, with a “human
+in the loop” angle—the agent is meant to be used by a human that can accept or reject the agent’s suggestions Customer service agent: a network of multiple agents working together
+to handle a customer request, built with the Agents SDK Frontend testing agent: a computer using agent that requires a single user input to test a frontend application Pick the one
+most relevant to your use case and adapt from there. Support agent demo Support agent demo Demo showing a customer support agent with a human in the loop. code CS agents demo CS
+agents demo Demo showcasing customer service agents orchestration. code Frontend testing demo Frontend testing demo Demo application for frontend testing using CUA. code Augmenting
+the model’s knowledge RAG (retrieval-augmented generation) introduces elements from a knowledge base in the model’s context window so that it can answer questions using that

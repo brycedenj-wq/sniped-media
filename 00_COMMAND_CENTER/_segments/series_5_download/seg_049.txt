@@ -1,0 +1,224 @@
+it performs. 8:58 However, Feature Toggle has its downsides. 9:01 If not managed properly, toggles can add complexity 9:05 to the codebase and make testing more difficult. 9:09 Old
+or obsolete toggles need to be cleaned up to prevent 'toggle debt', which can make 9:14 the system increasingly hard to maintain. 9:18 So there you have it! 9:19 Five deployment
+strategies, each with their strengths, challenges, and use-cases. 9:25 Remember, the best strategy depends on the 9:28 application's characteristics and the users' expectations.
+9:32 Now it's over to you: Which deployment strategies have you used? 9:36 What's worked best for your team? 9:38 Let's discuss in the comments below. 9:41 If you like our videos,
+you may like our system design newsletter as well. 9:45 It covers topics and trends in large-scale system design, trusted by 400k readers. 9:52 Subscribe at blog.bytebytego.com
+Intro 0:00 today we're diving into the essential 0:02 components of a production web 0:04 application these are the building block 0:06 of most scalable reliable production 0:08
+systems so let's dive in first up cicd 0:11 pipelines the backbone of modern 0:13 development tools like GitHub actions 0:16 automate testing building and deployment 0:18 with cicd
+every code change gets Ved 0:21 before it ever sees production no more 0:23 manual bills and fewer headaches from 0:25 Bugs slipping through now let's follow User Requests 0:28 the
+path of a user request is starts in 0:30 the browser after DNS resolution the 0:33 request heads to our application servers 0:36 but before it gets there it hits two 0:38 critical
+components low balancers and 0:40 reverse proxies think of them as traffic 0:43 directors tools like engine X and XJ 0:45 proxies distri be request across 0:48 multiple application
+servers balancing 0:50 their low and preventing any one server 0:52 from getting overwhelmed next up content Content Delivery Networks 0:55 delivery networks or cdns these are 0:59
+distributed global serving static 1:01 content like images and JavaScript 1:03 closer to users the result faster load 1:06 times and less strin on your core 1:08 infrastructure now
+the request reaches 1:10 your web application servers these 1:12 handle all your core business logic but 1:15 often need to talk to other systems API 1:17 that's where API comes in
+connecting the 1:19 app to backend services that process 1:22 complex logic communicate with third 1:24 party systems or handle data 1:27 Transformations this apid driven 1:29
+approach keeps the system modular and 1:31 scalable speaking of data next we have Databases 1:34 databases and caching what is postgress 1:36 or Dynamo DB the database stores the
+1:39 core data to avoid bottlenecks we use 1:42 distributed caches the redus keeping 1:44 frequently accessed data in memory for Job Workers 1:47 speed for heavier tasks we use job
+1:49 workers not everything can be done in 1:51 real time so for resource intensive or 1:53 long running tasks job cues come in 1:56 handy these tasks are offloaded to 1:58 worker
+notes keeping the main fast and 2:00 responsive if the app needs search 2:02 functionality services like elastic 2:04 search are invaluable they provide fast 2:08 flexible large
+data sets helping user 2:11 find what they need quickly with all 2:13 these moving ports solid monitoring is 2:16 critical tools like promethus grafana Monitoring 2:19 and data do
+help track everything logs 2:22 performance metrics and resource usage 2:25 this catches issues before they impact 2:27 users finally when something does go 2:30 wrong we need
+reliable alerting Alerts 2:32 platforms that pag Duty send realtime 2:34 alerts to the team to ensure issues are 2:36 resolved quickly no one likes surprises 2:39 in production so
+fast alerts are 2:41 essential and there you have it the key 2:43 components of a production ready web 2:45 application architecture if you like a Outro 2:48 videos you might like
+a system design 2:50 newsletter as well it covers topics and 2:53 Trends in large skill system design 2:55 trusted by 1 million readers subscribed 2:57 at blog. bybo . All From
+ByteByteGo 0:00 this right here is a Nifty little web 0:02 development project that I made using 0:04 HTML CSS and JavaScript so it's vanilla 0:08 web development and currently I
+am 0:10 running it on my local machine so here 0:12 we can see it's running on my local 0:13 machine at Port 0:15 5,5 And1 what we're going to be doing in 0:18 this video is
+deploying it to the 0:20 Internet so that it is live and we get a 0:24 URL that we can share with our family 0:26 and friends send it all over the place 0:28 or pop it in our
+portfolio for everyone 0:30 to appreciate deploying websites to the 0:32 internet can be initially confusing 0:34 however it's a very simple process and 0:36 that's exactly what's
+going to be 0:38 demonstrated in the video so if we take 0:40 a look at the code here we can see we 0:42 have an index.html file in here we have 0:45 our HTML and then in a
+separate file we 0:48 have our JavaScript the first thing 0:50 we're going to do is isolate this folder 0:52 in whatever folder directory system you 0:55 use so here we have to-dos
+this is the 0:57 name of the project and now what we're 0:59 going to do is is deploy our website on 1:01 a site called netlify this will be 1:04 linked in the description down
+below and 1:06 what we're going to do is we're going to 1:08 hit log in you'll need to create a 1:10 netlify account it's convenient if you 1:12 log in with GitHub because then you
+can 1:15 deploy your projects directly from 1:17 GitHub so that's what I'm going to do 1:19 however you can also just log in with 1:21 email that's absolutely fine once you're 1:23
+logged in you'll see a page that looks a 1:26 little bit like this here we have some 1:28 of my previously deployed projects for 1:31 this instance we're just going to deploy 1:33
+this folder directly no GitHub in 1:36 integration at all and from this team 1:39 overview tab we have the add new site 1:42 button we're going to click on it and 1:45 the bottom
+option says deploy manually 1:47 we'll hit deploy manually and now we 1:49 just have to drag and drop your site 1:52 output folder here or browse to upload 1:55 this is where we
+have our folder so you 1:57 don't want to be in the directory from 1:59 outside the the directory we're 2:00 literally just going to drag and drop 2:03 that onto this right here
+that's going 2:06 to upload our project and now we can see 2:09 that it is successfully deployed and we 2:11 can open the production 2:13 deploy so if we go ahead and open it we
+2:16 see that we have a URL right there that 2:19 is our live project and we can share 2:22 that link with our family and friends we 2:24 can see if we come to the the end it's
+2:26 deployed through netlify which is super 2:29 hand and we can find the url for the 2:32 project by coming into the site overview 2:35 tab here we have it right here so this
+2:37 is the link we would share and copy with 2:39 anyone else if I paste that in here fidu 2:43 raindrop we can see that once again 2:45 opens up my to-do list if we add a to-do
+2:48 we can see that all the JavaScript is 2:50 running so it's successfully uploaded 2:52 and deployed our whole project which is 2:55 absolutely amazing so you could put this
+2:57 link in your portfolio you could share 2:59 it with your family friends and if you 3:01 own your own custom domains you'll want 3:03 to come into the domain management and
+3:05 just add a domain and follow the 3:06 instructions there to get your personal 3:09 URL the other thing we can do at the 3:11 very end is just edit the site name if 3:13 you
+don't already have a URL and we 3:16 could just call it special todos save 3:18 that and now our link is actually 3:20 special too. nafi. apppp that just saves 3:24 us having to
+have the random fidu 3:26 raindrop URL and we can just uh name it 3:29 what we would actually name it so now 3:32 this is the link that you can share with 3:33 everyone totally
+optional to do this you 3:35 could just use the link that we had 3:36 before and just like that you have 3:39 successfully deployed a project to the 3:41 internet you have a
+website live up and 3:44 running and everyone on the internet can 3:46 access your awesome to-do list cool so 3:48 that's literally it that is how you 3:50 deploy a vanilla web
+development project 3:53 to the internet HTML CSS and JavaScript 3:56 this would also work for any front-end 3:58 framework such as react nextjs spel kit 4:01 or any of the others
+it's literally just 4:04 that simple if you've enjoyed the video 4:06 smash the like And subscribe buttons 4:08 appreciate the support and I'll catch 4:09 you guys in the next one
+peace learning 4:11 to code if so be sure to check out the 4:13 small James web development road map 4:15 link is in the description down below or 4:17 dive straight in with these
+4:22 videos All From the series Intro 0:00 after watching this video you will be 0:02 able to build better and profitable 0:04 websites plus you will make them faster 0:06 than
+ever 0:08 before there are two ways of building a 0:11 website the traditional way of building 0:14 by writing code and the other is using a 0:16 website builder like webflow or
+0:19 WordPress this video applies to both 0:22 groups because it's the same 0:24 concept but I will focus on writing code 0:27 as it offers more creative freedom and 0:29 is 0:31
+better so every time I say CSS it just 0:34 means styling options in website 0:36 Builders and every time I say code 0:38 editor it translates as WordPress or 0:42 webflow before I
+learned how to code I 0:45 used WordPress to build websites and I 0:47 made a lot of 0:48 mistakes I kept making those mistakes 0:51 even after I learned how to 0:53 code because
+YouTube taught me how to 0:56 use WordPress or how to write code but 0:59 no one ever taught me how to build a 1:00 website if that makes any sense tell me 1:04 if it's relatable
+you have to rewrite 1:06 the entire code again because you hate 1:08 how the final website looks and 1:11 function or you are staring at a blank 1:14 page with no idea where to
+1:16 start what about your website is taking 1:19 10 seconds to load even on 1:21 4G or worst your client is asking for 1:24 revisions after revisions and nothing 1:26 seems to
+satisfy 1:28 them so here here is the solution to The Solution 1:31 make the best website possible with the 1:33 least amount of effort and 1:35 time you need to do two things
+number 1:38 one design first I am talking proper 1:41 design figure out who the audience is 1:44 and what problem this website will solve 1:46 for them design also includes content
+so 1:50 once you have figured out who the 1:52 audience is and what they want from your 1:54 website the right headings and powerful 1:56 images will come naturally to you not 1:59
+just that you will be able to create the 2:01 right structure from the very 2:03 beginning you will know whether to use 2:06 cards or not if yes then how many cards 2:10 how big
+those cards should be because 2:13 you are now thinking in terms of what 2:14 the users want it becomes easier to help 2:18 them but design is only step one step 2:21 two is
+actually implementing that design 2:24 whether you use a no code tool or write 2:27 code manually it doesn't really matter 2:30 you just have to think and plan 2:32 everything in
+the phase one 2:33 itself so implementing those design will 2:36 become a piece of 2:38 cake just Beware of the limits of those 2:41 no code tools or your own coding skill 2:43 set
+you don't want to design something 2:46 which is a pain to implement because 2:48 most of the time the users don't even 2:50 notice the effort you put into a 2:53 website so we
+will look at some neat 2:55 tips and tricks that deliver superb user 2:58 experience but very easy to 3:00 implement speaking of easy first thing Repeating Design 3:03 you need to
+do is make a repeatable 3:06 design repeating design make things 3:09 consistent and look 3:11 satisfying here are some 3:22 examples another tip break your page 3:25 into 3:26
+sections so you can focus on one thing 3:29 at a time 3:30 first section will be the hero section 3:33 some might say it's the most important 3:35 part of the website because an
+average 3:37 user spends seconds deciding whether to 3:39 stay or leave your website putting a 3:42 nice and Powerful heading upfront will 3:44 catch their Hero Section 3:45
+attention coming up with the heading is 3:47 easy your main heading should answer 3:49 this question what problem you are 3:51 solving that the user currently have 3:54 remember
+the user doesn't care about you 3:57 they care about the solution you are 3:59 providing 4:01 once you got their attention then you 4:02 need to expand on that heading with a 4:04
+small paragraph ideally two or three 4:07 sentences and add an image video or a 4:10 product demo to complement The 4:13 Heading by combining a strong heading 4:15 and a paragraph
+with the right media you 4:17 make it very easy for the user to 4:19 understand your product or 4:21 service and once they get what you are 4:23 offering you need a call to action
+4:26 whether it's a learn more sign up or buy 4:29 now button button whatever your goal is 4:32 put it right 4:34 there now there are two designs for a 4:36 hero section the two
+columns and one 4:39 column 4:40 design two columns are more popular 4:43 because it's easier to implement for any 4:44 screen size but you can get away with 4:47 one column as
+well just make sure that 4:50 the design works on all screens and not 4:52 just on computers and 4:55 laptops once you have a strong and 4:57 engaging hero section the next section
+5:00 should provide more information about 5:01 your product or 5:03 service once again no fluff just 5:06 straight to the point the more 5:08 transparency the better you have 5:11
+someone's attention now you need to win 5:13 their trust so if it's a product explain 5:17 the features and benefits explain the 5:19 pricing and make it easier for them to 5:21
+choose you over the 5:23 competition keep asking this question to 5:26 yourself what is the purpose of this 5:28 section 5:30 if it's to explain something just do 5:33 that in as
+simple words as you can if 5:36 it's to show off do that in confidence 5:40 whatever words you use they must answer 5:42 a question that a lot of your users have 5:45 to know those
+questions you can talk to 5:47 your users and look at your 5:49 competition most of the time a good 5:52 heading is an offer that the competition 5:54 doesn't 5:55 have imagine a
+website that have this Headings 5:58 heading Unlimited downloads Unlimited 6:01 fun and the competition doesn't have any 6:04 feature like that you could also try to 6:07 answer a
+very common question in your 6:10 industry here is an example for a 6:12 heading that is actually an 6:15 answer no ads no privacy 6:18 risks imagine a social media website 6:21
+telling this on their signup 6:23 page now if you mix headings like these 6:26 with some crisp illustrations or bold 6:29 images you are 6:31 golden there are plenty of free
+websites 6:33 out there I am sure you will find 6:36 them but the key thing is you haven't 6:39 written a single line of code and yet 6:41 you're so far ahead in the 6:47 process
+like most things website 6:49 building also follows the classic 8020 6:52 rule think and plan before building the 6:55 website and save yourself from a lot of 6:58 pain I have
+learned this the hard way 7:01 now coming to colors and fonts you need 7:04 at least four colors including black and 7:06 white you can use variations of black 7:09 and white but
+don't go too 7:11 far the next two are your accent colors 7:14 they will be used to add a bit of 7:16 character and style use them to design 7:18 your buttons borders and 7:21
+gradients the last part is fonts and Fonts 7:24 it's best to just stick with one font 7:26 per website if you have experience then 7:29 you can use two or maximum three fonts 7:31
+per 7:32 website but don't worry about fonts and 7:34 colors we will use CSS variables to 7:37 build our website in no code tools you 7:39 can set them as Global colors and fonts
+7:43 the neat thing about variables is later 7:45 you can change them and the results will 7:47 apply to the whole website check it out 8:04 if you are planning to use a dark mode
+8:06 toggle that will also be much easier 8:08 with 8:12 variables once we have our variables we 8:15 need to assign the same classes to the 8:16 repeating 8:18 design because we
+don't want to write 8:20 the same CSS over and over 8:23 again speaking of writing less CSS by 8:27 using the same classes and variables it 8:29 becomes very easy to build and
+modify 8:32 the website at any stage we 8:34 want I used to directly jump into 8:36 WordPress or vs code and start building 8:39 the website from scratch with no design 8:41 or
+content in mind the end result was an 8:45 ugly and useless website that needed to 8:47 be rebuilt again or worst keep adjusting 8:50 colors and design till the client was 8:53
+satisfied so now I design first with all 8:57 the final content and repeatable Design 8:59 planned out and once I am happy with the Tips Tricks 9:02 design and content I open VSS
+code which 9:05 is the best code editor for me speaking 9:08 of best I promised some easy tips and 9:11 tricks to deliver an exceptional user 9:14 experience so for those of you
+who 9:16 stayed till the end here they are 9:19 Dynamic heading size 9:30 flexible 9:40 cards SPG icons 10:09 snap scrolling 10:33 scale up or 10:42 down there you have it the
+easiest and 10:45 fastest way to build powerful websites 10:48 feel free to add a tip or suggestion in 10:50 the comment section just below the like 10:53 And subscribe button All
+From Sajid Why you should know how to deploy code to Production 0:00 [Music] 0:01 have you ever wondered how big companies 0:03 deploy their applications into 0:04 production 0:05
+environments understanding the process 0:07 and the best practices when deploying to 0:09 production is very important for all 0:11 devops Engineers to know and in this 0:13 video
+I will explain you all the steps 0:15 in this process with the flowchart 0:16 diagram so make sure you watch this 0:18 video till the end and also subscribe to 0:20 Cloud champ if
+you haven't subscribed so Planning Phase 0:23 the process starts in the planning phase 0:24 where the client or the team discuss 0:26 about the goal and the objective of the 0:27
+application also the task required to of 0:30 this application which are broken down 0:31 into smaller pieces such as epics or 0:33 user stories also known as tickets and 0:36
+added into a project management tool 0:37 such as jira your company might be using 0:40 Azure devops or Trello but all the 0:42 tickets are added into a project 0:44 management
+tool which are then picked up 0:46 by the developers so the developers are 0:48 going to pick up the tickets that are 0:49 assigned to them and start writing code Development Phase
+0:52 for it so they will build a code locally 0:55 test it and also deploy the application 0:57 in the local machine if everything works 0:59 out properly they will then push this
+1:01 code onto a central repository maybe 1:03 using GitHub or gitlab or bit bucket 1:06 anything you want to use so developers Pushing code to Github 1:08 will push this code from
+their local 1:10 machine to GitHub using 1:14 git on GitHub we have different branches 1:17 so we have the main or the master branch 1:19 and we can also create more branches if
+1:20 you want usually it is not recommended 1:23 to post directly on the main branch so 1:25 we don't follow it while doing it in 1:26 production we will instead create a 1:28
+feature Branch so developers are 1:30 requested to create a feature Branch 1:32 depending on what feature or bug they 1:34 are working on so they will create a 1:35 feature Branch
+let's call this at 1:38 feature 1:39 branch and instead of pushing it to the 1:41 main branch they will first push to the 1:44 feature Branch so they're going to push 1:46 to the
+feature branch and they will test 1:48 the feature Branch properly if 1:50 everything works out they will create a 1:51 merge request which will go ahead and 1:53 merge this scode
+from the feature Branch 1:55 to the main branch so you will be 1:57 creating a pull request or the merge or 2:00 merge request so this full request is 2:03 usually reviewed by a
+senior devops 2:04 engineer or a developer before it is 2:06 merged into the main branch because on CICD Process 2:09 the main branch we usually have cicd set 2:11 up for example
+let's say we using GitHub 2:13 actions for cicd here GitHub actions is 2:15 a very popular tool that lets you 2:17 automate building testing and deploying 2:19 your application so
+whenever you push to 2:21 a main branch this will trigger a cicd 2:25 pipeline in the GitHub actions and that 2:28 will go ahead build your code also test 2:32 it and deploy it
+either on your 2:34 kubernetes cluster or let's say AWS 2:37 cloud in our example here so this is the 2:41 process followed whenever you want to 2:42 push your code to production
+the 2:44 developer is going to create a feature 2:45 Branch a pull request will be created 2:47 reviewed by a senior devops engineer and 2:49 then merged into main branch which
+will 2:51 go ahead and Trigger the pipeline this 2:54 pipeline will build test and deploy the 2:57 application on AWS cloud or any other 2:59 the provider but this is not the best
+3:02 practice when deploying critical 3:04 application you should have different 3:05 environments like Dev environments 3:07 staging environment before you push it 3:09 to the
+main or the production 3:10 environment so instead of pushing a Dev Environment vs Stage Environment vs Prod Environment 3:12 changes to the main branch and creating 3:14 an
+application through it we will first 3:16 push the change to the dev branch and 3:18 test out if everything is working 3:20 properly if it works properly we will go 3:22 to the
+upper branch which is the test or 3:24 the staging branch in this Branch we are 3:26 going to be using the prepr data which 3:29 is very similar to the real data that is 3:31 going
+to be used in our application so 3:33 we will test out things using the prepr 3:35 data this will be very similar to the 3:38 production application or production 3:39 environment
+here and we are going to be 3:41 doing load test to make sure that the 3:43 application is able to sustain the load 3:45 we will also do some smoke test to make 3:47 sure our
+application works properly in 3:49 the production if everything works 3:50 properly then we will merge this into 3:53 the production Branch so that the final 3:56 application
+should be available to the 3:58 users and you should have no the problem 4:01 so this is the process companies follow 4:02 to deploy their applications to 4:04 production they
+start by writing the 4:05 code in the feature branch and then 4:07 merge that Branch into the dev Branch 4:09 test if everything is working properly 4:11 if it works properly then
+they merge 4:13 that Branch into the staging branch 4:15 check it with the prepr data do smoke 4:17 test integration test load test 4:19 everything to make sure that the 4:20
+production is going to have no problems 4:23 once that is done from staging you push 4:25 that application to the prod and then 4:26 the prod is going to deploy your 4:28
+application which is going to be used by 4:30 your end users so the end users are 4:33 going to consume this so this 4:35 application is going to be used by the 4:37 end user after
+it is deployed in the 4:39 production Post Deployment Phase 4:40 environment now once the application is 4:42 deployed properly we are also going to 4:44 be making sure that the
+application runs 4:45 properly by continuously monitoring it 4:48 continuously making sure that the 4:49 application is highly available which is 4:51 called as the post deployment
+stage 4:53 where we continuously check and monitor 4:55 that the application is working properly 4:57 so this is a continuous process where 4:58 you make changes merge it to the
+5:00 branches take feedback from your users 5:03 and continuously improve this is how 5:05 companies deploy their code to 5:06 production I hope this video was 5:08 informative if
+you have any questions 5:10 any doubt let me know in the comment 5:11 section so this was our video I hope 5:13 this video was informative if you have 5:15 any questions any doubt
+let me know in 5:17 the comment section if you want me to 5:19 create more videos like this please let 5:21 me know in the comment section thank you 5:22 and have a good day All
+From Cloud Champ 0:00 Just two days ago, we moved our project 0:02 from bolt new into cloud code and we 0:05 started having fun and maybe we got 0:06 ahead of ourselves because we
+quickly 0:08 ran into errors and hallucinations 0:11 within cloud code and I was figuring out 0:14 why is this happening and little did I 0:16 know I didn't set up claude properly
+to 0:19 be able to handle the project we were 0:21 currently working on. And in this video, 0:23 we're going to be going over some 0:24 helpful tips that helped me just in the 0:26
+last 48 hours to help bring more clarity 0:28 to my project. And I know it can for you 0:31 as well. So, it doesn't mean that this 0:33 is going to work for everyone. It just 0:35
+works for me and my kind of point of 0:37 view when I'm looking at my project and 0:39 kind of how I can optimize and become 0:41 more efficient and when we end up 0:43 building
+this project. So, that's what 0:45 we're going to be working through today. 0:47 So cloud code of course is a huge 0:50 powerful tool if used correctly. And the 0:53 thing that I
+was dealing with the most 0:54 was filling up the context window so 0:56 much working on each task within the 0:59 same window and coming come to find out 1:02 we would fix one
+thing and then the 1:04 other thing broke and then we'd fix that 1:06 thing that broke and then the text 1:08 didn't load and then the login didn't 1:10 work. It was just because I
+was just 1:12 creating havoc by myself, not knowing 1:16 what I was doing and just really 1:18 becoming frustrated. So now we're going 1:21 to go through this workflow that can
+1:22 help you become more organized when 1:24 building things with Claude Code. And I 1:27 think this is going to be helpful for 1:28 you. Maybe you already know it, but 1:30 we're
+going to just walk you step by 1:32 step through this process. So once you 1:35 get your Cloud Code project transferred 1:37 in or downloaded from your GitHub and 1:40 you start
+working on it, you're going to 1:42 want to hit slashinit once you're in 1:45 your folder. And then you're going to 1:46 have cloud code create an MD file, a 1:49 markdown file.
+And that file is going to 1:51 be kind of the command and the basis on 1:54 which it operates in these files and in 1:57 these folders and kind of how to build 1:58 out the
+project. So we did that and of 2:01 course it was amazing. So we had cloud 2:03 code build out some sub aents and you 2:05 know according to what it saw in the 2:07 files and all
+that was great but it 2:09 didn't really click until we figured out 2:12 what we were doing wrong and basically 2:14 we were just opening up a chat within 2:17 cloud code and just
+knocking out task 2:21 after task. We weren't clearing the 2:23 context window and we really started 2:25 breaking things. It just became so 2:28 frustrating. So I I just tried to
+figure 2:31 there has to be a better way and I'm in 2:33 the startup empire group um and we just 2:37 had a great call that a guy had come on 2:40 and just really laid it out the
+2:41 blueprint on how tasks can be 2:44 efficiently done within cloud code and 2:46 by how you can delegate these tasks to 2:49 specific sub aents within your project. 2:52 So
+we're going to walk you through this 2:54 simple setup. It's going to take you 2:55 like two seconds to set it up. So the 2:58 first thing you're going to do is going 2:59 to run
+that init command, you're going 3:01 to create those um cloud.md files which 3:04 I have already here um in my codebase. 3:08 So if you go to the cloud.md file um 3:11 this file
+provides guidance to cloud 3:13 code when working with the cloud code in 3:15 this repository. So it just gives it all 3:17 the commands the stack API data AI 3:20 integration
+superbase all the back end 3:23 all the front end API keys and so forth. 3:25 So um once you get the claude markdown 3:27 file going, I then asked Claude to build 3:32 a task
+manager markdown file and in this 3:36 task manager markdown file if I can find 3:39 it. Here we go. It tracks all the tasks 3:44 from my product my project requirement 3:47
+document that I did um with Claude and 3:51 it develops tasks. So, I should probably 3:53 back up a little bit and go into that 3:55 product requirement document which is 3:59
+right here. So, done with Claude. And 4:03 this product requirement doc really is 4:06 the blueprint of your build, right? So, 4:10 it won't know what task to build unless 4:13 you
+have this file. You need to have 4:16 this put into your directory so it can 4:19 have something like it's like the vision 4:21 of your business. So the product 4:23 requirement
+doc was put in after the the 4:26 claude MD uh file was generated and um 4:30 actually before that. So before the 4:32 cloud MD file was created, the product 4:35 uh requirement
+doc was put in. Then you 4:37 generate the cloud MD file and then 4:40 after that you can then build tasks 4:43 because they won't know what tasks 4:45 you're going to do if you
+don't have 4:46 these to put in place. So once we got 4:50 this done, I just had Claude write up um 4:52 kind of the vision for our whole 4:54 product. you know how we wanted to
+start 4:56 on a web app first and then develop the 4:58 mobile features what it exactly does why 5:01 it's relevant why it saves time we are 5:03 building out a project called 5:05
+easyflip.ai AI where it allows people to 5:07 snap a photo using GPT vision. It 5:10 generates the listing and you can upload 5:12 it to market places like eBay, Poshmark 5:14 and
+Merkari, Facebook Marketplace. So 5:16 that in a nutshell is what our project 5:18 is. So now we have like the context for 5:22 um Claude to be able to know what to do. 5:24 Um so
+yeah, you can see my prd is right 5:28 here. Everything just copy pasted 5:30 timelines, revenue goals, everything. 5:33 And then it was able to really um come 5:35 up with a task
+manager. So, and it's 5:38 really simple, y'all. You're just going 5:40 to ask Claude to do this for you. Once 5:42 you get the PRD doc into your um 5:45 codebase, once you get
+Claude MD um the 5:49 markdown file all written out for your 5:51 project, then you can just ask Claude, 5:53 "Create me a task manager MD file so we 5:57 could track tasks and
+progress." Because 6:00 if you don't do this, it's going to be 6:02 really hard for you to kind of leave off 6:04 where you left off the day before or 6:06 maybe your computer
+crashed and you lost 6:08 the context that you were, you know, 6:10 initiating changes and and it forgets, 6:13 you know, that happened to me the other 6:14 day. So, by having a
+task manager is 6:17 huge. And this is how we do it. So, 6:19 you're going to have two commands that 6:21 it's going to create for you. It's going 6:22 to be the slashstart session
+command and 6:25 slashend session command. So, whenever 6:27 you're working with like an sub agent, 6:31 um I'll just show you an example here. 6:33 This is kind of what I've been
+how I've 6:35 had the layout. It's been really 6:37 helpful. So, the top terminal I just 6:40 have for like broad questions. Um and 6:44 then the three bottom terminals I just 6:46
+named them um our sub aents name. So, we 6:49 have a business um sub aent, we have an 6:52 infrastructure sub aent, and then we 6:53 have an AI accuracy analysis agent. um 6:57 for
+the GPT vision and Google vision uh 7:00 to help make that better. So um this is 7:03 really allows me to break down the tasks 7:05 that we're working on on an individual 7:06
+level and not get so jumbled with 7:09 completing tasks and then starting a new 7:11 task in the same window and then just 7:13 basically we're the ones making the AI 7:16
+hallucinate and cause all these errors. 7:18 And maybe you've been in that position 7:19 before. This is probably going to help 7:21 you out big time. So you can see just 7:24 the
+top here is just kind of like for 7:26 general questions. Um and then here we 7:29 can go to um claude and just say okay so 7:34 we will go to start start session and we 7:37 want
+to use start session command it to 7:40 kind of initiate um the workflow right 7:43 it's going to read the task manager um 7:46 file and get caught up to date as to 7:49 like what
+we accomplished in previous 7:51 days. So, start session and then I'm 7:53 just going to use Whisper Flow to 7:54 communicate. I want to use the business 7:57 sub agent to help
+optimize my business 8:00 better and also give me a brief overview 8:02 of what we've accomplished today. Okay. 8:05 So, once that gets done, um, we're going 8:08 to be kind of
+getting caught up to date 8:10 and it's going to look at the task. It's 8:12 going to look at where we left off, what 8:14 we got accomplished, and so forth. Same 8:17 thing with
+the infrastructure agent. I 8:19 can also do the same command start 8:21 session and start maybe working on the 8:23 backend stuff like fixing some something 8:26 with superbase or
+authentication and 8:28 then the AI accuracy sub agent as well. 8:32 We could use that to work on something 8:33 completely different like the AI 8:35 analysis when it comes to
+generating the 8:37 listings. So that's in a brief overview 8:40 how you're going to set it up. You're 8:42 going to get your PRD set up. You're 8:44 gonna have slashinit command
+to start 8:47 generating the claude md file. And then 8:50 once you have that set, you can just ask 8:52 claude to build a task manager file for 8:55 you. So it can know kind of
+time frames 8:58 what you're doing and you can save the 9:00 progress as you're making progress 9:02 through your project. So, it's really 9:05 cool because I'm able to not only
+like 9:08 be more efficient with the tokens that 9:10 we have. Um, but I'm able to kind of 9:12 like do a task, see it through 9:15 completion, and then end session and 9:18 have
+all of what we completed put into 9:20 the task manager MD file for the next 9:22 day. So, I just had a hard time once we 9:25 completed something, um, you know, if I 9:27 closed
+out or lost the the conversation, 9:30 it wouldn't remember what we did and 9:31 that was very frustrating for me. So, if 9:33 you are like me and you're having a hard 9:35 time,
+you know, dealing with Claude and 9:38 maybe it's hallucinating or errors, 9:41 you're probably just filling up the 9:42 context window and you're probably doing 9:44 too many
+tasks within the same chat. 9:46 Another one after you end the session 9:48 too, you're going to want to do a 9:50 command um where you could just close 9:52 out the chat, close
+out the context 9:55 window and then start fresh. So that's 9:58 what I have been doing all day today and 10:00 we are furthest we've ever been in this 10:02 project. The furthest
+we've ever been in 10:05 the last 24 hours because we corrected a 10:07 lot of errors. We started using Cloud 10:08 efficiently. And I would just say for 10:11 you if you're just
+starting using Cloud 10:12 Code, spend a day or two or three 10:16 developing the workflow within Cloud 10:18 Code before you just start plugging in 10:20 your project and working
+crazy. Maybe it 10:22 works for you. I don't know. But for me, 10:24 this is what worked and this is what I'm 10:26 seeing that how the kind of workflow is 10:28 going to be. So,
+comment down below. 10:30 What are you doing to kind of solve this 10:32 problem? Have you had Claude uh 10:35 hallucinate in your project? I know I 10:37 was kind of getting tired
+of it, 10:38 especially coming over from Bolt where 10:40 we already were dealing with a lot of 10:42 hallucinations. So doing this kind of 10:44 workflow, the PRD with the Claude
+MD, 10:47 having Claude build the task manager and 10:49 then starting session, ending session, 10:51 and clearing and closing out the context 10:53 window after we complete tasks
+is an 10:56 amazing workflow that I can actually 10:58 understand. Like I said, 17 days ago, I 11:00 wasn't even doing anything like this. 11:02 But 16 days in, we have a vision.
+We can 11:05 see the horizon, and we can actually see 11:07 this product launching here in the next 11:09 30 to 45 days. So, if you like seeing 11:12 startups come to life, we're
+posting 11:14 every single day. Make sure you guys 11:16 follow and subscribe, and we'll see you 11:18 in the next one. All Watched Chapter 1: Introduction to Claude Code Templates
+0:00How to make claw code 10 times better in one single click. So basically what we're looking at today is this GitHub for Claude code [music] templates. You 0:099 secondsget a
+bunch of templates for example for agents, commands, MCPS. You can even create these visual dashboards kind of like a mission control directly for uh 0:1616 secondsClaude Code. Um
+we're going to be running this today and getting it set up. There was a a competition with Claude recently and the winner of that competition actually created this 0:2525
+secondsGitHub. [music] So I'm pretty excited to try it out and we'll test it out today. 0:2828 secondsIt's called Claude Code Templates on GitHub and it's free to install. Right.
+0:3232 secondsSo, what we're going to do over here is we're going to grab the GitHub repository. Then we are going to go to our terminal and start running Claude. 0:3939
+secondsOnce you've got Claude running, I'm going to install this. Now, the main thing I would say here is like if you if you're thinking about installing, you 0:4545 secondsknow,
+any external skills to claude code or open claw or that sort of thing. 0:5050 secondsCheck it all yourself. Check the skill MD files. Uh run these skill MD files through Claude
+first. I install this stuff cuz it's fun. Sometimes not all of 0:5858 secondsthese skills are secure. So you just need to be careful before you install anything. Um which is why
+I'm telling you right now how to do that. So we're going to go into inside the terminal and Chapter 2: Installing Skills & Security Tips 1:071 minute, 7 secondssay install this.
+Now you can actually browse all the templates over here including an interactive web interface. 1:121 minute, 12 secondsRight? So you can see over here we have a list of all the
+skills that we can add to this. So for example like uh front-end skill, skill creator, senior 1:201 minute, 20 secondsfront end, senior architect etc. The main point of this is
+like once you install this, 1:291 minute, 29 secondsyou can basically add a ton of skills to claude code that just make it way more powerful than it was before, including adding
+this visual dashboard. So, if you 1:371 minute, 37 secondswant to run the actual visual agent teams workflow, which you can see right here, this tweet from Daniel Sam, then what
+we're going to do is take this prompt like so. Chapter 3: Setting Up the Visual Dashboard 1:541 minute, 54 secondsAnd we can just run that inside core code like you can see. So
+it's just a oneclick setup. Now you can see inside the website itself we now have this 2:012 minutes, 1 secondagent team setup. Right? So it ran and set up agent teams as you can
+see over here. And then you just need to select a session to view the details. Right? So 2:102 minutes, 10 secondsit's beginning to build out the agent teams workflow. 2:162

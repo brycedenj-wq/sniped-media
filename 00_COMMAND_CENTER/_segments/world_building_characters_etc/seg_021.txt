@@ -1,0 +1,224 @@
+there and plug this up to dirt and plug this up to normal map but if I 2:11:582 hours, 11 minutes, 58 secondspress apply and go back into our material instance we have a pretty big
+issue right here and that is now our 2:12:052 hours, 12 minutes, 5 secondssize controls both now let's come over to the dirt controls both our grass and dirt and we want to control
+those 2:12:142 hours, 12 minutes, 14 secondsindependently and the issue is in unreal for material parameters if you have two parameters with the same exact name then 2:12:222
+hours, 12 minutes, 22 secondsthey're going to be treated the same within the material instance so the way you fix this is that you have to give each of these parameters a different
+2:12:282 hours, 12 minutes, 28 secondsname so call this one size grass and then call this one down here size dirt 2:12:372 hours, 12 minutes, 37 secondsand press apply and now that
+should be different so we also get the dirt parameter within our instance so let's 2:12:442 hours, 12 minutes, 44 secondsjump back into landscape example and press shift and two to
+go into landscape mode select dirt because 2:12:522 hours, 12 minutes, 52 secondsI want to paintt a little bit of dirt right next to the mannequin so we can see what grass and dirt
+look like in 2:12:592 hours, 12 minutes, 59 secondsrelationship to our human scale reference now with dirt right there let's go increase it to 2:13:092 hours, 13 minutes, 9
+seconds0.3 maybe even 0 point actually I think 1.2 looks good so just 2:13:172 hours, 13 minutes, 17 secondsa little bit more tiling with our dirt if you curious is how to make a
+really good landscape material I do have a landscape tutorial series on my YouTube 2:13:262 hours, 13 minutes, 26 secondschannel while it is for unreal 4 pretty much all of it
+still applies to Unreal Engine 5 that was the very basics of Chapter 21: Megascan 2:13:332 hours, 13 minutes, 33 secondsLandscapes now we're going to go over how we can get assets
+from the meas scans Library so in case you don't know unreal already comes with thousands of 2:13:422 hours, 13 minutes, 42 secondsfree highquality assets ready to be used
+immediately in Unreal Engine we can get these assets through the quicko bridge 2:13:482 hours, 13 minutes, 48 secondsplug-in which is already installed in unreal before we jump
+into Mega scans let's make some edits to our world so first off I'm going to get rid of my 2:13:572 hours, 13 minutes, 57 secondslandscape material since I think it's a little bit
+distracting and I just want to focus on the mega scan assets so select my landscape scroll down to the 2:14:052 hours, 14 minutes, 5 secondslandscape material slot and let's reset
+it back to the world grid by selecting the arrow right there there we go and I 2:14:132 hours, 14 minutes, 13 secondsalso want to lock my exposure with the postprocess volume so
+come into volumes postprocess drag it out 2:14:212 hours, 14 minutes, 21 secondsand scroll up to exposure let's set it to manual and exposure compensation notice that there is no
+change right now 2:14:292 hours, 14 minutes, 29 secondsbecause I need to make sure that infinite extend Unbound is turned on now I can increase the exposure compensation 2:14:382
+hours, 14 minutes, 38 secondsI found a value of 12 to be pretty good and I'm also going to raise the position 2:14:452 hours, 14 minutes, 45 secondsof my sun so we get more light
+in the world okay so now that the sun was raised notice that the brightness of The Sun 2:14:532 hours, 14 minutes, 53 secondsAlso increased so exposure compensation I'm going to
+lower it to 11 or 11.5 all right great so let's go over 2:15:012 hours, 15 minutes, 1 secondhow we can get access to the quickel bridge library and getting access is pretty simple
+you just want to come up to the add button and then select quixel 2:15:102 hours, 15 minutes, 10 secondsbridge now if this is your first time logging into quixel Bridge it might
+ask you to log into your epic games account don't worry it's the same exact account 2:15:192 hours, 15 minutes, 19 secondsthat you created when downloading on real engine so just
+go into that and then you get access to right now at the time recording 2:15:262 hours, 15 minutes, 26 seconds16,680 assets which is absolutely amazing now for some reason you
+don't have quickel Bridge installed in a real 2:15:332 hours, 15 minutes, 33 secondsengine then you want to go to the epic games launcher and come to Unreal Engine Library scroll
+all the way down to Vault 2:15:412 hours, 15 minutes, 41 secondsand find the quickel bridge plugin once you found the quicksell bridge plugin click on install to engine and select
+on real Engine 5 although by default this 2:15:492 hours, 15 minutes, 49 secondsplugin should be installed so you shouldn't have this issue but it's important to bring up just in
+case you don't see quickel bridge now let's open 2:15:572 hours, 15 minutes, 57 secondsup quickel bridge and let's go over a simple example of bringing in a 3D object so to bring
+in a 3D object is pretty simple number one you want to 2:16:052 hours, 16 minutes, 5 secondsfind a 3D object that you like so maybe this rock right 2:16:122 hours, 16 minutes, 12
+secondshere then all I have to do is Select this rock and let me make my screen window just a little bit smaller hold 2:16:212 hours, 16 minutes, 21 secondsdown the left Mouse
+button and drag it into your world just like if it's a asset from the content 2:16:282 hours, 16 minutes, 28 secondsbrowser and now we have our Rock in our world importing
+realistic assets into un real engine have never been this easy 2:16:372 hours, 16 minutes, 37 secondsand if I press control and space we can see in our content folder that two new
+folders were created specifically Mega scans and Ms presets so Mega scans 2:16:462 hours, 16 minutes, 46 secondscontains all our Mega scan assets that we get from bridge for
+example we have a folder called 3D assets and inside 3D assets we have another folder called 2:16:542 hours, 16 minutes, 54 secondsmossi Forest Rock and right here are all the
+assets that make up specifically this rock right here now the other 2:17:022 hours, 17 minutes, 2 secondsfolder if we go back to content right next to Mega scans is Ms presets so
+Ms presets contains all the master 2:17:112 hours, 17 minutes, 11 secondsmaterials that quickel bridge uses so if we go out into content back to Mega scans 3D assets MSI Forest
+Rock we'll 2:17:192 hours, 17 minutes, 19 secondssee that the material that using is a material instance so it's not a material by itself if I scroll down to the material instance
+we can see what it's 2:17:282 hours, 17 minutes, 28 secondsMaster material is and it's using MMS default fuzz material and if I click on the magnifying glass it's going to jump
+2:17:362 hours, 17 minutes, 36 secondsto its location which is of course under Ms presets which contains all those Master materials and you also notice 2:17:432 hours, 17 minutes,
+43 secondsthat we do get a bunch of parameters so we're going to go over all the main material parameters that quickel bridge provides to us which we will use 2:17:512 hours, 17
+minutes, 51 secondsconsistently so to begin let's go over albo controls and I'm going to move my window off to the side so we can better 2:17:572 hours, 17 minutes, 57 secondssee
+our assets so albo tint does exactly what the clor tint does that we just created for our own Master material so I 2:18:062 hours, 18 minutes, 6 secondscan completely change the
+color of my asset I'm going to press cancel since I don't want to make any changes to my color right now and below that is albo 2:18:142 hours, 18 minutes, 14 secondscontrols now
+we don't see any albo controls right now since I need to click on the trigle icon to get a drop down so right here we have saturation brightness 2:18:232 hours, 18 minutes, 23
+secondsand contrast and they all do exactly as you would expect saturation increases the saturation of our asset bring it 2:18:302 hours, 18 minutes, 30 secondsback to its default
+value of one brightness controls how bright the asset is and this is probably the parameter I use the most with mega skan assets 2:18:392 hours, 18 minutes, 39 secondsespecially if
+I'm trying to get a lot of different assets to blend together well I'm going to try to control their brightness to make sure they all have a 2:18:462 hours, 18 minutes, 46
+secondssimilar value to each other and below that is contrast and all of these have a default value of one now below that is 2:18:552 hours, 18 minutes, 55 secondsmetallic
+generally I don't have to play with it because this asset isn't metallic but if you do want to override one of the metallic behaviors for 2:19:032 hours, 19 minutes, 3
+secondsexample increase the base metallic from zero which is what it should be since this asset is a metallic to one and then bring metallic map override to zero now 2:19:122
+hours, 19 minutes, 12 secondswe can see that the asset is metallic although I wouldn't recommend you to do it but it is good to know that those options are there so I'm going to
+reset 2:19:202 hours, 19 minutes, 20 secondsthem to their default value and then below that is roughness so roughness controls how shiny the asset is exactly 2:19:282 hours, 19
+minutes, 28 secondswhat we learned about during the PBR section of the material chapter so max roughness is at one if I bring this to 2:19:362 hours, 19 minutes, 36 secondszero
+then the rocks have no roughness and are really shiny I'm going to bring back the roughness by setting it back to 2:19:422 hours, 19 minutes, 42 secondsone below that is normal
+strength which is like the flat and normal although now if we increase normal strength then 2:19:502 hours, 19 minutes, 50 secondsnormal increases and then if we decreases to zero
+then the normal map has no effect on our assets so obviously 2:19:572 hours, 19 minutes, 57 secondswe do want to leave this at one so the normal map has a little bit of an effect
+so there's still a bunch of other parameters that we could play with but 2:20:062 hours, 20 minutes, 6 secondsthese are all the main ones that are needed for props just like this
+now let's go over how we import a surface 2:20:122 hours, 20 minutes, 12 secondsmaterial which is different from a prop since surfaces are good for a floor like 2:20:202 hours, 20
+minutes, 20 secondsthis Cube and not necessarily meant for specific 2:20:262 hours, 20 minutes, 26 secondsprops so let's go into quicko bridge and let's find a nice 2:20:332 hours,
+20 minutes, 33 secondssurface for example brick decorative brick wall and we could click download although I do want to go 2:20:412 hours, 20 minutes, 41 secondsover the different
+quality options so right now it's at the highest quality we have low medium high and highest low 2:20:482 hours, 20 minutes, 48 secondsquality is 1K textures medium quality is 2K
+high quality is 4K and highest quality is 8k so I think generally 2:20:572 hours, 20 minutes, 57 secondsunless you're really trying to go for the best looking render as possible I
+wouldn't go with AK textures the highest I would go with is 4K and click download 2:21:072 hours, 21 minutes, 7 secondsso you're going to have to wait for this to download and once
+it is done downloading simply click the add button immediately 2:21:152 hours, 21 minutes, 15 secondswe will see that our content browser opens up and we get our material right
+there the material functions like any 2:21:232 hours, 21 minutes, 23 secondsother material you can drag it and let go to place it on an object so now we have our brick in our world
+I can select 2:21:322 hours, 21 minutes, 32 secondsthis brick and open up its material instance to see what parameters we have and the parameters are pretty much exactly the same
+as beforehand except I 2:21:402 hours, 21 minutes, 40 secondswant to point out what Global does so Global controls our tiling if I click on tiling offset and then click on the drop
+2:21:482 hours, 21 minutes, 48 secondsdown we see tiling X and Ty y if I want to tile it more on the X Direction I can increase this if I want to tile it more 2:21:562 hours, 21
+minutes, 56 secondson the y direction I can increase this or I can decrease the tiling in the X and Y to make our texture larger I can 2:22:052 hours, 22 minutes, 5 secondseven
+offset it so move this texture in the x or y AIS of our object's texture 2:22:122 hours, 22 minutes, 12 secondsUVS and if you really want to we even have the ability to rotate this
+although I'm just going to leave it at zero 2:22:212 hours, 22 minutes, 21 secondsif you ever want to reset all the values at once then click on the top arrow and here is a neat
+trick that I do want to 2:22:282 hours, 22 minutes, 28 secondspoint out let's say you want to go to the folder that this asset is located in but you don't want to have to navigate
+2:22:352 hours, 22 minutes, 35 secondsto that folder manually go through all your content folders and try to find where this asset is located well what you could do is in the
+details panel 2:22:442 hours, 22 minutes, 44 secondsclick on the magnifying glass right next to that object which will jump to that location or the shortcut is to press 2:22:522
+hours, 22 minutes, 52 secondscontroll and B at the same time to jump to that object's location so if you select any object for example the human 2:23:002 hours, 23 minutesreference
+press control B it's going to jump to that location so that is a shortcut that we will be using a lot especially when we're creating our 2:23:082 hours, 23 minutes, 8
+secondsmedieval village now I think is a good time to go over the foliage mode and to go into foliage mode simply switch from select mode below landscape to foliage 2:23:172 hours,
+23 minutes, 17 secondsso folage mode is great because it allows us to to paint full around our world very quickly and populate our world with grass trees rocks and pretty Chapter
+22: Foliage Tool 2:23:262 hours, 23 minutes, 26 secondsmuch all the small assets you would expect to be in an environment now I'm going to press shift one to get out of folage mode
+because we first need 2:23:342 hours, 23 minutes, 34 secondsfoliage and where are we going to get our foliage hopefully you could guess quickel Bridge so in quickel Bridge come
+2:23:412 hours, 23 minutes, 41 secondsto 3D plants and we have a bunch of plants to select from I specifically want to find Fern just as an example although you can pick any of the
+plants 2:23:502 hours, 23 minutes, 50 secondsare available to us and I'm going to select common Fern now just like when we were downloading the materials we have 2:23:582 hours, 23
+minutes, 58 secondsdifferent quality options so I could use low quality which is 1K medium quality 2K or high quality which is 4K and I'm 2:24:062 hours, 24 minutes, 6 secondsgoing
+to stick to high quality right now let's download it and once it's done downloading add to your project with the add button and now 2:24:152 hours, 24 minutes, 15 secondsthis fern
+plant is successfully inside of our project I can drag this out see 2:24:222 hours, 24 minutes, 22 secondsexactly what assets were made available to us unlike other Mega scan
+assets foliage can have multiple objects so here we have three different ferns and 2:24:302 hours, 24 minutes, 30 secondslet's open up the material instance to see what options are
+available to us we have a couple ways to open up our foliages material instance number one I 2:24:392 hours, 24 minutes, 39 secondscould go into the details panel with any of these
+selected and select the first material available to us or I can press contrl and B to jump to that object's 2:24:482 hours, 24 minutes, 48 secondslocation which is our Fern folder
+and select the material right here I want to make sure that I select a material that doesn't have billboard 2:24:552 hours, 24 minutes, 55 secondsinside of it so select the non-
+billboard one and this will be our main material instance so I'm going to go 2:25:022 hours, 25 minutes, 2 secondsover all the main parameters of foliage so first off we have color
+overlay which is essentially functions 2:25:102 hours, 25 minutes, 10 secondsjust like our color tints so if I want to make my Fage a little bit blue or red this is where I make
+that change and when I do make it red it kind of gives 2:25:192 hours, 25 minutes, 19 secondsit a fall fig which is pretty neat press cancel since I don't want to make those
+changes and right above that is color 2:25:262 hours, 25 minutes, 26 secondsvariation because you wouldn't expect each Fern to be the same exact color there would be a little bit
+of variation between all the different ferns and 2:25:342 hours, 25 minutes, 34 secondsthat's exactly what color variation does if I bring this up to something large like 0.5
+notice how each Fern has its own individual tint now normally you 2:25:432 hours, 25 minutes, 43 secondsdon't want it to be this intense you'd want it to be just a little bit like
+0.1 or even 0.05 2:25:512 hours, 25 minutes, 51 secondsso that there's just a little bit of variation between all the objects and below that is roughness intensity so 2:25:592
+hours, 25 minutes, 59 secondsroughness intensity is just like our Master material's roughness strength so bringing it down to zero means our 2:26:062 hours, 26 minutes, 6
+secondsobject is very shiny and bring it up to let's go five we'll make our ferns pretty rough let's see if it has default 2:26:132 hours, 26 minutes, 13 secondsvalue of one and
+below that is normal intensity which functions like normal strength bring it to zero gets rid of 2:26:212 hours, 26 minutes, 21 secondsthe normal Maps so this is with the normal
+maps and this is without or bringing it to five gives ourselves 2:26:282 hours, 26 minutes, 28 secondsreally intense normal Maps but I'm going to leave it at one for now which is
+its default and after that we have 2:26:352 hours, 26 minutes, 35 secondstranslucency strength and desaturation so light doesn't just stop when it hits a leaf instead light goes
+2:26:432 hours, 26 minutes, 43 secondsinto the leaf it bounces around a little bit and then it leaves a leaf so that is where translucency comes in translucency is how much light
+should Bounce Around 2:26:522 hours, 26 minutes, 52 secondsinside the leaf it's at a value of seven if I bring this to zero then we have no light bouncing within the leaf if I
+2:26:592 hours, 26 minutes, 59 secondsbreing up to one then a little bit two a little bit more five and finally the default of seven and below that is 2:27:072 hours, 27 minutes, 7
+secondstranslucency desaturation notice how if I bring down to zero then it becomes completely desaturated now the light 2:27:132 hours, 27 minutes, 13 secondsinside the leavea is
+white or if I bring into one then there was no desaturation when the light was bouncing in the leaf 2:27:222 hours, 27 minutes, 22 secondsso I'm going to leave it at the default
+value of 0.95 and finally we have probably the most important parameter and that is 2:27:302 hours, 27 minutes, 30 secondsenable grass wind so turn this on and then set it to true
+so now our plants 2:27:372 hours, 27 minutes, 37 secondshave wind which adds a whole another level of realism we can control the wind intensity by of course playing with it right
+here so if I bring it to zero then 2:27:462 hours, 27 minutes, 46 secondsthere is no wind and it default is 0.15 maybe if we're inside a hurricane make 2:27:532 hours, 27 minutes,
+53 secondsthis 0.5 and now it's super intense so I think 0.15 is a little bit too intense by default so I'm going to bring this 2:28:012 hours, 28 minutes, 1 seconddown to 0.05 for
+just some really faint movement you probably notice throughout this entire time is that the foliage 2:28:092 hours, 28 minutes, 9 secondspops a little bit as I go further away or
+closer up to it and this popping is level of detail so we can better see 2:28:172 hours, 28 minutes, 17 secondslevel of detail by opening up the foliage in its static mesh editor
+and right here we have LOD 2:28:262 hours, 28 minutes, 26 secondslod0 is what the fge will look like when you're really up close to it and actually let me go uncheck the grid so
+2:28:332 hours, 28 minutes, 33 secondswe can better see this led1 is what it will look like when we get a little bit further away when the camera gets even further we go 2:28:412
+hours, 28 minutes, 41 secondslod2 further lod3 and finally we go to LOD 4 and as we increase lods as the 2:28:492 hours, 28 minutes, 49 secondscamera gets further and further away
+we lose more and more geometry until we get this weird thing right here which is 2:28:572 hours, 28 minutes, 57 secondsessentially just a picture of the fern which is pointed at
+the camera so this material right here is what the 2:29:032 hours, 29 minutes, 3 secondsbillboard is so that's why we weren't editing this material since this material is
+completely different from 2:29:102 hours, 29 minutes, 10 secondsour main material instance if we did edit this then we wouldn't see any changes right now in our world since we're
+zoomed up pretty close to our 2:29:182 hours, 29 minutes, 18 secondsferns we would know to change if we're far away and hopefully you can see it in YouTube all of our ferns just
+transition 2:29:262 hours, 29 minutes, 26 secondsto a billboard which is the furthest LOD possible so that's important to point out that if you do make a major change 2:29:332
+hours, 29 minutes, 33 secondsto these ferns for example let's give them a color tint of blue we have blue 2:29:402 hours, 29 minutes, 40 secondsferns but if we go away our
+Billboards are green so we also have to go into the billboard material instance which is the 2:29:472 hours, 29 minutes, 47 secondssecond material and change this color to Blue to
+match the main material instance 2:29:552 hours, 29 minutes, 55 secondsso we get a better transition now that looks terrible so I'm going to change it back to its default value of
+gray and 2:30:032 hours, 30 minutes, 3 secondsright here change it also back to Gray and I can exit out of all of these and save everything because now that we've 2:30:112 hours,
+30 minutes, 11 secondsgone over the material parameters for foliage we can talk about the folage mode editor which we can open with the 2:30:192 hours, 30 minutes, 19
+secondsshortcut shift three right here is where we get all the assets that I want to paint onto our landscape we can see that 2:30:262 hours, 30 minutes, 26 secondsit was already
+autop populated by the Fage that we downloaded from Mega scans the reason why is because unreal is smart enough and mega scans is smart 2:30:342 hours, 30 minutes, 34 secondsenough
+to know that if we're downloading folage odds are we want to paint it now if we don't have anything right here 2:30:412 hours, 30 minutes, 41 secondsthen we could drag any 3D
+object into the Fage editor by just selecting them in the content drawer hovering over and adding them as a foliage type 2:30:502 hours, 30 minutes, 50 secondsnow I'm not going to
+add them as a Fage type because they're already added right here so if I select any of them we see that I get a details panel down here 2:30:592 hours, 30 minutes, 59 secondswith a
+bunch of options for how I want to paint this specific object now if you do not see these options that's because you have to come up here and make sure 2:31:072 hours, 31 minutes,
+7 secondsthis button is blue so to start painting make sure you have paint selected and you'll notice that nothing is happening that's because I need to activate right 2:31:162
+hours, 31 minutes, 16 secondshere what foliage I want to paint down so I need to tell on real exactly what assets I want to paint so for example if I just want to paint this asset
+right 2:31:252 hours, 31 minutes, 25 secondshere then hover over the assets icon and in the top left hand corner make sure it's turned on so now this is going to 2:31:332 hours, 31
+minutes, 33 secondsGlow while all the other ones are a little bit darker and that tells me that I can paint it so come to paint and now 2:31:402 hours, 31 minutes, 40 secondshold
+down left Mouse button and I'm painting this foliage around and wait a little bit for the shaders to get pile I 2:31:482 hours, 31 minutes, 48 secondswant to paint all three then
+make sure all three of them are activated so now I'm painting a lot of them down if I 2:31:572 hours, 31 minutes, 57 secondsever want to get rid of these or erase a specific Fage
+type make sure that Fage type is selected and hold down shift to 2:32:042 hours, 32 minutes, 4 secondserase them so it is pretty simple I can decrease the brush size by coming up
+here or I can use the shortcuts from the 2:32:142 hours, 32 minutes, 14 secondslandscape mode which are the left bracket key to decrease brush size and right bracket key to
+increase the brush 2:32:212 hours, 32 minutes, 21 secondssize I even have access to paint density so right now it's at 0.5 if I want to paint down more foliage then I can 2:32:282
+hours, 32 minutes, 28 secondsincrease this to one and I'm paint a lot more or if I don't really want to paint that much down then set to 0.1 we're 2:32:362 hours, 32 minutes, 36
+secondsjust going to paint a little bit hold on shift and I can always erase everything that I've already 2:32:432 hours, 32 minutes, 43 secondsdone and of course if you don't want
+to paint a specific Fage type just make sure you have that unchecked and now we're only going to paint this one and 2:32:512 hours, 32 minutes, 51 secondsthis one so if you want to
+quickly select all the Fage types then you can press contrl and a to select all so in 2:32:592 hours, 32 minutes, 59 secondsour real engine crl a is select all and then in the top
+left hand corner you can uncheck it to uncheck them all and then 2:33:072 hours, 33 minutes, 7 secondscheck it again to check them all so that's a nice shortcut and you can also
+hold down control to select multiple 2:33:142 hours, 33 minutes, 14 secondsobjects or you can hold shift to select objects in a row so now that I have them all selected I want to
+edit the properties down here but I want to edit 2:33:232 hours, 33 minutes, 23 secondsthe properties all at once so I'm going to press contr and a to select all of them and we
+have density down here green 2:33:302 hours, 33 minutes, 30 secondspaint density all the way up to one and we can see that yeah this is pretty dense but what if I want this to be
+even more dense well down here for 2:33:392 hours, 33 minutes, 39 secondsdensity I can increase this from 100 to 200 so this should be twice as dense we 2:33:452 hours, 33 minutes,
+45 secondscan see that's already pretty dense even take this up another notch to 500 and now we are going to be painting in a lot 2:33:552 hours, 33 minutes, 55 secondsof ferns but
+these ferns still look a little bit unrealistic there's two reasons number one I think the variation 2:34:022 hours, 34 minutes, 2 secondsof our ferns is a bit too much so let's
+jump back into our material instance and for color variation I'm going to lower 2:34:092 hours, 34 minutes, 9 secondsthat from 0.05 to 0.01 okay so that's better but all the
+2:34:162 hours, 34 minutes, 16 secondsferns have the same exact size and pl PL never have the same exact size normally they have different sizes depending on 2:34:242 hours, 34
+minutes, 24 secondswhere they're placed or how old they are in their lifespan so let's jump back into folage mode with shift and three 2:34:322 hours, 34 minutes, 32 secondsand
+select all of them now I'm going to delete them all scroll down and for scale X let's have a random range for 2:34:412 hours, 34 minutes, 41 secondseach time we paint the foliage
+from 0.5 to a Max of two so now if I paint 2:34:492 hours, 34 minutes, 49 secondsand actually hold on shift decrease the density from 500 to 100 so we can better see each
+individual 2:34:572 hours, 34 minutes, 57 secondsFern we will see that we have a very wide range of sizes so some ferns are 2:35:042 hours, 35 minutes, 4 secondssmall and some
+ferns are larger than the other ones also if you enjoy placing assets by painting them but let's say 2:35:142 hours, 35 minutes, 14 secondsfor example there's one asset and you
+don't like where it's placed but you don't want to delete all the assets that are around it well instead of using 2:35:232 hours, 35 minutes, 23 secondspaint you can use select and
+then you can grab that individually and move it away so you can still move individual 2:35:312 hours, 35 minutes, 31 secondsobjects and even scale them and rotate them despite
+using the paint mode so just keep that in mind that you still 2:35:382 hours, 35 minutes, 38 secondshave a lot of control over the placement of your objects and it's also important
+to point out that let's say for example 2:35:462 hours, 35 minutes, 46 secondsI'm painting and I only want to paint on my landscape and then I go on top of a mesh and then I start
+painting on top of my mesh by default also when I now move 2:35:552 hours, 35 minutes, 55 secondsthis mesh around we can see that that foliage is stuck to that mesh so if you do
+not want that to happen I'm going to 2:36:032 hours, 36 minutes, 3 secondspress contrl and Z to get rid of that press shift three make sure under filters that static meshes is
+turned off 2:36:102 hours, 36 minutes, 10 secondsso now what I'm painting I'm only painting on top of my Landscapes and not on top of the static meshes so that the very basics of
+foliage in Unreal Engine 2:36:182 hours, 36 minutes, 18 seconds5 we're going to be painting a lot of foliage when it comes to our final environment build towards the end of this
+video now it's time to talk about Chapter 23: Nanite!!! 2:36:262 hours, 36 minutes, 26 secondsone of the main features of uv5 and that is nanit geometry so nanit geometry is a
+brand new way of rendering geometry that 2:36:342 hours, 36 minutes, 34 secondsallows for a near infinite amount of source polygons on our screen at any time so this means we could
+get high 2:36:412 hours, 36 minutes, 41 secondsquality movie assets rendering in real time which was impossible beforehand and now I know that might sound a little bit 2:36:492
+hours, 36 minutes, 49 secondstoo good to be true so I have two examples we're going to jump into to demonstrate the power of nanites right now I have the Unreal Engine 5 demo
+2:36:572 hours, 36 minutes, 57 secondsproject downloaded you can download this project within the epic games launcher under samples and it's called Valley of the Ancients so if you
+want to check 2:37:052 hours, 37 minutes, 5 secondsthis out then you can download it right now although do keep in mind that this project is 100 gbt large since we're using really
+dense models because nanite 2:37:132 hours, 37 minutes, 13 secondsallows us to do that so this entire desert is made possible with nanite and we can see nanite in action by coming
+up 2:37:212 hours, 37 minutes, 21 secondsto LIT down here to nanite visualization and selecting triangles so every color you see is an individual triangle is an 2:37:302 hours, 37
+minutes, 30 secondsindividual polygon and notice how when I zoom in on any of these rocks or Cliffs our triangles get denser and denser as I zoom in and when I zoom out the
+2:37:392 hours, 37 minutes, 39 secondstriangles get larger and larger so this is all possible due to nanite beforehand in unreal 4 using geometry that is this 2:37:472 hours, 37
+minutes, 47 secondsdense was not possible now do keep in mind that at the time of recording this video nanite only works for solid static 2:37:542 hours, 37 minutes, 54
+secondsmeshes that do not deform so for example it works for rocks or for Cliffs but it doesn't work for foliage epic games is 2:38:022 hours, 38 minutes, 2 secondsaware of this
+issue and they're right now working on it so maybe if you're watching this in the future then nanite works for grass and trees but for now it 2:38:092 hours, 38 minutes, 9
+secondsonly works for solid static meshes and another cool feature of nanite specifically for this sample project is that and if I increase my 2:38:172 hours, 38 minutes, 17
+secondscamera speed the there is no Landscapes whatsoever everything you see right here is a nanite static mesh so the ground is 2:38:262 hours, 38 minutes, 26 secondsnot a
+landscape it's a collection of static meshes that are layered on top of each other to make it look like the ground is one landscape so here's 2:38:342 hours, 38 minutes, 34
+secondsanother example demonstrating nanites so right in front of you is a doughnut I made in Unreal Engine and this doughnut is made up of about 30,000 different 2:38:432 hours,
+38 minutes, 43 secondspolygons here we have that same doughnut but copy and pasted over 100,000 times and as we can see my frame rate is about 2:38:522 hours, 38 minutes, 52
+seconds5 to 10 frames per second which is obviously unplayable and the reason why is because these Donuts aren't making use of nanite so to enable nanite on any 2:39:012 hours, 39
+minutes, 1 secondstatic mesh simply find where that static mesh is within the content drawer as a reminder a shortcut is to select that static mesh and press contrl MB to 2:39:092
+hours, 39 minutes, 9 secondsjump to its location and to activate nanite right click on the static mesh come up to nanite and select enabled so 2:39:182 hours, 39 minutes, 18
+secondsit is that easy to enable nanite and now here's that same environment but all the donuts are nanite and we're hovering 2:39:252 hours, 39 minutes, 25 secondsaround 40 to 60
+frames per second so we went from 10 all the way up to 60 frames per second which is amazing we can even 2:39:332 hours, 39 minutes, 33 secondscome up to LIT n visualization and
+select triangles to double check that this is all using nanite 2:39:402 hours, 39 minutes, 40 secondsgeometry so I finally jumped back into our first project and as a reminder to
+enable nanit all you have to do is 2:39:472 hours, 39 minutes, 47 secondsselect the static mesh press control and B to find out where that static mesh is within your content drawer
+and right click and select 2:39:552 hours, 39 minutes, 55 secondsenabled now nanite is enabled for this asset here's a tip we can see what assets have nanite enabled by coming up
+2:40:032 hours, 40 minutes, 3 secondsto LIT nanite visualization and instead of clicking on triangles which has been showing us how many Poes are on a mesh 2:40:102 hours, 40
+minutes, 10 secondswe can select mask so everything that's green is using nanite and everything that red is not using nanite as a 2:40:182 hours, 40 minutes, 18 secondsreminder at
+the time of recording this video nanite only works for solid static meshes like the rock right here it 2:40:252 hours, 40 minutes, 25 secondsdoesn't work for Fage although that
+will be changing so maybe in the future you can enable nanite on Fage and make that a lot more performant than what it is 2:40:322 hours, 40 minutes, 32 secondsright now we can
+even download a nanite version of this object so nanite will automatically be enabled from Mega scans 2:40:402 hours, 40 minutes, 40 secondsto do so let's hop back into quickel
+bridge and I specifically want to download let's go Nordic formation type 2:40:482 hours, 40 minutes, 48 secondsthat in and I think it is this mesh right here so Nordic Beach
+formation and instead of selecting high quality medium 2:40:562 hours, 40 minutes, 56 secondsquality or low quality we will select Nan quality and click on download now this will
+take a while since Nan quality 2:41:032 hours, 41 minutes, 3 secondsis downloading the best quality possible which is a very very high resolution mesh and now that's downloaded
+click on 2:41:112 hours, 41 minutes, 11 secondsADD so a new window will pop up with your mesh so I'm going to exit out a bridge and drag this out into my world 2:41:202 hours, 41
+minutes, 20 secondsit might take a while for all the shaders to compile and we have a nanite mesh we can see how Den this meshes by going into 2:41:282 hours, 41 minutes, 28
+secondswireframe View mode with alt and two so this is how dense a nan meshes compare this to downloading a mesh at medium 2:41:362 hours, 41 minutes, 36 secondsquality like these
+rocks right here compared to nanite Quality obviously nanite is a lot better we get all this 2:41:442 hours, 41 minutes, 44 secondssmall detail within the Rocks which really helps
+make it realistic the only ISS issue is since we're downloading AK 2:41:512 hours, 41 minutes, 51 secondstextures and a high resolution mesh it's going to take up a lot of disc
+space but if you're not worried about large project files then I would download 2:41:582 hours, 41 minutes, 58 secondseverything as nanite since there is no performance cost and in
+a lot of cases it's actually more performant to use nanite meshes then non- Nite meshes so 2:42:082 hours, 42 minutes, 8 secondshere's what we're going to do is that I want to
+compare all the different quality types that we're able to download from Mega scans so I'm going to jump back into quixel bridge and 2:42:172 hours, 42 minutes, 17 secondsdownload
+this same asset but download the low quality medium quality and high quality to compare them all so here are all the different qualities for this 2:42:252 hours, 42 minutes, 25
+secondsasset and to better see the difference between them I'm going to press alt and two to go into wireframe View mode and our landscape is right now interfering 2:42:342 hours,
+42 minutes, 34 secondswith us analyzing the wireframes of our assets so I can select the landscape and hide it with h so H is a shortcut to 2:42:432 hours, 42 minutes, 43
+secondshide an asset without having to navigate to it within the world outliner and selecting the IE icon I can also press control and H to unhide an asset so 2:42:522 hours, 42
+minutes, 52 secondsclick on it press h to hide it and control h to unhide it so I'm going to leave that hidden and over here we have the lowest quality it's pretty 2:43:002 hours,
+43 minutesnoticeable that there's not that many polygons on this asset and the Shadows from our directional light make it very noticeable that this asset is pretty low 2:43:082
+hours, 43 minutes, 8 secondspoly now right next to it is medium quality so medium quality has a little bit more poly and it's at 2K while low 2:43:152 hours, 43 minutes, 15
+secondsquality was at 1K and next to that is high quality so high quality obviously has a lot more poly and the textures are 2:43:232 hours, 43 minutes, 23 secondsalso at 4K and
+finally we get Nite with 8K textures and the highest poly count possible so this is the source poly 2:43:312 hours, 43 minutes, 31 secondscounts that are directly from the scan
+these are the kind of assets you would see in movies not in video games but because nanite is enabled we are able to 2:43:402 hours, 43 minutes, 40 secondsuse them in our project
+so those are the different quality selectors one thing I do want to point out is that notice if we pay attention to our high quality ass 2:43:492 hours, 43 minutes, 49 secondsass
+as I zoom out the polygon shift until I'm so far out that basically these three assets are using the same 2:43:572 hours, 43 minutes, 57 secondsamount of polygons that's because
+megaan assets when not using Nite use level of detail so press contrl h to unhide the 2:44:042 hours, 44 minutes, 4 secondslandscape and I can open up my asset by pressing control
+and B to jump to that asset's location in the content drawer 2:44:122 hours, 44 minutes, 12 secondsand then double clicking on the asset to open up the static mesh editor or as a
+shortcut instead of having to navigate to the this location in the content 2:44:202 hours, 44 minutes, 20 secondsbrowser I can press contrl and E to open it up so make sure you
+have any asset selected for example the medium quality 2:44:282 hours, 44 minutes, 28 seconds1 and press contrl and E to open up that specific asset now I'm going to dock it up

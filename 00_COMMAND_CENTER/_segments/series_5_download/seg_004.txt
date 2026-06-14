@@ -1,0 +1,224 @@
+11:47 don't really need that for my my sites 11:49 uh search console okay so this is 11:53 if you use google analytics one thing 11:55 that's really nice about that is it'll 11:56
+show you what people searched to find 11:58 your site which could be useful 12:00 information if you're trying to 12:02 create content that people are searching 12:04 for right
+12:05 it doesn't show you that by default in 12:08 implausible but uh if we kind of like 12:10 open this to like see the docs basically 12:13 you can 12:15 do a connect you can
+connect a google 12:16 account and a plausible account to get 12:19 that information if you'd like i'm not 12:21 going to do that but effectively that 12:22 would give you that
+sort of information 12:23 i think they show like a screenshot 12:25 at some point um yeah they're showing 12:28 you how to do it 12:29 blah blah blah 12:30 and then yeah so you'll
+be able to see 12:33 in plausible you'll be able to see what 12:34 people are searching to get to your site 12:37 it might be useful might not i don't 12:39 really care um because
+it's just a 12:41 little hoppy thing for me 12:43 um 12:43 email reports so you can have plausible 12:46 email you on a regular basis uh with 12:49 information about your account
+right so 12:51 you can do a weekly report every monday 12:53 i don't use that i just do the monthly 12:55 report which i actually have a 12:57 screenshot of right here and
+basically 12:59 yeah it shows you this month compared to 13:01 the previous month 13:03 and some basic info and what pages did 13:05 well kind of wish it would show you the 13:06
+page titles here but anyway um and then 13:09 you could click here to log in so that's 13:10 the email that you get looks like it 13:12 comes 9 a.m central 13:14 u.s central every
+month but yeah so 13:16 that's what you get if you go ahead and 13:19 subscribe to those um you can add 13:21 multiple recipients if you'd like 13:24 and then traffic spike
+notifications 13:26 this is a nice one so this is real time 13:29 visitors so i have it 13:32 set up to email me when more than 50 13:35 people at a time are on my site uh 13:37
+that's because if that's true something 13:40 crazy has happened something some really 13:42 big website has linked to me and that's 13:44 when i kind of want to get online and
+13:46 like just monitor things make sure the 13:48 site doesn't go down make sure 13:50 everything's okay make sure i'm not 13:51 getting just ripped apart by someone 13:53 else
+online 13:54 and this is angry traffic not happy 13:56 traffic 13:58 um but yeah i actually haven't had this 14:00 happen in quite a while so i don't have 14:01 an example to show
+you but 14:03 yeah there's a current visitor threshold 14:06 let me set it to 20 actually 14:08 probably won't hit that anytime soon 14:09 anyway 14:10 it's pretty low traffic but
+yeah so 14:12 there's that you can set up notification 14:14 emails then there's danger zone which is 14:16 just you can reset the stats i don't 14:18 know why you would do that
+but you can i 14:19 guess 14:20 and you can delete your stats entirely 14:23 for the site Wrapping up 14:25 so 14:25 that's the bulk of it so i'll go back to 14:28 the stats 14:30
+yeah that's the bulk of what plausible 14:32 analytics 14:34 does 14:35 there is a whole bunch of documentation 14:38 you can read 14:39 right here so you can kind of read more
+14:42 up on it i actually haven't done any of 14:43 this at all but i've been using it for a 14:45 while and think i have a good idea for 14:46 how everything works so hopefully
+this 14:48 was helpful but yeah that's how 14:50 plausible analytics works um again not a 14:52 sponsor or anything just a thing that i 14:54 wanted to share and thought you guys
+14:57 would find 14:58 interesting um i'd love to hear if you 15:01 liked this uh kind of more lo-fi 15:04 video format uh compared to the more 15:07 edited thing that i typically
+do um if 15:09 you did drop a like down below that 15:10 helps me know that uh that you guys 15:12 liked it and appreciated it and yeah 15:14 i'll put a link to plausible analytics
+15:16 as well as i may throw a link to my own 15:18 analytics page in there so you can check 15:19 it out and laugh at the mild traffic 15:22 that i get 15:24 but yeah thank you so
+much for watching 15:25 and i'll see you here next time bye All Google Computer Science Learning 0:01 Hi, I'm Edwin and I'm part of the 0:04 content team here at Postto and I'll be
+0:06 showing you how we use product analytics 0:08 [music] 0:09 to help us improve and write developer 0:11 documentation. So recently we overhauled 0:14 a lot of our installation
+pages for 0:16 products like error tracking [music] and 0:18 that meant building a lot of new 0:19 components like this steps component 0:22 that essentially sequences out the 0:24
+content in a very structured way. And 0:27 when you compare that with our older 0:29 documentation, it's a very different 0:30 look and feel in terms of visual and 0:33 information
+layout. So we use product 0:35 analytics to track the user behavior and 0:39 engagement with that content so [music] 0:41 we can know how it's performing. So, we 0:43 built this
+really comprehensive 0:45 dashboard with lots of different 0:47 insights that track page views over 0:50 unique users, page views by session or 0:53 user, breakdowns by URL path,
+the 0:56 referral Google for GEO, chat GPT for 1:00 AEO, as well as probably the most 1:03 important insight funnels that help us 1:06 actually track how well these 1:08
+installation pages are converting to 1:10 real feature usage. So on the left we 1:13 have the [music] old installation pages 1:15 converting at a rate of about 11.3% 1:18 for a
+user who reads the page and then 1:20 tries the feature to our new layout 1:23 which goes about to 16.04%. 1:26 So big increase and gives us great 1:28 positive sign to keep going
+in the new 1:30 direction. Another way we use product 1:33 analytics in a more low-level manner is 1:36 to use SQL insights. So SQL insights 1:39 lets us query the data warehouse
+that 1:42 powers product analytics at Posthog 1:44 under the hood. So I can open up the SQL 1:47 editor and write queries in our own 1:49 version of click house SQL across our 1:52
+entire event schema of Postto. And if I 1:55 want to write or create new SQL queries, 1:59 I'm not the best at doing that myself, 2:01 I'll admit. So I lean a lot on Postgog 2:04
+AI which is a really fantastic way to 2:08 create, validate and fix SQL right here 2:11 in Postto. So I might open the chat and 2:14 ask it [music] to write a SQL query to 2:16
+match how many users have looked at both 2:19 error tracking and feature flags and 2:21 finding that intersection. So I'll kick 2:23 it off and it should generate a fully 2:26
+workable query for me to run. 2:39 [music] 2:41 And right there we have a SQL query that 2:45 [music] Postto AI generated and I'll use 2:48 this as a template to work off of. And I
+2:50 have data coming back from my SQL 2:53 insight. 2:55 We also [music] use product analytics to 2:57 instrument new events when we ship new 3:00 features or content that have no
+prior 3:02 reference. So for example, we shipped a 3:06 new feature down here that lets you copy 3:09 as markdown or view as markdown the 3:12 contents of a documentation page
+which 3:15 is great for LLMs or AI coding agents. 3:19 So we use actions in post hog which is 3:22 one of our most powerful features that 3:24 lets you combine or filter for events
+3:26 under a saved name. So we would create a 3:29 new action 3:31 called copy as markdown 3:35 and from the auto capture events of all 3:37 the activity that we're tracking we can
+3:40 actually target the element uh with its 3:42 text. So it had copy as markdown 3:46 within the div and we can specify the 3:49 page URL. In this case it would be under 3:51
+docs. And when we create this copy as 3:54 markdown event we can create insights 3:57 [music] just the same way we would with 3:59 any event in post hog which allows us to 4:02
+create graphs or pie charts with a full 4:05 breakdown of our new actions that 4:06 [music] we created for copy as markdown, 4:09 view as markdown, whatever we wanted. 4:12 So,
+this is a great way for us to track 4:14 new activity for brand new behavior on 4:16 docs pages that didn't exist before. 4:19 Product analytics also lets us 4:20 investigate
+things here at Postto. So, 4:23 in the same dashboard that I showed you 4:24 earlier for error tracking docs, we had 4:26 noticed a couple weeks ago an overall 4:28 spike in
+traffic, but a flat line for 4:31 unique visitors. So, this odd behavior 4:34 led me to investigate more. And when I 4:37 was creating more product analytics, I 4:38 use an
+underrated feature at Postto 4:41 called notebooks. When you create 4:43 insights, you can use [music] 4:44 the action side panel to add the insight 4:47 to a notebook which will
+create a rich 4:50 text editor document similar to Google 4:52 Docs or notion. So you can write in 4:56 markdown, 4:58 you can copy paste and with the slash 5:00 command you can
+embed more insights that 5:03 you can create directly within the 5:05 notebook itself. So for my 5:08 investigation, I ended up creating a 5:10 notebook called investigation
+[music] 5:12 docs traffic spike where I could write 5:14 down the context, paste images from 5:17 Slack of the first person who discovered 5:19 the problem and then in kind of more
+of 5:21 a narrative way explain what I thought 5:24 was going on by embedding more insights, 5:26 [music] my thoughts and commentary which 5:29 led me to conclusion where I can
+also 5:31 tag my teammates. So notebooks are a 5:34 really powerful way to create more of a 5:36 free form report than just a dashboard. 5:38 So those are a few ways the content
+team 5:41 uses product analytics at postto. Thanks 5:43 for watching. [music] All From the series Intro / what we are covering today :) 0:00 welcome to the video if you're new here
+0:01 my name is Chris and I build 0:02 productivity apps the two productivity 0:03 apps I've been focusing on on this 0:05 channel are Ellie which is a daily 0:07 planning app it's
+an app that lets you 0:08 plan out your day and visualize your 0:09 week the second app I used should talk 0:10 about is Luna which is a budgeting app 0:12 that I recently launched
+it's available 0:13 on iOS so that one's pretty new but it 0:15 does actually have a handful of users 0:16 using it so as I've been posting these 0:17 videos on YouTube one of the
+common 0:19 questions I've been getting is how did I 0:20 get started with product analytics how 0:21 do I think about product analytics so 0:23 this is the video about product
+0:24 analytics that I wish existed when I 0:26 started my building Journey this video 0:27 is going to be super actionable and very 0:29 applicable to early stage Builders so if
+0:31 you've never implemented analytics or 0:33 you have but you're really not sure 0:34 where to take it this video is going to 0:36 be tailored to you you guys are going to 0:37
+see real data for my productivity app 0:38 Elite the numbers that I look at the 0:40 questions that I ask myself so you guys 0:41 can actually see how I think about 0:43 product
+analytics as an early stage app 0:45 builder so that's what we're going to be 0:46 covering today and my hope is that by 0:47 the end of the video you are way more 0:49 comfortable
+with analytics and if you're 0:50 not a product Builder and you're 0:51 watching this hopefully this is just a 0:52 fun video for you to see behind the 0:54 scenes of a
+productivity app okay so the 0:55 first thing I want to address is how do 0:56 I approach analytics what are my 0:58 recommendations the first important Guideline 1: Only track
+what you need 0:59 thing is I only track and monitor 1:01 exactly what I need a big mistake that I 1:03 made early on was I looked to big 1:06 companies for advice on how to get
+1:08 started with this stuff so I was reading 1:09 articles from Spotify and Airbnb on how 1:12 they do their analytics and this is all 1:13 really good advice but the problem is
+1:15 they're just at a different scale than 1:17 I'm at they have hundreds of millions of 1:18 users and I had like five users using my 1:20 product so them tracking like the 1:22
+intricacies of their onboarding flow and 1:24 figuring out where people drop off and 1:26 AB testing all these images none of that 1:28 really applied to me because my product 1:29
+didn't even have the basics down I ended 1:31 up copying a lot of their strategies 1:32 tracking onboarding tracking retention 1:35 for specific features I ended up with a 1:37 lot
+of useless data points I wasn't even 1:39 making product decisions because I had 1:40 this information paralysis just staring 1:42 at a dashboard with a 100 different 1:43 charts
+when I realized that this was a 1:45 problem I change my philosophy I try to 1:47 keep it simple and track as little as 1:48 possible so then the next question is What you should
+track at the beginning (week 1 retention) 1:50 okay if I'm not supposed to track 1:51 everything what should I be tracking 1:52 then so here's my specific actionable 1:54 advice
+for early stage Builders if your 1:56 product is very early like my budgeting 1:57 app Luna or the way Ellie was a couple 1:59 months ago the one thing I would look at 2:01 is week
+one retention and basically what 2:03 this means is how many people after sign 2:05 up are still using your app one week 2:08 later so the reason this is important is 2:09 it tells
+you are people actually using 2:11 your app so let's take Ellie for example 2:13 a couple months ago when I first started 2:14 looking at analytics and I was tracking 2:16 this
+number Week 1 retention was less 2:18 than 1% that means for every 100 users 2:20 that signed up for Ellie maybe one user 2:23 was using it a week later which is 2:24 pretty bad
+when you see a number like 2:26 Week 1 retention you see it's less than 2:28 1% basically none of other metrics 2:30 matter anymore there's no point in 2:32 trying to optimize and
+ab test 2:33 everything if people sign up and no 2:35 one's sticking to your app let's say 2:37 you're tracking week one retention okay 2:38 so what do you do now I know that it's
+How to improve week 1 retention 2:40 less than 1% for Ellie how am I going to 2:42 improve that this is an answer you 2:43 probably don't want to hear but it's you 2:44 got to go
+talk to users that could be 2:46 through email that could be calling them 2:47 on the phone but you need to talk to 2:49 users and ask them is there something 2:51 missing like
+what's going on the answers 2:53 to that are the secret to improving that 2:55 week 1 retention number when I started 2:56 talking to users and asking them hey why 2:58 did you
+drop off shockingly people 2:59 actually responded to me and were pretty 3:01 honest and they would tell me things 3:02 like you only support Google Calendar 3:04 and I use Outlook
+or I use Apple 3:06 calendar I really need push notification 3:08 support for my meetings stuff like that 3:10 once I started hearing some of this 3:11 stuff over and over again I
+realized I 3:13 need to deliver these features for them 3:15 to even begin to use the product what I 3:17 started doing is relentlessly started 3:18 building out some of these
+features to 3:20 try to improve that week 1 retention 3:22 let's take the Outlook in the Apple 3:23 calendar examples once I released those 3:25 Integrations the week one retention
+went 3:26 up to like 19% so now when 100 people 3:29 sign up around 19 people would be using 3:30 it a week later there's still like 80 3:32 something people who dropped off but
+3:34 this is a huge improvement from where 3:36 the app was a couple months ago before I 3:38 had these Integrations and honestly no 3:39 amount of product analytics would have
+3:41 answered that question I had to go talk 3:43 to the users to figure this out so my 3:44 advice to early stage Builders is 3:46 religiously track week one retention the 3:48
+number will be depressingly low most 3:50 likely but that's great cuz now you have 3:51 a benchmark then you start talking to 3:53 users figuring out what's missing build 3:55
+those things for them and then see if 3:57 that week 1 retention increases over 3:59 time and this is the approach that I'm 4:00 taking for my app Luna the one thing I'm 4:02
+tracking is Week 1 retention and then 4:04 I'm looking at the feedback board and 4:05 talking to customers to figure out what 4:07 do I build how do I get them to stick 4:08 with
+app and not drop off immediately 4:10 that's how I approach things at a very 4:11 early stage okay so now let's talk about 4:13 when should you start tracking more When to track
+more data 4:14 stuff let's say you've improve week R 4:16 retention let's say that week one 4:17 retention is 34% right now if 100 people 4:20 sign up 34 people are still using the
+4:22 app which is so much better than it was 4:23 a couple months ago so this is the stage 4:25 that I would recommend using analytics 4:27 to figure out what to prioritize and at
+4:28 the end of the day that's what analytics 4:30 really is it's supposed to be a tool to 4:32 help you figure out what to work on and 4:34 prioritize the road map so looking at
+4:36 Ellie one thing that I noticed was 4:38 people keep requesting features that 4:39 already exist in the app this is 4:41 signaling to me that there might be a 4:43 feature
+discoverability problem here 4:44 like people aren't aware that some of 4:46 these features exist so one of the 4:47 things that I want to answer is if I 4:49 have to tackle and
+try to improve 4:51 feature discoverability for certain 4:53 features which are the features that 4:55 need the most help one of the boards and 4:57 one of the things that I'm now
+tracking 4:58 is how many people sign up and use this 5:01 feature or turn this feature on at least 5:03 once if the number is really low there's 5:05 a high chance people don't
+know it 5:06 exists so let me show you guys what this 5:08 board looks like and this is real data 5:10 this is the last 30 days this is my real 5:11 thought process here when I see
+5:13 something like this you know I could 5:14 improve basically everything here like I 5:16 all these numbers can be improved but I 5:18 think the two most shocking things that
+5:19 I see here to be honest are the fact 5:22 that only 3% of people are creating 5:24 lists that's extremely shocking to me 5:26 lists are in my opinion such a critical 5:28
+feature of the app like I use it on a 5:30 daily basis everyone that I know who 5:32 uses Le uses lists if only 3% are using 5:35 it that's a problem calendar linked so 5:37 this
+one's pretty interesting to me 177% 5:39 of people who signed up actually linked 5:41 a calendar I thought the number would be 5:43 closer to like 50% or something maybe my 5:45
+onboarding is not clear enough that they 5:47 can't even link the calendar a number 5:48 this low is signals to me this is 5:50 definitely an area that I should also 5:51 improve
+in this is basically my process 5:53 look at these graphs Implement features 5:55 see if it went up look at these graphs 5:57 and just repeat the process over and 5:58 over again
+and once these small graphs 6:00 go up I know that week 1 retention will 6:02 go up and then I know conversion and I 6:03 know Revenue will be going up this is a 6:05 very
+simplified version of of my actual 6:08 process that I'm using when building the 6:09 app but again I didn't do this until I 6:11 knew that the week 1 retention was at a 6:14
+pretty good place I feel like if I 6:15 looked at this too early all of these 6:16 charts would be horrible and I would get 6:18 kind of distracted and overwhelmed and 6:19 it
+really wouldn't be helpful for me to What tool I use for analytics (Posthog) 6:21 prioritize things so let's talk a little 6:22 bit about what tools I use how I 6:23 actually track
+the stuff how I implement 6:25 it so the tool that I use and the tool 6:26 that I recommend all my Builder friends 6:27 use is post hog for Trans FY they are 6:30 sponsoring the
+video this is a video I 6:31 was planning on making before they even 6:33 offered to sponsor it and I've already 6:34 recommended them in my past videos 6:36 without them
+sponsoring I promise that 6:38 this has absolutely no influence on me 6:40 using and recommending them I was 6:41 already doing it before so if you want 6:42 to try them out
+there's a link in the 6:43 description you can actually put my name 6:45 down when you sign up so that they know 6:47 this is where you came from if you want 6:48 to do that go
+ahead and if not this 6:49 advice works for any Analytics tool out 6:51 there but I personally use and recommend 6:53 post hog they're like the most 6:54 affordable one so just a
+little 6:55 disclaimer that is a sponsored Link in 6:56 the description even if you're not using 6:57 post hog this is kind of the way it 6:58 works for all the analytics tools so
+How to implement analytics and create reports 7:00 there's usually some sort of package you 7:01 can install on your app to make this a 7:02 little easier and they'll give you a
+7:04 little snippet that you can use to track 7:06 events as they happen in your app this 7:07 is the part of my code base that fires 7:10 every time my user creates a task when I
+7:11 insert this code here it'll actually go 7:13 send this off to post hog and this is 7:15 what it looks like when it's fired so as 7:17 you see I created the task it now 7:19
+appears in post hog and it's tracked on 7:21 that user so once you start adding these 7:22 trackers and the data starts rolling in 7:24 you can then start creating dashboards 7:26
+inside of post hog so then you can start 7:28 actually interpreting and reading the 7:29 dat data let's take a look at a really 7:30 simple example you want to see how many 7:32
+people sign up and create a task so you 7:34 can click add insight and then what 7:36 we're looking for is a funnel so you add 7:37 Insight you go to funnel I'm also 7:39 tracking
+when users sign up the first 7:40 step I'm going to put in here is user 7:42 signed up and then the second step is 7:44 going to be task created I'll aggregate 7:46 it by only
+showing me unique users and 7:48 so what this is going to do is show me 7:50 how many people did the first step which 7:51 is they signed up and then created a 7:54 task and we're
+going to say that they 7:55 need to create that task in the first 14 7:57 days to count so once we set that and 7:58 this has been collecting data for a 8:00 while we can see 516
+people signed up 8:03 and only 347 people actually created a 8:06 task which is about 67% 30% actually 8:08 didn't even create the task they signed 8:10 up and then just didn't do
+anything but 8:11 this is basically how you set these 8:12 things up create this tracker it's super 8:14 simple the data rolls in and then you 8:15 create dashboards like this and
+then you 8:17 repeat the process over and over again 8:19 for every single thing that you want to 8:20 track you can use any Analytics tool for 8:21 this but the one that I use and
+the one 8:23 I recommend is post hog so sign up if 8:24 you haven't they have a very generous 8:25 free plan so you can just try them out 8:27 and see if you like it but that's how
+8:28 you set all this stuff up okay so to Key takeaways 8:30 wrap up the video here are my key 8:31 takeaways analytics is super powerful 8:33 and I really think at any stage of
+the 8:35 product Journey they can be implemented 8:36 and used even really really early on I 8:39 think they can be really useful but the 8:40 important thing is to only track
+exactly 8:42 what you need so you don't get 8:43 overwhelmed and if you had to pick one 8:45 thing the specific thing I recommend 8:46 tracking at the early stage is Week 1 8:48
+retention how many people sign up and 8:49 are still using your product a week 8:51 later that's my specific recommendation 8:53 and then once that's good then you can 8:54 start
+tracking other stuff to help you 8:56 make product decisions then the most 8:57 important takeaway here is that anal 8:59 Antics is a supplement but not a 9:01 replacement to
+talking to users make 9:03 sure you're still talking to users cuz 9:04 that's the best way to figure out what 9:06 to work on especially at the early stage 9:08 hopefully this
+video was helpful if you 9:10 have any other questions feel free to 9:11 comment below if you like this kind of Thanks for following along/outro :) 9:13 content definitely go check
+out my Tik 9:14 Tok and Instagram I post almost every 9:16 other day about building a productivity 9:17 app and obviously if you like this kind 9:19 of content don't forget to
+subscribe but 9:22 thank you guys so much for watching and 9:23 I'll see you guys in the next video 9:25 [Music] 9:29 no All From Chris Raroque Introduction 0:00 This is a complete
+walkthrough of Google Analytics. I'll show you how to set it up, how to use the reports, and how to track key events. I'll also cover newer features like 0:11 built-in insights and
+'Analytics Advisor', and share practical tips along the way to help you 0:17 better understand your reports. We're going to start by creating a new Google Analytics 0:26 account
+and property. If you're already using Google Analytics, you can log into your account 0:31 and follow along. Okay, let's jump in and get started. We're looking at the Google
+Analytics Create a Google Analytics account and property 0:38 product page on the Google Marketing Platform site. You can find it by navigating to 'marketing 0:46 platform', 'dot',
+'google', 'dot', 'com'. I've also included a link in the description below this video. This is where you can sign up for Google Analytics, and on the top right corner, 0:57 we can
+see there are two options. If you already have a Google Analytics account, 1:03 then you can sign in. So you can click this option to then access your existing Google 1:08
+Analytics account. Or if you're just getting started for the first time, then we can click 1:14 'Get Started Today' to create your account. Since I already have a Google Analytics
+account, 1:21 I'm going to select 'Sign In To Analytics'. Now we need to login using our Google account. This 1:28 can be your Gmail address, your Google Workspace address, or the
+login details you use to access 1:35 other Google products. Since I already have an account, we can see we're looking at the reports. 1:47 If you are getting started for the first
+time, then you won't see these reports, you will 1:53 immediately be prompted to create a new Google Analytics account. To see this, let's navigate 1:59 to 'Admin'. Then we click
+'Create' at the top. And select 'Account'. This is what you will see if you 2:10 selected 'Get Started Today' and you are creating your first Google Analytics account. To begin,
+2:16 we need to name our new account. The best way to think about a Google Analytics account is that 2:22 it's used to organize things. Most businesses will have one account, and
+inside that account 2:29 you'll create one or more properties. A property is where your data actually lives. It's what 2:36 collects data from your website or app and turns it into
+reports. In most cases, you'll create one 2:43 property for your business. That property can collect data from a single website, or from 2:49 multiple websites and apps. So
+accounts organize properties, and properties collect and report on 2:57 your data. Typically, you will want to name your account after your business. So I'm going to name 3:03 my
+account 'Loves Data', but you can name your account anything you like. And if you need to 3:10 set up Google Analytics for another business, you would create another account. So
+each business 3:16 will have its own account. Below the account name, we have the data sharing options. These let 3:23 you control how your data is shared. I recommend taking a
+moment to review these options. I'm going 3:30 to leave the defaults. When you're happy, click 'Next'. Now that we've named our account, the next 3:37 step is to create a property.
+I recommend naming the property so that it reflects the website, app, 3:43 or combination of websites and apps you will be measuring. Since I'm just planning on measuring my 3:49
+website, I'm going to give the property the same name as my account. I'm going to name it 'Loves 3:55 Data'. You can always change this if you need to. Next, we need to select the
+time zone we want to 4:03 use for our reports. I suggest taking a bit of extra care at this stage, because if you decide 4:10 to change the reporting time zone in the future, you
+will see a gap or overlap in data. I'm based 4:17 in Sydney. So I'm going to select 'Australia'. And then 'Sydney' for my reporting time zone. 4:27 Then we need to select the
+currency we want to use for our reports. I'm going to leave the currency set to 'US Dollars' for my property, but I suggest selecting the primary currency you use 4:39 for your
+business or organization. I also want to highlight that the currency you select can be used 4:45 for automatic currency conversion in your reports. For example, if I send a value
+in Australian 4:53 Dollars to Google Analytics and I have US Dollars selected, then the Australian Dollar amounts will 4:59 be automatically converted to US dollars. Once you're
+happy with the details for your property, 5:05 click 'Next'. Now we need to tell Google about our business. We need to select an 5:12 industry category. And the size of our
+business. And let's click 'Next'. We're now asked to choose 5:21 our business objectives. The selections we make here control which pre-configured reports will 5:27 be added to our
+property. I recommend selecting the 'Other Business Objectives' option as this 5:34 will give you a full set of reports and basically includes everything that's available in the
+other 5:39 four options. So let's select 'Other Business Objectives'. And then click 'Create'. We need to 5:47 agree to the terms of service for our particular country. I'm going
+to select 'Australia'. And 5:54 accept the terms. We have now created our new Google Analytics account and property. And we can 6:04 see the next step is to choose a platform. This
+is where you are going to install Google Analytics 6:10 and the selection we make here will create a data stream. A data stream is used to collect data into Create a web data
+stream and enhanced measurement 6:18 your property and reports. You can create one data stream, or multiple data streams. For example, 6:25 if you're going to be measuring a single
+website, then you will just have one. But if you want to 6:31 measure a website and an app, you will have two data streams. So just remember, a data stream is 6:37 used to send
+data to Google Analytics, and the data will then be processed into your reports. 6:44 We can choose the type of stream we want to create. Since I'm going to be measuring my
+website, I'm going to select 'Web'. Now we can enter the URL of our website and name the stream. 6:57 For my stream, I'm going to enter 'www', 'dot', 'loves data', 'dash', 'test',
+'dot', 'com' as 7:03 the URL. And I'm going to name the stream 'Loves Data Website'. Next, we can adjust the enhanced 7:13 measurement settings. Enhanced measurement lets you
+automatically track a range of actions on your 7:20 website without needing to add or adjust any code. It will automatically track page views, 7:26 plus people scrolling pages on
+your website, clicks on outbound links, and your website's 7:33 search function. It will also track forms, people watching embedded YouTube videos, 7:38 and people downloading
+files. Enhanced measurement is enabled by default and it's a great starting 7:46 point, but it's worth reviewing these events to make sure they align with what you actually want
+7:51 to measure on your website. You also have the option of disabling the events that are 7:56 automatically collected by enhanced measurement. To do this, you can click the
+configuration 8:03 icon. And then disable (or enable) the actions you want to automatically track. For example, if you 8:11 don't want to report on people engaging with forms on
+your website, you can disable this option. And 8:18 then click 'Save'. Then when you're happy, click the button to create your data stream. Our data 8:28 stream has now been
+created. And after we wait a moment, we can see installation instructions are 8:34 loaded. Google Analytics will try to automatically identify the platform used for your website.
+You 8:43 can use these to install Google Analytics. Or you can view additional options. For example, 8:50 you can select the option to choose your CMS to be guided through the
+installation steps. Let's close 8:57 this. Details are now loaded for our data stream. Apart from using the installation instructions, 9:05 you can also copy the measurement ID on
+the top right corner. When we add this on our website, 9:11 using either the Google Tag or Google Tag Manager, measurement ID ensures that data flows into our 9:19 property and our
+reports. In most cases, I recommend using Google Tag Manager instead 9:26 of the Google Tag because it provides added flexibility. You can manage multiple tags, not 9:33 just
+Google Analytics using Google Tag Manager, and you can also configure Google Tag Manager to 9:40 track a whole range of other actions and elements on your website. Now that we've
+covered the steps Google Analytics interface overview 9:47 to create a new account and property, we're going to start exploring our reports. Then, later in 9:53 this video, we will
+look at installing Google Analytics and important configuration options. 9:59 To explore the reports, we're going to use Google's demo account. This lets you follow along 10:05 and
+explore real data, even if you haven't set up your own property yet. To access the demo account, 10:12 let's head to my blog. I've included a link to this in the description below
+this video. Let's 10:18 click the link to access the demo property for the Google Merchandise Store. We're now looking at 10:26 Google's demo property. This is the perfect way to
+explore Google Analytics and experiment with the 10:32 reports you can customize. This property shows us data from Google's merchandise store, which 10:39 sells a range of Google
+branded products, like t-shirts, hats and other accessories. At the top, 10:45 we can select the drop-down to quickly switch between the different accounts and properties we have
+access to in Google Analytics. This is useful if you're looking after Google Analytics 10:56 for multiple businesses. We're going to stick with Google's demo. On the left, we have
+the main Home and snapshot reports 11:03 menu that lets us navigate between the different types of reports in Google Analytics. First is 11:10 'Home'. This provides a top-level
+summary for your website. At the top we can see automated insights 11:17 based on Google's AI. These insights are different for each property, and they highlight unusual 11:25
+changes or trends that Google Analytics thinks are worth looking at. Below these AI-driven insights, 11:32 we can see top-level summaries from our reports. Using the menu, we can
+see 'Reports', 11:40 which is where you can find the pre-configured reports. This includes dedicated reports showing 11:46 you how people find your website, what pages they've
+viewed, if they've converted, plus 11:52 demographics and details about the devices they're using. 'Explore' lets you create custom reports, 12:00 and you can visualize data in
+different ways. For example, you can create simple tables, 12:05 funnel visualizations, and more. A helpful way to think about this is that 'Reports' are best for 12:12 monitoring
+what's happening on your website, while Explore is best when you have a specific question 12:18 you want to answer. Next is 'Advertising', these reports show you the relationship
+between your 12:25 different marketing channels and how they lead to conversions on your website. And finally, on the 12:31 bottom left corner is 'Admin'. This lets us access
+additional settings for our account and property. 12:40 Before we look at some of the most important reports, it's worth knowing that Google Analytics 12:45 offers a lot of
+different ways to view your data. This includes pre-configured reports and custom 12:51 exploration reports you can build yourself. The goal isn't to learn every report. It's to
+12:57 understand the reports that help you make sense of what's happening on your website. Okay, so we're 13:04 still looking at the home report. And below the AI-driven insights,
+we can see the total number of 13:12 active users and the total number of key events. Key events are used to report on conversions, 13:20 so any action that is important for your
+business. We can also see the number of sessions, so the 13:27 number of times people have visited the website. And we can also see the total number of purchases. 13:35 These
+totals are for the last 14 days, but we can change this by clicking the current selection. And 13:43 choosing a new one. Now we can see all the metrics are updated. We can also see
+a trendline for the 13:52 metric that is currently selected. This is showing us our user trend. And the dotted line shows us 13:59 a comparison to the previous period, which is the
+same number of days before our currently selected 14:05 date range. In the next card, we can see the total number of active users that have been on 14:12 our website in the last 30
+minutes. Below this we can see any reports and settings we've recently 14:19 viewed. And at the bottom we can see any insights and recommendations. These can include automated
+14:27 insights which are based on Google's AI. These insights are designed to help you quickly spot 14:33 unexpected changes in your data. You also have the option of configuring
+custom insights based 14:39 on metrics and conditions you choose. Now let's navigate to 'Reports'. We're now looking at the 14:48 'Reports Snapshot' which is similar to the home
+report we just looked at. We can see the number 14:54 of active users, new users, average engagement time, and event count. Below these metrics, 15:02 we can see the top pages
+people have viewed on the website. This includes the number of 'Views', 15:07 so 'Page Views', the number of 'Active Users', the total number of events collected on each page 15:14
+and the bounce rate. Traveling down further, we can see more cards. We can see the top ways new 15:21 users are finding us. We can see the top traffic sources that are driving
+sessions. The trend for 15:29 new and returning users. And more. Since Google Analytics includes a lot of different terminology, 15:38 I want to quickly mention a handy resource
+I've created for you. It's my Google Analytics 15:44 Glossary. If you're just getting started, this can really help as new terms come up. I've included 15:50 a link in the
+description below this video. Now let's navigate to the 'Realtime Overview' Realtime reports 15:57 report. This report lets you view details about the people who are currently on
+your website. 16:05 Data is processed into the reports within a few seconds. This can be useful for identifying where 16:12 people are landing on your website. For example, if
+you're sending out an important email campaign, 16:20 then you can check that people are viewing the pages you expect as they click through to your 16:25 website. And each card
+includes a bar chart. This is read from right to left, so the current minute 16:33 is on the right, and then each bar stepping to the left represents another minute contained 16:39
+in the last 30 minutes. We can also see the total number of active users on the website 16:46 in the last 30 minutes, and the last 5 minutes. The geographic map shows us where

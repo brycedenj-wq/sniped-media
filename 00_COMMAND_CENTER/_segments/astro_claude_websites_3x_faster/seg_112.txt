@@ -1,0 +1,230 @@
+"+12137771235", "direction": "inbound", "call_id": "Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6", "agent_id": "oBeDLoLOeuAbiuaMFXRtDOLriTJ5tSxD", "agent_version": 1, "call_status":
+"registered", "telephony_identifier": { "twilio_call_sid": "CA5d0d0d8047bf685c3f0ff980fe62c123" }, "agent_name": "My Agent", "metadata": {}, "retell_llm_dynamic_variables": {
+"customer_name": "John Doe" }, "collected_dynamic_variables": { "last_node_name": "Test node" }, "custom_sip_headers": { "X-Custom-Header": "Custom Value" },
+"data_storage_setting": "everything", "opt_in_signed_url": true, "start_timestamp": 1703302407333, "end_timestamp": 1703302428855, "transfer_end_timestamp": 1703302628855,
+"duration_ms": 10000, "transcript": "Agent: hi how are you doing?\nUser: Doing pretty well. How are you?\nAgent: That's great to hear! I'm doing well too, thanks! What's up?\nUser:
+I don't have anything in particular.\nAgent: Got it, just checking in!\nUser: Alright. See you.\nAgent: have a nice day\n", "transcript_object": [ { "role": "agent", "content": "hi
+how are you doing?", "words": [ { "word": "hi", "start": 0.7, "end": 1.3 } ] } ], "transcript_with_tool_calls": [ { "role": "agent", "content": "hi how are you doing?", "words": [
+{ "word": "hi", "start": 0.7, "end": 1.3 } ] } ], "scrubbed_transcript_with_tool_calls": [ { "role": "agent", "content": "hi how are you doing?", "words": [ { "word": "hi",
+"start": 0.7, "end": 1.3 } ] } ], "recording_url": "https://retellai.s3.us-west-2.amazonaws.com/Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6/recording.wav", "recording_multi_channel_url":
+"https://retellai.s3.us-west-2.amazonaws.com/Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6/recording_multichannel.wav", "scrubbed_recording_url":
+"https://retellai.s3.us-west-2.amazonaws.com/Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6/recording.wav", "scrubbed_recording_multi_channel_url":
+"https://retellai.s3.us-west-2.amazonaws.com/Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6/recording_multichannel.wav", "public_log_url":
+"https://retellai.s3.us-west-2.amazonaws.com/Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6/public_log.txt", "knowledge_base_retrieved_contents_url":
+"https://retellai.s3.us-west-2.amazonaws.com/Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6/kb_retrieved_contents.txt", "latency": { "e2e": { "p50": 800, "p90": 1200, "p95": 1500, "p99": 2500,
+"max": 2700, "min": 500, "num": 10, "values": [ 123 ] }, "asr": { "p50": 800, "p90": 1200, "p95": 1500, "p99": 2500, "max": 2700, "min": 500, "num": 10, "values": [ 123 ] }, "llm":
+{ "p50": 800, "p90": 1200, "p95": 1500, "p99": 2500, "max": 2700, "min": 500, "num": 10, "values": [ 123 ] }, "llm_websocket_network_rtt": { "p50": 800, "p90": 1200, "p95": 1500,
+"p99": 2500, "max": 2700, "min": 500, "num": 10, "values": [ 123 ] }, "tts": { "p50": 800, "p90": 1200, "p95": 1500, "p99": 2500, "max": 2700, "min": 500, "num": 10, "values": [
+123 ] }, "knowledge_base": { "p50": 800, "p90": 1200, "p95": 1500, "p99": 2500, "max": 2700, "min": 500, "num": 10, "values": [ 123 ] }, "s2s": { "p50": 800, "p90": 1200, "p95":
+1500, "p99": 2500, "max": 2700, "min": 500, "num": 10, "values": [ 123 ] } }, "disconnection_reason": "agent_hangup", "transfer_destination": "+12137771234", "call_analysis": {
+"call_summary": "The agent called the user to ask question about his purchase inquiry. The agent asked several questions regarding his preference and asked if user would like to
+book an appointment. The user happily agreed and scheduled an appointment next Monday 10am.", "in_voicemail": false, "user_sentiment": "Positive", "call_successful": true,
+"custom_analysis_data": {} }, "call_cost": { "product_costs": [ { "product": "elevenlabs_tts", "cost": 60, "unit_price": 1, "is_transfer_leg_cost": true } ],
+"total_duration_seconds": 60, "total_duration_unit_price": 1, "combined_cost": 70 }, "llm_token_usage": { "values": [ 123 ], "average": 123, "num_requests": 123 } } Call Create
+Phone Call Create a new outbound phone call Copy page POST / v2 / create-phone-call Try it Documentation Index Fetch the complete documentation index at:
+https://docs.retellai.com/llms.txt Use this file to discover all available pages before exploring further. Authorizations ​ Authorization stringheaderrequired Authentication header
+containing API key (find it in dashboard). The format is "Bearer YOUR_API_KEY" Body application/json ​ from_number stringrequired The number you own in E.164 format. Must be a
+number purchased from Retell or imported to Retell. Minimum string length: 1 Example: "+14157774444" ​ to_number stringrequired The number you want to call, in E.164 format. If
+using a number purchased from Retell, only US numbers are supported as destination. Minimum string length: 1 Example: "+12137774445" ​ override_agent_id string For this particular
+call, override the agent used with this agent id. This does not bind the agent to this number, this is for one time override. Minimum string length: 1 Example:
+"oBeDLoLOeuAbiuaMFXRtDOLriTJ5tSxD" ​ override_agent_version integer integer For this particular call, override the agent version used with this version. This does not bind the
+agent version to this number, this is for one time override. Required range: x >= 0 Example: 1 ​ agent_override object For this particular call, override agent configuration with
+these settings. This allows you to customize agent behavior for individual calls without modifying the base agent. Show child attributes ​ metadata object An arbitrary object for
+storage purpose only. You can put anything here like your internal customer id associated with the call. Not used for processing. You can later get this field from the call object.
+​ retell_llm_dynamic_variables object Add optional dynamic variables in key value pairs of string that injects into your Response Engine prompt and tool description. Only
+applicable for Response Engine. Show child attributes Example: { "customer_name": "John Doe" } ​ custom_sip_headers object Add optional custom SIP headers to the call. Show child
+attributes Example: { "X-Custom-Header": "Custom Value" } ​ ignore_e164_validation boolean If true, the e.164 validation will be ignored for the from_number. This can be useful
+when you want to dial to internal pseudo numbers. This only applies when you are using custom telephony and does not apply when you are using Retell Telephony. If omitted, the
+default value is false. Example: true Response 201 application/json Successfully made an outbound call. ​ call_type enum<string>required Type of the call. Used to distinguish
+between web call and phone call. Available options: phone_call Example: "phone_call" ​ from_number stringrequired The caller number. Example: "+12137771234" ​ to_number
+stringrequired The callee number. Example: "+12137771235" ​ direction enum<string>required Direction of the phone call. Available options: inbound, outbound Example: "inbound" ​
+call_id stringrequired Unique id of the call. Used to identify the call in the LLM websocket and used to authenticate in the audio websocket. Example:
+"Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6" ​ agent_id stringrequired Corresponding agent id of this call. Example: "oBeDLoLOeuAbiuaMFXRtDOLriTJ5tSxD" ​ agent_version integerrequired The
+version of the agent. Example: 1 ​ call_status enum<string>required Status of call. registered: Call id issued, starting to make a call using this id. ongoing: Call connected and
+ongoing. ended: The underlying websocket has ended for the call. Either user or agent hung up, or call transferred. error: Call encountered error. Available options: registered,
+not_connected, ongoing, ended, error Example: "registered" ​ telephony_identifier object Telephony identifier of the call, populated when available. Tracking purposes only. Show
+child attributes ​ agent_name string Name of the agent. Example: "My Agent" ​ metadata object An arbitrary object for storage purpose only. You can put anything here like your
+internal customer id associated with the call. Not used for processing. You can later get this field from the call object. ​ retell_llm_dynamic_variables object Add optional
+dynamic variables in key value pairs of string that injects into your Response Engine prompt and tool description. Only applicable for Response Engine. Show child attributes
+Example: { "customer_name": "John Doe" } ​ collected_dynamic_variables object Dynamic variables collected from the call. Only available after the call ends. Show child attributes
+Example: { "last_node_name": "Test node" } ​ custom_sip_headers object Custom SIP headers to be added to the call. Show child attributes Example: { "X-Custom-Header": "Custom
+Value" } ​ data_storage_setting enum<string> | null Data storage setting for this call's agent. "everything" stores all data, "everything_except_pii" excludes PII when possible,
+"basic_attributes_only" stores only metadata. Available options: everything, everything_except_pii, basic_attributes_only Example: "everything" ​ opt_in_signed_url boolean Whether
+this agent opts in for signed URLs for public logs and recordings. When enabled, the generated URLs will include security signatures that restrict access and automatically expire
+after 24 hours. Example: true ​ start_timestamp integer Begin timestamp (milliseconds since epoch) of the call. Available after call starts. Example: 1703302407333 ​ end_timestamp
+integer End timestamp (milliseconds since epoch) of the call. Available after call ends. Example: 1703302428855 ​ transfer_end_timestamp integer Transfer end timestamp
+(milliseconds since epoch) of the call. Available after transfer call ends. Example: 1703302628855 ​ duration_ms integer Duration of the call in milliseconds. Available after call
+ends. Example: 10000 ​ transcript string Transcription of the call. Available after call ends. Example: "Agent: hi how are you doing?\nUser: Doing pretty well. How are you?\nAgent:
+That's great to hear! I'm doing well too, thanks! What's up?\nUser: I don't have anything in particular.\nAgent: Got it, just checking in!\nUser: Alright. See you.\nAgent: have a
+nice day\n" ​ transcript_object object[] Transcript of the call in the format of a list of utterance, with timestamp. Available after call ends. Show child attributes ​
+transcript_with_tool_calls object[] Transcript of the call weaved with tool call invocation and results. It precisely captures when (at what utterance, which word) the tool was
+invoked and what was the result. Available after call ends. Option 1 Option 2 Option 3 Option 4 Option 5 Show child attributes ​ scrubbed_transcript_with_tool_calls object[]
+Transcript of the call weaved with tool call invocation and results, without PII. It precisely captures when (at what utterance, which word) the tool was invoked and what was the
+result. Available after call ends. Option 1 Option 2 Option 3 Option 4 Option 5 Show child attributes ​ recording_url string Recording of the call. Available after call ends.
+Example: "https://retellai.s3.us-west-2.amazonaws.com/Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6/recording.wav" ​ recording_multi_channel_url string Recording of the call, with each party's
+audio stored in a separate channel. Available after the call ends. Example:
+"https://retellai.s3.us-west-2.amazonaws.com/Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6/recording_multichannel.wav" ​ scrubbed_recording_url string Recording of the call without PII.
+Available after call ends. Example: "https://retellai.s3.us-west-2.amazonaws.com/Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6/recording.wav" ​ scrubbed_recording_multi_channel_url string
+Recording of the call without PII, with each party's audio stored in a separate channel. Available after the call ends. Example:
+"https://retellai.s3.us-west-2.amazonaws.com/Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6/recording_multichannel.wav" ​ public_log_url string Public log of the call, containing details about
+all the requests and responses received in LLM WebSocket, latency tracking for each turntaking, helpful for debugging and tracing. Available after call ends. Example:
+"https://retellai.s3.us-west-2.amazonaws.com/Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6/public_log.txt" ​ knowledge_base_retrieved_contents_url string URL to the knowledge base retrieved
+contents of the call. Available after call ends if the call utilizes knowledge base feature. It consists of the respond id and the retrieved contents related to that response. It's
+already rendered in call history tab of dashboard, and you can also manually download and check against the transcript to view the knowledge base retrieval results. Example:
+"https://retellai.s3.us-west-2.amazonaws.com/Jabr9TXYYJHfvl6Syypi88rdAHYHmcq6/kb_retrieved_contents.txt" ​ latency object Latency tracking of the call, available after call ends.
+Not all fields here will be available, as it depends on the type of call and feature used. Show child attributes ​ disconnection_reason enum<string> The reason for the
+disconnection of the call. Read detailed description about reasons listed here at Disconnection Reason Doc. Available options: user_hangup, agent_hangup, call_transfer,
+voicemail_reached, ivr_reached, inactivity, max_duration_reached, concurrency_limit_reached, no_valid_payment, scam_detected, dial_busy, dial_failed, dial_no_answer,
+invalid_destination, telephony_provider_permission_denied, telephony_provider_unavailable, sip_routing_error, marked_as_spam, user_declined, error_llm_websocket_open,
+error_llm_websocket_lost_connection, error_llm_websocket_runtime, error_llm_websocket_corrupt_payload, error_no_audio_received, error_asr, error_retell, error_unknown,
+error_user_not_joined, registered_call_timeout, transfer_bridged, transfer_cancelled, manual_stopped Example: "agent_hangup" ​ transfer_destination string | null The destination
+number or identifier where the call was transferred to. Only populated when the disconnection reason was call_transfer. Can be a phone number or a SIP URI. SIP URIs are prefixed
+with "sip:" and may include a ";transport=..." portion (if transport is known) where the transport type can be "tls", "tcp" or "udp". Example: "+12137771234" ​ call_analysis object
+Post call analysis that includes information such as sentiment, status, summary, and custom defined data to extract. Available after call ends. Subscribe to call_analyzed webhook
+event type to receive it once ready. Show child attributes ​ call_cost object Cost of the call, including all the products and their costs and discount. Show child attributes ​
+llm_token_usage object LLM token usage of the call, available after call ends. Not populated if using custom LLM, realtime API, or no LLM call is made. Show child attributes Was
+this page helpful? Yes No Create Web Call Ask a question... x linkedin github Powered by This documentation is built and hosted on Mintlify, a developer documentation platform
+Create Phone Call - Retell AIFor AI agents: a documentation index is available at the root level at /llms.txt and /llms-full.txt. Append /llms.txt to any URL for a page-level
+index, or .md for the markdown version of any page. Logo Search / Ask AI Website Status Support Dashboard Get started Introduction Phone calls Web calls Vapi Guides Composer CLI
+quickstart Assistants Quickstart Core concepts Conversation behavior Model configurations Tools Custom keywords Custom voices Custom transcriber Custom TTS Custom LLMs Examples
+Observability Evals Simulations Boards Structured outputs Scorecard Monitoring Squads Quickstart Overview Handoff tool Passing data between assistants Examples Best practices
+Prompting guide Debugging voice agents Enterprise environments (DEV/UAT/PROD) IVR navigation Testing Phone numbers Free Vapi number Inbound SMS Telephony integrations SIP
+integration Phone Number Hooks Calls Place calls In-call control Call end reasons Troubleshoot call errors Call insights Outbound Campaigns Quickstart Overview Chat Quickstart
+Streaming Non-streaming OpenAI compatibility Session management Variable substitution SMS chat Web widget Webhooks Workflows Quickstart Overview Examples Resources On this page
+What is Vapi? How voice agents work Two ways to build voice agents Key capabilities Choose your path Developer tools Vapi CLI Popular use cases Get started Introduction Copy page
+Build voice AI agents that can make and receive phone calls What is Vapi? Vapi is the developer platform for building voice AI agents. We handle the complex infrastructure so you
+can focus on creating great voice experiences. Voice agents allow you to: Have natural conversations with users Make and receive phone calls Integrate with your existing systems
+and APIs Handle complex workflows like appointment scheduling, customer support, and more How voice agents work Every Vapi assistant combines three core technologies:
+Speech-to-Text Converts user speech into text that your agent can understand Large Language Model Processes the conversation and generates intelligent responses Text-to-Speech
+Converts your agent’s responses back into natural speech You have full control over each component, with dozens of providers and models to choose from; OpenAI, Anthropic, Google,
+Gladia, Deepgram, ElevenLabs, and many, many more. Two ways to build voice agents Vapi offers two main primitives, designed for different use cases: Assistants Best for: Most use
+cases and fast iteration Assistants use a single system prompt plus tools and structured outputs. Perfect for: Customer support Lead qualification Booking and routing Squads Best
+for: Multi-assistant setups with specialization Squads orchestrate multiple assistants with context-preserving transfers. Ideal for: Medical triage and scheduling E‑commerce
+orders, returns, VIP Property management routing Key capabilities Real-time conversations: Sub-600ms response times with natural turn-taking Phone integration: Make and receive
+calls on any phone number Web integration: Embed voice calls directly in your applications Tool integration: Connect to your APIs, databases, and existing systems Multi-assistant
+orchestration (Squads): Compose specialized assistants with seamless transfers Choose your path Phone Calls Create a voice agent for inbound/outbound calls Build customer support
+or sales automation Get started with no coding required Build your first voice agent in 5 minutes using our dashboard. Web Integration Add voice capabilities to your web
+application Integrate voice chat into your existing product Build with code and SDKs Embed live voice conversations directly in your app. Developer tools Vapi CLI The Vapi CLI
+brings the full power of the platform to your terminal: CLI Overview Install in seconds with: curl -sSL https://vapi.ai/install.sh | bash Everything from the dashboard, now in your
+terminal. Popular use cases Customer Support Built with Assistants Automate inbound support calls with agents that can access your knowledge base and escalate to humans when
+needed. Sales & Lead Qualification Built with Assistants Make outbound sales calls, qualify leads, and schedule appointments with sophisticated branching logic. Appointment
+Scheduling Built with Assistants Handle booking requests, check availability, and confirm appointments with conditional routing. Medical Triage & Scheduling Built with Squads
+Emergency routing and appointment scheduling for healthcare. E-commerce Order Management Built with Squads Order tracking, returns, and customer support workflows. See more
+examples See our collection of examples covering a wide range of use cases. Was this page helpful? Yes No Edit this page Phone calls Learn to make your first phone call with a
+voice agent Next Built withFor AI agents: a documentation index is available at the root level at /llms.txt and /llms-full.txt. Append /llms.txt to any URL for a page-level index,
+or .md for the markdown version of any page. Logo Search / Ask AI Website Status Support Dashboard Assistants GET List Assistants POST Create Assistant GET Get Assistant DEL Delete
+Assistant PATCH Update Assistant Squads GET List Squads POST Create Squad GET Get Squad DEL Delete Squad PATCH Update Squad Calls GET List Calls POST Create Call GET Get Call DEL
+Delete Call PATCH Update Call Chats GET List Chats POST Create Chat GET Get Chat DEL Delete Chat POST Create Chat (OpenAI Compatible) Campaigns GET List Campaigns POST Create
+Campaign GET Get Campaign DEL Delete Campaign PATCH Update Campaign Sessions GET List Sessions POST Create Session GET Get Session DEL Delete Session PATCH Update Session Phone
+Numbers GET List Phone Numbers POST Create Phone Number GET List Phone Numbers GET Get Phone Number DEL Delete Phone Number PATCH Update Phone Number Tools GET List Tools POST
+Create Tool GET Get Tool DEL Delete Tool PATCH Update Tool Files GET List Files POST Upload File GET Get File DEL Delete File PATCH Update File Structured Outputs GET List
+Structured Outputs POST Create Structured Output GET Get Structured Output DEL Delete Structured Output PATCH Update Structured Output POST Run Structured Output Insight GET Get
+Insights POST Create Insight GET Get Insight DEL Delete Insight PATCH Update Insight POST Run Insight POST Preview Insight Eval GET List Evals POST Create Eval GET Get Eval DEL
+Delete Eval PATCH Update Eval GET Get Eval Run DEL Delete Eval Run GET List Eval Runs POST Create Eval Run Observability Scorecard GET Get Scorecard DEL Delete Scorecard PATCH
+Update Scorecard GET List Scorecards POST Create Scorecard Provider Resources GET List Provider Resources POST Create Provider Resource GET Get Provider Resource DEL Delete
+Provider Resource PATCH Update Provider Resource Analytics POST Create Analytics Queries Webhooks POST Server Message POST Client Message Swagger OpenAPI Assistants List Assistants
+Copy page GET https://api.vapi.ai/assistant GET /assistant cURL curl https://api.vapi.ai/assistant \ -H "Authorization: Bearer <token>" Try it 200 Retrieved [ { "id": "string",
+"orgId": "string", "createdAt": "2024-01-15T09:30:00Z", "updatedAt": "2024-01-15T09:30:00Z", "transcriber": { "provider": "assembly-ai", "language": "multi", "confidenceThreshold":
+0.4, "formatTurns": true, "endOfTurnConfidenceThreshold": 0.7, "minEndOfTurnSilenceWhenConfident": 160, "wordFinalizationMaxWaitTime": 160, "maxTurnSilence": 400,
+"vadAssistedEndpointingEnabled": true, "speechModel": "universal-streaming-english", "realtimeUrl": "string", "wordBoost": [ "string" ], "keytermsPrompt": [ "string" ],
+"endUtteranceSilenceThreshold": 1.1, "disablePartialTranscripts": true, "fallbackPlan": { "transcribers": [ { "provider": "assembly-ai", "language": "multi", "confidenceThreshold":
+0.4, "formatTurns": true, "endOfTurnConfidenceThreshold": 0.7, "minEndOfTurnSilenceWhenConfident": 160, "wordFinalizationMaxWaitTime": 160, "maxTurnSilence": 400,
+"vadAssistedEndpointingEnabled": true, "speechModel": "universal-streaming-english", "realtimeUrl": "string", "wordBoost": [ "string" ], "keytermsPrompt": [ "string" ],
+"endUtteranceSilenceThreshold": 1.1, "disablePartialTranscripts": true } ] } }, "model": { "messages": [ { "content": "string", "role": "assistant" } ], "tools": [ { "messages": [
+{ "contents": [ { "type": "text", "text": "string", "language": "aa" } ], "type": "request-start", "blocking": false, "content": "string", "conditions": [ { "operator": "eq",
+"param": "string", "value": "string" } ] } ], "type": "apiRequest", "method": "POST", "timeoutSeconds": 20, "credentialId": "550e8400-e29b-41d4-a716-446655440000",
+"encryptedPaths": [ "string" ], "parameters": [ { "key": "string", "value": {} } ], "name": "string", "description": "string", "url": "string", "body": { "type": "string", "items":
+{}, "properties": {}, "description": "string", "pattern": "string", "format": "date-time", "required": [ "string" ], "enum": [ "string" ], "title": "string" }, "headers": { "type":
+"string", "items": {}, "properties": {}, "description": "string", "pattern": "string", "format": "date-time", "required": [ "string" ], "enum": [ "string" ], "title": "string" },
+"backoffPlan": { "type": "fixed", "maxRetries": 0, "baseDelaySeconds": 1, "excludedStatusCodes": [ 400, 401, 403, 404 ] }, "variableExtractionPlan": { "schema": { "type": "string",
+"items": {}, "properties": {}, "description": "string", "pattern": "string", "format": "date-time", "required": [ "string" ], "enum": [ "string" ], "title": "string" }, "aliases":
+[ { "key": "string", "value": "string" } ] }, "rejectionPlan": { "conditions": [ { "type": "regex", "regex": "\\\\b(cancel|stop|wait)\\\\b - Matches whole words" } ] } } ],
+"toolIds": [ "string" ], "knowledgeBase": { "provider": "custom-knowledge-base", "server": { "timeoutSeconds": 20, "credentialId": "550e8400-e29b-41d4-a716-446655440000",
+"staticIpAddressesEnabled": false, "encryptedPaths": [ "string" ], "url": "string", "headers": {}, "backoffPlan": { "type": "fixed", "maxRetries": 0, "baseDelaySeconds": 1,
+"excludedStatusCodes": [ 400, 401, 403, 404 ] } } }, "model": "claude-3-opus-20240229", "provider": "anthropic", "thinking": { "type": "enabled", "budgetTokens": 50500 },
+"temperature": 1.1, "maxTokens": 5030, "emotionRecognitionEnabled": true, "numFastTurns": 1.1 }, "voice": { "cachingEnabled": true, "provider": "azure", "voiceId": "andrew",
+"chunkPlan": { "enabled": true, "minCharacters": 30, "punctuationBoundaries": "。", "formatPlan": { "enabled": true, "numberToDigitsCutoff": 2025, "replacements": [ { "type":
+"exact", "replaceAllEnabled": false, "key": "string", "value": "string" } ], "formattersEnabled": "markdown" } }, "speed": 1.1, "fallbackPlan": { "voices": [ { "cachingEnabled":
+true, "provider": "azure", "voiceId": "andrew", "speed": 1.1, "chunkPlan": { "enabled": true, "minCharacters": 30, "punctuationBoundaries": "。", "formatPlan": { "enabled": true,
+"numberToDigitsCutoff": 2025, "replacements": [ { "type": {}, "replaceAllEnabled": {}, "key": {}, "value": {} } ], "formattersEnabled": "markdown" } }, "oneOf": null } ] } },
+"firstMessage": "Hello! How can I help you today?", "firstMessageInterruptionsEnabled": false, "firstMessageMode": "assistant-speaks-first", "voicemailDetection": "off",
+"clientMessages": "conversation-update", "serverMessages": "assistant.started", "maxDurationSeconds": 600, "backgroundSound": "off", "modelOutputInMessagesEnabled": false,
+"transportConfigurations": [ { "provider": "twilio", "timeout": 60, "record": false, "recordingChannels": "mono" } ], "observabilityPlan": { "provider": "langfuse", "tags": [
+"string" ], "promptName": "string", "promptVersion": 1.1, "traceName": "string", "metadata": {} }, "credentials": [ { "provider": "anthropic", "apiKey": "string", "name": "string"
+} ], "hooks": [ { "on": "call.ending", "do": [ { "type": "tool", "tool": { "messages": [ { "contents": [ { "type": "text", "text": "string", "language": "aa" } ], "type":
+"request-start", "blocking": false, "content": "string", "conditions": [ { "operator": "eq", "param": "string", "value": "string" } ] } ], "type": "apiRequest", "method": "POST",
+"timeoutSeconds": 20, "credentialId": "550e8400-e29b-41d4-a716-446655440000", "encryptedPaths": [ "string" ], "parameters": [ { "key": "string", "value": {} } ], "name": "string",
+"description": "string", "url": "string", "body": { "type": "string", "items": {}, "properties": {}, "description": "string", "pattern": "string", "format": "date-time",
+"required": [ "string" ], "enum": [ "string" ], "title": "string" }, "headers": { "type": "string", "items": {}, "properties": {}, "description": "string", "pattern": "string",
+"format": "date-time", "required": [ "string" ], "enum": [ "string" ], "title": "string" }, "backoffPlan": { "type": "fixed", "maxRetries": 0, "baseDelaySeconds": 1,
+"excludedStatusCodes": [ 400, 401, 403, 404 ] }, "variableExtractionPlan": { "schema": { "type": "string", "items": {}, "properties": {}, "description": "string", "pattern":
+"string", "format": "date-time", "required": [ "string" ], "enum": [ "string" ], "title": "string" }, "aliases": [ { "key": "string", "value": "string" } ] }, "rejectionPlan": {
+"conditions": [ { "type": "regex", "regex": "\\\\b(cancel|stop|wait)\\\\b - Matches whole words" } ] } }, "toolId": "string" } ], "filters": [ { "type": "oneOf", "key": "string",
+"oneOf": [ "string" ] } ] } ], "name": "string", "voicemailMessage": "string", "endCallMessage": "string", "endCallPhrases": [ "string" ], "compliancePlan": { "hipaaEnabled": true,
+"pciEnabled": { "pciEnabled": false }, "securityFilterPlan": { "enabled": false, "filters": [ {} ], "mode": "sanitize", "replacementText": "[FILTERED]" }, "recordingConsentPlan": {
+"type": "stay-on-line", "message": "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.", "voice": {
+"cachingEnabled": true, "provider": "azure", "voiceId": "andrew", "chunkPlan": { "enabled": true, "minCharacters": 30, "punctuationBoundaries": "。", "formatPlan": { "enabled":
+true, "numberToDigitsCutoff": 2025, "replacements": [ { "type": "exact", "replaceAllEnabled": false, "key": "string", "value": "string" } ], "formattersEnabled": "markdown" } },
+"speed": 1.1, "fallbackPlan": { "voices": [ { "cachingEnabled": true, "provider": "azure", "voiceId": "andrew", "speed": 1.1, "chunkPlan": { "enabled": true, "minCharacters": 30,
+"punctuationBoundaries": "。", "formatPlan": {} }, "oneOf": null } ] } }, "waitSeconds": 3 } }, "metadata": {}, "backgroundSpeechDenoisingPlan": { "smartDenoisingPlan": { "enabled":
+true }, "fourierDenoisingPlan": { "enabled": false, "mediaDetectionEnabled": true, "staticThreshold": -35, "baselineOffsetDb": -15, "windowSizeMs": 3000, "baselinePercentile": 85 }
+}, "analysisPlan": { "summaryPlan": { "messages": [ {} ], "enabled": true, "timeoutSeconds": 1.1 }, "structuredDataPlan": { "messages": [ {} ], "enabled": true, "schema": { "type":
+"string", "items": {}, "properties": {}, "description": "string", "pattern": "string", "format": "date-time", "required": [ "string" ], "enum": [ "string" ], "title": "string" },
+"timeoutSeconds": 1.1 }, "successEvaluationPlan": { "rubric": "NumericScale", "messages": [ {} ], "enabled": true, "timeoutSeconds": 1.1 }, "minMessagesThreshold": 1.1,
+"structuredDataMultiPlan": [ { "key": "string", "plan": { "messages": [ {} ], "enabled": true, "schema": { "type": "string", "items": {}, "properties": {}, "description": "string",
+"pattern": "string", "format": "date-time", "required": [ "string" ], "enum": [ "string" ], "title": "string" }, "timeoutSeconds": 1.1 } } ], "outcomeIds": [ "string" ] },
+"artifactPlan": { "recordingEnabled": true, "recordingFormat": "wav;l16", "recordingUseCustomStorageEnabled": true, "videoRecordingEnabled": false, "fullMessageHistoryEnabled":
+false, "pcapEnabled": true, "pcapS3PathPrefix": "/pcaps", "pcapUseCustomStorageEnabled": true, "loggingEnabled": true, "loggingUseCustomStorageEnabled": true, "transcriptPlan": {
+"enabled": true, "assistantName": "string", "userName": "string" }, "recordingPath": "string", "structuredOutputIds": [ "string" ], "structuredOutputs": [ { "name": "string",
+"schema": { "type": "string", "items": {}, "properties": {}, "description": "string", "pattern": "string", "format": "date-time", "required": [ "string" ], "enum": [ "string" ],
+"title": "string" }, "type": "ai", "regex": "string", "model": { "provider": "openai", "model": "gpt-5.4", "temperature": 1.1, "maxTokens": 5030 }, "compliancePlan": {
+"forceStoreOnHipaaEnabled": false }, "description": "string", "assistantIds": [ "string" ], "workflowIds": [ "string" ] } ], "scorecardIds": [ "string" ], "scorecards": [ {
+"metrics": [ { "structuredOutputId": "string", "conditions": [ {} ] } ], "name": "string", "description": "string", "assistantIds": [ "string" ] } ], "loggingPath": "string" },
+"startSpeakingPlan": { "waitSeconds": 0.4, "smartEndpointingPlan": { "provider": "vapi" }, "customEndpointingRules": [ { "type": "assistant", "regex": "string", "regexOptions": [ {
+"type": "ignore-case", "enabled": true } ], "timeoutSeconds": 1.1 } ], "transcriptionEndpointingPlan": { "onPunctuationSeconds": 0.1, "onNoPunctuationSeconds": 1.5,
+"onNumberSeconds": 0.5 }, "smartEndpointingEnabled": false }, "stopSpeakingPlan": { "numWords": 0, "voiceSeconds": 0.2, "backoffSeconds": 1, "acknowledgementPhrases": [ "i
+understand", "i see", "i got it", "i hear you", "im listening", "im with you", "right", "okay", "ok", "sure", "alright", "got it", "understood", "yeah", "yes", "uh-huh", "mm-hmm",
+"gotcha", "mhmm", "ah", "yeah okay", "yeah sure" ], "interruptionPhrases": [ "stop", "shut", "up", "enough", "quiet", "silence", "but", "dont", "not", "no", "hold", "wait", "cut",
+"pause", "nope", "nah", "nevermind", "never", "bad", "actually" ] }, "monitorPlan": { "listenEnabled": false, "listenAuthenticationEnabled": false, "controlEnabled": false,
+"controlAuthenticationEnabled": false, "monitorIds": [ "123e4567-e89b-12d3-a456-426614174000" ] }, "credentialIds": [ "string" ], "server": { "timeoutSeconds": 20, "credentialId":
+"550e8400-e29b-41d4-a716-446655440000", "staticIpAddressesEnabled": false, "encryptedPaths": [ "string" ], "url": "string", "headers": {}, "backoffPlan": { "type": "fixed",
+"maxRetries": 0, "baseDelaySeconds": 1, "excludedStatusCodes": [ 400, 401, 403, 404 ] } }, "keypadInputPlan": { "enabled": true, "timeoutSeconds": 1.1, "delimiters": "#" } } ]
+Authentication Authorization Bearer Retrieve your API Key from Dashboard. Query parameters limit double Optional 0-1000 This is the maximum number of items to return. Defaults to
+100. createdAtGt datetime Optional This will return items where the createdAt is greater than the specified value. createdAtLt datetime Optional This will return items where the
+createdAt is less than the specified value. createdAtGe datetime Optional This will return items where the createdAt is greater than or equal to the specified value. createdAtLe
+datetime Optional This will return items where the createdAt is less than or equal to the specified value. updatedAtGt datetime Optional This will return items where the updatedAt
+is greater than the specified value. updatedAtLt datetime Optional This will return items where the updatedAt is less than the specified value. updatedAtGe datetime Optional This
+will return items where the updatedAt is greater than or equal to the specified value. updatedAtLe datetime Optional This will return items where the updatedAt is less than or
+equal to the specified value. Response id string This is the unique identifier for the assistant. orgId string This is the unique identifier for the org that this assistant belongs
+to. createdAt datetime This is the ISO 8601 date-time string of when the assistant was created. updatedAt datetime This is the ISO 8601 date-time string of when the assistant was
+last updated. transcriber object These are the options for the assistant's transcriber. Show 12 variants model object These are the options for the assistant's LLM. Show 16
+variants voice object These are the options for the assistant's voice. Show 18 variants firstMessage string This is the first message that the assistant will say. This can also be
+a URL to a containerized audio file (mp3, wav, etc.). If unspecified, assistant will wait for user to speak and use the model to respond once they speak.
+firstMessageInterruptionsEnabled boolean Defaults to false firstMessageMode enum This is the mode for the first message. Default is ‘assistant-speaks-first’. Use:
+‘assistant-speaks-first’ to have the assistant speak first. ‘assistant-waits-for-user’ to have the assistant wait for the user to speak first.
+‘assistant-speaks-first-with-model-generated-message’ to have the assistant speak first with a message generated by the model based on the conversation state.
+(assistant.model.messages at call start, call.messages at squad transfer points). @default ‘assistant-speaks-first’ Allowed values: assistant-speaks-first
+assistant-speaks-first-with-model-generated-message assistant-waits-for-user voicemailDetection enum or object These are the settings to configure or disable voicemail detection.
+Alternatively, voicemail detection can be configured using the model.tools=[VoicemailTool]. By default, voicemail detection is disabled. Show 5 variants clientMessages enum These
+are the messages that will be sent to your Client SDKs. Default is
+conversation-update,function-call,hang,model-output,speech-update,status-update,transfer-update,transcript,tool-calls,user-interrupted,voice-input,workflow.node.started,assistant.started.
+You can check the shape of the messages in ClientMessage schema. Show 19 enum values serverMessages enum These are the messages that will be sent to your Server URL. Default is
+conversation-update,end-of-call-report,function-call,hang,speech-update,status-update,tool-calls,transfer-destination-request,handoff-destination-request,user-interrupted,assistant.started.
+You can check the shape of the messages in ServerMessage schema. Show 27 enum values maxDurationSeconds double 10-43200 This is the maximum number of seconds that the call will
+last. When the call reaches this duration, it will be ended. @default 600 (10 minutes) backgroundSound enum or string This is the background sound in the call. Default for phone
+calls is 'office' and default for web calls is 'off'. You can also provide a custom sound by providing a URL to an audio file. Show 2 variants modelOutputInMessagesEnabled boolean
+This determines whether the model’s output is used in conversation history rather than the transcription of assistant’s speech. @default false transportConfigurations list of
+objects These are the configurations to be passed to the transport providers of assistant's calls, like Twilio. You can store multiple configurations for different transport
+providers. For a call, only the configuration matching the call transport provider is used. Show 1 variants observabilityPlan object This is the plan for observability of
+assistant's calls. Currently, only Langfuse is supported. Show 6 properties credentials list of objects These are dynamic credentials that will be used for the assistant calls. By
+default, all the credentials are available for use in the call but you can supplement an additional credentials using this. Dynamic credentials override existing credentials. Show
+56 variants hooks list of objects This is a set of actions that will be performed on certain events. Show 5 variants name string <=40 characters This is the name of the assistant.
+This is required when you want to transfer between assistants in a call. voicemailMessage string <=1000 characters This is the message that the assistant will say if the call is
+forwarded to voicemail. If unspecified, it will hang up. endCallMessage string <=1000 characters This is the message that the assistant will say if it ends the call. If
+unspecified, it will hang up without saying anything. endCallPhrases list of strings This list contains phrases that, if spoken by the assistant, will trigger the call to be hung
+up. Case insensitive. compliancePlan object Show 4 properties metadata object This is for metadata you want to store on the assistant. backgroundSpeechDenoisingPlan object This
+enables filtering of noise and background speech while the user is talking. Features: Smart denoising using Krisp Fourier denoising Smart denoising can be combined with or used
+independently of Fourier denoising. Order of precedence: Smart denoising Fourier denoising Show 2 properties analysisPlan object This is the plan for analysis of assistant’s calls.
+Stored in call.analysis. Show 6 properties artifactPlan object This is the plan for artifacts generated during assistant’s calls. Stored in call.artifact. Show 17 properties
+startSpeakingPlan object This is the plan for when the assistant should start talking. You should configure this if you’re running into these issues: The assistant is too slow to
+start talking after the customer is done speaking. The assistant is too fast to start talking after the customer is done speaking. The assistant is so fast that it’s actually

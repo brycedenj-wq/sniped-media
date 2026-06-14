@@ -1,0 +1,224 @@
+frame rate and you'll find it slow motion footage. 41:12 Sometimes you'll find high frame rate footage. So let's look at a couple of examples of other clips that I have here if I
+look 41:19 in my project here we go I have at least one clip that is a high frame rate clip 41:24 let me bring that out here on the timeline so you can see what's going on. So this
+clip is 60 frames a second. 41:33 I don't know if you saw that over here in the project panel 60 frames a second. 41:38 Which means that this clip has more frames in it, than what
+my sequence is set to and 41:44 if I play it back it's gonna play back at regular speed I know it seems like this person is going really fast but actually it's in real time. 41:54
+And what this means is I can grab the Rate Stretch Tool which is R on the keyboard and I can take the end of this clip and just stretch it out. 42:04 And if I zoom in here, you'll
+see that's about 40% speed is when I drop that down to and now when I play that back, it's gonna play back nice and slow. 42:14 And it doesn't look jittery at all. And the reason
+it doesn't look jittery is because this was already high frame rate. 42:20 And when I stretched it out those extra frames sort of filled in the gaps, where if I took conventional
+footage and stretch that out, 42:28 premiere would have to repeat frames in order to fill all of the time. In fact, if I go frame by frame, you'll see that 42:38 there's probably
+not going to be any repeated frames. 42:43 [SOUND] Now that's one way to take high frame rate footage and 42:49 make it playback slow in a timeline, it's not a very precise way.
+42:55 For example, if I stretched this out even more to like 20%, now we probably be 43:01 to the point where you're going to see a repeated frame every once in a while. 43:08 But
+it's certainly a totally fine way to do it and just kind of eyeball the speed or the length. 43:14 Sometimes it's a matter of you have a certain clip that needs to fill a certain
+gap and so it doesn't really matter what it looks like. 43:21 That clip has to go there. I've been there more times than I can count. Another way to handle slowing this down is- to
+make a copy of this clip, 43:31 so I'm just going to duplicate this clip with the keyboard shortcut. 43:37 I know that the keyboard shortcut that popped up there, said Ctrl,
+Shift?, but it's actually Ctrl Shift/. 43:46 I'm not really sure why it does that, but that's what it did. So here you see, I have my copy of the clip and what I'm gonna do is I'm
+43:54 going to right click on the clip and go up to modify, interpret footage. 44:00 Under the frame rate option here. I'm gonna say assume this frame rate and type in 23.976,
+44:06 which is the framerate of my sequence, and click OK. 44:12 And it's gonna stretch the clip out such that when I play this back, it plays back perfectly with no repeated
+frames and 44:19 I don't have to guess to know if that is gonna happen at all. It's not like repeated frames are a huge deal because they're certainly not but 44:27 I think a lot
+of times you may prefer not to have them because I think they are pretty detectable by the human eye. 44:34 So that's dealing with high frame rate footage. And 60 frames a second
+is not even really high frame rate footage these days. 44:40 A lot of cameras can shoot 120 and even up to 240, and certainly some specialized cameras can shoot even higher than
+that. 44:49 Let's take a look at another piece of footage here that is conventional frame rate. 44:55 So this is gonna be around 25 frames a second yep here it is right here a lot
+of the clips that I have are actually slow motion. 45:02 So this is one of the few that I have that is regular speed. I'm just going to set this to frame size cuz this is an ultra
+HD clip. 45:12 Let's just take a look at what this looks like. So this is it looks to me like this is regular speed. 45:18 It's not slow motion, it's 25 frames a second. That's how
+it was acquired. That's how the file was written. 45:24 In this is basically happening in real time. So what happens if I take this and I stretch this out? 45:33 So I just grabbed
+the Rate Stretch Tool. I know I change tools pretty quickly but I grabbed the Rate Stretch Tool just like I did before. 45:40 And I stretched it out just like I did before. And
+let's take a look at what it looks like. 45:47 And this is about 40% as well. I'm going to scrub forward or I'll do a slide at it here. 45:54 So we can see kind of more of the
+motion. What you'll see is this looks choppy. 46:00 I mean, that's pretty plain for anyone even when this gets encoded and compressed, that looks choppy. 46:07 And the reason it
+looks choppy, if we go frame by frame is it's repeating frames. 46:13 So there's one new frame, and then we'll go another frame that's a repeated frame is a new frame repeat. 46:20
+So that's two repeated frames. It's basically cycling between one repeated frame and 46:26 then to repeated frames to fill in all the gaps. That to me, does not look so hot, but
+46:33 there are some options in premiere to make that look better, 46:38 so I'm gonna slip edit again to a spot here. Okay, so I'm gonna get this to right about here we can see a
+good amount of movement and 46:47 I'm gonna show you the two other options that you have for these type of clips. I'm gonna duplicate that and then duplicate that again and 46:56
+for this I'm gonna turn off proxies. And then on this clip right here, I'm gonna show you one option for 47:03 time interpolation and this is basically how premiere is handling
+making up for the extra frames by default it's set to frame sampling, which does not look great. 47:14 But usually on normal footage, you can get away with this up to like maybe
+80% speed, anything past that. 47:20 And you're gonna see repeated frames is gonna be pretty obvious the next option, which I don't think is very good, but it does work sometimes
+is frame blending. 47:29 That you can kind of see what it did in the preview here. It doesn't play back without pre rendering it. 47:36 So, you can see when it stops, what it's
+sort of doing, but when you play it, it basically reverts back to frame sampling. 47:45 At least that's my understanding. But I'll show you what it looks like in just a second. And
+we're gonna compare all three of these. 47:52 So this is going to be frame sampling, this one's going to be frame blending and this one is going to be the one that you normally
+should use and 48:00 that is optical flow. Now, optical flow looks fantastic when it works and 48:05 looks like a hot mess when it does not work. What optical flow does is it
+analyzes the pixels in the video frame to frame and 48:13 then calculates their vector or their motion. So it'll say, okay, this little pixel from here to the next frame, moved
+this much. 48:21 So when it gets stretched out it's going to take those pixels and move them somewhere in between. 48:27 And when it works, it is absolutely fantastic. But it
+doesn't always work all that well. 48:32 And if I play this you're not going to see anything because this needs to be rendered. 48:37 Now that's pretty easy to do. I'm just gonna
+set an endpoint and an out point here, and then I'm gonna come up to Sequence, and then choose Render in to out. 48:47 And this is basically going to render all of these clips so
+that you can actually see what's happening. 48:53 So everything was rendered and it's playing back the rendered files now. And again this frame sampling, this one frame blending,
+and 49:01 this one is optical glow, and check it out. So you can clearly see, that's frame blending, it looks like a mess and 49:09 then check out optical flow, that looks really
+pretty good. Let me go back there. 49:15 We'll check that out again. In fact, I'm going to bring up the loop. Here's a little bonus here. 49:22 There's a loop button here we can
+pull down and I'm going to turn on loop and that should loop from in to out point. 49:29 That's frame sampling, chop, chop, chop. Frame blending. It's a little bit better than
+frame sampling, but 49:35 it does look like kind of a mess. And then this, for the most part looks pretty darn smooth. 49:42 It's not perfect and like I said, optical flow doesn't
+work with everything. 49:47 In fact, I saw an error right here. If you were to watch this one time, I'm not even sure you would have seen it. 49:53 But if we go back just a little
+bit, I'm gonna show you what I'm talking about. So here's the frame blending and you can clearly see that it's frame blending. 50:01 I don't like that. I think it looks terrible.
+And then here is the optical flow. And if you look right here, it gets confused with this patch of pixels. 50:10 Burke or maybe it was down here. You can see they kind of, they do
+some wield transformations there. 50:18 So sometimes this works well, sometimes it doest. Kind of looks like an avalanche is actually happening there. 50:25 Which is I guess extra
+exciting for this particular clip. Those of you asking for slowing down footage. 50:31 Now certainly, if I slowed it down less, optical flow would look better, frame blending might
+look a little bit better but 50:38 I generally think that frame blending is pretty much useless in every single case. 50:43 But if I put these down to 75 or even 60% maybe even
+50%, optical flow is probably gonna do a little bit better. 50:50 Again, it doesn't work all the time. And you can't really see what it's going to do until you do a render. 50:56 I
+would not suggest putting optical flow on without doing that render to in and out before you export. 51:03 Because then what will happen is you export it, and that may take some
+time depending on your project, and then you'll see optical flow didn't work. 51:10 And you're gonna have to go back and make adjustments. So Just setting in and an outpoint render
+to in and out and then you'll see what that's going to look like. 51:17 This is not going to mess up your final export or anything like that. It's just a way for you to be able to
+see what optical flow is doing. 51:25 Well that pretty much covers slow motion coming up in the next lesson, you're gonna learn about speed ramps. [MUSIC] 51:35 In this lesson, you
+are going to learn about speed ramps. 2.7 Speed Ramps 51:43 In the last lesson you learned about slow motion footage. How to take high frame rate footage and slow it down, 51:50
+how to take conventional footage and slow it down and what options you want to look for so that it can look a little bit smoother. 51:59 And now we're going to look at speed ramp.
+So unlike taking regular footage or high frame rate footage and 52:06 slowing it down to just one speed, a speed ramp alters the speed over time. So we might start fast and go
+slow. 52:12 We might start slow and go fast, that sort of thing. And you saw this if you've been following along in the edit, 52:19 this shot right here is a speed ramp. Starts off
+really fast, and then rolls down too slow at the end. 52:26 I'm going to show you how to do that right now. I'm gonna take this footage and drop it into a new sequence here. 52:33
+So if I right click on this clip at the very bottom of this menu, I have an option to show clip keyframes and by default this is set to opacity but 52:43 what I'm looking for is
+time remap speed. I'm going to zoom up here, make this a little bigger so 52:49 you can see what's going on there fact I'm just going to delete all the extra tracks. There we go,
+nice and clean. 52:55 So if I click this line up, we're going to increase the speed of the clip and 53:01 subsequently change the length of the clip. You can see the whole clip got
+shorter. 53:06 If I pull this down, we're gonna make the clip much much longer. But the real magic in speed ramps comes from the key frames. 53:15 So if I Ctrl click here, now I
+have a key frame. So before this key frame, I can make the clip very, very fast. 53:24 Maybe I'll alt drag this down a little bit so I can get a really drastic difference here.
+53:29 So we'll push this up to absurd values maybe I don't know, something like that, maybe move this a little bit shorter. 53:36 That was too much. One of the things with speed
+ramps is, you can move this a little because before 53:42 this keyframe is set to like almost 2,000% speed, if you move it too much, 53:47 the endpoint of the clip is going to come
+right up to the keyframe. So it is a little bit fiddly in that regard, but 53:54 let's play what I've done so far. Okay, pretty good, pretty good. I can make this a lot faster.
+54:00 I think that'll be better. And you can go absurdly fast above 10,000%. 54:05 Very cool. That looks awesome. Let me undo that. Again, it's Ctrl Click to add a keyframe and
+then if you ALT click and 54:15 drag, you can move it down the timeline to reposition it. You can also click and drag to split the keyframe. 54:23 Now, I'm gonna make this a little
+bit slower here and adjust this and so you can see this a little bit better. 54:31 And now what we have is a bit of a transition. So before it was basically a hard edge transition,
+54:37 we were going fast in the next frame we were going slow. And now what we have is we're going fast and then we're going to slowly 54:46 transition to our normal frame rate
+down here at like 100% or close enough. 54:52 And it's happening over this period of time are here. So if I make this bigger, the clip is gonna get shorter because over 55:01 the
+transition period more of these frames are being played back faster. 55:07 And in fact that's how I did the speed ramp. When I use the clip is I did something like this and 55:13
+the whole thing was basically a speed ramp where we started very, very quickly and went just like this. 55:21 So we have some other options here with these keyframes for one, it
+doesn't have to be a linear transition. 55:27 If you click and drag, we can make this a little bit more curvy. So now it's more of a Bezier a type transition which is not 55:37
+gonna look as smooth as it looks on this line but it does have a different feel to it that's for sure. 55:45 So I could do something like this and then I could speed this up.
+Again, at the very end. 55:56 And again, this does get really fiddly when this gets, really fast. Let me zoom in here so you can see what's going on. 56:04 Fast, we go down to slow
+and then we speed up again. If this clip were 30 seconds longer, 56:09 you might have a little bit more room to play with. But I think you can see where this is going. I wanna show
+you just a few more things. 56:16 And I'm gonna reset this by going up here to effect controls and I'm going to delete the keyframes. 56:24 Now Premiere has a really annoying pop
+up, every time you delete keyframes it asks you are you sure you wanna do that? 56:33 It's probably one of my least favorite things about Premiere. But I believe you need actually
+one keyframe for you to be able to use this. 56:41 If we delete all the keyframes, you can see this is no longer blue, and I can't actually move that line anymore to change the
+speed of the clip. 56:51 So I'm gonna come back to the beginning and drop a single keyframe. So one more thing that I wanna show you with speed ramps. 56:57 I'm gonna put a single
+keyframe here, and then I'm gonna control drag over. 57:03 And what that's gonna do is this errors indicate that the clip is gonna play backwards during this section. 57:09 So
+watch, play forwards we play backwards and then we go forwards again. 57:15 It creates another keyframe because from this point, it's essentially back in time. 57:20 And so it
+plays forward again to this, which is basically the same as this keyframe right here. 57:26 We're going forward and then back to this point, and then forward back to this point. We
+should be able to do some interesting things here like maybe speed this up so 57:35 we're going negative speed now. And then back up here faster [LAUGH] If he's keyframes. 57:45 We
+can get kinda really funky with this. These keyframes are all over the place. 57:52 So let's see what this looks I'm gonna go We're slowing down okay, I really 57:58 don't like
+that kinda slow down there and I want this to go much, much, much faster. Let's go much, much, much faster here. 58:05 Let's see what this looks like. 58:11 [LAUGH] I think that's
+quite amusing. 58:18 And you can come up with some really wacky combinations of speed ramps here where you're going in and out and in and out. 58:24 And it really looks pretty
+smooth. That's all I have for speed ramps. 58:29 Coming up next, you're gonna learn about scene edit detection. [MUSIC] 2.8 Scene Edit Detection 58:42 In this lesson, you're gonna
+learn about scene edit detection. Sometimes when you're editing, 58:47 you don't get all the footage exactly how you would want it. Sometimes you get sent footage that has been
+edited already. 58:56 It's not uncommon to get footage from another production company that includes a ton of B roll. 59:03 That's basically all edited together in one long clip.
+And in the old days sorting that out and breaking it up was pretty annoying, but 59:13 there's a newer option in Premiere that makes sorting that out a lot easier and I'm gonna
+show you that right now. 59:20 So I have in my project, a ski montage clip. That's basically my ski montage edit that I have exported. 59:29 And I'm gonna use this to show you the
+scene edit detection. So if I take my footage and I pull it out on the timeline, I'm gonna mute the audio. 59:37 And if I right click on this, I have an option right here for scene
+edit detection. 59:43 And what this is going to do is well it's gonna do exactly what it says it's gonna automatically detect scene changes in flattened footage, which this is.
+59:52 Just one video file and there are multiple cuts and his gonna try and detect all of the scene changes. 59:59 And there are a few options on what the output is going to be.
+So, at the very basic level, it's going to apply a cut at each edit point. 1:00:05 A lot of times that's sufficient. But we can also create a bin of subclips for each detected cut
+point and 1:00:13 create a clip marker at each detected cut point. What I'm gonna do is choose both of these and then click analyze. 1:00:22 And this is gonna get to work analyzing
+the clips depending on the length of the clips involved here, this can take some time. 1:00:31 But on my system and with this clip, this should go pretty fast. All right, let's
+take a look at what we have. 1:00:38 I saw over here in the project panel that it created a new bin for me here. 1:00:43 And I can see that there are a bunch of subclips here,
+which is very handy. And if I look over here, let's see if we got all of these edit points correct. 1:00:55 Hey look at that. 1:01:02 Very cool. Now, it's not always going to get
+everything right for example, 1:01:08 it didn't necessarily understand that when the graphics came in here, 1:01:13 it didn't detect that as a scene change. It probably has to do
+with the algorithm that's used. 1:01:18 It also may get tripped up when various transitions are used. So I didn't have any transitions in here. 1:01:24 I don't think there's any
+crossfades not in this version. But in footage that does have crossfades that may not detect that super well. 1:01:34 Obviously, there isn't a definitive point in a crossfade. So
+if it does detect it, you could expect that it's not gonna be great, but 1:01:42 this actually looks really good. And that's basically all there is to seen edit detection. 1:01:48
+It's not a fancy feature, but it is a great feature to know about for breaking up big clips, montage footage and 1:01:56 big pieces of footage that have a ton of B roll clips in
+them. Coming up in the next section you're gonna learn about raw footage, log footage, 1:02:05 using color checker cards and shot matching. [MUSIC] 1:02:13 In this lesson, you're
+going to learn how to work with raw footage in Premiere. 3.1 Raw Footage 1:02:21 So for this lesson I have two pieces of, raw footage that I wanna show you how to work with.
+1:02:27 The first is Blackmagic raw or B raw. And I wanna start here because this is going to be probably the footage that you 1:02:36 will encounter the most if you're working
+with raw footage at all throughout your editing journey. 1:02:42 And this is because Blackmagic cameras are incredibly popular, it doesn't require a tremendous amount of processing
+power to play in Premiere. 1:02:50 It doesn't take up a ton of space because there are a lot of different compression options. And getting the image to look good is really pretty
+simple. 1:03:01 Now if you have Blackmagic footage that you are working with, the first thing that you need to do is go to Blackmagic's site and 1:03:08 download the latest version
+of the plugin for Premiere. Without that the footage isn't gonna work in Premiere at all. 1:03:16 But once you install that in it not only takes a few minutes, when you pull your
+footage into a sequence, and you look over here in the Effect Controls, and 1:03:26 you look under the source tab, which is over here. And if you haven't noticed this before, let
+me just explain how this works. 1:03:33 This is the clip tab, so when you put effects on your video they're gonna show up right here on this clip tab. 1:03:42 And if you have
+multiple instances of your clip you can have different effects you can change the opacity of one. 1:03:48 Or the scale or the position of one and the blend mode of one, and that
+will be different from all the other instances of the clip. 1:03:56 However, the source tab is where you can put an effect that will be applied to every instance of the clip, and
+1:04:04 that is where Premiere has put this Blackmagic RAW plugin automatically. 1:04:09 To adjust the image of this clip, because it does need to be adjusted. This is not
+something that you would export. 1:04:16 It looks flat and ugly. You might think you could start over here in Lumetri or Lumetri, as I like to say. 1:04:24 And you could give it a
+ton of contrast, maybe bump the exposure a bit, give it a little bit of saturation, and call it a day. 1:04:33 This doesn't look terrible. But I would suggest that you start using
+the Blackmagic RAW plugin because it gives 1:04:40 you a little bit more options, and it's probably going to squeeze a little bit more detail out of the image. 1:04:46 Because
+Blackmagic certainly knows how to get this image right here to a Rec 709 kind of contrast the image better than you or I. 1:04:55 At least, that's my opinion. So what I would do is
+come up here and change the Decode option here to Clip, 1:05:02 you're not gonna see anything changed, but you will see all of these options here on lock. 1:05:08 So we have
+options for the color science, and the latest color science is Gen 5, and I don't think there's any reason to use Gen 4 because Gen 5 does look better. 1:05:18 You can change the
+white balance and the ISO. And the interesting thing about white balance and ISO is, 1:05:24 this is not an effect that it's applying. This is adjusting the image exactly as if you
+were adjusting it in camera, 1:05:32 which works a lot better than when you try and do the same operation in post using an effect like Lumetri Color or 1:05:41 some other color
+correction effect. If you've ever tried to correct an image that has been shot with the wrong white 1:05:48 balance, using this tool, you'll know that you can get it close, and
+sometimes it looks okay. 1:05:54 But it never looks as good as if you were to set the white balance correctly in camera. 1:06:00 So that's a big advantage. If something doesn't
+look right with the white balance, you can change it right 1:06:08 here to one of these presets, and then you have more adjustments down here. And it's a much better way and
+1:06:15 more precise way of getting the colors to look correct than using Lumetri. So that's why I would start here, same thing for ISO. 1:06:23 If you need to make an exposure
+adjustment here, I would start using this ISO before you reach for this exposure slider here. 1:06:31 This is probably gonna result in a cleaner and better looking image. Now, if
+you don't wanna fuss with too many of these settings, and 1:06:38 this is not overly complicated, but maybe this is too complicated for you, and that's totally fine. 1:06:43 Here's
+the quick way to do it. Leave the color space set to Blackmagic Design, and then change the gamma to Blackmagic Design Extended Video. 1:06:52 And I'm gonna put the ISO back to
+800, where it was before. And you can call this a day. 1:06:58 This looks pretty good to me. I might make a few little tweaks with the shadows, and 1:07:03 maybe pull them a little
+towards blue. But other than that, I think this looks great. Now, if you think this looks a little too contrasty, 1:07:10 you can roll off some of the contrast right here. But be
+careful when you are adjusting these. When you click and drag, you'll notice that the entire range of the value for 1:07:20 this particular adjustment is 0 to 2. And if you look at
+0, it's fully gray, and if you look at 2, it's bananas. 1:07:29 So it's very fiddly here, and you're definitely gonna wanna hold control while you're making this adjustment,
+1:07:38 which will make a much more fine movement of these values here. 1:07:43 The default value is 1.58 for Blackmagic Extended Video. So if you want this a little bit less
+contrasty, 1:07:50 you might crack it down to 1.5 or somewhere in that neighborhood. And then go from there. 1:07:56 You could add a little more saturation, maybe check this Use
+Black Video Level, 1:08:02 switch right here, and dial in the image. And then if I wanted to make further adjustments to this, 1:08:08 I might hop over to Lumetri Color and dial in
+things to taste. But really, that's pretty much it. 1:08:13 It's pretty simple to use this, and even though this is raw, it does not have to be overly complex. 1:08:20 Let's look
+at another example. This is a clip from a RED Scarlet provided to me by my friend and 1:08:26 colleague Andrew Manzano. And similarly, if we select this clip and 1:08:32 jump over
+to effect controls and look at the Source tab, you'll see that Premiere has put the RED plugin on this clip as well. 1:08:40 Now, this is not something that you have to install,
+this comes with Premiere. And in a similar way, this has a ton of settings for adjusting the image. 1:08:51 Now, this RED RAW plugin has a lot more controls than the Blackmagic RAW
+plugin, 1:08:56 but you can take this image from looking super flat and adjust it really quickly. 1:09:03 You can set the image pipeline from legacy to IPP2. And then if you scroll
+down to the bottom, under Output Transform Settings, 1:09:11 you can change the color space to Rec 709, and you're gonna see a little shift in the colors there. 1:09:18 It's pretty
+subtle but they went from looking super desaturated, and everything kind of green looking to, well, 1:09:25 I would say more correct looking and a little bit more saturated. And
+then finally, the gamma curve, 1:09:33 change it from log 3g10 to BT 1886. And you could call this a day. 1:09:39 This is a nice contrasty image with good exposure. If you wanted
+to make adjustments from here, 1:09:45 you could do that over here in Lumetri Color, or you can explore all of the controls that there are in this plugin. 1:09:52 And like I said
+before, there are a lot. I don't think there's necessarily a right or correct way to go about doing this. 1:10:00 As long as the final image looks good and it doesn't have a ton of
+noise in it, I think you're good to go. 1:10:07 And if you were to make small adjustments with Lumetri Color to get this, how you wanted it to look, I think you'd be okay. 1:10:14
+If you find that you are pushing the image a lot, you might switch the gamma 1:10:19 curve back to log, and then make adjustments here to the image. Maybe bump up the exposure, and
+adjust the shadows, 1:10:28 give it a little bit more saturation, adjust the color a little bit. 1:10:34 Really quickly, you can get something that looks pretty similar. So that's
+not the whole story of RAW, but that should get you where you need to go 1:10:42 for, I would say 90% of the RAW footage that you are going to encounter. Coming up in the next
+lesson, you're gonna learn about Log footage and LUTs. 1:10:51 [MUSIC] 3.2 Log Footage and LUTs 1:11:00 In this lesson, you're gonna learn how to use Log footage and LUTs. So
+first, let's talk about what Log footage is. 1:11:07 Log footage is a way for a camera to store the information from the sensor in a non-linear way. 1:11:16 Log stands for
+logarithmic, and it's a way to map the luminance 1:11:21 values of the image to get more information into the video file. 1:11:26 Now, the result is that the image tends to look
+really flat and sort of lifeless like what you see here. 1:11:34 Just about every camera manufacture has cameras that shoot in Log. 1:11:40 It's been around for many, many years.
+But it needs something in post-production to take it from looking like this, 1:11:48 which is very sad and lacking contrast and saturation And get it to something that looks
+appropriate for your final product. 1:11:55 It basically needs to be transformed. And that's done usually with something called a LUT. 1:12:02 Let stands for lookup table, and it's
+just a list of numbers that corresponds to how to remap this very flat image. 1:12:11 And adjust the luminance to get it to look appropriate for the color space that you are trying
+to transform it to. 1:12:19 And most of the time it's gonna be Rec 709 unless you're working on a big feature film and they're working in DCI- P3 or 1:12:26 Rec 2020 color or
+something more advanced like that. And if you do some searching online, you will find many hundreds, 1:12:33 if not 1000s of LUTs that you can use on your footage. But those are
+gonna be creative LUTs, which we're going to look at in a minute. 1:12:40 What I would suggest to you is that you start using a manufacturers LUT to transform this image because
+they're gonna be the experts on the image sensor. 1:12:50 The color science and in my experience, that's the best place to start. So that's what I'm gonna show you here. 1:12:56 So
+this particular footage was shot with Z CAM E2, and I'm gonna use the manufacturers LUT to get this to look great in just a couple of clicks. 1:13:05 To do that, I'm gonna come
+over here to lumetri color, in the basic correction tab I'm gonna come to this input LUT drop down, 1:13:15 and then I'm gonna go to browse and I'm gonna go to where I have my LUTs
+stored. 1:13:21 Now Z CAM gives their users a ton of LUTs. 1:13:26 Everything from default exposure to plus one minus one, plus two minus two, plus three and 1:13:33 minus three
+exposures to compensate for however you shot the footage. 1:13:38 In this particular case, I purposely shot this overexposed by roughly two spots because that's what the
+manufacturer recommends. 1:13:46 So I'm going to use the negative two exposure LUT to compensate for that. 1:13:52 Other camera makers may not have this many LUTs available but
+that's one of the cool things about Z CAM. 1:13:58 So, even though this list has a ton of LUTs in it, what the manufacturer recommends is this Z RGBA X2 LUT. 1:14:06 So that's the
+one that I'm gonna use. And you're gonna see with almost no work, the image goes from looking 1:14:14 terrible to looking pretty much ready to go with just a couple of clicks.
+1:14:20 Now I wanna show you the difference between using a LUT to transform 1:14:25 the image and just doing it using these controls right here, in lumetri, which you certainly
+can do, but I wouldn't recommend it. 1:14:35 So this is the same exact clip and I'm gonna come over here to lumetri, gonna jack the contrast all the way to 150, which by the way,
+1:14:44 this slider only goes to 100. But if you grab the number and click and drag you can get it up to 150. 1:14:50 And we need that for this particular clip. I'm gonna take the
+saturation and bump that up to around 150 as well and 1:14:58 drop the exposure by negative point two. And I think you'll agree that that pretty much matches the exposure here.
+1:15:07 On this clip right here, which has the manufacturers LUT and no other adjustments in lumetri. 1:15:14 So, in general, the exposure and the contrast are pretty similar,
+1:15:20 but they're not exactly the same. And this is what I'm talking about by using the manufacturers LUT, 1:15:27 you could adjust the image on your own. But why would you? Cuz
+this image is better and that's not subjective, that's objective. 1:15:36 If we look at the color of the skin here on my buddy John, and to do that, I'm gonna use the crop effect
+and crop right up here on his forehead. 1:15:45 Thankfully, John doesn't have a lot of hair so we have a lot of skin to work with. In this case, that's a good thing. 1:15:51 And
+I'm gonna do the same thing over here, I've applied the same crop effect and zoomed it in. 1:15:56 And then we look at lumetri scopes, and I have the vectorscope YUV pulled up.
+1:16:02 This line here in lumetri scopes is the skin tone line. And you can see on the clip that I adjusted the color, 1:16:11 the skin color is not exactly on the line, it's close
+but it's not on the line. 1:16:19 And if you compare that to this one, this is pretty much dead on the line. It might be skewing just a hair to magenta but 1:16:25 it's certainly a
+heck of a lot closer than this, this would need to be adjusted maybe a little bit because it looks a little 1:16:32 yellow to me in the scope verifies that he is looking a little
+yellow. So what I'm suggesting is that you start with the manufacturer's LUT 1:16:41 because it'll just save you work. If you don't like this image and you want to make further
+refinements to it, 1:16:47 you could knock yourself out. But at least you're starting with The correct colors because it came from 1:16:52 the manufacturer that way. Now that's a
+basic transform LUT. We transformed it from log to a rec 709 color by using the manufacturer's LUT. 1:17:03 Now, let's talk about creative LUTs. Creative LUTs are what you can use
+to take the image from here and 1:17:10 give them that creative, special sauce. It could be like a cinematic look or maybe an Instagram sort of look. 1:17:17 And Adobe comes with a
+number of these, which you can see right here, unfortunately, because of how I have my monitor set up, 1:17:25 this list is going off the screen. But Adobe comes with a bunch of
+stock things that look like this, 1:17:33 or this or this, and you can scroll through and you can kind of preview these. 1:17:40 But if these don't do it for you, you have a lot
+more options. I wanna set this back to none. 1:17:47 And you can find a ton of great looking creative lots on Envato elements. 1:17:53 In fact, I found one called 1000 color
+grading presets for 1:17:59 Premiere Pro and it has probably more LUTs than you will ever need to use. 1:18:05 And you can load them into lumetri color by creating a folder.
+1:18:13 So on Windows, if you navigate to the C Drive, Program Files, Adobe in common, and you create a folder called LUTs right here. 1:18:23 And then inside this folder, if you
+create a folder called technical and you create a folder called Creative. 1:18:29 And inside the creative you copy over the LUT files they will show up in lumetri right here.
+1:18:37 Now, there, you can just see the end of that list the rest of it goes way up on one of my monitors above here. 1:18:43 But now they're available right here, and you can
+actually scroll through and preview those right over here. 1:18:51 Now, one of the disadvantages of this is it's a little clunky to do because the list becomes very long and once
+you apply one of these. 1:18:59 This previewer resets. So if you want to see a preview of another one, 1:19:05 you have to click like 100 times to get to the end of the list. And
+that's pretty annoying. 1:19:12 Thankfully, this particular LUT pack came with a preset file that 1:19:17 you can install and that's very easy over here in the effects tab, 1:19:22
+in this little flyout here, you can choose Import preset. And then you can navigate to wherever you have that LUT pack stored. 1:19:31 So for me, it's right here and you can see
+this is the preset file. And I've already imported that. 1:19:38 And now I have a preview right down here of what all of these look like. I can click on a folder, I can scroll in
+find a LUT that I think looks great. 1:19:48 And there are a ton of really good looking LUTs in here and I can just double click this and it applies to my footage here. 1:19:57
+Which is very cool. The one thing you want to watch out for is this applies lots in a different way. 1:20:05 So, over here, when I was showing you these creative Luts, 1:20:10 it's
+applied in this single instance of Lumetri color. And it's applied in this creative tab right here. 1:20:19 If you're using the effects preset Luts right here when you select one,
+1:20:25 let's say we do this violet one right here, it inserts another Lumetri color instance, 1:20:33 with that Lut loaded on here, I believe it's in the creative tab. 1:20:38 So
+if you come over here to the Lumetri color panel, and you click on this little effects drop down, you can switch back and forth between. 1:20:46 This is the first instance of
+Lumetri and this is the one with the loaded and you can see it's loaded right there. 1:20:56 So if you wanna adjust the intensity of this, you need to do this on the second Lumetri
+color plugging. 1:21:04 And you wanna watch out for any other color correction that you're going to do if you need to do any kind of secondary color correction or 1:21:12 do
+anything with the color wheels. You wanna probably add this creative light at the very end of all of that otherwise, 1:21:19 it's gonna give you trouble because this is affecting
+the colors quite severely. 1:21:24 But it's a super easy way to add a lot of different looks. If I wanted something different. 1:21:30 I'll just delete this. And like I said before
+I do like some of these Instagram ones. 1:21:35 Let's check these out. I think these are pretty cool looking, very cool, 1:21:40 that looks maybe a little too intense so I probably
+knocked down that just a little bit but I think that's very coo. 1:21:48 So check out that pack from Envato elements it's 1000 color grading presets. 1:21:54 A lot of great stuff
+in there. There's even some VHS noise loops, there are some film loops and 1:21:59 some light leaks in that pack as well, it's got some very cool stuff in there. 1:22:04 In the
+next lesson you're going to learn how to use a color checker card. [MUSIC] 1:22:14 In this lesson, you're gonna learn how to use a color checker chart to dial in your white balance
+and your color in premiere. 3.3 Using Colorchecker Cards 1:22:23 Now, this particular color checker chart was made by X right it's called the color checker video. I believe it's
+the video passport cuz it's the smaller one they have a larger Studio 1:22:32 version, and you can find other charts from companies like DSC Labs and others. Over here you can
+check your white balance and exposure. 1:22:42 But for now we're concerned with color for the highlights the mid tones and the shadows. 1:22:49 On this side, we have even more kind
+of gray, neutral chips. 1:22:54 This column represents a skin tone color. And then over here we have some colors that correspond to colors in 1:23:02 the vectorscope. So let's dig
+into this and make some adjustments. 1:23:08 Now just judging by my eye and not paying attention to the scopes. I would say that this looks pretty decent. 1:23:15 It may be a
+slight bit warm, but there's not anything glaring about this. 1:23:20 But I think perhaps we can get it to a little bit better place in terms of its color. 1:23:27 To do that I'm
+gonna grab a crop effect. And jump over to the effects here and I'm just gonna crop in 1:23:35 on these three chips right here and I'm gonna zoom in on them. 1:23:40 Then if I jump

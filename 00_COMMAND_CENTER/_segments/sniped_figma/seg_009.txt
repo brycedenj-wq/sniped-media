@@ -1,0 +1,224 @@
+one of the big benefits of using components. Any changes 46:26 you make to the original component will also carry through throughout your entire design. Now, one 46:32 of the neat
+things, if I decide to make any, say changes to the components on the location screen, 46:38 that will not flow back to the home screen. It'll only affect this individual instance.
+We've been Constraints 46:45 putting so much work into this app so far that I think it would be nice to use this same design 46:52 on multiple device types with different screen
+sizes. So, let's test it out to see if maybe it'll 46:57 work on a different device screen size. Over here, I'll click on the location frame. Here, 47:03 it's currently selected.
+And right down here, I'll click on these handles to adjust the size. 47:09 But you'll notice that the navigation bar is just locked in this position. It's locked over on the 47:14
+left-hand side and also the top of its position. So, as I pull it down, it does not adjust. 47:20 So, let's delete the navigation on the location screen for now. And instead, let's
+focus on the 47:26 navigation on the home screen. To make our design responsive, so it scales on different device 47:33 screen sizes, we need to use something called constraints.
+And constraints tell Figma how layers 47:40 should respond when you resize the frame. This helps you control how your designs look across 47:46 different screen sizes and also
+devices. Over on the left-hand side, let's click on the navigation. 47:53 And right here, we see that it's selected. Over on the right-hand side, we have all the different
+properties. And right here, there's a section for constraints. This tells Figma how to adjust as you 48:04 scale the size. Now currently, it's set to lock it to the left and also
+lock it to the top position 48:10 that it's currently in. And again, we saw the problem of that. Here if I expand the frame, it's stuck to the left and also stuck to the top. So,
+we need to modify this behavior. I'll click back 48:20 into navigation. So, with the constraints, let's see what the different options are. Currently, it's locked to the left. I
+could also lock it to the right. Or here, we could have the bar locked 48:29 to both the left and to the right. We could place it in the center while maintaining its size, or we
+48:34 could simply have it scale with the design. So, if it gets smaller, this navigation bar gets smaller. 48:39 If the design gets larger or the screen size gets larger, the bar
+will also get larger. I'm not sure 48:44 if I like that either. But let's try locking it to the left side and over to the right-hand side. So, 48:50 let's test this out. Here, when
+I click on the home screen, and now if we expand the size, you'll see that the bar is locked to the left side and to the right side. So, we're making progress, 49:00 but it doesn't
+stick to the bottom. So, let's select navigation again. And then over on the right-hand side, we have our constraints. And right underneath, we also have the option right 49:09
+here for top. So, when I click on that, this is defining what should happen in the vertical 49:14 space. Now currently, it's locking to its topmost position, but here I could lock
+it to the bottom, the top and the bottom, the center or scale. Let's put it so it locks to the bottom. I’ll click on 49:24 that. And here we have a visual representing what's
+happening. Right over here, I'll click on the home screen. And now when I expand, look at that. The bar is locked to both the left side, 49:34 the right side, and the bottom of the
+screen. And so now it's scaling. You'll notice that the icons 49:40 aren't quite right yet, so we'll have to make some adjustments to the constraints for the icons. 49:45 Let's now
+adjust the constraints for the different icons. And let's start with the leftmost icon or 49:50 the home icon. Over here, I'll click on home. And on the right-hand side in the
+design pane, here 49:56 we see the current constraints. I want it to lock to the left-hand side of the screen. And currently 50:03 it's set to left, but right now it's set to top.
+I want it to go and lock to the bottom along with 50:09 the bar. So here I'll click on this menu and let's select bottom. So here it'll lock to this side and 50:15 also the bottom.
+Next, let's click on the location pin. And I want this to always stay in the center. 50:21 So over here in this menu, instead of locking it to the left, let's click on this and
+let's lock it to the center position. And here too, let's also lock it to the bottom. And lastly, let's click 50:31 on the cart. And here I want this to lock to the right-hand side
+so it maintains this distance to the right and it also stays locked to the bottom. So, I'll click on this and let's lock it over here 50:41 to the right and also to the bottom. Now
+let's test out what happens when we adjust the frame 50:47 size. Here I'll click on the home screen frame. And now when I adjust the size, look at that, the 50:52 icons maintain
+their position. The house is locked to the left and there we see it locked to the left 50:57 and they're all locked to the bottom. This is exactly the behavior that I want. And
+this design 51:02 is now being responsive where we could use it on different device types and the navigation bar would continue to work and also look good. I'm now going to select
+the navigation bar on the bottom. 51:13 I'll press control D to duplicate it. Over here, I’ll now drag it over to the location screen. And 51:19 over here, I can also place the
+navigation on the cart and here that's inserting the component onto 51:25 these different screens. Now when I take the locations and I adjust the size, you'll notice that all of
+those constraints carry through. Here I'll select the cart. When I adjust the size of 51:34 the frame, there too, all of those constraints hold. I'll press shift one to focus on
+all of our Design component cards & spacing 51:40 different screens. Next, I want to start building out the locations screen of the app. To do that, 51:46 first I want to insert
+some text that lets people know where they are within the app. Here I'll 51:51 click on text and let me click up on top and here I'll type in, let's say, locations. Over here,
+51:57 I can now move the text. Let's place it right there. And I want to make some modifications to this text. Over on the right-hand side, here I have all of my different
+properties. Let's go 52:08 with, let's say, size 36. And for the fill, here I'll click the dropper and let me select this red 52:16 from the logo of the Kevin Cookie Company. Let
+me go a little bit brighter. Let's go with this one 52:21 right there. I think that looks great. Now I'll click out of the color and here I will adjust the locations so it lines up
+right there. Now I also want to build out a card that'll represent some 52:31 of the location information. Let's insert some more text and over here, we'll call this the, say,
+52:37 the Seattle flagship. Now I don't want this text to be as large. So here, let's move this over, 52:42 but let's adjust the font size. With all of this text selected, I'll go
+down and let's adjust this 52:48 to maybe font size, let's say 15. Now I want it to be a heavier font. So, let's click over here and 52:56 let's go with maybe semi bold. I think
+that looks good. And I'll leave that there for now. And next, 53:01 I also want to insert some additional text where I list out the address for this location. Now 53:07 that I've
+typed in this text, I don't want it to have the same font weight as the title of this location. So over here, I'll select all of this text and let's select maybe a regular weight.
+I 53:18 think that'll work well. I'll position that here and let me pull this over so it sits to the left of locations. Now, of course, these aren't lined up right now. So let me
+select 53:28 all of these different objects and up on top of the properties, let's align left. This will 53:34 align all of the different items to the leftmost item. Now I want the
+address to be a little bit 53:40 closer to the title of the store. I'll select that text and then using the arrow keys on my keyboard, 53:45 here I can nudge it up. So, there we
+can see the spacing. I think that's a good amount of spacing. Next, I also want to insert an image of the store location, but I don't want to insert 53:55 the image just yet. Right
+up on top, I'll go to insert shapes and here I can insert a rectangle. 54:01 I'll select rectangle and let's draw it so the store location image will be right here in that 54:07
+space. And again, I'll select all these different objects and let's align them to the left. That 54:12 way they all line up over here. And I think this looks pretty good for a
+card. Now I would like 54:18 to reuse this location card, especially if we have multiple locations that we're featuring for the Kevin Cookie Company. And just like we did with the
+navigation bar on the bottom, 54:27 we can turn this card into a component so we can reuse it in different places. To do that, 54:33 here I'll select all the different items that
+make up this location. And up on top, let's click on this to create a component. And over on the left-hand side, we can now give this 54:43 component a name and I'll call this
+location card. I now want to add more of these location cards to 54:51 the location screen. So right up on top, let's click on assets and this will show us all of the 54:56
+different components within this file. And here we have locations. I'll click on this card and 55:03 let me pull this over and let's place it right to about there. Now I can also
+pull in another 55:08 copy of it and let's place it right at about there and we'll modify the spacing later. And over here, 55:14 I could pull in the card one more time just to
+represent what the screen would look like when we have all of these different components. Let's go back into layers. Now one thing you'll notice is 55:24 this card is overlaying
+the bottom navigation. I want the navigation on top. So, I'll take 55:29 the navigation. Currently it's the bottom most layer within this frame. So here I'll take the navigation
+and let's move it up to the top and now it sits on top of this card. I can now select all 55:40 of the cards that I just inserted by pressing the shift key on my keyboard and then
+left clicking on each one of these cards. And you'll notice I have these different icons on here. If I click on this 55:50 flat line in between the cards, I can adjust the spacing
+between these different cards. Here I can 55:56 expand the spacing or here I can contract it. So let me place it right at about there. I think this 56:02 is a good amount of
+spacing to have between those cards, but it's really easy to modify it if maybe you want to tweak it and see what it looks like if maybe things are just a little bit closer.
+Looking 56:12 at this design, I think there's actually a little bit too much space between the address and then the image area. I like to pull this in. Now the great news is
+because I made this a component, 56:23 I can make modifications to just the original component and that'll flow through to all of 56:28 the different instances. Here I'll select
+the rectangle where I'm going to insert the image and I could use my keyboard now to nudge it up. And as I nudge it up, look at that, it nudges 56:37 it up for all of the different
+instances of that component. So again, if you're reusing different 56:43 elements of your design in many different places, it's well worth using components. It'll make your 56:48
+life so much easier. Now that I've inserted all these different placeholder rectangles for a 56:54 photo of the location, let's go through and now add photos to each one of these
+rectangles. And 56:59 it actually turns out it's really easy to do. Up on the top toolbar, let's click on this dropdown 57:04 and here we have the option to place images and
+videos. I'll click on this and this opens up all of my different Kevin Cookie Company assets. And here I'll use all of these images that I've 57:14 selected. Then I'll click on
+open. And right now, you'll see my cursor with a four icon next to it. 57:21 I can now place these images. And here I could preview the first image that I'll place. This is one of
+our locations or the storefronts. I could click in this rectangle and that fills that image 57:30 into all the rectangles. I'll click on the second one, the third one, and the
+fourth one. So, it's super easy to then swap in an actual image into your design if say you have placeholder images. Masks 57:42 Looking at this card, I think it would actually be
+nice to just show a circle of the image so it 57:48 matches what a cookie looks like. I mean, we got to stick to the cookie theme. And I think a really nice way to do that is to
+use a mask in Figma. To insert a mask right up on top, let's go to the 58:00 ellipse tool. Over here, I'll click on shapes and here's the option for an ellipse. And over here,
+58:06 let's draw an ellipse on top of this image. And I'll place it right at about there. So, I want to show this portion of the image. Right up on top, we have the option to turn
+this ellipse 58:17 into a mask. Again, this tells Figma what parts of an image to show or to hide. So, I'll use this as 58:25 a mask. But currently that hasn't actually done
+anything. If we look over on the left-hand side 58:30 at our layers, here we see the ellipse with a line going up. So, it's applying the mask to 58:36 anything above it. But
+currently there's nothing above the ellipse. That's the topmost layer. I 58:42 want the ellipse mask to apply to the rectangle which is currently sitting under the ellipse. So,
+58:48 let's take the ellipse and move it under the rectangle. So now it's taking that mask and applying it to everything above. And look at that, it now applies a mask. So, this is
+defining what 58:58 area of this rectangle should be visible. And it's just that place right there. The location screen Styles 59:04 is looking fairly solid now. And I want to
+build out a little bit of the cart screen. And a good 59:09 place to start is by adding the title. So, I'll go up to the text and let's click right here and 59:14 I'll type in
+cart. But one problem you'll notice is this text here does not match the text on the 59:21 location screen. Now, of course, I could take this text and I could copy and paste it
+over into cart. 59:26 But then what if I update the color or the size or something else on this location screen? It won't flow through to all the other places. We saw the benefit
+of components and how you can make a 59:37 change in one place and have it flow through to others. With text and also colors, you could do the same thing. But instead of using a
+component, we're going to use something called styles. So, 59:48 let's create a style. You can create both text and also color styles. Here I'll click on locations. 59:55 And over
+on the right-hand side, here we see all the different text settings. Here we see the font size. I'll click on these four dots. And I can click on this plus icon to create a style.
+I'll 1:00:07 click on that and now I could give it a name. I'll call it screen title and then click on 1:00:13 create style. Right down here, I can also set up a style for the
+fill. I'll click on the four 1:00:20 dots. And right over here, I can now add a style. Let's click on that. And over here, 1:00:25 I see existing properties for this text. And for
+the name here too, I'll also call it screen title. 1:00:33 And down below, let's create the style. And here I'll close out of it. So now I've saved both the 1:00:38 color and also
+the font size. Let's now click on cart and I'll select all of that text. Let's now 1:00:45 go over to the right-hand side and click on the four dots. And here I see my existing
+style. I'll 1:00:51 click on that and that adjusts the font size to match locations. Down here with the fill, 1:00:56 let's also click on the four dots. And here I see the color
+for screen title. I'll click on that and 1:01:01 that applies the same color and also the font size to this text. Next, I also want to align this text 1:01:08 so it appears in the
+same location as locations. I can click on locations. And here I can see 1:01:14 the X and also the Y value, 26 and 35. I'll select cart and over here, let's set it to 26, 1:01:22
+tab over 35. And there it now appears in the same exact location as locations. Looking over Auto layout 1:01:29 at the left-hand side at the home screen, it looks just a little bit
+empty. And I think it might be 1:01:36 helpful to include some type of button on the home screen that directs viewers over into the cart. 1:01:44 Let's click on the home screen
+over on the left-hand side in the layers panel. And then let's press shift two and that way we focus just on the home screen. To insert a button, 1:01:55 first I want to insert
+some text. I could press T on my keyboard or I could go up to the toolbar 1:02:01 up on top and then here I could click on the text tool. I want to place text right at about here
+and 1:02:07 I want it to say, let's say order cookies. I’ll press control A to select the text and over on the 1:02:13 right-hand side, I have all the text properties. Let me set
+it to, let's say 20. I think that's 1:02:19 better. And here I could select the text and let's put it, let's say right in the center right over 1:02:24 there. Now for it to be a
+button, I also need to include a background behind this text. So, 1:02:31 let's go right up to the top where we could insert different types of shapes. I’ll click on this dropdown
+and here we have the option to insert a rectangle. I could also press R and 1:02:40 over here I'll draw a rectangle in back of this text or at least right now on top of this text.
+1:02:47 Over on the left-hand side, to ensure that the text appears on top of this rectangle, I need to adjust the layers. Here we see that the rectangle is currently on top of the
+text. So, 1:02:57 let's take the text and here I can move it up to the topmost layer and now we see it sit on top of the background for the button. I now want to format the button.
+I mean, I don't 1:03:07 think a gray button like this would get that much engagement. So over on the left-hand side, I have the rectangle selected and over on the right-hand side
+in the pane, here I have all of 1:03:16 the different properties. Let's start by setting the fill color. Here I'll click on this gray color 1:03:22 and let's use the dropper tool
+and maybe I'll pull in this light red color. Let's go a little lighter than that. Maybe right at about there. Oh, that looks nice for the button. Over here, I'll close 1:03:32 out
+of the color. Next, I also want to round the edges of this button. Right now, it's just a nice 1:03:38 rectangle, but I would like to curve those edges. So here again, I'll click
+on the rectangle. Over 1:03:43 on the right-hand side here, I could adjust the corner radius. So, let's drag that over in there. You see the edges of the button curving a little
+bit. I think that looks good at just at about nine 1:03:53 and down below, I'll also click into effects and here I can add a drop shadow under the button. 1:03:59 That looks great
+so far. On second thought, you know, I actually think it would be better if it says order cookies today. I think that would get more people to click on it. So over here, I'll
+1:04:08 click into the text and let's type in today. But you'll notice one problem. The text now extends 1:04:15 beyond the button. Of course, I could click into the rectangle and
+I could expand the rectangle 1:04:21 to fit the text, but that's going to be a pain. I'd rather connect the text to the rectangle. So, 1:04:28 let's get rid of the today text. Over
+on the left-hand side, let's select the rectangle and 1:04:33 also select the text by clicking the shift key and then clicking on both of those layers. Over on the 1:04:39
+right-hand side within the pane, you'll see a new option for something called auto layout. This will 1:04:46 allow us to expand the text or add additional text and the underlying
+rectangle will expand to fit 1:04:53 whatever text we decide to add and we can define how it should respond. Over on the right-hand 1:04:58 side, let's click on the plus icon and
+here we have a number of different settings. Within auto 1:05:03 layout, I have a number of different settings. As I expand the text here, I could define what 1:05:08 should
+happen. Currently it's set to expand the button that underlays the text horizontally. I 1:05:15 could also have it wrapped to a new line or here I could have it expand vertically.
+And over here, I could set the gap between items and I could also set the padding. Let's adjust the padding a 1:05:25 little bit. Here I could drag it so I can make the button
+larger or here I could bring it in a little bit. I'll bring it in. And over here, I could also adjust the vertical padding. Right here, 1:05:34 I could also define where the text
+should sit within this button. Currently it's set to align center and I like that location. Let's now click on the text and over here, 1:05:44 I'll now add that new word. Let's
+type in today and look at that. The frame now for this button 1:05:50 expands to fit all of that text. In fact, if we look over at the left-hand side under layers, 1:05:56 you'll
+notice that it turns the button into a frame. So, the container is a frame and then that 1:06:03 frame includes text that says order cookies today. So, the rectangle has been
+converted into a frame. 1:06:10 In the top right-hand corner, let's now center the button. Over here, I'll click on center. And now 1:06:16 let's use the arrow key on the keyboard
+to nudge it up just a little bit. I think that's a great Prototype 1:06:21 spot. That looks perfect. I think this app is now in a fairly good spot and I'm ready to share this
+1:06:27 out with the team so they can start providing me with some feedback before I invest more time into building this out. But I think it would be helpful to turn this into a
+prototype so they could 1:06:37 click on the different buttons and see all the different screens. To turn this into a prototype, 1:06:43 here let's click into the home screen and
+over on the right-hand side in the right pane, let's click 1:06:49 on prototype. And here we can now turn this into a prototype. A prototype allows people to interact 1:06:56 with
+your design. Right at the very top, I can define a flow starting point for this prototype. 1:07:03 And I want the home screen to be the starting point. Over here, I'll click on the
+plus icon. 1:07:08 And this is now defining this screen as the start point. That's exactly what I want. Now I want to 1:07:14 make sure that the navigation navigates to the
+different screens throughout the app. So over on 1:07:20 the left-hand side, first I'll click on the home button. And if someone clicks on the home button, 1:07:25 I want it to
+bring the person to this home screen. So, as I hover over, you'll see this plus icon. I 1:07:31 could define where this button should link. So here I'll click on the plus button
+and I want it to go to the home screen. So over here, I'll release right there with that frame. So here, when 1:07:41 someone taps that button, it'll now scroll to this main view.
+Here, I'll close out of that. Next, 1:07:48 I want the location button to go to the locations screen. I'll select location. And over here, there 1:07:55 too, I also see that circle
+with the plus icon. I'll click on this and I'll connect it to the 1:08:00 location screen and then I'll release. So, this way on tap, it'll navigate to the location screen. 1:08:07
+I also have other settings within this screen. For example, when someone clicks on locations, it'll instantly move to the location screen. But here, if I click on the dropdown, I
+could also 1:08:17 animate it. Maybe I want it to dissolve, move in, move out. So, you have different options. 1:08:23 But for now, I will leave it set to instant. And over here,
+I'll close out of this. Lastly, 1:08:28 I also want the shopping cart to go to the cart screen. Over here, I'll click on the plus icon and 1:08:34 then I'll drag it over and
+connect it to the cart screen. Over here, let's make sure it connects and 1:08:40 then I'll release. And here too, I have all those same settings. But for now, I'm just going to
+stick with a simple example and I'll close out of this. Now, one of the beautiful things is because 1:08:49 I'm using components, if I click on the navigation bar on any of the
+subsequent screens, these will 1:08:56 also navigate to the appropriate locations. So that's yet another benefit of using components. 1:09:02 I also want the order cookies today
+button to go to the shopping cart. So over here, I'll select 1:09:08 frame one for the button. And then here too, I also get that circle icon. I'll click on that 1:09:13 and let me
+drag it over to the cart screen and then release. This way, if someone clicks on this button, that will navigate to the cart screen. I think all of my different buttons and also
+1:09:24 flows are now in place. To test out my prototype, in the top right hand corner, let's click on the 1:09:30 play icon. This now opens up a prototype of my app design. And
+look at that, you'll see my design now 1:09:37 sits in an iPhone frame. That's looking really nice. When I click up my design, you'll notice 1:09:43 these blue rectangles. That
+lets me know where I can interact with this app. So, I could click on 1:09:49 this button or I could click on the navigation down below. Let's start by navigating to the 1:09:54
+location screen. I’ll click on this button on the bottom navigation. And here I can see all the 1:09:59 different locations for the Kevin Cookie Company. When I click again, I can
+also navigate to the shopping cart. I'll click on this icon and this shows me the cart. I haven't put anything in the 1:10:09 cart yet, but we'll have to build out this page. Up on
+top, I have various options. Over here, 1:10:15 I can view all the different flows and I could jump back to the beginning of flow number one. When I click on this icon, I can leave
+feedback on the flow. Over on the right hand side, I also 1:10:25 have various options that I can configure. Once I'm ready to share this prototype with others, maybe I'm ready for
+feedback, I can click on share prototype and I can invite other people to view 1:10:35 this prototype. Once I'm all done interacting with this prototype, I can close out of this
+Share with others 1:10:41 tab. Back now within the main editor, anyone on your team can come into this and start working on 1:10:47 this design with you. However, if you would like
+to share this with others, in the top right-hand 1:10:52 corner, you can click on the share button and here you could type in email addresses of other people. 1:10:58 Over on the
+right hand side, you can define their permissions. Should they be able to edit, just view, or just view the prototypes? And over here, you can see everyone who already has access
+1:11:09 to your file. Now, I don't need to share it with anyone right now, so over here, I'll click on the X icon. Once other teammates come in, they may have feedback on the
+design. Up on the top 1:11:20 toolbar, we can click on the add comment icon. You can also press C on your keyboard. And over here, 1:11:26 I can now place a comment anywhere on
+these designs. So maybe with this button, instead of red, maybe green would look better. I'll click right there and that leaves this comment icon and 1:11:36 I can now type in my
+comment. Let's say make this button green. And I have other tools down below 1:11:42 that I can add. Here, I'll send that through. And over on the right-hand side, we now see a
+1:11:47 pane that shows all the different comments on this canvas. Right up on top, you have different filter 1:11:53 controls and you could also sort which types of comments you
+want to see. Now, right up on top, 1:11:58 once you start working on comments, here you can click into it and you can reply so you can have a conversation related to the comments.
+And once you resolve it, you can click on this button to Export designs 1:12:07 mark as resolved, but the button's still red, so I haven't resolved it. Another way you can share
+your designs with others is to export the designs. Over on the left-hand side, for instance, 1:12:17 I can click on the home screen, so that's currently active. And up on top, I
+can click on the Figma menu and right down here under file, we have the option to export. You can also export to 1:12:28 PDF. And when I click on that, you can define what you
+would like to export. So, let's just export 1:12:33 the home screen and then I'll click on export. And this gives me a PNG showing the home screen. Wrap up 1:12:39 That looks
+really good. And I can share that out with the broader team. All right, you now know the 1:12:45 basics of designing in Figma and hopefully you start pulling together some
+incredible 1:12:51 designs. And even better, we now have a beautiful designed app for the Kevin Cookie Company. To 1:12:57 watch more videos like this one, please consider
+subscribing and I'll see you in the next video. All User interface design AI DrawingChapter 1: Intro 0:00Nana Banana Pro came out recently and while most people use it to create
+random images, we want to put it through a real challenge. Today, we want to see 0:088 secondsif it can build an entire brand completely from scratch. I have zero assets, zero
+photos, and zero inventory. 0:1717 secondsBut I've always wanted to create a super aesthetic brand. So now we're going to create an entire match brand named Verdant. [music] and
+we're building Chapter 2: Creating a Matcha Brand 0:2525 secondseverything, the logo, the packaging, the product photography, the lifestyle shots, and more. We're starting with the
+brand mark and the logo. This is always Chapter 3: Brandmark and Logo 0:3434 secondsa critical test for AI because other modals have a hard time handling the text. It often warps
+or breaks on [music] images. For this particular 0:4242 secondsbrand, I want to keep the logo minimalistic and high aesthetic. I also want a futuristic sans safon so that they
+translate this vibe of wellness, 0:5151 secondsfreshness, and a bit of luxury. And just a quick reminder that we offer Nana Banana Pro in three different image resolutions, 1K, 2K,
+and 4K. Now, let's 1:011 minute, 1 secondjump straight in. An elegant V dot vector logo in sage green on a cream background sens. 1:081 minute, 8 secondsOkay, I think Nana Banana
+Pro coped with this task perfectly [music] well. I want to extend this to create a brand logo and I want it to be minimalistic and elegant as well. 1:231 minute, 23 secondsOverall
+the image looks crisp and clean. 1:251 minute, 25 seconds[music] I want to stress your attention to the font here. We wanted to create a sansary font and a model actually a bait
+which means it understands font really 1:341 minute, 34 secondswell and it also great at prompt falling. Next we need the actual product packaging. Most models struggle here
+because realistic textures are Chapter 4: Product Packaging 1:421 minute, 42 secondsdifficult. Things often look too shiny or artificial. 1:471 minute, 47 secondsHere we see that
+the can is actually transparent and the top is made from aluminium. [music] Again, this is the 1:551 minute, 55 secondsexample of the great prompt following despite the prom being
+very short. Other models would definitely produce something nonsensical because of the 2:032 minutes, 3 secondslack of description. [music] Now, I want to play around and change
+the color of the liquid to orange yellow. 2:122 minutes, 12 secondsIn general, these textures look unbelievably real. Let's make the final iteration with a color, but this time try
+something more complex by adding 2:212 minutes, 21 secondsmultiple layers of liquid. So, I want to mix blue matcha with the deep purple color and a little bit of white creamy
+texture. All right, this is what I 2:292 minutes, 29 secondsactually imagined in my head. I like how these colors are intermixed with each other, so it actually looks a static and
+natural. Next, let's change the setting 2:382 minutes, 38 secondsand maybe place our drink on a concrete counter in a modern cafe. 2:452 minutes, 45 secondsNo specific comments
+here. This is a great example of product photography composition-wise. Now, let's bring the brand to life with photography. This is Chapter 5: Lifestyle Model Shots 2:532 minutes,
+53 secondswhere the brand's identity really shows up. First, let's visualize multiple cans of Verden laid out in an open cooler with ice. 3:043 minutes, 4 secondsWhat I like about
+this image is that even though the cans are positioned differently, you can see that the logo stays consistent. Kenstone plan or morph 3:113 minutes, 11 secondswith each other and
+every detail is crisp and natural and even the little dot on the logo is there. Next, for aesthetic purposes, let's imagine our 3:203 minutes, 20 secondsbrand name written on a
+t-shirt hanging say somewhere by the sea. 3:283 minutes, 28 secondsMost of the models don't know how to place objects, [music] especially faces and text upside down, but Nana
+Banana Pro, as we can see, can 3:363 minutes, 36 secondsdo it perfectly well. Now let's visualize how the product would look like in the hands of our target audience. 3:443
+minutes, 44 seconds[snorts] 3:463 minutes, 46 secondsVery effortless picture. The drink doesn't feel forced. It also has a luxurious vibe and [music] the right number of fingers if
+you know what I mean. And a model itself looks natural. 3:563 minutes, 56 secondsWith the next two prompts, let's hear a product placed in different settings and environments.
+First, let's go with a drink placed on a small table in a cafe. 4:074 minutes, 7 secondsThis is a very natural looking picture. 4:094 minutes, 9 secondsAnd I also like that Nana
+Banana generated a real MacBook page without us specifically pointing this out. This adds an extra layer of realism to our 4:174 minutes, 17 secondsimage here. I would like to
+stress that you can see the light coming in from the 4:264 minutes, 26 secondswindow on the left. The drink is integrated naturally with correct shadows. And finally, let's add
+[music] this Pinterest vibe to use the picture in our media kit. 4:384 minutes, 38 secondsThis is a very good and aesthetically pleasing [music] picture. One thing I want to
+specifically stress is the great physics. Just look at how the liquid is evenly distributed throughout the can. 4:494 minutes, 49 secondsLove [music] it. Let's think outside of the
+box now. So far, we had plenty of product shots, but let's imagine our own matcha shop named Verdant. 5:015 minutes, 1 secondThis one is impressive, too. Nana Banana was able to
+emboss the brand name on the teal from the right angle. Patron's 5:085 minutes, 8 secondsfaces don't break. It even captured people moving on the street, which creates an
+atmosphere of a real bustling city life. Now, we can add a mascot to Chapter 6: Mascot and Lore 5:175 minutes, 17 secondsgive the brand more personality and charm. This one's
+pretty easy. [music] Create a mascot for this brand. Q scarf fits the aesthetic of the drink 5:255 minutes, 25 secondsperfectly. Couldn't think of a better mascot. Let's see what
+kind of story behind this character Nana Banana can create. Generate lore for this mascot next to it. The brand is called Verden. 5:345 minutes, 34 secondsIt sells canned matcha.
+Look at how detailed the story is. [music] Guys, you don't even have to bother yourself coming up with the story. Nana Banana 5:435 minutes, 43 secondscan create it for you. Let's
+move on and build the first nine posts that will appear on Verden's Instagram page. I want to combine the images we've generated earlier to create a full grid. 5:535 minutes, 53
+secondsCreate a screenshot of an Instagram grid for the match your brand called Verdant. 5:585 minutes, 58 secondsThis instantly looks like a cured and intentional brand feed.
+[music] Every post flows into the next. Every image that we fed Nana Banana with stayed and 6:066 minutes, 6 secondschanged and the modal actually reproduced the Instagram page on
+an iPhone screen. This is pure state-of-the-art. Now, we need a landing Chapter 7: Landing Page 6:156 minutes, 15 secondspage that feels premium and [music] converts well. Make the
+landing page for this drink. It's very clear what the product is from the first glance. It has 6:236 minutes, 23 secondsa cohesive layout. There's a clear CTA at the top of the
+page, and it even added additional information about the brand and the product. We can now expand Chapter 8: Recipe, Merch, and Pop Up Stand 6:316 minutes, 31 secondsthe brand
+world further by adding merchandise, a pop-up stand for launch events, and even a signature recipes. 6:386 minutes, 38 secondsLet's start with a recipe. 6:426 minutes, 42
+secondsWhat I see right away is that the model handles text pretty [music] good. And even though I did no research, it generated the right recipe. I double 6:516 minutes, 51
+secondscheck this and this is the way the matches should be made. Now let's make a branded merch for our product. 7:017 minutes, 1 secondI'm surprised that the model understands
+different styles very well because I see some interesting decisions here like a scarf. I also like the tote bag and a 7:097 minutes, 9 secondshoodie. Let's imagine we have been
+invited to the soft drinks festival and we now need to create a design for our future [music] stand. We're selling this can match verden at a pop-up event. 7:187 minutes, 18
+secondsDesign a stand. It understood a popup stand context very well and even added some attributes like matcha powder 7:267 minutes, 26 secondsgreenery and textile banners.
+[music] And since every modern brand needs a playful site, we'll generate matcha themed meme for [music] social media Chapter 9: Meme 7:337 minutes, 33 secondsusing our mascot.
+Generate a meme with this matchup. Okay, this is perfect for building personality and engagement. Chapter 10: Summing Up 7:407 minutes, 40 secondsOkay guys, just like that, we
+built a complete brand identity in less than an hour with zero assets, zero inventory, 7:487 minutes, 48 secondsand zero starting materials. We created the logo, the packaging, the
+photos, the website layout, and even the mascot. 7:577 minutes, 57 secondsThis was only one use case that we covered, but with Nana Banana Pro, the sky is the limit. If you enjoyed
+this video, hit the like button, click 8:058 minutes, 5 secondssubscribe, and comment your craziest ideas for future episodes. See you in the next one. Sync to video time All From
+Higgsfield AIChapter 1: Prologue: Journey beyond awards 0:00A year ago, I obsessed over winning design awards. I thought that's what would make me legit and earn me respect. 0:066
+secondsBut somewhere along the way, I started asking a harder question. What's the point of impressing designers if it doesn't move the needle for the client? 0:1414 secondsSo, I
+decided to put that belief to the test. I cold email 200 architecture firms, pushing my design services with limited case studies, no referrals, 0:2222 secondsnothing to lean on,
+but my gut and skill set. Of those 200 emails, only one person replied. And that one, yes, led to a project that changed everything. I 0:3030 secondshate to spoil the ending for
+the project, but this project was completed over several months ago. And not only did we win several awards on awards.com, 0:3838 secondsFWA, and CSSDA, but we also helped generate
+over 500K to $2 million leads for the firm and helped them save over 0:4747 seconds10 hours per week. So, in this video, I'll break down the full journey of collaborating with the

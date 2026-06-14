@@ -1,0 +1,224 @@
+methods to 26:57 use. Uh me and my developer, we were 26:59 trying several different ways. At one 27:00 point, we were building the website 27:02 through terminal and I was like,
+you 27:03 know what, dude? This this is not going 27:04 to work. You know, we got to we got to 27:05 find an easier way. So, I hope this 27:07 video helped you guys out. If you do
+27:09 have any questions for me about Claude 27:11 or setting this up on a host, let me 27:12 know in the comments below. My name is 27:14 Daryl Wilson and I will see all of you
+27:16 party people in the next video. All From Darrel Wilson Web pages 0:00 What's up, friends? Uh, we're going to 0:01 do a little bit of a different kind of 0:02 video. I've been
+working a lot with 0:04 Claude Code recently. I've been getting 0:05 a lot of questions on how I use it. And 0:07 so, I just sat down to do a little bit 0:08 of work and I realized
+this is actually 0:10 a really good opportunity to show a 0:12 complicated multi-phase plan with Claude 0:15 Code. The only thing I've done so far is 0:17 I've written this prompt
+here. I'm doing 0:19 a bit of work to add a CLI command to an 0:22 internal CLI that I have to do with my 0:24 AI hero courses. But what I'm doing is 0:26 less important than how
+I'm doing it. 0:28 All you really need to know is this is a 0:30 pretty large feature that will go 0:32 probably beyond a single context window. 0:35 I have here an initial prompt
+that I've 0:37 put in. I haven't really put too much 0:39 thought into this. The way I produced 0:40 this was I just talked into my 0:42 microphone and used a dictation tool to
+0:44 dictate it in. And I've also activated 0:46 plan mode here by tabbing or shift 0:48 tabbing through until I hit plan mode in 0:50 the bottom left. Whenever I embark out 0:52
+on a big piece of work, I'm always 0:55 thinking about creating a plan first. 0:57 Let's get this running. and I can 0:58 actually talk through while it's going. 1:00 So this plan
+is basically is sort of 1:02 forcing Claude code to explore the 1:05 codebase first. We can see it's kicked 1:06 off an explore sub agent task to explore 1:09 the current CLI
+structure in the 1:11 codebase. It's also doing some searching 1:13 here, just searching different files, 1:15 searching different patterns. And what 1:16 I'm waiting for it to do
+is to figure 1:18 out anything that's unclear from my 1:20 specification and give me back some sort 1:22 of plan. Again, we can see it's doing a 1:24 lot of stuff here. It's
+reading 1:25 different files. It's doing some other 1:27 stuff. Let me check the structure for 1:28 explainer solution folders. And now this 1:30 is really cool. It's come back
+with some 1:32 clarifying questions. What is the part 1:34 of the project repo where you want to 1:35 get commit diffs from? I'm going to make 1:36 it a CLI option. I just pressed
+return 1:39 to choose that one. It's asking whether 1:40 I wanted to use a positional argument or 1:42 a required option. I'm going to choose a 1:44 required option. And it's now
+asking me 1:45 a really specific question about my 1:47 implementation like should it match 1:48 exercise numbers strictly or flexibly? 1:50 I'll choose flexible. And again, it's
+1:52 asking a clarifying question here. What 1:54 does the 01 represent? It represents the 1:56 sequence of the diff. This is basically 1:57 a multi-step form and then I end up
+with 1:59 the submit. I'm ready to submit my 2:00 answers. Let's go. All right. It has now 2:02 come back with a plan. Now, this plan 2:05 might look a little bit different from
+2:06 the plans that you tend to get from 2:08 Claude code. The first thing is it's 2:10 extremely concise. Here we have a fair 2:12 few sections, but the stuff inside those 2:14
+sections is pretty easy to read. This is 2:16 because I have this configured like that 2:18 in my rules, which we'll look at in a 2:19 moment. We have a new file, get 2:21
+diffs.ts, ts and in updated file that 2:23 seems fine and it's created some 2:25 implementation steps here too. The 2:27 crucial thing though and I have this set 2:28 up in my
+rules too is it's given me some 2:30 unresolved questions and I get to choose 2:32 whether I want to auto accept the edits 2:34 uh manually approve the edits or keep 2:35 planning.
+I'm going to escape out of 2:37 this for now just so I can show you 2:38 what's in my rules file. You can call 2:40 this command memory and you can 2:42 basically be taken to your
+user memory 2:44 or project memory. This is what my user 2:46 memory looks like. It's really not very 2:48 long, only about 43 lines. I've given it 2:50 just some very light hints
+about what I 2:52 want. The crucial thing though is to say 2:55 in all interactions and commit messages, 2:56 be extremely concise and sacrifice 2:58 grammar for the sake of
+concision. 3:00 That's why that plan is so concise and 3:02 easy to read is because of this topline 3:05 rule. And it's 100% my favorite thing 3:07 I've added to rules and I'm
+never taking 3:09 it out. There's some stuff in here 3:10 that's specific to my workflow like PR 3:12 comments, like change sets as well, 3:14 which I use in quite a few repos.
+I've 3:16 already said that your primary method 3:18 for interacting with GitHub should be 3:19 the GitHub CLI. When creating branches, 3:21 prefix them with Matt to indicate they
+3:23 came from me. Very, very light stuff, 3:24 but here's the one we're seeing here, 3:25 which is at the end of each plan, give 3:27 me a list of unresolved questions to 3:29
+answer, if any, and again, make the 3:30 questions extremely concise. Sacrifice 3:32 grammar for the sake of concision. This 3:33 is why then we're getting this list of 3:35
+unresolved questions right at the point 3:37 where we can see them. So, I'm now going 3:38 to dictate my answers to these questions 3:40 into this box. I'll just do the first 3:42
+question just so you get the idea. Yep, 3:44 you can overwrite existing diff files. 3:45 That's absolutely fine. And thanks to my 3:46 dictation tool, this ends up there. 3:48
+Okay, I've now got my full answers to 3:50 those questions. Let's submit it. And 3:51 it's going to continue creating another 3:53 plan. Notice how we haven't written any 3:55 code
+yet. This is all just planning 3:57 before we dive into code. Okay, it's now 3:58 given me a plan without any unresolved 4:00 questions. But my Spidey senses are 4:02 tingling
+here. And I've got a feeling 4:04 this is a pretty large piece of work. 4:06 And if this piece of work is too large, 4:07 it's going to overrun the context window 4:10 of the LLM.
+It's going to be much better 4:12 going forward if I break this into a 4:14 multi-phase plan that I can split over 4:16 multiple context windows. So, I'm 4:18 actually going to say
+no, keep planning, 4:19 and then make the plan multi-phase. Make 4:22 the plan multihase is really, really 4:24 nice because it's going to tell Claude 4:26 to break this down into
+a set of 4:28 implementation steps. And now we have 4:30 our multi-phase plan. Beautiful. Now, at 4:33 this point, I'm starting to get a little 4:34 bit nervous about my context
+window. 4:36 Like, that's a paranoia that I have. And 4:38 I'm just going to go and exit out of 4:39 there and just check my context and see 4:41 how it's doing. We can see that so
+far 4:43 we have 83.7 free space. That's feeling 4:46 pretty good. We've only used about 33k 4:48 tokens. Lovely. So I think having had 4:50 all the exploration and now having this
+4:52 plan in memory, we can then start 4:55 executing the plan. So I'm going to swap 4:57 to autoaccedit and I'm going to say uh 5:00 execute phase one. Let's go. Okay, we've 5:03
+had our first little paper cut which is 5:05 it still thinks it's in plan mode. I 5:07 just say crack on please with phase one. 5:11 Lovely stuff. While it's doing its 5:12 thing,
+we should talk about this little 5:14 status line down the bottom. I have this 5:15 customized so it shows which repo I'm in 5:18 relative to my repos folder. It also 5:20 shows
+which branch I'm on and how many 5:22 staged, unstaged, and new files I have 5:25 inside the current repo. It's already 5:27 asking me to build the project. That's a 5:28 good
+sign. And I'm going to say yes and 5:30 don't ask again for PNPM build commands. 5:32 I'm not going to review it as it's 5:33 going. I'm just going to review it ah 5:35 when it
+gets to the end. So, what I want 5:36 to do now is open it up in VS Code to 5:38 have a look at the files and just see if 5:40 there's anything I need to tweak. I'm 5:41 actually
+going to exit out of Claude 5:43 here by pressing control C twice. I'm 5:45 just going to run code dot. And now I do 5:47 want to get Claude back into this 5:49 terminal. So, I'm
+just going to say 5:50 Claude continue. And Claude will now 5:52 pick up our conversation where we left 5:54 off. It's a really nice little flow if 5:56 you just want to X out of
+Claude, run a 5:58 CLI command, and then go back. So, now I 5:59 can just use the, you know, standard git 6:01 diff viewer that we're all used to just 6:03 to see what's going on
+here. I can see 6:04 that it's added get diffs.js. That's 6:06 nice. And it's added this to internal. 6:08 There is a TypeScript error there, but 6:09 shocker, it was actually
+there before. 6:11 And I'm not entirely sure how to fix it, 6:13 and I can't be asked. You can also see 6:14 it's left in here a to-do for phase 2, 6:17 which is really nice. It
+means that when 6:18 we go to phase 2, we actually have a 6:20 hint in the code where it's going to 6:22 execute it. So, this all looks good. 6:23 What I like to do is either
+commit these 6:25 changes or just stage them so it's 6:27 really clear between phases what's been 6:29 added. If we go back to Claude, let's 6:30 have a quick check on context.
+Yeah, 6:33 phase one only used like 3k tokens. So, 6:35 we can absolutely crack on with phase 6:38 two and I'm going to leave it accept 6:40 edit on. Now that we've done the 6:42
+planning, we can be pretty aggressive 6:43 with accept edits on because we 6:45 understand the implementation a bit and 6:47 we kind of get what's going on. Phase 6:48 two is
+complete and I'm reviewing it and 6:50 it looks pretty nice. A quick check on 6:52 context. We are in a very healthy place. 6:54 Let's do phase three, please. Something 6:56 I
+really wish that Claude code would add 6:58 is to just add the amount of tokens that 7:00 I've used so that I can put it in my 7:02 status line. That would mean I wouldn't 7:03
+need to keep running context. I would 7:05 just have it right there, which is 7:06 something that cursor does really really 7:08 well actually. So phase three is 7:09 complete and
+what I accidentally did was 7:11 went into the file and pressed save and 7:13 an auto formatter ran and it did a 7:15 little couple of changes. When that 7:16 accidentally happens,
+the claw code 7:18 doesn't know anything about it. So I do 7:20 like to tell it and being very direct 7:21 with it as well. pull the files into 7:23 your context. And note how it
+in 7:25 followed my instructions really well. It 7:27 didn't do anything. It just literally 7:28 read a file again. So, our context is in 7:31 a pretty healthy place. And I'm
+pretty 7:32 sure we're going to be able to get to 7:34 the end of this feature without actually 7:36 needing to reset the context window. But 7:38 I want to show you what it's like
+when 7:40 you do reset the context window. The 7:41 cool thing about having a multi-phase 7:43 plan is that we can preserve it between 7:45 different context windows and the LLM
+7:47 should have all the information it needs 7:48 to carry it on. But the question is 7:50 where do we actually store it? Do we put 7:52 it in a local file or do we do something
+7:54 else with it? What I like to do is 7:56 actually keep these as GitHub issues and 7:58 I've said to it make a GitHub issue 8:00 containing the current plan including 8:01 all
+of the items that you've checked off 8:03 the plan list. This is calling GH issue 8:05 create with this plan in the description 8:07 of the issue. Everything's been checked 8:09
+off for all of these phases except for 8:11 phase four and five. I'm happy with this 8:13 so I'll accept this. And now that I have 8:15 this asset outside of my context window,
+8:18 I can feel happy clearing it. And this 8:20 means if I run context now, we now have 8:22 virtually nothing in the context window. 8:24 No messages whatsoever. We're down to
+8:26 16K tokens just from our memory files, 8:29 the system tools, and the system prompt. 8:30 So I'm now going to ask it get the 8:33 GitHub issue 24 and enact phase 4 of 8:36
+that plan. Now I'm deciding in my head, 8:38 do I want to go for accept edits on or 8:41 do I want to go for plan mode? because 8:43 plan mode basically forces it to do a 8:45
+little bit of exploration and the 8:46 exploration might be necessary because 8:48 we've completely cleared out the 8:50 context. I think though I'm going to go 8:51 for accept
+edits on and basically just 8:54 get it to take the information from the 8:56 plan and get going. You can see it's 8:57 asking to view an issue and I'm happy to 8:59 say don't ask
+again. Issues are fine to 9:01 view. Okay, it hasn't done so much 9:03 planning or like codebase exploration 9:05 here, but it has read the correct file 9:07 and it's now
+implementing the correct 9:08 stuff, I think. Yep, that's actually 9:10 looking really nice. Let's now do phase 9:12 five. And of course, because it's 9:13 already fetched the
+GitHub issue, it 9:15 doesn't need to fetch it again. It's 9:16 still just in the context window. So 9:18 this process then of splitting work into 9:20 phases is really, really
+important. You 9:22 don't have to put each phase into a 9:24 separate context window. You can do as 9:26 many phases as you like, checking the 9:28 context window as you go. And I
+really 9:30 like keeping these assets in the cloud 9:32 because then actually people can comment 9:34 on them, add stuff overnight, add stuff 9:36 async. And I find this flow is a
+really 9:38 nice combination of letting the AI go 9:41 and do its work on accept mode and 9:43 having a lot of upfront thinking, doing 9:45 lots of thought via planning. And this
+9:48 is currently how I'm doing all of my 9:49 coding, not only for AI hero stuff, but 9:51 also for Everite. And I think my top 9:53 tips are make sure that in your memory 9:55
+file you have a tip to be extremely 9:57 concise. Get it to produce unresolved 9:59 questions at the end of each plan. And 10:01 get it to use the GitHub CLI to create 10:02 issues
+so you can share context across 10:05 multiple context windows. Thanks for 10:06 watching. This ended up being a pretty 10:08 chunky video and I will see you in the 10:10 next one.
+All From Matt Pocock Intro 0:00 - In this video, I'm going to show you 0:02 how to build a $10,000 website using Claude Code. 0:05 These sites you're seeing were all built with
+Claude Code, 0:08 and by the end of this video, 0:09 yours is going to be one of them. 0:11 We'll instal Claude Code, level it up 0:13 with two design skills, write one prompt,
+polish the result, 0:17 and put it on a real domain. 0:19 The site is going to look like the work 0:20 of a freelance developer charging $10,000 0:23 and nobody who visits it is
+going to know and AI made it. 0:26 Stick around for chapter seven especially. 0:28 That's where the cursor effects and motion design 0:30 take the build from professional to
+expensive. 0:33 And by the very end, I'll show you the cheapest way 0:36 to put it live on the internet at a custom domain, 0:39 but first, what exactly is Claude code? Chapter 1:
+What is Claude Code, and what is a $10K website? 0:42 Claude Code is an AI coding assistant. 0:44 You describe a website to it in natural language 0:46 and it writes the code for
+you while you watch. 0:49 We're using the Claude Code desktop app today 0:51 because it gives you everything you need in one window 0:54 with no extra developer setup. 0:56 Before
+we build anything, I want to define 0:58 what a $10,000 website actually looks like. 1:01 So I asked Claude, there are eight things 1:04 that separate a $10,000 website from a $200
+one. 1:08 Point of view, typography, colour, 1:13 hierarchy, imagery, motion, mobile, 1:18 and the invisible stuff 1:20 that makes a site feel fast and finished. 1:23 Those eight
+items fall into three groups: 1:26 taste, substance and felt quality. 1:29 We're hitting all eight today. 1:31 Here's why Claude Code can hit a $10,000 bar 1:34 and why most
+no-code website builders can't. 1:37 When you use a tool like Wix or Squarespace, 1:39 you start with a template 1:41 and whatever you build ends up looking like every other site
+1:44 that started from that template. 1:45 Claude Code doesn't work that way. 1:47 It writes the code for your site from scratch 1:50 based on what you describe, 1:51 so you can
+get a completely custom result 1:54 without ever having to learn to code yourself. 1:57 On top of that, Claude can instal design skills 1:59 that level up everything it makes. 2:01
+You can drop in pre-made components from libraries online, 2:04 the kind of things that used to require a real developer, 2:07 and you can keep iterating with Claude on every
+detail 2:10 until the site actually feels expensive. 2:13 We're going to do all of that today. 2:15 The first step is getting Claude Code 2:17 set up on your computer. Chapter 2:
+Setup 2:19 Go to claude.com using the link of the description below 2:22 and pick the pro plan. 2:24 Right now, as I'm recording this, it's only $20 per month 2:27 and that's going
+to cover everything we need for this video. 2:31 Get yourself signed up and I'll skip past the boring stuff. 2:35 Once you're logged in, 2:36 in the bottom left corner of the page,
+2:38 click the download icon, 2:40 navigate to the Claude Code section, 2:43 download the desktop app version, 2:45 then open the file to run the installer. 2:49 Once you get it
+installed, open the desktop app, 2:51 then sign in. 2:53 At this point I need to mention, 2:55 depending on when you watch this video, 2:56 the actual software interface might look
+different for you 2:59 than it does for me here. 3:01 Claude gets updated regularly, 3:02 so if things don't look the exact same, don't panic. 3:05 Just try to understand the
+general concepts I'm explaining 3:08 and apply them to how the software looks 3:09 when you're using it. 3:10 When you get signed in, switch from chat mode 3:13 to code mode. 3:14
+In my app, that tab is available in the upper left. 3:18 Alternatively, you can also press Command 3 3:21 on your keyboard on a Mac 3:22 or Ctrl 3 on Windows to switch to code
+mode. 3:26 Claude Code works best when it has its own folder 3:28 to live in. 3:30 Create one anywhere on your computer, 3:32 then click the folder select button near the chat box
+3:35 and select your new folder to open it inside the app. 3:39 That folder is going to be your workspace 3:41 for this project from now on. 3:43 Alright, that's the setup done.
+Chapter 3: Adding the Skills 3:44 Now we're going to level Claude up 3:46 by installing two skills. 3:49 Out of the box, Claude is a general purpose AI, 3:52 it knows a lot about a
+lot of things, 3:55 but its default design output is just okay. 3:59 It tends to reach for the same fonts, the same colours, 4:01 and the same predictable layouts you've seen 4:03
+on every other AI-generated website. 4:06 This is why a lot of AI websites end up looking generic. 4:10 Skills fix that. 4:11 A skill is like an instruction manual for Claude, 4:14
+a text file that levels up Claude's knowledge 4:16 in one specific area. 4:18 You instal it once and Claude uses it forever. 4:21 We're installing two skills today and both of them
+are free. 4:25 The first skill we're installing is called Front End Design. 4:28 It's built by Anthropic, the company behind Claude. 4:31 It runs in the background 4:32 and it
+quietly makes Claude smarter at design. 4:35 What it actually does is ban the most overused fonts 4:39 on the internet and push Claude toward bold design direction 4:42 instead of
+generic AI output. 4:44 To instal it, grab the front end design link 4:47 from the description below 4:48 and paste it into Claude code with the message, 4:51 "Instal this skill,"
+then send the message and let it run. 4:56 Allow the edits when it asks and instal it globally. 5:00 The second skill is community built. 5:03 It's called UI UX Pro Max. 5:07 As
+you can see on screen, it ships with 57 UI styles, 5:10 95 colour palettes and 56 font pairings. 5:15 Unlike the first skill, 5:16 this one we call directly 5:18 when we want a big
+design intervention, 5:21 and that's exactly how we're going to build our site today. 5:23 To instal it, grab the UI UX Pro Max link 5:26 from the description below 5:28 and paste
+it into Claude Code with the message: 5:31 "Instal this plugin using NPM." 5:34 That exact phrasing matters 5:35 because it's what gets it to instal cleanly, 5:38 using the
+terminal. 5:39 Allow the edits when it asks and instal it globally. 5:43 Now there's one last setup move before we start building. 5:47 Click the mode selector in the bottom left
+under your chat 5:50 and switch it to auto mode. 5:52 This lets Claude work 5:53 without stopping to ask for permission at every step. 5:56 With mode on and both skills installed,
+5:59 we're ready to write the prompt that builds the site, Chapter 4: References + The Build Prompt 6:02 but there's one more thing worth talking about first. 6:07 The other big
+thing that separates a great result 6:09 from a mediocre one is the brief you give Claude. 6:12 The more specific you are, the better the result. 6:15 If you already know exactly
+what you want, 6:16 you can just describe it 6:18 and that's what I did for this build, 6:20 but describing visual taste in words is hard, 6:24 especially if you're newer to
+design. 6:26 You don't speak the design language yet 6:28 and that makes it tough to tell Claude what you want. 6:32 If you're in that spot. References are your shortcut. 6:35
+References are just screenshots of sites you like 6:38 that you give to Claude so it can match the visual style. 6:41 It's a lot easier to show Claude what you want 6:44 than to
+describe it. 6:45 References are also useful for refining your own direction 6:48 before you commit. 6:50 You scroll, you find things you like 6:51 and you start to understand what
+your taste actually is. 6:55 I'll share a few of my favourite websites with you 6:57 that you can draw ideas from. 6:59 This is Dribble. 7:00 It's where designers post their work
+7:02 and it's full of inspiration 7:03 for almost any style of website. 7:06 This is Awards. 7:08 These are sites that have won industry design awards, 7:10 so it's a great place
+to browse high quality designs. 7:13 And you can always just search Pinterest 7:16 for the kind of site you want to build. 7:18 It pulls examples from everywhere. 7:19 Here I
+searched for modern website design restaurant. 7:24 I've included links to all of these 7:25 in the description below. 7:26 Find three to five sites you like 7:28 and save
+screenshots of them. 7:30 You're not copying these sites. 7:32 Instead, you're showing Claude what you like 7:34 and how you want your own design to end up. 7:37 For my build, I'm
+creating a website 7:39 for a restaurant in Seattle. 7:41 Here's the prompt I used. 7:43 This is the whole video in a single sentence. 7:46 /ui-ux-pro-max 7:51 is how we call the
+design skill we just installed. 7:54 Then we type out the brief for the AI. 7:57 The trick to making this work is this last line, 8:00 "Ask me clarifying questions." 8:02 That's
+the line that makes Claude stop and think 8:05 before it starts building. 8:07 Here Claude comes back with seven questions. 8:09 They cover the restaurant name, the style
+direction, 8:13 which sections we want, who's writing the content, 8:15 the tech stack, the animation level, 8:17 and anything else we wanna specify. 8:20 And here's the part that
+really matters. 8:22 Claude offers three style directions to choose from, 8:25 a Manhattan steakhouse with dark moody energy, 8:29 a Pacific Northwest modern look, 8:31 or a
+classic old school chophouse. 8:33 It's giving you the menu of style options. 8:36 I picked dark moody luxury, 8:38 but with Pacific Northwest grounding 8:40 so it doesn't look
+like a Manhattan steakhouse. 8:43 Five sections total, no gallery, no booking system, 8:46 just a single page that scrolls all the way through. 8:50 This is the most important
+moment in the entire build. 8:53 The answers you give here become the entire site. 8:56 The more specific you are at this stage, 8:58 the less you'll have to fight Claude later
+9:00 to make revisions. 9:02 Really take your time to answer the questions thoughtfully. 9:06 Then send to watch the magic begin. 9:09 Now, Claude reads the brief and it takes
+about three minutes 9:13 before it writes a single line of code. 9:15 Then it spends 9:16 another four or five minutes or so actually building. 9:19 So I'll skip ahead to the fun
+part, the reveal. Chapter 5: First Reveal 9:24 And there it is. 9:25 This is already better than most AI website demos I've seen 9:29 and we haven't even started polishing yet.
+9:31 So how does this stack up 9:33 against our $10,000 website checklist? 9:36 Let's start with point of view. 9:38 Look at the brief we gave Claude. 9:39 We had a real direction
+in mind 9:41 when we answered its questions, not just a mood board. 9:44 Then there's typography. 9:46 Claude picked Fraunces for the headlines 9:48 and Inter for the body. 9:50
+Now we'll swap out Inter later 9:51 because it's one of the most overused AI fonts 9:53 on the internet right now. 9:55 For colour, Claude landed on five hex values: near black,
+9:59 warm cream, oxblood, brass, and slate. 10:03 There are no rainbow palettes here. 10:05 Restraint with colour is what signals quality. 10:08 Then there's hierarchy. 10:10 Look
+at how this section is laid out. 10:11 The city name is huge, 10:13 the address is medium sized 10:14 and the room description is small. 10:16 That's not random sizing. 10:18 It's
+telling your eye what to read first, second, and third. 10:22 Without that, a site feels flat and hard to scan. 10:26 Take a look at the copy too. 10:28 Dry-Aged Ribeye, 10:30 16
+ounce, 60-day, hearth-fired. 10:34 That's not generic AI text. 10:36 That's a restaurant copy 10:37 that reads like a real chef wrote it. 10:39 We're going to come back to this in
+chapter seven. 10:41 Alright, that's four boxes checked. 10:43 We've still got four to go, 10:44 and the next ones are going to need a bit more work. Chapter 6: Imagery + Premade
+Components 10:47 Number five on the checklist is imagery. 10:50 This is one pillar Claude can't fully solve on its own. 10:53 You're going to have to bring some assets yourself.
+10:55 The best thing you can have on a premium website 10:58 is custom photography or custom graphics, 11:01 work that's been shot 11:02 or designed specifically for your brand.
+11:05 If you've got that, great, 11:07 drop it into your project folder and you're set. 11:09 Just tell Claude what and where it is 11:11 and what to do with it. 11:13 But many
+people don't have 11:15 a professional photo shoot budget. 11:16 So the next best thing is AI image and video generation. 11:21 The tools are good enough now that used right, 11:24
+nobody can tell the difference. 11:26 For a single image ChatGPT is the fastest path, 11:29 if you've got a subscription already. 11:31 Its latest image model is excellent for
+photoreal work, 11:35 but there's a catch. 11:36 ChatGPT can't make video, 11:38 so if your site needs any kind of animation 11:41 like the hero scroll effect I'm about to build,
+11:43 ChatGPT alone won't get you there. 11:46 That's where aggregator tools come in. 11:48 These tools give you access to every major image 11:51 and video generation model from
+one tab. 11:54 The one I use is 11ElevenLabs. 11:56 11ElevenLabs is a paid service, 11:58 but their plans are reasonable 11:59 and if you use the 11ElevenLabs link 12:01 in the
+description below, 12:02 you'll get 50% off your first month of the creator plan, 12:06 which gets you access to everything 12:07 I'm about to demonstrate. 12:09 Inside
+11ElevenLabs here, 12:10 I generate an image with ChatGPT's image model. 12:15 Once that renders, I'll pick one of the four options 12:18 and then drop that exact image in as the
+starting frame 12:21 for Google's Veo 3.1 to turn it into a video. 12:26 Then once I get the output for that, 12:28 I'll select one of the options, 12:29 then upscale the result
+with Topaz, 12:32 all without leaving the tab. 12:35 That's the workflow we're using to create the hero asset 12:37 for our steakhouse here. 12:38 Here's the trick that makes this
+fast. 12:40 You don't have to write the image prompt yourself. 12:43 Claude already knows your project, so you can ask Claude 12:46 to write the image generation prompt for you.
+12:49 You paste that prompt into your image generator 12:52 and you get something that matches your brand 12:53 and your existing design aesthetic on the first try. 12:57 Once you
+have your asset, drop it into your project folder 13:00 and Claude has everything it needs. 13:02 Okay, that covers imagery, 13:03 but what about when you wanna level up visuals on
+your site 13:06 that aren't photos or videos? 13:08 That's where 21st.dev comes in. 13:11 21st.dev is a library of pre-made web components, 13:15 animations, scroll effects,
+buttons and more, 13:19 all built by real developers and all free to grab. 13:23 You can use 21st.dev two ways. 13:26 You can browse around for visual inspiration, 13:28 if you're
+not sure what you want to add to your site 13:30 or if you find a specific design or element you like, 13:34 you can copy a prompt that tells Claude 13:36 exactly how to recreate
+it in your project. 13:39 For our build, I want to build something visually striking 13:42 for the hero section, 13:44 a really cool image effect 13:45 that makes the site feel
+premium 13:47 right when someone lands on it. 13:49 Scrolling through 21st.dev here, 13:51 I find a smooth scroll image component I like, 13:54 so I'll click the copy prompt button
+on it, 13:57 and back in Claude Code I'll paste that prompt in, 14:01 add the stake video we just generated 14:03 and tell Claude to use the component to build out the hero. 14:08
+Now watch what Claude does next. 14:10 It pushes back. 14:12 The 21st.dev component I picked 14:14 is for a system called React. 14:16 React is a more complex setup than what we're
+using here. 14:19 Our project is a simple static site, so Claude says no 14:23 to dropping in the react component as is, 14:25 because it would change how our whole project works.
+14:28 For your project, 14:29 you might actually want something more complex 14:31 than what we're doing here, 14:32 like a dashboard, a checkout flow, 14:34 or a site with a
+login. 14:35 In that case, Claude would say yes to react 14:37 because it fits your project. 14:39 The point is that Claude protects the architecture 14:41 you set up. 14:42 It
+doesn't break things just because you asked. 14:45 For our static site, single file HTML is the right choice, 14:48 and you'll see why when we deploy in chapter eight. 14:51 So
+Claude rebuilds the hero without react 14:54 and the first attempt doesn't work. 14:56 The video shows up on the page, 14:57 but it isn't scrolling, so I tell Claude what's
+happening. 15:01 It finds two bugs and fixes them. 15:04 The page is still broken though, 15:05 so I ask Claude to dig deeper. 15:08 It actually opens the page itself in my
+browser, 15:11 inspects what's happening live 15:12 and finds the real problem. 15:15 Three layers in, it works. 15:17 The lesson here is to keep pushing when something breaks.
+15:20 Just explain what went wrong 15:21 and what you were expecting instead. 15:23 Claude can usually solve it, 15:25 if you give it the chance to look closer. 15:27 And there it
+is, a cinematic hero, scroll driven, 15:31 exactly like we asked for. 15:34 Next, we do one more pass on the hero, 15:36 making the text readable against the bright background
+image 15:40 and making the hero reveal its content 15:42 as the user scrolls. 15:44 The key thing to know is 15:46 that you can keep iterating like this 15:48 until your hero feels
+right. 15:50 Once your hero section is locked in, it's time to step back 15:53 and check yourself against the bigger picture. Chapter 7: Polish Pass + Re-evaluating the Checklist
+15:56 Once you've got the bones of your site in place, 15:59 you should grade yourself against the original checklist 16:01 before you keep polishing. 16:03 This is the move that
+separates a polished result 16:05 from a generic one. 16:07 You can grab a PDF download of that 10K website checklist 16:11 using the link in the description below. 16:13 You set
+the bar high at the start 16:15 and now you check yourself against it. 16:17 To do this, paste that checklist into Claude and ask, 16:20 "Where does this site land against each of
+these criteria? 16:24 Be honest." 16:25 In my case, Claude goes through each one 16:27 calling out what's strong, what's mixed, 16:29 and what's missing. 16:30 For our build,
+Claude comes back with point of view strong, 16:33 colour strong, hierarchy strong, 16:36 and typography mixed, 16:38 imagery, motion, mobile and the invisible stuff 16:41 are all
+mixed. 16:42 You'll probably get a similar split on your project 16:44 and that's fine. 16:46 The point is to know exactly what's left to do. 16:48 For the items that need work,
+16:49 don't ask Claude to fix them one at a time. 16:51 Ask Claude to propose a batch of fixes instead 16:54 and lead your ask with intent, not specifics. 16:58 Here's the exact
+prompt I use for our build. 17:00 I tell Claude, "We need more handcrafted micro interactions. 17:05 The lower sections feel a bit generic. 17:08 We don't need to make them busier,
+just more expensive." 17:11 Notice what I'm doing there. 17:13 I'm not telling Claude what to add. 17:15 I'm telling Claude how I want it to feel. 17:18 Claude is better at
+translating intent into specifics 17:22 than most people are at writing specifications. 17:25 Claude comes back with a batch, 17:27 film green across the whole site, 17:29 animated
+brass hairlines between sections, 17:32 a glowing ember effect in the Reserve a Table section, 17:35 word-by-word reveals the headlines 17:37 and a few other small details on top.
+17:40 Five small changes in one prompt. 17:43 I approve them and Claude ships them all at once. 17:46 There's less back and forth that way. 17:48 You spend fewer tokens 17:49 and
+the result feels more cohesive 17:51 than if you drip feed Claude one tweak at a time. 17:55 Now, here's the move most people skip, 17:56 and it's the move that does the most work
+17:58 on whether your site feels expensive. 18:01 Once that batch of edits lands, 18:03 scroll through your site section by section 18:06 and find the ones that still feel flat, a
+little boring. 18:10 There's always going to be a couple. 18:12 Claude won't catch them because Claude can't feel your sight 18:15 the way you can. 18:16 This pass, you have to
+drive yourself. 18:19 For each flat section you give Claude one specific motion 18:24 or cursor interaction to add, one per section, 18:28 all of them restrained and subtle. 18:31
+You can ask for something specific, 18:32 grab something you like from 21st.dev 18:35 or just ask Claude what makes sense to add. 18:37 In our Reserve a Table section, 18:39 the
+ember glow from the batch is in, but it's still static. 18:42 There's no movement, so I tell Claude, 18:44 "Make the embers move like fire. 18:47 Have them react to the cursor as
+it moves around the page." 18:50 Claude adds a parallax effect on the embers 18:52 that follows your cursor. 18:54 Now the fire effect feels alive. 18:57 Then I scroll into the
+story section 18:59 and it's still flat, so I tell Claude, 19:02 "Add some elegant micro movements 19:04 and cursor interactions here. 19:06 This section is feeling very static."
+19:08 Claude adds a soft candlelight halo 19:10 that follows the cursor as you read. 19:12 Its first attempt though is too obvious, so I push back. 19:15 I say, "Make it more
+subtle, more refined." 19:19 Claude adds trailing motion to the halo 19:21 so it lags a bit behind the cursor. 19:23 That's the version we'll ship. 19:25 Two prompts, two sections.
+19:27 That's all this layer takes, 19:28 but that layer is the difference between a site 19:30 that looks expensive and one that feels expensive 19:34 as visitors navigate the
+pages. 19:36 The pattern is to review every section, 19:38 find the ones that feel flat, 19:40 ask Claude for one cursor interaction 19:43 or piece of movement per section 19:45
+and tell Claude to make it more subtle, 19:47 until the section feels alive 19:49 without being noisy and obnoxious. 19:52 Speaking of polish, copy. 19:54 The written content on
+your site is another place 19:57 where AI tends to fall short by default. 20:00 AI generated copy usually over explains, 20:03 uses too many adjectives and tries to sound
+impressive. 20:06 Take a look at this line from our site. 20:08 Six dishes, one fire. 20:11 That's restraint, not adjectives. 20:13 That's what separates a $10,000 menu from a $200
+one. 20:17 The front end design skill we installed 20:19 at the start of this video 20:19 is what helps Claude to write copy like this. 20:22 Restrained sensory writing is one of
+the things 20:25 that skill pushes Claude toward, 20:27 which is another reason it earns its place in every project. 20:30 Here's another quick win you can apply 20:32 to any AI
+generated site. 20:34 There's one font called Inter, 20:36 that's so overused on AI generated sites, 20:38 it instantly screams "AI made this." 20:41 If you see Inter in your
+output, ask Claude to swap it out. 20:45 For our build Claude Swaps enter a font called Geist. 20:48 It's a small change, but it makes a real difference 20:50 to how the site
+reads. 20:52 Item seven on the checklist is mobile 20:54 that's actually designed, not just shrunk down. 20:57 By default, Claude makes your site responsive, 20:59 meaning it'll
+fit on phones or other small screens, 21:02 but responsive isn't the same as designed for phones. 21:07 Phones are going to see your site way more often 21:10 than desktops will,
+and if your mobile version 21:12 is just your desktop version squished smaller, 21:14 your viewers will feel it. 21:16 You have to ask Claude for it specifically. 21:19 So tell
+Claude to do a dedicated pass on the mobile version. 21:22 Tell it to think about what should be hidden 21:24 on small screens, 21:25 what should be tighter and what should resize.
+21:28 For our build, the navigation collapses on phones. 21:31 The word mark gets tighter spacing 21:33 and the buttons get a smaller variant. 21:36 With those polished passes
+done, 21:37 all eight checklist items are complete. 21:40 Your site looks $10,000. 21:42 Now we have to actually put it online. Chapter 8: Deploy Online with Custom Domain 21:46
+You can build the most beautiful site in the world, 21:48 but up to this point, 21:49 your site only exists on your computer, 21:51 so if you copy the URL from your preview right
+now, 21:54 the one that starts with local host 21:56 and send it to a friend, 21:57 they're going to be very disappointed. 21:59 That URL only works on your machine. 22:02 To share
+your site with the world, 22:03 you have to put it on a real server at a real custom URL. 22:07 Hosting is the service 22:08 that runs your website on a server 24/7 22:11 so anyone
+in the world can reach it. 22:13 It's the boring part of owning a website, 22:15 but every real site needs one. 22:17 I use Hostinger because it's the cheapest professional host

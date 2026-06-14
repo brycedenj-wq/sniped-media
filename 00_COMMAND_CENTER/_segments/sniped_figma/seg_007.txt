@@ -1,0 +1,224 @@
+it's still working here. Mhm. Nice. And then we're on Cloud Sonic 4. I 19:51 really do think you should use the best model possible. Lower the model is, the more likely it's going
+to fail on you 19:57 and then you're going to have to figure out [music] what to do. And the smarter the model is, the the easier it is to 20:02 fix bugs and different things.
+Absolutely. So, it wants to install Excel integrate, which is fine. You [music] can install 20:08 that. Okay. So, now it's asking us to restart the server, but it's already on. So,
+I can just check. Oh, 20:13 and like that. Got a nice gradient. It got a nice gradient. It got the title. It has everything. I don't like 20:19 this bottom tab bar, so I'll ask it
+to remove it. But this is a great I mean, from the original one to this, 20:25 it's pretty close. Yeah. [music] Not bad. That's really impressive. And so that's really an app
+that's kind of sort of 20:31 running. Yeah, this is your app right here. It's it's already sort of locked. We're actually on an an [music] iOS 20:37 simulation. So any bug that
+happens on this is going [music] to be the same type of bug that would happen on your 20:43 phone. So this is the best way to debug if you don't have your phone on you. You could
+also run app development directly 20:50 on your phone, but I I like to keep it on the screen. It's easy to move back and forth. I don't have to move my eyes different places. But
+yeah, it's great. 20:57 Cool. So, what's next? So, I'm going to I'm going to get it to remove this tab bar because we're not going to need it for our app. And then 21:04 the same
+process we're going to do for each page. Cool. Oh, this is the other thing. Um, Windsurf now has a mic button so you can 21:10 just talk. So, I use that all the time. Yeah. So, now
+we're going to build the second screen. On [music] the second 21:16 page, right after the welcome screen, when they press get started or continue, it will take them to the what
+we're 21:21 going to call onboarding, but it's the first time they enter their mood tracking. [music] On the first page of the mood tracking entry, they're going 21:28 to see the
+logo and a smaller form of the gradient [music] 21:33 and then a title that says, "How are you?" and then choose one emotion. [music] Then we have all the emotions in 21:40 a 4x
+two grid. We have four at the top, four on the bottom, happy, sadness, fear, anger, surprise, [music] disgust, 21:45 trust, anticipation with a emoji with them. And then at the
+bottom, we have a 21:51 choose one that's disabled. And then once [music] they press it, it should enable the button allowing them to 21:56 continue to the next page. So just like
+that, we can And now you can go even faster with the voice recording. 22:02 Oh yeah, so fast. All right, so the second page, it looks like the second page is completed. So now we
+can check [music] 22:07 uh with the simulator. So we're on the welcome screen. If I press get started, it should take us to the the first major 22:13 emotion selection. And it
+removed your little thing. Yeah, it removed the tab bar. So now it looks super clean. Wo. [music] Great. 22:19 Nice. That looks really good. This is the solid. It got the logo nice
+up there, too. Yeah. 22:25 And if we So, we're not able to press choose one down here, right? Or the button right here. And it says to 22:30 choose one. [music] And then let's just
+choose fear. And then the button worked. Perfect. Just like that. [music] 22:39 All right. So, all we got to do now is the rest of these pages [music] and we'll have an app just I
+think in less 22:45 than 10 minutes. Yeah. I hope. So, I'm going to now implement the rest of these changes. is I'm going to fast forward a bit and then we'll get to the final full
+22:53 flow. And then finally, when they press on one 22:58 of the cards in the home [music] screen, they're going to be sent to the detailed screen of that mood entry, [music]
+which 23:05 should show the sub emotions as well and the journal note that they've [music] 23:10 stored if they have one. It should have a trash icon on the top right, which
+deletes the entry from [music] their 23:16 local storage, and then a back to home button. Okay, so I think we finally got the last page. Uh, wind surf right here 23:21 has said the
+the mood tracker is complete and ready to help users. So now we can go to the simulator and see if Testing and debugging 23:26 the full flow is actually working. [music] Get
+started. Choose one emotion. Do anticipation cuz I'm anticipating 23:32 something really awesome. Wow. Uh, this is amazing. Yeah. Oh, cool. Okay, so we get to 23:38 choose which
+ones. Uh, do multiple to test that multiple works with interest, [music] eagerness, curiosity. 23:45 Continue. Oh, this is so clean. [music] And then a final message here will say
+23:50 my first entry. This is like a full-blown app. This can't believe you did this this fast. [music] 23:55 Hit continue. And then we're on our home screen. Wow. Yeah. So then
+you can see right here. 24:02 Click into this. [music] Get the detail page of it. You can see the other ones I clicked on. And then my first entry. 24:07 Wow. And then um I [music]
+should be able to delete it right here. Cool. And then I 24:12 could do a new one like that. Oh my gosh. It's perfect. No bugs. No bugs at all. Wow. Amazing. [music] Uh, 24:19 let
+me actually not do any message on this one. I want to see if it still works. Yep. Still goes through. Perfect. 24:25 Wow. [music] And then if we refresh the page right now, it
+should take us back to the home screen. Oh, [laughter] there's the first bug. 24:32 You don't want to go back to the onboarding. No, no, no. So, this is the welcome screen. This
+should only happen the first time that the user opens the app. 24:38 Once they've done it once, they don't need to see this again, this get started button. So, uh, this isn't
+right. It should have 24:43 taken me to [music] this uh this home screen right here. Okay. Okay. So, we're going to go into Windsurf right now. And this is what is 24:49 so awesome
+about uh prompting is that I think a lot of people get stuck right now and not know what to do next, but 24:56 this is a great time to [music] just quickly be like, I like to
+compliment my AI. Everything looks great. and then 25:02 say, but when I restart [music] the app or after the first entry, 25:09 it takes me [music] back to welcome, which should
+only happen if there's no 25:14 entries right now. Okay. Yeah. So, if there's no entries right now, I should see the welcome screen. And then once I have my first 25:21 entry in,
+it should just take me [music] to the home screen every time I restart the app. Got it. And this is kind of the process 25:26 for fixing bugs. And you're going to run the bugs.
+You're going to run lots lots of bugs, right? [music] Yeah. And and this one is, you know, this one is like we knew exactly what it 25:33 was. It could be like, I'm not [music]
+sure why you took me back to the the welcome screen when I've already entered 25:38 a journal, right? And then it'll pick up the clues and and kind of [music] work with you. But
+you can't just go into it and say, 25:44 "There's a bug." Yeah. If you just say there's a bug, there's an error, the AI has no idea what you're 25:50 talking about, give it
+something. Give it even just [music] a single sentence of what you think is happening can lead it in the right direction. 25:55 Yeah. All right. So now it I'm on my home screen. So
+if I restart Yeah. Boom. There we go. Four app is done. 26:01 All right, that's it. Great job. Wow. That's amazing. Like, [music] that's just too cool that you 26:07 did that. And
+we haven't been here. We've been recording for less than an hour pretty much by this point. And 26:13 [music] uh this is a legit app. I don't want to say it's, you know, has
+feature parody over the one we just looked at, 26:19 but you did this part with Billart in less [music] than 20 minutes. Yeah. Yeah. It's kind of mind-blowing, 26:25 right? I I
+worked in production code just just four years ago. [music] Making something like this would have actually 26:31 taken us a whole month with like a four person team. Okay, what's
+next? Now Expo is going to take our [music] project and 26:39 compile it into a build, an iOS build, which then we'll be able to submit to 26:45 Testlight. What's TestFllight? So
+Testlight is a great and easy way for you to get your apps running in the App 26:51 Store and [music] onto your phone. This is also where you're going to set up external testing
+groups where you can 26:57 send to friends, you can send to your private beta group and start getting feedback. 27:02 Cool. So, it's really a way to get right now you're running it
+in a simulator. Yeah. I want to get it onto a real phone cuz 27:08 that's what I want you to do today is get it onto a real phone so we can show the [music] audience that this is a
+real app that you can send to friends. Super 27:14 cool. Yeah. So, it's super simple. We're just going to run two commands and then we're going to be ready to go. So, first 27:19
+things first, we have to send this over to Expose server. So, Exo is aware of, 27:24 okay, this is a new build, new project that we want to get started. So, I'm going to run the
+command EAS submit. So, 27:32 it's saying here that the project has not been configured yet. So, we're going to start that. So, we'll just say yes. 27:37 And then we're just going
+to focus on iOS right now. Oh, okay. We have to build the EAS file. [music] So, we'll 27:42 just tell uh Windinsurf, please build our deployment EAS file. 27:48 You don't have to
+necessarily know how to do that. You just ask Windinsurf on how to Yeah, 100%. If there's any anytime you 27:53 see the red here, you could just highlight the text here and then
+send the chat. And I would treat Windsurf 27:58 less as a thing that does things that you tell it to do and more of like a cooperative partner. [music] Yeah. That you work with.
+Cool. So it 28:04 created the file. So now we can run this. [music] And so you just gone through it's asking you a bunch of questions or just making 28:12 you agree to a bunch of
+things right now. Yeah. So this is what makes Expo so amazing. Normally I would have to go to the app store connect [music] and go 28:18 through like 10 different forms right now
+and put all these things together. Expo is doing all that for me. I just 28:24 have to answer a couple questions. So this is Zapto connect where you add your Submitting the app to
+App Store 28:30 apps and you maintain all of them. here. You actually have to submit it through the app store and there's a whole 28:36 process of of the app store reviewing it and
+making sure that there's like user 28:42 permissions and product IDs specific for this app. So, what we're going to do 28:47 right now is create a new app for this project and the
+bundle because Expo is 28:52 already connected to everything. I don't have to create a new bundle ID. Like I said, it it's already should be here. 28:58 So, you can see right here,
+Rash Clarity Mood Tracker. It already did it. It already did it. So, it's already a 29:03 step ahead of you. Say daily mood tracker. There's already an app called Daily Mood
+Tracker. So, we'll call we'll 29:09 call this DMT. Uh, maybe not DM. That's probably an app for that. DMT emotion tracker. Now, we're in our 29:16 app project for the emotion
+tracker. And we can see that we shouldn't have any 29:21 builds yet. Yeah. So, we're still deploying that build right now. So, nothing's going to be here. But we can actually check
+the status of that build 29:28 on the XO website. So, go here. Just refresh the page. Daily mood tracker. Oh, nothing is built yet. Let's see 29:34 what's going on. Still
+compressing the files. Mhm. All right. So, it looks like our build has finished. It has run 29:40 through all the different parts. It took about 6 minutes and 47 seconds to finish.
+H. You're not going to get more 29:46 than 10 minutes on on a even a complex build. So, it doesn't take too long. Now, we're going to run EAS submit. And 29:53 this is going to
+take that build and now send it to the app store. Cool. So now it's showing the build and 30:00 it's ready to submit. So we can go into the internal testing here and add the build.
+Oh, it's already on actually. 30:06 Nice. So I should get an email right now. Cool. Nice. So I just got this email. So I can just 30:11 go now. I can view it in my test flight app.
+And there it is. DMT tracker. 30:16 Moment of truth. There we go. Yes. Show that to the camera. 30:22 There you go. That's a real on a real phone. Let's go. Nice. 30:28 That's
+beautiful. This feeling is so good. It's It's the best feeling every time. Yeah. Yeah. Wow. And it seems to just work. I'm sure 30:34 you will sometimes run into bugs once you get
+into test flight. There we go. Wow. Full app. Let's go. 30:41 That's great. I can't believe we did that in a in less than an hour. Yeah. Congrats, man. Cool. All right. 30:50
+That's it. Okay. So, we have our app. It's done. You showed it to everyone Episode summary 30:55 watching right now. So to answer the question, can you build iOS apps with 31:00
+just vi coding AI tools? And can you do it in 30 minutes as we tried to get 31:06 done? Well, we didn't do it in exactly 30 minutes, but it was pretty damn close, right? 31:11
+Yeah. I would say the the reasons why we didn't get done in 30 minutes were [music] more like out of our control 31:16 kind of technical issues that happened, but I I really do
+think you can get these apps out quickly. Yeah. I mean, I think what you showed 31:22 [music] today, which is really cool. I mean, my favorite part is your sort of design process,
+which may seem like 31:27 overkill or, you know, I want to just jump into the code right away, but actually I think we clearly we proved 31:33 it. We saved a lot of time by just
+sort of planning out and doing basic designs. Like you said, you could potentially 31:38 even draw it on a napkin. Yeah, that was cool. I also love that you showed wind surf and I
+think that kind 31:44 of methodology where you went instead of just saying, "Hey, go do this," you went through each screen. And what's even 31:51 cooler is like we actually got a
+real app on the iPhone. And that's what I really wanted to show today is like it's 31:57 cool to have a web app or a prototype or whatever, but this is something that you can
+actually send to friends, family, 32:03 get feedback, and we did it all in about an hour, which is super cool. So my 32:10 question to you, Roz, is yeah, we built this, this is
+cool, but what's next? Yeah. So I was thinking about this, like 32:15 how can we actually start making some money? Because I'm sure some of you will probably wonder like, well,
+this is a very simple app. There's no way no one's 32:21 going to pay for it. There's no way to even charge anyone on this. And I was thinking like, this is where you want to 32:26
+look at your competitors. You want to see what everyone else is doing, where they're at. And and I was pondering like with with LLMs and AI, what would be 32:33 really cool is I
+think a next feature or or a way that we can charge for this, we can add an LLM that looks back at your 32:40 previous week or month of emotions and and moods and journals and then
+generates a report on how you've been, 32:46 what the emotions that come up, why they're happening, what's the triggers, and [music] then help them, you know, maybe the next month
+they have less of 32:53 those because of that. Yeah. So, lots of new features. And I think what's cool is when you build a simple feature, you get lots of ideas 32:59 for more
+features, but you don't have to build them yet until you get feedback from other people, right? What about the 33:05 marketing side of things? I know we can build this, we can send
+it to our friends, but how do we get like users 33:10 and people to pay for this? Yeah. So, I think as you get feedback, you're going to want to get more people to try it even and
+tell you that 33:16 feedback. And I think the best place to do that is in your marketing approach. So, with mobile apps, you'll notice that 33:22 some of the biggest apps have used
+Tik Tok to grow. I would go on Tik Tok. I would search up the current existing 33:28 popular mood tracker apps and see if they have any viral videos. If they have any viral videos,
+look at that first 33:34 sentence, that that hook sentence. Maybe it's like, "Stop this if you have a hard time expressing your emotions." And then 33:41 you'll show a demo of the
+video. And so this could be like a 20 to 30 second clip, just that first hook and then a 33:48 explanation of how your app works [music] and then you can put a link on your Tik Tok
+bio and then you can direct 33:53 them to that link so that they could download the app and try it out themselves. [music] And Testy has this 33:58 cool and nifty feature when you
+screenshot you can actually write a feedback message and it sends directly 34:04 to my Testy project settings. So I can see from there everyone's feedback and you can see from my
+other apps that I've 34:10 been using this tool actually. It's really helpful way to to do so. Actually, let me show you right here. So, basically tell your friends and 34:16
+family, hey, if you see something weird, take a screenshot, put a note in there, and I'll see it. Yeah. So, you see test flight and then 34:24 screenshots. Feedback screenshots.
+And you can see here that people are are they've given feedback and then from 34:30 this uh like someone sent me another app that they like and they they gave me some feedback on
+what I should do. 34:37 incredible helpful like advice and this is exactly how I made my next update. Yeah. Yeah. 34:43 The last question that I have is in terms of what's next. I
+know we have it as test flight but test flight isn't app 34:50 store yet. What is the process? We don't have to go too deep into it but what's the process of how to actually get
+this 34:56 onto the app store so that millions of people can download it. Yeah. So I think the most suffering 35:02 part of this experience is the app store review. So, every time
+that you want to upload your your app to the app store or 35:09 update the app, it has to go through this review process. And what that's like is you have to [music] make sure that
+all these different aspects of the 35:16 app are correct. Your titling, your screenshots, and then when you submit the app, it takes up to 24 hours for 35:23 someone to pick it up
+and review it. And then another 24 hours for them to say yes or no to it. And if they say no to 35:30 it, it's because somewhere in the Apple guidelines, you messed up in some way.
+Or honestly, sometimes I I've been in 35:37 experience where I didn't mess up and they just told me that there was something wrong with my app and then I just replied back like,
+"That's not 35:43 true. Try again." And they're like, "Oh yeah, it wasn't true." And they they confirmed it. So the app store review is 35:48 honestly like the the worst part. So
+expect it to take the longest honestly out of everything. But the test flight 35:55 review process isn't the same. So you'll be able to get it on to test fight right away. The the
+issue is that the app 36:01 store review team like you might have someone from some other country that's reviewing it uh at like the middle of 36:07 the night and then you have
+someone local reviewing in the daytime and they might have completely different sets of beliefs on how the guidelines work and 36:14 so there's a lot of inconsistencies with it
+too. So just expect the worst and try to be as nice and and buttery with with 36:21 them. It helps a lot. Yeah. Seems like getting rejected from the app store is like a right of
+path. Yes, very much so. When building out all 36:27 Absolutely. Yeah. Yeah. So, I mean that's a great segue into the starter story build boot camp 36:33 that Ross is leading where
+he actually talks about how to find an idea, some cool TikTok stuff in there, how to 36:38 design it with Figma, how to build it with cursor and [music] potentially wind surf. And
+also, we have office hours with Ross himself where you can ask him 36:45 questions and get help. Yeah. I mean, it's just really cool that we're we're getting people to come in and
+within [music] the first 2 days you 36:52 get your idea ready. On top of that, you're going to come out with a mobile app idea that's built on good 36:57 principles. It has
+consumer behavior tactics in it. And then by day nine, you 37:03 have a full app on your phone and able to send it to people and you'll be ready for that next step that you take on
+your 37:09 journey with with this. [music] Cool. Well, I'll put a link in the description to Ross's boot camp on a starter story 37:14 build. [music] Otherwise, thank you. Thank
+you. Great job and so cool to see you build that. I'm excited to see you 37:20 guys' feedback in the comments [music] and hear about what you are building on iOS. All right, see
+you guys later. 37:27 We'll see you in the next one. Peace. All From Starter Story BuildIntro 0:01 this is figma It's a powerful UI design 0:04 tool and because of its simple
+interface 0:06 you can learn it in a few minutes and 0:08 start crafting sophisticated designs 0:09 artwork or even memes so just go to 0:11 figma docomo install it and pin it
+right 0:14 in your taskbar between the other 0:16 important apps ready let's go this is Environment 0:19 your canvas where your designs come to 0:21 life up here is your toolbar on
+the left 0:24 you have your basic tools like drawing 0:25 shapes plugins and more on the right 0:28 side you can see share or view settings 0:30 the left side barar holds all your
+pages 0:32 and inside each page you'll have objects 0:34 layered underneath each other on the 0:36 right side bar you have all your design 0:38 tools and properties like
+positioning 0:40 colors fonts effects and Export options Basic Tools 0:43 if you want to be fast and figma you 0:45 have to start using shortcuts instead of 0:47 point and click
+for example F to create 0:49 a frame think of a frame as a screen 0:52 like mobile or desktop you have all 0:54 these presets listed here too which 0:55 might come in handy now
+that we have a 0:57 frame let's fill it up with shapes press 0:59 r and draw a rectangle but that's 1:01 irregular so let's hold shift to make it 1:04 a perfect square plus you're
+drawing 1:06 from one corner if you wanted to create 1:08 it from the center you could just hold 1:10 alt now do this for all the other shapes 1:13 these might just look like basic
+shapes 1:14 to you but we create almost all other 1:17 shapes from these same simple shapes 1:19 like Lego pieces for example you can 1:21 make a cool button by curving the 1:22
+corners of a rectangle either on the 1:24 shape itself or by entering a specific 1:27 number here you can create a ring from a 1:29 circle or Dr Drag The Arc to make 1:30 Pac-Man
+or even new shapes by addition 1:33 subtraction intersection or exclusion of 1:35 two shapes for example how do we create 1:38 a heart if you break it down what could 1:40 be the
+smaller building blocks is it a 1:42 union of two half curved rectangles or 1:44 two circles and a triangle or maybe it's 1:46 just a very good drawing with a pen tool 1:49 could
+be any of them I mean a circle is 1:51 basically an infinite number of squares 1:53 right but don't worry if you're not good 1:55 at math because neither am I and 99% of 1:57
+designers just use resources or plugins 2:00 for most complex shapes just go to this 2:02 tab select plugins and search for Layout 2:04 anything you need all right now how are 2:06
+we supposed to turn these into these 2:09 just drag them into an empty frame well 2:11 you can technically but if you were to 2:14 be more precise you could use a layout 2:16 grid
+it can be Grid or columns or rows 2:18 that basically guide you to keep your 2:20 objects aligned for example for this 2:22 music app I'm designing I'll just drag 2:24 different
+elements in and draw my shapes 2:27 Within These grid lines and by the way 2:29 this is definitely not Spotify okay so 2:31 yeah what the auto lay oh yeah uh well 2:35 you see how
+these small elements are 2:37 just there they look fine right yes but 2:41 you can improve their layout imagine we 2:44 have two cards they are aligned and look 2:46 good but if
+you added one more where is 2:48 it supposed to go you have to manually 2:50 move it to the right place now imagine 2:52 if there were more or if you removed One 2:54 auto out
+fixes this problem you can 2:56 select your cards at Auto out and align 2:58 them left right top bottom or Center you 3:01 can add paddings and set a gap between 3:03 items or
+instead you can double click 3:05 the alignment to Auto align so the Gap 3:08 would be calculated automatically based 3:10 on the container size plus you can 3:12 control the
+height or width of elements 3:14 or the container could hug its children 3:15 no matter how many there are Auto layout 3:18 makes everything more flexible and 3:20 scalable okay so
+in this app we can Auto 3:22 layout the title an artist on one side 3:25 and these icons on the other side and 3:27 then Auto layout them together so 3:28 they're perfect Center
+aligned like the 3:31 playback controls or the button or even 3:33 the entire screen this can even make 3:35 your design responsive so all the 3:36 elements would adapt to any
+frame size Properties & Effects 3:40 this is where things get exciting where 3:42 we change the properties of existing 3:44 objects you can change the fonts 3:45 alignments width
+and all sorts of other 3:47 text settings the fill and stroke can 3:49 get properties like solid colors 3:51 gradients or images effects can be drop 3:54 Shadows inner Shadows
+background blurs 3:57 and layer blurs these four simple 3:59 properties alone can make an endless 4:01 number of possibilities but you can 4:02 reverse this process and try to find
+4:04 these smaller pieces of the puzzle now 4:06 that you know all the abilities this 4:08 tool gives you the best way to master UI 4:10 design is to practice recreating so 4:13
+let's practice how is this 4:16 made if you break it down it's made up 4:18 of two rings one of them has an arc with 4:21 rounded sides how about this 4:24 one it's made of two
+rounded rectangles 4:28 one with a fill and the other with a 4:30 thick stroke and a shadow of only that 4:32 stroke last 4:35 one this one has some sort of faded 4:37 blurriness
+all around but on this corner 4:40 it gets a little more intense it could 4:42 be round at a square with a gradient 4:45 background and pink inner Shadows hm but 4:47 that's not
+curvy enough maybe it's a 4:49 radial gradient no that's not right okay 4:52 maybe if it's a very blurry Circle and 4:55 we put it right here and then wrap 4:57 everything in a
+frame to cut out out the 4:59 extra parts yeah that looks pretty 5:01 similar how would you do it you're doing 5:03 a great job by the way even by just 5:05 watching you're slowly
+adapting to 5:07 design thinking in figma and Beyond I 5:09 want you to imagine the simple app 5:11 layout in different styles now it's time 5:13 to challenge yourself think of an
+app or 5:15 website idea and create a layout for it 5:17 even if it's very simple for 7 Days 5:20 Every Day design that layout with a 5:22 completely new style then post it on 5:24
+social media and use #j style challenge 5:27 on Twitter so I can see what you're 5:28 creating Components & Styles 5:30 if you need to use the same element over 5:31 and over you
+could either copy it every 5:34 single time or you could create a 5:35 component from the first one go to the 5:37 assets tab drag and drop if you think 5:40 that was cool wait
+till you find out you 5:42 can create a styles from every color 5:44 font or Shadow property and instead of 5:47 entering the same values over and over 5:49 just respawn everything
+with a click 5:52 that's how big projects manage to keep Prototypes 5:54 consistency so far everything was static 5:57 and that's no fun let's make this app 5:58 Interactive switch
+to prototype Tab and 6:01 add an interaction interactions work 6:03 with a trigger like clicking hovering or 6:05 dragging after that the screen needs to 6:07 change for example it
+can navigate to 6:09 another page maybe with a cool 6:11 transition effect I'll go with slide out 6:13 and to make the animation smoother I can 6:15 go with either of these easing
+options 6:17 let's see what we cooked H pretty solid 6:20 but we can make it more complex remember 6:22 this component let's make another 6:24 variant of it increase the height and
+6:26 add some lyrics here then switch to 6:27 prototype click on this tiny plus symbol 6:30 and drag it to the variant for 6:32 interaction we'll make it change to the 6:33 second
+variant with a smart animate 6:36 pretty cool 6:37 huh have you heard the song by the 6:40 way by now you've learned about 80% of 6:43 figma and from here on all you have to 6:45
+do is design design design and that's 6:47 all for this video if you liked it make 6:49 sure you do your magic down there and 6:50 see you on the next one All From Juxtopposed User
+interface designIntroduction 0:00 Hi everyone, Kevin here. In this video, we're going to learn how to use Figma. Figma 0:07 is a powerful and collaborative design tool that helps
+you create, prototype, 0:13 and collaborate on interface designs. And best of all, you can get started entirely for free. If 0:19 you're trying to build an app or a website, this
+is the perfect tool. When I worked at Microsoft, 0:25 we used Figma all the time to design our software products. We'll start by getting Figma, 0:31 then we'll kick off our first
+project, add Frames, create and edit shapes, add and format text, 0:38 place images and masks, work with layers, add components and constraints, make a prototype, 0:44 and preview
+what we design, and then finally share with others. Now, I know that might 0:49 sound like a lot, but we'll walk through all of this step by step. By the end of this video, 0:56
+you'll be well on your way to designing in Figma. Let's check this out. To get Figma, Get Figma 1:02 head to the following website. You could click on the card in the top
+right-hand corner or there's also a link down below in the description. This is an affiliate link, 1:12 meaning I make money if you decide to purchase Figma. However, it doesn't
+cost you anything 1:18 extra and it supports making content like this entirely for free on this channel. 1:24 On the homepage, click on the button that says, get started. Once you
+finish creating First run flow 1:30 your account, you'll land here in the Figma first run flow. First off, Figma wants to know your 1:36 name. This is important as you collaborate
+with others. This is the name that others will see 1:42 and don't worry with any of these settings, you can always go in and modify these later. For now, I'll type in my name and
+then let's click on continue. Next, it asks what type of work you 1:51 do. Here you could specify that and then click on continue. Describe your work, I'll put down freelancer and
+then continue. And who do you usually collaborate with? I'll put down teammates, 2:02 but feel free to specify whichever one applies to you. Then click on continue. On this next
+screen, 2:08 you can now invite people to collaborate with you on your various design projects. And here too, 2:14 you can always come in later and you can invite others to work on
+your projects. And that's what I'll do, so I'll leave these all blank for now and then click on continue. Then they would like to 2:24 know what brings you to Figma today. I'll put
+down using it just for fun. I'll select that and then 2:29 click on continue. And have I used them before? I'll put down no, it's my first time. Exactly what 2:36 you want to hear
+from your instructor. Then right down below, I'll click on continue. And lastly, 2:41 you can also choose which plan you would like to use. You have two different options, there's
+starter and there's also professional. In this video, we're going to use starter. This 2:51 is entirely free and it covers all of the essential functionality of Figma. However,
+2:56 if you want say unlimited projects or files or version history or additional capabilities, it 3:02 may be worth considering professional. Again, I'll select starter and then
+down at the very bottom, 3:07 I'll click on continue. This now brings us to the last screen of the first run flow. And here 3:12 you can decide what product you would like to go
+into first. You have Figma and you also have Fig 3:18 Jam. We're going to be using Figma throughout this video and this is the design and prototyping tool. 3:24 But there is also
+another product called Fig Jam. And it's worth knowing just a little bit about 3:30 this. This is an online whiteboarding tool where teams can come together, say to collaborate on
+a 3:36 brainstorming session, a kickoff or a standup. So, you do have that available as well. I would 3:42 like to start in the main file browser first. So rather than selecting
+one of these options here, 3:47 down at the very bottom, let's click on the text that says skip. This drops us into the main Figma File browser 3:52 file browser. And next time you
+sign in, this is the screen that you'll land on. This is where 3:58 you can create new files and projects and also get back to the files that you care about. Over on the 4:04
+left-hand side, you'll see that we're currently in the recent view. You can also see that up on top. 4:09 And down below, you can see all of our recent files. Now we haven't
+actually created any of 4:15 our own files yet. These are all pre-populated to help you get started using Figma. Right up on top, 4:22 you have a few different menus that you can
+use to filter this view. This is especially helpful as you start getting lots of different files in your recent view. Over on the right-hand side, 4:31 you can also adjust the
+view. That way you could just choose whichever view you prefer. Over on the 4:36 left-hand side, let's now click into drafts. And this is only available to you. If you decide to
+4:43 share any of these files with others, they'll be view only. So only you can edit these. This is a 4:49 good place to say sketch out different ideas that maybe you're not ready
+to share yet. Think of it as just being more personal content. To add a new design within drafts, 4:59 you could simply hover over drafts. And over here on the right-hand side,
+you'll see a plus icon. And here you can add a new design file or a new FigJam file. You could even import files from your 5:08 computer. As you hover over any file within any of
+these views, in the top right-hand corner, you'll 5:14 notice that there's a star icon. This allows you to add that file to your favorites. So here, let's 5:19 hover over Figma
+basics, click on the favorite icon, and over on the left-hand side, you'll now see that it shows up under favorite files. To remove it, simply do the same thing. Click on the 5:29
+star again, and that'll remove it from favorites. Over on the left-hand side navigation, we also 5:34 have a category called Teams. And any files that you place within a team and a
+project is 5:41 available to anyone else who's part of that team. So, Teams is where you go to collaborate, while 5:46 Drafts is where you place your personal files. Down below,
+let's click into Admins Team. And 5:52 to add people to your team, let's say there are other people who you want to work with on designs, in the top right-hand corner, you could
+click on Invite and then enter in an email address. Right 6:02 now, I'll click on the X icon. Down in the bottom left-hand corner, if you'd like to add additional 6:07 Teams, you
+can click on this text here that says Create New Team. Within this team, you'll notice 6:14 that there's one project. With a free account, you can add up to one project. So that
+may be a 6:19 reason to upgrade if you need additional projects. A project is really just a way of organizing all 6:25 of your different designs. So think of it this way. Maybe
+we're pulling together a website for the Kevin Cookie Company. That may be its own project. And maybe we're also pulling together an 6:34 app for the Kevin Cookie Company. And
+that'll have a number of associated designs. We may decide that 6:39 we should create another project for that. Right here, I see my team project. And I also see that 6:45 there's
+one file within this project. I can also double click on this, and that'll drop me into the 6:50 project view. Over on the left-hand side, here I can see that I'm currently in this
+team project, which is part of this team. Within this project, I currently have one file, but it's also very 7:00 easy to add additional files. Over on the left-hand side, with
+this project selected, I can click on the plus icon, and I can now add a new file. In the top right-hand corner, here too, 7:11 I can also add a new file. So, there are a few
+different ways to get to that functionality. Once 7:16 you add a file, you're not locked to having that file in this specific project. You can press and 7:22 hold on a file, and
+you can move it to, let's say, a different project, or maybe you want to move it to drafts, work on it some there, or maybe you want to take a draft and then move it down to your
+7:31 project. You can very easily do that. Today, I want to pull together an app for the Kevin 7:36 Cookie Company, and I'll use this project to do that. Right up on top, I'll
+click on this carrot 7:42 dropdown, and right over here, let's rename this project to the Kevin Cookie Company app, or the KCC app. Here, I'll rename the project, and I now need a
+file that I'm going to use to 7:53 design this app. So, in the top right-hand corner, I'll click on Design File. This drops us into the Figma editor layout 7:59 Figma Editor, and
+right up on top, you'll see a toolbar. Over on the left-hand side, 8:04 we have a pane. Then we have the editing canvas, and this is where we'll pull together our design, 8:09 and
+over on the right-hand side, we have another pane, and as we walk through this, we'll look at 8:14 what all of this different functionality does. But first, let's rename the file.
+Up on top, I can see 8:20 my project name, and over on the right-hand side, I can see the file name. It's currently untitled, and that's not very helpful. So let's click on that,
+and I'm going to call it KCC app. It'll 8:31 be the same as the project name. Now that we've renamed the file, I want to show you how you could 8:36 get back to the file browser.
+In the top left-hand corner, let's click on this Figma dropdown for 8:41 the main menu, and right up on top, we have the option to go back to files. When I click on that, 8:47 that
+brings us back to that file browser view, and down below, we now see the KCC app. If I 8:52 jump into Recents, here too, we also see that as one of our recent files. Let's jump
+back 8:57 into the canvas by double-clicking on this file. I'd now like to start pulling together my design, Frames 9:03 but before I can do that, I need to insert some type of
+container or frame where I can place all 9:10 of my different UI or user interface elements. Other applications refer to this as an artboard. 9:17 Right up on the top toolbar, over
+on the left-hand side, we have this menu. Let's click on this, 9:23 and you'll see that there are a few different options within this menu, and the first one is called a frame.
+That's exactly what I need. With this menu exposed, over on the right-hand side, 9:32 you'll also notice that all of these different items have an associated shortcut key. These
+are 9:38 well worth learning, and will make you so much more productive and fast within Figma. Here, I will select Frame. With Frame selected, I can now draw a frame on my canvas.

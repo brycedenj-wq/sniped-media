@@ -1,0 +1,861 @@
+{
+  "version": "2026-06-08b",
+  "purpose": "Single tagged map of the whole OS body (76 skills + standards). Router os_activate.py turns any task into its activation set. Each domain has active skills (auto-injected) and reference_skills (relevant, loaded on demand only, to keep routing precise and context unbloated). intentional_exclusions = registered-but-never-auto-routed (corpus/maintenance). Audited by os_index_audit.py to keep unregistered at zero.",
+  "always": [
+    "No em-dashes, ever (lifetime rule).",
+    "NEVER SAMPLE. Whole-read every book/doc (os-token-safe-reader) and whole-watch every clip end-to-end (no 3-frame judgments). Sampling/skimming is a hard failure, not a shortcut.",
+    "SERIOUS PRODUCTION MUST RUN THROUGH A HARNESS (workflow + role-scoped agents: separate select / grade / taste / build / adversarial-verify). One agent may NOT select, cut, grade, review, and crown its own work. Single-thread is only for casual drafting / quick messages / low-risk notes. If a serious task is about to be done single-threaded, STOP before editing and spawn the harness.",
+    "Cite the doctrine/skill/gate used.",
+    "PASS is not excellent. Prove before crowning. 9/10 is the working floor for client-ready.",
+    "Disclose any unverified-pile dependency.",
+    "Today's proof + the operator's instruction override old docs."
+  ],
+  "hard_production_domains": [
+    "film",
+    "photo_composite",
+    "editing_retouch",
+    "brand_campaign",
+    "web_build"
+  ],
+  "emergency_triggers": [
+    "emergency",
+    "rush",
+    "asap",
+    "right now",
+    "due in",
+    "deadline today",
+    "client is waiting",
+    "drop today",
+    "drop this today",
+    "time-boxed",
+    "last minute",
+    "need this now",
+    "today",
+    "in an hour",
+    "by eod"
+  ],
+  "emergency_skill": "emergency-drop-protocol",
+  "serious_keywords": [
+    "whole os",
+    "max capability",
+    "max mode",
+    "high-stakes",
+    "flagship",
+    "client deliverable",
+    "deliver to client",
+    "launch",
+    "ship to client",
+    "conductor",
+    "production package",
+    "the best",
+    "10/10",
+    "go all out",
+    "build the",
+    "campaign"
+  ],
+  "receipt_required_for_serious": true,
+  "conductor": "Serious task = matches a hard_production_domain, OR matches >=2 domains, OR contains a serious_keyword. On a serious task: scan all 12 domains / 78 skills, pull cross-domain skills, name what stayed asleep and why, and produce OS_RECEIPT.md. The Stop gate blocks completion of serious work without a verified OS_RECEIPT.",
+  "intentional_exclusions": [
+    {
+      "skill": "batch-extraction",
+      "reason": "corpus pipeline (BATCH_<NNN>); explicit-trigger only, never auto-routed on creative/production tasks"
+    },
+    {
+      "skill": "jsonl-validation",
+      "reason": "corpus QA; explicit-trigger only"
+    },
+    {
+      "skill": "master-consolidation",
+      "reason": "corpus consolidation; explicit-trigger only"
+    },
+    {
+      "skill": "source-inventory",
+      "reason": "corpus inventory; explicit-trigger only"
+    },
+    {
+      "skill": "staging-plan",
+      "reason": "corpus staging; explicit-trigger only"
+    },
+    {
+      "skill": "os-engagement",
+      "reason": "corpus ingestion protocol; explicit-trigger (also referenced in ops)"
+    },
+    {
+      "skill": "session-save",
+      "reason": "session state snapshot; explicit-trigger (also referenced in ops)"
+    },
+    {
+      "skill": "skill-template",
+      "reason": "meta: only when building a new skill (also in utility)"
+    }
+  ],
+  "domains": {
+    "film": {
+      "label": "film/video",
+      "hard": true,
+      "match": [
+        "film",
+        "video",
+        "commercial",
+        "brand film",
+        "brand story",
+        "advert",
+        "spot",
+        "trailer",
+        "music video",
+        "social rollout",
+        "seedance",
+        "kling",
+        "higgsfield",
+        "nano banana",
+        "motion clip",
+        "b-roll",
+        "broll",
+        "cinema",
+        "cinematic",
+        "scene",
+        "shot list",
+        "animate",
+        "image-to-video",
+        "the door",
+        "reel",
+        "premiere",
+        "after effects",
+        "blender",
+        "3d",
+        "render",
+        "motion graphics",
+        "video edit",
+        "edit the reel",
+        "timeline",
+        "editor",
+        "editor handoff",
+        "edit this",
+        "handoff"
+      ],
+      "authority": "_standards/REAL_FILM_PRODUCTION_OS.md",
+      "production_loop": "Run all 14 stages in order; spend-gate at Stage 7; 9/10 final gate.",
+      "hard_laws": [
+        "Still + push-in is NOT a film shot.",
+        "Stills before motion; animate only approved frames.",
+        "Diegetic audio in prompts; owned music (Suno) in finishing.",
+        "Every shot: subject acts, reads muted, advances story without VO."
+      ],
+      "skills": [
+        "cinema-worldbuilder",
+        "kling-production-sop",
+        "banana-pro-director",
+        "os-face-lock",
+        "os-world-bible",
+        "os-vision-reject-gate",
+        "watch",
+        "sniped-crs-builder"
+      ],
+      "reference_skills": [
+        "sniped-direction-stack",
+        "sniped-lighting-vault",
+        "sniped-status-psychology",
+        "sniped-hospitality-layer",
+        "sniped-hit-mechanics",
+        "sniped-higgsfield-pipeline",
+        "sniped-seedream-prompt",
+        "sniped-ai-image-tool-pick",
+        "composite-master-qa",
+        "platform-mastering",
+        "model-casting-protocol",
+        "emergency-drop-protocol"
+      ],
+      "docs": [
+        "_standards/REAL_FILM_PRODUCTION_OS.md",
+        "_standards/FULL_FILM_STACK_COMPILATION.md",
+        "_standards/OS_AI_CINEMA_PRODUCTION_DOCTRINE.md",
+        "_standards/OS_HIGGSFIELD_PRODUCTION_DOCTRINE.md",
+        "_standards/HIGGSFIELD_REUSABLE_MEGA_PROMPTS.md",
+        "OS_FINISHING_DEPARTMENT_STANDARD.md",
+        "COMMERCIAL_CRAFT_BENCHMARK_V2.md",
+        "OS_AUTOEDIT_DOCTRINE.md"
+      ],
+      "gates": [
+        "STORY_GATE",
+        "Push-In Law",
+        "os-face-lock motion-ready",
+        "os-world-bible continuity",
+        "os-vision-reject-gate",
+        "Commercial Craft 12-axis >=30/36",
+        "/watch pass",
+        "Gemini hostile pass",
+        "9/10 floor"
+      ],
+      "tools": [
+        "Higgsfield MCP (Seedance/Kling 3.0/Nano Banana Pro/Soul)",
+        "ElevenLabs (TTS+SFX; music=Suno)",
+        "Premiere/After Effects/Adobe MCP",
+        "Blender MCP (3D/render)"
+      ],
+      "loader": "python3 00_COMMAND_CENTER/scripts/os_library.py load film",
+      "proof_domain": "film",
+      "cross_domain": [
+        "writing",
+        "editing_retouch",
+        "brand_campaign",
+        "qa_proofing",
+        "strategy"
+      ],
+      "gaps": [
+        "Suno (owned music) not connected",
+        "8 of 10 Joey skills not on disk"
+      ]
+    },
+    "photo_composite": {
+      "label": "photo/composite",
+      "hard": true,
+      "match": [
+        "photo",
+        "shoot",
+        "portrait",
+        "headshot",
+        "composite",
+        "plate",
+        "hero composite",
+        "campaign image",
+        "character sheet",
+        "model sheet",
+        "reference sheet",
+        "studio shot",
+        "lifestyle image",
+        "casting",
+        "cast a model",
+        "cast the",
+        "book a model",
+        "find a model",
+        "model release",
+        "model for the shoot",
+        "talent booking",
+        "shortlist a model",
+        "the model",
+        "model is",
+        "model wants",
+        "model edits",
+        "model usage",
+        "model flaked",
+        "swimwear",
+        "alma"
+      ],
+      "authority": "sniped-production-os",
+      "hard_laws": [
+        "The lock is the look: canonical reference sheet first.",
+        "Subject identity untouched (face/body/skin) on client deliverables.",
+        "Subject grade LOCKED; environment integration only.",
+        "Casting: pretty is not enough; reliability is part of talent; brand final wins."
+      ],
+      "skills": [
+        "sniped-direction-stack",
+        "model-casting-protocol",
+        "sniped-hero-composite-ceiling",
+        "sniped-hero-composite-lite",
+        "composite-master-qa",
+        "os-face-lock",
+        "platform-mastering",
+        "sniped-ai-image-tool-pick",
+        "sniped-seedream-prompt",
+        "banana-pro-director",
+        "os-vision-reject-gate"
+      ],
+      "reference_skills": [
+        "sniped-lighting-vault",
+        "sniped-pre-shoot-prep",
+        "sniped-shoot-day-reset",
+        "sniped-shoot-day-strategic-free",
+        "sniped-post-shoot-same-day",
+        "sniped-capture-to-delivery",
+        "sniped-pixieset-gallery",
+        "sniped-crs-builder",
+        "sniped-photo-theory",
+        "sniped-art-series",
+        "emergency-drop-protocol"
+      ],
+      "docs": [
+        "COMMERCIAL_CRAFT_BENCHMARK_V2.md",
+        "_standards/OS_HIGGSFIELD_PRODUCTION_DOCTRINE.md"
+      ],
+      "gates": [
+        "os-vision-reject-gate",
+        "composite-master-qa 6-axis + proof crops",
+        "platform-mastering skin-drift",
+        "subject-identity-untouched"
+      ],
+      "tools": [
+        "Higgsfield (Nano Banana Pro/Soul)",
+        "Adobe MCP",
+        "Higgsfield/Seedream plates"
+      ],
+      "loader": "python3 00_COMMAND_CENTER/scripts/os_library.py load photo_post",
+      "proof_domain": "photo",
+      "cross_domain": [
+        "editing_retouch",
+        "brand_campaign",
+        "writing",
+        "qa_proofing",
+        "ops"
+      ]
+    },
+    "editing_retouch": {
+      "label": "editing/retouching",
+      "hard": true,
+      "match": [
+        "retouch",
+        "retouching",
+        "skin pass",
+        "evoto",
+        "lightroom",
+        "develop the",
+        "color grade",
+        "grade the",
+        "cull",
+        "frequency separation",
+        "dodge and burn",
+        "blemish",
+        "edit the photo",
+        "edit this frame",
+        "retouch pass"
+      ],
+      "authority": "sniped-luxury-edit",
+      "hard_laws": [
+        "Subject identity untouched; texture preserved.",
+        "Retouch decision tree: Lightroom vs Evoto vs Photoshop.",
+        "v3 LUXURY EDITORIAL base; Adobe Neutral foundation."
+      ],
+      "skills": [
+        "sniped-luxury-edit",
+        "sniped-evoto-skin-pass",
+        "sniped-capture-to-delivery",
+        "os-vision-reject-gate",
+        "composite-master-qa",
+        "platform-mastering"
+      ],
+      "reference_skills": [
+        "sniped-udemy-lightroom-rails",
+        "sniped-hero-composite-ceiling",
+        "sniped-hero-composite-lite",
+        "sniped-retoucher-onboarding",
+        "emergency-drop-protocol"
+      ],
+      "docs": [
+        "COMMERCIAL_CRAFT_BENCHMARK_V2.md"
+      ],
+      "gates": [
+        "os-vision-reject-gate",
+        "skin-drift check",
+        "subject-identity-untouched"
+      ],
+      "tools": [
+        "Adobe MCP (Lightroom/Photoshop)",
+        "Evoto"
+      ],
+      "loader": "python3 00_COMMAND_CENTER/scripts/os_library.py load photo_post",
+      "proof_domain": "image_design",
+      "cross_domain": [
+        "photo_composite",
+        "qa_proofing",
+        "brand_campaign"
+      ]
+    },
+    "brand_campaign": {
+      "label": "brand/campaign",
+      "hard": true,
+      "match": [
+        "campaign",
+        "brand system",
+        "rollout",
+        "content factory",
+        "the drop",
+        "drop engine",
+        "launch",
+        "art series",
+        "cultural doc",
+        "brand ip",
+        "campaign house",
+        "brand validation"
+      ],
+      "authority": "os-world-bible",
+      "hard_laws": [
+        "World continuity across the campaign.",
+        "No method-leak when selling the outcome.",
+        "Brand consistency: one world, one grade, one voice."
+      ],
+      "skills": [
+        "os-world-bible",
+        "sniped-higgsfield-pipeline",
+        "sniped-canonical-truths",
+        "sniped-caption-writer",
+        "platform-mastering",
+        "os-vision-reject-gate"
+      ],
+      "reference_skills": [
+        "sniped-art-series",
+        "sniped-hit-mechanics",
+        "sniped-blockbuster-strategy",
+        "sniped-perennial-seller",
+        "sniped-trust-mechanics",
+        "sniped-hospitality-layer",
+        "brand-validation-machine",
+        "sniped-status-psychology",
+        "emergency-drop-protocol"
+      ],
+      "docs": [
+        "OS_STORY_PSYCHOLOGY_OPERATIONALIZATION_DASHBOARD.md",
+        "COMMERCIAL_CRAFT_BENCHMARK_V2.md"
+      ],
+      "gates": [
+        "os-vision-reject-gate",
+        "brand_consistency",
+        "no_method_leak_if_selling_outcome",
+        "9/10 floor"
+      ],
+      "tools": [
+        "Higgsfield MCP",
+        "Adobe MCP",
+        "Figma MCP"
+      ],
+      "loader": "python3 00_COMMAND_CENTER/scripts/os_library.py load brand_ip_system",
+      "proof_domain": "design",
+      "cross_domain": [
+        "writing",
+        "strategy",
+        "pricing",
+        "film",
+        "qa_proofing"
+      ]
+    },
+    "writing": {
+      "label": "writing/copy",
+      "hard": false,
+      "match": [
+        "caption",
+        "copy",
+        "article",
+        "script for",
+        "headline",
+        "newsletter",
+        "linkedin post",
+        "carrd copy",
+        "one-pager",
+        "tagline",
+        "write the",
+        "rewrite",
+        "voice",
+        "reply",
+        "draft a reply",
+        "respond to",
+        "client message",
+        "dm back",
+        "email reply",
+        "respond to a client",
+        "reply to"
+      ],
+      "authority": "OS_STORY_PSYCHOLOGY_OPERATIONALIZATION_DASHBOARD.md",
+      "hard_laws": [
+        "No em-dashes, no AI-tell transitions.",
+        "On-voice per platform; refuse generic content-marketing voice."
+      ],
+      "skills": [
+        "sniped-caption-writer",
+        "sniped-positioning-phrases",
+        "sniped-status-psychology",
+        "sniped-canonical-truths"
+      ],
+      "reference_skills": [
+        "sniped-trust-mechanics",
+        "sniped-photo-theory",
+        "sniped-hit-mechanics",
+        "sniped-vib-outreach",
+        "operator-review"
+      ],
+      "docs": [
+        "OS_STORY_PSYCHOLOGY_OPERATIONALIZATION_DASHBOARD.md"
+      ],
+      "gates": [
+        "STORY_GATE",
+        "voice gate (no em-dash, no AI-tell)",
+        "positioning phrase bank + 5 failure modes"
+      ],
+      "tools": [
+        "os_story_gate.py"
+      ],
+      "loader": "python3 00_COMMAND_CENTER/scripts/os_story_gate.py load social_rollout",
+      "proof_domain": "writing",
+      "cross_domain": [
+        "strategy",
+        "brand_campaign",
+        "qa_proofing"
+      ]
+    },
+    "strategy": {
+      "label": "strategy/business",
+      "hard": false,
+      "match": [
+        "should i",
+        "strategy",
+        "which lane",
+        "rank options",
+        "decide",
+        "decision",
+        "positioning",
+        "pivot",
+        "hire",
+        "go big",
+        "on-strategy",
+        "constraint audit",
+        "is this on brand",
+        "leverage",
+        "business idea",
+        "business plan",
+        "new business",
+        "new idea",
+        "raw idea",
+        "go all out",
+        "go big on",
+        "new offer",
+        "new venture"
+      ],
+      "authority": "sniped-canonical-truths",
+      "hard_laws": [
+        "Never crown a lane on a strategy/identity question.",
+        "Optionality protection; anti-old-lane-anchoring; proof-before-crowning."
+      ],
+      "skills": [
+        "sniped-canonical-truths",
+        "sniped-leverage-logic",
+        "os-command-router",
+        "boardroom",
+        "challenge",
+        "operator-review",
+        "sniped-execution-prioritization"
+      ],
+      "reference_skills": [
+        "sniped-strategic-implications",
+        "sniped-reverse-roadmap",
+        "sniped-blockbuster-strategy",
+        "sniped-company-of-one",
+        "sniped-new-luxury",
+        "sniped-perennial-seller",
+        "sniped-ai-sentiment",
+        "sniped-ai-photographer-market",
+        "sniped-analog-premium",
+        "sniped-lean-audit",
+        "sniped-wwp-positioning"
+      ],
+      "docs": [
+        "BASEPLATE_CANONICAL_STATEMENT.md"
+      ],
+      "gates": [
+        "no-crown",
+        "optionality-protection",
+        "proof-before-crowning",
+        "anti-hallucination(cite)"
+      ],
+      "tools": [],
+      "loader": "",
+      "proof_domain": "strategy",
+      "cross_domain": [
+        "pricing",
+        "research",
+        "writing",
+        "ops"
+      ]
+    },
+    "research": {
+      "label": "research",
+      "hard": false,
+      "match": [
+        "research",
+        "market data",
+        "competitor",
+        "latest",
+        "2026 state",
+        "look up",
+        "sources for",
+        "brief on",
+        "find out about",
+        "deep dive"
+      ],
+      "authority": "deep-research (plugin) + os-token-safe-reader",
+      "hard_laws": [
+        "Source freshness; cite + date; adversarially verify."
+      ],
+      "skills": [
+        "os-token-safe-reader",
+        "os-command-router"
+      ],
+      "reference_skills": [
+        "sniped-udemy-ai-accelerants",
+        "operator-review",
+        "watch"
+      ],
+      "docs": [],
+      "gates": [
+        "source-freshness",
+        "anti-hallucination (cite + date)"
+      ],
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "deep-research skill"
+      ],
+      "loader": "",
+      "proof_domain": "research",
+      "cross_domain": [
+        "strategy",
+        "writing"
+      ]
+    },
+    "pricing": {
+      "label": "negotiation/pricing",
+      "hard": false,
+      "match": [
+        "price",
+        "pricing",
+        "quote",
+        "proposal",
+        "negotiat",
+        "discount",
+        "rate",
+        "retainer",
+        "close the deal",
+        "outreach",
+        "cold dm",
+        "cold email",
+        "partnership",
+        "collab",
+        "trust equation",
+        "win without pitching",
+        "vib"
+      ],
+      "authority": "sniped-pricing-decision",
+      "hard_laws": [
+        "Hold the floor; premium as insurance; refuse race-to-bottom.",
+        "Diagnose before prescribing; no pitching."
+      ],
+      "skills": [
+        "sniped-pricing-decision",
+        "sniped-wwp-positioning",
+        "sniped-trust-equation",
+        "sniped-discovery-to-close",
+        "sniped-vib-outreach",
+        "sniped-partnership-protocol"
+      ],
+      "reference_skills": [
+        "sniped-new-luxury",
+        "sniped-status-psychology",
+        "sniped-trust-mechanics",
+        "operator-review"
+      ],
+      "docs": [],
+      "gates": [
+        "no-crown",
+        "anti-hallucination(cite)",
+        "floor-held"
+      ],
+      "tools": [],
+      "loader": "",
+      "proof_domain": "strategy",
+      "cross_domain": [
+        "strategy",
+        "writing",
+        "ops"
+      ]
+    },
+    "web_build": {
+      "label": "web/build",
+      "hard": true,
+      "match": [
+        "website",
+        "web build",
+        "landing page",
+        "deploy",
+        "carrd",
+        "vercel",
+        "next.js",
+        "nextjs",
+        "build the site",
+        "site copy to page",
+        "figma design",
+        "design system in figma"
+      ],
+      "authority": "OS_AUTOEDIT_DOCTRINE.md (build-not-buy)",
+      "hard_laws": [
+        "Build, do not buy, what we can own.",
+        "Responsive + completion-verification before deploy."
+      ],
+      "skills": [],
+      "reference_skills": [
+        "update-config (plugin)",
+        "vercel:* skills (plugin)",
+        "figma:* skills (plugin)",
+        "emergency-drop-protocol"
+      ],
+      "docs": [],
+      "gates": [
+        "completion-verification",
+        "responsive_check",
+        "legal-risk"
+      ],
+      "tools": [
+        "Vercel MCP",
+        "Figma MCP"
+      ],
+      "loader": "",
+      "proof_domain": "website_build",
+      "note": "No native SNIPED skill on disk; served by external plugin skills (vercel/figma). Intentional.",
+      "cross_domain": [
+        "writing",
+        "brand_campaign",
+        "strategy",
+        "pricing",
+        "qa_proofing"
+      ]
+    },
+    "ops": {
+      "label": "ops/project management",
+      "hard": false,
+      "match": [
+        "plan the week",
+        "this week",
+        "crm",
+        "log this",
+        "prioritize",
+        "what should i do first",
+        "delegate",
+        "assistant",
+        "onboard",
+        "monday",
+        "pipeline status",
+        "project plan",
+        "today's plan",
+        "what's on my plate"
+      ],
+      "authority": "sniped-production-os",
+      "hard_laws": [
+        "Lean override: 10-12 hr/week constraint.",
+        "Selects-first; never edit source in place."
+      ],
+      "skills": [
+        "sniped-monday-cockpit",
+        "sniped-notion-crm-update",
+        "sniped-execution-prioritization",
+        "sniped-post-delivery",
+        "sniped-assistant-task-routing",
+        "sniped-production-os"
+      ],
+      "reference_skills": [
+        "sniped-lean-audit",
+        "sniped-hospitality-layer",
+        "sniped-retoucher-onboarding",
+        "session-save",
+        "os-engagement"
+      ],
+      "docs": [],
+      "gates": [
+        "completion-verification"
+      ],
+      "tools": [
+        "Notion MCP",
+        "Google Calendar MCP",
+        "Gmail MCP"
+      ],
+      "loader": "",
+      "proof_domain": "strategy",
+      "cross_domain": [
+        "strategy",
+        "qa_proofing"
+      ]
+    },
+    "qa_proofing": {
+      "label": "QA/proofing",
+      "hard": false,
+      "match": [
+        "qa this",
+        "review this",
+        "proof",
+        "red-team",
+        "pressure-test",
+        "check this",
+        "is this client-ready",
+        "did the physics pass",
+        "run the gates",
+        "reject gate",
+        "watch this"
+      ],
+      "authority": "os-quality-gates",
+      "hard_laws": [
+        "PASS is not excellent; client-ready needs the checklist.",
+        "Manifest is the arbiter; no false done."
+      ],
+      "skills": [
+        "os-quality-gates",
+        "os-vision-reject-gate",
+        "composite-master-qa",
+        "watch",
+        "challenge"
+      ],
+      "reference_skills": [
+        "os-command-router",
+        "platform-mastering"
+      ],
+      "docs": [
+        "_standards/OS_PRODUCTION_COMPLETION_ENFORCER.md"
+      ],
+      "gates": [
+        "the 11 OS gates",
+        "os-vision-reject-gate",
+        "completion-verification"
+      ],
+      "tools": [
+        "os_proof_manifest.py",
+        "os_stop_check.py"
+      ],
+      "loader": "",
+      "proof_domain": "strategy",
+      "cross_domain": [
+        "film",
+        "photo_composite"
+      ]
+    },
+    "utility": {
+      "label": "utility/support",
+      "hard": false,
+      "match": [
+        "save this",
+        "remember this",
+        "read this big file",
+        "read this book",
+        "build a skill",
+        "new skill",
+        "ingest this"
+      ],
+      "authority": "",
+      "hard_laws": [],
+      "skills": [
+        "save",
+        "os-token-safe-reader",
+        "os-command-router",
+        "skill-template"
+      ],
+      "reference_skills": [
+        "session-save",
+        "os-engagement",
+        "batch-extraction",
+        "jsonl-validation",
+        "master-consolidation",
+        "source-inventory",
+        "staging-plan"
+      ],
+      "docs": [],
+      "gates": [],
+      "tools": [],
+      "loader": "",
+      "proof_domain": "",
+      "cross_domain": []
+    }
+  }
+}

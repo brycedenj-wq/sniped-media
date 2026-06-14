@@ -1,0 +1,37 @@
+{
+  "task_type": "cash_now_sample",
+  "task_subtype": "report_deck_rebuild_candidate_A",
+  "serious": false,
+  "lane_claim": "NONE: Cash Now is separate from Lane Discovery by ledger law",
+  "task": "Internal sample: rebuild existing Kingdom sponsor packet (presentation only, source-true) as the before/after exhibit for Cash Now Menu item B",
+  "folder": "00_COMMAND_CENTER/CASH_NOW_SAMPLES/REPORT_REBUILD_001",
+  "required_artifacts": {
+    "sample_brief": "SAMPLE_BRIEF.md (exists)",
+    "before_exhibit": "before/BEFORE_page1-1.png (+ before/SOURCE_KOTS_SPONSOR_PACKET.md)",
+    "after_packet_pdf": "after/KOTS_Sponsor_Packet_INTERNAL.pdf + after/KOTS_Sponsor_Packet_SHAREABLE_SAMPLE.pdf (6 pages each)",
+    "before_after_composite": "QA/BEFORE_AFTER_COMPOSITE.png",
+    "work_log": "WORK_LOG.md (exists, empty)",
+    "receipt_closed": "OS_RECEIPT.md Layer 3 filled at checkpoint"
+  },
+  "required_gates": {
+    "source_true": "PASS (audit in QA/QA_VERDICT.md)",
+    "sanitization": "PASS (shareable placeholders verified)",
+    "voice": "PASS (no em-dashes; copy verbatim or logged presentation moves)",
+    "legibility": "PASS (judge: prices in ~2s, clearer not just prettier)",
+    "cold_pick": "PASS (fresh-context judge)",
+    "one_sitting": "PASS (~40min)",
+    "zero_spend": "PASS (0 credits, $0)",
+    "operator_verdict": "RULED 2026-06-12: STOP AS-IS \u00b7 PASS as INTERNAL sample"
+  },
+  "spend": {
+    "credits": 0,
+    "dollars": 0
+  },
+  "status": "CLOSED \u00b7 PASS as internal proof artifact",
+  "last_updated": "2026-06-12 operator final ruling",
+  "classification": "INTERNAL SAMPLE \u00b7 GOVERNANCE-CONTAMINATED FOR EXTERNAL USE",
+  "external_use_status": "BLOCKED UNTIL AUTHORITY CHAIN CLEARS (Kingdom committee control, money-flow/beneficiary unresolved; BJ not on committee)",
+  "public_use_status": "NO",
+  "outreach_status": "NO",
+  "polish_status": "STOPPED"
+}
