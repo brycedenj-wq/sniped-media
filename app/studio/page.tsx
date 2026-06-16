@@ -2,12 +2,12 @@
 
 import { Player } from "@remotion/player";
 import {
-  HelloWorld,
-  HELLO_WORLD_DURATION_IN_FRAMES,
-  HELLO_WORLD_FPS,
-  HELLO_WORLD_HEIGHT,
-  HELLO_WORLD_WIDTH,
-} from "@/video/HelloWorld";
+  ChronixelScene01,
+  CHRONIXEL_DURATION_IN_FRAMES,
+  CHRONIXEL_FPS,
+  CHRONIXEL_HEIGHT,
+  CHRONIXEL_WIDTH,
+} from "@/video/ChronixelScene01";
 
 // Previews the Remotion composition inside the Next.js app via @remotion/player.
 // The same component is rendered headlessly by the Remotion CLI (see video/Root.tsx).
@@ -18,23 +18,23 @@ export default function StudioPage() {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
+        alignItems: "center",
         gap: 16,
         padding: 24,
         backgroundColor: "#000",
         color: "#fff",
       }}
     >
-      <h1 style={{ fontSize: 24, fontWeight: 600 }}>Remotion preview</h1>
+      <h1 style={{ fontSize: 24, fontWeight: 600 }}>Remotion preview — ChronixelScene01</h1>
       <Player
-        component={HelloWorld}
-        durationInFrames={HELLO_WORLD_DURATION_IN_FRAMES}
-        fps={HELLO_WORLD_FPS}
-        compositionWidth={HELLO_WORLD_WIDTH}
-        compositionHeight={HELLO_WORLD_HEIGHT}
-        inputProps={{ title: "Sniped Media" }}
+        component={ChronixelScene01}
+        durationInFrames={CHRONIXEL_DURATION_IN_FRAMES}
+        fps={CHRONIXEL_FPS}
+        compositionWidth={CHRONIXEL_WIDTH}
+        compositionHeight={CHRONIXEL_HEIGHT}
         controls
         loop
-        style={{ width: "100%", maxWidth: 960, aspectRatio: "16 / 9" }}
+        style={{ height: "80vh", maxHeight: 854, aspectRatio: "9 / 16" }}
       />
     </main>
   );
