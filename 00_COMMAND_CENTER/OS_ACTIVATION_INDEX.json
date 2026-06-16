@@ -89,6 +89,10 @@
   "domains": {
     "film": {
       "label": "film/video",
+      "workflows": [
+        "creative-levelup",
+        "ai-edl"
+      ],
       "pipeline": "idea -> story upgrade (STORY_GATE + sniped-crs-builder) -> shot list (REAL_FILM_PRODUCTION_OS 14-stage, verb-first, Push-In Law) -> per-shot prompts (banana-pro-director, kling-production-sop, HIGGSFIELD_REUSABLE_MEGA_PROMPTS) -> asset requirements (stills before motion, os-face-lock keystone) -> tool choice (sniped-ai-image-tool-pick: Seedance/Kling 3.0/Nano Banana) -> batch + cull (OS_HIGGSFIELD_PRODUCTION_DOCTRINE hit-rate, generate many keep few) -> continuity check (os-world-bible) -> edit assembly (OS_AUTOEDIT_DOCTRINE, Premiere/AE MCP) -> QA receipt (Commercial Craft 12-axis, /watch, adversarial-verify, os_proof_manifest)",
       "hard": true,
       "match": [
@@ -343,6 +347,9 @@
     },
     "editing_retouch": {
       "label": "editing/retouching",
+      "workflows": [
+        "ai-edl"
+      ],
       "hard": true,
       "match": [
         "retouch",
@@ -408,6 +415,9 @@
     },
     "brand_campaign": {
       "label": "brand/campaign",
+      "workflows": [
+        "creative-levelup"
+      ],
       "pipeline": "brief -> brand world + character (os-world-bible, world_character) -> story + desire engine (status psychology) -> hero asset list (stills before motion) -> copy system (sniped-caption-writer, copy pack) -> rollout + hooks (sniped-hit-mechanics, distribution_hook) -> QA receipt (adversarial-verify, os_proof_manifest)",
       "hard": true,
       "match": [
@@ -508,6 +518,9 @@
     },
     "writing": {
       "label": "writing/copy",
+      "workflows": [
+        "creative-levelup"
+      ],
       "hard": false,
       "match": [
         "caption",
@@ -603,7 +616,9 @@
         "strategy plan",
         "launch plan",
         "brand launch",
-        "launching"
+        "launching",
+        "fastest path to cash",
+        "path to cash"
       ],
       "authority": "sniped-canonical-truths",
       "hard_laws": [
@@ -617,7 +632,8 @@
         "boardroom",
         "challenge",
         "operator-review",
-        "sniped-execution-prioritization"
+        "sniped-execution-prioritization",
+        "sniped-strategy-execution"
       ],
       "reference_skills": [
         "sniped-strategic-implications",
@@ -780,7 +796,14 @@
         "design system in figma",
         "build the landing page",
         "offer page",
-        "offer"
+        "offer",
+        "product drop page",
+        "drop page",
+        "campaign page",
+        "service page",
+        "page for",
+        "on the website",
+        "buy on the website"
       ],
       "doctrine": [
         "copy",
@@ -792,7 +815,9 @@
         "Build, do not buy, what we can own.",
         "Responsive + completion-verification before deploy."
       ],
-      "skills": [],
+      "skills": [
+        "sniped-web-builder"
+      ],
       "reference_skills": [
         "update-config (plugin)",
         "vercel:* skills (plugin)",
@@ -877,6 +902,9 @@
     },
     "qa_proofing": {
       "label": "QA/proofing",
+      "workflows": [
+        "ai-edl"
+      ],
       "hard": false,
       "match": [
         "qa this",

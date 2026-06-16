@@ -141,7 +141,8 @@ def manifest(task, idx, compact=False):
         out.append("TOOLS: " + ", ".join(d["tools"]))
     if d.get("loader"):
         out.append("LOADER: " + d["loader"])
-    out.append("WORKFLOWS: standing verify = .claude/workflows/adversarial-verify.workflow.js (run before crowning; pass target + claim). Long/parallel/adversarial work -> spawn a Workflow with role-scoped agents (select/grade/taste/build), always ending in adversarial-verify.")
+    _wf = d.get("workflows", [])
+    out.append("WORKFLOWS: " + ((", ".join(_wf) + " (in .claude/workflows) | ") if _wf else "") + "standing verify = adversarial-verify.workflow.js (run before crowning; pass target + claim). Long/parallel/adversarial work -> spawn a Workflow with role-scoped agents (select/grade/taste/build), always ending in adversarial-verify.")
     for law in d.get("hard_laws", []):
         out.append("LAW: " + law)
     if d.get("gaps"):
