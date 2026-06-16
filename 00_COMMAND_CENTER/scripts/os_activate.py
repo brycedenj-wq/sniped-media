@@ -118,6 +118,14 @@ def manifest(task, idx, compact=False):
     top = ranked[0][0]
     d = idx["domains"][top]
     also = [n for n, _ in ranked[1:] if _ >= 2]
+    _multi = len([1 for _, s in ranked if s >= 2]) >= 2
+    _kw = any(k.lower() in (task or "").lower() for k in idx.get("serious_keywords", []))
+    fire = (ranked[0][1] >= 2) or _multi or _kw
+    if not fire:
+        # weak single-keyword match: stay quiet (no loud banner, no doctrine), just hint how to engage.
+        out.append(f"[OS] light touch: '{top}' looked possible but the signal was weak. Name the medium (film/video/campaign/landing page/offer/strategy) and add 'client' for client work to activate the full stack.")
+        out.append("ALWAYS: " + " | ".join(idx["always"]))
+        return "\n".join(out)
     out.append(f"[OS ACTIVATE] domain={top} ({d.get('label','')})" + (f" (+{','.join(also)})" if also else "") + f"  authority={_norm_path(d['authority'])}")
     out.append("ACTIVATE AS ONE BODY before producing. Read the docs, invoke the skills, pass the gates. Do not ship until they pass.")
     out.append("SKILLS (auto): " + (", ".join(d.get("skills", [])) or "none"))
@@ -139,10 +147,8 @@ def manifest(task, idx, compact=False):
         out.append("PROOF: hard production domain -> os_proof_manifest.py init this folder; Stop gate blocks 'done' without it.")
     # DOCTRINE BIND: auto-inject the compact doctrine pack(s) for this task.
     # Guard fires on a strong/serious match (top score >= 2, multi-domain, or a serious keyword),
-    # NOT on a bare single-keyword hard-domain touch (is_serious() alone over-fires, e.g. "edit this").
-    _multi = len([1 for _, s in ranked if s >= 2]) >= 2
-    _kw = any(k.lower() in (task or "").lower() for k in idx.get("serious_keywords", []))
-    if ranked[0][1] >= 2 or _multi or _kw:
+    # NOT on a bare single-keyword hard-domain touch (the same guard gates the loud banner above).
+    if fire:
         _keys = []
         for _name in [top] + also:
             _keys += idx["domains"].get(_name, {}).get("doctrine", [])
@@ -153,7 +159,7 @@ def manifest(task, idx, compact=False):
         if _packs:
             out.append("INJECTED DOCTRINE (auto-fired; apply now, self-check before output):")
             out.extend(_packs)
-    if is_serious(task, idx, ranked):
+    if fire:
         out.append("=== MASTER OS CONDUCTOR: SERIOUS TASK -> MAX CAPABILITY MODE ===")
         out.append("Scan the FULL registry (12 domains / 78 skills), not just this domain. Target 10/10; 9 is the floor not the goal. If 10/10 is blocked, NAME the blocker + the path to remove it.")
         cds = cross_domain_skills(top, idx)
