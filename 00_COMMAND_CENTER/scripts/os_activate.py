@@ -65,6 +65,28 @@ def cross_domain_skills(top, idx):
         out[dom] = dd.get("skills", [])[:4]  # top few active from each cross domain
     return out
 
+def _client_signal(task):
+    """True when the task carries client / pricing / sales language (adds trust_sales to client work)."""
+    return bool(re.search(r"(?<![a-z])(client|deliverable|sell|sale|pricing|price|quote|proposal|invoice|commission|retainer|paid)s?(?![a-z])", (task or "").lower()))
+
+def _doctrine_packs(keys):
+    """Load compact os_doctrine packs for the given domain keys (order-preserving dedup). Imported by file
+    path so it works whether os_activate runs directly or is loaded via importlib by a hook."""
+    out = []
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("os_doctrine", os.path.join(HERE, "os_doctrine.py"))
+        m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+        seen = set()
+        for k in keys:
+            if k in seen or k not in m.DOCTRINE:
+                continue
+            seen.add(k)
+            out.append(m.cmd_load(k))
+    except Exception as e:
+        sys.stderr.write(f"[os-activate] doctrine load skipped: {e}\n")
+    return out
+
 def manifest(task, idx, compact=False):
     ranked = classify(task, idx)
     out = []
@@ -99,6 +121,22 @@ def manifest(task, idx, compact=False):
         out.append("KNOWN GAPS: " + "; ".join(d["gaps"]))
     if d.get("hard"):
         out.append("PROOF: hard production domain -> os_proof_manifest.py init this folder; Stop gate blocks 'done' without it.")
+    # DOCTRINE BIND: auto-inject the compact doctrine pack(s) for this task.
+    # Guard fires on a strong/serious match (top score >= 2, multi-domain, or a serious keyword),
+    # NOT on a bare single-keyword hard-domain touch (is_serious() alone over-fires, e.g. "edit this").
+    _multi = len([1 for _, s in ranked if s >= 2]) >= 2
+    _kw = any(k.lower() in (task or "").lower() for k in idx.get("serious_keywords", []))
+    if ranked[0][1] >= 2 or _multi or _kw:
+        _keys = []
+        for _name in [top] + also:
+            _keys += idx["domains"].get(_name, {}).get("doctrine", [])
+        if _client_signal(task):
+            for _name in [top] + also:
+                _keys += idx["domains"].get(_name, {}).get("doctrine_client", [])
+        _packs = _doctrine_packs(_keys)
+        if _packs:
+            out.append("INJECTED DOCTRINE (auto-fired; apply now, self-check before output):")
+            out.extend(_packs)
     if is_serious(task, idx, ranked):
         out.append("=== MASTER OS CONDUCTOR: SERIOUS TASK -> MAX CAPABILITY MODE ===")
         out.append("Scan the FULL registry (12 domains / 78 skills), not just this domain. Target 10/10; 9 is the floor not the goal. If 10/10 is blocked, NAME the blocker + the path to remove it.")
