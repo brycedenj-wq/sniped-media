@@ -90,8 +90,9 @@ DOCTRINE = {
     "sources": [f"{MEM}/intel_photo_theory.md", f"{MEM}/feedback_bw_card_dual_register.md"],
     "rules": ["The made image, with intent in every frame.",
               "One shot is a teaser, not a trailer; a trailer needs cuts + rhythm.",
-              "Caption-safe lower third; the one-color discipline must survive motion."],
-    "rubric": ["intent_per_frame", "honest_teaser_vs_trailer", "color_discipline_in_motion"],
+              "Caption-safe lower third; the one-color discipline must survive motion.",
+              "Object/garment swap across a full moving clip in one step is high-drift and often fails (full-clip AI swaps drift/refund; verified on a Kling 3.0 Omni full-video car swap). Lock the target on a still/keyframe first, verify it, then animate or use the locked frame as the i2v source. Full-video one-shot swaps go on the regenerate-list, never the final path."],
+    "rubric": ["intent_per_frame", "honest_teaser_vs_trailer", "color_discipline_in_motion", "no_fullclip_oneshot_swap"],
   },
   "safety_identity": {
     "sources": [f"{MEM}/feedback_possibility_engine_optionality.md", f"{MEM}/feedback_payment_follows_proof.md", f"{MEM}/feedback_capability_proof_bar.md"],
