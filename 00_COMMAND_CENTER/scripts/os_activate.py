@@ -17,6 +17,22 @@ import sys, os, json, re
 HERE = os.path.dirname(os.path.abspath(__file__))
 CC = os.path.dirname(HERE)
 INDEX = os.path.join(CC, "OS_ACTIVATION_INDEX.json")
+ROOT = os.path.dirname(CC)
+
+def _norm_path(p):
+    """Resolve a doc/authority pointer from repo root. Index paths are written relative to
+    00_COMMAND_CENTER/; prefix that when the bare path does not resolve from root but does under CC.
+    Leaves skill names, absolute paths, and annotated/non-file pointers untouched."""
+    if not isinstance(p, str) or not p or p.startswith("/"):
+        return p
+    if "/" not in p and not p.endswith((".md", ".json", ".csv", ".py", ".sh")):
+        return p
+    if os.path.exists(os.path.join(ROOT, p)):
+        return p
+    cc_rel = "00_COMMAND_CENTER/" + p
+    if os.path.exists(os.path.join(ROOT, cc_rel)):
+        return cc_rel
+    return p
 
 def load():
     with open(INDEX) as f:
@@ -67,7 +83,7 @@ def cross_domain_skills(top, idx):
 
 def _client_signal(task):
     """True when the task carries client / pricing / sales language (adds trust_sales to client work)."""
-    return bool(re.search(r"(?<![a-z])(client|deliverable|sell|sale|pricing|price|quote|proposal|invoice|commission|retainer|paid)s?(?![a-z])", (task or "").lower()))
+    return bool(re.search(r"(?<![a-z])(client|deliverable|sell|sale|pricing|price|quote|proposal|invoice|commission|retainer|paid|offer)s?(?![a-z])", (task or "").lower()))
 
 def _doctrine_packs(keys):
     """Load compact os_doctrine packs for the given domain keys (order-preserving dedup). Imported by file
@@ -102,12 +118,12 @@ def manifest(task, idx, compact=False):
     top = ranked[0][0]
     d = idx["domains"][top]
     also = [n for n, _ in ranked[1:] if _ >= 2]
-    out.append(f"[OS ACTIVATE] domain={top} ({d.get('label','')})" + (f" (+{','.join(also)})" if also else "") + f"  authority={d['authority']}")
+    out.append(f"[OS ACTIVATE] domain={top} ({d.get('label','')})" + (f" (+{','.join(also)})" if also else "") + f"  authority={_norm_path(d['authority'])}")
     out.append("ACTIVATE AS ONE BODY before producing. Read the docs, invoke the skills, pass the gates. Do not ship until they pass.")
     out.append("SKILLS (auto): " + (", ".join(d.get("skills", [])) or "none"))
     if d.get("reference_skills"):
         out.append("REFERENCE (available, NOT auto-loaded to avoid bloat; name one to force-load): " + ", ".join(d["reference_skills"]))
-    out.append("DOCS to read: " + (", ".join(d.get("docs", [])) or "none"))
+    out.append("DOCS to read: " + (", ".join(_norm_path(x) for x in d.get("docs", [])) or "none"))
     out.append("GATES (must pass): " + (", ".join(d.get("gates", [])) or "none"))
     if d.get("production_loop"):
         out.append("LOOP: " + d["production_loop"])
