@@ -135,10 +135,13 @@ def manifest(task, idx, compact=False):
     out.append("GATES (must pass): " + (", ".join(d.get("gates", [])) or "none"))
     if d.get("production_loop"):
         out.append("LOOP: " + d["production_loop"])
+    if d.get("pipeline"):
+        out.append("PIPELINE (do not stop at a treatment; run the chain to a shippable asset): " + d["pipeline"])
     if d.get("tools"):
         out.append("TOOLS: " + ", ".join(d["tools"]))
     if d.get("loader"):
         out.append("LOADER: " + d["loader"])
+    out.append("WORKFLOWS: standing verify = .claude/workflows/adversarial-verify.workflow.js (run before crowning; pass target + claim). Long/parallel/adversarial work -> spawn a Workflow with role-scoped agents (select/grade/taste/build), always ending in adversarial-verify.")
     for law in d.get("hard_laws", []):
         out.append("LAW: " + law)
     if d.get("gaps"):
