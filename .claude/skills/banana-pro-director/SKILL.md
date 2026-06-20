@@ -7,6 +7,8 @@ description: "Higgsfield image prompt director covering Banana Pro, Soul Cinema,
 
 The locked image prompt grammar for great Higgsfield image assets. Three jobs, in strict order:
 
+> **SREF reference:** when a Midjourney-style reference code is wanted, pull `00_COMMAND_CENTER/_reference/SREF_LIBRARY.md` (exact v8.1 codes; provisional and scrape-dated, prove the look before client use). Registered in `OS_ROUTER_INDEX` and `OS_FIELD_MANUAL_INDEX`.
+
 1. **Single-image character outfit** — pure white seamless studio, full styling readable, locked as the base reference for that character/outfit. Two paths: **Banana Pro** (full custom styling written from prompt) or **Soul Cinema** (face/body from character reference + outfit from wardrobe reference). User picks.
 2. **6-panel character sheet** — built ONLY after a single-image base exists, composed as one 16:9 frame with a 3×2 grid.
 3. **Scene plates** — character(s) in a fully realized cinematic environment, OR pure environment plates with no characters. Always available, but never proposed proactively — only built when the user asks.

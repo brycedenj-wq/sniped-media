@@ -1,6 +1,28 @@
 # OS ENGAGEMENT DASHBOARD
 
-Updated: 2026-06-03 (initial scan). Honest by rule. A true small number beats a fake full-OS claim.
+Updated: 2026-06-19 (live manifest reconciled by `os_checkpoint.py --write`). Honest by rule. A true small number beats a fake full-OS claim.
+
+## LIVE CHECKPOINT OVERRIDE · 2026-06-19
+
+This block is the current source of truth for coverage accounting. Older inventory lines below remain as historical context until the full dashboard is rebuilt.
+
+| Metric | Current value |
+|---|---:|
+| Source rows in live manifest | 1,260 |
+| Read verified | 953 |
+| Coverage proven via Start Here | 5 |
+| Provisional chunked, not certified | 297 |
+| Needs OCR | 0 |
+| Needs visual review | 0 |
+| Needs transcription | 0 |
+| Not read | 0 |
+| Exception (missing source) | 1 |
+| Exception (corrupt source) | 1 |
+| Duplicate source rows | 3 |
+| Pending OCR/visual/transcription pile | 0 |
+| Consistency | CLEAN |
+
+Rule: strategy may use `read_verified` and `coverage_proven_via_starthere` material as verified. `provisional_chunked_not_certified` may inform, but must be labeled provisional. The pending pile is now 0 (Waves 001 + 001-B closed it). The 2 exceptions (1 missing-source mp4, 1 corrupt-source Coddington epub) are NOT content and may not be treated as active OS knowledge. (This top table is hand-maintained; the machine-updated `**read_verified**` block lower in this file is written by `os_checkpoint.py --write`. Keep them in sync.)
 
 ## INVENTORY
 
@@ -25,7 +47,7 @@ By extension: md 1,489 · txt 1,031 · docx 552 · pdf 310 · epub 278 · jsonl 
 | Doctrines created (this protocol) | 1 (`AI_NATIVE_BRAND_DOCTRINE`) |
 | Prior distillations (summary, re-verify against whole-read) | ~25 intel memories covering canon books |
 | Skills extracted (recent) | `brand-validation-machine`, `os-engagement` |
-| **Percent of OS engaged (VERIFIED only)** | **~72.2%** (910 / 1,260 verified) |
+| **Percent of OS engaged (VERIFIED only)** | **~76.5%** (953 / 1,246 verified) |
 | **Percent engaged (text-word burden)** | **~9%** of the 4.46M text words equivalent, via the 400k-word read |
 
 This is the real starting line. It climbs as batches run.
@@ -86,15 +108,15 @@ This is the real starting line. It climbs as batches run.
 
 | Status | Count | Meaning |
 |---|---|---|
-| **read_verified** | 910 | every segment under cap, EOF coverage proven, healthy extraction |
+| **read_verified** | 953 | every segment under cap, EOF coverage proven, healthy extraction |
 | **read_low_confidence** | 0 | borderline segment size (18-25k tok), re-read queued |
 | **partial_read_only** | 0 | at least one segment exceeded 25k tok and errored, re-read REQUIRED |
-| **needs_ocr** | 34 | image-only/scanned, text extraction failed, OCR pending |
-| **needs_transcription** | 1 | audio/video (MP4), transcription pending |
-| **needs_visual_review** | 5 | images/tables/diagrams carry the meaning, visual review pending |
+| **needs_ocr** | 0 | image-only/scanned, text extraction failed, OCR pending |
+| **needs_transcription** | 0 | audio/video (MP4), transcription pending |
+| **needs_visual_review** | 0 | images/tables/diagrams carry the meaning, visual review pending |
 | **needs_manual_review** | 0 | ambiguous, manual check pending |
 | **conversion_failed** | 0 | conversion produced nothing usable |
-| **not_read** | 2 | not yet attempted |
+| **not_read** | 0 | not yet attempted |
 
 **Estimated missing-content risk:** 186 files have unproven tails. **Next audit queue:** re-read these token-aware (<=12k tok/segment), then re-grade.
 **Coverage rule:** a source is engaged only when beginning, middle, AND end are proven read, every segment under the read cap, and confidence logged. No "first part looked fine = whole file fine."
@@ -118,4 +140,3 @@ The OS is a possibility engine. Each read grows capability without locking ident
 > Capability is extracted per wave from each consolidation (new skills / connectors / tool-routing / gates / decision upgrades / doctrine upgrades). A dedicated capability-harvest pass runs over all doctrine before the master synthesis.
 
 > CAPABILITY HARVEST COMPLETE (2026-06-04): full 6-dimension map at OS_CAPABILITY_MAP.md (+ per-dimension OS_CAPABILITY_SKILLS/CONNECTORS/TOOL_ROUTING/GATES/DECISIONS/DOCTRINE.md). ~30+ skill candidates backlogged, connector routing mapped, gate library assembled, tool-routing table built, decision + doctrine upgrades logged. Identity NOT locked; optionality preserved.
-
