@@ -12,12 +12,12 @@ Request → classify domain → pull the listed doctrine doc(s) + skill(s). For 
 | AI image / composite | OS_DOCTRINE_BATCH_007/008/011/012, OS_CAPABILITY_TOOL_ROUTING | sniped-crs-builder, os-face-lock, kling-production-sop | batch_006/007 | active |
 | AI video / motion | OS_CAMPAIGN_HOUSE_PIPELINE | kling-production-sop, os_motion_qa, os_motion_ready | , | active |
 | visual proof (ALL photo/video/composite/campaign) | OS_EXTERNAL_VISUAL_PROOF_GATE (Claude is NOT final visual authority; needs operator/ChatGPT/Gemini review of a frame-strip/contact-sheet packet before final/client-safe) | os-vision-reject-gate (first-pass triage only) | , | active |
-| character + world | OS_PHASE1_ATOM, OS_PHASE3_FACELOCK | sniped-crs-builder, os-world-bible, os-face-lock | , | active |
+| character + world | _standards/OS_CHARACTER_WORLD_INTERIORITY_GATE, OS_PHASE1_ATOM, OS_PHASE3_FACELOCK | sniped-crs-builder, os-world-bible, os-face-lock, cinema-worldbuilder | , | active |
 | production harness | OS_CAMPAIGN_HOUSE_PIPELINE | os_production, os_batch, os_generate | , | active |
 | brand / positioning | OS_DOCTRINE_REREAD_C_*, intel_positioning_phrases (memory) | brand-validation-machine | persuasion/positioning | hypothesis |
 | outreach / sales | OS_DOCTRINE (VIB), feedback_use_outbound_stack (memory) | sniped-vib-outreach (drafted) | cold_email | hypothesis |
 | content / distribution | OS_STARTHERE_* (Content-Marketing OS) | hit-mechanics (drafted) | , | active |
-| Claude / automation | OS_CLAUDE_OPERATING_MANUAL, OS_BOOTLOADER_ARCHITECTURE | os-command-router, os-quality-gates | claude_operator | active |
+| Claude / automation / executive assistant | CLAUDE_OVERLOAD_MASTERCLASS_001/CLAUDE_OVERLOAD_DOCTRINE, CLAUDE_OVERLOAD_MASTERCLASS_001/OS_TAKEOVER_UPGRADE_PLAN, OS_CLAUDE_OPERATING_MANUAL, OS_BOOTLOADER_ARCHITECTURE | os-command-router, os-quality-gates, os-token-safe-reader | claude_operator | active |
 | skill lifecycle | feedback_skill_activation_contract (memory) | os_skill | , | active |
 | lane strategy / discovery | LANE_DISCOVERY_LEDGER, NEXT_ACTION (the forward mission) | (gate: proof-before-crowning , no lane crowned without ~5 real reps) | , | active |
 | books / strategy classics | OS_DOCTRINE_REREAD_* / BOOKWAVE_* | , | batches/*_extracted | provisional (no segment ledger) |
