@@ -45,3 +45,21 @@ INVOKE only for moves that change the SNIPED architecture · new phase, new lane
 - Generic strategic advice without implication references
 - Recommending major pivots before Phase 1 ships
 - "Sounds like a great idea" without running it through the 10
+
+
+## Inputs
+- The specific strategic move being evaluated (must be phase-level or architecture-level: new offer tier, new lane, Phase trigger, capital deployment, major pivot)
+- Current Phase and MRR context (e.g. Phase 1, $1,200 MRR) so phase-gating can apply
+- intel_strategic_implications.md, project_sniped_meta_thesis.md, project_sniped_spine.md, CANONICAL_TRUTHS.md, SYSTEM_FINAL_STATUS.md (all mandatory reads)
+- The specific question: 'is this the right strategic move' or 'should we trigger Phase B'
+
+## Gates
+- REFUSE: invoking for daily or weekly tactical questions (pricing tweak, single post, outreach message) — direct to the appropriate specific skill
+- REFUSE: generic strategic advice without citing specific implication numbers from intel_strategic_implications.md
+- REFUSE: recommending major pivots or new phases before Phase 1 has shipped its core deliverables
+- REFUSE: 'sounds like a great idea' conclusions that skip running the move through all 10 implications
+- Gate: all 5 mandatory files read before any recommendation is issued
+
+## Test
+- case: Operator asks: 'We've hit $3K MRR for two consecutive months. Should we trigger Phase B and add a retainer offer?' Expected output: skill reads all 5 mandatory files, confirms the Phase B trigger condition is met ($3K MRR sustained 2 months), runs the move through the 10 implications, identifies the 2-3 most decisive ones (e.g. leverage, constraint, positioning), delivers a yes/no with the deciding implication named, cites the specific canonical truth or corpus source that decides it, names what must be true before Phase B launches (e.g. Reset pipeline stable, delivery SLA met).
+- expected failure: Operator asks: 'Should I post a carousel or a reel this week?' Skill must refuse: this is a weekly tactical question, not a phase-level strategic move. Response: redirect to the appropriate skill (e.g. sniped-caption-writer or sniped-blockbuster-strategy) and explain the threshold for invoking strategic-implications.

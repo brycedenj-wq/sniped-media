@@ -31,3 +31,21 @@ The "should we partner" decision. Output target: a yes/no with terms or a clean 
 - Free work for "exposure" without specific trade value
 - Cross-promotion with off-positioning brands
 - Partnerships violating the WWP "we will be selective" proclamation
+
+
+## Inputs
+- The incoming proposal: who is offering, what they are proposing (collab / co-marketing / referral / trade)
+- Their positioning relative to SNIPED (brand, price tier, audience overlap)
+- Whether any trade value or referral chain is on the table
+- PARTNERSHIP_PROTOCOL.md read result (locked yes/no criteria)
+- Pearl network rules and WWP selectivity proclamations (from mandatory memory files)
+
+## Gates
+- Positioning gate: partnership must not compromise SNIPED positioning (per WWP proclamations)
+- Price-floor gate: scope may flex but price never drops below $1,500 (Pearl network rule)
+- No-free-work gate: exposure-only trade without specific quantifiable value = automatic No
+- Off-positioning brand gate: cross-promotion with brands outside SNIPED's tier = automatic No
+
+## Test
+- case: A mid-tier lifestyle brand DMs offering to feature SNIPED on their 40k-follower IG in exchange for a free half-day shoot. Expected output: No decision. Rationale: free work for exposure with no price floor met, cross-promotion at unclear tier; clean decline language drafted.
+- expected failure: Proposal arrives with no information about the partner's brand, audience, or what they are offering. Skill halts: cannot evaluate lane fit or price floor without knowing the trade terms. Asks operator for the proposal details before proceeding.

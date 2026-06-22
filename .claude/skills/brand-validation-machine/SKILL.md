@@ -48,3 +48,28 @@ WebSearch/WebFetch (research); Vercel check_domain_availability_and_price (name 
 
 ## Learning log
 Every run appends what won, what died, and the verified numbers (real supplier quotes, real shrink figures, real conversion rates) so the machine compounds and the OS data gaps close as they are filled.
+
+
+## Outputs
+- Locked one-page spec sheet + market map + complaint ledger + supply/manufacturing reality (all numbers sourced or flagged)
+- One-sentence brand angle that passes the competitor-honesty test
+- Name shortlist (8-12 candidates) with pass/open status across all 8 kill-screens (the Afterlight rule)
+- 20-post content plan (format/hook/shot note) + waitlist page + unit economics + threshold commitments
+- Receipt: 'Validation machine armed for [concept]: intake locked, angle approved, thresholds committed, test live'
+
+## Gates
+- INTAKE GATE (human): founder confirms the one-page spec sheet before anything is built
+- ANGLE GATE (human): founder approves the brand angle before visual or content work begins; no competitor can honestly say the same sentence
+- KILL-NUMBER GATE (human): founder commits to signup/preorder thresholds (default: 300 waitlist / 10% conversion floor) before traffic runs
+- HERO SHOT GATE: product-page hero and after-wash proof must be real R6 shots -- AI world-building is never the hero; any AI output that does not beat its real-shot source is rejected
+- APPAREL-ONLY GATE: refuse to run for non-apparel products -- supply chain, complaint logic, and after-wash proof are apparel-specific
+
+## Test
+- case: Operator says 'run the validation machine on a gender-neutral linen basics brand under $80'. Skill requests intake sheet, sequences through all 12 steps: market map with sourced data, competitor-honesty-tested angle, name shortlist with 8 screens each, R6 shot list + AI world plan, 20-post content plan pre-screened with virality_predictor, Vercel waitlist deploy, thresholds set and committed by founder at the human gate.
+- expected failure: Operator requests brand validation for a SaaS product. Skill refuses: 'Brand Validation Machine is apparel-specific. The supply chain, after-wash proof, and complaint-ledger logic do not apply to non-apparel products.'
+
+
+## INVOKE WHEN
+- Validate this new clothing brand concept before I spend on inventory
+- Test this apparel idea through the machine
+- Run the validation machine on my streetwear angle

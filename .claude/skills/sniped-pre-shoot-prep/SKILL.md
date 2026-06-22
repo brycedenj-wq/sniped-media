@@ -32,3 +32,21 @@ Run the locked checklist categorically:
 - Skipping the gear check ("I'll just bring what I always bring")
 - Same-day prep with no day-before pass
 - Ignoring weather / logistics contingencies
+
+
+## Inputs
+- Shoot date (today or tomorrow, to determine urgency tier)
+- Shoot type: Reset, Op Kit, Strategic Free (routes to correct SOP)
+- Client name, confirmed call time, and location address
+- Direction Stack intake notes (chapter, pose direction, diagnostic answers)
+- MUA status if applicable (Sun shoot flag)
+
+## Gates
+- Gear check is REQUIRED and cannot be skipped with 'I always bring the same kit'
+- Day-before pass is REQUIRED; same-day-only prep is refused
+- Weather and logistics contingencies are mandatory, not optional
+- Shot list must reference Direction Stack intake answers, not be invented ad-hoc
+
+## Test
+- case: Outdoor Reset shoot for Priya tomorrow at 10 AM, LA park, MUA confirmed, Direction Stack notes say 'elevated minimalist, Chapter 3 confidence arc.' Expected: 6-category checklist with weather contingency, Chapter 3 pose cues surfaced, 8-12 Hero frame targets.
+- expected failure: Photographer invokes the morning of the shoot with no day-before pass and no Direction Stack notes. Skill flags missing intake as a blocker and refuses to invent pose direction.

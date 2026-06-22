@@ -44,3 +44,20 @@ The hybrid-operator stance:
 - Recommending AI use on the human subject (breaks identity rule)
 - Adopting any AI tool that would weaken the anti-AI lever
 - "Let's just try it once" framing on rules that are locked
+
+
+## Inputs
+- The specific AI tool or decision surface being evaluated (e.g., Higgsfield, Seedream, a client's AI alternative pitch)
+- Context: is this an IG/creative use or a client-deliverable use?
+- Optional: the channel or copy surface if drafting positioning text (Carrd, LinkedIn, MSA)
+
+## Gates
+- Must read intel_ai_sentiment.md (4-camp pattern) before ruling
+- Must read feedback_platform_split.md to confirm IG vs LinkedIn channel before any copy output
+- Must read feedback_edit_register_bifurcation.md to confirm identity rule (face/body/skin untouched) is not violated
+- Reject any ruling that recommends AI on a client deliverable (moat rule, not negotiable)
+- Reject any 'let's try it once' framing on locked rules
+
+## Test
+- case: User asks: 'A prospect said they could just use an AI headshot app instead of hiring me. How do I respond?' Expected output: camp-3/4 framing, a concrete response script anchored in the anti-AI moat, and guidance to walk away if they frame it as AI-or-you.
+- expected failure: User provides no context on whether the AI use is for IG creative or a client deliverable. Skill must NOT default to 'adopt' and must ask which surface before ruling, because the answer is opposite depending on the channel.

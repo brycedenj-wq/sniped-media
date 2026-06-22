@@ -79,3 +79,33 @@ The most common failure is that the assistant, having just produced something th
 
 ## Guardrails
 Read-only. Never write to `01_KNOWLEDGE_BASE/` (no chunking, no master mutation, no new domains), never touch `raw/`, never touch the held Bible (`SPIRITUAL_FOUNDATION`). No em-dashes. This skill analyzes and reports · it does not commit.
+
+
+## Inputs
+- One concrete proposition being formed in the current conversation (a recommendation, framework choice, synthesis, or position -- a topic alone is not sufficient)
+- 00_COMMAND_CENTER/TRUE_BILLION_DOLLAR_THESIS.md and BASEPLATE_CANONICAL_STATEMENT.md (north star, must be read verbatim)
+- Auto-memory files at /Users/sniper/.claude/projects/-Users-sniper/memory/ -- MEMORY.md index + relevant feedback_*.md and project_*.md files (locked memories outrank the conversation)
+- 01_KNOWLEDGE_BASE/MASTER_INDEX.md + 01_KNOWLEDGE_BASE/batches/*_CHUNKS.jsonl (57 files, 1,837 chunks) for source-level principle pulls, not only the synthesis
+
+## Outputs
+- Full 6-section challenge report: What you're proposing / What the OS says (Supports + Complicates or contradicts) / Has your thinking changed / Alignment with the north star / Locked-doctrine check / Recommendation
+- North star quoted verbatim with a single verdict: serves / drifts from / works against
+- Every claim cited with chunk_id, MASTER_INDEX section name, doc filename, or [[memory-slug]]
+- Receipt: 'Challenge complete: [proposition slug] -- verdict: [serves/drifts/works against], [N] tensions surfaced, offer to /save [if durable finding exists]'
+
+## Gates
+- PROPOSITION GATE: if multiple propositions are in play, list and ask which to focus on before running -- one at a time only
+- NORTH-STAR READ: TRUE_BILLION_DOLLAR_THESIS.md must be read and quoted exactly; no paraphrase
+- LOCKED-MEMORY READ: MEMORY.md opened, then every relevant feedback_*/project_* file opened; locked memories outrank the current conversation
+- SOURCE-CHUNK READ: grep MASTER_INDEX.md for themes, then read actual source chunks in CHUNKS.jsonl -- the synthesis smooths over tensions this skill must surface
+- NO-RUBBER-STAMP: a clean-alignment verdict is only valid after active checking with stated evidence; any real tension in corpus or locked memories must surface as the headline
+
+## Test
+- case: Operator proposes launching a subscription retainer before building any one-off case studies and runs /challenge. Skill identifies the proposition, reads TRUE_BILLION_DOLLAR_THESIS.md (verbatim), opens intel_wwp_proclamations and intel_trust_equation, greps MASTER_INDEX.md, reads 2-3 source chunks, surfaces tension with Enns selectivity doctrine, delivers the full 6-section report with a concrete verdict and 1-3 specific moves.
+- expected failure: Operator runs /challenge with no prior proposition in the conversation. Skill responds: 'No proposition to challenge. State the specific recommendation or framework choice you want stress-tested as one concrete sentence, then I will run the challenge report.'
+
+
+## INVOKE WHEN
+- Challenge this recommendation before I act on it
+- Run /challenge on the direction we just landed on
+- Stress-test this framework against the OS

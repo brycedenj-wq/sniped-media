@@ -60,3 +60,22 @@ Plus the CEILING moves beyond Track B (when frame is truly portfolio anchor):
 - Color wash above 5% (too loud)
 - Using on client deliverables in client lane (anti-AI rule)
 - Generating subject identity (face/body/skin untouched rule)
+
+
+## Inputs
+- Subject TIFF (real captured photograph, identity untouched -- face/body/skin not AI-generated)
+- Chosen environment from composite_environment_rotation_v1.md (7-environment vocabulary)
+- Target use case confirmed as portfolio anchor, Direction Stack book frame, or cultural-doc-anchor (ceiling tier)
+- Background plate (shot or sourced; must match environment choice)
+- Confirmed time budget of 30-45 min minimum
+
+## Gates
+- Harmonize layer must be applied -- skipping it is a hard refusal
+- Harmonize strength capped at 40-50% (v3 LUXURY restraint -- 75%+ is a disqualifier)
+- Color wash capped at 3-4% max (5%+ is a disqualifier)
+- Subject identity untouched -- no AI generation of face, body, or skin
+- No client deliverables (anti-AI rule per REFUSE clause)
+
+## Test
+- case: BJ has a studio TIFF and wants a portfolio anchor frame in the 'urban architectural' environment for a pitch deck. Expected output: full 12-step walkthrough with steps marked done, Harmonize confirmed at 45%, color wash at 3%, all 4 ceiling moves applied, .psd saved and JPG exported at Q90 sRGB.
+- expected failure: User asks to apply this skill to a client gallery delivery frame. Skill must refuse and route to Track A standard pipeline, citing the anti-AI rule on client work.

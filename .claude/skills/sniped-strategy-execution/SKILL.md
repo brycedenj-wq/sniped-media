@@ -75,3 +75,15 @@ Use `AskUserQuestion`. Do not invent the objective or the money facts.
 ## External-resource gap
 None tool-version-sensitive here. This skill is reasoning-only and depends on on-disk OS docs, which are the current source of truth.
 
+
+
+## Gates
+- Gate 4 proof-before-crowning: no lane or identity crowned without current proof; FAIL blocks done
+- Gate 3 optionality-protection: lanes/identity stay open absent explicit proof + operator decision; collapsing optionality = FAIL
+- No-crown rule: deliverable is an action + a test, not an identity; crowning a lane = FAIL
+- Gate 7 output-usefulness: operator can act now; vague = FAIL
+- Gate 1 anti-hallucination: every strategic/factual claim cites a source or is labeled inference
+
+## Test
+- case: Operator asks 'Should I launch the Op Kit as a fixed price or value-based?' with a stated deadline, rough cash position, and clear objective. Expected: 10 steps run in order; decision framed in one sentence; 3 options differ in kind not degree; each checked against sniped-canonical-truths and sniped-leverage-logic; reversible vs irreversible marked; ranked options table delivered; kill criteria includes a date; receipt block shows os-quality-gates 3, 4, 7, and no-crown all pass.
+- expected failure: Skill returns a generic essay, crowns a lane without proof, produces 3 options differing only in degree, invents the objective or money facts without labeling them as inferred, or omits the kill criteria date or the os-quality-gates pass/fail from the receipt block.

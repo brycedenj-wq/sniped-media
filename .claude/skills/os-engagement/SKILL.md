@@ -37,3 +37,33 @@ Fully engage the OS, one whole-read batch at a time, with proven coverage. No sa
 - A doc is "used" only if the manifest proves it was read in whole. Preview != read.
 - Distill to usable doctrine, never a chunk graveyard.
 - Do not let the engine force one identity or lane; surface possibilities, let proof decide.
+
+
+## Inputs
+- OS_ENGAGEMENT_MANIFEST.csv: current queue and status of all source docs
+- OS_ENGAGEMENT_DASHBOARD.md: live counts to update
+- OS_ENGAGEMENT_JOURNAL.md: append-only log to write decision-deltas to
+- The next N SOURCE docs with status not_read (sequenced: operating/brief/command-center first, then brand/strategy/transcripts, then canon books, then rest)
+
+## Outputs
+- Doctrine artifact per doc: what it teaches, what applies to SNIPED/Baseplate/cash/brand/AI, what is rejected, skill candidates, master-doctrine delta
+- OS_ENGAGEMENT_MANIFEST.csv: status updated to read + coverage % for each processed doc
+- OS_ENGAGEMENT_DASHBOARD.md: counts and percent engaged updated
+- OS_ENGAGEMENT_JOURNAL.md: decision-delta entry appended per doc
+- Receipt: batch N docs whole-read, percent engaged before and after, any skill candidates extracted
+
+## Gates
+- Whole-read gate: a doc is 'used' only if manifest proves whole coverage (preview != read) -- partial coverage must be logged as partial, not read
+- No-sampling rule: every line read; line-count or segment coverage logged per doc
+- Distill-not-dump: output is usable doctrine, not a chunk graveyard
+- Optionality-protection: engine must surface possibilities, not force one identity or lane
+
+## Test
+- case: Operator says 'advance OS coverage before I make the lane decision.' Skill pulls next 30 SOURCE docs with status not_read from manifest (e.g. a mix of brand transcripts and canon books), whole-reads each, distills doctrine artifacts, appends decision-deltas to JOURNAL.md, updates manifest to read + 100% coverage, updates DASHBOARD.md from 74.7% to ~77% engaged. Receipt: '30 docs whole-read · corpus coverage 74.7% -> 77.1% · 3 skill candidates extracted.'
+- expected failure: Operator asks to mark 50 docs as 'read' after skimming summaries. Skill refuses: 'Skimming is not whole-read. Manifest status remains not_read until full coverage is logged. Run the engagement loop to actually process them.'
+
+
+## INVOKE WHEN
+- engage the OS
+- run the engagement protocol
+- process the next docs / read the next batch

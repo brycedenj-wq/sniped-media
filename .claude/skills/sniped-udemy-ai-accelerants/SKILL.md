@@ -26,3 +26,19 @@ The AI accelerants reference. Output target: the specific accelerant for the tas
 - Recommending accelerants outside the 7 (rest is hype per locked stance)
 - Recommending re-reading the full source course
 - Adding new accelerants without quarterly review
+
+
+## Inputs
+- The current SNIPED task or workflow the user wants to speed up
+- Which of the 7 accelerants the user suspects applies (optional)
+- Whether the goal is automation, speed, or quality improvement
+
+## Gates
+- Mandatory read confirmed: UDEMY_AI_TACTICAL_EXTRACTION.md (the 7 USE NOW accelerants)
+- Only accelerants from the locked 7 are recommended; nothing outside the list
+- No recommendation to re-read the source Udemy course
+- No new accelerants added outside a quarterly review cycle
+
+## Test
+- case: User asks: 'How do I make my Lightroom culling plus caption-writing workflow faster using AI?' Expected output: identifies the relevant accelerant from the 7 (e.g., batch-processing or prompt-chaining accelerant), shows exactly how to apply it to the Lightroom-to-caption pipeline, and cross-references sniped-udemy-lightroom-rails if a rail is applicable.
+- expected failure: User asks about an AI workflow technique from another course not in the 7. Skill refuses and states the locked stance: only the 7 USE NOW accelerants are canonical; the rest is hype per the locked extraction. Offers to check if the technique maps to one of the 7.

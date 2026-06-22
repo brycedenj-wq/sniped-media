@@ -123,3 +123,21 @@ Cross-references (read on invocation as listed above):
 - `/05_PRODUCTION/track_b_frame_walkthrough.md` (the ceiling lane, for comparison)
 
 The subject's actual frames live in the user's `/SNIPED_PRODUCTION/2026/[shoot]/` folders · not in the skill. Skill is the runbook, frames are the material.
+
+
+## Inputs
+- Subject frame: Evoto TIFF ready OR Lightroom-ready RAW (real captured photograph, not AI-generated)
+- Chosen lane confirmed: Studio Extension (Seedream Template A), Scene Placement (Nano Banana Pro), or Image Pack (Higgsfield)
+- Target surface confirmed as IG hero, IG carousel, or LinkedIn case study asset (not client or Direction Stack book)
+- v3 LUXURY palette and camera cheat code accepted as locked direction (no teal/orange override)
+
+## Gates
+- Identity check: face, body, skin texture, proportions must match the real photograph -- any shift triggers regeneration
+- v3 LUXURY palette locked -- teal/orange grading is a hard refusal
+- Seedream 5.0 must NOT be used for portrait identity (face shift risk) -- route to 4.5 or Nano Banana Pro
+- Subject must be a real captured photograph -- AI-generated subjects are refused
+- Output must not be a client deliverable or Direction Stack book frame
+
+## Test
+- case: BJ has an Evoto TIFF and wants an IG hero composite placing the subject in a new outdoor scene via Scene Placement. Expected output: Nano Banana Pro prompt with v3 LUXURY palette + Mamiya 7 cheat code, identity check pass, Photoshop light pass for hair edge, LR export, DM caption draft, SESSION_LOG entry appended.
+- expected failure: User requests the output go into a client's Pixieset gallery. Skill must refuse and route to Track A standard pipeline, citing the anti-AI rule on client deliverables.

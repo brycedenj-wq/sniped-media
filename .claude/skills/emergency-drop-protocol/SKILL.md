@@ -56,3 +56,30 @@ This skill writes/updates `PROOF_MANIFEST.json` in the deliverable folder with: 
 
 ## Outputs
 emergency scope · kill list · must-keep list · time-boxed execution plan · minimum QA checklist · client-facing scope language · send/no-send verdict + honest label · updated PROOF_MANIFEST.
+
+
+## Inputs
+- Deadline (required first -- if unknown, ask before any other step)
+- Must-have outcome: the one thing the audience will judge (required first -- if unknown, ask before scoping)
+- Budget available for this drop
+- Deliverable type, platform, and client or audience context
+- Available assets and known constraints
+- Risk tolerance
+
+## Gates
+- Never-relax gate: identity/likeness correctness (os-face-lock / subject-identity-untouched) -- failure = no-send regardless of deadline
+- Never-relax gate: os-vision-reject-gate hard fails (slop, hands melt, wrong person, hard visual fail) -- failure = no-send
+- Never-relax gate: legal/usage/release compliance -- cannot be skipped under any time pressure
+- Never-relax gate: honest labeling -- emergency output cannot be labeled 'final' if final gates were skipped; label is 'sendable (emergency, named gaps)' or lower
+- Scope-before-quality law: if the protected core cannot be delivered at excellent quality within time/budget, decline or reset scope; do not ship a miss
+
+## Test
+- case: User says: 'Client is waiting -- I need to drop the hero composite in 45 minutes. We have the layered PSD and graded base but Gemini review and platform masters are not done.' Skill asks (in one batch) for any missing inputs (budget, platform, client context, risk tolerance). Once inputs are in, it locks the frame (45-min deadline, hero composite delivery, protected core = face/identity holds and composite reads clean), issues the three lists (kill: Gemini pass, secondary platform masters, alt versions; must-keep: identity gate + os-vision-reject pass + primary platform master + correct label with minutes assigned), runs minimum QA, and issues verdict 'sendable (emergency -- Gemini review deferred, secondary platform masters held)'. Writes PROOF_MANIFEST.json with relaxed gates named and all never-relax gates listed as passed.
+- expected failure: Skill calls the output 'final' when Gemini review was skipped, OR silently skips a relaxed gate without logging it in PROOF_MANIFEST.json, OR ships when os-vision-reject-gate found a hard fail, OR scopes without first obtaining the deadline and must-have outcome.
+
+
+## INVOKE WHEN
+- User says 'emergency,' 'rush,' 'ASAP,' 'today,' 'right now,' 'due in an hour,' or any acute time-pressure phrasing
+- User says 'need to drop this,' 'client is waiting,' or names a hard deadline under which the full ceiling process will not fit
+- Production request arrives with a budget constraint that forces scope cuts (e.g., '$60 editor handoff')
+- User indicates they cannot run the full ceiling process due to time and needs the fastest defensible output

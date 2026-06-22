@@ -69,3 +69,34 @@ If the decision is durable, offer to `/save` it (memory or a Command Center note
 
 ## Guardrails
 Read-only. Never write to `01_KNOWLEDGE_BASE/` (no chunking, no master mutation, no new domains), never touch `raw/`, never touch the held Bible. Honor the locked memories · they outrank the board. No em-dashes. This skill argues and recommends · it does not commit.
+
+
+## Inputs
+- A concrete one-sentence decision statement (pricing, positioning, build, launch, hire, or client-experience choice)
+- Relevant intel_* memory files for advisors being seated (e.g. intel_wwp_proclamations, intel_trust_equation)
+- 00_COMMAND_CENTER/TRUE_BILLION_DOLLAR_THESIS.md and BASEPLATE_CANONICAL_STATEMENT.md (north star, must be read verbatim)
+- Source chunks from 01_KNOWLEDGE_BASE/batches/*_CHUNKS.jsonl when an advisor's exact principle is needed
+
+## Outputs
+- Per-advisor block for each of 3-5 seated advisors: doctrine-grounded position + cite (memory slug or chunk_id) + strongest objection
+- Explicit disagreements section naming where advisors conflict (the real decision tension)
+- North-star check with verbatim quote + verdict on whether the leading option violates any locked memory
+- Synthesis: Recommendation (1-2 sentences), why it wins the room, remaining dissent, the one cheap test to resolve it
+- Receipt: 'Board closed: [decision slug], recommendation: [one sentence], offer to /save pending operator confirmation'
+
+## Gates
+- GROUNDING GATE: if an advisor's position cannot be grounded in their actual intel_* doctrine, do not seat them
+- OBJECTION GATE: every seated advisor must supply a strongest objection -- a board that unanimously agrees was seated wrong
+- NORTH-STAR GATE: quote TRUE_BILLION_DOLLAR_THESIS.md verbatim; if leading option violates a locked memory, state it explicitly
+- ADVISOR COUNT: seat 3-5 advisors only; more than 5 is refused as mush-producing
+- READ-ONLY: never write to 01_KNOWLEDGE_BASE/ or raw/; offer /save but never auto-commit
+
+## Test
+- case: Operator says 'boardroom: should I offer a photography day-rate or a project-based fee?' Skill seats Enns (intel_wwp_proclamations) + Maister (intel_trust_equation) + New Luxury (intel_new_luxury), each with a doctrine-cited position and a genuine objection, surfaces the Enns/Maister tension, quotes the north star verbatim, delivers a one-sentence recommendation with remaining dissent and a concrete test.
+- expected failure: Decision statement is vague: 'thinking about my business model'. Skill asks operator to state the decision as one concrete sentence before seating the board.
+
+
+## INVOKE WHEN
+- Run boardroom on whether to price the AI-Ops upsell as a retainer or value-based
+- Convene the board on this hire decision
+- I need multiple expert lenses before I commit to this launch strategy

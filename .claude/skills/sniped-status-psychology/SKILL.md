@@ -41,3 +41,21 @@ The Elephant in the Brain lesson: signaling is real, but humans don't admit sign
 - "We work with founders at every stage" availability signals
 - Discounting language
 - Explicit status-claim copy ("you'll look elite" type writing · breaks the elephant rule)
+
+
+## Inputs
+- The copy, offer, or experience touchpoint being designed (e.g. Carrd pricing page, Op Kit pitch, onboarding email)
+- The buyer type: founder / premium-tier / mid-market (determines which status signals apply)
+- intel_status_psychology.md, intel_new_luxury.md, intel_wwp_proclamations.md (all mandatory reads)
+- The specific decision or diagnostic question (e.g. 'why isn't this founder converting')
+
+## Gates
+- REFUSE: 'affordable luxury' framing under any circumstances
+- REFUSE: availability-heavy language ('we work with founders at every stage', 'flexible pricing')
+- REFUSE: discounting language in any form
+- REFUSE: explicit status-claim copy ('you'll look elite', 'signal success') — the Elephant in the Brain rule prohibits naming the motive
+- Gate: all 3 mandatory memory files read before any copy move is recommended
+
+## Test
+- case: Operator is writing the pricing page for the $7,500 Brand System tier on Carrd and asks why founders are not converting despite traffic. Expected output: skill reads all 3 mandatory files, diagnoses the likely signal failure (e.g. pricing visible but positioned as a 'package' rather than a commission, availability language undercutting scarcity), names the primary signal to optimize (costly + scarcity), delivers 4 specific copy moves (e.g. 'accepted by application', named prior clients visible, no availability calendar, price shown without apology), lists 2 signal-breaking patterns to remove from the current copy.
+- expected failure: Operator asks to write copy that says 'Working with SNIPED signals your success to the market.' Skill must refuse: explicit status-claim copy breaks the Elephant in the Brain rule. Response: rewrite the intent using the SHOW-not-name principle (social proof, selectivity language, refusal framing) without naming the status motive directly.

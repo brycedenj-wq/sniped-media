@@ -40,3 +40,21 @@ Walk shoot day in order:
 - Adding scope mid-shoot without scope-change conversation
 - Promising deliverables beyond the locked Reset scope
 - Cutting hospitality moments to save time
+
+
+## Inputs
+- Reset client intake context (who the client is, shoot purpose)
+- Confirmed shoot date, location, and gear list
+- Wardrobe plan (if applicable)
+- Access to the 5 mandatory read files per SKILL.md
+
+## Gates
+- Direction Stack diagnostic must NOT be skipped; 'they know what they want' is an explicit REFUSE trigger
+- No scope additions mid-shoot without a scope-change conversation
+- No deliverable promises beyond the locked Reset scope
+- Hospitality moments must NOT be cut to save time
+- intel_hospitality_layer.md must be read from its actual path /Users/sniper/.claude/projects/-Users-sniper/memory/intel_hospitality_layer.md, not a SNIPED_OS path
+
+## Test
+- case: Operator says 'I have a Reset shoot tomorrow, walk me through the day.' Expected: all 5 mandatory files read (including intel_hospitality_layer.md at the correct memory path), output follows the 10-step day flow in order from day-before through same-day ingest, hospitality moments sourced from that file, Direction Stack diagnostic at step 3.
+- expected failure: Skill skips the Direction Stack diagnostic, invents deliverables outside Reset scope, cuts a hospitality moment, references intel_hospitality_layer.md using any SNIPED_OS path, or presents steps out of the defined 10-step order.

@@ -40,3 +40,21 @@ The fastest trust kills come from self-orientation (high S), not low C/R/I.
 - Generic "be more confident" / "follow up more" advice
 - Recommending tactics that raise S (self-promotion-heavy outreach)
 - Ignoring the math when user reframes as "should I just lower price" (price isn't in the equation)
+
+
+## Inputs
+- User description of the stuck/cooling situation (deal stage, what was said, prospect behavior)
+- Which of C/R/I/S the user suspects is the problem (optional, may be wrong)
+- Any recent outreach copy or pitch language (optional, to diagnose S level)
+- Prospect cluster: LA founder, Series-A, referral, etc.
+
+## Gates
+- Mandatory reads confirmed: intel_trust_equation.md + intel_trust_mechanics.md + intel_wwp_proclamations.md
+- Diagnosis cites specific evidence from the user description, not generic assumptions
+- No output recommends price reduction (price is not in the equation per REFUSE block)
+- No output recommends self-promotion tactics that raise S
+- Corrective move is singular and actionable, not a list of generic suggestions
+
+## Test
+- case: User says: 'I sent the Reset proposal to a Series-A founder three days ago. She was warm on the call but now no reply.' Expected output: identify whether the leak is R (no predictable follow-up cadence set), I (call did not establish safe vulnerability), or S (proposal was I/me-heavy). Returns one corrective move (e.g., a short I-noticed-something message referencing her specific world) and one thing to avoid (e.g., do not send a pushy 'just checking in' that raises S).
+- expected failure: User provides no situation detail, only 'my prospect isn't converting.' Skill refuses to diagnose and asks: which of the 4 trust variables do you suspect is low, what did the last interaction look like, and what have you sent them?

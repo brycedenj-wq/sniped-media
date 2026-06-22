@@ -53,3 +53,30 @@ For a casting deliverable, the artifact is the LOCKED confirmation: a `PROOF_MAN
 
 ## Outputs
 casting criteria · casting post · shortlist scorecard · DM/script · confirmation message · pre-shoot call-sheet info needed · risk flags · backup plan.
+
+
+## Inputs
+- Shoot concept and brand or product context
+- Date, time, and location for the shoot
+- Usage terms: where the content runs and for how long
+- Pay/rate offered and model requirements (look, body language/register, wardrobe comfort, release willingness)
+- Candidate profiles or shortlist (for scoring steps)
+- Deliverables and reliability risk tolerance
+
+## Gates
+- Availability hard gate: vague or slow availability ('maybe,' 'probably') disqualifies regardless of look score
+- Reliability hard gate: a no-show on a pre-booking call, loose rescheduling, or known flake history disqualifies regardless of look score
+- Lock definition gate: model is not LOCKED until date/time/location, rate/payment terms, usage, wardrobe/beauty, and release are all confirmed in writing
+- Release never-relax gate: a signed or explicitly agreed model release is a never-relax gate; 'cast locked' cannot be claimed without it
+- Brand-integrity gate: if model's edit approval preferences conflict with brand integrity, brand decision is final -- must be stated to the model before booking
+
+## Test
+- case: User says: 'I need to cast a model for the Alma Love editorial. Shoot is July 5th in Los Angeles. Paid $300 flat. Usage is organic social only for 6 months. I need someone who can hit a deadpan editorial register in swimwear. I have two candidates.' Skill asks (in one batch) for any missing inputs (release requirement, reliability risk tolerance, exact deliverables). Once inputs are in, it writes casting criteria (look-match to Alma world via os-face-lock language, deadpan editorial register non-negotiable, swimwear comfort as a gate), scores both candidates on the 7-axis scorecard with availability and reliability as hard gates, outputs a DM script for each with disqualifying questions surfaced early (availability hard yes/no, swimwear comfort, usage agreement, release willingness), and defines what 'locked' means for this booking. A named backup from the shortlist is designated. Casting record is not issued as confirmed until availability, comfort, usage, pay, and release are all in writing.
+- expected failure: Skill declares a model 'booked' or 'locked' before written confirmation of availability + rate + usage + release, OR fails to surface the release requirement before the shoot, OR omits the backup plan, OR scores candidates on look only without running availability and reliability as hard disqualifying gates.
+
+
+## INVOKE WHEN
+- User wants to cast a model, find talent, or book someone for a shoot
+- User asks to write a casting call, casting post, or casting DM
+- User needs to build a shortlist, score candidates, or vet a model against look and register requirements
+- User needs to handle a model who flaked, set rate/usage/release terms, or send a pre-shoot call sheet

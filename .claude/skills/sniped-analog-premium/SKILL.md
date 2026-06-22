@@ -49,3 +49,20 @@ For SNIPED in 2026: photography is being AI-commoditized. The analog premium mov
 - Adding analog overhead without premium pricing to match
 - Analog moves before Phase B trigger if they require fulfillment infrastructure
 - Treating analog as nostalgia · it's premium positioning, not throwback aesthetic
+
+
+## Inputs
+- The specific decision surface: print product, physical book, client ritual moment, or anti-AI copy
+- Current phase context: Phase A (pre-scale) or Phase B+ (fulfillment infrastructure available)
+- Whether a premium pricing tier is planned or available for the analog move
+
+## Gates
+- Must read intel_analog_premium.md (Sax's Revenge of Analog) before any output
+- Must read intel_status_psychology.md to ground the status-signal rationale
+- Refuse any analog move without a matching premium pricing anchor
+- Refuse Phase A fulfillment-dependent moves (print warehousing, book distribution) until Phase B+ trigger
+- Never frame analog as nostalgia; must be positioned as premium tier, not throwback
+
+## Test
+- case: User asks: 'Should we do a signed limited-edition print run from the Direction Stack work?' Expected output: analog-premium YES ruling citing vinyl/film/print precedents, a 3-10x price floor recommendation, and a Phase B+ gate flag if fulfillment infrastructure is not yet in place.
+- expected failure: User proposes adding an analog ritual (handwritten thank-you card) at the same price point as the digital deliverable. Skill must refuse: analog overhead without premium pricing to match violates the frame. Output should cite the 'no analog overhead without premium pricing' gate.

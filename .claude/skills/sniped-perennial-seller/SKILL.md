@@ -39,3 +39,20 @@ The decades-long logic applied to SNIPED long-form work. Output target: a decisi
 - Treating Direction Stack book like a content piece
 - Promotion-heavy strategies that obscure the work
 - Sacrificing quality for speed on perennial assets
+
+
+## Inputs
+- The asset or decision in question: Direction Stack book chapter/launch plan, Cultural Doc series scope, LinkedIn POV series, or other long-form asset
+- The time horizon the operator is thinking about (months vs years vs decades)
+- Whether this is a creation decision (what to make) or a promotion decision (how to launch/distribute)
+- intel_perennial_logic.md, intel_blockbuster_strategy.md, intel_hit_mechanics.md read results
+
+## Gates
+- No-trend-chase gate: quick-launch-to-capitalize energy on perennial work is refused outright
+- Direction Stack integrity gate: the book is never treated as a content piece or a campaign asset
+- Quality-before-speed gate: speed trade-offs on perennial assets are refused regardless of launch pressure
+- Promotion-proportion gate: promotion-heavy strategies that bury the work are flagged and rebalanced
+
+## Test
+- case: Operator asks whether to release Direction Stack book chapters as a LinkedIn series now to build buzz before the book launches. Expected output: classification as burst (chapters as drip content) feeding a perennial asset (the book); recommendation to publish only if the chapters stand alone as complete ideas, never as teasers that burn the book's novelty; compounding mechanism = book catalog + speaking + back-catalog discovery.
+- expected failure: Operator frames the question as 'how do I go viral with this book launch.' Skill refuses the viral framing on a perennial asset, redirects to the Iron Maiden patience frame, and asks what the 10-year compounding target actually is before giving any tactical advice.

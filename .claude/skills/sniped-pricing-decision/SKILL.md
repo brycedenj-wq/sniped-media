@@ -46,3 +46,21 @@ Plus: red flags if the prospect's situation suggests off-positioning (volume buy
 - Volume language ("I'll do this many for $X")
 - Anchoring below the $1,500 Reset floor
 - Premium tier under $10K for Brand System (breaks the ladder)
+
+
+## Inputs
+- Scope description of what the prospect is asking for
+- Any budget signal or constraint the prospect mentioned
+- Prospect context: founder, brand, event, volume buyer, referral, etc.
+- Offer tier under consideration: Reset / Sprint / Op Kit / Brand System
+- Whether a discount is being contemplated (triggers refusal gate)
+
+## Gates
+- Single-quote proposals are REFUSED (always 3 options per Blair Enns architecture)
+- Discounting is REFUSED (trade scope, never price)
+- Reset floor of $1,500 is inviolable; no anchor below it
+- Brand System premium must stay at or above $10K (ladder integrity); volume language refused regardless of prospect pressure
+
+## Test
+- case: Founder asks for personal brand photography and mentions she has 'about $1,200.' Expected: 3-option pitch with walkable low at $1,500 Reset (scope-trimmed, not discounted), mid at Sprint/Op Kit, premium Brand System anchor; red flag on sub-floor stated budget.
+- expected failure: User asks to send a single-price quote at $900 to close a cost-sensitive prospect. Skill refuses: below the $1,500 floor, single-quote violates 3-option rule, discounting destroys positioning. No quote drafted.

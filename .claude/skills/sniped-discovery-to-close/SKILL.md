@@ -51,3 +51,19 @@ The conversion mechanics from warm prospect to signed Reset / Op Kit / Brand Sys
 - Closing aggressive language
 - Lowering price to close · trade scope per `feedback_referral_handling`
 - Closing prospects who don't fit the lane (refuse cleanly, don't force fit)
+
+
+## Inputs
+- VIB prospect name and the signal that triggered this step (responded yes to one-pager / call booked / verbal interest expressed)
+- Any intel on the prospect: business type, what they saw, what they said
+- Current funnel stage: pre-call prep / active call support / proposal draft / follow-up cadence / close moment
+
+## Gates
+- No pitch-first discovery calls: diagnosis must precede any prescription (WWP proclamation 6)
+- No single-quote proposals: 3-option architecture required per sniped-pricing-decision
+- No price reduction to close: trade scope instead; no aggressive closing language above the Day +14 walk-away ceiling
+- Prospects who do not fit the lane must be refused cleanly, not force-fit into a product
+
+## Test
+- case: A founder named Darius responded yes to the VIB one-pager and a discovery call is booked for tomorrow. Expected output: a 30-min run-of-show with specific time blocks (5 min rapport / 15 min Direction Stack / 5 min surface-what-you-heard / 5 min hand-off), the exact hand-off line, and a reminder that the proposal goes out within 48 hrs with 3 options anchored to Op Kit as mid-tier.
+- expected failure: If no prospect context is provided and the operator only says 'help me close,' the skill must ask what stage the deal is at and who the prospect is before producing any collateral. A generic discovery script without a named prospect and known stage is a refusal condition.

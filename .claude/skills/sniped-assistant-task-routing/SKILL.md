@@ -43,3 +43,20 @@ The assistant does NOT:
 - Delegating tasks on the "BJ owns forever" list
 - Drafting assistant instructions that would access banned docs
 - Volume / spray work (the assistant respects positioning rules too)
+
+
+## Inputs
+- The specific task to be evaluated for delegation (described in plain language or as a draft instruction)
+- Enough context to classify it against the assistant scope: lead sourcing, CRM, reply triage, visual gap drafting, or trigger-event search
+- Optional: whether the task involves BJ's voice, financial data, warm leads, or the memory layer (instant disqualifiers)
+
+## Gates
+- Must read SOP_assistant.md before any routing decision
+- Must read feedback_referral_handling.md to verify Pearl network protocol before routing referral-adjacent tasks
+- Must cross-check against SOP_discovery_to_close.md to confirm what BJ owns in the sales lane
+- Refuse any task on the 'BJ owns forever' list regardless of convenience argument
+- Refuse drafting assistant instructions that would give the assistant access to financial data, the memory layer, or strategic-only docs
+
+## Test
+- case: User asks: 'Can my assistant handle the initial cold-prospect inbox triage and flag the warm ones for me?' Expected output: YES delegate for reply triage and flagging (within SOP scope), NO for responding to warm leads (BJ-only), with a draft assistant instruction covering the triage step only.
+- expected failure: User asks the assistant to draft a pitch in BJ's voice for a named prospect. Skill must refuse: drafting pitches in BJ's voice is explicitly on the 'assistant does NOT' list. Output cites the SOP_assistant.md ban and redirects to BJ doing the pitch with assistant research as input.

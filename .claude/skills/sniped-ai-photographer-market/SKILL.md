@@ -45,3 +45,19 @@ What SNIPED REFUSES:
 - Copying competitor positioning directly (the moat is being different in this lane)
 - Recommending the Petty vending machine for client subjects
 - Generic "use AI to create more content" framing without lane specificity
+
+
+## Inputs
+- Specific situation requiring market positioning intel: planning Track B composite, evaluating an AI tool, pricing a Brand System tier, or framing SNIPED vs competitor approaches (required)
+- Competitor reference if available: named photographer, portfolio URL, or competitor page for targeted differentiation
+- Current SNIPED context: Track B SOP status, active pricing tier, or the specific AI tool being evaluated
+
+## Gates
+- Mandatory reads before output: intel_ai_photographer_market.md, intel_ai_sentiment.md, track_b_frame_walkthrough.md, plus relevant tool extractions
+- No direct copy gate: output must name a SNIPED-specific tweak that differentiates from the named playbook; refuse to copy competitor positioning
+- Petty vending-machine gate: refuse recommending full AI-generated subject faces for client work; not SNIPED's lane
+- Generic framing gate: refuse 'use AI to create more content' without naming the specific lane, playbook, and SNIPED positioning lever
+
+## Test
+- case: Operator is pricing a Track B composite package and wants to frame it against photographers doing Gress-style AI work. Expected: maps to Gress playbook, SNIPED tweak = locked-element garment fidelity + real-subject authenticity on client work, positioning lever = methodology-named premium tier enables pricing above Gress-only peers, delivered with specific pricing language from the intel docs.
+- expected failure: Operator asks for help framing SNIPED as a competitor to studios offering fully AI-generated portfolios with no real shoot. Skill refuses: 'SNIPED does not occupy this lane. The moat is real-subject methodology. Re-frame the question around what SNIPED does differently from Gress-style real-subject compositors.'

@@ -62,3 +62,30 @@ When unsure between memory and a CC doc, prefer updating an existing memory · m
 - Never invent facts, dates, or quotes the conversation did not produce. If the operator said "around 40%", write "around 40%".
 - No em-dashes anywhere.
 - Do not commit. The operator gates all commits · report what was written and stop.
+
+
+## Inputs
+- The specific insight, decision, preference, or fact from the current conversation to persist (required)
+- Operator signal: '/save', 'save this', 'remember this', or 'persist this' (required trigger)
+- Destination hint if stated (memory vs Command Center anchor doc); skill classifies if not provided
+
+## Outputs
+- For memory saves: new or updated memory file under /Users/sniper/.claude/projects/-Users-sniper/memory/ with required frontmatter (name, description, metadata.type) plus a one-line pointer added or updated in MEMORY.md
+- For Command Center anchor docs: new or updated markdown under 00_COMMAND_CENTER/ with header block (date, status, Anchor-class line) and guardrails block
+- Short report: paths created or updated, what MEMORY.md now says, and anything considered but not saved with one-line reasoning
+- One-line receipt: e.g. 'Saved to memory/alma_color_world_grade.md + pointer updated in MEMORY.md; no CC doc (not standalone-artifact class)'
+
+## Gates
+- Duplicate check: read MEMORY.md + ls memory dir before creating; if topic exists UPDATE, never create a duplicate
+- Destination gate: route to auto-memory, CC anchor doc, or defer to /session-save only; never dump to a generic markdown file
+- Hard corpus lock: never write into 01_KNOWLEDGE_BASE/, raw/, MASTER_INDEX.md, MASTER_CHUNK_MAP.json, extracted/ dirs, or the held Bible (SPIRITUAL_FOUNDATION)
+- No invented content: if operator said 'around 40%' write 'around 40%'; never fabricate quotes, dates, or figures
+- No commit: report what was written and stop; operator gates all commits
+
+## Test
+- case: Operator says 'save this: Alma hero skin drift was +2.8/+2.8/+2.9 uniform, color leads, B&W is sidecar only.' Expected: classify as project-type memory, check MEMORY.md for existing Alma color-world entry, update memory/alma_color_world_grade.md with measured values and rule, update MEMORY.md pointer, print file path and one-line report. No CC doc. No commit.
+- expected failure: Operator says 'save this' but the conversation contains no discrete fact or decision (e.g. only a Q&A with no new principle). Skill responds: 'Nothing save-worthy identified. Quote the specific fact or decision and re-invoke /save.'
+
+
+## INVOKE WHEN
+- the save task arises: Persist a specific insight, decision, preference, or fact from the current conversation into the correct durable locatio

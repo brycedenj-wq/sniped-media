@@ -133,3 +133,21 @@ sniped-luxury-edit/
 Cross-references (read on invocation):
 - All locked Lightroom OS docs in /05_PRODUCTION/
 - Memory: visual direction, edit register bifurcation, photo theory
+
+
+## Inputs
+- A specific frame to develop (Hero / Select / Proof tier declared by operator)
+- Lighting context (studio flash / natural / mixed / location)
+- Known frame challenges (skin tone, clipped highlights, unusual color, etc.)
+- feedback_visual_direction_luxury_editorial.md + feedback_edit_register_bifurcation.md + lightroom_operating_system.md + preset_library.md (all read on invocation)
+
+## Gates
+- The 10-step locked develop order (Section 5.2 of lightroom_operating_system.md) must not be skipped or reordered
+- Hero frames require the full 5-mask AI stack before routing to the retouch decision tree
+- Hero edit over 25 min triggers a hard stop: downgrade to Select or escalate to Photoshop
+- Teal/orange grade, positive Clarity on skin, hard Saturation push, and Auto in Basic panel are all refused per v3 LUXURY direction
+- AI-generated subject frames are refused for client deliverables per the identity rule in feedback_edit_register_bifurcation.md
+
+## Test
+- case: BJ has a studio flash hero frame with a slight cool cast and visible pore texture on the forehead and asks 'how do I develop this one?' Expected output: skill asks the 3 intake questions (tier/lighting/challenges), then prescribes WB Temp nudge in Step 2, shadow/highlight values in Step 3, Texture -4 on skin in Step 4, the Face Skin AI mask at Texture -10, and routes to LR + Evoto via the retouch decision tree since professional skin retouch is needed.
+- expected failure: User asks to apply a cinematic teal and orange grade to a client hero frame. Skill must refuse per v3 LUXURY direction and produce no teal/orange adjustment values regardless of how the request is framed.

@@ -37,3 +37,20 @@ For anti-AI defense: AI generates SIMULATIONS of made images. Real made images h
 - Generic "photography is art" framing
 - Academic over-references (the theory is foundation, not flag-waving)
 - Treating taken vs made as a value judgment (both are legitimate · SNIPED chose made)
+
+
+## Inputs
+- The specific writing or framing task: book chapter, Cultural Doc caption, anti-AI copy, LinkedIn POV, or methodology articulation
+- The target audience context (photographers, founders, general LinkedIn, press)
+- Whether the use case is 'taken vs made' defense, ambiguity/viewer-fill-in angle, or the Suit and the Photograph anchor
+- intel_photo_theory.md and intel_analog_premium.md read results
+
+## Gates
+- No-generic gate: 'photography is art' or 'composition matters' framing is refused -- output must cite a specific theoretical mechanism
+- No-academic-flag-waving gate: Berger/Dyer names appear in the thinking layer only, not in the output copy unless operator explicitly requests it
+- No-value-judgment gate: taken vs made is never framed as 'made is better' -- SNIPED chose made, both are legitimate
+- Anti-AI grounding gate: any anti-AI copy must name specifically what is absent in AI (the photographer's choice being unseeable), not just 'AI is fake'
+
+## Test
+- case: Operator drafts a LinkedIn post that says 'AI can take a good photo but it can't make one.' Expected output: copy rewrite that embeds the 'taken vs made' distinction without the word 'taken/made' as jargon, grounds it in the idea that SNIPED images contain the photographer's specific choices as the irreducible content, and adds the angle that AI generates plausible composition with no authorial decision inside it.
+- expected failure: Operator asks for a general 'photography appreciation' caption with no specific theory angle needed. Skill refuses the generic task: this skill is the theory lens for methodology-grounded moments only. Redirects to sniped-caption-writer for standard caption work.

@@ -33,3 +33,21 @@ Output the specific Notion fields to update with the exact values.
 - Skipping updates ("I'll do it later" creates state drift)
 - Manual CRM tools outside Notion (kills single-source-of-truth)
 - Updating without the locked schema (causes silent inconsistency)
+
+
+## Inputs
+- The triggering event type: new lead / shoot books / shoot completes / gallery delivered / status change
+- Client name, shoot date, type, and any relevant details from the event
+- Current pipeline status or the new status to write
+- Gallery URL and/or expiry date if this is a gallery-delivery update
+- notion_crm_schemas.md read result (locked DB schemas for Shoots, Pipeline, Galleries, Contacts)
+
+## Gates
+- Schema gate: locked notion_crm_schemas.md must be read before any field name is named (no guessing property names)
+- Single-source gate: update targets Notion only, no parallel manual tools
+- No-defer gate: refuses 'I'll do it later' -- every event gets a spec within the same session
+- All-fields gate: all locked required properties for the target DB must be present in the output spec before delivery
+
+## Test
+- case: Client 'Jordan' just confirmed a headshot shoot for 2026-07-15. Expected output: a Notion Shoots DB spec with date=2026-07-15, client_name=Jordan, type=Headshot, status=Booked; plus a Pipeline DB spec with lead_status=Converted, last_touch=2026-06-21, next_action=Pre-shoot prep.
+- expected failure: Operator says 'log this later' or provides no event type. Skill refuses: deferral creates state drift. Blocked also if notion_crm_schemas.md cannot be read (cannot name locked properties without the schema).

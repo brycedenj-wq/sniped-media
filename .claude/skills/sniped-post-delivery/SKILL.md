@@ -36,3 +36,20 @@ The post-delivery experience runbook. Output target: a delivered shoot that comp
 - Skipping the hospitality moment
 - Aggressive Op Kit pitch on day 1
 - Generic "do you know anyone who needs photos" referral asks · use warm specific asks instead
+
+
+## Inputs
+- Client name + shoot type (to personalize the delivery email from the locked template)
+- Pixieset gallery link (confirmed ready to send)
+- Shoot date (to anchor the Day +1 through Day +60 cadence timeline)
+- Any engagement signal already received (opened gallery, replied, etc.)
+
+## Gates
+- Delivery email MUST use the locked template, never a free-form draft
+- Hospitality moment is REQUIRED before gallery send (cannot be skipped)
+- Op Kit pitch is BLOCKED until Day +14 at earliest (Day +7 is soft touch only)
+- Referral ask must be warm and client-specific, never a generic broadcast
+
+## Test
+- case: Reset shoot for founder Marcus, Pixieset gallery live, shoot was 2 days ago. Expected: filled locked-template delivery email addressed to Marcus, one specific hospitality gesture, dated follow-up schedule from today through Day +60.
+- expected failure: Invoked with no Pixieset gallery link ready. Skill halts and refuses to draft the delivery email because sending without the gallery violates the REFUSE gate.

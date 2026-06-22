@@ -29,3 +29,20 @@ The Higgsfield orchestration skill. Output target: pipeline configured for the s
 - Generating subjects (identity rule)
 - Setting "always allow" globally on credit usage
 - Pipeline outputs without permission gate confirmation
+
+
+## Inputs
+- Confirmed pipeline mode: MCP installation setup, Content Factory run (research/plan/generate/schedule), or Image Pack batch
+- Subject asset(s) for generation (real photographs -- no AI-generated identity inputs)
+- Per-batch permission gate decision confirmed by operator (credit spend approved for this batch)
+- Target routing confirmed as SNIPED IG creative engine (not client deliverable)
+
+## Gates
+- Per-batch permission gate must be confirmed before any credit usage -- 'always allow' global setting is refused
+- No client deliverable output -- Higgsfield is IG creative engine only per anti-AI rule
+- No AI subject generation -- identity rule prohibits generating the subject
+- Pipeline outputs must not proceed without per-batch permission gate confirmation
+
+## Test
+- case: BJ wants to run a Higgsfield Image Pack batch to generate 6 IG hero variations from one studio subject upload. Expected output: Image Pack configuration with subject upload spec, per-batch permission gate set, credit cost estimate for 6 images, output routed to IG creative engine folder.
+- expected failure: User asks to route Higgsfield Image Pack output to a client's deliverable package. Skill must refuse, cite the anti-AI rule, and decline to configure that routing.

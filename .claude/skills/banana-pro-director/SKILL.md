@@ -447,3 +447,29 @@ The flow is always: **confirm character → confirm what's about to be prompted 
 The user pastes the code block straight into Higgsfield (Banana Pro for Modes 1, 2, 3; GPT-2 for Mode 4). The user attaches the same reference images (or selects them from their Higgsfield character/environment library) inside the Higgsfield UI. The skill's job ends at the code block.
 
 If the user requests multiple shots in one ask, deliver each in its own code block, sequentially numbered or labeled — but still run the pre-prompt confirmation once before delivering the batch.
+
+
+## Inputs
+- Character spec: uploaded reference image OR free-form description developed through Step 0 iterative lock
+- Outfit/wardrobe spec: user text description or wardrobe reference image (visual-only read)
+- Tool choice: Banana Pro (Mode 1A) or Soul Cinema two-step flow (Mode 1B)
+- Scene or environment description (Mode 3 scene plates, only when user requests)
+- Mode selection: single-image base (1), 6-panel sheet (2), scene plate (3), or GPT-2 detail face (4)
+
+## Outputs
+- Pre-prompt confirmation (4 clean bullets: Character, Outfit, Backdrop, Framing + 'Sound good?' wait) before every new prompt
+- Single fenced code block with the full Higgsfield image prompt ready for copy-paste into Banana Pro, Soul Cinema, or GPT-2
+- Mode 1B: two sequential prompts -- Step 1B.1 (outfit on neutral model) then Step 1B.2 (composite onto locked character)
+- Mode 2 (6-panel): one prompt composing a single 16:9 frame with a 3x2 grid and per-panel stance/framing labels, one code block
+- Mode 3 scene plate: prompt with matching cinema mode (M1-M5) camera/lens/filtration/grade block and locked photoreal stack
+
+## Gates
+- Mode 2 gate: a Mode 1 single-image base reference must exist and be user-approved before any 6-panel sheet is built
+- Mode 4 gate: GPT-2 used only for explicit chest-up/face detail requests; user must confirm GPT-2 credit cost before delivery
+- Mode 3 gate: scene plates never proposed proactively; built only when user asks for a scene, environment, plate, or moment
+- Pre-prompt confirmation gate: every full prompt requires 4-bullet summary and green-light wait -- exception only for minor iteration on an already-approved same-thread prompt
+- No-invention gate: if a required detail is absent from reference or user text, ask before composing; never invent styling
+
+## Test
+- case: User uploads a reference image of a woman with platinum-blonde blunt-cut hair and a wardrobe reference of a structured ivory blazer, then says 'build me a base reference in Banana Pro.' Skill mirrors back the locked character spec (hair, skin, bone structure), mirrors the wardrobe spec (blazer fabric/fit/collar), confirms Banana Pro selected, issues the 4-bullet pre-prompt check, waits for green light, then delivers one fenced Mode 1A prompt closing with the locked photoreal stack. No 6-panel is proposed, no scene plate generated, no GPT-2 mentioned.
+- expected failure: Skill delivers the prompt without issuing the pre-prompt confirmation, OR proposes a 6-panel sheet before a single-image base exists, OR uses the model's proper name in the prompt output instead of a visual descriptor, OR includes a real brand name, OR omits the locked photoreal stack.

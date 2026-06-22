@@ -42,3 +42,20 @@ For SNIPED specifically: BJ's locked operating constraint is 10-12 hr/week (lean
 - "But we could grow faster if we just hired Y"
 - Treating growth as default · it should be opt-in, not opt-out
 - Recommending moves that break the 10-12 hr/week constraint
+
+
+## Inputs
+- The specific growth move under consideration: hire type / new offer / new platform / expanded capacity
+- Current phase gate status: Phase A or Phase B (Phase B trigger = sustained $3K MRR for 2 months)
+- The external pressure or temptation driving the question
+
+## Gates
+- No hiring recommendations before Phase B trigger ($3K MRR sustained 2 months): explicit REFUSE condition
+- Growth must be treated as opt-in not opt-out: any framing that treats scaling as the default is refused
+- No recommendation that breaks the 10-12 hr/week SNIPED operating constraint
+- Hidden cost must be surfaced before rendering a verdict, not after
+- No 'scale to win' framing; Jarvis profit-over-revenue logic must be applied in every verdict
+
+## Test
+- case: BJ is at $1,400 MRR and a contact offers to send overflow clients if he hires a second shooter. Expected output: a stay-small verdict citing Phase B gate not yet triggered, naming the management overhead cost, and offering a right-size alternative (subcontractor SOP that avoids creating a hire).
+- expected failure: If the user does not state what growth move they are considering (only says 'should I grow?'), the skill must ask for the specific move before rendering a verdict. A verdict without a concrete move to evaluate is too generic to be actionable.

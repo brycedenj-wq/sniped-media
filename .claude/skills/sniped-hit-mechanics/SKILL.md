@@ -40,3 +40,20 @@ The science-of-distribution lens for SNIPED content / audience / launch decision
 - Vague "go viral" framing
 - Treating all 6 mechanics as equal in every situation
 - Ignoring that exposure compounds with consistency · skipping consistency for novelty
+
+
+## Inputs
+- The specific distribution or launch decision at hand (content series, hero post, Direction Stack book launch, collab evaluation, or reach question)
+- intel_hit_mechanics.md: the 6 mechanics (Exposure, MAYA, Story, Broadcast, Clusters, Prophecy)
+- Current SNIPED content strategy context from audience_engine.md
+- Optional: intel_perennial_logic.md for long-game compounding or intel_blockbuster_strategy.md for bet allocation
+
+## Gates
+- Must select exactly 1-2 mechanics as primary -- treating all 6 as equal is a hard refusal
+- No diffuse multi-platform strategy recommendations -- Broadcast requires concentrated channels
+- No vague 'go viral' framing -- output must be specific moves
+- Exposure mechanic must acknowledge consistency compounding -- novelty-over-consistency is refused
+
+## Test
+- case: BJ is deciding whether to drop the Direction Stack book chapter as a single hero post or a 3-part launch sequence. Expected output: MAYA + Story identified as the 1-2 optimizing mechanics, specific sequencing moves (teaser still, concept caption, book drop), explicit note that Clusters and Broadcast are noise for this specific decision.
+- expected failure: User asks for a plan hitting all 6 mechanics across 5 platforms at once. Skill must refuse the equal-weight framing, select the 1-2 that fit the actual situation, and name the others as noise.

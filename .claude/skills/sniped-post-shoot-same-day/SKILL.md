@@ -34,3 +34,20 @@ The same-day wrap protocol. Output target: secured backup chain, frames in the p
 - Closing laptop without dual backup confirmed
 - Editing same-day (don't fall in love with frames hours after shooting · sleep on it)
 - Skipping Notion update ("I'll do it tomorrow") · creates state drift
+
+
+## Inputs
+- Shoot wrapped today (trigger condition)
+- Client name and shoot type (to construct YYYY-MM-DD_Client_TYPE folder path)
+- SD card contents confirmed present on card
+- Delivery SLA tier: Reset (5-day), Op Kit (10-day), or Strategic Free (7-day)
+
+## Gates
+- Laptop MUST NOT close until both Hot SSD and Warm HDD backups are confirmed
+- Editing same-day is REFUSED (sleep-on-it rule)
+- Notion update is REQUIRED same day, not deferred to tomorrow
+- Lightroom import MUST use the locked preset, not manual settings
+
+## Test
+- case: Photographer just wrapped a Reset shoot for client Jordan on 2026-06-21. Expected: ingest path to /SNIPED_PRODUCTION/2026/2026-06-21_Jordan_RESET/10_RAW/, rsync backup command, Lightroom import with SNIPED preset, Notion log entry, delivery deadline set to 2026-06-26.
+- expected failure: Photographer asks to do a quick edit on a hero frame before backing up. Skill refuses editing same-day and blocks proceeding until the dual-backup gate is confirmed.

@@ -50,3 +50,15 @@ Log: the idea + core job, feasibility verdict, API/integration decisions + assum
 
 ## Depends on
 sniped-strategy-execution (the MVP-scope and what-to-build-first decision), os-quality-gates (completion-verification, output-usefulness), sniped-web-builder (sibling for any marketing page the app needs). Tools: Cursor, React Native + Expo (Expo Go), a no-code tool (lovable / replit), a UI/UX critique model. EXTERNAL-RESOURCE GAP: current per-tool specifics (Expo SDK version, React Native nav library, API pricing) are not encoded here; pull them live at build time.
+
+
+## Gates
+- Feasibility + UX direction confirmed BEFORE any code is written (fail = stop)
+- Implementation plan confirmed against the vision BEFORE coding (plan-before-action gate)
+- Smallest working MVP only; anything past the cut line is rejected
+- Visual no-code prototype stays separate from production React Native code
+- No build is called working without an Expo Go device preview + QA checklist passing (no preview/test proof = not done); OS_RECEIPT required on a serious build
+
+## Test
+- case: User says: 'I want to build an iOS app where photographers can log shoot locations with a photo and a rating.' Run the 8 steps in order: (1) feasibility check names core feature (location log + photo + rating), data stored (location, image, rating), screens needed (log entry, map view, list view), and the hardest risk (photo storage + map API); (2) API table lists Apple MapKit (free, rate N/A), photo storage (CloudKit or S3, cost TBD), auth (Apple Sign-In); (3) no-code prototype built in Lovable showing the 3 screens; (4) screenshots fed to UI/UX critique producing upgraded mockup per screen; (5) implementation plan written + verbatim Cursor plan-no-action prompt produced; (6) React Native/Expo build starts with wireframe skeleton; (7) Expo Go preview run after each feature; (8) QA checklist run on-device. Receipt logs idea + core job, feasibility verdict, API decisions, screens, MVP cut line, build steps, QA results, and what still needs human (Apple developer account, CloudKit credentials).
+- expected failure: Any of: skipping the no-code prototype and jumping straight to React Native code; writing code before the implementation plan is confirmed; calling the build done without an Expo Go device preview + passed QA checklist; including features past the MVP cut line; leaving an unresolved paid/gated API without surfacing it to the operator.

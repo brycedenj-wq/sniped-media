@@ -54,3 +54,20 @@ The copy-level lens. Output target: copy that uses the locked phrase bank, avoid
 - Approving copy that triggers any of the 5 failure modes
 - Generic "this looks good" reviews
 - Letting begging tone or volume language through
+
+
+## Inputs
+- The draft copy to be reviewed: Carrd page, Op Kit one-pager, pitch deck slide, LinkedIn post, or email template
+- Context for the copy: intended audience and the action it is driving
+- intel_positioning_phrases.md read result (phrase bank + 5 failure modes)
+- intel_wwp_proclamations.md read result (selectivity and refusal rules)
+
+## Gates
+- Em-dash gate: any em-dash found is a hard block -- rewrite before approving, no exceptions (global lifetime ban)
+- Failure-mode gate: copy triggering any of the 5 failure modes is refused as-is and rewritten, never approved
+- No-generic-approval gate: 'this looks good' with no diagnostic is refused -- every review must name what passed and what was fixed
+- Refusal-lever gate: any 'we work with select...' or 'we use real...' construction must be tested against the refusal form before the copy ships
+
+## Test
+- case: Operator submits Carrd hero copy: 'We work with select founders to create amazing photography that helps them stand out. We offer headshots, brand shoots, and team photos -- reach out to learn more!' Expected output: failure modes flagged = generic compliments ('amazing'), volume language ('headshots, brand shoots, and team photos' list), multi-CTA ('reach out to learn more' after a service list); rewrite using refusal lever ('We don't shoot every founder') and a single CTA; em-dash scan = 0 found.
+- expected failure: Operator submits copy that contains an em-dash and says 'approved, just post it.' Skill refuses to pass the copy as-is. Outputs the em-dash replacement immediately and re-runs the full failure-mode diagnostic before any approval is issued.

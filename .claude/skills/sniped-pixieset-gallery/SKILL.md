@@ -36,3 +36,21 @@ Sequential setup:
 - Sending gallery without password
 - Sending without the delivery email
 - Letting gallery expire without archiving the bundle to `/60_DELIVERY/` per shoot
+
+
+## Inputs
+- Client name and shoot date (for gallery naming: YYYY-MM-DD_Client_TYPE)
+- Shoot type (e.g., Headshot, Brand, Editorial)
+- Exported Hero JPG files and Selects/Proofs ready for upload (per SNIPED Hero JPG Deliverable preset)
+- pixieset_config.md read result (locked template, expiry rule, password formula)
+- Delivery email template selected from the locked template folder
+
+## Gates
+- Locked-template gate: the Pixieset config template must be applied before any other setup step (no free-form gallery config)
+- Password gate: every gallery must have password protection using the locked formula (client first name + 2-digit shoot count) -- no exceptions
+- Delivery-email gate: gallery never goes live without the paired delivery email drafted and scheduled for 9 AM PT
+- Archive gate: after expiry, the gallery bundle must be archived to /60_DELIVERY/ per shoot before deletion -- skip = refused
+
+## Test
+- case: Operator has finished retouching for client 'Maria,' shoot date 2026-06-10, Brand shoot, her third shoot with SNIPED. Expected output: gallery name YYYY-MM-DD_Maria_Brand = 2026-06-10_Maria_Brand; password = maria03; expiry = 2026-06-24 (14 days out); sub-galleries: Heroes, Selects, Proofs; delivery email draft from locked template scheduled 9 AM PT; archive reminder flagged for expiry date.
+- expected failure: Operator says 'just send the gallery link without the email, she's waiting.' Skill refuses: sending without the delivery email violates the locked delivery sequence. Outputs the delivery email draft immediately so it can be sent alongside the link.

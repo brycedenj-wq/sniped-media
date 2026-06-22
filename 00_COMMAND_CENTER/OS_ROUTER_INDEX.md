@@ -8,7 +8,9 @@ Request → classify domain → pull the listed doctrine doc(s) + skill(s). For 
 ## Domains
 | domain | doctrine (pull one) | skills (invoke) | chunk index | status |
 |---|---|---|---|---|
-| corpus certification | OS_CERTIFICATION_STANDARD, OS_CERTIFICATION_REPORT | os_certify, os_segment_ledger, os-token-safe-reader | , | active |
+| corpus certification | OS_CERTIFICATION_STANDARD, OS_CERTIFICATION_REPORT | corpus-wave-runner, os_certify, os_segment_ledger, os-token-safe-reader | , | active |
+| docs / tooling / transcripts | OS_REFINERY_AUTONOMY_001/REFINERY_MASTER_STATE (docs_tooling_plan) | docs-tooling-metabolizer | OS_DOCS_TOOLING_001/DOCS_TOOLING_TRANSCRIPTS_LEDGER.csv | active |
+| project intake / firewall | PROJECT_CAPSULE_TEMPLATE, OS_RUNTIME_CONTRACT | sniped-project-intake | , | active |
 | AI image / composite | OS_DOCTRINE_BATCH_007/008/011/012, OS_CAPABILITY_TOOL_ROUTING | sniped-crs-builder, os-face-lock, kling-production-sop | batch_006/007 | active |
 | AI video / motion | OS_CAMPAIGN_HOUSE_PIPELINE | kling-production-sop, os_motion_qa, os_motion_ready | , | active |
 | visual proof (ALL photo/video/composite/campaign) | OS_EXTERNAL_VISUAL_PROOF_GATE (Claude is NOT final visual authority; needs operator/ChatGPT/Gemini review of a frame-strip/contact-sheet packet before final/client-safe) | os-vision-reject-gate (first-pass triage only) | , | active |
@@ -16,6 +18,7 @@ Request → classify domain → pull the listed doctrine doc(s) + skill(s). For 
 | production harness | OS_CAMPAIGN_HOUSE_PIPELINE | os_production, os_batch, os_generate | , | active |
 | brand / positioning | OS_DOCTRINE_REREAD_C_*, intel_positioning_phrases (memory) | brand-validation-machine | persuasion/positioning | hypothesis |
 | outreach / sales | OS_DOCTRINE (VIB), feedback_use_outbound_stack (memory) | sniped-vib-outreach (drafted) | cold_email | hypothesis |
+| money / product / venture / cash-play / AI-business / automation / scale | OS_MONEY_PLAY_GATE (authority) + OS_MONEY_OFFER_DOCTRINE + MONEY_PLAYS_OS_x_TOOLS + OS_OFFER_STACK + OS_STARTHERE_DOCTRINE + OS_CAPABILITY_TOOL_ROUTING + OS_TAKEOVER_PHASES_001/OS_TOOL_READINESS_LAYER + OS_TOOL_APP_INTEGRATION_LEDGER.csv + CREATOR_AI_PRODUCTION_FIELD_MANUAL + COLD_OUTREACH_ATOMS + COPY_DOCTRINE_CAPLES | money-play-synthesis, sniped-pricing-decision, sniped-leverage-logic, sniped-wwp-positioning, sniped-discovery-to-close | persuasion/pricing/offer | active (auto-fires via money_play domain in OS_ACTIVATION_INDEX) |
 | content / distribution | OS_STARTHERE_* (Content-Marketing OS) | hit-mechanics (drafted) | , | active |
 | Claude / automation / executive assistant | CLAUDE_OVERLOAD_MASTERCLASS_001/CLAUDE_OVERLOAD_DOCTRINE, CLAUDE_OVERLOAD_MASTERCLASS_001/OS_TAKEOVER_UPGRADE_PLAN, OS_CLAUDE_OPERATING_MANUAL, OS_BOOTLOADER_ARCHITECTURE | os-command-router, os-quality-gates, os-token-safe-reader | claude_operator | active |
 | skill lifecycle | feedback_skill_activation_contract (memory) | os_skill | , | active |

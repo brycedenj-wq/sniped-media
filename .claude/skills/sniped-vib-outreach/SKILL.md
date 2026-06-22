@@ -148,3 +148,28 @@ sniped-vib-outreach/
 ```
 
 The actual VIB SOP, caption library, and positioning intel live elsewhere (read on invocation). This skill is the runbook, those are the material.
+
+
+## Inputs
+- Recipient name + handle + role + company
+- Platform: LinkedIn or IG
+- Cluster: LA-Founder, Series-A, Series-B, LA-Black-Founder, Pearl-network referral, or other
+- Visual intel: specific recent work, post, trigger event, or angle of vulnerability (REQUIRED, no generic opens)
+- Goal: Reset booking ($1,500), Op Kit pitch ($3-8K), Brand System lead ($10K+), or warm intro
+
+## Outputs
+- Complete DM in the locked VIB format: specific compliment + soft offer + subtle proof + hands-off yes/no ask
+- Platform-calibrated voice (LinkedIn: restrained/professional vs IG: editorial/atmospheric)
+- Saved file at /03_OUTREACH/_sent_dms/YYYY-MM-DD_recipient-handle.md (load-bearing, not optional)
+- Receipt: 'VIB DM drafted for [Name] on [Platform]. Goal: [tier]. Saved to /03_OUTREACH/_sent_dms/[filename].'
+
+## Gates
+- Mandatory reads confirmed: SOP_VIB_production.md + VIB_caption_library.md + intel_wwp_proclamations.md + intel_positioning_phrases.md + feedback_platform_split.md
+- DM contains all 4 structural elements: specific compliment, soft offer, proof signal, hands-off ask
+- None of the 5 failure modes present: no premature pitch, no generic compliment, no volume language, no begging tone, no multi-CTA
+- Prospect confirmed on-positioning (Reset/Op Kit/Brand System ICP); off-positioning leads surfaced and declined, not drafted
+- Draft saved to disk before user is asked to send
+
+## Test
+- case: User says: 'DM @marcusbuild on LinkedIn. He just posted a Series-A announcement carousel where the third frame was a quiet flex about hiring his creative director. Goal: Reset booking.' Expected output: DM opens with specific reference to the third carousel frame, soft-offers the VIB founders series, embeds one named proof signal, closes with a single yes/no ask ('Worth me sending the one-pager?'). Saved to /03_OUTREACH/_sent_dms/2026-06-21_marcusbuild.md.
+- expected failure: User asks to draft a DM with no visual intel, only 'I want to reach out to some LA founders this week.' Skill refuses and asks for the 5 required inputs. States that a generic compliment open is failure mode 2 and will not be drafted.

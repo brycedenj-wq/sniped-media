@@ -45,3 +45,22 @@ For SNIPED Phase 1 (10-12 hr/week, lean override): every "should I add X" decisi
 - "Just outsource it" without framing the management overhead
 - Adding tools that require new manual workflows (anti-leverage)
 - Treating capital deployment as available when it isn't
+
+
+## Inputs
+- The specific proposed add: a hire (retoucher, VA, assistant), new platform, tool subscription, SOP build, or outsource decision
+- intel_leverage_logic.md (3 forms of leverage, read on invocation)
+- intel_company_of_one.md (stay-small as strategy, read on invocation)
+- feedback_operating_constraints.md (10-12 hr/week constraint + Phase B trigger, read on invocation)
+- OPERATIONAL_BACKBONE.md (what BJ owns permanently, read on invocation)
+
+## Gates
+- Labor hires are refused in Phase 1 (before $3K MRR sustained 2 months) per the locked phase trigger
+- Any tool that creates a new manual workflow must be classified as anti-leverage and refused
+- Code+media alternatives must be specific and actionable (e.g. 'build a retouch SOP + Evoto preset chain'), not generic
+- Capital deployment is unavailable in Phase 1 and must not be recommended
+- 'Just outsource it' framing without naming the management overhead cost is refused
+
+## Test
+- case: BJ asks 'Should I hire a retoucher for $500/month to free up edit time?' Expected output: classify as labor leverage, confirm Phase 1 lock (not at $3K MRR yet), name a specific code+media alternative (Evoto preset chain + batch LR workflow), and state the exact MRR trigger that would make the hire worth evaluating.
+- expected failure: User says 'I want to add a new tool' without naming which tool or what problem it solves. Skill must ask for the specific proposed add before classifying leverage type, because the classification depends on whether the tool creates or eliminates manual workflows.

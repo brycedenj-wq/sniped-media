@@ -32,3 +32,19 @@ The week-launch ritual. Output target: 3 specific outcomes for the week + the ca
 - New strategy in the cockpit (Monday is execution, Saturday is infrastructure)
 - More than 3 outcomes (focus dilutes)
 - Outcomes without measurable completion criteria
+
+
+## Inputs
+- CURRENT_STATE.md (live state: what is complete, blocked, pending)
+- ACTIVE_THREADS.md (in-progress work to carry into the week)
+- MONDAY_COCKPIT.md + SATURDAY_BUILD_BRIEF.md + SYSTEM_FINAL_STATUS.md Section 5 (all read on invocation)
+
+## Gates
+- Exactly 3 outcomes: not 2, not 4 (focus dilutes above 3 per the locked cockpit framework)
+- Each outcome must have a measurable completion criterion, not a vague theme
+- Monday is execution mode only: no new strategy, no infrastructure decisions (those belong to Saturday Build)
+- Cadence non-negotiables from SYSTEM_FINAL_STATUS.md Section 5 are not optional and must appear in the output
+
+## Test
+- case: Monday morning, BJ has a shoot booked Wednesday, two unpublished LinkedIn drafts, and CURRENT_STATE.md shows a Pixieset gallery delivery overdue to a client. Expected output: 3 outcomes including (1) deliver overdue gallery by Tuesday EOD, (2) publish 2 LinkedIn POVs Tue+Thu using existing drafts, (3) shoot day complete with same-day selects reviewed. Cadence checklist built, overdue gallery surfaced as top blocker.
+- expected failure: User tries to use Monday Cockpit to redesign the offer stack or set new Phase 2 strategy. Skill must refuse and redirect: new strategy belongs in Saturday Build, not the Monday execution launch.

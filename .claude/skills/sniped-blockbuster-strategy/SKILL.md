@@ -39,3 +39,20 @@ For SNIPED: don't spray. Pick the 1-2 anchor bets per phase. Direction Stack boo
 - "Just do a little bit of everything"
 - Big bets without distribution plan (great work + zero distribution = death)
 - Blockbuster framing on Phase 1 daily cadence work (overkill)
+
+
+## Inputs
+- The specific decision being evaluated: book launch plan, named-client pursuit, cultural doc subject/location, or budget allocation choice
+- Current phase and available budget (to assess whether a blockbuster bet is feasible now vs deferred)
+- Any distribution channel or leverage already in place (required for a blockbuster call to be valid)
+
+## Gates
+- Must read intel_blockbuster_strategy.md before any go-big/pass call
+- Must read intel_hit_mechanics.md to verify distribution leverage exists before calling blockbuster
+- Must read intel_perennial_logic.md as the patience counterpoint
+- Refuse any bet that spreads allocation across 5+ initiatives simultaneously
+- Refuse blockbuster calls that have no distribution plan (great work without distribution = death scenario per the skill)
+
+## Test
+- case: User asks: 'Should I go all-in promoting this single Direction Stack post with paid spend, or spread budget across 3 content pieces this week?' Expected output: concentrated-bet ruling applied to the single post, with a check on whether distribution leverage is already in place, and a warning if it is not.
+- expected failure: User proposes splitting their quarterly content budget equally across 6 different initiatives 'to see what works.' Skill must refuse the spray approach, cite the few-big-bets-beat-many-small-ones law, and force a ranking of which 1-2 initiatives deserve blockbuster allocation.

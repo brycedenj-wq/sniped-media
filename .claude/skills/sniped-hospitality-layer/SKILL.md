@@ -39,3 +39,21 @@ The "service vs hospitality" frame applied to SNIPED client moments. Output targ
 - Moves that raise the price (hospitality is about gestures, not upgrades)
 - Generic "send a thank-you email" suggestions
 - Moves that scale to all clients identically (defeats the unexpected quality)
+
+
+## Inputs
+- The specific client touchpoint in scope (onboarding, pre-shoot day-before/day-of, shoot day arrival/breaks/wrap, gallery delivery, or post-delivery follow-up)
+- intel_hospitality_layer.md: the service-vs-hospitality frame
+- intel_status_psychology.md: what founders actually want (the hidden signal layer)
+- The locked SOP timeline from SOP_post_delivery.md or checklist_pre_shoot_day_of.md to place moves correctly
+
+## Gates
+- Moves must be specific and unexpected -- 'provide great service' vagueness is refused
+- Moves must not raise the price or function as package upgrades -- gestures only
+- Generic scalable moves (e.g., blanket thank-you emails to all clients) are refused -- unexpected quality requires targeting
+- Every move must slot into the locked SOP timeline, not float outside the SOP structure
+- Must reference intel_status_psychology.md signal layer for at least one move
+
+## Test
+- case: BJ is prepping for a Reset client shoot day tomorrow. Expected output: 2-3 specific moves (e.g., a handwritten location note at studio entrance, a verbal acknowledgment of the client's specific project milestone), each with cost under 10 min, status signal per intel_status_psychology, and exact SOP placement (day-before outreach vs. arrival vs. wrap).
+- expected failure: User asks for a hospitality move that functions as a free upgrade to the shoot package (e.g., 'offer them a bonus hero edit'). Skill must refuse, cite that hospitality is gestures not deliverable additions, and redirect to a gesture-tier move.

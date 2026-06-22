@@ -160,3 +160,21 @@ For LinkedIn:
 sniped-caption-writer/
 └── SKILL.md (this file)
 ```
+
+
+## Inputs
+- Platform target: IG hero post / IG carousel / LinkedIn POV / Threads / Story
+- The visual frame: image file OR description of content and context
+- Post goal: awareness / portfolio update / case study / hiring signal / network warmth
+- Optional: existing phrase bank or caption templates from 07_CONTENT/
+
+## Gates
+- No em-dashes anywhere (lifetime ban per ABSOLUTE BANS section)
+- No process talk in IG captions and no cross-platform copy reuse between IG and LinkedIn
+- No hashtags leading the caption body (first comment on IG, inline at end on LinkedIn)
+- No emojis unless operator explicitly requests; no 'obsessed/stunner/fire' amateur signals
+- Caption length within platform ceiling: 1-3 lines IG hero, 200-400 words LinkedIn POV, 1-2 sentences Threads
+
+## Test
+- case: BJ just finished a brutalist composite of a founder named Marcus. Platform: IG hero post. Goal: portfolio signal. Expected output: 3 options in declarative/atmospheric register ('Marcus. 07. Concrete study.' tier), plus a first-comment hashtag block with #editorialportraiture and 2-4 editorial-fashion tags. No process talk, no emojis.
+- expected failure: If no platform is specified and no image or description is provided, the skill must ask the three intake questions (platform / frame / goal) before drafting. Producing a generic caption without those three anchors is a refusal condition.

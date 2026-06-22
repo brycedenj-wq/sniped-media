@@ -79,3 +79,15 @@ Turn an offer into a doctrine-gated conversion page: page strategy, section wire
 ## External-resource gap
 - Current vercel:* / figma:* plugin parameter schemas and any 2026 deploy-flow changes are NOT pinned here. Read the live plugin skill (vercel:bootstrap / vercel:deploy / figma:figma-generate-design) at build time for exact tool inputs. Do not block planning on this; resolve it at the build step.
 
+
+
+## Gates
+- copy pack self-check on every headline/CTA via os_doctrine.py check copy: complete_thought, one_big_idea, no_generic_hype, no_em_dash; any FAIL blocks done
+- Legible contrast: copy never sits illegibly over a bright/busy area (layout_type pack); FAIL = redo ground
+- One clear CTA: exactly one primary action, repeated, same words; two competing primaries = FAIL
+- Mobile-first: hero headline + CTA above the fold on phone, tap targets large enough; FAIL = restack
+- No filler sections: every section earns its place per layout_type rubric; FAIL = cut it; deploy requires operator authorization via vercel:* or figma:* plugins, never mid-build
+
+## Test
+- case: Operator says 'Build a landing page for the Reset offer at $1,500.' Expected: os_doctrine.py copy and layout_type packs loaded first, single CTA identified, all sections written in order (hero through footer) with [NEEDS: real proof] placeholder rather than invented social proof, os_doctrine.py check copy run on every headline, design notes include one saturated color max and mobile stack order, conversion QA checklist closes with all 5 gates pass/fail, and no deploy is initiated.
+- expected failure: Skill invents social proof or a specific price, ships a headline that fails the copy pack check without fixing it, creates two competing primary CTAs, omits mobile stack order from design notes, or initiates a deploy without operator authorization.

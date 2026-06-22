@@ -82,3 +82,26 @@ Keep diagnosis, recommendation, proof-needed, and next-action visibly separate. 
 
 ## How this fits the OS
 This is the first proprietary skill that turns the internal operating skills (`/challenge`, `/save`, `/boardroom`) outward: the same machinery, pointed at someone else's problem, delivered as a service. Per `CURRENT_STATE.md` and `TRUE_BILLION_DOLLAR_THESIS.md`, the productized/app version is an earned later layer; this hand-delivered service is what proves the demand first. Run it; do not build the app ahead of the proof.
+
+
+## Outputs
+- Structured diagnosis in the required 9-section format (situation summary, stated vs real problem, OS routing receipt, diagnosis, highest-leverage constraint, recommendation, 3-5 proof-first moves, what not to do, proof that would change the call)
+- OS routing receipt listing: level, category, lanes activated from MASTER_INDEX, advisor/doctrine lenses used (intel_ memories), what was skipped and why, guardrails applied
+- One-line receipt: situation classified, binding constraint named, top move stated
+
+## Gates
+- Anti-generic gate: every claim grounded in a real lane or intel_ advisor doctrine -- cut any point that is not
+- No-corpus-reveal gate: corpus is the method, not a handout -- zero private Command Center text quoted to the outside party
+- No-fake-certainty gate: every recommendation labeled hypothesis until proof move confirms it
+- Employer-conflict gate: no employer data, pricing, architecture, client lists, or tooling in the output
+- No-platform-overclaim and no-automation-before-proof in any move recommended
+
+## Test
+- case: A freelance photographer tells BJ she charges $500/session, is booked 3 weeks out, but can't raise prices because 'clients will leave.' Operator runs /operator-review with that context. Expected output: Situation summary (booked-out, price-fearful freelancer); real problem diagnosed as pricing identity (not demand); intel_wwp_proclamations + intel_pricing_logic + intel_trust_equation activated; single binding constraint = her belief that demand is fragile (untested); first proof move = raise one slot to $750 and measure fill rate; what not to do = build new packages or a course before testing the rate ceiling.
+- expected failure: Operator invokes /operator-review with only 'my friend has a business problem.' Skill asks 1-2 sharp questions before diagnosing: 'What type of business is it and what do they say the problem is? What is their current money model and stage?' -- refuses to produce a diagnosis on zero inputs.
+
+
+## INVOKE WHEN
+- run the Command Center on [client/person/business]
+- diagnose [prospect's / client's] situation for me
+- pressure-test [this offer / this business / this person's problem]

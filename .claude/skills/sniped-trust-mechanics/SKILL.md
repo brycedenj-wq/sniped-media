@@ -58,3 +58,21 @@ Concrete, specific, evidence-rich signals that build trust without claiming it:
 - Claims-heavy copy without specifics
 - Anti-patterns 1-5 ever
 - "Just keep posting and people will see you're an expert" type vagueness
+
+
+## Inputs
+- The asset or move being built: case study, LinkedIn POV, Op Kit pitch deck, Carrd authority section, press kit, or Direction Stack chapter
+- The client or outcome the case study is about (name, permission status, specific result with numbers/dates)
+- Which of the 3 loops is the goal: case-study loop, teaching loop, or refusal loop
+- Any draft copy to audit for anti-patterns
+
+## Gates
+- Mandatory reads confirmed: intel_trust_mechanics.md + intel_trust_equation.md + intel_wwp_proclamations.md
+- Output cites the specific signal number (1-8), not a paraphrase
+- No vague claims or generic authority advice in the copy produced
+- Anti-patterns 1-5 never appear in the drafted copy (no stock photo recommendation, no hidden methodology, no generic review quotes)
+- Output names the loop explicitly: case study / teaching / refusal
+
+## Test
+- case: User is writing a LinkedIn POV post about a Reset shoot where the founder used the frames to close a Series-B investor deck. Expected output: recommend Signal 2 (specific outcome: frames used to close Series-B deck, named round, named client if permission granted) + Signal 4 (methodology: show the Direction Stack step that produced the result) + feeds Teaching Loop. Anti-pattern flagged: avoid generic 'great to work with' quote framing.
+- expected failure: User asks to build authority but provides no specific client, outcome, or asset type. Skill refuses to produce generic copy and asks: what is the asset type, what specific outcome can be named, and does the client permit being named?

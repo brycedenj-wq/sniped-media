@@ -425,3 +425,22 @@ Title format:
 Deliver the prompt inside a single fenced code block for clean copy-paste — no preamble inside the code block, no postamble unless the user explicitly asks for breakdown or rationale. If the user uploads multiple references for multiple shots, deliver each shot's prompt in its own code block, sequentially numbered or labeled by shot, each with its own title line stating that shot's runtime.
 
 The user pastes the code block straight into Seedance. The user attaches the same reference images (or selects them from their Higgsfield character/environment library) inside the Higgsfield UI. The skill's job ends at the code block.
+
+
+## Inputs
+- Reference images (character shots, environment plates, wardrobe references) for visual-only extraction of hair, makeup, wardrobe, identity markers, and environment detail
+- Scene description: who is in frame, what they are doing, where it is set, what is happening
+- Runtime (always asked explicitly; never assumed from a default)
+- Cinema mode (M1 Narrative / M2 Studio / M3 Action / M4 Performance / M5 Atmospheric) -- auto-selected or user-named
+- Recurring character flag (asked once at session open): characters already built, needs development, or none
+
+## Gates
+- Runtime gate: runtime must be confirmed before the prompt is written; the pre-prompt summary flags the need if missing
+- Character development gate: if recurring characters are not yet built, kick to banana-pro-director Step 0 before any Seedance prompt
+- Audio gate: audio line must be diegetic only -- no music, no lyrics, no song names, no score descriptors, no genre cues
+- Pre-prompt confirmation gate: every new scene gets the 5-line summary and green-light wait; iteration on a just-delivered prompt is the only skip
+- No-invention gate: do not invent wardrobe or styling details absent from reference images or user text; ask first if needed
+
+## Test
+- case: User uploads a still of a woman in a long charcoal wool coat on a rain-wet street at night and says 'I want a 10-second Seedance shot of her crossing the intersection.' Skill triggers session-opener character gate (first prompt of session); user confirms no recurring characters. Skill auto-selects M1 Narrative, issues the 5-line pre-prompt summary with Runtime: 10s, waits for green light, then delivers title 'Seedance prompt -- 10s' above a fenced code block: one continuous paragraph with Style and Mood / Dynamic Description / Static Description labels, M1 canonical camera block (ARRI Alexa 35, Panavision Ultra Vintage anamorphic, Tiffen BPM 1/4, teal-amber grade, 'total runtime roughly ten seconds'), and a diegetic audio line (rain on wet pavement, fabric movement, distant traffic hum, no music). No character name, no brand name, no music in the prompt.
+- expected failure: Skill writes the prompt without asking runtime first, OR includes a music cue in the audio line, OR uses the character's proper name in the prompt body, OR delivers the prompt without the 5-line pre-prompt confirmation on a new scene, OR omits the canonical camera block and total runtime from the spec.

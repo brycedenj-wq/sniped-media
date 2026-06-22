@@ -34,3 +34,20 @@ Walk in order, calibrate against the locked SOP:
 - Treating strategic free as discounted Reset (different SOP)
 - Promising Reset-tier deliverables on free shoots
 - Trading for "exposure" alone (need specific value)
+
+
+## Inputs
+- Subject name and the strategic value being traded (reach, testimonial, named credit, referral, content rights)
+- Whether this is FreeCollab, Cultural Doc, or portfolio-reach session
+- SOP_strategic_free.md, delivery_architecture_v2.md, feedback_referral_handling.md, intel_blockbuster_strategy.md (all mandatory reads)
+- Explicit trade terms (must be present; if absent, skill must surface this as a blocker)
+
+## Gates
+- REFUSE: proceeding without explicit written trade terms (exposure alone fails the gate)
+- REFUSE: treating this as a discounted Reset (different SOP, different deliverable count, different register)
+- REFUSE: promising Reset-tier deliverables (8-12 frames) on a free shoot
+- Gate: intel_blockbuster_strategy.md must be read to assess whether this shoot earns hero-treatment bet allocation
+
+## Test
+- case: Operator is considering a free Cultural Doc session with a rising local chef who has 40K followers in the target demographic. Trade terms: IG reel tag + testimonial + intro to her brand manager. Operator asks how to run the shoot day. Expected output: skill reads all 4 mandatory files, validates trade terms as acceptable (specific value, not just exposure), outputs the 6-phase runbook, confirms 4-8 frame deliverable, flags that intel_blockbuster_strategy.md should decide whether this earns a hero-treatment slot given the follower overlap, specifies the one written deliverable to secure (intro to brand manager in writing).
+- expected failure: Operator asks to run a free shoot 'for exposure' with no named trade terms. Skill must refuse: exposure alone fails the gate. Response: list what explicit trade terms look like (named credit, IG tag commit, intro to one specific named person, testimonial), ask operator to define the trade before the runbook is issued.

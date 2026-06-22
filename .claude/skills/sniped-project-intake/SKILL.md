@@ -43,3 +43,15 @@ Project facts (product color, client identity, taste notes, brand marks) live in
 
 ## Depends on
 OS_RUNTIME_CONTRACT.md, PROJECT_CAPSULE_TEMPLATE.md, os-quality-gates, os_proof_manifest / os_receipt (proof gate). Routes to the lane skills/workflows listed in step 5.
+
+
+## Gates
+- Every capsule field addressed (blank = explicitly HUMAN-INPUT REQUIRED, not guessed)
+- Truth vs noise separated; conflicts flagged, not silently resolved
+- No invented product/identity/taste facts
+- No asset claimed inspected without actually opening it
+- send_no_send = NO-SEND until proof passes; project facts stay in the capsule and are never written into OS_ACTIVATION_INDEX.json, memory, standards, or any skill
+
+## Test
+- case: Operator drops a voice-dump note: 'Kennedie wants a brand video for Alma Love Club, something like her IG reel but more editorial, she mentioned coral and cream colors, deadline is unclear, she sent 3 files.' Intake copies PROJECT_CAPSULE_TEMPLATE.md to the project folder, sorts the note into approved_truth (brand name: Alma Love Club, reference: IG reel, color notes: coral and cream) vs client_notes (raw style description) vs conflicting_notes (none yet). Asset inventory lists the 3 files as uninspected until actually opened. Gaps flagged as HUMAN-INPUT REQUIRED: confirmed deadline, deliverable spec (length, format, platform), taste target beyond IG reel. Routing decision: domain = film/brand video, skill = creative-levelup + ai-edl, blocked on deadline + deliverable spec. send_no_send = NO-SEND.
+- expected failure: Any of: guessing a missing field instead of marking it HUMAN-INPUT REQUIRED; silently picking one side of a conflicting note; marking a file inspected without opening it; writing any project fact (product color, client identity) into the permanent OS memory or any skill file; setting send_no_send to anything other than NO-SEND before proof passes and operator approves.

@@ -48,3 +48,28 @@ After any phase that changes a hero or its status, you MUST:
 2. If the project folder is a git repo, commit the milestone with a one-line message naming the phase and the new status.
 
 This is non-optional. It is the habit that makes a restart never lose the work.
+
+
+## Inputs
+- Locked subject TIFF/PNG (graded, color-corrected, identity-confirmed -- never re-processed during QA)
+- Background plate image (Higgsfield/Seedream generated or real backplate)
+- Active project SESSION_STATE.md (for per-hero status tracking and durable close-out)
+- 00_COMMAND_CENTER/_standards/COMPOSITE_MASTER_QA.md (canonical 8-gate spec, read first before any QA work)
+
+## Outputs
+- Final no-text hero composite + final text/drop-card version
+- 100% hair/edge crop + 100% feet/shadow (contact-point) crop (both read with Read tool before scoring)
+- Before/after pair: studio frame to campaign frame
+- 6-axis QA scorecard: lighting, grounding, edge, color marriage, artifact scan, brand fit (each /10) with per-hero status (client-ready / internal-only / rebuild)
+- Receipt: 'Composite QA complete: [hero name] -- status: [client-ready/internal-only/rebuild], scores: [6 scores], SESSION_STATE.md updated, commit if git repo'
+
+## Gates
+- G3 TWO-SHADOW GROUNDING: contact shadow flush + cast shadow anchored, plate-matched, never pure black, never detached -- any floating shadow is a hard fail
+- G8 ARTIFACT REJECT: hard reject on AI-fill smear, warped geometry, stretched pixels, barcode sky, melted plants, repeated textures -- any G8 artifact blocks client-ready
+- CLIENT-READY BLOCK: refuse to call anything client-ready or believable without proof crops and all 6 scores >= 8 and no G8 reject
+- SUBJECT LOCK: refuse any step that would change the subject's color or skin -- environment integration only, never re-skin
+- SESSION_STATE UPDATE: after any phase that changes a hero or its status, SESSION_STATE.md must be updated and committed -- non-optional
+
+## Test
+- case: Hero BH (Beverly Hills drop): locked subject TIFF placed into a Higgsfield city plate. Skill reads COMPOSITE_MASTER_QA.md, produces all 5 proof artifacts, reads 100% crops with the Read tool, scores each axis from pixels (not intent), returns scorecard 'lighting 9 / grounding 8 / edge 7 / color marriage 9 / artifact scan 10 / brand fit 8 -- status: internal-only (edge < 8), rebuild edge before client delivery', updates SESSION_STATE.md.
+- expected failure: Operator says 'this looks believable, mark it client-ready' without proof crops or scores. Skill refuses: 'Cannot call this client-ready. Proof crops and the 6-axis scorecard are required before any client-ready designation.'

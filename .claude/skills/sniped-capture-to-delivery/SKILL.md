@@ -38,3 +38,21 @@ Sequential walkthrough:
 - Editing without the locked-look preset on import
 - Hero work over 25 min without escalation decision
 - Delivering past SLA without proactive communication
+
+
+## Inputs
+- Freshly ingested shoot folder with RAW files (same-day ingest already complete per sniped-post-shoot-same-day)
+- Client name and session type (Reset / Op Kit / Brand System) to drive cull target count and retouch routing
+- Locked-look preset confirmed loaded on import in Lightroom catalog
+- Retouch routing decisions: Q3 (Evoto?) and Q4 (Photoshop composite?) answers
+
+## Gates
+- All 5 cull passes must complete in order (Pass 0-4): skipping any pass is an explicit REFUSE condition
+- Locked-look preset must be on import before any hero develop work begins; hero develop capped at 25 min before escalation
+- Evoto round-trip uses 16-bit TIF not JPG (JPG destroys gradients per the SOP)
+- Export uses the 9 locked export presets only; no ad-hoc export settings
+- Delivery past SLA requires proactive client communication before it happens
+
+## Test
+- case: BJ just wrapped a Reset session with 180 RAWs in a fresh Lightroom catalog. Expected output: a sequential walkthrough of all 9 pipeline steps from 5-pass cull through Pixieset gallery build, with routing decision flags at Q3 (Evoto skin pass?) and Q4 (Photoshop composite?), and the 9-preset export checklist.
+- expected failure: If the shoot folder has not been ingested yet (same-day ingest step not complete), the skill must refuse to begin the pipeline and route to sniped-post-shoot-same-day first. Starting the cull before ingest is confirmed is a gate violation.

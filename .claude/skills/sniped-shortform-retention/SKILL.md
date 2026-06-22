@@ -56,3 +56,15 @@ The script or the one viewer-goal is missing, the platform/length is unconfirmed
 
 ## Depends on
 copy + distribution_hook + motion doctrine packs (os_doctrine.py), sniped-caption-writer (voice), sniped-hit-mechanics (distribution mechanics), OS_AUTOEDIT_DOCTRINE (assembly), ai-edl.workflow.js (if footage must be selected/assembled), os-quality-gates. EXTERNAL-RESOURCE GAP: current per-platform retention norms (hook windows, ideal length) shift; confirm live at publish time.
+
+
+## Gates
+- Hook must open a real loop in 3 seconds or fewer (no warm-up or 'hey guys')
+- Every second must earn the next; no filler line survives the cadence pass
+- Every visual must clarify, intensify, or pattern-interrupt; decoration = cut
+- Audio supports attention and does not spam effects; silence is a tool
+- Copy pack clean: complete thoughts, one big idea, no hype, no em-dash; ending loops back or has deliberate replay logic
+
+## Test
+- case: Operator hands a rough 30-second Instagram Reel script for a photography offer (verbatim text provided), platform Reel, goal DM inquiries. Expected: all 5 modules run in order; 3 open-loop hooks delivered; second-by-second cadence script with filler removed; B-roll map with each visual's job named; audio/SFX map; infinite-loop ending; final assembly table; QA checklist with all 6 gates marked pass or fail.
+- expected failure: Skill produces a generic essay instead of the assembly table, skips labeling each visual's job, returns a generic CTA ending without loop logic, lets an em-dash or filler line survive, or calls output final without the QA checklist passing.
