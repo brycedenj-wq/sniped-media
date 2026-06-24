@@ -162,13 +162,24 @@ def main():
     if not (is_prod or serious):
         sys.exit(0)  # not hard production and not serious -> do not gate
 
-    # 3. completion language?
+    # 3. completion language? (negation/quote/receipt-aware; FALSE TRIGGER / ENFORCER NOISE PATCH 001)
     pm = _imp("os_proof_manifest")
+    th = _imp("os_trigger_hygiene")
+    # Assistant held-state receipts are STATE_REPORT, not a completion claim -> never gate.
+    if th.looks_like_state_report(la, pm.COMPLETION_WORDS):
+        th.log_suppress("trigger_suppressed_assistant_receipt", la[:160])
+        sys.exit(0)
+    # Affirmative claim only: whole-word, not negated, not quoted, not the enforcer's own vocabulary.
+    claimed = th.affirmative_hits(la, pm.COMPLETION_WORDS)
+    if not claimed:
+        if th.raw_present(la, pm.COMPLETION_WORDS):
+            th.log_suppress("trigger_suppressed_negated_safety_language", la[:160])
+        sys.exit(0)
+    # belt-and-suspenders: an explicit not-done disclaimer still suppresses.
     low = la.lower()
-    claimed = [w for w in pm.COMPLETION_WORDS if w in low]
-    not_done = any(p in low for p in ["not client-ready", "not final", "not done", "do not call", "is not ready",
-                                       "no-send", "not sendable", "blocked", "named gap", "do not render", "proof not", "still animatic"])
-    if not claimed or not_done:
+    if any(p in low for p in ["not client-ready", "not final", "not done", "is not ready",
+                              "no-send", "not sendable", "do not render", "proof not", "still animatic"]):
+        th.log_suppress("trigger_suppressed_not_done_disclaimer", la[:160])
         sys.exit(0)
 
     blockers = []

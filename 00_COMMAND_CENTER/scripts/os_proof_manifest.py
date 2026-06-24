@@ -116,6 +116,18 @@ def verify(folder, claim="(completion claim)"):
     ok = not blockers
     return ok, blockers, [domain]
 
+def is_valid_held_state(folder):
+    """A documented HELD proof state (send_no_send='no' WITH status_note or known_gaps recorded) is a
+    VALID terminal state, not a completion failure to repair. FALSE TRIGGER / ENFORCER NOISE PATCH 001.
+    The completion enforcer must not loop on a held state; only an AFFIRMATIVE done/ship claim does."""
+    m = load(folder)
+    if m is None:
+        return False
+    send = str(m.get("send_no_send", "")).strip().lower()
+    documented = bool(str(m.get("status_note", "")).strip()) or bool(m.get("known_gaps"))
+    return send in ("no", "hold", "held") and documented
+
+
 def audit(root=None):
     root = root or ROOT
     found = glob.glob(os.path.join(root, "**", "PROOF_MANIFEST.json"), recursive=True)

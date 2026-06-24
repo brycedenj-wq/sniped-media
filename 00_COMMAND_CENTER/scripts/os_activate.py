@@ -56,8 +56,18 @@ def classify(task, idx):
     return sorted(scores.items(), key=lambda x: -x[1])
 
 def emergency_block(task, idx):
-    t = task.lower()
-    if any(trig.lower() in t for trig in idx.get("emergency_triggers", [])):
+    # negation/quote-aware (FALSE TRIGGER / ENFORCER NOISE PATCH 001): "no deadline" or a quoted
+    # word must not fire the banner. Falls back to the old substring test if the helper is missing.
+    fired = None
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("os_trigger_hygiene", os.path.join(HERE, "os_trigger_hygiene.py"))
+        th = importlib.util.module_from_spec(spec); spec.loader.exec_module(th)
+        fired = th.negation_safe_trigger(task, idx.get("emergency_triggers", []))
+    except Exception:
+        t = task.lower()
+        fired = next((trig.lower() for trig in idx.get("emergency_triggers", []) if trig.lower() in t), None)
+    if fired:
         sk = idx.get("emergency_skill", "emergency-drop-protocol")
         return ("[EMERGENCY MODE] time pressure detected -> activate " + sk + ": set deadline + the ONE must-have outcome; "
                 "cut SCOPE not quality; relax only relaxable gates (record each), NEVER relax identity/legal/vision-reject/brand-core/honest-label; "
