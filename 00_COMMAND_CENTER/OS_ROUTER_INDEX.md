@@ -12,6 +12,7 @@ Request → classify domain → pull the listed doctrine doc(s) + skill(s). For 
 | docs / tooling / transcripts | OS_REFINERY_AUTONOMY_001/REFINERY_MASTER_STATE (docs_tooling_plan) | docs-tooling-metabolizer | OS_DOCS_TOOLING_001/DOCS_TOOLING_TRANSCRIPTS_LEDGER.csv | active |
 | project intake / firewall | PROJECT_CAPSULE_TEMPLATE, OS_RUNTIME_CONTRACT | sniped-project-intake | , | active |
 | AI image / composite | OS_DOCTRINE_BATCH_007/008/011/012, OS_CAPABILITY_TOOL_ROUTING | sniped-crs-builder, os-face-lock, kling-production-sop | batch_006/007 | active |
+| character engine | CHARACTER_FACE_POLICY_001 + WORLD_BIBLE_001 + SR2 CHARACTER_CONSISTENCY + OS_CHARACTER_WORLD_INTERIORITY_GATE | os-face-lock, os-world-bible, sniped-status-psychology, composite-master-qa | Soul-ID-required, hero-lock, clean-anchor-private, identity-drift reject (WIRE_MOVING_BODY_001) | active |
 | AI video / motion | OS_CAMPAIGN_HOUSE_PIPELINE | kling-production-sop, os_motion_qa, os_motion_ready | , | active |
 | visual proof (ALL photo/video/composite/campaign) | OS_EXTERNAL_VISUAL_PROOF_GATE (Claude is NOT final visual authority; needs operator/ChatGPT/Gemini review of a frame-strip/contact-sheet packet before final/client-safe) | os-vision-reject-gate (first-pass triage only) | , | active |
 | character + world | _standards/OS_CHARACTER_WORLD_INTERIORITY_GATE, OS_PHASE1_ATOM, OS_PHASE3_FACELOCK | sniped-crs-builder, os-world-bible, os-face-lock, cinema-worldbuilder | , | active |
