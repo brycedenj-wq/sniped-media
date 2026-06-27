@@ -14,13 +14,21 @@ Logic each Stop:
     session is never bricked, but the lie is on record.
 Fail-open on any parse error (exit 0) but note to stderr. Also keeps the legacy state-corruption warn.
 """
-import sys, os, json, time, re, hashlib, glob, importlib.util
+import sys, os, json, time, re, hashlib, glob, importlib.util, subprocess
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CC = os.path.dirname(HERE)
 ROOT = os.path.dirname(CC)
 HARD_DOMAINS = {"film", "image_design", "photo", "design", "website_build"}
 STRIKE = "/tmp/os_completion_strike.json"
+ACTIVATION_MANIFEST = os.path.join(
+    ROOT,
+    "OS_V2_UNIVERSAL_ENGINE",
+    "AI_NATIVE_BRAND_LAB",
+    "ENGINE_WIRING_001",
+    "ACTIVATION_MANIFEST.json",
+)
+ACTIVATION_TASK_TYPES = {"visual_render", "fashion_frame", "character", "world", "deck", "copy"}
 
 def _imp(name):
     spec = importlib.util.spec_from_file_location(name, os.path.join(HERE, name + ".py"))
@@ -100,6 +108,90 @@ def candidate_manifests(assistant_text):
         except Exception:
             pass
     return list(recent)
+
+def _mentioned_dirs_with(assistant_text, fnames):
+    """Folders mentioned in assistant text that contain any required file."""
+    dirs = set()
+    for mobj in re.finditer(r"[\w./\-]+/[\w./\-]+", assistant_text or ""):
+        p = mobj.group(0).strip()
+        ap = p if os.path.isabs(p) else os.path.join(ROOT, p)
+        d = ap if os.path.isdir(ap) else os.path.dirname(ap)
+        for fname in fnames:
+            if os.path.exists(os.path.join(d, fname)):
+                dirs.add(d)
+    return dirs
+
+def candidate_activation_dirs(assistant_text):
+    """
+    W1c bridge. If a build folder marks activation as required, or provides an
+    activation record, the Stop hook auto-runs the activation gate before any
+    completion claim is allowed.
+    """
+    fnames = ("ACTIVATION_REQUIRED.json", "ACTIVATION_RECORD.json", "activation_record.json")
+    mentioned = _mentioned_dirs_with(assistant_text, fnames)
+    if mentioned:
+        return list(mentioned)
+
+    recent = set()
+    for fname in fnames:
+        for mp in glob.glob(os.path.join(ROOT, "**", fname), recursive=True):
+            try:
+                if time.time() - os.path.getmtime(mp) < 7200:
+                    recent.add(os.path.dirname(mp))
+            except Exception:
+                pass
+    return list(recent)
+
+def _load_json_file(path):
+    try:
+        return json.load(open(path))
+    except Exception:
+        return {}
+
+def activation_gate_blockers(assistant_text):
+    blockers = []
+    dirs = candidate_activation_dirs(assistant_text)
+    if not dirs:
+        return blockers
+    if not os.path.exists(ACTIVATION_MANIFEST):
+        return ["activation manifest missing: " + os.path.relpath(ACTIVATION_MANIFEST, ROOT)]
+
+    gate = os.path.join(HERE, "os_activation_gate.py")
+    for d in dirs:
+        required_path = os.path.join(d, "ACTIVATION_REQUIRED.json")
+        record_path = os.path.join(d, "ACTIVATION_RECORD.json")
+        alt_record_path = os.path.join(d, "activation_record.json")
+
+        required = _load_json_file(required_path) if os.path.exists(required_path) else {}
+        if required.get("record"):
+            rp = required["record"]
+            record_path = rp if os.path.isabs(rp) else os.path.join(d, rp)
+        elif not os.path.exists(record_path) and os.path.exists(alt_record_path):
+            record_path = alt_record_path
+
+        task_type = required.get("task_type")
+        record = _load_json_file(record_path) if os.path.exists(record_path) else {}
+        task_type = task_type or record.get("task_type")
+
+        rel = os.path.relpath(d, ROOT)
+        if not task_type or task_type not in ACTIVATION_TASK_TYPES:
+            blockers.append(f"{rel}: ACTIVATION_REQUIRED present but task_type is missing or invalid")
+            continue
+        if not os.path.exists(record_path):
+            blockers.append(f"{rel}: activation gate required for {task_type}, but no ACTIVATION_RECORD.json exists")
+            continue
+
+        proc = subprocess.run(
+            [sys.executable, gate, "--manifest", ACTIVATION_MANIFEST, "--record", record_path, "--task-type", task_type],
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+        )
+        if proc.returncode != 0:
+            out = (proc.stdout or proc.stderr or "").strip().splitlines()
+            tail = " | ".join(out[-8:]) if out else "no activation-gate output"
+            blockers.append(f"{rel}: activation gate FAIL for {task_type}: {tail}")
+    return blockers
 
 def strikes(sig):
     try:
@@ -196,6 +288,9 @@ def main():
                 ok, bl, doms = pm.verify(d)
                 if not ok:
                     blockers.append(f"{os.path.relpath(d, ROOT)} [{doms[0] if doms else '?'}]: " + "; ".join(bl))
+
+    # 4c. Source activation auto-call (W1c)
+    blockers.extend(activation_gate_blockers(la))
 
     # 4b. OS_RECEIPT (serious work, the conductor law)
     if serious:
