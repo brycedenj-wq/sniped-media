@@ -1,0 +1,22 @@
+{
+ "wave": "002-G",
+ "lane": "photography",
+ "status": "CLOSED_RECONCILED_2",
+ "wave002g_close": "2/2 reconciled = 2 BOUND. SCHEDULED->0. Book-canon DOCTRINE_EXTRACTION_SCHEDULED=0 across all 297. OS_RECEIPT verify PASS; checkpoint CLEAN; coverage_proven==BOUND==240. NEXT PHASE: docs/tooling/transcripts ledger.",
+ "target_rows": 2,
+ "wave002g_bound": 0,
+ "wave002g_scheduled": 2,
+ "batches": 1,
+ "in_flight": [],
+ "last_heartbeat": 1782024393,
+ "concurrency": {"current_max_in_flight": 1, "policy": "SEQUENTIAL (os_cost_guard). Launch R1 only after 002-F closes."},
+ "model_routing": {"reader":"sonnet","synthesis":"sonnet","verify":"sonnet","deterministic":"bash/python","opus":"reserved"},
+ "bank_gate": "segment_count>0 + 5-field doctrine + verdict.pass && coverage_verdict=='whole-read'",
+ "bank_cmd": "python3 00_COMMAND_CENTER/OS_CERT_WAVE_002D/control/bank_002d.py <out.json> R1 --map=00_COMMAND_CENTER/OS_CERT_WAVE_002G/control/wave002g_map.json --write",
+ "scripts_dir": "00_COMMAND_CENTER/OS_CERT_WAVE_002G/control/scripts/ (wave002g-R1.js)",
+ "map": "durable: control/wave002g_map.json ; tmp: /tmp/wave002g_map.json ; parts: /tmp/wave002g/parts/",
+ "rebuild_on_crash": "python3 00_COMMAND_CENTER/OS_CERT_WAVE_002E/control/build_wave.py 002-G <control_abspath>",
+ "pre_read_screen": "CLEAN: 2 books (Jonathan Day - Robert Frank's The Americans 66k; Stephen Shore - The Nature of Photographs 7.3k, legitimately short image-heavy book). No dups, no fragments, no pre-read dispositions.",
+ "do_not": "re-read banked rows; flip unverified; delete/move/post/generate/spend; claim OS complete while canon SCHEDULED>0",
+ "next": "after 002-F close: launch R1 -> bank -> close 002-G -> book SCHEDULED hits 0 -> open docs/tooling/transcripts ledger."
+}

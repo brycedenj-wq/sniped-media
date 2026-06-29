@@ -1,0 +1,29 @@
+{
+  "wave": "002-D",
+  "terminal_dispositions_for_operator_ratification": [
+    {
+      "title": "Kupor, Scott_Ries, Eric - Secrets of Sand Hill Road (epub)",
+      "slug": "kupor_scott_ries_eric_secrets_of_s",
+      "disposition": "DUPLICATE_OR_SUPERSEDED",
+      "evidence": "Same book as already-BOUND 'Scott Kupor - Secrets of Sand Hill Road' (002-D). Jaccard 0.69. Whole-read happened; banked once to avoid an inflated count. Reversible: if you want both editions tracked as BOUND, say so.",
+      "forced_by": "no-double-count / no-false-completion"
+    },
+    {
+      "title": "David Rensin - The Mailroom (djvu)",
+      "slug": "david_rensin_the_mailroom_hollywoo",
+      "disposition": "DUPLICATE_OR_SUPERSEDED",
+      "evidence": "Same book as the BOUND .epub copy (Rensin, David - The Mailroom). Both whole-read; epub kept as canonical (cleaner extraction). Reversible.",
+      "forced_by": "no-double-count / no-false-completion"
+    },
+    {
+      "title": "Benjamin Graham - The Intelligent Investor",
+      "slug": "benjamin_graham_intelligent_investor",
+      "disposition": "EXCEPTION",
+      "evidence": "Source on disk is a 45,067-word excerpt (ch.1-3 + Buffett/Zweig front matter + HarperCollins publisher boilerplate tail) vs the full ~230k+ word book. Cannot be whole-read certified. Boundaries forbid spend/acquisition, so EXCEPTION is the only honest no-spend terminal disposition.",
+      "forced_by": "truncated source + no-spend boundary + NEVER-SAMPLE",
+      "reversal_path": "operator supplies a complete copy of the book (would require acquisition = spend, which is currently forbidden), then it can be re-queued for whole-read certification."
+    }
+  ],
+  "close_math": "002-D 100 = 97 ACTIVE_DOCTRINE_BOUND + 2 DUPLICATE_OR_SUPERSEDED + 1 EXCEPTION. SCHEDULED -> 0. All 100 rows reconcile to a terminal disposition.",
+  "note": "These are forced by constraints + honesty rules, not discretionary; applied and surfaced for ratification. Reverse any by instruction."
+}
