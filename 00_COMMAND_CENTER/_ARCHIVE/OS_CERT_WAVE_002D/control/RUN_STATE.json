@@ -1,0 +1,53 @@
+{
+ "wave": "002-D",
+ "status": "CLOSED_RECONCILED_100",
+ "target_rows": 100,
+ "bound_rows": 175,
+ "scheduled_rows": 70,
+ "wave002d_bound": 97,
+ "wave002d_scheduled": 0,
+ "wave002d_duplicate": 2,
+ "wave002d_exception": 1,
+ "wave002d_close": "100/100 reconciled = 97 ACTIVE_DOCTRINE_BOUND + 2 DUPLICATE_OR_SUPERSEDED + 1 EXCEPTION. SCHEDULED->0. OS_RECEIPT verify PASS; checkpoint CLEAN; coverage_proven==BOUND==175. Dispositions in control/close_dispositions.json. Next wave: 002-E (39 taste/culture).",
+ "resume_batches": 13,
+ "resume_batch_ids": ["R1","R2","R3","R4","R5","R6","R7","R8","R9","R10","R11","R12","R13"],
+ "in_flight": [],
+ "last_heartbeat": 1782007800,
+ "deadline_note": "operator-controlled resume; watchdog-governed",
+ "concurrency": {
+  "current_max_in_flight": 1,
+  "policy": "SEQUENTIAL ENFORCED: os_cost_guard.py PreToolUse hook BLOCKS concurrent workflows (<5400s). One batch at a time. Respect the guard (do not clear the wave lock). Watchdog 2-in-flight escalation is overridden by this session safety hook."
+ },
+ "model_routing": {
+  "reader": "sonnet",
+  "synthesis": "sonnet",
+  "verify": "sonnet",
+  "deterministic": "bash/python",
+  "opus": "reserved: cross-wave synthesis / contradiction / failed-sonnet re-judge only"
+ },
+ "bank_gate": "non-empty segment ledger (segment_count>0) + 5-field doctrine + adversarial whole-read verify (pass && coverage_verdict=='whole-read'); no slug-collision/empty-synthesis",
+ "target_math": "wave=002-D = 100 = 63 BOUND + 37 SCHEDULED. Rejected journal fragment + artifacts + exceptions are wave='-' (outside the 100, separate Lane-0).",
+ "do_not": "re-read banked 63; launch with stale heartbeat; flip unverified; delete/move/post/generate/spend; claim OS complete while SCHEDULED>0; certify a truncated source as whole-read",
+ "clean_batches_since_ratelimit": 2,
+ "resume_2026-06-20": {
+  "crash_recovery": "new terminal after laptop crash. R1/R2 (10 records) confirmed banked + flipped (manifest 141 / provisional 112 reconciles).",
+  "no_live_writer_proof": "no matching process; lsof shows no open handles in wave folder; TaskList empty (no harness task); no lock files anywhere; heartbeat was 5.97h stale.",
+  "r3_r4_verdict": "STALLED_RETRY. Zero bankable output (only the 10 R1/R2 records persisted). Their /tmp input text was wiped on reboot. Re-run failed-only = all R3/R4 books (none banked).",
+  "tmp_wipe": "/tmp/wave002d (all per-part .txt for R3-R13) gone on reboot. Re-extraction is the gating step. Durable rebuild: control/reextract_002d.py + control/join_002d.py. Re-extracted per-part word counts match the original scripts to the digit.",
+  "contradiction_resolved": "Agrawal/Gans/Goldfarb: R1 banked 'Prediction Machines (2018)' (BOUND, mapped by source path). 'Power and Prediction (2022)' is a DISTINCT row, still SCHEDULED, still needs a reader. No flip-gap, no double-count.",
+  "map_status": "35 R3-R13 books matched 1:1 to scheduled sources (0 unmatched, 0 missing). 2 extras not in R3-R13: Intelligent Investor + Power and Prediction (2022).",
+  "next": "launch R3 (1 in flight, Sonnet) -> bank verified-only -> R4 -> escalate to 2 in flight."
+ },
+ "open_redo": [
+  "ajay_power_and_prediction_2022 (DISTINCT from banked Prediction Machines; still needs a reader; R14 staged: wave002d-R14.js + text extracted 83,184 words / 2 parts)",
+  "benjamin_graham_intelligent_investor (source measured: only 45,067 words extracted vs full ~230k+; tail is HarperCollins boilerplate = excerpt/sampler; cannot whole-read; EXCEPTION decision to operator at close boundary; no spend/no acquisition)"
+ ],
+ "extraction_status": "COMPLETE for all batches. R3+R4 + R5-R13 (26) + R14/P&P all re-extracted to /tmp/wave002d at the exact worker paths; per-part word counts match originals. Rebuild any time via control/reextract_002d.py.",
+ "flags_for_close": [
+  "DEDUP APPLIED (Kupor): R5 kupor_scott_ries_eric_secrets_of_s = same book as already-BOUND 'Scott Kupor - Secrets of Sand Hill Road' (002-D, Jaccard 0.69). Override set -> DUPLICATE_OR_SUPERSEDED at bank time (whole-read still happens; no double-count). Pending operator ratification at close.",
+  "DEDUP PENDING (Mailroom): R8 david_rensin_*.djvu (168,539w) and R9 rensin_david_*.epub (169,850w) = same book, two formats, BOTH scheduled. Bank exactly ONE to BOUND (default the cleaner epub/R9), the other -> DUPLICATE. Finalize after comparing both readers' verdicts.",
+  "EXCEPTION (Intelligent Investor): source is a 45,067-word excerpt (ch1-3 + front/back matter, HarperCollins boilerplate tail) vs full ~230k+. Cannot whole-read. -> EXCEPTION at close. No spend/acquisition.",
+  "CLOSE MATH: of 37 scheduled -> ~34 BOUND + 2 DUPLICATE (Kupor, one Mailroom) + 1 EXCEPTION (II) = 37 resolved. 002-D closes as ~97 BOUND + 3 terminal = 100 reconciled (SCHEDULED->0). Operator ratifies the 3 terminal dispositions at close.",
+  "DEDUP SCAN CLEAN otherwise: Creativity Inc / Song Machine / Jonathan Livingston Seagull / Power Law(Mallaby) twins are already DUPLICATE and OUTSIDE the 100 (wave='-'); the 002-D row is canonical. Power and Prediction vs Prediction Machines = DISTINCT books (false-positive J=0.62)."
+ ]
+}

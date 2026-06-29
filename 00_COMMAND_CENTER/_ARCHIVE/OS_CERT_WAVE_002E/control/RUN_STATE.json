@@ -1,0 +1,29 @@
+{
+ "wave": "002-E",
+ "lane": "taste_culture",
+ "status": "CLOSED_RECONCILED_39",
+ "target_rows": 39,
+ "wave002e_bound": 34,
+ "wave002e_scheduled": 0,
+ "wave002e_duplicate": 3,
+ "wave002e_exception": 2,
+ "canon_bound": 209,
+ "canon_scheduled": 31,
+ "wave002e_close": "39/39 reconciled = 34 BOUND + 3 DUPLICATE + 2 EXCEPTION. SCHEDULED->0. OS_RECEIPT verify PASS; checkpoint CLEAN; coverage_proven==BOUND==209. Next: 002-F (29 operations).",
+ "batches": 12,
+ "in_flight": [],
+ "last_heartbeat": 1782017782,
+ "concurrency": {
+  "current_max_in_flight": 1,
+  "policy": "SEQUENTIAL ENFORCED by os_cost_guard PreToolUse hook (1 workflow in flight). Respect it; do not clear the wave lock."
+ },
+ "model_routing": {"reader":"sonnet","synthesis":"sonnet","verify":"sonnet","deterministic":"bash/python","opus":"reserved: cross-wave synthesis / contradiction / failed-sonnet re-judge only"},
+ "bank_gate": "segment_count>0 + 5-field doctrine + verdict.pass && coverage_verdict=='whole-read'",
+ "bank_cmd": "python3 00_COMMAND_CENTER/OS_CERT_WAVE_002D/control/bank_002d.py <out.json> <BATCH> --map=00_COMMAND_CENTER/OS_CERT_WAVE_002E/control/wave002e_map.json --write",
+ "scripts_dir": "00_COMMAND_CENTER/OS_CERT_WAVE_002E/control/scripts/ (wave002e-R1.js .. R12.js)",
+ "map": "durable: control/wave002e_map.json ; tmp: /tmp/wave002e_map.json ; parts: /tmp/wave002e/parts/",
+ "rebuild_on_crash": "python3 00_COMMAND_CENTER/OS_CERT_WAVE_002E/control/build_wave.py 002-E <control_abspath> (re-extracts wiped /tmp parts + re-emits scripts)",
+ "pre_read_dispositions": "5 applied before reading (control/close_dispositions.json): 3 DUPLICATE (Rubin Sunday-Times ed, McLuhan MIT ed [Lapham kept], Beloved 696w fragment) + 2 EXCEPTION (Art Book 1203w magazine, Fashion Theory 3316w journal). Color Purple omnibus + Sherman Alexie (mislabeled 'Part 1') CLEARED to read after content inspection.",
+ "do_not": "re-read banked rows; flip unverified; delete/move/post/generate/spend; claim OS complete while canon SCHEDULED>0",
+ "next": "bank R1 on completion -> R2 .. R12 sequential -> close 002-E -> chain 002-F (29)."
+}
