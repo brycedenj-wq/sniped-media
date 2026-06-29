@@ -1,0 +1,79 @@
+{
+  "mission": "CONTINUOUS REFINERY: metabolize the entire intentional-source backlog into the OS. Run until book DOCTRINE_EXTRACTION_SCHEDULED=0 across the 297 book-canon ledger (waves 002-D -> E -> F -> G), THEN open and drain the docs/tooling/transcripts ledger the same way. Not a one-off. Crash/new-terminal must RESUME, never restart.",
+  "standing_directive_source": "operator 2026-06-20: 'continuous refinery until the books and other intentionally added material are actually processed into the OS'",
+  "updated": "2026-06-21",
+  "phase": "OS_TAKEOVER FULL EXECUTION DONE (2026-06-21): corpus reconciled (BOOK_CANON SCHEDULED=0, 240 BOUND; DOCS_TOOLING 50/50 terminal) AND the OS_TAKEOVER backlog is completed/terminally-dispositioned. Skills 85/85 ACTIVE (INSTALLED_INCOMPLETE=0), router/triggers + structure basics in place, OS_ROUTINE_PILOT_PACKAGE + OS_TOOL_READINESS_LAYER built, CONTEXT_BOOT_CARD single-screen boot live. Final 4-verifier adversarial pass = PASS_WITH_NOTES x4, 4 defects corrected. Master receipt: OS_TAKEOVER_PHASES_001/full_execution/OS_RECEIPT.md (verify PASS). REMAINING = 7 operator-gated decision packets only (routine piloting, tool live-verification, EXCEPTION videos, archive move, router-row expansion, stale skill counts, RUN_STATE historical narrative). OS is NOT complete while any remain.",
+  "phases_ordered": [
+    "BOOK_CANON (002-D,E,F,G) DONE",
+    "DOCS_TOOLING_TRANSCRIPTS DONE",
+    "OS_TAKEOVER Phases 4-7 (future)"
+  ],
+  "docs_tooling_plan": {
+    "trigger": "ONLY after book DOCTRINE_EXTRACTION_SCHEDULED=0 (002-D/E/F/G all closed). Operator-confirmed 2026-06-20.",
+    "method": "Same controller-loop discipline. Do NOT bulk-load randomly. (1) BUILD a DOCS_TOOLING_TRANSCRIPTS_LEDGER.csv first: inventory every non-book source (tool docs, Claude/MCP docs, Higgsfield/Seedance/video docs, design-system + automation transcripts, app setup notes). (2) Group by TYPE. (3) Process in waves: extract -> segment -> screen dups/fragments -> batch on Sonnet (whole-read) -> bank verified-only -> reconcile counts -> write receipts. Each source gets a disposition (bound / scheduled / reference-active / rejected / duplicate / missing / misclassified).",
+    "model_routing": "Bash/Python extract+count+reconcile; Sonnet read/synth/verify; Opus only final cross-wave synthesis or hard contradiction.",
+    "boundaries": "no deletion/move/archive/spend/post/publish/generation/client-send. Keep watchdog/resume files current. No OS-complete claim until book SCHEDULED=0 AND the docs/tooling backlog has a real disposition ledger.",
+    "failure_rule": "rate limit / crash / stale lock / missing source / duplicate / fragment / partial source -> do not force; record exact status; continue from resume rules."
+  },
+  "book_backlog_snapshot": {
+    "as_of": "2026-06-20 BOOK-CANON DONE",
+    "scheduled_total": 0,
+    "by_wave": {
+      "002-D": 0,
+      "002-E": 0,
+      "002-F": 0,
+      "002-G": 0
+    },
+    "bound_total_canon": 240,
+    "final_composition_297": "240 ACTIVE_DOCTRINE_BOUND + 18 DUPLICATE_OR_SUPERSEDED + 17 EXCEPTION + 16 MISCLASSIFIED_PROJECT_ARTIFACT + 5 REFERENCE_ACTIVE_WHEN_RELEVANT + 1 REJECTED_AFTER_REVIEW",
+    "target": "DONE: book DOCTRINE_EXTRACTION_SCHEDULED=0"
+  },
+  "closed_waves": {
+    "002-D": "CLOSED 2026-06-20 reconciled 100/100 = 97 ACTIVE_DOCTRINE_BOUND + 2 DUPLICATE_OR_SUPERSEDED + 1 EXCEPTION (Intelligent Investor excerpt). OS_RECEIPT verify PASS; checkpoint CLEAN. Resumed after laptop crash with zero data loss.",
+    "002-E": "CLOSED 2026-06-20 reconciled 39/39 = 34 ACTIVE_DOCTRINE_BOUND + 3 DUPLICATE_OR_SUPERSEDED + 2 EXCEPTION. Built+run via build_wave.py. Pre-read screen caught 3 dups (Rubin/McLuhan editions, Beloved fragment) + 2 fragment exceptions (Art Book mag, Fashion Theory journal); content inspection rescued the Color Purple omnibus + Sherman Alexie novel. OS_RECEIPT verify PASS; checkpoint CLEAN.",
+    "002-F": "CLOSED 2026-06-20 reconciled 29/29 = all 29 ACTIVE_DOCTRINE_BOUND (clean screen, no dups/exceptions). Operations lane (org/mgmt, AI/automation, investing, category, + literary). OS_RECEIPT verify PASS; checkpoint CLEAN.",
+    "002-G": "CLOSED 2026-06-20 reconciled 2/2 = both ACTIVE_DOCTRINE_BOUND (Stephen Shore - Nature of Photographs; Jonathan Day - Robert Frank's The Americans). Closing it drove BOOK-CANON DOCTRINE_EXTRACTION_SCHEDULED to 0 across all 297. OS_RECEIPT verify PASS; checkpoint CLEAN."
+  },
+  "os_takeover_4_7": "AUDIT+PLAN DONE 2026-06-21 (OS_TAKEOVER_PHASES_001/): 4 deliverables produced + adversarially verified (P5/P6/P7 pass; P4 corrected post-catch). Structure audit, skill audit (68/73 INCOMPLETE), tool ledger (17 families risk-labeled), routine plan. OS_RECEIPT verify PASS. NEXT = operator-gated EXECUTION of the recommendations (populate decisions/, fill project capsules, complete the 68 skills, refresh session_saves + failure ledger, pilot 1-2 routines after 2 manual proofs each). Not started; several touch structure -> need operator go.",
+  "active_wave": {
+    "wave": "NONE (corpus reconciled + OS_TAKEOVER full execution done)",
+    "control_folder": "00_COMMAND_CENTER/OS_TAKEOVER_PHASES_001/",
+    "state_file": "full_execution/OS_RECEIPT.md",
+    "progress": "All safe local non-spend/non-delete/non-post takeover items DONE or terminally dispositioned + adversarially verified. NEXT = operator authorization on the 7 decision packets in the master receipt. Boot from CONTEXT_BOOT_CARD.md."
+  },
+  "wave_sop": [
+    "1. EXTRACT: deterministic Python/CLI (no model, no spend). Source books in '~/Downloads/    SNIPED_OS/'. pdftotext for .pdf; ebook-convert (calibre) for .epub/.mobi/.azw3/.djvu. Split each book into ~42-80k-word parts. Write to a per-wave /tmp work dir at the paths the wave's reader scripts expect. /tmp is volatile -> a durable re-extract script + slug->source map live in the wave control folder so any reboot is one command to rebuild.",
+    "2. READ (harness): one Workflow per batch (role-scoped Sonnet agents): reader-per-part (whole-read, NEVER SAMPLE, segment ledger) -> certify (5-field doctrine) -> adversarial whole-read verify. os_cost_guard hook enforces SEQUENTIAL workflows (1 in flight).",
+    "3. BANK verified-only: gate = segment_count>0 + 5 non-empty doctrine fields + verdict.pass && coverage_verdict=='whole-read'. Two path-matched flips: BOOK_CANON_CERTIFICATION_LEDGER.csv status_v2 -> ACTIVE_DOCTRINE_BOUND; OS_ENGAGEMENT_MANIFEST.csv (class=source) status -> coverage_proven. Append the record to the wave segment ledger in 01_KNOWLEDGE_BASE/cert_ledgers/. Dedup/exception overrides route same-book duplicates -> DUPLICATE_OR_SUPERSEDED and truncated/unreadable sources -> EXCEPTION (operator ratifies terminal dispositions at wave close).",
+    "4. RECONCILE: os_checkpoint.py must stay CLEAN; BOUND==coverage_proven invariant; ledger 297 / manifest 1246 totals intact. Update PROGRESS_LEDGER.csv + RUN_STATE.json after EVERY batch (heartbeat).",
+    "5. CLOSE the wave only when its rows reconcile (SCHEDULED->0 for that wave). Rewrite OS_RECEIPT.md (what changed, gates, rating, verdict). Then chain the next wave."
+  ],
+  "reusable_scripts_002d": {
+    "reextract": "control/reextract_002d.py (+ control/join_002d.py builds the slug->source map)",
+    "bank": "control/bank_002d.py (gate + dual-ledger reconcile + no-double-bank + dedup_override.json)",
+    "checkpoint": "00_COMMAND_CENTER/scripts/os_checkpoint.py",
+    "note": "for 002-E/F/G these get generalized to a wave arg (or copied per wave). The R-series Workflow scripts live in the session workflows/scripts dir."
+  },
+  "resume_procedure_new_terminal": [
+    "Read this file + the active wave's control/RUN_STATE.json + PROGRESS_LEDGER.csv + WATCHDOG.md + RESUME_QUEUE.md.",
+    "Prove no live writer (ps/lsof/TaskList/locks; heartbeat staleness) before clearing any lock.",
+    "If /tmp work text is gone (reboot), rebuild it via the wave's reextract script.",
+    "Inspect in-flight batches: if no complete bankable output, mark STALLED_RETRY and rerun failed-only. Never re-read banked rows.",
+    "Resume the SOP at the next pending batch. Bank verified-only. Update control files every batch."
+  ],
+  "boundaries": [
+    "no deletion",
+    "no move",
+    "no archive",
+    "no spend",
+    "no post",
+    "no publish",
+    "no generation",
+    "no client-facing send",
+    "no broad project-context blending",
+    "no false completion",
+    "no OS-complete claim while any scheduled source work remains",
+    "operator ratifies terminal dispositions (DUPLICATE/EXCEPTION) at wave close"
+  ],
+  "do_not_claim": "OS complete / refinery done / books done -- not valid until book SCHEDULED=0 AND the docs/tooling/transcripts ledger is also drained and reconciled."
+}
