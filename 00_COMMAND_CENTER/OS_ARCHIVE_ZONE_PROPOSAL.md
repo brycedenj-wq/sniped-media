@@ -1,3 +1,5 @@
+> **Retired 2026-06-28.** One or more OS_* systems referenced in this document were retired during the OS repository convergence and moved to `_HISTORY/` or `_ARCHIVE/`. Those references are historical and no longer active. See `CONVERGENCE_PLAN_2026-06-28.md`.
+
 # ARCHIVE ZONE PROPOSAL (proposal only - NO files moved)
 
 Phase 4 audit finding: there is no formal archive zone; retired/closed lanes are preserved in-place and mixed with active work, so a fresh session cannot tell active from done at a glance. This proposes a structure and a no-move interim. Moving files is a SEPARATE operator-approved action; this pass moves nothing.

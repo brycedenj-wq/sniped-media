@@ -1,3 +1,5 @@
+> **Retired 2026-06-28.** One or more OS_* systems referenced in this document were retired during the OS repository convergence and moved to `_HISTORY/` or `_ARCHIVE/`. Those references are historical and no longer active. See `CONVERGENCE_PLAN_2026-06-28.md`.
+
 # OS WORLD-CLASS STACK , per deliverable
 > minimum viable toolchain | world-class toolchain | what we have ACTIVE | what is missing | wire next
 

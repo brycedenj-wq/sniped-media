@@ -1,3 +1,5 @@
+> **Retired 2026-06-28.** One or more OS_* systems referenced in this document were retired during the OS repository convergence and moved to `_HISTORY/` or `_ARCHIVE/`. Those references are historical and no longer active. See `CONVERGENCE_PLAN_2026-06-28.md`.
+
 # OS SESSION CONTINUITY , safe-restart state (2026-06-05)
 > Read this first in a new session. Everything important is committed. A restart is SAFE now. The only thing a restart CHANGES is which local MCP servers load (none new yet, pending the security decision below).
 
