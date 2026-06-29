@@ -1,3 +1,5 @@
+> **Retired 2026-06-28.** One or more OS_* systems referenced in this document were retired during the OS repository convergence and moved to `_HISTORY/` or `_ARCHIVE/`. Those references are historical and no longer active. See `CONVERGENCE_PLAN_2026-06-28.md`.
+
 # OS_ROUTER_INDEX , domain → what to pull (the router reads THIS, not everything)
 
 > The router consults this map to pull ONLY the relevant doctrine doc / skill / chunk-index for a task. Keep it small. Tag each entry `active` / `superseded` / `hypothesis`. The router ignores `superseded` by default.

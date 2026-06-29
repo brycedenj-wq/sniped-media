@@ -1,3 +1,5 @@
+> **Retired 2026-06-28.** One or more OS_* systems referenced in this document were retired during the OS repository convergence and moved to `_HISTORY/` or `_ARCHIVE/`. Those references are historical and no longer active. See `CONVERGENCE_PLAN_2026-06-28.md`.
+
 # OS_CURRENT_STATE , what is true NOW
 
 > Single source of truth for the active session. Overwrite at session end. (Updated 2026-06-05.)
