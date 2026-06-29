@@ -1,0 +1,25 @@
+{
+ "program": "DOCS_TOOLING_TRANSCRIPTS",
+ "status": "RECONCILED_50of50_TERMINAL",
+ "reconcile": "RECONCILED 50/50 terminal = 20 tool_doc_bound + 12 reference_active + 6 misclassified_artifact + 4 project_note_capsule + 2 DUPLICATE + 6 EXCEPTION(transcription, operator-ratified no-spend 2026-06-21). 0 held, 0 untriaged. OS_RECEIPT verify PASS.",
+ "reopen_note": "The 6 EXCEPTION videos are reversible: add GROQ_API_KEY/OPENAI_API_KEY to ~/.config/watch/.env, then re-run a T2 wave to /watch + transcribe + whole-watch + bank.",
+ "t1": "DONE. 37 tool/MCP docs triaged = 19 tool_doc_bound + 12 reference_active + 5 misclassified_artifact + 1 DUPLICATE. One retry (12 docs held on a verifier-coverage gate quirk, re-run with corrected verifier, banked 10 tool_doc_bound + 2 misclassified). Records: 01_KNOWLEDGE_BASE/cert_ledgers/DOCS_TOOLING_T1_RECORDS.json.",
+ "t2": "HELD: 6 photography videos marked TRANSCRIPTION_NEEDED. No Whisper key (GROQ/OPENAI) configured AND no embedded subtitle streams in the mp4s, so whole-watch transcription needs a key = setup + API spend, which the no-spend boundary forbids. OPERATOR DECISION: add a Whisper key to ~/.config/watch/.env to enable transcription+bank, or accept them as held/EXCEPTION. Not forced to a frames-only sampled judgment.",
+ "t3": "RUNNING: 5 readable misc docs (4 project planning md in 05_PRODUCTION + 1 big 41k-word 'use blender like this' docx). 2 index.html already triaged (1 misclassified_artifact landing page + 1 md5 DUPLICATE).",
+ "opened": "2026-06-20 (after book canon SCHEDULED=0)",
+ "ledger": "00_COMMAND_CENTER/OS_DOCS_TOOLING_001/DOCS_TOOLING_TRANSCRIPTS_LEDGER.csv",
+ "preflight_finding": "Scanned the source universe (41 top-level dirs). Of 1494 doc/transcript candidate files (excl the PowerShell-master code clone), 1444 are ALREADY in the manifest (processed in prior waves) and 50 are genuinely NEW. The docs/tooling backlog is the 50 new sources, NOT thousands.",
+ "out_of_scope": "PowerShell-master (2667 files / Microsoft PowerShell source clone) and all source code inside MCP repos (.cs/.ps1/.resx/.py/.cpp/.h/.jsx) = NOT doctrine, do not certify. Flagged, not processed.",
+ "new_backlog_50": {
+  "tool_mcp_doc_md": 37,
+  "project_or_misc_doc": 6,
+  "transcript_video_audio_mp4": 6,
+  "transcript_or_doc_docx": 1,
+  "by_group": {"video-use-main": 16, "world-builder-main": 9, "unreal-mcp-main": 6, "PHOTOGRPAHY GOLD (mp4+pdf)": 6, "05_PRODUCTION": 4, "cc-motion-tracking-blender": 3, "start here": 3, "blender repos + cc-blender": 3}
+ },
+ "videos_needing_transcription": ["What Makes This Photo Great (Sara)", "Helmut Newton Polaroids", "Avedon Fashion 1944-2000", "Sarah Moon Book Flip-Through", "Tim Walker Story Teller Flip-Through", "TelisikPustaka Helmut Newton"],
+ "next_wave_plan": "WAVE T1 = the 37+ tool/MCP markdown docs (extract via os_howto_extract / direct read, Sonnet whole-read, 5-field doctrine OR a tool-doc schema, bank verified-only into a tool-doc disposition). WAVE T2 = 6 photography videos -> /watch (native captions or Whisper) -> whole-watch transcript -> doctrine -> bank. Misc docx/txt/html dispositioned individually. Same controller discipline; reconcile counts; OS_RECEIPT at close.",
+ "boundaries": "no deletion/move/archive/spend/post/publish/generation/client-send. Code clones NOT doctrine. Keep watchdog/resume current.",
+ "do_not_claim": "OS complete until this ledger reconciles (every one of the 50 gets a real disposition: bound / reference-active / duplicate / rejected / misclassified / missing / transcription-needed-then-bound).",
+ "model_routing": "Bash/Python extract+count+reconcile; Sonnet read/synth/verify + /watch transcripts; Opus only final cross-wave synthesis or contradiction."
+}
