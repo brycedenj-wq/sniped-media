@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Reverse Step 2 (run from repo root). Both dirs were untracked -> plain mv back.
+set -e
+mv 00_COMMAND_CENTER/_HISTORY/OS_DOCS_TOOLING_001 00_COMMAND_CENTER/OS_DOCS_TOOLING_001
+mv 00_COMMAND_CENTER/_HISTORY/OS_INTEGRATION_TRUST_001 00_COMMAND_CENTER/OS_INTEGRATION_TRUST_001
