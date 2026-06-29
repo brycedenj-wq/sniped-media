@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MADE WORLD · Visual Experience Prototype 001</title>
+<style>
+  :root{
+    --paper:#FBF8F2; --bone:#F1EBDF; --ink:#1B1916; --soft:#6E675C; --line:#DCD4C5;
+    --brass:#9A7430; --brass-soft:#C8A661; --white:#FFFFFF;
+    --serif: Georgia,"Times New Roman",serif;
+    --sans: ui-sans-serif,system-ui,"Helvetica Neue",Arial,sans-serif;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bone);color:var(--ink);font-family:var(--serif);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .lab{font-family:var(--sans);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--soft)}
+  .lab.b{color:var(--brass)}
+  h1,h2,h3{font-weight:400;letter-spacing:-.01em;margin:0}
+  h2{font-size:30px;line-height:1.15;margin:0 0 6px}
+  h3{font-size:20px;margin:0 0 4px}
+  p{margin:0 0 12px}
+  .soft{color:var(--soft)}
+  .sans{font-family:var(--sans)}
+  section{padding:64px 0;border-top:1px solid var(--line)}
+  section:first-of-type{border-top:0}
+  .secnum{font-family:var(--sans);font-size:12px;letter-spacing:.2em;color:var(--brass);margin-bottom:14px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}.grid3{grid-template-columns:1fr 1fr}}
+  .card{background:var(--paper);border:1px solid var(--line);padding:22px}
+  .rule{height:1px;background:var(--line);margin:18px 0}
+  .tag{display:inline-block;font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);border:1px solid var(--line);padding:3px 8px;margin:0 6px 6px 0}
+  .accent{color:var(--brass)}
+  /* phone */
+  .phone{width:300px;max-width:100%;border:10px solid #14110d;border-radius:34px;background:var(--white);overflow:hidden;box-shadow:0 24px 60px rgba(20,17,13,.18)}
+  .phone .bar{height:26px;background:#14110d}
+  .screen{background:var(--white);padding:0}
+  .framewhite{background:var(--white);aspect-ratio:9/16;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:20px;text-align:center}
+  .onwhite-cap{position:absolute;left:0;right:0;bottom:14px;font-family:var(--sans);font-size:12px;color:var(--ink);letter-spacing:.02em}
+  .typeover{font-family:var(--sans);font-size:15px;letter-spacing:.01em;color:var(--ink);max-width:230px}
+  /* object svg holder */
+  .obj{width:100%;max-width:230px}
+  /* 9 grid */
+  .ig{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line)}
+  .ig .cell{background:var(--white);aspect-ratio:1;display:flex;align-items:center;justify-content:center;position:relative}
+  .ig .cell .mini{width:62%}
+  .ig .cell .pin{position:absolute;top:5px;right:6px;font-family:var(--sans);font-size:8px;color:var(--brass);letter-spacing:.1em}
+  /* profile head */
+  .phead{padding:16px 14px 6px;border-bottom:1px solid var(--line)}
+  .avatar{width:58px;height:58px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+  .hl{display:flex;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+  .hl .h{width:48px;text-align:center}
+  .hl .ring{width:44px;height:44px;border-radius:50%;border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;margin:0 auto 4px}
+  .hl .ring svg{width:22px;height:22px}
+  .hl .cap{font-family:var(--sans);font-size:9px;color:var(--soft)}
+  /* site mock */
+  .site{border:1px solid var(--line);background:var(--white)}
+  .nav{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid var(--line);font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+  .block{padding:34px 22px;border-bottom:1px solid var(--line)}
+  .vote{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--ink);background:transparent;color:var(--ink);padding:11px 18px;cursor:default}
+  .btn.fill{background:var(--ink);color:var(--paper)}
+  .btn.brass{border-color:var(--brass);color:var(--brass)}
+  .field{font-family:var(--sans);font-size:13px;border:1px solid var(--line);padding:12px 14px;color:var(--soft);background:var(--white)}
+  /* swatches */
+  .sw{height:80px;border:1px solid var(--line);display:flex;align-items:flex-end;padding:8px;font-family:var(--sans);font-size:10px;letter-spacing:.06em}
+  table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:12.5px}
+  td,th{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--paper);color:var(--soft);font-weight:600;letter-spacing:.06em}
+  ul{margin:0 0 12px;padding-left:18px}
+  li{margin:0 0 6px}
+  .lead{font-size:18px;line-height:1.55}
+  .kick{font-family:var(--serif);font-style:italic;color:var(--soft)}
+  .placard{border:1px solid var(--ink);padding:10px 14px;font-family:var(--sans);font-size:11px;letter-spacing:.06em;display:inline-block}
+  .toc a{color:var(--ink);text-decoration:none;font-family:var(--sans);font-size:12.5px;display:block;padding:5px 0;border-bottom:1px solid var(--line)}
+  .toc a:hover{color:var(--brass)}
+  footer{padding:50px 0 80px;color:var(--soft);font-family:var(--sans);font-size:12px}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section style="padding-top:80px">
+  <div class="wrap">
+    <div class="lab b">Visual Experience Prototype 001 · working name, not final</div>
+    <h1 style="font-size:64px;line-height:.98;margin:18px 0 10px;letter-spacing:-.02em">MADE&nbsp;WORLD</h1>
+    <div style="display:flex;align-items:center;gap:16px;margin:6px 0 26px">
+      <!-- mark: a surface with one object -->
+      <svg width="44" height="44" viewBox="0 0 44 44" aria-label="mark">
+        <rect x="3" y="3" width="38" height="38" fill="none" stroke="#1B1916" stroke-width="1.5"/>
+        <rect x="18" y="18" width="8" height="8" fill="#9A7430"/>
+      </svg>
+      <p class="lead" style="margin:0;max-width:620px">I design one object a week and let you decide if it should exist. One surface. One object. The mark is the whole idea.</p>
+    </div>
+    <p class="soft sans" style="font-size:12.5px;max-width:680px">A walkthrough of the brand from a stranger's first ten seconds to the backend money path. Rendered in the brand's own look (object on white, near monochrome, one brass accent). No AI images generated here, no posting, no spend, no payment rails. This is for operator conviction only.</p>
+    <div class="rule"></div>
+    <div class="toc" style="max-width:520px">
+      <a href="#s1">01 · The 10-second stranger experience</a>
+      <a href="#s2">02 · The profile experience</a>
+      <a href="#s3">03 · The Week 1 hero drop experience</a>
+      <a href="#s4">04 · The landing page experience</a>
+      <a href="#s5">05 · The drop page experience</a>
+      <a href="#s6">06 · The backend experience</a>
+      <a href="#s7">07 · The money path</a>
+      <a href="#s8">08 · The life path</a>
+      <a href="#s9">09 · Visual direction board</a>
+      <a href="#s10">10 · Higgsfield generation plan</a>
+    </div>
+  </div>
+</section>
+
+<!-- 1 STRANGER -->
+<section id="s1"><div class="wrap">
+  <div class="secnum">01</div><h2>The 10-second stranger experience</h2>
+  <p class="soft" style="max-width:680px">A stranger is scrolling TikTok at speed. This is the first frame and the first three seconds.</p>
+  <div class="grid2" style="margin-top:24px">
+    <div class="phone">
+      <div class="bar"></div>
+      <div class="frameWHITE framewhite">
+        <div class="framewhite">
+          <svg class="obj" viewBox="0 0 220 150" aria-label="twelve-slot tray on white">
+            <rect x="20" y="20" width="180" height="110" fill="none" stroke="#1B1916" stroke-width="2"/>
+            <g stroke="#CBC3B4" stroke-width="1.5">
+              <line x1="65" y1="20" x2="65" y2="130"/><line x1="110" y1="20" x2="110" y2="130"/><line x1="155" y1="20" x2="155" y2="130"/>
+              <line x1="20" y1="56" x2="200" y2="56"/><line x1="20" y1="93" x2="200" y2="93"/>
+            </g>
+            <text x="110" y="146" text-anchor="middle" font-family="ui-sans-serif" font-size="9" fill="#6E675C">twelve slots</text>
+          </svg>
+          <div class="typeover" style="margin-top:18px">I deleted every compartment.</div>
+          <div class="onwhite-cap">the most over-built object on your desk</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3>Why they stop</h3>
+      <table>
+        <tr><th>First frame</th><td>Pure white. A familiar twelve-slot desk tray sits dead center, alone, no hand, no room, no logo. It looks like a product photo, which is a pattern-break on a feed of faces and noise.</td></tr>
+        <tr><th>Motion</th><td>0.0s hard cut in (no fade). At ~2s the slotted tray slides off-frame left and one empty shallow tray slides in to replace it. The motion is the argument: subtraction happening live.</td></tr>
+        <tr><th>Text</th><td>One line, sans, high contrast: "I deleted every compartment." A contradiction (an organizer with nothing to organize into) that opens a loop the brain wants closed.</td></tr>
+        <tr><th>Sound</th><td>Near silence. A single soft mechanical click on the swap. No trending audio. The quiet is the tell that this is considered, not content-mill.</td></tr>
+        <tr><th>Why it works</th><td>It attacks a category everyone owns, withholds the why, and the visual is so clean it reads as a brand before they know it is one. They stop because it looks expensive and says something.</td></tr>
+      </table>
+    </div>
+  </div>
+</div></section>
+
+<!-- 2 PROFILE -->
+<section id="s2"><div class="wrap">
+  <div class="secnum">02</div><h2>The profile experience</h2>
+  <p class="soft" style="max-width:680px">They tapped the handle. This is the page in the first five seconds.</p>
+  <div class="grid2" style="margin-top:24px">
+    <div class="phone">
+      <div class="bar"></div>
+      <div class="screen">
+        <div class="phead">
+          <div style="display:flex;gap:14px;align-items:center">
+            <div class="avatar">
+              <svg width="30" height="30" viewBox="0 0 44 44"><rect x="3" y="3" width="38" height="38" fill="none" stroke="#1B1916" stroke-width="2"/><rect x="18" y="18" width="8" height="8" fill="#9A7430"/></svg>
+            </div>
+            <div class="sans" style="font-size:12px">
+              <div style="font-weight:700;letter-spacing:.04em">MADE WORLD</div>
+              <div class="soft">design · one object a week</div>
+            </div>
+          </div>
+          <p class="sans" style="font-size:12px;margin:10px 0 4px">I design one object a week and let you decide if it should exist.</p>
+          <div class="sans accent" style="font-size:11px;letter-spacing:.04em">the one that wins gets made → link</div>
+        </div>
+        <div class="hl">
+          <div class="h"><div class="ring"><svg viewBox="0 0 44 44"><rect x="6" y="6" width="32" height="32" fill="none" stroke="#1B1916" stroke-width="2"/><rect x="19" y="19" width="6" height="6" fill="#9A7430"/></svg></div><div class="cap">Drops</div></div>
+          <div class="h"><div class="ring"><svg viewBox="0 0 44 44"><line x1="10" y1="22" x2="34" y2="22" stroke="#1B1916" stroke-width="2"/></svg></div><div class="cap">Teardowns</div></div>
+          <div class="h"><div class="ring"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="13" fill="none" stroke="#1B1916" stroke-width="2"/></svg></div><div class="cap">The Idea</div></div>
+        </div>
+        <div class="ig">
+          <div class="cell"><span class="pin">PIN</span><svg class="mini" viewBox="0 0 60 40"><rect x="6" y="6" width="48" height="28" fill="none" stroke="#1B1916" stroke-width="2"/><rect x="26" y="16" width="8" height="8" fill="#9A7430"/></svg></div>
+          <div class="cell"><span class="pin">PIN</span><svg class="mini" viewBox="0 0 60 40"><rect x="6" y="8" width="48" height="24" fill="none" stroke="#1B1916" stroke-width="2"/></svg></div>
+          <div class="cell"><svg class="mini" viewBox="0 0 60 40"><rect x="8" y="8" width="20" height="24" fill="none" stroke="#1B1916" stroke-width="2"/><rect x="34" y="8" width="20" height="24" fill="none" stroke="#CBC3B4" stroke-width="2"/></svg></div>
+          <div class="cell"><svg class="mini" viewBox="0 0 60 40"><rect x="6" y="6" width="48" height="28" fill="none" stroke="#1B1916" stroke-width="2"/><rect x="26" y="16" width="8" height="8" fill="#9A7430"/></svg></div>
+          <div class="cell"><svg class="mini" viewBox="0 0 60 40"><circle cx="30" cy="20" r="11" fill="none" stroke="#1B1916" stroke-width="2"/></svg></div>
+          <div class="cell"><svg class="mini" viewBox="0 0 60 40"><rect x="14" y="8" width="32" height="24" fill="none" stroke="#1B1916" stroke-width="2"/></svg></div>
+          <div class="cell"><svg class="mini" viewBox="0 0 60 40"><rect x="6" y="6" width="48" height="28" fill="none" stroke="#1B1916" stroke-width="2"/><rect x="26" y="16" width="8" height="8" fill="#9A7430"/></svg></div>
+          <div class="cell"><svg class="mini" viewBox="0 0 60 40"><line x1="12" y1="20" x2="48" y2="20" stroke="#1B1916" stroke-width="2"/></svg></div>
+          <div class="cell"><svg class="mini" viewBox="0 0 60 40"><rect x="10" y="10" width="40" height="20" fill="none" stroke="#1B1916" stroke-width="2"/></svg></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3>What a stranger believes in 5 seconds</h3>
+      <p>"This person designs considered objects with a real point of view, and I want to see the next one. I might even want to own one."</p>
+      <div class="rule"></div>
+      <table>
+        <tr><th>Mark</th><td>A surface with one object inside it. Five seconds to draw. Same mark at avatar, Pin, email, edition seal.</td></tr>
+        <tr><th>Bio</th><td>One line states the format, the cadence, and the invitation. No face, no employer, no real brand named.</td></tr>
+        <tr><th>Pinned (2)</th><td>The strongest hero drop, and a short "what this is" post. A stranger reads these first.</td></tr>
+        <tr><th>First 9-grid</th><td>Hero / teardown / hero, every tile object-on-white in the same discipline. The grid itself is the brand proof. Consistency over variety.</td></tr>
+        <tr><th>Highlights</th><td>Three buckets only: Drops, Teardowns, The Idea. Binge the world in one tap.</td></tr>
+      </table>
+    </div>
+  </div>
+</div></section>
+
+<!-- 3 HERO DROP -->
+<section id="s3"><div class="wrap">
+  <div class="secnum">03</div><h2>The Week 1 hero drop experience</h2>
+  <p class="kick">Example only: THE READYMADE DROP No.001 · THE ONE. Not a crowned product.</p>
+  <div class="grid2" style="margin-top:24px">
+    <div class="phone">
+      <div class="bar"></div>
+      <div class="frameWHITE framewhite">
+        <div class="framewhite">
+          <div class="sans" style="font-size:11px;letter-spacing:.18em;color:#6E675C;margin-bottom:8px">THE READYMADE DROP No.001</div>
+          <svg class="obj" viewBox="0 0 220 150" aria-label="the one tray">
+            <rect x="30" y="34" width="160" height="82" rx="16" fill="#FBF8F2" stroke="#1B1916" stroke-width="2.5"/>
+            <rect x="30" y="34" width="160" height="82" rx="16" fill="none" stroke="#9A7430" stroke-width="1" opacity=".0"/>
+          </svg>
+          <div class="placard" style="margin-top:16px">IF IT DOES NOT FIT FLAT IN ONE LAYER, YOU DO NOT CARRY IT.</div>
+          <div class="onwhite-cap accent">THE ONE · reply DROP</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3>Hero image direction</h3>
+      <p>Top-down, seamless white, one shallow undivided tray dead center, one continuous radius, no dividers, no lid, no labels. Soft single-source light, a long quiet shadow. Slow quarter-rotate. The object is the only event in the frame.</p>
+      <table>
+        <tr><th>Sequence</th><td>title card → rough sketch (one stroke) → 3-variant grid (r4 · r8 · r12) → chosen final → rule-of-use placard.</td></tr>
+        <tr><th>Caption</th><td>"THE READYMADE DROP No.001. THE ONE. One shallow tray. No compartments. The organization is the rule: if it does not fit flat in one layer, it does not come with you. I designed this. It does not exist yet."</td></tr>
+        <tr><th>CTA</th><td class="accent">"Reply DROP if you would actually keep this on your desk, and tell me the ONE thing you would refuse to leave behind."</td></tr>
+        <tr><th>Comment prompt</th><td>The second clause forces a specific, costly answer (a named object), which is the real instrument.</td></tr>
+        <tr><th>What gets tested</th><td>Does the OBJECTS category pull real intent, and is demand for a physical object or a digital plan. Threshold: named-object DROP replies of reached accounts at or above 8 percent reads as real pull. Bare "DROP" is weak signal only.</td></tr>
+      </table>
+    </div>
+  </div>
+</div></section>
+
+<!-- 4 LANDING -->
+<section id="s4"><div class="wrap">
+  <div class="secnum">04</div><h2>The landing page experience</h2>
+  <p class="soft" style="max-width:680px">The link in bio. An interest page, not a store. No checkout, no price, no rails.</p>
+  <div class="site" style="margin-top:22px">
+    <div class="nav"><span>MADE WORLD</span><span>Drops · The Idea · Inquiries</span></div>
+    <div class="block" style="text-align:center;padding:54px 22px">
+      <div class="lab">one object a week</div>
+      <h2 style="font-size:40px;margin:12px 0">The desk organizer that organizes by deleting the compartments.</h2>
+      <p class="soft" style="max-width:560px;margin:0 auto 18px">I design one object a week. You decide which ones should exist. The one that wins gets made.</p>
+      <span class="btn fill">See this week's drop</span>
+    </div>
+    <div class="block grid2">
+      <div>
+        <div class="lab b">latest drop</div>
+        <h3 style="margin-top:8px">No.001 · THE ONE</h3>
+        <p class="soft">One tray, one layer, the rule is the product.</p>
+        <span class="btn">Open the drop</span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center">
+        <svg width="200" height="120" viewBox="0 0 220 130"><rect x="30" y="24" width="160" height="82" rx="16" fill="#FBF8F2" stroke="#1B1916" stroke-width="2.5"/></svg>
+      </div>
+    </div>
+    <div class="block" style="text-align:center">
+      <div class="lab">vote / interest capture</div>
+      <p style="margin:10px 0 14px">Should THE ONE exist?</p>
+      <div class="vote" style="justify-content:center"><span class="btn brass">WANT</span><span class="btn">MAYBE</span><span class="btn">PASS</span></div>
+      <p class="soft sans" style="font-size:11px;margin-top:12px">No payment. A vote is a signal, logged to the ledger.</p>
+    </div>
+    <div class="block" style="text-align:center">
+      <div class="lab">email capture</div>
+      <p class="soft" style="margin:10px 0 12px">Get the next drop before it reaches anyone else.</p>
+      <div style="display:flex;gap:8px;max-width:420px;margin:0 auto"><span class="field" style="flex:1">your email</span><span class="btn fill">Join</span></div>
+    </div>
+    <div class="block">
+      <div class="lab">drop archive</div>
+      <div class="grid3" style="margin-top:12px">
+        <div class="card" style="text-align:center"><svg width="100" height="64" viewBox="0 0 120 80"><rect x="14" y="16" width="92" height="48" rx="10" fill="none" stroke="#1B1916" stroke-width="2.5"/></svg><div class="sans" style="font-size:11px;margin-top:8px">No.001 · THE ONE</div></div>
+        <div class="card soft sans" style="display:flex;align-items:center;justify-content:center;font-size:12px">No.002 · next week</div>
+        <div class="card soft sans" style="display:flex;align-items:center;justify-content:center;font-size:12px">No.003 · soon</div>
+      </div>
+    </div>
+    <div class="block" style="text-align:center">
+      <div class="lab">inquiry path</div>
+      <p class="soft" style="margin:10px 0 12px">Brand, founder, or collector who wants something made? One quiet line.</p>
+      <span class="btn">Start an inquiry</span>
+      <p class="soft sans" style="font-size:11px;margin-top:10px">Inbound only. Payment follows proof. No store yet.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 5 DROP PAGE -->
+<section id="s5"><div class="wrap">
+  <div class="secnum">05</div><h2>The drop page experience</h2>
+  <p class="kick">/drops/the-one</p>
+  <div class="site" style="margin-top:22px">
+    <div class="block" style="text-align:center;padding:44px 22px">
+      <div class="lab b">No.001</div>
+      <h2 style="font-size:44px;margin:10px 0">THE ONE</h2>
+      <div style="display:flex;justify-content:center;margin:16px 0">
+        <svg width="280" height="150" viewBox="0 0 280 150"><rect x="50" y="34" width="180" height="92" rx="18" fill="#FBF8F2" stroke="#1B1916" stroke-width="3"/><ellipse cx="140" cy="138" rx="100" ry="6" fill="#1B1916" opacity=".06"/></svg>
+      </div>
+      <p class="lead" style="max-width:560px;margin:0 auto">One shallow tray. No compartments. The organization is the rule: if it does not fit flat in one layer, it does not come with you.</p>
+    </div>
+    <div class="block">
+      <div class="lab">the three variants</div>
+      <div class="grid3" style="margin-top:14px">
+        <div class="card" style="text-align:center"><svg width="120" height="70" viewBox="0 0 140 90"><rect x="20" y="22" width="100" height="46" rx="4" fill="none" stroke="#1B1916" stroke-width="2.5"/></svg><div class="sans" style="font-size:11px;margin-top:8px">r4 · tight</div></div>
+        <div class="card" style="text-align:center;border-color:#9A7430"><svg width="120" height="70" viewBox="0 0 140 90"><rect x="20" y="22" width="100" height="46" rx="12" fill="none" stroke="#1B1916" stroke-width="2.5"/></svg><div class="sans accent" style="font-size:11px;margin-top:8px">r8 · chosen</div></div>
+        <div class="card" style="text-align:center"><svg width="120" height="70" viewBox="0 0 140 90"><rect x="20" y="22" width="100" height="46" rx="22" fill="none" stroke="#1B1916" stroke-width="2.5"/></svg><div class="sans" style="font-size:11px;margin-top:8px">r12 · soft</div></div>
+      </div>
+    </div>
+    <div class="block" style="text-align:center">
+      <div class="lab">should it exist?</div>
+      <div class="vote" style="justify-content:center;margin-top:12px"><span class="btn brass">WANT</span><span class="btn">MAYBE</span><span class="btn">PASS</span></div>
+    </div>
+    <div class="block" style="text-align:center">
+      <div class="lab">tell me the one thing</div>
+      <p class="soft" style="margin:10px 0 12px">If this existed, the one thing you would refuse to leave off it.</p>
+      <div style="display:flex;gap:8px;max-width:460px;margin:0 auto"><span class="field" style="flex:1">your email + the one thing</span><span class="btn fill">Send</span></div>
+    </div>
+    <div class="block" style="text-align:center">
+      <span class="btn">Inquire about a made-to-order run</span>
+      <p class="soft sans" style="font-size:11px;margin-top:10px">No price, no cart. Inbound interest only, logged as signal.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 6 BACKEND -->
+<section id="s6"><div class="wrap">
+  <div class="secnum">06</div><h2>The backend experience</h2>
+  <p class="soft" style="max-width:720px">The part nobody sees. Every reaction becomes a logged signal, and signal is the only thing allowed to graduate into a product.</p>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card">
+      <div class="lab b">Demand Signal Ledger (one row per platform cut)</div>
+      <p class="sans" style="font-size:12px;margin-top:10px">date · week_id · theme · piece_id · format · platform · role_in_funnel · category_tag · audience_tag · signal_probe_text · reach · weak_signal · strong_signal_count · save_to_reach_ratio · reply_author_type · inbound_dm_intent · physical_vs_digital_pull · repeat_engager · hero_durability · crossed_threshold · next_action</p>
+    </div>
+    <div class="card">
+      <div class="lab b">DM workflow</div>
+      <ul class="sans" style="font-size:12.5px;margin-top:10px"><li>Personal reply (not canned): thank, ask the use-case, tag interest level.</li><li>Drafted by the OS, sent by hand.</li><li>Every DM logged: inbound_dm_intent + audience_tag + physical_vs_digital_pull.</li></ul>
+    </div>
+    <div class="card">
+      <div class="lab b">Email / waitlist tags</div>
+      <ul class="sans" style="font-size:12.5px;margin-top:10px"><li>category (objects), archetype (founder/creative/coach/operator)</li><li>form pull (physical vs digital), intent (weak / strong / inbound-ask)</li><li>the owned, un-deplatformable list, grown every week</li></ul>
+    </div>
+    <div class="card">
+      <div class="lab b">Weekly signal review → graduation</div>
+      <ul class="sans" style="font-size:12.5px;margin-top:10px"><li>Read the ledger against the 7 signals + thresholds, write one next_action.</li><li><b>Graduates</b> only when, across 2+ weeks: at or above 8 percent named-reply pull AND 10+ inbound "make this real" DMs AND 20+ repeat-engagers.</li><li>Graduation triggers a separate operator-approved build, payment follows proof. It is permission to scope an offer, not a crown.</li></ul>
+    </div>
+  </div>
+</div></section>
+
+<!-- 7 MONEY -->
+<section id="s7"><div class="wrap">
+  <div class="secnum">07</div><h2>The money path</h2>
+  <p class="kick">No product crowned. Each route is inbound-gated and payment follows proof. This is how money could realistically appear.</p>
+  <div class="grid3" style="margin-top:22px">
+    <div class="card"><div class="lab b">01</div><h3 style="margin-top:6px;font-size:17px">Paid concept commission</h3><p class="soft sans" style="font-size:12.5px">A brand or founder asks "design X like this." Scope a one-off. Triggered by inbound asks, never outreach.</p></div>
+    <div class="card"><div class="lab b">02</div><h3 style="margin-top:6px;font-size:17px">Limited physical drop</h3><p class="soft sans" style="font-size:12.5px">If OBJECTS pulls and physical demand is proven: a capped, numbered, made-to-order run. Waitlist first, no inventory risk.</p></div>
+    <div class="card"><div class="lab b">03</div><h3 style="margin-top:6px;font-size:17px">Brand / license inquiry</h3><p class="soft sans" style="font-size:12.5px">A brand wants the aesthetic or the object licensed. A license or retainer, on their inbound ask.</p></div>
+    <div class="card"><div class="lab b">04</div><h3 style="margin-top:6px;font-size:17px">Waitlist for production</h3><p class="soft sans" style="font-size:12.5px">The cheapest money signal. A refundable deposit only after strong, repeated proof. Still gated.</p></div>
+    <div class="card"><div class="lab b">05</div><h3 style="margin-top:6px;font-size:17px">Sponsor / partner inquiry</h3><p class="soft sans" style="font-size:12.5px">A tool or brand sponsors the teardown or drop format, once the format has an audience.</p></div>
+    <div class="card"><div class="lab b">06</div><h3 style="margin-top:6px;font-size:17px">Later product line</h3><p class="soft sans" style="font-size:12.5px">A retainer or a standing line, never pitched, accepted only when inbound demand is undeniable and recurring.</p></div>
+  </div>
+  <p class="soft sans" style="font-size:12px;margin-top:16px">Across all six: no rails until a real yes, no price before demand, the hypothesis clears the graduation bar first.</p>
+</div></section>
+
+<!-- 8 LIFE -->
+<section id="s8"><div class="wrap">
+  <div class="secnum">08</div><h2>The life path</h2>
+  <p class="soft" style="max-width:720px">Why this is worth building, beyond a feed. What it compounds toward if it works.</p>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card"><h3 style="font-size:17px">More control</h3><p class="soft sans" style="font-size:12.5px">Owned IP and an owned audience, not a client queue. The brand and the list are yours and un-deplatformable.</p></div>
+    <div class="card"><h3 style="font-size:17px">LA house and family life</h3><p class="soft sans" style="font-size:12.5px">A faceless, location-free engine that earns from taste and an audience, so income is not tied to where you stand or whose set you are on.</p></div>
+    <div class="card"><h3 style="font-size:17px">Less employer dependence</h3><p class="soft sans" style="font-size:12.5px">A clean, employer-safe lane with its own name and revenue logic, built to fund a runway, never in conflict with the day job.</p></div>
+    <div class="card"><h3 style="font-size:17px">Creative leverage</h3><p class="soft sans" style="font-size:12.5px">One authored object a week compounds into a body of work, a reputation for taste, and a portfolio brands come to, instead of one-off labor.</p></div>
+    <div class="card"><h3 style="font-size:17px">Global market</h3><p class="soft sans" style="font-size:12.5px">Objects and taste travel. A faceless design world sells to anyone with a screen, not just a local booking radius.</p></div>
+    <div class="card"><h3 style="font-size:17px">AI-proof taste and ownership</h3><p class="soft sans" style="font-size:12.5px">AI makes images cheap and taste scarce. The moat is the point of view and the owned brand, which a model cannot hand to the next person.</p></div>
+  </div>
+</div></section>
+
+<!-- 9 VISUAL BOARD -->
+<section id="s9"><div class="wrap">
+  <div class="secnum">09</div><h2>Visual direction board</h2>
+  <p class="soft" style="max-width:720px">The actual look. Quiet luxury editorial restraint, object on white, near monochrome, exactly one disciplined accent.</p>
+
+  <div class="lab b" style="margin-top:24px">color palette</div>
+  <div class="grid3" style="margin-top:10px">
+    <div><div class="sw" style="background:#FBF8F2;color:#6E675C">paper #FBF8F2</div></div>
+    <div><div class="sw" style="background:#F1EBDF;color:#6E675C">bone #F1EBDF</div></div>
+    <div><div class="sw" style="background:#1B1916;color:#F1EBDF">ink #1B1916</div></div>
+    <div><div class="sw" style="background:#6E675C;color:#F1EBDF">soft #6E675C</div></div>
+    <div><div class="sw" style="background:#9A7430;color:#FBF8F2">brass #9A7430 · the one accent</div></div>
+    <div><div class="sw" style="background:#FFFFFF;color:#6E675C;border:1px solid #DCD4C5">white #FFFFFF · the stage</div></div>
+  </div>
+  <p class="soft sans" style="font-size:11px;margin-top:8px">Near monochrome. The brass appears only on the mark, the chosen variant, and the one live CTA. Never teal/orange, never neon, never red.</p>
+
+  <div class="grid2" style="margin-top:30px">
+    <div class="card">
+      <div class="lab b">typography</div>
+      <div style="font-family:Georgia,serif;font-size:34px;margin:12px 0 2px">Made World</div>
+      <div style="font-family:Georgia,serif;font-style:italic;font-size:18px;color:#6E675C">editorial serif display · Didot/Baskerville feel</div>
+      <div class="rule"></div>
+      <div class="sans" style="font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#6E675C">SANS LABELS · WIDE TRACKING · QUIET</div>
+      <p class="sans" style="font-size:12.5px;margin-top:10px">Serif for the voice and the object names. Sans, small, wide-tracked, for labels and placards. One masthead, one line, one mark. No filler type.</p>
+    </div>
+    <div class="card">
+      <div class="lab b">image style</div>
+      <ul class="sans" style="font-size:12.5px;margin-top:10px"><li>Object on seamless white, top-down or eye-level, one object per frame.</li><li>Soft single-source light, one long quiet shadow.</li><li>Generous negative space. Museum-placard captions.</li><li>No people, no hands, no clutter, no brand logos, no AI gradient sheen.</li></ul>
+    </div>
+    <div class="card">
+      <div class="lab b">motion style</div>
+      <ul class="sans" style="font-size:12.5px;margin-top:10px"><li>Hard cuts, not fades. Objects slide in and out of frame.</li><li>Slow quarter-rotate on the final. One soft mechanical click.</li><li>Loop that re-asks the opening so the replay reads as a punchline.</li></ul>
+    </div>
+    <div class="card">
+      <div class="lab b">website style</div>
+      <ul class="sans" style="font-size:12.5px;margin-top:10px"><li>Editorial, lots of white, thin rules, small-caps labels.</li><li>One accent, one CTA per screen. No store chrome.</li><li>The page feels like a quiet gallery, not a shop.</li></ul>
+    </div>
+    <div class="card">
+      <div class="lab b">packaging / product style</div>
+      <ul class="sans" style="font-size:12.5px;margin-top:10px"><li>Bone box, debossed mark, a numbered edition seal in brass foil.</li><li>One printed rule-of-use card per object, placard typeset.</li><li>The object arrives looking like it was always meant to exist.</li></ul>
+    </div>
+    <div class="card" style="background:#1B1916;color:#F1EBDF;border-color:#1B1916">
+      <div class="lab" style="color:#C8A661">what it feels like at its best</div>
+      <p style="font-family:Georgia,serif;font-size:18px;line-height:1.5;margin-top:10px">Like walking into a quiet room where one object sits under a single light, and you understand, before anyone explains it, that someone decided every part of it on purpose.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 10 GEN PLAN -->
+<section id="s10"><div class="wrap">
+  <div class="secnum">10</div><h2>Higgsfield generation plan</h2>
+  <p class="kick">Spend approved in principle for the hero plate only. Nothing is generated here. This is the plan and the approval checkpoint.</p>
+  <div class="card" style="margin-top:20px">
+    <div class="lab b">The exact 5 hero images worth generating first</div>
+    <table style="margin-top:12px">
+      <tr><th>#</th><th>image</th><th>prompt direction</th></tr>
+      <tr><td>1</td><td>THE ONE, final, hero</td><td>Top-down, seamless pure-white sweep. One shallow undivided machined tray, single continuous r8 radius, no dividers, no lid, no labels, matte aluminum or bone resin. Soft single-source light from upper left, one long low-contrast shadow. Museum product still. No logo, no text, no hands, no reflection-noise. Square + 9:16 crops.</td></tr>
+      <tr><td>2</td><td>The 3-variant grid</td><td>Three identical trays side by side on white, only the corner radius differs (tight r4, chosen r8, soft r12). Even spacing, identical light, top-down. The middle one a hair more present. Clean catalogue grid.</td></tr>
+      <tr><td>3</td><td>The before/after swap pair</td><td>Two frames: a generic twelve-slot molded organizer (busy, additive), and the single empty tray (considered). Same white, same scale, same light, so the only variable is the subtraction. For the teardown-to-hero motion.</td></tr>
+      <tr><td>4</td><td>The rule-of-use placard still</td><td>The tray on white with a small typeset placard card beside it reading the rule. Editorial, calm, lots of negative space, placard in wide-tracked sans. The status-object beauty shot.</td></tr>
+      <tr><td>5</td><td>The edition / packaging still</td><td>The bone box, debossed mark, brass-foil numbered seal, the tray half-revealed. Quiet luxury unboxing-as-object. One light, one shadow, no hands. The "it could be real" proof frame.</td></tr>
+    </table>
+  </div>
+  <div class="grid3" style="margin-top:18px">
+    <div class="card"><div class="lab b">budget cap</div><p class="sans" style="font-size:12.5px;margin-top:8px">Hard weekly cap, operator-set. Proposed default ~20-30 credits (about 2cr per still per the ledger, the 5 plates plus a re-roll allowance). No generation beyond the cap without fresh approval.</p></div>
+    <div class="card"><div class="lab b">approval checkpoint</div><p class="sans" style="font-size:12.5px;margin-top:8px">Tuesday before hero day, the operator approves the exact prompt + the credit estimate. Nothing generates without that explicit go. No go means the hero ships as an on-white spec render at zero spend.</p></div>
+    <div class="card"><div class="lab b">QA checklist before posting</div><ul class="sans" style="font-size:12px;margin-top:8px"><li>Object on white only, no person, no face</li><li>No logo, brand color, or real-org mark</li><li>One-accent discipline holds, mark consistent</li><li>Reads at thumbnail, no AI tells (warp, sheen, artifacts)</li><li>Passes the External Visual Proof Gate (a human signs off; Claude is not the final visual authority)</li></ul></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  MADE WORLD · Visual Experience Prototype 001 (working name, not final). For operator conviction only. No product crowned, no broad thesis, no generic-AI-design-account drift, no SNIPED Media default, no employer conflict, no ingredient resale. No posting, ads, payment rails, generation, or spend performed. Built single-thread from the verified Week 1 campaign and the OS visual / layout / money doctrine. Object renders are CSS/SVG placeholders standing in for the section-10 hero plates, which are gated on your approval.
+</div></footer>
+
+</body>
+</html>
