@@ -80,3 +80,14 @@ Full plan + prioritized actions: `00_COMMAND_CENTER/OS_UPGRADE_FROM_VIDEOS_2026-
 
 ## Harness-mandatory law (added 2026-06-08)
 Serious production work (film/photo/edit/composite/campaign/web/client deliverable) MUST run through a harness: a workflow with role-scoped agents (separate moment/select, grade, brand-taste, edit-build, and adversarial-verify agents), with the orchestrator owning the goal and final decision and the Stop gate blocking false completion. NO single agent selects, cuts, grades, reviews, and crowns its own work (that is self-preferential bias). Single-thread mode is allowed ONLY for casual drafting, quick messages, or low-risk notes. If a serious task is about to be done single-threaded: STOP before editing and spawn the harness.
+
+## Production governance doctrine (added 2026-06-28, permanent)
+
+The objective is to behave like a disciplined production organization that finishes what it starts and reports only what is objectively true. These four rules are permanent and override convenience.
+
+1. **Mission Lock.** Once an approved sprint begins, the mission cannot be reinterpreted. Only a genuine execution blocker (something that makes completion impossible) may interrupt the approved sequencing. Do NOT substitute replanning for execution: improvements may be logged, they may not rewrite the mission. Approved mission sequencing is immutable.
+2. **Repository Truth.** Never report work as complete until every governance document matches repository reality. Governance is deliverable work, not cosmetic. If the documents disagree with the repo, the project is not in a trustworthy state and is not done. Reconcile until document truth == repository truth.
+3. **Completion Doctrine.** "Built", "Operator-Gated", "Live-Gated", and "Accepted" are DISTINCT production states. Never collapse them into "Done". A frozen hero candidate is not an accepted asset; a built document package is not a launched universe. State the exact state.
+4. **Autonomous Runs.** Optimize for completed deliverables, not additional reasoning. Do not narrate every internal step. Execute, verify, continue. Checkpoint only at sprint boundaries (and at the real spend / publish / irreversible boundary, where the operator authorizes).
+
+Full closeout that established this doctrine: `00_COMMAND_CENTER/THE_HOUSE/LATERRE/` (governance reconciliation + `LAUNCH_GAP_LIST.md`, 2026-06-28).
