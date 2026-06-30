@@ -30,3 +30,14 @@ The Stop gate only fires on HARD production domains (film, photo, image_design, 
 
 ## How to use going forward
 On any production task: `os_proof_manifest.py init` the folder at the start, fill artifacts/gates honestly as you go, set `send_no_send=yes` only when verify passes. The Stop hook does the rest: it will not let a completion claim through without it. Composes under [[os-activation-spine]] and [[real-film-production-os]]. Memory: [[production-completion-enforcer]].
+
+## Amendment 2026-06-29 · Three-failure-mode law (Guard A live)
+
+**Law (APPROVED IN PRINCIPLE 2026-06-29 by Operator BJ): Stop-gate verifies all three failure-mode defenses, not just proof-manifest existence.**
+`os_stop_check` may not pass a serious/production completion claim on `PROOF_MANIFEST.json` existence alone. It must also machine-verify the three named single-agent failure-mode defenses: (a) agentic laziness (done-count vs required-count), (b) self-preferential bias (a verifier id distinct from the generator id), (c) goal drift (the pinned STANDING_ORDER / NEXT_ACTION constraints were re-read in the final phase).
+
+- **Source citation:** `00_COMMAND_CENTER/OS_UPGRADE_FROM_VIDEOS_2026-06-08.md` (Action #2, the three named failure modes). Established by the read-only one-book closed-loop proof (verdict FIX, 2026-06-29).
+- **Status:** APPROVED IN PRINCIPLE. Implementation is deliberately scoped, not full.
+- **Implementation scope · Guard A only (live):** the agentic-laziness defense via `PROGRESS_COUNT.json`. When a serious/production completion claim is detected and a task/project folder named in the turn carries a `PROGRESS_COUNT.json` with explicit integer `done` and `required` counts, the completion claim is blocked (exit 2) while `done < required`, naming the laziness defense. The absence of `PROGRESS_COUNT.json` never blocks on its own; existing behavior is preserved.
+- **Deferred scope · Guard B and Guard C NOT implemented:** Guard B (self-preferential-bias defense) requires a new `SECOND_MODEL_RECORD.json` artifact convention plus an emitter and checker; Guard C (goal-drift defense) requires transcript tool-call parsing that the current JSONL field does not expose. Both remain CANDIDATE scope pending a future approved pass. Do not assume they are enforced.
+- **Implementing asset:** `00_COMMAND_CENTER/scripts/os_stop_check.py` (function `laziness_blockers`, cited in its module docstring).

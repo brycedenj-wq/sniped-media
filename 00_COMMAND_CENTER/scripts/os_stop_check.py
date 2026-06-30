@@ -4,6 +4,11 @@
 The OS cannot end a turn claiming a production task is done/final/client-ready unless the
 proof trail (PROOF_MANIFEST.json, required artifacts, passed gates, send=yes) exists.
 
+Doctrine: 00_COMMAND_CENTER/_standards/OS_PRODUCTION_COMPLETION_ENFORCER.md (Amendment 2026-06-29:
+three-failure-mode law; Guard A live, Guards B+C deferred) and AGENTS.md Orchestration law #2.
+Source: 00_COMMAND_CENTER/OS_UPGRADE_FROM_VIDEOS_2026-06-08.md Action #2. Guard A implemented here =
+the agentic-laziness defense via PROGRESS_COUNT.json (block a completion claim while done < required).
+
 Logic each Stop:
  1. Read transcript -> last user prompt + last assistant text.
  2. Classify the prompt (os_activate). If no HARD production domain -> do not gate (casual/soft work).
@@ -193,6 +198,31 @@ def activation_gate_blockers(assistant_text):
             blockers.append(f"{rel}: activation gate FAIL for {task_type}: {tail}")
     return blockers
 
+def laziness_blockers(assistant_text):
+    """Guard A - agentic-laziness defense (three-failure-mode law, OS_UPGRADE_FROM_VIDEOS Action #2).
+
+    If a task/project folder named in the assistant text carries a PROGRESS_COUNT.json with explicit
+    integer done/required counts, a completion claim is blocked while done < required. The guard fires
+    ONLY when that file is present; its absence never blocks (existing behavior is preserved). Guards B
+    (self-preferential bias) and C (goal drift) are deliberately NOT implemented in this pass.
+    Doctrine: _standards/OS_PRODUCTION_COMPLETION_ENFORCER.md Amendment 2026-06-29 (Guard A only)."""
+    blockers = []
+    for d in find_with(assistant_text, "PROGRESS_COUNT.json"):
+        pc = _load_json_file(os.path.join(d, "PROGRESS_COUNT.json"))
+        if not isinstance(pc, dict) or "done" not in pc or "required" not in pc:
+            continue
+        try:
+            done = int(pc["done"]); required = int(pc["required"])
+        except (TypeError, ValueError):
+            continue
+        if required > 0 and done < required:
+            rel = os.path.relpath(d, ROOT)
+            blockers.append(
+                f"{rel}: AGENTIC LAZINESS defense (done vs required): PROGRESS_COUNT.json shows "
+                f"done={done} < required={required}. Finish all required items, or restate the result "
+                f"as a proof/draft with the count named. Do not crown a partial set.")
+    return blockers
+
 def strikes(sig):
     try:
         d = json.load(open(STRIKE))
@@ -291,6 +321,10 @@ def main():
 
     # 4c. Source activation auto-call (W1c)
     blockers.extend(activation_gate_blockers(la))
+
+    # 4d. Guard A: agentic-laziness defense (done vs required). Three-failure-mode law, Guard A only.
+    # Doctrine: _standards/OS_PRODUCTION_COMPLETION_ENFORCER.md Amendment 2026-06-29.
+    blockers.extend(laziness_blockers(la))
 
     # 4b. OS_RECEIPT (serious work, the conductor law)
     if serious:
